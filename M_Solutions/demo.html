@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Montserrat:400,600');
+
+* {
+  box-sizing: border-box
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Montserrat', sans-serif;
+}
+
+.side-bar {
+  width: 160px;
+  height: 100vh;
+  position: sticky;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+nav ul {
+  padding: 0;
+}
+
+nav li {
+  list-style: none;
+}
+
+nav li a {
+  text-decoration: none;
+  color: #333;
+  display: block;
+  padding: 0.6rem 0.3rem;
+  font-weight: 400;
+  transition: all ease-out 250ms;
+}
+
+nav li a:hover {
+  color: lime;
+}
+
+.main-content {
+  margin-left: 160px;
+}
+
+section {
+  background-color: #f2f2f2;
+  height: 90vh;
+  margin:0;
+  padding:2.5rem 4rem;
+}
+
+section:nth-of-type(2n) {
+  background-color: #ccc;
+}
+
+section:last-of-type {
+  height: 100vh;
+}
+
+h1 {
+  color: #444;
+  font-weight: 600;
+}
+
+.active {
+  color: lime; 
+  font-weight: 600;
+}
+    </style>
+</head>
+<body>
+    <div class="side-bar">
+        <nav class="navigation">
+          <ul>
+            <li>
+              <a href="#about">About</a>
+              <a href="#products">Products</a>
+              <a href="#services">Services</a>
+              <a href="#contact">Contact</a>
+              <a href="#gallery">Gallery</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+      <div class="main-content">
+        <section id="about">
+          <h1>About</h1>
+        </section>
+        <section id="products">
+          <h1>Products</h1>
+        </section>
+        <section id="services">
+          <h1>Services</h1>
+        </section>
+        <section id="contact">
+          <h1>Contact</h1>
+        </section>
+        <section id="gallery">
+          <h1>Gallery</h1>
+        </section>
+      </div>
+
+      <script>
+        // Get all sections that have an ID defined
+const sections = document.querySelectorAll("section[id]");
+
+// Add an event listener listening for scroll
+window.addEventListener("scroll", navHighlighter);
+
+function navHighlighter() {
+  
+  // Get current scroll position
+  let scrollY = window.pageYOffset;
+  
+  // Now we loop through sections to get height, top and ID values for each
+  sections.forEach(current => {
+    const sectionHeight = current.offsetHeight;
+    const sectionTop = current.offsetTop - 50;
+    sectionId = current.getAttribute("id");
+    
+    /*
+    - If our current scroll position enters the space where current section on screen is, add .active class to corresponding navigation link, else remove it
+    - To know which link needs an active class, we use sectionId variable we are getting while looping through sections as an selector
+    */
+    if (
+      scrollY > sectionTop &&
+      scrollY <= sectionTop + sectionHeight
+    ){
+      document.querySelector(".navigation a[href*=" + sectionId + "]").classList.add("active");
+    } else {
+      document.querySelector(".navigation a[href*=" + sectionId + "]").classList.remove("active");
+    }
+  });
+}
+      </script>
+</body>
+</html>

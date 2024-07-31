@@ -1,0 +1,72 @@
+
+$(document).ready(function () {
+
+    // solutions : nav scrolling tracker
+    $('a[href*="#"]').on('click', function (e) {
+        e.preventDefault();
+
+        $('html, body').animate({
+            scrollTop: $($(this).attr('href')).offset().top
+        }, 600);
+    });
+
+    $(window).on('scroll', function () {
+        var scrollDistance = $(window).scrollTop();
+        $('.m_page-section').each(function (i) {
+            if ($(this).position().top <= scrollDistance + 100) {
+                $('.m_navigation a.active').removeClass('active');
+                $('.m_navigation a').eq(i).addClass('active');
+            }
+        });
+    }).scroll();
+
+    // solutions : Show more and show less
+    $(".m_separator2").css("display", "none");
+    $(".m_showMore").on("click", function () {
+        $(this).closest(".row").find(".m_hidden").css("display", "block");
+        $(this).closest(".m_separator1").css("display", "none");
+        $(this).closest(".row").find(".m_separator2").css("display", "flex");
+    });
+    $(".m_showLess").on("click", function () {
+        $(this).closest(".row").find(".m_hidden").css("display", "none");
+        $(this).closest(".m_separator2").css("display", "none");
+        $(this).closest(".row").find(".m_separator1").css("display", "flex");
+    });
+
+    // solutions : Business Solutions : AI : Hardware : AI Hardware Solutions : Processors
+    $('.m_ai_hpCarousel').owlCarousel({
+        loop: true,
+        margin: 10,
+        nav: false,
+        dots: true,
+        responsive: {
+            0: {
+                items: 1
+            }
+        }
+    })
+
+});
+
+
+
+// solutions : Business Solutions : AI Technology : Deploy AI Technology Confidently with Intel
+$(function () {
+    var activeIndex = $('.m_active-tab').index(),
+        $contentlis = $('.m_tabs-content li'),
+        $tabslis = $('.m_tabs li');
+
+    // Show content of active tab on loads
+    $contentlis.eq(activeIndex).show();
+
+    $('.m_tabs').on('click', 'li', function (e) {
+        var $current = $(e.currentTarget),
+            index = $current.index();
+
+        $tabslis.removeClass('m_active-tab');
+        $current.addClass('m_active-tab');
+        $contentlis.hide().eq(index).show();
+    });
+});
+
+
