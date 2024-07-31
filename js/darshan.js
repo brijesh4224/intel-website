@@ -45,7 +45,7 @@ window.onload = function () {
             benefit.innerHTML += `<div class="col-sm-12 col-sm-4 col-md-4">
                 <div class="d_item">
                     <div class="d_img">
-                        <img src="./../darshan_image/${benefitarr[i].image}" alt="">
+                        <img src="/img/darshan_image/${benefitarr[i].image}" alt="">
                     </div>
                     <h3>${benefitarr[i].title}</h3>
                 </div>
@@ -125,7 +125,7 @@ window.onload = function () {
                     <div class="row">
                         <div class="col-xs-12 col-lg-6">
                             <div class="d_img">
-                                <img src="./../darshan_image/${solutions[i].image}" alt="">
+                                <img src="/img/darshan_image/${solutions[i].image}" alt="">
                             </div>
                         </div>
                         <div class="col-xs-12 col-lg-6">
@@ -175,7 +175,7 @@ window.onload = function () {
                     <div class="d_item">
                         <div class="d-flex align-items-center">
                             <div class="d_img">
-                                <img src="./../darshan_image/${features[i].image}" alt="">
+                                <img src="/img/darshan_image/${features[i].image}" alt="">
                             </div>
                             <div class="d_content">
                                 <h3><a href="">${features[i].title}</a></h3>
@@ -221,7 +221,7 @@ window.onload = function () {
                     <div class="d_item">
                         <div class="d-flex align-items-center">
                             <div class="d_img">
-                                <img src="./../darshan_image/${features1[i].image}" alt="">
+                                <img src="/img/darshan_image/${features1[i].image}" alt="">
                             </div>
                             <div class="d_content">
                                 <h3><a href="${features1[i].link}">${features1[i].title}</a></h3>
@@ -264,7 +264,7 @@ window.onload = function () {
             D_promotion.innerHTML += `<div class="col-12 col-sm-4 col-md-4 col-ms-6">
                     <div class="d_item">
                         <div class="d_img">
-                            <img src="./../darshan_image/${pro[i].image}" alt="">
+                            <img src="/img/darshan_image/${pro[i].image}" alt="">
                         </div>
                         <div class="d_content">
                             <h3>${pro[i].title}</h3>
@@ -436,7 +436,7 @@ window.onload = function () {
             D_promotion2.innerHTML += `<div class="col-12 col-sm-4 col-md-4 col-ms-6">
                         <div class="d_item">
                             <div class="d_img d_img1">
-                                <img src="./../darshan_image/${promotion2[i].image}" class="w-100" alt="">
+                                <img src="/img/darshan_image/${promotion2[i].image}" class="w-100" alt="">
                             </div>
                             <div class="d_content">
                                 <h3>${promotion2[i].title}</h3>
@@ -476,7 +476,7 @@ window.onload = function () {
                         <div class="row">
                             <div class="col-xs-12 col-lg-6">
                                 <div class="d_img">
-                                    <img src="./../darshan_image/${solutions2[i].image}" alt="">
+                                    <img src="/img/darshan_image/${solutions2[i].image}" alt="">
                                 </div>
                             </div>
                             <div class="col-xs-12 col-lg-6">
@@ -519,7 +519,7 @@ window.onload = function () {
                         <div class="row">
                             <div class="col-xs-12 col-lg-3">
                                 <div class="d_img">
-                                    <img src=./../darshan_image/${material[i].image} alt="">
+                                    <img src=/img/darshan_image/${material[i].image} alt="">
                                 </div>
                             </div>
                             <div class="col-xs-12 col-lg-9">
@@ -573,7 +573,7 @@ window.onload = function () {
                         <div class="row">
                             <div class="col-xs-12 col-lg-3">
                                 <div class="d_img">
-                                    <img src=./../darshan_image/${material1[i].image} alt="">
+                                    <img src=/img/darshan_image/${material1[i].image} alt="">
                                 </div>
                             </div>
                             <div class="col-xs-12 col-lg-9">
@@ -606,7 +606,7 @@ window.onload = function () {
                         <div class="row">
                             <div class="col-xs-12 col-lg-2">
                                 <div class="d_img">
-                                    <img src=./../darshan_image/${guides[i].image} alt="">
+                                    <img src=/img/darshan_image/${guides[i].image} alt="">
                                 </div>
                             </div>
                             <div class="col-xs-12 col-lg-10">
@@ -642,7 +642,7 @@ window.onload = function () {
                     <div class="row">
                         <div class="col-xs-12 col-lg-6">
                             <div class="d_img">
-                                <img src="./../darshan_image/${solutions3[i].image}" alt="">
+                                <img src="/img/darshan_image/${solutions3[i].image}" alt="">
                             </div>
                         </div>
                         <div class="col-xs-12 col-lg-6">
@@ -752,7 +752,7 @@ window.onload = function () {
             D_aboutpro.innerHTML += `<div class="col-xs-12 col-ms-12 col-sm-6 col-lg-3">
                     <div class="d_box">
                         <div class="d_img">
-                            <img src="./../darshan_image/${aboutpro[i].image}" alt="">
+                            <img src="/img/darshan_image/${aboutpro[i].image}" alt="">
                         </div>
                         <h3><a href="">${aboutpro[i].title}</a></h3>
                         <p></p>
@@ -795,7 +795,7 @@ window.onload = function () {
             D_intel.innerHTML += `<div class="row mt-3 ${i==1 ? "flex-row-reverse" : null} align-items-center">
                 <div class="col-xs-12 col-sm-5">
                     <div class="d_img">
-                        <img src="./../darshan_image/${intel[i].image}" alt="">
+                        <img src="/img/darshan_image/${intel[i].image}" alt="">
                     </div>
                 </div>
                 <div class="col-xs-12 col-sm-7">
@@ -917,7 +917,7 @@ window.onload = function () {
             D_newepisode.innerHTML += `<div class="col-12 col-sm-6 col-lg-3">
                     <div class="d_epi">
                         <div class="d_img">
-                            <img src="./../darshan_image/${newepisode[i].image}" alt="">
+                            <img src="/img/darshan_image/${newepisode[i].image}" alt="">
                         </div>
                         <h3 class="text-start mt-2"><a href="">${newepisode[i].title}</a></h3>
                         <p class="text-start mb-0">${newepisode[i].desc}</p>
