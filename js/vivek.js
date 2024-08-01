@@ -1220,22 +1220,6 @@ let increase_decrease_page = (ince) => {
 
 
 
-// ----------------------------------------------------------------------------
-
-// document.addEventListener("DOMContentLoaded", function () {
-//     var nav = document.querySelector('.VK_ai_navigation');
-//     var navOffset = nav.offsetTop;
-
-//     window.addEventListener('scroll', function () {
-//         if (window.pageYOffset >= navOffset) {
-//             nav.classList.add('sticky');
-//         } else {
-//             nav.classList.remove('sticky');
-//         }
-//     })
-// })
-
-
 // ------------------------------------------------------------------ ai development page js ------------------------------------------------------------
 
 
@@ -1317,11 +1301,12 @@ document.addEventListener("DOMContentLoaded", function () {
                 this.classList.add('VK_active_link');
             });
         });
+
         var sections = document.querySelectorAll('section');
         var observerOptions = {
             root: null,
-            rootMargin: '20px',
-            threshold: 0.6
+            rootMargin: '0px',
+            threshold: 0.5
         };
 
         var observer = new IntersectionObserver(function (entries, observer) {
@@ -1345,7 +1330,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 
-
 function VK_tool_search(event) {
     event.stopPropagation();
     const searchContainer = document.getElementById('VK_tool_search_bar');
@@ -1362,3 +1346,64 @@ function VK_tool_search_close(event) {
     document.getElementById('VK_tool_search_icon').classList.remove('d-none');
     document.getElementById('VK_tools_search_close_icon').classList.add('d-none');
 }
+
+
+function VK_game_hide_toggle() {
+    const VK_cols = document.querySelectorAll('.VK_game_hide_col');
+    const showMoreElements = document.querySelector('.VK_show_game_more');
+    if (window.innerWidth >= 1200) {
+        if (showMoreElements) {
+            showMoreElements.style.display = 'none';
+            VK_cols.forEach((element, ind) => {
+                if (ind >= 3) {
+                    let arr = element.classList
+                    if (arr.contains('VK_col_hidden')) {
+                        element.classList.remove('VK_col_hidden');
+                    }
+                }
+            });
+        }
+    }
+    else {
+        if (showMoreElements) {
+            showMoreElements.style.display = 'block';
+            VK_cols.forEach((element, ind) => {
+                if (ind >= 3) {
+                    let arr = element.classList
+                    if (!arr.contains('VK_col_hidden')) {
+                        element.classList.add('VK_col_hidden');
+                    }
+                }
+            });
+        }
+    }
+}
+function VK_game_hide() {
+    let VK_hide_btn = document.getElementById('VK_show_btn')
+    const VK_cols = document.querySelectorAll('.VK_game_hide_col');
+    VK_cols.forEach((col, index) => {
+        if (window.innerWidth < 1200) {
+            if (index >= 3) {
+                let arr = col.classList
+                if (!arr.contains('VK_col_hidden')) {
+                    VK_hide_btn.innerHTML = 'show more <i class="fa-solid fa-angle-down"></i>'
+                    col.classList.add('VK_col_hidden');
+                }
+                else {
+                    col.classList.remove('VK_col_hidden');
+                    VK_hide_btn.innerHTML = 'show less <i class="fa-solid fa-chevron-up"></i>'
+                }
+            }
+        }
+    });
+}
+
+// Attach the function to resize and load events
+window.addEventListener('resize', VK_game_hide_toggle);
+window.addEventListener('load', VK_game_hide_toggle);
+
+
+
+
+
+
