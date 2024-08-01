@@ -1,63 +1,84 @@
 // <!-- ***********  Mini Navbar   *********     -->
 
 document.addEventListener("DOMContentLoaded", function () {
-    if (document.querySelector('.VK_ai_navigation')) {
-        var nav = document.querySelector('.VK_ai_navigation');
-        var navOffset = nav.offsetTop;
+    const nav = document.querySelector('.VK_ai_navigation');
+    if (!nav) return;
 
-        window.addEventListener('scroll', function () {
-            if (window.pageYOffset >= navOffset) {
-                nav.classList.add('VK_sticky_nav_bar');
-            } else {
-                nav.classList.remove('VK_sticky_nav_bar');
+    const navOffset = nav.offsetTop;
+    const navLinks = document.querySelectorAll('.VK_ai_nav_bar li a');
+    const sections = document.querySelectorAll('section');
+
+    // Function to scroll the nav menu to keep active link visible
+    const scrollToActiveNavLink = (activeLink) => {
+        const navBar = document.querySelector('.VK_ai_nav_bar');
+        const linkOffset = activeLink.offsetLeft;
+        const linkWidth = activeLink.offsetWidth;
+        const navBarScrollLeft = navBar.scrollLeft;
+        const navBarWidth = navBar.offsetWidth;
+
+        if (linkOffset < navBarScrollLeft) {
+            navBar.scrollTo({ left: linkOffset, behavior: 'smooth' });
+        } else if (linkOffset + linkWidth > navBarScrollLeft + navBarWidth) {
+            navBar.scrollTo({ left: linkOffset - navBarWidth + linkWidth, behavior: 'smooth' });
+        }
+    };
+
+    // Add event listener to window scroll
+    window.addEventListener('scroll', () => {
+        if (window.pageYOffset >= navOffset) {
+            nav.classList.add('VK_sticky_nav_bar');
+        } else {
+            nav.classList.remove('VK_sticky_nav_bar');
+        }
+    });
+
+    // Set default active link
+    const defaultActiveLink = document.querySelector('.VK_ai_nav_bar li a[href="#ds_cloud_product"]');
+    if (defaultActiveLink) {
+        defaultActiveLink.classList.add('VK_active_link');
+        scrollToActiveNavLink(defaultActiveLink);
+    }
+
+    // Add event listener to nav links
+    navLinks.forEach((link) => {
+        link.addEventListener('click', () => {
+            navLinks.forEach((navLink) => {
+                navLink.classList.remove('VK_active_link');
+            });
+            link.classList.add('VK_active_link');
+            scrollToActiveNavLink(link);
+            const sectionId = link.getAttribute('href').substring(1);
+            const section = document.getElementById(sectionId);
+            section.scrollIntoView({ behavior: 'smooth' });
+        });
+    });
+
+    // Create IntersectionObserver
+    const observerOptions = {
+        root: null,
+        rootMargin: '0px 0px -50% 0px',
+        threshold: 0
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+                navLinks.forEach((navLink) => {
+                    navLink.classList.remove('VK_active_link');
+                    if (navLink.getAttribute('href').substring(1) === entry.target.id) {
+                        navLink.classList.add('VK_active_link');
+                        scrollToActiveNavLink(navLink);
+                    }
+                });
             }
         });
+    }, observerOptions);
 
-        var navLinks = document.querySelectorAll('.VK_ai_nav_bar li a');
-
-        // Set the default active link
-        var defaultActiveLink = document.querySelector('.VK_ai_nav_bar li a[href="#VK_cloud_product"]');
-        if (defaultActiveLink) {
-            defaultActiveLink.classList.add('VK_active_link');
-        }
-
-        navLinks.forEach(function (link) {
-            link.addEventListener('click', function () {
-                navLinks.forEach(function (navLink) {
-                    navLink.classList.remove('VK_active_link');
-                });
-                this.classList.add('VK_active_link');
-            });
-        });
-
-        var sections = document.querySelectorAll('section');
-        var observerOptions = {
-            root: null,
-            rootMargin: '0px 0px -80% 0px', // Adjust this margin to control when the link becomes active
-            threshold: 0
-        };
-
-        var observer = new IntersectionObserver(function (entries, observer) {
-            entries.forEach(function (entry) {
-                if (entry.isIntersecting) {
-                    navLinks.forEach(function (navLink) {
-                        navLink.classList.remove('VK_active_link');
-                        if (navLink.getAttribute('href').substring(1) === entry.target.id) {
-                            navLink.classList.add('VK_active_link');
-                        }
-                    });
-                }
-            });
-        }, observerOptions);
-
-        sections.forEach(function (section) {
-            observer.observe(section);
-        });
-    }
+    // Observe sections
+    sections.forEach((section) => {
+        observer.observe(section);
+    });
 });
-
-
-
 
 
 // <!-- ***********  Popup   *********     -->
