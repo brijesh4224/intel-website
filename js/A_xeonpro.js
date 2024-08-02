@@ -139,27 +139,27 @@ document.addEventListener('DOMContentLoaded', () => renderTable(products));
 
 const processorData = [
     {
-        imgSrc: './img/Akshay image/xeon-processor-badge.png.rendition.intel.web.64.64.png',
+        imgSrc: '../img/Akshay image/xeon-processor-badge.png.rendition.intel.web.64.64.png',
         title: 'Intel® Xeon® Scalable Processors',
         description: 'Intel® Xeon® Scalable processors are designed to improve performance in AI-enhanced, analytics, networking, storage, and HPC workloads with built-in accelerators and features that maximize energy efficiency and security. '
     },
     {
-        imgSrc: './img/Akshay image/xeon-max-badge.png.rendition.intel.web.64.64.png',
+        imgSrc: '../img/Akshay image/xeon-max-badge.png.rendition.intel.web.64.64.png',
         title: 'Intel® Xeon® Max Series',
         description: ' Maximize bandwidth with the Intel® Xeon® CPU Max Series, the first and only x86-based processor with high-bandwidth memory (HBM).'
     },
     {
-        imgSrc: './img/Akshay image/xeon-processor-badge.png.rendition.intel.web.64.64.png',
+        imgSrc: '../img/Akshay image/xeon-processor-badge.png.rendition.intel.web.64.64.png',
         title: 'Intel® Xeon® W Processor',
         description: 'Designed for creative professionals, delivering the performance you need for VFX, 3D rendering, and 3D CAD on a workstation.'
     },
     {
-        imgSrc: './img/Akshay image/badge-xeon-d-processor-badge.png.rendition.intel.web.64.64.png',
+        imgSrc: '../img/Akshay image/badge-xeon-d-processor-badge.png.rendition.intel.web.64.64.png',
         title: 'Intel® Xeon® D Processor',
         description: 'When space and power are at a premium, these innovative system-on-a-chip processors bring workload optimized performance.'
     },
     {
-        imgSrc: './img/Akshay image/xeon-processor-badge.png.rendition.intel.web.64.64.png',
+        imgSrc: '../img/Akshay image/xeon-processor-badge.png.rendition.intel.web.64.64.png',
         title: 'Intel® Xeon® E Processor',
         description: ' Essential, business-ready performance, expandability and reliability for entry server solutions.'
     },
