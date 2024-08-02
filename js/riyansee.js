@@ -1,3 +1,4 @@
+// vedio play 
 document.addEventListener('DOMContentLoaded', function() {
     const playIcon = document.getElementById('playIcon');
     const video = document.getElementById('myVideo');
@@ -11,6 +12,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
 
+// intel foundary slider(items)
 $(document).ready(function () {
     $('.owl-carousel').owlCarousel({
         loop: true,
@@ -62,3 +64,22 @@ $(document).ready(function(){
         $('.carousel-thumbnails img').eq(index).addClass('active');
     });
 });
+
+
+// form validation
+document.getElementById('contactForm').addEventListener('submit', function(event) {
+    var form = event.target;
+    var isValid = form.checkValidity();
+    if (!isValid) {
+      event.preventDefault();
+      var errorMessages = form.querySelectorAll('.error-message');
+      errorMessages.forEach(function(message) {
+        var input = message.previousElementSibling;
+        if (!input.checkValidity()) {
+          message.style.display = 'block';
+        } else {
+          message.style.display = 'none';
+        }
+      });
+    }
+  });
