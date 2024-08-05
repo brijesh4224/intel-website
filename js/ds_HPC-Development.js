@@ -62,14 +62,15 @@ document.getElementById('show-more-btn').addEventListener('click', function() {
         myCard.classList.remove('ds_use-hidden');
         myCard.classList.add('ds_use-show');
         this.textContent = 'Show Less ';
-        icon.className = 'fa-solid fa-angle-up';
-        this.appendChild(icon);
+        icon.className = 'fa-solid fa-angle-up ';
+        this.prepend(icon)
     } else {
         myCard.classList.remove('ds_use-show');
         myCard.classList.add('ds_use-hidden');
         this.textContent = 'Show More ';
-        icon.className = 'fa-solid fa-angle-down';
-        this.appendChild(icon);
+        icon.className = 'fa-solid fa-angle-down ';
+        this.prepend(icon)
+
     }
 });
 
@@ -82,13 +83,15 @@ document.getElementById('reso-more-btn').addEventListener('click', function() {
         myCard.classList.remove('ds_use-hidden');
         myCard.classList.add('ds_use-show');
         this.textContent = 'Show Less ';
-        icon.className = 'fa-solid fa-angle-up';
-        this.appendChild(icon);
+        icon.className = 'fa-solid fa-angle-up ';
+        this.prepend(icon)
+
     } else {
         myCard.classList.remove('ds_use-show');
         myCard.classList.add('ds_use-hidden');
         this.textContent = 'Show More ';
-        icon.className = 'fa-solid fa-angle-down';
-        this.appendChild(icon);
+        icon.className = 'fa-solid fa-angle-down ';
+        this.prepend(icon)
+
     }
 });

@@ -1,82 +1,52 @@
 // <!-- ***********  Mini Navbar   *********     -->
 
-document.addEventListener("DOMContentLoaded", function () {
-    const nav = document.querySelector('.VK_ai_navigation');
-    if (!nav) return;
+document.addEventListener('DOMContentLoaded', function () {
+    const nav = document.querySelector('.VK_client_app_navigation');
+    const navLinks = document.querySelectorAll('.VK_ai_nav_bar a');
+    const sections = document.querySelectorAll('section[id]');
+    let navOffset = nav.offsetTop;
 
-    const navOffset = nav.offsetTop;
-    const navLinks = document.querySelectorAll('.VK_ai_nav_bar li a');
-    const sections = document.querySelectorAll('section');
+    // Add smooth scrolling to all links
+    navLinks.forEach(link => {
+        link.addEventListener('click', function (e) {
+            e.preventDefault();
+            document.querySelector(this.getAttribute('href')).scrollIntoView({
+                behavior: 'smooth'
+            });
+        });
+    });
 
-    // Function to scroll the nav menu to keep active link visible
-    const scrollToActiveNavLink = (activeLink) => {
-        const navBar = document.querySelector('.VK_ai_nav_bar');
-        const linkOffset = activeLink.offsetLeft;
-        const linkWidth = activeLink.offsetWidth;
-        const navBarScrollLeft = navBar.scrollLeft;
-        const navBarWidth = navBar.offsetWidth;
-
-        if (linkOffset < navBarScrollLeft) {
-            navBar.scrollTo({ left: linkOffset, behavior: 'smooth' });
-        } else if (linkOffset + linkWidth > navBarScrollLeft + navBarWidth) {
-            navBar.scrollTo({ left: linkOffset - navBarWidth + linkWidth, behavior: 'smooth' });
-        }
-    };
-
-    // Add event listener to window scroll
+    // Sticky Navigation
     window.addEventListener('scroll', () => {
         if (window.pageYOffset >= navOffset) {
             nav.classList.add('VK_sticky_nav_bar');
         } else {
             nav.classList.remove('VK_sticky_nav_bar');
         }
-    });
 
-    // Set default active link
-    const defaultActiveLink = document.querySelector('.VK_ai_nav_bar li a[href="#ds_cloud_product"]');
-    if (defaultActiveLink) {
-        defaultActiveLink.classList.add('VK_active_link');
-        scrollToActiveNavLink(defaultActiveLink);
-    }
+        // Section highlighting
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop - nav.clientHeight;
+            const sectionHeight = section.clientHeight;
+            if (window.pageYOffset >= sectionTop && window.pageYOffset <= sectionTop + sectionHeight) {
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === `#${section.id}`) {
+                        link.classList.add('active');
+                        
+                        // Ensure the active link is visible in the nav bar
+                        const navBar = document.querySelector('.VK_ai_nav_bar');
+                        const activeLink = document.querySelector('.VK_ai_nav_bar a.active');
+                        const linkRect = activeLink.getBoundingClientRect();
+                        const navBarRect = navBar.getBoundingClientRect();
 
-    // Add event listener to nav links
-    navLinks.forEach((link) => {
-        link.addEventListener('click', () => {
-            navLinks.forEach((navLink) => {
-                navLink.classList.remove('VK_active_link');
-            });
-            link.classList.add('VK_active_link');
-            scrollToActiveNavLink(link);
-            const sectionId = link.getAttribute('href').substring(1);
-            const section = document.getElementById(sectionId);
-            section.scrollIntoView({ behavior: 'smooth' });
-        });
-    });
-
-    // Create IntersectionObserver
-    const observerOptions = {
-        root: null,
-        rootMargin: '0px 0px -50% 0px',
-        threshold: 0
-    };
-
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-                navLinks.forEach((navLink) => {
-                    navLink.classList.remove('VK_active_link');
-                    if (navLink.getAttribute('href').substring(1) === entry.target.id) {
-                        navLink.classList.add('VK_active_link');
-                        scrollToActiveNavLink(navLink);
+                        if (linkRect.left < navBarRect.left || linkRect.right > navBarRect.right) {
+                            activeLink.scrollIntoView({ inline: 'center', behavior: 'smooth' });
+                        }
                     }
                 });
             }
         });
-    }, observerOptions);
-
-    // Observe sections
-    sections.forEach((section) => {
-        observer.observe(section);
     });
 });
 
@@ -103,13 +73,13 @@ span.onclick = function() {
 }
 
 
- document.getElementById('show-more-btn').addEventListener('click', function() {
-    var thirdCard = document.getElementById('third-card');
-    if (thirdCard.style.display === 'none' || thirdCard.style.display === '') {
-        thirdCard.style.display = 'block';
-        this.textContent = 'Show Less';
-    } else {
-        thirdCard.style.display = 'none';
-        this.textContent = 'Show More';
-    }
-});
+//  document.getElementById('show-more-btn').addEventListener('click', function() {
+//     var thirdCard = document.getElementById('third-card');
+//     if (thirdCard.style.display === 'none' || thirdCard.style.display === '') {
+//         thirdCard.style.display = 'block';
+//         this.textContent = 'Show Less';
+//     } else {
+//         thirdCard.style.display = 'none';
+//         this.textContent = 'Show More';
+//     }
+// });
