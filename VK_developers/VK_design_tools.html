@@ -18,20 +18,24 @@
     <!-- all.min file -->
     <link rel="stylesheet" href="/css/all.min.css">
 
+    <!-- owl carousel -->
+    <link rel="stylesheet" href="/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="/css/owl.theme.default.min.css">
+
 </head>
 
 <body>
 
     <main class="VK_design_and_tools_page">
         <!-- header -->
-        <header class="VK_design_tool_header">
-            <nav class="VK_tools_header">
-                <div class="VK_design_tools_header ">
-                    <div class="VK_design_tools_header_row d-flex">
-                        <div class="VK_header_logo">
-                            <img src="/img/vivek/VK_tools_logo.svg" alt="">
-                        </div>
-                        <div class="VK_header_parent d-flex justify-content-between w-100">
+        <header class="VK_design_tool_header" id="VK_tools_header_part">
+            <nav class="VK_tools_header_nav VK_design_tools_header">
+                <div class="VK_tools_nav_row d-flex w-100">
+                    <div class="VK_header_logo">
+                        <img src="/img/vivek/VK_tools_logo.svg" alt="">
+                    </div>
+                    <div class="VK_tools_nav_parent w-100">
+                        <div class="VK_header_parent d-flex justify-content-lg-between justify-content-end h-100">
                             <div class="VK_header_menu d-flex align-items-end">
                                 <ul class="VK_tools_menu d-flex list-unstyled m-0">
                                     <li class="text-white fw-bold VK_tools_main_menu services"
@@ -363,7 +367,7 @@
                                     </li>
                                 </ul>
                             </div>
-                            <div class="VK_header_option m-0 d-flex">
+                            <div class="VK_header_option d-flex">
                                 <ul class="d-flex list-unstyled VK_tools_header_option m-0 h-100">
                                     <li class="VK_tools_header_cart px-3 text-center">
                                         <a href="#"
@@ -386,28 +390,29 @@
                                             <span class="d-block mt-1">LOG IN</span>
                                         </a>
                                     </li>
-                                    <li class="VK_tools_header_drop px-3 text-center align-items-center justify-content-center">
-                                        <a  class="bg-transparent border-0 text-white">
+                                    <li class="VK_tools_header_drop px-3 text-center align-items-center justify-content-center"
+                                        onclick="VK_open_menu_box()">
+                                        <a class="bg-transparent border-0 text-white">
                                             <i class="fa-solid fa-bars"></i>
                                         </a>
                                     </li>
                                     <li class="VK_tools_header_search text-center justify-content-center m-auto">
-                                        <a class="bg-transparent border-0 text-white d-block" onclick="VK_tool_search()">
+                                        <a class="bg-transparent border-0 text-white d-block"
+                                            onclick="VK_tool_search()">
                                             <i class="fa-solid fa-search"></i>
                                         </a>
                                     </li>
                                 </ul>
-                                <div class="VK_tool_search_div" id="VK_tools_search">
-                                    <div class="d-flex bg-white h-100 VK_tool_expand_box" >
-                                        <div class="VK_tools_heading_search d-flex align-items-center ms-2 h-100">
+                                <div class="VK_tools_searcn_parent" onclick="VK_tool_search()" id="VK_tools_parent_box">
+                                    <div class="VK_tools_search_box h-100 VK_scroll_y" id="VK_tools_scroll">
+                                        <div class="VK_tools_search_bar d-flex align-items-center h-100 ps-3">
                                             <span class="d-inline-block text-primary me-3">
                                                 <i class="fa-solid fa-magnifying-glass" id="VK_tool_search_icon"
                                                     onclick="VK_tool_search()"></i>
                                                 <i class="fa-solid fa-xmark d-none" id="VK_tools_search_close_icon"
                                                     onclick="VK_tool_search_close()"></i>
                                             </span>
-                                            <input type="text" class="h-auto py-3 border-0 VK_tools_search" placeholder="SEARCH"
-                                                id="VK_tool_search_field" onclick="VK_tool_search()">
+                                            <input type="text" placeholder="SEARCH" class="VK_search_tools_box w-100">
                                         </div>
                                     </div>
                                 </div>
@@ -416,50 +421,564 @@
                     </div>
                 </div>
             </nav>
-            <div class="VK_tools_nav_bar">
-                <div class="d-flex justify-content-end">
-                    <ul class="m-0 list-unstyled d-flex pe-4">
-                        <li class="px-3 py-1 text-white">Customer Service</li>
-                        <li class="px-3 py-1 text-white">Technical Support</li>
-                        <li class="px-3 py-1 text-white">Design Assistance</li>
-                    </ul>
+        </header>
+
+        <div class="VK_menu_open p-4 d-none" id="VK_tools_open_menu">
+            <div class="row">
+                <div class="col-sm-7 col-11">
+                    <div class="VK_menu_search bg-white py-2 px-3 rounded-2 d-flex align-items-center">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                        <input type="search" placeholder="search" class="VK_tools_search_menu_bar">
+                    </div>
+                </div>
+                <div class="col-sm-5 col-1 d-flex align-items-center justify-content-end">
+                    <span class="text-white d-block" onclick="VK_close_menu_box()">
+                        <i class="fa-solid fa-xmark"></i>
+                    </span>
                 </div>
             </div>
-        </header>
+            <div class="row mt-4">
+                <div class="col">
+                    <div class="accordion" id="accordionExample">
+                        <!-- first accoridan -->
+                        <div class="accordion-item VK_tools_menu_accoridan my-4">
+                            <h2 class="accordion-header" id="headingOne">
+                                <button class="accordion-button VK_tools_accoridan_btn" type="button"
+                                    data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true"
+                                    aria-controls="collapseOne">
+                                    <span href=""
+                                        class="d-flex w-100 justify-content-between text-decoration-none text-white">
+                                        TOOLS & SERVICES
+                                        <span>
+                                            <i class="fa-solid fa-angle-down"></i>
+                                        </span>
+                                    </span>
+                                </button>
+                            </h2>
+                            <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
+                                data-bs-parent="#accordionExample">
+                                <div class="accordion-body VK_menu_accoridan_body">
+                                    <h5 class="VK_tools_menu_heading">
+                                        <a href="" class="text-decoration-none">
+                                            All Tools & Services
+                                        </a>
+                                    </h5>
+                                    <div class="VK_design_menu_tools VK_menu_part mt-4">
+                                        <h6 class="pb-2 text-white">Tools</h6>
+                                        <ul class="list-unstyled m-0 p-0">
+                                            <li class="ps-3">
+                                                <a href="" class="text-white text-decoration-none mt-3 d-block">
+                                                    Motherboard Hardware Tools
+                                                </a>
+                                            </li>
+                                            <li class="ps-3">
+                                                <a href="" class="text-white text-decoration-none mt-3 d-block">
+                                                    Platform Software and Tools
+                                                </a>
+                                            </li>
+                                            <li class="ps-3">
+                                                <a href="" class="text-white text-decoration-none mt-3 d-block">
+                                                    Server Tools, Management, and Software
+                                                </a>
+                                            </li>
+                                        </ul>
+                                        <ul class="list-unstyled m-0 pt-2">
+                                            <li>
+                                                <a href="" class="text-white text-decoration-none d-block my-2">
+                                                    All Server Tools, Management, and Software
+                                                </a>
+                                            </li>
+                                            <li class="ps-3">
+                                                <a href="" class="text-white text-decoration-none d-block my-2">
+                                                    Intel Purley Server Platform Tools
+                                                </a>
+                                            </li>
+                                            <li class="ps-3">
+                                                <a href="" class="text-white text-decoration-none d-block my-2">
+                                                    Harrisonville Platform Tools
+                                                </a>
+                                            </li>
+                                            <li class="ps-3">
+                                                <a href="" class="text-white text-decoration-none d-block my-2">
+                                                    Grangeville Platform Tools
+                                                </a>
+                                            </li>
+                                            <li class="ps-3">
+                                                <a href="" class="text-white text-decoration-none d-block my-2">
+                                                    Grantley Platform Tools
+                                                </a>
+                                            </li>
+                                            <li class="ps-3">
+                                                <a href="" class="text-white text-decoration-none d-block my-2">
+                                                    Brickland Platform Tools
+                                                </a>
+                                            </li>
+                                            <li class="ps-3">
+                                                <a href="" class="text-white text-decoration-none d-block my-2">
+                                                    Edisonville Platform Tools
+                                                </a>
+                                            </li>
+                                            <li class="ps-3">
+                                                <a href="" class="text-white text-decoration-none d-block my-2">
+                                                    Intel Romley Platform Tools
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="VK_design_menu_servide VK_menu_part mt-4">
+                                        <h6 class="pb-2 text-white">
+                                            services
+                                        </h6>
+                                        <ul class="list-unstyled">
+                                            <li>
+                                                <a href="" class="text-white text-decoration-none d-block mt-2">
+                                                    Intel Demo Depot External Rental
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="" class="text-white text-decoration-none d-block mt-2">
+                                                    Platform Testing and Review Services
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- second accoridan -->
+                        <div class="accordion-item VK_tools_menu_accoridan my-4">
+                            <h2 class="accordion-header" id="headingTwo">
+                                <button class="accordion-button collapsed VK_tools_accoridan_btn" type="button"
+                                    data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false"
+                                    aria-controls="collapseTwo">
+                                    <span class="d-flex w-100 justify-content-between text-decoration-none text-white">
+                                        EQUIPMENT
+                                        <span>
+                                            <i class="fa-solid fa-angle-down"></i>
+                                        </span>
+                                    </span>
+                                </button>
+                            </h2>
+                            <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
+                                data-bs-parent="#accordionExample">
+                                <div class="accordion-body VK_menu_accoridan_body">
+                                    <h5 class="VK_tools_menu_heading">
+                                        <a href="" class="text-decoration-none">
+                                            All Equipment
+                                        </a>
+                                    </h5>
+                                    <div class="VK_design_menu_tools VK_menu_part mt-4">
+                                        <h6 class="pb-2 text-white">CPU</h6>
+                                        <ul class="list-unstyled m-0 p-0">
+                                            <li class="ps-3">
+                                                <a href="" class="text-white text-decoration-none mt-3 d-block">
+                                                    CPU Socket Voltage Regulator Testing
+                                                </a>
+                                            </li>
+                                            <li class="ps-3">
+                                                <a href="" class="text-white text-decoration-none mt-3 d-block">
+                                                    All CPU Socket Voltage Regulator Testing
+                                                </a>
+                                            </li>
+                                            <li class="ps-3">
+                                                <a href="" class="text-white text-decoration-none mt-3 d-block">
+                                                    Interposers
+                                                </a>
+                                            </li>
+                                            <li class="ps-3">
+                                                <a href="" class="text-white text-decoration-none mt-3 d-block">
+                                                    Tool Heads
+                                                </a>
+                                            </li>
+                                            <li class="ps-3">
+                                                <a href="" class="text-white text-decoration-none mt-3 d-block">
+                                                    Male-To-Male Header
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="VK_design_menu_servide VK_menu_part mt-4">
+                                        <h6 class="pb-2 text-white">
+                                            Peripherals
+                                        </h6>
+                                        <ul class="list-unstyled">
+                                            <li>
+                                                <a href="" class="text-white text-decoration-none d-block mt-2">
+                                                    Memory Power System Testing
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="" class="text-white text-decoration-none d-block mt-2">
+                                                    All Memory Power System Testing
+                                                </a>
+                                            </li>
+                                            <li class="ps-3">
+                                                <a href="" class="text-white text-decoration-none d-block mt-2">
+                                                    DDR2
+                                                </a>
+                                            </li>
+                                            <li class="ps-3">
+                                                <a href="" class="text-white text-decoration-none d-block mt-2">
+                                                    DDR3
+                                                </a>
+                                            </li>
+                                            <li class="ps-3">
+                                                <a href="" class="text-white text-decoration-none d-block mt-2">
+                                                    DDR4
+                                                </a>
+                                            </li>
+                                            <li class="ps-3">
+                                                <a href="" class="text-white text-decoration-none d-block mt-2">
+                                                    DDR5
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="" class="text-white text-decoration-none d-block mt-2">
+                                                    Point Load Voltage Regulator Testing
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="" class="text-white text-decoration-none d-block mt-2">
+                                                    Thunderbolt
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="" class="text-white text-decoration-none d-block mt-2">
+                                                    Debug Tools
+                                                </a>
+                                            </li>
+                                            <li class="ps-3">
+                                                <a href="" class="text-white text-decoration-none d-block mt-2">
+                                                    All Debug Tools
+                                                </a>
+                                            </li>
+                                            <li class="ps-3">
+                                                <a href="" class="text-white text-decoration-none d-block mt-2">
+                                                    Hardware
+                                                </a>
+                                            </li>
+                                            <li class="ps-3">
+                                                <a href="" class="text-white text-decoration-none d-block mt-2">
+                                                    Software
+                                                </a>
+                                            </li>
+                                            <li class="ps-3">
+                                                <a href="" class="text-white text-decoration-none d-block mt-2">
+                                                    Accessories
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="" class="text-white text-decoration-none d-block mt-2">
+                                                    Intel RealSense Products
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- third accoridan -->
+                        <div class="accordion-item VK_tools_menu_accoridan my-4">
+                            <h2 class="accordion-header" id="headingThree">
+                                <button class="accordion-button collapsed VK_tools_accoridan_btn" type="button"
+                                    data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false"
+                                    aria-controls="collapseThree">
+                                    <span class="d-flex w-100 justify-content-between text-decoration-none text-white">
+                                        INTEL PLATFORMS
+                                        <span>
+                                            <i class="fa-solid fa-angle-down"></i>
+                                        </span>
+                                    </span>
+                                </button>
+                            </h2>
+                            <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree"
+                                data-bs-parent="#accordionExample">
+                                <div class="accordion-body VK_menu_accoridan_body">
+                                    <h5 class="VK_tools_menu_heading">
+                                        <a href="" class="text-decoration-none">
+                                            All Intel Platforms
+                                        </a>
+                                    </h5>
+                                    <div class="VK_design_menu_tools VK_menu_part mt-4">
+                                        <h6 class="pb-2 text-white">Internet Of Things</h6>
+                                        <ul class="list-unstyled m-0 p-0">
+                                            <li class="">
+                                                <a href="" class="text-white text-decoration-none mt-3 d-block">
+                                                    Internet of Things
+                                                </a>
+                                            </li>
+                                            <li class="ps-3">
+                                                <a href="" class="text-white text-decoration-none mt-3 d-block">
+                                                    All Internet of Things
+                                                </a>
+                                            </li>
+                                            <li class="ps-3">
+                                                <a href="" class="text-white text-decoration-none mt-3 d-block">
+                                                    Atom Platform Tools
+                                                </a>
+                                            </li>
+                                            <li class="ps-3">
+                                                <a href="" class="text-white text-decoration-none mt-3 d-block">
+                                                    Core Platform Tools
+                                                </a>
+                                            </li>
+                                            <li class="ps-3">
+                                                <a href="" class="text-white text-decoration-none mt-3 d-block">
+                                                    Sub-Atom Platform Tools
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="VK_design_menu_tools VK_menu_part mt-4">
+                                        <h6 class="pb-2 text-white">Data Center Comms and Storage</h6>
+                                        <ul class="list-unstyled m-0 p-0">
+                                            <li class="">
+                                                <a href="" class="text-white text-decoration-none mt-3 d-block">
+                                                    Data Center Comms and Storage
+                                                </a>
+                                            </li>
+                                            <li class="ps-3">
+                                                <a href="" class="text-white text-decoration-none mt-3 d-block">
+                                                    All Data Center Comms and Storage
+                                                </a>
+                                            </li>
+                                            <li class="ps-3">
+                                                <a href="" class="text-white text-decoration-none mt-3 d-block">
+                                                    Eagle Stream Platform Tools
+                                                </a>
+                                            </li>
+                                            <li class="ps-3">
+                                                <a href="" class="text-white text-decoration-none mt-3 d-block">
+                                                    Whitley Platform Tools
+                                                </a>
+                                            </li>
+                                            <li class="ps-3">
+                                                <a href="" class="text-white text-decoration-none mt-3 d-block">
+                                                    River Forest Platform Tools
+                                                </a>
+                                            </li>
+                                            <li class="ps-3">
+                                                <a href="" class="text-white text-decoration-none mt-3 d-block">
+                                                    Crystal Forest Server Platform Tools
+                                                </a>
+                                            </li>
+                                            <li class="ps-3">
+                                                <a href="" class="text-white text-decoration-none mt-3 d-block">
+                                                    Glen Forest Platform Tools
+                                                </a>
+                                            </li>
+                                            <li class="ps-3">
+                                                <a href="" class="text-white text-decoration-none mt-3 d-block">
+                                                    Highland Forest Platform Tools
+                                                </a>
+                                            </li>
+                                            <li class="ps-3">
+                                                <a href="" class="text-white text-decoration-none mt-3 d-block">
+                                                    Highland Forest Platform Tools
+                                                </a>
+                                            </li>
+                                            <li class="ps-3">
+                                                <a href="" class="text-white text-decoration-none mt-3 d-block">
+                                                    Crystal Forest Gladden Platform Tools
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- forth accoridan -->
+                        <div class="accordion-item VK_tools_menu_accoridan my-4">
+                            <h2 class="accordion-header" id="headingFour">
+                                <button class="accordion-button collapsed VK_tools_accoridan_btn" type="button"
+                                    data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false"
+                                    aria-controls="collapseFour">
+                                    <span class="d-flex w-100 justify-content-between text-decoration-none text-white">
+                                        TECHNICAL ENBLEMENT
+                                        <span>
+                                            <i class="fa-solid fa-angle-down"></i>
+                                        </span>
+                                    </span>
+                                </button>
+                            </h2>
+                            <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour"
+                                data-bs-parent="#accordionExample">
+                                <div class="accordion-body VK_menu_accoridan_body">
+                                    <h5 class="VK_tools_menu_heading">
+                                        <a href="" class="text-decoration-none">
+                                            All Technical Enablement
+                                        </a>
+                                    </h5>
+                                    <div class="VK_design_menu_tools VK_menu_part mt-4">
+                                        <h6 class="pb-2 text-white">Technical Enablement Services</h6>
+                                        <ul class="list-unstyled m-0 p-0">
+                                            <li class="">
+                                                <a href="" class="text-white text-decoration-none mt-3 d-block">
+                                                    Technical Equipment Rental
+                                                </a>
+                                            </li>
+                                            <li class="">
+                                                <a href="" class="text-white text-decoration-none mt-3 d-block">
+                                                    Design Review Services
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="" class="text-white text-decoration-none mt-3 d-block">
+                                                    Platform Testing Services
+                                                </a>
+                                            </li>
+                                            <li class="">
+                                                <a href="" class="text-white text-decoration-none mt-3 d-block">
+                                                    Early Access Seeds
+                                                </a>
+                                            </li>
+                                            <li class="">
+                                                <a href="" class="text-white text-decoration-none mt-3 d-block">
+                                                    Remote Customer Reference Board Testing Service
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="VK_design_menu_tools VK_menu_part mt-4">
+                                        <h6 class="pb-2 text-white">Additional Services</h6>
+                                        <ul class="list-unstyled m-0 p-0">
+                                            <li class="">
+                                                <a href="" class="text-white text-decoration-none mt-3 d-block">
+                                                    Managed Seeds
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="VK_design_menu_tools VK_menu_part mt-4">
+                                        <h6 class="pb-2 text-white">Support</h6>
+                                        <ul class="list-unstyled m-0 p-0">
+                                            <li class="">
+                                                <a href="" class="text-white text-decoration-none mt-3 d-block">
+                                                    IPA Technical Enablement Coupon
+                                                </a>
+                                            </li>
+                                            <li class="">
+                                                <a href="" class="text-white text-decoration-none mt-3 d-block">
+                                                    Intel Customer Support
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
 
         <section class="VK_Design_slider_section">
             <div class="VK_design_slider">
-                <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
-                    <div class="carousel-inner">
-                        <div class="carousel-item active">
-                            <img src="/img/vivek/dit-slider-hardware-software-debugging_2x.webp" class="d-block w-100"
-                                alt="...">
-                        </div>
-                        <div class="carousel-item">
-                            <img src="/img/vivek/dit-slider-new-tools_2x.webp" class="d-block w-100" alt="...">
-                        </div>
-                        <div class="carousel-item">
-                            <img src="/img/vivek/dit-slider-design-reviews_2x.webp" class="d-block w-100" alt="...">
-                        </div>
-                        <div class="carousel-item">
-                            <img src="/img/vivek/dit-home-sliders-magento-desktop-a.jpg" class="d-block w-100"
-                                alt="...">
-                        </div>
-                        <div class="carousel-item">
-                            <img src="/img/vivek/dit-slider-debug-and-validation_2x.webp" class="d-block w-100"
-                                alt="...">
+                <div class="owl-carousel owl-theme VK_tools_slider">
+                    <div class="h-100">
+                        <div class="VK_tool_slider_box h-100">
+                            <div class="VK_tool_slider_img">
+                                <img src="/img/vivek/dit-slider-hardware-software-debugging_2x.webp" class="w-100"
+                                    alt="">
+                                <div class="VK_slider_desc_box">
+                                    <h3 class="mb-3">In-Target Probe</h3>
+                                    <p class="VK_slider_box_des">
+                                        In-Target Probe’s (ITP) can be used to debug hardware (processors
+                                        and
+                                        motherboards) prior to production.
+                                    </p>
+                                    <p class="VK_slider_box_link">
+                                        <a href=""
+                                            class="d-inline-block text-decoration-none fw-bolder text-white py-2 px-5">
+                                            Find Tools
+                                        </a>
+                                    </p>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"
-                        data-bs-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Previous</span>
-                    </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls"
-                        data-bs-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Next</span>
-                    </button>
+                    <div class="h-100">
+                        <div class="VK_tool_slider_box h-100">
+                            <div class="VK_tool_slider_img h-100">
+                                <img src="/img/vivek/dit-slider-new-tools_2x.webp" class="w-100" alt="">
+                                <div class="VK_slider_desc_box">
+                                    <h3 class="mb-3">NEW TOOL- Display On a Key</h3>
+                                    <p class="VK_slider_box_des">
+                                        Emulates 4K@60Hz - runs straight out of the box on a thumb sized
+                                        device!
+                                    </p>
+                                    <p class="VK_slider_box_link">
+                                        <a href=""
+                                            class="d-inline-block text-decoration-none fw-bolder text-white py-2 px-5">
+                                            Learn More
+                                        </a>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="h-100">
+                        <div class="VK_tool_slider_box h-100">
+                            <div class="VK_tool_slider_img h-100">
+                                <img src="/img/vivek/dit-slider-design-reviews_2x.webp" class="w-100" alt="">
+                                <div class="VK_slider_desc_box">
+                                    <h3 class="mb-3">Design Reviews</h3>
+                                    <p class="VK_slider_box_des">
+                                        Verify your motherboard design with dedicated Schematic and Layout
+                                        reviews
+                                        from
+                                        Platform Experts.
+                                    </p>
+                                    <p class="VK_slider_box_link">
+                                        <a href=""
+                                            class="d-inline-block text-decoration-none fw-bolder text-white py-2 px-5">
+                                            Learn More
+                                        </a>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="h-100">
+                        <div class="VK_tool_slider_box h-100">
+                            <div class="VK_tool_slider_img h-100">
+                                <img src="/img/vivek/dit-home-sliders-magento-desktop-a.jpg" class="w-100" alt="">
+                                <div class="VK_slider_desc_box">
+                                    <h3 class="mb-3">Gen5 VR Test Tool (VRTT) CPU Power Emulator</h3>
+                                    <p class="VK_slider_box_des">
+                                        Continuous load with a simultaneous load capacity!
+                                    </p>
+                                    <p class="VK_slider_box_link">
+                                        <a href=""
+                                            class="d-inline-block text-decoration-none fw-bolder text-white py-2 px-5">
+                                            Find Tools
+                                        </a>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="h-100">
+                        <div class="VK_tool_slider_box h-100">
+                            <div class="VK_tool_slider_img h-100">
+                                <img src="/img/vivek/dit-slider-debug-and-validation_2x.webp" class="w-100" alt="">
+                                <div class="VK_slider_desc_box">
+                                    <h3 class="mb-3">Intelligent Debug and Validation Tool (IDV Tool).</h3>
+                                    <p class="VK_slider_box_des">
+                                        Explore a world of self-sufficient “paperless” debug and validation.
+                                    </p>
+                                    <p class="VK_slider_box_link">
+                                        <a href=""
+                                            class="d-inline-block text-decoration-none fw-bolder text-white py-2 px-5">
+                                            Learn
+                                        </a>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -470,7 +989,8 @@
                 <div class="row m-0 p-0">
                     <div class="col-12 p-0 mb-3">
                         <div class="VK_system_tool_heading">
-                            <h1 class="text-center">High-Efficiency Motherboard Validation & System Design Tools
+                            <h1 class="text-center">High-Efficiency Motherboard Validation & System Design
+                                Tools
                             </h1>
                         </div>
                     </div>
@@ -492,7 +1012,8 @@
                                             <p>Intuitive motherboard design validation tools.</p>
                                         </div>
                                         <div class="VK_tool_learn_more text-center">
-                                            <a href="" class="text-primary text-decoration-none">Learn More</a>
+                                            <a href="" class="text-primary text-decoration-none">Learn
+                                                More</a>
                                         </div>
                                     </div>
                                 </div>
@@ -513,7 +1034,8 @@
                                             <p>Identify issues before the certification process begins.</p>
                                         </div>
                                         <div class="VK_tool_learn_more text-center">
-                                            <a href="" class="text-primary text-decoration-none">Learn More</a>
+                                            <a href="" class="text-primary text-decoration-none">Learn
+                                                More</a>
                                         </div>
                                     </div>
                                 </div>
@@ -534,7 +1056,8 @@
                                             <p>Find efficient ways to clear problems before debugging.</p>
                                         </div>
                                         <div class="VK_tool_learn_more text-center">
-                                            <a href="" class="text-primary text-decoration-none">Learn More</a>
+                                            <a href="" class="text-primary text-decoration-none">Learn
+                                                More</a>
                                         </div>
                                     </div>
                                 </div>
@@ -555,7 +1078,8 @@
                                             <p>Voltage regulator and CPU power delivery testing.</p>
                                         </div>
                                         <div class="VK_tool_learn_more text-center">
-                                            <a href="" class="text-primary text-decoration-none">Learn More</a>
+                                            <a href="" class="text-primary text-decoration-none">Learn
+                                                More</a>
                                         </div>
                                     </div>
                                 </div>
@@ -576,7 +1100,9 @@
                                     <h2 class="mb-3">Experience What's Inside Intel</h2>
                                 </div>
                                 <div class="VK_left_description">
-                                    <p class="mb-3">Gain exclusive access to the entire Design-In Tools Store. Login
+                                    <p class="mb-3">Gain exclusive access to the entire Design-In Tools
+                                        Store.
+                                        Login
                                         to see all of our products and resources.</p>
                                 </div>
                                 <div class="VK_intel_register">
@@ -592,7 +1118,9 @@
                                     <li>Order directly to get tools and services faster</li>
                                     <li>Reduce debug time by finding issues early</li>
                                     <li>Purchase product samples and testing services</li>
-                                    <li class="VK_sm_list">Access to Intel-confidential documentation, tools and our
+                                    <li class="VK_sm_list">Access to Intel-confidential documentation, tools
+                                        and
+                                        our
                                         developer community</li>
                                     <li class="VK_ms_list">Access to Intel-confidential documentation,</li>
                                     <li class="VK_ms_list">tools and our developer community</li>
@@ -618,9 +1146,14 @@
                         <div class="VK_design_employee_detail px-lg-5 pb-sm-3 pt-sm-3 pt-3">
                             <h3 class="mt-2">Managers</h3>
                             <div class="VK_employee_about">
-                                <p>Technology never slows down. To ensure your team of engineers stays ahead of the
-                                    curve, we offer numerous tools to expedite system design and validation of
-                                    motherboard feasibility. The end result? Driving your products to market faster than
+                                <p>Technology never slows down. To ensure your team of engineers stays ahead
+                                    of
+                                    the
+                                    curve, we offer numerous tools to expedite system design and validation
+                                    of
+                                    motherboard feasibility. The end result? Driving your products to market
+                                    faster
+                                    than
                                     ever.</p>
                             </div>
                             <div class="VK_employee_know_more">
@@ -637,8 +1170,11 @@
                         <div class="VK_design_employee_detail px-lg-5 pb-sm-3 pt-sm-3 pt-3">
                             <h3 class="mt-2">Designers</h3>
                             <div class="VK_employee_about">
-                                <p>Turning an idea into a functional circuit board rarely comes without error. That’s
-                                    why Design-In Tools offers tools to accelerate the proofing process and transition
+                                <p>Turning an idea into a functional circuit board rarely comes without
+                                    error.
+                                    That’s
+                                    why Design-In Tools offers tools to accelerate the proofing process and
+                                    transition
                                     from conceptualization to programming.</p>
                             </div>
                             <div class="VK_employee_know_more">
@@ -665,9 +1201,15 @@
                         <div class="VK_design_employee_detail px-lg-5 pb-sm-3 pt-sm-3 pt-3">
                             <h3 class="mt-2">Programmers</h3>
                             <div class="VK_employee_about">
-                                <p>Once a circuit board or motherboard comes into an engineer’s queue, their goal is to
-                                    get their software stack implemented as quickly as possible. Our products allow
-                                    programmers to easily confirm their BIOS and swiftly engage certification stages.
+                                <p>Once a circuit board or motherboard comes into an engineer’s queue, their
+                                    goal is
+                                    to
+                                    get their software stack implemented as quickly as possible. Our
+                                    products
+                                    allow
+                                    programmers to easily confirm their BIOS and swiftly engage
+                                    certification
+                                    stages.
                                 </p>
                             </div>
                             <div class="VK_employee_know_more">
@@ -680,8 +1222,10 @@
         </section>
     </main>
 
+
     <!---------------- Javascript Files ---------------->
 
+    <script src="/js/jquery-3.7.1.js"></script>
     <!-- bootstrap js file -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
@@ -692,6 +1236,23 @@
 
     <!-- all.min file -->
     <script src="/js/all.min.js"></script>
+
+    <!-- owl carousel -->
+    <script src="/js/owl.carousel.min.js"></script>
+
+    <!-- jquery -->
+
+
+    <script>
+        $(document).ready(function () {
+            $(".VK_tools_slider").owlCarousel({
+                items: 1,
+                // rewind: true,
+                // autoplay: true,
+                // autoplayTimeout:2000,
+            });
+        });
+    </script>
 
 </body>
 
