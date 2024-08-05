@@ -91,3 +91,22 @@ document.addEventListener('DOMContentLoaded', () => {
         m_form1.classList.add('m_formVisible');
     });
 });
+
+// solutions : Business Solutions : Edge Computing
+$(function () {
+    var activeIndex = $('.m_active-tab2').index(),
+        $contentlis = $('.m_tabs2-content li'),
+        $tabslis = $('.m_tabs2 li');
+
+    // Show content of active tab on loads
+    $contentlis.eq(activeIndex).show();
+
+    $('.m_tabs2').on('click', 'li', function (e) {
+        var $current = $(e.currentTarget),
+            index = $current.index();
+
+        $tabslis.removeClass('m_active-tab2');
+        $current.addClass('m_active-tab2');
+        $contentlis.hide().eq(index).show();
+    });
+});
