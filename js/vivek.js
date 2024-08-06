@@ -1103,6 +1103,7 @@ window.addEventListener('resize', () => {
 // ------------------------------------ design and tools page -------------------------------
 
 function VK_open_menu(menu) {
+    console.log(menu);
     if (window.innerWidth > 992) {
         let VK_menu = ['SERVICES', 'EQUIPMENT', 'PLATFORMS', 'ENABLEMENT'];
 
@@ -1123,14 +1124,12 @@ function VK_open_menu(menu) {
         let menuElement = document.getElementById(menu);
 
         if (!menuElement.classList.contains('d-none')) {
-            // Menu is open, close it
             Array.from(selectedItems).forEach(item => {
                 item.classList.remove('bg-white', 'text-primary');
                 item.classList.add('text-white');
             });
             menuElement.classList.add('d-none');
         } else {
-            // Menu is closed, open it
             Array.from(selectedItems).forEach(item => {
                 item.classList.add('bg-white', 'text-primary');
                 item.classList.remove('text-white');
@@ -1142,43 +1141,50 @@ function VK_open_menu(menu) {
 
 
 
+function VK_open_menu_box() {
+    if (window.innerWidth < 992) {
+        document.getElementById('VK_tools_header_part').classList.add('d-none')
+        document.getElementById('VK_tools_open_menu').classList.remove('d-none')
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        })
+    }
+}
+function VK_close_menu_box() {
+    if (window.innerWidth < 992) {
+        document.getElementById('VK_tools_header_part').classList.remove('d-none')
+        document.getElementById('VK_tools_open_menu').classList.add('d-none')
+    }
+}
+
 
 
 function VK_tool_search() {
-    if (window.innerWidth > 992) {
-        if (window.innerWidth < 1200) {
-            document.getElementById('VK_tools_search').style.display = "unset"
-        }
-        document.getElementById('VK_tools_search').classList.add('VK_search_expand')
-        document.getElementById('VK_tool_search_field').Placeholder = 'product'
+    if(window.innerWidth < 1200)
+    {
+        console.log("call");
+        document.getElementById('VK_tools_parent_box').style.display = 'block'
+        // document.getElementById('VK_tools_scroll').style.display = 'block'
+    }
+    if(window.innerWidth > 1200)
+    {
+        document.getElementById('VK_tools_scroll').classList.toggle('VK_scroll')
     }
     document.getElementById('VK_tools_search_close_icon').classList.remove('d-none')
     document.getElementById('VK_tool_search_icon').classList.add('d-none')
 }
+
 function VK_tool_search_close() {
-    if (window.innerWidth > 992) {
-        document.getElementById('VK_tools_search').classList.remove('VK_search_expand')
-        document.getElementById('VK_tool_search_field').Placeholder = 'product'
+    if(window.innerWidth < 1200)
+    {
+        document.getElementById('VK_tools_parent_box').style.display = 'none'
+        // document.getElementById('VK_tools_scroll').style.display = 'none'
     }
     document.getElementById('VK_tool_search_icon').classList.remove('d-none')
-    document.getElementById('VK_tool_search_field').value = '';
     document.getElementById('VK_tools_search_close_icon').classList.add('d-none')
 }
 
-
-window.addEventListener('resize', function () {
-
-})
-// function VK_tool_search_close(event) {
-//     event.stopPropagation();
-//     document.getElementById('VK_tool_search_field').value = '';
-//     // document.getElementById('VK_tool_search_field').classList.add('d-none')
-//     const searchContainer = document.getElementById('VK_tool_search_bar');
-//     searchContainer.placeholder  = "search Product"
-//     searchContainer.classList.remove('expanded');
-//     document.getElementById('VK_tool_search_icon').classList.remove('d-none');
-//     document.getElementById('VK_tools_search_close_icon').classList.add('d-none');
-// }
 
 
 
