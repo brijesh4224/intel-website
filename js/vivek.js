@@ -1103,7 +1103,6 @@ window.addEventListener('resize', () => {
 // ------------------------------------ design and tools page -------------------------------
 
 function VK_open_menu(menu) {
-    console.log(menu);
     if (window.innerWidth > 992) {
         let VK_menu = ['SERVICES', 'EQUIPMENT', 'PLATFORMS', 'ENABLEMENT'];
 
@@ -1161,28 +1160,24 @@ function VK_close_menu_box() {
 
 
 function VK_tool_search() {
-    if(window.innerWidth < 1200)
-    {
-        console.log("call");
+    if (window.innerWidth < 1200) {
         document.getElementById('VK_tools_parent_box').style.display = 'block'
-        // document.getElementById('VK_tools_scroll').style.display = 'block'
+        document.getElementById('VK_menu_search').classList.toggle('d-none')
     }
-    if(window.innerWidth > 1200)
-    {
-        document.getElementById('VK_tools_scroll').classList.toggle('VK_scroll')
-    }
-    document.getElementById('VK_tools_search_close_icon').classList.remove('d-none')
-    document.getElementById('VK_tool_search_icon').classList.add('d-none')
+    document.getElementById('VK_tools_scroll').classList.toggle('VK_scroll')
+    document.getElementById('VK_tools_search_close_icon').classList.toggle('d-none')
+    document.getElementById('VK_tool_search_icon').classList.toggle('d-none')
 }
 
 function VK_tool_search_close() {
-    if(window.innerWidth < 1200)
-    {
+    if (window.innerWidth < 1200) {
         document.getElementById('VK_tools_parent_box').style.display = 'none'
-        // document.getElementById('VK_tools_scroll').style.display = 'none'
+        document.getElementById('VK_menu_search').classList.toggle('d-none')
     }
-    document.getElementById('VK_tool_search_icon').classList.remove('d-none')
-    document.getElementById('VK_tools_search_close_icon').classList.add('d-none')
+    document.getElementById('VK_tools_scroll').classList.toggle('VK_scroll')
+    document.getElementById('VK_tools_search_box').value = '';
+    document.getElementById('VK_tool_search_icon').classList.toggle('d-none')
+    document.getElementById('VK_tools_search_close_icon').classList.toggle('d-none')
 }
 
 
@@ -1477,4 +1472,663 @@ window.addEventListener('load', VK_game_hide_toggle);
 
 
 
+// ----------------------------------------------- resource and decoumntation ----------------------------------------------
 
+// function VK_resu_active(id) {
+//     var tabs = document.getElementsByClassName("VK_reso_list_item");
+//     for (var i = 0; i < tabs.length; i++) {
+//         tabs[i].classList.remove("VK_reso_active_list");
+//     }
+//     tabs[id].classList.add('VK_reso_active_list');
+
+//     const userData = [
+//         {
+//             title: "Accordion Item #1",
+//             content: [
+//                 { title: "Nested Accordion Item #1", content: "Content for nested item #1 in accordion #1" },
+//                 { title: "Nested Accordion Item #2", content: "Content for nested item #2 in accordion #1" },
+//                 { title: "Nested Accordion Item #3", content: "Content for nested item #3 in accordion #1" }
+//             ]
+//         },
+//         {
+//             title: "Accordion Item #2",
+//             content: [
+//                 { title: "Nested Accordion Item #1", content: "Content for nested item #1 in accordion #2" },
+//                 { title: "Nested Accordion Item #2", content: "Content for nested item #2 in accordion #2" },
+//                 { title: "Nested Accordion Item #3", content: "Content for nested item #3 in accordion #2" }
+//             ]
+//         },
+//         {
+//             title: "Accordion Item #3",
+//             content: [
+//                 { title: "Nested Accordion Item #1", content: "Content for nested item #1 in accordion #3" },
+//                 { title: "Nested Accordion Item #2", content: "Content for nested item #2 in accordion #3" },
+//                 { title: "Nested Accordion Item #3", content: "Content for nested item #3 in accordion #3" }
+//             ]
+//         },
+//         {
+//             title: "Accordion Item #4",
+//             content: [
+//                 { title: "Nested Accordion Item #1", content: "Content for nested item #1 in accordion #4" },
+//                 { title: "Nested Accordion Item #2", content: "Content for nested item #2 in accordion #4" },
+//                 { title: "Nested Accordion Item #3", content: "Content for nested item #3 in accordion #4" }
+//             ]
+//         }
+//     ];
+
+//     let accordion = userData.map((ele, ind) => {
+//         let nestedAccordion = ele.content.map((el, index) => {
+//             return `
+//             <div class="accordion-item">
+//                 <h2 class="accordion-header" id="heading${ind}-${index}">
+//                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse${ind}-${index}" aria-expanded="false" aria-controls="collapse${ind}-${index}">
+//                         ${el.title}
+//                     </button>
+//                 </h2>
+//                 <div id="collapse${ind}-${index}" class="accordion-collapse collapse" aria-labelledby="heading${ind}-${index}" data-bs-parent="#accordionNested${ind}">
+//                     <div class="accordion-body">
+//                         ${el.content}
+//                     </div>
+//                 </div>
+//             </div>`;
+//         }).join('');
+
+//         return `
+//         <div class="accordion-item">
+//             <h2 class="accordion-header" id="heading${ind}">
+//                 <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse${ind}" aria-expanded="true" aria-controls="collapse${ind}">
+//                     ${ele.title}
+//                 </button>
+//             </h2>
+//             <div id="collapse${ind}" class="accordion-collapse collapse" aria-labelledby="heading${ind}" data-bs-parent="#accordionExample">
+//                 <div class="accordion-body">
+//                     <div class="accordion" id="accordionNested${ind}">
+//                         ${nestedAccordion}
+//                     </div>
+//                 </div>
+//             </div>
+//         </div>`;
+//     }).join('');
+
+//     document.getElementById('accordionContainer').innerHTML = accordion;
+
+//     // Re-initialize Bootstrap's collapse plugin
+//     var collapseElements = document.querySelectorAll('.accordion-button');
+//     collapseElements.forEach(function (element) {
+//         var collapseInstance = new bootstrap.Collapse(element, {
+//             toggle: false
+//         });
+//     });
+// }
+
+
+
+window.onload = function () {
+    VK_resu_active(0)
+}
+
+function VK_resu_active(id) {
+    let accoridan_data = [
+        [
+            {
+                data: [
+                    {
+                        title: "What's New",
+                        desc: "What's New",
+                        lunch: "",
+                        status: "Released"
+                    },
+                    {
+                        title: "Software Kits",
+                        desc: "Software Kits",
+                        lunch: "",
+                        status: "Released"
+                    },
+                    {
+                        title: "Restricted Documents",
+                        desc: "Restricted Documents",
+                        lunch: "",
+                        status: "Released"
+                    },
+                    {
+                        title: "Product Roadmaps",
+                        desc: "Processors and Chipsets Product Roadmaps from Intel",
+                        lunch: "",
+                        status: "Released"
+                    },
+                    {
+                        title: "Intel® oneAPI Documentation",
+                        desc: "Intel® oneAPI Documentation",
+                        lunch: "",
+                        status: "Released"
+                    },
+                    {
+                        title: "Intel Product Qualification Reports",
+                        desc: "Product Quality and Reliability Data in support of Intel® Production Release Qualification",
+                        lunch: "",
+                        status: "Released"
+                    },
+                    {
+                        title: "GPU Tuning and Optimization Guides",
+                        desc: "GPU Tuning and Optimization Guides",
+                        lunch: "",
+                        status: "Released"
+                    },
+                    {
+                        title: "GPU Development",
+                        desc: "GPU Development",
+                        lunch: "",
+                        status: "Pre-release"
+                    },
+                    {
+                        title: "Cloud Performance Optimization Tools",
+                        desc: "Cloud Performance Optimization Tools",
+                        lunch: "",
+                        status: "Released"
+                    },
+                ]
+            }
+        ],
+        [
+            {
+                accoridan: {
+                    title: "Processors & Chipsets",
+                    accoridan: [
+                        {
+                            title: "By Code Name",
+                            data: [
+                                {
+                                    title: "Alder Lake N",
+                                    desc: "Intel Atom® Processors x7000E Series and Intel® Core™ i3-N305 Processors for IoT edge applications",
+                                    lunch: "2023 Q1",
+                                    status: "Released"
+                                },
+                                {
+                                    title: "Alder Lake N",
+                                    desc: "Intel Atom® Processors x7000E Series and Intel® Core™ i3-N305 Processors for IoT edge applications",
+                                    lunch: "2023 Q1",
+                                    status: "Released"
+                                },
+                                {
+                                    title: "Alder Lake N",
+                                    desc: "Intel Atom® Processors x7000E Series and Intel® Core™ i3-N305 Processors for IoT edge applications",
+                                    lunch: "2023 Q1",
+                                    status: "Released"
+                                },
+                            ]
+                        },
+                        {
+                            title: "Intel® Axxia™ Communication Processors",
+                            data: [
+                                {
+                                    title: "Intel® Axxia™ 3400 Communication Processor Family",
+                                    desc: "Intel® Axxia™ 3400 Communication Processor Family",
+                                    lunch: "",
+                                    status: "Released"
+                                },
+                            ]
+                        },
+                        {
+                            title: "Intel® Core™ Processors",
+                            data: [
+                                {
+                                    title: "Intel® Axxia™ 3400 Communication Processor Family",
+                                    desc: "Intel® Axxia™ 3400 Communication Processor Family",
+                                    lunch: "",
+                                    status: "Released"
+                                }
+                            ]
+                        }
+                    ]
+                },
+            },
+            {
+                accoridan: {
+                    title: "Ethernet Products",
+                    data: [
+                        {
+                            title: "Intel® Ethernet Adapter and Controller Software",
+                            desc: "Intel® Ethernet Adapter and Controller Software",
+                            lunch: "",
+                            status: "Released"
+                        },
+                        {
+                            title: "Intel® Ethernet Adapter and Controller Software",
+                            desc: "Intel® Ethernet Adapter and Controller Software",
+                            lunch: "",
+                            status: "Released"
+                        },
+                        {
+                            title: "Intel® Ethernet Adapter and Controller Software",
+                            desc: "Intel® Ethernet Adapter and Controller Software",
+                            lunch: "",
+                            status: "Released"
+                        },
+                        {
+                            title: "Intel® Ethernet Adapter and Controller Software",
+                            desc: "Intel® Ethernet Adapter and Controller Software",
+                            lunch: "",
+                            status: "Released"
+                        },
+                    ]
+                }
+            },
+            {
+                accoridan: {
+                    title: "Ethernet Products",
+                    data: [
+                        {
+                            title: "Intel® Ethernet Adapter and Controller Software",
+                            desc: "Intel® Ethernet Adapter and Controller Software",
+                            lunch: "",
+                            status: "Released"
+                        },
+                        {
+                            title: "Intel® Ethernet Adapter and Controller Software",
+                            desc: "Intel® Ethernet Adapter and Controller Software",
+                            lunch: "",
+                            status: "Released"
+                        },
+                        {
+                            title: "Intel® Ethernet Adapter and Controller Software",
+                            desc: "Intel® Ethernet Adapter and Controller Software",
+                            lunch: "",
+                            status: "Released"
+                        },
+                        {
+                            title: "Intel® Ethernet Adapter and Controller Software",
+                            desc: "Intel® Ethernet Adapter and Controller Software",
+                            lunch: "",
+                            status: "Released"
+                        },
+                    ]
+                }
+            },
+            {
+                accoridan: {
+                    title: "Ethernet Products",
+                    data: [
+                        {
+                            title: "Intel® Ethernet Adapter and Controller Software",
+                            desc: "Intel® Ethernet Adapter and Controller Software",
+                            lunch: "",
+                            status: "Released"
+                        },
+                        {
+                            title: "Intel® Ethernet Adapter and Controller Software",
+                            desc: "Intel® Ethernet Adapter and Controller Software",
+                            lunch: "",
+                            status: "Released"
+                        },
+                        {
+                            title: "Intel® Ethernet Adapter and Controller Software",
+                            desc: "Intel® Ethernet Adapter and Controller Software",
+                            lunch: "",
+                            status: "Released"
+                        },
+                        {
+                            title: "Intel® Ethernet Adapter and Controller Software",
+                            desc: "Intel® Ethernet Adapter and Controller Software",
+                            lunch: "",
+                            status: "Released"
+                        },
+                    ]
+                }
+            },
+            {
+                accoridan: {
+                    title: "Ethernet Products",
+                    data: [
+                        {
+                            title: "Intel® Ethernet Adapter and Controller Software",
+                            desc: "Intel® Ethernet Adapter and Controller Software",
+                            lunch: "",
+                            status: "Released"
+                        },
+                        {
+                            title: "Intel® Ethernet Adapter and Controller Software",
+                            desc: "Intel® Ethernet Adapter and Controller Software",
+                            lunch: "",
+                            status: "Released"
+                        },
+                        {
+                            title: "Intel® Ethernet Adapter and Controller Software",
+                            desc: "Intel® Ethernet Adapter and Controller Software",
+                            lunch: "",
+                            status: "Released"
+                        },
+                        {
+                            title: "Intel® Ethernet Adapter and Controller Software",
+                            desc: "Intel® Ethernet Adapter and Controller Software",
+                            lunch: "",
+                            status: "Released"
+                        },
+                    ]
+                }
+            },
+            {
+                accoridan: {
+                    title: "Ethernet Products",
+                    data: [
+                        {
+                            title: "Intel® Ethernet Adapter and Controller Software",
+                            desc: "Intel® Ethernet Adapter and Controller Software",
+                            lunch: "",
+                            status: "Released"
+                        },
+                        {
+                            title: "Intel® Ethernet Adapter and Controller Software",
+                            desc: "Intel® Ethernet Adapter and Controller Software",
+                            lunch: "",
+                            status: "Released"
+                        },
+                        {
+                            title: "Intel® Ethernet Adapter and Controller Software",
+                            desc: "Intel® Ethernet Adapter and Controller Software",
+                            lunch: "",
+                            status: "Released"
+                        },
+                        {
+                            title: "Intel® Ethernet Adapter and Controller Software",
+                            desc: "Intel® Ethernet Adapter and Controller Software",
+                            lunch: "",
+                            status: "Released"
+                        },
+                    ]
+                }
+            },
+        ],
+        [
+            {
+                accoridan: {
+                    title: "Data Center Software",
+                    data: [
+                        {
+                            title: "Data Center Storage Analytics",
+                            desc: "Data Center Storage Analytics",
+                            lunch: "",
+                            status: "Released"
+                        },
+                    ]
+                }
+            },
+            {
+                accoridan: {
+                    title: "Accordion Item #4",
+                    data: [
+                        {
+                            title: "Data Center Storage Analytics",
+                            desc: "Data Center Storage Analytics",
+                            lunch: "",
+                            status: "Released"
+                        },
+                    ]
+                }
+            }
+        ],
+        [
+            {
+                accoridan: {
+                    title: "AI",
+                    data: [
+                        {
+                            title: "Data Center Storage Analytics",
+                            desc: "Data Center Storage Analytics",
+                            lunch: "",
+                            status: "Released"
+                        },
+                        {
+                            title: "Data Center Storage Analytics",
+                            desc: "Data Center Storage Analytics",
+                            lunch: "",
+                            status: "Released"
+                        }
+                    ]
+                }
+            },
+            {
+                accoridan: {
+                    title: "Computer Vision",
+                    data: [
+                        {
+                            title: "Data Center Storage Analytics",
+                            desc: "Data Center Storage Analytics",
+                            lunch: "",
+                            status: "Released"
+                        },
+                        {
+                            title: "Data Center Storage Analytics",
+                            desc: "Data Center Storage Analytics",
+                            lunch: "",
+                            status: "Released"
+                        }
+                    ]
+                }
+            }
+        ],
+        [
+            {
+                accoridan: {
+                    title: "Intel vPro® Platform",
+                    data: [
+                        {
+                            title: "Data Center Storage Analytics",
+                            desc: "Data Center Storage Analytics",
+                            lunch: "",
+                            status: "Released"
+                        },
+                        {
+                            title: "Data Center Storage Analytics",
+                            desc: "Data Center Storage Analytics",
+                            lunch: "",
+                            status: "Released"
+                        }
+                    ]
+                }
+            },
+            {
+                accoridan: {
+                    title: "Thunderbolt™ Technology",
+                    data: [
+                        {
+                            title: "Data Center Storage Analytics",
+                            desc: "Data Center Storage Analytics",
+                            lunch: "",
+                            status: "Released"
+                        },
+                        {
+                            title: "Data Center Storage Analytics",
+                            desc: "Data Center Storage Analytics",
+                            lunch: "",
+                            status: "Released"
+                        }
+                    ]
+                }
+            }
+        ],
+        [
+            {
+                accoridan: {
+                    title: "Avionics",
+                    data: [
+                        {
+                            title: "Data Center Storage Analytics",
+                            desc: "Data Center Storage Analytics",
+                            lunch: "",
+                            status: "Released"
+                        },
+                        {
+                            title: "Data Center Storage Analytics",
+                            desc: "Data Center Storage Analytics",
+                            lunch: "",
+                            status: "Released"
+                        }
+                    ]
+                }
+            },
+            {
+                accoridan: {
+                    title: "Industrial",
+                    data: [
+                        {
+                            title: "Data Center Storage Analytics",
+                            desc: "Data Center Storage Analytics",
+                            lunch: "",
+                            status: "Released"
+                        },
+                        {
+                            title: "Data Center Storage Analytics",
+                            desc: "Data Center Storage Analytics",
+                            lunch: "",
+                            status: "Released"
+                        }
+                    ]
+                }
+            }
+        ],
+        [
+            {
+                data: [
+                    {
+                        title: "Data Center Storage Analytics",
+                        desc: "Data Center Storage Analytics",
+                        lunch: "",
+                        status: "Released"
+                    },
+                    {
+                        title: "Data Center Storage Analytics",
+                        desc: "Data Center Storage Analytics",
+                        lunch: "",
+                        status: "Released"
+                    }
+                ]
+            }
+        ],
+        [
+            {
+                data: [
+                    {
+                        title: "Data Center Storage Analytics",
+                        desc: "Data Center Storage Analytics",
+                        lunch: "",
+                        status: "Released"
+                    },
+                    {
+                        title: "Data Center Storage Analytics",
+                        desc: "Data Center Storage Analytics",
+                        lunch: "",
+                        status: "Released"
+                    }
+                ]
+            }
+        ]
+    ];
+    // Remove active class from all tabs
+    var tabs = document.getElementsByClassName("VK_reso_list_item");
+    for (var i = 0; i < tabs.length; i++) {
+        tabs[i].classList.remove("VK_reso_active_list");
+    }
+    tabs[id].classList.add('VK_reso_active_list');
+
+    // Generate HTML content
+    let html_data = accoridan_data[id].map((ele, index) => {
+        return `${ele.data ? `
+    <table class="w-100" style="border-collapse: collapse; border: 1px solid #ddd;">
+        <thead>
+            <tr class="text-center">
+                <th style="border: 1px solid #ddd; padding: 8px;">Title</th>
+                <th style="border: 1px solid #ddd; padding: 8px;">Description</th>
+                <th style="border: 1px solid #ddd; padding: 8px;">Launch Date</th>
+                <th style="border: 1px solid #ddd; padding: 8px;">Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            ${ele.data.map((el) => {
+            return `
+                <tr>
+                    <td class="VK_reso_table_td VK_reso_table_font VK_reso_table_title" style="border: 1px solid #ddd; padding: 8px;"><a href="" class="text-decoration-none">${el.title}</a></td>
+                    <td class="VK_reso_table_td VK_reso_table_font" style="border: 1px solid #ddd; padding: 8px;">${el.desc}</td>
+                    <td class="VK_reso_table_td VK_reso_table_font" style="border: 1px solid #ddd; padding: 8px;">${el.lunch}</td>
+                    <td class="VK_reso_table_td VK_reso_table_font" style="border: 1px solid #ddd; padding: 8px;">${el.status}</td>
+                </tr>`;
+        }).join('')}    
+        </tbody>
+    </table>` : ele.accoridan ?
+            `<div class="accordion-item" style="overflow-x: auto;">
+        <h2 class="accordion-header" id="heading${index}">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse${index}" aria-expanded="false" aria-controls="collapse${index}">
+                ${ele.accoridan.title}
+            </button>
+        </h2>
+        <div id="collapse${index}" class="accordion-collapse collapse" aria-labelledby="heading${index}" data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+                ${ele.accoridan.data ?
+                `<table class="w-100" style="border-collapse: collapse; border: 1px solid #ddd;">
+                    <thead>
+                        <tr class="text-center">
+                            <th style="border: 1px solid #ddd; padding: 8px;">Title</th>
+                            <th style="border: 1px solid #ddd; padding: 8px;">Description</th>
+                            <th style="border: 1px solid #ddd; padding: 8px;">Launch Date</th>
+                            <th style="border: 1px solid #ddd; padding: 8px;">Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        ${ele.accoridan.data.map((el) => {
+                    return `
+                            <tr>
+                                <td class="VK_reso_table_td VK_reso_table_font VK_reso_table_title" style="border: 1px solid #ddd; padding: 8px;"><a href="" class="text-decoration-none">${el.title}</a></td>
+                                <td class="VK_reso_table_td VK_reso_table_font" style="border: 1px solid #ddd; padding: 8px;">${el.desc}</td>
+                                <td class="VK_reso_table_td VK_reso_table_font" style="border: 1px solid #ddd; padding: 8px;">${el.lunch}</td>
+                                <td class="VK_reso_table_td VK_reso_table_font" style="border: 1px solid #ddd; padding: 8px;">${el.status}</td>
+                            </tr>`;
+                }).join('')}
+                    </tbody>
+                </table>` : ele.accoridan.accoridan ?
+                    ele.accoridan.accoridan.map((sub, sub_id) => {
+                        return `<div class="accordion-item w-100">
+                            <h2 class="accordion-header" id="heading${sub_id}-${index}">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse${sub_id}-${index}" aria-expanded="false" aria-controls="collapse${sub_id}-${index}">
+                                    ${sub.title}
+                                </button>
+                            </h2>
+                            <div id="collapse${sub_id}-${index}" class="accordion-collapse collapse" aria-labelledby="heading${sub_id}-${index}" data-bs-parent="#accordionExample">
+                                <div class="accordion-body" style="overflow-x: auto;">
+                                    ${sub.data ?
+                                `<table class="w-100" style="border-collapse: collapse; border: 1px solid #ddd;">
+                                        <thead>
+                                            <tr class="text-center">
+                                                <th style="border: 1px solid #ddd; padding: 8px;">Title</th>
+                                                <th style="border: 1px solid #ddd; padding: 8px;">Description</th>
+                                                <th style="border: 1px solid #ddd; padding: 8px;">Launch Date</th>
+                                                <th style="border: 1px solid #ddd; padding: 8px;">Status</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            ${sub.data.map((sb_data) => {
+                                    return `
+                                                <tr>
+                                                    <td class="VK_reso_table_td VK_reso_table_font VK_reso_table_title" style="border: 1px solid #ddd; padding: 8px;"><a href="" class="text-decoration-none">${sb_data.title}</a></td>
+                                                    <td class="VK_reso_table_td VK_reso_table_font" style="border: 1px solid #ddd; padding: 8px;">${sb_data.desc}</td>
+                                                    <td class="VK_reso_table_td VK_reso_table_font" style="border: 1px solid #ddd; padding: 8px;">${sb_data.lunch}</td>
+                                                    <td class="VK_reso_table_td VK_reso_table_font" style="border: 1px solid #ddd; padding: 8px;">${sb_data.status}</td>
+                                                </tr>`;
+                                }).join('')}
+                                        </tbody>
+                                    </table>` : ''}
+                                </div>
+                            </div>
+                        </div>`;
+                    }).join('') : ''}
+            </div> 
+        </div>
+    </div>` : ''}`
+    }).join('')
+
+    document.getElementById('accordionContainer').innerHTML = html_data;
+    var collapseElements = document.querySelectorAll('.accordion-item .collapse');
+    collapseElements.forEach(function (element) {
+        new bootstrap.Collapse(element, {
+            toggle: false
+        });
+    });
+}
