@@ -153,3 +153,19 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 });
+
+
+// owl carousel for home 
+
+$('.m_ai_hpCarousel').owlCarousel({
+  loop: true,
+  margin: 10,
+  nav: false,
+  dots: true,
+  responsive: {
+      0: {
+          items: 1
+      }
+  }
+});
+ 
