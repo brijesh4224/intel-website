@@ -20,7 +20,7 @@ $(document).ready(function () {
         });
     }).scroll();
 
-    // solutions : Show more and show less
+    // solutions : Show more and show less in responsive
     $(".m_separator2").css("display", "none");
     $(".m_showMore").on("click", function () {
         $(this).closest(".row").find(".m_hidden").css("display", "block");
@@ -31,6 +31,19 @@ $(document).ready(function () {
         $(this).closest(".row").find(".m_hidden").css("display", "none");
         $(this).closest(".m_separator2").css("display", "none");
         $(this).closest(".row").find(".m_separator1").css("display", "flex");
+    });
+
+    // solutions : Show more and show less 
+    $(".m_separator2_1").css("display", "none");
+    $(".m_showMore").on("click", function () {
+        $(this).closest(".row").find(".m_hidden2").css("display", "block");
+        $(this).closest(".m_separator1_1").css("display", "none");
+        $(this).closest(".row").find(".m_separator2_1").css("display", "flex");
+    });
+    $(".m_showLess").on("click", function () {
+        $(this).closest(".row").find(".m_hidden2").css("display", "none");
+        $(this).closest(".m_separator2_1").css("display", "none");
+        $(this).closest(".row").find(".m_separator1_1").css("display", "flex");
     });
 
     // solutions : Business Solutions : AI : Hardware : AI Hardware Solutions : Processors
