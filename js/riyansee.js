@@ -83,3 +83,25 @@ document.getElementById('contactForm').addEventListener('submit', function(event
       });
     }
   });
+
+
+
+  function showContent(contentId, element) {
+    // Hide all content sections
+    var contents = document.querySelectorAll('.content');
+    contents.forEach(function(content) {
+        content.classList.remove('active');
+    });
+
+    // Show the selected content section
+    document.getElementById(contentId).classList.add('active');
+
+    // Remove active class from all nav links
+    var links = document.querySelectorAll('.nav-link');
+    links.forEach(function(link) {
+        link.classList.remove('active');
+    });
+
+    // Add active class to the clicked nav link
+    element.classList.add('active');
+}
