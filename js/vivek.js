@@ -1188,7 +1188,7 @@ function VK_tool_search_close() {
 
 
 let current_page = 1;
-let limit = 12;
+let limit = 12;  // Define limit globally
 let fetch_data = [];
 let id = '';
 
@@ -1300,6 +1300,13 @@ let increase_decrease_page = (ince) => {
     custom_pagination(current_page, limit, fetch_data, id);
 }
 
+function VK_change_limit() {
+    limit = document.getElementById('VK_board_select_limit').value;  // Update global limit variable
+    current_page = 1;  // Reset to the first page
+    custom_pagination(current_page, limit, fetch_data, id);
+}
+
+
 
 
 
@@ -1361,54 +1368,54 @@ let intel_latest_cards = () => {
 }
 
 
-document.addEventListener("DOMContentLoaded", function () {
-    if (document.querySelector('.VK_ai_navigation')) {
-        var nav = document.querySelector('.VK_ai_navigation');
-        var navOffset = nav.offsetTop;
+document.addEventListener('DOMContentLoaded', function () {
+    const nav = document.querySelector('.VK_ai_navigation');
+    const navLinks = document.querySelectorAll('.VK_ai_navigation a');
+    const sections = document.querySelectorAll('section[id]');
+    let navOffset = nav.offsetTop;
 
-        window.addEventListener('scroll', function () {
-            if (window.pageYOffset >= navOffset) {
-                nav.classList.add('VK_sticky_nav_bar');
-            } else {
-                nav.classList.remove('VK_sticky_nav_bar');
+    // Add smooth scrolling to all links
+    navLinks.forEach(link => {
+        link.addEventListener('click', function (e) {
+            e.preventDefault();
+            document.querySelector(this.getAttribute('href')).scrollIntoView({
+                behavior: 'smooth'
+            });
+        });
+    });
+
+    // Sticky Navigation
+    window.addEventListener('scroll', () => {
+        if (window.pageYOffset >= navOffset) {
+            nav.classList.add('VK_sticky_nav_bar');
+        } else {
+            nav.classList.remove('VK_sticky_nav_bar');
+        }
+
+        // Section highlighting
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop - nav.clientHeight;
+            const sectionHeight = section.clientHeight;
+            if (window.pageYOffset >= sectionTop && window.pageYOffset <= sectionTop + sectionHeight) {
+                navLinks.forEach(link => {
+                    link.classList.remove('VK_active_link');
+                    if (link.getAttribute('href') === `#${section.id}`) {
+                        link.classList.add('VK_active_link');
+                        
+                        // Ensure the active link is visible in the nav bar
+                        const navBar = document.querySelector('.VK_ai_nav_bar');
+                        const activeLink = document.querySelector('.VK_ai_nav_bar a.VK_active_link');
+                        const linkRect = activeLink.getBoundingClientRect();
+                        const navBarRect = navBar.getBoundingClientRect();
+
+                        if (linkRect.left < navBarRect.left || linkRect.right > navBarRect.right) {
+                            activeLink.scrollIntoView({ inline: 'center', behavior: 'smooth' });
+                        }
+                    }
+                });
             }
         });
-
-        var navLinks = document.querySelectorAll('.VK_ai_nav_bar li a');
-
-        navLinks.forEach(function (link) {
-            link.addEventListener('click', function () {
-                navLinks.forEach(function (navLink) {
-                    navLink.classList.remove('VK_active_link');
-                });
-                this.classList.add('VK_active_link');
-            });
-        });
-
-        var sections = document.querySelectorAll('section');
-        var observerOptions = {
-            root: null,
-            rootMargin: '0px',
-            threshold: 0.5
-        };
-
-        var observer = new IntersectionObserver(function (entries, observer) {
-            entries.forEach(function (entry) {
-                if (entry.isIntersecting) {
-                    navLinks.forEach(function (navLink) {
-                        navLink.classList.remove('VK_active_link');
-                        if (navLink.getAttribute('href').substring(1) === entry.target.id) {
-                            navLink.classList.add('VK_active_link');
-                        }
-                    });
-                }
-            });
-        }, observerOptions);
-
-        sections.forEach(function (section) {
-            observer.observe(section);
-        });
-    }
+    });
 });
 
 
@@ -1474,98 +1481,10 @@ window.addEventListener('load', VK_game_hide_toggle);
 
 // ----------------------------------------------- resource and decoumntation ----------------------------------------------
 
-// function VK_resu_active(id) {
-//     var tabs = document.getElementsByClassName("VK_reso_list_item");
-//     for (var i = 0; i < tabs.length; i++) {
-//         tabs[i].classList.remove("VK_reso_active_list");
-//     }
-//     tabs[id].classList.add('VK_reso_active_list');
-
-//     const userData = [
-//         {
-//             title: "Accordion Item #1",
-//             content: [
-//                 { title: "Nested Accordion Item #1", content: "Content for nested item #1 in accordion #1" },
-//                 { title: "Nested Accordion Item #2", content: "Content for nested item #2 in accordion #1" },
-//                 { title: "Nested Accordion Item #3", content: "Content for nested item #3 in accordion #1" }
-//             ]
-//         },
-//         {
-//             title: "Accordion Item #2",
-//             content: [
-//                 { title: "Nested Accordion Item #1", content: "Content for nested item #1 in accordion #2" },
-//                 { title: "Nested Accordion Item #2", content: "Content for nested item #2 in accordion #2" },
-//                 { title: "Nested Accordion Item #3", content: "Content for nested item #3 in accordion #2" }
-//             ]
-//         },
-//         {
-//             title: "Accordion Item #3",
-//             content: [
-//                 { title: "Nested Accordion Item #1", content: "Content for nested item #1 in accordion #3" },
-//                 { title: "Nested Accordion Item #2", content: "Content for nested item #2 in accordion #3" },
-//                 { title: "Nested Accordion Item #3", content: "Content for nested item #3 in accordion #3" }
-//             ]
-//         },
-//         {
-//             title: "Accordion Item #4",
-//             content: [
-//                 { title: "Nested Accordion Item #1", content: "Content for nested item #1 in accordion #4" },
-//                 { title: "Nested Accordion Item #2", content: "Content for nested item #2 in accordion #4" },
-//                 { title: "Nested Accordion Item #3", content: "Content for nested item #3 in accordion #4" }
-//             ]
-//         }
-//     ];
-
-//     let accordion = userData.map((ele, ind) => {
-//         let nestedAccordion = ele.content.map((el, index) => {
-//             return `
-//             <div class="accordion-item">
-//                 <h2 class="accordion-header" id="heading${ind}-${index}">
-//                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse${ind}-${index}" aria-expanded="false" aria-controls="collapse${ind}-${index}">
-//                         ${el.title}
-//                     </button>
-//                 </h2>
-//                 <div id="collapse${ind}-${index}" class="accordion-collapse collapse" aria-labelledby="heading${ind}-${index}" data-bs-parent="#accordionNested${ind}">
-//                     <div class="accordion-body">
-//                         ${el.content}
-//                     </div>
-//                 </div>
-//             </div>`;
-//         }).join('');
-
-//         return `
-//         <div class="accordion-item">
-//             <h2 class="accordion-header" id="heading${ind}">
-//                 <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse${ind}" aria-expanded="true" aria-controls="collapse${ind}">
-//                     ${ele.title}
-//                 </button>
-//             </h2>
-//             <div id="collapse${ind}" class="accordion-collapse collapse" aria-labelledby="heading${ind}" data-bs-parent="#accordionExample">
-//                 <div class="accordion-body">
-//                     <div class="accordion" id="accordionNested${ind}">
-//                         ${nestedAccordion}
-//                     </div>
-//                 </div>
-//             </div>
-//         </div>`;
-//     }).join('');
-
-//     document.getElementById('accordionContainer').innerHTML = accordion;
-
-//     // Re-initialize Bootstrap's collapse plugin
-//     var collapseElements = document.querySelectorAll('.accordion-button');
-//     collapseElements.forEach(function (element) {
-//         var collapseInstance = new bootstrap.Collapse(element, {
-//             toggle: false
-//         });
-//     });
-// }
 
 
 
-window.onload = function () {
-    VK_resu_active(0)
-}
+
 
 function VK_resu_active(id) {
     let accoridan_data = [
@@ -2024,111 +1943,113 @@ function VK_resu_active(id) {
         ]
     ];
     // Remove active class from all tabs
-    var tabs = document.getElementsByClassName("VK_reso_list_item");
-    for (var i = 0; i < tabs.length; i++) {
-        tabs[i].classList.remove("VK_reso_active_list");
-    }
-    tabs[id].classList.add('VK_reso_active_list');
+    if (document.getElementsByClassName("VK_reso_list_item")) {
+        var tabs = document.getElementsByClassName("VK_reso_list_item");
+        for (var i = 0; i < tabs.length; i++) {
+            tabs[i].classList.remove("VK_reso_active_list");
+        }
+        tabs[id].classList.add('VK_reso_active_list');
 
-    // Generate HTML content
-    let html_data = accoridan_data[id].map((ele, index) => {
-        return `${ele.data ? `
+        // Generate HTML content
+        let html_data = accoridan_data[id].map((ele, index) => {
+            return `${ele.data ? `
     <table class="w-100" style="border-collapse: collapse; border: 1px solid #ddd;">
         <thead>
-            <tr class="text-center">
-                <th style="border: 1px solid #ddd; padding: 8px;">Title</th>
-                <th style="border: 1px solid #ddd; padding: 8px;">Description</th>
-                <th style="border: 1px solid #ddd; padding: 8px;">Launch Date</th>
-                <th style="border: 1px solid #ddd; padding: 8px;">Status</th>
+            <tr class="text-center VK_reso_table_th">
+                <th style="border: 1px solid #ddd; padding: 20px;">Title</th>
+                <th style="border: 1px solid #ddd; padding: 20px;">Description</th>
+                <th style="border: 1px solid #ddd; padding: 20px;">Launch Date</th>
+                <th style="border: 1px solid #ddd; padding: 20px;">Status</th>
             </tr>
         </thead>
         <tbody>
             ${ele.data.map((el) => {
-            return `
-                <tr>
-                    <td class="VK_reso_table_td VK_reso_table_font VK_reso_table_title" style="border: 1px solid #ddd; padding: 8px;"><a href="" class="text-decoration-none">${el.title}</a></td>
-                    <td class="VK_reso_table_td VK_reso_table_font" style="border: 1px solid #ddd; padding: 8px;">${el.desc}</td>
-                    <td class="VK_reso_table_td VK_reso_table_font" style="border: 1px solid #ddd; padding: 8px;">${el.lunch}</td>
-                    <td class="VK_reso_table_td VK_reso_table_font" style="border: 1px solid #ddd; padding: 8px;">${el.status}</td>
+                return `
+                <tr class="VK_reso_table_tr">
+                    <td class="VK_reso_table_td VK_reso_table_font VK_reso_table_title" style="border: 1px solid #ddd; padding: 15px;"><a href="" class="text-decoration-none">${el.title}</a></td>
+                    <td class="VK_reso_table_td VK_reso_table_font" style="border: 1px solid #ddd; padding: 15px;">${el.desc}</td>
+                    <td class="VK_reso_table_td VK_reso_table_font" style="border: 1px solid #ddd; padding: 15px;">${el.lunch}</td>
+                    <td class="VK_reso_table_td VK_reso_table_font" style="border: 1px solid #ddd; padding: 15px;">${el.status}</td>
                 </tr>`;
-        }).join('')}    
+            }).join('')}    
         </tbody>
     </table>` : ele.accoridan ?
-            `<div class="accordion-item" style="overflow-x: auto;">
+                `<div class="accordion-item VK_reso_accoridan" style="overflow-x: auto;">
         <h2 class="accordion-header" id="heading${index}">
             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse${index}" aria-expanded="false" aria-controls="collapse${index}">
                 ${ele.accoridan.title}
             </button>
         </h2>
-        <div id="collapse${index}" class="accordion-collapse collapse" aria-labelledby="heading${index}" data-bs-parent="#accordionExample">
+        <div id="collapse${index}" class="accordion-collapse collapse VK_reso_accoridan_body" aria-labelledby="heading${index}" data-bs-parent="#accordionExample">
             <div class="accordion-body">
                 ${ele.accoridan.data ?
-                `<table class="w-100" style="border-collapse: collapse; border: 1px solid #ddd;">
+                    `<table class="w-100" style="border-collapse: collapse; border: 1px solid #ddd;">
                     <thead>
-                        <tr class="text-center">
-                            <th style="border: 1px solid #ddd; padding: 8px;">Title</th>
-                            <th style="border: 1px solid #ddd; padding: 8px;">Description</th>
-                            <th style="border: 1px solid #ddd; padding: 8px;">Launch Date</th>
-                            <th style="border: 1px solid #ddd; padding: 8px;">Status</th>
+                        <tr class="text-center VK_reso_table_th">
+                            <th style="border: 1px solid #ddd; padding: 20px;">Title</th>
+                            <th style="border: 1px solid #ddd; padding: 20px;">Description</th>
+                            <th style="border: 1px solid #ddd; padding: 20px;">Launch Date</th>
+                            <th style="border: 1px solid #ddd; padding: 20px;">Status</th>
                         </tr>
                     </thead>
                     <tbody>
                         ${ele.accoridan.data.map((el) => {
-                    return `
-                            <tr>
-                                <td class="VK_reso_table_td VK_reso_table_font VK_reso_table_title" style="border: 1px solid #ddd; padding: 8px;"><a href="" class="text-decoration-none">${el.title}</a></td>
-                                <td class="VK_reso_table_td VK_reso_table_font" style="border: 1px solid #ddd; padding: 8px;">${el.desc}</td>
-                                <td class="VK_reso_table_td VK_reso_table_font" style="border: 1px solid #ddd; padding: 8px;">${el.lunch}</td>
-                                <td class="VK_reso_table_td VK_reso_table_font" style="border: 1px solid #ddd; padding: 8px;">${el.status}</td>
+                        return `
+                            <tr class="VK_reso_table_tr">
+                                <td class="VK_reso_table_td VK_reso_table_font VK_reso_table_title" style="border: 1px solid #ddd; padding: 15px;"><a href="" class="text-decoration-none">${el.title}</a></td>
+                                <td class="VK_reso_table_td VK_reso_table_font" style="border: 1px solid #ddd; padding: 15px;">${el.desc}</td>
+                                <td class="VK_reso_table_td VK_reso_table_font" style="border: 1px solid #ddd; padding: 15px;">${el.lunch}</td>
+                                <td class="VK_reso_table_td VK_reso_table_font" style="border: 1px solid #ddd; padding: 15px;">${el.status}</td>
                             </tr>`;
-                }).join('')}
+                    }).join('')}
                     </tbody>
                 </table>` : ele.accoridan.accoridan ?
-                    ele.accoridan.accoridan.map((sub, sub_id) => {
-                        return `<div class="accordion-item w-100">
+                        ele.accoridan.accoridan.map((sub, sub_id) => {
+                            return `<div class="accordion-item VK_reso_inner_accoridan w-100">
                             <h2 class="accordion-header" id="heading${sub_id}-${index}">
                                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse${sub_id}-${index}" aria-expanded="false" aria-controls="collapse${sub_id}-${index}">
                                     ${sub.title}
                                 </button>
                             </h2>
-                            <div id="collapse${sub_id}-${index}" class="accordion-collapse collapse" aria-labelledby="heading${sub_id}-${index}" data-bs-parent="#accordionExample">
+                            <div id="collapse${sub_id}-${index}" class="accordion-collapse collapse VK_reso_inner_accoridan_body" aria-labelledby="heading${sub_id}-${index}" data-bs-parent="#accordionExample">
                                 <div class="accordion-body" style="overflow-x: auto;">
                                     ${sub.data ?
-                                `<table class="w-100" style="border-collapse: collapse; border: 1px solid #ddd;">
+                                    `<table class="w-100" style="border-collapse: collapse; border: 1px solid #ddd;">
                                         <thead>
-                                            <tr class="text-center">
-                                                <th style="border: 1px solid #ddd; padding: 8px;">Title</th>
-                                                <th style="border: 1px solid #ddd; padding: 8px;">Description</th>
-                                                <th style="border: 1px solid #ddd; padding: 8px;">Launch Date</th>
-                                                <th style="border: 1px solid #ddd; padding: 8px;">Status</th>
+                                            <tr class="text-center VK_reso_table_th">
+                                                <th style="border: 1px solid #ddd; padding: 20px;">Title</th>
+                                                <th style="border: 1px solid #ddd; padding: 20px;">Description</th>
+                                                <th style="border: 1px solid #ddd; padding: 20px;">Launch Date</th>
+                                                <th style="border: 1px solid #ddd; padding: 20px;">Status</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             ${sub.data.map((sb_data) => {
-                                    return `
-                                                <tr>
-                                                    <td class="VK_reso_table_td VK_reso_table_font VK_reso_table_title" style="border: 1px solid #ddd; padding: 8px;"><a href="" class="text-decoration-none">${sb_data.title}</a></td>
-                                                    <td class="VK_reso_table_td VK_reso_table_font" style="border: 1px solid #ddd; padding: 8px;">${sb_data.desc}</td>
-                                                    <td class="VK_reso_table_td VK_reso_table_font" style="border: 1px solid #ddd; padding: 8px;">${sb_data.lunch}</td>
-                                                    <td class="VK_reso_table_td VK_reso_table_font" style="border: 1px solid #ddd; padding: 8px;">${sb_data.status}</td>
+                                        return `
+                                                <tr class="VK_reso_table_tr">
+                                                    <td class="VK_reso_table_td VK_reso_table_font VK_reso_table_title" style="border: 1px solid #ddd; padding: 15px;"><a href="" class="text-decoration-none">${sb_data.title}</a></td>
+                                                    <td class="VK_reso_table_td VK_reso_table_font" style="border: 1px solid #ddd; padding: 15px;">${sb_data.desc}</td>
+                                                    <td class="VK_reso_table_td VK_reso_table_font" style="border: 1px solid #ddd; padding: 15px;">${sb_data.lunch}</td>
+                                                    <td class="VK_reso_table_td VK_reso_table_font" style="border: 1px solid #ddd; padding: 15px;">${sb_data.status}</td>
                                                 </tr>`;
-                                }).join('')}
+                                    }).join('')}
                                         </tbody>
                                     </table>` : ''}
                                 </div>
                             </div>
                         </div>`;
-                    }).join('') : ''}
+                        }).join('') : ''}
             </div> 
         </div>
     </div>` : ''}`
-    }).join('')
+        }).join('')
 
-    document.getElementById('accordionContainer').innerHTML = html_data;
-    var collapseElements = document.querySelectorAll('.accordion-item .collapse');
-    collapseElements.forEach(function (element) {
-        new bootstrap.Collapse(element, {
-            toggle: false
+        document.getElementById('accordionContainer').innerHTML = html_data;
+        var collapseElements = document.querySelectorAll('.accordion-item .collapse');
+        collapseElements.forEach(function (element) {
+            new bootstrap.Collapse(element, {
+                toggle: false
+            });
         });
-    });
+    }
 }
