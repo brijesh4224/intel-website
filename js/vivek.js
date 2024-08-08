@@ -2024,6 +2024,7 @@ function VK_resu_active(id) {
         ]
     ];
     // Remove active class from all tabs
+    
     var tabs = document.getElementsByClassName("VK_reso_list_item");
     for (var i = 0; i < tabs.length; i++) {
         tabs[i].classList.remove("VK_reso_active_list");

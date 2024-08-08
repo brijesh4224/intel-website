@@ -3390,7 +3390,11 @@ function managers(a) {
     document.getElementById("ds_service-li").style.backgroundColor = "#f3f3f3";
     document.getElementById("ds_service-btn").style.fontWeight = "bold";
     document.getElementById("ds_service-height").style.height = "392px";
-    document.getElementById("s_service-main").scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    document.getElementById("ds_service-main").scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+
+    document.getElementById("ds_debug-main").style.display = "none";
+    document.getElementById("ds_debug-li").style.backgroundColor = "";
+    document.getElementById("ds_debug-btn").style.fontWeight = "";
 
     document.getElementById("ds_center-main").style.display = "none";
     document.getElementById("ds_center-li").style.backgroundColor = "";
