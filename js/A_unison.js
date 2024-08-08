@@ -10,3 +10,23 @@ document.addEventListener('DOMContentLoaded', (event) => {
         });
     });
 });
+
+
+document.getElementById('show-more-btn').addEventListener('click', function() {
+    var myCard = document.getElementById('Accor');
+    var icon = document.getElementById('toggle-icon');
+    if (myCard.classList.contains('ds_use-hidden')) {
+        myCard.classList.remove('ds_use-hidden');
+        myCard.classList.add('ds_use-show');
+        this.textContent = 'Show Less ';
+        icon.className = 'fa-solid fa-angle-up ';
+        this.prepend(icon)
+    } else {
+        myCard.classList.remove('ds_use-show');
+        myCard.classList.add('ds_use-hidden');
+        this.textContent = 'Show More ';
+        icon.className = 'fa-solid fa-angle-down ';
+        this.prepend(icon)
+
+    }
+});
