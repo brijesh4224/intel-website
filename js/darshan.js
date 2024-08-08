@@ -10,15 +10,14 @@ function handleActive(id) {
     });
     document.getElementById('id' + id).classList.add('active');
 }
-window.onscroll = function (e) {
-    if(document.getElementById('navbar'))
-    {
-        if (scrollY > 400) {
-            document.getElementById("navbar").classList.add('d_navbar')
-        }
-    }
-    
-}
+// window.onscroll = function (e) {
+//     if (document.getElementById('navbar')) {
+//         if (scrollY > 400) {
+//             document.getElementById("navbar").classList.add('d_navbar')
+//         }
+//     }
+
+// }
 
 
 window.onload = function () {
@@ -145,7 +144,8 @@ window.onload = function () {
         {
             image: "feature1.png",
             title: "Component",
-            desc: "Explore stand-alone products used in building complete systems."
+            desc: "Explore stand-alone products used in building complete systems.",
+            link:"d_offerning-components.html"
         },
         {
             image: "feature2.png",
@@ -178,7 +178,7 @@ window.onload = function () {
                                 <img src="/img/darshan_image/${features[i].image}" alt="">
                             </div>
                             <div class="d_content">
-                                <h3><a href="">${features[i].title}</a></h3>
+                                <h3><a href='${features[i].link}'>${features[i].title}</a></h3>
                                 <p>${features[i].desc}</p>
                             </div>
                         </div>
@@ -196,7 +196,7 @@ window.onload = function () {
             image: "partner1.png",
             title: "Distributor",
             desc: "Explore stand-alone products used in building complete systems.",
-            link:"./../d_partner/d_distributor-select-region.html"
+            link: "./../d_partner/d_distributor-select-region.html"
         },
         {
             image: "partner2.jpg",
@@ -458,14 +458,14 @@ window.onload = function () {
             title: "Find a Partner",
             desc: "Intel® Partner Showcase connects Intel partners with each other. Discover products and solutions to solve your business needs.",
             text: "Go to Showcase",
-            link:""
+            link: ""
         },
         {
             image: "partneralliance.png",
             title: "Intel Partner Alliance Communities",
             desc: "Our global partner communities can give you a head start, get you to market quicker, and help you scale faster. Intel Partner Alliance Communities bring together the solutions you need to succeed.",
             link: "./../d_partner/d_partner-alliance-community.html",
-            text:"Learn more"
+            text: "Learn more"
         },
     ]
 
@@ -485,7 +485,7 @@ window.onload = function () {
                                 <div class="row mt-2">
                                     <div class="col-xs-12">
                                         <p class="d_ctaitem">
-                                            <a href="${solutions2[i].link}">${solutions2[i].text}</a>
+                                            <a href="${solutions2[i].link}" class="d-sm-inline-block text-center d-block">${solutions2[i].text}</a>
                                         </p>
                                     </div>
                                 </div>
@@ -562,7 +562,7 @@ window.onload = function () {
             title: "insight.tech Editorial Calendar",
             desc: "",
         },
-       
+
     ]
 
     if (D_material1) {
@@ -595,7 +595,7 @@ window.onload = function () {
             title: "Preparing Your Application and Submitting a Successful Solution",
             desc: "Prepare for the application process and find out what information you’ll need to successfully submit a solution.",
         },
-       
+
     ]
 
     if (D_guide) {
@@ -658,7 +658,7 @@ window.onload = function () {
     // Distributor select region
 
     let D_region = document.getElementById('D_region');
-    const region = ["select","United States","Canada","Mexico"]
+    const region = ["select", "United States", "Canada", "Mexico"]
 
     if (D_region) {
         for (let i = 0; i < region.length; i++) {
@@ -668,7 +668,7 @@ window.onload = function () {
     }
 
     let D_region1 = document.getElementById('D_region1');
-    const region1 = ["select","Argentina","Bermuda","Bolivia","Brazil","Chile","Colombia","Costa Rica","Dominican Republic","Ecuador","El Salvador","Guatemala","Honduras","Jamaica","Panama","Paraguay","Peru","Puerto Rico","Trinidad and Tobago","Uruguay","Venezuela"]
+    const region1 = ["select", "Argentina", "Bermuda", "Bolivia", "Brazil", "Chile", "Colombia", "Costa Rica", "Dominican Republic", "Ecuador", "El Salvador", "Guatemala", "Honduras", "Jamaica", "Panama", "Paraguay", "Peru", "Puerto Rico", "Trinidad and Tobago", "Uruguay", "Venezuela"]
 
     if (D_region1) {
         for (let i = 0; i < region1.length; i++) {
@@ -678,7 +678,7 @@ window.onload = function () {
     }
 
     let D_region2 = document.getElementById('D_region2');
-    const region2 = ["select","Albania","Andorra","Armenia","Austria","Belarus","Belgium","Bosnia-Herzegovina","Bulgaria","Croatia","Cyprus","Czech Republic","Denmark","Estonia","Finland","France","Georgia","Germany","Greece","Hungary","Iceland","Ireland","Italy","Latvia","Liechtenstein","Lithuania","Luxembourg","Macedonia","Malta","Moldova","Monaco","Montenegro","Montenegro","Netherlands","Norway","Poland","Portugal","Romania","San Marino","Serbia","Slovakia","Slovenia","Spain","Sweden","Switzerland","Turkey","Ukraine","United Kingdom"]
+    const region2 = ["select", "Albania", "Andorra", "Armenia", "Austria", "Belarus", "Belgium", "Bosnia-Herzegovina", "Bulgaria", "Croatia", "Cyprus", "Czech Republic", "Denmark", "Estonia", "Finland", "France", "Georgia", "Germany", "Greece", "Hungary", "Iceland", "Ireland", "Italy", "Latvia", "Liechtenstein", "Lithuania", "Luxembourg", "Macedonia", "Malta", "Moldova", "Monaco", "Montenegro", "Montenegro", "Netherlands", "Norway", "Poland", "Portugal", "Romania", "San Marino", "Serbia", "Slovakia", "Slovenia", "Spain", "Sweden", "Switzerland", "Turkey", "Ukraine", "United Kingdom"]
 
     if (D_region2) {
         for (let i = 0; i < region2.length; i++) {
@@ -688,7 +688,7 @@ window.onload = function () {
     }
 
     let D_region3 = document.getElementById('D_region3');
-    const region3 = ["select","Bahrain","Egypt","Iran","Iraq","Israel","Jordan","Kuwait","Lebanon","Levant","Lybia","Morocco","Oman","Qatar","Saudi Arabia","Tunisia","United Arab Emirates","Yemen"]
+    const region3 = ["select", "Bahrain", "Egypt", "Iran", "Iraq", "Israel", "Jordan", "Kuwait", "Lebanon", "Levant", "Lybia", "Morocco", "Oman", "Qatar", "Saudi Arabia", "Tunisia", "United Arab Emirates", "Yemen"]
 
     if (D_region3) {
         for (let i = 0; i < region3.length; i++) {
@@ -698,7 +698,7 @@ window.onload = function () {
     }
 
     let D_region4 = document.getElementById('D_region4');
-    const region4 = ["select","Angola","Benin","Botswana","Burkina Faso","Burundi","Comoros","Congo","Cote D'Ivoire","Djibouti","Gabon","Ghana","Kenya","Lesotho","Malawi","Mali","Mauritius","Mozambique","Namibia","Nigeria","Rwan","Senegal","South Africa","Swaziland","Tanzania","Uganda","Zambia","Zimbabwe"]
+    const region4 = ["select", "Angola", "Benin", "Botswana", "Burkina Faso", "Burundi", "Comoros", "Congo", "Cote D'Ivoire", "Djibouti", "Gabon", "Ghana", "Kenya", "Lesotho", "Malawi", "Mali", "Mauritius", "Mozambique", "Namibia", "Nigeria", "Rwan", "Senegal", "South Africa", "Swaziland", "Tanzania", "Uganda", "Zambia", "Zimbabwe"]
 
     if (D_region4) {
         for (let i = 0; i < region4.length; i++) {
@@ -708,7 +708,7 @@ window.onload = function () {
     }
 
     let D_region5 = document.getElementById('D_region5');
-    const region5 = ["select","Australia","Bangladesh","Cambodia","Hong Kong","India","Indonesia","Japan","Kazakhstan","Macao","Mainland China","Malaysia","Myanmar","New Zealand","Pakistan","Philippines","Reunion","Singapore","South Korea","Sri Lanka","Taiwan","Thailand","Vietnam"]
+    const region5 = ["select", "Australia", "Bangladesh", "Cambodia", "Hong Kong", "India", "Indonesia", "Japan", "Kazakhstan", "Macao", "Mainland China", "Malaysia", "Myanmar", "New Zealand", "Pakistan", "Philippines", "Reunion", "Singapore", "South Korea", "Sri Lanka", "Taiwan", "Thailand", "Vietnam"]
 
     if (D_region4) {
         for (let i = 0; i < region5.length; i++) {
@@ -725,25 +725,25 @@ window.onload = function () {
             image: "comm1.png",
             title: "Cloud",
             desc: "Intel® Cloud Insider Community offers continuously refreshed, world-class cloud content and tools. Members have the opportunity to connect with peers and the ecosystem to take innovative, joint cloud solutions to market.",
-            link:""
+            link: ""
         },
         {
             image: "comm2.png",
             title: "IoT and Edge Solutions",
             desc: "Join the innovators who are transforming IoT. The IoT and Edge Solutions Community can help you solve technical challenges and build your business with ready-to-run IoT solutions—plus tried and true initiatives that advance collaboration between partners.",
-            link:""
+            link: ""
         },
         {
             image: "comm3.png",
             title: "FPGA",
             desc: "The Intel FPGA community can help you unlock the potential of these flexible, programmable devices for your customers and your business. Explore ready-to-deploy, FPGA-based solutions for networking, media, AI, data analytics, finance and other compute-intensive applications. Or start building your own custom solution with community tools, training, and our FPGA developer cloud.",
-            link:""
+            link: ""
         },
         {
             image: "comm4.png",
             title: "Network Builders",
             desc: "For over a decade, the Intel® Network Builders ecosystem has worked together to develop world-class solutions that solve technical challenges and define the future of the communications industry. Join the innovators transforming the network.",
-            link:""
+            link: ""
         },
     ]
 
@@ -759,7 +759,7 @@ window.onload = function () {
                         <p>${aboutpro[i].desc}</p>
                         <p></p>
                         <p class="d_cta">
-                            <a href="">Visit</a>
+                            <a href="" class="d-sm-inline-block d-block text-center">Visit</a>
                         </p>
                     </div>
                 </div>`;
@@ -774,25 +774,25 @@ window.onload = function () {
             image: "event1.webp",
             title: "Innovation 2024: Accelerating the Future Together",
             desc: "Expand your knowledge, skills, and networks to help you get ahead of the new age of development with deep-dive technical sessions, workshops, hands-on labs, and hackathons to help solve what’s next in AI and beyond.",
-            link:""
+            link: ""
         },
         {
             image: "event2.png",
             title: "Intel Vision 2024: Bringing AI Everywhere",
             desc: "Intel Vision is our premier event for business and technology executive leaders to come together and learn about the latest industry trends and solutions in advancements from client, to edge, to data center and cloud.",
-            link:""
+            link: ""
         },
         {
             image: "event3.png",
             title: "The Innovation and Vision On-demand Content Catalog 'On365' is Now Live!",
             desc: "Tech experts hand-picked select sessions we know you and your team will enjoy and refer to all year. On365 will be your go-to resource to view recorded keynotes, technical insights, sessions, and demos from Intel Vision and Intel Innovation.",
-            link:""
+            link: ""
         },
     ]
 
     if (D_intel) {
         for (let i = 0; i < intel.length; i++) {
-            D_intel.innerHTML += `<div class="row mt-3 ${i==1 ? "flex-row-reverse" : null} align-items-center">
+            D_intel.innerHTML += `<div class="row mt-3 ${i == 1 ? "flex-row-reverse" : null} align-items-center">
                 <div class="col-xs-12 col-sm-5">
                     <div class="d_img">
                         <img src="/img/darshan_image/${intel[i].image}" alt="">
@@ -816,7 +816,7 @@ window.onload = function () {
     // event page -- modal
 
     let D_modal = document.getElementById('D_modal');
-    const list = ["CIO (Chief Information Officer)","CTO (Chief Technology Officer)","COO (Chief Operating Officer)","CISO (Chief Information Security Officer)","Owner/Executive Management","IT Management","Data Sciences","Software/Application Development/Engineering","Hardware Development/Engineering","FPGA Engineering","Solution/System Architecture","Infrastructure/Datacenter Architecture","Network Architecture/Engineering","IT Information Security","IT Storage","IT User Devices - PCs tablets etc","IT Generalist/Other IT","Facilities/Audio Video","Line of Business or Service Head","Finance/Procurement","Sales","Marketing","Consultant","Hobbyist/Maker","Educator","Student","Scientist/Researcher","Other","Press Analyst","Operations Engineer"]
+    const list = ["CIO (Chief Information Officer)", "CTO (Chief Technology Officer)", "COO (Chief Operating Officer)", "CISO (Chief Information Security Officer)", "Owner/Executive Management", "IT Management", "Data Sciences", "Software/Application Development/Engineering", "Hardware Development/Engineering", "FPGA Engineering", "Solution/System Architecture", "Infrastructure/Datacenter Architecture", "Network Architecture/Engineering", "IT Information Security", "IT Storage", "IT User Devices - PCs tablets etc", "IT Generalist/Other IT", "Facilities/Audio Video", "Line of Business or Service Head", "Finance/Procurement", "Sales", "Marketing", "Consultant", "Hobbyist/Maker", "Educator", "Student", "Scientist/Researcher", "Other", "Press Analyst", "Operations Engineer"]
 
     if (D_modal) {
         for (let i = 0; i < list.length; i++) {
@@ -826,7 +826,7 @@ window.onload = function () {
     }
 
     let D_modal1 = document.getElementById('D_modal1');
-    const list1 = ["Artificial Intelligence","Network Transformation","Data Center","Internet of Things","Cloud Solutions"]
+    const list1 = ["Artificial Intelligence", "Network Transformation", "Data Center", "Internet of Things", "Cloud Solutions"]
 
     if (D_modal1) {
         for (let i = 0; i < list1.length; i++) {
@@ -836,7 +836,7 @@ window.onload = function () {
     }
 
     let D_modal2 = document.getElementById('D_modal2');
-    const list2 = ["Agriculture","Apparel","Banking","Biotechnology","Chemicals","Communications","Construction","Consulting","Education","Electronics","Energy","Engineering","Entertainment","Environmental","Finance","Food & Beverage","Government","Healthcare","Hospitality","Insurance","Machinery","Manufacturing","Media","Not For Profit","Others","Recreation","Retail","Shipping","Technology","Telecommunications","Transportation","Utilities"]
+    const list2 = ["Agriculture", "Apparel", "Banking", "Biotechnology", "Chemicals", "Communications", "Construction", "Consulting", "Education", "Electronics", "Energy", "Engineering", "Entertainment", "Environmental", "Finance", "Food & Beverage", "Government", "Healthcare", "Hospitality", "Insurance", "Machinery", "Manufacturing", "Media", "Not For Profit", "Others", "Recreation", "Retail", "Shipping", "Technology", "Telecommunications", "Transportation", "Utilities"]
 
     if (D_modal2) {
         for (let i = 0; i < list2.length; i++) {
@@ -847,33 +847,33 @@ window.onload = function () {
 
     let D_modal3 = document.getElementById('D_modal3');
     const list3 = [
-        "Afghanistan", "Albania", "Algeria", "Andorra", "Angola", "Antigua and Barbuda", 
-        "Argentina", "Armenia", "Australia", "Austria", "Azerbaijan", "Bahamas", "Bahrain", 
-        "Bangladesh", "Barbados", "Belarus", "Belgium", "Belize", "Benin", "Bhutan", "Bolivia", 
-        "Bosnia and Herzegovina", "Botswana", "Brazil", "Brunei", "Bulgaria", "Burkina Faso", 
-        "Burundi", "Cabo Verde", "Cambodia", "Cameroon", "Canada", "Central African Republic", 
-        "Chad", "Chile", "China", "Colombia", "Comoros", "Congo", "Costa Rica", "Croatia", 
-        "Cuba", "Cyprus", "Czech Republic", "Denmark", "Djibouti", "Dominica", "Dominican Republic", 
-        "Ecuador", "Egypt", "El Salvador", "Equatorial Guinea", "Eritrea", "Estonia", "Eswatini", 
-        "Ethiopia", "Fiji", "Finland", "France", "Gabon", "Gambia", "Georgia", "Germany", "Ghana", 
-        "Greece", "Grenada", "Guatemala", "Guinea", "Guinea-Bissau", "Guyana", "Haiti", "Honduras", 
-        "Hungary", "Iceland", "India", "Indonesia", "Iran", "Iraq", "Ireland", "Israel", "Italy", 
-        "Jamaica", "Japan", "Jordan", "Kazakhstan", "Kenya", "Kiribati", "Korea, North", "Korea, South", 
-        "Kosovo", "Kuwait", "Kyrgyzstan", "Laos", "Latvia", "Lebanon", "Lesotho", "Liberia", "Libya", 
-        "Liechtenstein", "Lithuania", "Luxembourg", "Madagascar", "Malawi", "Malaysia", "Maldives", 
-        "Mali", "Malta", "Marshall Islands", "Mauritania", "Mauritius", "Mexico", "Micronesia", 
-        "Moldova", "Monaco", "Mongolia", "Montenegro", "Morocco", "Mozambique", "Myanmar", "Namibia", 
-        "Nauru", "Nepal", "Netherlands", "New Zealand", "Nicaragua", "Niger", "Nigeria", "North Macedonia", 
-        "Norway", "Oman", "Pakistan", "Palau", "Palestine", "Panama", "Papua New Guinea", "Paraguay", 
-        "Peru", "Philippines", "Poland", "Portugal", "Qatar", "Romania", "Russia", "Rwanda", "Saint Kitts and Nevis", 
-        "Saint Lucia", "Saint Vincent and the Grenadines", "Samoa", "San Marino", "Sao Tome and Principe", 
-        "Saudi Arabia", "Senegal", "Serbia", "Seychelles", "Sierra Leone", "Singapore", "Slovakia", "Slovenia", 
-        "Solomon Islands", "Somalia", "South Africa", "South Sudan", "Spain", "Sri Lanka", "Sudan", "Suriname", 
-        "Sweden", "Switzerland", "Syria", "Taiwan", "Tajikistan", "Tanzania", "Thailand", "Timor-Leste", "Togo", 
-        "Tonga", "Trinidad and Tobago", "Tunisia", "Turkey", "Turkmenistan", "Tuvalu", "Uganda", "Ukraine", 
-        "United Arab Emirates", "United Kingdom", "United States", "Uruguay", "Uzbekistan", "Vanuatu", "Vatican City", 
+        "Afghanistan", "Albania", "Algeria", "Andorra", "Angola", "Antigua and Barbuda",
+        "Argentina", "Armenia", "Australia", "Austria", "Azerbaijan", "Bahamas", "Bahrain",
+        "Bangladesh", "Barbados", "Belarus", "Belgium", "Belize", "Benin", "Bhutan", "Bolivia",
+        "Bosnia and Herzegovina", "Botswana", "Brazil", "Brunei", "Bulgaria", "Burkina Faso",
+        "Burundi", "Cabo Verde", "Cambodia", "Cameroon", "Canada", "Central African Republic",
+        "Chad", "Chile", "China", "Colombia", "Comoros", "Congo", "Costa Rica", "Croatia",
+        "Cuba", "Cyprus", "Czech Republic", "Denmark", "Djibouti", "Dominica", "Dominican Republic",
+        "Ecuador", "Egypt", "El Salvador", "Equatorial Guinea", "Eritrea", "Estonia", "Eswatini",
+        "Ethiopia", "Fiji", "Finland", "France", "Gabon", "Gambia", "Georgia", "Germany", "Ghana",
+        "Greece", "Grenada", "Guatemala", "Guinea", "Guinea-Bissau", "Guyana", "Haiti", "Honduras",
+        "Hungary", "Iceland", "India", "Indonesia", "Iran", "Iraq", "Ireland", "Israel", "Italy",
+        "Jamaica", "Japan", "Jordan", "Kazakhstan", "Kenya", "Kiribati", "Korea, North", "Korea, South",
+        "Kosovo", "Kuwait", "Kyrgyzstan", "Laos", "Latvia", "Lebanon", "Lesotho", "Liberia", "Libya",
+        "Liechtenstein", "Lithuania", "Luxembourg", "Madagascar", "Malawi", "Malaysia", "Maldives",
+        "Mali", "Malta", "Marshall Islands", "Mauritania", "Mauritius", "Mexico", "Micronesia",
+        "Moldova", "Monaco", "Mongolia", "Montenegro", "Morocco", "Mozambique", "Myanmar", "Namibia",
+        "Nauru", "Nepal", "Netherlands", "New Zealand", "Nicaragua", "Niger", "Nigeria", "North Macedonia",
+        "Norway", "Oman", "Pakistan", "Palau", "Palestine", "Panama", "Papua New Guinea", "Paraguay",
+        "Peru", "Philippines", "Poland", "Portugal", "Qatar", "Romania", "Russia", "Rwanda", "Saint Kitts and Nevis",
+        "Saint Lucia", "Saint Vincent and the Grenadines", "Samoa", "San Marino", "Sao Tome and Principe",
+        "Saudi Arabia", "Senegal", "Serbia", "Seychelles", "Sierra Leone", "Singapore", "Slovakia", "Slovenia",
+        "Solomon Islands", "Somalia", "South Africa", "South Sudan", "Spain", "Sri Lanka", "Sudan", "Suriname",
+        "Sweden", "Switzerland", "Syria", "Taiwan", "Tajikistan", "Tanzania", "Thailand", "Timor-Leste", "Togo",
+        "Tonga", "Trinidad and Tobago", "Tunisia", "Turkey", "Turkmenistan", "Tuvalu", "Uganda", "Ukraine",
+        "United Arab Emirates", "United Kingdom", "United States", "Uruguay", "Uzbekistan", "Vanuatu", "Vatican City",
         "Venezuela", "Vietnam", "Yemen", "Zambia", "Zimbabwe"
-      ];
+    ];
 
     if (D_modal3) {
         for (let i = 0; i < list3.length; i++) {
@@ -890,25 +890,25 @@ window.onload = function () {
             image: "e1.png",
             title: "How to Simplify Cloud Optimization and FinOps",
             desc: "Learn how cloud tools from Intel and Deloitte can help you optimize customer cloud efficiency and enable FinOps capabilities.",
-            link:""
+            link: ""
         },
         {
             image: "e2.png",
             title: "Modernization Opportunities with Microsoft",
             desc: "Find out how end of support for Microsoft Windows Server and SQL Server 2012 creates an opportunity for your business.",
-            link:""
+            link: ""
         },
         {
             image: "e3.png",
             title: "5th Gen Intel® Xeon® Processors Overview",
             desc: "Find out how 5th Gen Intel® Xeon® Scalable processors can help support today’s critical business objectives.",
-            link:""
+            link: ""
         },
         {
             image: "e4.jpg",
             title: "Cloud Workload Modernization",
             desc: "How to queue up the cloud workload modernization conversation with your customers.",
-            link:""
+            link: ""
         },
     ]
 
@@ -926,4 +926,474 @@ window.onload = function () {
         }
     }
 
+    record_count();
+    Pagination(page, currentRecords);
+    if (document.getElementById('VK_search_result_span')) {
+        document.getElementById('VK_search_result_span').innerHTML = currentRecords.length + " Results";
+    }
+    if (document.getElementById('VK_accoridan')) {
+        if (window.innerWidth < 1200) {
+            document.getElementById('VK_accoridan').classList.add('d-none')
+            document.getElementById('VK_accoridan').classList.remove('VK_Block')
+        }
+    }
+
+
+// if (document.getElementById('VK_select_filters')) {
+//     document.getElementById('VK_select_filters').addEventListener("change", function () {
+//         let val = document.getElementById('VK_select_filters').value
+//         sortBy(val)
+//     })
+// }
+
+// if (document.getElementById('VK_selected_filters')) {
+//     document.getElementById('VK_selected_filters').addEventListener("change", function () {
+//         let val = document.getElementById('VK_selected_filters').value;
+//         sortBy(val);
+//     })
+
 }
+
+
+
+document.addEventListener('DOMContentLoaded', function () {
+    const nav = document.querySelector('.VK_client_app_navigation');
+    const navLinks = document.querySelectorAll('.VK_ai_nav_bar a');
+    const sections = document.querySelectorAll('section[id]');
+    let navOffset = nav.offsetTop;
+
+    // Add smooth scrolling to all links
+    navLinks.forEach(link => {
+        link.addEventListener('click', function (e) {
+            e.preventDefault();
+            document.querySelector(this.getAttribute('href')).scrollIntoView({
+                behavior: 'smooth'
+            });
+        });
+    });
+
+    // Sticky Navigation
+    window.addEventListener('scroll', () => {
+        if (window.pageYOffset >= navOffset) {
+            nav.classList.add('VK_sticky_nav_bar');
+        } else {
+            nav.classList.remove('VK_sticky_nav_bar');
+        }
+
+        // Section highlighting
+        sections.forEach(section => {
+            const sectionTop = section?.offsetTop - nav.clientHeight;
+            const sectionHeight = section.clientHeight;
+            if (window.pageYOffset >= sectionTop && window.pageYOffset <= sectionTop + sectionHeight) {
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === `#${section.id}`) {
+                        link.classList.add('active');
+                        
+                        // Ensure the active link is visible in the nav bar
+                        const navBar = document.querySelector('.VK_ai_nav_bar');
+                        const activeLink = document.querySelector('.VK_ai_nav_bar a.active');
+                        const linkRect = activeLink.getBoundingClientRect();
+                        const navBarRect = navBar.getBoundingClientRect();
+
+                        if (linkRect.left < navBarRect.left || linkRect.right > navBarRect.right) {
+                            activeLink.scrollIntoView({ inline: 'center', behavior: 'smooth' });
+                        }
+                    }
+                });
+            }
+        });
+    });
+});
+
+
+// ------------------ json data --------------------
+
+// Offerning Compoenents
+
+let developer_catalog_card_data = [
+    {
+        name: "ASUS Internet of Things",
+        description: "ASUS IoT is a sub-brand of ASUS dedicated to the creation of incredible solutions in the fields of AI and IoT. Our mission is to become a trusted provider of embedded systems and a partner in the AIoT solutions ecosystem. ASUS IoT strives to deliver best-in-class products and services across diverse vertical markets – providing convenient and efficient",
+        image: "c1.png",
+        link:"",
+        anchor:"Ingram Micro Inc Canada",
+        status: "Updated"
+    },
+    {
+        name: "SI-62S - AI Education Platform",
+        description: "ASUS IoT is a sub-brand of ASUS dedicated to the creation of incredible solutions in the fields of AI and IoT. Our mission is to become a trusted provider of embedded systems and a partner in the AIoT solutions ecosystem. ASUS IoT strives to deliver best-in-class products and services across diverse vertical markets – providing convenient and efficient",
+        image: "c1.png",
+        link:"",
+        anchor:"Ingram Micro Inc Canada",
+        status: "Updated"
+    },
+    {
+        name: "G-NETX710F4",
+        description: "ASUS IoT is a sub-brand of ASUS dedicated to the creation of incredible solutions in the fields of AI and IoT. Our mission is to become a trusted provider of embedded systems and a partner in the AIoT solutions ecosystem. ASUS IoT strives to deliver best-in-class products and services across diverse vertical markets – providing convenient and efficient",
+        image: "c1.png",
+        link:"",
+        anchor:"Ingram Micro Inc Canada",
+        status: "Updated"
+    },
+    {
+        name: "ASUS Internet of Things",
+        description: "ASUS IoT is a sub-brand of ASUS dedicated to the creation of incredible solutions in the fields of AI and IoT. Our mission is to become a trusted provider of embedded systems and a partner in the AIoT solutions ecosystem. ASUS IoT strives to deliver best-in-class products and services across diverse vertical markets – providing convenient and efficient",
+        image: "c1.png",
+        link:"",
+        anchor:"Ingram Micro Inc Canada",
+        status: "Updated"
+    },
+    {
+        name: "ASUS Internet of Things",
+        description: "ASUS IoT is a sub-brand of ASUS dedicated to the creation of incredible solutions in the fields of AI and IoT. Our mission is to become a trusted provider of embedded systems and a partner in the AIoT solutions ecosystem. ASUS IoT strives to deliver best-in-class products and services across diverse vertical markets – providing convenient and efficient",
+        image: "c1.png",
+        link:"",
+        anchor:"Ingram Micro Inc Canada",
+        status: "Updated"
+    },
+    {
+        name: "ASUS Internet of Things",
+        description: "ASUS IoT is a sub-brand of ASUS dedicated to the creation of incredible solutions in the fields of AI and IoT. Our mission is to become a trusted provider of embedded systems and a partner in the AIoT solutions ecosystem. ASUS IoT strives to deliver best-in-class products and services across diverse vertical markets – providing convenient and efficient",
+        image: "c1.png",
+        link:"",
+        anchor:"Ingram Micro Inc Canada",
+        status: "Updated"
+    },
+    {
+        name: "ASUS Internet of Things",
+        description: "ASUS IoT is a sub-brand of ASUS dedicated to the creation of incredible solutions in the fields of AI and IoT. Our mission is to become a trusted provider of embedded systems and a partner in the AIoT solutions ecosystem. ASUS IoT strives to deliver best-in-class products and services across diverse vertical markets – providing convenient and efficient",
+        image: "c1.png",
+        link:"",
+        anchor:"Ingram Micro Inc Canada",
+        status: "Updated"
+    },
+    {
+        name: "ASUS Internet of Things",
+        description: "ASUS IoT is a sub-brand of ASUS dedicated to the creation of incredible solutions in the fields of AI and IoT. Our mission is to become a trusted provider of embedded systems and a partner in the AIoT solutions ecosystem. ASUS IoT strives to deliver best-in-class products and services across diverse vertical markets – providing convenient and efficient",
+        image: "c1.png",
+        link:"",
+        anchor:"Ingram Micro Inc Canada",
+        status: "Updated"
+    },
+    {
+        name: "ASUS Internet of Things",
+        description: "ASUS IoT is a sub-brand of ASUS dedicated to the creation of incredible solutions in the fields of AI and IoT. Our mission is to become a trusted provider of embedded systems and a partner in the AIoT solutions ecosystem. ASUS IoT strives to deliver best-in-class products and services across diverse vertical markets – providing convenient and efficient",
+        image: "c1.png",
+        link:"",
+        anchor:"Ingram Micro Inc Canada",
+        status: "Updated"
+    },
+    {
+        name: "ASUS Internet of Things",
+        description: "ASUS IoT is a sub-brand of ASUS dedicated to the creation of incredible solutions in the fields of AI and IoT. Our mission is to become a trusted provider of embedded systems and a partner in the AIoT solutions ecosystem. ASUS IoT strives to deliver best-in-class products and services across diverse vertical markets – providing convenient and efficient",
+        image: "c1.png",
+        link:"",
+        anchor:"Ingram Micro Inc Canada",
+        status: "Updated"
+    },{
+        name: "ASUS Internet of Things",
+        description: "ASUS IoT is a sub-brand of ASUS dedicated to the creation of incredible solutions in the fields of AI and IoT. Our mission is to become a trusted provider of embedded systems and a partner in the AIoT solutions ecosystem. ASUS IoT strives to deliver best-in-class products and services across diverse vertical markets – providing convenient and efficient",
+        image: "c1.png",
+        link:"",
+        anchor:"Ingram Micro Inc Canada",
+        status: "Updated"
+    },
+    {
+        name: "ASUS Internet of Things",
+        description: "ASUS IoT is a sub-brand of ASUS dedicated to the creation of incredible solutions in the fields of AI and IoT. Our mission is to become a trusted provider of embedded systems and a partner in the AIoT solutions ecosystem. ASUS IoT strives to deliver best-in-class products and services across diverse vertical markets – providing convenient and efficient",
+        image: "c1.png",
+        link:"",
+        anchor:"Ingram Micro Inc Canada",
+        status: "Updated"
+    },
+    {
+        name: "ASUS Internet of Things",
+        description: "ASUS IoT is a sub-brand of ASUS dedicated to the creation of incredible solutions in the fields of AI and IoT. Our mission is to become a trusted provider of embedded systems and a partner in the AIoT solutions ecosystem. ASUS IoT strives to deliver best-in-class products and services across diverse vertical markets – providing convenient and efficient",
+        image: "c1.png",
+        link:"",
+        anchor:"Ingram Micro Inc Canada",
+        status: "Updated"
+    },{
+        name: "ASUS Internet of Things",
+        description: "ASUS IoT is a sub-brand of ASUS dedicated to the creation of incredible solutions in the fields of AI and IoT. Our mission is to become a trusted provider of embedded systems and a partner in the AIoT solutions ecosystem. ASUS IoT strives to deliver best-in-class products and services across diverse vertical markets – providing convenient and efficient",
+        image: "c1.png",
+        link:"",
+        anchor:"Ingram Micro Inc Canada",
+        status: "Updated"
+    },
+    {
+        name: "ASUS Internet of Things",
+        description: "ASUS IoT is a sub-brand of ASUS dedicated to the creation of incredible solutions in the fields of AI and IoT. Our mission is to become a trusted provider of embedded systems and a partner in the AIoT solutions ecosystem. ASUS IoT strives to deliver best-in-class products and services across diverse vertical markets – providing convenient and efficient",
+        image: "c1.png",
+        link:"",
+        anchor:"Ingram Micro Inc Canada",
+        status: "Updated"
+    },
+]
+
+
+// // -------------------------------- pagination ---------------------------------------
+
+
+let originalRecords = developer_catalog_card_data;
+let currentRecords = [...originalRecords];
+let page = 1;
+
+let all_data = () => {
+    page = 1;
+    currentRecords = [...originalRecords];
+    Pagination(page, currentRecords);
+};
+
+let Pagination = (page, record) => {
+    if (record.length !== 0) {
+        if (document.getElementById('VK_curent_page')) {
+            document.getElementById('VK_curent_page').innerHTML = page;
+            let limit = 10;
+            let first = (limit * page) - limit;
+            let last = limit * page;
+            let total_page = Math.ceil(record.length / limit);
+
+            document.getElementById('VK_total_page_count').innerHTML = total_page;
+            let result = record.slice(first, last);
+            let VK_card_map = document.getElementById('VK_card_parent');
+            VK_card_map.innerHTML = '';
+            for (let i = 0; i < result.length; i++) {
+                VK_card_map.innerHTML += `<div class="col-xxl-3 VK_result_card col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12 p-3">
+            <div class="VK_card_parent bg-white h-100">
+            <div class="d_offer">Offering</div>
+                                        <div class="VK_card_img_box d-flex justify-content-center overflow-hidden">
+                                            <img src="/img/darshan_image/${result[i].image}" alt=""
+                                                class="h-100 object-fit-contain">
+                                        </div>
+                                        <hr class="m-0">
+                                        <div class="VK_card_details px-3 pb-3 mt-3">
+                                        <div class="VK_card_Title">
+                                                <a href="" class="text-decoration-none fw-normal">${result[i].name}</a>
+                                            </div>
+                                            ${result[i].system ? `<div class="VK_card_system py-1">
+                                                <span><strong>Operating System : </strong> ${result[i].system}</span>
+                                                </div>` : ""}
+                                                <div class="VK_card_description py-1">
+                                            
+                                                <span class="mt-2 d-block">${result[i].description}<br>by <a>${result[i].anchor}</a></span>
+                                                </div>
+                                                </div>
+                                    </div>
+                                    </div>`;
+            }
+        }
+    }
+    else {
+        document.getElementById('VK_card_parent').innerHTML = `<h1 class="text-danger">Record Not Found</h1>`
+    }
+};
+
+let ince = (amt) => {
+    let total_page = parseInt(document.getElementById('VK_total_page_count').innerHTML);
+    let curent_page = parseInt(document.getElementById('VK_curent_page').innerHTML);
+    curent_page += amt;
+    if (curent_page <= 0) curent_page = 1;
+    if (curent_page >= total_page) curent_page = total_page;
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+    Pagination(curent_page, currentRecords);
+};
+
+let operating_system_filter = (op_system) => {
+    currentRecords = originalRecords.filter((ele) => {
+        return ele.system != null && ele.system.includes(op_system);
+    });
+    page = 1;
+    Pagination(page, currentRecords);
+};
+
+let content_type = () => {
+    let check_box = document.getElementById('VK_filter_checkbox');
+    if (check_box.checked) {
+        currentRecords = originalRecords.filter((ele) => {
+            return ele.content == "Software Overviews";
+        });
+    } else {
+        currentRecords = [...originalRecords];
+    }
+    page = 1;
+    Pagination(page, currentRecords);
+};
+
+let record_count = () => {
+    let id = ['Linux', 'Microsoft_Windows', 'macOS', 'Android', 'Chrome', 'Chromium', 'Unix']
+    let op = ["Linux", "Microsoft Windows", "macOS", "Android", "Chrome", "Chromium", "Unix"]
+    for (let i = 0; i < op.length; i++) {
+        let arrr = originalRecords.filter((ele) => {
+            return ele.system != null && ele.system.includes(op[i]);
+        });
+        let chk = id[i];
+        if (document.getElementById(chk)) {
+            document.getElementById(chk).innerHTML = id[i] + " (" + arrr.length + ")";
+        } else {
+            return;
+        }
+    }
+}
+
+let VK_catalog_searching = () => {
+    let search = document.getElementById('VK_software_catalog_search_bar')
+    if (search.value.length > 2) {
+        console.log(currentRecords);
+
+    }
+}
+
+// window.onload = function () {
+//     // developer catalog
+//     record_count();
+//     Pagination(page, currentRecords);
+//     if (document.getElementById('VK_search_result_span')) {
+//         document.getElementById('VK_search_result_span').innerHTML = currentRecords.length + " Results";
+//     }
+//     if (document.getElementById('VK_accoridan')) {
+//         if (window.innerWidth < 1200) {
+//             document.getElementById('VK_accoridan').classList.add('d-none')
+//             document.getElementById('VK_accoridan').classList.remove('VK_Block')
+//         }
+//     }
+
+
+// // if (document.getElementById('VK_select_filters')) {
+// //     document.getElementById('VK_select_filters').addEventListener("change", function () {
+// //         let val = document.getElementById('VK_select_filters').value
+// //         sortBy(val)
+// //     })
+// // }
+
+// // if (document.getElementById('VK_selected_filters')) {
+// //     document.getElementById('VK_selected_filters').addEventListener("change", function () {
+// //         let val = document.getElementById('VK_selected_filters').value;
+// //         sortBy(val);
+// //     })
+// // }
+
+let sortBy = (val) => {
+
+    switch (val) {
+        case 'A-Z':
+            currentRecords = sortByNameAscending([...currentRecords]);
+            break;
+        case 'Z-A':
+            currentRecords = sortDescendingByName([...currentRecords]);
+            break;
+    }
+    Pagination(1, currentRecords);
+}
+
+function sortByNameAscending(arr) {
+    return arr.sort((a, b) => a.name.localeCompare(b.name));
+}
+
+function sortDescendingByName(arr) {
+    return arr.sort((a, b) => b.name.localeCompare(a.name));
+}
+
+// Category
+
+let D_categorylist = document.getElementById('D_categorylist');
+    const categorylist = [
+        'Component'
+    ];
+
+    if (D_categorylist) {
+        for (let i = 0; i < categorylist.length; i++) {
+            D_categorylist.innerHTML += `
+            <li class="py-2"><a>${categorylist[i]}</a></li>`;
+        }
+    }
+
+// // Processer item
+
+let D_processer = document.getElementById('D_processer');
+    const processer = [
+        'Intel Atom® Processor','Intel® Celeron® Processor','Intel® Core™ Processors','Intel® Core™ Ultra Processors','Intel® Movidius™ Vision Processing Units','Intel® Pentium® Processor','Intel® Processor','Intel® Xeon® Processors'
+    ];
+
+    if (D_processer) {
+        for (let i = 0; i < processer.length; i++) {
+            D_processer.innerHTML += `
+            <li class="py-2"><a>${processer[i]}</a></li>`;
+        }
+    }
+
+// Region
+    
+let D_Region = document.getElementById('D_region');
+const region = [
+    'Americas','Asia, Pacific, and Japan','Europe, Middle East, and Africa','Peoples Republic of China'
+];
+
+if (D_Region) {
+    for (let i = 0; i < region.length; i++) {
+        D_Region.innerHTML += `
+        <li class="py-2"><a>${region[i]}</a></li>`;
+    }
+}
+
+
+// Usecase
+    
+let D_usecase = document.getElementById('D_usecase');
+const usecase = [
+    'Advanced Analytics','Asset & Operations Optimization','Cloud Computing','Collaboration','Connected Worker','Control Optimization & Autonomy','Control Optimization & Autonomy','Data Science','Digital Security Surveillance','Digital Signage','Energy Monitoring','Environmental Monitoring','Factory Automation','Health & Life Sciences','High Performance Computing','Human Wellness Monitoring','Intelligent Vending','Interactive Whiteboard','Inventory Management','Logistics & Tracking','Machine Condition Monitoring','Media & Entertainment','Others','Print Imaging and Office Automation','Product Inspection','Robot','Situational Monitoring','Smart Building','Smart City','Smart Home','Storage','Telematics','Video Management'
+];
+
+if (D_usecase) {
+    for (let i = 0; i < usecase.length; i++) {
+        D_usecase.innerHTML += `
+        <li class="py-2"><a>${usecase[i]}</a></li>`;
+    }
+}
+
+// Industry
+    
+let D_industry = document.getElementById('D_industry');
+const industry = [
+    'Agriculture','Arts and Entertainment','Automotive','Communications','Defense and Space','Education','Energy and Utilities','Finance and Insurance','Gaming','Government(28)','Health and Life Sciences(102)','Hospitality and Restaurants(25)','Manufacturing(146)','Not For Profit(2)','Others(35)','Professional and Business Services(8)','Real Estate, Rental and Leasing(6)','Retail(95)','Software(6)'
+];
+
+if (D_industry) {
+    for (let i = 0; i < industry.length; i++) {
+        D_industry.innerHTML += `
+        <div class="VK_check_box_filter mt-2">
+                                                    <input type="checkbox" class="me-2" id="VK_filter_checkbox"
+                                                        onclick="content_type()"><span>${industry[i]}
+                                                        (100)</span>
+                                                </div>`;
+    }
+}
+
+
+// partner
+    
+let D_tier = document.getElementById('D_tier');
+const tier = [
+    'Titanium(94)','Gold(75)'
+];
+
+if (D_tier) {
+    for (let i = 0; i < tier.length; i++) {
+        D_tier.innerHTML += `
+        <div class="VK_check_box_filter mt-2">
+                                                    <input type="checkbox" class="me-2" id="VK_filter_checkbox"
+                                                        onclick="content_type()"><span>${tier[i]}
+                                                        (100)</span>
+                                                </div>`;
+    }
+}
+
+
+
+
+
+
