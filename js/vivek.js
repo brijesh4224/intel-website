@@ -1267,7 +1267,7 @@ let print_data = (Final_record_data, id) => {
                             <div class="VK_board_img">
                                 <img src="/img/vivek/${ele.image}" class="w-100" alt="">
                             </div>
-                            <div class="d-flex align-items-stretch flex-column ">
+                            <div class="d-flex align-items-stretch flex-column">
                                 <div class="VK_board_card_name">
                                     <p class="VK_board_card_title m-0 my-1">${ele.name}</p>
                                 </div>
@@ -1945,21 +1945,12 @@ function VK_resu_active(id) {
         ]
     ];
     // Remove active class from all tabs
-<<<<<<< HEAD
     if (document.getElementsByClassName("VK_reso_list_item")) {
         var tabs = document.getElementsByClassName("VK_reso_list_item");
         for (var i = 0; i < tabs.length; i++) {
             tabs[i].classList.remove("VK_reso_active_list");
         }
         tabs[id].classList.add('VK_reso_active_list');
-=======
-    
-    var tabs = document.getElementsByClassName("VK_reso_list_item");
-    for (var i = 0; i < tabs.length; i++) {
-        tabs[i].classList.remove("VK_reso_active_list");
-    }
-    tabs[id].classList.add('VK_reso_active_list');
->>>>>>> origin/dhruvin8
 
         // Generate HTML content
         let html_data = accoridan_data[id].map((ele, index) => {
@@ -2064,7 +2055,6 @@ function VK_resu_active(id) {
         });
     }
 }
-
 
 
 
