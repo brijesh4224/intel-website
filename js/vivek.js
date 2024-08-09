@@ -1945,12 +1945,21 @@ function VK_resu_active(id) {
         ]
     ];
     // Remove active class from all tabs
+<<<<<<< HEAD
     if (document.getElementsByClassName("VK_reso_list_item")) {
         var tabs = document.getElementsByClassName("VK_reso_list_item");
         for (var i = 0; i < tabs.length; i++) {
             tabs[i].classList.remove("VK_reso_active_list");
         }
         tabs[id].classList.add('VK_reso_active_list');
+=======
+    
+    var tabs = document.getElementsByClassName("VK_reso_list_item");
+    for (var i = 0; i < tabs.length; i++) {
+        tabs[i].classList.remove("VK_reso_active_list");
+    }
+    tabs[id].classList.add('VK_reso_active_list');
+>>>>>>> origin/dhruvin8
 
         // Generate HTML content
         let html_data = accoridan_data[id].map((ele, index) => {
