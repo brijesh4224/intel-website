@@ -63,3 +63,6 @@ processorData.forEach(data => {
     const html = generateProcessorHTML(data);
     container.insertAdjacentHTML('beforeend', html);
 });
+
+
+
