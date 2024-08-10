@@ -85,7 +85,7 @@ document.getElementById('contactForm').addEventListener('submit', function(event
   });
 
 
-
+//coflunt studio change content 
   function showContent(contentId, element) {
     // Hide all content sections
     var contents = document.querySelectorAll('.content');
@@ -104,4 +104,15 @@ document.getElementById('contactForm').addEventListener('submit', function(event
 
     // Add active class to the clicked nav link
     element.classList.add('active');
+}
+
+
+//drop down show
+function toggleDropdown() {
+    var ul = document.getElementById("hostRequirements");
+    if (ul.style.display === "none") {
+        ul.style.display = "block";
+    } else {
+        ul.style.display = "none";
+    }
 }
