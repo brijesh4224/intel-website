@@ -3,20 +3,116 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gradient HR</title>
+    <title>Three Flex Drop-down Menus with Icons</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <style>
-        hr {
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .menu-container {
+            display: flex;
+            justify-content: flex-start;
+            flex-wrap: wrap;
+        }
+
+        .dropdown {
+            position: relative;
+            margin: 10px;
+        }
+
+        .dropbtn {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            font-size: 16px;
             border: none;
-            height: 5px; /* Thickness of the hr */
-            background: linear-gradient(to right, rgba(0, 0, 0, 0), #ff7e5f, rgba(0, 0, 0, 0)); /* Gradient from both sides */
-            width: 100%;
-            margin: 20px 0; /* Spacing above and below the hr */
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+
+        .dropbtn i {
+            margin-right: 10px;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #f1f1f1;
+        }
+
+        .show {
+            display: block;
         }
     </style>
 </head>
 <body>
-    <h1>Heading Above</h1>
-    <hr>
-    <h2>Heading Below</h2>
+    <div class="menu-container">
+        <div class="dropdown">
+            <a href="#" class="dropbtn" onclick="toggleDropdown(event, 'myDropdown1')">
+                <i class="fas fa-bars"></i> Menu 1
+            </a>
+            <div id="myDropdown1" class="dropdown-content">
+                <a href="#">One</a>
+                <a href="#">Two</a>
+                <a href="#">More</a>
+            </div>
+        </div>
+
+        <div class="dropdown">
+            <a href="#" class="dropbtn" onclick="toggleDropdown(event, 'myDropdown2')">
+                <i class="fas fa-cog"></i> Menu 2
+            </a>
+            <div id="myDropdown2" class="dropdown-content">
+                <a href="#">Settings</a>
+                <a href="#">Profile</a>
+                <a href="#">Logout</a>
+            </div>
+        </div>
+
+        <div class="dropdown">
+            <a href="#" class="dropbtn" onclick="toggleDropdown(event, 'myDropdown3')">
+                <i class="fas fa-user"></i> Menu 3
+            </a>
+            <div id="myDropdown3" class="dropdown-content">
+                <a href="#">Account</a>
+                <a href="#">Messages</a>
+                <a href="#">Notifications</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleDropdown(event, dropdownId) {
+            event.preventDefault();
+            var dropdowns = document.getElementsByClassName("dropdown-content");
+            for (var i = 0; i < dropdowns.length; i++) {
+                var openDropdown = dropdowns[i];
+                if (openDropdown.classList.contains('show') && openDropdown.id !== dropdownId) {
+                    openDropdown.classList.remove('show');
+                }
+            }
+            var dropdownContent = document.getElementById(dropdownId);
+            dropdownContent.classList.toggle("show");
+        }
+    </script>
 </body>
 </html>
