@@ -1421,8 +1421,6 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 
-
-
 function VK_game_hide_toggle() {
     const VK_cols = document.querySelectorAll('.VK_game_hide_col');
     const showMoreElements = document.querySelector('.VK_show_game_more');
@@ -2058,4 +2056,23 @@ function VK_resu_active(id) {
 
 
 
-// ---------------------------------------------- classical machine learning ------------------------------------------
+// ---------------------------------------------- ai scikit ------------------------------------------
+
+function VK_scikit_acc(id) {
+    let ele = document.getElementsByClassName('VK_scikit_bench_btn');
+    let img = ['VK_scikit_banck_mark1.webp', 'VK_scikit_banck_mark2.webp', 'VK_scikit_banck_mark3.webp']
+    for (let i = 0; i < ele.length; i++) {
+        ele[i].classList.remove('VK_scikit_active');
+    }
+    ele[id].classList.add('VK_scikit_active');
+    let el = document.getElementById('VK_scikit_mark_image');
+    el.src = `/img/vivek/${img[id]}`;
+}
+
+function VK_scikit_model(id) {
+    let model_img = ['VK_scikit_model1.png', 'VK_scikit_model2.png', 'VK_scikit_model3.png'];
+    let el = document.getElementById('VK_scikit_img_model');
+    el.src = `/img/vivek/${model_img[id]}`;
+    let modal = new bootstrap.Modal(document.getElementById('VK_scikit_model'));
+    modal.show();
+}
