@@ -537,3 +537,35 @@ document.addEventListener('DOMContentLoaded', function () {
       });
   });
 });
+document.addEventListener('DOMContentLoaded', function() {
+  const videos = [
+      { video: document.getElementById('myVideo'), button: document.getElementById('playButton') },
+      { video: document.getElementById('myVideo1'), button: document.getElementById('playButton1') },
+      { video: document.getElementById('myVideo2'), button: document.getElementById('playButton2') }
+  ];
+
+  videos.forEach(item => {
+      item.button.addEventListener('click', () => togglePlay(item.video, item.button));
+      item.video.addEventListener('play', () => updatePlayButton(item.button, false));
+      item.video.addEventListener('pause', () => updatePlayButton(item.button, true));
+  });
+
+  function togglePlay(video, button) {
+      if (video.paused || video.ended) {
+          video.play();
+      } else {
+          video.pause();
+      }
+  }
+
+  function updatePlayButton(button, isPaused) {
+      const icon = button.querySelector('i');
+      if (isPaused) {
+          icon.className = 'far fa-circle-play';
+          button.style.display = 'block';
+      } else {
+          icon.className = 'far fa-circle-pause';
+          button.style.display = 'none';
+      }
+  }
+});
