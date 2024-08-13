@@ -110,15 +110,6 @@
         .m_re_pagination-info {
             margin: 0 10px;
         }
-
-        .m_re_page-input {
-            width: 40px;
-            text-align: center;
-            padding: 2px;
-            font-size: 14px;
-            border-radius: 4px;
-            border: 1px solid #ccc;
-        }
     </style>
 </head>
 
@@ -128,7 +119,8 @@
             <span class="m_re_total-results">331 Results</span>
             <div class="m_re_pagination">
                 <button class="m_re_pagination-btn m_re_prev-btn" id="m_re_prevPageTop" disabled>&lt;</button>
-                <span class="m_re_pagination-info">Page <input type="number" id="m_re_currentPageTop" class="m_re_page-input" value="1" min="1"> of <span id="m_re_totalPagesTop">28</span></span>
+                <span class="m_re_pagination-info">Page <span id="m_re_currentPageTop">1</span> of <span
+                        id="m_re_totalPagesTop">28</span></span>
                 <button class="m_re_pagination-btn m_re_next-btn" id="m_re_nextPageTop">&gt;</button>
             </div>
         </div>
@@ -139,14 +131,15 @@
 
         <div class="m_re_pagination-controls m_re_bottom-pagination">
             <button class="m_re_pagination-btn m_re_prev-btn" id="m_re_prevPageBottom" disabled>&lt;</button>
-            <span class="m_re_pagination-info">Page <input type="number" id="m_re_currentPageBottom" class="m_re_page-input" value="1" min="1"> of <span id="m_re_totalPagesBottom">28</span></span>
+            <span class="m_re_pagination-info">Page <span id="m_re_currentPageBottom">1</span> of <span
+                    id="m_re_totalPagesBottom">28</span></span>
             <button class="m_re_pagination-btn m_re_next-btn" id="m_re_nextPageBottom">&gt;</button>
         </div>
     </div>
 
     <script src="script.js"></script>
     <script>
-         const data = [
+        const data = [
             // Array of objects representing the cards data
             {
                 date: "August 1st, 2024",
@@ -266,56 +259,8 @@
                 description: "Winning Health LLM, WINGPT, leveraging Intel technology, meets performance demands for healthcare institutions.",
                 link: "#",
                 image: "image2.jpg"
-            },
-            {
-                date: "July 25th, 2024",
-                title: "Winning Health Optimizes LLMs in Healthcare",
-                description: "Winning Health LLM, WINGPT, leveraging Intel technology, meets performance demands for healthcare institutions.",
-                link: "#",
-                image: "image2.jpg"
-            },
-            {
-                date: "July 25th, 2024",
-                title: "Winning Health Optimizes LLMs in Healthcare",
-                description: "Winning Health LLM, WINGPT, leveraging Intel technology, meets performance demands for healthcare institutions.",
-                link: "#",
-                image: "image2.jpg"
-            },
-            {
-                date: "July 25th, 2024",
-                title: "Winning Health Optimizes LLMs in Healthcare",
-                description: "Winning Health LLM, WINGPT, leveraging Intel technology, meets performance demands for healthcare institutions.",
-                link: "#",
-                image: "image2.jpg"
-            },
-            {
-                date: "July 25th, 2024",
-                title: "Winning Health Optimizes LLMs in Healthcare",
-                description: "Winning Health LLM, WINGPT, leveraging Intel technology, meets performance demands for healthcare institutions.",
-                link: "#",
-                image: "image2.jpg"
-            },
-            {
-                date: "July 25th, 2024",
-                title: "Winning Health Optimizes LLMs in Healthcare",
-                description: "Winning Health LLM, WINGPT, leveraging Intel technology, meets performance demands for healthcare institutions.",
-                link: "#",
-                image: "image2.jpg"
-            },
-            {
-                date: "July 25th, 2024",
-                title: "Winning Health Optimizes LLMs in Healthcare",
-                description: "Winning Health LLM, WINGPT, leveraging Intel technology, meets performance demands for healthcare institutions.",
-                link: "#",
-                image: "image2.jpg"
-            },
-            {
-                date: "July 25th, 2024",
-                title: "Winning Health Optimizes LLMs in Healthcare",
-                description: "Winning Health LLM, WINGPT, leveraging Intel technology, meets performance demands for healthcare institutions.",
-                link: "#",
-                image: "image2.jpg"
             }
+            // Add more objects as needed
         ];
 
         const itemsPerPage = 8;
@@ -342,8 +287,8 @@
                 m_re_cardContainer.appendChild(card);
             });
 
-            document.getElementById('m_re_currentPageTop').value = currentPage;
-            document.getElementById('m_re_currentPageBottom').value = currentPage;
+            document.getElementById('m_re_currentPageTop').innerText = currentPage;
+            document.getElementById('m_re_currentPageBottom').innerText = currentPage;
         }
 
         function updatePagination() {
@@ -355,15 +300,6 @@
             document.getElementById('m_re_nextPageTop').disabled = currentPage === totalPages;
             document.getElementById('m_re_prevPageBottom').disabled = currentPage === 1;
             document.getElementById('m_re_nextPageBottom').disabled = currentPage === totalPages;
-        }
-
-        function goToPage(page) {
-            const totalPages = Math.ceil(data.length / itemsPerPage);
-            if (page >= 1 && page <= totalPages) {
-                currentPage = page;
-                renderCards();
-                updatePagination();
-            }
         }
 
         document.getElementById('m_re_prevPageTop').addEventListener('click', () => {
@@ -398,14 +334,6 @@
                 renderCards();
                 updatePagination();
             }
-        });
-
-        document.getElementById('m_re_currentPageTop').addEventListener('change', (e) => {
-            goToPage(parseInt(e.target.value, 10));
-        });
-
-        document.getElementById('m_re_currentPageBottom').addEventListener('change', (e) => {
-            goToPage(parseInt(e.target.value, 10));
         });
 
         document.addEventListener('DOMContentLoaded', () => {
