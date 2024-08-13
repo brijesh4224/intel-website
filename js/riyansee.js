@@ -1,4 +1,4 @@
-// vedio play 
+//intel foundry vedio play 
 document.addEventListener('DOMContentLoaded', function() {
     const playIcon = document.getElementById('playIcon');
     const video = document.getElementById('myVideo');
