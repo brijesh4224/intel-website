@@ -183,7 +183,7 @@ window.onload = function () {
                             </div>
                             <div class="d_content">
                                 <h3><a href='${features[i].link}'>${features[i].title}</a></h3>
-                                <p>${features[i].desc}</p>
+                                <p>${features[i].desc}</p>  
                             </div>
                         </div>
                     </div>
@@ -206,19 +206,19 @@ window.onload = function () {
             image: "partner2.jpg",
             title: "FPGA Design Services",
             desc: "Connect with partners who can support your business needs.",
-            link:"d_fpga-service.html"
+            link: "d_fpga-service.html"
         },
         {
             image: "partner3.jpg",
             title: "Manufacturer",
             desc: "Review the latest software and IP Core offerings.",
-            link:"d_partner-manufacturer.html"
+            link: "d_partner-manufacturer.html"
         },
         {
             image: "partner4.jpg",
             title: "Solution, Software, and Service Providers",
             desc: "Find integrated hardware and software solutions.",
-            link:"d_partner-provider.html"
+            link: "d_partner-provider.html"
         },
     ]
 
@@ -568,6 +568,7 @@ window.onload = function () {
             image: "book1.png",
             title: "insight.tech Editorial Calendar",
             desc: "",
+            link: "d_insightech-calendar.html"
         },
 
     ]
@@ -584,7 +585,7 @@ window.onload = function () {
                                 </div>
                             </div>
                             <div class="col-xs-12 col-lg-9">
-                                <h3><a href="">${material1[i].title}</a></h3>
+                                <h3><a href="${material1[i].link}">${material1[i].title}</a></h3>
                                 <p>${material1[i].desc}</p>
                             </div>
                         </div>
@@ -601,6 +602,7 @@ window.onload = function () {
             image: "book1.png",
             title: "Preparing Your Application and Submitting a Successful Solution",
             desc: "Prepare for the application process and find out what information you’ll need to successfully submit a solution.",
+            link: "d_solution-application-readiness-guide.html"
         },
 
     ]
@@ -617,7 +619,7 @@ window.onload = function () {
                                 </div>
                             </div>
                             <div class="col-xs-12 col-lg-10">
-                                <h3><a href="">${guides[i].title}</a></h3>
+                                <h3><a href="${guides[i].link}">${guides[i].title}</a></h3>
                                 <p>${guides[i].desc}</p>
                             </div>
                         </div>
@@ -732,19 +734,19 @@ window.onload = function () {
             image: "comm1.png",
             title: "Cloud",
             desc: "Intel® Cloud Insider Community offers continuously refreshed, world-class cloud content and tools. Members have the opportunity to connect with peers and the ecosystem to take innovative, joint cloud solutions to market.",
-            link: ""
+            link: "d_cloud-community.html"
         },
         {
             image: "comm2.png",
             title: "IoT and Edge Solutions",
             desc: "Join the innovators who are transforming IoT. The IoT and Edge Solutions Community can help you solve technical challenges and build your business with ready-to-run IoT solutions—plus tried and true initiatives that advance collaboration between partners.",
-            link: ""
+            link: "iotEdge-solutions-community.html"
         },
         {
             image: "comm3.png",
             title: "FPGA",
             desc: "The Intel FPGA community can help you unlock the potential of these flexible, programmable devices for your customers and your business. Explore ready-to-deploy, FPGA-based solutions for networking, media, AI, data analytics, finance and other compute-intensive applications. Or start building your own custom solution with community tools, training, and our FPGA developer cloud.",
-            link: ""
+            link: "d_fpga-community.html"
         },
         {
             image: "comm4.png",
@@ -761,12 +763,12 @@ window.onload = function () {
                         <div class="d_img">
                             <img src="/img/darshan_image/${aboutpro[i].image}" alt="">
                         </div>
-                        <h3><a href="">${aboutpro[i].title}</a></h3>
+                        <h3><a href="${aboutpro[i].link}">${aboutpro[i].title}</a></h3>
                         <p></p>
                         <p>${aboutpro[i].desc}</p>
                         <p></p>
                         <p class="d_cta">
-                            <a href="" class="d-sm-inline-block d-block text-center">Visit</a>
+                            <a href="${aboutpro[i].link}" class="d-sm-inline-block d-block text-center">Visit</a>
                         </p>
                     </div>
                 </div>`;
@@ -1027,6 +1029,39 @@ if (D_processer) {
     }
 }
 
+// // featured network item
+
+let D_processer1 = document.getElementById('D_processer1');
+const processer1 = [
+    'Intel® Xeon® Processors'
+];
+
+if (D_processer1) {
+    for (let i = 0; i < processer1.length; i++) {
+        D_processer1.innerHTML += `
+            <li class="py-2"><a>${processer1[i]}</a></li>`;
+    }
+}
+
+
+// featured edge
+
+let D_categorylist1 = document.getElementById('D_categorylist1');
+const categorylist1 = [
+    'Partners', 'Offerning'
+];
+
+if (D_categorylist1) {
+    for (let i = 0; i < categorylist1.length; i++) {
+        D_categorylist1.innerHTML += `
+            <div class="VK_check_box_filter mt-2">
+                                                    <input type="checkbox" class="me-2" id="VK_filter_checkbox"
+                                                        onclick="content_type()"><span>${categorylist1[i]}
+                                                        (100)</span>
+                                                </div>`;
+    }
+}
+
 // Region
 
 let D_Region5 = document.getElementById('D_region5');
@@ -1044,17 +1079,44 @@ if (D_Region5) {
 
 // Usecase
 
-let D_usecase = document.getElementById('D_usecase');
 const usecase = [
-    'Advanced Analytics', 'Asset & Operations Optimization', 'Cloud Computing', 'Collaboration', 'Connected Worker', 'Control Optimization & Autonomy', 'Control Optimization & Autonomy', 'Data Science', 'Digital Security Surveillance', 'Digital Signage', 'Energy Monitoring', 'Environmental Monitoring', 'Factory Automation', 'Health & Life Sciences', 'High Performance Computing', 'Human Wellness Monitoring', 'Intelligent Vending', 'Interactive Whiteboard', 'Inventory Management', 'Logistics & Tracking', 'Machine Condition Monitoring', 'Media & Entertainment', 'Others', 'Print Imaging and Office Automation', 'Product Inspection', 'Robot', 'Situational Monitoring', 'Smart Building', 'Smart City', 'Smart Home', 'Storage', 'Telematics', 'Video Management'
+    'Advanced Analytics', 'Asset & Operations Optimization', 'Cloud Computing', 'Collaboration', 'Connected Worker',
+    'Control Optimization & Autonomy', 'Data Science', 'Digital Security Surveillance', 'Digital Signage',
+    'Energy Monitoring', 'Environmental Monitoring', 'Factory Automation', 'Health & Life Sciences',
+    'High Performance Computing', 'Human Wellness Monitoring', 'Intelligent Vending', 'Interactive Whiteboard',
+    'Inventory Management', 'Logistics & Tracking', 'Machine Condition Monitoring', 'Media & Entertainment',
+    'Others', 'Print Imaging and Office Automation', 'Product Inspection', 'Robot', 'Situational Monitoring',
+    'Smart Building', 'Smart City', 'Smart Home', 'Storage', 'Telematics', 'Video Management'
 ];
 
-if (D_usecase) {
-    for (let i = 0; i < usecase.length; i++) {
-        D_usecase.innerHTML += `
-        <li class="py-2"><a>${usecase[i]}</a></li>`;
+// Function to populate the use case list
+function populateUsecaseList() {
+    const D_usecase = document.getElementById('D_usecase');
+    if (D_usecase) {
+        D_usecase.innerHTML = ''; // Clear existing items
+        for (let i = 0; i < usecase.length; i++) {
+            D_usecase.innerHTML += `
+            <li class="py-2"><a>${usecase[i]}</a></li>`;
+        }
     }
 }
+
+// Function to filter the list based on the search input
+function filterUsecaseList() {
+    const searchInput = document.getElementById('usecaseSearch').value.toLowerCase();
+    const items = document.querySelectorAll('#D_usecase li');
+
+    items.forEach(item => {
+        const text = item.textContent || item.innerText;
+        item.style.display = text.toLowerCase().includes(searchInput) ? '' : 'none';
+    });
+}
+
+// Event listener for the search input
+document.getElementById('usecaseSearch').addEventListener('input', filterUsecaseList);
+
+// Populate the use case list when the document is loaded
+document.addEventListener('DOMContentLoaded', populateUsecaseList);
 
 // Industry
 
@@ -1063,23 +1125,42 @@ const industry = [
     'Agriculture', 'Arts and Entertainment', 'Automotive', 'Communications', 'Defense and Space', 'Education', 'Energy and Utilities', 'Finance and Insurance', 'Gaming', 'Government(28)', 'Health and Life Sciences(102)', 'Hospitality and Restaurants(25)', 'Manufacturing(146)', 'Not For Profit(2)', 'Others(35)', 'Professional and Business Services(8)', 'Real Estate, Rental and Leasing(6)', 'Retail(95)', 'Software(6)'
 ];
 
-if (D_industry) {
-    for (let i = 0; i < industry.length; i++) {
-        D_industry.innerHTML += `
-        <div class="VK_check_box_filter mt-2">
-                                                    <input type="checkbox" class="me-2" id="VK_filter_checkbox"
-                                                        onclick="content_type()"><span>${industry[i]}
-                                                        (100)</span>
-                                                </div>`;
+function populateIndustryList() {
+    const D_industry = document.getElementById('D_industry');
+    if (D_industry) {
+        D_industry.innerHTML = ''; // Clear existing items
+        for (let i = 0; i < industry.length; i++) {
+            D_industry.innerHTML += `
+            <li class="VK_check_box_filter mt-2">
+                <input type="checkbox" class="me-2" id="VK_filter_checkbox_${i}">
+                <span>${industry[i]}</span>
+            </li>`;
+        }
     }
 }
+
+function filterIndustryList() {
+    const searchInput = document.getElementById('industrySearch').value.toLowerCase();
+    const items = document.querySelectorAll('#D_industry li');
+
+    items.forEach(item => {
+        const text = item.textContent || item.innerText;
+        item.style.display = text.toLowerCase().includes(searchInput) ? '' : 'none';
+    });
+}
+
+// Event listener for the search input
+document.getElementById('industrySearch').addEventListener('input', filterIndustryList);
+
+// Populate the industry list when the document is loaded
+document.addEventListener('DOMContentLoaded', populateIndustryList);
 
 
 // partner
 
 let D_tier = document.getElementById('D_tier');
 const tier = [
-    'Titanium(94)', 'Gold(75)'
+    'Titanium', 'Gold'
 ];
 
 if (D_tier) {
@@ -1103,7 +1184,7 @@ let offering_components_data = [
         image: "c2.png",
         link: "",
         anchor: "TERASIC INC",
-        status: "Updated"
+        type: "Offering"
     },
     {
         name: "PICO-MTU4",
@@ -1111,7 +1192,7 @@ let offering_components_data = [
         image: "c3.png",
         link: "",
         anchor: "AAEON Technology Inc",
-        status: "Updated"
+        type: "Offering"
     },
     {
         name: "COM-ADNC6",
@@ -1119,7 +1200,7 @@ let offering_components_data = [
         image: "c4.png",
         link: "",
         anchor: "AAEON Technology Inc",
-        status: "Updated"
+        type: "Offering"
     },
     {
         name: "AQ7-ADN",
@@ -1127,7 +1208,7 @@ let offering_components_data = [
         image: "c5.png",
         link: "",
         anchor: "AAEON Technology Inc",
-        status: "Updated"
+        type: "Offering"
     },
     {
         name: "uCOM-ADN",
@@ -1135,7 +1216,7 @@ let offering_components_data = [
         image: "c6.png",
         link: "",
         anchor: "AAEON Technology Inc",
-        status: "Updated"
+        type: "Offering"
     },
     {
         name: "TR K9x/6sd-RCx",
@@ -1143,7 +1224,7 @@ let offering_components_data = [
         image: "c7.png",
         link: "",
         anchor: " CONCURRENT TECHNOLOGIES PLC",
-        status: "Updated"
+        type: "Offering"
     },
     {
         name: "ALN-10 Intel® Alder Lake-N Series Processor based Mini ITX Motherboard",
@@ -1151,7 +1232,7 @@ let offering_components_data = [
         image: "c8.png",
         link: "",
         anchor: "Shenzhen Datang Computer Co., Ltd.",
-        status: "Updated"
+        type: "Offering"
     },
     {
         name: "AIMB-788E",
@@ -1159,7 +1240,7 @@ let offering_components_data = [
         image: "c9.png",
         link: "",
         anchor: " ADVANTECH CO., LTD.",
-        status: "Updated"
+        type: "Offering"
     },
     {
         name: "Intel® Xeon® Dual Socket Purley GPU Server Motherboard - Specification",
@@ -1167,7 +1248,7 @@ let offering_components_data = [
         image: "c10.png",
         link: "",
         anchor: " 深圳金超云控科技有限公司",
-        status: "Updated"
+        type: "Offering"
     },
     {
         name: "KEIm-A5ESoM",
@@ -1175,14 +1256,14 @@ let offering_components_data = [
         image: "c10.png",
         link: "",
         anchor: " KONDO ELECTRONICS INDUSTRY",
-        status: "Updated"
+        type: "Offering"
     }, {
         name: "COM Express C6C-ASL",
         description: "The MSC C6C-ASL features the Intel Atom® Processor x7000RE/C Series. With support for up to eight processor cores, the module fits to a wide range of applications including automation, point-of-sales terminals, digital signage controllers, HMI solutions and medical equipment. The board is ideal for system products that are exposed to harsh ambient conditions. It is designed",
         image: "c12.png",
         link: "",
         anchor: "Avnet Embedded",
-        status: "Updated"
+        type: "Offering"
     },
     {
         name: "LIVE-AD600",
@@ -1190,7 +1271,7 @@ let offering_components_data = [
         image: "c13.png",
         link: "",
         anchor: "Shenzhen Piesia Electronics Co.,Ltd",
-        status: "Updated"
+        type: "Offering"
     },
     {
         name: "NUC-1365UE/D5",
@@ -1198,14 +1279,14 @@ let offering_components_data = [
         image: "c14.png",
         link: "",
         anchor: "Asrock",
-        status: "Updated"
+        type: "Offering"
     }, {
         name: "conga-SA8",
         description: "Industrial grade SMARC module based on Intel Atom® x7000RE Series with up to 8 cores, max. 16 GByte soldered LPDDR5 and Virtualization ready with RTS Hypervisor",
         image: "c15.png",
         link: "",
         anchor: "CONGATEC AG",
-        status: "Updated"
+        type: "Offering"
     },
     {
         name: "CONGATEC AG",
@@ -1213,7 +1294,7 @@ let offering_components_data = [
         image: "c16.png",
         link: "",
         anchor: "BYD COMPANY LIMITED",
-        status: "Updated"
+        type: "Offering"
     },
 ]
 
@@ -1225,7 +1306,7 @@ let offering_service_data = [
         image: "ser1.png",
         link: "",
         anchor: "MicroAge DIL (Drummond Informatique Ltée)",
-        status: "Updated"
+        type: "Offering"
     },
     {
         name: "Electronic Product Development From Concept to Production",
@@ -1233,7 +1314,7 @@ let offering_service_data = [
         image: "ser2.png",
         link: "",
         anchor: "ORCHID TECHNOLOGIES ENGINEERING & CONSULTING, INC.",
-        status: "Updated"
+        type: "Offering"
     },
     {
         name: "POS Kiosks for Self Order",
@@ -1241,7 +1322,7 @@ let offering_service_data = [
         image: "ser3.png",
         link: "",
         anchor: "Kiosk Manufacturer Association",
-        status: "Updated"
+        type: "Offering"
     },
     {
         name: "custom gaming solution",
@@ -1249,7 +1330,7 @@ let offering_service_data = [
         image: "ser4.png",
         link: "",
         anchor: "DIGITAL NETWORK SRL",
-        status: "Updated"
+        type: "Offering"
     },
     {
         name: "FPGA Design services",
@@ -1257,7 +1338,7 @@ let offering_service_data = [
         image: "ser1.png",
         link: "",
         anchor: " VERIFICATION TECHNOLOGY INC.",
-        status: "Updated"
+        type: "Offering"
     },
     {
         name: "AI Voice engineering & consulting",
@@ -1265,7 +1346,7 @@ let offering_service_data = [
         image: "ser5.png",
         link: "",
         anchor: "OmniSpeech",
-        status: "Updated"
+        type: "Offering"
     },
     {
         name: "Generative AI Consulting",
@@ -1273,7 +1354,7 @@ let offering_service_data = [
         image: "ser1.png",
         link: "",
         anchor: "Shyena Tech Yarns Pvt Ltd",
-        status: "Updated"
+        type: "Offering"
     },
     {
         name: "Gcore Custom Software Development",
@@ -1281,7 +1362,7 @@ let offering_service_data = [
         image: "ser6.png",
         link: "",
         anchor: "Gcore",
-        status: "Updated"
+        type: "Offering"
     },
     {
         name: "Pratexo Studio",
@@ -1289,7 +1370,7 @@ let offering_service_data = [
         image: "ser1.png",
         link: "",
         anchor: "Gcore",
-        status: "Updated"
+        type: "Offering"
     },
     {
         name: "BrainFrame AI v.29",
@@ -1297,14 +1378,14 @@ let offering_service_data = [
         image: "ser7.png",
         link: "",
         anchor: "Aotu.ai",
-        status: "Updated"
+        type: "Offering"
     }, {
         name: "Service",
         description: "Harware and software networking",
         image: "ser1.png",
         link: "",
         anchor: "Microman",
-        status: "Updated"
+        type: "Offering"
     },
     {
         name: "DALY - DEVICE AS A SERVICE OFFERING",
@@ -1312,7 +1393,7 @@ let offering_service_data = [
         image: "ser1.png",
         link: "",
         anchor: "Daly Computers",
-        status: "Updated"
+        type: "Offering"
     },
     {
         name: "Gcore Server DDoS Protection",
@@ -1320,14 +1401,14 @@ let offering_service_data = [
         image: "ser8.png",
         link: "",
         anchor: "Gcore",
-        status: "Updated"
+        type: "Offering"
     }, {
         name: "Gcore Infrastructure for Video Streaming",
         description: "Reliable local and global infrastructure for streaming, CDN and WebRTC that can scale to 100 million viewers and beyond. Gcore streaming solution covers all technical issues: upload, live ingest, transcode, record, store, process video using machine learning, deliver via CDN, playback. The key streaming platform features: live",
         image: "ser9.png",
         link: "",
         anchor: "Gcore",
-        status: "Updated"
+        type: "Offering"
     },
 ]
 
@@ -1339,7 +1420,7 @@ let offering_software_data = [
         image: "s1.png",
         link: "",
         anchor: "CAST",
-        status: "Updated"
+        type: "Offering"
     },
     {
         name: "Robo/TSN for Industrial Multi-Gigabit Ethernet - MLE FPGA IP Core Design",
@@ -1347,7 +1428,7 @@ let offering_software_data = [
         image: "s2.png",
         link: "",
         anchor: "MISSING LINK ELECTRONICS",
-        status: "Updated"
+        type: "Offering"
     },
     {
         name: "siwave.io",
@@ -1355,7 +1436,7 @@ let offering_software_data = [
         image: "s3.png",
         link: "",
         anchor: "SIWAVE",
-        status: "Updated"
+        type: "Offering"
     },
     {
         name: "5G Core NC",
@@ -1379,7 +1460,7 @@ let offering_software_data = [
         image: "s6.png",
         link: "",
         anchor: "SIWAVE",
-        status: "Updated"
+        type: "Offering"
     },
     {
         name: "200G NVMe FPGA RAID High Speed Data Recording and Replay - MLE FPGA Design",
@@ -1387,7 +1468,7 @@ let offering_software_data = [
         image: "s7.png",
         link: "",
         anchor: "MISSING LINK ELECTRONICS",
-        status: "Updated"
+        type: "Offering"
     },
     {
         name: "400G NVMe FPGA RAID High Speed Data Recording and Replay - MLE FPGA Design",
@@ -1395,7 +1476,7 @@ let offering_software_data = [
         image: "s7.png",
         link: "",
         anchor: "MISSING LINK ELECTRONICS",
-        status: "Updated"
+        type: "Offering"
     },
     {
         name: "SSL/TLS offload engine",
@@ -1403,7 +1484,7 @@ let offering_software_data = [
         image: "s8.png",
         link: "",
         anchor: "Intellectual Highway",
-        status: "Updated"
+        type: "Offering"
     },
     {
         name: "Noname AI Augmented API Security",
@@ -1411,14 +1492,14 @@ let offering_software_data = [
         image: "s9.png",
         link: "",
         anchor: "Noname Security",
-        status: "Updated"
+        type: "Offering"
     }, {
         name: "LIN Master Slave IP Core",
         description: "Local Interconnect Network (LIN) is a broadcasting, Single Master, and Multi Slave (up to 16) communication protocol designed to support those features where CAN is not required. LIN Master Slave Benefits LIN is a single wire-based interface, it reduces the cost and complexity of implementation. LIN is the best-suited and best alternative to CAN for applications that do",
         image: "s10.png",
         link: "",
         anchor: "LOGIC FRUIT TECHNOLOGIES",
-        status: "Updated"
+        type: "Offering"
     },
     {
         name: "FlexRay RTL IP Core",
@@ -1426,7 +1507,7 @@ let offering_software_data = [
         image: "s11.png",
         link: "",
         anchor: "LOGIC FRUIT TECHNOLOGIES",
-        status: "Updated"
+        type: "Offering"
     },
     {
         name: "CAN Controller IP Core",
@@ -1434,7 +1515,7 @@ let offering_software_data = [
         image: "s12.png",
         link: "",
         anchor: "LOGIC FRUIT TECHNOLOGIES",
-        status: "Updated"
+        type: "Offering"
     },
     {
         name: "Noname Security Telco Grade API Security Bundle",
@@ -1442,7 +1523,7 @@ let offering_software_data = [
         image: "s9.png",
         link: "",
         anchor: "Noname Security",
-        status: "Updated"
+        type: "Offering"
     },
     {
         name: "AI/ML Voice Algorithms for Noise Suppression and Voice Clarity",
@@ -1450,7 +1531,7 @@ let offering_software_data = [
         image: "s13.png",
         link: "",
         anchor: "OmniSpeech",
-        status: "Updated"
+        type: "Offering"
     },
 ]
 
@@ -1462,7 +1543,7 @@ let offering_solution_data = [
         image: "sol1.png",
         link: "",
         anchor: "NEXCOM INTERNATIONAL CO., LTD.",
-        status: "Updated"
+        type: "Offering"
     },
     {
         name: "Language Weaver",
@@ -1470,7 +1551,7 @@ let offering_solution_data = [
         image: "sol2.png",
         link: "",
         anchor: "RWS",
-        status: "Updated"
+        type: "Offering"
     },
     {
         name: "POLYTOUCH® PASSPORT 32 - Restaurant Ordering Kiosk",
@@ -1478,7 +1559,7 @@ let offering_solution_data = [
         image: "sol3.png",
         link: "",
         anchor: "PYRAMID COMPUTER GMBH",
-        status: "Updated"
+        type: "Offering"
     },
     {
         name: "V-Series AI Wayfinding Kiosk",
@@ -1486,7 +1567,7 @@ let offering_solution_data = [
         image: "sol4.png",
         link: "",
         anchor: "V-series International Sdn Bhd.",
-        status: "Updated"
+        type: "Offering"
     },
     {
         name: "V-Series Top-Notch Outdoor LED Displays",
@@ -1494,7 +1575,7 @@ let offering_solution_data = [
         image: "sol5.png",
         link: "",
         anchor: "V-series International Sdn Bhd.",
-        status: "Updated"
+        type: "Offering"
     },
     {
         name: "V-SeriesE-Cafeteria Solutions (VigitCAFE)",
@@ -1502,7 +1583,7 @@ let offering_solution_data = [
         image: "sol6.png",
         link: "",
         anchor: "V-series International Sdn Bhd.",
-        status: "Updated"
+        type: "Offering"
     },
     {
         name: "Corvo Identify",
@@ -1510,7 +1591,7 @@ let offering_solution_data = [
         image: "sol7.png",
         link: "",
         anchor: "NEVALABS",
-        status: "Updated"
+        type: "Offering"
     },
     {
         name: "Park Access Data Processing Server HM-ACSE41T",
@@ -1518,7 +1599,7 @@ let offering_solution_data = [
         image: "sol8.png",
         link: "",
         anchor: "Shanghai Huaming Intelligent Terminal Equipment Co., Ltd",
-        status: "Updated"
+        type: "Offering"
     },
     {
         name: "Noname Security Confidential Computing on AWS",
@@ -1526,7 +1607,7 @@ let offering_solution_data = [
         image: "sol9.png",
         link: "",
         anchor: "Noname Security",
-        status: "Updated"
+        type: "Offering"
     },
     {
         name: "EPIC iO DeepInsights",
@@ -1534,14 +1615,14 @@ let offering_solution_data = [
         image: "sol11.png",
         link: "",
         anchor: "EPIC IO",
-        status: "Updated"
+        type: "Offering"
     }, {
         name: "AI-PPE",
         description: "AI-PPE is a video analysis application powered by deep neural networks, designed to identify individuals wearing personal protective equipment (PPE) such as helmets, vests, or both within a designated area. It serves dual purposes: as an access control mechanism in work areas requiring specific PPE for entry, and as a continuous surveillance tool.",
         image: "sol11.png",
         link: "",
         anchor: "A.I.Tech Srl",
-        status: "Updated"
+        type: "Offering"
     },
     {
         name: "AI-BIO",
@@ -1549,7 +1630,7 @@ let offering_solution_data = [
         image: "sol12.png",
         link: "",
         anchor: "A.I.Tech Srl",
-        status: "Updated"
+        type: "Offering"
     },
     {
         name: "AI-FIRE-PLUS",
@@ -1557,7 +1638,7 @@ let offering_solution_data = [
         image: "sol13.png",
         link: "",
         anchor: "A.I.Tech Srl",
-        status: "Updated"
+        type: "Offering"
     },
     {
         name: "No code AI in Image and video analytics",
@@ -1565,7 +1646,7 @@ let offering_solution_data = [
         image: "sol14.png",
         link: "",
         anchor: "Tusker AI",
-        status: "Updated"
+        type: "Offering"
     },
     {
         name: "Quantization of ML-Models and Performance-Boost in Pre-Processing",
@@ -1573,7 +1654,7 @@ let offering_solution_data = [
         image: "sol15.png",
         link: "",
         anchor: "scieneers GmbH",
-        status: "Updated"
+        type: "Offering"
     },
 ]
 
@@ -1585,7 +1666,7 @@ let offering_system_data = [
         image: "sy1.png",
         link: "",
         anchor: "ASUSTEK COMPUTER INCORPORATION",
-        status: "Updated"
+        type: "Offering"
     },
     {
         name: "polytouch® flex21.5",
@@ -1593,7 +1674,7 @@ let offering_system_data = [
         image: "sy2.png",
         link: "",
         anchor: "PYRAMID COMPUTER GMBH",
-        status: "Updated"
+        type: "Offering"
     },
     {
         name: "Smart cash register terminal for department stores",
@@ -1601,7 +1682,7 @@ let offering_system_data = [
         image: "sy3.png",
         link: "",
         anchor: "QINGDAO WINTEC SYSTEM CO.,LTD",
-        status: "Updated"
+        type: "Offering"
     },
     {
         name: "AKHET® VarioFlex 4U Front I/O",
@@ -1609,7 +1690,7 @@ let offering_system_data = [
         image: "sy4.png",
         link: "",
         anchor: "PYRAMID COMPUTER GMBH",
-        status: "Updated"
+        type: "Offering"
     },
     {
         name: "High-performance smart cash register terminal",
@@ -1617,7 +1698,7 @@ let offering_system_data = [
         image: "sy5.png",
         link: "",
         anchor: "QINGDAO WINTEC SYSTEM CO.,LTD",
-        status: "Updated"
+        type: "Offering"
     },
     {
         name: "MIC-770 V3+MIC-75M20 AI Inference System",
@@ -1625,7 +1706,7 @@ let offering_system_data = [
         image: "sy6.png",
         link: "",
         anchor: "ADVANTECH CO., LTD.",
-        status: "Updated"
+        type: "Offering"
     },
     {
         name: "SXRL-20 Intel® Alder Lake/Raptor Lake-U Processor based Fanless Mini PC Support 4HDMI_OUT plus",
@@ -1633,7 +1714,7 @@ let offering_system_data = [
         image: "sy7.png",
         link: "",
         anchor: "Shenzhen Datang Computer Co., Ltd.",
-        status: "Updated"
+        type: "Offering"
     },
     {
         name: "POLYTOUCH® CURVE 32 - Self-Service Kiosk adaptable like a chameleon",
@@ -1641,7 +1722,7 @@ let offering_system_data = [
         image: "sy8.png",
         link: "",
         anchor: "PYRAMID COMPUTER GMBH",
-        status: "Updated"
+        type: "Offering"
     },
     {
         name: "POLYTOUCH® MIRROR - Interaction for Fitting Rooms",
@@ -1649,7 +1730,7 @@ let offering_system_data = [
         image: "sy9.png",
         link: "",
         anchor: "PYRAMID COMPUTER GMBH",
-        status: "Updated"
+        type: "Offering"
     },
     {
         name: "UNO-247",
@@ -1657,14 +1738,14 @@ let offering_system_data = [
         image: "sy10.png",
         link: "",
         anchor: " ADVANTECH CO., LTD.",
-        status: "Updated"
+        type: "Offering"
     }, {
         name: "POLYTOUCH® PASSPORT 27 - Self Ordering and Ticketing Kiosk for peak times",
         description: "The dual sided kiosk is optimized for a high workload capacity. This is especially interesting for qsr’s, restaurants, bakeries, cinemas or other brick and mortar stores. It ensures less queues for customers during peak times while optimizing the order and payment process.",
         image: "sy11.png",
         link: "",
         anchor: "PYRAMID COMPUTER GMBH",
-        status: "Updated"
+        type: "Offering"
     },
     {
         name: "POLYTOUCH® SWIFT 24 - SIMPLY SELF-ORDERING KIOSK",
@@ -1672,7 +1753,7 @@ let offering_system_data = [
         image: "sy12.png",
         link: "",
         anchor: "PYRAMID COMPUTER GMBH",
-        status: "Updated"
+        type: "Offering"
     },
     {
         name: "IPC-320",
@@ -1680,7 +1761,7 @@ let offering_system_data = [
         image: "sy13.png",
         link: "",
         anchor: "ADVANTECH CO., LTD.",
-        status: "Updated"
+        type: "Offering"
     },
     {
         name: "MIC-770 V3 Compact Fanless IPC",
@@ -1688,7 +1769,7 @@ let offering_system_data = [
         image: "sy14.png",
         link: "",
         anchor: "ADVANTECH CO., LTD.",
-        status: "Updated"
+        type: "Offering"
     },
     {
         name: "MIC-770 V3+MIC-75GF10 Fanless Edge AI Inference System",
@@ -1696,7 +1777,7 @@ let offering_system_data = [
         image: "sy15.png",
         link: "",
         anchor: "ADVANTECH CO., LTD.",
-        status: "Updated"
+        type: "Offering"
     },
 ]
 
@@ -1709,7 +1790,7 @@ let partner_servie_data = [
         image: "f1.png",
         link: "",
         anchor: "",
-        status: "Updated"
+        type: "Partner"
     },
     {
         name: "A.L.S.E.",
@@ -1718,7 +1799,7 @@ let partner_servie_data = [
         image: "f2.png",
         link: "",
         anchor: "",
-        status: "Updated"
+        type: "Partner"
     },
     {
         name: "A2E TECHNOLOGIES",
@@ -1727,7 +1808,7 @@ let partner_servie_data = [
         image: "f3.png",
         link: "",
         anchor: "",
-        status: "Updated"
+        type: "Partner"
     },
     {
         name: "Adeas",
@@ -1736,7 +1817,7 @@ let partner_servie_data = [
         image: "f4.png",
         link: "",
         anchor: "",
-        status: "Updated"
+        type: "Partner"
     },
     {
         name: "Adiuvo Engineering & Training Ltd",
@@ -1745,7 +1826,7 @@ let partner_servie_data = [
         image: "f6.png",
         link: "",
         anchor: "",
-        status: "Updated"
+        type: "Partner"
     },
     {
         name: "ADVINNO TECHNOLOGIES PTE LTD",
@@ -1754,7 +1835,7 @@ let partner_servie_data = [
         image: "f6.png",
         link: "",
         anchor: "View Website",
-        status: "Updated"
+        type: "Partner"
     },
     {
         name: "Aethertek",
@@ -1763,7 +1844,7 @@ let partner_servie_data = [
         image: "f6.png",
         link: "",
         anchor: "View Website",
-        status: "Updated"
+        type: "Partner"
     },
     {
         name: "af inventions GmbH",
@@ -1772,7 +1853,7 @@ let partner_servie_data = [
         image: "f7.png",
         link: "",
         anchor: "",
-        status: "Updated"
+        type: "Partner"
     },
     {
         name: "Agnisys, Inc.",
@@ -1781,7 +1862,7 @@ let partner_servie_data = [
         image: "f6.png",
         link: "",
         anchor: "View Website",
-        status: "Updated"
+        type: "Partner"
     },
     {
         name: "AIRIS Labs Sdn. Bhd.",
@@ -1790,7 +1871,7 @@ let partner_servie_data = [
         image: "f6.png",
         link: "",
         anchor: "View Website",
-        status: "Updated"
+        type: "Partner"
     },
     {
         name: "Algotronix Ltd.",
@@ -1799,7 +1880,7 @@ let partner_servie_data = [
         image: "f6.png",
         link: "",
         anchor: "View Website",
-        status: "Updated"
+        type: "Partner"
     },
     {
         name: "Allowtech Inc",
@@ -1808,7 +1889,7 @@ let partner_servie_data = [
         image: "f8.png",
         link: "",
         anchor: "",
-        status: "Updated"
+        type: "Partner"
     },
     {
         name: "ALMA TECHNLOGIES SA",
@@ -1817,7 +1898,7 @@ let partner_servie_data = [
         image: "f6.png",
         link: "",
         anchor: "View Website",
-        status: "Updated"
+        type: "Partner"
     },
     {
         name: "Alorium Technology, LLC",
@@ -1826,7 +1907,7 @@ let partner_servie_data = [
         image: "f9.png",
         link: "",
         anchor: "",
-        status: "Updated"
+        type: "Partner"
     },
     {
         name: "ALPHI TECHNOLOGY CORPORATION",
@@ -1835,7 +1916,7 @@ let partner_servie_data = [
         image: "f6.png",
         link: "",
         anchor: "View Website",
-        status: "Updated"
+        type: "Partner"
     },
 ]
 
@@ -1848,7 +1929,7 @@ let partner_manufacturer_data = [
         image: "m1.png",
         link: "",
         anchor: "",
-        status: "Updated"
+        type: "Partner"
     },
     {
         name: "APANTAC",
@@ -1857,7 +1938,7 @@ let partner_manufacturer_data = [
         image: "f2.png",
         link: "",
         anchor: "View Website",
-        status: "Updated"
+        type: "Partner"
     },
     {
         name: "Apacer",
@@ -1866,7 +1947,7 @@ let partner_manufacturer_data = [
         image: "f2.png",
         link: "",
         anchor: "View Website",
-        status: "Updated"
+        type: "Partner"
     },
     {
         name: "Inventec",
@@ -1875,7 +1956,7 @@ let partner_manufacturer_data = [
         image: "m2.png",
         link: "",
         anchor: "",
-        status: "Updated"
+        type: "Partner"
     },
     {
         name: "Alleantia S.r.l.",
@@ -1884,7 +1965,7 @@ let partner_manufacturer_data = [
         image: "f6.png",
         link: "",
         anchor: "View Website",
-        status: "Updated"
+        type: "Partner"
     },
     {
         name: "Adaptertek Technology Co., Ltd.",
@@ -1893,7 +1974,7 @@ let partner_manufacturer_data = [
         image: "f6.png",
         link: "",
         anchor: "View Website",
-        status: "Updated"
+        type: "Partner"
     },
     {
         name: "QUANTA COMPUTER INC.",
@@ -1902,7 +1983,7 @@ let partner_manufacturer_data = [
         image: "m3.png",
         link: "",
         anchor: "",
-        status: "Updated"
+        type: "Partner"
     },
     {
         name: "AAEON Technology Inc",
@@ -1911,7 +1992,7 @@ let partner_manufacturer_data = [
         image: "m4.png",
         link: "",
         anchor: "",
-        status: "Updated"
+        type: "Partner"
     },
     {
         name: "Matic Entreprises",
@@ -1920,7 +2001,7 @@ let partner_manufacturer_data = [
         image: "f6.png",
         link: "",
         anchor: "View Website",
-        status: "Updated"
+        type: "Partner"
     },
     {
         name: "Clevertouch Technologies",
@@ -1929,7 +2010,7 @@ let partner_manufacturer_data = [
         image: "m5.png",
         link: "",
         anchor: "View Website",
-        status: "Updated"
+        type: "Partner"
     },
     {
         name: "Pulstec Industrial",
@@ -1938,7 +2019,7 @@ let partner_manufacturer_data = [
         image: "f6.png",
         link: "",
         anchor: "View Website",
-        status: "Updated"
+        type: "Partner"
     },
     {
         name: "Appear AS",
@@ -1947,7 +2028,7 @@ let partner_manufacturer_data = [
         image: "f6.png",
         link: "",
         anchor: "View Website",
-        status: "Updated"
+        type: "Partner"
     },
     {
         name: "JEOL Ltd.",
@@ -1956,7 +2037,7 @@ let partner_manufacturer_data = [
         image: "f6.png",
         link: "",
         anchor: "View Website",
-        status: "Updated"
+        type: "Partner"
     },
     {
         name: "Eii",
@@ -1965,7 +2046,7 @@ let partner_manufacturer_data = [
         image: "m6.png",
         link: "",
         anchor: "",
-        status: "Updated"
+        type: "Partner"
     },
     {
         name: "High Project Group",
@@ -1974,7 +2055,7 @@ let partner_manufacturer_data = [
         image: "f6.png",
         link: "",
         anchor: "View Website",
-        status: "Updated"
+        type: "Partner"
     },
 ]
 
@@ -1987,7 +2068,7 @@ let partner_provider_data = [
         image: "f6.png",
         link: "",
         anchor: "View Website",
-        status: "Updated"
+        type: "Partner"
     },
     {
         name: "POSIFLEX TECHNOLOGY, INC.",
@@ -1996,7 +2077,7 @@ let partner_provider_data = [
         image: "f10.png",
         link: "",
         anchor: "",
-        status: "Updated"
+        type: "Partner"
     },
     {
         name: "PORTWELL, INC",
@@ -2005,7 +2086,7 @@ let partner_provider_data = [
         image: "f11.png",
         link: "",
         anchor: "",
-        status: "Updated"
+        type: "Partner"
     },
     {
         name: "EPSON DIRECT CORPORATION",
@@ -2014,7 +2095,7 @@ let partner_provider_data = [
         image: "f10.png",
         link: "",
         anchor: "",
-        status: "Updated"
+        type: "Partner"
     },
     {
         name: "AppCard Inc.",
@@ -2023,7 +2104,7 @@ let partner_provider_data = [
         image: "f12.png",
         link: "",
         anchor: "",
-        status: "Updated"
+        type: "Partner"
     },
     {
         name: "AMI",
@@ -2032,7 +2113,7 @@ let partner_provider_data = [
         image: "f13.png",
         link: "",
         anchor: "",
-        status: "Updated"
+        type: "Partner"
     },
     {
         name: "ARCHERMIND TECHNOLOGY (NANJING) CO., LTD",
@@ -2041,7 +2122,7 @@ let partner_provider_data = [
         image: "f10.png",
         link: "",
         anchor: "",
-        status: "Updated"
+        type: "Partner"
     },
     {
         name: "AMAX Engineering Corporation",
@@ -2050,7 +2131,7 @@ let partner_provider_data = [
         image: "f14.png",
         link: "",
         anchor: "",
-        status: "Updated"
+        type: "Partner"
     },
     {
         name: "ALGO SYSTEM CO.,LTD.",
@@ -2059,7 +2140,7 @@ let partner_provider_data = [
         image: "f6.png",
         link: "",
         anchor: "",
-        status: "Updated"
+        type: "Partner"
     },
     {
         name: "ACRELEC",
@@ -2068,7 +2149,7 @@ let partner_provider_data = [
         image: "f6.png",
         link: "",
         anchor: "View Website",
-        status: "Updated"
+        type: "Partner"
     },
     {
         name: "ALLION TEST LABS, INC.",
@@ -2077,7 +2158,7 @@ let partner_provider_data = [
         image: "f6.png",
         link: "",
         anchor: "View Website",
-        status: "Updated"
+        type: "Partner"
     },
     {
         name: "ALTAIR",
@@ -2086,7 +2167,7 @@ let partner_provider_data = [
         image: "f6.png",
         link: "",
         anchor: "",
-        status: "Updated"
+        type: "Partner"
     },
     {
         name: "Aevistrack Pte Ltd",
@@ -2095,7 +2176,7 @@ let partner_provider_data = [
         image: "f15.png",
         link: "",
         anchor: "",
-        status: "Updated"
+        type: "Partner"
     },
     {
         name: "ADS-TEC",
@@ -2104,7 +2185,7 @@ let partner_provider_data = [
         image: "f16.png",
         link: "",
         anchor: "",
-        status: "Updated"
+        type: "Partner"
     },
     {
         name: "Perfecta Federal",
@@ -2113,9 +2194,409 @@ let partner_provider_data = [
         image: "f6.png",
         link: "",
         anchor: "View Website",
-        status: "Updated"
+        type: "Partner"
     },
 ]
+
+// feature edge 
+
+let feature_edge_acceleraror = [
+    {
+        name: "Arrow Electronics Inc",
+        description: "Arrow Electronics guides innovation forward for over 210,000 leading technology manufacturers and service providers. With 2022 sales of $37 billion, Arrow develops technology solutions that improve business and daily life. Learn more at fiveyearsout.com.",
+        image: "fea1.png",
+        link: "",
+        anchor: "",
+        type: "Partner",
+        text: "Intel Authorized Distributor (IAD), IoT Solution Aggregator"
+    },
+    {
+        name: "Synnex Technology International (HK) Ltd.",
+        description: "Synnex in Greater China is one of several business entities of Synnex Group that ranks second in the world and first in APAC among distributors of products in Component, Computer, Communication, Consumer and Commercial (5C). Synnex has evolved into an integrated matrix",
+        image: "fea2.png",
+        link: "",
+        anchor: "",
+        type: "Partner",
+        text: "Intel Authorized Distributor (IAD), IoT Solution Aggregator"
+    },
+    {
+        name: "Nantum AI",
+        description: "Nantum AI is an award-winning, integrated energy platform that empowers buildings with actionable building insights and automation. Saving energy, reducing carbon emissions, and lowering costs without sacrificing occupant health or comfort, Nantum AI enables buildings to hit energy targets via real time and predictive data as well as intelligent recommendations.",
+        image: "fea3.png",
+        link: "",
+        anchor: "",
+        type: "Partner",
+        text: "Gold Partner"
+    },
+    {
+        name: "PORTWELL, INC",
+        description: "Portwell, a world-leading innovator in Industrial PC and embedded computing solutions, and an IoT Solutions Titanium Partner of the Intel Partner Alliance, develops a wide-range of cutting-edge platforms to meet versatile needs of mission-critical applications. We provide board-level solutions along with high quality and real-time industrial-level system integration.",
+        image: "fea4.png",
+        link: "",
+        anchor: "",
+        type: "Partner",
+        text: "Gold Partner"
+    },
+    {
+        name: "POSIFLEX TECHNOLOGY, INC.",
+        description: "Founded in 1984, Posiflex Technology Inc, has since grown to be a world leader in the design and manufacture of touch screen terminals and peripherals. These terminals have been deployed globally across multiple industries and applications including retail Point-of-Sale, health care, hospitality, kiosks and more",
+        image: "fea5.png",
+        link: "",
+        anchor: "",
+        type: "Partner",
+        text: "Gold Partner"
+    },
+    {
+        name: "HCL Technologies",
+        description: "HCL Technologies is a next-generation global technology company that helps enterprises reimagine their businesses for the digital age. Our technology products and services are built on four decades of innovation, with a world-renowned management philosophy, a strong culture of invention and risk-taking, and a relentless focus on customer relationships.",
+        image: "fea6.png",
+        link: "",
+        anchor: "",
+        type: "Partner",
+        text: "Titanium Partner"
+    },
+    {
+        name: "上海诠视传感技术有限公司",
+        description: "Intellect Technology is a computer vision company dedicated to space awareness and cognition (vSLAM+AI) solutions, focusing on high-precision visual positioning in AR/VR/MR, robotics, AGV, drones, etc. Navigation, obstacle avoidance and object recognition technology solutions and core device development.",
+        image: "fea7.png",
+        link: "",
+        anchor: "",
+        type: "Partner",
+        text: "Gold Partner"
+    },
+    {
+        name: "Clevertouch Technologies",
+        description: "A unique User Experience for the collaborative space, redefining the way we communicate, interact, and collaborate with each other.",
+        image: "fea8.png",
+        link: "",
+        anchor: "",
+        type: "Partner",
+        text: "Gold Partner"
+    },
+    {
+        name: "AARONN ELECTRONIC GMBH",
+        description: "n the past 30 years, Aaronn Electronic GmbH has developed from a pure distributor to a successful system integrator for Industrial PCs, who works closely with customers to create individual embedded solutions professionally and reliably. Aaronn advises and supports its customers throughout the entire duration of a project.",
+        image: "fea9.png",
+        link: "",
+        anchor: "",
+        type: "Partner",
+        text: "Gold Partner"
+    },
+    {
+        name: "Symg (shanghai) Intelligence System Co., Ltd",
+        description: "SYMG (Shanghai) intelligence System Co., Ltd is a pioneer in motion control technology and application.   New institution, founded by Shenyang Machine Tool Group. The company builds i5 intelligent manufacturing ecology around the core technology of motion control, and is committed to the development.",
+        image: "fea10.png",
+        link: "",
+        anchor: "",
+        type: "Partner",
+        text: "Gold Partner"
+    },
+]
+
+// feature edge 
+
+let feature_network_acceleraror = [
+    {
+        name: "HCL Technologies",
+        description: "Arrow Electronics guides innovation forward for over 210,000 leading technology manufacturers and service providers. With 2022 sales of $37 billion, Arrow develops technology solutions that improve business and daily life. Learn more at fiveyearsout.com.",
+        image: "fna1.png",
+        link: "",
+        anchor: "",
+        text: "Titanium Partner",
+        type: "Partner"
+
+    },
+    {
+        name: "ADVANTECH CO., LTD.",
+        description: "Founded in 1983, Advantech has more than 5,000 employees worldwide and a global reach with teams in seven geographic regions. Our products are distributed and serviced by an extensive global network of offices and an industry leading eBusiness infrastructure designed to provide fast and responsive service that benefits customers.",
+        image: "fna2.png",
+        link: "",
+        anchor: "",
+        text: "Titanium Partner",
+        type: "Partner"
+
+    },
+    {
+        name: "DELL TECHNOLOGIES",
+        description: "Dell original equipment manufacturer (OEM) solutions offer an extensive product portfolio and comprehensive services from Dell to help its customers power their own solutions. Our standards-based technologies are built to order and customized for the specific needs of our customers and their end users.",
+        image: "fna3.png",
+        link: "",
+        anchor: "",
+        text: "Titanium Partner",
+        type: "Partner"
+
+    },
+    {
+        name: "6WIND",
+        description: "We deliver virtualized, cloudified, distributed high performance & secure networking software solutions to support new applications such as 5G, IoT, SD-WAN. 6WIND software is deployed globally by Service Providers, Systems Integrators, and Tier-1 OEMs, allowing customers to replace expensive hardware with flexible software solutions",
+        image: "fna4.png",
+        link: "",
+        anchor: "",
+        text: "Gold Partner",
+        type: "Partner"
+
+    },
+    {
+        name: "PFU Ltd.",
+        description: "Our high-level quality and reliability are supported by the creation of an integrated system in terms of development, manufacturing, and maintenance by our domestic in-house factory.",
+        image: "fna5.png",
+        link: "",
+        anchor: "",
+        text: "Titanium Partner",
+        type: "Partner"
+
+    },
+    {
+        name: "AAEON Technology Inc",
+        description: "Established in 1992, AAEON is one of the leading designers and manufacturers of professional intelligent IoT solutions. Committed to innovative engineering, AAEON provides reliable and high quality computing platforms, including industrial motherboards and systems, industrial displays, rugged tablets, embedded controllers, network appliances.",
+        image: "fna6.png",
+        link: "",
+        anchor: "",
+        text: "Titanium Partner",
+        type: "Partner"
+
+    },
+    {
+        name: "Fujitsu Technology Solutions",
+        description: "Fujitsu is one of the leading IT-companies in the world. Based on its broad knowledge and experience the company offers a huge variety of IT products and services. For more than 25 years, mainboards have been and are being developed and produced in Augsburg/Germany.",
+        image: "fna7.png",
+        link: "",
+        anchor: "",
+        text: "Titanium Partner",
+        type: "Partner"
+
+    },
+    {
+        name: "CISCO SYSTEMS",
+        description: "Cisco is the worldwide leader in IT that helps companies seize the opportunities of tomorrow by proving that amazing things can happen when you connect the previously unconnected. At Cisco customers come first and an integral part of our DNA is creating long-lasting customer partnerships and working with them to identify their needs.",
+        image: "fna8.png",
+        link: "",
+        anchor: "",
+        text: "Titanium Partner",
+        type: "Partner"
+
+    },
+    {
+        name: "6WIND Virtual Cell Site Router (vCSR)",
+        description: "The 6WIND vCSR simplifies the mobile network architecture and significantly reduces operator TCO. It is optimized to develop high-performance routing and IPsec VPN connectivity with minimal CPU resource usage.Designed to be deployed as a virtual network function on an x86 COTS server",
+        image: "fna9.png",
+        link: "",
+        anchor: "",
+        text: "",
+        type: "Offering"
+
+    },
+    {
+        name: "A10 NETWORKS",
+        description: "",
+        image: "fna10.png",
+        link: "",
+        anchor: "",
+        text: "Gold Partner",
+        type: "Partner"
+
+    },
+]
+
+// feature ai
+
+let feature_ai = [
+    {
+        name: "ISSD Electronics",
+        description: "SSD is working on system design and integration, digital signal processing, software development and electronic design. ISSD provides solutions for Intelligent Transportation Systems, Traffic Management and Enforcement Systems. The company delivers A to Z Smart Traffic Solution Applications to the Cities Worldwide.",
+        image: "fa1.png",
+        link: "",
+        anchor: "",
+        text: "Gold Partner",
+        type: "Partner"
+    },
+    {
+        name: "Visage Technologies AB",
+        description: "Founded in 2002, Visage Technologies grew to over 170 employees, 2 offices and 2 divisions.Our mission is to continuously build up the highest possible level of knowledge and skills in R&D in the fields of computer vision, machine learning.",
+        image: "fa2.png",
+        link: "",
+        anchor: "",
+        text: "Gold Partner",
+        type: "Partner"
+    },
+    {
+        name: "WEG S.A.",
+        description: "WEG is a global company and is regarded as one of the world’s leading manufacturers of energy efficient electric motors, automation, power transmission, renewable resource technologies, solar, biomass and wind power generation, distribution equipment, and industrial coatings and varnishes. Doing business in over 135 countries.",
+        image: "fa3.png",
+        link: "",
+        anchor: "",
+        text: "Titanium  Partner",
+        type: "Partner"
+    },
+    {
+        name: "Fujitsu Technology Solutions",
+        description: "Fujitsu is one of the leading IT-companies in the world. Based on its broad knowledge and experience the company offers a huge variety of IT products and services. For more than 25 years, mainboards have been and are being developed and produced in Augsburg/Germany.",
+        image: "fa4.png",
+        link: "",
+        anchor: "",
+        text: "Titanium Partner",
+        type: "Partner"
+    },
+    {
+        name: "慧影医疗科技（北京）有限公司",
+        description: "HY Medical is one of the leading healthcare AI solution developers, dedicated to applying computer vision and deep learning technologies to the medical field. We are an early member of the Intel AI Builders Program and in 2018 we became one of the Intel capital portfolio companies. As one of the early AI companies focusing on medical imaging.",
+        image: "fa5.png",
+        link: "",
+        anchor: "",
+        text: "Gold Partner",
+        type: "Partner"
+    },
+    {
+        name: "EPIC iO DeepInsights",
+        description: "The EPIC iO DeepInsights Platform uses edge computing to gather AI video analytics for real-time insights; IoT sensors to monitor the operational status, health, and safety of workplace environments; and customizable visualization so customers can review and analyze historical data and reports. It provides high-value, actionable insights through a single.",
+        image: "fa6.png",
+        link: "",
+        anchor: "EPIC IO",
+        text: "",
+        type: "Offering"
+    },
+    {
+        name: "AI-PPE",
+        description: "AI-PPE is a video analysis application powered by deep neural networks, designed to identify individuals wearing personal protective equipment (PPE) such as helmets, vests, or both within a designated area. It serves dual purposes: as an access control mechanism in work areas requiring specific PPE for entry, and as a continuous surveillance tool.",
+        image: "fa7.png",
+        link: "",
+        anchor: "A.I.Tech Srl",
+        text: "",
+        type: "Offering"
+    },
+    {
+        name: "AI-BIO",
+        description: "AI-Bio is a video analytics application designed to detect and analyze faces within images, capable of identifying faces even when obscured by obstacles like non-frontal angles, facemasks, or other accessories. Leveraging deep neural networks, it performs sophisticated face analysis to discern gender, estimate age within a range from 0 to 100 years.",
+        image: "fa7.png",
+        link: "",
+        anchor: "A.I.Tech Srl",
+        text: "",
+        type: "Offering"
+    },
+    {
+        name: "AI-FIRE-PLUS",
+        description: "AI-FIRE-PLUS is an advanced video-analysis software developed to enhance fire detection in environments where traditional fire and smoke alarms may not be effective. Utilizing sophisticated computer vision techniques and deep neural networks, it is capable of identifying flames and smoke across vast or hard-to-monitor areas such as large indoor spaces, forests.",
+        image: "fa9.png",
+        link: "",
+        anchor: "A.I.Tech Srl",
+        text: "",
+        type: "Offering"
+    },
+    {
+        name: "No code AI in Image and video analytics",
+        description: "Tusker is a NO code AI Vision platform, which helps the entire Business Community by Automating their Computer Vision project in span of just few hours instead of weeks without knowledge about AI. Use cases into safety, Security, Compliance and Visual Inspection.",
+        image: "fa10.png",
+        link: "",
+        anchor: "Tusker AI",
+        text: "",
+        type: "Offering"
+    },
+]
+
+// design ai
+
+let design_ai = [
+    {
+        name: "QUANTA COMPUTER INC.",
+        description: "Quanta Computer Incorporated (TWSE: 2382) is a Taiwan-based manufacturer of notebook computers and other electronic hardware. It is the largest manufacturer of notebook computers in the world. Its customers include Apple Inc., Compaq, Dell, Gateway, Hewlett-Packard, Alienware, Amazon.com, Casper, Cisco, Fujitsu, Gericom, Lenovo, LG, Maxdata, MPC.",
+        image: "da1.png",
+        link: "",
+        anchor: "",
+        text: "Titanium Partner",
+        type: "Partner"
+    },
+    {
+        name: "AVALUE TECHNOLOGY INCORPORATION",
+        description: "Avalue Technology (TAIEX: 3479-TW) is a professional Industrial Computer manufacturing company, who is dedicated to developing the x86 and other architecture products, including Embedded Computers, Single Board Computers (Full Size SBC), Systems-on-Modules/ ETX (SoM/ ETX).",
+        image: "da2.png",
+        link: "",
+        anchor: "",
+        text: "Gold Partner",
+        type: "Partner"
+    },
+    {
+        name: "WEG S.A.",
+        description: "WEG is a global company and is regarded as one of the world’s leading manufacturers of energy efficient electric motors, automation, power transmission, renewable resource technologies, solar, biomass and wind power generation, distribution equipment, and industrial coatings and varnishes. Doing business in over 135 countries.",
+        image: "da3.png",
+        link: "",
+        anchor: "",
+        text: "Titanium  Partner",
+        type: "Partner"
+    },
+    {
+        name: "LANNER ELECTRONICS INC.",
+        description: "Lanner Electronics Inc (TAIEX 6245) is a world leading provider of design, engineering and manufacturing services for advanced network appliances and rugged applied computing platforms for system integrator, service providers and application developers. Founded in 1986, Lanner is an ISO 9001 accredited organization with headquarters in Taipei.",
+        image: "da4.jpg",
+        link: "",
+        anchor: "",
+        text: "Titanium Partner",
+        type: "Partner"
+    },
+    {
+        name: "Kontron",
+        description: "Kontron is a global leader in IoT/Embedded Computing Technology (ECT) and offers individual solutions in the areas of Internet of Things (IoT) and Industry 4.0 through a combined portfolio of hardware, software and services. With its standard and customized products based on highly reliable state-of-the-art technologies, Kontron provides secure.",
+        image: "da5.png",
+        link: "",
+        anchor: "",
+        text: "Titanium Partner",
+        type: "Partner"
+    },
+    {
+        name: "Prodrive Technologies",
+        description: "Prodrive Technologies is an OEM and provider of high-end embedded systems and solutions. With locations in the Netherlands, China, and USA and sales offices in Israel and Japan our footprint is global. Prodrive Technologies' portfolio includes the Zeus server series, the Poseidon Industrial PC series,, the Hermes motherboard series, and the Zeus High Performance.",
+        image: "da6.png",
+        link: "",
+        anchor: "",
+        text: "Titanium Partner",
+        type: "Partner"
+    },
+    {
+        name: "NEXCOM INTERNATIONAL CO., LTD.",
+        description: "Founded in 1992, NEXCOM is committed to being the trustworthy partner in building intelligent solutions. NEXCOM integrates its capabilities and operates six global businesses, which are IoT Automation Solutions, Intelligent Digital Security, Intelligent Platform @ Smart City, Mobile Computing Solutions, Medical.",
+        image: "da7.png",
+        link: "",
+        anchor: "",
+        text: "Titanium Partner",
+        type: "Partner"
+    },
+    {
+        name: "NCA-5540 1U 19” Rackmount Network Appliance Powered by the 4th Gen Intel® Xeon® Scalable Processor",
+        description: "The NCA-5540 is a 1U 19” rackmount security network appliance built with Intel® Xeon® Processor Scalable Family (Sapphire Rapids-SP) and Emmisburg PCH. The introduction of the NCA-5540 fulfills network service providers’ demand for a more robust and flexible hardware platform.",
+        image: "da8.png",
+        link: "",
+        anchor: "LANNER ELECTRONICS INC.",
+        text: "",
+        type: "Offering"
+    },
+    {
+        name: "NCA-6530 2U 19” Rackmount Network Appliance Built With Intel® Xeon® Processor Scalable Family (Codenamed Sapphire Rapids-SP)",
+        description: "The NCA-6530, a high-performance 2U rackmount network appliance, is powered by Intel® Xeon® Processor Scalable family (Codenamed Sapphire Rapids-SP) and supports up to 8x NIC slots, Max. 1536GB system memory, 6x hot-swappable fans, 1600W/2000W redundant PSUs, Intel® QAT",
+        image: "da9.png",
+        link: "",
+        anchor: "LANNER ELECTRONICS INC.",
+        text: "",
+        type: "Offering"
+    },
+    {
+        name: "AI-FIRE-PLUS",
+        description: "NCA-6040 2U 19” Rackmount Network Appliance Powered by the 4th Gen Intel® Xeon® Scalable Processor",
+        image: "da10.png",
+        link: "",
+        anchor: "LANNER ELECTRONICS INC.",
+        text: "",
+        type: "Offering"
+    },
+    {
+        name: "ECA-5540 1U 19” Rackmount Open RAN Appliance Powered by 4th Gen Intel® Xeon® Scalable Processor",
+        description: "Featuring a short-depth chassis and front access IO design, the ECA-5540 is powered by the latest 4th Gen Intel® Xeon® Scalable Processor, which is equipped with Intel® vRAN boost for improved virtualization performance and power efficiency. Powered by 4th Gen Intel® Xeon® Scalable",
+        image: "da5.png",
+        link: "",
+        anchor: "LANNER ELECTRONICS INC.",
+        text: "",
+        type: "Offering"
+    },
+]
+
 
 
 
@@ -2128,34 +2609,62 @@ function initializePage() {
         originalRecords = offering_components_data;
         pageId = 'VK_card_parent1';
         isFPGAServicePage = false;
+        edge_accelerator = false;
     } else if (window.location.pathname.includes('d_offerning-service.html')) {
         originalRecords = offering_service_data;
         pageId = 'VK_card_parent2';
         isFPGAServicePage = false;
+        edge_accelerator = false;
     } else if (window.location.pathname.includes('d_offerning-software.html')) {
         originalRecords = offering_software_data;
         pageId = 'VK_card_parent3';
         isFPGAServicePage = false;
+        edge_accelerator = false;
     } else if (window.location.pathname.includes('d_offerning-solution.html')) {
         originalRecords = offering_solution_data;
         pageId = 'VK_card_parent4';
         isFPGAServicePage = false;
+        edge_accelerator = false;
     } else if (window.location.pathname.includes('d_offerning-system.html')) {
         originalRecords = offering_solution_data;
         isFPGAServicePage = false;
         pageId = 'VK_card_parent5';
+        edge_accelerator = false;
     } else if (window.location.pathname.includes('d_fpga-service.html')) {
         originalRecords = partner_servie_data;
         pageId = 'VK_card_parent6';
         isFPGAServicePage = true;
+        edge_accelerator = false;
     } else if (window.location.pathname.includes('d_partner-manufacturer.html')) {
         originalRecords = partner_manufacturer_data;
         pageId = 'VK_card_parent7';
         isFPGAServicePage = true;
+        edge_accelerator = false;
     } else if (window.location.pathname.includes('d_partner-provider.html')) {
         originalRecords = partner_provider_data;
         pageId = 'VK_card_parent8';
         isFPGAServicePage = true;
+        edge_accelerator = false;
+    } else if (window.location.pathname.includes('d_featured-edge-accelerator.html')) {
+        originalRecords = feature_edge_acceleraror;
+        pageId = 'VK_card_parent9';
+        isFPGAServicePage = false;
+        edge_accelerator = true
+    } else if (window.location.pathname.includes('d_featured-networking-accelerator.html')) {
+        originalRecords = feature_network_acceleraror;
+        pageId = 'VK_card_parent10';
+        isFPGAServicePage = false;
+        edge_accelerator = true
+    } else if (window.location.pathname.includes('d_featured-ai.html')) {
+        originalRecords = feature_ai;
+        pageId = 'VK_card_parent11';
+        isFPGAServicePage = false;
+        edge_accelerator = false
+    } else if (window.location.pathname.includes('d_designed-ai.html')) {
+        originalRecords = design_ai;
+        pageId = 'VK_card_parent12';
+        isFPGAServicePage = false;
+        edge_accelerator = false
     } else {
         console.error('Unknown page');
         return;
@@ -2167,7 +2676,7 @@ function initializePage() {
         if (record.length !== 0) {
             if (document.getElementById('VK_curent_page')) {
                 document.getElementById('VK_curent_page').innerHTML = page;
-                let limit = 10;
+                let limit = 8;
                 let first = (limit * page) - limit;
                 let last = limit * page;
                 let total_page = Math.ceil(record.length / limit);
@@ -2181,7 +2690,7 @@ function initializePage() {
                         VK_card_map.innerHTML += `
                         <div class="col-xxl-3 VK_result_card col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12 p-3">
                             <div class="VK_card_parent bg-white h-100 d-flex flex-column">
-                                <div class="d_offer">Offering</div>
+                                <div class="d_offer">${result[i].type}</div>
                                 <div class="VK_card_img_box d-flex justify-content-center overflow-hidden">
                                     <img src="/img/darshan_image/${result[i].image}" alt=""
                                         class="h-100 object-fit-contain">
@@ -2204,11 +2713,11 @@ function initializePage() {
                                 </div>
                             </div>
                         </div>`;
-                    } else {
+                    } else if (edge_accelerator) {
                         VK_card_map.innerHTML += `
                         <div class="col-xxl-3 VK_result_card col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12 p-3">
                             <div class="VK_card_parent bg-white h-100">
-                                <div class="d_offer">Offering</div>
+                                <div class="d_offer">${result[i].type}</div>
                                 <div class="VK_card_img_box d-flex justify-content-center overflow-hidden">
                                     <img src="/img/darshan_image/${result[i].image}" alt=""
                                         class="h-100 object-fit-contain">
@@ -2218,8 +2727,30 @@ function initializePage() {
                                     <div class="VK_card_Title">
                                         <a href="" class="text-decoration-none fw-normal">${result[i].name}</a>
                                     </div>
+                                    <div class="d_type"><span>${result[i].text}</span></div>
                                     <div class="VK_card_description py-1">
-                                        <span class="mt-2 d-block">${result[i].description}<br>by <a>${result[i].anchor}</a></span>
+                                        <span class="mt-2 d-block">${result[i].description}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>`
+                    } else {
+                        VK_card_map.innerHTML += `
+                        <div class="col-xxl-3 VK_result_card col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12 p-3">
+                            <div class="VK_card_parent bg-white h-100">
+                                <div class="d_offer">${result[i].type}</div>
+                                <div class="VK_card_img_box d-flex justify-content-center overflow-hidden">
+                                    <img src="/img/darshan_image/${result[i].image}" alt=""
+                                        class="h-100 object-fit-contain">
+                                </div>
+                                <hr class="m-0">
+                                <div class="VK_card_details px-3 pb-3 mt-3">
+                                    <div class="VK_card_Title">
+                                        <a href="" class="text-decoration-none fw-normal">${result[i].name}</a>
+                                    </div>
+                                    ${result[i].text ? `<div class="d_type"><span>${result[i].text}</span></div>` : ""}
+                                    <div class="VK_card_description py-1">
+                                        <span class="mt-2 d-block">${result[i].description}${result[i].anchor ? `<br>by <a>${result[i].anchor}</a>` : ""}</span>
                                     </div>
                                 </div>
                             </div>
@@ -2281,18 +2812,30 @@ function initializePage() {
     }
 
     function VK_catalog_searching() {
-        let search = document.getElementById('VK_software_catalog_search_bar');
-        if (search.value.length > 2) {
+        const searchInput = document.getElementById('VK_software_catalog_search_bar').value.toLowerCase();
+
+        // Filter records based on search input
+        if (searchInput.length > 2) {
             currentRecords = originalRecords.filter(item =>
-                item.name.toLowerCase().includes(search.value.toLowerCase()) ||
-                (item.description && item.description.toLowerCase().includes(search.value.toLowerCase()))
+                item.name.toLowerCase().includes(searchInput) ||
+                (item.description && item.description.toLowerCase().includes(searchInput))
             );
-            Pagination(1, currentRecords);
-        } else if (search.value.length === 0) {
+        } else if (searchInput.length === 0) {
             currentRecords = [...originalRecords];
-            Pagination(1, currentRecords);
+        }
+
+        // Update the pagination and result count
+        Pagination(1, currentRecords);
+        updateSearchResultCount();
+    }
+
+    function updateSearchResultCount() {
+        const resultCountElement = document.getElementById('VK_search_result_span');
+        if (resultCountElement) {
+            resultCountElement.innerHTML = `${currentRecords.length} Results`;
         }
     }
+
 
     function sortBy(val) {
         switch (val) {
@@ -2360,8 +2903,1302 @@ function initializePage() {
 document.addEventListener('DOMContentLoaded', initializePage);
 
 
+// accelerators page
+
+let D_frequently = document.getElementById('D_frequently')
+
+const frequently = [
+    {
+        id: 1,
+        title: "What are Accelerators, and how are they different than the Member, Gold, and Titanium Tiers of Intel® Partner Alliance?",
+        desc: "Intel® Partner Alliance Accelerator Initiatives are a set of additive financial & non-financial benefits targeted to drive specific business outcomes tied to strategic priorities. Accelerator benefits are incremental to the Intel® Partner Alliance program foundational benefits delivered to partners based on their respective tier (Member, Gold, Titanium).",
+        link: "",
+        anchortxt: ""
+    },
+    {
+        id: 2,
+        title: "How do accelerators benefit end customers?",
+        desc: "Accelerators empower Intel® technology provider partners with additional support and expertise when designing and marketing their solutions. As a result, end customers benefit from faster access to newer solutions and from higher-quality solutions driven by a deeper understanding of their needs.",
+        link: "",
+        anchortxt: ""
+    },
+    {
+        id: 3,
+        title: "Who can participate in accelerator initiatives?",
+        desc: "Accelerator initiatives are available to existing Intel® Partner Alliance members who meet qualification criteria. The Intel® Partner Alliance team determines your eligibility based on your company’s registration information.",
+        desc1: "To learn more about accelerator initiatives you qualify for, visit the Manage Benefits section of your existing Intel® Partner Alliance account or talk with your account manager.",
+        link: "",
+        anchortxt: ""
+    },
+    {
+        id: 4,
+        title: "What is the status of Network Builders?",
+        desc: "Network Builders will continue to exist and is partnering with Intel® Partner Alliance to integrate network partners. From now on, Intel Network Builders partners need to join the Partner Alliance and select the Network Community to be a part of Intel Network Builders.",
+        desc1: "A broad selection of technical training, enablement, and partner solutions can be found at networkbuilders.intel.com, which will complement the new Networking Activation Zones within the Intel® Partner Alliance.",
+        link: "",
+        anchortxt: ""
+    },
+    {
+        id: 4,
+        title: "Where can I find Activation Zones?",
+        desc: "Activation Zones are available to all Intel® Partner Alliance Program members and will be found on the secure Intel® Partner Alliance homepage.",
+        link: "",
+        anchortxt: ""
+    },
+]
+
+if (D_frequently) {
+    for (let i = 0; i < frequently.length; i++) {
+        D_frequently.innerHTML += `<div class="accordion" id="accordionExample">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#collapseOne${frequently[i].id}" aria-expanded="true" aria-controls="collapseOne${frequently[i].id}">
+                                <a href="">${frequently[i].title}</a>
+                            </button>
+                        </h2>
+                        <div id="collapseOne${frequently[i].id}" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
+                            <div class="accordion-body">
+                                <p class="mb-0">${frequently[i].desc}</p>
+                                ${frequently[i].desc1 ? `<p>${frequently[i].desc1}</p>` : ""}
+                            </div>
+                        </div>
+                    </div>
+                </div>`
+    }
+}
+
+// cloud communnity page 
+
+let D_say = document.getElementById('D_say')
+
+const says = [
+    {
+        id: 1,
+        title: "“Our relationship with Intel helps us to advise our customers better.”",
+        name: "Mo Siddiqi",
+        text: "Group Development Director, Computacenter",
+        img: "colud5.png",
+        link: "",
+        anchortxt: ""
+    },
+    {
+        id: 2,
+        title: "““We are able to leverage the investment that Intel is making… and then build a complete service or offering on top of that.”",
+        name: "Piyush Saxena, Senior VP",
+        text: "HCL Technologies",
+        img: "colud6.jpg",
+        link: "",
+        anchortxt: ""
+    },
+]
+
+if (D_say) {
+    for (let i = 0; i < says.length; i++) {
+        D_say.innerHTML += `<div class="col-xs-12 col-ms-12 col-sm-12 col-md-6">
+                    <div class="d_box h-100">
+                        <div class="d-flex">
+                            <i class="fa-solid fa-quote-left me-3"></i>
+                            <p>${says[i].title}</p>
+                        </div>
+                        <div class="d_foot">
+                            <div class="fw-bold">${says[i].name}</div>
+                            <div class="d_txt">${says[i].text}</div>
+                            <div class="d_img">
+                                <img src="/img/darshan_image/${says[i].img}" alt="">
+                            </div>
+                        </div>
+                    </div>
+                </div>`
+    }
+}
 
 
 
+// Submitting a Solution—Application Readiness Guide
+
+let D_pdfvideo = document.getElementById('D_pdfvideo')
+
+const pdfvideo = [
+    {
+        id: 1,
+        title: "Intel® Solutions Marketplace Overview ",
+        time: "1:58",
+        text: "Connect with Intel partners for powerful collaboration and matchmaking opportunities.",
+        img: "pdf1.jpg",
+        link: "",
+    },
+    {
+        id: 2,
+        title: "Getting the Most Out of Intel® Solutions Marketplace",
+        time: "1:23",
+        text: "Market your products and solutions to Intel’s vast network. ",
+        img: "pdf1.jpg",
+        link: "",
+    },
+    {
+        id: 3,
+        title: "Intel Employee Service Corps in Puerto Rico",
+        time: "3:25",
+        text: "To help rebuild Puerto Rico’s schools after a category 5 hurricane, Intel Employee Service Corps reached 15,000 students in multiple schools. ",
+        img: "pdf1.jpg",
+        link: "",
+    },
+    {
+        id: 4,
+        title: "Intel® AI: In Production: CrowdOptic Demo Video",
+        time: "6:57",
+        text: "This system uses AI and triangulation algorithms at the network edge to analyze and redirect cameras. ",
+        img: "pdf1.jpg",
+        link: "",
+    },
+    {
+        id: 5,
+        title: "Co-Marketing Market Development Funds (MDF) Overview",
+        time: "10:10",
+        text: "A video providing guidance on how to optimize your IoT Market Development Funds with Intel. ",
+        img: "pdf1.jpg",
+        link: "",
+    },
+    {
+        id: 6,
+        title: "To the Cloud and Back - Video Teaser 1",
+        time: "",
+        text: "To the Cloud and Back - Video Teaser 1: Cloud vs. On-Prem Consideration. ",
+        img: "pdf1.jpg",
+        link: "",
+    },
+]
+
+if (D_pdfvideo) {
+    for (let i = 0; i < pdfvideo.length; i++) {
+        D_pdfvideo.innerHTML += `<div class="col-xs-12 col-ms-6 col-sm-4 col-md-3 col-xl-2">
+                    <div class="d_item">
+                        <div class="d_img">
+                            <a href=""><img src="/img/darshan_image/${pdfvideo[i].img}" alt=""></a>
+                        </div>
+                        <h3><a href="">${pdfvideo[i].title} <small>(${pdfvideo[i].time})</small> </a></h3>
+                        <p>${pdfvideo[i].text}</p>
+                    </div>
+                </div>`
+    }
+}
+
+// Submitting a Solution—Application Readiness Guide
+
+let D_pdfmaterial = document.getElementById('D_pdfmaterial')
+
+const pdfmaterial = [
+    {
+        id: 1,
+        title: "Intel® Partner Showcase Help and Support",
+        img: "pdf.png",
+        link: "",
+    },
+    {
+        id: 2,
+        title: "How to Access the Intel® Partner Showcase Partner Directory",
+        img: "pdf.png",
+        link: "",
+    },
+    {
+        id: 3,
+        title: "How to Manage Intel® Partner Showcase Offerings",
+        img: "pdf.png",
+        link: "",
+    },
+    {
+        id: 4,
+        title: "How to Manage an Intel® Partner Showcase Storefront",
+        img: "pdf.png",
+        link: "",
+    },
+    {
+        id: 5,
+        title: "How to Create Intel® Partner Showcase Offerings",
+        img: "pdf.png",
+        link: "",
+    },
+    {
+        id: 6,
+        title: "How to Connect and Collaborate with Marketplace Partners",
+        img: "pdf.png",
+        link: "",
+    },
+    {
+        id: 7,
+        title: "Adding Dimension to Data Analytics through Immersive Visualization",
+        img: "pdf.png",
+        link: "",
+    },
+    {
+        id: 8,
+        title: "Practical VR: Immersive Arena Experience ADDS a Human Element",
+        img: "pdf.png",
+        link: "",
+    },
+    {
+        id: 9,
+        title: "James Jaussi",
+        img: "pdf.png",
+        link: "",
+    },
+    {
+        id: 10,
+        title: "Mahesh Ketkar ",
+        img: "pdf.png",
+        link: "",
+    },
+    {
+        id: 11,
+        title: "Hosein Nikopour ",
+        img: "pdf.png",
+        link: "",
+    },
+    {
+        id: 12,
+        title: "Richard Chow ",
+        img: "pdf.png",
+        link: "",
+    },
+
+]
+
+if (D_pdfmaterial) {
+    for (let i = 0; i < pdfmaterial.length; i++) {
+        D_pdfmaterial.innerHTML += `<div class="col-xs-12 col-ms-6 col-sm-4 col-md-3 col-xl-2">
+                    <div class="d_box">
+                        <div class="d-flex">
+                            <div class="d_img me-1">
+                                <img src="/img/darshan_image/${pdfmaterial[i].img}"  alt="">
+                            </div>
+                            <h4><a href="">${pdfmaterial[i].title}</a></h4>
+                        </div>
+                    </div>
+                </div>`
+    }
+}
+
+// Cloud Tools
+
+let D_cot = document.getElementById('D_cot')
+
+const cots = [
+    {
+        id: 1,
+        title: "Intel® System Health Inspector",
+        text: "Quickly and easily capture system health, hardware configuration, and software profile via static and dynamic analysis.",
+        link: "",
+    },
+    {
+        id: 2,
+        title: "gProfiler",
+        text: "A system-wide profiler combining multiple sampling profilers to produce unified visualization of what your CPU is spending time on.",
+        link: "",
+    },
+    {
+        id: 3,
+        title: "Intel® VTune™ Profiler",
+        text: "Find and fix performance bottlenecks quickly and realize all the value of your hardware.",
+        link: "",
+    },
+    {
+        id: 4,
+        title: "Intel® Cloud Optimization Modules",
+        text: "Build and deploy Intel®-optimized solutions that accelerate developer velocity on leading cloud providers, including Amazon Web Services* (AWS), Microsoft Azure*, and Google Cloud Platform* service.",
+        link: "",
+    },
+    {
+        id: 5,
+        title: "Intel® Cloud Optimizer by Densify*",
+        text: "Reduce costs and improve performance on existing infrastructure by analyzing a range of cloud workloads. Obtain recommendations for optimization tuning or platform and service combinations offered by the cloud service provider (CSP) to maximize your cloud investment.",
+        link: "",
+    },
+    {
+        id: 6,
+        title: "Intel® Developer Cloud",
+        text: "A no-cost integrated development environment (IDE) for Intel® architectures. Sign up to get access to Intel-optimized frameworks, tools, and libraries that you can use to build low-code or no-code platforms.",
+        link: "",
+    },
+    {
+        id: 7,
+        title: "Intel® Optimization Hub",
+        text: "A curated, easy-to-use repository across use cases and workloads providing recommendations for hardware acceleration, software optimization, containers, and more. Use benchmarks and documentation to get started faster.",
+        link: "",
+    },
+    {
+        id: 8,
+        title: "Intel® Performance Hub",
+        text: "This software-as-a-service platform includes Intel System Health Inspector (checks the health of platforms), Intel® PerfSpect (profiles workload performance), Intel® Smart Tuning (tunes workloads based on user-defined parameters), and more to come.",
+        link: "",
+    },
+    {
+        id: 9,
+        title: "Intel® Granulate™ Software",
+        text: "Optimize production workloads using autonomous, continuous optimization using resource usage patterns and data flow to adapt kernel-level and runtime-level resource management. No code changes required.",
+        link: "",
+    },
+    {
+        id: 10,
+        title: "Cnvrg.io",
+        text: "Automate and scale AI faster with ready-to-use open source machine learning pipelines that can run on any infrastructure. Use your entire AI ecosystem from one launch pad.",
+        link: "",
+    },
+    {
+        id: 11,
+        title: "Dr. Migrate",
+        text: "This automated approach to cloud migrations driven by machine learning learns how your applications interconnect and identifies which applications to migrate first and which out-of-date apps you should remove.",
+        link: "",
+    },
+    {
+        id: 12,
+        title: "Intel® Distribution of OpenVINO™ Toolkit",
+        text: "Deploy high-performance deep learning inference with ease.",
+        link: "",
+    },
+    {
+        id: 13,
+        title: "Intel® oneAPI Base Toolkit",
+        text: "Develop performant, data-centric applications across Intel® CPUs, GPUs, and FPGAs with this foundational toolset.",
+        link: "",
+    },
+    {
+        id: 14,
+        title: "Intel® HPC Toolkit",
+        text: "Build, analyze, and scale applications across shared- and distributed-memory computing systems.",
+        link: "",
+    },
+    {
+        id: 15,
+        title: "AI Tools",
+        text: "Accelerate end-to-end data science and machine learning pipelines using Python* tools and frameworks.",
+        link: "",
+    },
+]
+
+if (D_cot) {
+    for (let i = 0; i < cots.length; i++) {
+        D_cot.innerHTML += `<div class="col-xs-12 col-sm-6 col-lg-4">
+                    <div class="d_box h-100">
+                        <div class="d_subline">
+                            <a href="">${cots[i].title}</a>
+                        </div>
+                        <p>${cots[i].text}</p>
+                    </div>
+                </div>`
+    }
+}
+
+// Open Source & Cloud Software Optimized for Intel
+
+let D_cot1 = document.getElementById('D_cot1')
+
+const cots1 = [
+    {
+        id: 1,
+        title: "Frameworks",
+        text: "Train, architect, and validate deep neural networks.",
+        link: "",
+    },
+    {
+        id: 2,
+        title: "Containers",
+        text: "Find the best container for your cloud development needs.",
+        link: "",
+    },
+    {
+        id: 3,
+        title: "Cloud Optimization Modules",
+        text: "Find AI solutions optimized by Intel on Amazon Web Services* (AWS), Microsoft Azure*, and Google Cloud Platform* service.",
+        link: "",
+    },
+]
+
+if (D_cot1) {
+    for (let i = 0; i < cots1.length; i++) {
+        D_cot1.innerHTML += `<div class="col-xs-12 col-sm-6 col-lg-4">
+                    <div class="d_box h-100">
+                        <div class="d_subline">
+                            <a href="">${cots1[i].title}</a>
+                        </div>
+                        <p>${cots1[i].text}</p>
+                    </div>
+                </div>`
+    }
+}
 
 
+// Open Source Projects
+
+let D_osp = document.getElementById('D_osp')
+
+const osp = [
+    {
+        id: 1,
+        title: "Multus CNI",
+        text: "Intel contributed the Multus Container Network Interface (CNI) device plugin. This plugin that can be used to create multiple network interfaces for pods in Kubernetes.",
+        link: "",
+    },
+    {
+        id: 2,
+        title: "Network Resources Injector is a Kubernetes Dynamic",
+        text: "Network Resources Injector is a Kubernetes Dynamic Admission Controller app that provides functionality of patching Kubernetes pod specifications with requests and limits of custom network resources.",
+        link: "",
+    },
+    {
+        id: 3,
+        title: "Open Data Center Diagnostic Project",
+        text: "A framework for server fleet management that enables developers to set up environments, run tests, generate test data, log results, and isolate faults.",
+        link: "",
+    },
+    {
+        id: 4,
+        title: "CPU Management - CPU Pinning and Isolation in Kubernetes",
+        text: "In Kubernetes* (as of v1.18), CPU and Memory are the only first class resources managed by Kubernetes with the native CPU manager.",
+        link: "",
+    },
+    {
+        id: 5,
+        title: "Intel® QAT Device Plugin",
+        text: "Accelerate compute-intensive workloads for security, encryption, authentication and compression with Intel® QuickAssist Technology (Intel® QAT), orchestrated by Kubernetes.",
+        link: "",
+    },
+    {
+        id: 6,
+        title: "Persistent Memory (PMEM) CSI",
+        text: "Intel PMEM-CSI is a CSI storage driver for container orchestrators like Kubernetes. It makes local persistent memory (PMEM) available as a filesystem volume to container applications.",
+        link: "",
+    },
+    {
+        id: 7,
+        title: "Intel® FPGA Device Plugin",
+        text: "In the past, using FPGAs has required specialist programming skills, including a good understanding of how the hardware works, to configure each accelerator.",
+        link: "",
+    },
+    {
+        id: 8,
+        title: "Kata Containers",
+        text: "Kata Containers is a novel implementation of a lightweight virtual machine that seamlessly integrates within the container ecosystem. Kata Containers are as light and fast as containers and integrate.",
+        link: "",
+    },
+    {
+        id: 9,
+        title: "Bond CNI",
+        text: "Bonding provides a method for aggregating multiple network interfaces into a single logical interface. According to the 802.3ad specification, Linux Bonding drivers provides various",
+        link: "",
+    },
+    {
+        id: 10,
+        title: "Telemetry Aware Scheduling (TAS) makes telemetry data available to...",
+        text: "Telemetry Aware Scheduling (TAS) makes telemetry data available to scheduling and descheduling decisions in Kubernetes. Through a user defined policy, TAS enables rule based decisions on pod placement",
+        link: "",
+    },
+    {
+        id: 11,
+        title: "Intel® GPU Device Plugin",
+        text: "The GPU device plugin for Kubernetes supports Intel GVT-d device passthrough and acceleration, supporting GPUs of the following hardware families: Integrated GPUs within Intel Core processors Integrat",
+        link: "",
+    },
+    {
+        id: 12,
+        title: "SR-IOV Network Device Plugin",
+        text: "Kubernetes is typically used to run workloads of production web applications at massive scale. While NFV control plane functions are similar to the usual Kubernetes workloads, data plane functions dif",
+        link: "",
+    },
+    {
+        id: 13,
+        title: "Device Plugins Operator",
+        text: "This One Operator is a Kubernetes custom controller whose goal is to serve the installation and lifecycle management of Intel device plugins for Kubernetes",
+        link: "",
+    },
+    {
+        id: 14,
+        title: "SGX Device Plugin",
+        text: "Intel® Software Guard Extensions (Intel® SGX) offers hardware-based memory encryption that isolates specific application code and data in memory.",
+        link: "",
+    },
+    {
+        id: 15,
+        title: "Network Resources Injector",
+        text: "Network Resources Injector is a Kubernetes Dynamic Admission Controller app that provides functionality of patching Kubernetes pod specifications with requests and limits of custom network resources.",
+        link: "",
+    },
+    {
+        id: 16,
+        title: "Intel® VPU Device Plugin",
+        text: "Enables power-efficient, cost-effective visual cloud solution for the emerging AI market for inference and media analytics applications at the Edge.  ",
+        link: "",
+    },
+    {
+        id: 17,
+        title: "User Space CNI",
+        text: "Userspace CNI is a Container Network Interface (CNI) plugin designed to implement userspace networking (as opposed to kernel space networking).",
+        link: "",
+    },
+]
+
+if (D_osp) {
+    for (let i = 0; i < osp.length; i++) {
+        D_osp.innerHTML += `<div class="col-xs-12 col-sm-6 col-lg-3">
+                        <div class="d_box1 h-100">
+                            <div class="d_subline mb-1">
+                                <a href="">${osp[i].title}</a>
+                            </div>
+                            <p>${osp[i].text}</p>
+                        </div>
+                    </div>`
+    }
+}
+
+
+// nodeware
+
+let D_pdfmaterial1 = document.getElementById('D_pdfmaterial1')
+
+const pdfmaterial1 = [
+    {
+        id: 1,
+        title: "Broox Audience Analytics Suite Solution Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 2,
+        title: "SILO AI Weather Insights Solution Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 3,
+        title: "Pratexo Studio Solution Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 4,
+        title: "NodeWeaver Edge Cloud Solution Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 5,
+        title: "Broox Audience Analytics Suite Partner Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 6,
+        title: "Axiomtek AMR Partner Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 7,
+        title: "LinkingMed Radiotherapy Planning Solution Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 8,
+        title: "NexCOBOT SCB100 Partner Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 9,
+        title: "Sycai Medical Pancreatic Imaging Partner Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 10,
+        title: "Vistry Discrn Solution Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 11,
+        title: "WaitTime Crowd Intelligence Partner Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 12,
+        title: "Pratexo Studio Partner Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+
+]
+
+if (D_pdfmaterial1) {
+    for (let i = 0; i < pdfmaterial1.length; i++) {
+        D_pdfmaterial1.innerHTML += `<div class="col-xs-12 col-ms-6 col-sm-4 col-md-3 col-xl-2">
+                    <div class="d_box">
+                        <div class="d-flex">
+                            <div class="d_img me-1">
+                                <img src="/img/darshan_image/${pdfmaterial1[i].img}"  alt="">
+                            </div>
+                            <h4><a href="">${pdfmaterial1[i].title}</a></h4>
+                        </div>
+                    </div>
+                </div>`
+    }
+}
+
+// qct
+
+let D_pdfmaterial2 = document.getElementById('D_pdfmaterial2')
+
+const pdfmaterial2 = [
+    {
+        id: 1,
+        title: "NEXCOM 5G uCPE Partner Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 2,
+        title: "Five Reasons to Choose Intel for Your 5G Core Workloads",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 3,
+        title: "Agilex™ FPGA Architecture White Paper",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 4,
+        title: "What Is SD-WAN? Software-Defined WAN - Intel",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 5,
+        title: "Intel and HCLTech: Get to Innovative Solutions Faster – Intel",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 6,
+        title: "Intel® Ethernet Technology",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 7,
+        title: "Products formerly Whale Cove",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 8,
+        title: "Pratexo Studio Partner Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 9,
+        title: "NodeWeaver Edge Cloud Solution Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 10,
+        title: "QCT OmniPOD Partner Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 11,
+        title: "Agilex™ 7 FPGA and SoC FPGA M-Series",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 12,
+        title: "Agilex™ 7 FPGA and SoC FPGA M-Series",
+        img: "pdf2.png",
+        link: "",
+    },
+
+]
+
+if (D_pdfmaterial2) {
+    for (let i = 0; i < pdfmaterial2.length; i++) {
+        D_pdfmaterial2.innerHTML += `<div class="col-xs-12 col-ms-6 col-sm-4 col-md-3 col-xl-2">
+                    <div class="d_box">
+                        <div class="d-flex">
+                            <div class="d_img me-1">
+                                <img src="/img/darshan_image/${pdfmaterial2[i].img}"  alt="">
+                            </div>
+                            <h4><a href="">${pdfmaterial2[i].title}</a></h4>
+                        </div>
+                    </div>
+                </div>`
+    }
+}
+
+
+// eos
+
+let D_pdfmaterial3 = document.getElementById('D_pdfmaterial3')
+
+const pdfmaterial3 = [
+    {
+        id: 1,
+        title: "Sycai Medical Pancreatic Imaging Partner Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 2,
+        title: "NHN Cloud Offers New AI Cloud Service",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 3,
+        title: "Intel® Data Center GPU Max Series Product Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 4,
+        title: "AI Partners and Solutions: Intel® Partner Alliance - Intel",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 5,
+        title: "AmyGB.ai VisionERA Solution Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 6,
+        title: "Deci.AI Deep Learning Platform Partner Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 7,
+        title: "meldCX AI Playground Partner Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 8,
+        title: "Responsible AI Publications",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 9,
+        title: "Meituan Accelerates Vision AI Inference Services",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 10,
+        title: "Numenta Delivers Powerful Inference Performance",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 11,
+        title: "Anodot Optimizes Anomaly Detection Services",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 12,
+        title: "Intel® AI: In Production | Success Stories",
+        img: "pdf2.png",
+        link: "",
+    },
+
+]
+
+if (D_pdfmaterial3) {
+    for (let i = 0; i < pdfmaterial3.length; i++) {
+        D_pdfmaterial3.innerHTML += `<div class="col-xs-12 col-ms-6 col-sm-4 col-md-3 col-xl-2">
+                    <div class="d_box">
+                        <div class="d-flex">
+                            <div class="d_img me-1">
+                                <img src="/img/darshan_image/${pdfmaterial3[i].img}"  alt="">
+                            </div>
+                            <h4><a href="">${pdfmaterial3[i].title}</a></h4>
+                        </div>
+                    </div>
+                </div>`
+    }
+}
+
+
+// qct omnipod
+
+let D_pdfvideo1 = document.getElementById('D_pdfvideo1')
+
+const pdfvideo1 = [
+    {
+        id: 1,
+        title: "NexAIoT Scaling at the Edge Video",
+        time: "6:55",
+        text: "Delivering user-centric service with smart autonomous mobile robots (AMR). ",
+        img: "nodeware2.png",
+        link: "",
+    },
+    {
+        id: 2,
+        title: "Lanner Scaling at the Edge Video",
+        time: "9:12",
+        text: "Lanner Scalable EDGE Cloud Platform ",
+        img: "nodeware2.png",
+        link: "",
+    },
+    {
+        id: 3,
+        title: "EOS Partner Chat Video",
+        time: "16:19",
+        text: "The EOS Linx EV Charging Station connected solution contribute to faster deployment in the market using Intel's reference architectures.  ",
+        img: "nodeware2.png",
+        link: "",
+    },
+    {
+        id: 4,
+        title: "Portwell Ecosystem Partner Video",
+        time: "13:14",
+        text: "12th Gen Intel® Core™ Processor PICMG 1.3 single host board.",
+        img: "nodeware2.png",
+        link: "",
+    },
+    {
+        id: 5,
+        title: "Advantech Veridify Scaling at the Edge Video",
+        time: "10:12",
+        text: "Making industrial IoT and smart buildings cyber safe. ",
+        img: "nodeware2.png",
+        link: "",
+    },
+    {
+        id: 6,
+        title: "Wind River Ecosystem Partner Video",
+        time: "10:29",
+        text: "Helix Virtualization Platform, advancing safety avionics with Intel Xeon D-1700/2700 and 11th Gen Intel Core Processors. ",
+        img: "nodeware2.png",
+        link: "",
+    },
+]
+
+if (D_pdfvideo1) {
+    for (let i = 0; i < pdfvideo1.length; i++) {
+        D_pdfvideo1.innerHTML += `<div class="col-xs-12 col-ms-6 col-sm-4 col-md-3 col-xl-2">
+                    <div class="d_item">
+                        <div class="d_img">
+                            <a href=""><img src="/img/darshan_image/${pdfvideo1[i].img}" alt=""></a>
+                        </div>
+                        <h3><a href="">${pdfvideo1[i].title} <small>(${pdfvideo1[i].time})</small> </a></h3>
+                        <p>${pdfvideo1[i].text}</p>
+                    </div>
+                </div>`
+    }
+}
+
+
+let D_pdfmaterial4 = document.getElementById('D_pdfmaterial4')
+
+const pdfmaterial4 = [
+    {
+        id: 1,
+        title: "Pathr.ai Supermarket Operations Solution Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 2,
+        title: "Siena Analytics Insights Solution Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 3,
+        title: "WaitTime Platform Solution Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 4,
+        title: "WaitTime Crowd Intelligence Partner Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 5,
+        title: "Viso AI Viso Suite Solution",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 6,
+        title: "Enhancing worker safety and improving productivity for manufacturers...",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 7,
+        title: "IBM Watson NLU Partner Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 8,
+        title: "Irida Labs Retail Analytics Solution Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 9,
+        title: "meldCX AI Playground Partner Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 10,
+        title: "IBM Watson NLU Solution Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 11,
+        title: "Irisity IRIS Solution Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 12,
+        title: "Profet AI AutoML Platform Solution Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+
+]
+
+if (D_pdfmaterial4) {
+    for (let i = 0; i < pdfmaterial4.length; i++) {
+        D_pdfmaterial4.innerHTML += `<div class="col-xs-12 col-ms-6 col-sm-4 col-md-3 col-xl-2">
+                    <div class="d_box">
+                        <div class="d-flex">
+                            <div class="d_img me-1">
+                                <img src="/img/darshan_image/${pdfmaterial4[i].img}"  alt="">
+                            </div>
+                            <h4><a href="">${pdfmaterial4[i].title}</a></h4>
+                        </div>
+                    </div>
+                </div>`
+    }
+}
+
+// nexcobot
+
+let D_pdfmaterial5 = document.getElementById('D_pdfmaterial5')
+
+const pdfmaterial5 = [
+    {
+        id: 1,
+        title: "GIBots DigiDoc Partner Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 2,
+        title: "Irida Labs Edge Vision AI Solution Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 3,
+        title: "Beseye AI Video Analysis Partner Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 4,
+        title: "LinkingMed Radiotherapy Planning Partner Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 5,
+        title: "4tiitoo NUIA Eye Control Solution Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 6,
+        title: "GDDi Algorithms Defined AIBox Partner Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 7,
+        title: "Satsafeti Intelligent Conveyor Partner Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 8,
+        title: "Netown Babybot Smart Health Partner Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 9,
+        title: "Cathexis CathexisVision Solution Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 10,
+        title: "SAIMOS Video Analytics Solution Partner Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 11,
+        title: "LinkingMed Radiotherapy Planning Solution Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 12,
+        title: "Irida Labs PerCV.ai Partner Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+
+]
+
+if (D_pdfmaterial5) {
+    for (let i = 0; i < pdfmaterial5.length; i++) {
+        D_pdfmaterial5.innerHTML += `<div class="col-xs-12 col-ms-6 col-sm-4 col-md-3 col-xl-2">
+                    <div class="d_box">
+                        <div class="d-flex">
+                            <div class="d_img me-1">
+                                <img src="/img/darshan_image/${pdfmaterial5[i].img}"  alt="">
+                            </div>
+                            <h4><a href="">${pdfmaterial5[i].title}</a></h4>
+                        </div>
+                    </div>
+                </div>`
+    }
+}
+
+// wait time
+
+let D_pdfmaterial6 = document.getElementById('D_pdfmaterial6')
+
+const pdfmaterial6 = [
+    {
+        id: 1,
+        title: "GIBots DigiDoc Partner Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 2,
+        title: "Irida Labs Edge Vision AI Solution Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 3,
+        title: "Beseye AI Video Analysis Partner Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 4,
+        title: "LinkingMed Radiotherapy Planning Partner Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 5,
+        title: "4tiitoo NUIA Eye Control Solution Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 6,
+        title: "GDDi Algorithms Defined AIBox Partner Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 7,
+        title: "Satsafeti Intelligent Conveyor Partner Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 8,
+        title: "Netown Babybot Smart Health Partner Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 9,
+        title: "Cathexis CathexisVision Solution Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 10,
+        title: "SAIMOS Video Analytics Solution Partner Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 11,
+        title: "LinkingMed Radiotherapy Planning Solution Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 12,
+        title: "Irida Labs PerCV.ai Partner Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+
+]
+
+if (D_pdfmaterial6) {
+    for (let i = 0; i < pdfmaterial6.length; i++) {
+        D_pdfmaterial6.innerHTML += `<div class="col-xs-12 col-ms-6 col-sm-4 col-md-3 col-xl-2">
+                    <div class="d_box">
+                        <div class="d-flex">
+                            <div class="d_img me-1">
+                                <img src="/img/darshan_image/${pdfmaterial6[i].img}"  alt="">
+                            </div>
+                            <h4><a href="">${pdfmaterial6[i].title}</a></h4>
+                        </div>
+                    </div>
+                </div>`
+    }
+}
+
+// axiomtek
+
+let D_pdfmaterial7 = document.getElementById('D_pdfmaterial7')
+
+const pdfmaterial7 = [
+    {
+        id: 1,
+        title: "AmyGB.ai VisionERA Solution Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 2,
+        title: "Deci.AI Deep Learning Platform Partner Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 3,
+        title: "Sycai Medical Pancreatic Imaging Partner Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 4,
+        title: "Intel® AI: In Production | Success Stories",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 5,
+        title: "Harnessing Data to Transform the Shopping Experience",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 6,
+        title: "a2-VCA Traffic Safety Solution Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 7,
+        title: "DFI and Chunghwa Telecom Labs Deliver Solution to Help Reduce Traffic...",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 8,
+        title: "Netown Babybot Smart Health Solution Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 9,
+        title: "FFHS University AI Solution Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 10,
+        title: "Subtle Medical SubtleMR Partner Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 11,
+        title: "SIL International Language ID Solution Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 12,
+        title: "iSIZE BitClear Partner Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+
+]
+
+if (D_pdfmaterial7) {
+    for (let i = 0; i < pdfmaterial7.length; i++) {
+        D_pdfmaterial7.innerHTML += `<div class="col-xs-12 col-ms-6 col-sm-4 col-md-3 col-xl-2">
+                    <div class="d_box">
+                        <div class="d-flex">
+                            <div class="d_img me-1">
+                                <img src="/img/darshan_image/${pdfmaterial7[i].img}"  alt="">
+                            </div>
+                            <h4><a href="">${pdfmaterial7[i].title}</a></h4>
+                        </div>
+                    </div>
+                </div>`
+    }
+}
+
+
+document.getElementById('show-more-btn').addEventListener('click', function () {
+    var myCard = document.getElementById('my-card');
+    var icon = document.getElementById('toggle-icon');
+    var isHidden = myCard.classList.contains('ds_use-hidden');
+
+    if (isHidden) {
+        myCard.classList.remove('ds_use-hidden');
+        myCard.classList.add('ds_use-show');
+        this.innerHTML = '<i id="toggle-icon" class="fa-solid fa-angle-up me-1"></i> Show Less';
+    } else {
+        myCard.classList.remove('ds_use-show');
+        myCard.classList.add('ds_use-hidden');
+        this.innerHTML = '<i id="toggle-icon" class="fa-solid fa-angle-down me-1"></i> Show More';
+    }
+});
