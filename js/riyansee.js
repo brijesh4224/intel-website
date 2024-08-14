@@ -41,6 +41,39 @@ $(document).ready(function () {
     })
 });
 
+
+$(document).ready(function () {
+    $('#one').owlCarousel({
+        loop: true,
+        margin: 10,
+        nav: true,
+        dots: false,
+        mouseDrag:false,
+        responsive: {
+            0: {
+                items: 1
+            },
+            425:{
+                items:2
+            },
+            768: {
+                items: 3
+            },
+           
+            1024: {
+                items: 4
+            },
+           1440:{
+                items:4
+            },
+        }
+    })
+
+});
+
+
+
+
 // Optional JavaScript to enable smooth scrolling
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function(e) {
@@ -116,3 +149,7 @@ function toggleDropdown() {
         ul.style.display = "none";
     }
 }
+
+
+
+        
