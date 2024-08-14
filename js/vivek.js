@@ -1420,6 +1420,39 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 });
 
+const navBar = document?.querySelector('.VK_ai_nav_bar');
+
+let isDragging = false;
+let startX; 
+let scrollLeft; 
+
+navBar?.addEventListener('mousedown', (e) => {
+    isDragging = true;
+    navBar.classList.add('active');
+    startX = e.pageX - navBar.offsetLeft;
+    scrollLeft = navBar.scrollLeft;
+});
+
+navBar?.addEventListener('mousemove', (e) => {
+    if (!isDragging) return; 
+    e.preventDefault();
+    const x = e.pageX - navBar.offsetLeft;
+    const walk = (x - startX) * 2; 
+    navBar.scrollLeft = scrollLeft - walk;
+});
+
+
+navBar?.addEventListener('mouseup', () => {
+    isDragging = false;
+    navBar.classList.remove('active');
+});
+
+navBar?.addEventListener('mouseleave', () => {
+    isDragging = false;
+    navBar.classList.remove('active'); 
+});
+
+
 
 function VK_game_hide_toggle() {
     const VK_cols = document.querySelectorAll('.VK_game_hide_col');
@@ -2073,6 +2106,20 @@ function VK_scikit_model(id) {
     let model_img = ['VK_scikit_model1.png', 'VK_scikit_model2.png', 'VK_scikit_model3.png'];
     let el = document.getElementById('VK_scikit_img_model');
     el.src = `/img/vivek/${model_img[id]}`;
-    let modal = new bootstrap.Modal(document.getElementById('VK_scikit_model'));
+    let modal = new bootstrap.Modal(document.getElementById('exampleModal'));
     modal.show();
 }
+
+function VK_aitools_model(id) {
+    let model_img = ['VK_ai_tool1.png', 'VK_ai_tool2.png', 'VK_ai_tools3.png'];
+    let el = document.getElementById('VK_scikit_img_model');
+    el.src = `/img/vivek/${model_img[id]}`;
+    let modal = new bootstrap.Modal(document.getElementById('exampleModal'));
+    modal.show();
+}
+
+document?.querySelector('.btn-close')?.addEventListener('click', function (event) {
+    event.preventDefault(); // Prevents the default form submission
+    let modal = bootstrap.Modal.getInstance(document.getElementById('exampleModal'));
+    modal.hide(); // Hides the modal
+});
