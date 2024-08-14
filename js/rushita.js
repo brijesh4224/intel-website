@@ -541,7 +541,8 @@ document.addEventListener('DOMContentLoaded', function() {
   const videos = [
       { video: document.getElementById('myVideo'), button: document.getElementById('playButton') },
       { video: document.getElementById('myVideo1'), button: document.getElementById('playButton1') },
-      { video: document.getElementById('myVideo2'), button: document.getElementById('playButton2') }
+      { video: document.getElementById('myVideo2'), button: document.getElementById('playButton2') },
+      { video: document.getElementById('myVideo3'), button: document.getElementById('playButton3') }
   ];
 
   videos.forEach(item => {
@@ -569,3 +570,4 @@ document.addEventListener('DOMContentLoaded', function() {
       }
   }
 });
+
