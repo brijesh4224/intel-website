@@ -1113,7 +1113,10 @@ function filterUsecaseList() {
 }
 
 // Event listener for the search input
-document.getElementById('usecaseSearch').addEventListener('input', filterUsecaseList);
+if (document.getElementById('usecaseSearch')) {
+    document.getElementById('usecaseSearch').addEventListener('input', filterUsecaseList);
+
+}
 
 // Populate the use case list when the document is loaded
 document.addEventListener('DOMContentLoaded', populateUsecaseList);
@@ -1150,7 +1153,9 @@ function filterIndustryList() {
 }
 
 // Event listener for the search input
-document.getElementById('industrySearch').addEventListener('input', filterIndustryList);
+if (document.getElementById('industrySearch')) {
+    document.getElementById('industrySearch').addEventListener('input', filterIndustryList);
+}
 
 // Populate the industry list when the document is loaded
 document.addEventListener('DOMContentLoaded', populateIndustryList);
@@ -2598,6 +2603,72 @@ let design_ai = [
 ]
 
 
+// cloudetv 
+
+let cloud_episode = [
+    {
+        name: "Enhance Confidential Computing with Intel® Trust Authority - Intel",
+        desc: "Learn how Intel® Trust Authority attestation services enhance confidential computing by offering assurance that data enclaves are protected.",
+        image: "epi1.png",
+        link: "",
+    },
+    {
+        name: "How to Simplify Cloud Optimization with Intel® Granulate™",
+        desc: "Learn how cloud tools from Intel and Deloitte can help you optimize customer cloud efficiency and enable FinOps capabilities.",
+        image: "epi2.png",
+        link: "",
+    },
+    {
+        name: "Support Migration to Microsoft Windows Server and SQL Server 2022",
+        desc: "Learn how you can build your business by supporting customer migration to Microsoft Windows Server 2022 and SQL Server 2022.",
+        image: "epi3.png",
+        link: "",
+    },
+    {
+        name: "5th Gen Intel® Xeon® Scalable Processors Overview",
+        desc: "Find out how 5th Gen Intel® Xeon® Scalable processors (code named Emerald Rapids) can help solve critical business challenges for your customers.",
+        image: "epi4.png",
+        link: "",
+    },
+    {
+        name: "Your GenAI Opportunity with Intel® Gaudi® AI Accelerators",
+        desc: "Learn how Intel® Gaudi AI accelerators provide the performance, scalability, efficiency, and affordability needed for GenAI training and inference.",
+        image: "epi5.png",
+        link: "",
+    },
+    {
+        name: "Accelerated by Intel®",
+        desc: "Learn more about the Accelerated by Intel® Partner Solution brand and how your offerings could qualify.",
+        image: "epi6.png",
+        link: "",
+    },
+    {
+        name: "Overcoming Developer Challenges with Microservices",
+        desc: "This episode of Intel® Cloud TV dives into some key developer challenges around microservices in the cloud and how Intel can help overcome them.",
+        image: "epi7.png",
+        link: "",
+    },
+    {
+        name: "Intel® Optimization Hub",
+        desc: "Watch a demo of the Intel® Optimization Hub and learn about the many benefits it offers for improved performance, efficiency, and cost-effectiveness.",
+        image: "epi8.png",
+        link: "",
+    },
+    {
+        name: "Cloud Solutions Help from Intel",
+        desc: "Using a real-world example in the health and life science industry, learn how to get the best value from Intel's cloud technology and support.",
+        image: "epi9.jpg",
+        link: "",
+    },
+    {
+        name: "Successful Cloud Migrations",
+        desc: "Cloud Partner Manager, Ashley Rodrigue, shares her experience with successful cloud migrations using continuous optimization.",
+        image: "epi10.jpg",
+        link: "",
+    },
+
+]
+
 
 
 function initializePage() {
@@ -2610,61 +2681,79 @@ function initializePage() {
         pageId = 'VK_card_parent1';
         isFPGAServicePage = false;
         edge_accelerator = false;
+        cloudetv = false;
     } else if (window.location.pathname.includes('d_offerning-service.html')) {
         originalRecords = offering_service_data;
         pageId = 'VK_card_parent2';
         isFPGAServicePage = false;
         edge_accelerator = false;
+        cloudetv = false;
     } else if (window.location.pathname.includes('d_offerning-software.html')) {
         originalRecords = offering_software_data;
         pageId = 'VK_card_parent3';
         isFPGAServicePage = false;
         edge_accelerator = false;
+        cloudetv = false;
     } else if (window.location.pathname.includes('d_offerning-solution.html')) {
         originalRecords = offering_solution_data;
         pageId = 'VK_card_parent4';
         isFPGAServicePage = false;
         edge_accelerator = false;
+        cloudetv = false;
     } else if (window.location.pathname.includes('d_offerning-system.html')) {
         originalRecords = offering_solution_data;
         isFPGAServicePage = false;
         pageId = 'VK_card_parent5';
         edge_accelerator = false;
+        cloudetv = false;
     } else if (window.location.pathname.includes('d_fpga-service.html')) {
         originalRecords = partner_servie_data;
         pageId = 'VK_card_parent6';
         isFPGAServicePage = true;
         edge_accelerator = false;
+        cloudetv = false;
     } else if (window.location.pathname.includes('d_partner-manufacturer.html')) {
         originalRecords = partner_manufacturer_data;
         pageId = 'VK_card_parent7';
         isFPGAServicePage = true;
         edge_accelerator = false;
+        cloudetv = false;
     } else if (window.location.pathname.includes('d_partner-provider.html')) {
         originalRecords = partner_provider_data;
         pageId = 'VK_card_parent8';
         isFPGAServicePage = true;
         edge_accelerator = false;
+        cloudetv = false;
     } else if (window.location.pathname.includes('d_featured-edge-accelerator.html')) {
         originalRecords = feature_edge_acceleraror;
         pageId = 'VK_card_parent9';
         isFPGAServicePage = false;
         edge_accelerator = true
+        cloudetv = false;
     } else if (window.location.pathname.includes('d_featured-networking-accelerator.html')) {
         originalRecords = feature_network_acceleraror;
         pageId = 'VK_card_parent10';
         isFPGAServicePage = false;
         edge_accelerator = true
+        cloudetv = false;
     } else if (window.location.pathname.includes('d_featured-ai.html')) {
         originalRecords = feature_ai;
         pageId = 'VK_card_parent11';
         isFPGAServicePage = false;
         edge_accelerator = false
+        cloudetv = false;
     } else if (window.location.pathname.includes('d_designed-ai.html')) {
         originalRecords = design_ai;
         pageId = 'VK_card_parent12';
         isFPGAServicePage = false;
+        edge_accelerator = false;
+        cloudetv = false;
+    } else if (window.location.pathname.includes('d_couldtv.html')) {
+        originalRecords = cloud_episode;
+        pageId = 'VK_card_parent13';
+        isFPGAServicePage = false;
         edge_accelerator = false
+        cloudetv = true;
     } else {
         console.error('Unknown page');
         return;
@@ -2734,6 +2823,21 @@ function initializePage() {
                                 </div>
                             </div>
                         </div>`
+                    } else if (cloudetv) {
+                        VK_card_map.innerHTML += `
+                        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+                            <div class="d_box h-100">
+                                <div class="d_img">
+                                    <img src="/img/darshan_image/${result[i].image}" alt="">
+                                </div>
+                                <div class="d_content">
+                                    <h3><a href="">${result[i].name}</a></h3>
+                                </div>
+                                <div class="d_pargraph">
+                                    <p>${result[i].desc}</p>
+                                </div>
+                        </div>
+                    </div>`
                     } else {
                         VK_card_map.innerHTML += `
                         <div class="col-xxl-3 VK_result_card col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12 p-3">
@@ -4186,19 +4290,21 @@ if (D_pdfmaterial7) {
     }
 }
 
+if (document.getElementById('show-more-btn')) {
+    document.getElementById('show-more-btn').addEventListener('click', function () {
+        var myCard = document.getElementById('my-card');
+        var icon = document.getElementById('toggle-icon');
+        var isHidden = myCard.classList.contains('ds_use-hidden');
 
-document.getElementById('show-more-btn').addEventListener('click', function () {
-    var myCard = document.getElementById('my-card');
-    var icon = document.getElementById('toggle-icon');
-    var isHidden = myCard.classList.contains('ds_use-hidden');
+        if (isHidden) {
+            myCard.classList.remove('ds_use-hidden');
+            myCard.classList.add('ds_use-show');
+            this.innerHTML = '<i id="toggle-icon" class="fa-solid fa-angle-up me-1"></i> Show Less';
+        } else {
+            myCard.classList.remove('ds_use-show');
+            myCard.classList.add('ds_use-hidden');
+            this.innerHTML = '<i id="toggle-icon" class="fa-solid fa-angle-down me-1"></i> Show More';
+        }
+    });
 
-    if (isHidden) {
-        myCard.classList.remove('ds_use-hidden');
-        myCard.classList.add('ds_use-show');
-        this.innerHTML = '<i id="toggle-icon" class="fa-solid fa-angle-up me-1"></i> Show Less';
-    } else {
-        myCard.classList.remove('ds_use-show');
-        myCard.classList.add('ds_use-hidden');
-        this.innerHTML = '<i id="toggle-icon" class="fa-solid fa-angle-down me-1"></i> Show More';
-    }
-});
+}
