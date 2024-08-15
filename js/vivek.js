@@ -2123,3 +2123,15 @@ document?.querySelector('.btn-close')?.addEventListener('click', function (event
     let modal = bootstrap.Modal.getInstance(document.getElementById('exampleModal'));
     modal.hide(); // Hides the modal
 });
+
+
+
+function VK_cpu_nav(id){
+    for(let i = 1; i<=3; i++){
+        document.getElementById(`VK_cpu_nav${i}`).classList.add('d-none');
+        document.getElementById(`VK_cpu_nav_bar${i}`).classList.remove('VK_cpu_active');
+    }
+    document.getElementById(`VK_cpu_nav${id}`).classList.remove('d-none');
+    document.getElementById(`VK_cpu_nav_bar${id}`).classList.add('VK_cpu_active');
+
+}
