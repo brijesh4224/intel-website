@@ -4438,41 +4438,6 @@ function renderDocuments() {
     container.innerHTML = documents.map(createDocumentElement).join('');
     var total = document.getElementById('b_total');
     total.innerHTML = `${documents.length} Results`;
-    var subs = document.getElementsByClassName('hide');
-    var subs1 = document.getElementsByClassName('hide_1');
-    for (var i = 0; i < subs.length; i++) {
-        subs[i].classList.remove('active');
-    }
-    
-    for (var j = 0; j < subs1.length; j++) {
-        subs1[j].style.display = "none";
-    }
-    content_type(cat.all);
-}
-function data(x){
-    const res = x.replace(/[®]/g, '');
-    console.log("reeees",res);
-    var data= documents.filter((ele,ind)=>{
-        return ele.cat1==x || ele.cat2==x || ele.cat3==x || ele.cat4==x
-    })
-        var total = document.getElementById('b_total');
-    total.innerHTML = `${data.length} Results`
-    console.log(data);
-    const container = document.getElementById('documentContainer');
-    container.innerHTML = data.map(createDocumentElement).join('');
-    con(x);
-}
-function con(x){
-    console.log("x",x);
-    const res = x.replace(/[-\s()®]/g, '_');
-    console.log('res',res);
-    if(cat.res == undefined){
-        var data1=['Design Examples'];
-    }
-    else {
-        var data1=cat.res;
-    }
-    content_type(data1);
 }
 function content(x){
     console.log(x);
