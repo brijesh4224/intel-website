@@ -1,304 +1,3 @@
-// const data = [
-//     {
-//         date: "August 1st, 2024",
-//         title: "Global Retailer Improves IT Operations",
-//         description: "The retailer used remote management capabilities of Intel vPro platform to maintain POS devices and back-office computers.",
-//         link: "#",
-//         image: "/img/Monika_img/rcs_5.avif"
-//     },
-//     {
-//         date: "July 25th, 2024",
-//         title: "Winning Health Optimizes LLMs in Healthcare",
-//         description: "Winning Health LLM, WINGPT, leveraging Intel technology, meets performance demands for healthcare institutions.",
-//         link: "#",
-//         image: "/img/Monika_img/rcs_6.webp"
-//     },
-//     {
-//         date: "July 25th, 2024",
-//         title: "Winning Health Optimizes LLMs in Healthcare",
-//         description: "Winning Health LLM, WINGPT, leveraging Intel technology, meets performance demands for healthcare institutions.",
-//         link: "#",
-//         image: "/img/Monika_img/rcs_7.webp"
-//     },
-//     {
-//         date: "July 25th, 2024",
-//         title: "Winning Health Optimizes LLMs in Healthcare",
-//         description: "Winning Health LLM, WINGPT, leveraging Intel technology, meets performance demands for healthcare institutions.",
-//         link: "#",
-//         image: "/img/Monika_img/rcs_8.webp"
-//     },
-//     {
-//         date: "July 25th, 2024",
-//         title: "Winning Health Optimizes LLMs in Healthcare",
-//         description: "Winning Health LLM, WINGPT, leveraging Intel technology, meets performance demands for healthcare institutions.",
-//         link: "#",
-//         image: "/img/Monika_img/rcs_6.webp"
-//     },
-//     {
-//         date: "July 25th, 2024",
-//         title: "Winning Health Optimizes LLMs in Healthcare",
-//         description: "Winning Health LLM, WINGPT, leveraging Intel technology, meets performance demands for healthcare institutions.",
-//         link: "#",
-//         image: "/img/Monika_img/rcs_6.webp"
-//     },
-//     {
-//         date: "July 25th, 2024",
-//         title: "Winning Health Optimizes LLMs in Healthcare",
-//         description: "Winning Health LLM, WINGPT, leveraging Intel technology, meets performance demands for healthcare institutions.",
-//         link: "#",
-//         image: "/img/Monika_img/rcs_6.webp"
-//     },
-//     {
-//         date: "July 25th, 2024",
-//         title: "Winning Health Optimizes LLMs in Healthcare",
-//         description: "Winning Health LLM, WINGPT, leveraging Intel technology, meets performance demands for healthcare institutions.",
-//         link: "#",
-//         image: "/img/Monika_img/rcs_5.avif"
-//     },
-//     {
-//         date: "July 25th, 2024",
-//         title: "Winning Health Optimizes LLMs in Healthcare",
-//         description: "Winning Health LLM, WINGPT, leveraging Intel technology, meets performance demands for healthcare institutions.",
-//         link: "#",
-//         image: "/img/Monika_img/rcs_5.avif"
-//     },
-//     {
-//         date: "July 25th, 2024",
-//         title: "Winning Health Optimizes LLMs in Healthcare",
-//         description: "Winning Health LLM, WINGPT, leveraging Intel technology, meets performance demands for healthcare institutions.",
-//         link: "#",
-//         image: "/img/Monika_img/rcs_5.avif"
-//     },
-//     {
-//         date: "July 25th, 2024",
-//         title: "Winning Health Optimizes LLMs in Healthcare",
-//         description: "Winning Health LLM, WINGPT, leveraging Intel technology, meets performance demands for healthcare institutions.",
-//         link: "#",
-//         image: "/img/Monika_img/rcs_5.avif"
-//     },
-//     {
-//         date: "July 25th, 2024",
-//         title: "Winning Health Optimizes LLMs in Healthcare",
-//         description: "Winning Health LLM, WINGPT, leveraging Intel technology, meets performance demands for healthcare institutions.",
-//         link: "#",
-//         image: "/img/Monika_img/rcs_5.avif"
-//     },
-//     {
-//         date: "July 25th, 2024",
-//         title: "Winning Health Optimizes LLMs in Healthcare",
-//         description: "Winning Health LLM, WINGPT, leveraging Intel technology, meets performance demands for healthcare institutions.",
-//         link: "#",
-//         image: "/img/Monika_img/rcs_5.avif"
-//     },
-//     {
-//         date: "July 25th, 2024",
-//         title: "Winning Health Optimizes LLMs in Healthcare",
-//         description: "Winning Health LLM, WINGPT, leveraging Intel technology, meets performance demands for healthcare institutions.",
-//         link: "#",
-//         image: "/img/Monika_img/rcs_5.avif"
-//     },
-//     {
-//         date: "July 25th, 2024",
-//         title: "Winning Health Optimizes LLMs in Healthcare",
-//         description: "Winning Health LLM, WINGPT, leveraging Intel technology, meets performance demands for healthcare institutions.",
-//         link: "#",
-//         image: "/img/Monika_img/rcs_5.avif"
-//     },
-//     {
-//         date: "July 25th, 2024",
-//         title: "Winning Health Optimizes LLMs in Healthcare",
-//         description: "Winning Health LLM, WINGPT, leveraging Intel technology, meets performance demands for healthcare institutions.",
-//         link: "#",
-//         image: "/img/Monika_img/rcs_5.avif"
-//     },
-//     {
-//         date: "July 25th, 2024",
-//         title: "Winning Health Optimizes LLMs in Healthcare",
-//         description: "Winning Health LLM, WINGPT, leveraging Intel technology, meets performance demands for healthcare institutions.",
-//         link: "#",
-//         image: "/img/Monika_img/rcs_5.avif"
-//     },
-//     {
-//         date: "July 25th, 2024",
-//         title: "Winning Health Optimizes LLMs in Healthcare",
-//         description: "Winning Health LLM, WINGPT, leveraging Intel technology, meets performance demands for healthcare institutions.",
-//         link: "#",
-//         image: "/img/Monika_img/rcs_5.avif"
-//     },
-//     {
-//         date: "July 25th, 2024",
-//         title: "Winning Health Optimizes LLMs in Healthcare",
-//         description: "Winning Health LLM, WINGPT, leveraging Intel technology, meets performance demands for healthcare institutions.",
-//         link: "#",
-//         image: "/img/Monika_img/rcs_5.avif"
-//     },
-//     {
-//         date: "July 25th, 2024",
-//         title: "Winning Health Optimizes LLMs in Healthcare",
-//         description: "Winning Health LLM, WINGPT, leveraging Intel technology, meets performance demands for healthcare institutions.",
-//         link: "#",
-//         image: "/img/Monika_img/rcs_5.avif"
-//     },
-//     {
-//         date: "July 25th, 2024",
-//         title: "Winning Health Optimizes LLMs in Healthcare",
-//         description: "Winning Health LLM, WINGPT, leveraging Intel technology, meets performance demands for healthcare institutions.",
-//         link: "#",
-//         image: "/img/Monika_img/rcs_5.avif"
-//     },
-//     {
-//         date: "July 25th, 2024",
-//         title: "Winning Health Optimizes LLMs in Healthcare",
-//         description: "Winning Health LLM, WINGPT, leveraging Intel technology, meets performance demands for healthcare institutions.",
-//         link: "#",
-//         image: "/img/Monika_img/rcs_5.avif"
-//     },
-//     {
-//         date: "July 25th, 2024",
-//         title: "Winning Health Optimizes LLMs in Healthcare",
-//         description: "Winning Health LLM, WINGPT, leveraging Intel technology, meets performance demands for healthcare institutions.",
-//         link: "#",
-//         image: "/img/Monika_img/rcs_5.avif"
-//     },
-//     {
-//         date: "July 25th, 2024",
-//         title: "Winning Health Optimizes LLMs in Healthcare",
-//         description: "Winning Health LLM, WINGPT, leveraging Intel technology, meets performance demands for healthcare institutions.",
-//         link: "#",
-//         image: "/img/Monika_img/rcs_5.avif"
-//     }
-// ];
-
-
-// const itemsPerPage = 8;
-// let currentPage = 1;
-
-// function renderCards() {
-//     const startIndex = (currentPage - 1) * itemsPerPage;
-//     const endIndex = startIndex + itemsPerPage;
-//     const currentItems = data.slice(startIndex, endIndex);
-
-//     const m_re_cardContainer = document.getElementById('m_re_cardContainer');
-//     m_re_cardContainer.innerHTML = '';
-
-//     currentItems.forEach(item => {
-//         const card = document.createElement('div');
-//         card.classList.add('m_re_card-item');
-//         card.innerHTML = `
-//     <img src="${item.image}" alt="${item.title}">
-//     <div class="m_re_card-date">${item.date}</div>
-//     <h3 class="m_re_card-title m_subHeading m_color m_underline ">${item.title}</h3>
-//     <p class="m_re_card-description">${item.description}</p>
-//     <a class="m_re_card-link" href="${item.link}">Learn More</a>
-// `;
-//         m_re_cardContainer.appendChild(card);
-//     });
-
-//     document.getElementById('m_re_currentPageTop').value = currentPage;
-//     document.getElementById('m_re_currentPageBottom').value = currentPage;
-// }
-
-// function updatePagination() {
-//     const totalPages = Math.ceil(data.length / itemsPerPage);
-//     document.getElementById('m_re_totalPagesTop').innerText = totalPages;
-//     document.getElementById('m_re_totalPagesBottom').innerText = totalPages;
-
-//     document.getElementById('m_re_prevPageTop').disabled = currentPage === 1;
-//     document.getElementById('m_re_nextPageTop').disabled = currentPage === totalPages;
-//     document.getElementById('m_re_prevPageBottom').disabled = currentPage === 1;
-//     document.getElementById('m_re_nextPageBottom').disabled = currentPage === totalPages;
-// }
-
-// function goToPage(page) {
-//     const totalPages = Math.ceil(data.length / itemsPerPage);
-//     if (page >= 1 && page <= totalPages) {
-//         currentPage = page;
-//         renderCards();
-//         updatePagination();
-//     }
-// }
-
-// document.getElementById('m_re_prevPageTop').addEventListener('click', () => {
-//     if (currentPage > 1) {
-//         currentPage--;
-//         renderCards();
-//         updatePagination();
-//     }
-// });
-
-// document.getElementById('m_re_nextPageTop').addEventListener('click', () => {
-//     const totalPages = Math.ceil(data.length / itemsPerPage);
-//     if (currentPage < totalPages) {
-//         currentPage++;
-//         renderCards();
-//         updatePagination();
-//     }
-// });
-
-// document.getElementById('m_re_prevPageBottom').addEventListener('click', () => {
-//     if (currentPage > 1) {
-//         currentPage--;
-//         renderCards();
-//         updatePagination();
-//     }
-// });
-
-// document.getElementById('m_re_nextPageBottom').addEventListener('click', () => {
-//     const totalPages = Math.ceil(data.length / itemsPerPage);
-//     if (currentPage < totalPages) {
-//         currentPage++;
-//         renderCards();
-//         updatePagination();
-//     }
-// });
-
-// document.getElementById('m_re_currentPageTop').addEventListener('change', (e) => {
-//     goToPage(parseInt(e.target.value, 10));
-// });
-
-// document.getElementById('m_re_currentPageBottom').addEventListener('change', (e) => {
-//     goToPage(parseInt(e.target.value, 10));
-// });
-
-// document.addEventListener('DOMContentLoaded', () => {
-//     renderCards();
-//     updatePagination();
-// });
-
-
-
-// const cardsData = [
-//     {
-//         imgSrc: '/img/Monika_img/rcs_5.avif',
-//         date: 'August 2nd, 2024',
-//         title: 'ENGIE Digital Optimizes Cloud Cost Spend',
-//         description: 'ENGIE Digital uses Intel® Cloud Optimizer to manage cloud cost, enabling it to maintain and operate its renewable assets.',
-//         link: '#'
-//     },
-//     {
-//         imgSrc: '/img/Monika_img/rcs_5.avif',
-//         date: 'August 2nd, 2024',
-//         title: 'ENGIE Digital Optimizes Cloud Cost Spend',
-//         description: 'ENGIE Digital uses Intel® Cloud Optimizer to manage cloud cost, enabling it to maintain and operate its renewable assets.',
-//         link: '#'
-//     },
-// ];  
-// const container = document.querySelector('.m_re_con');
-
-// const cardsHTML = cardsData.map(card => `
-//     <div class="m_re_card-item">
-//         <img src="${card.imgSrc}" alt="">
-//         <div class="m_re_card-date">${card.date}</div>
-//         <h3 class="m_re_card-title m_subHeading m_color m_underline ">${card.title}</h3>
-//         <p class="m_re_card-description">${card.description}</p>
-//         <a class="m_re_card-link" href="${card.link}">Learn More</a>
-//     </div>
-// `).join('');
-
-// container.innerHTML = cardsHTML;
-
-
-
 const cardsData = [
     {
         imgSrc: '/img/Monika_img/rcs_5.avif',
@@ -406,7 +105,7 @@ const viewAllBtn = document.getElementById('m_re_viewAll');
 const viewAllBtn2 = document.getElementById('m_re_viewAll2');
 const viewLessBtn = document.getElementById('m_re_viewLess');
 const paginationControls = document.querySelectorAll('.m_re_pgcon');
-const topPaginationControl = document.querySelector('.m_re_pgcon.top-pagination'); // Assuming the top pagination has this extra class
+const topPaginationControl = document.querySelector('.m_re_pgcon.top-pagination'); 
 
 totalPagesElement.textContent = totalPages;
 totalPagesBottomElement.textContent = totalPages;
@@ -419,9 +118,9 @@ function renderCards() {
 
     let paginatedCards;
     if (isViewAll) {
-        paginatedCards = cardsData; // Show all cards
+        paginatedCards = cardsData; 
     } else {
-        paginatedCards = cardsData.slice(start, end); // Show paginated cards
+        paginatedCards = cardsData.slice(start, end); 
     }
 
     const cardsHTML = paginatedCards.map(card => `
@@ -459,16 +158,16 @@ function toggleViewAll() {
         viewAllBtn.style.display = 'none';
         viewLessBtn.style.display = 'inline';
         if (topPaginationControl) {
-            topPaginationControl.classList.remove('m_re_pgcon'); // Remove the class for top pagination
+            topPaginationControl.classList.remove('m_re_pgcon'); 
         }
     } else {
         paginationControls.forEach(control => control.style.display = 'flex');
         viewAllBtn.style.display = 'inline';
         viewLessBtn.style.display = 'none';
         if (topPaginationControl) {
-            topPaginationControl.classList.add('m_re_pgcon'); // Restore the class for top pagination
+            topPaginationControl.classList.add('m_re_pgcon'); 
         }
-        goToPage(1); // Reset to the first page when toggling back to paginated view
+        goToPage(1); 
     }
 
     renderCards();
@@ -486,8 +185,7 @@ viewAllBtn.addEventListener('click', toggleViewAll);
 viewAllBtn2.addEventListener('click', toggleViewAll);
 viewLessBtn.addEventListener('click', toggleViewAll);
 
-// Initial setup
-viewLessBtn.style.display = 'none'; // Hide 'View Less' initially
+viewLessBtn.style.display = 'none'; 
 renderCards();
 
 $(document).ready(function(){
@@ -519,8 +217,84 @@ $(document).ready(function(){
         $(".m_re_im").removeClass("m_cardTran2");
         $(".m_re_card-link").removeClass("m_cardTran3");
     });
-    
-
-
-
 })
+
+
+// Refine Filter
+document.querySelectorAll('.m_re_dropdownBtn').forEach(button => {
+    button.addEventListener('click', (e) => {
+        e.stopPropagation(); 
+        const dropdownContent = button.nextElementSibling;
+        const isVisible = dropdownContent.style.display === 'block';
+
+        document.querySelectorAll('.m_re_dropdownContent').forEach(dropdown => {
+            dropdown.style.display = 'none';
+            dropdown.previousElementSibling.classList.remove('active'); 
+        });
+
+        if (!isVisible) {
+            dropdownContent.style.display = 'block';
+            button.classList.add('active'); 
+        } else {
+            dropdownContent.style.display = 'none';
+            button.classList.remove('active'); 
+        }
+    });
+});
+
+window.addEventListener('click', function (e) {
+    if (!e.target.closest('.m_re_dropdown')) {
+        document.querySelectorAll('.m_re_dropdownContent').forEach(dropdown => {
+            dropdown.style.display = 'none';
+            dropdown.previousElementSibling.classList.remove('active'); 
+        });
+    }
+});
+
+const selectedValuesContainer = document.querySelector('.selectedValues');
+const filterContainer = document.querySelector('.m_re_fcon');
+
+document.querySelectorAll('.m_re_customCheckbox').forEach(checkbox => {
+    checkbox.addEventListener('change', function () {
+        updateSelectedValues();
+        toggleFilterContainer();
+    });
+});
+
+function updateSelectedValues() {
+    selectedValuesContainer.innerHTML = ''; 
+
+    document.querySelectorAll('.m_re_customCheckbox:checked').forEach(checkedBox => {
+        const valueSpan = document.createElement('div');
+        valueSpan.textContent = checkedBox.value;
+
+        const removeBtn = document.createElement('span');
+        removeBtn.innerHTML = '&times;';
+        removeBtn.classList.add('remove-btn');
+
+        valueSpan.appendChild(removeBtn);
+
+        selectedValuesContainer.appendChild(valueSpan);
+
+        removeBtn.addEventListener('click', function () {
+            document.querySelector(`.m_re_customCheckbox[value="${checkedBox.value}"]`).checked = false;
+            valueSpan.remove();
+            toggleFilterContainer();
+        });
+    });
+}
+
+function toggleFilterContainer() {
+    const hasSelectedValues = document.querySelectorAll('.m_re_customCheckbox:checked').length > 0;
+    filterContainer.style.display = hasSelectedValues ? 'block' : 'none';
+}
+
+document.querySelector('.m_re_fval p').addEventListener('click', function () {
+    document.querySelectorAll('.m_re_customCheckbox').forEach(checkbox => {
+        checkbox.checked = false;
+    });
+    selectedValuesContainer.innerHTML = ''; 
+    toggleFilterContainer(); 
+});
+
+toggleFilterContainer();
