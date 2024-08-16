@@ -1423,8 +1423,8 @@ document.addEventListener('DOMContentLoaded', function () {
 const navBar = document?.querySelector('.VK_ai_nav_bar');
 
 let isDragging = false;
-let startX; 
-let scrollLeft; 
+let startX;
+let scrollLeft;
 
 navBar?.addEventListener('mousedown', (e) => {
     isDragging = true;
@@ -1434,10 +1434,10 @@ navBar?.addEventListener('mousedown', (e) => {
 });
 
 navBar?.addEventListener('mousemove', (e) => {
-    if (!isDragging) return; 
+    if (!isDragging) return;
     e.preventDefault();
     const x = e.pageX - navBar.offsetLeft;
-    const walk = (x - startX) * 2; 
+    const walk = (x - startX) * 2;
     navBar.scrollLeft = scrollLeft - walk;
 });
 
@@ -1449,7 +1449,7 @@ navBar?.addEventListener('mouseup', () => {
 
 navBar?.addEventListener('mouseleave', () => {
     isDragging = false;
-    navBar.classList.remove('active'); 
+    navBar.classList.remove('active');
 });
 
 
@@ -2102,13 +2102,15 @@ function VK_scikit_acc(id) {
     el.src = `/img/vivek/${img[id]}`;
 }
 
+
 function VK_scikit_model(id) {
     let model_img = ['VK_scikit_model1.png', 'VK_scikit_model2.png', 'VK_scikit_model3.png'];
     let el = document.getElementById('VK_scikit_img_model');
     el.src = `/img/vivek/${model_img[id]}`;
-    let modal = new bootstrap.Modal(document.getElementById('exampleModal'));
+    let modal = new bootstrap.Modal(document.getElementById('VK_scikit_model'));
     modal.show();
 }
+
 
 function VK_aitools_model(id) {
     let model_img = ['VK_ai_tool1.png', 'VK_ai_tool2.png', 'VK_ai_tools3.png'];
@@ -2119,19 +2121,59 @@ function VK_aitools_model(id) {
 }
 
 document?.querySelector('.btn-close')?.addEventListener('click', function (event) {
-    event.preventDefault(); // Prevents the default form submission
-    let modal = bootstrap.Modal.getInstance(document.getElementById('exampleModal'));
-    modal.hide(); // Hides the modal
+    event?.preventDefault();
+    let modal = bootstrap.Modal?.getInstance(document.getElementById('exampleModal'));
+    modal?.hide();
 });
 
 
 
-function VK_cpu_nav(id){
-    for(let i = 1; i<=3; i++){
+function VK_cpu_nav(id) {
+    for (let i = 1; i <= 3; i++) {
         document.getElementById(`VK_cpu_nav${i}`).classList.add('d-none');
         document.getElementById(`VK_cpu_nav_bar${i}`).classList.remove('VK_cpu_active');
     }
     document.getElementById(`VK_cpu_nav${id}`).classList.remove('d-none');
     document.getElementById(`VK_cpu_nav_bar${id}`).classList.add('VK_cpu_active');
 
+}
+
+
+// ------------------------ grafics ------------------------
+
+function VK_arc_img(id) {
+
+    let img = ['VK_arc8.png', 'VK_arc9.Jpg', 'VK_arc10.png', 'VK_arc11.png'];
+    let desc = [
+        'Experience supercharged gaming and cutting-edge creation experiences across the Intel Arc A-series family. From high performance AAA gaming on Intel Arc 7 graphics to enhanced mainstream gaming on Intel Arc 3 graphics, there’s an Arc graphics card for your gaming adventure.'
+        ,
+        'Create compelling content, powered by the first graphics card with support for all current leading media formats, and keep yourself up to date with the most advanced AV1 video encode capabilities.'
+        ,
+        'Create stunning visual experiences for retail, education, and commercial gaming. Deploy media processing and AI-enhanced applications from smart factories to smart cities. Boost the performance of edge workloads with Intel® Arc™ GPU.'
+        ,
+        'Boost your workstation graphics experience with the Intel Arc professional range of GPUs. With extensive ISV certifications, this modern GPU range unites fluid viewports and the latest visual technologies with built-in ray tracing and AI acceleration in your favorite workstation software.'
+    ];
+    for (let i = 0; i < 4; i++) {
+        document.getElementById(`VK_src_ac${i}`).classList.remove('VK_arc_active');
+    }
+    document.getElementById(`VK_src_ac${id}`).classList.add('VK_arc_active');
+    let el = document.getElementById('VK_arc_img');
+    let dsc = document.getElementById('VK_arc_img_desc');
+    el.src = `/img/vivek/${img[id]}`;
+    dsc.innerHTML = desc[id]
+}
+
+
+
+
+// -------------------------------------------------------  data center cpu  --------------------------------------------------------
+
+function VK_data_nav(id){
+    let section = ['VK_data_tools_library','VK_data_ai_workflow','VK_data_hpc','VK_data_storise']
+    for(let i=0; i<4; i++){
+        document.getElementById(section[i]).classList.add('d-none');
+        document.getElementById(`VK_center_menu${i}`).classList.remove('VK_center_active');
+    }
+    document.getElementById(section[id]).classList.remove('d-none');
+    document.getElementById("VK_center_menu"+id).classList.add('VK_center_active');
 }
