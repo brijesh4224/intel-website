@@ -571,3 +571,72 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 });
 
+$(function () {
+  // Show the first section by default
+  $('.content-section').first().show();
+  $('.k_navigation__link').first().addClass('active');
+
+  $('.k_navigation').on('click', '.k_navigation__link', function (e) {
+      e.preventDefault();
+      var targetId = $(this).attr('href');
+      
+      // Hide all sections and remove active class from all links
+      $('.content-section').hide();
+      $('.k_navigation__link').removeClass('active');
+      
+      // Show the target section and add active class to the clicked link
+      $(targetId).show();
+      $(this).addClass('active');
+  });
+});
+$(document).ready(function(){
+  function initOwlCarousel() {
+      if ($(window).width() <= 425) {
+          $('.performance-slider').owlCarousel({
+              items: 1,
+              loop: true,
+              margin: 10,
+              nav: false,
+              dots: true,
+              dots:true,
+              responsive: {
+                  0: {
+                      items: 1
+                  }
+              }
+          });
+      } else {
+          $('.performance-slider').owlCarousel('destroy');
+      }
+  }
+
+  initOwlCarousel();
+
+  $(window).resize(function() {
+      initOwlCarousel();
+  });
+});
+
+
+$(document).ready(function(){
+  $('.perfor-slider').owlCarousel({
+      loop: true,
+      margin: 10,
+      nav: true,
+      navText: ['<span>&lt;</span>','<span>&gt;</span>'],
+      dots: true,
+      items: 1,
+      dotsEach: 1,
+      responsive: {
+                  0: {
+                      items: 1
+                  },
+                  600: {
+                      items: 3
+                  },
+                  1000: {
+                      items: 3
+                  }
+              }
+  });
+});
