@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Numenta and Intel Accelerate Inference</title>
+
+    <!-- font family -->
+    <link href="https://fonts.cdnfonts.com/css/intel-clear" rel="stylesheet">
+
+    <!-- boootstap file -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <!-- all.min file -->
+    <link rel="stylesheet" href="/css/all.min.css">
+
+    <!-- costom css file -->
+    <link rel="stylesheet" href="/css/d_home.css">
+
+    <!-- https://www.intel.com/content/www/us/en/customer-spotlight/stories/numenta-hbm-customer-story.html -->
+
+</head>
+
+<body>
+
+    <!-- Banner section start -->
+
+    <section class="d_numetabanner">
+        <div class="d_container">
+            <div class="d_heading text-start">
+                <h2 class="h3">Numenta and Intel Accelerate Inference</h2>
+                <p>Custom-trained large language models can run faster when they run on Intel® Xeon® CPU Max Series
+                    processors with HBM.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Banner section end -->
+
+    <section class="d_summery d_p-40">
+        <div class="d_container">
+            <div class="row m-0">
+                <div class="col-xs-12 col-sm-4 col-md-3">
+                    <div class="d_left">
+                        <div class="d_box">
+                            <h2>At a glance:</h2>
+                            <ul>
+                                <li class="pb-1">Numenta, a pioneer in applying brain-based principles to develop innovative AI
+                                    solutions, has made breakthrough advances in AI and Deep Learning.</li>
+                                <li>Numenta demonstrated their custom-trained large language models can run faster for
+                                    large documents (long sequence lengths) when they run on Intel® Xeon® CPU Max Series
+                                    processors with high bandwidth memory (HBM) on the processor</li>
+                            </ul>
+                            <div class="d_cta pb-3">
+                                <a href="" class="d-block d-sm-inline-block text-center">Download the one-page
+                                    summary</a>
+                            </div>
+                        </div>
+                        <p class="d_list">
+                            <span>Lawrence Spracklen, Numenta</span>
+                            <span>Christy Maver, Numenta</span>
+                            <span>Nick Payton, Intel</span>
+                            <span>Vikram Saletore, Intel</span>
+                        </p>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-8 col-md-9">
+                    <div class="d_right">
+                        <p></p>
+                        <h2 class="d_head">Summary</h2>
+                        <p>Natural language processing (NLP) has exploded with the evolution of transformers. But
+                            running these language models efficiently in production for either short text snippets, such
+                            as text messages or chats, with low latency requirements, or long documents with high
+                            throughput requirements, has been challenging–if not impossible–to do on a CPU.</p>
+                        <p>In <a href="">prior work</a>, Numenta showed how their custom-trained language models could
+                            run on 4th Gen Intel® Xeon® Scalable processors with 10ms latency and achieve 100x
+                            throughput speedup vs. current generation AMD Milan CPU implementations for BERT inference
+                            on short text sequences.1 In <a>this project</a> , Numenta showcases how their
+                            custom-trained large language models can run 20x faster for large documents (long sequence
+                            lengths) when they run on Intel® Xeon® CPU Max Series processors with high bandwidth memory
+                            located on the processor vs. current generation AMD Milan CPU implementations.2 In both
+                            cases, Numenta demonstrates the capacity to dramatically reduce the overall cost of running
+                            language models in production on Intel, unlocking entirely new NLP capabilities for
+                            customers.</p>
+                        <h2 class="d_head">Context</h2>
+                        <p>Numenta, a pioneer in applying brain-based principles to develop innovative AI solutions, has
+                            made breakthrough advances in AI and Deep Learning that enable customers to achieve 10 to
+                            more than 100X performance improvement across broad use cases, such as natural language
+                            processing and computer vision3. </p>
+                        <p>Numenta has been applying their expertise in accelerating large language models, helping
+                            customers improve inference performance on both short and long sequence length tasks without
+                            sacrificing accuracy. In NLP, long sequence length tasks involve analysis of documents or
+                            similarly lengthy strings of words, as opposed to shorter sequence length tasks that may be
+                            used to analyze sentences or text fragments in conversational AI. To further accelerate and
+                            simplify the workflow for these customers, Numenta has tested Intel’s recently released
+                            Intel Xeon Max Series CPU. </p>
+                        <p>The Intel Xeon CPU Max Series is an x86 CPU with high-bandwidth memory (HBM). The processor
+                            also includes the new <a href="">Intel® Advanced Matrix Extensions (Intel® AMX)</a>
+                            instructions set for fast matrix multiplication and the <a href="">OpenVINO toolkit</a> for
+                            automatic model optimization. The combination of Numenta’s neuroscience-inspired technology
+                            running on Intel Xeon Max Series CPUs led to this 20x gain in inference throughput on large
+                            language models.4 This demonstration proves that CPUs can be the most efficient, scalable,
+                            and powerful platform for inference on these large language models. </p>
+                        <p>Read further to learn more about the challenge of running inference for longer sequence
+                            lengths and how the combination of Numenta technology and Intel® hardware helps to address
+                            it. </p>
+                        <h2 class="d_head">Problem</h2>
+                        <p>The length of text that a transformer model typically analyzes when performing each inference
+                            operation varies significantly between application spaces. For real-time conversational
+                            applications, the model might just consider a single sentence of user input, whereas for
+                            applications such as question answering or document summarization each operation might
+                            consider entire paragraphs of text (or even entire documents). Transformer models do not
+                            operate on the text data directly. Rather, the input text is tokenized and translated into a
+                            series of embedding vectors, which are fed into the model. For <a href="">BERT-Large</a> ,
+                            each embedding vector comprises 1,024 elements, which, when represented using FP32, requires
+                            4 KB of state per token. </p>
+                        <p>BERT-Large can consider sequences of text that consist of up to 512 tokens, which amounts to
+                            2 MB of state for operations on large sequence lengths. This input flows through the
+                            transformer from layer to layer, and even gets expanded when interacting with certain linear
+                            layers, e.g., in BERT-Large this can be as large as 8 MB. In addition to state associated
+                            with holding these activations, state is required to hold the model weights, and significant
+                            temporary scratch space is required as the inputs are transformed by each layer.</p>
+                        <p>For newer <a href="">GPT</a> models, both the maximum sequence length and the size of the
+                            embedding vectors has increased. For instance, with GPT-J-6B, a sequence can contain up to
+                            2,048 tokens, with each embedding representing 16 KB of state, for a total of 32 MB for
+                            operations leveraging the maximum sequence length. As a result, especially when processing
+                            large text inputs, the working set associated with an inference operation can be
+                            significant.</p>
+                        <p>If we consider an inference server processing multiple input streams in parallel, while the
+                            model weights can be shared between processing operations, input state is unique to each
+                            stream, increasing linearly with the number of concurrent operations. </p>
+                        <p>Another difference between application spaces is the typical batch size. For real-time
+                            applications, batch sizes are small, often just 1 (minimum latency processing, responding in
+                            real-time to user interaction). However, for offline processing, overall throughput can
+                            typically be improved (at the expense of latency), by increasing the batch size, e.g.,
+                            processing 64, 128, or even 256 queries in parallel. As can be imagined, this further
+                            increases the working set required for each operation.</p>
+                        <p>On today’s multi-core processors, the processor’s on-chip cache resources are shared between
+                            the cores. For instance, a 4th Gen Intel Xeon processor with 56-cores, might have a ~112 MB
+                            level-3 cache integrated on chip. While this is a significant amount of cache, the per-core
+                            resources amount to 2 MB of cache when each core is being utilized. As a result, for larger
+                            transformer models especially, even operating on larger documents, there is insufficient
+                            cache to hold all of the necessary state, requiring that data be constantly staged to and
+                            from memory. This results in significant memory bandwidth utilization. </p>
+                        <p>When the working set is sufficiently small, the aggregate performance delivered by a
+                            processor can be compute bound, with the total achievable FLOPs (Floating Point Operations
+                            per second) approaching the values stated on company datasheets. However, when the working
+                            set is too large to be accommodated on chip, application performance is often first
+                            constrained by the available memory bandwidth and falls far short of the results that might
+                            be expected based solely on a processor’s compute power. </p>
+                        <p>As a result, the computational power of a processor is frequently underutilized when
+                            performing inference operations with large transformer models at scale. </p>
+                        <h2 class="d_head">Solution: Dramatic Acceleration of NLP Inference with Optimized Models, CPUs
+                        </h2>
+                        <p>Drawing on more than two decades of neuroscience research, Numenta has defined new
+                            architectures, data structures and algorithms that deliver disruptive performance
+                            improvements. When applied to models like GPT-3 or BERT-Large, they are dramatically more
+                            efficient for inference without sacrificing accuracy. Part of this is custom-training the
+                            model with hardware-aware optimized algorithms. And part of it entails optimizing runtime to
+                            fully utilize the computing platform for inference.</p>
+                        <p>Their brain-based techniques applied to a custom-trained version of BERT-Large enabled higher
+                            throughput in production. But running these models on prior generation CPU platforms like
+                            AMD Milan does not always achieve sufficient throughput to meet the needs of customers. As a
+                            result, many are forced to run with Nvidia A100s in production, which are far less cost
+                            efficient and much more time-intensive to maintain. For example, standing up a GPU system
+                            for NLP inference may take weeks of engineering time. Getting up and running with a
+                            comparable CPU platform typically takes a day or two. The same is true with any code changes
+                            required to meet the needs of changing datasets or customer demands. Each of these typically
+                            requires more engineering effort on a GPU platform versus a CPU platform.</p>
+                        <p>Numenta models are more compute efficient than traditional models, but this increased
+                            efficiency tends to place higher demands on memory bandwidth. When running large deep
+                            learning models at scale, typically memory bandwidth becomes the scaling limiter. HBM
+                            triples the memory bandwidth, allowing Numenta to better leverage the computational
+                            resources. </p>
+                        <p>This is where the new Xeon Max Series CPU makes a significant difference. Equipped with HBM,
+                            the aggregate off-chip bandwidth that can be sustained is over 3X higher than what’s
+                            available on processors without HBM technology.5</p>
+                        <p>Finally, as discussed in more detail here, the <a href="">Intel Xeon CPU Max Series</a>
+                            processor contains other innovations that accelerate deep-learning applications, including
+                            support for Intel AMX. Intel AMX not only introduces support for 16-bit BF16 operations,
+                            reducing the memory footprint associated with activation and weights, it also delivers
+                            significantly improved peak computational performance compared with what has been
+                            traditionally possible with <a href="">Intel® Advanced Vector Extensions 512 (Intel®
+                                AVX-512)</a> instructions. Intel AMX is also designed to pair well with the Xeon Max
+                            Series CPU. Intel AMX delivers a significant compute throughput acceleration, which
+                            typically results in converting an AI inference problem from compute to bandwidth bound. The
+                            move from 32-bit to 16-bit representations with Intel AMX essentially halves the bandwidth
+                            requirements and, in the process, delivers improved inference throughput with large models.
+                            But this significant increase in potential compute throughput increases memory bandwidth
+                            demands required to fully utilize Intel AMX, thereby converting the problem to be bandwidth
+                            bound. The Xeon Max CPU, with HBM located on the processor, is designed to seamlessly handle
+                            this challenge. </p>
+                        <h2 class="d_head">Results</h2>
+                        <p>To demonstrate the benefits of the synergistic combination of Intel’s latest generation of
+                            processors and Numenta’s technology, we chose to demonstrate BERT-Large inference throughput
+                            improvements when using large 512-element sequence lengths. This benchmark was undertaken
+                            using optimized ONNX models, which were run using Intel’s OpenVINO toolkit and the number of
+                            concurrent streams was matched to the available processor cores. Intel’s optimized, open,
+                            and scalable software available via oneAPI, enabled Numenta to efficiently integrate their
+                            technology into OpenVINO toolkit. </p>
+                        <p>The performance baseline was created using OpenVINO toolkit on a 48-core AMD Milan system,
+                            demonstrating the performance available to customers without the combination Numenta’s
+                            technology and Intel’s latest generation of <a href="">Intel® Xeon® processors</a> . As
+                            illustrated in Figure 1, moving from standard BERT-Large models (e.g., models on
+                            Huggingface.com) running on a 48-core AMD Milan system to using Numenta’s optimized
+                            BERT-Large models running on a 48-core Intel Xeon Max Series processor, inference throughput
+                            improved by over 20X.6</p>
+                        <div class="d_img">
+                            <img src="/img/darshan_image/numtum1.png" alt="">
+                        </div>
+                        <p></p>
+                        <p><em>Fig 1. For long sequence length of 512, this combination of technology achieved 20x
+                                throughput over current generation AMD Milan.6</em></p>
+                        <h2 class="d_head">Summary</h2>
+                        <p>For applications using large transformer models, this combination of technologies proves to
+                            be significantly more productive and efficient than was otherwise previously possible:</p>
+                        <ul>
+                            <li>Numenta’s optimized version of BERT-Large increases performance and is designed to fully
+                                leverage the target compute it will run on.</li>
+                            <li>The Intel Xeon CPU Max Series is a version of the 4th Gen Intel Xeon Scalable processor
+                                that locates HBM on the processor, enabling workloads that would otherwise be bandwidth
+                                constrained with 3x the bandwidth capacity.</li>
+                            <li>Intel AMX offers significant acceleration over prior-generation Intel AVX-512, making
+                                the 4th Gen Intel Xeon Scalable processors much more efficient in general for AI tasks.
+                            </li>
+                            <li>OpenVINO toolkit and the open oneAPI software stack maintained by Intel allow for a
+                                powerful developer experience that works seamlessly out of the box, vastly reducing
+                                maintenance overhead for engineering teams. </li>
+                            <li>With the Intel Xeon CPU Max Series and the Numenta optimized version of BERT-Large,
+                                Numenta was able to run at a fast enough throughput to meet their customer needs without
+                                having to run on Nvidia A100s. </li>
+                        </ul>
+                        <h2 class="d_head">Learn More</h2>
+                        <p>If you have a similar problem, you can get started with this same stack on your specific
+                            problem today:</p>
+                        <ul>
+                            <li>Apply for the Numenta private beta to explore how you can apply their AI technology on
+                                your own problems.</li>
+                            <li>
+                                <p><a href="">Access the Intel Xeon Max Series CPU via the Intel® DevCloud. </a></p>
+                            </li>
+                            <li>
+                                <p><a href="">Install OpenVINO toolkit today.</a></p>
+                            </li>
+                            <li>Run SigOpt for experiment tracking and hyperparameter optimization.</li>
+                        </ul>
+                        <p>Intel and Numenta have a wide range of solutions that fit your needs regardless of which AI
+                            problem you need to address.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Related Stories section start -->
+
+    <section class="d_p-40 d_story">
+        <div class="d_container">
+            <div class="row m-0">
+                <div class="col-xs-12 col-sm-9 col-lg-10">
+                    <h2>Explore Related Stories</h2>
+                </div>
+                <div class="col-xs-12 col-sm-3 col-lg-2">
+                    <div class="d_cta">
+                        <a href="" class="d-block d-sm-inline-block text-center">Intel Customer Spotlight <i
+                                class="fa-solid fa-arrow-right ms-1"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="row m-0 g-3">
+                <div class="col-xs-12 col-ms-6 col-sm-6 col-lg-3">
+                    <div class="d_box">
+                        <div class="d_img mb-3">
+                            <img src="/img/darshan_image/story1.avif" alt="">
+                        </div>
+                        <h3><a href="">Winning Health Optimizes LLMs in Healthcare</a></h3>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-ms-6 col-sm-6 col-lg-3">
+                    <div class="d_box">
+                        <div class="d_img mb-3">
+                            <img src="/img/darshan_image/story2.avif" alt="">
+                        </div>
+                        <h3><a href="">IBM watsonx.data Accelerates GenAI Data Analysis</a></h3>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-ms-6 col-sm-6 col-lg-3">
+                    <div class="d_box">
+                        <div class="d_img mb-3">
+                            <img src="/img/darshan_image/story3.avif" alt="">
+                        </div>
+                        <h3><a href="">Equideum Health: Revolutionizing Health Data</a></h3>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-ms-6 col-sm-6 col-lg-3">
+                    <div class="d_box">
+                        <div class="d_img mb-3">
+                            <img src="/img/darshan_image/story4.png" alt="">
+                        </div>
+                        <h3><a href="">Anodot Optimizes Anomaly Detection Services</a></h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Related Stories section end -->
+
+    <!-- Explore Related Products and Solutions section start -->
+
+    <section class="d_numentapro">
+        <div class="d_p-48">
+            <div class="d_container">
+                <div class="row m-0">
+                    <div class="col-xs-12">
+                        <h3>Explore Related Products and Solutions</h3>
+                    </div>
+                </div>
+                <div class="row g-3 m-0">
+                    <div class="col-xs-12 col-ms-6 col-sm-4 col-md-4">
+                        <div class="d_item">
+                            <div class="d_img mb-3">
+                                <img src="/img/darshan_image/pro1.jpg" alt="">
+                            </div>
+                            <h3><a href="">Intel® Xeon® Scalable Processors</a></h3>
+                            <p>Drive actionable insight, count on hardware-based security, and deploy dynamic service
+                                delivery with Intel® Xeon® Scalable processors.</p>
+                            <p><a href="">Learn more</a></p>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-ms-6 col-sm-4 col-md-4">
+                        <div class="d_item">
+                            <div class="d_img mb-3">
+                                <img src="/img/darshan_image/pro2.jpg" alt="">
+                            </div>
+                            <h3><a href="">Intel® Advanced Matrix Extensions (Intel® AMX)</a></h3>
+                            <p>Intel® AMX is a new built-in accelerator that improves the performance of deep-learning
+                                training and inference on the CPU and is ideal for workloads like natural-language
+                                processing, recommendation systems, and image recognition.</p>
+                            <p><a href="">Learn more</a></p>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-ms-6 col-sm-4 col-md-4">
+                        <div class="d_item">
+                            <div class="d_img mb-3">
+                                <img src="/img/darshan_image/pro3.jpg" alt="">
+                            </div>
+                            <h3><a href="">Intel® oneAPI Toolkit</a></h3>
+                            <p>The Intel® oneAPI Deep Neural Network Library helps developers improve productivity and
+                                enhance the performance of their deep learning frameworks.</p>
+                            <p><a href="">Learn more</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Explore Related Products and Solutions section End -->
+
+    <!-- linklist section start -->
+
+    <section class="d_linklist">
+        <div class="d_p-48">
+            <div class="d_container">
+                <div class="row m-0">
+                    <div class="col-xs-12 col-ms-6 col-sm-4 col-xl-4">
+                        <div class="d_box">
+                            <h3>Customer Stories and Case Studies</h3>
+                            <p>Explore the latest customer stories, case studies, and news releases highlighting
+                                data-centric innovations.</p>
+                            <ul>
+                                <li><a href="">Intel Customer Spotlight</a></li>
+                                <li><a href="">Intel Newsroom</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-ms-6 col-sm-4 col-xl-4">
+                        <div class="d_box">
+                            <h3>Data Center Workloads</h3>
+                            <p>Learn how Intel® technologies can help provide the scalability needed for high-demand
+                                workloads and applications.</p>
+                            <ul class="">
+                                <li><a href="">Advanced Analytics</a></li>
+                                <li><a href="">Artificial Intelligence (AI)</a></li>
+                                <li><a href="">Cloud Computing</a></li>
+                                <li><a href="">High Performance Computing (HPC)</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-ms-6 col-sm-4 col-xl-4">
+                        <div class="d_box">
+                            <h3>Data Center Insights</h3>
+                            <p>Get the latest information about Intel data center performance, flexibility, and
+                                scalability.</p>
+                            <ul>
+                                <li><a href="">Cloud Service Provider Resources</a></li>
+                                <li><a href="">Network Transformation & Communications Technology</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- linklist section end -->
+
+    <!-- Product and Performance Information section start -->
+
+    <section class="d_numentainfor  d_p-40">
+        <div class="d_container">
+            <div class="px-3">
+                <h6><b>Product and Performance Information</b></h6>
+                <div class="d_numetadis">
+                    <sup>1</sup>
+                    For more, see:
+                    https://edc.intel.com/content/www/us/en/products/performance/benchmarks/4th-generation-intel-xeon-scalable-processors/.
+                    Numenta: BERT-Large: Sequence Length 64, Batch Size 1, throughput optimized 3rd Gen Intel® Xeon®
+                    Scalable: Tested by Numenta as of 11/28/2022. 1-node, 2x Intel® Xeon®8375C on AWS m6i.32xlarge, 512
+                    GB DDR4-3200, Ubuntu 20.04 Kernel 5.15, OpenVINO 2022.3, Numenta-Optimized BERT-Large, Sequence
+                    Length 64, Batch Size 1 Intel® Xeon® 8480+: Tested by Numenta as of 11/28/2022. 1-node,
+                    pre-production platform with 2x Intel® Xeon® 8480+, 512 GB DDR5-4800, Ubuntu 22.04 Kernel 5.17,
+                    OpenVINO 2022.3, Numenta-Optimized BERT-Large, Sequence Length 64, Batch Size 1.
+                </div>
+                <div class="d_numetadis">
+                    <sup>2</sup>
+                    For more, see:
+                    https://www.intel.com/content/www/us/en/products/details/processors/xeon/max-series.html. Numenta
+                    BERT-Large: AMD Milan: Tested by Numenta as of 11/28/2022. 1-node, 2x AMD EPYC 7R13 on AWS
+                    m6a.48xlarge, 768 GB DDR4-3200, Ubuntu 20.04 Kernel 5.15, OpenVINO 2022.3, BERT-Large, Sequence
+                    Length 512, Batch Size 1. Intel® Xeon® 8480+: Tested by Numenta as of 11/28/2022. 1-node, 2x Intel®
+                    Xeon® 8480+, 512 GB DDR5-4800, Ubuntu 22.04 Kernel 5.17, OpenVINO 2022.3, Numenta-Optimized
+                    BERT-Large, Sequence Length 512, Batch Size 1. Intel® Xeon® Max 9468: Tested by Numenta as of
+                    11/30/2022. 1-node, 2x Intel® Xeon® Max 9468, 128 GB HBM2e 3200 MT/s, Ubuntu 22.04 Kernel 5.15,
+                    OpenVINO 2022.3, Numenta-Optimized BERT-Large, Sequence Length 512, Batch Size 1.
+                </div>
+                <div class="d_numetadis">
+                    <sup>3</sup>
+                    https://www.numenta.com
+                </div>
+                <div class="d_numetadis">
+                    <sup>4</sup>
+                    For more, see:
+                    https://www.intel.com/content/www/us/en/products/details/processors/xeon/max-series.html. Numenta
+                    BERT-Large: AMD Milan: Tested by Numenta as of 11/28/2022. 1-node, 2x AMD EPYC 7R13 on AWS
+                    m6a.48xlarge, 768 GB DDR4-3200, Ubuntu 20.04 Kernel 5.15, OpenVINO 2022.3, BERT-Large, Sequence
+                    Length 512, Batch Size 1. Intel® Xeon® 8480+: Tested by Numenta as of 11/28/2022. 1-node, 2x Intel®
+                    Xeon® 8480+, 512 GB DDR5-4800, Ubuntu 22.04 Kernel 5.17, OpenVINO 2022.3, Numenta-Optimized
+                    BERT-Large, Sequence Length 512, Batch Size 1. Intel® Xeon® Max 9468: Tested by Numenta as of
+                    11/30/2022. 1-node, 2x Intel® Xeon® Max 9468, 128 GB HBM2e 3200 MT/s, Ubuntu 22.04 Kernel 5.15,
+                    OpenVINO 2022.3, Numenta-Optimized BERT-Large, Sequence Length 512, Batch Size 1.
+                </div>
+                <div class="d_numetadis">
+                    <sup>5</sup>
+                    Intel® Xeon® 8380: Tested by Intel as of 10/7/2022. 1-node, 2x Intel® Xeon® 8380 CPU, HT On, Turbo
+                    On, Total Memory 256 GB (16x16GB 3200MT/s DDR4), BIOS Version SE5C620.86B.01.01.0006.2207150335,
+                    ucode revision=0xd000375, Rocky Linux 8.6, Linux version 4.18.0-372.26.1.el8_6.crt1.x86_64, YASK
+                    v3.05.07. Intel® Xeon® CPU Max Series: Tested by Intel as of ww36’22. 1-node, 2x Intel® Xeon® CPU
+                    Max SeriesHT On, Turbo On, SNC4, Total Memory 128 GB (8x16GB HBM2 3200MT/s), BIOS Version
+                    SE5C7411.86B.8424.D03.2208100444, ucode revision=0x2c000020, CentOS Stream 8, Linux version
+                    5.19.0-rc6.0712.intel_next.1.x86_64+server, YASK v3.05.07.
+                </div>
+                <div class="d_numetadis">
+                    <sup>6</sup>
+                    For more, see:
+                    https://www.intel.com/content/www/us/en/products/details/processors/xeon/max-series.html Numenta
+                    BERT-Large: AMD Milan: Tested by Numenta as of 11/28/2022. 1-node, 2x AMD EPYC 7R13 on AWS
+                    m6a.48xlarge, 768 GB DDR4-3200, Ubuntu 20.04 Kernel 5.15, OpenVINO 2022.3, BERT-Large, Sequence
+                    Length 512, Batch Size 1. Intel® Xeon® 8480+: Tested by Numenta as of 11/28/2022. 1-node, 2x Intel®
+                    Xeon® 8480+, 512 GB DDR5-4800, Ubuntu 22.04 Kernel 5.17, OpenVINO 2022.3, Numenta-Optimized
+                    BERT-Large, Sequence Length 512, Batch Size 1. Intel® Xeon® Max 9468: Tested by Numenta as of
+                    11/30/2022. 1-node, 2x Intel® Xeon® Max 9468, 128 GB HBM2e 3200 MT/s, Ubuntu 22.04 Kernel 5.15,
+                    OpenVINO 2022.3, Numenta-Optimized BERT-Large, Sequence Length 512, Batch Size 1.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Product and Performance Information section end -->
+
+    <!-- Jquery js file -->
+    <script src="/js/jquery-3.7.1.js"></script>
+
+    <!-- Bootstrap js file -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+
+    <!-- Fontawesome js file -->
+    <script src="/js/all.min.js"></script>
+
+    <!-- custom js file -->
+    <script src="/js/darshan.js"></script>
+
+</body>
+
+</html>
