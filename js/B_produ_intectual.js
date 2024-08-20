@@ -4439,6 +4439,26 @@ function renderDocuments() {
     var total = document.getElementById('b_total');
     total.innerHTML = `${documents.length} Results`;
 }
+function data(x){
+    console.log(x);
+    var value=documents.filter((ele,ind)=>{
+        return ele.cat1==x || ele.cat2==x || ele.cat3==x || ele.cat4==x
+    })
+    const container = document.getElementById('documentContainer');
+    container.innerHTML = value.map(createDocumentElement).join('');
+    var total = document.getElementById('b_total');
+    total.innerHTML = `${value.length} Results`;
+    var val1 = (x.replace(/[\s$,®-]+/g, '_'));
+    // var val2 = cat.filter((e)=>{e == val1})
+    console.log(val2)
+    if(val2 == undefined){
+       var  con=cat.val;
+    }
+    else{
+       var con =['Design type'];
+    }
+    content_type(con);
+}
 function content(x){
     console.log(x);
     var val= documents.filter((ele,ind)=>{
@@ -4454,9 +4474,9 @@ function sortByNameAscending(arr) {
     return arr.sort((a, b) => a.name.localeCompare(b.name));
 }
 function sortByName(x) {
-            var total = document.getElementById('b_total');
-    total.innerHTML = `${documents.length} Results`
-    console.log(x);
+        var total = document.getElementById('b_total');
+        total.innerHTML = `${documents.length} Results`
+        console.log(x);
     if(x==0){
         var data = documents.sort(function(a, b) {
             var dateA = new Date(a.date);

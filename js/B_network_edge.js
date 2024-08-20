@@ -3,7 +3,7 @@ const cardsData = [
         imgSrc: "/img/brijesh/image.jpg",
         title: "Intel® Xeon® 6 Processors with E-cores for Networking and Edge",
         description: "Enable edge offerings for an AI-driven world with better performance-per-watt, higher memory bandwidth, and built-in Intel® accelerators.",
-        link: "#"
+        link: "./B1_intelxeon6.html"
     },
     {
         imgSrc: "/img/brijesh/image1.jpg",
