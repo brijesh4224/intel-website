@@ -1016,6 +1016,11 @@ window.onload = function () {
 
     // ai development page
     intel_latest_cards();
+
+    // Vturn profiler documentation page
+    VK_vturn_onload();
+    createDocumentElement();
+
 }
 
 if (document.getElementById('VK_select_filters')) {
@@ -2168,12 +2173,188 @@ function VK_arc_img(id) {
 
 // -------------------------------------------------------  data center cpu  --------------------------------------------------------
 
-function VK_data_nav(id){
-    let section = ['VK_data_tools_library','VK_data_ai_workflow','VK_data_hpc','VK_data_storise']
-    for(let i=0; i<4; i++){
+function VK_data_nav(id) {
+    let section = ['VK_data_tools_library', 'VK_data_ai_workflow', 'VK_data_hpc', 'VK_data_storise']
+    for (let i = 0; i < 4; i++) {
         document.getElementById(section[i]).classList.add('d-none');
         document.getElementById(`VK_center_menu${i}`).classList.remove('VK_center_active');
     }
     document.getElementById(section[id]).classList.remove('d-none');
-    document.getElementById("VK_center_menu"+id).classList.add('VK_center_active');
+    document.getElementById("VK_center_menu" + id).classList.add('VK_center_active');
+}
+
+
+
+// -------------------------------------------------------- Vturn profiler documantation --------------------------------------------------------
+
+let VK_vturn_data = [
+    {
+        title: "Performance Analysis Tutorial for Linux* OS",
+        id: "762029",
+        date: "06/24/24",
+        version: [
+            "2024.2",
+            "2024.1",
+            "2023.1",
+            "2020"
+        ],
+        download: true,
+        bookmark: true,
+        file: "URL (487KB)",
+        content: "Tutorials",
+        description: "Follow this tutorial to identify and resolve common performance bottlenecks in a sample matrix multiplication application (Linux* OS environment)."
+    },
+    {
+        title: "Performance Analysis Tutorial for Linux* OS",
+        id: "762029",
+        date: "06/24/24",
+        version: [
+            "2024.2",
+            "2024.1",
+            "2023.1",
+            "2020"
+        ],
+        download: true,
+        bookmark: true,
+        file: "URL (487KB)",
+        content: "Tutorials",
+        description: "Follow this tutorial to identify and resolve common performance bottlenecks in a sample matrix multiplication application (Linux* OS environment)."
+    },
+    {
+        title: "Performance Analysis Tutorial for Linux* OS",
+        id: "762029",
+        date: "06/24/24",
+        version: [
+            "2024.2",
+            "2024.1",
+            "2023.1",
+            "2020"
+        ],
+        download: true,
+        bookmark: true,
+        file: "URL (487KB)",
+        content: "Tutorials",
+        description: "Follow this tutorial to identify and resolve common performance bottlenecks in a sample matrix multiplication application (Linux* OS environment)."
+    },
+    {
+        title: "Performance Analysis Tutorial for Linux* OS",
+        id: "762029",
+        date: "06/24/24",
+        version: [
+            "2024.2",
+            "2024.1",
+            "2023.1",
+            "2020"
+        ],
+        download: true,
+        bookmark: true,
+        file: "URL (487KB)",
+        content: "Tutorials",
+        description: "Follow this tutorial to identify and resolve common performance bottlenecks in a sample matrix multiplication application (Linux* OS environment)."
+    },
+    {
+        title: "Performance Analysis Tutorial for Linux* OS",
+        id: "762029",
+        date: "06/24/24",
+        version: [
+            "2024.2",
+            "2024.1",
+            "2023.1",
+            "2020"
+        ],
+        download: true,
+        bookmark: true,
+        file: "URL (487KB)",
+        content: "Tutorials",
+        description: "Follow this tutorial to identify and resolve common performance bottlenecks in a sample matrix multiplication application (Linux* OS environment)."
+    },
+]
+
+function VK_vturn_onload(){
+    if(document.getElementById('VK_vturn_cnt1')){
+        document.getElementById('VK_vturn_cnt1').innerHTML = VK_vturn_data.length + " results"
+    }
+}
+
+function VK_toggle_filter(){
+    if(document.getElementById('VK_full_filter'))
+    {
+        let fill =document.getElementById('VK_full_filter')
+            fill.classList.toggle('d-none')
+    }
+}
+function VK_chk_fillter(){
+    if(document.getElementById('VK_full_filter')){
+        let fill = document.getElementById('VK_full_filter')
+        if(window.innerWidth > 1200)
+        {
+            fill.classList.add('d-none')
+        }
+    }
+}
+
+window.addEventListener('resize',function(){
+    VK_chk_fillter();
+})
+
+function VK_vturn_result(){
+    document.getElementById('VK_result_div');
+}
+
+function createDocumentElement() {
+    let doc = VK_vturn_data[0];
+    html = `
+        <div class="document-item">
+            <div class="row gx-0 accordion accordion-flush" id="accordionFlushExample">
+                <div class="col-xxl-11 p-0 accordion-item border-0">
+                    <div class="row align-items-center accordion-header gx-0" id="flush-heading-${doc.id}">
+                        <div class="col-xxl-1 col-12 icon-group float-left align-items-center d-flex justify-content-end d-xl-none">
+                            <a href="#"><i class="fa-solid fa-download document-title"></i></a>
+                            <a href="#"><i class="fa-regular fa-bookmark document-title"></i></a>
+                            <a href="#" class="accordion-button collapsed p-0" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse-${doc.id}" aria-expanded="false" aria-controls="flush-collapse-${doc.id}"></a>
+                        </div>
+                        <div class="col-xxl-8 col-12">
+                            <div class="ms-3">
+                                <p class="mt-2">
+                                    <a href="#" class="document-title">${doc.title}</a>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-xxl-1 col-12 ms-3 ms-xl-0 d-flex">
+                            <h6 class="d-block d-xl-none">ID : </h6>
+                            <p class="mb-0" style="font-size: 14px;">${doc.id}</p>
+                        </div>
+                        <div class="col-xxl-1 col-12 ms-3 ms-xl-0 d-flex">
+                            <h6 class="d-block d-xl-none">Date : </h6>
+                            <p class="mb-0" style="font-size: 14px;">${doc.date}</p>
+                        </div>
+                        <div class="col-xl-2 col-12 ms-3 row ms-xl-0 px-0">
+                            <div class="d-flex px-0">
+                                <h6 class="d-flex d-xl-none">Version : </h6>
+                                <select class="py-2 px-2 mx-2  border-secondary" aria-label="Version select">
+                                    <option selected value="${doc.version[0]}">${doc.version[0]}</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xxl-1 icon-group d-flex align-items-center d-none d-xl-flex ps-0">
+                    <a href="#" ><i class="fa-solid fa-download document-title"></i></a>
+                    <a href="#" class="document-title "><i class="fa-regular fa-bookmark document-title"></i></a>
+                    <a href="#" class="accordion-button collapsed p-0 document-title" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse-${doc.id}" aria-expanded="false" aria-controls="flush-collapse-${doc.id}"></a>
+                </div>
+                <div id="flush-collapse-${doc.id}" class="accordion-collapse collapse" aria-labelledby="flush-heading-${doc.id}" data-bs-parent="#accordionFlushExample">
+                    <div class="accordion-body py-3 px-0">
+                       <div class="d-xl-flex d-block">
+                            <div class="d-flex ms-3"><h6>Content Type:</h6><small>${doc.content_type}</small></div>
+                       </div>
+                        <div class="ms-3 col-xl-8"><p>${doc.discription}</p></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    `;
+    
+    document.getElementById('VK_result_div').innerHTML = html;
+
 }
