@@ -899,25 +899,25 @@ window.onload = function () {
             image: "e1.png",
             title: "How to Simplify Cloud Optimization and FinOps",
             desc: "Learn how cloud tools from Intel and Deloitte can help you optimize customer cloud efficiency and enable FinOps capabilities.",
-            link: ""
+            link: "d_cloud-optimization-granulate-deloitte-video.html"
         },
         {
             image: "e2.png",
             title: "Modernization Opportunities with Microsoft",
             desc: "Find out how end of support for Microsoft Windows Server and SQL Server 2012 creates an opportunity for your business.",
-            link: ""
+            link: "d_modernize-microsoft-server-refresh-video.html"
         },
         {
             image: "e3.png",
             title: "5th Gen Intel® Xeon® Processors Overview",
             desc: "Find out how 5th Gen Intel® Xeon® Scalable processors can help support today’s critical business objectives.",
-            link: ""
+            link: "d_5th-gen-xeon-emr-video.html"
         },
         {
             image: "e4.jpg",
             title: "Cloud Workload Modernization",
             desc: "How to queue up the cloud workload modernization conversation with your customers.",
-            link: ""
+            link: "d_workload-modernization-video.html"
         },
     ]
 
@@ -928,7 +928,7 @@ window.onload = function () {
                         <div class="d_img">
                             <img src="/img/darshan_image/${newepisode[i].image}" alt="">
                         </div>
-                        <h3 class="text-start mt-2"><a href="">${newepisode[i].title}</a></h3>
+                        <h3 class="text-start mt-2"><a href="/d_partner/${newepisode[i].link}">${newepisode[i].title}</a></h3>
                         <p class="text-start mb-0">${newepisode[i].desc}</p>
                     </div>
                 </div>`;
@@ -4292,19 +4292,115 @@ if (D_pdfmaterial7) {
 
 if (document.getElementById('show-more-btn')) {
     document.getElementById('show-more-btn').addEventListener('click', function () {
-        var myCard = document.getElementById('my-card');
-        var icon = document.getElementById('toggle-icon');
-        var isHidden = myCard.classList.contains('ds_use-hidden');
+        if (document.getElementById('my-card')) {
+            var myCard = document.getElementById('my-card');
+            var icon = document.getElementById('toggle-icon');
+            var isHidden = myCard.classList.contains('ds_use-hidden');
 
-        if (isHidden) {
-            myCard.classList.remove('ds_use-hidden');
-            myCard.classList.add('ds_use-show');
-            this.innerHTML = '<i id="toggle-icon" class="fa-solid fa-angle-up me-1"></i> Show Less';
-        } else {
-            myCard.classList.remove('ds_use-show');
-            myCard.classList.add('ds_use-hidden');
-            this.innerHTML = '<i id="toggle-icon" class="fa-solid fa-angle-down me-1"></i> Show More';
+            if (isHidden) {
+                myCard.classList.remove('ds_use-hidden');
+                myCard.classList.add('ds_use-show');
+                this.innerHTML = '<i id="toggle-icon" class="fa-solid fa-angle-up me-1"></i> Show Less';
+            } else {
+                myCard.classList.remove('ds_use-show');
+                myCard.classList.add('ds_use-hidden');
+                this.innerHTML = '<i id="toggle-icon" class="fa-solid fa-angle-down me-1"></i> Show More';
+            }
+        }
+        else {
+            var myCard1 = document.getElementById('my-card1');
+            var icon = document.getElementById('toggle-icon');
+            var isHidden = myCard1.classList.contains('ds_use-hidden');
+
+            if (isHidden) {
+                myCard1.classList.remove('ds_use-hidden');
+                myCard1.classList.add('ds_use-show');
+                this.innerHTML = '<span class="d_circle"><i class="fa-solid fa-minus"></i></span>';
+            } else {
+                myCard1.classList.remove('ds_use-show');
+                myCard1.classList.add('ds_use-hidden');
+                this.innerHTML = '<span class="d_circle"><i class="fa-solid fa-plus"></i></span>';
+            }
         }
     });
 
 }
+
+
+// ps-accenture-video 
+
+let D_playlist = document.getElementById('D_playlist')
+
+const playlist = [
+    {
+        id: 1,
+        title: "Evolving Cloud Tech to Thrive",
+        img: "play2.png",
+        desc: "Head of Marketing at Redapt Sarah Jones shows how evolving customers’ cloud technologies can drive business impact.",
+        link: "d_ps-redapt-video.html",
+    },
+    {
+        id: 2,
+        title: "Create Better Customer Outcomes with Cloud",
+        img: "play3.png",
+        desc: "Senior Vice President at HCL Technologies Piyush Saxena explains how cloud and AI solutions are creating better customer outcomes.",
+        link: "d_ps-hcl-video.html",
+    },
+    {
+        id: 3,
+        title: "Empowering Businesses with Machine Learning",
+        img: "play4.png",
+        desc: "Founder and CEO of Aible Arijit Sengupta shares how machine learning and AI add innovation and value to its customers’ projects.",
+        link: "d_ps-aible-video.html",
+    },
+    {
+        id: 4,
+        title: "Planning for Agility and Change Across the Cloud",
+        img: "play5.png",
+        desc: "Director of Project Management at Alluxio Adit Madan illustrates how cloud services are meeting customer needs as they quickly evolve.",
+        link: "d_ps-alluxio-video.html",
+    },
+    {
+        id: 5,
+        title: "New Services Enabled by Cloud",
+        img: "play1.png",
+        desc: "Jason Mitchell, Managing Director at Accenture, explains how a cloud-first approach—and a strategic combination of data and AI—enables customers’ success.",
+        link: "d_ps-accenture-video.html",
+    },
+    {
+        id: 6,
+        title: "Deploying Storage Solutions from Cloud to Edge",
+        img: "play6.png",
+        desc: "Garima Kapoor, MinIO Co-founder, explains how the evolution of cloud storage technology helps customers achieve their goals.",
+        link: "d_ps-minio-video.html",
+    },
+    {
+        id: 7,
+        title: "Transforming Enterprises with SAP Cloud",
+        img: "play7.png",
+        desc: "Eamonn O’Neill, Lemongrass Co-founder and CTO, covers real-world customer examples of cloud transformation, including key factors and successes.",
+        link: "d_ps-lemongrass-video.html",
+    },
+    {
+        id: 8,
+        title: "Solving Challenges with Hybrid Cloud Solutions",
+        img: "play8.png",
+        desc: "Mo Siddiqui, Group Development Director at Computacenter, shares how hybrid clouds can be deployed effectively in fast-moving environments.",
+        link: "d_ps-computacenter-video.html",
+    },
+]
+
+if (D_playlist) {
+    for (let i = 0; i < playlist.length; i++) {
+        D_playlist.innerHTML += `<div class="col-xs-12 col-ms-6 col-md-6 col-lg-3">
+                    <div class="d_box">
+                        <div class="d_img mb-3">
+                            <a href="/d_partner/${playlist[i].link}"><img src="/img/darshan_image/${playlist[i].img}" alt=""></a>
+                        </div>
+                        <h3><a href="/d_partner/${playlist[i].link}">${playlist[i].title}</a></h3>
+                        <p>${playlist[i].desc}</p>
+                    </div>
+                </div>`
+    }
+}
+
