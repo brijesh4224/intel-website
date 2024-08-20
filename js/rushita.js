@@ -623,7 +623,7 @@ $(document).ready(function(){
       loop: true,
       margin: 10,
       nav: true,
-      navText: ['<span>&lt;</span>','<span>&gt;</span>'],
+      navText: ['<i class="fa-regular fa-circle-left"></i>','<i class="fa-regular fa-circle-right"></i>'],
       dots: true,
       items: 1,
       dotsEach: 1,
@@ -640,3 +640,4 @@ $(document).ready(function(){
               }
   });
 });
+
