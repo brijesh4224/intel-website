@@ -4290,6 +4290,386 @@ if (D_pdfmaterial7) {
     }
 }
 
+// manufecture
+
+let D_pdfmaterial8 = document.getElementById('D_pdfmaterial8')
+
+const pdfmaterial8 = [
+    {
+        id: 1,
+        title: "PerCV.ai* AI Software",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 2,
+        title: "Yunji Technology",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 3,
+        title: "Shanghai Cue Co., Ltd.",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 4,
+        title: "AWASIN",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 5,
+        title: "Aibee Total AI Solutions",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 6,
+        title: "Qualitas Technology",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 7,
+        title: "Awiros",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 8,
+        title: "XZSTEAM",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 9,
+        title: "Developer Training",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 10,
+        title: "Subscribe to the Intel® Developer Zone Newsletter",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 11,
+        title: "Megh Computing Video Analytics Partner Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 12,
+        title: "CVEDIA ITS Edge Solutions Partner Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+
+]
+
+if (D_pdfmaterial8) {
+    for (let i = 0; i < pdfmaterial8.length; i++) {
+        D_pdfmaterial8.innerHTML += `<div class="col-xs-12 col-ms-6 col-sm-4 col-md-3 col-xl-2">
+                    <div class="d_box">
+                        <div class="d-flex">
+                            <div class="d_img me-1">
+                                <img src="/img/darshan_image/${pdfmaterial8[i].img}"  alt="">
+                            </div>
+                            <h4><a href="">${pdfmaterial8[i].title}</a></h4>
+                        </div>
+                    </div>
+                </div>`
+    }
+}
+
+// healthcare
+
+let D_pdfmaterial9 = document.getElementById('D_pdfmaterial9')
+
+const pdfmaterial9 = [
+    {
+        id: 1,
+        title: "Evalueserve",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 2,
+        title: "Vulcan AI",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 3,
+        title: "Cathexis",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 4,
+        title: "Uzel Information US-M5520*",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 5,
+        title: "byteLAKE",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 6,
+        title: "China Mobile Drives Edge-Cloud Collaboration",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 7,
+        title: "Town Talk Foods Boosts Retail Sales",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 8,
+        title: "Cogent Labs",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 9,
+        title: "Mamotech Design",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 10,
+        title: "Enhance Data Analytics and Machine Learning with oneDAL",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 11,
+        title: "Visage Technologies",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 12,
+        title: "Weibu Information Inc.",
+        img: "pdf2.png",
+        link: "",
+    },
+
+]
+
+if (D_pdfmaterial9) {
+    for (let i = 0; i < pdfmaterial9.length; i++) {
+        D_pdfmaterial9.innerHTML += `<div class="col-xs-12 col-ms-6 col-sm-4 col-md-3 col-xl-2">
+                    <div class="d_box">
+                        <div class="d-flex">
+                            <div class="d_img me-1">
+                                <img src="/img/darshan_image/${pdfmaterial9[i].img}"  alt="">
+                            </div>
+                            <h4><a href="">${pdfmaterial9[i].title}</a></h4>
+                        </div>
+                    </div>
+                </div>`
+    }
+}
+
+// retail
+
+let D_pdfmaterial10 = document.getElementById('D_pdfmaterial10')
+
+const pdfmaterial10 = [
+    {
+        id: 1,
+        title: "CEMOSoft Delivers Data-Driven Retail from the IoT Edge to the Cloud",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 2,
+        title: "Video Wall on IA Whitepaper",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 3,
+        title: "Taboola: Optimizing Content Recommendation Engine",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 4,
+        title: "Intel® FPGA AI Whitepaper for Edge",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 5,
+        title: "Transform Retail with Retrieval Augmented Generation (RAG)",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 6,
+        title: "12 New AI Reference Kits (Total of 34)",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 7,
+        title: "Leading Bottling Company Automates Worker Safety",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 8,
+        title: "QMed Asia Drives Early-Stage Cancer Detection Rate",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 9,
+        title: "Streamlining Development of Edge-Native Video Analytics",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 10,
+        title: "Mu Sigma Develops HMT System ",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 11,
+        title: "Penang Science Cluster Advances Digital Education",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 12,
+        title: "Samsung Medison Develops Nerve Detection Model",
+        img: "pdf2.png",
+        link: "",
+    },
+
+]
+
+if (D_pdfmaterial10) {
+    for (let i = 0; i < pdfmaterial10.length; i++) {
+        D_pdfmaterial10.innerHTML += `<div class="col-xs-12 col-ms-6 col-sm-4 col-md-3 col-xl-2">
+                    <div class="d_box">
+                        <div class="d-flex">
+                            <div class="d_img me-1">
+                                <img src="/img/darshan_image/${pdfmaterial10[i].img}"  alt="">
+                            </div>
+                            <h4><a href="">${pdfmaterial10[i].title}</a></h4>
+                        </div>
+                    </div>
+                </div>`
+    }
+}
+
+// smart city
+
+let D_pdfmaterial11 = document.getElementById('D_pdfmaterial11')
+
+const pdfmaterial11 = [
+    {
+        id: 1,
+        title: "Computer Vision and Machine Vision Solutions",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 2,
+        title: "Cathexis",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 3,
+        title: "Evalueserve",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 4,
+        title: "Viso AI Viso Suite Solution",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 5,
+        title: "Uzel Information US-M5520*",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 6,
+        title: "XZSTEAM",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 7,
+        title: "byteLAKE",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 8,
+        title: "ASTERIA Corporation",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 9,
+        title: "Kibernetika Inc.",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 10,
+        title: "a2 Technology",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 11,
+        title: "Vulcan AI",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 12,
+        title: "Aotu.ai",
+        img: "pdf2.png",
+        link: "",
+    },
+
+]
+
+if (D_pdfmaterial11) {
+    for (let i = 0; i < pdfmaterial11.length; i++) {
+        D_pdfmaterial11.innerHTML += `<div class="col-xs-12 col-ms-6 col-sm-4 col-md-3 col-xl-2">
+                    <div class="d_box">
+                        <div class="d-flex">
+                            <div class="d_img me-1">
+                                <img src="/img/darshan_image/${pdfmaterial11[i].img}"  alt="">
+                            </div>
+                            <h4><a href="">${pdfmaterial11[i].title}</a></h4>
+                        </div>
+                    </div>
+                </div>`
+    }
+}
+
 if (document.getElementById('show-more-btn')) {
     document.getElementById('show-more-btn').addEventListener('click', function () {
         if (document.getElementById('my-card')) {
