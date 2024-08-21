@@ -542,7 +542,7 @@ document.addEventListener('DOMContentLoaded', function() {
       { video: document.getElementById('myVideo'), button: document.getElementById('playButton') },
       { video: document.getElementById('myVideo1'), button: document.getElementById('playButton1') },
       { video: document.getElementById('myVideo2'), button: document.getElementById('playButton2') },
-      { video: document.getElementById('myVideo3'), button: document.getElementById('playButton3') }
+      { video: document.getElementById('myVideo3'), button: document.getElementById('playButton3') },
   ];
 
   videos.forEach(item => {
