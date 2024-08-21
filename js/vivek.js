@@ -994,7 +994,6 @@ let VK_catalog_searching = () => {
     let search = document.getElementById('VK_software_catalog_search_bar')
     if (search.value.length > 2) {
         console.log(currentRecords);
-
     }
 }
 
@@ -1019,7 +1018,9 @@ window.onload = function () {
 
     // Vturn profiler documentation page
     VK_vturn_onload();
-    createDocumentElement();
+
+    // celadon documantation
+    createDocumentElementforceladon();
 
 }
 
@@ -2270,91 +2271,258 @@ let VK_vturn_data = [
     },
 ]
 
-function VK_vturn_onload(){
-    if(document.getElementById('VK_vturn_cnt1')){
+function VK_vturn_onload() {
+    if (document.getElementById('VK_vturn_cnt1')) {
         document.getElementById('VK_vturn_cnt1').innerHTML = VK_vturn_data.length + " results"
     }
 }
 
-function VK_toggle_filter(){
-    if(document.getElementById('VK_full_filter'))
-    {
-        let fill =document.getElementById('VK_full_filter')
-            fill.classList.toggle('d-none')
+function VK_toggle_filter() {
+    if (document.getElementById('VK_full_filter')) {
+        let fill = document.getElementById('VK_full_filter')
+        fill.classList.toggle('d-none')
     }
 }
-function VK_chk_fillter(){
-    if(document.getElementById('VK_full_filter')){
+function VK_chk_fillter() {
+    if (document.getElementById('VK_full_filter')) {
         let fill = document.getElementById('VK_full_filter')
-        if(window.innerWidth > 1200)
-        {
+        if (window.innerWidth > 1200) {
             fill.classList.add('d-none')
         }
     }
 }
 
-window.addEventListener('resize',function(){
+window.addEventListener('resize', function () {
     VK_chk_fillter();
 })
 
-function VK_vturn_result(){
+function VK_vturn_result() {
     document.getElementById('VK_result_div');
 }
 
 function createDocumentElement() {
-    let doc = VK_vturn_data[0];
-    html = `
-        <div class="document-item">
-            <div class="row gx-0 accordion accordion-flush" id="accordionFlushExample">
-                <div class="col-xxl-11 p-0 accordion-item border-0">
-                    <div class="row align-items-center accordion-header gx-0" id="flush-heading-${doc.id}">
-                        <div class="col-xxl-1 col-12 icon-group float-left align-items-center d-flex justify-content-end d-xl-none">
-                            <a href="#"><i class="fa-solid fa-download document-title"></i></a>
-                            <a href="#"><i class="fa-regular fa-bookmark document-title"></i></a>
-                            <a href="#" class="accordion-button collapsed p-0" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse-${doc.id}" aria-expanded="false" aria-controls="flush-collapse-${doc.id}"></a>
-                        </div>
-                        <div class="col-xxl-8 col-12">
-                            <div class="ms-3">
-                                <p class="mt-2">
-                                    <a href="#" class="document-title">${doc.title}</a>
+
+    let div = document.getElementById('VK_result_div')
+    // let htmlele = 
+
+}
+
+
+// ----------------------------------------------------- celadon documentation ----------------------------------------------------
+
+let celadon_data = [
+    {
+        title: "gerformance Analysis Tutorial for Linux* OS",
+        id: "762029",
+        date: "06/24/24",
+        version: "original",
+        download: true,
+        bookmark: true,
+        file: "URL (487KB)",
+        content: "Tutorials",
+        description: "Follow this tutorial to identify and resolve common performance bottlenecks in a sample matrix multiplication application (Linux* OS environment)."
+    },
+    {
+        title: "Performance Analysis Tutorial for Linux* OS",
+        id: "762029",
+        date: "06/24/24",
+        version: "original",
+        download: true,
+        bookmark: true,
+        file: "URL (487KB)",
+        content: "Tutorials",
+        description: "Follow this tutorial to identify and resolve common performance bottlenecks in a sample matrix multiplication application (Linux* OS environment)."
+    },
+    {
+        title: "Performance Analysis Tutorial for Linux* OS",
+        id: "762029",
+        date: "06/24/24",
+        version: "original",
+        download: true,
+        bookmark: true,
+        file: "URL (487KB)",
+        content: "Tutorials",
+        description: "Follow this tutorial to identify and resolve common performance bottlenecks in a sample matrix multiplication application (Linux* OS environment)."
+    },
+    {
+        title: "Performance Analysis Tutorial for Linux* OS",
+        id: "762029",
+        date: "06/24/24",
+        version: "original",
+        download: false,
+        bookmark: true,
+        file: "URL (487KB)",
+        content: "Tutorials",
+        description: "Follow this tutorial to identify and resolve common performance bottlenecks in a sample matrix multiplication application (Linux* OS environment)."
+    },
+    {
+        title: "aerformance Analysis Tutorial for Linux* OS",
+        id: "762029",
+        date: "06/24/24",
+        version: "original",
+        download: true,
+        bookmark: true,
+        file: "URL (487KB)",
+        content: "Tutorials",
+        description: "Follow this tutorial to identify and resolve common performance bottlenecks in a sample matrix multiplication application (Linux* OS environment)."
+    },
+    {
+        title: "zerformance Analysis Tutorial for Linux* OS",
+        id: "762029",
+        date: "06/24/24",
+        version: "original",
+        download: true,
+        bookmark: true,
+        file: "URL (487KB)",
+        content: "Tutorials",
+        description: "Follow this tutorial to identify and resolve common performance bottlenecks in a sample matrix multiplication application (Linux* OS environment)."
+    },
+]
+
+
+function VK_vturn_onload() {
+    if (document.getElementById('VK_vturn_cnt1')) {
+        document.getElementById('VK_vturn_cnt1').innerHTML = celadon_arr.length + " results"
+    }
+}
+
+
+
+
+
+let celadon_arr = celadon_data;
+
+function VK_celadon_sort() {
+    let select = document.getElementById('VK_celadon_docx_select').value;
+    switch (select) {
+        case 'A-Z':
+            sortByasscedalon(celadon_arr);
+            break;
+        case 'Z-A':
+            sortBydescedalon(celadon_arr);
+            break;
+    }
+    createDocumentElementforceladon();
+}
+
+function sortByasscedalon(arr) {
+    arr.sort((a, b) => a.title.localeCompare(b.title));
+}
+
+function sortBydescedalon(arr) {
+    arr.sort((a, b) => b.title.localeCompare(a.title));
+}
+
+
+function createDocumentElementforceladon() {
+
+    VK_vturn_onload();
+
+    let div = document.getElementById('VK_result_div');
+    if (div) {
+        let htmlele = celadon_arr.map((ele, ind) => {
+            let uniqueID = `flush-collapse-${ind}`;
+            let uniqueHeadingID = `flush-heading-${ind}`;
+
+            return `<div class="accordion-item">
+                        <div class="row m-0 flex-column flex-xl-row py-xl-3 px-3 p-2">
+                            <div class="col-xl-7 col-12 align-self-center">
+                                <p class="m-xl-0 mb-4">
+                                    <a href="" class="VK_red_normal_font text-decoration-none VK_a">
+                                        ${ele.title}
+                                    </a>
+                                </p>
+                            </div>
+                            <div class="col-xl-4 col-12 d-flex flex-column flex-xl-row justify-content-between align-items-center">
+                                <p class="m-0 my-1 VK_red_small_font w-100">
+                                    <span class="d-xl-none"><b>ID :</b></span> ${ele.id}
+                                </p>
+                                <p class="m-0 my-1 VK_red_small_font w-100">
+                                    <span class="d-xl-none"><b>Date :</b></span>${ele.date}
+                                </p>
+                                <p class="m-0 my-1 VK_red_small_font w-100">
+                                    <span class="d-xl-none"><b>Version: </b></span>${ele.version}
+                                </p>
+                            </div>
+                            <div class="col-xl-1 col-12 p-0 my-xl-0 my-2 align-self-center">
+                                <p class="d-flex m-0 justify-content-xl-between justify-content-end">
+                                    ${ele.download ? `<button class="bg-transparent border-0 text-primary mx-2 m-xl-0">
+                                                        <i class="fa-solid fa-download"></i>
+                                                    </button>` : "<button class='border-0 bg-transparent'></button>"}
+                                    ${ele.bookmark ? `<button class="bg-transparent border-0 text-primary mx-2 m-xl-0">
+                                                        <i class="fa-regular fa-bookmark"></i>
+                                                    </button>` : "<button class='border-0 bg-transparent'></button>"}
+                                    <button class="accordion-button collapsed mx-2 m-xl-0" type="button"
+                                        data-bs-toggle="collapse" data-bs-target="#${uniqueID}"
+                                        aria-expanded="false" aria-controls="${uniqueID}">
+                                    </button>
                                 </p>
                             </div>
                         </div>
-                        <div class="col-xxl-1 col-12 ms-3 ms-xl-0 d-flex">
-                            <h6 class="d-block d-xl-none">ID : </h6>
-                            <p class="mb-0" style="font-size: 14px;">${doc.id}</p>
-                        </div>
-                        <div class="col-xxl-1 col-12 ms-3 ms-xl-0 d-flex">
-                            <h6 class="d-block d-xl-none">Date : </h6>
-                            <p class="mb-0" style="font-size: 14px;">${doc.date}</p>
-                        </div>
-                        <div class="col-xl-2 col-12 ms-3 row ms-xl-0 px-0">
-                            <div class="d-flex px-0">
-                                <h6 class="d-flex d-xl-none">Version : </h6>
-                                <select class="py-2 px-2 mx-2  border-secondary" aria-label="Version select">
-                                    <option selected value="${doc.version[0]}">${doc.version[0]}</option>
-                                </select>
+                        <div id="${uniqueID}" class="accordion-collapse collapse"
+                            aria-labelledby="${uniqueHeadingID}" data-bs-parent="#accordionFlushExample">
+                            <div class="accordion-body">
+                                <p class="m-0">
+                                    <span class="d-inline-block mx-2">
+                                        <b>File:</b>
+                                        <span>${ele.file}</span>
+                                    </span>
+                                    <span class="d-inline-block mx-2">
+                                        <b>Content Type :</b>
+                                        <span>
+                                            ${ele.content}
+                                        </span>
+                                    </span>
+                                </p>
+                                <p class="m-0">
+                                    ${ele.description}
+                                </p>
                             </div>
                         </div>
-                    </div>
-                </div>
-                <div class="col-xxl-1 icon-group d-flex align-items-center d-none d-xl-flex ps-0">
-                    <a href="#" ><i class="fa-solid fa-download document-title"></i></a>
-                    <a href="#" class="document-title "><i class="fa-regular fa-bookmark document-title"></i></a>
-                    <a href="#" class="accordion-button collapsed p-0 document-title" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse-${doc.id}" aria-expanded="false" aria-controls="flush-collapse-${doc.id}"></a>
-                </div>
-                <div id="flush-collapse-${doc.id}" class="accordion-collapse collapse" aria-labelledby="flush-heading-${doc.id}" data-bs-parent="#accordionFlushExample">
-                    <div class="accordion-body py-3 px-0">
-                       <div class="d-xl-flex d-block">
-                            <div class="d-flex ms-3"><h6>Content Type:</h6><small>${doc.content_type}</small></div>
-                       </div>
-                        <div class="ms-3 col-xl-8"><p>${doc.discription}</p></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    `;
-    
-    document.getElementById('VK_result_div').innerHTML = html;
+                    </div>`;
+        });
 
+        div.innerHTML = htmlele.join('');
+    } else {
+        return;
+    }
+}
+
+
+
+function VK_celadon_open() {
+    const accordions = document.querySelectorAll('#VK_result_div .accordion-collapse');
+    accordions.forEach(accordion => {
+        const collapseInstance = new bootstrap.Collapse(accordion, {
+            toggle: false
+        });
+        collapseInstance.show();
+    });
+}
+
+function VK_celadon_close() {
+    const accordions = document.querySelectorAll('#VK_result_div .accordion-collapse');
+    accordions.forEach(accordion => {
+        const collapseInstance = new bootstrap.Collapse(accordion, {
+            toggle: false
+        });
+        collapseInstance.hide();
+    });
+}
+
+let original_celadon_arr = [...celadon_data]; 
+
+function VK_celadon_search() {
+    let search = document.getElementById('VK_celadon_search').value;
+    if (search.length == 0) {
+        celadon_arr = [...original_celadon_arr]; 
+        createDocumentElementforceladon();
+        return;
+    } else {
+        let result = original_celadon_arr.filter((ele) => {
+            return ele.title.toLowerCase().includes(search.toLowerCase());
+        });
+        celadon_arr = result;
+        createDocumentElementforceladon();
+    }
 }
