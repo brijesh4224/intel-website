@@ -123,3 +123,23 @@ $(function () {
         $contentlis.hide().eq(index).show();
     });
 });
+
+// solutions : Rsources : Technology Tips & Tricks
+$(function () {
+    var activeIndex = $('.m_subTab2 .m_tabs2 > .m_active-tab').index(), 
+        $contentlis = $('.m_subTab2 .m_tabs-content2 .m_rtt_li'),
+        $tabslis = $('.m_subTab2 .m_tabs2 > li'); 
+
+    // Show content of active tab on load
+    $contentlis.eq(activeIndex).show();
+
+    $('.m_subTab2 .m_tabs2').on('click', '> li', function (e) { 
+        var $current = $(e.currentTarget),
+            index = $current.index();
+
+        $tabslis.removeClass('m_active-tab');
+        $current.addClass('m_active-tab');
+        $contentlis.hide().eq(index).show();
+    });
+});
+
