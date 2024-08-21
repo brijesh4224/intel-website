@@ -4670,6 +4670,860 @@ if (D_pdfmaterial11) {
     }
 }
 
+
+// computer vision in cities video
+
+let D_pdfmaterial12 = document.getElementById('D_pdfmaterial12')
+
+const pdfmaterial12 = [
+    {
+        id: 1,
+        title: "Sky Limit Entertainment Empowers XR Theme Parks",
+        img: "pdf3.png",
+        link: "",
+    },
+    {
+        id: 2,
+        title: "Terasic DE10-Nano ",
+        img: "pdf4.png",
+        link: "",
+    },
+    {
+        id: 3,
+        title: "Intel Drives ‘AI Everywhere’ into Automotive Market at CES",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 4,
+        title: "Moor Insights: The New Era of the AI PC",
+        img: "pdf5.png",
+        link: "",
+    },
+    {
+        id: 5,
+        title: "Introducing the Intel® Extension for PyTorch* for GPUs",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 6,
+        title: "Half Extension Rail Kit CYPHALFEXTRAIL Compatible Products | Intel",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 7,
+        title: "Half Extension Rail Kit CYPHALFEXTRAIL - Product Specifications | Intel",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 8,
+        title: "Half Extension Rail Kit CYPHALFEXTRAIL Ordering and Compliance Information | Intel",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 9,
+        title: "Axiomtek AI-Enabled Vision System",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 10,
+        title: "Axiomtek eBOX671-521-FL PoE Embedded Vision System",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 11,
+        title: "Power Plant Monitoring with EMQ* and Edge Insights for Industrial",
+        img: "pdf3.png",
+        link: "",
+    },
+    {
+        id: 12,
+        title: "Use EMQ* IoT Messaging Platform with Edge Insights for Industrial",
+        img: "pdf3.png",
+        link: "",
+    },
+
+]
+
+if (D_pdfmaterial12) {
+    for (let i = 0; i < pdfmaterial12.length; i++) {
+        D_pdfmaterial12.innerHTML += `<div class="col-xs-12 col-ms-6 col-sm-4 col-md-3 col-xl-2">
+                    <div class="d_box">
+                        <div class="d-flex">
+                            <div class="d_img me-1">
+                                <img src="/img/darshan_image/${pdfmaterial12[i].img}"  alt="">
+                            </div>
+                            <h4><a href="">${pdfmaterial12[i].title}</a></h4>
+                        </div>
+                    </div>
+                </div>`
+    }
+}
+
+// computer vision in cities video
+
+let D_pdfmaterial13 = document.getElementById('D_pdfmaterial13')
+
+const pdfmaterial13 = [
+    {
+        id: 1,
+        title: "Axiomtek AI-Enabled Vision System",
+        img: "pdf3.png",
+        link: "",
+    },
+    {
+        id: 2,
+        title: "Power Plant Monitoring with EMQ* and Edge Insights for Industrial",
+        img: "pdf4.png",
+        link: "",
+    },
+    {
+        id: 3,
+        title: "Use EMQ* IoT Messaging Platform with Edge Insights for Industrial",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 4,
+        title: "Half Extension Rail Kit CYPHALFEXTRAIL Compatible Products | Intel",
+        img: "pdf5.png",
+        link: "",
+    },
+    {
+        id: 5,
+        title: "Half Extension Rail Kit CYPHALFEXTRAIL - Product Specifications | Intel",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 6,
+        title: "Half Extension Rail Kit CYPHALFEXTRAIL Ordering and Compliance Information | Intel",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 7,
+        title: "Portwell Inc. PCOM-B656VGL",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 8,
+        title: "Intel® RFID Sensor Platform",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 9,
+        title: "EverFocus Intelligent Transportation",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 10,
+        title: "meldCX AI Playground Partner Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 11,
+        title: "Cut Downtime & Costs with Fault Detection for Factory Equipment",
+        img: "pdf3.png",
+        link: "",
+    },
+    {
+        id: 12,
+        title: "Uzel Information US-M5520*",
+        img: "pdf3.png",
+        link: "",
+    },
+
+]
+
+if (D_pdfmaterial13) {
+    for (let i = 0; i < pdfmaterial13.length; i++) {
+        D_pdfmaterial13.innerHTML += `<div class="col-xs-12 col-ms-6 col-sm-4 col-md-3 col-xl-2">
+                    <div class="d_box">
+                        <div class="d-flex">
+                            <div class="d_img me-1">
+                                <img src="/img/darshan_image/${pdfmaterial13[i].img}"  alt="">
+                            </div>
+                            <h4><a href="">${pdfmaterial13[i].title}</a></h4>
+                        </div>
+                    </div>
+                </div>`
+    }
+}
+
+// computer vision in cities video
+
+let D_pdfmaterial14 = document.getElementById('D_pdfmaterial14')
+
+const pdfmaterial14 = [
+    {
+        id: 1,
+        title: "Half Extension Rail Kit CYPHALFEXTRAIL Compatible Products | Intel",
+        img: "pdf3.png",
+        link: "",
+    },
+    {
+        id: 2,
+        title: "Half Extension Rail Kit CYPHALFEXTRAIL - Product Specifications | Intel",
+        img: "pdf4.png",
+        link: "",
+    },
+    {
+        id: 3,
+        title: "Half Extension Rail Kit CYPHALFEXTRAIL Ordering and Compliance Information | Intel",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 4,
+        title: "meldCX AI Playground Partner Brief",
+        img: "pdf5.png",
+        link: "",
+    },
+    {
+        id: 5,
+        title: "Axiomtek AI-Enabled Vision System",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 6,
+        title: "Axiomtek eBOX671-521-FL PoE Embedded Vision System",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 7,
+        title: "Power Plant Monitoring with EMQ* and Edge Insights for Industrial",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 8,
+        title: "Use EMQ* IoT Messaging Platform with Edge Insights for Industrial",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 9,
+        title: "Deci.AI Deep Learning Platform Partner Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 10,
+        title: "EyeCloud, Inc.",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 11,
+        title: "Zeblok Edge AI Solution Brief",
+        img: "pdf3.png",
+        link: "",
+    },
+    {
+        id: 12,
+        title: "Video Wall on IA Whitepaper",
+        img: "pdf3.png",
+        link: "",
+    },
+
+]
+
+if (D_pdfmaterial14) {
+    for (let i = 0; i < pdfmaterial14.length; i++) {
+        D_pdfmaterial14.innerHTML += `<div class="col-xs-12 col-ms-6 col-sm-4 col-md-3 col-xl-2">
+                    <div class="d_box">
+                        <div class="d-flex">
+                            <div class="d_img me-1">
+                                <img src="/img/darshan_image/${pdfmaterial14[i].img}"  alt="">
+                            </div>
+                            <h4><a href="">${pdfmaterial14[i].title}</a></h4>
+                        </div>
+                    </div>
+                </div>`
+    }
+}
+
+// computer vision in cities video
+
+let D_pdfmaterial15 = document.getElementById('D_pdfmaterial15')
+
+const pdfmaterial15 = [
+    {
+        id: 1,
+        title: "Half Extension Rail Kit CYPHALFEXTRAIL Compatible Products | Intel",
+        img: "pdf3.png",
+        link: "",
+    },
+    {
+        id: 2,
+        title: "Half Extension Rail Kit CYPHALFEXTRAIL - Product Specifications | Intel",
+        img: "pdf4.png",
+        link: "",
+    },
+    {
+        id: 3,
+        title: "Half Extension Rail Kit CYPHALFEXTRAIL Ordering and Compliance Information | Intel",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 4,
+        title: "Axiomtek AI-Enabled Vision System",
+        img: "pdf5.png",
+        link: "",
+    },
+    {
+        id: 5,
+        title: "Power Plant Monitoring with EMQ* and Edge Insights for Industrial",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 6,
+        title: "Axiomtek eBOX671-521-FL PoE Embedded Vision System",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 7,
+        title: "Use EMQ* IoT Messaging Platform with Edge Insights for Industrial",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 8,
+        title: "EyeCloud, Inc.",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 9,
+        title: "Video Wall on IA Whitepaper",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 10,
+        title: "meldCX AI Playground Partner Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 11,
+        title: "TinyGO AI 7702*",
+        img: "pdf3.png",
+        link: "",
+    },
+    {
+        id: 12,
+        title: "TinyGO AI 5033*",
+        img: "pdf3.png",
+        link: "",
+    },
+
+]
+
+if (D_pdfmaterial15) {
+    for (let i = 0; i < pdfmaterial15.length; i++) {
+        D_pdfmaterial15.innerHTML += `<div class="col-xs-12 col-ms-6 col-sm-4 col-md-3 col-xl-2">
+                    <div class="d_box">
+                        <div class="d-flex">
+                            <div class="d_img me-1">
+                                <img src="/img/darshan_image/${pdfmaterial15[i].img}"  alt="">
+                            </div>
+                            <h4><a href="">${pdfmaterial15[i].title}</a></h4>
+                        </div>
+                    </div>
+                </div>`
+    }
+}
+
+// computer vision in cities video
+
+let D_pdfmaterial16 = document.getElementById('D_pdfmaterial16')
+
+const pdfmaterial16 = [
+    {
+        id: 1,
+        title: "Moor Insights: The New Era of the AI PC",
+        img: "pdf3.png",
+        link: "",
+    },
+    {
+        id: 2,
+        title: "Penang Science Cluster Advances Digital Education",
+        img: "pdf4.png",
+        link: "",
+    },
+    {
+        id: 3,
+        title: "Intel® Gaudi® AI Accelerator",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 4,
+        title: "QMed Asia Drives Early-Stage Cancer Detection Rate",
+        img: "pdf5.png",
+        link: "",
+    },
+    {
+        id: 5,
+        title: "IBM watsonx.data Accelerates GenAI Data Analysis",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 6,
+        title: "IDC: Considering the Benefits of AI for your PC Refresh",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 7,
+        title: "PyTorch 2.4 Supports Intel® GPU Acceleration of AI Workloads",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 8,
+        title: "Intel® Gaudi® 3 AI Accelerator: The AI Difference Maker",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 9,
+        title: "Intel Accelerates ‘AI Everywhere’ at Computex 2024 ",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 10,
+        title: "Video Wall on IA Whitepaper",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 11,
+        title: "Taboola: Optimizing Content Recommendation Engine",
+        img: "pdf3.png",
+        link: "",
+    },
+    {
+        id: 12,
+        title: "Nationwide Building Society Boosts User Experience",
+        img: "pdf3.png",
+        link: "",
+    },
+
+]
+
+if (D_pdfmaterial16) {
+    for (let i = 0; i < pdfmaterial16.length; i++) {
+        D_pdfmaterial16.innerHTML += `<div class="col-xs-12 col-ms-6 col-sm-4 col-md-3 col-xl-2">
+                    <div class="d_box">
+                        <div class="d-flex">
+                            <div class="d_img me-1">
+                                <img src="/img/darshan_image/${pdfmaterial16[i].img}"  alt="">
+                            </div>
+                            <h4><a href="">${pdfmaterial16[i].title}</a></h4>
+                        </div>
+                    </div>
+                </div>`
+    }
+}
+
+// computer vision in cities video
+
+let D_pdfmaterial17 = document.getElementById('D_pdfmaterial17')
+
+const pdfmaterial17 = [
+    {
+        id: 1,
+        title: "Intel® AI: In Production | Testimonials",
+        img: "pdf3.png",
+        link: "",
+    },
+    {
+        id: 2,
+        title: "AI: In Production Knowledge Library",
+        img: "pdf4.png",
+        link: "",
+    },
+    {
+        id: 3,
+        title: "RIKEN Accelerates Medical and Drug Research",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 4,
+        title: "Sky Limit Entertainment Empowers XR Theme Parks",
+        img: "pdf5.png",
+        link: "",
+    },
+    {
+        id: 5,
+        title: "Seekr Develops Trustworthy AI Screening System",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 6,
+        title: "AI Deployment Services and Solutions - Intel",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 7,
+        title: "Numenta and Intel Accelerate Inference",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 8,
+        title: "Southern California Edison Modernizes Future Grid",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 9,
+        title: "Intel® AI: In Production | Success Stories ",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 10,
+        title: "Terasic DE10-Nano ",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 11,
+        title: "AI Frameworks & Tools",
+        img: "pdf3.png",
+        link: "",
+    },
+    {
+        id: 12,
+        title: "Intel Drives ‘AI Everywhere’ into Automotive Market at CES",
+        img: "pdf3.png",
+        link: "",
+    },
+
+]
+
+if (D_pdfmaterial17) {
+    for (let i = 0; i < pdfmaterial17.length; i++) {
+        D_pdfmaterial17.innerHTML += `<div class="col-xs-12 col-ms-6 col-sm-4 col-md-3 col-xl-2">
+                    <div class="d_box">
+                        <div class="d-flex">
+                            <div class="d_img me-1">
+                                <img src="/img/darshan_image/${pdfmaterial17[i].img}"  alt="">
+                            </div>
+                            <h4><a href="">${pdfmaterial17[i].title}</a></h4>
+                        </div>
+                    </div>
+                </div>`
+    }
+}
+
+// computer vision in cities video
+
+let D_pdfmaterial18 = document.getElementById('D_pdfmaterial18')
+
+const pdfmaterial18 = [
+    {
+        id: 1,
+        title: "Axiomtek AI-Enabled Vision System",
+        img: "pdf3.png",
+        link: "",
+    },
+    {
+        id: 2,
+        title: "Power Plant Monitoring with EMQ* and Edge Insights for Industrial",
+        img: "pdf4.png",
+        link: "",
+    },
+    {
+        id: 3,
+        title: "Use EMQ* IoT Messaging Platform with Edge Insights for Industrial",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 4,
+        title: "Half Extension Rail Kit CYPHALFEXTRAIL Compatible Products | Intel",
+        img: "pdf5.png",
+        link: "",
+    },
+    {
+        id: 5,
+        title: "Half Extension Rail Kit CYPHALFEXTRAIL - Product Specifications | Intel",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 6,
+        title: "Half Extension Rail Kit CYPHALFEXTRAIL Ordering and Compliance Information | Intel",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 7,
+        title: "Portwell Inc. PCOM-B656VGL",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 8,
+        title: "Intel® RFID Sensor Platform",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 9,
+        title: "EverFocus Intelligent Transportation",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 10,
+        title: "meldCX AI Playground Partner Brief ",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 11,
+        title: "Cut Downtime & Costs with Fault Detection for Factory Equipment",
+        img: "pdf3.png",
+        link: "",
+    },
+    {
+        id: 12,
+        title: "Uzel Information US-M5520*",
+        img: "pdf3.png",
+        link: "",
+    },
+
+]
+
+if (D_pdfmaterial18) {
+    for (let i = 0; i < pdfmaterial18.length; i++) {
+        D_pdfmaterial18.innerHTML += `<div class="col-xs-12 col-ms-6 col-sm-4 col-md-3 col-xl-2">
+                    <div class="d_box">
+                        <div class="d-flex">
+                            <div class="d_img me-1">
+                                <img src="/img/darshan_image/${pdfmaterial18[i].img}"  alt="">
+                            </div>
+                            <h4><a href="">${pdfmaterial18[i].title}</a></h4>
+                        </div>
+                    </div>
+                </div>`
+    }
+}
+
+let D_pdfmaterial19 = document.getElementById('D_pdfmaterial19')
+
+const pdfmaterial19 = [
+    {
+        id: 1,
+        title: "Intel® AI: In Production | Frequently Asked Questions",
+        img: "pdf3.png",
+        link: "",
+    },
+    {
+        id: 2,
+        title: "Intel® AI: In Production | Cities and Transportation",
+        img: "pdf4.png",
+        link: "",
+    },
+    {
+        id: 3,
+        title: "Hunt Electronic Co., Ltd.",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 4,
+        title: "JWIPC E099*",
+        img: "pdf5.png",
+        link: "",
+    },
+    {
+        id: 5,
+        title: "Evalueserve AiLENZ Solution Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 6,
+        title: "Megh Computing Video Analytics Partner Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 7,
+        title: "Irisity IRIS Solution Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 8,
+        title: "Pathr.ai Supermarket Operations Solution Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 9,
+        title: "Autocanteen Touchless Self-Checkout Solution Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 10,
+        title: "Quividi Audience Measurement Platform Solution Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 11,
+        title: "Intel-Enabled AI from Sensormatic Solution Brief",
+        img: "pdf3.png",
+        link: "",
+    },
+    {
+        id: 12,
+        title: "Ombori Grid SaaS Solution Brief",
+        img: "pdf3.png",
+        link: "",
+    },
+
+]
+
+if (D_pdfmaterial19) {
+    for (let i = 0; i < pdfmaterial19.length; i++) {
+        D_pdfmaterial19.innerHTML += `<div class="col-xs-12 col-ms-6 col-sm-4 col-md-3 col-xl-2">
+                    <div class="d_box">
+                        <div class="d-flex">
+                            <div class="d_img me-1">
+                                <img src="/img/darshan_image/${pdfmaterial19[i].img}"  alt="">
+                            </div>
+                            <h4><a href="">${pdfmaterial19[i].title}</a></h4>
+                        </div>
+                    </div>
+                </div>`
+    }
+}
+
+let D_pdfmaterial20 = document.getElementById('D_pdfmaterial20')
+
+const pdfmaterial20 = [
+    {
+        id: 1,
+        title: "Intel-Enabled AI from Sensormatic Solution Brief",
+        img: "pdf3.png",
+        link: "",
+    },
+    {
+        id: 2,
+        title: "Quividi Audience Measurement Platform Solution Brief",
+        img: "pdf4.png",
+        link: "",
+    },
+    {
+        id: 3,
+        title: "Ombori Grid SaaS Solution Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 4,
+        title: "Pathr.ai Supermarket Operations Solution Brief",
+        img: "pdf5.png",
+        link: "",
+    },
+    {
+        id: 5,
+        title: "Vistry INC Discrn Platform Solution Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 6,
+        title: "Intel® AI: In Production | Cities and Transportation",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 7,
+        title: "SAIMOS Video Analytics Solution Partner Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 8,
+        title: "ISS SecurOS Labor Safety Solution Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 9,
+        title: "PM AM Town Talk Case Study",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 10,
+        title: "iGenius Crystal Partner Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 11,
+        title: "Awiros",
+        img: "pdf3.png",
+        link: "",
+    },
+    {
+        id: 12,
+        title: "XZSTEAM",
+        img: "pdf3.png",
+        link: "",
+    },
+
+]
+
+if (D_pdfmaterial20) {
+    for (let i = 0; i < pdfmaterial20.length; i++) {
+        D_pdfmaterial20.innerHTML += `<div class="col-xs-12 col-ms-6 col-sm-4 col-md-3 col-xl-2">
+                    <div class="d_box">
+                        <div class="d-flex">
+                            <div class="d_img me-1">
+                                <img src="/img/darshan_image/${pdfmaterial20[i].img}"  alt="">
+                            </div>
+                            <h4><a href="">${pdfmaterial20[i].title}</a></h4>
+                        </div>
+                    </div>
+                </div>`
+    }
+}
+
+// JavaScript
+
 if (document.getElementById('show-more-btn')) {
     document.getElementById('show-more-btn').addEventListener('click', function () {
         if (document.getElementById('my-card')) {
@@ -4703,8 +5557,144 @@ if (document.getElementById('show-more-btn')) {
             }
         }
     });
-
 }
+
+if (document.getElementById('show-more-btn1')) {
+    document.getElementById('show-more-btn1').addEventListener('click', function () {
+        if (document.getElementById('my-card1')) {
+            var myCard = document.getElementById('my-card1');
+            var icon = document.getElementById('toggle-icon');
+            var isHidden = myCard.classList.contains('ds_use-hidden');
+
+            if (isHidden) {
+                myCard.classList.remove('ds_use-hidden');
+                myCard.classList.add('ds_use-show');
+                this.innerHTML = '<i id="toggle-icon" class="fa-solid fa-angle-up me-1"></i> Show Less';
+            } else {
+                myCard.classList.remove('ds_use-show');
+                myCard.classList.add('ds_use-hidden');
+                this.innerHTML = '<i id="toggle-icon" class="fa-solid fa-angle-down me-1"></i> Show More';
+            }
+        }
+    });
+}
+if (document.getElementById('show-more-btn2')) {
+    document.getElementById('show-more-btn2').addEventListener('click', function () {
+        if (document.getElementById('my-card2')) {
+            var myCard = document.getElementById('my-card2');
+            var icon = document.getElementById('toggle-icon');
+            var isHidden = myCard.classList.contains('ds_use-hidden');
+
+            if (isHidden) {
+                myCard.classList.remove('ds_use-hidden');
+                myCard.classList.add('ds_use-show');
+                this.innerHTML = '<i id="toggle-icon" class="fa-solid fa-angle-up me-1"></i> Show Less';
+            } else {
+                myCard.classList.remove('ds_use-show');
+                myCard.classList.add('ds_use-hidden');
+                this.innerHTML = '<i id="toggle-icon" class="fa-solid fa-angle-down me-1"></i> Show More';
+            }
+        }
+    });
+}
+if (document.getElementById('show-more-btn3')) {
+    document.getElementById('show-more-btn3').addEventListener('click', function () {
+        if (document.getElementById('my-card3')) {
+            var myCard = document.getElementById('my-card3');
+            var icon = document.getElementById('toggle-icon');
+            var isHidden = myCard.classList.contains('ds_use-hidden');
+
+            if (isHidden) {
+                myCard.classList.remove('ds_use-hidden');
+                myCard.classList.add('ds_use-show');
+                this.innerHTML = '<i id="toggle-icon" class="fa-solid fa-angle-up me-1"></i> Show Less';
+            } else {
+                myCard.classList.remove('ds_use-show');
+                myCard.classList.add('ds_use-hidden');
+                this.innerHTML = '<i id="toggle-icon" class="fa-solid fa-angle-down me-1"></i> Show More';
+            }
+        }
+    });
+}
+if (document.getElementById('show-more-btn4')) {
+    document.getElementById('show-more-btn4').addEventListener('click', function () {
+        if (document.getElementById('my-card4')) {
+            var myCard = document.getElementById('my-card4');
+            var icon = document.getElementById('toggle-icon');
+            var isHidden = myCard.classList.contains('ds_use-hidden');
+
+            if (isHidden) {
+                myCard.classList.remove('ds_use-hidden');
+                myCard.classList.add('ds_use-show');
+                this.innerHTML = '<i id="toggle-icon" class="fa-solid fa-angle-up me-1"></i> Show Less';
+            } else {
+                myCard.classList.remove('ds_use-show');
+                myCard.classList.add('ds_use-hidden');
+                this.innerHTML = '<i id="toggle-icon" class="fa-solid fa-angle-down me-1"></i> Show More';
+            }
+        }
+    });
+}
+if (document.getElementById('show-more-btn5')) {
+    document.getElementById('show-more-btn5').addEventListener('click', function () {
+        if (document.getElementById('my-card5')) {
+            var myCard = document.getElementById('my-card5');
+            var icon = document.getElementById('toggle-icon');
+            var isHidden = myCard.classList.contains('ds_use-hidden');
+
+            if (isHidden) {
+                myCard.classList.remove('ds_use-hidden');
+                myCard.classList.add('ds_use-show');
+                this.innerHTML = '<i id="toggle-icon" class="fa-solid fa-angle-up me-1"></i> Show Less';
+            } else {
+                myCard.classList.remove('ds_use-show');
+                myCard.classList.add('ds_use-hidden');
+                this.innerHTML = '<i id="toggle-icon" class="fa-solid fa-angle-down me-1"></i> Show More';
+            }
+        }
+    });
+}
+if (document.getElementById('show-more-btn6')) {
+    document.getElementById('show-more-btn6').addEventListener('click', function () {
+        if (document.getElementById('my-card6')) {
+            var myCard = document.getElementById('my-card6');
+            var icon = document.getElementById('toggle-icon');
+            var isHidden = myCard.classList.contains('ds_use-hidden');
+
+            if (isHidden) {
+                myCard.classList.remove('ds_use-hidden');
+                myCard.classList.add('ds_use-show');
+                this.innerHTML = '<i id="toggle-icon" class="fa-solid fa-angle-up me-1"></i> Show Less';
+            } else {
+                myCard.classList.remove('ds_use-show');
+                myCard.classList.add('ds_use-hidden');
+                this.innerHTML = '<i id="toggle-icon" class="fa-solid fa-angle-down me-1"></i> Show More';
+            }
+        }
+    });
+}
+if (document.getElementById('show-more-btn7')) {
+    document.getElementById('show-more-btn7').addEventListener('click', function () {
+        if (document.getElementById('my-card7')) {
+            var myCard = document.getElementById('my-card7');
+            var icon = document.getElementById('toggle-icon');
+            var isHidden = myCard.classList.contains('ds_use-hidden');
+
+            if (isHidden) {
+                myCard.classList.remove('ds_use-hidden');
+                myCard.classList.add('ds_use-show');
+                this.innerHTML = '<i id="toggle-icon" class="fa-solid fa-angle-up me-1"></i> Show Less';
+            } else {
+                myCard.classList.remove('ds_use-show');
+                myCard.classList.add('ds_use-hidden');
+                this.innerHTML = '<i id="toggle-icon" class="fa-solid fa-angle-down me-1"></i> Show More';
+            }
+        }
+    });
+}
+
+
+
 
 
 // ps-accenture-video 
@@ -4783,4 +5773,1375 @@ if (D_playlist) {
                 </div>`
     }
 }
+
+// Success story
+
+let D_successpartner = document.getElementById('D_successpartner')
+
+const successpartner = [
+    {
+        id: 1,
+        title: "Nodeweaver",
+        img: "ps1.png",
+        desc: "NodeWeaver bridges the world of private cloud platforms and hyperconverged infrastructure with a unified cloud fabric that brings all pieces together in building-block style.",
+        link: "d_nodeweaver-partner-chat-video.html",
+        link1:""
+    },
+    {
+        id: 2,
+        title: "QCT",
+        img: "ps2.png",
+        desc: "Enterprise 5G ready for smart factory application to accelerate digital transformation.",
+        link: "d_qct-partner-chat-video.html",
+        link1:""
+    },
+    {
+        id: 3,
+        title: "EOS",
+        img: "ps3.png",
+        desc: "The EOS Linx EV Charging Station connected solution relies on Intel technology including vPro™ Platform and OpenVINO™ Toolkit, which contribute to faster deployment in the market",
+        link: "d_eos-partner-chat-video.html",
+        link1:""
+    },
+    {
+        id: 4,
+        title: "CoreAVI",
+        img: "ps4.png",
+        desc: "CoreAVI has partnered with Intel to deliver integrated Platforms for Safety-Critical Applications (PSCAs) that reduce time to safe deployment, deliver incredible performance, consolidate workflows, and allow for a scalable solution with amazing costs.",
+        link: "",
+        link1:""
+    },
+    {
+        id: 5,
+        title: "ThunderSoft",
+        img: "ps5.png",
+        desc: "ThunderSoft smart building solution supports connection and communication with smart building IoT devices such as sensors, devices and building automation systems.",
+        link: "",
+        link1:""
+    },
+    {
+        id: 6,
+        title: "Extreme Vision",
+        img: "",
+        desc: "Extreme Vision is committed to develop the first computer vision platform in China. They specialize in exploring artificial intelligence's development and application and providing professional AI algorithm solutions for multiple industries.",
+        link: "",
+        link1:""
+    },
+    {
+        id: 7,
+        title: "C2RO",
+        img: "",
+        desc: "Deep technical collaboration between Intel and C2RO has enabled 'Journey-to-Touch Analysis' scalable to thousands of enterprise locations by leveraging highly scalable and cost-effective Intel x86 processor technology and Intel's powerful OpenVINO™ toolkit.",
+        link: "",
+        link1:""
+    },
+    {
+        id: 8,
+        title: "VSBLTY",
+        img: "",
+        desc: "VSBLTY technology provides enhanced customer engagement and audience measurement using machine learning and computer vision. Its industry leading VisionCaptor™ and DataCaptor™ software combine motion graphics and interactive brand messaging with cutting-edge computer vision measurement and insights.",
+        link: "",
+        link1:""
+    },
+    {
+        id: 9,
+        title: "Wistron Medical Technology",
+        img: "",
+        desc: "Intel® Distribution of OpenVINO™ Toolkit helps simplify the move to digital pathology environment for clinics and research facilities by enabling pathologists to optimize pre-trained models for inferencing on their own computers.",
+        link: "",
+        link1:""
+    },
+    {
+        id: 10,
+        title: "iOmniscient",
+        img: "",
+        desc: "Delivering privacy protected comprehensive solutions for end users which solve their key safety and productivity challenges.",
+        link: "",
+        link1:""
+    },
+    {
+        id: 11,
+        title: "Real-Time Solutions",
+        img: "",
+        desc: "The introduction of the RTS Hypervisor on the latest Intel platforms facilitates new possibilities for real-time applications ranging from robotics and smart cars to factory automation and utility load management.",
+        link: "",
+        link1:""
+    },
+    {
+        id: 12,
+        title: "Eigen Innovations",
+        img: "",
+        desc: "The easy-to-deploy machine vision platform enables machine learning and AI that helps manufacturers solve complex engineering problems.",
+        link: "",
+        link1:""
+    },
+    {
+        id: 13,
+        title: "meldCX",
+        img: "",
+        desc: "Measuring how people work, shop, learn, and play in physical spaces without the need for complex development.",
+        link: "",
+        link1:""
+    },
+    {
+        id: 14,
+        title: "DarwinAI",
+        img: "",
+        desc: "Helping manufacturers automate their visual quality inspection and provide more consistent product quality.",
+        link: "",
+        link1:""
+    },
+
+    {
+        id: 15,
+        title: "Vistry, Inc",
+        img: "",
+        desc: "Vistry helps restaurants measure and improve s peed, production quality, and guest experience.",
+        link: "",
+        link1:""
+    },
+    {
+        id: 16,
+        title: "IntelliSite",
+        img: "",
+        desc: "IntelliSite helps improve the public safety, quality of living, and economic growth of communities.",
+        link: "",
+        link1:""
+    },{
+        id: 17,
+        title: "UdyogYantra Technologies",
+        img: "",
+        desc: "How UdyogYantra empowers food businesses with real-time monitoring and control of their supply chain and manufacturing operations.",
+        link: "",
+        link1:""
+    },
+    {
+        id: 18,
+        title: "CamCom",
+        img: "",
+        desc: "How CamCom helps detect exterior defects and damages using AI/ML for entire automotive lifecycle and warehousing industries.",
+        link: "",
+        link1:""
+    },
+    {
+        id: 19,
+        title: "TIBCO Software",
+        img: "",
+        desc: "How TIBCO helps organizations solve complex data problems, regardless of vertical.",
+        link: "",
+        link1:""
+    },
+    {
+        id: 20,
+        title: "Geek+",
+        img: "",
+        desc: "How Geek+ realizes flexible, reliable, and highly efficient logistics and supply chain management.",
+        link: "",
+        link1:""
+    },
+    {
+        id: 21,
+        title: "Quividi",
+        img: "",
+        desc: "How Quividi changes the paradigm for out of home audience measurement.",
+        link: "",
+        link1:""
+    },
+    {
+        id: 22,
+        title: "IndustryFusion Foundation (IFF)",
+        img: "",
+        desc: "IFF enables small and medium-sized enterprises to unleash the potential of Industry 4.0.",
+        link: "",
+        link1:""
+    },
+    {
+        id: 23,
+        title: "PreciTaste",
+        img: "",
+        desc: "How QSR brain software uses AI for precision forecasting in quick service restaurant food production.",
+        link: "",
+        link1:""
+    },
+]
+
+const itemsPerPage = 8;
+let currentPage = 1;
+
+function renderItems(startIndex, endIndex) {
+    for (let i = startIndex; i < endIndex && i < successpartner.length; i++) {
+        D_successpartner.innerHTML += `
+            <div class="col-xs-12 col-ms-6 col-sm-6 col-md-4 col-lg-3">
+                <div class="d_item">
+                    <div class="d_img mb-2">
+                        <img src="/img/darshan_image/${successpartner[i].img}" alt="">
+                    </div>
+                    <h3><a href="/d_partner/${successpartner[i].link}">${successpartner[i].title}</a></h3>
+                    <p>${successpartner[i].desc}</p>
+                    <p><a href="/d_partner/${successpartner[i].link}">Watch the video</a></p>
+                    ${successpartner[i].link1 ? `<p><a href="">Read the partner brief</a></p>` : ''}
+                </div>
+            </div>`;
+    }
+}
+
+function toggleItems() {
+    const showMoreBtn = document.getElementById('show-more-btn');
+    const myCard = document.getElementById('my-card');
+    
+    if (currentPage * itemsPerPage < successpartner.length) {
+        // Show more items
+        currentPage++;
+        const startIndex =   (currentPage - 1) * itemsPerPage;
+        const endIndex = currentPage * itemsPerPage;
+        renderItems(startIndex, endIndex);
+        
+        if (currentPage * itemsPerPage >= successpartner.length) {
+            showMoreBtn.innerHTML = '<i id="toggle-icon" class="fa-solid fa-angle-up"></i> Show Less';
+        }
+    } else {
+        // Show less items
+        D_successpartner.innerHTML = '';
+        currentPage = 1;
+        renderItems(0, itemsPerPage);
+        showMoreBtn.innerHTML = '<i id="toggle-icon" class="fa-solid fa-angle-down"></i> Show More';
+    }
+}
+
+if (D_successpartner) {
+    renderItems(0, itemsPerPage);
+    
+    const showMoreBtn = document.getElementById('show-more-btn');
+    showMoreBtn.addEventListener('click', toggleItems);
+}
+
+// case study
+
+let D_casestudy = document.getElementById('D_casestudy')
+
+const casestudy = [
+    {
+        id: 1,
+        title: "Optalio",
+        img: "is1.avif",
+        desc: "Optalio's AI process optimization solution improves manufacturing by boosting productivity and profitability. ",
+        link: "",
+        link1:""
+    },
+    {
+        id: 2,
+        title: "Eigen Innovations",
+        img: "is2.jpg",
+        desc: "Eigen Innovations' OneView Machine Vision software, centrally-managed machine vision solutions designed for defect prevention.",
+        link: "",
+        link1:""
+    },
+    {
+        id: 3,
+        title: "Aotu",
+        img: "is3.jpg",
+        desc: "Aotu BrainFrame is an AI platform that reduces the complexity of AI video analysis integration into manufaturing and industrial environments, streamlining manufacturing processes and enhancing industrial safety.",
+        link: "",
+        link1:""
+    },
+    {
+        id: 4,
+        title: "Visionatics Inc.",
+        img: "is4.jpg",
+        desc: "Visionatics Inc's panel inspection solution for manufacturing, delivering quality assurance with automated product inspection.",
+        link: "",
+        link1:""
+    },
+    {
+        id: 5,
+        title: "SeeWise Smart Factory",
+        img: "is5.avif",
+        desc: "True AI powered smart factory solution, optimizing manufacturing processes with computer vision from SeeWise.AI.",
+        link: "",
+        link1:""
+    },
+    {
+        id: 6,
+        title: "Satsafeti Intelligent Conveyor Solution",
+        img: "is6.png",
+        desc: "Enhancing worker safety and improving productivity for manufacturers with Satsafeti's conveyor solution.",
+        link: "",
+        link1:""
+    },
+    {
+        id: 7,
+        title: "Profet AI AutoML Platform",
+        img: "is7.jpg",
+        desc: "Streamlining digital transformations through data-driven manufacturing insights with the Profet AI AutoML Platform.",
+        link: "",
+        link1:""
+    },
+    {
+        id: 8,
+        title: "4tiitoo NUIA Eye Control",
+        img: "is8.jpg",
+        desc: "Improving efficiency and ergonomics with intuitive eye-tracking.",
+        link: "",
+        link1:""
+    },
+    {
+        id: 9,
+        title: "Pratexo Studio",
+        img: "is9.jpg",
+        desc: "Enhance micro-cloud and edge deployment from a centralized interface.",
+        link: "",
+        link1:""
+    },
+    {
+        id: 10,
+        title: "Irida Labs PerCV.ai Edge Vision AI Solution",
+        img: "",
+        desc: "Empowering vision sensors with edge AI for intelligence inventory management.",
+        link: "",
+        link1:""
+    },
+    {
+        id: 11,
+        title: "Axiomtek AMR Builder Package Accelerates Time-to-Market",
+        img: "is11.jpg",
+        desc: "Axiomtek releases an AMR builder package including an AMR controller, ROS 2 software package, sensor kits, and development support services to simplify the AMR development process from design to manufacture to assist system integrators in speeding up time-to-market.",
+        link: "",
+        link1:""
+    },
+]
+
+function renderItems1(startIndex, endIndex) {
+    for (let i = startIndex; i < endIndex && i < casestudy.length; i++) {
+        D_casestudy.innerHTML += `
+            <div class="col-xs-12 col-ms-6 col-sm-6 col-md-4 col-lg-3">
+                <div class="d_item">
+                    <div class="d_img mb-2">
+                        <img src="/img/darshan_image/${casestudy[i].img}" alt="">
+                    </div>
+                    <h3><a href="">${casestudy[i].title}</a></h3>
+                    <p>${casestudy[i].desc}</p>
+                    <p><a href="">Watch the video</a></p>
+                    ${casestudy[i].link1 ? `<p><a href="">Read the partner brief</a></p>` : ''}
+                </div>
+            </div>`;
+    }
+}
+
+function toggleItems1() {
+    const showMoreBtn = document.getElementById('show-more-btn1');
+
+    if (currentPage * itemsPerPage < casestudy.length) {
+        // Show more items
+        currentPage++;
+        const startIndex = (currentPage - 1) * itemsPerPage;
+        const endIndex = currentPage * itemsPerPage;
+        renderItems1(startIndex, endIndex);
+
+        if (currentPage * itemsPerPage >= casestudy.length) {
+            showMoreBtn.innerHTML = '<i id="toggle-icon" class="fa-solid fa-angle-up"></i> Show Less';
+        }
+    } else {
+        // Show less items
+        D_casestudy.innerHTML = '';
+        currentPage = 1;
+        renderItems1(0, itemsPerPage);
+        showMoreBtn.innerHTML = '<i id="toggle-icon" class="fa-solid fa-angle-down"></i> Show More';
+    }
+}
+
+if (D_casestudy) {
+    renderItems1(0, itemsPerPage);
+
+    const showMoreBtn = document.getElementById('show-more-btn1');
+    showMoreBtn.addEventListener('click', toggleItems1);
+}
+
+// health and sciences
+
+let D_successhealth = document.getElementById('D_successhealth')
+
+const successhealth = [
+    {
+        id: 1,
+        title: "ByteDance",
+        img: "hp1.jpg",
+        desc: "ByteDance Volcano Engine, advancing medical macromolecular models and pharmaceutical research, enhanced by the powerful computing capabilities of the Intel® oneAPIHPC Toolkit.",
+        link: "",
+        link1:""
+    },
+    {
+        id: 2,
+        title: "Sycai Medical",
+        img: "hp2.jpg",
+        desc: "Sycai Medical's AI medical imaging improves patient care through AI-assisted detection of pancreatic cystic lesions.",
+        link: "",
+        link1:""
+    },
+    {
+        id: 3,
+        title: "LinkingMed",
+        img: "hp3.jpg",
+        desc: "LinkingMed AIPlan automatic radiotherapy treatment planning system, improving patient outcomes and optimizing treatment plans with AI-powered tools.",
+        link: "",
+        link1:""
+    },
+    {
+        id: 4,
+        title: "JLK MEDIHUB CXR",
+        img: "hp4.jpg",
+        desc: "MEDIHUB CXR, enhance patient care with AI-based lung disease detection.",
+        link: "",
+        link1:""
+    },
+    {
+        id: 5,
+        title: "Netown Babybot Smart Health Solution",
+        img: "hp5.jpg",
+        desc: "Providing personalized health enhancement experiences with AI.",
+        link: "",
+        link1:""
+    },
+    {
+        id: 6,
+        title: "JelloX MetaLite Digital Pathology Edge Solution",
+        img: "hp6.jpg",
+        desc: "Enabling enhanced preventative care through intelligent analytics and imaging.",
+        link: "",
+        link1:""
+    },
+    {
+        id: 7,
+        title: "Subtle Medical SubtleMR",
+        img: "hp7.jpg",
+        desc: "Enabling safer, faster, and smarter medical imaging.",
+        link: "",
+        link1:""
+    },
+    {
+        id: 8,
+        title: "Bringing AI-Enabled Digital Pathology to Hospitals",
+        img: "hp8.jpg",
+        desc: "Wistron leveraged OpenVINO™ Model Server (OVMS) to optimize inference on Intel® CPU-based platforms.",
+        link: "",
+        link1:""
+    },
+    {
+        id: 9,
+        title: "DarwinAI's Deep Learning Screening Tool Helps Detect COVID-19",
+        img: "hp9.jpg",
+        desc: "DarwinAI developed the COVID-Net convolutional neural network (CNN) architecture to help clinicians rapidy and accurately detect COVID-19 in patients",
+        link: "",
+        link1:""
+    },
+    {
+        id: 10,
+        title: "Samsung Collaborates with Intel to Speed Nerve Detection and Improve Workflows",
+        img: "hp10.jpg",
+        desc: "Real-time inference of ultrasound nerve images powered by the Intel® Distribution of OpenVINO™ toolkit helps enhance workflow and improve accuracy for anesthesiologists.",
+        link: "",
+        link1:""
+    },
+    {
+        id: 11,
+        title: "Onyx AI Device Automates Medication Identification",
+        img: "",
+        desc: "A prototype AI Medicine Recognition Device improves identification efficiency and accelerates medication verification to aid in dispensing of medication to patients.",
+        link: "",
+        link1:""
+    },
+]
+
+function renderItems2(startIndex, endIndex) {
+    for (let i = startIndex; i < endIndex && i < successhealth.length; i++) {
+        D_successhealth.innerHTML += `
+            <div class="col-xs-12 col-ms-6 col-sm-6 col-md-4 col-lg-3">
+                <div class="d_item">
+                    <div class="d_img mb-2">
+                        <img src="/img/darshan_image/${successhealth[i].img}" alt="">
+                    </div>
+                    <h3><a href="">${successhealth[i].title}</a></h3>
+                    <p>${successhealth[i].desc}</p>
+                    <p><a href="">Watch the video</a></p>
+                    ${successhealth[i].link1 ? `<p><a href="">Read the partner brief</a></p>` : ''}
+                </div>
+            </div>`;
+    }
+}
+
+function toggleItems2() {
+    const showMoreBtn = document.getElementById('show-more-btn2');
+
+    if (currentPage * itemsPerPage < successhealth.length) {
+        // Show more items
+        currentPage++;
+        const startIndex = (currentPage - 1) * itemsPerPage;
+        const endIndex = currentPage * itemsPerPage;
+        renderItems2(startIndex, endIndex);
+
+        if (currentPage * itemsPerPage >= successhealth.length) {
+            showMoreBtn.innerHTML = '<i id="toggle-icon" class="fa-solid fa-angle-up"></i> Show Less';
+        }
+    } else {
+        // Show less items
+        D_successhealth.innerHTML = '';
+        currentPage = 1;
+        renderItems2(0, itemsPerPage);
+        showMoreBtn.innerHTML = '<i id="toggle-icon" class="fa-solid fa-angle-down"></i> Show More';
+    }
+}
+
+if (D_successhealth) {
+    renderItems2(0, itemsPerPage);
+
+    const showMoreBtn = document.getElementById('show-more-btn2');
+    showMoreBtn.addEventListener('click', toggleItems2);
+}
+
+
+// reatail
+
+let D_successretail = document.getElementById('D_successretail')
+
+const successretail = [
+    {
+        id: 1,
+        title: "Autocanteen",
+        img: "rs1.jpg",
+        desc: "Autocanteen is helping a major bank enhance their employee experience with AI-powered self-service checkout terminals. Autocanteen is a touchless self-checkout solution which increases checkout efficiency.",
+        link: "",
+        link1:""
+    },
+    {
+        id: 2,
+        title: "Shanghai Kaijing",
+        img: "rs2.jpg",
+        desc: "Shanghai Kaijing Canteen, improving efficiency for food retailers with AI-powered automated checkout services.",
+        link: "",
+        link1:""
+    },
+    {
+        id: 3,
+        title: "Pathr.ai",
+        img: "rs3.jpg",
+        desc: "Pathr.ai spatial intelligence, empowering data-driven decisions and improving operational efficiency with AI-driven video analytics.",
+        link: "",
+        link1:""
+    },
+    {
+        id: 4,
+        title: "C2RO",
+        img: "rs4.jpg",
+        desc: "ENTERA's GDPR-compliant video analytics platform empowers customers to maximize the value from their mission-critical video data.",
+        link: "",
+        link1:""
+    },
+    {
+        id: 5,
+        title: "Broox",
+        img: "rs5.jpg",
+        desc: "Broox Audience Analytics Suite, create meaningful customer engagement through intelligent digital signage.",
+        link: "",
+        link1:""
+    },
+    {
+        id: 6,
+        title: "WaitTime",
+        img: "rs6.jpg",
+        desc: "Improve customer experiences and operations using real-time crowd intelligence.",
+        link: "",
+        link1:""
+    },
+    {
+        id: 7,
+        title: "SHELFIE",
+        img: "rs7.jpg",
+        desc: "Empowering retailers with an intelligent shelf monitoring system for real-time, actionable insights.",
+        link: "",
+        link1:""
+    },
+    {
+        id: 8,
+        title: "Vistry Discrn",
+        img: "rs8.jpg",
+        desc: "Vistry brings AI-enabled automation to enterprise quick service restaurants",
+        link: "",
+        link1:""
+    },
+    {
+        id: 9,
+        title: "PM AM Corporation i3Di Solution",
+        img: "rs9.jpg",
+        desc: "Enhancing insights into customer behavior with AI-based video analytics.",
+        link: "",
+        link1:""
+    },
+    {
+        id: 10,
+        title: "GIBots DigiDoc: Accounts Payable Automation",
+        img: "rs10.jpg",
+        desc: "Enabling high volume transaction processing with a centralized, accurate, and intelligent data processing platform.",
+        link: "",
+        link1:""
+    },
+    {
+        id: 11,
+        title: "meldCX Reduce Loss and Increase Visibility with AI",
+        img: "rs11.jpg",
+        desc: "The increased reliance on customer self-checkout for more frictionless shopping as well as modern staffing challenges has increased the potential for theft. Retailers today need solutions to help them monitor their inventory closely, from truck to shelf, to detect potential shrinkage and prevent loss.",
+        link: "",
+        link1:""
+    },
+]
+
+function renderItems3(startIndex, endIndex) {
+    for (let i = startIndex; i < endIndex && i < successretail.length; i++) {
+        D_successretail.innerHTML += `
+            <div class="col-xs-12 col-ms-6 col-sm-6 col-md-4 col-lg-3">
+                <div class="d_item">
+                    <div class="d_img mb-2">
+                        <img src="/img/darshan_image/${successretail[i].img}" alt="">
+                    </div>
+                    <h3><a href="">${successretail[i].title}</a></h3>
+                    <p>${successretail[i].desc}</p>
+                    <p><a href="">Watch the video</a></p>
+                    ${successretail[i].link1 ? `<p><a href="">Read the partner brief</a></p>` : ''}
+                </div>
+            </div>`;
+    }
+}
+
+function toggleItems3() {
+    const showMoreBtn = document.getElementById('show-more-btn3');
+
+    if (currentPage * itemsPerPage < successretail.length) {
+        // Show more items
+        currentPage++;
+        const startIndex = (currentPage - 1) * itemsPerPage;
+        const endIndex = currentPage * itemsPerPage;
+        renderItems3(startIndex, endIndex);
+
+        if (currentPage * itemsPerPage >= successretail.length) {
+            showMoreBtn.innerHTML = '<i id="toggle-icon" class="fa-solid fa-angle-up"></i> Show Less';
+        }
+    } else {
+        // Show less items
+        D_successretail.innerHTML = '';
+        currentPage = 1;
+        renderItems3(0, itemsPerPage);
+        showMoreBtn.innerHTML = '<i id="toggle-icon" class="fa-solid fa-angle-down"></i> Show More';
+    }
+}
+
+if (D_successretail) {
+    renderItems3(0, itemsPerPage);
+
+    const showMoreBtn = document.getElementById('show-more-btn3');
+    showMoreBtn.addEventListener('click', toggleItems3);
+}
+
+// reatail
+
+let D_successsecurity = document.getElementById('D_successsecurity')
+
+const successsecurity = [
+    {
+        id: 1,
+        title: "Yumai",
+        img: "ss1.jpg",
+        desc: "Yumai Palm Vein Identification Box, enhancing individual authentication privacy through Palmar Vein Recognition.",
+        link: "",
+        link1:""
+    },
+    {
+        id: 2,
+        title: "Cathexis Technologies",
+        img: "ss2.jpg",
+        desc: "CathexisVision video management software and video analytics, enhancing safety and security with a suite of AI-enhanced features.",
+        link: "",
+        link1:""
+    },
+    {
+        id: 3,
+        title: "Irisity IRIS+",
+        img: "ss3.jpg",
+        desc: "Smart security with validated video analytics.",
+        link: "",
+        link1:""
+    },
+    {
+        id: 4,
+        title: "AerVision AerWatch",
+        img: "ss4.jpg",
+        desc: "AI enabled video monitoring and event detection.",
+        link: "",
+        link1:""
+    },
+    {
+        id: 5,
+        title: "WaitTime Crowd Management",
+        img: "ss5.jpg",
+        desc: "WaitTime is an artificial intelligence software that uses state-of-the-art imaging techniques to monitor crowd behavior in large scale venues.",
+        link: "",
+        link1:""
+    },
+    {
+        id: 6,
+        title: "Scale Computing VMS",
+        img: "ss6.jpg",
+        desc: "Intel and Scale Computing present a powerful and innovative solution for high-demand security stacks and edge computing.",
+        link: "",
+        link1:""
+    },
+    {
+        id: 7,
+        title: "PMY Venue Operational Insights",
+        img: "ss7.jpg",
+        desc: "PMY delivers smart operating platform with Intel technology for venues and events.",
+        link: "",
+        link1:""
+    },
+    {
+        id: 8,
+        title: "Neuroo Platform",
+        img: "ss8.jpg",
+        desc: "Making security systems smart with actionable data.",
+        link: "",
+        link1:""
+    },
+    {
+        id: 9,
+        title: "AIRA airaFace Solution",
+        img: "ss9.jpg",
+        desc: "The AIRA airaFace solution uses a proprietary facial recognition engine and faces from multiple inputs to provide highly accurate facial recognition capabilities.",
+        link: "",
+        link1:""
+    },
+    {
+        id: 10,
+        title: "ISS SecurOS Labor Safety Solutions",
+        img: "ss10.jpg",
+        desc: "Protecting workers and customers with video analytics solutions.",
+        link: "",
+        link1:""
+    },
+    {
+        id: 11,
+        title: "Viso Suite: Low-Code AI Inference Software with OpenVINO™ Toolkit",
+        img: "ss11.jpg",
+        desc: "Viso Suite and the Intel® Distribution of OpenVINO™ toolkit accelerate time to market for AI inference with a low-code, cloud-based SaaS solution.",
+        link: "",
+        link1:""
+    },
+]
+
+function renderItems4(startIndex, endIndex) {
+    for (let i = startIndex; i < endIndex && i < successsecurity.length; i++) {
+        D_successsecurity.innerHTML += `
+            <div class="col-xs-12 col-ms-6 col-sm-6 col-md-4 col-lg-3">
+                <div class="d_item">
+                    <div class="d_img mb-2">
+                        <img src="/img/darshan_image/${successsecurity[i].img}" alt="">
+                    </div>
+                    <h3><a href="">${successsecurity[i].title}</a></h3>
+                    <p>${successsecurity[i].desc}</p>
+                    <p><a href="">Watch the video</a></p>
+                    ${successsecurity[i].link1 ? `<p><a href="">Read the partner brief</a></p>` : ''}
+                </div>
+            </div>`;
+    }
+}
+
+function toggleItems4() {
+    const showMoreBtn = document.getElementById('show-more-btn4');
+
+    if (currentPage * itemsPerPage < successsecurity.length) {
+        // Show more items
+        currentPage++;
+        const startIndex = (currentPage - 1) * itemsPerPage;
+        const endIndex = currentPage * itemsPerPage;
+        renderItems4(startIndex, endIndex);
+
+        if (currentPage * itemsPerPage >= successsecurity.length) {
+            showMoreBtn.innerHTML = '<i id="toggle-icon" class="fa-solid fa-angle-up"></i> Show Less';
+        }
+    } else {
+        // Show less items
+        D_successsecurity.innerHTML = '';
+        currentPage = 1;
+        renderItems4(0, itemsPerPage);
+        showMoreBtn.innerHTML = '<i id="toggle-icon" class="fa-solid fa-angle-down"></i> Show More';
+    }
+}
+
+if (D_successsecurity) {
+    renderItems4(0, itemsPerPage);
+
+    const showMoreBtn = document.getElementById('show-more-btn4');
+    showMoreBtn.addEventListener('click', toggleItems4);
+}
+
+// transport
+
+let D_transport = document.getElementById('D_transport')
+
+const transport = [
+    {
+        id: 1,
+        title: "Ignitarium TYQ-i",
+        img: "ts1.jpg",
+        desc: "Empowering smarter inspection with vision intelligence.",
+        link: "",
+        link1:""
+    },
+    {
+        id: 2,
+        title: "7 StarLake Smart Traffic",
+        img: "ts2.jpg",
+        desc: "5G C-V2X smart traffic, improving public safety with AI-based traffic monitoring.",
+        link: "",
+        link1:""
+    },
+    {
+        id: 3,
+        title: "Siena Analytics Insights",
+        img: "ts3.jpg",
+        desc: "Improving supply chain logistics with AI and image recognition.",
+        link: "",
+        link1:""
+    },
+    {
+        id: 4,
+        title: "Intelligence Design IDEA Counter",
+        img: "ts4.jpg",
+        desc: "Automating the measurement of traffic volume data and improving insights through automated volume measurement with ai image analysis.",
+        link: "",
+        link1:""
+    },
+    {
+        id: 5,
+        title: "Viso.ai Viso Suite Solution",
+        img: "",
+        desc: "Viso Suite is the no-code platform for computer vision to build and operate all AI vision applications in one place.",
+        link: "",
+        link1:""
+    },
+    {
+        id: 6,
+        title: "Edge Vision EV-Crossroad",
+        img: "",
+        desc: "Detecting traffic incidents in real-time to improve public safety.",
+        link: "",
+        link1:""
+    },
+    {
+        id: 7,
+        title: "EXTREME VISION Smart Traffic Violation Review",
+        img: "ts7.jpg",
+        desc: "Improving traffic management and safety through AI.",
+        link: "",
+        link1:""
+    },
+    {
+        id: 8,
+        title: "KoiReader HyperAutomation Platform",
+        img: "ts8.jpg",
+        desc: "KoiReader AIoT-powered HyperAutomation Platform for logistics and supply chain, improving operational efficiency across the entire value chain.",
+        link: "",
+        link1:""
+    },
+    {
+        id: 9,
+        title: "a2-VCA Traffic Safety Solution",
+        img: "ts9.jpg",
+        desc: "AI-based video analysis helps improve traffic safety in near-real time.",
+        link: "",
+        link1:""
+    },
+    {
+        id: 10,
+        title: "DFI and Chunghwa Telecom Labs Deliver Solution to Help Reduce Traffic Accidents",
+        img: "ts10.jpg",
+        desc: "DFI and Chunghwa Telecom Labs chose the Intel® Distribution of OpenVINO™ toolkit to create a mobile AI system that can identify license plates of vehicles committing traffic violations.",
+        link: "",
+        link1:""
+    },
+    {
+        id: 11,
+        title: "Intel and ADLINK: Smarter, Safer Railways",
+        img: "ts11.jpg",
+        desc: "This eBook is intended to show how Artificial Intelligence can be incorporated into railway operations to improve the railway experience and to showcase the many use cases that exist. ",
+        link: "",
+        link1:""
+    },
+]
+
+function renderItems5(startIndex, endIndex) {
+    for (let i = startIndex; i < endIndex && i < transport.length; i++) {
+        D_transport.innerHTML += `
+            <div class="col-xs-12 col-ms-6 col-sm-6 col-md-4 col-lg-3">
+                <div class="d_item">
+                    <div class="d_img mb-2">
+                        <img src="/img/darshan_image/${transport[i].img}" alt="">
+                    </div>
+                    <h3><a href="">${transport[i].title}</a></h3>
+                    <p>${transport[i].desc}</p>
+                    <p><a href="">Watch the video</a></p>
+                    ${transport[i].link1 ? `<p><a href="">Read the partner brief</a></p>` : ''}
+                </div>
+            </div>`;
+    }
+}
+
+function toggleItems5() {
+    const showMoreBtn = document.getElementById('show-more-btn5');
+
+    if (currentPage * itemsPerPage < transport.length) {
+        // Show more items
+        currentPage++;
+        const startIndex = (currentPage - 1) * itemsPerPage;
+        const endIndex = currentPage * itemsPerPage;
+        renderItems5(startIndex, endIndex);
+
+        if (currentPage * itemsPerPage >= transport.length) {
+            showMoreBtn.innerHTML = '<i id="toggle-icon" class="fa-solid fa-angle-up"></i> Show Less';
+        }
+    } else {
+        // Show less items
+        D_transport.innerHTML = '';
+        currentPage = 1;
+        renderItems5(0, itemsPerPage);
+        showMoreBtn.innerHTML = '<i id="toggle-icon" class="fa-solid fa-angle-down"></i> Show More';
+    }
+}
+
+if (D_transport) {
+    renderItems5 (0, itemsPerPage);
+
+    const showMoreBtn = document.getElementById('show-more-btn5');
+    showMoreBtn.addEventListener('click', toggleItems5);
+}
+
+// technology
+
+let D_technology = document.getElementById('D_technology')
+
+const technology = [
+    {
+        id: 1,
+        title: "NavAjna",
+        img: "es1.avif",
+        desc: "NavAjna Avanta AI, creating meaningful customer experiences with intelligent digital interactions.",
+        link: "",
+        link1:""
+    },
+    {
+        id: 2,
+        title: "Course5",
+        img: "es2.jpg",
+        desc: "Course5 Discovery AI-powered Augmented Analytics Platform is an AI-powered suite of tools that helps businesses make quick, data-driven decisions by providing a powerful and intuitive solution to multi-stream analytics.",
+        link: "",
+        link1:""
+    },
+    {
+        id: 3,
+        title: "Taboola",
+        img: "es3.jpg",
+        desc: "Driving meaningful customer engagement with AI-driven content rocommendations.",
+        link: "",
+        link1:""
+    },
+    {
+        id: 4,
+        title: "brighter AI",
+        img: "es4.jpg",
+        desc: "brighter AI's image and video anonymization solution, improving identity protection and privacy compliance with AI-powered anonymization at scale.",
+        link: "",
+        link1:""
+    },
+    {
+        id: 5,
+        title: "iGenius",
+        img: "es5.jpg",
+        desc: "iGenius's Crystal is a voice and text-based data platform that lets people effortlessly access and analyze their business data.",
+        link: "",
+        link1:""
+    },
+    {
+        id: 6,
+        title: "IBM",
+        img: "es6.jpg",
+        desc: "IBM Watson Natural Language Understanding, powered by Intel processors and optimized with Intel software tools, uses deep learning techniques to extract meaning and metadata from unstructured data.",
+        link: "",
+        link1:""
+    },
+    {
+        id: 7,
+        title: "GDDi",
+        img: "es7.jpg",
+        desc: "GDDi Algorithms Defined Edge AIBox.  Empowering businesses with accessible computer vision with automated AI algorithm training.",
+        link: "",
+        link1:""
+    },
+    {
+        id: 8,
+        title: "SILO AI",
+        img: "es8.jpg",
+        desc: "Achieve better weather insights with deep learning.",
+        link: "",
+        link1:""
+    },
+    {
+        id: 9,
+        title: "SAIMOS",
+        img: "es9.jpg",
+        desc: "The SAIMOS Video Analytics Suite, harnesses the power of AI to transform unstructured video streams into actionable data customers can use to optimize their business, security, and smart city operations.",
+        link: "",
+        link1:""
+    },
+    {
+        id: 10,
+        title: "Beseye",
+        img: "es10.jpg",
+        desc: "Optimizing safety management and operations through Beseye AI Video Analysis Platform powered by 11th and 12th gen Intel® Core™ Processors.",
+        link: "",
+        link1:""
+    },
+    {
+        id: 11,
+        title: "CVEDIA + GRIDSMART",
+        img: "",
+        desc: "GRIDSMART supports safe traffic intersections with advanced video analytics from CVEDIA ITS solutions. ",
+        link: "",
+        link1:""
+    },
+]
+
+function renderItems6(startIndex, endIndex) {
+    for (let i = startIndex; i < endIndex && i < technology.length; i++) {
+        D_technology.innerHTML += `
+            <div class="col-xs-12 col-ms-6 col-sm-6 col-md-4 col-lg-3">
+                <div class="d_item">
+                    <div class="d_img mb-2">
+                        <img src="/img/darshan_image/${technology[i].img}" alt="">
+                    </div>
+                    <h3><a href="">${technology[i].title}</a></h3>
+                    <p>${technology[i].desc}</p>
+                    <p><a href="">Watch the video</a></p>
+                    ${technology[i].link1 ? `<p><a href="">Read the partner brief</a></p>` : ''}
+                </div>
+            </div>`;
+    }
+}
+
+function toggleItems6() {
+    const showMoreBtn = document.getElementById('show-more-btn6');
+
+    if (currentPage * itemsPerPage < technology.length) {
+        // Show more items
+        currentPage++;
+        const startIndex = (currentPage - 1) * itemsPerPage;
+        const endIndex = currentPage * itemsPerPage;
+        renderItems6(startIndex, endIndex);
+
+        if (currentPage * itemsPerPage >= technology.length) {
+            showMoreBtn.innerHTML = '<i id="toggle-icon" class="fa-solid fa-angle-up"></i> Show Less';
+        }
+    } else {
+        // Show less items
+        D_technology.innerHTML = '';
+        currentPage = 1;
+        renderItems6(0, itemsPerPage);
+        showMoreBtn.innerHTML = '<i id="toggle-icon" class="fa-solid fa-angle-down"></i> Show More';
+    }
+}
+
+if (D_technology) {
+    renderItems6(0, itemsPerPage);
+
+    const showMoreBtn = document.getElementById('show-more-btn6');
+    showMoreBtn.addEventListener('click', toggleItems6);
+}
+
+// video 
+
+let D_successvideo = document.getElementById('D_successvideo')
+
+const successvideo = [
+    {
+        id: 1,
+        title: "NexCOBOT",
+        img: "vs1.png",
+        desc: "Functional safety control platform for autonomous mobile robots.",
+        link: "",
+        link1:""
+    },
+    {
+        id: 2,
+        title: "WaitTime",
+        img: "vs2.png",
+        desc: "WaitTime is a patented, real-time and historical artificial intelligence software that uses state-of-the-art imaging techniques to monitor crowd behavior in large scale venues.",
+        link: "",
+        link1:""
+    },
+    {
+        id: 3,
+        title: "Axiomtek",
+        img: "vs3.png",
+        desc: "Axiomtek AMR building package aims to accelerate time-to-market through a complete support program.",
+        link: "",
+        link1:""
+    },
+    {
+        id: 4,
+        title: "AAEON",
+        img: "vs4.png",
+        desc: "AAEON UP Element i12 Edge, autonomous mobile robot modular toolkit.",
+        link: "",
+        link1:""
+    },
+    {
+        id: 5,
+        title: "NexAIoT",
+        img: "vs5.png",
+        desc: "Delivering user-centric service with smart autonomous mobile robots (AMR).",
+        link: "",
+        link1:""
+    },
+    {
+        id: 6,
+        title: "Deci",
+        img: "vs6.png",
+        desc: "Accelerating deep learning performance on edge devices.",
+        link: "",
+        link1:""
+    },
+    {
+        id: 7,
+        title: "HTC",
+        img: "vs7.png",
+        desc: "5G Private Network Solution",
+        link: "",
+        link1:""
+    },
+    {
+        id: 8,
+        title: "NEXCOM",
+        img: "vs8.png",
+        desc: "NEXCOM 5G uCPE for virtual edge services management.",
+        link: "",
+        link1:""
+    },
+    {
+        id: 9,
+        title: "Pegatron",
+        img: "vs9.png",
+        desc: "Pegatron 5G private network solution, digital resilience.",
+        link: "",
+        link1:""
+    },
+    {
+        id: 10,
+        title: "Lanner",
+        img: "vs10.png",
+        desc: "Lanner Scalable EDGE Cloud Platform",
+        link: "",
+        link1:""
+    },
+    {
+        id: 11,
+        title: "JelloX",
+        img: "vs11.png",
+        desc: "MetaLite digital pathology edge solution.",
+        link: "",
+        link1:""
+    },
+]
+
+function renderItems7(startIndex, endIndex) {
+    for (let i = startIndex; i < endIndex && i < successvideo.length; i++) {
+        D_successvideo.innerHTML += `
+            <div class="col-xs-12 col-ms-6 col-sm-6 col-md-4 col-lg-3">
+                <div class="d_item">
+                    <div class="d_img mb-2">
+                        <img src="/img/darshan_image/${successvideo[i].img}" alt="">
+                    </div>
+                    <h3><a href="">${successvideo[i].title}</a></h3>
+                    <p>${successvideo[i].desc}</p>
+                    <p><a href="">Watch the video</a></p>
+                    ${successvideo[i].link1 ? `<p><a href="">Read the partner brief</a></p>` : ''}
+                </div>
+            </div>`;
+    }
+}
+
+function toggleItems7() {
+    const showMoreBtn = document.getElementById('show-more-btn7');
+
+    if (currentPage * itemsPerPage < successvideo.length) {
+        // Show more items
+        currentPage++;
+        const startIndex = (currentPage - 1) * itemsPerPage;
+        const endIndex = currentPage * itemsPerPage;
+        renderItems7(startIndex, endIndex);
+
+        if (currentPage * itemsPerPage >= successvideo.length) {
+            showMoreBtn.innerHTML = '<i id="toggle-icon" class="fa-solid fa-angle-up"></i> Show Less';
+        }
+    } else {
+        // Show less items
+        D_successvideo.innerHTML = '';
+        currentPage = 1;
+        renderItems7(0, itemsPerPage);
+        showMoreBtn.innerHTML = '<i id="toggle-icon" class="fa-solid fa-angle-down"></i> Show More';
+    }
+}
+
+if (D_successvideo) {
+    renderItems7(0, itemsPerPage);
+
+    const showMoreBtn = document.getElementById('show-more-btn7');
+    showMoreBtn.addEventListener('click', toggleItems7);
+}
+
+// ecosystem 
+
+let D_knowecosystem = document.getElementById('D_knowecosystem')
+
+const knowecosystem = [
+    {
+        id: 1,
+        title: "Wind River Systems",
+        img: "eco1.png",
+        desc: "Helix Virtualization Platform, advancing safety avionics with Intel Xeon D-1700/2700 and 11th Gen Intel® Core™ processors.",
+        link: "",
+        link1:""
+    },
+    {
+        id: 2,
+        title: "Portwell",
+        img: "eco2.png",
+        desc: "12th Gen Intel® Core™ Processor PICMG 1.3 single host board.",
+        link: "",
+        link1:""
+    },
+    {
+        id: 3,
+        title: "Asus",
+        img: "eco3.png",
+        desc: "Completed industrial components portfolio with 12th Gen Intel® Core™ processors.",
+        link: "",
+        link1:""
+    },
+    {
+        id: 4,
+        title: "Advantech",
+        img: "",
+        desc: "Intel 12th Gen Core processors embedded platforms",
+        link: "",
+        link1:""
+    },
+    {
+        id: 5,
+        title: "Seavo Solutions",
+        img: "",
+        desc: "Scalable and expandable Vision AI solution.",
+        link: "",
+        link1:""
+    },
+    {
+        id: 6,
+        title: "Congatec",
+        img: "",
+        desc: "COM-HPC Modules Leverage Intel® Xeon® D Processor for Server-Level Performance at the Edge",
+        link: "",
+        link1:""
+    },
+    {
+        id: 7,
+        title: "DFI",
+        img: "",
+        desc: "The Virtualized Infrastructure for Industrial Automation Based on Intel 12th Core Processor and Ubuntu.",
+        link: "",
+        link1:""
+    },
+    {
+        id: 8,
+        title: "JWIPC (D34)",
+        img: "",
+        desc: "E098 Edge AI Box for video analytics",
+        link: "",
+        link1:""
+    },
+    {
+        id: 9,
+        title: "Advantech (D33)",
+        img: "",
+        desc: "Next Generation AI Applications Powered by 11th Gen Intel® Core™ and Intel® Celeron® processors, and Intel® Xe™ Graphics",
+        link: "",
+        link1:""
+    },
+    {
+        id: 10,
+        title: "IEI (D32)",
+        img: "",
+        desc: "Scalable and expandable Vision AI solution.",
+        link: "",
+        link1:""
+    },
+    {
+        id: 11,
+        title: "Adlink (D31)",
+        img: "",
+        desc: "Adlink SMARC modules offer more CPU power for low-power applications. ",
+        link: "",
+        link1:""
+    },
+]
+
+function renderItems10(startIndex, endIndex) {
+    for (let i = startIndex; i < endIndex && i < knowecosystem.length; i++) {
+        D_knowecosystem.innerHTML += `
+            <div class="col-xs-12 col-ms-6 col-sm-6 col-md-4 col-lg-3">
+                <div class="d_item">
+                    <div class="d_img mb-2">
+                        <img src="/img/darshan_image/${knowecosystem[i].img}" alt="">
+                    </div>
+                    <h3><a href="">${knowecosystem[i].title}</a></h3>
+                    <p>${knowecosystem[i].desc}</p>
+                    <p><a href="">View the presentation</a></p>
+                    <p><a href="">Watch the video</a></p>
+                </div>
+            </div>`;
+    }
+}
+
+function toggleItems10() {
+    const showMoreBtn = document.getElementById('show-more-btn10');
+
+    if (currentPage * itemsPerPage < knowecosystem.length) {
+        // Show more items
+        currentPage++;
+        const startIndex = (currentPage - 1) * itemsPerPage;
+        const endIndex = currentPage * itemsPerPage;
+        renderItems10(startIndex, endIndex);
+
+        if (currentPage * itemsPerPage >= knowecosystem.length) {
+            showMoreBtn.innerHTML = '<i id="toggle-icon" class="fa-solid fa-angle-up"></i> Show Less';
+        }
+    } else {
+        // Show less items
+        D_knowecosystem.innerHTML = '';
+        currentPage = 1;
+        renderItems10(0, itemsPerPage);
+        showMoreBtn.innerHTML = '<i id="toggle-icon" class="fa-solid fa-angle-down"></i> Show More';
+    }
+}
+
+if (D_knowecosystem) {
+    renderItems10(0, itemsPerPage);
+
+    const showMoreBtn = document.getElementById('show-more-btn10');
+    showMoreBtn.addEventListener('click', toggleItems10);
+}
+
 
