@@ -1022,6 +1022,9 @@ window.onload = function () {
     // celadon documantation
     createDocumentElementforceladon();
 
+    // intel adviser documantation
+    VK_display_result_accridan();
+
 }
 
 if (document.getElementById('VK_select_filters')) {
@@ -1192,45 +1195,874 @@ function VK_tool_search_close() {
 // --------------------------------------------------------------- custom pagiantion logic -----------------------------------------------------------------
 
 
+let VK_mother_board_data = [
+    {
+        name: "Socket R1 (LGA2011) [Red] Interposer",
+        image: "nophoto-base_1.png",
+        price: "$500.00"
+    },
+    {
+        name: "Socket R3 (LGA2011-3) [Blue] Interposer",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "Socket R3 (LGA2011-3) [Blue] Interposer",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "Socket R3 (LGA2011-3) [Blue] Interposer",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "Socket R3 (LGA2011-3) [Blue] Interposer",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "Socket R3 (LGA2011-3) [Blue] Interposer",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "Socket R3 (LGA2011-3) [Blue] Interposer",
+        image: "nophoto-base_1.png"
+    },
+]
+
+let VK_palform_software_data = [
+    {
+        name: "EMI Shield for the Gen5 VR Test Tool",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "EMI Shield for the Gen5 VR Test Tool",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "EMI Shield for the Gen5 VR Test Tool",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "EMI Shield for the Gen5 VR Test Tool",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "EMI Shield for the Gen5 VR Test Tool",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "EMI Shield for the Gen5 VR Test Tool",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "EMI Shield for the Gen5 VR Test Tool",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "EMI Shield for the Gen5 VR Test Tool",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "EMI Shield for the Gen5 VR Test Tool",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "EMI Shield for the Gen5 VR Test Tool",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "EMI Shield for the Gen5 VR Test Tool",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "EMI Shield for the Gen5 VR Test Tool",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "EMI Shield for the Gen5 VR Test Tool",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "EMI Shield for the Gen5 VR Test Tool",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "EMI Shield for the Gen5 VR Test Tool",
+        image: "nophoto-base_1.png"
+    },
+]
+
+let VK_server_tools_data = [
+    {
+        name: "DDR5 High Current Memory VR Test Tool Kit",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "DDR5 High Current Memory VR Test Tool Kit",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "DDR5 High Current Memory VR Test Tool Kit",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "DDR5 High Current Memory VR Test Tool Kit",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "DDR5 High Current Memory VR Test Tool Kit",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "DDR5 High Current Memory VR Test Tool Kit",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "DDR5 High Current Memory VR Test Tool Kit",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "DDR5 High Current Memory VR Test Tool Kit",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "DDR5 High Current Memory VR Test Tool Kit",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "DDR5 High Current Memory VR Test Tool Kit",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "DDR5 High Current Memory VR Test Tool Kit",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "DDR5 High Current Memory VR Test Tool Kit",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "DDR5 High Current Memory VR Test Tool Kit",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "DDR5 High Current Memory VR Test Tool Kit",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "DDR5 High Current Memory VR Test Tool Kit",
+        image: "nophoto-base_1.png"
+    },
+]
+
+let VK_Purley_tools_data = [
+    {
+        name: "High Power Gen4 VR Test Tool Base Kit",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "High Power Gen4 VR Test Tool Base Kit",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "High Power Gen4 VR Test Tool Base Kit",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "High Power Gen4 VR Test Tool Base Kit",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "High Power Gen4 VR Test Tool Base Kit",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "High Power Gen4 VR Test Tool Base Kit",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "High Power Gen4 VR Test Tool Base Kit",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "High Power Gen4 VR Test Tool Base Kit",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "High Power Gen4 VR Test Tool Base Kit",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "High Power Gen4 VR Test Tool Base Kit",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "High Power Gen4 VR Test Tool Base Kit",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "High Power Gen4 VR Test Tool Base Kit",
+        image: "nophoto-base_1.png"
+    },
+]
+
+let VK_harrisonville_tools_data = [
+    {
+        name: "DDR4 Memory VR Test Tool Master Module for Narrow DIMM Pitch Platforms",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "DDR5 High Current Memory VR Test Tool Kit",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "DDR5 High Current Memory VR Test Tool Kit",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "DDR5 High Current Memory VR Test Tool Kit",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "DDR5 High Current Memory VR Test Tool Kit",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "DDR5 High Current Memory VR Test Tool Kit",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "DDR5 High Current Memory VR Test Tool Kit",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "DDR5 High Current Memory VR Test Tool Kit",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "DDR5 High Current Memory VR Test Tool Kit",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "DDR5 High Current Memory VR Test Tool Kit",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "DDR5 High Current Memory VR Test Tool Kit",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "DDR5 High Current Memory VR Test Tool Kit",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "DDR5 High Current Memory VR Test Tool Kit",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "DDR5 High Current Memory VR Test Tool Kit",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "DDR5 High Current Memory VR Test Tool Kit",
+        image: "nophoto-base_1.png"
+    },
+]
+
+let VK_grangeville_tools_data = [
+    {
+        name: "Intel® ITP PDT Software Subscription",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "PCI-e Power Delivery Adapter Card",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "PCI-e Power Delivery Adapter Card",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "PCI-e Power Delivery Adapter Card",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "DDR5 High Current Memory VR Test Tool Kit",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "DDR5 High Current Memory VR Test Tool Kit",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "DDR5 High Current Memory VR Test Tool Kit",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "DDR5 High Current Memory VR Test Tool Kit",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "DDR5 High Current Memory VR Test Tool Kit",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "DDR5 High Current Memory VR Test Tool Kit",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "DDR5 High Current Memory VR Test Tool Kit",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "DDR5 High Current Memory VR Test Tool Kit",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "DDR5 High Current Memory VR Test Tool Kit",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "DDR5 High Current Memory VR Test Tool Kit",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "DDR5 High Current Memory VR Test Tool Kit",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "DDR5 High Current Memory VR Test Tool Kit",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "DDR5 High Current Memory VR Test Tool Kit",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "DDR5 High Current Memory VR Test Tool Kit",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "DDR5 High Current Memory VR Test Tool Kit",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "DDR5 High Current Memory VR Test Tool Kit",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "DDR5 High Current Memory VR Test Tool Kit",
+        image: "nophoto-base_1.png"
+    },
+]
+
+let VK_grantley_tools_data = [
+    {
+        name: "High Power Gen4 VR Test Tool Base Kit",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "DDR5 High Current Memory VR Test Tool Kit",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "DDR5 High Current Memory VR Test Tool Kit",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "DDR5 High Current Memory VR Test Tool Kit",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "DDR5 High Current Memory VR Test Tool Kit",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "DDR5 High Current Memory VR Test Tool Kit",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "DDR5 High Current Memory VR Test Tool Kit",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "DDR5 High Current Memory VR Test Tool Kit",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "DDR5 High Current Memory VR Test Tool Kit",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "DDR5 High Current Memory VR Test Tool Kit",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "DDR5 High Current Memory VR Test Tool Kit",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "DDR5 High Current Memory VR Test Tool Kit",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "DDR5 High Current Memory VR Test Tool Kit",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "DDR5 High Current Memory VR Test Tool Kit",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "DDR5 High Current Memory VR Test Tool Kit",
+        image: "nophoto-base_1.png"
+    },
+]
+
+let VK_brickland_tools_data = [
+    {
+        name: "Mongoose2 MRDIMM Test Card",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "Mongoose2 MRDIMM Test Card",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "Mongoose2 MRDIMM Test Card",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "Mongoose2 MRDIMM Test Card",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "Mongoose2 MRDIMM Test Card",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "Mongoose2 MRDIMM Test Card",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "Mongoose2 MRDIMM Test Card",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "Mongoose2 MRDIMM Test Card",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "Mongoose2 MRDIMM Test Card",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "Mongoose2 MRDIMM Test Card",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "Mongoose2 MRDIMM Test Card",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "Mongoose2 MRDIMM Test Card",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "Mongoose2 MRDIMM Test Card",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "Mongoose2 MRDIMM Test Card",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "Mongoose2 MRDIMM Test Card",
+        image: "nophoto-base_1.png"
+    },
+]
+
+let VK_edisonville_tools_data = [
+    {
+        name: "Selftest BIOS Validation Suite",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "Selftest BIOS Validation Suite",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "Selftest BIOS Validation Suite",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "Selftest BIOS Validation Suite",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "Selftest BIOS Validation Suite",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "Selftest BIOS Validation Suite",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "Selftest BIOS Validation Suite",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "Selftest BIOS Validation Suite",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "Selftest BIOS Validation Suite",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "Selftest BIOS Validation Suite",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "Selftest BIOS Validation Suite",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "Selftest BIOS Validation Suite",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "Selftest BIOS Validation Suite",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "Selftest BIOS Validation Suite",
+        image: "nophoto-base_1.png"
+    },
+]
+
+let VK_romley_tools_data = [
+    {
+        name: "High Power Gen4 VR Test Tool Base Kit",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "High Power Gen4 VR Test Tool Base Kit",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "High Power Gen4 VR Test Tool Base Kit",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "High Power Gen4 VR Test Tool Base Kit",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "High Power Gen4 VR Test Tool Base Kit",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "High Power Gen4 VR Test Tool Base Kit",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "High Power Gen4 VR Test Tool Base Kit",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "High Power Gen4 VR Test Tool Base Kit",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "High Power Gen4 VR Test Tool Base Kit",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "High Power Gen4 VR Test Tool Base Kit",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "High Power Gen4 VR Test Tool Base Kit",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "High Power Gen4 VR Test Tool Base Kit",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "High Power Gen4 VR Test Tool Base Kit",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "High Power Gen4 VR Test Tool Base Kit",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "High Power Gen4 VR Test Tool Base Kit",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "High Power Gen4 VR Test Tool Base Kit",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "High Power Gen4 VR Test Tool Base Kit",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "High Power Gen4 VR Test Tool Base Kit",
+        image: "nophoto-base_1.png"
+    },
+]
+
+let VK_cpu_voltage_tools_data = [
+    {
+        name: "EMI Shield for the Gen5 VR Test Tool",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "EMI Shield for the Gen5 VR Test Tool",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "EMI Shield for the Gen5 VR Test Tool",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "EMI Shield for the Gen5 VR Test Tool",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "EMI Shield for the Gen5 VR Test Tool",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "EMI Shield for the Gen5 VR Test Tool",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "EMI Shield for the Gen5 VR Test Tool",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "EMI Shield for the Gen5 VR Test Tool",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "EMI Shield for the Gen5 VR Test Tool",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "EMI Shield for the Gen5 VR Test Tool",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "EMI Shield for the Gen5 VR Test Tool",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "EMI Shield for the Gen5 VR Test Tool",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "EMI Shield for the Gen5 VR Test Tool",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "EMI Shield for the Gen5 VR Test Tool",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "EMI Shield for the Gen5 VR Test Tool",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "EMI Shield for the Gen5 VR Test Tool",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "EMI Shield for the Gen5 VR Test Tool",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "EMI Shield for the Gen5 VR Test Tool",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "EMI Shield for the Gen5 VR Test Tool",
+        image: "nophoto-base_1.png"
+    },
+]
+
+let VK_platform_testing_and_review_services_data = [
+    {
+        name: "IPTS Technical Support",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "IPTS Technical Support",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "IPTS Technical Support",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "IPTS Technical Support",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "IPTS Technical Support",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "IPTS Technical Support",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "IPTS Technical Support",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "IPTS Technical Support",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "IPTS Technical Support",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "IPTS Technical Support",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "IPTS Technical Support",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "IPTS Technical Support",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "IPTS Technical Support",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "IPTS Technical Support",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "IPTS Technical Support",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "IPTS Technical Support",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "IPTS Technical Support",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "IPTS Technical Support",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "IPTS Technical Support",
+        image: "nophoto-base_1.png"
+    },
+]
 
 let current_page = 1;
-let limit = 12;  // Define limit globally
+let limit = 12;
 let fetch_data = [];
 let id = '';
 
 let VK_chk_page = () => {
-    if (document.getElementById('VK_page_detect')) {
-        let pageElement = document.getElementById('VK_page_detect');
-        let classname = pageElement.classList.value;
-        switch (classname) {
-            case 'VK_motherboard':
-                id = "VK_motherboard_card_parent";
-                let url = '/js/VK_mother-board-data.json';
-                VK_Get_Data(url, id);
-                break;
-        }
-    } else {
-        return;
-    }
-}
+    let pageElement = document.getElementById('VK_page_detect');
+    if (!pageElement) return;
 
-let VK_Get_Data = async (url, id) => {
-    try {
-        let response = await fetch(url);
-        if (response.ok) {
-            fetch_data = await response.json();
-            if (fetch_data) {
-                custom_pagination(current_page, limit, fetch_data, id);
-            }
-        } else {
-            throw new Error(`${response.status}`);
-        }
-    } catch (error) {
-        console.log(error);
+    let classname = pageElement.classList.value;
+    switch (classname) {
+        case 'VK_motherboard':
+            id = "VK_motherboard_card_parent";
+            fetch_data = VK_mother_board_data;
+            custom_pagination(current_page, limit, fetch_data, id);
+            break;
+
+        case 'VK_paltform_software':
+            id = "VK_paltform_card_parent";
+            fetch_data = VK_palform_software_data;
+            custom_pagination(current_page, limit, fetch_data, id);
+            break;
+
+        case 'VK_server_tools':
+            id = "VK_server_tool_card_parent";
+            fetch_data = VK_server_tools_data;
+            custom_pagination(current_page, limit, fetch_data, id);
+            break;
+
+        case 'VK_Purley_tools':
+            id = 'VK_Purley_tool_card_parent';
+            fetch_data = VK_Purley_tools_data;
+            custom_pagination(current_page, limit, fetch_data, id);
+            break;
+
+        case 'VK_Harrisonville_tools':
+            id = "VK_harrisonville_card_parent";
+            fetch_data = VK_harrisonville_tools_data;
+            custom_pagination(current_page, limit, fetch_data, id);
+            break;
+
+        case 'VK_grangeville_tools':
+            id = 'VK_grangeville_card_parent';
+            fetch_data = VK_grangeville_tools_data;
+            custom_pagination(current_page, limit, fetch_data, id);
+            break;
+
+        case 'VK_grantley_tools':
+            id = 'VK_grantley_card_parent';
+            fetch_data = VK_grantley_tools_data;
+            custom_pagination(current_page, limit, fetch_data, id);
+            break;
+
+        case 'VK_brickland_tools':
+            id = 'VK_brickland_card_parent';
+            fetch_data = VK_brickland_tools_data;
+            custom_pagination(current_page, limit, fetch_data, id);
+            break;
+
+        case 'VK_edisonville_tools':
+            id = 'VK_edisonville_card_parent';
+            fetch_data = VK_edisonville_tools_data;
+            custom_pagination(current_page, limit, fetch_data, id);
+            break;
+
+        case 'VK_romley_tools':
+            id = 'VK_romley_card_parent';
+            fetch_data = VK_romley_tools_data;
+            custom_pagination(current_page, limit, fetch_data, id);
+            break;
+
+        case 'VK_cpu_voltage_tools':
+            id = 'VK_cpu_voltage_card_parent';
+            fetch_data = VK_cpu_voltage_tools_data;
+            custom_pagination(current_page, limit, fetch_data, id);
+            break;
+
+        case 'VK_platform_testing_and_review_services_tools':
+            id = 'VK_platform_testing_and_review_services_card_parent';
+            fetch_data = VK_platform_testing_and_review_services_data;
+            custom_pagination(current_page, limit, fetch_data, id);
+            break;
+
+
+        default:
+            return;
     }
 }
 
 let custom_pagination = (current_page, limit, fetch_data, id) => {
+    console.log(fetch_data);
     let first_element = (limit * current_page) - limit;
     let last_element = limit * current_page;
     let total_page = Math.ceil(fetch_data.length / limit);
@@ -1242,22 +2074,19 @@ let custom_pagination = (current_page, limit, fetch_data, id) => {
         document.getElementById('VK_total_bottom_page').innerHTML = total_page;
     }
 
-    let nextArrows = document.getElementsByClassName('VK_pagination_previous_arrow');
-    if (current_page == 1) {
-        nextArrows[0].classList.add('d-none');
-        nextArrows[1].classList.add('d-none');
+    let prevArrows = document.getElementsByClassName('VK_pagination_previous_arrow');
+    let nextArrows = document.getElementsByClassName('VK_pagination_next_arrow');
+
+    if (current_page === 1) {
+        Array.from(prevArrows).forEach(arrow => arrow.classList.add('d-none'));
     } else {
-        nextArrows[0].classList.remove('d-none');
-        nextArrows[1].classList.remove('d-none');
+        Array.from(prevArrows).forEach(arrow => arrow.classList.remove('d-none'));
     }
 
-    let prevArrows = document.getElementsByClassName('VK_pagination_next_arrow');
-    if (current_page == total_page) {
-        prevArrows[0].classList.add('d-none');
-        prevArrows[1].classList.add('d-none');
+    if (current_page === total_page) {
+        Array.from(nextArrows).forEach(arrow => arrow.classList.add('d-none'));
     } else {
-        prevArrows[0].classList.remove('d-none');
-        prevArrows[1].classList.remove('d-none');
+        Array.from(nextArrows).forEach(arrow => arrow.classList.remove('d-none'));
     }
 
     let Final_record_data = fetch_data.slice(first_element, last_element);
@@ -1268,17 +2097,17 @@ let print_data = (Final_record_data, id) => {
     if (document.getElementById(id)) {
         let Parent_element = document.getElementById(id);
         let htmlContent = Final_record_data.map((ele) => {
-            return `<div class="col-xxl-3 col-xl-3 col-lg-4 col-md-6 col-sm-6 col-12 my-md-2 my-4 VK_board_product_cart">
+            return `<div class="col-xxl-3 col-xl-3 col-lg-4 col-md-6 col-sm-6 col-12 my-2 my-4 VK_board_product_cart">
                         <a href="" class="text-decoration-none d-flex flex-column VK_board_overlap_link h-100">
                             <div class="VK_board_img">
                                 <img src="/img/vivek/${ele.image}" class="w-100" alt="">
                             </div>
-                            <div class="d-flex align-items-stretch flex-column">
+                            <div class="d-flex align-items-stretch flex-column my-2">
                                 <div class="VK_board_card_name">
                                     <p class="VK_board_card_title m-0 my-1">${ele.name}</p>
                                 </div>
                                 ${ele.price ? `<div class="VK_board_product_price mt-2">
-                                            <span class="VK_board_price_lable d-block mb-2">${ele.price}</span>
+                                            <span class="VK_board_price_label d-block mb-2">${ele.price}</span>
                                            </div>` : ``}
                             </div>
                             <div class="VK_board_product_link mt-auto">
@@ -1299,16 +2128,17 @@ let increase_decrease_page = (ince) => {
     if (current_page < 1) current_page = 1;
     let total_page = Math.ceil(fetch_data.length / limit);
     if (current_page > total_page) current_page = total_page;
+
     window.scrollTo({
         top: 0,
         behavior: "smooth"
-    })
+    });
     custom_pagination(current_page, limit, fetch_data, id);
 }
 
 function VK_change_limit() {
-    limit = document.getElementById('VK_board_select_limit').value;  // Update global limit variable
-    current_page = 1;  // Reset to the first page
+    limit = parseInt(document.getElementById('VK_board_select_limit').value, 10);
+    current_page = 1;
     custom_pagination(current_page, limit, fetch_data, id);
 }
 
@@ -2319,7 +3149,7 @@ let celadon_data = [
         download: true,
         bookmark: true,
         file: "URL (487KB)",
-        content: "Tutorials",
+        content: "FAQs",
         description: "Follow this tutorial to identify and resolve common performance bottlenecks in a sample matrix multiplication application (Linux* OS environment)."
     },
     {
@@ -2330,7 +3160,7 @@ let celadon_data = [
         download: true,
         bookmark: true,
         file: "URL (487KB)",
-        content: "Tutorials",
+        content: "Development Reference Guides",
         description: "Follow this tutorial to identify and resolve common performance bottlenecks in a sample matrix multiplication application (Linux* OS environment)."
     },
     {
@@ -2341,7 +3171,7 @@ let celadon_data = [
         download: true,
         bookmark: true,
         file: "URL (487KB)",
-        content: "Tutorials",
+        content: "Getting Started Guides",
         description: "Follow this tutorial to identify and resolve common performance bottlenecks in a sample matrix multiplication application (Linux* OS environment)."
     },
     {
@@ -2352,11 +3182,55 @@ let celadon_data = [
         download: false,
         bookmark: true,
         file: "URL (487KB)",
-        content: "Tutorials",
+        content: "News",
         description: "Follow this tutorial to identify and resolve common performance bottlenecks in a sample matrix multiplication application (Linux* OS environment)."
     },
     {
         title: "aerformance Analysis Tutorial for Linux* OS",
+        id: "762029",
+        date: "06/24/24",
+        version: "original",
+        download: true,
+        bookmark: true,
+        file: "URL (487KB)",
+        content: "On-Demand Training",
+        description: "Follow this tutorial to identify and resolve common performance bottlenecks in a sample matrix multiplication application (Linux* OS environment)."
+    },
+    {
+        title: "zerformance Analysis Tutorial for Linux* OS",
+        id: "762029",
+        date: "06/24/24",
+        version: "original",
+        download: true,
+        bookmark: true,
+        file: "URL (487KB)",
+        content: "Release Notes",
+        description: "Follow this tutorial to identify and resolve common performance bottlenecks in a sample matrix multiplication application (Linux* OS environment)."
+    },
+    {
+        title: "zerformance Analysis Tutorial for Linux* OS",
+        id: "762029",
+        date: "06/24/24",
+        version: "original",
+        download: true,
+        bookmark: true,
+        file: "URL (487KB)",
+        content: "Software Overviews",
+        description: "Follow this tutorial to identify and resolve common performance bottlenecks in a sample matrix multiplication application (Linux* OS environment)."
+    },
+    {
+        title: "zerformance Analysis Tutorial for Linux* OS",
+        id: "762029",
+        date: "06/24/24",
+        version: "original",
+        download: true,
+        bookmark: true,
+        file: "URL (487KB)",
+        content: "Technical Articles",
+        description: "Follow this tutorial to identify and resolve common performance bottlenecks in a sample matrix multiplication application (Linux* OS environment)."
+    },
+    {
+        title: "zerformance Analysis Tutorial for Linux* OS",
         id: "762029",
         date: "06/24/24",
         version: "original",
@@ -2374,7 +3248,7 @@ let celadon_data = [
         download: true,
         bookmark: true,
         file: "URL (487KB)",
-        content: "Tutorials",
+        content: "Use Cases",
         description: "Follow this tutorial to identify and resolve common performance bottlenecks in a sample matrix multiplication application (Linux* OS environment)."
     },
 ]
@@ -2404,6 +3278,23 @@ function VK_celadon_sort() {
     }
     createDocumentElementforceladon();
 }
+
+// function VK_celadon_filter_sort(){
+//     let select = document.getElementById('VK_celadon_filter_select')
+//     select.addEventListener('change',function(){
+//         console.log(select);
+//     })
+//     // console.log(select);
+//     // switch (select) {
+//     //     case 'A-Z':
+//     //         sortByasscedalon(celadon_arr);
+//     //         break;
+//     //     case 'Z-A':
+//     //         sortBydescedalon(celadon_arr);
+//     //         break;
+//     // }
+//     // createDocumentElementforceladon();
+// }
 
 function sortByasscedalon(arr) {
     arr.sort((a, b) => a.title.localeCompare(b.title));
@@ -2510,12 +3401,12 @@ function VK_celadon_close() {
     });
 }
 
-let original_celadon_arr = [...celadon_data]; 
+let original_celadon_arr = [...celadon_data];
 
 function VK_celadon_search() {
     let search = document.getElementById('VK_celadon_search').value;
     if (search.length == 0) {
-        celadon_arr = [...original_celadon_arr]; 
+        celadon_arr = [...original_celadon_arr];
         createDocumentElementforceladon();
         return;
     } else {
@@ -2524,5 +3415,170 @@ function VK_celadon_search() {
         });
         celadon_arr = result;
         createDocumentElementforceladon();
+    }
+}
+
+
+function VK_celadon_checkbox() {
+    let checkboxes = document.querySelectorAll('.VK_celadon_check_box input[type=checkbox]');
+    let filtered = [];
+    let anyChecked = false;
+
+    checkboxes.forEach((ele) => {
+        if (ele.checked) {
+            anyChecked = true;
+            let arr = original_celadon_arr.filter((el) => {
+                return ele.value == el.content;
+            });
+            filtered = [...filtered, ...arr];
+        }
+    });
+
+    if (!anyChecked) {
+        celadon_arr = [...original_celadon_arr];
+    } else {
+        celadon_arr = filtered;
+    }
+    createDocumentElementforceladon();
+}
+
+
+
+
+// ------------------------------------------------------------------------ intel adviser -----------------------------------------------------------
+
+let VK_intel_advier_data = [
+    {
+        title: "Intel® Advisor User Guide",
+        id: "766448",
+        date: "06/24/24",
+        version: [
+            "2024.2",
+            "2024.1",
+            "2024.1",
+            "2024.1",
+            "2024.1",
+        ],
+        download: true,
+        bookmark: false,
+        file: "URL",
+        content: "Development User Guides",
+        description: "This document provides a detailed overview of the Intel® Advisor functionality and workflows."
+    },
+    {
+        title: "Intel® Advisor User Guide",
+        id: "766448",
+        date: "06/24/24",
+        version: [
+            "2024.2",
+            "2024.1",
+            "2024.1",
+            "2024.1",
+            "2024.1",
+        ],
+        download: true,
+        bookmark: false,
+        file: "URL",
+        content: "Development User Guides",
+        description: "This document provides a detailed overview of the Intel® Advisor functionality and workflows."
+    },
+    {
+        title: "Intel® Advisor User Guide",
+        id: "766448",
+        date: "06/24/24",
+        version: "2024.1",
+        download: true,
+        bookmark: false,
+        file: "URL",
+        content: "Development User Guides",
+        description: "This document provides a detailed overview of the Intel® Advisor functionality and workflows."
+    }
+]
+
+let intel_adviser = VK_intel_advier_data;
+
+
+// result count
+function intel_adviser_onload() {
+    if (document.getElementById('VK_adviser_cnt1')) {
+        document.getElementById('VK_adviser_cnt1').innerHTML = VK_intel_advier_data.length + " results"
+    }
+}
+
+// dispaly results
+function VK_display_result_accridan() {
+    intel_adviser_onload();
+    const div = document.getElementById('VK_daviser_result_div');
+
+    if (div) {
+        const htmlele = VK_intel_advier_data.map((ele, ind) => {
+            const uniqueID = `flush-collapse-${ind}`;
+            const uniqueHeadingID = `flush-heading-${ind}`;
+
+            const versionDisplay = Array.isArray(ele.version)
+                ? `<select class="py-2 pe-xl-4 pe-5">${ele.version.map(v => `<option value="${v}">${v}</option>`).join('')}</select>`
+                : ele.version;
+
+            return `
+            <div class="accordion-item">
+                <div class="row m-0 flex-column flex-xl-row py-xl-3 px-3 p-2">
+                    <div class="col-xl-7 col-12 align-self-center">
+                        <p class="m-xl-0 mb-4">
+                            <a href="#" class="VK_red_normal_font text-decoration-none VK_a">
+                                ${ele.title}
+                            </a>
+                        </p>
+                    </div>
+                    <div class="col-xl-4 col-12 d-flex flex-column flex-xl-row justify-content-between align-items-center">
+                        <p class="m-0 my-1 VK_red_small_font w-100">
+                            <span class="d-xl-none"><b>ID :</b></span> ${ele.id}
+                        </p>
+                        <p class="m-0 my-1 VK_red_small_font w-100">
+                            <span class="d-xl-none"><b>Date :</b></span> ${ele.date}
+                        </p>
+                        <p class="m-0 my-1 VK_red_small_font w-100">
+                            <span class="d-xl-none"><b>Version: </b></span>
+                            ${versionDisplay}
+                        </p>
+                    </div>
+                    <div class="col-xl-1 col-12 p-0 my-xl-0 my-2 align-self-center">
+                        <p class="d-flex m-0 justify-content-xl-between justify-content-end">
+                            ${ele.download ? `
+                                <button class="bg-transparent border-0 text-primary mx-2 m-xl-0">
+                                    <i class="fa-solid fa-download"></i>
+                                </button>
+                            ` : ''}
+                            ${ele.bookmark ? `
+                                <button class="bg-transparent border-0 text-primary mx-2 m-xl-0">
+                                    <i class="fa-regular fa-bookmark"></i>
+                                </button>
+                            ` : ''}
+                            <button class="accordion-button collapsed mx-2 m-xl-0" type="button"
+                                data-bs-toggle="collapse" data-bs-target="#${uniqueID}"
+                                aria-expanded="false" aria-controls="${uniqueID}">
+                            </button>
+                        </p>
+                    </div>
+                </div>
+                <div id="${uniqueID}" class="accordion-collapse collapse"
+                    aria-labelledby="${uniqueHeadingID}" data-bs-parent="#accordionFlushExample">
+                    <div class="accordion-body">
+                        <p class="m-0">
+                            <span class="d-inline-block mx-2">
+                                <b>File:</b>
+                                <span>${ele.file}</span>
+                            </span>
+                            <span class="d-inline-block mx-2">
+                                <b>Content Type :</b>
+                                <span>${ele.content}</span>
+                            </span>
+                        </p>
+                        <p class="m-0">${ele.description}</p>
+                    </div>
+                </div>
+            </div>`;
+        });
+
+        div.innerHTML = htmlele.join('');
     }
 }
