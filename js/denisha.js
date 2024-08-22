@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (activePrgmSubmenu) {
             document.getElementById(activePrgmSubmenu).style.display = 'block';
         }
-    } else if (activePrgmMenu && lastActiveOption === 'db-option-3') {
+    } else if (activePrgmMenu && lastActiveOption === 'option-3') {
         document.getElementById(activePrgmMenu).style.display = 'block';
         if (activePrgmSubmenu) {
             document.getElementById(activePrgmSubmenu).style.display = 'block';
@@ -80,7 +80,7 @@ document.getElementById('db-option-1').addEventListener('click', function (event
     const db_Wireless_menu = document.getElementById('db-Wireless-menu');
     const submenuContent4 = document.getElementById('db-nested-menu-content1');
     const db_intel_killer = document.getElementById('db-intel-killer');
- const db_Wi_Fi_Products_content = document.getElementById('db-Wi-Fi-Products-content');
+    const db_Wi_Fi_Products_content = document.getElementById('db-Wi-Fi-Products-content');
     const db_wireless_content = document.getElementById('db-wireless-content');
     const db_QuickAssist_content = document.getElementById('db-QuickAssist-content');
     const db_Game_Developer_content = document.getElementById('db-Game-Developer-content');
@@ -155,7 +155,7 @@ document.getElementById('db-option-1').addEventListener('click', function (event
         db_data_center_main_content.style.display = 'none';
         db_data_center_submenu.style.display = 'none';
         db_Unison_app_content.style.display = 'none';
-db_Wi_Fi_Products_content.style.display = 'none';
+        db_Wi_Fi_Products_content.style.display = 'none';
         db_wireless_content.style.display = 'none';
         db_QuickAssist_content.style.display = 'none';
         db_Game_Developer_content.style.display = 'none';
@@ -239,7 +239,7 @@ db_Wi_Fi_Products_content.style.display = 'none';
         db_data_center_main_content.style.display = 'none';
         db_data_center_submenu.style.display = 'none';
         db_Unison_app_content.style.display = 'none';
-db_Wi_Fi_Products_content.style.display = 'none';
+        db_Wi_Fi_Products_content.style.display = 'none';
         db_wireless_content.style.display = 'none';
         db_QuickAssist_content.style.display = 'none';
         db_Game_Developer_content.style.display = 'none';
@@ -339,7 +339,7 @@ document.getElementById('db-nested-menu1').addEventListener('click', function (e
     const db_Technologies_menu = document.getElementById('db-Technologies-menu');
     const db_Wireless_menu = document.getElementById('db-Wireless-menu');
     const db_intel_killer = document.getElementById('db-intel-killer');
- const db_Wi_Fi_Products_content = document.getElementById('db-Wi-Fi-Products-content');
+    const db_Wi_Fi_Products_content = document.getElementById('db-Wi-Fi-Products-content');
     const db_wireless_content = document.getElementById('db-wireless-content');
     const db_QuickAssist_content = document.getElementById('db-QuickAssist-content');
     const db_Game_Developer_content = document.getElementById('db-Game-Developer-content');
@@ -427,7 +427,7 @@ document.getElementById('db-nested-menu1').addEventListener('click', function (e
         db_data_center_main_content.style.display = 'none';
         db_data_center_submenu.style.display = 'none';
         db_Unison_app_content.style.display = 'none';
-db_Wi_Fi_Products_content.style.display = 'none';
+        db_Wi_Fi_Products_content.style.display = 'none';
         db_wireless_content.style.display = 'none';
         db_QuickAssist_content.style.display = 'none';
         db_Game_Developer_content.style.display = 'none';
@@ -504,7 +504,7 @@ db_Wi_Fi_Products_content.style.display = 'none';
         db_data_center_main_content.style.display = 'none';
         db_data_center_submenu.style.display = 'none';
         db_Unison_app_content.style.display = 'none';
-db_Wi_Fi_Products_content.style.display = 'none';
+        db_Wi_Fi_Products_content.style.display = 'none';
         db_wireless_content.style.display = 'none';
         db_QuickAssist_content.style.display = 'none';
         db_Game_Developer_content.style.display = 'none';
@@ -583,7 +583,7 @@ document.getElementById('nested-menu2').addEventListener('click', function (even
     const db_data_center_main_content = document.getElementById('db-data-center-main-content');
     const db_data_center_submenu = document.getElementById('db-data-center-submenu');
     const db_intel_killer = document.getElementById('db-intel-killer');
- const db_Wi_Fi_Products_content = document.getElementById('db-Wi-Fi-Products-content');
+    const db_Wi_Fi_Products_content = document.getElementById('db-Wi-Fi-Products-content');
     const db_wireless_content = document.getElementById('db-wireless-content');
     const db_QuickAssist_content = document.getElementById('db-QuickAssist-content');
     const db_Game_Developer_content = document.getElementById('db-Game-Developer-content');
@@ -663,7 +663,7 @@ document.getElementById('nested-menu2').addEventListener('click', function (even
 
         db_data_center_submenu.style.display = 'none';
         db_Unison_app_content.style.display = 'none';
-db_Wi_Fi_Products_content.style.display = 'none';
+        db_Wi_Fi_Products_content.style.display = 'none';
         db_wireless_content.style.display = 'none';
         db_QuickAssist_content.style.display = 'none';
         db_Game_Developer_content.style.display = 'none';
@@ -740,7 +740,7 @@ db_Wi_Fi_Products_content.style.display = 'none';
 
         db_data_center_submenu.style.display = 'none';
         db_Unison_app_content.style.display = 'none';
-db_Wi_Fi_Products_content.style.display = 'none';
+        db_Wi_Fi_Products_content.style.display = 'none';
         db_wireless_content.style.display = 'none';
         db_QuickAssist_content.style.display = 'none';
         db_Game_Developer_content.style.display = 'none';
@@ -924,7 +924,7 @@ document.getElementById('db-option-2').addEventListener('click', function (event
     const db_data_center_main_content = document.getElementById('db-data-center-main-content');
     const db_data_center_submenu = document.getElementById('db-data-center-submenu');
     const db_intel_killer = document.getElementById('db-intel-killer');
- const db_Wi_Fi_Products_content = document.getElementById('db-Wi-Fi-Products-content');
+    const db_Wi_Fi_Products_content = document.getElementById('db-Wi-Fi-Products-content');
     const db_wireless_content = document.getElementById('db-wireless-content');
     const db_QuickAssist_content = document.getElementById('db-QuickAssist-content');
     const db_Game_Developer_content = document.getElementById('db-Game-Developer-content');
@@ -1013,7 +1013,7 @@ document.getElementById('db-option-2').addEventListener('click', function (event
 
         db_data_center_submenu.style.display = 'none';
         db_Unison_app_content.style.display = 'none';
-db_Wi_Fi_Products_content.style.display = 'none';
+        db_Wi_Fi_Products_content.style.display = 'none';
         db_wireless_content.style.display = 'none';
         db_QuickAssist_content.style.display = 'none';
         db_Game_Developer_content.style.display = 'none';
@@ -1097,7 +1097,7 @@ db_Wi_Fi_Products_content.style.display = 'none';
 
         db_data_center_submenu.style.display = 'none';
         db_Unison_app_content.style.display = 'none';
-db_Wi_Fi_Products_content.style.display = 'none';
+        db_Wi_Fi_Products_content.style.display = 'none';
         db_wireless_content.style.display = 'none';
         db_QuickAssist_content.style.display = 'none';
         db_Game_Developer_content.style.display = 'none';
@@ -1278,7 +1278,7 @@ document.getElementById('option-3').addEventListener('click', function (event) {
     const db_data_center_main_content = document.getElementById('db-data-center-main-content');
     const db_data_center_submenu = document.getElementById('db-data-center-submenu');
     const db_intel_killer = document.getElementById('db-intel-killer');
- const db_Wi_Fi_Products_content = document.getElementById('db-Wi-Fi-Products-content');
+    const db_Wi_Fi_Products_content = document.getElementById('db-Wi-Fi-Products-content');
     const db_wireless_content = document.getElementById('db-wireless-content');
     const db_QuickAssist_content = document.getElementById('db-QuickAssist-content');
     const db_Game_Developer_content = document.getElementById('db-Game-Developer-content');
@@ -1367,7 +1367,7 @@ document.getElementById('option-3').addEventListener('click', function (event) {
 
         db_data_center_submenu.style.display = 'none';
         db_Unison_app_content.style.display = 'none';
-db_Wi_Fi_Products_content.style.display = 'none';
+        db_Wi_Fi_Products_content.style.display = 'none';
         db_wireless_content.style.display = 'none';
         db_QuickAssist_content.style.display = 'none';
         db_Game_Developer_content.style.display = 'none';
@@ -1451,7 +1451,7 @@ db_Wi_Fi_Products_content.style.display = 'none';
 
         db_data_center_submenu.style.display = 'none';
         db_Unison_app_content.style.display = 'none';
-db_Wi_Fi_Products_content.style.display = 'none';
+        db_Wi_Fi_Products_content.style.display = 'none';
         db_wireless_content.style.display = 'none';
         db_QuickAssist_content.style.display = 'none';
         db_Game_Developer_content.style.display = 'none';
@@ -1512,7 +1512,7 @@ db_Wi_Fi_Products_content.style.display = 'none';
         activateMenu(this.parentElement);
         setActivePrgmMenu('db-nested-prgm-content');
     }
-    localStorage.setItem('lastActiveOption', 'db-option-3');
+    localStorage.setItem('lastActiveOption', 'option-3');
 });
 
 
@@ -1531,7 +1531,7 @@ document.getElementById('db-fgpa-mainmenu').addEventListener('click', function (
     const db_memory_storage_menu = document.getElementById('db-memory-storage-menu');
     const db_service_menu = document.getElementById('db-service-menu');
     const db_intel_killer = document.getElementById('db-intel-killer');
- const db_Wi_Fi_Products_content = document.getElementById('db-Wi-Fi-Products-content');
+    const db_Wi_Fi_Products_content = document.getElementById('db-Wi-Fi-Products-content');
     const db_wireless_content = document.getElementById('db-wireless-content');
     const db_QuickAssist_content = document.getElementById('db-QuickAssist-content');
     const db_Game_Developer_content = document.getElementById('db-Game-Developer-content');
@@ -1610,7 +1610,7 @@ document.getElementById('db-fgpa-mainmenu').addEventListener('click', function (
         db_data_center_main_content.style.display = 'none';
         db_data_center_submenu.style.display = 'none';
         db_Unison_app_content.style.display = 'none';
-db_Wi_Fi_Products_content.style.display = 'none';
+        db_Wi_Fi_Products_content.style.display = 'none';
         db_wireless_content.style.display = 'none';
         db_QuickAssist_content.style.display = 'none';
         db_Game_Developer_content.style.display = 'none';
@@ -1686,7 +1686,7 @@ db_Wi_Fi_Products_content.style.display = 'none';
         db_data_center_main_content.style.display = 'none';
         db_data_center_submenu.style.display = 'none';
         db_Unison_app_content.style.display = 'none';
-db_Wi_Fi_Products_content.style.display = 'none';
+        db_Wi_Fi_Products_content.style.display = 'none';
         db_wireless_content.style.display = 'none';
         db_QuickAssist_content.style.display = 'none';
         db_Game_Developer_content.style.display = 'none';
@@ -1780,7 +1780,7 @@ document.getElementById('db-graphics-mainmenu').addEventListener('click', functi
     const db_data_center_main_content = document.getElementById('db-data-center-main-content');
     const db_data_center_submenu = document.getElementById('db-data-center-submenu');
     const db_intel_killer = document.getElementById('db-intel-killer');
- const db_Wi_Fi_Products_content = document.getElementById('db-Wi-Fi-Products-content');
+    const db_Wi_Fi_Products_content = document.getElementById('db-Wi-Fi-Products-content');
     const db_wireless_content = document.getElementById('db-wireless-content');
     const db_QuickAssist_content = document.getElementById('db-QuickAssist-content');
     const db_Game_Developer_content = document.getElementById('db-Game-Developer-content');
@@ -1862,7 +1862,7 @@ document.getElementById('db-graphics-mainmenu').addEventListener('click', functi
 
         db_data_center_submenu.style.display = 'none';
         db_Unison_app_content.style.display = 'none';
-db_Wi_Fi_Products_content.style.display = 'none';
+        db_Wi_Fi_Products_content.style.display = 'none';
         db_wireless_content.style.display = 'none';
         db_QuickAssist_content.style.display = 'none';
         db_Game_Developer_content.style.display = 'none';
@@ -1941,7 +1941,7 @@ db_Wi_Fi_Products_content.style.display = 'none';
 
         db_data_center_submenu.style.display = 'none';
         db_Unison_app_content.style.display = 'none';
-db_Wi_Fi_Products_content.style.display = 'none';
+        db_Wi_Fi_Products_content.style.display = 'none';
         db_wireless_content.style.display = 'none';
         db_QuickAssist_content.style.display = 'none';
         db_Game_Developer_content.style.display = 'none';
@@ -2028,7 +2028,7 @@ document.getElementById('db-intel-nuc-mainmenu').addEventListener('click', funct
     const db_data_center_main_content = document.getElementById('db-data-center-main-content');
     const db_data_center_submenu = document.getElementById('db-data-center-submenu');
     const db_intel_killer = document.getElementById('db-intel-killer');
- const db_Wi_Fi_Products_content = document.getElementById('db-Wi-Fi-Products-content');
+    const db_Wi_Fi_Products_content = document.getElementById('db-Wi-Fi-Products-content');
     const db_wireless_content = document.getElementById('db-wireless-content');
     const db_QuickAssist_content = document.getElementById('db-QuickAssist-content');
     const db_Game_Developer_content = document.getElementById('db-Game-Developer-content');
@@ -2111,7 +2111,7 @@ document.getElementById('db-intel-nuc-mainmenu').addEventListener('click', funct
 
         db_data_center_submenu.style.display = 'none';
         db_Unison_app_content.style.display = 'none';
-db_Wi_Fi_Products_content.style.display = 'none';
+        db_Wi_Fi_Products_content.style.display = 'none';
         db_wireless_content.style.display = 'none';
         db_QuickAssist_content.style.display = 'none';
         db_Game_Developer_content.style.display = 'none';
@@ -2189,7 +2189,7 @@ db_Wi_Fi_Products_content.style.display = 'none';
 
         db_data_center_submenu.style.display = 'none';
         db_Unison_app_content.style.display = 'none';
-db_Wi_Fi_Products_content.style.display = 'none';
+        db_Wi_Fi_Products_content.style.display = 'none';
         db_wireless_content.style.display = 'none';
         db_QuickAssist_content.style.display = 'none';
         db_Game_Developer_content.style.display = 'none';
@@ -2275,7 +2275,7 @@ document.getElementById('db-memory-storage-mainmenu').addEventListener('click', 
     const db_data_center_main_content = document.getElementById('db-data-center-main-content');
     const db_data_center_submenu = document.getElementById('db-data-center-submenu');
     const db_intel_killer = document.getElementById('db-intel-killer');
- const db_Wi_Fi_Products_content = document.getElementById('db-Wi-Fi-Products-content');
+    const db_Wi_Fi_Products_content = document.getElementById('db-Wi-Fi-Products-content');
     const db_wireless_content = document.getElementById('db-wireless-content');
     const db_QuickAssist_content = document.getElementById('db-QuickAssist-content');
     const db_Game_Developer_content = document.getElementById('db-Game-Developer-content');
@@ -2356,7 +2356,7 @@ document.getElementById('db-memory-storage-mainmenu').addEventListener('click', 
 
         db_data_center_submenu.style.display = 'none';
         db_Unison_app_content.style.display = 'none';
-db_Wi_Fi_Products_content.style.display = 'none';
+        db_Wi_Fi_Products_content.style.display = 'none';
         db_wireless_content.style.display = 'none';
         db_QuickAssist_content.style.display = 'none';
         db_Game_Developer_content.style.display = 'none';
@@ -2434,7 +2434,7 @@ db_Wi_Fi_Products_content.style.display = 'none';
 
         db_data_center_submenu.style.display = 'none';
         db_Unison_app_content.style.display = 'none';
-db_Wi_Fi_Products_content.style.display = 'none';
+        db_Wi_Fi_Products_content.style.display = 'none';
         db_wireless_content.style.display = 'none';
         db_QuickAssist_content.style.display = 'none';
         db_Game_Developer_content.style.display = 'none';
@@ -2522,7 +2522,7 @@ document.getElementById('db-processor-mainmenu').addEventListener('click', funct
     const db_data_center_main_content = document.getElementById('db-data-center-main-content');
     const db_data_center_submenu = document.getElementById('db-data-center-submenu');
     const db_intel_killer = document.getElementById('db-intel-killer');
- const db_Wi_Fi_Products_content = document.getElementById('db-Wi-Fi-Products-content');
+    const db_Wi_Fi_Products_content = document.getElementById('db-Wi-Fi-Products-content');
     const db_wireless_content = document.getElementById('db-wireless-content');
     const db_QuickAssist_content = document.getElementById('db-QuickAssist-content');
     const db_Game_Developer_content = document.getElementById('db-Game-Developer-content');
@@ -2603,7 +2603,7 @@ document.getElementById('db-processor-mainmenu').addEventListener('click', funct
 
         db_data_center_submenu.style.display = 'none';
         db_Unison_app_content.style.display = 'none';
-db_Wi_Fi_Products_content.style.display = 'none';
+        db_Wi_Fi_Products_content.style.display = 'none';
         db_wireless_content.style.display = 'none';
         db_QuickAssist_content.style.display = 'none';
         db_Game_Developer_content.style.display = 'none';
@@ -2682,7 +2682,7 @@ db_Wi_Fi_Products_content.style.display = 'none';
 
         db_data_center_submenu.style.display = 'none';
         db_Unison_app_content.style.display = 'none';
-db_Wi_Fi_Products_content.style.display = 'none';
+        db_Wi_Fi_Products_content.style.display = 'none';
         db_wireless_content.style.display = 'none';
         db_QuickAssist_content.style.display = 'none';
         db_Game_Developer_content.style.display = 'none';
@@ -2767,7 +2767,7 @@ document.getElementById('db-Server-Products-mainmenu').addEventListener('click',
     const db_data_center_main_content = document.getElementById('db-data-center-main-content');
     const db_data_center_submenu = document.getElementById('db-data-center-submenu');
     const db_intel_killer = document.getElementById('db-intel-killer');
- const db_Wi_Fi_Products_content = document.getElementById('db-Wi-Fi-Products-content');
+    const db_Wi_Fi_Products_content = document.getElementById('db-Wi-Fi-Products-content');
     const db_wireless_content = document.getElementById('db-wireless-content');
     const db_QuickAssist_content = document.getElementById('db-QuickAssist-content');
     const db_Game_Developer_content = document.getElementById('db-Game-Developer-content');
@@ -2847,7 +2847,7 @@ document.getElementById('db-Server-Products-mainmenu').addEventListener('click',
         db_data_center_submenu.style.display = 'none';
         db_data_center_main_content.style.display = 'none';
         db_Unison_app_content.style.display = 'none';
-db_Wi_Fi_Products_content.style.display = 'none';
+        db_Wi_Fi_Products_content.style.display = 'none';
         db_wireless_content.style.display = 'none';
         db_QuickAssist_content.style.display = 'none';
         db_Game_Developer_content.style.display = 'none';
@@ -2924,7 +2924,7 @@ db_Wi_Fi_Products_content.style.display = 'none';
         submenuContent1_1_3.style.display = 'none';
         db_data_center_submenu.style.display = 'none';
         db_Unison_app_content.style.display = 'none';
-db_Wi_Fi_Products_content.style.display = 'none';
+        db_Wi_Fi_Products_content.style.display = 'none';
         db_wireless_content.style.display = 'none';
         db_QuickAssist_content.style.display = 'none';
         db_Game_Developer_content.style.display = 'none';
@@ -3009,7 +3009,7 @@ document.getElementById('db-service-mainmenu').addEventListener('click', functio
     const db_data_center_main_content = document.getElementById('db-data-center-main-content');
     const db_data_center_submenu = document.getElementById('db-data-center-submenu');
     const db_intel_killer = document.getElementById('db-intel-killer');
- const db_Wi_Fi_Products_content = document.getElementById('db-Wi-Fi-Products-content');
+    const db_Wi_Fi_Products_content = document.getElementById('db-Wi-Fi-Products-content');
     const db_wireless_content = document.getElementById('db-wireless-content');
     const db_QuickAssist_content = document.getElementById('db-QuickAssist-content');
     const db_Game_Developer_content = document.getElementById('db-Game-Developer-content');
@@ -3089,7 +3089,7 @@ document.getElementById('db-service-mainmenu').addEventListener('click', functio
         db_data_center_submenu.style.display = 'none';
         db_data_center_main_content.style.display = 'none';
         db_Unison_app_content.style.display = 'none';
-db_Wi_Fi_Products_content.style.display = 'none';
+        db_Wi_Fi_Products_content.style.display = 'none';
         db_wireless_content.style.display = 'none';
         db_QuickAssist_content.style.display = 'none';
         db_Game_Developer_content.style.display = 'none';
@@ -3166,7 +3166,7 @@ db_Wi_Fi_Products_content.style.display = 'none';
         submenuContent1_1_3.style.display = 'none';
         db_data_center_submenu.style.display = 'none';
         db_Unison_app_content.style.display = 'none';
-db_Wi_Fi_Products_content.style.display = 'none';
+        db_Wi_Fi_Products_content.style.display = 'none';
         db_wireless_content.style.display = 'none';
         db_QuickAssist_content.style.display = 'none';
         db_Game_Developer_content.style.display = 'none';
@@ -3250,7 +3250,7 @@ document.getElementById('db-software-mainmenu').addEventListener('click', functi
     const db_data_center_main_content = document.getElementById('db-data-center-main-content');
     const db_data_center_submenu = document.getElementById('db-data-center-submenu');
     const db_intel_killer = document.getElementById('db-intel-killer');
- const db_Wi_Fi_Products_content = document.getElementById('db-Wi-Fi-Products-content');
+    const db_Wi_Fi_Products_content = document.getElementById('db-Wi-Fi-Products-content');
     const db_wireless_content = document.getElementById('db-wireless-content');
     const db_QuickAssist_content = document.getElementById('db-QuickAssist-content');
     const db_Game_Developer_content = document.getElementById('db-Game-Developer-content');
@@ -3330,7 +3330,7 @@ document.getElementById('db-software-mainmenu').addEventListener('click', functi
         db_data_center_main_content.style.display = 'none';
         db_data_center_submenu.style.display = 'none';
         db_Unison_app_content.style.display = 'none';
-db_Wi_Fi_Products_content.style.display = 'none';
+        db_Wi_Fi_Products_content.style.display = 'none';
         db_wireless_content.style.display = 'none';
         db_QuickAssist_content.style.display = 'none';
         db_Game_Developer_content.style.display = 'none';
@@ -3408,7 +3408,7 @@ db_Wi_Fi_Products_content.style.display = 'none';
         submenuContent1_1_3.style.display = 'none';
         db_data_center_submenu.style.display = 'none';
         db_Unison_app_content.style.display = 'none';
-db_Wi_Fi_Products_content.style.display = 'none';
+        db_Wi_Fi_Products_content.style.display = 'none';
         db_wireless_content.style.display = 'none';
         db_QuickAssist_content.style.display = 'none';
         db_Game_Developer_content.style.display = 'none';
@@ -3494,7 +3494,7 @@ document.getElementById('db-Technologies-mainmenu').addEventListener('click', fu
     const db_data_center_main_content = document.getElementById('db-data-center-main-content');
     const db_data_center_submenu = document.getElementById('db-data-center-submenu');
     const db_intel_killer = document.getElementById('db-intel-killer');
- const db_Wi_Fi_Products_content = document.getElementById('db-Wi-Fi-Products-content');
+    const db_Wi_Fi_Products_content = document.getElementById('db-Wi-Fi-Products-content');
     const db_wireless_content = document.getElementById('db-wireless-content');
     const db_QuickAssist_content = document.getElementById('db-QuickAssist-content');
     const db_Game_Developer_content = document.getElementById('db-Game-Developer-content');
@@ -3574,7 +3574,7 @@ document.getElementById('db-Technologies-mainmenu').addEventListener('click', fu
         db_data_center_submenu.style.display = 'none';
         db_data_center_main_content.style.display = 'none';
         db_Unison_app_content.style.display = 'none';
-db_Wi_Fi_Products_content.style.display = 'none';
+        db_Wi_Fi_Products_content.style.display = 'none';
         db_wireless_content.style.display = 'none';
         db_QuickAssist_content.style.display = 'none';
         db_Game_Developer_content.style.display = 'none';
@@ -3651,7 +3651,7 @@ db_Wi_Fi_Products_content.style.display = 'none';
         submenuContent1_1_3.style.display = 'none';
         db_data_center_submenu.style.display = 'none';
         db_Unison_app_content.style.display = 'none';
-db_Wi_Fi_Products_content.style.display = 'none';
+        db_Wi_Fi_Products_content.style.display = 'none';
         db_wireless_content.style.display = 'none';
         db_QuickAssist_content.style.display = 'none';
         db_Game_Developer_content.style.display = 'none';
@@ -3735,7 +3735,7 @@ document.getElementById('db-Wireless-mainmenu').addEventListener('click', functi
     const db_data_center_main_content = document.getElementById('db-data-center-main-content');
     const db_data_center_submenu = document.getElementById('db-data-center-submenu');
     const db_intel_killer = document.getElementById('db-intel-killer');
- const db_Wi_Fi_Products_content = document.getElementById('db-Wi-Fi-Products-content');
+    const db_Wi_Fi_Products_content = document.getElementById('db-Wi-Fi-Products-content');
     const db_wireless_content = document.getElementById('db-wireless-content');
     const db_QuickAssist_content = document.getElementById('db-QuickAssist-content');
     const db_Game_Developer_content = document.getElementById('db-Game-Developer-content');
@@ -3815,7 +3815,7 @@ document.getElementById('db-Wireless-mainmenu').addEventListener('click', functi
         submenuContent1_1_3.style.display = 'none';
         db_data_center_submenu.style.display = 'none';
         db_Unison_app_content.style.display = 'none';
-db_Wi_Fi_Products_content.style.display = 'none';
+        db_Wi_Fi_Products_content.style.display = 'none';
         db_wireless_content.style.display = 'none';
         db_QuickAssist_content.style.display = 'none';
         db_Game_Developer_content.style.display = 'none';
@@ -3892,7 +3892,7 @@ db_Wi_Fi_Products_content.style.display = 'none';
         submenuContent1_1_3.style.display = 'none';
         db_data_center_submenu.style.display = 'none';
         db_Unison_app_content.style.display = 'none';
-db_Wi_Fi_Products_content.style.display = 'none';
+        db_Wi_Fi_Products_content.style.display = 'none';
         db_wireless_content.style.display = 'none';
         db_QuickAssist_content.style.display = 'none';
         db_Game_Developer_content.style.display = 'none';
@@ -3977,7 +3977,7 @@ document.getElementById('db-ethernetproducts').addEventListener('click', functio
     const db_ethernet_farbic_content_col = document.getElementById('db-ethernet-farbic-content-col');
     const db_graphics_menu_content = document.getElementById('db-graphics-menu-content');
     const db_intel_killer = document.getElementById('db-intel-killer');
- const db_Wi_Fi_Products_content = document.getElementById('db-Wi-Fi-Products-content');
+    const db_Wi_Fi_Products_content = document.getElementById('db-Wi-Fi-Products-content');
     const db_wireless_content = document.getElementById('db-wireless-content');
     const db_QuickAssist_content = document.getElementById('db-QuickAssist-content');
     const db_Game_Developer_content = document.getElementById('db-Game-Developer-content');
@@ -4028,7 +4028,7 @@ document.getElementById('db-ethernetproducts').addEventListener('click', functio
         db_data_center_main_content.style.display = 'none';
         db_data_center_submenu.style.display = 'none';
         db_Unison_app_content.style.display = 'none';
-db_Wi_Fi_Products_content.style.display = 'none';
+        db_Wi_Fi_Products_content.style.display = 'none';
         db_wireless_content.style.display = 'none';
         db_QuickAssist_content.style.display = 'none';
         db_Game_Developer_content.style.display = 'none';
@@ -4091,7 +4091,7 @@ db_Wi_Fi_Products_content.style.display = 'none';
         db_data_center_main_content.style.display = 'none';
         db_data_center_submenu.style.display = 'none';
         db_Unison_app_content.style.display = 'none';
-db_Wi_Fi_Products_content.style.display = 'none';
+        db_Wi_Fi_Products_content.style.display = 'none';
         db_wireless_content.style.display = 'none';
         db_QuickAssist_content.style.display = 'none';
         db_Game_Developer_content.style.display = 'none';
@@ -4154,7 +4154,7 @@ db_Wi_Fi_Products_content.style.display = 'none';
 document.getElementById('db-killer-main').addEventListener('click', function (event) {
     event.preventDefault();
     const db_intel_killer = document.getElementById('db-intel-killer');
- const db_Wi_Fi_Products_content = document.getElementById('db-Wi-Fi-Products-content');
+    const db_Wi_Fi_Products_content = document.getElementById('db-Wi-Fi-Products-content');
     const db_wireless_content = document.getElementById('db-wireless-content');
     const db_QuickAssist_content = document.getElementById('db-QuickAssist-content');
     const db_Game_Developer_content = document.getElementById('db-Game-Developer-content');
@@ -4227,7 +4227,7 @@ document.getElementById('db-killer-main').addEventListener('click', function (ev
         db_data_center_main_content.style.display = 'none';
         db_data_center_submenu.style.display = 'none';
         db_Unison_app_content.style.display = 'none';
-db_Wi_Fi_Products_content.style.display = 'none';
+        db_Wi_Fi_Products_content.style.display = 'none';
         db_wireless_content.style.display = 'none';
         db_QuickAssist_content.style.display = 'none';
         db_Game_Developer_content.style.display = 'none';
@@ -4288,7 +4288,7 @@ db_Wi_Fi_Products_content.style.display = 'none';
         db_data_center_main_content.style.display = 'none';
         db_data_center_submenu.style.display = 'none';
         db_Unison_app_content.style.display = 'none';
-db_Wi_Fi_Products_content.style.display = 'none';
+        db_Wi_Fi_Products_content.style.display = 'none';
         db_wireless_content.style.display = 'none';
         db_QuickAssist_content.style.display = 'none';
         db_Game_Developer_content.style.display = 'none';
@@ -4350,7 +4350,7 @@ db_Wi_Fi_Products_content.style.display = 'none';
 document.getElementById('db-ethernet-software-main').addEventListener('click', function (event) {
     event.preventDefault();
     const db_intel_killer = document.getElementById('db-intel-killer');
- const db_Wi_Fi_Products_content = document.getElementById('db-Wi-Fi-Products-content');
+    const db_Wi_Fi_Products_content = document.getElementById('db-Wi-Fi-Products-content');
     const db_wireless_content = document.getElementById('db-wireless-content');
     const db_QuickAssist_content = document.getElementById('db-QuickAssist-content');
     const db_Game_Developer_content = document.getElementById('db-Game-Developer-content');
@@ -4420,7 +4420,7 @@ document.getElementById('db-ethernet-software-main').addEventListener('click', f
         db_data_center_main_content.style.display = 'none';
         db_data_center_submenu.style.display = 'none';
         db_Unison_app_content.style.display = 'none';
-db_Wi_Fi_Products_content.style.display = 'none';
+        db_Wi_Fi_Products_content.style.display = 'none';
         db_wireless_content.style.display = 'none';
         db_QuickAssist_content.style.display = 'none';
         db_Game_Developer_content.style.display = 'none';
@@ -4484,7 +4484,7 @@ db_Wi_Fi_Products_content.style.display = 'none';
         db_data_center_main_content.style.display = 'none';
         db_data_center_submenu.style.display = 'none';
         db_Unison_app_content.style.display = 'none';
-db_Wi_Fi_Products_content.style.display = 'none';
+        db_Wi_Fi_Products_content.style.display = 'none';
         db_wireless_content.style.display = 'none';
         db_QuickAssist_content.style.display = 'none';
         db_Game_Developer_content.style.display = 'none';
@@ -4546,7 +4546,7 @@ db_Wi_Fi_Products_content.style.display = 'none';
 document.getElementById('db-ethernet-fabric-content').addEventListener('click', function (event) {
     event.preventDefault();
     const db_intel_killer = document.getElementById('db-intel-killer');
- const db_Wi_Fi_Products_content = document.getElementById('db-Wi-Fi-Products-content');
+    const db_Wi_Fi_Products_content = document.getElementById('db-Wi-Fi-Products-content');
     const db_wireless_content = document.getElementById('db-wireless-content');
     const db_QuickAssist_content = document.getElementById('db-QuickAssist-content');
     const db_Game_Developer_content = document.getElementById('db-Game-Developer-content');
@@ -4615,7 +4615,7 @@ document.getElementById('db-ethernet-fabric-content').addEventListener('click', 
         db_data_center_main_content.style.display = 'none';
         db_data_center_submenu.style.display = 'none';
         db_Unison_app_content.style.display = 'none';
-db_Wi_Fi_Products_content.style.display = 'none';
+        db_Wi_Fi_Products_content.style.display = 'none';
         db_wireless_content.style.display = 'none';
         db_QuickAssist_content.style.display = 'none';
         db_Game_Developer_content.style.display = 'none';
@@ -4676,7 +4676,7 @@ db_Wi_Fi_Products_content.style.display = 'none';
         db_data_center_main_content.style.display = 'none';
         db_data_center_submenu.style.display = 'none';
         db_Unison_app_content.style.display = 'none';
-db_Wi_Fi_Products_content.style.display = 'none';
+        db_Wi_Fi_Products_content.style.display = 'none';
         db_wireless_content.style.display = 'none';
         db_QuickAssist_content.style.display = 'none';
         db_Game_Developer_content.style.display = 'none';
@@ -4741,7 +4741,7 @@ db_Wi_Fi_Products_content.style.display = 'none';
 document.getElementById('db-graphics-menu-click').addEventListener('click', function (event) {
     event.preventDefault();
     const db_intel_killer = document.getElementById('db-intel-killer');
- const db_Wi_Fi_Products_content = document.getElementById('db-Wi-Fi-Products-content');
+    const db_Wi_Fi_Products_content = document.getElementById('db-Wi-Fi-Products-content');
     const db_wireless_content = document.getElementById('db-wireless-content');
     const db_QuickAssist_content = document.getElementById('db-QuickAssist-content');
     const db_Game_Developer_content = document.getElementById('db-Game-Developer-content');
@@ -4810,7 +4810,7 @@ document.getElementById('db-graphics-menu-click').addEventListener('click', func
         db_data_center_main_content.style.display = 'none';
         db_data_center_submenu.style.display = 'none';
         db_Unison_app_content.style.display = 'none';
-db_Wi_Fi_Products_content.style.display = 'none';
+        db_Wi_Fi_Products_content.style.display = 'none';
         db_wireless_content.style.display = 'none';
         db_QuickAssist_content.style.display = 'none';
         db_Game_Developer_content.style.display = 'none';
@@ -4869,7 +4869,7 @@ db_Wi_Fi_Products_content.style.display = 'none';
         db_data_center_main_content.style.display = 'none';
         db_data_center_submenu.style.display = 'none';
         db_Unison_app_content.style.display = 'none';
-db_Wi_Fi_Products_content.style.display = 'none';
+        db_Wi_Fi_Products_content.style.display = 'none';
         db_wireless_content.style.display = 'none';
         db_QuickAssist_content.style.display = 'none';
         db_Game_Developer_content.style.display = 'none';
@@ -4926,7 +4926,7 @@ db_Wi_Fi_Products_content.style.display = 'none';
         db_data_center_main_content.style.display = 'none';
         db_data_center_submenu.style.display = 'none';
         db_Unison_app_content.style.display = 'none';
-db_Wi_Fi_Products_content.style.display = 'none';
+        db_Wi_Fi_Products_content.style.display = 'none';
         db_wireless_content.style.display = 'none';
         db_QuickAssist_content.style.display = 'none';
         db_Game_Developer_content.style.display = 'none';
@@ -4993,7 +4993,7 @@ document.getElementById('db-data-center-main').addEventListener('click', functio
     const db_data_center_main_content = document.getElementById('db-data-center-main-content');
     const db_data_center_submenu = document.getElementById('db-data-center-submenu');
     const db_intel_killer = document.getElementById('db-intel-killer');
- const db_Wi_Fi_Products_content = document.getElementById('db-Wi-Fi-Products-content');
+    const db_Wi_Fi_Products_content = document.getElementById('db-Wi-Fi-Products-content');
     const db_wireless_content = document.getElementById('db-wireless-content');
     const db_QuickAssist_content = document.getElementById('db-QuickAssist-content');
     const db_Game_Developer_content = document.getElementById('db-Game-Developer-content');
@@ -5059,7 +5059,7 @@ document.getElementById('db-data-center-main').addEventListener('click', functio
         db_data_center_main_content.style.display = 'none';
         db_data_center_submenu.style.display = 'none';
         db_Unison_app_content.style.display = 'none';
-db_Wi_Fi_Products_content.style.display = 'none';
+        db_Wi_Fi_Products_content.style.display = 'none';
         db_wireless_content.style.display = 'none';
         db_QuickAssist_content.style.display = 'none';
         db_Game_Developer_content.style.display = 'none';
@@ -5121,7 +5121,7 @@ db_Wi_Fi_Products_content.style.display = 'none';
         db_data_center_main_content.style.display = 'block';
         db_data_center_submenu.style.display = 'none';
         db_Unison_app_content.style.display = 'none';
-db_Wi_Fi_Products_content.style.display = 'none';
+        db_Wi_Fi_Products_content.style.display = 'none';
         db_wireless_content.style.display = 'none';
         db_QuickAssist_content.style.display = 'none';
         db_Game_Developer_content.style.display = 'none';
@@ -5187,7 +5187,7 @@ document.getElementById('db-data-center-menu').addEventListener('click', functio
     const db_data_center_main_content = document.getElementById('db-data-center-main-content');
     const db_data_center_submenu = document.getElementById('db-data-center-submenu');
     const db_intel_killer = document.getElementById('db-intel-killer');
- const db_Wi_Fi_Products_content = document.getElementById('db-Wi-Fi-Products-content');
+    const db_Wi_Fi_Products_content = document.getElementById('db-Wi-Fi-Products-content');
     const db_wireless_content = document.getElementById('db-wireless-content');
     const db_QuickAssist_content = document.getElementById('db-QuickAssist-content');
     const db_Game_Developer_content = document.getElementById('db-Game-Developer-content');
@@ -5251,7 +5251,7 @@ document.getElementById('db-data-center-menu').addEventListener('click', functio
     if (db_data_center_submenu.style.display === 'block') {
         db_data_center_submenu.style.display = 'none';
         db_Unison_app_content.style.display = 'none';
-db_Wi_Fi_Products_content.style.display = 'none';
+        db_Wi_Fi_Products_content.style.display = 'none';
         db_wireless_content.style.display = 'none';
         db_QuickAssist_content.style.display = 'none';
         db_Game_Developer_content.style.display = 'none';
@@ -5311,7 +5311,7 @@ db_Wi_Fi_Products_content.style.display = 'none';
     } else {
         db_data_center_submenu.style.display = 'block';
         db_Unison_app_content.style.display = 'none';
-db_Wi_Fi_Products_content.style.display = 'none';
+        db_Wi_Fi_Products_content.style.display = 'none';
         db_wireless_content.style.display = 'none';
         db_QuickAssist_content.style.display = 'none';
         db_Game_Developer_content.style.display = 'none';
@@ -5377,7 +5377,7 @@ document.getElementById('db-data-center-submenu140').addEventListener('click', f
     event.preventDefault();
 
     const db_intel_killer = document.getElementById('db-intel-killer');
- const db_Wi_Fi_Products_content = document.getElementById('db-Wi-Fi-Products-content');
+    const db_Wi_Fi_Products_content = document.getElementById('db-Wi-Fi-Products-content');
     const db_wireless_content = document.getElementById('db-wireless-content');
     const db_QuickAssist_content = document.getElementById('db-QuickAssist-content');
     const db_Game_Developer_content = document.getElementById('db-Game-Developer-content');
@@ -5441,7 +5441,7 @@ document.getElementById('db-data-center-submenu140').addEventListener('click', f
 
     if (db_data_center_submenu_content140.style.display === 'block') {
         db_Unison_app_content.style.display = 'none';
-db_Wi_Fi_Products_content.style.display = 'none';
+        db_Wi_Fi_Products_content.style.display = 'none';
         db_wireless_content.style.display = 'none';
         db_QuickAssist_content.style.display = 'none';
         db_Game_Developer_content.style.display = 'none';
@@ -5554,7 +5554,7 @@ document.getElementById('db-data-center-submenu170').addEventListener('click', f
     event.preventDefault();
 
     const db_intel_killer = document.getElementById('db-intel-killer');
- const db_Wi_Fi_Products_content = document.getElementById('db-Wi-Fi-Products-content');
+    const db_Wi_Fi_Products_content = document.getElementById('db-Wi-Fi-Products-content');
     const db_wireless_content = document.getElementById('db-wireless-content');
     const db_QuickAssist_content = document.getElementById('db-QuickAssist-content');
     const db_Game_Developer_content = document.getElementById('db-Game-Developer-content');
@@ -5621,7 +5621,7 @@ document.getElementById('db-data-center-submenu170').addEventListener('click', f
 
     if (db_data_center_submenu_content170.style.display === 'block') {
         db_Unison_app_content.style.display = 'none';
-db_Wi_Fi_Products_content.style.display = 'none';
+        db_Wi_Fi_Products_content.style.display = 'none';
         db_wireless_content.style.display = 'none';
         db_QuickAssist_content.style.display = 'none';
         db_Game_Developer_content.style.display = 'none';
@@ -5684,7 +5684,7 @@ db_Wi_Fi_Products_content.style.display = 'none';
         db_OpenVINO_toolkit_content.style.display = 'none';
         db_Development_Software_content.style.display = 'none';
         db_Unison_app_content.style.display = 'none';
-db_Wi_Fi_Products_content.style.display = 'none';
+        db_Wi_Fi_Products_content.style.display = 'none';
         db_wireless_content.style.display = 'none';
         db_QuickAssist_content.style.display = 'none';
         db_Game_Developer_content.style.display = 'none';
@@ -5746,7 +5746,7 @@ document.getElementById('db-arc-dedicated-graphics-menu').addEventListener('clic
     event.preventDefault();
 
     const db_intel_killer = document.getElementById('db-intel-killer');
- const db_Wi_Fi_Products_content = document.getElementById('db-Wi-Fi-Products-content');
+    const db_Wi_Fi_Products_content = document.getElementById('db-Wi-Fi-Products-content');
     const db_wireless_content = document.getElementById('db-wireless-content');
     const db_QuickAssist_content = document.getElementById('db-QuickAssist-content');
     const db_Game_Developer_content = document.getElementById('db-Game-Developer-content');
@@ -5809,7 +5809,7 @@ document.getElementById('db-arc-dedicated-graphics-menu').addEventListener('clic
 
     if (db_arc_dedicated_graphics.style.display === 'block') {
         db_Unison_app_content.style.display = 'none';
-db_Wi_Fi_Products_content.style.display = 'none';
+        db_Wi_Fi_Products_content.style.display = 'none';
         db_wireless_content.style.display = 'none';
         db_QuickAssist_content.style.display = 'none';
         db_Game_Developer_content.style.display = 'none';
@@ -5873,7 +5873,7 @@ db_Wi_Fi_Products_content.style.display = 'none';
         db_OpenVINO_toolkit_content.style.display = 'none';
         db_Development_Software_content.style.display = 'none';
         db_Unison_app_content.style.display = 'none';
-db_Wi_Fi_Products_content.style.display = 'none';
+        db_Wi_Fi_Products_content.style.display = 'none';
         db_wireless_content.style.display = 'none';
         db_QuickAssist_content.style.display = 'none';
         db_Game_Developer_content.style.display = 'none';
@@ -5938,7 +5938,7 @@ document.getElementById('db-processor-graphics-main').addEventListener('click', 
 
 
     const db_intel_killer = document.getElementById('db-intel-killer');
- const db_Wi_Fi_Products_content = document.getElementById('db-Wi-Fi-Products-content');
+    const db_Wi_Fi_Products_content = document.getElementById('db-Wi-Fi-Products-content');
     const db_wireless_content = document.getElementById('db-wireless-content');
     const db_QuickAssist_content = document.getElementById('db-QuickAssist-content');
     const db_Game_Developer_content = document.getElementById('db-Game-Developer-content');
@@ -6001,7 +6001,7 @@ document.getElementById('db-processor-graphics-main').addEventListener('click', 
 
     if (db_processor_graphics_menu.style.display === 'block') {
         db_Unison_app_content.style.display = 'none';
-db_Wi_Fi_Products_content.style.display = 'none';
+        db_Wi_Fi_Products_content.style.display = 'none';
         db_wireless_content.style.display = 'none';
         db_QuickAssist_content.style.display = 'none';
         db_Game_Developer_content.style.display = 'none';
@@ -6065,7 +6065,7 @@ db_Wi_Fi_Products_content.style.display = 'none';
         db_OpenVINO_toolkit_content.style.display = 'none';
         db_Development_Software_content.style.display = 'none';
         db_Unison_app_content.style.display = 'none';
-db_Wi_Fi_Products_content.style.display = 'none';
+        db_Wi_Fi_Products_content.style.display = 'none';
         db_wireless_content.style.display = 'none';
         db_QuickAssist_content.style.display = 'none';
         db_Game_Developer_content.style.display = 'none';
@@ -6130,7 +6130,7 @@ document.getElementById('db-processor-graphics-menu-click').addEventListener('cl
 
 
     const db_intel_killer = document.getElementById('db-intel-killer');
- const db_Wi_Fi_Products_content = document.getElementById('db-Wi-Fi-Products-content');
+    const db_Wi_Fi_Products_content = document.getElementById('db-Wi-Fi-Products-content');
     const db_wireless_content = document.getElementById('db-wireless-content');
     const db_QuickAssist_content = document.getElementById('db-QuickAssist-content');
     const db_Game_Developer_content = document.getElementById('db-Game-Developer-content');
@@ -6193,7 +6193,7 @@ document.getElementById('db-processor-graphics-menu-click').addEventListener('cl
 
     if (db_processor_graphics_menu_content.style.display === 'block') {
         db_Unison_app_content.style.display = 'none';
-db_Wi_Fi_Products_content.style.display = 'none';
+        db_Wi_Fi_Products_content.style.display = 'none';
         db_wireless_content.style.display = 'none';
         db_QuickAssist_content.style.display = 'none';
         db_Game_Developer_content.style.display = 'none';
@@ -6257,7 +6257,7 @@ db_Wi_Fi_Products_content.style.display = 'none';
         db_OpenVINO_toolkit_content.style.display = 'none';
         db_Development_Software_content.style.display = 'none';
         db_Unison_app_content.style.display = 'none';
-db_Wi_Fi_Products_content.style.display = 'none';
+        db_Wi_Fi_Products_content.style.display = 'none';
         db_wireless_content.style.display = 'none';
         db_QuickAssist_content.style.display = 'none';
         db_Game_Developer_content.style.display = 'none';
@@ -6323,7 +6323,7 @@ document.getElementById('db-arc-graphics-main').addEventListener('click', functi
 
 
     const db_intel_killer = document.getElementById('db-intel-killer');
- const db_Wi_Fi_Products_content = document.getElementById('db-Wi-Fi-Products-content');
+    const db_Wi_Fi_Products_content = document.getElementById('db-Wi-Fi-Products-content');
     const db_wireless_content = document.getElementById('db-wireless-content');
     const db_QuickAssist_content = document.getElementById('db-QuickAssist-content');
     const db_Game_Developer_content = document.getElementById('db-Game-Developer-content');
@@ -6386,7 +6386,7 @@ document.getElementById('db-arc-graphics-main').addEventListener('click', functi
 
     if (db_arc_graphics_menu.style.display === 'block') {
         db_Unison_app_content.style.display = 'none';
-db_Wi_Fi_Products_content.style.display = 'none';
+        db_Wi_Fi_Products_content.style.display = 'none';
         db_wireless_content.style.display = 'none';
         db_QuickAssist_content.style.display = 'none';
         db_Game_Developer_content.style.display = 'none';
@@ -6450,7 +6450,7 @@ db_Wi_Fi_Products_content.style.display = 'none';
         db_OpenVINO_toolkit_content.style.display = 'none';
         db_Development_Software_content.style.display = 'none';
         db_Unison_app_content.style.display = 'none';
-db_Wi_Fi_Products_content.style.display = 'none';
+        db_Wi_Fi_Products_content.style.display = 'none';
         db_wireless_content.style.display = 'none';
         db_QuickAssist_content.style.display = 'none';
         db_Game_Developer_content.style.display = 'none';
@@ -6514,7 +6514,7 @@ db_Wi_Fi_Products_content.style.display = 'none';
 document.getElementById('db-arc-dedicated-graphics-menu(series1)-click').addEventListener('click', function (event) {
     event.preventDefault();
     const db_intel_killer = document.getElementById('db-intel-killer');
- const db_Wi_Fi_Products_content = document.getElementById('db-Wi-Fi-Products-content');
+    const db_Wi_Fi_Products_content = document.getElementById('db-Wi-Fi-Products-content');
     const db_wireless_content = document.getElementById('db-wireless-content');
     const db_QuickAssist_content = document.getElementById('db-QuickAssist-content');
     const db_Game_Developer_content = document.getElementById('db-Game-Developer-content');
@@ -6577,7 +6577,7 @@ document.getElementById('db-arc-dedicated-graphics-menu(series1)-click').addEven
 
     if (db_arc_graphics_content_series_1.style.display === 'block') {
         db_Unison_app_content.style.display = 'none';
-db_Wi_Fi_Products_content.style.display = 'none';
+        db_Wi_Fi_Products_content.style.display = 'none';
         db_wireless_content.style.display = 'none';
         db_QuickAssist_content.style.display = 'none';
         db_Game_Developer_content.style.display = 'none';
@@ -6641,7 +6641,7 @@ db_Wi_Fi_Products_content.style.display = 'none';
         db_OpenVINO_toolkit_content.style.display = 'none';
         db_Development_Software_content.style.display = 'none';
         db_Unison_app_content.style.display = 'none';
-db_Wi_Fi_Products_content.style.display = 'none';
+        db_Wi_Fi_Products_content.style.display = 'none';
         db_wireless_content.style.display = 'none';
         db_QuickAssist_content.style.display = 'none';
         db_Game_Developer_content.style.display = 'none';
@@ -6704,7 +6704,7 @@ db_Wi_Fi_Products_content.style.display = 'none';
 document.getElementById('db-arc-dedicated-graphics-menu-click').addEventListener('click', function (event) {
     event.preventDefault();
     const db_intel_killer = document.getElementById('db-intel-killer');
- const db_Wi_Fi_Products_content = document.getElementById('db-Wi-Fi-Products-content');
+    const db_Wi_Fi_Products_content = document.getElementById('db-Wi-Fi-Products-content');
     const db_wireless_content = document.getElementById('db-wireless-content');
     const db_QuickAssist_content = document.getElementById('db-QuickAssist-content');
     const db_Game_Developer_content = document.getElementById('db-Game-Developer-content');
@@ -6767,7 +6767,7 @@ document.getElementById('db-arc-dedicated-graphics-menu-click').addEventListener
 
     if (db_arc_graphics_content.style.display === 'block') {
         db_Unison_app_content.style.display = 'none';
-db_Wi_Fi_Products_content.style.display = 'none';
+        db_Wi_Fi_Products_content.style.display = 'none';
         db_wireless_content.style.display = 'none';
         db_QuickAssist_content.style.display = 'none';
         db_Game_Developer_content.style.display = 'none';
@@ -6831,7 +6831,7 @@ db_Wi_Fi_Products_content.style.display = 'none';
         db_OpenVINO_toolkit_content.style.display = 'none';
         db_Development_Software_content.style.display = 'none';
         db_Unison_app_content.style.display = 'none';
-db_Wi_Fi_Products_content.style.display = 'none';
+        db_Wi_Fi_Products_content.style.display = 'none';
         db_wireless_content.style.display = 'none';
         db_QuickAssist_content.style.display = 'none';
         db_Game_Developer_content.style.display = 'none';
@@ -6894,7 +6894,7 @@ db_Wi_Fi_Products_content.style.display = 'none';
 document.getElementById('db-intel-graphics-main').addEventListener('click', function (event) {
     event.preventDefault();
     const db_intel_killer = document.getElementById('db-intel-killer');
- const db_Wi_Fi_Products_content = document.getElementById('db-Wi-Fi-Products-content');
+    const db_Wi_Fi_Products_content = document.getElementById('db-Wi-Fi-Products-content');
     const db_wireless_content = document.getElementById('db-wireless-content');
     const db_QuickAssist_content = document.getElementById('db-QuickAssist-content');
     const db_Game_Developer_content = document.getElementById('db-Game-Developer-content');
@@ -6957,7 +6957,7 @@ document.getElementById('db-intel-graphics-main').addEventListener('click', func
 
     if (db_intel_graphics_menu.style.display === 'block') {
         db_Unison_app_content.style.display = 'none';
-db_Wi_Fi_Products_content.style.display = 'none';
+        db_Wi_Fi_Products_content.style.display = 'none';
         db_wireless_content.style.display = 'none';
         db_QuickAssist_content.style.display = 'none';
         db_Game_Developer_content.style.display = 'none';
@@ -7021,7 +7021,7 @@ db_Wi_Fi_Products_content.style.display = 'none';
         db_OpenVINO_toolkit_content.style.display = 'none';
         db_Development_Software_content.style.display = 'none';
         db_Unison_app_content.style.display = 'none';
-db_Wi_Fi_Products_content.style.display = 'none';
+        db_Wi_Fi_Products_content.style.display = 'none';
         db_wireless_content.style.display = 'none';
         db_QuickAssist_content.style.display = 'none';
         db_Game_Developer_content.style.display = 'none';
@@ -7085,7 +7085,7 @@ db_Wi_Fi_Products_content.style.display = 'none';
 document.getElementById('db-intel-graphics-menu-click').addEventListener('click', function (event) {
     event.preventDefault();
     const db_intel_killer = document.getElementById('db-intel-killer');
- const db_Wi_Fi_Products_content = document.getElementById('db-Wi-Fi-Products-content');
+    const db_Wi_Fi_Products_content = document.getElementById('db-Wi-Fi-Products-content');
     const db_wireless_content = document.getElementById('db-wireless-content');
     const db_QuickAssist_content = document.getElementById('db-QuickAssist-content');
     const db_Game_Developer_content = document.getElementById('db-Game-Developer-content');
@@ -7148,7 +7148,7 @@ document.getElementById('db-intel-graphics-menu-click').addEventListener('click'
 
     if (db_intel_graphics_content.style.display === 'block') {
         db_Unison_app_content.style.display = 'none';
-db_Wi_Fi_Products_content.style.display = 'none';
+        db_Wi_Fi_Products_content.style.display = 'none';
         db_wireless_content.style.display = 'none';
         db_QuickAssist_content.style.display = 'none';
         db_Game_Developer_content.style.display = 'none';
@@ -7212,7 +7212,7 @@ db_Wi_Fi_Products_content.style.display = 'none';
         db_OpenVINO_toolkit_content.style.display = 'none';
         db_Development_Software_content.style.display = 'none';
         db_Unison_app_content.style.display = 'none';
-db_Wi_Fi_Products_content.style.display = 'none';
+        db_Wi_Fi_Products_content.style.display = 'none';
         db_wireless_content.style.display = 'none';
         db_QuickAssist_content.style.display = 'none';
         db_Game_Developer_content.style.display = 'none';
@@ -7275,7 +7275,7 @@ db_Wi_Fi_Products_content.style.display = 'none';
 document.getElementById('db-intel-graphics-menu(series1)-click').addEventListener('click', function (event) {
     event.preventDefault();
     const db_intel_killer = document.getElementById('db-intel-killer');
- const db_Wi_Fi_Products_content = document.getElementById('db-Wi-Fi-Products-content');
+    const db_Wi_Fi_Products_content = document.getElementById('db-Wi-Fi-Products-content');
     const db_wireless_content = document.getElementById('db-wireless-content');
     const db_QuickAssist_content = document.getElementById('db-QuickAssist-content');
     const db_Game_Developer_content = document.getElementById('db-Game-Developer-content');
@@ -7338,7 +7338,7 @@ document.getElementById('db-intel-graphics-menu(series1)-click').addEventListene
 
     if (db_intel_graphics_content_series1.style.display === 'block') {
         db_Unison_app_content.style.display = 'none';
-db_Wi_Fi_Products_content.style.display = 'none';
+        db_Wi_Fi_Products_content.style.display = 'none';
         db_wireless_content.style.display = 'none';
         db_QuickAssist_content.style.display = 'none';
         db_Game_Developer_content.style.display = 'none';
@@ -7402,7 +7402,7 @@ db_Wi_Fi_Products_content.style.display = 'none';
         db_OpenVINO_toolkit_content.style.display = 'none';
         db_Development_Software_content.style.display = 'none';
         db_Unison_app_content.style.display = 'none';
-db_Wi_Fi_Products_content.style.display = 'none';
+        db_Wi_Fi_Products_content.style.display = 'none';
         db_wireless_content.style.display = 'none';
         db_QuickAssist_content.style.display = 'none';
         db_Game_Developer_content.style.display = 'none';
@@ -7464,7 +7464,7 @@ db_Wi_Fi_Products_content.style.display = 'none';
 document.getElementById('db-intel-nuc-menu-click').addEventListener('click', function (event) {
     event.preventDefault();
     const db_intel_killer = document.getElementById('db-intel-killer');
- const db_Wi_Fi_Products_content = document.getElementById('db-Wi-Fi-Products-content');
+    const db_Wi_Fi_Products_content = document.getElementById('db-Wi-Fi-Products-content');
     const db_wireless_content = document.getElementById('db-wireless-content');
     const db_QuickAssist_content = document.getElementById('db-QuickAssist-content');
     const db_Game_Developer_content = document.getElementById('db-Game-Developer-content');
@@ -7527,7 +7527,7 @@ document.getElementById('db-intel-nuc-menu-click').addEventListener('click', fun
 
     if (db_intel_nuc_content.style.display === 'block') {
         db_Unison_app_content.style.display = 'none';
-db_Wi_Fi_Products_content.style.display = 'none';
+        db_Wi_Fi_Products_content.style.display = 'none';
         db_wireless_content.style.display = 'none';
         db_QuickAssist_content.style.display = 'none';
         db_Game_Developer_content.style.display = 'none';
@@ -7591,7 +7591,7 @@ db_Wi_Fi_Products_content.style.display = 'none';
         db_OpenVINO_toolkit_content.style.display = 'none';
         db_Development_Software_content.style.display = 'none';
         db_Unison_app_content.style.display = 'none';
-db_Wi_Fi_Products_content.style.display = 'none';
+        db_Wi_Fi_Products_content.style.display = 'none';
         db_wireless_content.style.display = 'none';
         db_QuickAssist_content.style.display = 'none';
         db_Game_Developer_content.style.display = 'none';
@@ -7654,7 +7654,7 @@ db_Wi_Fi_Products_content.style.display = 'none';
 document.getElementById('db-intel-compute-click').addEventListener('click', function (event) {
     event.preventDefault();
     const db_intel_killer = document.getElementById('db-intel-killer');
- const db_Wi_Fi_Products_content = document.getElementById('db-Wi-Fi-Products-content');
+    const db_Wi_Fi_Products_content = document.getElementById('db-Wi-Fi-Products-content');
     const db_wireless_content = document.getElementById('db-wireless-content');
     const db_QuickAssist_content = document.getElementById('db-QuickAssist-content');
     const db_Game_Developer_content = document.getElementById('db-Game-Developer-content');
@@ -7717,7 +7717,7 @@ document.getElementById('db-intel-compute-click').addEventListener('click', func
 
     if (db_intel_compute_sticks_content.style.display === 'block') {
         db_Unison_app_content.style.display = 'none';
-db_Wi_Fi_Products_content.style.display = 'none';
+        db_Wi_Fi_Products_content.style.display = 'none';
         db_wireless_content.style.display = 'none';
         db_QuickAssist_content.style.display = 'none';
         db_Game_Developer_content.style.display = 'none';
@@ -7781,7 +7781,7 @@ db_Wi_Fi_Products_content.style.display = 'none';
         db_OpenVINO_toolkit_content.style.display = 'none';
         db_Development_Software_content.style.display = 'none';
         db_Unison_app_content.style.display = 'none';
-db_Wi_Fi_Products_content.style.display = 'none';
+        db_Wi_Fi_Products_content.style.display = 'none';
         db_wireless_content.style.display = 'none';
         db_QuickAssist_content.style.display = 'none';
         db_Game_Developer_content.style.display = 'none';
@@ -7843,7 +7843,7 @@ db_Wi_Fi_Products_content.style.display = 'none';
 document.getElementById('db-intel-nuc-element-click').addEventListener('click', function (event) {
     event.preventDefault();
     const db_intel_killer = document.getElementById('db-intel-killer');
- const db_Wi_Fi_Products_content = document.getElementById('db-Wi-Fi-Products-content');
+    const db_Wi_Fi_Products_content = document.getElementById('db-Wi-Fi-Products-content');
     const db_wireless_content = document.getElementById('db-wireless-content');
     const db_QuickAssist_content = document.getElementById('db-QuickAssist-content');
     const db_Game_Developer_content = document.getElementById('db-Game-Developer-content');
@@ -7906,7 +7906,7 @@ document.getElementById('db-intel-nuc-element-click').addEventListener('click', 
 
     if (db_intel_NUC_Elements_content.style.display === 'block') {
         db_Unison_app_content.style.display = 'none';
-db_Wi_Fi_Products_content.style.display = 'none';
+        db_Wi_Fi_Products_content.style.display = 'none';
         db_wireless_content.style.display = 'none';
         db_QuickAssist_content.style.display = 'none';
         db_Game_Developer_content.style.display = 'none';
@@ -7970,7 +7970,7 @@ db_Wi_Fi_Products_content.style.display = 'none';
         db_OpenVINO_toolkit_content.style.display = 'none';
         db_Development_Software_content.style.display = 'none';
         db_Unison_app_content.style.display = 'none';
-db_Wi_Fi_Products_content.style.display = 'none';
+        db_Wi_Fi_Products_content.style.display = 'none';
         db_wireless_content.style.display = 'none';
         db_QuickAssist_content.style.display = 'none';
         db_Game_Developer_content.style.display = 'none';
@@ -8033,7 +8033,7 @@ db_Wi_Fi_Products_content.style.display = 'none';
 document.getElementById('db-nuc-laptop-kits-click').addEventListener('click', function (event) {
     event.preventDefault();
     const db_intel_killer = document.getElementById('db-intel-killer');
- const db_Wi_Fi_Products_content = document.getElementById('db-Wi-Fi-Products-content');
+    const db_Wi_Fi_Products_content = document.getElementById('db-Wi-Fi-Products-content');
     const db_wireless_content = document.getElementById('db-wireless-content');
     const db_QuickAssist_content = document.getElementById('db-QuickAssist-content');
     const db_Game_Developer_content = document.getElementById('db-Game-Developer-content');
@@ -8096,7 +8096,7 @@ document.getElementById('db-nuc-laptop-kits-click').addEventListener('click', fu
 
     if (db_intel_NUC_Laptop_Kits_content.style.display === 'block') {
         db_Unison_app_content.style.display = 'none';
-db_Wi_Fi_Products_content.style.display = 'none';
+        db_Wi_Fi_Products_content.style.display = 'none';
         db_wireless_content.style.display = 'none';
         db_QuickAssist_content.style.display = 'none';
         db_Game_Developer_content.style.display = 'none';
@@ -8160,7 +8160,7 @@ db_Wi_Fi_Products_content.style.display = 'none';
         db_OpenVINO_toolkit_content.style.display = 'none';
         db_Development_Software_content.style.display = 'none';
         db_Unison_app_content.style.display = 'none';
-db_Wi_Fi_Products_content.style.display = 'none';
+        db_Wi_Fi_Products_content.style.display = 'none';
         db_wireless_content.style.display = 'none';
         db_QuickAssist_content.style.display = 'none';
         db_Game_Developer_content.style.display = 'none';
@@ -8222,7 +8222,7 @@ db_Wi_Fi_Products_content.style.display = 'none';
 document.getElementById('db-Data-Center-SSDs').addEventListener('click', function (event) {
     event.preventDefault();
     const db_intel_killer = document.getElementById('db-intel-killer');
- const db_Wi_Fi_Products_content = document.getElementById('db-Wi-Fi-Products-content');
+    const db_Wi_Fi_Products_content = document.getElementById('db-Wi-Fi-Products-content');
     const db_wireless_content = document.getElementById('db-wireless-content');
     const db_QuickAssist_content = document.getElementById('db-QuickAssist-content');
     const db_Game_Developer_content = document.getElementById('db-Game-Developer-content');
@@ -8285,7 +8285,7 @@ document.getElementById('db-Data-Center-SSDs').addEventListener('click', functio
 
     if (db_Data_Center_SSDs_content.style.display === 'block') {
         db_Unison_app_content.style.display = 'none';
-db_Wi_Fi_Products_content.style.display = 'none';
+        db_Wi_Fi_Products_content.style.display = 'none';
         db_wireless_content.style.display = 'none';
         db_QuickAssist_content.style.display = 'none';
         db_Game_Developer_content.style.display = 'none';
@@ -8349,7 +8349,7 @@ db_Wi_Fi_Products_content.style.display = 'none';
         db_OpenVINO_toolkit_content.style.display = 'none';
         db_Development_Software_content.style.display = 'none';
         db_Unison_app_content.style.display = 'none';
-db_Wi_Fi_Products_content.style.display = 'none';
+        db_Wi_Fi_Products_content.style.display = 'none';
         db_wireless_content.style.display = 'none';
         db_QuickAssist_content.style.display = 'none';
         db_Game_Developer_content.style.display = 'none';
@@ -8412,7 +8412,7 @@ db_Wi_Fi_Products_content.style.display = 'none';
 document.getElementById('db-Datacenter-Storage').addEventListener('click', function (event) {
     event.preventDefault();
     const db_intel_killer = document.getElementById('db-intel-killer');
- const db_Wi_Fi_Products_content = document.getElementById('db-Wi-Fi-Products-content');
+    const db_Wi_Fi_Products_content = document.getElementById('db-Wi-Fi-Products-content');
     const db_wireless_content = document.getElementById('db-wireless-content');
     const db_QuickAssist_content = document.getElementById('db-QuickAssist-content');
     const db_Game_Developer_content = document.getElementById('db-Game-Developer-content');
@@ -8475,7 +8475,7 @@ document.getElementById('db-Datacenter-Storage').addEventListener('click', funct
 
     if (db_Datacenter_Storage_submenu.style.display === 'block') {
         db_Unison_app_content.style.display = 'none';
-db_Wi_Fi_Products_content.style.display = 'none';
+        db_Wi_Fi_Products_content.style.display = 'none';
         db_wireless_content.style.display = 'none';
         db_QuickAssist_content.style.display = 'none';
         db_Game_Developer_content.style.display = 'none';
@@ -8539,7 +8539,7 @@ db_Wi_Fi_Products_content.style.display = 'none';
         db_OpenVINO_toolkit_content.style.display = 'none';
         db_Development_Software_content.style.display = 'none';
         db_Unison_app_content.style.display = 'none';
-db_Wi_Fi_Products_content.style.display = 'none';
+        db_Wi_Fi_Products_content.style.display = 'none';
         db_wireless_content.style.display = 'none';
         db_QuickAssist_content.style.display = 'none';
         db_Game_Developer_content.style.display = 'none';
@@ -8601,7 +8601,7 @@ db_Wi_Fi_Products_content.style.display = 'none';
 document.getElementById('db-Rapid-Storage-Technology-click').addEventListener('click', function (event) {
     event.preventDefault();
     const db_intel_killer = document.getElementById('db-intel-killer');
- const db_Wi_Fi_Products_content = document.getElementById('db-Wi-Fi-Products-content');
+    const db_Wi_Fi_Products_content = document.getElementById('db-Wi-Fi-Products-content');
     const db_wireless_content = document.getElementById('db-wireless-content');
     const db_QuickAssist_content = document.getElementById('db-QuickAssist-content');
     const db_Game_Developer_content = document.getElementById('db-Game-Developer-content');
@@ -8664,7 +8664,7 @@ document.getElementById('db-Rapid-Storage-Technology-click').addEventListener('c
 
     if (db_Rapid_Storage_Technology_content.style.display === 'block') {
         db_Unison_app_content.style.display = 'none';
-db_Wi_Fi_Products_content.style.display = 'none';
+        db_Wi_Fi_Products_content.style.display = 'none';
         db_wireless_content.style.display = 'none';
         db_QuickAssist_content.style.display = 'none';
         db_Game_Developer_content.style.display = 'none';
@@ -8728,7 +8728,7 @@ db_Wi_Fi_Products_content.style.display = 'none';
         db_OpenVINO_toolkit_content.style.display = 'none';
         db_Development_Software_content.style.display = 'none';
         db_Unison_app_content.style.display = 'none';
-db_Wi_Fi_Products_content.style.display = 'none';
+        db_Wi_Fi_Products_content.style.display = 'none';
         db_wireless_content.style.display = 'none';
         db_QuickAssist_content.style.display = 'none';
         db_Game_Developer_content.style.display = 'none';
@@ -8791,7 +8791,7 @@ db_Wi_Fi_Products_content.style.display = 'none';
 document.getElementById('db-virtual-RAID-click').addEventListener('click', function (event) {
     event.preventDefault();
     const db_intel_killer = document.getElementById('db-intel-killer');
- const db_Wi_Fi_Products_content = document.getElementById('db-Wi-Fi-Products-content');
+    const db_Wi_Fi_Products_content = document.getElementById('db-Wi-Fi-Products-content');
     const db_wireless_content = document.getElementById('db-wireless-content');
     const db_QuickAssist_content = document.getElementById('db-QuickAssist-content');
     const db_Game_Developer_content = document.getElementById('db-Game-Developer-content');
@@ -8853,7 +8853,7 @@ document.getElementById('db-virtual-RAID-click').addEventListener('click', funct
 
     if (db_virtual_RAID_content.style.display === 'block') {
         db_Unison_app_content.style.display = 'none';
-db_Wi_Fi_Products_content.style.display = 'none';
+        db_Wi_Fi_Products_content.style.display = 'none';
         db_wireless_content.style.display = 'none';
         db_QuickAssist_content.style.display = 'none';
         db_Game_Developer_content.style.display = 'none';
@@ -8917,7 +8917,7 @@ db_Wi_Fi_Products_content.style.display = 'none';
         db_OpenVINO_toolkit_content.style.display = 'none';
         db_Development_Software_content.style.display = 'none';
         db_Unison_app_content.style.display = 'none';
-db_Wi_Fi_Products_content.style.display = 'none';
+        db_Wi_Fi_Products_content.style.display = 'none';
         db_wireless_content.style.display = 'none';
         db_QuickAssist_content.style.display = 'none';
         db_Game_Developer_content.style.display = 'none';
@@ -8980,7 +8980,7 @@ db_Wi_Fi_Products_content.style.display = 'none';
 document.getElementById('db-Optane™-Persistent').addEventListener('click', function (event) {
     event.preventDefault();
     const db_intel_killer = document.getElementById('db-intel-killer');
- const db_Wi_Fi_Products_content = document.getElementById('db-Wi-Fi-Products-content');
+    const db_Wi_Fi_Products_content = document.getElementById('db-Wi-Fi-Products-content');
     const db_wireless_content = document.getElementById('db-wireless-content');
     const db_QuickAssist_content = document.getElementById('db-QuickAssist-content');
     const db_Game_Developer_content = document.getElementById('db-Game-Developer-content');
@@ -9043,7 +9043,7 @@ document.getElementById('db-Optane™-Persistent').addEventListener('click', fun
 
     if (db_Optane_Persistent_content.style.display === 'block') {
         db_Unison_app_content.style.display = 'none';
-db_Wi_Fi_Products_content.style.display = 'none';
+        db_Wi_Fi_Products_content.style.display = 'none';
         db_wireless_content.style.display = 'none';
         db_QuickAssist_content.style.display = 'none';
         db_Game_Developer_content.style.display = 'none';
@@ -9107,7 +9107,7 @@ db_Wi_Fi_Products_content.style.display = 'none';
         db_OpenVINO_toolkit_content.style.display = 'none';
         db_Development_Software_content.style.display = 'none';
         db_Unison_app_content.style.display = 'none';
-db_Wi_Fi_Products_content.style.display = 'none';
+        db_Wi_Fi_Products_content.style.display = 'none';
         db_wireless_content.style.display = 'none';
         db_QuickAssist_content.style.display = 'none';
         db_Game_Developer_content.style.display = 'none';
@@ -9169,7 +9169,7 @@ db_Wi_Fi_Products_content.style.display = 'none';
 document.getElementById('db-SSD-Management-Tools').addEventListener('click', function (event) {
     event.preventDefault();
     const db_intel_killer = document.getElementById('db-intel-killer');
- const db_Wi_Fi_Products_content = document.getElementById('db-Wi-Fi-Products-content');
+    const db_Wi_Fi_Products_content = document.getElementById('db-Wi-Fi-Products-content');
     const db_wireless_content = document.getElementById('db-wireless-content');
     const db_QuickAssist_content = document.getElementById('db-QuickAssist-content');
     const db_Game_Developer_content = document.getElementById('db-Game-Developer-content');
@@ -9232,7 +9232,7 @@ document.getElementById('db-SSD-Management-Tools').addEventListener('click', fun
 
     if (db_SSD_Management_Tools_click.style.display === 'block') {
         db_Unison_app_content.style.display = 'none';
-db_Wi_Fi_Products_content.style.display = 'none';
+        db_Wi_Fi_Products_content.style.display = 'none';
         db_wireless_content.style.display = 'none';
         db_QuickAssist_content.style.display = 'none';
         db_Game_Developer_content.style.display = 'none';
@@ -9296,7 +9296,7 @@ db_Wi_Fi_Products_content.style.display = 'none';
         db_OpenVINO_toolkit_content.style.display = 'none';
         db_Development_Software_content.style.display = 'none';
         db_Unison_app_content.style.display = 'none';
-db_Wi_Fi_Products_content.style.display = 'none';
+        db_Wi_Fi_Products_content.style.display = 'none';
         db_wireless_content.style.display = 'none';
         db_QuickAssist_content.style.display = 'none';
         db_Game_Developer_content.style.display = 'none';
@@ -9358,7 +9358,7 @@ db_Wi_Fi_Products_content.style.display = 'none';
 document.getElementById('db-Memory-and-Storage-Tool').addEventListener('click', function (event) {
     event.preventDefault();
     const db_intel_killer = document.getElementById('db-intel-killer');
- const db_Wi_Fi_Products_content = document.getElementById('db-Wi-Fi-Products-content');
+    const db_Wi_Fi_Products_content = document.getElementById('db-Wi-Fi-Products-content');
     const db_wireless_content = document.getElementById('db-wireless-content');
     const db_QuickAssist_content = document.getElementById('db-QuickAssist-content');
     const db_Game_Developer_content = document.getElementById('db-Game-Developer-content');
@@ -9421,7 +9421,7 @@ document.getElementById('db-Memory-and-Storage-Tool').addEventListener('click', 
 
     if (db_Memory_and_Storage_Tool_content.style.display === 'block') {
         db_Unison_app_content.style.display = 'none';
-db_Wi_Fi_Products_content.style.display = 'none';
+        db_Wi_Fi_Products_content.style.display = 'none';
         db_wireless_content.style.display = 'none';
         db_QuickAssist_content.style.display = 'none';
         db_Game_Developer_content.style.display = 'none';
@@ -9485,7 +9485,7 @@ db_Wi_Fi_Products_content.style.display = 'none';
         db_OpenVINO_toolkit_content.style.display = 'none';
         db_Development_Software_content.style.display = 'none';
         db_Unison_app_content.style.display = 'none';
-db_Wi_Fi_Products_content.style.display = 'none';
+        db_Wi_Fi_Products_content.style.display = 'none';
         db_wireless_content.style.display = 'none';
         db_QuickAssist_content.style.display = 'none';
         db_Game_Developer_content.style.display = 'none';
@@ -9548,7 +9548,7 @@ db_Wi_Fi_Products_content.style.display = 'none';
 document.getElementById('db-Processors-click').addEventListener('click', function (event) {
     event.preventDefault();
     const db_intel_killer = document.getElementById('db-intel-killer');
- const db_Wi_Fi_Products_content = document.getElementById('db-Wi-Fi-Products-content');
+    const db_Wi_Fi_Products_content = document.getElementById('db-Wi-Fi-Products-content');
     const db_wireless_content = document.getElementById('db-wireless-content');
     const db_QuickAssist_content = document.getElementById('db-QuickAssist-content');
     const db_Game_Developer_content = document.getElementById('db-Game-Developer-content');
@@ -9611,7 +9611,7 @@ document.getElementById('db-Processors-click').addEventListener('click', functio
 
     if (db_Processors_content.style.display === 'block') {
         db_Unison_app_content.style.display = 'none';
-db_Wi_Fi_Products_content.style.display = 'none';
+        db_Wi_Fi_Products_content.style.display = 'none';
         db_wireless_content.style.display = 'none';
         db_QuickAssist_content.style.display = 'none';
         db_Game_Developer_content.style.display = 'none';
@@ -9675,7 +9675,7 @@ db_Wi_Fi_Products_content.style.display = 'none';
         db_OpenVINO_toolkit_content.style.display = 'none';
         db_Development_Software_content.style.display = 'none';
         db_Unison_app_content.style.display = 'none';
-db_Wi_Fi_Products_content.style.display = 'none';
+        db_Wi_Fi_Products_content.style.display = 'none';
         db_wireless_content.style.display = 'none';
         db_QuickAssist_content.style.display = 'none';
         db_Game_Developer_content.style.display = 'none';
@@ -9737,7 +9737,7 @@ db_Wi_Fi_Products_content.style.display = 'none';
 document.getElementById('db-Xeon-Processors').addEventListener('click', function (event) {
     event.preventDefault();
     const db_intel_killer = document.getElementById('db-intel-killer');
- const db_Wi_Fi_Products_content = document.getElementById('db-Wi-Fi-Products-content');
+    const db_Wi_Fi_Products_content = document.getElementById('db-Wi-Fi-Products-content');
     const db_wireless_content = document.getElementById('db-wireless-content');
     const db_QuickAssist_content = document.getElementById('db-QuickAssist-content');
     const db_Game_Developer_content = document.getElementById('db-Game-Developer-content');
@@ -9800,7 +9800,7 @@ document.getElementById('db-Xeon-Processors').addEventListener('click', function
 
     if (db_Xeon_Processors_content.style.display === 'block') {
         db_Unison_app_content.style.display = 'none';
-db_Wi_Fi_Products_content.style.display = 'none';
+        db_Wi_Fi_Products_content.style.display = 'none';
         db_wireless_content.style.display = 'none';
         db_QuickAssist_content.style.display = 'none';
         db_Game_Developer_content.style.display = 'none';
@@ -9864,7 +9864,7 @@ db_Wi_Fi_Products_content.style.display = 'none';
         db_OpenVINO_toolkit_content.style.display = 'none';
         db_Development_Software_content.style.display = 'none';
         db_Unison_app_content.style.display = 'none';
-db_Wi_Fi_Products_content.style.display = 'none';
+        db_Wi_Fi_Products_content.style.display = 'none';
         db_wireless_content.style.display = 'none';
         db_QuickAssist_content.style.display = 'none';
         db_Game_Developer_content.style.display = 'none';
@@ -9926,7 +9926,7 @@ db_Wi_Fi_Products_content.style.display = 'none';
 document.getElementById('db-Developer-Cloud').addEventListener('click', function (event) {
     event.preventDefault();
     const db_intel_killer = document.getElementById('db-intel-killer');
- const db_Wi_Fi_Products_content = document.getElementById('db-Wi-Fi-Products-content');
+    const db_Wi_Fi_Products_content = document.getElementById('db-Wi-Fi-Products-content');
     const db_wireless_content = document.getElementById('db-wireless-content');
     const db_QuickAssist_content = document.getElementById('db-QuickAssist-content');
     const db_Game_Developer_content = document.getElementById('db-Game-Developer-content');
@@ -9989,7 +9989,7 @@ document.getElementById('db-Developer-Cloud').addEventListener('click', function
 
     if (db_Developer_Cloud_content.style.display === 'block') {
         db_Unison_app_content.style.display = 'none';
-db_Wi_Fi_Products_content.style.display = 'none';
+        db_Wi_Fi_Products_content.style.display = 'none';
         db_wireless_content.style.display = 'none';
         db_QuickAssist_content.style.display = 'none';
         db_Game_Developer_content.style.display = 'none';
@@ -10053,7 +10053,7 @@ db_Wi_Fi_Products_content.style.display = 'none';
         db_OpenVINO_toolkit_content.style.display = 'none';
         db_Development_Software_content.style.display = 'none';
         db_Unison_app_content.style.display = 'none';
-db_Wi_Fi_Products_content.style.display = 'none';
+        db_Wi_Fi_Products_content.style.display = 'none';
         db_wireless_content.style.display = 'none';
         db_QuickAssist_content.style.display = 'none';
         db_Game_Developer_content.style.display = 'none';
@@ -10115,7 +10115,7 @@ db_Wi_Fi_Products_content.style.display = 'none';
 document.getElementById('db-Endpoint-Cloud-Services').addEventListener('click', function (event) {
     event.preventDefault();
     const db_intel_killer = document.getElementById('db-intel-killer');
- const db_Wi_Fi_Products_content = document.getElementById('db-Wi-Fi-Products-content');
+    const db_Wi_Fi_Products_content = document.getElementById('db-Wi-Fi-Products-content');
     const db_wireless_content = document.getElementById('db-wireless-content');
     const db_QuickAssist_content = document.getElementById('db-QuickAssist-content');
     const db_Game_Developer_content = document.getElementById('db-Game-Developer-content');
@@ -10178,7 +10178,7 @@ document.getElementById('db-Endpoint-Cloud-Services').addEventListener('click', 
 
     if (db_Endpoint_Cloud_Services_content.style.display === 'block') {
         db_Unison_app_content.style.display = 'none';
-db_Wi_Fi_Products_content.style.display = 'none';
+        db_Wi_Fi_Products_content.style.display = 'none';
         db_wireless_content.style.display = 'none';
         db_QuickAssist_content.style.display = 'none';
         db_Game_Developer_content.style.display = 'none';
@@ -10242,7 +10242,7 @@ db_Wi_Fi_Products_content.style.display = 'none';
         db_OpenVINO_toolkit_content.style.display = 'none';
         db_Development_Software_content.style.display = 'none';
         db_Unison_app_content.style.display = 'none';
-db_Wi_Fi_Products_content.style.display = 'none';
+        db_Wi_Fi_Products_content.style.display = 'none';
         db_wireless_content.style.display = 'none';
         db_QuickAssist_content.style.display = 'none';
         db_Game_Developer_content.style.display = 'none';
@@ -10304,7 +10304,7 @@ db_Wi_Fi_Products_content.style.display = 'none';
 document.getElementById('db-Data-Center-Software').addEventListener('click', function (event) {
     event.preventDefault();
     const db_intel_killer = document.getElementById('db-intel-killer');
- const db_Wi_Fi_Products_content = document.getElementById('db-Wi-Fi-Products-content');
+    const db_Wi_Fi_Products_content = document.getElementById('db-Wi-Fi-Products-content');
     const db_wireless_content = document.getElementById('db-wireless-content');
     const db_QuickAssist_content = document.getElementById('db-QuickAssist-content');
     const db_Game_Developer_content = document.getElementById('db-Game-Developer-content');
@@ -10367,7 +10367,7 @@ document.getElementById('db-Data-Center-Software').addEventListener('click', fun
 
     if (db_Data_Center_Software_content.style.display === 'block') {
         db_Unison_app_content.style.display = 'none';
-db_Wi_Fi_Products_content.style.display = 'none';
+        db_Wi_Fi_Products_content.style.display = 'none';
         db_wireless_content.style.display = 'none';
         db_QuickAssist_content.style.display = 'none';
         db_Game_Developer_content.style.display = 'none';
@@ -10431,7 +10431,7 @@ db_Wi_Fi_Products_content.style.display = 'none';
         db_OpenVINO_toolkit_content.style.display = 'none';
         db_Development_Software_content.style.display = 'none';
         db_Unison_app_content.style.display = 'none';
-db_Wi_Fi_Products_content.style.display = 'none';
+        db_Wi_Fi_Products_content.style.display = 'none';
         db_wireless_content.style.display = 'none';
         db_QuickAssist_content.style.display = 'none';
         db_Game_Developer_content.style.display = 'none';
@@ -10494,7 +10494,7 @@ db_Wi_Fi_Products_content.style.display = 'none';
 document.getElementById('db-Development-Software').addEventListener('click', function (event) {
     event.preventDefault();
     const db_intel_killer = document.getElementById('db-intel-killer');
- const db_Wi_Fi_Products_content = document.getElementById('db-Wi-Fi-Products-content');
+    const db_Wi_Fi_Products_content = document.getElementById('db-Wi-Fi-Products-content');
     const db_wireless_content = document.getElementById('db-wireless-content');
     const db_QuickAssist_content = document.getElementById('db-QuickAssist-content');
     const db_Game_Developer_content = document.getElementById('db-Game-Developer-content');
@@ -10557,7 +10557,7 @@ document.getElementById('db-Development-Software').addEventListener('click', fun
 
     if (db_Development_Software_submenu.style.display === 'block') {
         db_Unison_app_content.style.display = 'none';
-db_Wi_Fi_Products_content.style.display = 'none';
+        db_Wi_Fi_Products_content.style.display = 'none';
         db_wireless_content.style.display = 'none';
         db_QuickAssist_content.style.display = 'none';
         db_Game_Developer_content.style.display = 'none';
@@ -10621,7 +10621,7 @@ db_Wi_Fi_Products_content.style.display = 'none';
         db_OpenVINO_toolkit_content.style.display = 'none';
         db_Development_Software_content.style.display = 'none';
         db_Unison_app_content.style.display = 'none';
-db_Wi_Fi_Products_content.style.display = 'none';
+        db_Wi_Fi_Products_content.style.display = 'none';
         db_wireless_content.style.display = 'none';
         db_QuickAssist_content.style.display = 'none';
         db_Game_Developer_content.style.display = 'none';
@@ -10683,7 +10683,7 @@ db_Wi_Fi_Products_content.style.display = 'none';
 document.getElementById('db-Development-Software-click').addEventListener('click', function (event) {
     event.preventDefault();
     const db_intel_killer = document.getElementById('db-intel-killer');
- const db_Wi_Fi_Products_content = document.getElementById('db-Wi-Fi-Products-content');
+    const db_Wi_Fi_Products_content = document.getElementById('db-Wi-Fi-Products-content');
     const db_wireless_content = document.getElementById('db-wireless-content');
     const db_QuickAssist_content = document.getElementById('db-QuickAssist-content');
     const db_Game_Developer_content = document.getElementById('db-Game-Developer-content');
@@ -10746,7 +10746,7 @@ document.getElementById('db-Development-Software-click').addEventListener('click
 
     if (db_Development_Software_content.style.display === 'block') {
         db_Unison_app_content.style.display = 'none';
-db_Wi_Fi_Products_content.style.display = 'none';
+        db_Wi_Fi_Products_content.style.display = 'none';
         db_wireless_content.style.display = 'none';
         db_QuickAssist_content.style.display = 'none';
         db_Game_Developer_content.style.display = 'none';
@@ -10810,7 +10810,7 @@ db_Wi_Fi_Products_content.style.display = 'none';
         db_OpenVINO_toolkit_content.style.display = 'none';
         db_Development_Software_content.style.display = 'block';
         db_Unison_app_content.style.display = 'none';
-db_Wi_Fi_Products_content.style.display = 'none';
+        db_Wi_Fi_Products_content.style.display = 'none';
         db_wireless_content.style.display = 'none';
         db_QuickAssist_content.style.display = 'none';
         db_Game_Developer_content.style.display = 'none';
@@ -10872,7 +10872,7 @@ db_Wi_Fi_Products_content.style.display = 'none';
 document.getElementById('db-OpenVINO-toolkit-click').addEventListener('click', function (event) {
     event.preventDefault();
     const db_intel_killer = document.getElementById('db-intel-killer');
- const db_Wi_Fi_Products_content = document.getElementById('db-Wi-Fi-Products-content');
+    const db_Wi_Fi_Products_content = document.getElementById('db-Wi-Fi-Products-content');
     const db_wireless_content = document.getElementById('db-wireless-content');
     const db_QuickAssist_content = document.getElementById('db-QuickAssist-content');
     const db_Game_Developer_content = document.getElementById('db-Game-Developer-content');
@@ -10935,7 +10935,7 @@ document.getElementById('db-OpenVINO-toolkit-click').addEventListener('click', f
 
     if (db_OpenVINO_toolkit_content.style.display === 'block') {
         db_Unison_app_content.style.display = 'none';
-db_Wi_Fi_Products_content.style.display = 'none';
+        db_Wi_Fi_Products_content.style.display = 'none';
         db_wireless_content.style.display = 'none';
         db_QuickAssist_content.style.display = 'none';
         db_Game_Developer_content.style.display = 'none';
@@ -10999,7 +10999,7 @@ db_Wi_Fi_Products_content.style.display = 'none';
         db_OpenVINO_toolkit_content.style.display = 'block';
         db_Development_Software_content.style.display = 'none';
         db_Unison_app_content.style.display = 'none';
-db_Wi_Fi_Products_content.style.display = 'none';
+        db_Wi_Fi_Products_content.style.display = 'none';
         db_wireless_content.style.display = 'none';
         db_QuickAssist_content.style.display = 'none';
         db_Game_Developer_content.style.display = 'none';
@@ -11061,7 +11061,7 @@ db_Wi_Fi_Products_content.style.display = 'none';
 document.getElementById('db-Edge-Developer-Toolbox').addEventListener('click', function (event) {
     event.preventDefault();
     const db_intel_killer = document.getElementById('db-intel-killer');
- const db_Wi_Fi_Products_content = document.getElementById('db-Wi-Fi-Products-content');
+    const db_Wi_Fi_Products_content = document.getElementById('db-Wi-Fi-Products-content');
     const db_wireless_content = document.getElementById('db-wireless-content');
     const db_QuickAssist_content = document.getElementById('db-QuickAssist-content');
     const db_Game_Developer_content = document.getElementById('db-Game-Developer-content');
@@ -11124,7 +11124,7 @@ document.getElementById('db-Edge-Developer-Toolbox').addEventListener('click', f
 
     if (db_Edge_Developer_Toolbox_content.style.display === 'block') {
         db_Unison_app_content.style.display = 'none';
-db_Wi_Fi_Products_content.style.display = 'none';
+        db_Wi_Fi_Products_content.style.display = 'none';
         db_wireless_content.style.display = 'none';
         db_QuickAssist_content.style.display = 'none';
         db_Game_Developer_content.style.display = 'none';
@@ -11188,7 +11188,7 @@ db_Wi_Fi_Products_content.style.display = 'none';
         db_OpenVINO_toolkit_content.style.display = 'none';
         db_Development_Software_content.style.display = 'none';
         db_Unison_app_content.style.display = 'none';
-db_Wi_Fi_Products_content.style.display = 'none';
+        db_Wi_Fi_Products_content.style.display = 'none';
         db_wireless_content.style.display = 'none';
         db_QuickAssist_content.style.display = 'none';
         db_Game_Developer_content.style.display = 'none';
@@ -11250,7 +11250,7 @@ db_Wi_Fi_Products_content.style.display = 'none';
 document.getElementById('db-Intel-Security-Products').addEventListener('click', function (event) {
     event.preventDefault();
     const db_intel_killer = document.getElementById('db-intel-killer');
- const db_Wi_Fi_Products_content = document.getElementById('db-Wi-Fi-Products-content');
+    const db_Wi_Fi_Products_content = document.getElementById('db-Wi-Fi-Products-content');
     const db_wireless_content = document.getElementById('db-wireless-content');
     const db_QuickAssist_content = document.getElementById('db-QuickAssist-content');
     const db_Game_Developer_content = document.getElementById('db-Game-Developer-content');
@@ -11313,7 +11313,7 @@ document.getElementById('db-Intel-Security-Products').addEventListener('click', 
 
     if (db_Intel_Security_Products_submenu.style.display === 'block') {
         db_Unison_app_content.style.display = 'none';
-db_Wi_Fi_Products_content.style.display = 'none';
+        db_Wi_Fi_Products_content.style.display = 'none';
         db_wireless_content.style.display = 'none';
         db_QuickAssist_content.style.display = 'none';
         db_Game_Developer_content.style.display = 'none';
@@ -11377,7 +11377,7 @@ db_Wi_Fi_Products_content.style.display = 'none';
         db_OpenVINO_toolkit_content.style.display = 'none';
         db_Development_Software_content.style.display = 'none';
         db_Unison_app_content.style.display = 'none';
-db_Wi_Fi_Products_content.style.display = 'none';
+        db_Wi_Fi_Products_content.style.display = 'none';
         db_wireless_content.style.display = 'none';
         db_QuickAssist_content.style.display = 'none';
         db_Game_Developer_content.style.display = 'none';
@@ -11439,7 +11439,7 @@ db_Wi_Fi_Products_content.style.display = 'none';
 document.getElementById('db-Intel-Security-Products-content-click').addEventListener('click', function (event) {
     event.preventDefault();
     const db_intel_killer = document.getElementById('db-intel-killer');
- const db_Wi_Fi_Products_content = document.getElementById('db-Wi-Fi-Products-content');
+    const db_Wi_Fi_Products_content = document.getElementById('db-Wi-Fi-Products-content');
     const db_wireless_content = document.getElementById('db-wireless-content');
     const db_QuickAssist_content = document.getElementById('db-QuickAssist-content');
     const db_Game_Developer_content = document.getElementById('db-Game-Developer-content');
@@ -11502,7 +11502,7 @@ document.getElementById('db-Intel-Security-Products-content-click').addEventList
 
     if (db_Intel_Security_Products_content.style.display === 'block') {
         db_Unison_app_content.style.display = 'none';
-db_Wi_Fi_Products_content.style.display = 'none';
+        db_Wi_Fi_Products_content.style.display = 'none';
         db_wireless_content.style.display = 'none';
         db_QuickAssist_content.style.display = 'none';
         db_Game_Developer_content.style.display = 'none';
@@ -11566,7 +11566,7 @@ db_Wi_Fi_Products_content.style.display = 'none';
         db_OpenVINO_toolkit_content.style.display = 'none';
         db_Development_Software_content.style.display = 'none';
         db_Unison_app_content.style.display = 'none';
-db_Wi_Fi_Products_content.style.display = 'none';
+        db_Wi_Fi_Products_content.style.display = 'none';
         db_wireless_content.style.display = 'none';
         db_QuickAssist_content.style.display = 'none';
         db_Game_Developer_content.style.display = 'none';
@@ -11628,7 +11628,7 @@ db_Wi_Fi_Products_content.style.display = 'none';
 document.getElementById('db-Intel-Geti-Platform').addEventListener('click', function (event) {
     event.preventDefault();
     const db_intel_killer = document.getElementById('db-intel-killer');
- const db_Wi_Fi_Products_content = document.getElementById('db-Wi-Fi-Products-content');
+    const db_Wi_Fi_Products_content = document.getElementById('db-Wi-Fi-Products-content');
     const db_wireless_content = document.getElementById('db-wireless-content');
     const db_QuickAssist_content = document.getElementById('db-QuickAssist-content');
     const db_Game_Developer_content = document.getElementById('db-Game-Developer-content');
@@ -11691,7 +11691,7 @@ document.getElementById('db-Intel-Geti-Platform').addEventListener('click', func
 
     if (db_Intel_Geti_Platform_content.style.display === 'block') {
         db_Unison_app_content.style.display = 'none';
-db_Wi_Fi_Products_content.style.display = 'none';
+        db_Wi_Fi_Products_content.style.display = 'none';
         db_wireless_content.style.display = 'none';
         db_QuickAssist_content.style.display = 'none';
         db_Game_Developer_content.style.display = 'none';
@@ -11755,7 +11755,7 @@ db_Wi_Fi_Products_content.style.display = 'none';
         db_OpenVINO_toolkit_content.style.display = 'none';
         db_Development_Software_content.style.display = 'none';
         db_Unison_app_content.style.display = 'none';
-db_Wi_Fi_Products_content.style.display = 'none';
+        db_Wi_Fi_Products_content.style.display = 'none';
         db_wireless_content.style.display = 'none';
         db_QuickAssist_content.style.display = 'none';
         db_Game_Developer_content.style.display = 'none';
@@ -11817,7 +11817,7 @@ db_Wi_Fi_Products_content.style.display = 'none';
 document.getElementById('db-IoT-Software').addEventListener('click', function (event) {
     event.preventDefault();
     const db_intel_killer = document.getElementById('db-intel-killer');
- const db_Wi_Fi_Products_content = document.getElementById('db-Wi-Fi-Products-content');
+    const db_Wi_Fi_Products_content = document.getElementById('db-Wi-Fi-Products-content');
     const db_wireless_content = document.getElementById('db-wireless-content');
     const db_QuickAssist_content = document.getElementById('db-QuickAssist-content');
     const db_Game_Developer_content = document.getElementById('db-Game-Developer-content');
@@ -11880,7 +11880,7 @@ document.getElementById('db-IoT-Software').addEventListener('click', function (e
 
     if (db_IoT_Software_submenu.style.display === 'block') {
         db_Unison_app_content.style.display = 'none';
-db_Wi_Fi_Products_content.style.display = 'none';
+        db_Wi_Fi_Products_content.style.display = 'none';
         db_wireless_content.style.display = 'none';
         db_QuickAssist_content.style.display = 'none';
         db_Game_Developer_content.style.display = 'none';
@@ -11944,7 +11944,7 @@ db_Wi_Fi_Products_content.style.display = 'none';
         db_OpenVINO_toolkit_content.style.display = 'none';
         db_Development_Software_content.style.display = 'none';
         db_Unison_app_content.style.display = 'none';
-db_Wi_Fi_Products_content.style.display = 'none';
+        db_Wi_Fi_Products_content.style.display = 'none';
         db_wireless_content.style.display = 'none';
         db_QuickAssist_content.style.display = 'none';
         db_Game_Developer_content.style.display = 'none';
@@ -12006,7 +12006,7 @@ db_Wi_Fi_Products_content.style.display = 'none';
 document.getElementById('db-Developer-edge-menu').addEventListener('click', function (event) {
     event.preventDefault();
     const db_intel_killer = document.getElementById('db-intel-killer');
- const db_Wi_Fi_Products_content = document.getElementById('db-Wi-Fi-Products-content');
+    const db_Wi_Fi_Products_content = document.getElementById('db-Wi-Fi-Products-content');
     const db_wireless_content = document.getElementById('db-wireless-content');
     const db_QuickAssist_content = document.getElementById('db-QuickAssist-content');
     const db_Game_Developer_content = document.getElementById('db-Game-Developer-content');
@@ -12069,7 +12069,7 @@ document.getElementById('db-Developer-edge-menu').addEventListener('click', func
 
     if (db_Developer_edge_content.style.display === 'block') {
         db_Unison_app_content.style.display = 'none';
-db_Wi_Fi_Products_content.style.display = 'none';
+        db_Wi_Fi_Products_content.style.display = 'none';
         db_wireless_content.style.display = 'none';
         db_QuickAssist_content.style.display = 'none';
         db_Game_Developer_content.style.display = 'none';
@@ -12133,7 +12133,7 @@ db_Wi_Fi_Products_content.style.display = 'none';
         db_OpenVINO_toolkit_content.style.display = 'none';
         db_Development_Software_content.style.display = 'none';
         db_Unison_app_content.style.display = 'none';
-db_Wi_Fi_Products_content.style.display = 'none';
+        db_Wi_Fi_Products_content.style.display = 'none';
         db_wireless_content.style.display = 'none';
         db_QuickAssist_content.style.display = 'none';
         db_Game_Developer_content.style.display = 'none';
@@ -12196,7 +12196,7 @@ db_Wi_Fi_Products_content.style.display = 'none';
 document.getElementById('db-Manageability-Products').addEventListener('click', function (event) {
     event.preventDefault();
     const db_intel_killer = document.getElementById('db-intel-killer');
- const db_Wi_Fi_Products_content = document.getElementById('db-Wi-Fi-Products-content');
+    const db_Wi_Fi_Products_content = document.getElementById('db-Wi-Fi-Products-content');
     const db_wireless_content = document.getElementById('db-wireless-content');
     const db_QuickAssist_content = document.getElementById('db-QuickAssist-content');
     const db_Game_Developer_content = document.getElementById('db-Game-Developer-content');
@@ -12259,7 +12259,7 @@ document.getElementById('db-Manageability-Products').addEventListener('click', f
 
     if (db_Manageability_Products_submenu.style.display === 'block') {
         db_Unison_app_content.style.display = 'none';
-db_Wi_Fi_Products_content.style.display = 'none';
+        db_Wi_Fi_Products_content.style.display = 'none';
         db_wireless_content.style.display = 'none';
         db_QuickAssist_content.style.display = 'none';
         db_Game_Developer_content.style.display = 'none';
@@ -12323,7 +12323,7 @@ db_Wi_Fi_Products_content.style.display = 'none';
         db_OpenVINO_toolkit_content.style.display = 'none';
         db_Development_Software_content.style.display = 'none';
         db_Unison_app_content.style.display = 'none';
-db_Wi_Fi_Products_content.style.display = 'none';
+        db_Wi_Fi_Products_content.style.display = 'none';
         db_wireless_content.style.display = 'none';
         db_QuickAssist_content.style.display = 'none';
         db_Game_Developer_content.style.display = 'none';
@@ -12386,7 +12386,7 @@ db_Wi_Fi_Products_content.style.display = 'none';
 document.getElementById('db-Endpoint-Management-Assistant').addEventListener('click', function (event) {
     event.preventDefault();
     const db_intel_killer = document.getElementById('db-intel-killer');
- const db_Wi_Fi_Products_content = document.getElementById('db-Wi-Fi-Products-content');
+    const db_Wi_Fi_Products_content = document.getElementById('db-Wi-Fi-Products-content');
     const db_wireless_content = document.getElementById('db-wireless-content');
     const db_QuickAssist_content = document.getElementById('db-QuickAssist-content');
     const db_Game_Developer_content = document.getElementById('db-Game-Developer-content');
@@ -12449,7 +12449,7 @@ document.getElementById('db-Endpoint-Management-Assistant').addEventListener('cl
 
     if (db_Endpoint_Management_Assistant_content.style.display === 'block') {
         db_Unison_app_content.style.display = 'none';
-db_Wi_Fi_Products_content.style.display = 'none';
+        db_Wi_Fi_Products_content.style.display = 'none';
         db_wireless_content.style.display = 'none';
         db_QuickAssist_content.style.display = 'none';
         db_Game_Developer_content.style.display = 'none';
@@ -12513,7 +12513,7 @@ db_Wi_Fi_Products_content.style.display = 'none';
         db_OpenVINO_toolkit_content.style.display = 'none';
         db_Development_Software_content.style.display = 'none';
         db_Unison_app_content.style.display = 'none';
-db_Wi_Fi_Products_content.style.display = 'none';
+        db_Wi_Fi_Products_content.style.display = 'none';
         db_wireless_content.style.display = 'none';
         db_QuickAssist_content.style.display = 'none';
         db_Game_Developer_content.style.display = 'none';
@@ -12575,7 +12575,7 @@ db_Wi_Fi_Products_content.style.display = 'none';
 document.getElementById('db-Manageability-Commander').addEventListener('click', function (event) {
     event.preventDefault();
     const db_intel_killer = document.getElementById('db-intel-killer');
- const db_Wi_Fi_Products_content = document.getElementById('db-Wi-Fi-Products-content');
+    const db_Wi_Fi_Products_content = document.getElementById('db-Wi-Fi-Products-content');
     const db_wireless_content = document.getElementById('db-wireless-content');
     const db_QuickAssist_content = document.getElementById('db-QuickAssist-content');
     const db_Game_Developer_content = document.getElementById('db-Game-Developer-content');
@@ -12638,7 +12638,7 @@ document.getElementById('db-Manageability-Commander').addEventListener('click', 
 
     if (db_Manageability_Commander_content.style.display === 'block') {
         db_Unison_app_content.style.display = 'none';
-db_Wi_Fi_Products_content.style.display = 'none';
+        db_Wi_Fi_Products_content.style.display = 'none';
         db_wireless_content.style.display = 'none';
         db_QuickAssist_content.style.display = 'none';
         db_Game_Developer_content.style.display = 'none';
@@ -12702,7 +12702,7 @@ db_Wi_Fi_Products_content.style.display = 'none';
         db_OpenVINO_toolkit_content.style.display = 'none';
         db_Development_Software_content.style.display = 'none';
         db_Unison_app_content.style.display = 'none';
-db_Wi_Fi_Products_content.style.display = 'none';
+        db_Wi_Fi_Products_content.style.display = 'none';
         db_wireless_content.style.display = 'none';
         db_QuickAssist_content.style.display = 'none';
         db_Game_Developer_content.style.display = 'none';
@@ -12765,7 +12765,7 @@ db_Wi_Fi_Products_content.style.display = 'none';
 document.getElementById('db-Server-Software').addEventListener('click', function (event) {
     event.preventDefault();
     const db_intel_killer = document.getElementById('db-intel-killer');
- const db_Wi_Fi_Products_content = document.getElementById('db-Wi-Fi-Products-content');
+    const db_Wi_Fi_Products_content = document.getElementById('db-Wi-Fi-Products-content');
     const db_wireless_content = document.getElementById('db-wireless-content');
     const db_QuickAssist_content = document.getElementById('db-QuickAssist-content');
     const db_Game_Developer_content = document.getElementById('db-Game-Developer-content');
@@ -12828,7 +12828,7 @@ document.getElementById('db-Server-Software').addEventListener('click', function
 
     if (db_server_software_submenu.style.display === 'block') {
         db_Unison_app_content.style.display = 'none';
-db_Wi_Fi_Products_content.style.display = 'none';
+        db_Wi_Fi_Products_content.style.display = 'none';
         db_wireless_content.style.display = 'none';
         db_QuickAssist_content.style.display = 'none';
         db_Game_Developer_content.style.display = 'none';
@@ -12892,7 +12892,7 @@ db_Wi_Fi_Products_content.style.display = 'none';
         db_OpenVINO_toolkit_content.style.display = 'none';
         db_Development_Software_content.style.display = 'none';
         db_Unison_app_content.style.display = 'none';
-db_Wi_Fi_Products_content.style.display = 'none';
+        db_Wi_Fi_Products_content.style.display = 'none';
         db_wireless_content.style.display = 'none';
         db_QuickAssist_content.style.display = 'none';
         db_Game_Developer_content.style.display = 'none';
@@ -12954,7 +12954,7 @@ db_Wi_Fi_Products_content.style.display = 'none';
 document.getElementById('db-Smart-Edge-menu').addEventListener('click', function (event) {
     event.preventDefault();
     const db_intel_killer = document.getElementById('db-intel-killer');
- const db_Wi_Fi_Products_content = document.getElementById('db-Wi-Fi-Products-content');
+    const db_Wi_Fi_Products_content = document.getElementById('db-Wi-Fi-Products-content');
     const db_wireless_content = document.getElementById('db-wireless-content');
     const db_QuickAssist_content = document.getElementById('db-QuickAssist-content');
     const db_Game_Developer_content = document.getElementById('db-Game-Developer-content');
@@ -13017,7 +13017,7 @@ document.getElementById('db-Smart-Edge-menu').addEventListener('click', function
 
     if (db_Smart_Edge_content.style.display === 'block') {
         db_Unison_app_content.style.display = 'none';
-db_Wi_Fi_Products_content.style.display = 'none';
+        db_Wi_Fi_Products_content.style.display = 'none';
         db_wireless_content.style.display = 'none';
         db_QuickAssist_content.style.display = 'none';
         db_Game_Developer_content.style.display = 'none';
@@ -13081,7 +13081,7 @@ db_Wi_Fi_Products_content.style.display = 'none';
         db_OpenVINO_toolkit_content.style.display = 'none';
         db_Development_Software_content.style.display = 'none';
         db_Unison_app_content.style.display = 'none';
-db_Wi_Fi_Products_content.style.display = 'none';
+        db_Wi_Fi_Products_content.style.display = 'none';
         db_wireless_content.style.display = 'none';
         db_QuickAssist_content.style.display = 'none';
         db_Game_Developer_content.style.display = 'none';
@@ -13143,7 +13143,7 @@ db_Wi_Fi_Products_content.style.display = 'none';
 document.getElementById('db-Software-Applications').addEventListener('click', function (event) {
     event.preventDefault();
     const db_intel_killer = document.getElementById('db-intel-killer');
- const db_Wi_Fi_Products_content = document.getElementById('db-Wi-Fi-Products-content');
+    const db_Wi_Fi_Products_content = document.getElementById('db-Wi-Fi-Products-content');
     const db_wireless_content = document.getElementById('db-wireless-content');
     const db_QuickAssist_content = document.getElementById('db-QuickAssist-content');
     const db_Game_Developer_content = document.getElementById('db-Game-Developer-content');
@@ -13206,7 +13206,7 @@ document.getElementById('db-Software-Applications').addEventListener('click', fu
 
     if (db_software_app_submenu.style.display === 'block') {
         db_Unison_app_content.style.display = 'none';
-db_Wi_Fi_Products_content.style.display = 'none';
+        db_Wi_Fi_Products_content.style.display = 'none';
         db_wireless_content.style.display = 'none';
         db_QuickAssist_content.style.display = 'none';
         db_Game_Developer_content.style.display = 'none';
@@ -13270,7 +13270,7 @@ db_Wi_Fi_Products_content.style.display = 'none';
         db_OpenVINO_toolkit_content.style.display = 'none';
         db_Development_Software_content.style.display = 'none';
         db_Unison_app_content.style.display = 'none';
-db_Wi_Fi_Products_content.style.display = 'none';
+        db_Wi_Fi_Products_content.style.display = 'none';
         db_wireless_content.style.display = 'none';
         db_QuickAssist_content.style.display = 'none';
         db_Game_Developer_content.style.display = 'none';
@@ -13332,7 +13332,7 @@ db_Wi_Fi_Products_content.style.display = 'none';
 document.getElementById('db-Small-Business-Advantage').addEventListener('click', function (event) {
     event.preventDefault();
     const db_intel_killer = document.getElementById('db-intel-killer');
- const db_Wi_Fi_Products_content = document.getElementById('db-Wi-Fi-Products-content');
+    const db_Wi_Fi_Products_content = document.getElementById('db-Wi-Fi-Products-content');
     const db_wireless_content = document.getElementById('db-wireless-content');
     const db_QuickAssist_content = document.getElementById('db-QuickAssist-content');
     const db_Game_Developer_content = document.getElementById('db-Game-Developer-content');
@@ -13394,7 +13394,7 @@ document.getElementById('db-Small-Business-Advantage').addEventListener('click',
 
     if (db_Small_Business_Advantage_content.style.display === 'block') {
         db_Unison_app_content.style.display = 'none';
-db_Wi_Fi_Products_content.style.display = 'none';
+        db_Wi_Fi_Products_content.style.display = 'none';
         db_wireless_content.style.display = 'none';
         db_QuickAssist_content.style.display = 'none';
         db_Game_Developer_content.style.display = 'none';
@@ -13458,7 +13458,7 @@ db_Wi_Fi_Products_content.style.display = 'none';
         db_OpenVINO_toolkit_content.style.display = 'none';
         db_Development_Software_content.style.display = 'none';
         db_Unison_app_content.style.display = 'none';
-db_Wi_Fi_Products_content.style.display = 'none';
+        db_Wi_Fi_Products_content.style.display = 'none';
         db_wireless_content.style.display = 'none';
         db_QuickAssist_content.style.display = 'none';
         db_Game_Developer_content.style.display = 'none';
@@ -13520,7 +13520,7 @@ db_Wi_Fi_Products_content.style.display = 'none';
 document.getElementById('db-Brand-Verification-Tool').addEventListener('click', function (event) {
     event.preventDefault();
     const db_intel_killer = document.getElementById('db-intel-killer');
- const db_Wi_Fi_Products_content = document.getElementById('db-Wi-Fi-Products-content');
+    const db_Wi_Fi_Products_content = document.getElementById('db-Wi-Fi-Products-content');
     const db_wireless_content = document.getElementById('db-wireless-content');
     const db_QuickAssist_content = document.getElementById('db-QuickAssist-content');
     const db_Game_Developer_content = document.getElementById('db-Game-Developer-content');
@@ -13582,7 +13582,7 @@ document.getElementById('db-Brand-Verification-Tool').addEventListener('click', 
 
     if (db_Brand_Verification_Tool_content.style.display === 'block') {
         db_Unison_app_content.style.display = 'none';
-db_Wi_Fi_Products_content.style.display = 'none';
+        db_Wi_Fi_Products_content.style.display = 'none';
         db_wireless_content.style.display = 'none';
         db_QuickAssist_content.style.display = 'none';
         db_Game_Developer_content.style.display = 'none';
@@ -13646,7 +13646,7 @@ db_Wi_Fi_Products_content.style.display = 'none';
         db_OpenVINO_toolkit_content.style.display = 'none';
         db_Development_Software_content.style.display = 'none';
         db_Unison_app_content.style.display = 'none';
-db_Wi_Fi_Products_content.style.display = 'none';
+        db_Wi_Fi_Products_content.style.display = 'none';
         db_wireless_content.style.display = 'none';
         db_QuickAssist_content.style.display = 'none';
         db_Game_Developer_content.style.display = 'none';
@@ -13710,7 +13710,7 @@ db_Wi_Fi_Products_content.style.display = 'none';
 document.getElementById('db-Unison-app').addEventListener('click', function (event) {
     event.preventDefault();
     const db_intel_killer = document.getElementById('db-intel-killer');
- const db_Wi_Fi_Products_content = document.getElementById('db-Wi-Fi-Products-content');
+    const db_Wi_Fi_Products_content = document.getElementById('db-Wi-Fi-Products-content');
     const db_wireless_content = document.getElementById('db-wireless-content');
     const db_QuickAssist_content = document.getElementById('db-QuickAssist-content');
     const db_Game_Developer_content = document.getElementById('db-Game-Developer-content');
@@ -13772,7 +13772,7 @@ document.getElementById('db-Unison-app').addEventListener('click', function (eve
 
     if (db_Unison_app_content.style.display === 'block') {
         db_Unison_app_content.style.display = 'none';
-db_Wi_Fi_Products_content.style.display = 'none';
+        db_Wi_Fi_Products_content.style.display = 'none';
         db_wireless_content.style.display = 'none';
         db_QuickAssist_content.style.display = 'none';
         db_Game_Developer_content.style.display = 'none';
@@ -13899,7 +13899,7 @@ db_Wi_Fi_Products_content.style.display = 'none';
 document.getElementById('db-Thunderbolt-Share').addEventListener('click', function (event) {
     event.preventDefault();
     const db_intel_killer = document.getElementById('db-intel-killer');
- const db_Wi_Fi_Products_content = document.getElementById('db-Wi-Fi-Products-content');
+    const db_Wi_Fi_Products_content = document.getElementById('db-Wi-Fi-Products-content');
     const db_wireless_content = document.getElementById('db-wireless-content');
     const db_QuickAssist_content = document.getElementById('db-QuickAssist-content');
     const db_Game_Developer_content = document.getElementById('db-Game-Developer-content');
@@ -13961,7 +13961,7 @@ document.getElementById('db-Thunderbolt-Share').addEventListener('click', functi
 
     if (db_Thunderbolt_Share_content.style.display === 'block') {
         db_Unison_app_content.style.display = 'none';
-db_Wi_Fi_Products_content.style.display = 'none';
+        db_Wi_Fi_Products_content.style.display = 'none';
         db_wireless_content.style.display = 'none';
         db_QuickAssist_content.style.display = 'none';
         db_Game_Developer_content.style.display = 'none';
@@ -14025,7 +14025,7 @@ db_Wi_Fi_Products_content.style.display = 'none';
         db_OpenVINO_toolkit_content.style.display = 'none';
         db_Development_Software_content.style.display = 'none';
         db_Unison_app_content.style.display = 'none';
-db_Wi_Fi_Products_content.style.display = 'none';
+        db_Wi_Fi_Products_content.style.display = 'none';
         db_wireless_content.style.display = 'none';
         db_QuickAssist_content.style.display = 'none';
         db_Game_Developer_content.style.display = 'none';
@@ -14088,7 +14088,7 @@ db_Wi_Fi_Products_content.style.display = 'none';
 document.getElementById('db-vPro-Platform').addEventListener('click', function (event) {
     event.preventDefault();
     const db_intel_killer = document.getElementById('db-intel-killer');
- const db_Wi_Fi_Products_content = document.getElementById('db-Wi-Fi-Products-content');
+    const db_Wi_Fi_Products_content = document.getElementById('db-Wi-Fi-Products-content');
     const db_wireless_content = document.getElementById('db-wireless-content');
     const db_QuickAssist_content = document.getElementById('db-QuickAssist-content');
     const db_Game_Developer_content = document.getElementById('db-Game-Developer-content');
@@ -14150,7 +14150,7 @@ document.getElementById('db-vPro-Platform').addEventListener('click', function (
 
     if (db_db_vPro_Platform_content.style.display === 'block') {
         db_Unison_app_content.style.display = 'none';
-db_Wi_Fi_Products_content.style.display = 'none';
+        db_Wi_Fi_Products_content.style.display = 'none';
         db_wireless_content.style.display = 'none';
         db_QuickAssist_content.style.display = 'none';
         db_Game_Developer_content.style.display = 'none';
@@ -14214,7 +14214,7 @@ db_Wi_Fi_Products_content.style.display = 'none';
         db_OpenVINO_toolkit_content.style.display = 'none';
         db_Development_Software_content.style.display = 'none';
         db_Unison_app_content.style.display = 'none';
-db_Wi_Fi_Products_content.style.display = 'none';
+        db_Wi_Fi_Products_content.style.display = 'none';
         db_wireless_content.style.display = 'none';
         db_QuickAssist_content.style.display = 'none';
         db_Game_Developer_content.style.display = 'none';
@@ -14276,7 +14276,7 @@ db_Wi_Fi_Products_content.style.display = 'none';
 document.getElementById('db-Active-Management-Technology').addEventListener('click', function (event) {
     event.preventDefault();
     const db_intel_killer = document.getElementById('db-intel-killer');
- const db_Wi_Fi_Products_content = document.getElementById('db-Wi-Fi-Products-content');
+    const db_Wi_Fi_Products_content = document.getElementById('db-Wi-Fi-Products-content');
     const db_wireless_content = document.getElementById('db-wireless-content');
     const db_QuickAssist_content = document.getElementById('db-QuickAssist-content');
     const db_Game_Developer_content = document.getElementById('db-Game-Developer-content');
@@ -14338,7 +14338,7 @@ document.getElementById('db-Active-Management-Technology').addEventListener('cli
 
     if (db_Active_Management_Technology_content.style.display === 'block') {
         db_Unison_app_content.style.display = 'none';
-db_Wi_Fi_Products_content.style.display = 'none';
+        db_Wi_Fi_Products_content.style.display = 'none';
         db_wireless_content.style.display = 'none';
         db_QuickAssist_content.style.display = 'none';
         db_Game_Developer_content.style.display = 'none';
@@ -14402,7 +14402,7 @@ db_Wi_Fi_Products_content.style.display = 'none';
         db_OpenVINO_toolkit_content.style.display = 'none';
         db_Development_Software_content.style.display = 'none';
         db_Unison_app_content.style.display = 'none';
-db_Wi_Fi_Products_content.style.display = 'none';
+        db_Wi_Fi_Products_content.style.display = 'none';
         db_wireless_content.style.display = 'none';
         db_QuickAssist_content.style.display = 'none';
         db_Game_Developer_content.style.display = 'none';
@@ -14465,7 +14465,7 @@ db_Wi_Fi_Products_content.style.display = 'none';
 document.getElementById('db-Rapid-Storage').addEventListener('click', function (event) {
     event.preventDefault();
     const db_intel_killer = document.getElementById('db-intel-killer');
- const db_Wi_Fi_Products_content = document.getElementById('db-Wi-Fi-Products-content');
+    const db_Wi_Fi_Products_content = document.getElementById('db-Wi-Fi-Products-content');
     const db_wireless_content = document.getElementById('db-wireless-content');
     const db_QuickAssist_content = document.getElementById('db-QuickAssist-content');
     const db_Game_Developer_content = document.getElementById('db-Game-Developer-content');
@@ -14527,7 +14527,7 @@ document.getElementById('db-Rapid-Storage').addEventListener('click', function (
 
     if (db_Rapid_Storage_content.style.display === 'block') {
         db_Unison_app_content.style.display = 'none';
-db_Wi_Fi_Products_content.style.display = 'none';
+        db_Wi_Fi_Products_content.style.display = 'none';
         db_wireless_content.style.display = 'none';
         db_QuickAssist_content.style.display = 'none';
         db_Game_Developer_content.style.display = 'none';
@@ -14591,7 +14591,7 @@ db_Wi_Fi_Products_content.style.display = 'none';
         db_OpenVINO_toolkit_content.style.display = 'none';
         db_Development_Software_content.style.display = 'none';
         db_Unison_app_content.style.display = 'none';
-db_Wi_Fi_Products_content.style.display = 'none';
+        db_Wi_Fi_Products_content.style.display = 'none';
         db_wireless_content.style.display = 'none';
         db_QuickAssist_content.style.display = 'none';
         db_Game_Developer_content.style.display = 'none';
@@ -14653,7 +14653,7 @@ db_Wi_Fi_Products_content.style.display = 'none';
 document.getElementById('db-Game-Developer').addEventListener('click', function (event) {
     event.preventDefault();
     const db_intel_killer = document.getElementById('db-intel-killer');
- const db_Wi_Fi_Products_content = document.getElementById('db-Wi-Fi-Products-content');
+    const db_Wi_Fi_Products_content = document.getElementById('db-Wi-Fi-Products-content');
     const db_wireless_content = document.getElementById('db-wireless-content');
     const db_QuickAssist_content = document.getElementById('db-QuickAssist-content');
     const db_Game_Developer_content = document.getElementById('db-Game-Developer-content');
@@ -14715,7 +14715,7 @@ document.getElementById('db-Game-Developer').addEventListener('click', function 
 
     if (db_Game_Developer_content.style.display === 'block') {
         db_Unison_app_content.style.display = 'none';
-db_Wi_Fi_Products_content.style.display = 'none';
+        db_Wi_Fi_Products_content.style.display = 'none';
         db_wireless_content.style.display = 'none';
         db_QuickAssist_content.style.display = 'none';
         db_Game_Developer_content.style.display = 'none';
@@ -14779,7 +14779,7 @@ db_Wi_Fi_Products_content.style.display = 'none';
         db_OpenVINO_toolkit_content.style.display = 'none';
         db_Development_Software_content.style.display = 'none';
         db_Unison_app_content.style.display = 'none';
-db_Wi_Fi_Products_content.style.display = 'none';
+        db_Wi_Fi_Products_content.style.display = 'none';
         db_wireless_content.style.display = 'none';
         db_QuickAssist_content.style.display = 'none';
         db_Game_Developer_content.style.display = 'block';
@@ -14841,7 +14841,7 @@ db_Wi_Fi_Products_content.style.display = 'none';
 document.getElementById('db-QuickAssist').addEventListener('click', function (event) {
     event.preventDefault();
     const db_intel_killer = document.getElementById('db-intel-killer');
- const db_Wi_Fi_Products_content = document.getElementById('db-Wi-Fi-Products-content');
+    const db_Wi_Fi_Products_content = document.getElementById('db-Wi-Fi-Products-content');
     const db_wireless_content = document.getElementById('db-wireless-content');
     const db_QuickAssist_content = document.getElementById('db-QuickAssist-content');
     const db_Game_Developer_content = document.getElementById('db-Game-Developer-content');
@@ -14903,7 +14903,7 @@ document.getElementById('db-QuickAssist').addEventListener('click', function (ev
 
     if (db_QuickAssist_content.style.display === 'block') {
         db_Unison_app_content.style.display = 'none';
-db_Wi_Fi_Products_content.style.display = 'none';
+        db_Wi_Fi_Products_content.style.display = 'none';
         db_wireless_content.style.display = 'none';
         db_QuickAssist_content.style.display = 'none';
         db_Game_Developer_content.style.display = 'none';
@@ -14967,7 +14967,7 @@ db_Wi_Fi_Products_content.style.display = 'none';
         db_OpenVINO_toolkit_content.style.display = 'none';
         db_Development_Software_content.style.display = 'none';
         db_Unison_app_content.style.display = 'none';
-db_Wi_Fi_Products_content.style.display = 'none';
+        db_Wi_Fi_Products_content.style.display = 'none';
         db_wireless_content.style.display = 'none';
         db_QuickAssist_content.style.display = 'block';
         db_Game_Developer_content.style.display = 'none';
@@ -15029,7 +15029,7 @@ db_Wi_Fi_Products_content.style.display = 'none';
 document.getElementById('db-wireless').addEventListener('click', function (event) {
     event.preventDefault();
     const db_intel_killer = document.getElementById('db-intel-killer');
- const db_Wi_Fi_Products_content = document.getElementById('db-Wi-Fi-Products-content');
+    const db_Wi_Fi_Products_content = document.getElementById('db-Wi-Fi-Products-content');
     const db_wireless_content = document.getElementById('db-wireless-content');
     const db_QuickAssist_content = document.getElementById('db-QuickAssist-content');
     const db_Game_Developer_content = document.getElementById('db-Game-Developer-content');
@@ -15091,7 +15091,7 @@ document.getElementById('db-wireless').addEventListener('click', function (event
 
     if (db_wireless_content.style.display === 'block') {
         db_Unison_app_content.style.display = 'none';
-db_Wi_Fi_Products_content.style.display = 'none';
+        db_Wi_Fi_Products_content.style.display = 'none';
         db_wireless_content.style.display = 'none';
         db_QuickAssist_content.style.display = 'none';
         db_Game_Developer_content.style.display = 'none';
@@ -15155,7 +15155,7 @@ db_Wi_Fi_Products_content.style.display = 'none';
         db_OpenVINO_toolkit_content.style.display = 'none';
         db_Development_Software_content.style.display = 'none';
         db_Unison_app_content.style.display = 'none';
-db_Wi_Fi_Products_content.style.display = 'none';
+        db_Wi_Fi_Products_content.style.display = 'none';
         db_wireless_content.style.display = 'block';
         db_QuickAssist_content.style.display = 'none';
         db_Game_Developer_content.style.display = 'none';
@@ -15217,7 +15217,7 @@ db_Wi_Fi_Products_content.style.display = 'none';
 document.getElementById('db-Wi-Fi-Products').addEventListener('click', function (event) {
     event.preventDefault();
     const db_intel_killer = document.getElementById('db-intel-killer');
- const db_Wi_Fi_Products_content = document.getElementById('db-Wi-Fi-Products-content');
+    const db_Wi_Fi_Products_content = document.getElementById('db-Wi-Fi-Products-content');
     const db_wireless_content = document.getElementById('db-wireless-content');
     const db_QuickAssist_content = document.getElementById('db-QuickAssist-content');
     const db_Game_Developer_content = document.getElementById('db-Game-Developer-content');
@@ -15279,7 +15279,7 @@ document.getElementById('db-Wi-Fi-Products').addEventListener('click', function 
 
     if (db_Wi_Fi_Products_content.style.display === 'block') {
         db_Unison_app_content.style.display = 'none';
-db_Wi_Fi_Products_content.style.display = 'none';
+        db_Wi_Fi_Products_content.style.display = 'none';
         db_wireless_content.style.display = 'none';
         db_QuickAssist_content.style.display = 'none';
         db_Game_Developer_content.style.display = 'none';
@@ -15343,7 +15343,7 @@ db_Wi_Fi_Products_content.style.display = 'none';
         db_OpenVINO_toolkit_content.style.display = 'none';
         db_Development_Software_content.style.display = 'none';
         db_Unison_app_content.style.display = 'none';
-db_Wi_Fi_Products_content.style.display = 'block';
+        db_Wi_Fi_Products_content.style.display = 'block';
         db_wireless_content.style.display = 'none';
         db_QuickAssist_content.style.display = 'none';
         db_Game_Developer_content.style.display = 'none';
@@ -15401,12 +15401,10 @@ db_Wi_Fi_Products_content.style.display = 'block';
     }
 });
 // Add jQuery code
-$(document).ready(function () {
-    $(".one").click(function () {
-        $(this).addClass("db_active").siblings().removeClass("db_active");
-    });
-});
-
-
+// $(document).ready(function () {
+//     $(".one").click(function () {
+//         $(this).addClass("db_active").siblings().removeClass("db_active");
+//     });
+// });
 
 

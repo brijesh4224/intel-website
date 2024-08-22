@@ -13,6 +13,9 @@ document.getElementById('db_usa_main').addEventListener('click', function (e) {
     const db_South_Korea_content = document.getElementById('db_South_Korea_content');
     const db_Spain_content = document.getElementById('db_Spain_content');
     const db_Sweden_content = document.getElementById('db_Sweden_content');
+    const db_United_Kingdom_content = document.getElementById('db_United_Kingdom_content');
+    const db_United_Arab_Emirates_content = document.getElementById('db_United_Arab_Emirates_content');
+    const db_Vietnam_content = document.getElementById('db_Vietnam_content');
     const db_Taiwan_content = document.getElementById('db_Taiwan_content');
     const db_Thailand_content = document.getElementById('db_Thailand_content');
     const db_Turkey_content = document.getElementById('db_Turkey_content');
@@ -169,6 +172,18 @@ document.getElementById('db_usa_main').addEventListener('click', function (e) {
     if (db_Sweden_content.style.display === 'block') {
         db_Sweden_content.style.display = 'none';
         document.getElementById('db_Sweden_main').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_United_Kingdom_content.style.display === 'block') {
+        db_United_Kingdom_content.style.display = 'none';
+        document.getElementById('db_United_Kingdom_main').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_Vietnam_content.style.display === 'block') {
+        db_Vietnam_content.style.display = 'none';
+        document.getElementById('db_Vietnam_main').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_United_Arab_Emirates_content.style.display === 'block') {
+        db_United_Arab_Emirates_content.style.display = 'none';
+        document.getElementById('db_United_Arab_Emirates_main').closest('li').classList.remove('db_system_active_li');
     }
     if (db_Taiwan_content.style.display === 'block') {
         db_Taiwan_content.style.display = 'none';
@@ -8381,6 +8396,9 @@ document.getElementById('db_Argentina_main').addEventListener('click', function 
     const db_South_Korea_content = document.getElementById('db_South_Korea_content');
     const db_Spain_content = document.getElementById('db_Spain_content');
     const db_Sweden_content = document.getElementById('db_Sweden_content');
+    const db_United_Kingdom_content = document.getElementById('db_United_Kingdom_content');
+    const db_United_Arab_Emirates_content = document.getElementById('db_United_Arab_Emirates_content');
+    const db_Vietnam_content = document.getElementById('db_Vietnam_content');
     const db_Taiwan_content = document.getElementById('db_Taiwan_content');
     const db_Thailand_content = document.getElementById('db_Thailand_content');
     const db_Turkey_content = document.getElementById('db_Turkey_content');
@@ -8533,6 +8551,18 @@ document.getElementById('db_Argentina_main').addEventListener('click', function 
     if (db_Sweden_content.style.display === 'block') {
         db_Sweden_content.style.display = 'none';
         document.getElementById('db_Sweden_main').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_United_Kingdom_content.style.display === 'block') {
+        db_United_Kingdom_content.style.display = 'none';
+        document.getElementById('db_United_Kingdom_main').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_Vietnam_content.style.display === 'block') {
+        db_Vietnam_content.style.display = 'none';
+        document.getElementById('db_Vietnam_main').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_United_Arab_Emirates_content.style.display === 'block') {
+        db_United_Arab_Emirates_content.style.display = 'none';
+        document.getElementById('db_United_Arab_Emirates_main').closest('li').classList.remove('db_system_active_li');
     }
     if (db_Taiwan_content.style.display === 'block') {
         db_Taiwan_content.style.display = 'none';
@@ -8810,6 +8840,9 @@ document.getElementById('db_Australia_main').addEventListener('click', function 
     const db_South_Korea_content = document.getElementById('db_South_Korea_content');
     const db_Spain_content = document.getElementById('db_Spain_content');
     const db_Sweden_content = document.getElementById('db_Sweden_content');
+    const db_United_Kingdom_content = document.getElementById('db_United_Kingdom_content');
+    const db_United_Arab_Emirates_content = document.getElementById('db_United_Arab_Emirates_content');
+    const db_Vietnam_content = document.getElementById('db_Vietnam_content');
     const db_Taiwan_content = document.getElementById('db_Taiwan_content');
     const db_Thailand_content = document.getElementById('db_Thailand_content');
     const db_Turkey_content = document.getElementById('db_Turkey_content');
@@ -8968,6 +9001,18 @@ document.getElementById('db_Australia_main').addEventListener('click', function 
     if (db_Sweden_content.style.display === 'block') {
         db_Sweden_content.style.display = 'none';
         document.getElementById('db_Sweden_main').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_United_Kingdom_content.style.display === 'block') {
+        db_United_Kingdom_content.style.display = 'none';
+        document.getElementById('db_United_Kingdom_main').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_Vietnam_content.style.display === 'block') {
+        db_Vietnam_content.style.display = 'none';
+        document.getElementById('db_Vietnam_main').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_United_Arab_Emirates_content.style.display === 'block') {
+        db_United_Arab_Emirates_content.style.display = 'none';
+        document.getElementById('db_United_Arab_Emirates_main').closest('li').classList.remove('db_system_active_li');
     }
     if (db_Taiwan_content.style.display === 'block') {
         db_Taiwan_content.style.display = 'none';
@@ -9241,6 +9286,9 @@ document.getElementById('db_Austria_main').addEventListener('click', function (e
     const db_South_Korea_content = document.getElementById('db_South_Korea_content');
     const db_Spain_content = document.getElementById('db_Spain_content');
     const db_Sweden_content = document.getElementById('db_Sweden_content');
+    const db_United_Kingdom_content = document.getElementById('db_United_Kingdom_content');
+    const db_United_Arab_Emirates_content = document.getElementById('db_United_Arab_Emirates_content');
+    const db_Vietnam_content = document.getElementById('db_Vietnam_content');
     const db_Taiwan_content = document.getElementById('db_Taiwan_content');
     const db_Thailand_content = document.getElementById('db_Thailand_content');
     const db_Turkey_content = document.getElementById('db_Turkey_content');
@@ -9399,6 +9447,18 @@ document.getElementById('db_Austria_main').addEventListener('click', function (e
     if (db_Sweden_content.style.display === 'block') {
         db_Sweden_content.style.display = 'none';
         document.getElementById('db_Sweden_main').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_United_Kingdom_content.style.display === 'block') {
+        db_United_Kingdom_content.style.display = 'none';
+        document.getElementById('db_United_Kingdom_main').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_Vietnam_content.style.display === 'block') {
+        db_Vietnam_content.style.display = 'none';
+        document.getElementById('db_Vietnam_main').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_United_Arab_Emirates_content.style.display === 'block') {
+        db_United_Arab_Emirates_content.style.display = 'none';
+        document.getElementById('db_United_Arab_Emirates_main').closest('li').classList.remove('db_system_active_li');
     }
     if (db_Taiwan_content.style.display === 'block') {
         db_Taiwan_content.style.display = 'none';
@@ -9668,6 +9728,9 @@ document.getElementById('db_Belgium_main').addEventListener('click', function (e
     const db_South_Korea_content = document.getElementById('db_South_Korea_content');
     const db_Spain_content = document.getElementById('db_Spain_content');
     const db_Sweden_content = document.getElementById('db_Sweden_content');
+    const db_United_Kingdom_content = document.getElementById('db_United_Kingdom_content');
+    const db_United_Arab_Emirates_content = document.getElementById('db_United_Arab_Emirates_content');
+    const db_Vietnam_content = document.getElementById('db_Vietnam_content');
     const db_Taiwan_content = document.getElementById('db_Taiwan_content');
     const db_Thailand_content = document.getElementById('db_Thailand_content');
     const db_Turkey_content = document.getElementById('db_Turkey_content');
@@ -9826,6 +9889,18 @@ document.getElementById('db_Belgium_main').addEventListener('click', function (e
     if (db_Sweden_content.style.display === 'block') {
         db_Sweden_content.style.display = 'none';
         document.getElementById('db_Sweden_main').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_United_Kingdom_content.style.display === 'block') {
+        db_United_Kingdom_content.style.display = 'none';
+        document.getElementById('db_United_Kingdom_main').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_Vietnam_content.style.display === 'block') {
+        db_Vietnam_content.style.display = 'none';
+        document.getElementById('db_Vietnam_main').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_United_Arab_Emirates_content.style.display === 'block') {
+        db_United_Arab_Emirates_content.style.display = 'none';
+        document.getElementById('db_United_Arab_Emirates_main').closest('li').classList.remove('db_system_active_li');
     }
     if (db_Taiwan_content.style.display === 'block') {
         db_Taiwan_content.style.display = 'none';
@@ -10099,6 +10174,9 @@ document.getElementById('db_Brazil_main').addEventListener('click', function (e)
     const db_South_Korea_content = document.getElementById('db_South_Korea_content');
     const db_Spain_content = document.getElementById('db_Spain_content');
     const db_Sweden_content = document.getElementById('db_Sweden_content');
+    const db_United_Kingdom_content = document.getElementById('db_United_Kingdom_content');
+    const db_United_Arab_Emirates_content = document.getElementById('db_United_Arab_Emirates_content');
+    const db_Vietnam_content = document.getElementById('db_Vietnam_content');
     const db_Taiwan_content = document.getElementById('db_Taiwan_content');
     const db_Thailand_content = document.getElementById('db_Thailand_content');
     const db_Turkey_content = document.getElementById('db_Turkey_content');
@@ -10257,6 +10335,18 @@ document.getElementById('db_Brazil_main').addEventListener('click', function (e)
     if (db_Sweden_content.style.display === 'block') {
         db_Sweden_content.style.display = 'none';
         document.getElementById('db_Sweden_main').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_United_Kingdom_content.style.display === 'block') {
+        db_United_Kingdom_content.style.display = 'none';
+        document.getElementById('db_United_Kingdom_main').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_Vietnam_content.style.display === 'block') {
+        db_Vietnam_content.style.display = 'none';
+        document.getElementById('db_Vietnam_main').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_United_Arab_Emirates_content.style.display === 'block') {
+        db_United_Arab_Emirates_content.style.display = 'none';
+        document.getElementById('db_United_Arab_Emirates_main').closest('li').classList.remove('db_system_active_li');
     }
     if (db_Taiwan_content.style.display === 'block') {
         db_Taiwan_content.style.display = 'none';
@@ -10533,6 +10623,9 @@ document.getElementById('db_Canada_main').addEventListener('click', function (e)
     const db_South_Korea_content = document.getElementById('db_South_Korea_content');
     const db_Spain_content = document.getElementById('db_Spain_content');
     const db_Sweden_content = document.getElementById('db_Sweden_content');
+    const db_United_Kingdom_content = document.getElementById('db_United_Kingdom_content');
+    const db_United_Arab_Emirates_content = document.getElementById('db_United_Arab_Emirates_content');
+    const db_Vietnam_content = document.getElementById('db_Vietnam_content');
     const db_Taiwan_content = document.getElementById('db_Taiwan_content');
     const db_Thailand_content = document.getElementById('db_Thailand_content');
     const db_Turkey_content = document.getElementById('db_Turkey_content');
@@ -10687,6 +10780,18 @@ document.getElementById('db_Canada_main').addEventListener('click', function (e)
     if (db_Sweden_content.style.display === 'block') {
         db_Sweden_content.style.display = 'none';
         document.getElementById('db_Sweden_main').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_United_Kingdom_content.style.display === 'block') {
+        db_United_Kingdom_content.style.display = 'none';
+        document.getElementById('db_United_Kingdom_main').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_Vietnam_content.style.display === 'block') {
+        db_Vietnam_content.style.display = 'none';
+        document.getElementById('db_Vietnam_main').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_United_Arab_Emirates_content.style.display === 'block') {
+        db_United_Arab_Emirates_content.style.display = 'none';
+        document.getElementById('db_United_Arab_Emirates_main').closest('li').classList.remove('db_system_active_li');
     }
     if (db_Taiwan_content.style.display === 'block') {
         db_Taiwan_content.style.display = 'none';
@@ -10964,6 +11069,9 @@ document.getElementById('db_China_main').addEventListener('click', function (e) 
     const db_South_Korea_content = document.getElementById('db_South_Korea_content');
     const db_Spain_content = document.getElementById('db_Spain_content');
     const db_Sweden_content = document.getElementById('db_Sweden_content');
+    const db_United_Kingdom_content = document.getElementById('db_United_Kingdom_content');
+    const db_United_Arab_Emirates_content = document.getElementById('db_United_Arab_Emirates_content');
+    const db_Vietnam_content = document.getElementById('db_Vietnam_content');
     const db_Taiwan_content = document.getElementById('db_Taiwan_content');
     const db_Thailand_content = document.getElementById('db_Thailand_content');
     const db_Turkey_content = document.getElementById('db_Turkey_content');
@@ -11110,6 +11218,18 @@ document.getElementById('db_China_main').addEventListener('click', function (e) 
     if (db_Sweden_content.style.display === 'block') {
         db_Sweden_content.style.display = 'none';
         document.getElementById('db_Sweden_main').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_United_Kingdom_content.style.display === 'block') {
+        db_United_Kingdom_content.style.display = 'none';
+        document.getElementById('db_United_Kingdom_main').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_Vietnam_content.style.display === 'block') {
+        db_Vietnam_content.style.display = 'none';
+        document.getElementById('db_Vietnam_main').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_United_Arab_Emirates_content.style.display === 'block') {
+        db_United_Arab_Emirates_content.style.display = 'none';
+        document.getElementById('db_United_Arab_Emirates_main').closest('li').classList.remove('db_system_active_li');
     }
     if (db_Taiwan_content.style.display === 'block') {
         db_Taiwan_content.style.display = 'none';
@@ -11392,6 +11512,9 @@ document.getElementById('db_Denmark_main').addEventListener('click', function (e
     const db_South_Korea_content = document.getElementById('db_South_Korea_content');
     const db_Spain_content = document.getElementById('db_Spain_content');
     const db_Sweden_content = document.getElementById('db_Sweden_content');
+    const db_United_Kingdom_content = document.getElementById('db_United_Kingdom_content');
+    const db_United_Arab_Emirates_content = document.getElementById('db_United_Arab_Emirates_content');
+    const db_Vietnam_content = document.getElementById('db_Vietnam_content');
     const db_Taiwan_content = document.getElementById('db_Taiwan_content');
     const db_Thailand_content = document.getElementById('db_Thailand_content');
     const db_Turkey_content = document.getElementById('db_Turkey_content');
@@ -11534,6 +11657,18 @@ document.getElementById('db_Denmark_main').addEventListener('click', function (e
     if (db_Sweden_content.style.display === 'block') {
         db_Sweden_content.style.display = 'none';
         document.getElementById('db_Sweden_main').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_United_Kingdom_content.style.display === 'block') {
+        db_United_Kingdom_content.style.display = 'none';
+        document.getElementById('db_United_Kingdom_main').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_Vietnam_content.style.display === 'block') {
+        db_Vietnam_content.style.display = 'none';
+        document.getElementById('db_Vietnam_main').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_United_Arab_Emirates_content.style.display === 'block') {
+        db_United_Arab_Emirates_content.style.display = 'none';
+        document.getElementById('db_United_Arab_Emirates_main').closest('li').classList.remove('db_system_active_li');
     }
     if (db_Taiwan_content.style.display === 'block') {
         db_Taiwan_content.style.display = 'none';
@@ -11819,6 +11954,9 @@ document.getElementById('db_Egypt_main').addEventListener('click', function (e) 
     const db_South_Korea_content = document.getElementById('db_South_Korea_content');
     const db_Spain_content = document.getElementById('db_Spain_content');
     const db_Sweden_content = document.getElementById('db_Sweden_content');
+    const db_United_Kingdom_content = document.getElementById('db_United_Kingdom_content');
+    const db_United_Arab_Emirates_content = document.getElementById('db_United_Arab_Emirates_content');
+    const db_Vietnam_content = document.getElementById('db_Vietnam_content');
     const db_Taiwan_content = document.getElementById('db_Taiwan_content');
     const db_Thailand_content = document.getElementById('db_Thailand_content');
     const db_Turkey_content = document.getElementById('db_Turkey_content');
@@ -11954,6 +12092,18 @@ document.getElementById('db_Egypt_main').addEventListener('click', function (e) 
     if (db_Sweden_content.style.display === 'block') {
         db_Sweden_content.style.display = 'none';
         document.getElementById('db_Sweden_main').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_United_Kingdom_content.style.display === 'block') {
+        db_United_Kingdom_content.style.display = 'none';
+        document.getElementById('db_United_Kingdom_main').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_Vietnam_content.style.display === 'block') {
+        db_Vietnam_content.style.display = 'none';
+        document.getElementById('db_Vietnam_main').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_United_Arab_Emirates_content.style.display === 'block') {
+        db_United_Arab_Emirates_content.style.display = 'none';
+        document.getElementById('db_United_Arab_Emirates_main').closest('li').classList.remove('db_system_active_li');
     }
     if (db_Taiwan_content.style.display === 'block') {
         db_Taiwan_content.style.display = 'none';
@@ -12249,6 +12399,9 @@ document.getElementById('db_Finland_main').addEventListener('click', function (e
     const db_South_Korea_content = document.getElementById('db_South_Korea_content');
     const db_Spain_content = document.getElementById('db_Spain_content');
     const db_Sweden_content = document.getElementById('db_Sweden_content');
+    const db_United_Kingdom_content = document.getElementById('db_United_Kingdom_content');
+    const db_United_Arab_Emirates_content = document.getElementById('db_United_Arab_Emirates_content');
+    const db_Vietnam_content = document.getElementById('db_Vietnam_content');
     const db_Taiwan_content = document.getElementById('db_Taiwan_content');
     const db_Thailand_content = document.getElementById('db_Thailand_content');
     const db_Turkey_content = document.getElementById('db_Turkey_content');
@@ -12379,6 +12532,18 @@ document.getElementById('db_Finland_main').addEventListener('click', function (e
     if (db_Sweden_content.style.display === 'block') {
         db_Sweden_content.style.display = 'none';
         document.getElementById('db_Sweden_main').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_United_Kingdom_content.style.display === 'block') {
+        db_United_Kingdom_content.style.display = 'none';
+        document.getElementById('db_United_Kingdom_main').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_Vietnam_content.style.display === 'block') {
+        db_Vietnam_content.style.display = 'none';
+        document.getElementById('db_Vietnam_main').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_United_Arab_Emirates_content.style.display === 'block') {
+        db_United_Arab_Emirates_content.style.display = 'none';
+        document.getElementById('db_United_Arab_Emirates_main').closest('li').classList.remove('db_system_active_li');
     }
     if (db_Taiwan_content.style.display === 'block') {
         db_Taiwan_content.style.display = 'none';
@@ -12678,6 +12843,9 @@ document.getElementById('db_France_main').addEventListener('click', function (e)
     const db_South_Korea_content = document.getElementById('db_South_Korea_content');
     const db_Spain_content = document.getElementById('db_Spain_content');
     const db_Sweden_content = document.getElementById('db_Sweden_content');
+    const db_United_Kingdom_content = document.getElementById('db_United_Kingdom_content');
+    const db_United_Arab_Emirates_content = document.getElementById('db_United_Arab_Emirates_content');
+    const db_Vietnam_content = document.getElementById('db_Vietnam_content');
     const db_Taiwan_content = document.getElementById('db_Taiwan_content');
     const db_Thailand_content = document.getElementById('db_Thailand_content');
     const db_Turkey_content = document.getElementById('db_Turkey_content');
@@ -12817,6 +12985,18 @@ document.getElementById('db_France_main').addEventListener('click', function (e)
     if (db_Sweden_content.style.display === 'block') {
         db_Sweden_content.style.display = 'none';
         document.getElementById('db_Sweden_main').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_United_Kingdom_content.style.display === 'block') {
+        db_United_Kingdom_content.style.display = 'none';
+        document.getElementById('db_United_Kingdom_main').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_Vietnam_content.style.display === 'block') {
+        db_Vietnam_content.style.display = 'none';
+        document.getElementById('db_Vietnam_main').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_United_Arab_Emirates_content.style.display === 'block') {
+        db_United_Arab_Emirates_content.style.display = 'none';
+        document.getElementById('db_United_Arab_Emirates_main').closest('li').classList.remove('db_system_active_li');
     }
     if (db_Taiwan_content.style.display === 'block') {
         db_Taiwan_content.style.display = 'none';
@@ -13108,6 +13288,9 @@ document.getElementById('db_Germany_main').addEventListener('click', function (e
     const db_South_Korea_content = document.getElementById('db_South_Korea_content');
     const db_Spain_content = document.getElementById('db_Spain_content');
     const db_Sweden_content = document.getElementById('db_Sweden_content');
+    const db_United_Kingdom_content = document.getElementById('db_United_Kingdom_content');
+    const db_United_Arab_Emirates_content = document.getElementById('db_United_Arab_Emirates_content');
+    const db_Vietnam_content = document.getElementById('db_Vietnam_content');
     const db_Taiwan_content = document.getElementById('db_Taiwan_content');
     const db_Thailand_content = document.getElementById('db_Thailand_content');
     const db_Turkey_content = document.getElementById('db_Turkey_content');
@@ -13247,6 +13430,18 @@ document.getElementById('db_Germany_main').addEventListener('click', function (e
     if (db_Sweden_content.style.display === 'block') {
         db_Sweden_content.style.display = 'none';
         document.getElementById('db_Sweden_main').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_United_Kingdom_content.style.display === 'block') {
+        db_United_Kingdom_content.style.display = 'none';
+        document.getElementById('db_United_Kingdom_main').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_Vietnam_content.style.display === 'block') {
+        db_Vietnam_content.style.display = 'none';
+        document.getElementById('db_Vietnam_main').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_United_Arab_Emirates_content.style.display === 'block') {
+        db_United_Arab_Emirates_content.style.display = 'none';
+        document.getElementById('db_United_Arab_Emirates_main').closest('li').classList.remove('db_system_active_li');
     }
     if (db_Taiwan_content.style.display === 'block') {
         db_Taiwan_content.style.display = 'none';
@@ -13539,6 +13734,9 @@ document.getElementById('db_Hong_Kong_main').addEventListener('click', function 
     const db_South_Korea_content = document.getElementById('db_South_Korea_content');
     const db_Spain_content = document.getElementById('db_Spain_content');
     const db_Sweden_content = document.getElementById('db_Sweden_content');
+    const db_United_Kingdom_content = document.getElementById('db_United_Kingdom_content');
+    const db_United_Arab_Emirates_content = document.getElementById('db_United_Arab_Emirates_content');
+    const db_Vietnam_content = document.getElementById('db_Vietnam_content');
     const db_Taiwan_content = document.getElementById('db_Taiwan_content');
     const db_Thailand_content = document.getElementById('db_Thailand_content');
     const db_Turkey_content = document.getElementById('db_Turkey_content');
@@ -13673,6 +13871,18 @@ document.getElementById('db_Hong_Kong_main').addEventListener('click', function 
     if (db_Sweden_content.style.display === 'block') {
         db_Sweden_content.style.display = 'none';
         document.getElementById('db_Sweden_main').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_United_Kingdom_content.style.display === 'block') {
+        db_United_Kingdom_content.style.display = 'none';
+        document.getElementById('db_United_Kingdom_main').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_Vietnam_content.style.display === 'block') {
+        db_Vietnam_content.style.display = 'none';
+        document.getElementById('db_Vietnam_main').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_United_Arab_Emirates_content.style.display === 'block') {
+        db_United_Arab_Emirates_content.style.display = 'none';
+        document.getElementById('db_United_Arab_Emirates_main').closest('li').classList.remove('db_system_active_li');
     }
     if (db_Taiwan_content.style.display === 'block') {
         db_Taiwan_content.style.display = 'none';
@@ -13971,6 +14181,9 @@ document.getElementById('db_India_main').addEventListener('click', function (e) 
     const db_South_Korea_content = document.getElementById('db_South_Korea_content');
     const db_Spain_content = document.getElementById('db_Spain_content');
     const db_Sweden_content = document.getElementById('db_Sweden_content');
+    const db_United_Kingdom_content = document.getElementById('db_United_Kingdom_content');
+    const db_United_Arab_Emirates_content = document.getElementById('db_United_Arab_Emirates_content');
+    const db_Vietnam_content = document.getElementById('db_Vietnam_content');
     const db_Taiwan_content = document.getElementById('db_Taiwan_content');
     const db_Thailand_content = document.getElementById('db_Thailand_content');
     const db_Turkey_content = document.getElementById('db_Turkey_content');
@@ -14089,6 +14302,18 @@ document.getElementById('db_India_main').addEventListener('click', function (e) 
     if (db_Sweden_content.style.display === 'block') {
         db_Sweden_content.style.display = 'none';
         document.getElementById('db_Sweden_main').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_United_Kingdom_content.style.display === 'block') {
+        db_United_Kingdom_content.style.display = 'none';
+        document.getElementById('db_United_Kingdom_main').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_Vietnam_content.style.display === 'block') {
+        db_Vietnam_content.style.display = 'none';
+        document.getElementById('db_Vietnam_main').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_United_Arab_Emirates_content.style.display === 'block') {
+        db_United_Arab_Emirates_content.style.display = 'none';
+        document.getElementById('db_United_Arab_Emirates_main').closest('li').classList.remove('db_system_active_li');
     }
     if (db_Taiwan_content.style.display === 'block') {
         db_Taiwan_content.style.display = 'none';
@@ -14404,6 +14629,9 @@ document.getElementById('db_Indonesia_main').addEventListener('click', function 
     const db_South_Korea_content = document.getElementById('db_South_Korea_content');
     const db_Spain_content = document.getElementById('db_Spain_content');
     const db_Sweden_content = document.getElementById('db_Sweden_content');
+    const db_United_Kingdom_content = document.getElementById('db_United_Kingdom_content');
+    const db_United_Arab_Emirates_content = document.getElementById('db_United_Arab_Emirates_content');
+    const db_Vietnam_content = document.getElementById('db_Vietnam_content');
     const db_Taiwan_content = document.getElementById('db_Taiwan_content');
     const db_Thailand_content = document.getElementById('db_Thailand_content');
     const db_Turkey_content = document.getElementById('db_Turkey_content');
@@ -14530,6 +14758,18 @@ document.getElementById('db_Indonesia_main').addEventListener('click', function 
     if (db_Sweden_content.style.display === 'block') {
         db_Sweden_content.style.display = 'none';
         document.getElementById('db_Sweden_main').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_United_Kingdom_content.style.display === 'block') {
+        db_United_Kingdom_content.style.display = 'none';
+        document.getElementById('db_United_Kingdom_main').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_Vietnam_content.style.display === 'block') {
+        db_Vietnam_content.style.display = 'none';
+        document.getElementById('db_Vietnam_main').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_United_Arab_Emirates_content.style.display === 'block') {
+        db_United_Arab_Emirates_content.style.display = 'none';
+        document.getElementById('db_United_Arab_Emirates_main').closest('li').classList.remove('db_system_active_li');
     }
     if (db_Taiwan_content.style.display === 'block') {
         db_Taiwan_content.style.display = 'none';
@@ -14835,6 +15075,9 @@ document.getElementById('db_Ireland_main').addEventListener('click', function (e
     const db_South_Korea_content = document.getElementById('db_South_Korea_content');
     const db_Spain_content = document.getElementById('db_Spain_content');
     const db_Sweden_content = document.getElementById('db_Sweden_content');
+    const db_United_Kingdom_content = document.getElementById('db_United_Kingdom_content');
+    const db_United_Arab_Emirates_content = document.getElementById('db_United_Arab_Emirates_content');
+    const db_Vietnam_content = document.getElementById('db_Vietnam_content');
     const db_Taiwan_content = document.getElementById('db_Taiwan_content');
     const db_Thailand_content = document.getElementById('db_Thailand_content');
     const db_Turkey_content = document.getElementById('db_Turkey_content');
@@ -14964,6 +15207,18 @@ document.getElementById('db_Ireland_main').addEventListener('click', function (e
     if (db_Sweden_content.style.display === 'block') {
         db_Sweden_content.style.display = 'none';
         document.getElementById('db_Sweden_main').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_United_Kingdom_content.style.display === 'block') {
+        db_United_Kingdom_content.style.display = 'none';
+        document.getElementById('db_United_Kingdom_main').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_Vietnam_content.style.display === 'block') {
+        db_Vietnam_content.style.display = 'none';
+        document.getElementById('db_Vietnam_main').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_United_Arab_Emirates_content.style.display === 'block') {
+        db_United_Arab_Emirates_content.style.display = 'none';
+        document.getElementById('db_United_Arab_Emirates_main').closest('li').classList.remove('db_system_active_li');
     }
     if (db_Taiwan_content.style.display === 'block') {
         db_Taiwan_content.style.display = 'none';
@@ -15270,6 +15525,9 @@ document.getElementById('db_Israel_main').addEventListener('click', function (e)
     const db_South_Korea_content = document.getElementById('db_South_Korea_content');
     const db_Spain_content = document.getElementById('db_Spain_content');
     const db_Sweden_content = document.getElementById('db_Sweden_content');
+    const db_United_Kingdom_content = document.getElementById('db_United_Kingdom_content');
+    const db_United_Arab_Emirates_content = document.getElementById('db_United_Arab_Emirates_content');
+    const db_Vietnam_content = document.getElementById('db_Vietnam_content');
     const db_Taiwan_content = document.getElementById('db_Taiwan_content');
     const db_Thailand_content = document.getElementById('db_Thailand_content');
     const db_Turkey_content = document.getElementById('db_Turkey_content');
@@ -15616,6 +15874,18 @@ document.getElementById('db_Israel_main').addEventListener('click', function (e)
         db_Sweden_content.style.display = 'none';
         document.getElementById('db_Sweden_main').closest('li').classList.remove('db_system_active_li');
     }
+    if (db_United_Kingdom_content.style.display === 'block') {
+        db_United_Kingdom_content.style.display = 'none';
+        document.getElementById('db_United_Kingdom_main').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_Vietnam_content.style.display === 'block') {
+        db_Vietnam_content.style.display = 'none';
+        document.getElementById('db_Vietnam_main').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_United_Arab_Emirates_content.style.display === 'block') {
+        db_United_Arab_Emirates_content.style.display = 'none';
+        document.getElementById('db_United_Arab_Emirates_main').closest('li').classList.remove('db_system_active_li');
+    }
     if (db_Taiwan_content.style.display === 'block') {
         db_Taiwan_content.style.display = 'none';
         document.getElementById('db_Taiwan_main').closest('li').classList.remove('db_system_active_li');
@@ -15705,6 +15975,9 @@ document.getElementById('db_Italy_main').addEventListener('click', function (e) 
     const db_South_Korea_content = document.getElementById('db_South_Korea_content');
     const db_Spain_content = document.getElementById('db_Spain_content');
     const db_Sweden_content = document.getElementById('db_Sweden_content');
+    const db_United_Kingdom_content = document.getElementById('db_United_Kingdom_content');
+    const db_United_Arab_Emirates_content = document.getElementById('db_United_Arab_Emirates_content');
+    const db_Vietnam_content = document.getElementById('db_Vietnam_content');
     const db_Taiwan_content = document.getElementById('db_Taiwan_content');
     const db_Thailand_content = document.getElementById('db_Thailand_content');
     const db_Turkey_content = document.getElementById('db_Turkey_content');
@@ -15812,6 +16085,18 @@ document.getElementById('db_Italy_main').addEventListener('click', function (e) 
     if (db_Sweden_content.style.display === 'block') {
         db_Sweden_content.style.display = 'none';
         document.getElementById('db_Sweden_main').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_United_Kingdom_content.style.display === 'block') {
+        db_United_Kingdom_content.style.display = 'none';
+        document.getElementById('db_United_Kingdom_main').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_Vietnam_content.style.display === 'block') {
+        db_Vietnam_content.style.display = 'none';
+        document.getElementById('db_Vietnam_main').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_United_Arab_Emirates_content.style.display === 'block') {
+        db_United_Arab_Emirates_content.style.display = 'none';
+        document.getElementById('db_United_Arab_Emirates_main').closest('li').classList.remove('db_system_active_li');
     }
     if (db_Taiwan_content.style.display === 'block') {
         db_Taiwan_content.style.display = 'none';
@@ -16143,6 +16428,9 @@ document.getElementById('db_Japan_main').addEventListener('click', function (e) 
     const db_South_Korea_content = document.getElementById('db_South_Korea_content');
     const db_Spain_content = document.getElementById('db_Spain_content');
     const db_Sweden_content = document.getElementById('db_Sweden_content');
+    const db_United_Kingdom_content = document.getElementById('db_United_Kingdom_content');
+    const db_United_Arab_Emirates_content = document.getElementById('db_United_Arab_Emirates_content');
+    const db_Vietnam_content = document.getElementById('db_Vietnam_content');
     const db_Taiwan_content = document.getElementById('db_Taiwan_content');
     const db_Thailand_content = document.getElementById('db_Thailand_content');
     const db_Turkey_content = document.getElementById('db_Turkey_content');
@@ -16263,6 +16551,18 @@ document.getElementById('db_Japan_main').addEventListener('click', function (e) 
     if (db_Sweden_content.style.display === 'block') {
         db_Sweden_content.style.display = 'none';
         document.getElementById('db_Sweden_main').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_United_Kingdom_content.style.display === 'block') {
+        db_United_Kingdom_content.style.display = 'none';
+        document.getElementById('db_United_Kingdom_main').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_Vietnam_content.style.display === 'block') {
+        db_Vietnam_content.style.display = 'none';
+        document.getElementById('db_Vietnam_main').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_United_Arab_Emirates_content.style.display === 'block') {
+        db_United_Arab_Emirates_content.style.display = 'none';
+        document.getElementById('db_United_Arab_Emirates_main').closest('li').classList.remove('db_system_active_li');
     }
     if (db_Taiwan_content.style.display === 'block') {
         db_Taiwan_content.style.display = 'none';
@@ -16586,6 +16886,9 @@ document.getElementById('db_Kenya_main').addEventListener('click', function (e) 
     const db_South_Korea_content = document.getElementById('db_South_Korea_content');
     const db_Spain_content = document.getElementById('db_Spain_content');
     const db_Sweden_content = document.getElementById('db_Sweden_content');
+    const db_United_Kingdom_content = document.getElementById('db_United_Kingdom_content');
+    const db_United_Arab_Emirates_content = document.getElementById('db_United_Arab_Emirates_content');
+    const db_Vietnam_content = document.getElementById('db_Vietnam_content');
     const db_Taiwan_content = document.getElementById('db_Taiwan_content');
     const db_Thailand_content = document.getElementById('db_Thailand_content');
     const db_Turkey_content = document.getElementById('db_Turkey_content');
@@ -16705,6 +17008,18 @@ document.getElementById('db_Kenya_main').addEventListener('click', function (e) 
     if (db_Sweden_content.style.display === 'block') {
         db_Sweden_content.style.display = 'none';
         document.getElementById('db_Sweden_main').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_United_Kingdom_content.style.display === 'block') {
+        db_United_Kingdom_content.style.display = 'none';
+        document.getElementById('db_United_Kingdom_main').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_Vietnam_content.style.display === 'block') {
+        db_Vietnam_content.style.display = 'none';
+        document.getElementById('db_Vietnam_main').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_United_Arab_Emirates_content.style.display === 'block') {
+        db_United_Arab_Emirates_content.style.display = 'none';
+        document.getElementById('db_United_Arab_Emirates_main').closest('li').classList.remove('db_system_active_li');
     }
     if (db_Taiwan_content.style.display === 'block') {
         db_Taiwan_content.style.display = 'none';
@@ -17028,6 +17343,9 @@ document.getElementById('db_Malaysia_main').addEventListener('click', function (
     const db_South_Korea_content = document.getElementById('db_South_Korea_content');
     const db_Spain_content = document.getElementById('db_Spain_content');
     const db_Sweden_content = document.getElementById('db_Sweden_content');
+    const db_United_Kingdom_content = document.getElementById('db_United_Kingdom_content');
+    const db_United_Arab_Emirates_content = document.getElementById('db_United_Arab_Emirates_content');
+    const db_Vietnam_content = document.getElementById('db_Vietnam_content');
     const db_Taiwan_content = document.getElementById('db_Taiwan_content');
     const db_Thailand_content = document.getElementById('db_Thailand_content');
     const db_Turkey_content = document.getElementById('db_Turkey_content');
@@ -17127,6 +17445,18 @@ document.getElementById('db_Malaysia_main').addEventListener('click', function (
     if (db_Sweden_content.style.display === 'block') {
         db_Sweden_content.style.display = 'none';
         document.getElementById('db_Sweden_main').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_United_Kingdom_content.style.display === 'block') {
+        db_United_Kingdom_content.style.display = 'none';
+        document.getElementById('db_United_Kingdom_main').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_Vietnam_content.style.display === 'block') {
+        db_Vietnam_content.style.display = 'none';
+        document.getElementById('db_Vietnam_main').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_United_Arab_Emirates_content.style.display === 'block') {
+        db_United_Arab_Emirates_content.style.display = 'none';
+        document.getElementById('db_United_Arab_Emirates_main').closest('li').classList.remove('db_system_active_li');
     }
     if (db_Taiwan_content.style.display === 'block') {
         db_Taiwan_content.style.display = 'none';
@@ -17472,6 +17802,9 @@ document.getElementById('db_Mexico_main').addEventListener('click', function (e)
     const db_South_Korea_content = document.getElementById('db_South_Korea_content');
     const db_Spain_content = document.getElementById('db_Spain_content');
     const db_Sweden_content = document.getElementById('db_Sweden_content');
+    const db_United_Kingdom_content = document.getElementById('db_United_Kingdom_content');
+    const db_United_Arab_Emirates_content = document.getElementById('db_United_Arab_Emirates_content');
+    const db_Vietnam_content = document.getElementById('db_Vietnam_content');
     const db_Taiwan_content = document.getElementById('db_Taiwan_content');
     const db_Thailand_content = document.getElementById('db_Thailand_content');
     const db_Turkey_content = document.getElementById('db_Turkey_content');
@@ -17571,6 +17904,18 @@ document.getElementById('db_Mexico_main').addEventListener('click', function (e)
     if (db_Sweden_content.style.display === 'block') {
         db_Sweden_content.style.display = 'none';
         document.getElementById('db_Sweden_main').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_United_Kingdom_content.style.display === 'block') {
+        db_United_Kingdom_content.style.display = 'none';
+        document.getElementById('db_United_Kingdom_main').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_Vietnam_content.style.display === 'block') {
+        db_Vietnam_content.style.display = 'none';
+        document.getElementById('db_Vietnam_main').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_United_Arab_Emirates_content.style.display === 'block') {
+        db_United_Arab_Emirates_content.style.display = 'none';
+        document.getElementById('db_United_Arab_Emirates_main').closest('li').classList.remove('db_system_active_li');
     }
     if (db_Taiwan_content.style.display === 'block') {
         db_Taiwan_content.style.display = 'none';
@@ -17915,6 +18260,9 @@ document.getElementById('db_Netherlands_main').addEventListener('click', functio
     const db_South_Korea_content = document.getElementById('db_South_Korea_content');
     const db_Spain_content = document.getElementById('db_Spain_content');
     const db_Sweden_content = document.getElementById('db_Sweden_content');
+    const db_United_Kingdom_content = document.getElementById('db_United_Kingdom_content');
+    const db_United_Arab_Emirates_content = document.getElementById('db_United_Arab_Emirates_content');
+    const db_Vietnam_content = document.getElementById('db_Vietnam_content');
     const db_Taiwan_content = document.getElementById('db_Taiwan_content');
     const db_Thailand_content = document.getElementById('db_Thailand_content');
     const db_Turkey_content = document.getElementById('db_Turkey_content');
@@ -18014,6 +18362,18 @@ document.getElementById('db_Netherlands_main').addEventListener('click', functio
     if (db_Sweden_content.style.display === 'block') {
         db_Sweden_content.style.display = 'none';
         document.getElementById('db_Sweden_main').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_United_Kingdom_content.style.display === 'block') {
+        db_United_Kingdom_content.style.display = 'none';
+        document.getElementById('db_United_Kingdom_main').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_Vietnam_content.style.display === 'block') {
+        db_Vietnam_content.style.display = 'none';
+        document.getElementById('db_Vietnam_main').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_United_Arab_Emirates_content.style.display === 'block') {
+        db_United_Arab_Emirates_content.style.display = 'none';
+        document.getElementById('db_United_Arab_Emirates_main').closest('li').classList.remove('db_system_active_li');
     }
     if (db_Taiwan_content.style.display === 'block') {
         db_Taiwan_content.style.display = 'none';
@@ -18360,6 +18720,9 @@ document.getElementById('db_Nigeria_main').addEventListener('click', function (e
     const db_South_Korea_content = document.getElementById('db_South_Korea_content');
     const db_Spain_content = document.getElementById('db_Spain_content');
     const db_Sweden_content = document.getElementById('db_Sweden_content');
+    const db_United_Kingdom_content = document.getElementById('db_United_Kingdom_content');
+    const db_United_Arab_Emirates_content = document.getElementById('db_United_Arab_Emirates_content');
+    const db_Vietnam_content = document.getElementById('db_Vietnam_content');
     const db_Taiwan_content = document.getElementById('db_Taiwan_content');
     const db_Thailand_content = document.getElementById('db_Thailand_content');
     const db_Turkey_content = document.getElementById('db_Turkey_content');
@@ -18459,6 +18822,18 @@ document.getElementById('db_Nigeria_main').addEventListener('click', function (e
     if (db_Sweden_content.style.display === 'block') {
         db_Sweden_content.style.display = 'none';
         document.getElementById('db_Sweden_main').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_United_Kingdom_content.style.display === 'block') {
+        db_United_Kingdom_content.style.display = 'none';
+        document.getElementById('db_United_Kingdom_main').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_Vietnam_content.style.display === 'block') {
+        db_Vietnam_content.style.display = 'none';
+        document.getElementById('db_Vietnam_main').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_United_Arab_Emirates_content.style.display === 'block') {
+        db_United_Arab_Emirates_content.style.display = 'none';
+        document.getElementById('db_United_Arab_Emirates_main').closest('li').classList.remove('db_system_active_li');
     }
     if (db_Taiwan_content.style.display === 'block') {
         db_Taiwan_content.style.display = 'none';
@@ -18805,6 +19180,9 @@ document.getElementById('db_Peru_main').addEventListener('click', function (e) {
     const db_South_Korea_content = document.getElementById('db_South_Korea_content');
     const db_Spain_content = document.getElementById('db_Spain_content');
     const db_Sweden_content = document.getElementById('db_Sweden_content');
+    const db_United_Kingdom_content = document.getElementById('db_United_Kingdom_content');
+    const db_United_Arab_Emirates_content = document.getElementById('db_United_Arab_Emirates_content');
+    const db_Vietnam_content = document.getElementById('db_Vietnam_content');
     const db_Taiwan_content = document.getElementById('db_Taiwan_content');
     const db_Thailand_content = document.getElementById('db_Thailand_content');
     const db_Turkey_content = document.getElementById('db_Turkey_content');
@@ -18904,6 +19282,18 @@ document.getElementById('db_Peru_main').addEventListener('click', function (e) {
     if (db_Sweden_content.style.display === 'block') {
         db_Sweden_content.style.display = 'none';
         document.getElementById('db_Sweden_main').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_United_Kingdom_content.style.display === 'block') {
+        db_United_Kingdom_content.style.display = 'none';
+        document.getElementById('db_United_Kingdom_main').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_Vietnam_content.style.display === 'block') {
+        db_Vietnam_content.style.display = 'none';
+        document.getElementById('db_Vietnam_main').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_United_Arab_Emirates_content.style.display === 'block') {
+        db_United_Arab_Emirates_content.style.display = 'none';
+        document.getElementById('db_United_Arab_Emirates_main').closest('li').classList.remove('db_system_active_li');
     }
     if (db_Taiwan_content.style.display === 'block') {
         db_Taiwan_content.style.display = 'none';
@@ -19249,6 +19639,9 @@ document.getElementById('db_Philippines_main').addEventListener('click', functio
     const db_South_Korea_content = document.getElementById('db_South_Korea_content');
     const db_Spain_content = document.getElementById('db_Spain_content');
     const db_Sweden_content = document.getElementById('db_Sweden_content');
+    const db_United_Kingdom_content = document.getElementById('db_United_Kingdom_content');
+    const db_United_Arab_Emirates_content = document.getElementById('db_United_Arab_Emirates_content');
+    const db_Vietnam_content = document.getElementById('db_Vietnam_content');
     const db_Taiwan_content = document.getElementById('db_Taiwan_content');
     const db_Thailand_content = document.getElementById('db_Thailand_content');
     const db_Turkey_content = document.getElementById('db_Turkey_content');
@@ -19344,6 +19737,18 @@ document.getElementById('db_Philippines_main').addEventListener('click', functio
     if (db_Sweden_content.style.display === 'block') {
         db_Sweden_content.style.display = 'none';
         document.getElementById('db_Sweden_main').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_United_Kingdom_content.style.display === 'block') {
+        db_United_Kingdom_content.style.display = 'none';
+        document.getElementById('db_United_Kingdom_main').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_Vietnam_content.style.display === 'block') {
+        db_Vietnam_content.style.display = 'none';
+        document.getElementById('db_Vietnam_main').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_United_Arab_Emirates_content.style.display === 'block') {
+        db_United_Arab_Emirates_content.style.display = 'none';
+        document.getElementById('db_United_Arab_Emirates_main').closest('li').classList.remove('db_system_active_li');
     }
     if (db_Taiwan_content.style.display === 'block') {
         db_Taiwan_content.style.display = 'none';
@@ -19693,6 +20098,9 @@ document.getElementById('db_Poland_main').addEventListener('click', function (e)
     const db_South_Korea_content = document.getElementById('db_South_Korea_content');
     const db_Spain_content = document.getElementById('db_Spain_content');
     const db_Sweden_content = document.getElementById('db_Sweden_content');
+    const db_United_Kingdom_content = document.getElementById('db_United_Kingdom_content');
+    const db_United_Arab_Emirates_content = document.getElementById('db_United_Arab_Emirates_content');
+    const db_Vietnam_content = document.getElementById('db_Vietnam_content');
     const db_Taiwan_content = document.getElementById('db_Taiwan_content');
     const db_Thailand_content = document.getElementById('db_Thailand_content');
     const db_Turkey_content = document.getElementById('db_Turkey_content');
@@ -19788,6 +20196,18 @@ document.getElementById('db_Poland_main').addEventListener('click', function (e)
     if (db_Sweden_content.style.display === 'block') {
         db_Sweden_content.style.display = 'none';
         document.getElementById('db_Sweden_main').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_United_Kingdom_content.style.display === 'block') {
+        db_United_Kingdom_content.style.display = 'none';
+        document.getElementById('db_United_Kingdom_main').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_Vietnam_content.style.display === 'block') {
+        db_Vietnam_content.style.display = 'none';
+        document.getElementById('db_Vietnam_main').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_United_Arab_Emirates_content.style.display === 'block') {
+        db_United_Arab_Emirates_content.style.display = 'none';
+        document.getElementById('db_United_Arab_Emirates_main').closest('li').classList.remove('db_system_active_li');
     }
     if (db_Taiwan_content.style.display === 'block') {
         db_Taiwan_content.style.display = 'none';
@@ -20138,6 +20558,9 @@ document.getElementById('db_Romania_main').addEventListener('click', function (e
     const db_South_Korea_content = document.getElementById('db_South_Korea_content');
     const db_Spain_content = document.getElementById('db_Spain_content');
     const db_Sweden_content = document.getElementById('db_Sweden_content');
+    const db_United_Kingdom_content = document.getElementById('db_United_Kingdom_content');
+    const db_United_Arab_Emirates_content = document.getElementById('db_United_Arab_Emirates_content');
+    const db_Vietnam_content = document.getElementById('db_Vietnam_content');
     const db_Taiwan_content = document.getElementById('db_Taiwan_content');
     const db_Thailand_content = document.getElementById('db_Thailand_content');
     const db_Turkey_content = document.getElementById('db_Turkey_content');
@@ -20233,6 +20656,18 @@ document.getElementById('db_Romania_main').addEventListener('click', function (e
     if (db_Sweden_content.style.display === 'block') {
         db_Sweden_content.style.display = 'none';
         document.getElementById('db_Sweden_main').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_United_Kingdom_content.style.display === 'block') {
+        db_United_Kingdom_content.style.display = 'none';
+        document.getElementById('db_United_Kingdom_main').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_Vietnam_content.style.display === 'block') {
+        db_Vietnam_content.style.display = 'none';
+        document.getElementById('db_Vietnam_main').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_United_Arab_Emirates_content.style.display === 'block') {
+        db_United_Arab_Emirates_content.style.display = 'none';
+        document.getElementById('db_United_Arab_Emirates_main').closest('li').classList.remove('db_system_active_li');
     }
     if (db_Taiwan_content.style.display === 'block') {
         db_Taiwan_content.style.display = 'none';
@@ -20585,6 +21020,9 @@ document.getElementById('db_Saudi_Arabia_main').addEventListener('click', functi
     const db_South_Korea_content = document.getElementById('db_South_Korea_content');
     const db_Spain_content = document.getElementById('db_Spain_content');
     const db_Sweden_content = document.getElementById('db_Sweden_content');
+    const db_United_Kingdom_content = document.getElementById('db_United_Kingdom_content');
+    const db_United_Arab_Emirates_content = document.getElementById('db_United_Arab_Emirates_content');
+    const db_Vietnam_content = document.getElementById('db_Vietnam_content');
     const db_Taiwan_content = document.getElementById('db_Taiwan_content');
     const db_Thailand_content = document.getElementById('db_Thailand_content');
     const db_Turkey_content = document.getElementById('db_Turkey_content');
@@ -20726,6 +21164,18 @@ document.getElementById('db_Saudi_Arabia_main').addEventListener('click', functi
     if (db_Sweden_content.style.display === 'block') {
         db_Sweden_content.style.display = 'none';
         document.getElementById('db_Sweden_main').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_United_Kingdom_content.style.display === 'block') {
+        db_United_Kingdom_content.style.display = 'none';
+        document.getElementById('db_United_Kingdom_main').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_Vietnam_content.style.display === 'block') {
+        db_Vietnam_content.style.display = 'none';
+        document.getElementById('db_Vietnam_main').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_United_Arab_Emirates_content.style.display === 'block') {
+        db_United_Arab_Emirates_content.style.display = 'none';
+        document.getElementById('db_United_Arab_Emirates_main').closest('li').classList.remove('db_system_active_li');
     }
     if (db_Taiwan_content.style.display === 'block') {
         db_Taiwan_content.style.display = 'none';
@@ -21028,6 +21478,9 @@ document.getElementById('db_Singapore_main').addEventListener('click', function 
     const db_South_Korea_content = document.getElementById('db_South_Korea_content');
     const db_Spain_content = document.getElementById('db_Spain_content');
     const db_Sweden_content = document.getElementById('db_Sweden_content');
+    const db_United_Kingdom_content = document.getElementById('db_United_Kingdom_content');
+    const db_United_Arab_Emirates_content = document.getElementById('db_United_Arab_Emirates_content');
+    const db_Vietnam_content = document.getElementById('db_Vietnam_content');
     const db_Taiwan_content = document.getElementById('db_Taiwan_content');
     const db_Thailand_content = document.getElementById('db_Thailand_content');
     const db_Turkey_content = document.getElementById('db_Turkey_content');
@@ -21114,6 +21567,18 @@ document.getElementById('db_Singapore_main').addEventListener('click', function 
     if (db_Sweden_content.style.display === 'block') {
         db_Sweden_content.style.display = 'none';
         document.getElementById('db_Sweden_main').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_United_Kingdom_content.style.display === 'block') {
+        db_United_Kingdom_content.style.display = 'none';
+        document.getElementById('db_United_Kingdom_main').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_Vietnam_content.style.display === 'block') {
+        db_Vietnam_content.style.display = 'none';
+        document.getElementById('db_Vietnam_main').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_United_Arab_Emirates_content.style.display === 'block') {
+        db_United_Arab_Emirates_content.style.display = 'none';
+        document.getElementById('db_United_Arab_Emirates_main').closest('li').classList.remove('db_system_active_li');
     }
     if (db_Taiwan_content.style.display === 'block') {
         db_Taiwan_content.style.display = 'none';
@@ -21476,6 +21941,9 @@ document.getElementById('db_South_Africa_main').addEventListener('click', functi
     const db_South_Korea_content = document.getElementById('db_South_Korea_content');
     const db_Spain_content = document.getElementById('db_Spain_content');
     const db_Sweden_content = document.getElementById('db_Sweden_content');
+    const db_United_Kingdom_content = document.getElementById('db_United_Kingdom_content');
+    const db_United_Arab_Emirates_content = document.getElementById('db_United_Arab_Emirates_content');
+    const db_Vietnam_content = document.getElementById('db_Vietnam_content');
     const db_Taiwan_content = document.getElementById('db_Taiwan_content');
     const db_Thailand_content = document.getElementById('db_Thailand_content');
     const db_Turkey_content = document.getElementById('db_Turkey_content');
@@ -21562,6 +22030,18 @@ document.getElementById('db_South_Africa_main').addEventListener('click', functi
     if (db_Sweden_content.style.display === 'block') {
         db_Sweden_content.style.display = 'none';
         document.getElementById('db_Sweden_main').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_United_Kingdom_content.style.display === 'block') {
+        db_United_Kingdom_content.style.display = 'none';
+        document.getElementById('db_United_Kingdom_main').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_Vietnam_content.style.display === 'block') {
+        db_Vietnam_content.style.display = 'none';
+        document.getElementById('db_Vietnam_main').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_United_Arab_Emirates_content.style.display === 'block') {
+        db_United_Arab_Emirates_content.style.display = 'none';
+        document.getElementById('db_United_Arab_Emirates_main').closest('li').classList.remove('db_system_active_li');
     }
     if (db_Taiwan_content.style.display === 'block') {
         db_Taiwan_content.style.display = 'none';
@@ -21924,6 +22404,9 @@ document.getElementById('db_South_Korea_main').addEventListener('click', functio
     const db_South_Korea_content = document.getElementById('db_South_Korea_content');
     const db_Spain_content = document.getElementById('db_Spain_content');
     const db_Sweden_content = document.getElementById('db_Sweden_content');
+    const db_United_Kingdom_content = document.getElementById('db_United_Kingdom_content');
+    const db_United_Arab_Emirates_content = document.getElementById('db_United_Arab_Emirates_content');
+    const db_Vietnam_content = document.getElementById('db_Vietnam_content');
     const db_Taiwan_content = document.getElementById('db_Taiwan_content');
     const db_Thailand_content = document.getElementById('db_Thailand_content');
     const db_Turkey_content = document.getElementById('db_Turkey_content');
@@ -22010,6 +22493,18 @@ document.getElementById('db_South_Korea_main').addEventListener('click', functio
     if (db_Sweden_content.style.display === 'block') {
         db_Sweden_content.style.display = 'none';
         document.getElementById('db_Sweden_main').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_United_Kingdom_content.style.display === 'block') {
+        db_United_Kingdom_content.style.display = 'none';
+        document.getElementById('db_United_Kingdom_main').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_Vietnam_content.style.display === 'block') {
+        db_Vietnam_content.style.display = 'none';
+        document.getElementById('db_Vietnam_main').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_United_Arab_Emirates_content.style.display === 'block') {
+        db_United_Arab_Emirates_content.style.display = 'none';
+        document.getElementById('db_United_Arab_Emirates_main').closest('li').classList.remove('db_system_active_li');
     }
     if (db_Taiwan_content.style.display === 'block') {
         db_Taiwan_content.style.display = 'none';
@@ -22372,6 +22867,9 @@ document.getElementById('db_Spain_main').addEventListener('click', function (e) 
     const db_South_Korea_content = document.getElementById('db_South_Korea_content');
     const db_Spain_content = document.getElementById('db_Spain_content');
     const db_Sweden_content = document.getElementById('db_Sweden_content');
+    const db_United_Kingdom_content = document.getElementById('db_United_Kingdom_content');
+    const db_United_Arab_Emirates_content = document.getElementById('db_United_Arab_Emirates_content');
+    const db_Vietnam_content = document.getElementById('db_Vietnam_content');
     const db_Taiwan_content = document.getElementById('db_Taiwan_content');
     const db_Thailand_content = document.getElementById('db_Thailand_content');
     const db_Turkey_content = document.getElementById('db_Turkey_content');
@@ -22463,6 +22961,18 @@ document.getElementById('db_Spain_main').addEventListener('click', function (e) 
     if (db_Sweden_content.style.display === 'block') {
         db_Sweden_content.style.display = 'none';
         document.getElementById('db_Sweden_main').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_United_Kingdom_content.style.display === 'block') {
+        db_United_Kingdom_content.style.display = 'none';
+        document.getElementById('db_United_Kingdom_main').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_Vietnam_content.style.display === 'block') {
+        db_Vietnam_content.style.display = 'none';
+        document.getElementById('db_Vietnam_main').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_United_Arab_Emirates_content.style.display === 'block') {
+        db_United_Arab_Emirates_content.style.display = 'none';
+        document.getElementById('db_United_Arab_Emirates_main').closest('li').classList.remove('db_system_active_li');
     }
     if (db_Taiwan_content.style.display === 'block') {
         db_Taiwan_content.style.display = 'none';
@@ -22821,6 +23331,9 @@ document.getElementById('db_Sweden_main').addEventListener('click', function (e)
     const db_South_Korea_content = document.getElementById('db_South_Korea_content');
     const db_Spain_content = document.getElementById('db_Spain_content');
     const db_Sweden_content = document.getElementById('db_Sweden_content');
+    const db_United_Kingdom_content = document.getElementById('db_United_Kingdom_content');
+    const db_United_Arab_Emirates_content = document.getElementById('db_United_Arab_Emirates_content');
+    const db_Vietnam_content = document.getElementById('db_Vietnam_content');
     const db_Taiwan_content = document.getElementById('db_Taiwan_content');
     const db_Thailand_content = document.getElementById('db_Thailand_content');
     const db_Turkey_content = document.getElementById('db_Turkey_content');
@@ -22897,6 +23410,18 @@ document.getElementById('db_Sweden_main').addEventListener('click', function (e)
     if (db_Taiwan_content.style.display === 'block') {
         db_Taiwan_content.style.display = 'none';
         document.getElementById('db_Taiwan_main').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_United_Kingdom_content.style.display === 'block') {
+        db_United_Kingdom_content.style.display = 'none';
+        document.getElementById('db_United_Kingdom_main').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_Vietnam_content.style.display === 'block') {
+        db_Vietnam_content.style.display = 'none';
+        document.getElementById('db_Vietnam_main').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_United_Arab_Emirates_content.style.display === 'block') {
+        db_United_Arab_Emirates_content.style.display = 'none';
+        document.getElementById('db_United_Arab_Emirates_main').closest('li').classList.remove('db_system_active_li');
     }
     if (db_Thailand_content.style.display === 'block') {
         db_Thailand_content.style.display = 'none';
@@ -23270,6 +23795,9 @@ document.getElementById('db_Taiwan_main').addEventListener('click', function (e)
     const db_South_Korea_content = document.getElementById('db_South_Korea_content');
     const db_Spain_content = document.getElementById('db_Spain_content');
     const db_Sweden_content = document.getElementById('db_Sweden_content');
+    const db_United_Kingdom_content = document.getElementById('db_United_Kingdom_content');
+    const db_United_Arab_Emirates_content = document.getElementById('db_United_Arab_Emirates_content');
+    const db_Vietnam_content = document.getElementById('db_Vietnam_content');
     const db_Taiwan_content = document.getElementById('db_Taiwan_content');
     const db_Thailand_content = document.getElementById('db_Thailand_content');
     const db_Turkey_content = document.getElementById('db_Turkey_content');
@@ -23346,6 +23874,18 @@ document.getElementById('db_Taiwan_main').addEventListener('click', function (e)
     if (db_Sweden_content.style.display === 'block') {
         db_Sweden_content.style.display = 'none';
         document.getElementById('db_Sweden_main').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_United_Kingdom_content.style.display === 'block') {
+        db_United_Kingdom_content.style.display = 'none';
+        document.getElementById('db_United_Kingdom_main').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_Vietnam_content.style.display === 'block') {
+        db_Vietnam_content.style.display = 'none';
+        document.getElementById('db_Vietnam_main').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_United_Arab_Emirates_content.style.display === 'block') {
+        db_United_Arab_Emirates_content.style.display = 'none';
+        document.getElementById('db_United_Arab_Emirates_main').closest('li').classList.remove('db_system_active_li');
     }
     if (db_Thailand_content.style.display === 'block') {
         db_Thailand_content.style.display = 'none';
@@ -23719,6 +24259,9 @@ document.getElementById('db_Thailand_main').addEventListener('click', function (
     const db_South_Korea_content = document.getElementById('db_South_Korea_content');
     const db_Spain_content = document.getElementById('db_Spain_content');
     const db_Sweden_content = document.getElementById('db_Sweden_content');
+    const db_United_Kingdom_content = document.getElementById('db_United_Kingdom_content');
+    const db_United_Arab_Emirates_content = document.getElementById('db_United_Arab_Emirates_content');
+    const db_Vietnam_content = document.getElementById('db_Vietnam_content');
     const db_Taiwan_content = document.getElementById('db_Taiwan_content');
     const db_Thailand_content = document.getElementById('db_Thailand_content');
     const db_Turkey_content = document.getElementById('db_Turkey_content');
@@ -23795,6 +24338,18 @@ document.getElementById('db_Thailand_main').addEventListener('click', function (
     if (db_Sweden_content.style.display === 'block') {
         db_Sweden_content.style.display = 'none';
         document.getElementById('db_Sweden_main').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_United_Kingdom_content.style.display === 'block') {
+        db_United_Kingdom_content.style.display = 'none';
+        document.getElementById('db_United_Kingdom_main').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_Vietnam_content.style.display === 'block') {
+        db_Vietnam_content.style.display = 'none';
+        document.getElementById('db_Vietnam_main').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_United_Arab_Emirates_content.style.display === 'block') {
+        db_United_Arab_Emirates_content.style.display = 'none';
+        document.getElementById('db_United_Arab_Emirates_main').closest('li').classList.remove('db_system_active_li');
     }
     if (db_Taiwan_content.style.display === 'block') {
         db_Taiwan_content.style.display = 'none';
@@ -24168,6 +24723,9 @@ document.getElementById('db_Turkey_main').addEventListener('click', function (e)
     const db_South_Korea_content = document.getElementById('db_South_Korea_content');
     const db_Spain_content = document.getElementById('db_Spain_content');
     const db_Sweden_content = document.getElementById('db_Sweden_content');
+    const db_United_Kingdom_content = document.getElementById('db_United_Kingdom_content');
+    const db_United_Arab_Emirates_content = document.getElementById('db_United_Arab_Emirates_content');
+    const db_Vietnam_content = document.getElementById('db_Vietnam_content');
     const db_Taiwan_content = document.getElementById('db_Taiwan_content');
     const db_Thailand_content = document.getElementById('db_Thailand_content');
     const db_Turkey_content = document.getElementById('db_Turkey_content');
@@ -24244,6 +24802,18 @@ document.getElementById('db_Turkey_main').addEventListener('click', function (e)
     if (db_Sweden_content.style.display === 'block') {
         db_Sweden_content.style.display = 'none';
         document.getElementById('db_Sweden_main').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_United_Kingdom_content.style.display === 'block') {
+        db_United_Kingdom_content.style.display = 'none';
+        document.getElementById('db_United_Kingdom_main').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_Vietnam_content.style.display === 'block') {
+        db_Vietnam_content.style.display = 'none';
+        document.getElementById('db_Vietnam_main').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_United_Arab_Emirates_content.style.display === 'block') {
+        db_United_Arab_Emirates_content.style.display = 'none';
+        document.getElementById('db_United_Arab_Emirates_main').closest('li').classList.remove('db_system_active_li');
     }
     if (db_Taiwan_content.style.display === 'block') {
         db_Taiwan_content.style.display = 'none';
@@ -24617,6 +25187,9 @@ document.getElementById('db_United_Arab_Emirates_main').addEventListener('click'
     const db_South_Korea_content = document.getElementById('db_South_Korea_content');
     const db_Spain_content = document.getElementById('db_Spain_content');
     const db_Sweden_content = document.getElementById('db_Sweden_content');
+    const db_United_Kingdom_content = document.getElementById('db_United_Kingdom_content');
+    const db_United_Arab_Emirates_content = document.getElementById('db_United_Arab_Emirates_content');
+    const db_Vietnam_content = document.getElementById('db_Vietnam_content');
     const db_Taiwan_content = document.getElementById('db_Taiwan_content');
     const db_Thailand_content = document.getElementById('db_Thailand_content');
     const db_Turkey_content = document.getElementById('db_Turkey_content');
@@ -24694,6 +25267,15 @@ document.getElementById('db_United_Arab_Emirates_main').addEventListener('click'
         db_Sweden_content.style.display = 'none';
         document.getElementById('db_Sweden_main').closest('li').classList.remove('db_system_active_li');
     }
+    if (db_United_Kingdom_content.style.display === 'block') {
+        db_United_Kingdom_content.style.display = 'none';
+        document.getElementById('db_United_Kingdom_main').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_Vietnam_content.style.display === 'block') {
+        db_Vietnam_content.style.display = 'none';
+        document.getElementById('db_Vietnam_main').closest('li').classList.remove('db_system_active_li');
+    }
+
     if (db_Taiwan_content.style.display === 'block') {
         db_Taiwan_content.style.display = 'none';
         document.getElementById('db_Taiwan_main').closest('li').classList.remove('db_system_active_li');
@@ -25053,5 +25635,935 @@ document.getElementById('db_United_Arab_Emirates_main').addEventListener('click'
         db_United_Arab_Emirates_content.style.setProperty('display', 'block', 'important');
         this.closest('li').classList.add('db_system_active_li');
         db_United_Arab_Emirates_content.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+});
+document.getElementById('db_United_Kingdom_main').addEventListener('click', function (e) {
+    e.preventDefault();
+    const db_Argentina_content = document.getElementById('db_Argentina_content');
+    const db_India_content = document.getElementById('db_India_content');
+    const db_Kenya_content = document.getElementById('db_Kenya_content');
+    const db_Malaysia_content = document.getElementById('db_Malaysia_content');
+    const db_Mexico_content = document.getElementById('db_Mexico_content');
+    const db_Netherlands_content = document.getElementById('db_Netherlands_content');
+    const db_Nigeria_content = document.getElementById('db_Nigeria_content');
+    const db_Peru_content = document.getElementById('db_Peru_content');
+    const db_Saudi_Arabia_content = document.getElementById('db_Saudi_Arabia_content');
+    const db_South_Africa_content = document.getElementById('db_South_Africa_content');
+    const db_South_Korea_content = document.getElementById('db_South_Korea_content');
+    const db_Spain_content = document.getElementById('db_Spain_content');
+    const db_Sweden_content = document.getElementById('db_Sweden_content');
+    const db_United_Kingdom_content = document.getElementById('db_United_Kingdom_content');
+    const db_United_Arab_Emirates_content = document.getElementById('db_United_Arab_Emirates_content');
+    const db_Vietnam_content = document.getElementById('db_Vietnam_content');
+    const db_Taiwan_content = document.getElementById('db_Taiwan_content');
+    const db_Thailand_content = document.getElementById('db_Thailand_content');
+    const db_Turkey_content = document.getElementById('db_Turkey_content');
+    const db_Singapore_content = document.getElementById('db_Singapore_content');
+    const db_Philippines_content = document.getElementById('db_Philippines_content');
+    const db_Poland_content = document.getElementById('db_Poland_content');
+    const db_Romania_content = document.getElementById('db_Romania_content');
+    const db_Indonesia_content = document.getElementById('db_Indonesia_content');
+    const db_Ireland_content = document.getElementById('db_Ireland_content');
+    const db_Israel_content = document.getElementById('db_Israel_content');
+    const db_Italy_content = document.getElementById('db_Italy_content');
+    const db_Japan_content = document.getElementById('db_Japan_content');
+    const db_Hong_Kong_content = document.getElementById('db_Hong_Kong_content');
+    const db_Germany_content = document.getElementById('db_Germany_content');
+    const db_Egypt_content = document.getElementById('db_Egypt_content');
+    const db_France_content = document.getElementById('db_France_content');
+    const db_Finland_content = document.getElementById('db_Finland_content');
+    const db_China_content = document.getElementById('db_China_content');
+    const db_Denmark_content = document.getElementById('db_Denmark_content');
+    const db_Belgium_content = document.getElementById('db_Belgium_content');
+    const db_Brazil_content = document.getElementById('db_Brazil_content');
+    const db_Canada_content = document.getElementById('db_Canada_content');
+    const db_Australia_content = document.getElementById('db_Australia_content');
+    const db_Austria_content = document.getElementById('db_Austria_content');
+    const db_usa_state = document.getElementById('db_usa_state');
+    const db_Arizona_city_menu = document.getElementById('db_Arizona_city_menu');
+    const db_District_of_Columbia_city_menu = document.getElementById('db_District_of_Columbia_city_menu');
+    const db_Chandler_content = document.getElementById('db_Chandler_content');
+    const db_Mesa_content = document.getElementById('db_Mesa_content');
+    const db_Scottsdale_content = document.getElementById('db_Scottsdale_content');
+    const db_California_city_menu = document.getElementById('db_California_city_menu');
+    const db_Folsom_content = document.getElementById('db_Folsom_content');
+    const db_San_Diego_content = document.getElementById('db_San_Diego_content');
+    const db_San_Jose_content = document.getElementById('db_San_Jose_content');
+    const db_Santa_Clara_content = document.getElementById('db_Santa_Clara_content');
+    const db_Colorado_city_menu = document.getElementById('db_Colorado_city_menu');
+    const db_Fort_Collins_content = document.getElementById('db_Fort_Collins_content');
+    const db_Boxborough_content = document.getElementById('db_Boxborough_content');
+    const db_Novi_content = document.getElementById('db_Novi_content');
+    const db_Michigan_menu = document.getElementById('db_Michigan_menu');
+    const db_New_Jersey_menu = document.getElementById('db_New_Jersey_menu');
+    const db_North_Carolina_menu = document.getElementById('db_North_Carolina_menu');
+    const db_Hudson_content = document.getElementById('db_Hudson_content');
+    const db_New_Mexico_menu = document.getElementById('db_New_Mexico_menu');
+    const db_Parsippany_content = document.getElementById('db_Parsippany_content');
+    const db_Cambridge_content = document.getElementById('db_Cambridge_content');
+    const db_Massachusetts_menu = document.getElementById('db_Massachusetts_menu');
+    const db_Atlanta_content = document.getElementById('db_Atlanta_content');
+    const db_Schaumburg_content = document.getElementById('db_Schaumburg_content');
+    const db_Rio_Rancho_content = document.getElementById('db_Rio_Rancho_content');
+    const db_Illinois_city_menu = document.getElementById('db_Illinois_city_menu');
+    const db_Georgia_city_menu = document.getElementById('db_Georgia_city_menu');
+    const db_Washington_DC_content = document.getElementById('db_Washington_DC_content');
+    const db_Seattle_content = document.getElementById('db_Seattle_content');
+    const db_Bellevue_content = document.getElementById('db_Bellevue_content');
+    const db_Washington_menu = document.getElementById('db_Washington_menu');
+    const db_Fairfax_content = document.getElementById('db_Fairfax_content');
+    const db_Virginia_menu = document.getElementById('db_Virginia_menu');
+    const db_Houston_content = document.getElementById('db_Houston_content');
+    const db_Austin_content = document.getElementById('db_Austin_content');
+    const db_Texas_menu = document.getElementById('db_Texas_menu');
+    const db_Allentown_content = document.getElementById('db_Allentown_content');
+    const db_Pennsylvania_menu = document.getElementById('db_Pennsylvania_menu');
+    const db_Hillsboro_content = document.getElementById('db_Hillsboro_content');
+    const db_Aloha_content = document.getElementById('db_Aloha_content');
+    const db_Oregon_menu = document.getElementById('db_Oregon_menu');
+    const db_New_Albany_content = document.getElementById('db_New_Albany_content');
+    const db_cary_content = document.getElementById('db_cary_content');
+    const db_Ohio_menu = document.getElementById('db_Ohio_menu');
+    if (db_Spain_content.style.display === 'block') {
+        db_Spain_content.style.display = 'none';
+        document.getElementById('db_Spain_main').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_Sweden_content.style.display === 'block') {
+        db_Sweden_content.style.display = 'none';
+        document.getElementById('db_Sweden_main').closest('li').classList.remove('db_system_active_li');
+    }
+
+    if (db_Taiwan_content.style.display === 'block') {
+        db_Taiwan_content.style.display = 'none';
+        document.getElementById('db_Taiwan_main').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_Vietnam_content.style.display === 'block') {
+        db_Vietnam_content.style.display = 'none';
+        document.getElementById('db_Vietnam_main').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_United_Arab_Emirates_content.style.display === 'block') {
+        db_United_Arab_Emirates_content.style.display = 'none';
+        document.getElementById('db_United_Arab_Emirates_main').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_Thailand_content.style.display === 'block') {
+        db_Thailand_content.style.display = 'none';
+        document.getElementById('db_Thailand_main').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_Turkey_content.style.display === 'block') {
+        db_Turkey_content.style.display = 'none';
+        document.getElementById('db_Turkey_main').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_Vietnam_content.style.display === 'block') {
+        db_Vietnam_content.style.display = 'none';
+        document.getElementById('db_Vietnam_main').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_United_Arab_Emirates_content.style.display === 'block') {
+        db_United_Arab_Emirates_content.style.display = 'none';
+        document.getElementById('db_United_Arab_Emirates_main').closest('li').classList.remove('db_system_active_li');
+    }
+    // Hide all sections if any are visible
+    if (db_Argentina_content.style.display === 'block') {
+        db_Argentina_content.style.display = 'none';
+        document.getElementById('db_Argentina_main').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_Saudi_Arabia_content.style.display === 'block') {
+        db_Saudi_Arabia_content.style.display = 'none';
+        document.getElementById('db_Saudi_Arabia_main').closest('li').classList.remove('db_system_active_li');
+    }
+
+    if (db_South_Africa_content.style.display === 'block') {
+        db_South_Africa_content.style.display = 'none';
+        document.getElementById('db_South_Africa_main').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_South_Korea_content.style.display === 'block') {
+        db_South_Korea_content.style.display = 'none';
+        document.getElementById('db_South_Korea_main').closest('li').classList.remove('db_system_active_li');
+    }
+
+    if (db_Singapore_content.style.display === 'block') {
+        db_Singapore_content.style.display = 'none';
+        document.getElementById('db_Singapore_main').closest('li').classList.remove('db_system_active_li');
+    }
+
+    if (db_Malaysia_content.style.display === 'block') {
+        db_Malaysia_content.style.display = 'none';
+        document.getElementById('db_Malaysia_main').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_Peru_content.style.display === 'block') {
+        db_Peru_content.style.display = 'none';
+        document.getElementById('db_Peru_main').closest('li').classList.remove('db_system_active_li');
+    }
+
+
+    if (db_Poland_content.style.display === 'block') {
+        db_Poland_content.style.display = 'none';
+        document.getElementById('db_Poland_main').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_Romania_content.style.display === 'block') {
+        db_Romania_content.style.display = 'none';
+        document.getElementById('db_Romania_main').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_Philippines_content.style.display === 'block') {
+        db_Philippines_content.style.display = 'none';
+        document.getElementById('db_Philippines_main').closest('li').classList.remove('db_system_active_li');
+    }
+
+    if (db_Mexico_content.style.display === 'block') {
+        db_Mexico_content.style.display = 'none';
+        document.getElementById('db_Mexico_main').closest('li').classList.remove('db_system_active_li');
+    }
+
+    if (db_Netherlands_content.style.display === 'block') {
+        db_Netherlands_content.style.display = 'none';
+        document.getElementById('db_Netherlands_main').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_Nigeria_content.style.display === 'block') {
+        db_Nigeria_content.style.display = 'none';
+        document.getElementById('db_Nigeria_main').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_Indonesia_content.style.display === 'block') {
+        db_Indonesia_content.style.display = 'none';
+        document.getElementById('db_Indonesia_main').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_France_content.style.display === 'block') {
+        db_France_content.style.display = 'none';
+        document.getElementById('db_France_main').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_Egypt_content.style.display === 'block') {
+        db_Egypt_content.style.display = 'none';
+        document.getElementById('db_Egypt_main').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_Kenya_content.style.display === 'block') {
+        db_Kenya_content.style.display = 'none';
+        document.getElementById('db_Kenya_main').closest('li').classList.remove('db_system_active_li');
+    }
+
+    if (db_Japan_content.style.display === 'block') {
+        db_Japan_content.style.display = 'none';
+        document.getElementById('db_Japan_main').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_Italy_content.style.display === 'block') {
+        db_Italy_content.style.display = 'none';
+        document.getElementById('db_Italy_main').closest('li').classList.remove('db_system_active_li');
+    }
+
+    if (db_France_content.style.display === 'block') {
+        db_France_content.style.display = 'none';
+        document.getElementById('db_France_main').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_Germany_content.style.display === 'block') {
+        db_Germany_content.style.display = 'none';
+        document.getElementById('db_Germany_main').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_Ireland_content.style.display === 'block') {
+        db_Ireland_content.style.display = 'none';
+        document.getElementById('db_Ireland_main').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_Israel_content.style.display === 'block') {
+        db_Israel_content.style.display = 'none';
+        document.getElementById('db_Israel_main').closest('li').classList.remove('db_system_active_li');
+    }
+
+
+    if (db_Hong_Kong_content.style.display === 'block') {
+        db_Hong_Kong_content.style.display = 'none';
+        document.getElementById('db_Hong_Kong_main').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_India_content.style.display === 'block') {
+        db_India_content.style.display = 'none';
+        document.getElementById('db_India_main').closest('li').classList.remove('db_system_active_li');
+    }
+
+
+    if (db_Finland_content.style.display === 'block') {
+        db_Finland_content.style.display = 'none';
+        document.getElementById('db_Finland_main').closest('li').classList.remove('db_system_active_li');
+    }
+
+
+    if (db_Canada_content.style.display === 'block') {
+        db_Canada_content.style.display = 'none';
+        document.getElementById('db_Canada_main').closest('li').classList.remove('db_system_active_li');
+    }
+
+    if (db_China_content.style.display === 'block') {
+        db_China_content.style.display = 'none';
+        document.getElementById('db_China_main').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_Denmark_content.style.display === 'block') {
+        db_Denmark_content.style.display = 'none';
+        document.getElementById('db_Denmark_main').closest('li').classList.remove('db_system_active_li');
+    }
+
+    if (db_Austria_content.style.display === 'block') {
+        db_Austria_content.style.display = 'none';
+        document.getElementById('db_Austria_main').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_Brazil_content.style.display === 'block') {
+        db_Brazil_content.style.display = 'none';
+        document.getElementById('db_Brazil_main').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_Australia_content.style.display === 'block') {
+        db_Australia_content.style.display = 'none';
+        document.getElementById('db_Australia_main').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_Arizona_city_menu.style.display === 'block') {
+        db_Arizona_city_menu.style.display = 'none';
+        document.getElementById('db_usa').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_District_of_Columbia_city_menu.style.display === 'block') {
+        db_District_of_Columbia_city_menu.style.display = 'none';
+        document.getElementById('db_District_of_Columbia').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_Chandler_content.style.display === 'block') {
+        db_Chandler_content.style.display = 'none';
+        document.getElementById('db_Chandler').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_Mesa_content.style.display === 'block') {
+        db_Mesa_content.style.display = 'none';
+        document.getElementById('db_Mesa').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_Scottsdale_content.style.display === 'block') {
+        db_Scottsdale_content.style.display = 'none';
+        document.getElementById('db_Scottsdale').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_California_city_menu.style.display === 'block') {
+        db_California_city_menu.style.display = 'none';
+        document.getElementById('db_California').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_Colorado_city_menu.style.display === 'block') {
+        db_Colorado_city_menu.style.display = 'none';
+        document.getElementById('db_Colorado').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_Bellevue_content.style.display === 'block') {
+        db_Bellevue_content.style.display = 'none';
+        document.getElementById('db_Bellevue').closest('li').classList.remove('db_system_active_li');
+    }
+
+    if (db_Washington_menu.style.display === 'block') {
+        db_Washington_menu.style.display = 'none';
+        document.getElementById('db_Washington').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_Fairfax_content.style.display === 'block') {
+        db_Fairfax_content.style.display = 'none';
+        document.getElementById('db_Fairfax').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_Virginia_menu.style.display === 'block') {
+        db_Virginia_menu.style.display = 'none';
+        document.getElementById('db_Virginia').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_Houston_content.style.display === 'block') {
+        db_Houston_content.style.display = 'none';
+        document.getElementById('db_Houston').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_Seattle_content.style.display === 'block') {
+        db_Seattle_content.style.display = 'none';
+        document.getElementById('db_Seattle').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_Austin_content.style.display === 'block') {
+        db_Austin_content.style.display = 'none';
+        document.getElementById('db_Austin').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_Texas_menu.style.display === 'block') {
+        db_Texas_menu.style.display = 'none';
+        document.getElementById('db_Texas').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_Allentown_content.style.display === 'block') {
+        db_Allentown_content.style.display = 'none';
+        document.getElementById('db_Allentown').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_Pennsylvania_menu.style.display === 'block') {
+        db_Pennsylvania_menu.style.display = 'none';
+        document.getElementById('db_Pennsylvania').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_Hillsboro_content.style.display === 'block') {
+        db_Hillsboro_content.style.display = 'none';
+        document.getElementById('db_Hillsboro').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_Aloha_content.style.display === 'block') {
+        db_Aloha_content.style.display = 'none';
+        document.getElementById('db_Aloha').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_Oregon_menu.style.display === 'block') {
+        db_Oregon_menu.style.display = 'none';
+        document.getElementById('db_Oregon').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_New_Albany_content.style.display === 'block') {
+        db_New_Albany_content.style.display = 'none';
+        document.getElementById('db_New_Albany').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_Ohio_menu.style.display === 'block') {
+        db_Ohio_menu.style.display = 'none';
+        document.getElementById('db_Ohio').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_cary_content.style.display === 'block') {
+        db_cary_content.style.display = 'none';
+        document.getElementById('db_cary').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_North_Carolina_menu.style.display === 'block') {
+        db_North_Carolina_menu.style.display = 'none';
+        document.getElementById('db_North_Carolina').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_Rio_Rancho_content.style.display === 'block') {
+        db_Rio_Rancho_content.style.display = 'none';
+        document.getElementById('db_Rio_Rancho').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_New_Mexico_menu.style.display === 'block') {
+        db_New_Mexico_menu.style.display = 'none';
+        document.getElementById('db_New_Mexico').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_Schaumburg_content.style.display === 'block') {
+        db_Schaumburg_content.style.display = 'none';
+        document.getElementById('db_Schaumburg').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_Fort_Collins_content.style.display === 'block') {
+        db_Fort_Collins_content.style.display = 'none';
+        document.getElementById('db_Fort_Collins').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_Boxborough_content.style.display === 'block') {
+        db_Boxborough_content.style.display = 'none';
+        document.getElementById('db_Boxborough').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_Novi_content.style.display === 'block') {
+        db_Novi_content.style.display = 'none';
+        document.getElementById('db_Novi').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_New_Jersey_menu.style.display === 'block') {
+        db_New_Jersey_menu.style.display = 'none';
+        document.getElementById('db_New_Jersey').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_Parsippany_content.style.display === 'block') {
+        db_Parsippany_content.style.display = 'none';
+        document.getElementById('db_Parsippany').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_Hudson_content.style.display === 'block') {
+        db_Hudson_content.style.display = 'none';
+        document.getElementById('db_Hudson').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_Cambridge_content.style.display === 'block') {
+        db_Cambridge_content.style.display = 'none';
+        document.getElementById('db_Cambridge').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_Michigan_menu.style.display === 'block') {
+        db_Michigan_menu.style.display = 'none';
+        document.getElementById('db_Michigan').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_Parsippany_content.style.display === 'block') {
+        db_Parsippany_content.style.display = 'none';
+        document.getElementById('db_Parsippany').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_Massachusetts_menu.style.display === 'block') {
+        db_Massachusetts_menu.style.display = 'none';
+        document.getElementById('db_Massachusetts').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_Atlanta_content.style.display === 'block') {
+        db_Atlanta_content.style.display = 'none';
+        document.getElementById('db_Atlanta').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_Illinois_city_menu.style.display === 'block') {
+        db_Illinois_city_menu.style.display = 'none';
+        document.getElementById('db_Illinois').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_Georgia_city_menu.style.display === 'block') {
+        db_Georgia_city_menu.style.display = 'none';
+        document.getElementById('db_georgia').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_Washington_DC_content.style.display === 'block') {
+        db_Washington_DC_content.style.display = 'none';
+        document.getElementById('db_Washington_DC').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_Folsom_content.style.display === 'block') {
+        db_Folsom_content.style.display = 'none';
+        document.getElementById('db_Folsom').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_Santa_Clara_content.style.display === 'block') {
+        db_Santa_Clara_content.style.display = 'none';
+        document.getElementById('db_Santa_Clara').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_San_Jose_content.style.display === 'block') {
+        db_San_Jose_content.style.display = 'none';
+        document.getElementById('db_San_Jose').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_San_Diego_content.style.display === 'block') {
+        db_San_Diego_content.style.display = 'none';
+        document.getElementById('db_San_Diego').closest('li').classList.remove('db_system_active_li');
+    }
+
+    if (db_Belgium_content.style.display === 'block') {
+        db_Belgium_content.style.display = 'none';
+        document.getElementById('db_Belgium_main').closest('li').classList.remove('db_system_active_li');
+    }
+    // Hide db_usa_state if visible
+    if (db_usa_state.style.display === 'block') {
+        db_usa_state.style.display = 'none';
+        document.getElementById('db_usa_main').closest('li').classList.remove('db_system_active_li');
+    }
+    // Toggle db_Argentina_content
+    if (db_United_Kingdom_content.style.display === 'block') {
+        db_United_Kingdom_content.style.display = 'none';
+        this.closest('li').classList.remove('db_system_active_li');
+    } else {
+        db_United_Kingdom_content.style.setProperty('display', 'block', 'important');
+        this.closest('li').classList.add('db_system_active_li');
+        db_United_Kingdom_content.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+});
+document.getElementById('db_Vietnam_main').addEventListener('click', function (e) {
+    e.preventDefault();
+    const db_Argentina_content = document.getElementById('db_Argentina_content');
+    const db_India_content = document.getElementById('db_India_content');
+    const db_Kenya_content = document.getElementById('db_Kenya_content');
+    const db_Malaysia_content = document.getElementById('db_Malaysia_content');
+    const db_Mexico_content = document.getElementById('db_Mexico_content');
+    const db_Netherlands_content = document.getElementById('db_Netherlands_content');
+    const db_Nigeria_content = document.getElementById('db_Nigeria_content');
+    const db_Peru_content = document.getElementById('db_Peru_content');
+    const db_Saudi_Arabia_content = document.getElementById('db_Saudi_Arabia_content');
+    const db_South_Africa_content = document.getElementById('db_South_Africa_content');
+    const db_South_Korea_content = document.getElementById('db_South_Korea_content');
+    const db_Spain_content = document.getElementById('db_Spain_content');
+    const db_Sweden_content = document.getElementById('db_Sweden_content');
+    const db_United_Kingdom_content = document.getElementById('db_United_Kingdom_content');
+    const db_United_Arab_Emirates_content = document.getElementById('db_United_Arab_Emirates_content');
+    const db_Vietnam_content = document.getElementById('db_Vietnam_content');
+    const db_Taiwan_content = document.getElementById('db_Taiwan_content');
+    const db_Thailand_content = document.getElementById('db_Thailand_content');
+    const db_Turkey_content = document.getElementById('db_Turkey_content');
+    const db_Singapore_content = document.getElementById('db_Singapore_content');
+    const db_Philippines_content = document.getElementById('db_Philippines_content');
+    const db_Poland_content = document.getElementById('db_Poland_content');
+    const db_Romania_content = document.getElementById('db_Romania_content');
+    const db_Indonesia_content = document.getElementById('db_Indonesia_content');
+    const db_Ireland_content = document.getElementById('db_Ireland_content');
+    const db_Israel_content = document.getElementById('db_Israel_content');
+    const db_Italy_content = document.getElementById('db_Italy_content');
+    const db_Japan_content = document.getElementById('db_Japan_content');
+    const db_Hong_Kong_content = document.getElementById('db_Hong_Kong_content');
+    const db_Germany_content = document.getElementById('db_Germany_content');
+    const db_Egypt_content = document.getElementById('db_Egypt_content');
+    const db_France_content = document.getElementById('db_France_content');
+    const db_Finland_content = document.getElementById('db_Finland_content');
+    const db_China_content = document.getElementById('db_China_content');
+    const db_Denmark_content = document.getElementById('db_Denmark_content');
+    const db_Belgium_content = document.getElementById('db_Belgium_content');
+    const db_Brazil_content = document.getElementById('db_Brazil_content');
+    const db_Canada_content = document.getElementById('db_Canada_content');
+    const db_Australia_content = document.getElementById('db_Australia_content');
+    const db_Austria_content = document.getElementById('db_Austria_content');
+    const db_usa_state = document.getElementById('db_usa_state');
+    const db_Arizona_city_menu = document.getElementById('db_Arizona_city_menu');
+    const db_District_of_Columbia_city_menu = document.getElementById('db_District_of_Columbia_city_menu');
+    const db_Chandler_content = document.getElementById('db_Chandler_content');
+    const db_Mesa_content = document.getElementById('db_Mesa_content');
+    const db_Scottsdale_content = document.getElementById('db_Scottsdale_content');
+    const db_California_city_menu = document.getElementById('db_California_city_menu');
+    const db_Folsom_content = document.getElementById('db_Folsom_content');
+    const db_San_Diego_content = document.getElementById('db_San_Diego_content');
+    const db_San_Jose_content = document.getElementById('db_San_Jose_content');
+    const db_Santa_Clara_content = document.getElementById('db_Santa_Clara_content');
+    const db_Colorado_city_menu = document.getElementById('db_Colorado_city_menu');
+    const db_Fort_Collins_content = document.getElementById('db_Fort_Collins_content');
+    const db_Boxborough_content = document.getElementById('db_Boxborough_content');
+    const db_Novi_content = document.getElementById('db_Novi_content');
+    const db_Michigan_menu = document.getElementById('db_Michigan_menu');
+    const db_New_Jersey_menu = document.getElementById('db_New_Jersey_menu');
+    const db_North_Carolina_menu = document.getElementById('db_North_Carolina_menu');
+    const db_Hudson_content = document.getElementById('db_Hudson_content');
+    const db_New_Mexico_menu = document.getElementById('db_New_Mexico_menu');
+    const db_Parsippany_content = document.getElementById('db_Parsippany_content');
+    const db_Cambridge_content = document.getElementById('db_Cambridge_content');
+    const db_Massachusetts_menu = document.getElementById('db_Massachusetts_menu');
+    const db_Atlanta_content = document.getElementById('db_Atlanta_content');
+    const db_Schaumburg_content = document.getElementById('db_Schaumburg_content');
+    const db_Rio_Rancho_content = document.getElementById('db_Rio_Rancho_content');
+    const db_Illinois_city_menu = document.getElementById('db_Illinois_city_menu');
+    const db_Georgia_city_menu = document.getElementById('db_Georgia_city_menu');
+    const db_Washington_DC_content = document.getElementById('db_Washington_DC_content');
+    const db_Seattle_content = document.getElementById('db_Seattle_content');
+    const db_Bellevue_content = document.getElementById('db_Bellevue_content');
+    const db_Washington_menu = document.getElementById('db_Washington_menu');
+    const db_Fairfax_content = document.getElementById('db_Fairfax_content');
+    const db_Virginia_menu = document.getElementById('db_Virginia_menu');
+    const db_Houston_content = document.getElementById('db_Houston_content');
+    const db_Austin_content = document.getElementById('db_Austin_content');
+    const db_Texas_menu = document.getElementById('db_Texas_menu');
+    const db_Allentown_content = document.getElementById('db_Allentown_content');
+    const db_Pennsylvania_menu = document.getElementById('db_Pennsylvania_menu');
+    const db_Hillsboro_content = document.getElementById('db_Hillsboro_content');
+    const db_Aloha_content = document.getElementById('db_Aloha_content');
+    const db_Oregon_menu = document.getElementById('db_Oregon_menu');
+    const db_New_Albany_content = document.getElementById('db_New_Albany_content');
+    const db_cary_content = document.getElementById('db_cary_content');
+    const db_Ohio_menu = document.getElementById('db_Ohio_menu');
+    if (db_Spain_content.style.display === 'block') {
+        db_Spain_content.style.display = 'none';
+        document.getElementById('db_Spain_main').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_Sweden_content.style.display === 'block') {
+        db_Sweden_content.style.display = 'none';
+        document.getElementById('db_Sweden_main').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_United_Kingdom_content.style.display === 'block') {
+        db_United_Kingdom_content.style.display = 'none';
+        document.getElementById('db_United_Kingdom_main').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_United_Arab_Emirates_content.style.display === 'block') {
+        db_United_Arab_Emirates_content.style.display = 'none';
+        document.getElementById('db_United_Arab_Emirates_main').closest('li').classList.remove('db_system_active_li');
+    }
+
+    if (db_Taiwan_content.style.display === 'block') {
+        db_Taiwan_content.style.display = 'none';
+        document.getElementById('db_Taiwan_main').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_Thailand_content.style.display === 'block') {
+        db_Thailand_content.style.display = 'none';
+        document.getElementById('db_Thailand_main').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_Turkey_content.style.display === 'block') {
+        db_Turkey_content.style.display = 'none';
+        document.getElementById('db_Turkey_main').closest('li').classList.remove('db_system_active_li');
+    }
+
+    // Hide all sections if any are visible
+    if (db_Argentina_content.style.display === 'block') {
+        db_Argentina_content.style.display = 'none';
+        document.getElementById('db_Argentina_main').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_Saudi_Arabia_content.style.display === 'block') {
+        db_Saudi_Arabia_content.style.display = 'none';
+        document.getElementById('db_Saudi_Arabia_main').closest('li').classList.remove('db_system_active_li');
+    }
+
+    if (db_South_Africa_content.style.display === 'block') {
+        db_South_Africa_content.style.display = 'none';
+        document.getElementById('db_South_Africa_main').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_South_Korea_content.style.display === 'block') {
+        db_South_Korea_content.style.display = 'none';
+        document.getElementById('db_South_Korea_main').closest('li').classList.remove('db_system_active_li');
+    }
+
+    if (db_Singapore_content.style.display === 'block') {
+        db_Singapore_content.style.display = 'none';
+        document.getElementById('db_Singapore_main').closest('li').classList.remove('db_system_active_li');
+    }
+
+    if (db_Malaysia_content.style.display === 'block') {
+        db_Malaysia_content.style.display = 'none';
+        document.getElementById('db_Malaysia_main').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_Peru_content.style.display === 'block') {
+        db_Peru_content.style.display = 'none';
+        document.getElementById('db_Peru_main').closest('li').classList.remove('db_system_active_li');
+    }
+
+
+    if (db_Poland_content.style.display === 'block') {
+        db_Poland_content.style.display = 'none';
+        document.getElementById('db_Poland_main').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_Romania_content.style.display === 'block') {
+        db_Romania_content.style.display = 'none';
+        document.getElementById('db_Romania_main').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_Philippines_content.style.display === 'block') {
+        db_Philippines_content.style.display = 'none';
+        document.getElementById('db_Philippines_main').closest('li').classList.remove('db_system_active_li');
+    }
+
+    if (db_Mexico_content.style.display === 'block') {
+        db_Mexico_content.style.display = 'none';
+        document.getElementById('db_Mexico_main').closest('li').classList.remove('db_system_active_li');
+    }
+
+    if (db_Netherlands_content.style.display === 'block') {
+        db_Netherlands_content.style.display = 'none';
+        document.getElementById('db_Netherlands_main').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_Nigeria_content.style.display === 'block') {
+        db_Nigeria_content.style.display = 'none';
+        document.getElementById('db_Nigeria_main').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_Indonesia_content.style.display === 'block') {
+        db_Indonesia_content.style.display = 'none';
+        document.getElementById('db_Indonesia_main').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_France_content.style.display === 'block') {
+        db_France_content.style.display = 'none';
+        document.getElementById('db_France_main').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_Egypt_content.style.display === 'block') {
+        db_Egypt_content.style.display = 'none';
+        document.getElementById('db_Egypt_main').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_Kenya_content.style.display === 'block') {
+        db_Kenya_content.style.display = 'none';
+        document.getElementById('db_Kenya_main').closest('li').classList.remove('db_system_active_li');
+    }
+
+    if (db_Japan_content.style.display === 'block') {
+        db_Japan_content.style.display = 'none';
+        document.getElementById('db_Japan_main').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_Italy_content.style.display === 'block') {
+        db_Italy_content.style.display = 'none';
+        document.getElementById('db_Italy_main').closest('li').classList.remove('db_system_active_li');
+    }
+
+    if (db_France_content.style.display === 'block') {
+        db_France_content.style.display = 'none';
+        document.getElementById('db_France_main').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_Germany_content.style.display === 'block') {
+        db_Germany_content.style.display = 'none';
+        document.getElementById('db_Germany_main').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_Ireland_content.style.display === 'block') {
+        db_Ireland_content.style.display = 'none';
+        document.getElementById('db_Ireland_main').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_Israel_content.style.display === 'block') {
+        db_Israel_content.style.display = 'none';
+        document.getElementById('db_Israel_main').closest('li').classList.remove('db_system_active_li');
+    }
+
+
+    if (db_Hong_Kong_content.style.display === 'block') {
+        db_Hong_Kong_content.style.display = 'none';
+        document.getElementById('db_Hong_Kong_main').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_India_content.style.display === 'block') {
+        db_India_content.style.display = 'none';
+        document.getElementById('db_India_main').closest('li').classList.remove('db_system_active_li');
+    }
+
+
+    if (db_Finland_content.style.display === 'block') {
+        db_Finland_content.style.display = 'none';
+        document.getElementById('db_Finland_main').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_Canada_content.style.display === 'block') {
+        db_Canada_content.style.display = 'none';
+        document.getElementById('db_Canada_main').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_China_content.style.display === 'block') {
+        db_China_content.style.display = 'none';
+        document.getElementById('db_China_main').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_Denmark_content.style.display === 'block') {
+        db_Denmark_content.style.display = 'none';
+        document.getElementById('db_Denmark_main').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_Austria_content.style.display === 'block') {
+        db_Austria_content.style.display = 'none';
+        document.getElementById('db_Austria_main').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_Brazil_content.style.display === 'block') {
+        db_Brazil_content.style.display = 'none';
+        document.getElementById('db_Brazil_main').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_Australia_content.style.display === 'block') {
+        db_Australia_content.style.display = 'none';
+        document.getElementById('db_Australia_main').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_Arizona_city_menu.style.display === 'block') {
+        db_Arizona_city_menu.style.display = 'none';
+        document.getElementById('db_usa').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_District_of_Columbia_city_menu.style.display === 'block') {
+        db_District_of_Columbia_city_menu.style.display = 'none';
+        document.getElementById('db_District_of_Columbia').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_Chandler_content.style.display === 'block') {
+        db_Chandler_content.style.display = 'none';
+        document.getElementById('db_Chandler').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_Mesa_content.style.display === 'block') {
+        db_Mesa_content.style.display = 'none';
+        document.getElementById('db_Mesa').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_Scottsdale_content.style.display === 'block') {
+        db_Scottsdale_content.style.display = 'none';
+        document.getElementById('db_Scottsdale').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_California_city_menu.style.display === 'block') {
+        db_California_city_menu.style.display = 'none';
+        document.getElementById('db_California').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_Colorado_city_menu.style.display === 'block') {
+        db_Colorado_city_menu.style.display = 'none';
+        document.getElementById('db_Colorado').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_Bellevue_content.style.display === 'block') {
+        db_Bellevue_content.style.display = 'none';
+        document.getElementById('db_Bellevue').closest('li').classList.remove('db_system_active_li');
+    }
+
+    if (db_Washington_menu.style.display === 'block') {
+        db_Washington_menu.style.display = 'none';
+        document.getElementById('db_Washington').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_Fairfax_content.style.display === 'block') {
+        db_Fairfax_content.style.display = 'none';
+        document.getElementById('db_Fairfax').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_Virginia_menu.style.display === 'block') {
+        db_Virginia_menu.style.display = 'none';
+        document.getElementById('db_Virginia').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_Houston_content.style.display === 'block') {
+        db_Houston_content.style.display = 'none';
+        document.getElementById('db_Houston').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_Seattle_content.style.display === 'block') {
+        db_Seattle_content.style.display = 'none';
+        document.getElementById('db_Seattle').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_Austin_content.style.display === 'block') {
+        db_Austin_content.style.display = 'none';
+        document.getElementById('db_Austin').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_Texas_menu.style.display === 'block') {
+        db_Texas_menu.style.display = 'none';
+        document.getElementById('db_Texas').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_Allentown_content.style.display === 'block') {
+        db_Allentown_content.style.display = 'none';
+        document.getElementById('db_Allentown').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_Pennsylvania_menu.style.display === 'block') {
+        db_Pennsylvania_menu.style.display = 'none';
+        document.getElementById('db_Pennsylvania').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_Hillsboro_content.style.display === 'block') {
+        db_Hillsboro_content.style.display = 'none';
+        document.getElementById('db_Hillsboro').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_Aloha_content.style.display === 'block') {
+        db_Aloha_content.style.display = 'none';
+        document.getElementById('db_Aloha').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_Oregon_menu.style.display === 'block') {
+        db_Oregon_menu.style.display = 'none';
+        document.getElementById('db_Oregon').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_New_Albany_content.style.display === 'block') {
+        db_New_Albany_content.style.display = 'none';
+        document.getElementById('db_New_Albany').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_Ohio_menu.style.display === 'block') {
+        db_Ohio_menu.style.display = 'none';
+        document.getElementById('db_Ohio').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_cary_content.style.display === 'block') {
+        db_cary_content.style.display = 'none';
+        document.getElementById('db_cary').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_North_Carolina_menu.style.display === 'block') {
+        db_North_Carolina_menu.style.display = 'none';
+        document.getElementById('db_North_Carolina').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_Rio_Rancho_content.style.display === 'block') {
+        db_Rio_Rancho_content.style.display = 'none';
+        document.getElementById('db_Rio_Rancho').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_New_Mexico_menu.style.display === 'block') {
+        db_New_Mexico_menu.style.display = 'none';
+        document.getElementById('db_New_Mexico').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_Schaumburg_content.style.display === 'block') {
+        db_Schaumburg_content.style.display = 'none';
+        document.getElementById('db_Schaumburg').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_Fort_Collins_content.style.display === 'block') {
+        db_Fort_Collins_content.style.display = 'none';
+        document.getElementById('db_Fort_Collins').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_Boxborough_content.style.display === 'block') {
+        db_Boxborough_content.style.display = 'none';
+        document.getElementById('db_Boxborough').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_Novi_content.style.display === 'block') {
+        db_Novi_content.style.display = 'none';
+        document.getElementById('db_Novi').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_New_Jersey_menu.style.display === 'block') {
+        db_New_Jersey_menu.style.display = 'none';
+        document.getElementById('db_New_Jersey').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_Parsippany_content.style.display === 'block') {
+        db_Parsippany_content.style.display = 'none';
+        document.getElementById('db_Parsippany').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_Hudson_content.style.display === 'block') {
+        db_Hudson_content.style.display = 'none';
+        document.getElementById('db_Hudson').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_Cambridge_content.style.display === 'block') {
+        db_Cambridge_content.style.display = 'none';
+        document.getElementById('db_Cambridge').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_Michigan_menu.style.display === 'block') {
+        db_Michigan_menu.style.display = 'none';
+        document.getElementById('db_Michigan').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_Parsippany_content.style.display === 'block') {
+        db_Parsippany_content.style.display = 'none';
+        document.getElementById('db_Parsippany').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_Massachusetts_menu.style.display === 'block') {
+        db_Massachusetts_menu.style.display = 'none';
+        document.getElementById('db_Massachusetts').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_Atlanta_content.style.display === 'block') {
+        db_Atlanta_content.style.display = 'none';
+        document.getElementById('db_Atlanta').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_Illinois_city_menu.style.display === 'block') {
+        db_Illinois_city_menu.style.display = 'none';
+        document.getElementById('db_Illinois').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_Georgia_city_menu.style.display === 'block') {
+        db_Georgia_city_menu.style.display = 'none';
+        document.getElementById('db_georgia').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_Washington_DC_content.style.display === 'block') {
+        db_Washington_DC_content.style.display = 'none';
+        document.getElementById('db_Washington_DC').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_Folsom_content.style.display === 'block') {
+        db_Folsom_content.style.display = 'none';
+        document.getElementById('db_Folsom').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_Santa_Clara_content.style.display === 'block') {
+        db_Santa_Clara_content.style.display = 'none';
+        document.getElementById('db_Santa_Clara').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_San_Jose_content.style.display === 'block') {
+        db_San_Jose_content.style.display = 'none';
+        document.getElementById('db_San_Jose').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_San_Diego_content.style.display === 'block') {
+        db_San_Diego_content.style.display = 'none';
+        document.getElementById('db_San_Diego').closest('li').classList.remove('db_system_active_li');
+    }
+    if (db_Belgium_content.style.display === 'block') {
+        db_Belgium_content.style.display = 'none';
+        document.getElementById('db_Belgium_main').closest('li').classList.remove('db_system_active_li');
+    }
+    // Hide db_usa_state if visible
+    if (db_usa_state.style.display === 'block') {
+        db_usa_state.style.display = 'none';
+        document.getElementById('db_usa_main').closest('li').classList.remove('db_system_active_li');
+    }
+    // Toggle db_Argentina_content
+    if (db_Vietnam_content.style.display === 'block') {
+        db_Vietnam_content.style.display = 'none';
+        this.closest('li').classList.remove('db_system_active_li');
+    } else {
+        db_Vietnam_content.style.setProperty('display', 'block', 'important');
+        this.closest('li').classList.add('db_system_active_li');
+        db_Vietnam_content.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     }
 });
