@@ -21,17 +21,38 @@ $(document).ready(function () {
     }).scroll();
 
     // solutions : Show more and show less in responsive
-    $(".m_separator2").css("display", "none");
+    let previousWidth = $(window).width();
+    function checkScreenWidth() {
+        const currentWidth = $(window).width();
+        if ((previousWidth <= 767 && currentWidth > 767) || 
+            (previousWidth > 767 && currentWidth <= 767)) {
+
+            if (currentWidth > 767) {
+                $(".m_separator1, .m_separator2").css("display", "none");
+                $(".m_hidden").css("display", "block");  
+            } else {
+                $(".m_separator1").css("display", "flex");
+                $(".m_hidden").css("display", "none"); 
+            }
+        }
+        previousWidth = currentWidth; 
+    }
+    checkScreenWidth();
+    $(window).resize(function() {
+        checkScreenWidth();
+    });
     $(".m_showMore").on("click", function () {
         $(this).closest(".row").find(".m_hidden").css("display", "block");
         $(this).closest(".m_separator1").css("display", "none");
         $(this).closest(".row").find(".m_separator2").css("display", "flex");
     });
+
     $(".m_showLess").on("click", function () {
         $(this).closest(".row").find(".m_hidden").css("display", "none");
         $(this).closest(".m_separator2").css("display", "none");
         $(this).closest(".row").find(".m_separator1").css("display", "flex");
     });
+
 
     // solutions : Show more and show less 
     $(".m_separator2_1").css("display", "none");
@@ -45,6 +66,7 @@ $(document).ready(function () {
         $(this).closest(".m_separator2_1").css("display", "none");
         $(this).closest(".row").find(".m_separator1_1").css("display", "flex");
     });
+
 
     // solutions : Business Solutions : AI : Hardware : AI Hardware Solutions : Processors
     $('.m_ai_hpCarousel').owlCarousel({
@@ -126,14 +148,14 @@ $(function () {
 
 // solutions : Rsources : Technology Tips & Tricks
 $(function () {
-    var activeIndex = $('.m_subTab2 .m_tabs2 > .m_active-tab').index(), 
+    var activeIndex = $('.m_subTab2 .m_tabsT > .m_active-tab').index(), 
         $contentlis = $('.m_subTab2 .m_tabs-content2 .m_rtt_li'),
-        $tabslis = $('.m_subTab2 .m_tabs2 > li'); 
+        $tabslis = $('.m_subTab2 .m_tabsT > li'); 
 
     // Show content of active tab on load
     $contentlis.eq(activeIndex).show();
 
-    $('.m_subTab2 .m_tabs2').on('click', '> li', function (e) { 
+    $('.m_subTab2 .m_tabsT').on('click', '> li', function (e) { 
         var $current = $(e.currentTarget),
             index = $current.index();
 
