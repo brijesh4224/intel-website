@@ -165,3 +165,12 @@ $(function () {
     });
 });
 
+
+// Freight Management
+// Play Video
+function playVideo() {
+    var video = document.getElementById('myVideo');
+    video.style.display = 'block'; // Show the video
+    video.play(); // Start playing the video
+}
+
