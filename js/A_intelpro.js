@@ -49,3 +49,20 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 //////////////////////////// navbar //////////////////////////////////////
+//////////////////////////// show more show less //////////////////////////////////////
+document.addEventListener('DOMContentLoaded', function() {
+    const toggleBtn = document.getElementById('toggleBtn');
+    const hiddenItems = document.querySelectorAll('.hidden-mobile');
+    let isExpanded = false;
+  
+    toggleBtn.addEventListener('click', function() {
+      isExpanded = !isExpanded;
+      
+      hiddenItems.forEach(item => {
+        item.style.display = isExpanded ? 'block' : 'none';
+      });
+  
+      toggleBtn.textContent = isExpanded ? 'Show Less' : 'Show More';
+    });
+  });
+//////////////////////////// show more show less //////////////////////////////////////
