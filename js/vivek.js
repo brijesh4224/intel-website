@@ -3682,6 +3682,8 @@ let VK_chk_page = () => {
             fetch_data = VK_crystal_gladden_tools_data
             break;
 
+        
+
         default:
             return;
     }
@@ -5213,5 +5215,23 @@ function VK_display_result_accridan() {
         });
 
         div.innerHTML = htmlele.join('');
+    }
+}
+
+
+
+
+// ------------------------------------------------------------ softeare guard documantation ----------------------------------------------------------
+function VK_software_sm_filter(){
+    let ele = document.getElementsByClassName('VK_software_small_filter_op')
+    for(let i = 0; i < ele.length; i++){
+        ele[i].classList.remove('d-none')
+    }
+}
+
+function VK_software_sm_filter_clsoe(){
+    let ele = document.getElementsByClassName('VK_software_small_filter_op')
+    for(let i = 0; i < ele.length; i++){
+        ele[i].classList.add('d-none')
     }
 }
