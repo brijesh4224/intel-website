@@ -1,54 +1,620 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Responsive Content Page</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-        /* Custom styles */
-        .card-img-top {
-            max-height: 150px;
-            object-fit: cover;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Responsive Layout with Accordion and Pagination</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    /* Additional CSS for responsiveness and layout */
+    .offcanvas-header {
+      background-color: #005B85;
+      color: white;
+    }
+
+    .r_imgcolum img {
+      max-width: 100%;
+      height: auto;
+    }
+
+    .page-number {
+      width: 30px;
+      height: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: #f1f1f1;
+      border-radius: 50%;
+      margin-right: 10px;
+      cursor: pointer;
+    }
+
+    .page-number.active {
+      background-color: #005B85;
+      color: white;
+    }
+
+    .search-and-sort {
+      background-color: white;
+      padding: 10px;
+    }
+
+    .r_vbtn {
+      border: 1px solid #0068b5;
+      padding: .375rem 2.25rem .375rem .75rem;
+      color: #0068b5;
+      background-color: white;
+    }
+
+    .offcanvas {
+      width: 100% !important;
+    }
+
+    .r_accordian {
+      background-color: transparent !important;
+      outline: none !important;
+      border: none !important;
+      box-shadow: none !important;
+      padding: 0 0 11.2px;
+    }
+
+    .accordion-item {
+      border: none !important;
+    }
+
+    .accordion-body {
+      padding: 7px 0;
+      height: 200px;
+    }
+
+    .r_topbottom {
+      padding: 7px 0;
+    }
+
+    .r_body {
+      height: 200px;
+      overflow-y: scroll;
+    }
+
+    /* Full-width elements on mobile */
+    @media screen and (max-width:1024px) {
+      .r_white {
+        margin: 10px 0;
+      }
+
+      .search-and-sort {
+        background-color: transparent;
+      }
+    }
+
+    @media (max-width: 767.98px) {
+
+      .search-and-sort .col-4,
+      .search-and-sort .col-md-4 {
+        width: 100%;
+        margin-bottom: 1rem;
+      }
+    }
+
+    @media (max-width: 767.98px) {
+      .form-select {
+        margin: 10px 0;
+      }
+
+      .r_white {
+        margin: 10px 0 0 0;
+      }
+    }
+  </style>
 </head>
+
 <body>
-    
-    <div class="row mb-4 align-items-center">
-        <!-- Results Count -->
-        <div class="col-12 col-md mb-2 mb-md-0">
-            <span>1102 results</span>
-        </div>
-    
-        <!-- Search and Sort Container -->
-        <div class="col-12 col-md-auto mb-2 mb-md-0 ms-auto d-flex flex-column flex-md-row justify-content-md-end align-items-md-center">
-            <!-- Sort Dropdown -->
-            <div class="mb-2 mb-md-0 me-md-2 w-100 w-md-auto">
-                <select class="form-select" id="sortSelect" onchange="sortContent()">
-                    <option disabled selected>Sort by</option>
-                    <option value="az">A-Z</option>
-                    <option value="za">Z-A</option>
-                    <option value="newest">Newest</option>
-                    <option value="oldest">Oldest</option>
-                </select>
-            </div>
-            <!-- Search Input -->
-            <div class="input-group w-100 w-md-auto">
-                <input type="text" class="form-control" placeholder="Search this content" id="searchInput">
-                <button class="btn btn-primary" onclick="searchContent()">Search</button>
-            </div>
-        </div>
-    
-        <!-- Offcanvas Trigger for Mobile -->
-        <div class="col-12 d-md-none">
-            <button class="btn btn-outline-primary" data-bs-toggle="offcanvas" data-bs-target="#offcanvasFilter" aria-controls="offcanvasFilter"
-                style="width: 100% !important; color: #0068b5; border-color: #0068b5;">
-                Filter by
-            </button>
-        </div>
+
+  <div class="container mt-4">
+    <div class="row mb-3 search-and-sort">
+      <!-- 1102 Results - Part of the Row -->
+      <div class="col-xxl-4 col-xl-12">
+        <p id="totalResults" class="p-0 m-0">1102 results</p>
+      </div>
+
+      <!-- Search - Part of the Row -->
+      <div class="col-xxl-4 col-xl-12 d-flex justify-content-end r_white">
+        <input type="search" class="form-control" placeholder="Search this content">
+      </div>
+
+      <!-- Sort by - Part of the Row -->
+      <div class="col-xxl-4 col-md-6 d-flex justify-content-end">
+        <select class="form-select" aria-label="Sort by" style="height: 40px;">
+          <option selected>Newest</option>
+          <option value="1">Oldest</option>
+          <option value="2">Most Popular</option>
+          <option value="3">Least Popular</option>
+        </select>
+      </div>
+      <div class="col-xxl-4 col-md-6">
+        <button class="r_vbtn d-xl-none mb-3" type="button" data-bs-toggle="offcanvas"
+          data-bs-target="#offcanvasExample" aria-controls="offcanvasExample" style="width: 100%;">
+          Filter by
+        </button>
+      </div>
     </div>
-    
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <div class="row">
+      <div class="col-lg-3 d-none d-xl-block">
+        <!-- Accordion for desktop view -->
+        <div>
+          <p style="font-size: 20px;">Filter by</p>
+          <hr>
+        </div>
+        <div class="accordion" id="accordionExample">
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="headingOne">
+              <button class="accordion-button r_accordian" type="button" data-bs-toggle="collapse"
+                data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                Category
+              </button>
+            </h2>
+            <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
+              data-bs-parent="#accordionExample">
+              <div class="accordion-body r_body">
+                <div class="form-check">
+                  <div class="r_topbottom">
+                    <input class="form-check-input" type="checkbox" value="" id="partnerStories">
+                    <label class="form-check-label r_label" for="partnerStories">
+                      5G & Wireless
+                    </label>
+                  </div>
+                  <div class="r_topbottom">
+                    <input class="form-check-input" type="checkbox" value="" id="partnerStories">
+                    <label class="form-check-label r_label" for="partnerStories">
+                      Artificial Intelligence
+                    </label>
+                  </div>
+                  <div class="r_topbottom">
+                    <input class="form-check-input" type="checkbox" value="" id="partnerStories">
+                    <label class="form-check-label r_label" for="partnerStories">
+                      Client Computing
+                    </label>
+                  </div>
+                  <div class="r_topbottom">
+                    <input class="form-check-input" type="checkbox" value="" id="partnerStories">
+                    <label class="form-check-label r_label" for="partnerStories">
+                      Corporate
+                    </label>
+                  </div>
+                  <div class="r_topbottom">
+                    <input class="form-check-input" type="checkbox" value="" id="partnerStories">
+                    <label class="form-check-label r_label" for="partnerStories">
+                      Data Center
+                    </label>
+                  </div>
+                  <div class="r_topbottom">
+                    <input class="form-check-input" type="checkbox" value="" id="partnerStories">
+                    <label class="form-check-label r_label" for="partnerStories">
+                      Intel Foundry
+                    </label>
+                  </div>
+                  <div class="r_topbottom">
+                    <input class="form-check-input" type="checkbox" value="" id="partnerStories">
+                    <label class="form-check-label r_label" for="partnerStories">
+                      International News
+                    </label>
+                  </div>
+                  <div class="r_topbottom">
+                    <input class="form-check-input" type="checkbox" value="" id="partnerStories">
+                    <label class="form-check-label r_label" for="partnerStories">
+                      Internet of Things
+                    </label>
+                  </div>
+                  <div class="r_topbottom">
+                    <input class="form-check-input" type="checkbox" value="" id="partnerStories">
+                    <label class="form-check-label r_label" for="partnerStories">
+                      Manufacturing
+                    </label>
+                  </div>
+                  <div class="r_topbottom">
+                    <input class="form-check-input" type="checkbox" value="" id="partnerStories">
+                    <label class="form-check-label r_label" for="partnerStories">
+                      Mobileye/Automotive
+                    </label>
+                  </div>
+                  <div class="r_topbottom">
+                    <input class="form-check-input" type="checkbox" value="" id="partnerStories">
+                    <label class="form-check-label r_label" for="partnerStories">
+                      New Technologies
+                    </label>
+                  </div>
+                  <div class="r_topbottom">
+                    <input class="form-check-input" type="checkbox" value="" id="partnerStories">
+                    <label class="form-check-label r_label" for="partnerStories">
+                      Partner Stories
+                    </label>
+                  </div>
+                  <div class="r_topbottom">
+                    <input class="form-check-input" type="checkbox" value="" id="partnerStories">
+                    <label class="form-check-label r_label" for="partnerStories">
+                      Programmable Solutions
+                    </label>
+                  </div>
+                  <div class="r_topbottom">
+                    <input class="form-check-input" type="checkbox" value="" id="partnerStories">
+                    <label class="form-check-label r_label" for="partnerStories">
+                      Security
+                    </label>
+                  </div>
+                  <div class="r_topbottom">
+                    <input class="form-check-input" type="checkbox" value="" id="partnerStories">
+                    <label class="form-check-label r_label" for="partnerStories">
+                      Software
+                    </label>
+                  </div>
+                  <div class="r_topbottom">
+                    <input class="form-check-input" type="checkbox" value="" id="partnerStories">
+                    <label class="form-check-label r_label" for="partnerStories">
+                      Software
+                    </label>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+          <hr>
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="headingTwo">
+              <button class="accordion-button collapsed r_accordian" type="button" data-bs-toggle="collapse"
+                data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                Executive Leadership
+              </button>
+            </h2>
+            <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
+              data-bs-parent="#accordionExample">
+              <div class="accordion-body">
+                <div>
+                  <input class="form-check-input" type="checkbox" value="" id="partnerStories">
+                  <label class="form-check-label r_label" for="partnerStories">
+                    Biographies
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+          <hr>
+        </div>
+      </div>
+
+      <div class="col-lg-9">
+        <!-- Button trigger for off-canvas on mobile -->
+        <button class="btn btn-primary d-none mb-3" type="button" data-bs-toggle="offcanvas"
+          data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
+          Filter by
+        </button>
+
+        <!-- Image Section -->
+        <div id="content" class="row">
+          <!-- Content will be populated here by JS -->
+        </div>
+
+        <!-- Pagination controls -->
+        <div class="d-flex justify-content-center mt-4">
+          <div id="pagination" class="d-flex">
+            <!-- Pagination numbers will be here -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Off-canvas for mobile view -->
+  <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+    <div class="offcanvas-header">
+      <h5 class="offcanvas-title" id="offcanvasExampleLabel">Filter by</h5>
+      <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+      <!-- Accordion for mobile view -->
+      <div>
+        <p style="font-size: 20px;">Filter by</p>
+        <hr>
+      </div>
+      <div class="accordion" id="accordionExample">
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="headingOne">
+            <button class="accordion-button r_accordian" type="button" data-bs-toggle="collapse"
+              data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+              Category
+            </button>
+          </h2>
+          <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
+            data-bs-parent="#accordionExample">
+            <div class="accordion-body r_body">
+              <div class="form-check">
+                <div class="r_topbottom">
+                  <input class="form-check-input" type="checkbox" value="" id="partnerStories">
+                  <label class="form-check-label r_label" for="partnerStories">
+                    5G & Wireless
+                  </label>
+                </div>
+                <div class="r_topbottom">
+                  <input class="form-check-input" type="checkbox" value="" id="partnerStories">
+                  <label class="form-check-label r_label" for="partnerStories">
+                    Artificial Intelligence
+                  </label>
+                </div>
+                <div class="r_topbottom">
+                  <input class="form-check-input" type="checkbox" value="" id="partnerStories">
+                  <label class="form-check-label r_label" for="partnerStories">
+                    Client Computing
+                  </label>
+                </div>
+                <div class="r_topbottom">
+                  <input class="form-check-input" type="checkbox" value="" id="partnerStories">
+                  <label class="form-check-label r_label" for="partnerStories">
+                    Corporate
+                  </label>
+                </div>
+                <div class="r_topbottom">
+                  <input class="form-check-input" type="checkbox" value="" id="partnerStories">
+                  <label class="form-check-label r_label" for="partnerStories">
+                    Data Center
+                  </label>
+                </div>
+                <div class="r_topbottom">
+                  <input class="form-check-input" type="checkbox" value="" id="partnerStories">
+                  <label class="form-check-label r_label" for="partnerStories">
+                    Intel Foundry
+                  </label>
+                </div>
+                <div class="r_topbottom">
+                  <input class="form-check-input" type="checkbox" value="" id="partnerStories">
+                  <label class="form-check-label r_label" for="partnerStories">
+                    International News
+                  </label>
+                </div>
+                <div class="r_topbottom">
+                  <input class="form-check-input" type="checkbox" value="" id="partnerStories">
+                  <label class="form-check-label r_label" for="partnerStories">
+                    Internet of Things
+                  </label>
+                </div>
+                <div class="r_topbottom">
+                  <input class="form-check-input" type="checkbox" value="" id="partnerStories">
+                  <label class="form-check-label r_label" for="partnerStories">
+                    Manufacturing
+                  </label>
+                </div>
+                <div class="r_topbottom">
+                  <input class="form-check-input" type="checkbox" value="" id="partnerStories">
+                  <label class="form-check-label r_label" for="partnerStories">
+                    Mobileye/Automotive
+                  </label>
+                </div>
+                <div class="r_topbottom">
+                  <input class="form-check-input" type="checkbox" value="" id="partnerStories">
+                  <label class="form-check-label r_label" for="partnerStories">
+                    New Technologies
+                  </label>
+                </div>
+                <div class="r_topbottom">
+                  <input class="form-check-input" type="checkbox" value="" id="partnerStories">
+                  <label class="form-check-label r_label" for="partnerStories">
+                    Partner Stories
+                  </label>
+                </div>
+                <div class="r_topbottom">
+                  <input class="form-check-input" type="checkbox" value="" id="partnerStories">
+                  <label class="form-check-label r_label" for="partnerStories">
+                    Programmable Solutions
+                  </label>
+                </div>
+                <div class="r_topbottom">
+                  <input class="form-check-input" type="checkbox" value="" id="partnerStories">
+                  <label class="form-check-label r_label" for="partnerStories">
+                    Security
+                  </label>
+                </div>
+                <div class="r_topbottom">
+                  <input class="form-check-input" type="checkbox" value="" id="partnerStories">
+                  <label class="form-check-label r_label" for="partnerStories">
+                    Software
+                  </label>
+                </div>
+                <div class="r_topbottom">
+                  <input class="form-check-input" type="checkbox" value="" id="partnerStories">
+                  <label class="form-check-label r_label" for="partnerStories">
+                    Software
+                  </label>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+        <hr>
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="headingTwo">
+            <button class="accordion-button collapsed r_accordian" type="button" data-bs-toggle="collapse"
+              data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+              Executive Leadership
+            </button>
+          </h2>
+          <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
+            data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+              <div>
+                <input class="form-check-input" type="checkbox" value="" id="partnerStories">
+                <label class="form-check-label r_label" for="partnerStories">
+                  Biographies
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+        <hr>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    const data = [
+      {
+        image: "https://www.intel.com/content/dam/www/central-libraries/us/en/images/2024-02/newsroom-april-miller-boise-bio-jpg.png",
+        title: "Intel Recommends Stockholders Reject ‘Mini-Tender Offer’ by Tutanota...",
+        description: "Intel does not endorse Tutanota’s mini-tender offer and is not associated...",
+        readTime: "2 min read"
+      },
+      {
+        image: "https://www.intel.com/content/dam/www/central-libraries/us/en/images/2024-02/newsroom-april-miller-boise-bio-jpg.png",
+        title: "Karma Automotive Goes All-In with Intel for a Software-Defined Future",
+        description: "Ultra-luxury vehicles maker ditches incremental upgrades...",
+        readTime: "4 min read"
+      },
+      {
+        image: "https://www.intel.com/content/dam/www/central-libraries/us/en/images/2024-02/newsroom-april-miller-boise-bio-jpg.png",
+        title: "Intel Recommends Stockholders Reject ‘Mini-Tender Offer’ by Tutanota...",
+        description: "Intel does not endorse Tutanota’s mini-tender offer and is not associated...",
+        readTime: "2 min read"
+      },
+      {
+        image: "https://www.intel.com/content/dam/www/central-libraries/us/en/images/2024-02/newsroom-april-miller-boise-bio-jpg.png",
+        title: "Karma Automotive Goes All-In with Intel for a Software-Defined Future",
+        description: "Ultra-luxury vehicles maker ditches incremental upgrades...",
+        readTime: "4 min read"
+      },
+      {
+        image: "https://www.intel.com/content/dam/www/central-libraries/us/en/images/2024-02/newsroom-april-miller-boise-bio-jpg.png",
+        title: "Intel Recommends Stockholders Reject ‘Mini-Tender Offer’ by Tutanota...",
+        description: "Intel does not endorse Tutanota’s mini-tender offer and is not associated...",
+        readTime: "2 min read"
+      },
+      {
+        image: "https://www.intel.com/content/dam/www/central-libraries/us/en/images/2024-02/newsroom-april-miller-boise-bio-jpg.png",
+        title: "Karma Automotive Goes All-In with Intel for a Software-Defined Future",
+        description: "Ultra-luxury vehicles maker ditches incremental upgrades...",
+        readTime: "4 min read"
+      },
+      {
+        image: "https://www.intel.com/content/dam/www/central-libraries/us/en/images/2024-02/newsroom-april-miller-boise-bio-jpg.png",
+        title: "Intel Recommends Stockholders Reject ‘Mini-Tender Offer’ by Tutanota...",
+        description: "Intel does not endorse Tutanota’s mini-tender offer and is not associated...",
+        readTime: "2 min read"
+      },
+      {
+        image: "https://www.intel.com/content/dam/www/central-libraries/us/en/images/2024-02/newsroom-april-miller-boise-bio-jpg.png",
+        title: "Karma Automotive Goes All-In with Intel for a Software-Defined Future",
+        description: "Ultra-luxury vehicles maker ditches incremental upgrades...",
+        readTime: "4 min read"
+      },
+      {
+        image: "https://www.intel.com/content/dam/www/central-libraries/us/en/images/2024-02/newsroom-april-miller-boise-bio-jpg.png",
+        title: "Intel Recommends Stockholders Reject ‘Mini-Tender Offer’ by Tutanota...",
+        description: "Intel does not endorse Tutanota’s mini-tender offer and is not associated...",
+        readTime: "2 min read"
+      },
+      {
+        image: "https://www.intel.com/content/dam/www/central-libraries/us/en/images/2024-02/newsroom-april-miller-boise-bio-jpg.png",
+        title: "Karma Automotive Goes All-In with Intel for a Software-Defined Future",
+        description: "Ultra-luxury vehicles maker ditches incremental upgrades...",
+        readTime: "4 min read"
+      },
+      {
+        image: "https://www.intel.com/content/dam/www/central-libraries/us/en/images/2024-02/newsroom-april-miller-boise-bio-jpg.png",
+        title: "Intel Recommends Stockholders Reject ‘Mini-Tender Offer’ by Tutanota...",
+        description: "Intel does not endorse Tutanota’s mini-tender offer and is not associated...",
+        readTime: "2 min read"
+      },
+      {
+        image: "https://www.intel.com/content/dam/www/central-libraries/us/en/images/2024-02/newsroom-april-miller-boise-bio-jpg.png",
+        title: "Karma Automotive Goes All-In with Intel for a Software-Defined Future",
+        description: "Ultra-luxury vehicles maker ditches incremental upgrades...",
+        readTime: "4 min read"
+      },
+      {
+        image: "https://www.intel.com/content/dam/www/central-libraries/us/en/images/2024-02/newsroom-april-miller-boise-bio-jpg.png",
+        title: "Intel Recommends Stockholders Reject ‘Mini-Tender Offer’ by Tutanota...",
+        description: "Intel does not endorse Tutanota’s mini-tender offer and is not associated...",
+        readTime: "2 min read"
+      },
+      {
+        image: "https://www.intel.com/content/dam/www/central-libraries/us/en/images/2024-02/newsroom-april-miller-boise-bio-jpg.png",
+        title: "Karma Automotive Goes All-In with Intel for a Software-Defined Future",
+        description: "Ultra-luxury vehicles maker ditches incremental upgrades...",
+        readTime: "4 min read"
+      },
+      {
+        image: "https://www.intel.com/content/dam/www/central-libraries/us/en/images/2024-02/newsroom-april-miller-boise-bio-jpg.png",
+        title: "Intel Recommends Stockholders Reject ‘Mini-Tender Offer’ by Tutanota...",
+        description: "Intel does not endorse Tutanota’s mini-tender offer and is not associated...",
+        readTime: "2 min read"
+      },
+      {
+        image: "https://www.intel.com/content/dam/www/central-libraries/us/en/images/2024-02/newsroom-april-miller-boise-bio-jpg.png",
+        title: "Karma Automotive Goes All-In with Intel for a Software-Defined Future",
+        description: "Ultra-luxury vehicles maker ditches incremental upgrades...",
+        readTime: "4 min read"
+      },
+      {
+        image: "https://www.intel.com/content/dam/www/central-libraries/us/en/images/2024-02/newsroom-april-miller-boise-bio-jpg.png",
+        title: "Intel Recommends Stockholders Reject ‘Mini-Tender Offer’ by Tutanota...",
+        description: "Intel does not endorse Tutanota’s mini-tender offer and is not associated...",
+        readTime: "2 min read"
+      },
+      {
+        image: "https://www.intel.com/content/dam/www/central-libraries/us/en/images/2024-02/newsroom-april-miller-boise-bio-jpg.png",
+        title: "Karma Automotive Goes All-In with Intel for a Software-Defined Future",
+        description: "Ultra-luxury vehicles maker ditches incremental upgrades...",
+        readTime: "4 min read"
+      },
+      // Add more objects here
+    ];
+
+    const itemsPerPage = 12;
+    let currentPage = 1;
+
+    function renderContent(page) {
+      const startIndex = (page - 1) * itemsPerPage;
+      const endIndex = startIndex + itemsPerPage;
+      const items = data.slice(startIndex, endIndex);
+
+      const contentDiv = document.getElementById("content");
+      contentDiv.innerHTML = items.map(item => `
+            <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
+                <div class="card">
+                    <img src="${item.image}" class="card-img-top" alt="${item.title}">
+                    <div class="card-body">
+                        <h5 class="card-title">${item.title}</h5>
+                        <p class="card-text">${item.description}</p>
+                        <p class="text-muted">${item.readTime}</p>
+                    </div>
+                </div>
+            </div>
+        `).join('');
+    }
+
+    function renderPagination() {
+      const totalPages = Math.ceil(data.length / itemsPerPage);
+      const paginationDiv = document.getElementById("pagination");
+      paginationDiv.innerHTML = '';
+
+      for (let i = 1; i <= totalPages; i++) {
+        const pageNumber = document.createElement("div");
+        pageNumber.className = `page-number ${i === currentPage ? 'active' : ''}`;
+        pageNumber.innerText = i;
+        pageNumber.addEventListener("click", () => {
+          currentPage = i;
+          renderContent(currentPage);
+          renderPagination();
+        });
+        paginationDiv.appendChild(pageNumber);
+      }
+    }
+
+    // Initial render
+    renderContent(currentPage);
+    renderPagination();
+  </script>
 </body>
+
 </html>
