@@ -6,19 +6,19 @@ document.addEventListener('DOMContentLoaded', () => {
     const lastActiveOption = localStorage.getItem('lastActiveOption');
 
     if (activeMenu && lastActiveOption === 'db-option-1') {
-        document.getElementById(activeMenu).style.display = 'block';
+        document.getElementById(activeMenu).style.setProperty('display', 'block', 'important');
         if (activeSubmenu) {
-            document.getElementById(activeSubmenu).style.display = 'block';
+            document.getElementById(activeSubmenu).style.setProperty('display', 'block', 'important');
         }
     } else if (activePrgmMenu && lastActiveOption === 'db-option-2') {
-        document.getElementById(activePrgmMenu).style.display = 'block';
+        document.getElementById(activePrgmMenu).style.setProperty('display', 'block', 'important');
         if (activePrgmSubmenu) {
-            document.getElementById(activePrgmSubmenu).style.display = 'block';
+            document.getElementById(activePrgmSubmenu).style.setProperty('display', 'block', 'important');
         }
     } else if (activePrgmMenu && lastActiveOption === 'option-3') {
-        document.getElementById(activePrgmMenu).style.display = 'block';
+        document.getElementById(activePrgmMenu).style.setProperty('display', 'block', 'important');
         if (activePrgmSubmenu) {
-            document.getElementById(activePrgmSubmenu).style.display = 'block';
+            document.getElementById(activePrgmSubmenu).style.setProperty('display', 'block', 'important');
         }
     }
 });
@@ -52,7 +52,7 @@ function setActivePrgmMenu(prgmMenuId, prgmSubmenuId = null) {
 
 function toggleContent(contentId) {
     const content = document.getElementById(contentId);
-    content.style.display = (content.style.display === 'block') ? 'none' : 'block';
+    content.style.display = (content.style.display === 'block') ? 'none' : 'block !important';
 }
 
 document.getElementById('db-option-1').addEventListener('click', function (event) {
@@ -231,7 +231,7 @@ document.getElementById('db-option-1').addEventListener('click', function (event
         submenuContent4.style.display = 'none';
         setActiveMenu('');
     } else {
-        menuContainer.style.display = 'block';
+        menuContainer.style.setProperty('display', 'block', 'important');
         db_intel_killer.style.display = 'none';
         db_ethernet_submenu.style.display = 'none';
         db_ethernet_software_menu.style.display = 'none';
@@ -481,7 +481,7 @@ document.getElementById('db-nested-menu1').addEventListener('click', function (e
         db_graphics_menu_content.style.display = 'none';
         setActiveMenu('db-nested-menu-container');
     } else {
-        submenuContent.style.display = 'block';
+        submenuContent.style.setProperty('display', 'block', 'important');
         db_intel_nuc_menu.style.display = 'none';
         submenuContent2.style.display = 'none';
         db_fgpa_menu.style.display = 'none';
@@ -721,7 +721,7 @@ document.getElementById('nested-menu2').addEventListener('click', function (even
         db_ethernet_software_menu.style.display = 'none';
         setActiveMenu('db-nested-menu-container');
     } else {
-        submenuContent2.style.display = 'block';
+        submenuContent2.style.setProperty('display', 'block', 'important');
         submenuContent1.style.display = 'none';
         db_fgpa_menu.style.display = 'none';
         db_Server_Products_menu.style.display = 'none';
@@ -807,15 +807,29 @@ document.getElementById('db-nested-menu-1.1').addEventListener('click', function
     event.preventDefault();
     const submenuContent1 = document.getElementById('db-nested-menu-content1');
     const submenuContent2 = document.getElementById('nested-menu1.1-content');
+    const nestedMenu1_2_1 = document.getElementById('db-nested-menu-1.2.1');
+    const nestedMenu1_2_1_content = document.getElementById('db-nested-menu1.2.1-content');
     const submenuContent3 = document.getElementById('db-nested-menu1.3-content');
-    const submenuContent1_2_1 = document.getElementById('db-nested-menu1.2.1-content');
-    toggleContent('nested-menu1.1-content');
-    submenuContent1.style.display = 'none';
-    submenuContent3.style.display = 'none';
-    submenuContent1_2_1.style.display = 'none';
-    activateMenu(this.parentElement);
-    setActiveMenu('db-nested-menu-container', 'db-nested-menu-content', 'nested-menu1.1-content');
-    document.getElementById("nested-menu1.1-content").scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+   
+    
+    if (submenuContent2.style.display === 'block') {
+        submenuContent1.style.display = 'none';
+        submenuContent2.style.display = 'none';
+        submenuContent3.style.display = 'none';
+        nestedMenu1_2_1.style.display = 'none';
+        nestedMenu1_2_1_content.style.display = 'none';
+
+        setActiveMenu('db-nested-menu-container');
+    } else {
+        document.getElementById("nested-menu1.1-content").scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        submenuContent2.style.setProperty('display', 'block', 'important');
+        submenuContent1.style.display = 'none';
+        nestedMenu1_2_1.style.display = 'none';
+        submenuContent3.style.display = 'none';
+        nestedMenu1_2_1_content.style.display = 'none';
+        activateMenu(this.parentElement);
+        setActiveMenu('db-nested-menu-container', 'db-nested-menu-content', 'nested-menu1.1-content');
+    }
 });
 
 document.getElementById('db-nested-menu-1.2').addEventListener('click', function (event) {
@@ -836,7 +850,7 @@ document.getElementById('db-nested-menu-1.2').addEventListener('click', function
         setActiveMenu('db-nested-menu-container');
     } else {
         document.getElementById("db-nested-menu-content1").scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-        submenuContent1.style.display = 'block';
+        submenuContent1.style.setProperty('display', 'block', 'important');
         submenuContent2.style.display = 'none';
         nestedMenu1_2_1.style.display = 'none';
         submenuContent3.style.display = 'none';
@@ -857,7 +871,7 @@ document.getElementById('db-nested-menu-1.2.1').addEventListener('click', functi
     if (nestedMenu1_2_1_content.style.display === 'block') {
         nestedMenu1_2_1_content.style.display = 'none';
     } else {
-        nestedMenu1_2_1_content.style.display = 'block';
+        nestedMenu1_2_1_content.style.setProperty('display', 'block', 'important');
         document.getElementById("db-nested-menu1.2.1-content").scrollIntoView({ behavior: 'smooth', block: 'nearest' });
         activateMenu(this.parentElement);
         setActiveMenu('db-nested-menu-container', 'db-nested-menu-content', 'db-nested-menu1.2.1-content');
@@ -882,7 +896,7 @@ document.getElementById('db-nested-menu-1.3').addEventListener('click', function
     } else {
         submenuContent1.style.display = 'none';
         submenuContent2.style.display = 'none';
-        submenuContent3.style.display = 'block';
+        submenuContent3.style.setProperty('display', 'block', 'important');
         submenuContent1_1_1.style.display = 'none';
         document.getElementById("db-nested-menu1.3-content").scrollIntoView({ behavior: 'smooth', block: 'nearest' });
 
@@ -1071,7 +1085,7 @@ document.getElementById('db-option-2').addEventListener('click', function (event
         db_ethernet_software_menu.style.display = 'none';
         setActivePrgmMenu('');
     } else {
-        prgmmenu.style.display = 'block';
+        prgmmenu.style.setProperty('display', 'block', 'important');
         prgmmenu1_1.style.display = 'none';
         prgmmenu2_1.style.display = 'none';
         prgmmenu3_1.style.display = 'none';
@@ -1172,7 +1186,7 @@ document.getElementById('db-nested-prgm-content1').addEventListener('click', fun
         prgmmenu.style.display = 'none';
         setActivePrgmMenu('db-nested-prgm-content');
     } else {
-        prgmmenu.style.display = 'block';
+        prgmmenu.style.setProperty('display', 'block', 'important');
         prgmmenu2_1.style.display = 'none';
         prgmmenu3_1.style.display = 'none';
         prgmmenu4_1.style.display = 'none';
@@ -1195,7 +1209,7 @@ document.getElementById('db-nested-prgm-content2').addEventListener('click', fun
         prgmmenu.style.display = 'none';
         setActivePrgmMenu('db-nested-prgm-content');
     } else {
-        prgmmenu.style.display = 'block';
+        prgmmenu.style.setProperty('display', 'block', 'important');
         prgmmenu1_1.style.display = 'none';
         prgmmenu3_1.style.display = 'none';
         prgmmenu4_1.style.display = 'none';
@@ -1218,7 +1232,7 @@ document.getElementById('db-nested-prgm-content3').addEventListener('click', fun
         prgmmenu.style.display = 'none';
         setActivePrgmMenu('db-nested-prgm-content');
     } else {
-        prgmmenu.style.display = 'block';
+        prgmmenu.style.setProperty('display', 'block', 'important');
         prgmmenu1_1.style.display = 'none';
         prgmmenu2_1.style.display = 'none';
         prgmmenu4_1.style.display = 'none';
@@ -1240,7 +1254,7 @@ document.getElementById('db-nested-prgm-content4').addEventListener('click', fun
         prgmmenu.style.display = 'none';
         setActivePrgmMenu('db-nested-prgm-content');
     } else {
-        prgmmenu.style.display = 'block';
+        prgmmenu.style.setProperty('display', 'block', 'important');
         prgmmenu1_1.style.display = 'none';
         prgmmenu2_1.style.display = 'none';
         prgmmenu3_1.style.display = 'none';
@@ -1426,7 +1440,7 @@ document.getElementById('option-3').addEventListener('click', function (event) {
         db_ethernet_software_menu.style.display = 'none';
         setActivePrgmMenu('');
     } else {
-        prgmmenu4_1_1.style.display = 'block';
+        prgmmenu4_1_1.style.setProperty('display', 'block', 'important');
         prgmmenu.style.display = 'none';
         prgmmenu1_1.style.display = 'none';
         prgmmenu2_1.style.display = 'none';
@@ -1677,7 +1691,7 @@ document.getElementById('db-fgpa-mainmenu').addEventListener('click', function (
         submenuContent1_1_3.style.display = 'none';
         setActiveMenu('db-nested-menu-container');
     } else {
-        db_fgpa_menu.style.display = 'block';
+        db_fgpa_menu.style.setProperty('display', 'block', 'important');
         db_intel_killer.style.display = 'none';
         db_graphics_menu_content.style.display = 'none';
         db_ethernet_submenu.style.display = 'none';
@@ -1843,7 +1857,7 @@ document.getElementById('db-graphics-mainmenu').addEventListener('click', functi
 
 
     if (db_graphics_menu.style.display === 'block') {
-        db_graphics_menu.style.display = 'none';
+        
         submenuContent.style.display = 'none';
         db_fgpa_menu.style.display = 'none';
         db_Server_Products_menu.style.display = 'none';
@@ -1922,7 +1936,7 @@ document.getElementById('db-graphics-mainmenu').addEventListener('click', functi
         setActiveMenu('db-nested-menu-container');
     } else {
         submenuContent.style.display = 'none';
-        db_graphics_menu.style.display = 'block'
+        db_graphics_menu.style.display = 'block !important';
         db_intel_nuc_menu.style.display = 'none';
         submenuContent2.style.display = 'none';
         db_fgpa_menu.style.display = 'none';
@@ -1994,7 +2008,6 @@ document.getElementById('db-graphics-mainmenu').addEventListener('click', functi
         db_Development_Software_content.style.display = 'none';
         db_ethernet_farbic_content_col.style.display = 'none';
         db_intel_killer.style.display = 'none';
-        db_graphics_menu_content.style.display = 'none';
         db_ethernet_submenu.style.display = 'none';
         db_ethernet_software_menu.style.display = 'none';
 
@@ -2170,7 +2183,7 @@ document.getElementById('db-intel-nuc-mainmenu').addEventListener('click', funct
         setActiveMenu('db-nested-menu-container');
     } else {
         submenuContent.style.display = 'none';
-        db_intel_nuc_menu.style.display = 'block';
+        db_intel_nuc_menu.style.setProperty('display', 'block', 'important');
         db_graphics_menu.style.display = 'none'
         submenuContent2.style.display = 'none';
         db_fgpa_menu.style.display = 'none';
@@ -2417,7 +2430,7 @@ document.getElementById('db-memory-storage-mainmenu').addEventListener('click', 
     } else {
         submenuContent.style.display = 'none';
         db_intel_nuc_menu.style.display = 'none';
-        db_memory_storage_menu.style.display = 'block';
+        db_memory_storage_menu.style.setProperty('display', 'block', 'important');
         db_Server_Products_menu.style.display = 'none';
         db_Wireless_menu.style.display = 'none';
         db_Technologies_menu.style.display = 'none';
@@ -2663,7 +2676,7 @@ document.getElementById('db-processor-mainmenu').addEventListener('click', funct
         setActiveMenu('db-nested-menu-container');
     } else {
         submenuContent.style.display = 'none';
-        db_processor_menu.style.display = 'block';
+        db_processor_menu.style.setProperty('display', 'block', 'important');
         db_intel_nuc_menu.style.display = 'none';
         db_Server_Products_menu.style.display = 'none';
         db_Wireless_menu.style.display = 'none';
@@ -2907,7 +2920,7 @@ document.getElementById('db-Server-Products-mainmenu').addEventListener('click',
     } else {
         submenuContent.style.display = 'none';
         db_service_menu.style.display = 'none';
-        db_Server_Products_menu.style.display = 'block';
+        db_Server_Products_menu.style.setProperty('display', 'block', 'important');
         db_Wireless_menu.style.display = 'none';
         db_Technologies_menu.style.display = 'none';
         db_software_menu.style.display = 'none';
@@ -3148,7 +3161,7 @@ document.getElementById('db-service-mainmenu').addEventListener('click', functio
         setActiveMenu('db-nested-menu-container');
     } else {
         submenuContent.style.display = 'none';
-        db_service_menu.style.display = 'block';
+        db_service_menu.style.setProperty('display', 'block', 'important');
         db_Server_Products_menu.style.display = 'none';
         db_Wireless_menu.style.display = 'none';
         db_Technologies_menu.style.display = 'none';
@@ -3393,7 +3406,7 @@ document.getElementById('db-software-mainmenu').addEventListener('click', functi
         db_Server_Products_menu.style.display = 'none';
         db_Wireless_menu.style.display = 'none';
         db_Technologies_menu.style.display = 'none';
-        db_software_menu.style.display = 'block';
+        db_software_menu.style.setProperty('display', 'block', 'important');
 
         db_processor_menu.style.display = 'none';
         db_intel_nuc_menu.style.display = 'none';
@@ -3633,7 +3646,7 @@ document.getElementById('db-Technologies-mainmenu').addEventListener('click', fu
         setActiveMenu('db-nested-menu-container');
     } else {
         submenuContent.style.display = 'none';
-        db_Technologies_menu.style.display = 'block';
+        db_Technologies_menu.style.setProperty('display', 'block', 'important');
         db_service_menu.style.display = 'none';
         db_Server_Products_menu.style.display = 'none';
         db_Wireless_menu.style.display = 'none';
@@ -3875,7 +3888,7 @@ document.getElementById('db-Wireless-mainmenu').addEventListener('click', functi
     } else {
         submenuContent.style.display = 'none';
         db_Technologies_menu.style.display = 'none';
-        db_Wireless_menu.style.display = 'block';
+        db_Wireless_menu.style.setProperty('display', 'block', 'important');
         db_service_menu.style.display = 'none';
         db_Server_Products_menu.style.display = 'none';
         db_software_menu.style.display = 'none';
@@ -4083,7 +4096,7 @@ document.getElementById('db-ethernetproducts').addEventListener('click', functio
         db_graphics_menu_content.style.display = 'none';
         setActiveMenu('db-nested-menu-container', 'db-db-nested-menu-content2', 'db-ethernet-submenu');
     } else {
-        db_ethernet_submenu.style.display = 'block';
+        db_ethernet_submenu.style.setProperty('display', 'block', 'important');
         db_intel_killer.style.display = 'none';
         db_graphics_menu_content.style.display = 'none';
         db_ethernet_software_menu.style.display = 'none';
@@ -4280,7 +4293,7 @@ document.getElementById('db-killer-main').addEventListener('click', function (ev
         db_Development_Software_content.style.display = 'none';
         setActiveMenu('db-nested-menu-container', 'db-db-nested-menu-content2', 'db_intel_killer');
     } else {
-        db_intel_killer.style.display = 'block';
+        db_intel_killer.style.setProperty('display', 'block', 'important');
         db_graphics_menu_content.style.display = 'none';
         db_ethernet_submenu.style.display = 'none';
         db_ethernet_software_menu.style.display = 'none';
@@ -4477,7 +4490,7 @@ document.getElementById('db-ethernet-software-main').addEventListener('click', f
 
         setActiveMenu('db-nested-menu-container', 'db-db-nested-menu-content2', 'db-ethernet-software-menu');
     } else {
-        db_ethernet_software_menu.style.display = 'block';
+        db_ethernet_software_menu.style.setProperty('display', 'block', 'important');
         db_intel_killer.style.display = 'none';
         db_graphics_menu_content.style.display = 'none';
         db_ethernet_farbic_content_col.style.display = 'none';
@@ -4672,7 +4685,7 @@ document.getElementById('db-ethernet-fabric-content').addEventListener('click', 
         db_ethernet_software_menu.style.display = 'none';
         setActiveMenu('db-nested-menu-container', 'db-db-nested-menu-content2', 'db-ethernet-software-menu', 'db-ethernet-farbic-content-col', 'nested-menu2');
     } else {
-        db_ethernet_farbic_content_col.style.display = 'block';
+        db_ethernet_farbic_content_col.style.setProperty('display', 'block', 'important');
         db_data_center_main_content.style.display = 'none';
         db_data_center_submenu.style.display = 'none';
         db_Unison_app_content.style.display = 'none';
@@ -4977,7 +4990,7 @@ document.getElementById('db-graphics-menu-click').addEventListener('click', func
         db_Developer_edge_content.style.display = 'none';
         db_OpenVINO_toolkit_content.style.display = 'none';
         db_Development_Software_content.style.display = 'none';
-        db_graphics_menu_content.style.display = 'block';
+        db_graphics_menu_content.style.setProperty('display', 'block', 'important');
         db_intel_killer.style.display = 'none';
         db_ethernet_submenu.style.display = 'none';
         document.getElementById("db-graphics-menu-content").scrollIntoView({ behavior: 'smooth', block: 'nearest' });
@@ -5118,7 +5131,7 @@ document.getElementById('db-data-center-main').addEventListener('click', functio
         setActiveMenu('db-nested-menu-container', 'db-graphics-menu', 'nested-menu2', 'db-data-center-main-content');
     } else {
         db_ethernet_farbic_content_col.style.display = 'none';
-        db_data_center_main_content.style.display = 'block';
+        db_data_center_main_content.style.setProperty('display', 'block', 'important');
         db_data_center_submenu.style.display = 'none';
         db_Unison_app_content.style.display = 'none';
         db_Wi_Fi_Products_content.style.display = 'none';
@@ -5309,7 +5322,7 @@ document.getElementById('db-data-center-menu').addEventListener('click', functio
         db_ethernet_software_menu.style.display = 'none';
         setActiveMenu('db-nested-menu-container', 'db-graphics-menu', 'nested-menu2', 'db-data-center-main-content');
     } else {
-        db_data_center_submenu.style.display = 'block';
+        db_data_center_submenu.style.setProperty('display', 'block', 'important');
         db_Unison_app_content.style.display = 'none';
         db_Wi_Fi_Products_content.style.display = 'none';
         db_wireless_content.style.display = 'none';
@@ -5499,7 +5512,7 @@ document.getElementById('db-data-center-submenu140').addEventListener('click', f
         db_ethernet_software_menu.style.display = 'none';
         setActiveMenu('db-nested-menu-container', 'db-graphics-menu', 'nested-menu2', 'db-data-center-main-content');
     } else {
-        db_data_center_submenu_content140.style.display = 'block';
+        db_data_center_submenu_content140.style.setProperty('display', 'block', 'important');
         db_Brand_Verification_Tool_content.style.display = 'none';
         db_Small_Business_Advantage_content.style.display = 'none';
         db_Smart_Edge_content.style.display = 'none';
@@ -5679,7 +5692,7 @@ document.getElementById('db-data-center-submenu170').addEventListener('click', f
         db_ethernet_software_menu.style.display = 'none';
         setActiveMenu('db-nested-menu-container', 'db-graphics-menu', 'nested-menu2', 'db-data-center-main-content');
     } else {
-        db_data_center_submenu_content170.style.display = 'block';
+        db_data_center_submenu_content170.style.setProperty('display', 'block', 'important');
         db_Developer_edge_content.style.display = 'none';
         db_OpenVINO_toolkit_content.style.display = 'none';
         db_Development_Software_content.style.display = 'none';
@@ -5921,7 +5934,7 @@ document.getElementById('db-arc-dedicated-graphics-menu').addEventListener('clic
         db_processor_graphics_menu.style.display = 'none';
         db_data_center_main_content.style.display = 'none';
 
-        db_arc_dedicated_graphics.style.display = 'block';
+        db_arc_dedicated_graphics.style.setProperty('display', 'block', 'important');
         db_ethernet_farbic_content_col.style.display = 'none';
         db_graphics_menu_content.style.display = 'none';
         db_intel_killer.style.display = 'none';
@@ -6110,7 +6123,7 @@ document.getElementById('db-processor-graphics-main').addEventListener('click', 
         db_arc_graphics_content.style.display = 'none';
         db_arc_graphics_menu.style.display = 'none';
         db_processor_graphics_menu_content.style.display = 'none';
-        db_processor_graphics_menu.style.display = 'block';
+        db_processor_graphics_menu.style.setProperty('display', 'block', 'important');
         db_data_center_main_content.style.display = 'none';
 
         db_arc_dedicated_graphics.style.display = 'none';
@@ -6301,7 +6314,7 @@ document.getElementById('db-processor-graphics-menu-click').addEventListener('cl
         db_arc_graphics_content_series_1.style.display = 'none';
         db_arc_graphics_content.style.display = 'none';
         db_arc_graphics_menu.style.display = 'none';
-        db_processor_graphics_menu_content.style.display = 'block';
+        db_processor_graphics_menu_content.style.setProperty('display', 'block', 'important');
         // db_processor_graphics_menu.style.display = 'none';
         db_data_center_main_content.style.display = 'none';
 
@@ -6493,7 +6506,7 @@ document.getElementById('db-arc-graphics-main').addEventListener('click', functi
         db_intel_graphics_menu.style.display = 'none';
         db_arc_graphics_content_series_1.style.display = 'none';
         db_arc_graphics_content.style.display = 'none';
-        db_arc_graphics_menu.style.display = 'block';
+        db_arc_graphics_menu.style.setProperty('display', 'block', 'important');
         db_processor_graphics_menu_content.style.display = 'none';
         // db_processor_graphics_menu.style.display = 'none';
         db_data_center_main_content.style.display = 'none';
@@ -6682,7 +6695,7 @@ document.getElementById('db-arc-dedicated-graphics-menu(series1)-click').addEven
         db_intel_graphics_content.style.display = 'none';
         db_Developer_Cloud_content.style.display = 'none';
         db_intel_graphics_menu.style.display = 'none';
-        db_arc_graphics_content_series_1.style.display = 'block';
+        db_arc_graphics_content_series_1.style.setProperty('display', 'block', 'important');
         db_arc_graphics_content.style.display = 'none';
         // db_arc_graphics_menu.style.display = 'none';
         db_processor_graphics_menu_content.style.display = 'none';
@@ -6873,7 +6886,7 @@ document.getElementById('db-arc-dedicated-graphics-menu-click').addEventListener
         db_Developer_Cloud_content.style.display = 'none';
         db_intel_graphics_menu.style.display = 'none';
         db_arc_graphics_content_series_1.style.display = 'none';
-        db_arc_graphics_content.style.display = 'block';
+        db_arc_graphics_content.style.setProperty('display', 'block', 'important');
         // db_arc_graphics_menu.style.display = 'none';
         db_processor_graphics_menu_content.style.display = 'none';
         // db_processor_graphics_menu.style.display = 'none';
@@ -7061,7 +7074,7 @@ document.getElementById('db-intel-graphics-main').addEventListener('click', func
         db_intel_graphics_content_series1.style.display = 'none';
         db_intel_graphics_content.style.display = 'none';
         db_Developer_Cloud_content.style.display = 'none';
-        db_intel_graphics_menu.style.display = 'block';
+        db_intel_graphics_menu.style.setProperty('display', 'block', 'important');
         db_arc_graphics_content_series_1.style.display = 'none';
         db_arc_graphics_content.style.display = 'none';
         db_arc_graphics_menu.style.display = 'none';
@@ -7250,7 +7263,7 @@ document.getElementById('db-intel-graphics-menu-click').addEventListener('click'
         db_intel_compute_sticks_content.style.display = 'none';
         db_intel_nuc_content.style.display = 'none';
         db_intel_graphics_content_series1.style.display = 'none';
-        db_intel_graphics_content.style.display = 'block';
+        db_intel_graphics_content.style.setProperty('display', 'block', 'important');
         db_Developer_Cloud_content.style.display = 'none';
         db_arc_graphics_content_series_1.style.display = 'none';
         db_arc_graphics_content.style.display = 'none';
@@ -7439,7 +7452,7 @@ document.getElementById('db-intel-graphics-menu(series1)-click').addEventListene
         db_intel_NUC_Elements_content.style.display = 'none';
         db_intel_compute_sticks_content.style.display = 'none';
         db_intel_nuc_content.style.display = 'none';
-        db_intel_graphics_content_series1.style.display = 'block';
+        db_intel_graphics_content_series1.style.setProperty('display', 'block', 'important');
         db_intel_graphics_content.style.display = 'none';
         db_Developer_Cloud_content.style.display = 'none';
         db_arc_graphics_content_series_1.style.display = 'none';
@@ -7627,7 +7640,7 @@ document.getElementById('db-intel-nuc-menu-click').addEventListener('click', fun
         db_intel_NUC_Laptop_Kits_content.style.display = 'none';
         db_intel_NUC_Elements_content.style.display = 'none';
         db_intel_compute_sticks_content.style.display = 'none';
-        db_intel_nuc_content.style.display = 'block';
+        db_intel_nuc_content.style.setProperty('display', 'block', 'important');
         db_intel_graphics_content_series1.style.display = 'none';
         db_intel_graphics_content.style.display = 'none';
         db_Developer_Cloud_content.style.display = 'none';
@@ -7816,7 +7829,7 @@ document.getElementById('db-intel-compute-click').addEventListener('click', func
         db_Datacenter_Storage_submenu.style.display = 'none';
         db_intel_NUC_Laptop_Kits_content.style.display = 'none';
         db_intel_NUC_Elements_content.style.display = 'none';
-        db_intel_compute_sticks_content.style.display = 'block';
+        db_intel_compute_sticks_content.style.setProperty('display', 'block', 'important');
         db_intel_nuc_content.style.display = 'none';
         db_intel_graphics_content_series1.style.display = 'none';
         db_intel_graphics_content.style.display = 'none';
@@ -8004,7 +8017,7 @@ document.getElementById('db-intel-nuc-element-click').addEventListener('click', 
         db_Data_Center_SSDs_content.style.display = 'none';
         db_Datacenter_Storage_submenu.style.display = 'none';
         db_intel_NUC_Laptop_Kits_content.style.display = 'none';
-        db_intel_NUC_Elements_content.style.display = 'block';
+        db_intel_NUC_Elements_content.style.setProperty('display', 'block', 'important');
         db_intel_compute_sticks_content.style.display = 'none';
         db_intel_nuc_content.style.display = 'none';
         db_intel_graphics_content_series1.style.display = 'none';
@@ -8193,7 +8206,7 @@ document.getElementById('db-nuc-laptop-kits-click').addEventListener('click', fu
         db_Rapid_Storage_Technology_content.style.display = 'none';
         db_Data_Center_SSDs_content.style.display = 'none';
         db_Datacenter_Storage_submenu.style.display = 'none';
-        db_intel_NUC_Laptop_Kits_content.style.display = 'block';
+        db_intel_NUC_Laptop_Kits_content.style.setProperty('display', 'block', 'important');
         db_intel_NUC_Elements_content.style.display = 'none';
         db_intel_compute_sticks_content.style.display = 'none';
         db_intel_nuc_content.style.display = 'none';
@@ -8380,7 +8393,7 @@ document.getElementById('db-Data-Center-SSDs').addEventListener('click', functio
         db_SSD_Management_Tools_click.style.display = 'none';
         db_Optane_Persistent_content.style.display = 'none';
         db_Rapid_Storage_Technology_content.style.display = 'none';
-        db_Data_Center_SSDs_content.style.display = 'block';
+        db_Data_Center_SSDs_content.style.setProperty('display', 'block', 'important');
         db_Datacenter_Storage_submenu.style.display = 'none';
         db_intel_NUC_Laptop_Kits_content.style.display = 'none';
         db_intel_NUC_Elements_content.style.display = 'none';
@@ -8570,7 +8583,7 @@ document.getElementById('db-Datacenter-Storage').addEventListener('click', funct
         db_SSD_Management_Tools_click.style.display = 'none';
         db_Optane_Persistent_content.style.display = 'none';
         db_Rapid_Storage_Technology_content.style.display = 'none';
-        db_Datacenter_Storage_submenu.style.display = 'block';
+        db_Datacenter_Storage_submenu.style.setProperty('display', 'block', 'important');
         db_Data_Center_SSDs_content.style.display = 'none';
         db_intel_NUC_Laptop_Kits_content.style.display = 'none';
         db_intel_NUC_Elements_content.style.display = 'none';
@@ -8758,7 +8771,7 @@ document.getElementById('db-Rapid-Storage-Technology-click').addEventListener('c
         db_Memory_and_Storage_Tool_content.style.display = 'none';
         db_SSD_Management_Tools_click.style.display = 'none';
         db_Optane_Persistent_content.style.display = 'none';
-        db_Rapid_Storage_Technology_content.style.display = 'block';
+        db_Rapid_Storage_Technology_content.style.setProperty('display', 'block', 'important');
         // db_Datacenter_Storage_submenu.style.display = 'none';
         db_Data_Center_SSDs_content.style.display = 'none';
         db_intel_NUC_Laptop_Kits_content.style.display = 'none';
@@ -8940,7 +8953,7 @@ document.getElementById('db-virtual-RAID-click').addEventListener('click', funct
         db_Edge_Developer_Toolbox_content.style.display = 'none';
         db_Endpoint_Cloud_Services_content.style.display = 'none';
         db_Xeon_Processors_content.style.display = 'none';
-        db_virtual_RAID_content.style.display = 'block';
+        db_virtual_RAID_content.style.setProperty('display', 'block', 'important');
         db_Development_Software_submenu.style.display = 'none';
         db_Data_Center_Software_content.style.display = 'none';
         db_Processors_content.style.display = 'none';
@@ -9136,7 +9149,7 @@ document.getElementById('db-Optane™-Persistent').addEventListener('click', fun
         db_Processors_content.style.display = 'none';
         db_Memory_and_Storage_Tool_content.style.display = 'none';
         db_SSD_Management_Tools_click.style.display = 'none';
-        db_Optane_Persistent_content.style.display = 'block';
+        db_Optane_Persistent_content.style.setProperty('display', 'block', 'important');
         db_Rapid_Storage_Technology_content.style.display = 'none';
         db_Datacenter_Storage_submenu.style.display = 'none';
         db_Data_Center_SSDs_content.style.display = 'none';
@@ -9324,7 +9337,7 @@ document.getElementById('db-SSD-Management-Tools').addEventListener('click', fun
         db_Data_Center_Software_content.style.display = 'none';
         db_Processors_content.style.display = 'none';
         db_Memory_and_Storage_Tool_content.style.display = 'none';
-        db_SSD_Management_Tools_click.style.display = 'block';
+        db_SSD_Management_Tools_click.style.setProperty('display', 'block', 'important');
         db_Optane_Persistent_content.style.display = 'none';
         db_Rapid_Storage_Technology_content.style.display = 'none';
         db_Datacenter_Storage_submenu.style.display = 'none';
@@ -9512,7 +9525,7 @@ document.getElementById('db-Memory-and-Storage-Tool').addEventListener('click', 
         db_Development_Software_submenu.style.display = 'none';
         db_Data_Center_Software_content.style.display = 'none';
         db_Processors_content.style.display = 'none';
-        db_Memory_and_Storage_Tool_content.style.display = 'block';
+        db_Memory_and_Storage_Tool_content.style.setProperty('display', 'block', 'important');
         // db_SSD_Management_Tools_click.style.display = 'none';
         db_Optane_Persistent_content.style.display = 'none';
         db_Rapid_Storage_Technology_content.style.display = 'none';
@@ -9701,7 +9714,7 @@ document.getElementById('db-Processors-click').addEventListener('click', functio
         db_virtual_RAID_content.style.display = 'none';
         db_Development_Software_submenu.style.display = 'none';
         db_Data_Center_Software_content.style.display = 'none';
-        db_Processors_content.style.display = 'block';
+        db_Processors_content.style.setProperty('display', 'block', 'important');
         db_Memory_and_Storage_Tool_content.style.display = 'none';
         db_SSD_Management_Tools_click.style.display = 'none';
         db_Optane_Persistent_content.style.display = 'none';
@@ -9886,7 +9899,7 @@ document.getElementById('db-Xeon-Processors').addEventListener('click', function
         db_Intel_Security_Products_content.style.display = 'none';
         db_Edge_Developer_Toolbox_content.style.display = 'none';
         db_Endpoint_Cloud_Services_content.style.display = 'none';
-        db_Xeon_Processors_content.style.display = 'block';
+        db_Xeon_Processors_content.style.setProperty('display', 'block', 'important');
         db_virtual_RAID_content.style.display = 'none';
         db_Development_Software_submenu.style.display = 'none';
         db_Data_Center_Software_content.style.display = 'none';
@@ -10092,7 +10105,7 @@ document.getElementById('db-Developer-Cloud').addEventListener('click', function
         db_intel_nuc_content.style.display = 'none';
         db_intel_graphics_content_series1.style.display = 'none';
         db_intel_graphics_content.style.display = 'none';
-        db_Developer_Cloud_content.style.display = 'block';
+        db_Developer_Cloud_content.style.setProperty('display', 'block', 'important');
         db_arc_graphics_content_series_1.style.display = 'none';
         db_arc_graphics_content.style.display = 'none';
         db_arc_graphics_menu.style.display = 'none';
@@ -10263,7 +10276,7 @@ document.getElementById('db-Endpoint-Cloud-Services').addEventListener('click', 
         db_Intel_Security_Products_submenu.style.display = 'none';
         db_Intel_Security_Products_content.style.display = 'none';
         db_Edge_Developer_Toolbox_content.style.display = 'none';
-        db_Endpoint_Cloud_Services_content.style.display = 'block';
+        db_Endpoint_Cloud_Services_content.style.setProperty('display', 'block', 'important');
         db_Xeon_Processors_content.style.display = 'none';
         db_virtual_RAID_content.style.display = 'none';
         db_Development_Software_submenu.style.display = 'none';
@@ -10456,7 +10469,7 @@ document.getElementById('db-Data-Center-Software').addEventListener('click', fun
         db_Xeon_Processors_content.style.display = 'none';
         db_virtual_RAID_content.style.display = 'none';
         db_Development_Software_submenu.style.display = 'none';
-        db_Data_Center_Software_content.style.display = 'block';
+        db_Data_Center_Software_content.style.setProperty('display', 'block', 'important');
         db_Processors_content.style.display = 'none';
         db_Memory_and_Storage_Tool_content.style.display = 'none';
         db_SSD_Management_Tools_click.style.display = 'none';
@@ -10645,7 +10658,7 @@ document.getElementById('db-Development-Software').addEventListener('click', fun
         db_Endpoint_Cloud_Services_content.style.display = 'none';
         db_Xeon_Processors_content.style.display = 'none';
         db_virtual_RAID_content.style.display = 'none';
-        db_Development_Software_submenu.style.display = 'block';
+        db_Development_Software_submenu.style.setProperty('display', 'block', 'important');
         db_Data_Center_Software_content.style.display = 'none';
         db_Processors_content.style.display = 'none';
         db_Memory_and_Storage_Tool_content.style.display = 'none';
@@ -10808,7 +10821,7 @@ document.getElementById('db-Development-Software-click').addEventListener('click
         db_data_center_submenu_content170.style.display = 'none';
         db_Developer_edge_content.style.display = 'none';
         db_OpenVINO_toolkit_content.style.display = 'none';
-        db_Development_Software_content.style.display = 'block';
+        db_Development_Software_content.style.setProperty('display', 'block', 'important');
         db_Unison_app_content.style.display = 'none';
         db_Wi_Fi_Products_content.style.display = 'none';
         db_wireless_content.style.display = 'none';
@@ -10996,7 +11009,7 @@ document.getElementById('db-OpenVINO-toolkit-click').addEventListener('click', f
     } else {
         db_data_center_submenu_content170.style.display = 'none';
         db_Developer_edge_content.style.display = 'none';
-        db_OpenVINO_toolkit_content.style.display = 'block';
+        db_OpenVINO_toolkit_content.style.setProperty('display', 'block', 'important');
         db_Development_Software_content.style.display = 'none';
         db_Unison_app_content.style.display = 'none';
         db_Wi_Fi_Products_content.style.display = 'none';
@@ -11208,7 +11221,7 @@ document.getElementById('db-Edge-Developer-Toolbox').addEventListener('click', f
         db_Intel_Geti_Platform_content.style.display = 'none';
         db_Intel_Security_Products_submenu.style.display = 'none';
         db_Intel_Security_Products_content.style.display = 'none';
-        db_Edge_Developer_Toolbox_content.style.display = 'block';
+        db_Edge_Developer_Toolbox_content.style.setProperty('display', 'block', 'important');
         db_Endpoint_Cloud_Services_content.style.display = 'none';
         db_Xeon_Processors_content.style.display = 'none';
         db_virtual_RAID_content.style.display = 'none';
@@ -11395,7 +11408,7 @@ document.getElementById('db-Intel-Security-Products').addEventListener('click', 
         db_Manageability_Products_submenu.style.display = 'none';
         db_IoT_Software_submenu.style.display = 'none';
         db_Intel_Geti_Platform_content.style.display = 'none';
-        db_Intel_Security_Products_submenu.style.display = 'block';
+        db_Intel_Security_Products_submenu.style.setProperty('display', 'block', 'important');
         db_Intel_Security_Products_content.style.display = 'none';
         db_Edge_Developer_Toolbox_content.style.display = 'none';
         db_Endpoint_Cloud_Services_content.style.display = 'none';
@@ -11585,7 +11598,7 @@ document.getElementById('db-Intel-Security-Products-content-click').addEventList
         db_IoT_Software_submenu.style.display = 'none';
         db_Intel_Geti_Platform_content.style.display = 'none';
         // db_Intel_Security_Products_submenu.style.display = 'none';
-        db_Intel_Security_Products_content.style.display = 'block';
+        db_Intel_Security_Products_content.style.setProperty('display', 'block', 'important');
         db_Edge_Developer_Toolbox_content.style.display = 'none';
         db_Endpoint_Cloud_Services_content.style.display = 'none';
         db_Xeon_Processors_content.style.display = 'none';
@@ -11772,7 +11785,7 @@ document.getElementById('db-Intel-Geti-Platform').addEventListener('click', func
         db_Endpoint_Management_Assistant_content.style.display = 'none';
         db_Manageability_Products_submenu.style.display = 'none';
         db_IoT_Software_submenu.style.display = 'none';
-        db_Intel_Geti_Platform_content.style.display = 'block';
+        db_Intel_Geti_Platform_content.style.setProperty('display', 'block', 'important');
         db_Intel_Security_Products_submenu.style.display = 'none';
         db_Intel_Security_Products_content.style.display = 'none';
         db_Edge_Developer_Toolbox_content.style.display = 'none';
@@ -11960,7 +11973,7 @@ document.getElementById('db-IoT-Software').addEventListener('click', function (e
         db_Manageability_Commander_content.style.display = 'none';
         db_Endpoint_Management_Assistant_content.style.display = 'none';
         db_Manageability_Products_submenu.style.display = 'none';
-        db_IoT_Software_submenu.style.display = 'block';
+        db_IoT_Software_submenu.style.setProperty('display', 'block', 'important');
         db_Intel_Geti_Platform_content.style.display = 'none';
         db_Intel_Security_Products_submenu.style.display = 'none';
         db_Intel_Security_Products_content.style.display = 'none';
@@ -12129,7 +12142,7 @@ document.getElementById('db-Developer-edge-menu').addEventListener('click', func
         setActiveMenu('db-nested-menu-container', 'db-graphics-menu', 'nested-menu2', 'db-data-center-main-content');
     } else {
         db_data_center_submenu_content170.style.display = 'none';
-        db_Developer_edge_content.style.display = 'block';
+        db_Developer_edge_content.style.setProperty('display', 'block', 'important');
         db_OpenVINO_toolkit_content.style.display = 'none';
         db_Development_Software_content.style.display = 'none';
         db_Unison_app_content.style.display = 'none';
@@ -12338,7 +12351,7 @@ document.getElementById('db-Manageability-Products').addEventListener('click', f
         db_server_software_submenu.style.display = 'none';
         db_Manageability_Commander_content.style.display = 'none';
         db_Endpoint_Management_Assistant_content.style.display = 'none';
-        db_Manageability_Products_submenu.style.display = 'block';
+        db_Manageability_Products_submenu.style.setProperty('display', 'block', 'important');
         db_IoT_Software_submenu.style.display = 'none';
         db_Intel_Geti_Platform_content.style.display = 'none';
         db_Intel_Security_Products_submenu.style.display = 'none';
@@ -12527,7 +12540,7 @@ document.getElementById('db-Endpoint-Management-Assistant').addEventListener('cl
         db_Smart_Edge_content.style.display = 'none';
         db_server_software_submenu.style.display = 'none';
         db_Manageability_Commander_content.style.display = 'none';
-        db_Endpoint_Management_Assistant_content.style.display = 'block';
+        db_Endpoint_Management_Assistant_content.style.setProperty('display', 'block', 'important');
         // db_Manageability_Products_submenu.style.display = 'none';
         db_IoT_Software_submenu.style.display = 'none';
         db_Intel_Geti_Platform_content.style.display = 'none';
@@ -12715,7 +12728,7 @@ document.getElementById('db-Manageability-Commander').addEventListener('click', 
         db_software_app_submenu.style.display = 'none';
         db_Smart_Edge_content.style.display = 'none';
         db_server_software_submenu.style.display = 'none';
-        db_Manageability_Commander_content.style.display = 'block';
+        db_Manageability_Commander_content.style.setProperty('display', 'block', 'important');
         db_Endpoint_Management_Assistant_content.style.display = 'none';
         // db_Manageability_Products_submenu.style.display = 'none';
         db_IoT_Software_submenu.style.display = 'none';
@@ -12904,7 +12917,7 @@ document.getElementById('db-Server-Software').addEventListener('click', function
         db_Small_Business_Advantage_content.style.display = 'none';
         db_software_app_submenu.style.display = 'none';
         db_Smart_Edge_content.style.display = 'none';
-        db_server_software_submenu.style.display = 'block';
+        db_server_software_submenu.style.setProperty('display', 'block', 'important');
         db_Manageability_Commander_content.style.display = 'none';
         db_Endpoint_Management_Assistant_content.style.display = 'none';
         // db_Manageability_Products_submenu.style.display = 'none';
@@ -13092,7 +13105,7 @@ document.getElementById('db-Smart-Edge-menu').addEventListener('click', function
         db_Brand_Verification_Tool_content.style.display = 'none';
         db_Small_Business_Advantage_content.style.display = 'none';
         db_software_app_submenu.style.display = 'none';
-        db_Smart_Edge_content.style.display = 'block';
+        db_Smart_Edge_content.style.setProperty('display', 'block', 'important');
         // db_server_software_submenu.style.display = 'none';
         db_Manageability_Commander_content.style.display = 'none';
         db_Endpoint_Management_Assistant_content.style.display = 'none';
@@ -13280,7 +13293,7 @@ document.getElementById('db-Software-Applications').addEventListener('click', fu
         db_Thunderbolt_Share_content.style.display = 'none';
         db_Brand_Verification_Tool_content.style.display = 'none';
         db_Small_Business_Advantage_content.style.display = 'none';
-        db_software_app_submenu.style.display = 'block';
+        db_software_app_submenu.style.setProperty('display', 'block', 'important');
         db_Smart_Edge_content.style.display = 'none';
         db_server_software_submenu.style.display = 'none';
         db_Manageability_Commander_content.style.display = 'none';
@@ -13467,7 +13480,7 @@ document.getElementById('db-Small-Business-Advantage').addEventListener('click',
         db_db_vPro_Platform_content.style.display = 'none';
         db_Thunderbolt_Share_content.style.display = 'none';
         db_Brand_Verification_Tool_content.style.display = 'none';
-        db_Small_Business_Advantage_content.style.display = 'block';
+        db_Small_Business_Advantage_content.style.setProperty('display', 'block', 'important');
         // db_software_app_submenu.style.display = 'none';
         db_Smart_Edge_content.style.display = 'none';
         // db_server_software_submenu.style.display = 'none';
@@ -13654,7 +13667,7 @@ document.getElementById('db-Brand-Verification-Tool').addEventListener('click', 
         db_Active_Management_Technology_content.style.display = 'none';
         db_db_vPro_Platform_content.style.display = 'none';
         db_Thunderbolt_Share_content.style.display = 'none';
-        db_Brand_Verification_Tool_content.style.display = 'block';
+        db_Brand_Verification_Tool_content.style.setProperty('display', 'block', 'important');
         db_Small_Business_Advantage_content.style.display = 'none';
         db_software_app_submenu.style.display = 'none';
         db_Smart_Edge_content.style.display = 'none';
@@ -13835,7 +13848,7 @@ document.getElementById('db-Unison-app').addEventListener('click', function (eve
         db_Developer_edge_content.style.display = 'none';
         db_OpenVINO_toolkit_content.style.display = 'none';
         db_Development_Software_content.style.display = 'none';
-        db_Unison_app_content.style.display = 'block';
+        db_Unison_app_content.style.setProperty('display', 'block', 'important');
         db_Wi_Fi_Products_content.style.display = 'none';
         db_wireless_content.style.display = 'none';
         db_QuickAssist_content.style.display = 'none';
@@ -14032,7 +14045,7 @@ document.getElementById('db-Thunderbolt-Share').addEventListener('click', functi
         db_Rapid_Storage_content.style.display = 'none';
         db_Active_Management_Technology_content.style.display = 'none';
         db_db_vPro_Platform_content.style.display = 'none';
-        db_Thunderbolt_Share_content.style.display = 'block';
+        db_Thunderbolt_Share_content.style.setProperty('display', 'block', 'important');
         db_Brand_Verification_Tool_content.style.display = 'none';
         db_Small_Business_Advantage_content.style.display = 'none';
         // db_software_app_submenu.style.display = 'none';
@@ -14220,7 +14233,7 @@ document.getElementById('db-vPro-Platform').addEventListener('click', function (
         db_Game_Developer_content.style.display = 'none';
         db_Rapid_Storage_content.style.display = 'none';
         db_Active_Management_Technology_content.style.display = 'none';
-        db_db_vPro_Platform_content.style.display = 'block';
+        db_db_vPro_Platform_content.style.setProperty('display', 'block', 'important');
         db_Thunderbolt_Share_content.style.display = 'none';
         db_Brand_Verification_Tool_content.style.display = 'none';
         db_Small_Business_Advantage_content.style.display = 'none';
@@ -14407,7 +14420,7 @@ document.getElementById('db-Active-Management-Technology').addEventListener('cli
         db_QuickAssist_content.style.display = 'none';
         db_Game_Developer_content.style.display = 'none';
         db_Rapid_Storage_content.style.display = 'none';
-        db_Active_Management_Technology_content.style.display = 'block';
+        db_Active_Management_Technology_content.style.setProperty('display', 'block', 'important');
         db_db_vPro_Platform_content.style.display = 'none';
         db_Thunderbolt_Share_content.style.display = 'none';
         db_Brand_Verification_Tool_content.style.display = 'none';
@@ -14595,7 +14608,7 @@ document.getElementById('db-Rapid-Storage').addEventListener('click', function (
         db_wireless_content.style.display = 'none';
         db_QuickAssist_content.style.display = 'none';
         db_Game_Developer_content.style.display = 'none';
-        db_Rapid_Storage_content.style.display = 'block';
+        db_Rapid_Storage_content.style.setProperty('display', 'block', 'important');
         db_Active_Management_Technology_content.style.display = 'none';
         db_db_vPro_Platform_content.style.display = 'none';
         db_Thunderbolt_Share_content.style.display = 'none';
@@ -14782,7 +14795,7 @@ document.getElementById('db-Game-Developer').addEventListener('click', function 
         db_Wi_Fi_Products_content.style.display = 'none';
         db_wireless_content.style.display = 'none';
         db_QuickAssist_content.style.display = 'none';
-        db_Game_Developer_content.style.display = 'block';
+        db_Game_Developer_content.style.setProperty('display', 'block', 'important');
         db_Rapid_Storage_content.style.display = 'none';
         db_Active_Management_Technology_content.style.display = 'none';
         db_db_vPro_Platform_content.style.display = 'none';
@@ -14969,7 +14982,7 @@ document.getElementById('db-QuickAssist').addEventListener('click', function (ev
         db_Unison_app_content.style.display = 'none';
         db_Wi_Fi_Products_content.style.display = 'none';
         db_wireless_content.style.display = 'none';
-        db_QuickAssist_content.style.display = 'block';
+        db_QuickAssist_content.style.setProperty('display', 'block', 'important');
         db_Game_Developer_content.style.display = 'none';
         db_Rapid_Storage_content.style.display = 'none';
         db_Active_Management_Technology_content.style.display = 'none';
@@ -15156,7 +15169,7 @@ document.getElementById('db-wireless').addEventListener('click', function (event
         db_Development_Software_content.style.display = 'none';
         db_Unison_app_content.style.display = 'none';
         db_Wi_Fi_Products_content.style.display = 'none';
-        db_wireless_content.style.display = 'block';
+        db_wireless_content.style.setProperty('display', 'block', 'important');
         db_QuickAssist_content.style.display = 'none';
         db_Game_Developer_content.style.display = 'none';
         db_Rapid_Storage_content.style.display = 'none';
@@ -15343,7 +15356,7 @@ document.getElementById('db-Wi-Fi-Products').addEventListener('click', function 
         db_OpenVINO_toolkit_content.style.display = 'none';
         db_Development_Software_content.style.display = 'none';
         db_Unison_app_content.style.display = 'none';
-        db_Wi_Fi_Products_content.style.display = 'block';
+        db_Wi_Fi_Products_content.style.setProperty('display', 'block', 'important');
         db_wireless_content.style.display = 'none';
         db_QuickAssist_content.style.display = 'none';
         db_Game_Developer_content.style.display = 'none';
