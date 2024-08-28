@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,6 +16,7 @@
         * {
             font-family: 'Intel Clear', sans-serif;
         }
+
         .dropdown {
             position: relative;
             display: inline-block;
@@ -73,12 +75,13 @@
     </style>
 
 </head>
+
 <body>
 
     <div id="navbar"></div>
 
     <div style="padding-top: 71px;">
-              <!-- Drop dwon -->
+        <!-- Drop dwon -->
 
         <div class="s_product d-flex" style="overflow-x: auto;">
             <div class="dropdown">
@@ -95,44 +98,104 @@
                 </ul>
             </div>
             &nbsp;<span style="color: #dad7d7;">/</span>&nbsp;
-                <div class="m-0" style="font-weight: bold; font-size: .875em; ">Intel Newsroom: Executive Leadership</div>
+            <div class="m-0" style="font-weight: bold; font-size: .875em; ">Intel Newsroom: Executive Leadership</div>
         </div>
-    </div>
 
-    <div id="footer"></div>
+        <div class="s_bg_green">
+            <div class="y_container">
+                <div class="row m-0">
+                    <div class="col-xl-9 col-md-11 col-12 s_up_green">
+                        <h1 style="font-weight: 100;">Executive Leadership</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- header -->
+
+        <header class="s_main_nav">
+            <ul>
+                <li>Go to:</li>
+                <li><a href="#">News</a></li>
+                <li><a href="#">Opinion</a></li>
+                <li><a href="#">Press Kits</a></li>
+                <li><a href="#">News by Topic</a></li>
+                <li><a href="#">Executive Bios</a></li>
+                <li><a href="#">Intel Logo & Media Tools</a></li>
+            </ul>
+        </header>
+
+        <!-- main Section -->
+        <div style="background-color: #dad7d7;">
+            <div class="container" style="padding-top: 25px;">
+                <!-- Control buttons row -->
+                <div class="row d-flex align-items-center justify-content-between mb-4 mt-4">
+                    <div class="col-auto d-flex align-items-center">
+                        <div id="paginationControls" class="d-flex align-items-center">
+                            <button id="prevPage" class="btn btn-secondary me-2">
+                                <i class="fa-solid fa-angle-left"></i>
+                            </button>
+                            <span id="pageDisplay"></span>
+                            <button id="nextPage" class="btn btn-secondary ms-2">
+                                <i class="fa-solid fa-angle-right"></i>
+                            </button>
+                        </div>
+                        <div class="ms-3">
+                            <button id="viewAll" class="btn btn-link m-0 p-0" style="text-decoration: none;">View All</button>
+                            <button id="viewLess" class="btn btn-link m-0 p-0" style="display:none; text-decoration: none;">View Less</button>
+                        </div>
+                    </div>
+                    <div class="col-auto">
+                        <button class="btn btn-secondary"><i class="fa-solid fa-sliders"></i> Refine</button>
+                        <button class="btn btn-secondary"><i class="fa-solid fa-list-ul"></i></button>
+                    </div>
+                </div>
+                <!-- Cards container -->
+                <div class="row" id="cardContainer">
+                    <!-- Cards will be dynamically inserted here -->
+                </div>
+            </div>
+        </div>
+
+        
 
 
-    <script src="/js/jquery-3.7.1.js"></script>
-    <script src="/js/owl.carousel.min.js"></script>
-    <script src="/js/yatri.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-        crossorigin="anonymous"></script>
+        <div id="footer"></div>
 
-    <script>
-        // navbar include  
-        fetch('y_navbar.html')
-            .then(response => response.text())
-            .then(data => {
-                document.getElementById('navbar').innerHTML = data;
-            });
-        // footer include 
-        fetch('y_footer.html')
-            .then(response => response.text())
-            .then(data => {
-                document.getElementById('footer').innerHTML = data;
-            });
-    </script>
+
+        <script src="/js/jquery-3.7.1.js"></script>
+        <script src="/js/owl.carousel.min.js"></script>
+        <script src="/js/yatri.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+            crossorigin="anonymous"></script>
+
+        <script>
+            // navbar include  
+            fetch('y_navbar.html')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('navbar').innerHTML = data;
+                });
+            // footer include 
+            fetch('y_footer.html')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('footer').innerHTML = data;
+                });
+        </script>
+
+        <!-- drop dwon -->
         <script>
             document.addEventListener('DOMContentLoaded', function () {
                 const dropdowns = document.querySelectorAll('.dropdown-toggle');
-    
+
                 dropdowns.forEach(dropdown => {
                     dropdown.addEventListener('click', function (e) {
                         e.stopPropagation();
                         const dropdownMenu = this.nextElementSibling;
                         dropdownMenu.classList.toggle('show');
-    
+
                         // Close other open dropdowns
                         dropdowns.forEach(otherDropdown => {
                             if (otherDropdown !== this) {
@@ -141,7 +204,7 @@
                         });
                     });
                 });
-    
+
                 // Close dropdowns when clicking outside
                 window.addEventListener('click', function () {
                     dropdowns.forEach(dropdown => {
@@ -150,5 +213,121 @@
                 });
             });
         </script>
+
+        <!-- pagination -->
+        <script>
+            const cardData = [
+                {
+                    date: "August 26th, 2024",
+                    time: "5 min",
+                    title: "Hot Chips 2024: Showing AI Architectural Expertise",
+                    description: "Intel Xeon 6 SoC, Lunar Lake processors, Intel Gaudi 3 AI accelerators...",
+                    image: "image1.png"
+                },
+                {
+                    date: "August 16th, 2024",
+                    time: "2 min",
+                    title: "Intel Cautions Investors on Mini-Tender Offer",
+                    description: "Intel is not associated with Tutanota's mini-tender offer...",
+                    image: "image2.png"
+                },
+                {
+                    date: "August 26th, 2024",
+                    time: "5 min",
+                    title: "Hot Chips 2024: Showing AI Architectural Expertise",
+                    description: "Intel Xeon 6 SoC, Lunar Lake processors, Intel Gaudi 3 AI accelerators...",
+                    image: "image1.png"
+                },
+                {
+                    date: "August 16th, 2024",
+                    time: "2 min",
+                    title: "Intel Cautions Investors on Mini-Tender Offer",
+                    description: "Intel is not associated with Tutanota's mini-tender offer...",
+                    image: "image2.png"
+                },
+                {
+                    date: "August 26th, 2024",
+                    time: "5 min",
+                    title: "Hot Chips 2024: Showing AI Architectural Expertise",
+                    description: "Intel Xeon 6 SoC, Lunar Lake processors, Intel Gaudi 3 AI accelerators...",
+                    image: "image1.png"
+                },
+                {
+                    date: "August 16th, 2024",
+                    time: "2 min",
+                    title: "Intel Cautions Investors on Mini-Tender Offer",
+                    description: "Intel is not associated with Tutanota's mini-tender offer...",
+                    image: "image2.png"
+                },
+                // More card data...
+            ];
+            function renderCards(start, end, data) {
+                const cardContainer = document.getElementById('cardContainer');
+                cardContainer.innerHTML = ""; // Clear the container
+
+                data.slice(start, end).forEach(card => {
+                    const cardElement = `
+            <div class="col-md-3">
+                <div class="card">
+                    <img src="${card.image}" class="card-img-top" alt="${card.title}">
+                    <div class="card-body">
+                        <p>${card.date} | ${card.time}</p>
+                        <h5 class="card-title">${card.title}</h5>
+                        <p class="card-text">${card.description}</p>
+                    </div>
+                </div>
+            </div>
+        `;
+                    cardContainer.innerHTML += cardElement;
+                });
+            }
+            let currentPage = 1;
+            const cardsPerPage = 4;
+
+            function updatePagination() {
+                const totalPages = Math.ceil(cardData.length / cardsPerPage);
+                const start = (currentPage - 1) * cardsPerPage;
+                const end = start + cardsPerPage;
+
+                renderCards(start, end, cardData);
+
+                // Update pagination display
+                document.getElementById('pageDisplay').innerText = `Page ${currentPage} of ${totalPages}`;
+            }
+
+            document.getElementById('nextPage').addEventListener('click', () => {
+                if (currentPage < Math.ceil(cardData.length / cardsPerPage)) {
+                    currentPage++;
+                    updatePagination();
+                }
+            });
+
+            document.getElementById('prevPage').addEventListener('click', () => {
+                if (currentPage > 1) {
+                    currentPage--;
+                    updatePagination();
+                }
+            });
+
+            updatePagination();
+            document.getElementById('viewAll').addEventListener('click', () => {
+                renderCards(0, cardData.length, cardData);
+                document.getElementById('paginationControls').style.display = 'none';
+                document.getElementById('viewAll').style.display = 'none';
+                document.getElementById('viewLess').style.display = 'block';
+            });
+
+            document.getElementById('viewLess').addEventListener('click', () => {
+                updatePagination();
+                document.getElementById('paginationControls').style.display = 'block';
+                document.getElementById('viewAll').style.display = 'block';
+                document.getElementById('viewLess').style.display = 'none';
+            });
+            document.addEventListener('DOMContentLoaded', function () {
+                updatePagination();
+            });
+
+        </script>
 </body>
+
 </html>
