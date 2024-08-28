@@ -1,3 +1,6 @@
+
+
+
 // ------------------ json data --------------------
 
 let developer_catalog_card_data = [
@@ -1025,6 +1028,10 @@ window.onload = function () {
     // intel adviser documantation
     VK_display_result_accridan();
 
+
+    // software guard documantation
+    VK_display_software_result_accridan();
+
 }
 
 if (document.getElementById('VK_select_filters')) {
@@ -1457,6 +1464,419 @@ let VK_Purley_tools_data = [
         name: "High Power Gen4 VR Test Tool Base Kit",
         image: "nophoto-base_1.png"
     },
+]
+
+let VK_purley_essential_tools_data = [
+    {
+        name: "Intel® System Bring-up Toolkit NDA",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "Intel® System Bring-up Toolkit NDA",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "Intel® System Bring-up Toolkit NDA",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "Intel® System Bring-up Toolkit NDA",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "Intel® System Bring-up Toolkit NDA",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "Intel® System Bring-up Toolkit NDA",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "Intel® System Bring-up Toolkit NDA",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "Intel® System Bring-up Toolkit NDA",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "Intel® System Bring-up Toolkit NDA",
+        image: "nophoto-base_1.png"
+    },
+]
+
+let VK_romley_model_data = [
+    {
+        name: "Intel® Interconnect Model Analyzer and Domain Converter (Intel® IMADC)",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "Intel® Interconnect Model Analyzer and Domain Converter (Intel® IMADC)",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "Intel® Interconnect Model Analyzer and Domain Converter (Intel® IMADC)",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "Intel® Interconnect Model Analyzer and Domain Converter (Intel® IMADC)",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "Intel® Interconnect Model Analyzer and Domain Converter (Intel® IMADC)",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "Intel® Interconnect Model Analyzer and Domain Converter (Intel® IMADC)",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "Intel® Interconnect Model Analyzer and Domain Converter (Intel® IMADC)",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "Intel® Interconnect Model Analyzer and Domain Converter (Intel® IMADC)",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "Intel® Interconnect Model Analyzer and Domain Converter (Intel® IMADC)",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "Intel® Interconnect Model Analyzer and Domain Converter (Intel® IMADC)",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "Intel® Interconnect Model Analyzer and Domain Converter (Intel® IMADC)",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "Intel® Interconnect Model Analyzer and Domain Converter (Intel® IMADC)",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "Intel® Interconnect Model Analyzer and Domain Converter (Intel® IMADC)",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "Intel® Interconnect Model Analyzer and Domain Converter (Intel® IMADC)",
+        image: "nophoto-base_1.png"
+    },
+]
+
+let VK_purley_power_delivery_data = [
+    {
+        name:"Socket P0 (LGA3647) Bundle",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name:"Socket P0 (LGA3647) Bundle",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name:"Socket P0 (LGA3647) Bundle",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name:"Socket P0 (LGA3647) Bundle",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name:"Socket P0 (LGA3647) Bundle",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name:"Socket P0 (LGA3647) Bundle",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name:"Socket P0 (LGA3647) Bundle",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name:"Socket P0 (LGA3647) Bundle",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name:"Socket P0 (LGA3647) Bundle",
+        image: "nophoto-base_1.png"
+    },
+]
+
+
+let VK_purley_high_speed_data = [
+    {
+        name:"Intel® Interconnect Model Analyzer and Domain Converter (Intel® IMADC)",
+        image: "nophoto-base_1.png" 
+    },
+    {
+        name:"Intel® Interconnect Model Analyzer and Domain Converter (Intel® IMADC)",
+        image: "nophoto-base_1.png" 
+    },
+    {
+        name:"Intel® Interconnect Model Analyzer and Domain Converter (Intel® IMADC)",
+        image: "nophoto-base_1.png" 
+    },
+    {
+        name:"Intel® Interconnect Model Analyzer and Domain Converter (Intel® IMADC)",
+        image: "nophoto-base_1.png" 
+    },
+    {
+        name:"Intel® Interconnect Model Analyzer and Domain Converter (Intel® IMADC)",
+        image: "nophoto-base_1.png" 
+    },
+    {
+        name:"Intel® Interconnect Model Analyzer and Domain Converter (Intel® IMADC)",
+        image: "nophoto-base_1.png" 
+    },
+    {
+        name:"Intel® Interconnect Model Analyzer and Domain Converter (Intel® IMADC)",
+        image: "nophoto-base_1.png" 
+    },
+    {
+        name:"Intel® Interconnect Model Analyzer and Domain Converter (Intel® IMADC)",
+        image: "nophoto-base_1.png" 
+    },
+    {
+        name:"Intel® Interconnect Model Analyzer and Domain Converter (Intel® IMADC)",
+        image: "nophoto-base_1.png" 
+    },
+    {
+        name:"Intel® Interconnect Model Analyzer and Domain Converter (Intel® IMADC)",
+        image: "nophoto-base_1.png" 
+    },
+]
+
+let VK_purley_bios_data = [
+    {
+        name:"DTC 8.1 (DCPMM Error Injection) Card",
+        image:"nophoto-base_1.png"
+    },
+    {
+        name:"DTC 8.1 (DCPMM Error Injection) Card",
+        image:"nophoto-base_1.png"
+    },
+    {
+        name:"DTC 8.1 (DCPMM Error Injection) Card",
+        image:"nophoto-base_1.png"
+    },
+    {
+        name:"DTC 8.1 (DCPMM Error Injection) Card",
+        image:"nophoto-base_1.png"
+    },
+    {
+        name:"DTC 8.1 (DCPMM Error Injection) Card",
+        image:"nophoto-base_1.png"
+    },
+    {
+        name:"DTC 8.1 (DCPMM Error Injection) Card",
+        image:"nophoto-base_1.png"
+    },
+    {
+        name:"DTC 8.1 (DCPMM Error Injection) Card",
+        image:"nophoto-base_1.png"
+    },
+    {
+        name:"DTC 8.1 (DCPMM Error Injection) Card",
+        image:"nophoto-base_1.png"
+    },
+    {
+        name:"DTC 8.1 (DCPMM Error Injection) Card",
+        image:"nophoto-base_1.png"
+    },
+]
+
+let VK_purley_thermal_data = [
+    {
+        name:"FloTHERM* Thermal Models",
+        image:"nophoto-base_1.png"
+    },
+    {
+        name:"FloTHERM* Thermal Models",
+        image:"nophoto-base_1.png"
+    },
+    {
+        name:"FloTHERM* Thermal Models",
+        image:"nophoto-base_1.png"
+    },
+    {
+        name:"FloTHERM* Thermal Models",
+        image:"nophoto-base_1.png"
+    },
+    {
+        name:"FloTHERM* Thermal Models",
+        image:"nophoto-base_1.png"
+    },
+    {
+        name:"FloTHERM* Thermal Models",
+        image:"nophoto-base_1.png"
+    },
+]
+
+let VK_purley_validation_data = [
+    {
+        name:"DTC 8.1 (DCPMM Error Injection) Card",
+        image:"nophoto-base_1.png"
+    },
+    {
+        name:"DTC 8.1 (DCPMM Error Injection) Card",
+        image:"nophoto-base_1.png"
+    },
+    {
+        name:"DTC 8.1 (DCPMM Error Injection) Card",
+        image:"nophoto-base_1.png"
+    },
+    {
+        name:"DTC 8.1 (DCPMM Error Injection) Card",
+        image:"nophoto-base_1.png"
+    },
+    {
+        name:"DTC 8.1 (DCPMM Error Injection) Card",
+        image:"nophoto-base_1.png"
+    },
+    {
+        name:"DTC 8.1 (DCPMM Error Injection) Card",
+        image:"nophoto-base_1.png"
+    },
+    {
+        name:"DTC 8.1 (DCPMM Error Injection) Card",
+        image:"nophoto-base_1.png"
+    },
+    {
+        name:"DTC 8.1 (DCPMM Error Injection) Card",
+        image:"nophoto-base_1.png"
+    },
+]
+
+let VK_purley_bios_firmware_data = [
+    {
+        name:"Intel® TXT ToolKit (TTK) for Debug ACM",
+        image:"nophoto-base_1.png"
+    },
+    {
+        name:"Intel® TXT ToolKit (TTK) for Debug ACM",
+        image:"nophoto-base_1.png"
+    },
+    {
+        name:"Intel® TXT ToolKit (TTK) for Debug ACM",
+        image:"nophoto-base_1.png"
+    },
+    {
+        name:"Intel® TXT ToolKit (TTK) for Debug ACM",
+        image:"nophoto-base_1.png"
+    },
+    {
+        name:"Intel® TXT ToolKit (TTK) for Debug ACM",
+        image:"nophoto-base_1.png"
+    },
+    {
+        name:"Intel® TXT ToolKit (TTK) for Debug ACM",
+        image:"nophoto-base_1.png"
+    },
+    {
+        name:"Intel® TXT ToolKit (TTK) for Debug ACM",
+        image:"nophoto-base_1.png"
+    },
+    {
+        name:"Intel® TXT ToolKit (TTK) for Debug ACM",
+        image:"nophoto-base_1.png"
+    },
+    {
+        name:"Intel® TXT ToolKit (TTK) for Debug ACM",
+        image:"nophoto-base_1.png"
+    },
+    {
+        name:"Intel® TXT ToolKit (TTK) for Debug ACM",
+        image:"nophoto-base_1.png"
+    },
+    {
+        name:"Intel® TXT ToolKit (TTK) for Debug ACM",
+        image:"nophoto-base_1.png"
+    },
+]
+
+let VK_purley_debug_data = [
+    {
+        name:"Intel® System Bring-up Toolkit NDA",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name:"Intel® System Bring-up Toolkit NDA",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name:"Intel® System Bring-up Toolkit NDA",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name:"Intel® System Bring-up Toolkit NDA",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name:"Intel® System Bring-up Toolkit NDA",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name:"Intel® System Bring-up Toolkit NDA",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name:"Intel® System Bring-up Toolkit NDA",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name:"Intel® System Bring-up Toolkit NDA",
+        image: "nophoto-base_1.png"
+    },
+]
+
+let VK_purley_power_vrs_data = [
+    {
+        name:"Platform - VRTT Test Spreadsheet",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name:"Platform Power Delivery Validation Plan",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name:"DDR4 DIMM Thermal Test Vehicle (TTV)",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name:"Platform Power Thermal Utility (PTU aka Maximum Power Program)",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name:"Processor Thermal Test Vehicle (TTV)",
+        image: "nophoto-base_1.png"
+    },
+]
+
+let VK_purley_tools_model_card_parent = [
+    {
+        name:"Intel® Channel Checker",
+        image: "nophoto-base_1.png",
+    },
+    {
+        name:"Intel® Electrical Validation Test Suite (Intel® EVTS)",
+        image: "nophoto-base_1.png",
+    },
+    {
+        name:"Integrated Channel Analysis Tool (ICAT)",
+        image: "nophoto-base_1.png",
+    },
+    {
+        name:"Intel® Memory Bit Error Rate Executable (Intel® MBERE)",
+        image: "nophoto-base_1.png",
+    },
+]
+
+let VK_purley_menufacturing_data = [
+    {
+        name:"Intel® Server Platform Services (SPS) Manageability Engine (ME) Firmware & Tools",
+        image: "VK_design_Tools1.jpeg",
+    }
 ]
 
 let VK_harrisonville_tools_data = [
@@ -3472,220 +3892,298 @@ let fetch_data = [];
 let id = '';
 
 let VK_chk_page = () => {
-    let pageElement = document.getElementById('VK_page_detect');
-    if (!pageElement) return;
+    if (document.getElementById('VK_page_detect')) {
+        let pageElement = document.getElementById('VK_page_detect');
 
-    let classname = pageElement.classList.value;
-    switch (classname) {
+        let classname = pageElement.classList.value;
+        switch (classname) {
 
-        case 'VK_Tools_service':
-            id = 'VK_Tools_service_card_parent'
-            fetch_data = VK_Tools_service_data;
+            case 'VK_Tools_service':
+                id = 'VK_Tools_service_card_parent'
+                fetch_data = VK_Tools_service_data;
+                break;
+
+            case 'VK_motherboard':
+                id = "VK_motherboard_card_parent";
+                fetch_data = VK_mother_board_data;
+                break;
+
+            case 'VK_paltform_software':
+                id = "VK_paltform_card_parent";
+                fetch_data = VK_palform_software_data;
+                break;
+
+            case 'VK_server_tools':
+                id = "VK_server_tool_card_parent";
+                fetch_data = VK_server_tools_data;
+                break;
+
+            case 'VK_Purley_tools':
+                id = 'VK_Purley_tool_card_parent';
+                fetch_data = VK_Purley_tools_data;
+                break;
+
+            case 'VK_purley_essential_tools':
+                id = 'VK_romley_essential_card_parent'
+                fetch_data = VK_purley_essential_tools_data;
+                break;
+
+            case 'VK_purley_model_tools':
+                id = 'VK_romley_model_card_parent';
+                fetch_data = VK_romley_model_data;
+                break;
+
+            case 'VK_purley_power_delivery':
+                id = 'VK_purley_power_delivery_card_parent';
+                fetch_data = VK_purley_power_delivery_data;
+                break;
+
+            case 'VK_purley_high_speed':
+                id = 'VK_purley_high_speed_card_parent';
+                fetch_data = VK_purley_high_speed_data;
+                break;
+            
+            case 'VK_purley_bios_speed':
+                id = 'VK_purley_bios_card_parent';
+                fetch_data = VK_purley_bios_data;
+                break;
+
+            case 'VK_purley_thermal_engineering':
+                id = 'VK_purley_thermal_card_parent';
+                fetch_data = VK_purley_thermal_data;
+                break;
+
+            case 'VK_purley_validation':
+                id = 'VK_purley_validation_card_parent';
+                fetch_data = VK_purley_validation_data;
+                break;
+
+            case 'VK_purley_bios_firmware':
+                id = 'VK_purley_bios_firmware_card_parent';
+                fetch_data = VK_purley_bios_firmware_data;
+                break;
+
+            case 'VK_purley_debug':
+                id = 'VK_purley_debug_card_parent';
+                fetch_data = VK_purley_debug_data;
+                break;
+
+            case 'VK_purley_power_vrs':
+                id = 'VK_purley_power_vrs_card_parent'
+                fetch_data = VK_purley_power_vrs_data
+                break;
+
+            case 'VK_purley_tools_models':
+                id = 'VK_purley_tools_model_card_parent';
+                fetch_data = VK_purley_tools_model_card_parent;
+                break;
+
+            case 'VK_purley_menufacturing':
+                id = 'VK_purley_menufacturing_card_parent';
+                fetch_data = VK_purley_menufacturing_data
+                break;
+
+            case 'VK_Harrisonville_tools':
+                id = "VK_harrisonville_card_parent";
+                fetch_data = VK_harrisonville_tools_data;
+                break;
+
+            case 'VK_grangeville_tools':
+                id = 'VK_grangeville_card_parent';
+                fetch_data = VK_grangeville_tools_data;
+                break;
+
+            case 'VK_grantley_tools':
+                id = 'VK_grantley_card_parent';
+                fetch_data = VK_grantley_tools_data;
+                break;
+
+            case 'VK_brickland_tools':
+                id = 'VK_brickland_card_parent';
+                fetch_data = VK_brickland_tools_data;
+                break;
+
+            case 'VK_edisonville_tools':
+                id = 'VK_edisonville_card_parent';
+                fetch_data = VK_edisonville_tools_data;
+                break;
+
+            case 'VK_romley_tools':
+                id = 'VK_romley_card_parent';
+                fetch_data = VK_romley_tools_data;
+                break;
+
+            case 'VK_Equipment':
+                id = 'VK_Equipment_card_parent'
+                fetch_data = VK_Equipment_data;
+                break
+
+            case 'VK_cpu_voltage_tools':
+                id = 'VK_cpu_voltage_card_parent';
+                fetch_data = VK_cpu_voltage_tools_data;
+                break;
+
+            case 'VK_platform_testing_and_review_services_tools':
+                id = 'VK_platform_testing_and_review_services_card_parent';
+                fetch_data = VK_platform_testing_and_review_services_data;
+                break;
+
+            case 'VK_Interposers_tools':
+                id = 'VK_Interposers_card_parent';
+                fetch_data = VK_Interposers_data;
+                break;
+
+            case 'VK_tool_heads_tools':
+                id = 'VK_tool_heads_card_parent';
+                fetch_data = VK_tool_heads_data;
+                break;
+
+            case 'VK_male_to_male_header_tools':
+                id = 'VK_male_to_male_header_card_parent';
+                fetch_data = VK_male_to_male_header_data;
+                break;
+
+            case 'VK_memory_power_system_tools':
+                id = 'VK_memory_power_system_card_parent';
+                fetch_data = VK_memory_power_system_data;
+                break;
+
+            case 'VK_DDR2_tools':
+                id = 'VK_DDR2_card_parent';
+                fetch_data = VK_ddr2_daat;
+                break;
+
+            case 'VK_DDR3_tools':
+                id = 'VK_DDR3_card_parent';
+                fetch_data = VK_ddr3_daat;
+                custom_pagination(current_page, limit, fetch_data, id);
+                break;
+
+            case 'VK_DDR4_tools':
+                id = 'VK_DDR4_card_parent';
+                fetch_data = VK_ddr4_daat;
+                custom_pagination(current_page, limit, fetch_data, id);
+                break;
+
+            case 'VK_DDR5_tools':
+                id = 'VK_DDR5_card_parent'
+                fetch_data = VK_DDR5_data;
+                custom_pagination(current_page, limit, fetch_data, id);
+                break;
+
+            case 'VK_point_load_voltage_tools':
+                id = 'VK_point_load_voltage_card_parent'
+                fetch_data = VK_point_load_voltage_data;
+                custom_pagination(current_page, limit, fetch_data, id);
+                break;
+
+            case 'VK_thunderbolt_tools':
+                id = 'VK_thunderbolt_tools_card_parent';
+                fetch_data = VK_thunderbolt_tools_data;
+                break;
+
+            case 'VK_debug_tools':
+                id = 'VK_debug_tools_card_parent';
+                fetch_data = VK_debug_tools_data;
+                break;
+
+            case 'VK_hardware_tools':
+                id = 'VK_hardware_tools_card_parent';
+                fetch_data = VK_hardware_tools_data;
+                break;
+
+            case 'VK_Software_tools':
+                id = 'VK_Software_tools_card_parent';
+                fetch_data = VK_Software_tools_data;
+                break;
+
+            case 'VK_Accessories_tools':
+                id = 'VK_Accessories_tools_card_parent';
+                fetch_data = VK_accessories_data;
+                break;
+
+            case 'VK_internet_of_things_tools':
+                id = 'VK_internet_of_things_tools_card_parent';
+                fetch_data = VK_internet_of_things_data;
+                break;
+
+            case 'VK_atom_platform_tools':
+                id = 'VK_atom_platform_tools_card_parent';
+                fetch_data = VK_atom_platform_tools_data;
+                break;
+
+            case 'VK_core_platform_tools':
+                id = 'VK_core_platform_tools_card_parent';
+                fetch_data = VK_core_platform_tools_daat;
+                break;
+
+            case 'VK_sub_atom_platform_tools':
+                id = 'VK_sub_atom_platform_tools_card_parent';
+                fetch_data = VK_sub_atom_platform_tools_data;
+                break;
+
+            case 'VK_comms_and_storage_tools':
+                id = 'VK_comms_and_storage_tools_card_parent'
+                fetch_data = VK_comms_and_storage_tools_data;
+                break;
+
+            case 'VK_eagle_stream_tools':
+                id = 'VK_eagle_stream_tools_card_parent';
+                fetch_data = VK_eagle_stream_tools_data;
+                break;
+
+            case 'VK_whitley_platform_tools':
+                id = 'VK_whitley_platform_tools_card_parent'
+                fetch_data = VK_whitley_platform_tools_data
+                break;
+
+            case 'VK_river_forest_tools':
+                id = 'VK_river_forest_tools_card_parent'
+                fetch_data = VK_river_forest_tools_data
+                break;
+
+            case 'VK_crystal_forest_tools':
+                id = 'VK_crystal_forest_tools_card_parent'
+                fetch_data = VK_crystal_forest_tools_data;
+                break;
+
+            case 'VK_glen_forest_tools':
+                id = 'VK_glen_forest_tools_card_parent'
+                fetch_data = VK_glen_forest_tools_data;
+                break;
+
+            case 'VK_highland_forest_tools':
+                id = 'VK_highland_forest_tools_card_parent'
+                fetch_data = VK_highland_forest_tools_data
+                break;
+
+            case 'VK_crystal_gladden_tools':
+                id = 'VK_crystal_gladden_tools_card_parent'
+                fetch_data = VK_crystal_gladden_tools_data
+                break;
+
+
+            default:
+                return;
+        }
+        custom_pagination(current_page, limit, fetch_data, id);
+    }
+    else {
+        return
+    }
+}
+
+function design_tools_sort(){
+    let sort_order = document.getElementById('VK_design_tools_sort_by').value
+    console.log(sort_order);
+    switch(sort_order){
+        case 'A-Z':
+            fetch_data.sort((a, b) => a.name.localeCompare(b.name));
             break;
-
-        case 'VK_motherboard':
-            id = "VK_motherboard_card_parent";
-            fetch_data = VK_mother_board_data;
-            break;
-
-        case 'VK_paltform_software':
-            id = "VK_paltform_card_parent";
-            fetch_data = VK_palform_software_data;
-            break;
-
-        case 'VK_server_tools':
-            id = "VK_server_tool_card_parent";
-            fetch_data = VK_server_tools_data;
-            break;
-
-        case 'VK_Purley_tools':
-            id = 'VK_Purley_tool_card_parent';
-            fetch_data = VK_Purley_tools_data;
-            break;
-
-        case 'VK_Harrisonville_tools':
-            id = "VK_harrisonville_card_parent";
-            fetch_data = VK_harrisonville_tools_data;
-            break;
-
-        case 'VK_grangeville_tools':
-            id = 'VK_grangeville_card_parent';
-            fetch_data = VK_grangeville_tools_data;
-            break;
-
-        case 'VK_grantley_tools':
-            id = 'VK_grantley_card_parent';
-            fetch_data = VK_grantley_tools_data;
-            break;
-
-        case 'VK_brickland_tools':
-            id = 'VK_brickland_card_parent';
-            fetch_data = VK_brickland_tools_data;
-            break;
-
-        case 'VK_edisonville_tools':
-            id = 'VK_edisonville_card_parent';
-            fetch_data = VK_edisonville_tools_data;
-            break;
-
-        case 'VK_romley_tools':
-            id = 'VK_romley_card_parent';
-            fetch_data = VK_romley_tools_data;
-            break;
-
-        case 'VK_Equipment':
-            id = 'VK_Equipment_card_parent'
-            fetch_data = VK_Equipment_data;
-            break
-
-        case 'VK_cpu_voltage_tools':
-            id = 'VK_cpu_voltage_card_parent';
-            fetch_data = VK_cpu_voltage_tools_data;
-            break;
-
-        case 'VK_platform_testing_and_review_services_tools':
-            id = 'VK_platform_testing_and_review_services_card_parent';
-            fetch_data = VK_platform_testing_and_review_services_data;
-            break;
-
-        case 'VK_Interposers_tools':
-            id = 'VK_Interposers_card_parent';
-            fetch_data = VK_Interposers_data;
-            break;
-
-        case 'VK_tool_heads_tools':
-            id = 'VK_tool_heads_card_parent';
-            fetch_data = VK_tool_heads_data;
-            break;
-
-        case 'VK_male_to_male_header_tools':
-            id = 'VK_male_to_male_header_card_parent';
-            fetch_data = VK_male_to_male_header_data;
-            break;
-
-        case 'VK_memory_power_system_tools':
-            id = 'VK_memory_power_system_card_parent';
-            fetch_data = VK_memory_power_system_data;
-            break;
-
-        case 'VK_DDR2_tools':
-            id = 'VK_DDR2_card_parent';
-            fetch_data = VK_ddr2_daat;
-            break;
-
-        case 'VK_DDR3_tools':
-            id = 'VK_DDR3_card_parent';
-            fetch_data = VK_ddr3_daat;
-            custom_pagination(current_page, limit, fetch_data, id);
-            break;
-
-        case 'VK_DDR4_tools':
-            id = 'VK_DDR4_card_parent';
-            fetch_data = VK_ddr4_daat;
-            custom_pagination(current_page, limit, fetch_data, id);
-            break;
-
-        case 'VK_DDR5_tools':
-            id = 'VK_DDR5_card_parent'
-            fetch_data = VK_DDR5_data;
-            custom_pagination(current_page, limit, fetch_data, id);
-            break;
-
-        case 'VK_point_load_voltage_tools':
-            id = 'VK_point_load_voltage_card_parent'
-            fetch_data = VK_point_load_voltage_data;
-            custom_pagination(current_page, limit, fetch_data, id);
-            break;
-
-        case 'VK_thunderbolt_tools':
-            id = 'VK_thunderbolt_tools_card_parent';
-            fetch_data = VK_thunderbolt_tools_data;
-            break;
-
-        case 'VK_debug_tools':
-            id = 'VK_debug_tools_card_parent';
-            fetch_data = VK_debug_tools_data;
-            break;
-
-        case 'VK_hardware_tools':
-            id = 'VK_hardware_tools_card_parent';
-            fetch_data = VK_hardware_tools_data;
-            break;
-
-        case 'VK_Software_tools':
-            id = 'VK_Software_tools_card_parent';
-            fetch_data = VK_Software_tools_data;
-            break;
-
-        case 'VK_Accessories_tools':
-            id = 'VK_Accessories_tools_card_parent';
-            fetch_data = VK_accessories_data;
-            break;
-
-        case 'VK_internet_of_things_tools':
-            id = 'VK_internet_of_things_tools_card_parent';
-            fetch_data = VK_internet_of_things_data;
-            break;
-
-        case 'VK_atom_platform_tools':
-            id = 'VK_atom_platform_tools_card_parent';
-            fetch_data = VK_atom_platform_tools_data;
-            break;
-
-        case 'VK_core_platform_tools':
-            id = 'VK_core_platform_tools_card_parent';
-            fetch_data = VK_core_platform_tools_daat;
-            break;
-
-        case 'VK_sub_atom_platform_tools':
-            id = 'VK_sub_atom_platform_tools_card_parent';
-            fetch_data = VK_sub_atom_platform_tools_data;
-            break;
-
-        case 'VK_comms_and_storage_tools':
-            id = 'VK_comms_and_storage_tools_card_parent'
-            fetch_data = VK_comms_and_storage_tools_data;
-            break;
-
-        case 'VK_eagle_stream_tools':
-            id = 'VK_eagle_stream_tools_card_parent';
-            fetch_data = VK_eagle_stream_tools_data;
-            break;
-
-        case 'VK_whitley_platform_tools':
-            id = 'VK_whitley_platform_tools_card_parent'
-            fetch_data = VK_whitley_platform_tools_data
-            break;
-
-        case 'VK_river_forest_tools':
-            id = 'VK_river_forest_tools_card_parent'
-            fetch_data = VK_river_forest_tools_data
-            break;
-
-        case 'VK_crystal_forest_tools':
-            id = 'VK_crystal_forest_tools_card_parent'
-            fetch_data = VK_crystal_forest_tools_data;
-            break;
-
-        case 'VK_glen_forest_tools':
-            id = 'VK_glen_forest_tools_card_parent'
-            fetch_data = VK_glen_forest_tools_data;
-            break;
-
-        case 'VK_highland_forest_tools':
-            id = 'VK_highland_forest_tools_card_parent'
-            fetch_data = VK_highland_forest_tools_data
-            break;
-
-        case 'VK_crystal_gladden_tools':
-            id = 'VK_crystal_gladden_tools_card_parent'
-            fetch_data = VK_crystal_gladden_tools_data
-            break;
-
         
-
-        default:
-            return;
+        case 'Z-A':
+            fetch_data.sort((a, b) => b.name.localeCompare(a.name));
+            break;
     }
     custom_pagination(current_page, limit, fetch_data, id);
 }
@@ -3835,6 +4333,9 @@ let intel_latest_cards = () => {
                                 </div>`;
         }).join('');
         card_row.innerHTML = dynamic_card;
+    }
+    else {
+        return;
     }
 }
 
@@ -4943,7 +5444,6 @@ function sortBydescedalon(arr) {
 function createDocumentElementforceladon() {
 
     VK_vturn_onload();
-
     let div = document.getElementById('VK_result_div');
     if (div) {
         let htmlele = celadon_arr.map((ele, ind) => {
@@ -5137,12 +5637,14 @@ let intel_adviser = VK_intel_advier_data;
 function intel_adviser_onload() {
     if (document.getElementById('VK_adviser_cnt1')) {
         document.getElementById('VK_adviser_cnt1').innerHTML = VK_intel_advier_data.length + " results"
+
     }
 }
 
 // dispaly results
 function VK_display_result_accridan() {
     intel_adviser_onload();
+
     const div = document.getElementById('VK_daviser_result_div');
 
     if (div) {
@@ -5221,17 +5723,295 @@ function VK_display_result_accridan() {
 
 
 
-// ------------------------------------------------------------ softeare guard documantation ----------------------------------------------------------
-function VK_software_sm_filter(){
+// ------------------------------------------------------------ software guard documantation ----------------------------------------------------------
+
+// data
+let software_guard_data = [
+    {
+        title: "Intel® GPU Plug-in for Red Hat OpenShift",
+        id: "766448",
+        date: "06/24/24",
+        download: true,
+        bookmark: true,
+        file: "URL",
+        content: "Business Briefs",
+        description: "This document provides a detailed overview of the Intel® Advisor functionality and workflows."
+    },
+    {
+        title: "Load Value Injection",
+        id: "766448",
+        date: "06/24/24",
+        download: true,
+        bookmark: false,
+        file: "URL",
+        content: "Development User Guides",
+        description: "This document provides a detailed overview of the Intel® Advisor functionality and workflows."
+    },
+    {
+        title: "Secure Artificial Intelligence: From Silicon to Serverless",
+        id: "766448",
+        date: "06/24/24",
+        download: true,
+        bookmark: false,
+        file: "URL",
+        content: "Blogs",
+        description: "This document provides a detailed overview of the Intel® Advisor functionality and workflows."
+    },
+    {
+        title: "Intel® Advisor User Guide",
+        id: "766448",
+        date: "06/24/24",
+        download: true,
+        bookmark: false,
+        file: "URL",
+        content: "Development User Guides",
+        description: "This document provides a detailed overview of the Intel® Advisor functionality and workflows."
+    },
+]
+
+let software_data = [...software_guard_data];
+// print accoridand 
+function VK_display_software_result_accridan() {
+
+    if (document.getElementById('VK_guard_cnt1')) {
+        document.getElementById('VK_guard_cnt1').innerHTML = software_data.length + " results"
+    }
+
+    const div = document.getElementById('VK_guard_result_div');
+
+    if (div) {
+        const htmlele = software_data.map((ele, ind) => {
+            const uniqueID = `flush-collapse-${ind}`;
+            const uniqueHeadingID = `flush-heading-${ind}`;
+
+            return `
+            <div class="accordion-item">
+                <div class="row m-0 flex-column flex-xl-row py-xl-3 px-3 p-2">
+                    <div class="col-xl-7 col-12 align-self-center">
+                        <p class="m-xl-0 mb-4">
+                            <a href="#" class="VK_red_normal_font text-decoration-none VK_a">
+                                ${ele.title}
+                            </a>
+                        </p>
+                    </div>
+                    <div class="col-xl-4 col-12 d-flex flex-column flex-xl-row justify-content-between align-items-center">
+                        <p class="m-0 my-1 VK_red_small_font w-100">
+                            <span class="d-xl-none"><b>ID :</b></span> ${ele.id}
+                        </p>
+                        <p class="m-0 my-1 VK_red_small_font w-100">
+                            <span class="d-xl-none"><b>Date :</b></span> ${ele.date}
+                        </p>
+                        <p class="m-0 my-1 VK_red_small_font w-100">
+                            <span class="d-xl-none"><b>Version: </b></span>
+                            ${ele.content}
+                        </p>
+                    </div>
+                    <div class="col-xl-1 col-12 p-0 my-xl-0 my-2 align-self-center">
+                        <p class="d-flex m-0 justify-content-xl-between justify-content-end">
+                            ${ele.download ? `
+                                <button class="bg-transparent border-0 text-primary mx-2 m-xl-0">
+                                    <i class="fa-solid fa-download"></i>
+                                </button>
+                            ` : ''}
+                            ${ele.bookmark ? `
+                                <button class="bg-transparent border-0 text-primary mx-2 m-xl-0">
+                                    <i class="fa-regular fa-bookmark"></i>
+                                </button>
+                            ` : ''}
+                            <button class="accordion-button collapsed mx-2 m-xl-0" type="button"
+                                data-bs-toggle="collapse" data-bs-target="#${uniqueID}"
+                                aria-expanded="false" aria-controls="${uniqueID}">
+                            </button>
+                        </p>
+                    </div>
+                </div>
+                <div id="${uniqueID}" class="accordion-collapse collapse"
+                    aria-labelledby="${uniqueHeadingID}" data-bs-parent="#accordionFlushExample">
+                    <div class="accordion-body">
+                        <p class="m-0">
+                            <span class="d-inline-block mx-2">
+                                <b>File:</b>
+                                <span>${ele.file}</span>
+                            </span>
+                        </p>
+                        <p class="m-0 ps-2 mt-3">${ele.description}</p>
+                    </div>
+                </div>
+            </div>`;
+        });
+
+        div.innerHTML = htmlele.join('');
+    }
+}
+
+// searching
+function VK_software_field_search() {
+    let serch_txt = document.getElementById('VK_software_result_search_box').value
+    software_data = software_guard_data.filter(ele => ele.title.toLowerCase().includes(serch_txt.toLowerCase()))
+    VK_display_software_result_accridan()
+}
+
+
+//  show filter 
+function VK_software_sm_filter() {
     let ele = document.getElementsByClassName('VK_software_small_filter_op')
-    for(let i = 0; i < ele.length; i++){
+    for (let i = 0; i < ele.length; i++) {
         ele[i].classList.remove('d-none')
     }
 }
 
-function VK_software_sm_filter_clsoe(){
+// hide filter
+function VK_software_sm_filter_clsoe() {
     let ele = document.getElementsByClassName('VK_software_small_filter_op')
-    for(let i = 0; i < ele.length; i++){
+    for (let i = 0; i < ele.length; i++) {
         ele[i].classList.add('d-none')
     }
+}
+
+
+// checkbox
+let contentTypes = [
+    "Blogs", "Business Briefs", "Code Samples", "Datasheets, Specifications and Schematics",
+    "Design Reference", "Development Guides", "Development Reference Guides",
+    "Development User Guides", "FAQs", "Getting Started Guides", "How-To Training",
+    "Infographics", "On-Demand Training", "Release Notes", "Solution Briefs",
+    "Technical Articles", "Tutorials", "White Papers"
+];
+
+// clear all
+function VK_software_clear() {
+    software_data = [...software_guard_data];
+    VK_display_software_result_accridan()
+    VK_software_content_type(contentTypes)
+
+}
+
+// checkbox order by 
+function VK_chk_order() {
+    let order;
+    if (window.innerWidth >= 1200) {
+        order = document.getElementById('VK_check_full_box_order').value;
+    }
+    else {
+        order = document.getElementById('VK_check_box_order').value;
+    }
+    let sortedArr = [];
+
+    if (order === 'A-Z') {
+        sortedArr = contentTypes.slice().sort((a, b) => a.localeCompare(b));
+    } else if (order === 'Z-A') {
+        sortedArr = contentTypes.slice().sort((a, b) => b.localeCompare(a));
+    }
+
+    VK_software_content_type(sortedArr);
+}
+
+
+
+function VK_software_chk_search() {
+
+    let searchBox
+    if (window.innerWidth >= 1200) {
+        searchBox = document.getElementById('VK_guard_full_chk_search_box')
+    }
+    else {
+        searchBox = document.getElementById('VK_guard_chk_search_box')
+    }
+    const searchTerm = searchBox.value.trim().toLowerCase();
+    console.log(searchTerm);
+
+    const filteredContentTypes = searchTerm
+        ? contentTypes.filter(ele => ele.toLowerCase().includes(searchTerm))
+        : contentTypes;
+
+    // console.log(filteredContentTypes);
+
+    VK_software_content_type(filteredContentTypes);
+}
+
+function VK_guard_checkbox() {
+    let filteredData = [...software_guard_data];
+
+    const checkboxes = document.querySelectorAll('.VK_guard_chk:checked');
+    const checkedValues = Array.from(checkboxes).map(chk => chk.value.toLowerCase());
+
+    if (checkedValues.length) {
+        filteredData = checkedValues.map((ele) => {
+            return filteredData.filter(el => el.content.toLowerCase().includes(ele))
+        }).flat();
+    }
+
+    software_data = filteredData;
+
+    console.log(software_data);
+    VK_display_software_result_accridan();
+}
+
+
+function VK_software_show_more() {
+    const elements = document.querySelectorAll('.VK_software_chk_box');
+    const btn = document.getElementById('VK_show_more_or_less');
+    const showMore = btn.textContent.trim() === "Show More";
+
+    elements.forEach((element, index) => {
+        if (index > 6) {
+            element.classList.toggle('d-none', !showMore);
+        }
+    });
+
+    btn.textContent = showMore ? "Show Less" : "Show More";
+}
+
+function VK_software_content_type(filteredContentTypes = contentTypes) {
+    if (document.getElementById('VK_software_full_content_check')) {
+        let container;
+        if (window.innerWidth >= 1200) {
+            container = document.getElementById('VK_software_full_content_check')
+        }
+        else {
+            container = document.getElementById('VK_software_content_check')
+        }
+        const contentHTML = filteredContentTypes.map((item, index) => `
+        <div class="d-flex align-items-center my-1 VK_software_chk_box ${index > 6 ? 'd-none' : ''}">
+            <input type="checkbox" value="${item}" onclick="VK_guard_checkbox()" class="VK_guard_chk">
+            <span class="d-inline-block ms-2">${item}</span>
+        </div>
+    `).join('');
+        container.innerHTML = contentHTML + `
+        <div class="show_more">
+            <button class="text-primary ms-auto border-0 bg-transparent ${filteredContentTypes.length <= 6 ? "d-none" : ''}" onclick="VK_software_show_more()" id="VK_show_more_or_less">Show More</button>
+        </div>`;
+    }
+    else {
+        return
+    }
+}
+
+window.addEventListener('resize', function () {
+    VK_software_content_type()
+})
+
+VK_software_content_type();
+
+
+// expand accoridan 
+function VK_software_accoridan_open() {
+    const accordions = document.querySelectorAll('#VK_guard_result_div .accordion-collapse');
+    accordions.forEach(accordion => {
+        const collapseInstance = new bootstrap.Collapse(accordion, {
+            toggle: false
+        });
+        collapseInstance.show();
+    });
+}
+
+// collapse collapse
+function VK_software_accoridan_close() {
+    const accordions = document.querySelectorAll('#VK_guard_result_div .accordion-collapse');
+    accordions.forEach(accordion => {
+        const collapseInstance = new bootstrap.Collapse(accordion, {
+            toggle: false
+        });
+        collapseInstance.hide();
+    });
 }
