@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Kudos Leaderboard - Authors</title>
     <link rel="stylesheet" href="../../css/db_style.css">
     <link href="https://fonts.cdnfonts.com/css/intel-clear" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -17,6 +17,46 @@
     <style>
         * {
             font-family: 'Intel Clear', sans-serif;
+        }
+
+        .db_time_filter_container {
+            display: inline-block;
+            position: relative;
+            width: 100%;
+        }
+
+        .db_time_filter_select {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            background-color: #f1f1f1;
+            color: #333;
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            cursor: pointer;
+            box-sizing: border-box;
+        }
+
+        .db_time_filter_arrow {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            pointer-events: none;
+            color: #00a3f6;
+        }
+
+        .db_time_filter_select option {
+            padding: 10px;
+            background-color: #fff;
+            color: #333;
+        }
+
+        .db_time_filter_select option:hover,
+        .db_time_filter_select option:checked {
+            background-color: #d1ecf1;
         }
     </style>
 </head>
@@ -52,7 +92,7 @@
             <div class="container">
                 <div class="row d-md-block d-none">
                     <div class="col-12">
-                        <a href="#">Intel Community</a>
+                        <a href="support-community.html">Intel Community</a>
                         <span class="text-muted">&nbsp;&nbsp;/&nbsp;&nbsp;</span>
                         <a href="developer-software-forums.html">Developer Software Forums </a>
                         <span class="text-muted">&nbsp;&nbsp;/&nbsp;&nbsp;</span>
@@ -60,14 +100,13 @@
                     </div>
                 </div>
                 <div class="row d-md-none d-block">
-                    <a href="developer-software-forums.html" class=""> <i class="fa-angle-right"></i> Developer Software Forums </a>
+                    <a href="developer-software-forums.html" class=""> <i class="fa-angle-right"></i> Developer Software
+                        Forums </a>
                 </div>
             </div>
         </section>
 
         <section class="db_cmnt_bg py-4">
-
-
             <div class="container">
                 <div class="db_author_white_bg mx-2">
                     <div class="row mb-3">
@@ -82,396 +121,47 @@
                             </div>
                         </div>
                         <div class="col-12  pt-3 db_time_a">
-                            <div class="d-flex   border-bottom ">
+                            <div class="d-xl-flex border-bottom ">
                                 <p class="text-uppercase text-muted text-nowrap">Time Range :</p>
-                              <div class="d-flex flex-wrap">
-                                <p><a href="#" class="text-decoration-none py-2 px-3 text-nowrap">Last Day (24 Hours)</a></p>
-                                <p><a href="#" class="text-decoration-none py-2 px-3 text-nowrap">Last Week (7 Days)</a></p>
-                                <p><a href="#" class="text-decoration-none py-2 px-3 text-nowrap">Last Month (30 Days)</a></p>
-                                <p><a href="#" class="text-decoration-none py-2 px-3 text-nowrap">Last 3 Months</a></p>
-                                <p><a href="#" class="text-decoration-none py-2 px-3 text-nowrap">Last 6 Months</a></p>
-                                <p><a href="#" class="text-decoration-none py-2 px-3 text-nowrap">Last Year</a></p>
-                                <p><a href="#" class="text-decoration-none py-2 px-3 text-nowrap">All Time</a></p>
-                              </div>
+                                <div class="d-xl-flex d-none flex-wrap" id="timeRangeOptions">
+                                    <p><a href="#" class="text-decoration-none py-2 px-3 text-nowrap" data-value="24_hours">Last Day (24 Hours)</a></p>
+                                    <p><a href="#" class="text-decoration-none py-2 px-3 text-nowrap" data-value="7_days">Last Week (7 Days)</a></p>
+                                    <p><a href="#" class="text-decoration-none py-2 px-3 text-nowrap" data-value="30_days">Last Month (30 Days)</a></p>
+                                    <p><a href="#" class="text-decoration-none py-2 px-3 text-nowrap" data-value="3_months">Last 3 Months</a></p>
+                                    <p><a href="#" class="text-decoration-none py-2 px-3 text-nowrap" data-value="6_months">Last 6 Months</a></p>
+                                    <p><a href="#" class="text-decoration-none py-2 px-3 text-nowrap" data-value="1_year">Last Year</a></p>
+                                    <p><a href="#" class="text-decoration-none py-2 px-3 text-nowrap" data-value="all_time">All Time</a></p>
+                                </div>
+                                <div class="db_time_filter_container d-xl-none d-block">
+                                    <select class="db_time_filter_select" id="timeRangeSelect">
+                                        <option value="24_hours">Last Day (24 Hours)</option>
+                                        <option value="7_days">Last Week (7 Days)</option>
+                                        <option value="30_days">Last Month (30 Days)</option>
+                                        <option value="3_months">Last 3 Months</option>
+                                        <option value="6_months">Last 6 Months</option>
+                                        <option value="1_year">Last Year</option>
+                                        <option value="all_time" selected>All Time</option>
+                                    </select>
+                                    <i class="fas fa-chevron-down db_time_filter_arrow"></i>
+                                </div>
                             </div>
                         </div>
-                        <div class="d-flex justify-content-between align-items-center py-3">
-                            <h3>Top Kudoed Authors in 'Developer Software Forums'</h3>
-                            <div class="db_pagination"><a href="#" class="text-black-50"><i class="fa fa-angle-left"
-                                        aria-hidden="true"></i></a><a href="#" class="text-dark">Previous</a><a href="#"
-                                    class="text-dark">1</a><a href="#">2</a><a href="#">3</a><a href="#"><i
-                                        class="fa fa-angle-right" aria-hidden="true"></i></a></div>
+                        <div class="d-flex flex-wrap justify-content-between align-items-center py-3">
+                            <h3 class="">Top Kudoed Authors in 'Developer Software Forums'</h3>
+                            <div class="db_pagination ms-auto d-md-block d-none">
+                                <a href="#" class="text-black-50"><i class="fa fa-angle-left" aria-hidden="true"></i></a>
+                                <a href="#" class="text-dark">1</a>
+                                <a href="#">2</a>
+                                <a href="#">3</a>
+                                <a href="#">4</a>
+                                <a href="#">5</a>
+                                <a href="#">6</a>
+                                <a href="#">7</a>
+                                <a href="#"><i class="fa fa-angle-right" aria-hidden="true"></i></a>
+                            </div>
                         </div>
-                        <div class="row db_author_data p-4 ">
-                            <div class="col-lg-6 col-12">
-                                <div class="d-flex justify-content-between align-items-center border-bottom py-2">
-                                    <div class="d-flex align-items-center">
-                                        <p class="mb-0 me-4 fs-4 text-muted">1</p>
-                                        <img src="/img/denisha_img/support_comunity/developer-soft/2.JPG"
-                                            class="rounded-circle" alt="jimdempseyatthe">
-                                        <div class="d-flex flex-column ms-4">
-                                            <a href="#" class="ms-2 text-decoration-none db_forum_link">jimdempseyatthe</a>
-                                            <a href="#" class="ms-2 text-decoration-none">Honored Contributor III</a>
-                                        </div>
-                                    </div>
-
-                                    <div class="text-nowrap me-5"><i
-                                            class="fa-regular fa-thumbs-up text-muted fs-5"></i><span
-                                            class="ms-2">19</span>
-                                    </div>
-
-                                </div>
-                            </div>
-                            <div class="col-lg-6 col-12">
-                                <div class="d-flex justify-content-between align-items-center border-bottom py-2">
-                                    <div class="d-flex align-items-center">
-                                        <p class="mb-0 me-4 fs-4 text-muted">2</p>
-                                        <img src="/img/denisha_img/support_comunity/developer-soft/fcsd"
-                                            class="rounded-circle" alt="Jacob_Williams">
-                                        <div class="d-flex flex-column ms-4">
-                                            <a href="#" class="ms-2 text-decoration-none db_forum_link">Jacob_Williams</a>
-                                            <a href="#" class="ms-2 text-decoration-none">New Contributor II</a>
-                                        </div>
-                                    </div>
-
-                                    <div class="text-nowrap me-5"><i
-                                            class="fa-regular fa-thumbs-up text-muted fs-5"></i><span
-                                            class="ms-2">11</span>
-                                    </div>
-
-                                </div>
-                            </div>
-                            <div class="col-lg-6 col-12">
-                                <div class="d-flex justify-content-between align-items-center border-bottom py-2">
-                                    <div class="d-flex align-items-center">
-                                        <p class="mb-0 me-4 fs-4 text-muted">3</p>
-                                        <img src="/img/denisha_img/support_comunity/developer-soft/3.jpg"
-                                            class="rounded-circle" alt="Steve_Lionel">
-                                        <div class="d-flex flex-column ms-4">
-                                            <a href="#" class="ms-2 text-decoration-none db_forum_link">Steve_Lionel</a>
-                                            <a href="#" class="ms-2 text-decoration-none">Honored Contributor III</a>
-                                        </div>
-                                    </div>
-
-                                    <div class="text-nowrap me-5"><i
-                                            class="fa-regular fa-thumbs-up text-muted fs-5"></i><span
-                                            class="ms-2">10</span>
-                                    </div>
-
-                                </div>
-                            </div>
-                            <div class="col-lg-6 col-12">
-                                <div class="d-flex justify-content-between align-items-center border-bottom py-2">
-                                    <div class="d-flex align-items-center">
-                                        <p class="mb-0 me-4 fs-4 text-muted">4</p>
-                                        <img src="/img/denisha_img/support_comunity/developer-soft/3.png"
-                                            class="rounded-circle" alt="BryanC12">
-                                        <div class="d-flex flex-column ms-4">
-                                            <a href="#" class="ms-2 text-decoration-none db_forum_link">BryanC12</a>
-                                            <a href="#" class="ms-2 text-decoration-none">Novice</a>
-                                        </div>
-                                    </div>
-
-                                    <div class="text-nowrap me-5"><i
-                                            class="fa-regular fa-thumbs-up text-muted fs-5"></i><span
-                                            class="ms-2">3</span>
-                                    </div>
-
-                                </div>
-                            </div>
-                            <div class="col-lg-6 col-12">
-                                <div class="d-flex justify-content-between align-items-center border-bottom py-2">
-                                    <div class="d-flex align-items-center">
-                                        <p class="mb-0 me-4 fs-4 text-muted">5</p>
-                                        <img src="/img/denisha_img/support_comunity/developer-soft/5.png"
-                                            class="rounded-circle" alt="IanH">
-                                        <div class="d-flex flex-column ms-4">
-                                            <a href="#" class="ms-2 text-decoration-none db_forum_link">IanH</a>
-                                            <a href="#" class="ms-2 text-decoration-none">Honored Contributor III</a>
-                                        </div>
-                                    </div>
-
-                                    <div class="text-nowrap me-5"><i
-                                            class="fa-regular fa-thumbs-up text-muted fs-5"></i><span
-                                            class="ms-2">2</span>
-                                    </div>
-
-                                </div>
-                            </div>
-                            <div class="col-lg-6 col-12">
-                                <div class="d-flex justify-content-between align-items-center border-bottom py-2">
-                                    <div class="d-flex align-items-center">
-                                        <p class="mb-0 me-4 fs-4 text-muted">6</p>
-                                        <img src="/img/denisha_img/support_comunity/developer-soft/6.png"
-                                            class="rounded-circle" alt="andrew_4619">
-                                        <div class="d-flex flex-column ms-4">
-                                            <a href="#" class="ms-2 text-decoration-none db_forum_link">andrew_4619</a>
-                                            <a href="#" class="ms-2 text-decoration-none">Honored Contributor III</a>
-                                        </div>
-                                    </div>
-
-                                    <div class="text-nowrap me-5"><i
-                                            class="fa-regular fa-thumbs-up text-muted fs-5"></i><span
-                                            class="ms-2">2</span>
-                                    </div>
-
-                                </div>
-                            </div>
-                            <div class="col-lg-6 col-12">
-                                <div class="d-flex justify-content-between align-items-center border-bottom py-2">
-                                    <div class="d-flex align-items-center">
-                                        <p class="mb-0 me-4 fs-4 text-muted">7</p>
-                                        <img src="/img/denisha_img/support_comunity/developer-soft/7.png"
-                                            class="rounded-circle" alt="SamTygier">
-                                        <div class="d-flex flex-column ms-4">
-                                            <a href="#" class="ms-2 text-decoration-none db_forum_link">SamTygier</a>
-                                            <a href="#" class="ms-2 text-decoration-none">Honored Contributor III</a>
-                                        </div>
-                                    </div>
-
-                                    <div class="text-nowrap me-5"><i
-                                            class="fa-regular fa-thumbs-up text-muted fs-5"></i><span
-                                            class="ms-2">2</span>
-                                    </div>
-
-                                </div>
-                            </div>
-                            <div class="col-lg-6 col-12">
-                                <div class="d-flex justify-content-between align-items-center border-bottom py-2">
-                                    <div class="d-flex align-items-center">
-                                        <p class="mb-0 me-4 fs-4 text-muted">8</p>
-                                        <img src="/img/denisha_img/support_comunity/developer-soft/8.png"
-                                            class="rounded-circle" alt="WiserOrb">
-                                        <div class="d-flex flex-column ms-4">
-                                            <a href="#" class="ms-2 text-decoration-none db_forum_link">WiserOrb</a>
-                                            <a href="#" class="ms-2 text-decoration-none">Beginner</a>
-                                        </div>
-                                    </div>
-
-                                    <div class="text-nowrap me-5"><i
-                                            class="fa-regular fa-thumbs-up text-muted fs-5"></i><span
-                                            class="ms-2">2</span>
-                                    </div>
-
-                                </div>
-                            </div>
-                            <div class="col-lg-6 col-12">
-                                <div class="d-flex justify-content-between align-items-center border-bottom py-2">
-                                    <div class="d-flex align-items-center">
-                                        <p class="mb-0 me-4 fs-4 text-muted">9</p>
-                                        <img src="/img/denisha_img/support_comunity/developer-soft/9.png"
-                                            class="rounded-circle" alt="V-T">
-                                        <div class="d-flex flex-column ms-4">
-                                            <a href="#" class="ms-2 text-decoration-none db_forum_link">V-T</a>
-                                            <a href="#" class="ms-2 text-decoration-none">New Contributor III</a>
-                                        </div>
-                                    </div>
-
-                                    <div class="text-nowrap me-5"><i
-                                            class="fa-regular fa-thumbs-up text-muted fs-5"></i><span
-                                            class="ms-2">2</span>
-                                    </div>
-
-                                </div>
-                            </div>
-                              
-                            <div class="col-lg-6 col-12">
-                                <div class="d-flex justify-content-between align-items-center border-bottom py-2">
-                                    <div class="d-flex align-items-center">
-                                        <p class="mb-0 me-4 fs-4 text-muted">10</p>
-                                        <img src="/img/denisha_img/support_comunity/developer-soft/5.png"
-                                            class="rounded-circle" alt="Yululily">
-                                        <div class="d-flex flex-column ms-4">
-                                            <a href="#" class="ms-2 text-decoration-none db_forum_link">Yululily</a>
-                                            <a href="#" class="ms-2 text-decoration-none">Novice</a>
-                                        </div>
-                                    </div>
-                                    <div class="text-nowrap me-5"><i class="fa-regular fa-thumbs-up text-muted fs-5"></i><span class="ms-2">2</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-6 col-12">
-                                <div class="d-flex justify-content-between align-items-center border-bottom py-2">
-                                    <div class="d-flex align-items-center">
-                                        <p class="mb-0 me-4 fs-4 text-muted">11</p>
-                                        <img src="/img/denisha_img/support_comunity/developer-soft/11.png"
-                                            class="rounded-circle" alt="Theo_M">
-                                        <div class="d-flex flex-column ms-4">
-                                            <a href="#" class="ms-2 text-decoration-none db_forum_link">Theo_M</a>
-                                            <a href="#" class="ms-2 text-decoration-none">Beginner</a>
-                                        </div>
-                                    </div>
-
-                                    <div class="text-nowrap me-5"><i
-                                            class="fa-regular fa-thumbs-up text-muted fs-5"></i><span
-                                            class="ms-2">2</span>
-                                    </div>
-
-                                </div>
-                            </div>
-                            <div class="col-lg-6 col-12">
-                                <div class="d-flex justify-content-between align-items-center border-bottom py-2">
-                                    <div class="d-flex align-items-center">
-                                        <p class="mb-0 me-4 fs-4 text-muted">12</p>
-                                        <img src="/img/denisha_img/support_comunity/developer-soft/12.png"
-                                            class="rounded-circle" alt="Theo_M">
-                                        <div class="d-flex flex-column ms-4">
-                                            <a href="#" class="ms-2 text-decoration-none db_forum_link">Theo_M</a>
-                                            <a href="#" class="ms-2 text-decoration-none">Beginner</a>
-                                        </div>
-                                    </div>
-
-                                    <div class="text-nowrap me-5"><i
-                                            class="fa-regular fa-thumbs-up text-muted fs-5"></i><span
-                                            class="ms-2">2</span>
-                                    </div>
-
-                                </div>
-                            </div>
-                            <div class="col-lg-6 col-12">
-                                <div class="d-flex justify-content-between align-items-center border-bottom py-2">
-                                    <div class="d-flex align-items-center">
-                                        <p class="mb-0 me-4 fs-4 text-muted">13</p>
-                                        <img src="/img/denisha_img/support_comunity/developer-soft/13.png"
-                                            class="rounded-circle" alt="Jarek_T">
-                                        <div class="d-flex flex-column ms-4">
-                                            <a href="#" class="ms-2 text-decoration-none db_forum_link">Jarek_T</a>
-                                            <a href="#" class="ms-2 text-decoration-none">Novice</a>
-                                        </div>
-                                    </div>
-                                    <div class="text-nowrap me-5"><i class="fa-regular fa-thumbs-up text-muted fs-5"></i><span class="ms-2">2</span>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <div class="col-lg-6 col-12">
-                                <div class="d-flex justify-content-between align-items-center border-bottom py-2">
-                                    <div class="d-flex align-items-center">
-                                        <p class="mb-0 me-4 fs-4 text-muted">14</p>
-                                        <img src="/img/denisha_img/support_comunity/developer-soft/14.png"
-                                            class="rounded-circle" alt="Hamza13">
-                                        <div class="d-flex flex-column ms-4">
-                                            <a href="#" class="ms-2 text-decoration-none db_forum_link">Hamza13</a>
-                                            <a href="#" class="ms-2 text-decoration-none">Novice</a>
-                                        </div>
-                                    </div>
-                                    <div class="text-nowrap me-5"><i class="fa-regular fa-thumbs-up text-muted fs-5"></i><span class="ms-2">2</span>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <div class="col-lg-6 col-12">
-                                <div class="d-flex justify-content-between align-items-center border-bottom py-2">
-                                    <div class="d-flex align-items-center">
-                                        <p class="mb-0 me-4 fs-4 text-muted">15</p>
-                                        <img src="/img/denisha_img/support_comunity/developer-soft/15.png"
-                                            class="rounded-circle" alt="preeth">
-                                        <div class="d-flex flex-column ms-4">
-                                            <a href="#" class="ms-2 text-decoration-none db_forum_link">preeth</a>
-                                            <a href="#" class="ms-2 text-decoration-none">Novice</a>
-                                        </div>
-                                    </div>
-                                    <div class="text-nowrap me-5"><i class="fa-regular fa-thumbs-up text-muted fs-5"></i><span class="ms-2">1</span>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <div class="col-lg-6 col-12">
-                                <div class="d-flex justify-content-between align-items-center border-bottom py-2">
-                                    <div class="d-flex align-items-center">
-                                        <p class="mb-0 me-4 fs-4 text-muted">16</p>
-                                        <img src="/img/denisha_img/support_comunity/developer-soft/16.png"
-                                            class="rounded-circle" alt="lpmorenoc">
-                                        <div class="d-flex flex-column ms-4">
-                                            <a href="#" class="ms-2 text-decoration-none db_forum_link">lpmorenoc</a>
-                                            <a href="#" class="ms-2 text-decoration-none">Beginner</a>
-                                        </div>
-                                    </div>
-                                    <div class="text-nowrap me-5"><i class="fa-regular fa-thumbs-up text-muted fs-5"></i><span class="ms-2">1</span>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <div class="col-lg-6 col-12">
-                                <div class="d-flex justify-content-between align-items-center border-bottom py-2">
-                                    <div class="d-flex align-items-center">
-                                        <p class="mb-0 me-4 fs-4 text-muted">17</p>
-                                        <img src="/img/denisha_img/support_comunity/developer-soft/17.png"
-                                            class="rounded-circle" alt="OP1">
-                                        <div class="d-flex flex-column ms-4">
-                                            <a href="#" class="ms-2 text-decoration-none db_forum_link">OP1</a>
-                                            <a href="#" class="ms-2 text-decoration-none">New Contributor III</a>
-                                        </div>
-                                    </div>
-                                    <div class="text-nowrap me-5"><i class="fa-regular fa-thumbs-up text-muted fs-5"></i><span class="ms-2">1</span>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <div class="col-lg-6 col-12">
-                                <div class="d-flex justify-content-between align-items-center border-bottom py-2">
-                                    <div class="d-flex align-items-center">
-                                        <p class="mb-0 me-4 fs-4 text-muted">18</p>
-                                        <img src="/img/denisha_img/support_comunity/developer-soft/18.png"
-                                            class="rounded-circle" alt="AndrewC">
-                                        <div class="d-flex flex-column ms-4">
-                                            <a href="#" class="ms-2 text-decoration-none db_forum_link">AndrewC</a>
-                                            <a href="#" class="ms-2 text-decoration-none">New Contributor III</a>
-                                        </div>
-                                    </div>
-                                    <div class="text-nowrap me-5"><i class="fa-regular fa-thumbs-up text-muted fs-5"></i><span class="ms-2">1</span>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <div class="col-lg-6 col-12">
-                                <div class="d-flex justify-content-between align-items-center border-bottom py-2">
-                                    <div class="d-flex align-items-center">
-                                        <p class="mb-0 me-4 fs-4 text-muted">19</p>
-                                        <img src="/img/denisha_img/support_comunity/developer-soft/19.png"
-                                            class="rounded-circle" alt="david47">
-                                        <div class="d-flex flex-column ms-4">
-                                            <a href="#" class="ms-2 text-decoration-none db_forum_link">david47</a>
-                                            <a href="#" class="ms-2 text-decoration-none">Novice</a>
-                                        </div>
-                                    </div>
-                                    <div class="text-nowrap me-5"><i class="fa-regular fa-thumbs-up text-muted fs-5"></i><span class="ms-2">1</span>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <div class="col-lg-6 col-12">
-                                <div class="d-flex justify-content-between align-items-center border-bottom py-2">
-                                    <div class="d-flex align-items-center">
-                                        <p class="mb-0 me-4 fs-4 text-muted">20</p>
-                                        <img src="/img/denisha_img/support_comunity/developer-soft/20.png"
-                                            class="rounded-circle" alt="Amorin1">
-                                        <div class="d-flex flex-column ms-4">
-                                            <a href="#" class="ms-2 text-decoration-none db_forum_link">Amorin1</a>
-                                            <a href="#" class="ms-2 text-decoration-none">Novice</a>
-                                        </div>
-                                    </div>
-                                    <div class="text-nowrap me-5"><i class="fa-regular fa-thumbs-up text-muted fs-5"></i><span class="ms-2">1</span>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <div class="col-lg-6 col-12">
-                                <div class="d-flex justify-content-between align-items-center border-bottom py-2">
-                                    <div class="d-flex align-items-center">
-                                        <p class="mb-0 me-4 fs-4 text-muted">21</p>
-                                        <img src="/img/denisha_img/support_comunity/developer-soft/6.png"
-                                            class="rounded-circle" alt="bwe">
-                                        <div class="d-flex flex-column ms-4">
-                                            <a href="#" class="ms-2 text-decoration-none db_forum_link">bwe</a>
-                                            <a href="#" class="ms-2 text-decoration-none">Novice</a>
-                                        </div>
-                                    </div>
-                                    <div class="text-nowrap me-5"><i class="fa-regular fa-thumbs-up text-muted fs-5"></i><span class="ms-2">1</span>
-                                    </div>
-                                </div>
-                            </div>
-                            
+                        <div class="row db_author_data p-md-4 p-1" id="authorContainer">
+                            <!-- Author entries will be dynamically inserted here -->
                         </div>
                     </div>
                 </div>
@@ -490,14 +180,217 @@
                     </div>
                 </div>
             </div>
-
         </section>
-
     </main>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
         crossorigin="anonymous"></script>
+    
+        <script>
+            // JavaScript to dynamically generate author entries and handle pagination
+            const db_authors = [
+            { name: "jimdempseyatthe", rank: "Honored Contributor III", kudos: 19, image: "2.JPG", lastActive: new Date('2023-05-10T10:30:00') },
+            { name: "Jacob_Williams", rank: "New Contributor II", kudos: 11, image: "14.png", lastActive: new Date('2023-05-09T15:45:00') },
+            { name: "Steve_Lionel", rank: "Honored Contributor III", kudos: 10, image: "3.jpg", lastActive: new Date('2023-05-08T09:20:00') },
+            { name: "BryanC12", rank: "Novice", kudos: 3, image: "3.png", lastActive: new Date('2023-05-07T14:15:00') },
+            { name: "IanH", rank: "Honored Contributor III", kudos: 2, image: "5.png", lastActive: new Date('2023-05-06T11:30:00') },
+            { name: "andrew_4619", rank: "Honored Contributor III", kudos: 2, image: "6.png", lastActive: new Date('2023-05-05T16:45:00') },
+            { name: "SamTygier", rank: "Honored Contributor III", kudos: 2, image: "7.png", lastActive: new Date('2023-05-04T13:20:00') },
+            { name: "WiserOrb", rank: "Beginner", kudos: 2, image: "8.png", lastActive: new Date('2023-05-03T10:10:00') },
+            { name: "V-T", rank: "New Contributor III", kudos: 2, image: "9.png", lastActive: new Date('2023-05-02T17:30:00') },
+            { name: "Yululily", rank: "Novice", kudos: 2, image: "5.png", lastActive: new Date('2023-05-01T12:45:00') },
+            { name: "Theo_M", rank: "Beginner", kudos: 2, image: "11.png", lastActive: new Date('2023-04-30T09:55:00') },
+            { name: "Jarek_T", rank: "Novice", kudos: 2, image: "13.png", lastActive: new Date('2023-04-29T15:40:00') },
+            { name: "Hamza13", rank: "Novice", kudos: 2, image: "14.png", lastActive: new Date('2023-04-28T11:25:00') },
+            { name: "preeth", rank: "Novice", kudos: 1, image: "15.png", lastActive: new Date('2023-04-27T14:50:00') },
+            { name: "lpmorenoc", rank: "Beginner", kudos: 1, image: "16.png", lastActive: new Date('2023-04-26T10:35:00') },
+            { name: "OP1", rank: "New Contributor III", kudos: 1, image: "17.png", lastActive: new Date('2023-04-25T16:20:00') },
+            { name: "AndrewC", rank: "New Contributor III", kudos: 1, image: "18.png", lastActive: new Date('2023-04-24T13:05:00') },
+            { name: "david47", rank: "Novice", kudos: 1, image: "19.png", lastActive: new Date('2023-04-23T09:40:00') },
+            { name: "Amorin1", rank: "Novice", kudos: 1, image: "20.png", lastActive: new Date('2023-04-22T15:55:00') },
+            { name: "bwe", rank: "Novice", kudos: 1, image: "6.png", lastActive: new Date('2023-04-21T12:30:00') },
+            ];
+        
+            // Generate remaining authors to reach 150
+            const db_ranks = ["Novice", "Beginner", "New Contributor I", "New Contributor II", "New Contributor III", "Honored Contributor I", "Honored Contributor II", "Honored Contributor III"];
+            const db_images = ["2.JPG", "3.jpg", "3.png", "5.png", "6.png", "7.png", "8.png", "9.png", "11.png", "13.png", "14.png", "15.png", "16.png", "17.png", "18.png", "19.png", "20.png"];
+        
+            for (let db_i = db_authors.length; db_i < 150; db_i++) {
+                const db_daysAgo = Math.floor(Math.random() * 365); // Random date within the last year
+                db_authors.push({
+                    name: `Author${db_i + 1}`,
+                    rank: db_ranks[Math.floor(Math.random() * db_ranks.length)],
+                    kudos: Math.floor(Math.random() * 10) + 1,
+                    image: db_images[Math.floor(Math.random() * db_images.length)],
+                    lastActive: new Date(Date.now() - db_daysAgo * 24 * 60 * 60 * 1000)
+                });
+            }
+        
+            const db_authorsPerPage = 21;
+            let db_currentPage = 1;
+            let db_currentTimeRange = 'all_time';
+        
+            function db_filterAuthors(db_timeRange) {
+                const db_now = new Date();
+                switch (db_timeRange) {
+                    case '24_hours':
+                        return db_authors.filter(db_author => (db_now - db_author.lastActive) <= 24 * 60 * 60 * 1000);
+                    case '7_days':
+                        return db_authors.filter(db_author => (db_now - db_author.lastActive) <= 7 * 24 * 60 * 60 * 1000);
+                    case '30_days':
+                        return db_authors.filter(db_author => (db_now - db_author.lastActive) <= 30 * 24 * 60 * 60 * 1000);
+                    case '3_months':
+                        return db_authors.filter(db_author => (db_now - db_author.lastActive) <= 90 * 24 * 60 * 60 * 1000);
+                    case '6_months':
+                        return db_authors.filter(db_author => (db_now - db_author.lastActive) <= 180 * 24 * 60 * 60 * 1000);
+                    case '1_year':
+                        return db_authors.filter(db_author => (db_now - db_author.lastActive) <= 365 * 24 * 60 * 60 * 1000);
+                    case 'all_time':
+                    default:
+                        return db_authors;
+                }
+            }
+        
+            function db_displayAuthors(db_page, db_timeRange) {
+                const db_filteredAuthors = db_filterAuthors(db_timeRange);
+                const db_start = (db_page - 1) * db_authorsPerPage;
+                const db_end = db_start + db_authorsPerPage;
+                const db_authorContainer = document.getElementById('authorContainer');
+                db_authorContainer.innerHTML = '';
+        
+                for (let db_i = db_start; db_i < db_end && db_i < db_filteredAuthors.length; db_i++) {
+                    const db_author = db_filteredAuthors[db_i];
+                    const db_authorHTML = `
+                         <div class="col-lg-6 col-12">
+                        <div class="d-flex justify-content-between align-items-center border-bottom py-2">
+                            <div class="d-flex align-items-center">
+                                <p class="mb-0 me-md-4 me-2 fs-4 text-muted">${db_i + 1}</p>
+                                <img src="/img/denisha_img/support_comunity/developer-soft/${db_author.image}"
+                                    class="rounded-circle" alt="${db_author.name}">
+                                <div class="d-flex flex-column ms-md-4 ms-2">
+                                    <a href="#" class="ms-2 text-decoration-none db_forum_link author-name" title="${db_author.name}">${db_author.name}</a>
+                                    <a href="#" class="ms-2 text-decoration-none author-rank">${db_author.rank}...</a>
+                                </div>
+                            </div>
+                            <div class="text-nowrap me-5"><i class="fa-regular fa-thumbs-up text-muted fs-5"></i><span class="ms-2">${db_author.kudos}</span></div>
+                        </div>
+                    </div>
+                    `;
+                    db_authorContainer.innerHTML += db_authorHTML;
+                }
+                db_updatePagination(db_filteredAuthors.length);
+            }
+        
+            function db_updatePagination(db_totalAuthors) {
+                const db_paginationContainer = document.querySelector('.db_pagination');
+                const db_pageCount = Math.ceil(db_totalAuthors / db_authorsPerPage);
+                
+                let db_paginationHTML = '';
+                
+                // Previous arrow
+                if (db_currentPage > 1) {
+                    db_paginationHTML += `<a href="#" class="prev"><i class="fa fa-angle-left" aria-hidden="true"></i></a>`;
+                } else {
+                    db_paginationHTML += `<a href="#" class="prev text-black-50"><i class="fa fa-angle-left" aria-hidden="true"></i></a>`;
+                }
+                
+                // First page
+                db_paginationHTML += `<a href="#" class="${db_currentPage === 1 ? 'text-black' : ''}" data-page="1">1</a>`;
+                
+                // Ellipsis and middle pages
+                if (db_pageCount > 3) {
+                    if (db_currentPage > 2) {
+                        db_paginationHTML += `<span>...</span>`;
+                    }
+                    
+                    let db_startPage = Math.max(2, db_currentPage - 1);
+                    let db_endPage = Math.min(db_pageCount - 1, db_currentPage + 1);
+                    
+                    for (let db_i = db_startPage; db_i <= db_endPage; db_i++) {
+                        if (db_i !== 1 && db_i !== db_pageCount) {
+                            db_paginationHTML += `<a href="#" class="${db_currentPage === db_i ? 'text-black' : ''}" data-page="${db_i}">${db_i}</a>`;
+                        }
+                    }
+                    
+                    if (db_currentPage < db_pageCount - 1) {
+                        db_paginationHTML += `<span>...</span>`;
+                    }
+                }
+                
+                // Last page
+                if (db_pageCount > 1) {
+                    db_paginationHTML += `<a href="#" class="${db_currentPage === db_pageCount ? 'text-black' : ''}" data-page="${db_pageCount}">${db_pageCount}</a>`;
+                }
+                
+                // Next arrow
+                if (db_currentPage < db_pageCount) {
+                    db_paginationHTML += `<a href="#" class="next"><i class="fa fa-angle-right" aria-hidden="true"></i></a>`;
+                } else {
+                    db_paginationHTML += `<a href="#" class="next text-black-50"><i class="fa fa-angle-right" aria-hidden="true"></i></a>`;
+                }
+                
+                db_paginationContainer.innerHTML = db_paginationHTML;
+            }
+        
+            function db_setupPagination() {
+                const db_paginationContainer = document.querySelector('.db_pagination');
+        
+                db_paginationContainer.addEventListener('click', (db_e) => {
+                    db_e.preventDefault();
+                    if (db_e.target.tagName === 'A' || db_e.target.tagName === 'I') {
+                        const db_pageElement = db_e.target.closest('a');
+                        if (db_pageElement) {
+                            if (db_pageElement.classList.contains('prev') && db_currentPage > 1) {
+                                db_currentPage--;
+                            } else if (db_pageElement.classList.contains('next') && db_currentPage < Math.ceil(db_filterAuthors(db_currentTimeRange).length / db_authorsPerPage)) {
+                                db_currentPage++;
+                            } else if (db_pageElement.dataset.page) {
+                                db_currentPage = parseInt(db_pageElement.dataset.page);
+                            }
+                            db_displayAuthors(db_currentPage, db_currentTimeRange);
+                        }
+                    }
+                });
+            }
+        
+            function db_setupTimeRangeSelection() {
+                const db_timeRangeOptions = document.getElementById('timeRangeOptions');
+                const db_timeRangeSelect = document.getElementById('timeRangeSelect');
+                
+                // Set default selection
+                const db_allTimeOption = db_timeRangeOptions.querySelector('[data-value="all_time"]');
+                db_allTimeOption.style.backgroundColor = '#f3f3f3';
+        
+                db_timeRangeOptions.addEventListener('click', (db_e) => {
+                    db_e.preventDefault();
+                    if (db_e.target.tagName === 'A') {
+                        db_timeRangeOptions.querySelectorAll('a').forEach(db_a => db_a.style.backgroundColor = '');
+                        db_e.target.style.backgroundColor = '#f3f3f3';
+                        db_timeRangeSelect.value = db_e.target.dataset.value;
+                        db_currentTimeRange = db_e.target.dataset.value;
+                        db_currentPage = 1;
+                        db_displayAuthors(db_currentPage, db_currentTimeRange);
+                    }
+                });
+        
+                db_timeRangeSelect.addEventListener('change', (db_e) => {
+                    db_timeRangeOptions.querySelectorAll('a').forEach(db_a => db_a.style.backgroundColor = '');
+                    const db_selectedOption = db_timeRangeOptions.querySelector(`[data-value="${db_e.target.value}"]`);
+                    if (db_selectedOption) {
+                        db_selectedOption.style.backgroundColor = '#f3f3f3';
+                    }
+                    db_currentTimeRange = db_e.target.value;
+                    db_currentPage = 1;
+                    db_displayAuthors(db_currentPage, db_currentTimeRange);
+                });
+            }
+        
+            // Initialize the page
+            db_displayAuthors(db_currentPage, db_currentTimeRange);
+            db_setupPagination();
+            db_setupTimeRangeSelection();
+        </script>
 </body>
 
 </html>
