@@ -1,5 +1,4 @@
 // ------------------ json data --------------------
-
 let developer_catalog_card_data = [
     {
         name: "Intel® Distribution for Python*",
@@ -7,7 +6,9 @@ let developer_catalog_card_data = [
         content: "Software Overviews",
         description: "Develop fast, Python* code with essential computational packages including NumPy, SciPy, scikit-learn*, and more.",
         image: "tool-thumbnail-beta-oneapi.jpg.rendition.intel.web.256.144.jpg",
-        status: "Updated"
+        status: "Updated",
+        m_cat: "Artificial Intelligence",
+        s_cat: "Machine Learning"
     },
     {
         name: "Migrate CUDA* to DPC++ Code: Intel® DPC++ Compatibility Tool",
@@ -15,7 +16,9 @@ let developer_catalog_card_data = [
         content: "Software Overviews",
         description: "Transform CUDA* applications to standards-based DPC++ code to increase interoperability across CPUs, GPUs, FPGAs, and other accelerators.",
         image: "tool-thumbnail-beta-oneapi.jpg.rendition.intel.web.256.144.jpg",
-        status: "Updated"
+        status: "Updated",
+        m_cat: "Artificial Intelligence",
+        s_cat: "Machine Learning"
     },
     {
         name: "Intel® Smart Edge Open",
@@ -23,7 +26,9 @@ let developer_catalog_card_data = [
         content: "Software Overviews",
         description: "Streamline networking and application deployment at the edge.",
         image: "default-document.svg",
-        status: "Updated"
+        status: "Updated",
+        m_cat: "Artificial Intelligence",
+        s_cat: "Machine Learning"
     },
     {
         name: "Intel® Rendering Toolkit: 3D Graphics & Visualization",
@@ -31,7 +36,9 @@ let developer_catalog_card_data = [
         content: "Software Overviews",
         description: "Create high-fidelity, photorealistic experiences and 3D data visualizations—scientific, industrial, animation, and more—with open source ray tracing",
         image: "tool-thumbnail-beta-oneapi.jpg.rendition.intel.web.256.144.jpg",
-        status: "Updated"
+        status: "Updated",
+        m_cat: "Artificial Intelligence",
+        s_cat: "Deep Learning"
     },
     {
         name: "Pin - A Dynamic Binary Instrumentation Tool",
@@ -39,7 +46,9 @@ let developer_catalog_card_data = [
         content: "Software Overviews",
         description: "Pin is a dynamic binary instrumentation framework for the IA-32, x86-64 and MIC instruction-set architectures that enables the creation of dynamic...",
         image: "webops9569-page-icon-pin-debugger.png",
-        status: "Updated"
+        status: "Updated",
+        m_cat: "Artificial Intelligence",
+        s_cat: "Deep Learning"
     },
     {
         name: "Pin - A Dynamic Binary Instrumentation Tool",
@@ -47,7 +56,9 @@ let developer_catalog_card_data = [
         content: "Software Overviews",
         description: "Software Overviewsn is a dynamic binary instrumentation framework for the IA-32, x86-64 and MIC instruction-set architectures that enables the creation of dynamic...",
         image: "cutout-256671.jpg",
-        status: "Updated"
+        status: "Updated",
+        m_cat: "Artificial Intelligence",
+        s_cat: "Object Detection"
     },
     {
         name: "Perform Model Optimization Using Intel® Neural Compressor",
@@ -55,7 +66,9 @@ let developer_catalog_card_data = [
         content: "Software Overviews",
         description: "This open source Python* library performs framework-independent AI model optimization.",
         image: "default-document.svg",
-        status: "Updated"
+        status: "Updated",
+        m_cat: "Artificial Intelligence",
+        s_cat: "Object Detection"
     },
     {
         name: "Perform Model Optimization Using Intel® Neural Compressor",
@@ -63,7 +76,9 @@ let developer_catalog_card_data = [
         content: "Software Overviews",
         description: "Included as part of the Intel® oneAPI HPC Toolkit, use this for complex HPC applications based on Intel® processors.",
         image: "tool-thumbnail-beta-oneapi.jpg.rendition.intel.web.256.144.jpg",
-        status: false
+        status: false,
+        m_cat: "Artificial Intelligence",
+        s_cat: "Generative Artificial Intelligence"
     },
     {
         name: "Intel® oneAPI Threading Building Blocks",
@@ -71,7 +86,9 @@ let developer_catalog_card_data = [
         content: "Software Overviews",
         description: "Simplify efforts to add parallelism to an application via a flexible runtime library that automatically maps logical parallelism onto threads.",
         image: "tool-thumbnail-beta-oneapi.jpg.rendition.intel.web.256.144.jpg",
-        status: false
+        status: false,
+        m_cat: "Artificial Intelligence",
+        s_cat: "Image Recognition"
     },
     {
         name: "Intel® Distribution of OpenVINO™ Toolkit",
@@ -79,7 +96,9 @@ let developer_catalog_card_data = [
         content: "Software Overviews",
         description: "Optimize and deploy AI inference. Boost deep learning performance in computer vision, automatic speech recognition, NLP, and more.",
         image: "openvino-logo.png.rendition.intel.web.256.144.png",
-        status: false
+        status: false,
+        m_cat: "Artificial Intelligence",
+        s_cat: "Natural Language Processing"
     },
     {
         name: "Intel® System Bring-up Toolkit, Powered by oneAPI",
@@ -87,7 +106,9 @@ let developer_catalog_card_data = [
         content: "Software Overviews",
         description: "Accelerate system bring-up and optimization to get from presilicon to production faster",
         image: "tool-thumbnail-beta-oneapi.jpg.rendition.intel.web.256.144.jpg",
-        status: false
+        status: false,
+        m_cat: "Artificial Intelligence",
+        s_cat: "Neural Networks"
     },
     {
         name: "Intel® Integrated Performance Primitives",
@@ -95,7 +116,9 @@ let developer_catalog_card_data = [
         content: "Software Overviews",
         description: "With royalty-free APIs, this library includes ready-to-use functions highly optimized for diverse Intel® architectures.",
         image: "tool-thumbnail-beta-oneapi.jpg.rendition.intel.web.256.144.jpg",
-        status: false
+        status: false,
+        m_cat: "Cloud Computing",
+        s_cat: "Cloud Platforms"
     },
     {
         name: "Key Management Reference Application",
@@ -103,7 +126,9 @@ let developer_catalog_card_data = [
         content: "Software Overviews",
         description: "Set up a workload with this reference application in an Intel® Software Guard Extension enclave on an Intel® processor.",
         image: "default-document.svg",
-        status: false
+        status: false,
+        m_cat: "Cloud Computing",
+        s_cat: "Cloud Servers"
     },
     {
         name: "Celadon",
@@ -111,7 +136,9 @@ let developer_catalog_card_data = [
         content: "Linux*, Android*",
         description: "A unified code base allows you to run Android* applications in containers or virtual machines.",
         image: "celadon-logo-transparent-rwd.png.rendition.intel.web.256.144.png",
-        status: false
+        status: false,
+        m_cat: "Software Development",
+        s_cat: "Open Source Software"
     },
     {
         name: "Intel® oneAPI Deep Neural Network Library (oneDNN)",
@@ -119,7 +146,9 @@ let developer_catalog_card_data = [
         content: "Software Overviews",
         description: "Develop faster deep learning frameworks with a library that combines primitives and a single API to develop for CPUs, GPUs, or both.",
         image: "tool-thumbnail-beta-oneapi.jpg.rendition.intel.web.256.144.jpg",
-        status: false
+        status: false,
+        m_cat: "Software Development",
+        s_cat: "Open Source Software"
     },
     {
         name: "Priority Support for Intel® oneAPI Base & HPC Toolkit",
@@ -127,7 +156,9 @@ let developer_catalog_card_data = [
         content: "Software Overviews",
         description: "Purchase the Intel® oneAPI Base & HPC Toolkit with priority support to build, analyze, optimize, and scale HPC applications.",
         image: "tool-thumbnail-beta-oneapi.jpg.rendition.intel.web.256.144.jpg",
-        status: false
+        status: false,
+        m_cat: "Software Development",
+        s_cat: "Open Source Software"
     },
     {
         name: "Modin",
@@ -135,7 +166,9 @@ let developer_catalog_card_data = [
         content: "Software Overviews",
         description: "This library enables distributed DataFrame processing and is fully compatible with the pandas API.",
         image: "tool-thumbnail-beta-oneapi.jpg.rendition.intel.web.256.144.jpg",
-        status: false
+        status: false,
+        m_cat: "Software Development",
+        s_cat: "Open Source Software"
     },
     {
         name: "Priority Support for Intel® oneAPI Base Toolkit",
@@ -143,7 +176,9 @@ let developer_catalog_card_data = [
         content: "Software Overviews",
         description: "Purchase the Intel oneAPI Base Toolkit with priority support to build and deploy high-performance, data-centric applications",
         image: "tool-thumbnail-beta-oneapi.jpg.rendition.intel.web.256.144.jpg",
-        status: false
+        status: false,
+        m_cat: "Software Development",
+        s_cat: "Open Source Software"
     },
     {
         name: "Priority Support for Intel® oneAPI Base Toolkit",
@@ -151,7 +186,9 @@ let developer_catalog_card_data = [
         content: "Software Overviews",
         description: "Unlock media features on CPUs, GPUs, VPUs, and other accelerators with a successor to Intel® Media SDK—a video-processing API for encode and decode.",
         image: "vpl-diagram-media-sdk-rwd.png.rendition.intel.web.256.144.png",
-        status: false
+        status: false,
+        m_cat: "Software Development",
+        s_cat: "Open Source Software"
     },
     {
         name: "Intel® Extension for Scikit-learn*",
@@ -159,7 +196,9 @@ let developer_catalog_card_data = [
         content: "Software Overviews",
         description: "Seamlessly speed up scikit-learn* workloads with only a couple lines of code on Intel® CPUs and GPUs across single- and multinode configurations.",
         image: "logo-scikit-learn-rwd.png",
-        status: false
+        status: false,
+        m_cat: "Software Development",
+        s_cat: "Open Source Software"
     },
     {
         name: "Fix Performance Bottlenecks with Intel® VTune™ Profiler",
@@ -167,7 +206,9 @@ let developer_catalog_card_data = [
         content: "Software Overviews",
         description: "Use advanced sampling and profiling methods to quickly analyze code, isolate issues, and deliver performance insight on modern CPUs, GPUs, and FPGAs.",
         image: "tool-thumbnail-beta-oneapi.jpg.rendition.intel.web.256.144.jpg",
-        status: false
+        status: false,
+        m_cat: "Software Development",
+        s_cat: "Open Source Software"
     },
     {
         name: "Intel® HPC Toolkit: Cluster & HPC Development Tools",
@@ -175,7 +216,9 @@ let developer_catalog_card_data = [
         content: "Software Overviews",
         description: "Build, optimize, and scale HPC and cluster apps with the latest techniques in vectorization, multinode parallelization, and memory optimization.",
         image: "tool-thumbnail-beta-oneapi.jpg.rendition.intel.web.256.144.jpg",
-        status: false
+        status: false,
+        m_cat: "Software Development",
+        s_cat: "Open Source Software"
     },
     {
         name: "Speed Up ML & DL with Intel® oneAPI Data Analytics Library",
@@ -183,7 +226,9 @@ let developer_catalog_card_data = [
         content: "Software Overviews",
         description: "This library includes a set of high-speed algorithms: analysis, math, training and prediction functions, and more.",
         image: "tool-thumbnail-beta-oneapi.jpg.rendition.intel.web.256.144.jpg",
-        status: false
+        status: false,
+        m_cat: "Software Development",
+        s_cat: "Open Source Software"
     },
     {
         name: "Intel® Cluster Checker",
@@ -191,7 +236,9 @@ let developer_catalog_card_data = [
         content: "Software Overviews",
         description: "Identify issues with clusters and resolve them quickly.",
         image: "tool-thumbnail-beta-oneapi.jpg.rendition.intel.web.256.144.jpg",
-        status: false
+        status: false,
+        m_cat: "Software Development",
+        s_cat: "Firmware and BIOS"
     },
     {
         name: "Intel® oneAPI Base & IoT Toolkit",
@@ -199,7 +246,9 @@ let developer_catalog_card_data = [
         content: "Software Overviews",
         description: "Buy the Intel® oneAPI Base & IoT Toolkit with Priority Support to build data-centric, cross-architecture IoT applications",
         image: "tool-thumbnail-beta-oneapi.jpg.rendition.intel.web.256.144.jpg",
-        status: false
+        status: false,
+        m_cat: "Software Development",
+        s_cat: "Firmware and BIOS"
     },
     {
         name: "Design Code for Parallelism and Offloading with Intel® Advisor",
@@ -207,7 +256,8 @@ let developer_catalog_card_data = [
         content: "Software Overviews",
         description: "Design code for efficient vectorization, threading, and offloading to accelerators.",
         image: "tool-thumbnail-beta-oneapi.jpg.rendition.intel.web.256.144.jpg",
-        status: false
+        status: false,
+        m_cat: "Client Computing",
     },
     {
         name: "Intel® Inspector",
@@ -215,7 +265,8 @@ let developer_catalog_card_data = [
         content: "Software Overviews",
         description: "Solve threading & memory problems early with Intel Inspector, a dynamic debugger for C, C++, and Fortran applications.",
         image: "tool-thumbnail-beta-oneapi.jpg.rendition.intel.web.256.144.jpg",
-        status: false
+        status: false,
+        m_cat: "Client Computing",
     },
     {
         name: "Intel® Trace Analyzer and Collector",
@@ -223,7 +274,8 @@ let developer_catalog_card_data = [
         content: "Software Overviews",
         description: "Profile and analyze MPI applications to focus your optimization efforts.",
         image: "tool-thumbnail-beta-oneapi.jpg.rendition.intel.web.256.144.jpg",
-        status: false
+        status: false,
+        m_cat: "Client Computing",
     },
     {
         name: "Intel® Memory Latency Checker v3.11",
@@ -231,7 +283,8 @@ let developer_catalog_card_data = [
         content: "Software Overviews",
         description: "Intel® Memory Latency Checker (Intel® MLC) is a tool used to measure memory latencies and b/w, and how they change with increasing load on the",
         image: "-p-493768.png",
-        status: false
+        status: false,
+        m_cat: "Client Computing",
     },
     {
         name: "Intel® Battery Life Diagnostic Tool",
@@ -239,7 +292,8 @@ let developer_catalog_card_data = [
         content: "Software Overviews",
         description: "This tool helps monitor and diagnose battery life impact of the system configuration and installed software on computer systems with an Intel® CPU.",
         image: "adobestock-317133417.jpeg.rendition.intel.web.256.144.jpg",
-        status: false
+        status: false,
+        m_cat: "Client Computing",
     },
     {
         name: "Smart, Connected Device Development with Intel® oneAPI IoT Toolkit",
@@ -247,7 +301,8 @@ let developer_catalog_card_data = [
         content: "Software Overviews",
         description: "This toolkit will no longer be available as of v2024.0. However, the tools in this toolkit are still available for download and use.",
         image: "tool-thumbnail-beta-oneapi.jpg.rendition.intel.web.256.144.jpg",
-        status: false
+        status: false,
+        m_cat: "Client Computing",
     },
     {
         name: "Intel® Fortran Compiler",
@@ -255,7 +310,8 @@ let developer_catalog_card_data = [
         content: "Software Overviews",
         description: "Build applications that can scale for the future with optimized code designed for Intel® architecture.",
         image: "tool-thumbnail-beta-oneapi.jpg.rendition.intel.web.256.144.jpg",
-        status: false
+        status: false,
+        m_cat: "Data Centers",
     },
     {
         name: "Intel® Distribution for GDB*",
@@ -263,7 +319,8 @@ let developer_catalog_card_data = [
         content: "Software Overviews",
         description: "Debug cross-platform parallel & threaded applications with this component, which is part of the Intel® oneAPI Base Toolkit.",
         image: "tool-thumbnail-beta-oneapi.jpg.rendition.intel.web.256.144.jpg",
-        status: false
+        status: false,
+        m_cat: "Data Centers",
     },
     {
         name: "Intel® oneAPI DPC++ Library",
@@ -271,7 +328,8 @@ let developer_catalog_card_data = [
         content: "Software Overviews",
         description: "Speed performance of Data Parallel C++ kernels on CPUs, GPUs, and FPGAs with this standards-based library.",
         image: "tool-thumbnail-beta-oneapi.jpg.rendition.intel.web.256.144.jpg",
-        status: false
+        status: false,
+        m_cat: "Data Centers",
     },
     {
         name: "Intel® oneAPI Collective Communications Library",
@@ -279,7 +337,8 @@ let developer_catalog_card_data = [
         content: "Software Overviews",
         description: "Distribute machine and deep learning model training across multiple nodes using a library of optimized communication patterns.",
         image: "tool-thumbnail-beta-oneapi.jpg.rendition.intel.web.256.144.jpg",
-        status: false
+        status: false,
+        m_cat: "Data Centers",
     },
     {
         name: "Intel® Integrated Simulation Infrastructure with Modeling",
@@ -287,7 +346,8 @@ let developer_catalog_card_data = [
         content: "Software Overviews",
         description: "Learn about this versatile framework that supports functional, performance, power, and thermal simulations in a single environment.",
         image: "default-document.svg",
-        status: false
+        status: false,
+        m_cat: "Data Centers",
     },
     {
         name: "Intel® Collaboration Suite for WebRTC",
@@ -295,7 +355,8 @@ let developer_catalog_card_data = [
         content: "Software Overviews",
         description: "This open standard distribution supports real-time communication without additional clients or plug-ins.",
         image: "tool-thumbnail-production-20.jpg.rendition.intel.web.256.144.jpg",
-        status: false
+        status: false,
+        m_cat: "Intelligent Edge",
     },
     {
         name: "Intel® Software Guard Extensions",
@@ -303,7 +364,8 @@ let developer_catalog_card_data = [
         content: "Software Overviews",
         description: "Create code with APIs, libraries, tools, and sample code to leverage security protections enabled with Intel® Software Guard Extensions.",
         image: "default-document.svg",
-        status: false
+        status: false,
+        m_cat: "Intelligent Edge",
     },
     {
         name: "Edge Controls for Industrial",
@@ -311,7 +373,8 @@ let developer_catalog_card_data = [
         content: "Software Overviews",
         description: "Create software-defined industrial control solutions with this prevalidated reference platform.",
         image: "edge-controls-for-industrial.png.rendition.intel.web.256.144.png",
-        status: false
+        status: false,
+        m_cat: "Intelligent Edge",
     },
     {
         name: "OpenCL™ Runtimes for Intel® Processors",
@@ -319,7 +382,9 @@ let developer_catalog_card_data = [
         content: "Software Overviews",
         description: "Obtain runtimes to execute or develop OpenCL™ applications on Intel­® processors.",
         image: "graphics-implementation-501945.png",
-        status: false
+        status: false,
+        m_cat: "Intelligent Edge",
+        
     },
     {
         name: "OpenCL™ Runtimes for Intel® Processors",
@@ -327,7 +392,8 @@ let developer_catalog_card_data = [
         content: "Software Overviews",
         description: "Obtain runtimes to execute or develop OpenCL™ applications on Intel­® processors.",
         image: "tool-thumbnail-production-41.jpg",
-        status: false
+        status: false,
+        m_cat: "Computer Vision",
     },
     {
         name: "Intel® Extension for OpenXLA*",
@@ -335,7 +401,8 @@ let developer_catalog_card_data = [
         content: "Software Overviews",
         description: "An open source compiler that will enable efficient lowering, optimization and deployment of ML models from most major frameworks to any",
         image: "default-document.svg",
-        status: false
+        status: false,
+        m_cat: "Computer Vision",
     },
     {
         name: "Intel® Data Center GPU Driver for OpenShift*",
@@ -343,7 +410,8 @@ let developer_catalog_card_data = [
         content: "Software Overviews",
         description: "The Intel Data Center GPU Driver for OpenShift project focuses on the development, packaging, certification, and release of Intel® Data Center GPU",
         image: "default-document.svg",
-        status: false
+        status: false,
+        m_cat: "Computer Vision",
     },
     {
         name: "Intel® Technology Enabling for OpenShift*",
@@ -351,7 +419,8 @@ let developer_catalog_card_data = [
         content: "Software Overviews",
         description: "The Intel Technology Enabling for OpenShift project provides Intel Data Center hardware feature-provisioning technologies with the Red Hat OpenShift Container Platform (RHOCP).",
         image: "default-document.svg",
-        status: false
+        status: false,
+        m_cat: "Edge Computing",
     },
     {
         name: "Intel® Homomorphic Encryption Tookit (Intel® HE Toolkit)",
@@ -359,7 +428,8 @@ let developer_catalog_card_data = [
         content: "Software Overviews",
         description: "Increase performance of homomorphic encryption-based cloud solutions running on Intel® platforms using the Intel® Homomorphic Encryption...",
         image: "tool-thumbnail-production-40.jpg.rendition.intel.web.256.144.jpg",
-        status: false
+        status: false,
+        m_cat: "Edge Computing",
     },
     {
         name: "Intel® CPU Runtime for OpenCL™ Applications",
@@ -367,7 +437,8 @@ let developer_catalog_card_data = [
         content: "Software Overviews",
         description: "Run OpenCL™ applications and kernels directly on Intel® processors as target OpenCL devices.",
         image: "default-document.svg",
-        status: false
+        status: false,
+        m_cat: "Edge Computing",
     },
     {
         name: "PM-Graph",
@@ -375,7 +446,9 @@ let developer_catalog_card_data = [
         content: "Software Overviews",
         description: "This project provides resources for viewing the activity in suspend, resume, and boot.",
         image: "default-document.svg",
-        status: false
+        status: false,
+        m_cat: "High Performance Computing",
+        s_cat:"Cluster Computing",
     },
     {
         name: "OpenVINO™ Toolkit Model Server",
@@ -383,7 +456,8 @@ let developer_catalog_card_data = [
         content: "Software Overviews",
         description: "OpenVINO™ Toolkit model server is a scalable, high-performance solution for serving machine learning models optimized for Intel® architectures. The server",
         image: "default-document.svg",
-        status: false
+        status: false,
+        m_cat: "High Performance Computing",
     },
     {
         name: "Intel® OSPRay - Open Source",
@@ -391,7 +465,8 @@ let developer_catalog_card_data = [
         content: "Software Overviews",
         description: "Develop interactive, high-fidelity, visualization applications using this ray-tracing API and engine.",
         image: "d4598237-a808-4bf0-8388-b27459af3b00.png",
-        status: false
+        status: false,
+        m_cat: "High Performance Computing",
     },
     {
         name: "Intel® OSPRay Studio - Open Source",
@@ -399,7 +474,9 @@ let developer_catalog_card_data = [
         content: "Software Overviews",
         description: "Perform high-fidelity, ray traced, interactive, and real-time rendering through a graphical user interface with this new scene graph application addition to Inte",
         image: "7d4c8d12-1be8-469c-bc5d-24a1616730b5.png",
-        status: false
+        status: false,
+        m_cat: "Platform Analysis, Tuning, and Performance Monitoring",
+        s_cat:"Optimization",
     },
     {
         name: "Intel® Distribution of Modin* - Open Source",
@@ -407,7 +484,9 @@ let developer_catalog_card_data = [
         content: "Software Overviews",
         description: "Scale data preprocessing across multi-nodes using this intelligent, distributed dataframe library with an identical API to pandas. This library integrates with...",
         image: "140d34da-113b-4908-a7c0-b9af9eaf276b.png",
-        status: false
+        status: false,
+        m_cat: "Platform Analysis, Tuning, and Performance Monitoring",
+        s_cat:"Optimization",
     },
     {
         name: "Mesa",
@@ -415,7 +494,8 @@ let developer_catalog_card_data = [
         content: "Software Overviews",
         description: "This open source 3D graphics library supports OpenGL*, Vulkan*, and other 3D APIs.",
         image: "e6d3a121-554f-4187-846d-553892375e3c.png",
-        status: false
+        status: false,
+        m_cat: "Platform Analysis, Tuning, and Performance Monitoring",
     },
     {
         name: "The LLVM Compiler Infrastructure",
@@ -423,7 +503,9 @@ let developer_catalog_card_data = [
         content: "Software Overviews",
         description: "The LLVM Project is a collection of modular and reusable compiler and toolchain technologies. The purpose of this project is open source collaboration...",
         image: "f7542a8f-d07d-4cdb-be1e-b77ff1db4500.png",
-        status: false
+        status: false,
+        m_cat: "Visual Computing",
+        s_cat:"Media Processing",
     },
     {
         name: "Clear Linux* Project",
@@ -431,7 +513,8 @@ let developer_catalog_card_data = [
         content: "Software Overviews",
         description: "Clear Linux OS is an open source, rolling release Linux distribution optimized for performance and security, from the Cloud to the Edge, designed for customization...",
         image: "81b823e2-6ce6-4f2f-82c8-4f5ef8d61d1d.png",
-        status: false
+        status: false,
+        m_cat: "Visual Computing",
     },
     {
         name: "Linux Kernel",
@@ -439,7 +522,8 @@ let developer_catalog_card_data = [
         content: "Software Overviews",
         description: "This kernel is at the heart of worldwide Linux*-based systems in CSPs, Chromebooks*, embedded devices, and more.",
         image: "bbaa7778-c442-4fd6-b05b-92714627412d.png",
-        status: false
+        status: false,
+        m_cat: "Visual Computing",
     },
     {
         name: "Yocto* Project",
@@ -447,7 +531,9 @@ let developer_catalog_card_data = [
         content: "Software Overviews",
         description: "The Yocto Project* is an open source collaboration that provides templates, tools, and methods to help you create custom Linux*-based systems for...",
         image: "e4880605-2750-4fd9-8273-01dadb58dca2.png",
-        status: false
+        status: false,
+        m_cat: "Analytics",
+        s_cat:"Media Analytics",
     },
     {
         name: "KVM",
@@ -455,7 +541,9 @@ let developer_catalog_card_data = [
         content: "Software Overviews",
         description: "In addition to its traditional role for running hardware-isolated virtual environments on client PCs and laptops, kernel-based virtual machine (KVM)...",
         image: "8a9ea6df-8d56-41f9-b9b6-558013f5b283.png",
-        status: false
+        status: false,
+        m_cat: "Analytics",
+        s_cat:"Media Analytics",
     },
     {
         name: "ACRN",
@@ -463,7 +551,8 @@ let developer_catalog_card_data = [
         content: "Software Overviews",
         description: "ACRN* is a lightweight reference hypervisor that's built to meet the unique needs of embedded IoT development, such as real-time and safety-critical...",
         image: "7b7dd0ad-a90d-4137-869b-872b35f7d3ed.png",
-        status: false
+        status: false,
+        m_cat:"Internet of Things"
     },
     {
         name: "EdgeX Foundry",
@@ -471,7 +560,8 @@ let developer_catalog_card_data = [
         content: "Software Overviews",
         description: "EdgeX Foundry* is flexible and scalable software framework that facilitates interoperability between devices and applications at the IoT edge. Intel",
         image: "3d40eac8-d83d-4f26-9df9-cfd74fd5f21e.png",
-        status: false
+        status: false,
+        m_cat:"Internet of Things"
     },
     {
         name: "PyTorch",
@@ -479,7 +569,8 @@ let developer_catalog_card_data = [
         content: "Software Overviews",
         description: "This open source, machine learning framework is based on the Torch* library. it's used for computer vision and natural language processing applications.",
         image: "6271974e-fad6-47ef-9700-f2e41d0a1407.png",
-        status: false
+        status: false,
+        m_cat:"Media Delivery"
     },
     {
         name: "PyTensorFlow*",
@@ -487,7 +578,8 @@ let developer_catalog_card_data = [
         content: "Software Overviews",
         description: "TensorFlow* is a software library for machine learning and AI with a particular focus on training and inference of deep neural networks. Intel's...",
         image: "d2325a34-b1ce-4573-9d57-1ae0ddd5b9cc.png",
-        status: false
+        status: false,
+        m_cat:"Media Delivery"
     },
     {
         name: "Sound Open Firmware (SOF)*",
@@ -495,7 +587,9 @@ let developer_catalog_card_data = [
         content: "Software Overviews",
         description: "Sound Open Firmware is an open source audio DSP firmware and SDK that provides audio firmware infrastructure and development tools for...",
         image: "d1e2809b-05a2-448c-8597-089a66bcd829.png",
-        status: false
+        status: false,
+        m_cat:"Enterprise Computing",
+        s_cat:"Virtualization",
     },
     {
         name: "SPDK (Storage Performance Dev Kit)",
@@ -503,7 +597,8 @@ let developer_catalog_card_data = [
         content: "Software Overviews",
         description: "The Storage Performance Development Kit (SPDK) provides a set of tools and libraries for writing high performance, scalable, user-mode storage applications.",
         image: "e27a44f8-f95f-40c2-8ca2-fe274c0f4dfd.png",
-        status: false
+        status: false,
+        m_cat:"IT Performance",
     },
     {
         name: "Ceph",
@@ -511,11 +606,12 @@ let developer_catalog_card_data = [
         content: "Software Overviews",
         description: "Get better performance for Intel® Xeon® processors and Intel® Optane™ products on database and analytics workloads.",
         image: "6bd83116-96cd-427f-8767-e31ee32947ab.png",
-        status: false
+        status: false,
+        m_cat:"Networking",
     },
     {
         name: "Chromium(Chrome)* OS",
-        system: "Linux*, Chromium OS*",
+        system: "Linux*, Chromium OS* ,CentOS Linux Family*",
         content: "Software Overviews",
         description: "Intel® architecture was integrated into the Google Chrome* operating system project.",
         image: "12238aad-040e-42d7-a2e9-b37025e78d28.png",
@@ -531,7 +627,7 @@ let developer_catalog_card_data = [
     },
     {
         name: "coreboot*",
-        system: "Linux*",
+        system: "Linux*,CentOS Linux Family*",
         content: "Software Overviews",
         description: "Coreboot* is an extended open source firmware platform. It delivers a fast and secure boot experience on modern computers and embedded systems.",
         image: "3420b4f0-202f-4a1a-9e92-fe25a5ead64a.png",
@@ -676,14 +772,14 @@ let developer_catalog_card_data = [
     {
         name: "Intel® Deep Learning Streamer (Intel® DL Streamer)",
         system: "Linux*",
-        content: "Software Overviews",
+        content: "Software Overviews,Celadon*",
         description: "An open-source streaming media analytics framework, based on GStreamer* multimedia framework, for creating complex media analytics pipelines for the...",
         image: "default-document.svg",
         status: false
     },
     {
         name: "Open Data Center Diagnostic Project (Open DCDIAG)",
-        system: "Linux*",
+        system: "Linux*,Celadon*",
         content: "Software Overviews",
         description: "The framework is an extensible application programing interface for tests to run to set up their environment, generate test data, perform their function...",
         image: "default-document.svg",
@@ -772,14 +868,14 @@ let developer_catalog_card_data = [
     {
         name: "Gramine",
         system: "Ubuntu Family*",
-        content: "Software Overviews",
+        content: "Software Overviews,Red Hat Linux Family*",
         description: "This library operating system provides a flexible and modular architecture for securing unmodified Linux* applications/binaries on Intel® Software Guard Extensions...",
         image: "default-document.svg",
         status: false
     },
     {
         name: "eBPF",
-        system: "Ubuntu Family*",
+        system: "Ubuntu Family*,Red Hat Linux Family*",
         content: "Software Overviews",
         description: "This technology originated in the Linux* kernel. It runs sandboxed programs in an operating system kernel",
         image: "default-document.svg",
@@ -799,13 +895,21 @@ let all_data = () => {
     page = 1;
     currentRecords = [...originalRecords];
     Pagination(page, currentRecords);
+    var checkboxes = document.getElementsByClassName("b_check");
+    for (var i = 0; i < checkboxes.length; i++) {
+        checkboxes[i].checked = false;
+    }
+    var dropdown = document.getElementsByClassName("dropdown-btnnn");
+    for (var i = 0; i < dropdown.length; i++){
+            var dropdownContent = dropdown[i].nextElementSibling;
+                dropdownContent.style.display = "none";
+    }
 };
-
 let Pagination = (page, record) => {
     if (record.length !== 0) {
         if (document.getElementById('VK_curent_page')) {
             document.getElementById('VK_curent_page').innerHTML = page;
-            let limit = 50;
+            let limit = 20;
             let first = (limit * page) - limit;
             let last = limit * page;
             let total_page = Math.ceil(record.length / limit);
@@ -817,7 +921,7 @@ let Pagination = (page, record) => {
             for (let i = 0; i < result.length; i++) {
                 VK_card_map.innerHTML += `<div class="col-xxl-3 VK_result_card col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12 p-3">
             <div class="VK_card_parent bg-white h-100">
-                                        <div class="VK_card_img_box d-flex justify-content-center overflow-hidden">
+                                        <div class="VK_card_img_box d-flex justify-content-center overflow-hidden" style="background-color:#F1F1F1">
                                             <img src="/img/vivek/${result[i].image}" alt=""
                                                 class="h-100 object-fit-contain">
                                         </div>
@@ -826,11 +930,7 @@ let Pagination = (page, record) => {
                                         <div class="VK_card_Title">
                                                 <a href="" class="text-decoration-none fw-normal">${result[i].name}</a>
                                             </div>
-                                            ${result[i].system ? `<div class="VK_card_system py-1">
-                                                <span><strong>Operating System : </strong> ${result[i].system}</span>
-                                                </div>` : ""}
                                                 <div class="VK_card_description py-1">
-                                                <strong>Content Type :</strong> <span> ${result[i].content}</span>
                                                 <span class="mt-2 d-block">${result[i].description}</span>
                                                 </div>
                                                 </div>
@@ -842,6 +942,7 @@ let Pagination = (page, record) => {
     else {
         document.getElementById('VK_card_parent').innerHTML = `<h1 class="text-danger">Record Not Found</h1>`
     }
+    document.getElementById('VK_search_result_span').innerHTML = record.length + " Results";
 };
 
 let ince = (amt) => {
@@ -950,4 +1051,12 @@ function sortByNameAscending(arr) {
 
 function sortDescendingByName(arr) {
     return arr.sort((a, b) => b.name.localeCompare(a.name));
+}
+function filterbycat(cat) {
+    currentRecords = originalRecords.filter((ele) => {
+        return ele.m_cat == cat || ele.s_cat == cat;
+    });
+    page = 1;
+    console.log(currentRecords.length);
+    Pagination(page, currentRecords);
 }
