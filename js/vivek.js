@@ -1,6 +1,4 @@
 
-
-
 // ------------------ json data --------------------
 
 let developer_catalog_card_data = [
@@ -1077,7 +1075,7 @@ function sortDescendingByName(arr) {
 
 // --------------------- filter toggle ------------------------
 
-function VK_toggle_filter() {
+function VK_toggle_cetalog_filter() {
     if (window.innerWidth < 1200) {
         let arr = document.getElementById('VK_accoridan').classList.value
         if (arr.includes('VK_Block')) {
@@ -1173,6 +1171,18 @@ function VK_close_menu_box() {
     }
 }
 
+window.addEventListener('resize', function () {
+    if (document.getElementById('VK_tools_open_menu')) {
+        if (window.innerWidth < 992) {
+            document.getElementById('VK_tools_open_menu').classList.add('d-none')
+            document.getElementById('VK_tools_header_part').classList.remove('d-none')
+        }
+    }
+    else {
+        return
+    }
+})
+
 
 
 function VK_tool_search() {
@@ -1204,7 +1214,7 @@ function VK_tool_search_close() {
 
 let VK_Tools_service_data = [
     {
-        name: "Mongoose2 MRDIMM Test Card",
+        name: "EMI Shield for the Gen5 VR Test Tool",
         image: "nophoto-base_1.png"
     },
     {
@@ -1212,35 +1222,35 @@ let VK_Tools_service_data = [
         image: "nophoto-base_1.png"
     },
     {
-        name: "Mongoose2 MRDIMM Test Card",
+        name: "DDR5 High Current Memory VR Test Tool Kit",
         image: "nophoto-base_1.png"
     },
     {
-        name: "Mongoose2 MRDIMM Test Card",
+        name: "Test Fixture KIT for Open Compute Project (OCP) ",
         image: "nophoto-base_1.png"
     },
     {
-        name: "Mongoose2 MRDIMM Test Card",
+        name: "Gen5 VR Test Tool Base Kit With 750A Upgrade Installed",
         image: "nophoto-base_1.png"
     },
     {
-        name: "Mongoose2 MRDIMM Test Card",
+        name: "Gen5 VR Test Tool Base Kit",
         image: "nophoto-base_1.png"
     },
     {
-        name: "Mongoose2 MRDIMM Test Card",
+        name: "High Power Gen5 VR Test Tool Base Kit",
         image: "nophoto-base_1.png"
     },
     {
-        name: "Mongoose2 MRDIMM Test Card",
+        name: "+5V Capable Gen5 VR Test Tool Base Kit (Internal Only)",
         image: "nophoto-base_1.png"
     },
     {
-        name: "Mongoose2 MRDIMM Test Card",
+        name: "Gen5 VR Test Tool Base Kit Refurbished",
         image: "nophoto-base_1.png"
     },
     {
-        name: "Mongoose2 MRDIMM Test Card",
+        name: "High Temp 482-Pin Male-to-Male Header",
         image: "nophoto-base_1.png"
     },
 ]
@@ -1566,39 +1576,39 @@ let VK_romley_model_data = [
 
 let VK_purley_power_delivery_data = [
     {
-        name:"Socket P0 (LGA3647) Bundle",
+        name: "Socket P0 (LGA3647) Bundle",
         image: "nophoto-base_1.png"
     },
     {
-        name:"Socket P0 (LGA3647) Bundle",
+        name: "Socket P0 (LGA3647) Bundle",
         image: "nophoto-base_1.png"
     },
     {
-        name:"Socket P0 (LGA3647) Bundle",
+        name: "Socket P0 (LGA3647) Bundle",
         image: "nophoto-base_1.png"
     },
     {
-        name:"Socket P0 (LGA3647) Bundle",
+        name: "Socket P0 (LGA3647) Bundle",
         image: "nophoto-base_1.png"
     },
     {
-        name:"Socket P0 (LGA3647) Bundle",
+        name: "Socket P0 (LGA3647) Bundle",
         image: "nophoto-base_1.png"
     },
     {
-        name:"Socket P0 (LGA3647) Bundle",
+        name: "Socket P0 (LGA3647) Bundle",
         image: "nophoto-base_1.png"
     },
     {
-        name:"Socket P0 (LGA3647) Bundle",
+        name: "Socket P0 (LGA3647) Bundle",
         image: "nophoto-base_1.png"
     },
     {
-        name:"Socket P0 (LGA3647) Bundle",
+        name: "Socket P0 (LGA3647) Bundle",
         image: "nophoto-base_1.png"
     },
     {
-        name:"Socket P0 (LGA3647) Bundle",
+        name: "Socket P0 (LGA3647) Bundle",
         image: "nophoto-base_1.png"
     },
 ]
@@ -1606,275 +1616,275 @@ let VK_purley_power_delivery_data = [
 
 let VK_purley_high_speed_data = [
     {
-        name:"Intel® Interconnect Model Analyzer and Domain Converter (Intel® IMADC)",
-        image: "nophoto-base_1.png" 
+        name: "Intel® Interconnect Model Analyzer and Domain Converter (Intel® IMADC)",
+        image: "nophoto-base_1.png"
     },
     {
-        name:"Intel® Interconnect Model Analyzer and Domain Converter (Intel® IMADC)",
-        image: "nophoto-base_1.png" 
+        name: "Intel® Interconnect Model Analyzer and Domain Converter (Intel® IMADC)",
+        image: "nophoto-base_1.png"
     },
     {
-        name:"Intel® Interconnect Model Analyzer and Domain Converter (Intel® IMADC)",
-        image: "nophoto-base_1.png" 
+        name: "Intel® Interconnect Model Analyzer and Domain Converter (Intel® IMADC)",
+        image: "nophoto-base_1.png"
     },
     {
-        name:"Intel® Interconnect Model Analyzer and Domain Converter (Intel® IMADC)",
-        image: "nophoto-base_1.png" 
+        name: "Intel® Interconnect Model Analyzer and Domain Converter (Intel® IMADC)",
+        image: "nophoto-base_1.png"
     },
     {
-        name:"Intel® Interconnect Model Analyzer and Domain Converter (Intel® IMADC)",
-        image: "nophoto-base_1.png" 
+        name: "Intel® Interconnect Model Analyzer and Domain Converter (Intel® IMADC)",
+        image: "nophoto-base_1.png"
     },
     {
-        name:"Intel® Interconnect Model Analyzer and Domain Converter (Intel® IMADC)",
-        image: "nophoto-base_1.png" 
+        name: "Intel® Interconnect Model Analyzer and Domain Converter (Intel® IMADC)",
+        image: "nophoto-base_1.png"
     },
     {
-        name:"Intel® Interconnect Model Analyzer and Domain Converter (Intel® IMADC)",
-        image: "nophoto-base_1.png" 
+        name: "Intel® Interconnect Model Analyzer and Domain Converter (Intel® IMADC)",
+        image: "nophoto-base_1.png"
     },
     {
-        name:"Intel® Interconnect Model Analyzer and Domain Converter (Intel® IMADC)",
-        image: "nophoto-base_1.png" 
+        name: "Intel® Interconnect Model Analyzer and Domain Converter (Intel® IMADC)",
+        image: "nophoto-base_1.png"
     },
     {
-        name:"Intel® Interconnect Model Analyzer and Domain Converter (Intel® IMADC)",
-        image: "nophoto-base_1.png" 
+        name: "Intel® Interconnect Model Analyzer and Domain Converter (Intel® IMADC)",
+        image: "nophoto-base_1.png"
     },
     {
-        name:"Intel® Interconnect Model Analyzer and Domain Converter (Intel® IMADC)",
-        image: "nophoto-base_1.png" 
+        name: "Intel® Interconnect Model Analyzer and Domain Converter (Intel® IMADC)",
+        image: "nophoto-base_1.png"
     },
 ]
 
 let VK_purley_bios_data = [
     {
-        name:"DTC 8.1 (DCPMM Error Injection) Card",
-        image:"nophoto-base_1.png"
+        name: "DTC 8.1 (DCPMM Error Injection) Card",
+        image: "nophoto-base_1.png"
     },
     {
-        name:"DTC 8.1 (DCPMM Error Injection) Card",
-        image:"nophoto-base_1.png"
+        name: "DTC 8.1 (DCPMM Error Injection) Card",
+        image: "nophoto-base_1.png"
     },
     {
-        name:"DTC 8.1 (DCPMM Error Injection) Card",
-        image:"nophoto-base_1.png"
+        name: "DTC 8.1 (DCPMM Error Injection) Card",
+        image: "nophoto-base_1.png"
     },
     {
-        name:"DTC 8.1 (DCPMM Error Injection) Card",
-        image:"nophoto-base_1.png"
+        name: "DTC 8.1 (DCPMM Error Injection) Card",
+        image: "nophoto-base_1.png"
     },
     {
-        name:"DTC 8.1 (DCPMM Error Injection) Card",
-        image:"nophoto-base_1.png"
+        name: "DTC 8.1 (DCPMM Error Injection) Card",
+        image: "nophoto-base_1.png"
     },
     {
-        name:"DTC 8.1 (DCPMM Error Injection) Card",
-        image:"nophoto-base_1.png"
+        name: "DTC 8.1 (DCPMM Error Injection) Card",
+        image: "nophoto-base_1.png"
     },
     {
-        name:"DTC 8.1 (DCPMM Error Injection) Card",
-        image:"nophoto-base_1.png"
+        name: "DTC 8.1 (DCPMM Error Injection) Card",
+        image: "nophoto-base_1.png"
     },
     {
-        name:"DTC 8.1 (DCPMM Error Injection) Card",
-        image:"nophoto-base_1.png"
+        name: "DTC 8.1 (DCPMM Error Injection) Card",
+        image: "nophoto-base_1.png"
     },
     {
-        name:"DTC 8.1 (DCPMM Error Injection) Card",
-        image:"nophoto-base_1.png"
+        name: "DTC 8.1 (DCPMM Error Injection) Card",
+        image: "nophoto-base_1.png"
     },
 ]
 
 let VK_purley_thermal_data = [
     {
-        name:"FloTHERM* Thermal Models",
-        image:"nophoto-base_1.png"
+        name: "FloTHERM* Thermal Models",
+        image: "nophoto-base_1.png"
     },
     {
-        name:"FloTHERM* Thermal Models",
-        image:"nophoto-base_1.png"
+        name: "FloTHERM* Thermal Models",
+        image: "nophoto-base_1.png"
     },
     {
-        name:"FloTHERM* Thermal Models",
-        image:"nophoto-base_1.png"
+        name: "FloTHERM* Thermal Models",
+        image: "nophoto-base_1.png"
     },
     {
-        name:"FloTHERM* Thermal Models",
-        image:"nophoto-base_1.png"
+        name: "FloTHERM* Thermal Models",
+        image: "nophoto-base_1.png"
     },
     {
-        name:"FloTHERM* Thermal Models",
-        image:"nophoto-base_1.png"
+        name: "FloTHERM* Thermal Models",
+        image: "nophoto-base_1.png"
     },
     {
-        name:"FloTHERM* Thermal Models",
-        image:"nophoto-base_1.png"
+        name: "FloTHERM* Thermal Models",
+        image: "nophoto-base_1.png"
     },
 ]
 
 let VK_purley_validation_data = [
     {
-        name:"DTC 8.1 (DCPMM Error Injection) Card",
-        image:"nophoto-base_1.png"
+        name: "DTC 8.1 (DCPMM Error Injection) Card",
+        image: "nophoto-base_1.png"
     },
     {
-        name:"DTC 8.1 (DCPMM Error Injection) Card",
-        image:"nophoto-base_1.png"
+        name: "DTC 8.1 (DCPMM Error Injection) Card",
+        image: "nophoto-base_1.png"
     },
     {
-        name:"DTC 8.1 (DCPMM Error Injection) Card",
-        image:"nophoto-base_1.png"
+        name: "DTC 8.1 (DCPMM Error Injection) Card",
+        image: "nophoto-base_1.png"
     },
     {
-        name:"DTC 8.1 (DCPMM Error Injection) Card",
-        image:"nophoto-base_1.png"
+        name: "DTC 8.1 (DCPMM Error Injection) Card",
+        image: "nophoto-base_1.png"
     },
     {
-        name:"DTC 8.1 (DCPMM Error Injection) Card",
-        image:"nophoto-base_1.png"
+        name: "DTC 8.1 (DCPMM Error Injection) Card",
+        image: "nophoto-base_1.png"
     },
     {
-        name:"DTC 8.1 (DCPMM Error Injection) Card",
-        image:"nophoto-base_1.png"
+        name: "DTC 8.1 (DCPMM Error Injection) Card",
+        image: "nophoto-base_1.png"
     },
     {
-        name:"DTC 8.1 (DCPMM Error Injection) Card",
-        image:"nophoto-base_1.png"
+        name: "DTC 8.1 (DCPMM Error Injection) Card",
+        image: "nophoto-base_1.png"
     },
     {
-        name:"DTC 8.1 (DCPMM Error Injection) Card",
-        image:"nophoto-base_1.png"
+        name: "DTC 8.1 (DCPMM Error Injection) Card",
+        image: "nophoto-base_1.png"
     },
 ]
 
 let VK_purley_bios_firmware_data = [
     {
-        name:"Intel® TXT ToolKit (TTK) for Debug ACM",
-        image:"nophoto-base_1.png"
+        name: "Intel® TXT ToolKit (TTK) for Debug ACM",
+        image: "nophoto-base_1.png"
     },
     {
-        name:"Intel® TXT ToolKit (TTK) for Debug ACM",
-        image:"nophoto-base_1.png"
+        name: "Intel® TXT ToolKit (TTK) for Debug ACM",
+        image: "nophoto-base_1.png"
     },
     {
-        name:"Intel® TXT ToolKit (TTK) for Debug ACM",
-        image:"nophoto-base_1.png"
+        name: "Intel® TXT ToolKit (TTK) for Debug ACM",
+        image: "nophoto-base_1.png"
     },
     {
-        name:"Intel® TXT ToolKit (TTK) for Debug ACM",
-        image:"nophoto-base_1.png"
+        name: "Intel® TXT ToolKit (TTK) for Debug ACM",
+        image: "nophoto-base_1.png"
     },
     {
-        name:"Intel® TXT ToolKit (TTK) for Debug ACM",
-        image:"nophoto-base_1.png"
+        name: "Intel® TXT ToolKit (TTK) for Debug ACM",
+        image: "nophoto-base_1.png"
     },
     {
-        name:"Intel® TXT ToolKit (TTK) for Debug ACM",
-        image:"nophoto-base_1.png"
+        name: "Intel® TXT ToolKit (TTK) for Debug ACM",
+        image: "nophoto-base_1.png"
     },
     {
-        name:"Intel® TXT ToolKit (TTK) for Debug ACM",
-        image:"nophoto-base_1.png"
+        name: "Intel® TXT ToolKit (TTK) for Debug ACM",
+        image: "nophoto-base_1.png"
     },
     {
-        name:"Intel® TXT ToolKit (TTK) for Debug ACM",
-        image:"nophoto-base_1.png"
+        name: "Intel® TXT ToolKit (TTK) for Debug ACM",
+        image: "nophoto-base_1.png"
     },
     {
-        name:"Intel® TXT ToolKit (TTK) for Debug ACM",
-        image:"nophoto-base_1.png"
+        name: "Intel® TXT ToolKit (TTK) for Debug ACM",
+        image: "nophoto-base_1.png"
     },
     {
-        name:"Intel® TXT ToolKit (TTK) for Debug ACM",
-        image:"nophoto-base_1.png"
+        name: "Intel® TXT ToolKit (TTK) for Debug ACM",
+        image: "nophoto-base_1.png"
     },
     {
-        name:"Intel® TXT ToolKit (TTK) for Debug ACM",
-        image:"nophoto-base_1.png"
+        name: "Intel® TXT ToolKit (TTK) for Debug ACM",
+        image: "nophoto-base_1.png"
     },
 ]
 
 let VK_purley_debug_data = [
     {
-        name:"Intel® System Bring-up Toolkit NDA",
+        name: "Intel® System Bring-up Toolkit NDA",
         image: "nophoto-base_1.png"
     },
     {
-        name:"Intel® System Bring-up Toolkit NDA",
+        name: "Intel® System Bring-up Toolkit NDA",
         image: "nophoto-base_1.png"
     },
     {
-        name:"Intel® System Bring-up Toolkit NDA",
+        name: "Intel® System Bring-up Toolkit NDA",
         image: "nophoto-base_1.png"
     },
     {
-        name:"Intel® System Bring-up Toolkit NDA",
+        name: "Intel® System Bring-up Toolkit NDA",
         image: "nophoto-base_1.png"
     },
     {
-        name:"Intel® System Bring-up Toolkit NDA",
+        name: "Intel® System Bring-up Toolkit NDA",
         image: "nophoto-base_1.png"
     },
     {
-        name:"Intel® System Bring-up Toolkit NDA",
+        name: "Intel® System Bring-up Toolkit NDA",
         image: "nophoto-base_1.png"
     },
     {
-        name:"Intel® System Bring-up Toolkit NDA",
+        name: "Intel® System Bring-up Toolkit NDA",
         image: "nophoto-base_1.png"
     },
     {
-        name:"Intel® System Bring-up Toolkit NDA",
+        name: "Intel® System Bring-up Toolkit NDA",
         image: "nophoto-base_1.png"
     },
 ]
 
 let VK_purley_power_vrs_data = [
     {
-        name:"Platform - VRTT Test Spreadsheet",
+        name: "Platform - VRTT Test Spreadsheet",
         image: "nophoto-base_1.png"
     },
     {
-        name:"Platform Power Delivery Validation Plan",
+        name: "Platform Power Delivery Validation Plan",
         image: "nophoto-base_1.png"
     },
     {
-        name:"DDR4 DIMM Thermal Test Vehicle (TTV)",
+        name: "DDR4 DIMM Thermal Test Vehicle (TTV)",
         image: "nophoto-base_1.png"
     },
     {
-        name:"Platform Power Thermal Utility (PTU aka Maximum Power Program)",
+        name: "Platform Power Thermal Utility (PTU aka Maximum Power Program)",
         image: "nophoto-base_1.png"
     },
     {
-        name:"Processor Thermal Test Vehicle (TTV)",
+        name: "Processor Thermal Test Vehicle (TTV)",
         image: "nophoto-base_1.png"
     },
 ]
 
 let VK_purley_tools_model_card_parent = [
     {
-        name:"Intel® Channel Checker",
+        name: "Intel® Channel Checker",
         image: "nophoto-base_1.png",
     },
     {
-        name:"Intel® Electrical Validation Test Suite (Intel® EVTS)",
+        name: "Intel® Electrical Validation Test Suite (Intel® EVTS)",
         image: "nophoto-base_1.png",
     },
     {
-        name:"Integrated Channel Analysis Tool (ICAT)",
+        name: "Integrated Channel Analysis Tool (ICAT)",
         image: "nophoto-base_1.png",
     },
     {
-        name:"Intel® Memory Bit Error Rate Executable (Intel® MBERE)",
+        name: "Intel® Memory Bit Error Rate Executable (Intel® MBERE)",
         image: "nophoto-base_1.png",
     },
 ]
 
 let VK_purley_menufacturing_data = [
     {
-        name:"Intel® Server Platform Services (SPS) Manageability Engine (ME) Firmware & Tools",
+        name: "Intel® Server Platform Services (SPS) Manageability Engine (ME) Firmware & Tools",
         image: "VK_design_Tools1.jpeg",
     }
 ]
@@ -3942,7 +3952,7 @@ let VK_chk_page = () => {
                 id = 'VK_purley_high_speed_card_parent';
                 fetch_data = VK_purley_high_speed_data;
                 break;
-            
+
             case 'VK_purley_bios_speed':
                 id = 'VK_purley_bios_card_parent';
                 fetch_data = VK_purley_bios_data;
@@ -4173,14 +4183,14 @@ let VK_chk_page = () => {
     }
 }
 
-function design_tools_sort(){
+function design_tools_sort() {
     let sort_order = document.getElementById('VK_design_tools_sort_by').value
     console.log(sort_order);
-    switch(sort_order){
+    switch (sort_order) {
         case 'A-Z':
             fetch_data.sort((a, b) => a.name.localeCompare(b.name));
             break;
-        
+
         case 'Z-A':
             fetch_data.sort((a, b) => b.name.localeCompare(a.name));
             break;
