@@ -13,6 +13,7 @@
         integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="../../css/all.min.css">
+    <link rel="stylesheet" href="../../css/yatri.css">
     <link href="../../js/all.min.js">
     <style>
         * {
@@ -62,7 +63,8 @@
 </head>
 
 <body>
-    <main class="db_developer-software-main db_all_authors_main">
+    <div id="navbar" class="pb-4"></div>
+    <main class="db_developer-software-main db_all_authors_main pt-5">
         <!-- Intel Community  -->
         <section class="db_intel_com_bg db_intel_com">
             <div class="container">
@@ -182,11 +184,24 @@
             </div>
         </section>
     </main>
-
+    <div id="footer"></div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
         crossorigin="anonymous"></script>
-    
+        <script>
+            // navbar include  
+            fetch('../../y_index/y_navbar.html')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('navbar').innerHTML = data;
+                });
+            // footer include 
+            fetch('../../y_index/y_footer.html')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('footer').innerHTML = data;
+                });
+        </script>
         <script>
             // JavaScript to dynamically generate author entries and handle pagination
             const db_authors = [
@@ -216,7 +231,7 @@
             const db_ranks = ["Novice", "Beginner", "New Contributor I", "New Contributor II", "New Contributor III", "Honored Contributor I", "Honored Contributor II", "Honored Contributor III"];
             const db_images = ["2.JPG", "3.jpg", "3.png", "5.png", "6.png", "7.png", "8.png", "9.png", "11.png", "13.png", "14.png", "15.png", "16.png", "17.png", "18.png", "19.png", "20.png"];
         
-            for (let db_i = db_authors.length; db_i < 150; db_i++) {
+            for (let db_i = db_authors.length; db_i < 6972; db_i++) {
                 const db_daysAgo = Math.floor(Math.random() * 365); // Random date within the last year
                 db_authors.push({
                     name: `Author${db_i + 1}`,
@@ -266,11 +281,13 @@
                         <div class="d-flex justify-content-between align-items-center border-bottom py-2">
                             <div class="d-flex align-items-center">
                                 <p class="mb-0 me-md-4 me-2 fs-4 text-muted">${db_i + 1}</p>
-                                <img src="/img/denisha_img/support_comunity/developer-soft/${db_author.image}"
-                                    class="rounded-circle" alt="${db_author.name}">
+                                <a href="author_profile.html?author=${encodeURIComponent(db_author.name)}&rank=${encodeURIComponent(db_author.rank)}&image=${encodeURIComponent(db_author.image)}">
+                                    <img src="/img/denisha_img/support_comunity/developer-soft/${db_author.image}"
+                                        class="rounded-circle" alt="${db_author.name}">
+                                </a>
                                 <div class="d-flex flex-column ms-md-4 ms-2">
-                                    <a href="#" class="ms-2 text-decoration-none db_forum_link author-name" title="${db_author.name}">${db_author.name}</a>
-                                    <a href="#" class="ms-2 text-decoration-none author-rank">${db_author.rank}...</a>
+                                    <a href="author_profile.html?author=${encodeURIComponent(db_author.name)}&rank=${encodeURIComponent(db_author.rank)}&image=${encodeURIComponent(db_author.image)}" class="ms-2 text-decoration-none db_forum_link author-name" title="${db_author.name}">${db_author.name}</a>
+                                    <a href="#" class="ms-2 text-decoration-none author-rank">${db_author.rank}</a>
                                 </div>
                             </div>
                             <div class="text-nowrap me-5"><i class="fa-regular fa-thumbs-up text-muted fs-5"></i><span class="ms-2">${db_author.kudos}</span></div>
