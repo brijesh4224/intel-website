@@ -20,6 +20,8 @@
             font-family: 'Intel Clear', sans-serif;
         }
 
+       
+
         .db_support_header {
             background-color: #0071C5;
             color: white;
@@ -75,6 +77,7 @@
             color: #0068b5 !important;
             padding: 8px 16px;
             font-size: 14px;
+            background-color: white;
         }
 
         .db_nav .db_support_nav_dropdown-content li a:hover {
@@ -133,11 +136,10 @@
             }
         }
 
-        @media screen and (max-width:768px) {
+        @media screen and (max-width: 768px) {
             .db_nav ul li a {
-                padding: 8px 12px;
+                padding: 8px 4px;
                 font-size: 14px;
-
             }
         }
     </style>
@@ -148,14 +150,14 @@
     <main class="pt-4 db_author_badge_main">
         <header class="db_support_header">
             <div class="db_support_header-top d-flex justify-content-between align-items-center px-2 py-1">
-                <div class="db_nav">
-                    <ul class="d-flex m-0" style="overflow-x: auto;">
+                <div class="db_nav d-md-block d-none">
+                    <ul class="d-flex m-0">
                         <li class="db_support_nav_dropdown" id="db_supportDropdown1">
                             <a href="#" class="db_support_nav_link">
                                 Support Community
                                 <!-- <i class="fa-solid fa-chevron-down"></i> -->
                             </a>
-                            <ul class="db_support_nav_dropdown-content">
+                            <ul class="db_support_nav_dropdown-content position-absolute">
                                 <li><a href="#">Gaming Forums</a></li>
                                 <li><a href="#">Intel® ARC™ Graphics</a></li>
                                 <li><a href="#">Gaming on Intel® Processors with Intel® Graphics</a></li>
@@ -260,7 +262,7 @@
                         </li>
                     </ul>
                 </div>
-                <!-- <nav class="db_nav d-block d-md-none">
+                <div class="db_nav d-block d-md-none">
                     <ul class="d-flex m-0">
                         <li class="db_support_nav_dropdown" id="db_supportDropdown1">
                             <a href="#" class="db_support_nav_link">
@@ -275,7 +277,7 @@
                             </ul>
                         </li>
                     </ul>
-                </nav> -->
+                </div>
                 <div class="db_user-icon">
                     <i class="fa-regular fa-circle-question"></i>
                 </div>
@@ -301,12 +303,11 @@
                 </div> -->
             </div>
         </header>
-
         <!-- Intel Community  -->
         <section class="db_intel_com">
             <div class="row ">
                 <div class="db_intel_com_bg d-flex justify-content-center flex-column align-items-center">
-                    <h1>All jimdempseyatthecove's Badges</h1>
+                    <h1>All <span class="db_badge_author_name"></span>'s Badges</h1>
                     <ul class="d-flex flex-wrap justify-content-center">
                         <li class="list-unstyled me-4">2,847 Members Online</li>
                         <li class=" me-lg-4 me-2"> 236K Discussions</li>
@@ -316,7 +317,7 @@
                             aria-label="Default select example">
                             <option value="3">all community</option>
                             <option value="1">knowledge base</option>
-                            <option selected>jimdempseyatthecove</option>
+                            <option selected><span class="db_badge_author_name"></span></option>
                             <option value="2">users</option>
 
                         </select>
@@ -335,9 +336,11 @@
                         <a href="support-community.html">Intel Community</a>
                         <span class="text-muted">&nbsp;&nbsp;/&nbsp;&nbsp;</span>
 
-                        <a href="author_profile.html">About jimdempseyatthecove</a>
+                        <a href="author_profile.html">About <span
+                                class="db_badge_author_name"></span></a>
                         <span class="text-muted">&nbsp;&nbsp;/&nbsp;&nbsp;</span>
-                        <a href="#" class="db_kudos_active">All jimdempseyatthecove's Badges</a>
+                        <a href="#" class="db_kudos_active">All <span
+                                class="db_badge_author_name"></span>'s Badges</a>
                     </div>
                 </div>
                 <div class="row d-md-none d-block">
@@ -352,7 +355,7 @@
                 <div class="bg-white p-2">
                     <div class="row">
                         <div class="col-12 border-bottom">
-                            <h3>jimdempseyatthecove has earned 33 badges!</h3>
+                            <h3><span class="db_badge_author_name"></span> has earned 33 badges!</h3>
                         </div>
                         <!-- Welcome -->
                         <div class="col-xl-3 col-lg-4 col-md-6 col-12 text-center pt-5" id="db_toggleDiv1"
@@ -505,7 +508,8 @@
                             <p class="mb-0 text-muted db_fs_small">07-28-2020</p>
                             <p class="mb-0 text-muted db_fs_small">Earned by 1,476</p>
                         </div>
-                        <div class="col-xl-3 col-lg-4 col-md-6 col-12 text-center pt-5" id="db_toggleDiv18" onclick="db_toggleContent(this, 'You are a vital part of our Communities. Thank you for logging in 100 times, we look forward to recognizing more of your efforts soon.')">
+                        <div class="col-xl-3 col-lg-4 col-md-6 col-12 text-center pt-5" id="db_toggleDiv18"
+                            onclick="db_toggleContent(this, 'You are a vital part of our Communities. Thank you for logging in 100 times, we look forward to recognizing more of your efforts soon.')">
                             <img src="/img/denisha_img/support_comunity/developer-soft/author/asset 18.png" alt="">
                             <p class="mb-0">Login 100</p>
                             <p class="mb-0 text-muted db_fs_small">09-11-2020</p>
@@ -628,7 +632,81 @@
         }
 
     </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var db_supportDropdowns = document.querySelectorAll('.db_support_nav_dropdown');
 
+            db_supportDropdowns.forEach(function (db_supportDropdown, index) {
+                // Skip the first two dropdown items (index 0 and 1)
+                if (index < 2) {
+                    return;
+                }
+
+                var db_supportDropdownLink = db_supportDropdown.querySelector('.db_support_nav_link');
+                var db_supportDropdownContent = db_supportDropdown.querySelector('.db_support_nav_dropdown-content');
+
+                db_supportDropdownLink.addEventListener('click', function (event) {
+                    event.preventDefault();
+                    if (db_supportDropdownContent.style.display === 'block') {
+                        db_supportDropdownContent.style.display = 'none';
+                        db_supportDropdownLink.classList.remove('active');
+                    } else {
+                        db_supportDropdowns.forEach(function (otherDropdown) {
+                            if (otherDropdown !== db_supportDropdown) {
+                                otherDropdown.querySelector('.db_support_nav_dropdown-content').style.display = 'none';
+                                otherDropdown.querySelector('.db_support_nav_link').classList.remove('active');
+                            }
+                        });
+                        db_supportDropdownContent.style.display = 'block';
+                        db_supportDropdownLink.classList.add('active');
+                    }
+                });
+            });
+
+            document.addEventListener('click', function (event) {
+                if (!event.target.closest('.db_support_nav_dropdown')) {
+                    db_supportDropdowns.forEach(function (db_supportDropdown) {
+                        db_supportDropdown.querySelector('.db_support_nav_dropdown-content').style.display = 'none';
+                        db_supportDropdown.querySelector('.db_support_nav_link').classList.remove('active');
+                    });
+                }
+            });
+        });
+
+
+        const db_openAccordion = (index) => {
+            const accordion = document.getElementsByClassName("db_accordion_item");
+
+            for (let i = 0; i < accordion.length; i++) {
+                const content = accordion[i].querySelector(".db_accordion_content");
+                const heading = accordion[i].querySelector("div");
+
+                if (index === i) {
+                    const isOpen = accordion[index].classList.toggle("open");
+                    accordion[index].classList.toggle("rotate");
+                    heading.setAttribute("aria-expanded", isOpen);
+                    if (isOpen) {
+                        content.style.height = content.scrollHeight + "px";
+                    } else {
+                        content.style.height = "0px";
+                    }
+                } else {
+                    accordion[i].classList.remove("open");
+                    accordion[i].classList.remove("rotate");
+                    heading.setAttribute("aria-expanded", "false");
+                    content.style.height = "0px";
+                }
+            }
+        };
+
+        document.querySelectorAll('.db_accordion_item div').forEach((heading, index) => {
+            heading.addEventListener('keydown', (event) => {
+                if (event.key === 'Enter' || event.key === ' ') {
+                    db_openAccordion(index);
+                }
+            });
+        });
+    </script>
     <script>
         // navbar include  
         fetch('../../y_index/y_navbar.html')
