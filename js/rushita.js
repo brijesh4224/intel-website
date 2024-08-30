@@ -667,7 +667,28 @@ $(document).ready(function(){
               }
   });
 });
-
+$(document).ready(function(){
+  $('.perfor-slider1').owlCarousel({
+      loop: true,
+      // margin: 20,
+      nav: true,
+      navText: ['<i class="fa-regular fa-circle-left"></i>','<i class="fa-regular fa-circle-right"></i>'],
+      dots: true,
+      items: 1,
+      dotsEach: 1,
+      responsive: {
+                  0: {
+                      items: 1
+                  },
+                  600: {
+                      items: 1
+                  },
+                  1000: {
+                      items: 1
+                  }
+              }
+  });
+});
 const cardsData = [
   {
       imgSrc: '/img/Monika_img/rcs_9.png',
