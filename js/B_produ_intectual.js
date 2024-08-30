@@ -4419,10 +4419,10 @@ function createDocumentElement(doc) {
     `;
 }
 
- function content_type(x){
-    console.log("cat",x);
+ function content_type(value){
+    console.log("cat",value);
     const category = document.getElementById('b_category');
-    category.innerHTML = x.map((ele,ind)=>{
+    category.innerHTML = value.map((ele,ind)=>{
         return `
                                               <li>
                                                 <span> <input class="form-check-input" type="checkbox" value=""
@@ -4438,6 +4438,17 @@ function renderDocuments() {
     container.innerHTML = documents.map(createDocumentElement).join('');
     var total = document.getElementById('b_total');
     total.innerHTML = `${documents.length} Results`;
+    var checkboxes = document.getElementsByClassName("b_check");
+    for (var i = 0; i < checkboxes.length; i++) {
+        checkboxes[i].checked = false;
+    }
+    var dropdowns = document.getElementsByClassName("dropdown-btnnn");
+    // alert(dropdowns.length);
+    for (var i = 0; i < dropdowns.length; i++){
+        dropdowns[i].classList.remove('active');
+            var dropdownContent = dropdowns[i].nextElementSibling;
+                dropdownContent.style.display = "none";
+    }
 }
 function data(x){
     console.log(x);
@@ -4448,15 +4459,21 @@ function data(x){
     container.innerHTML = value.map(createDocumentElement).join('');
     var total = document.getElementById('b_total');
     total.innerHTML = `${value.length} Results`;
-    var val1 = (x.replace(/[\s$,®-]+/g, '_'));
-    // var val2 = cat.filter((e)=>{e == val1})
-    console.log(val2)
-    if(val2 == undefined){
-       var  con=cat.val;
+    var val1 = x.replace(/[\s$,®-]+/g, '_');
+
+    // Check if `val1` matches any property in the `cat` object
+    var keys = Object.keys(cat);  // Get all keys from the `cat` object
+    var val2 = keys.filter(key => key === val1);
+    
+    // Determine the value of `con` based on whether `val2` contains any matches
+    var con;
+    if (val2.length > 0) {
+        con = cat[val2[0]];  // Get the value corresponding to the matched key
+    } else {
+        con = ['Design type'];  // Default value if no match is found
     }
-    else{
-       var con =['Design type'];
-    }
+    
+    // Call the function with `con`
     content_type(con);
 }
 function content(x){
