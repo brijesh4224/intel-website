@@ -1,4 +1,4 @@
-// (Home)Trusted by
+// (Intel Geti Platform -> (Home)) Trusted by
 $(document).ready(function(){
 
     $('.owl-carousel.mv_first_slider').owlCarousel({
@@ -47,7 +47,7 @@ $(document).ready(function(){
 
 });
 
-// (Home)Testimonials
+// (Intel Geti Platform -> (Home)) Testimonials
 $(document).ready(function(){
 
     $('.owl-carousel.mv_spark_card_carousel').owlCarousel({
@@ -96,8 +96,8 @@ $(document).ready(function(){
 
 });
 
-// Technology Briefs
-// Case Studies
+// (Intel Geti Platform) Technology Briefs
+// (Intel Geti Platform) Case Studies
 $(document).ready(function(){
 
     $('.owl-carousel.mv_spark_card_featuredcontent').owlCarousel({
@@ -122,8 +122,8 @@ $(document).ready(function(){
 
 });
 
-// Blog
-// Videos
+// (Intel Geti Platform) Blog
+// (Intel Geti Platform) Videos
 $(document).ready(function(){
 
     $('.owl-carousel.mv_spark_card_featuredblog').owlCarousel({
@@ -140,6 +140,43 @@ $(document).ready(function(){
 
         responsive:{
             0:{
+                items:1,
+                dots:false
+            }
+        }
+    })
+
+});
+
+// (Intel Data Center GPU Max Series) Maximize Impact
+$(document).ready(function(){
+
+    $('.owl-carousel.mv_maximize_carousel').owlCarousel({
+        loop:true,
+        margin:10,
+        // nav:true,
+        // center:true,
+
+        // autoplay:true,
+        // autoplayTimeout:2000,
+        // autoplayHoverPause:true,
+        // animateIn:'animate__fadeIn',
+        // animateOut:'animate__fadeOut',
+
+        responsive:{
+            320:{
+                items:1,
+                dots:false,
+            },
+            375:{
+                items:1,
+                dots:false,
+            },
+            425:{
+                items:1,
+                dots:false,
+            },
+            767:{
                 items:1,
                 dots:false
             }
