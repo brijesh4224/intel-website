@@ -1048,7 +1048,7 @@ if (D_processer1) {
 
 let D_categorylist1 = document.getElementById('D_categorylist1');
 const categorylist1 = [
-    'Partners', 'Offerning'
+    'Partner', 'Offerning'
 ];
 
 if (D_categorylist1) {

@@ -29,6 +29,8 @@
 
 <body>
 
+    <div id="navbar"></div>
+
     <!-- Banner section start -->
 
     <div class="d_banner4 d_banner5">
@@ -59,7 +61,7 @@
 
     <section class="d_p-40 d_sublink">
         <div class="d_container">
-            <nav class="d_subjumplink">
+            <div class="d_subjumplink">
                 <ul
                     class="ps-0 mb-0 d-inline-block d-md-flex flex-wrap list-unstyled justify-content-center align-items-center">
                     <li>Go to:</li>
@@ -70,7 +72,7 @@
                     <li><a href="/d_partner/d_testimonials.html">Testimonials</a></li>
                     <li><a href="/d_partner/d_industries.html">Industries</a></li>
                 </ul>
-            </nav>
+            </div>
         </div>
     </section>
 
@@ -108,7 +110,7 @@
                             <p>Deliver scalable, end-to-end solutions that provide solid business results for cities and
                                 transportation.</p>
                             <div class="d_cta">
-                                <a href="">Explore solutions</a>
+                                <a href="/d_partner/d_aioverview.html">Explore solutions</a>
                             </div>
                         </div>
                     </div>
@@ -126,7 +128,7 @@
                             <p> Deliver integrated, commercial-grade technology bundles for cities and transportation
                                 use cases.</p>
                             <div class="d_cta">
-                                <a href="">Explore Kits</a>
+                                <a href="/d_partner/d_aioverview.html">Explore Kits</a>
                             </div>
                         </div>
                     </div>
@@ -144,7 +146,7 @@
                             <p>Intel® AI: In Production partners and solutions take AI at the edge to production to
                                 deliver results in cities and transportation.</p>
                             <div class="d_cta">
-                                <a href="">Browser catalog</a>
+                                <a href="/d_partner/d_aioverview.html">Browser catalog</a>
                             </div>
                         </div>
                     </div>
@@ -162,7 +164,7 @@
                     <h3>AI in Action for Cities and Transportation</h3>
                     <p>The Intel® AI: In Production Content Library is a collection of case studies, partner demo
                         videos, product tutorials, and customer testimonials.</p>
-                    <p><a href="">See AI in action</a></p>
+                    <p><a href="/d_partner/d_success-stories.html">See AI in action</a></p>
                 </div>
             </div>
         </div>
@@ -204,6 +206,8 @@
         </div>
     </section>
 
+    <div id="footer"></div>
+
     <!-- Jquery js file -->
     <script src="/js/jquery-3.7.1.js"></script>
 
@@ -213,7 +217,7 @@
         crossorigin="anonymous"></script>
 
     <!-- Fontawesome js file -->
-    <script src="/js/all.min.js"></script>
+    <!-- <script src="/js/all.min.js"></script> -->
 
     <!-- owl carousal js file -->
     <script src="/js/owl.carousel.min.js"></script>
@@ -222,22 +226,47 @@
     <script src="/js/darshan.js"></script>
 
     <script>
-        $('#test6').owlCarousel({
-            loop: true,
-            margin: 10,
-            nav: false,
-            responsive: {
-                0: {
-                    items: 1
-                },
-                600: {
-                    items: 1
-                },
-                1000: {
-                    items: 1
-                }
+         $('#test6').owlCarousel({
+        loop: true,
+        margin: 10,
+        nav: true,
+        navText: [
+                    '<i class="fa-solid fa-circle-left"></i>',
+                    '<i class="fa-solid fa-circle-right"></i>'
+                ], // Default to showing nav
+        responsive: {
+            0: {
+                items: 1,
+                nav: false, // Hide nav for devices with width 0 to 767px
+                dots: true,
+            },
+            768: {
+                items: 1,
+                nav: false, // Hide nav for devices with width 768px
+                dots: false,
+            },
+            1000: {
+                items: 1,
+                nav: true, // Show nav for devices with width 1000px and above
+                dots: false,
             }
-        })
+        }
+    });
+    </script>
+
+    <script>
+        // navbar include  
+        fetch('/y_index/y_navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar').innerHTML = data;
+            });
+        // footer include 
+        fetch('/y_index/y_footer.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('footer').innerHTML = data;
+            });
     </script>
 
 </body>
