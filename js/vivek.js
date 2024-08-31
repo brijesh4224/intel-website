@@ -6025,3 +6025,20 @@ function VK_software_accoridan_close() {
         collapseInstance.hide();
     });
 }
+
+
+
+
+
+// --------------------------------------------- ai pc dev -------------------------------------------
+function VK_ai_show_more(){
+    let ele = document.querySelectorAll('.VK_ai_pc_question .accordion-item')
+    for (let i = 0; i < ele.length; i++) {
+        if (i > 2) {
+            ele[i].classList.toggle('d-none')
+        }
+    }
+    let btn = document.getElementById('VK_ai_pc_show')
+    btn.innerHTML = ' <i class="fa-solid fa-chevron-up in"></i> Show Less'
+    
+}
