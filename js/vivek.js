@@ -5594,7 +5594,24 @@ function VK_celadon_checkbox() {
 
 let VK_intel_advier_data = [
     {
-        title: "Intel® Advisor User Guide",
+        title: "User Guide",
+        id: "766319",
+        date: "06/24/24",
+        version: [
+            "2024.2",
+            "2024.1",
+            "2024.1",
+            "2024.1",
+            "2024.1",
+        ],
+        download: true,
+        bookmark: true,
+        file: "URL (19.4 MB)",
+        content: "Development User Guides",
+        description: "Get a comprehensive overview of Intel® VTune™ Profiler for performance analysis. Understand workflows and tuning methodologies to profile serial and multithreaded applications with Intel® VTune™ Profiler for execution on a variety of hardware platforms (CPU, GPU, and FPGA)."
+    },
+    {
+        title: "Cookbook",
         id: "766448",
         date: "06/24/24",
         version: [
@@ -5607,55 +5624,33 @@ let VK_intel_advier_data = [
         download: true,
         bookmark: false,
         file: "URL",
-        content: "Development User Guides",
-        description: "This document provides a detailed overview of the Intel® Advisor functionality and workflows."
+        content: "Cookbooks",
+        description: "Follow tuning and configuration recipes to use analysis types in Intel® VTune™ Profiler. Analyze your code, identify ineffective algorithm and hardware usage, and get tuning advice on performance."
     },
     {
-        title: "Intel® Advisor User Guide",
-        id: "766448",
-        date: "06/24/24",
-        version: [
-            "2024.2",
-            "2024.1",
-            "2024.1",
-            "2024.1",
-            "2024.1",
-        ],
-        download: true,
-        bookmark: false,
-        file: "URL",
-        content: "Development User Guides",
-        description: "This document provides a detailed overview of the Intel® Advisor functionality and workflows."
-    },
-    {
-        title: "Intel® Advisor User Guide",
+        title: "Performance Analysis Tutorial for Linux* OS",
         id: "766448",
         date: "06/24/24",
         version: "2024.1",
         download: true,
         bookmark: false,
         file: "URL",
-        content: "Development User Guides",
-        description: "This document provides a detailed overview of the Intel® Advisor functionality and workflows."
+        content: "Tutorials",
+        description: "Follow this tutorial to identify and resolve common performance bottlenecks in a sample matrix multiplication application (Linux* OS environment)."
     }
 ]
 
 let intel_adviser = VK_intel_advier_data;
 
 
-// result count
-function intel_adviser_onload() {
+// dispaly results
+function VK_display_result_accridan() {
+
+    const div = document.getElementById('VK_daviser_result_div');
     if (document.getElementById('VK_adviser_cnt1')) {
         document.getElementById('VK_adviser_cnt1').innerHTML = VK_intel_advier_data.length + " results"
 
     }
-}
-
-// dispaly results
-function VK_display_result_accridan() {
-    intel_adviser_onload();
-
-    const div = document.getElementById('VK_daviser_result_div');
 
     if (div) {
         const htmlele = VK_intel_advier_data.map((ele, ind) => {
@@ -5730,6 +5725,41 @@ function VK_display_result_accridan() {
     }
 }
 
+// searching
+function VK_adviser_search() {
+    let srch;
+    srch = document.getElementById('VK_adviser_search').value
+    VK_intel_advier_data = intel_adviser.filter((ele) => {
+        return ele.title.toLowerCase().includes(srch);
+    })
+    VK_display_result_accridan()
+}
+
+// open accoridan
+function VK_adviser_open() {
+    let elements = document.querySelectorAll('#VK_daviser_result_div .accordion-collapse');
+
+    elements.forEach(accordion => {
+        const collapseInstance = new bootstrap.Collapse(accordion, {
+            toggle: false
+        });
+
+        collapseInstance.show();
+    });
+}
+
+// close accoridan
+function VK_adviser_close() {
+    let elements = document.querySelectorAll('#VK_daviser_result_div .accordion-collapse');
+
+    elements.forEach(accordion => {
+        const collapseInstance = new bootstrap.Collapse(accordion, {
+            toggle: false
+        });
+
+        collapseInstance.hide();
+    });
+}
 
 
 
@@ -6031,7 +6061,7 @@ function VK_software_accoridan_close() {
 
 
 // --------------------------------------------- ai pc dev -------------------------------------------
-function VK_ai_show_more(){
+function VK_ai_show_more() {
     let ele = document.querySelectorAll('.VK_ai_pc_question .accordion-item')
     for (let i = 0; i < ele.length; i++) {
         if (i > 2) {
@@ -6040,5 +6070,53 @@ function VK_ai_show_more(){
     }
     let btn = document.getElementById('VK_ai_pc_show')
     btn.innerHTML = ' <i class="fa-solid fa-chevron-up in"></i> Show Less'
-    
+}
+
+
+function VK_show_more(id, index) {
+    let eles = document.querySelectorAll(`.${id} .VK_col`);
+    for (let i = 0; i < eles.length; i++) {
+        if (i >= index) {
+            eles[i].classList.remove('d-none')
+        }
+    }
+    let show = document.querySelector(`.${id} #VK_ai_pc_show`)
+    let hide = document.querySelector(`.${id} #VK_ai_pc_hide`)
+    show.classList.add('d-none');
+    hide.classList.remove('d-none')
+}
+
+function VK_show_less(id, index) {
+    let eles = document.querySelectorAll(`.${id} .VK_col`);
+    for (let i = 0; i < eles.length; i++) {
+        if (i >= index) {
+            eles[i].classList.add('d-none')
+        }
+    }
+    let show = document.querySelector(`.${id} #VK_ai_pc_show`)
+    let hide = document.querySelector(`.${id} #VK_ai_pc_hide`)
+    show.classList.remove('d-none');
+    hide.classList.add('d-none')
+}
+
+
+
+// ------------------------------------------------------------ ai netweok ----------------------------------------------
+
+function VK_network_show(){
+    let ele = document.querySelectorAll('.VK_hide_col')
+    for (let i = 0; i < ele.length; i++) {
+        ele[i].classList.remove('d-none')
+    }
+    document.getElementById('VK_network_show').classList.add('d-none')
+    document.getElementById('VK_network_hide').classList.remove('d-none')
+}
+
+function VK_network_hide(){
+    let ele = document.querySelectorAll('.VK_hide_col')
+    for (let i = 0; i < ele.length; i++) {
+        ele[i].classList.add('d-none')
+    }
+    document.getElementById('VK_network_show').classList.remove('d-none')
+    document.getElementById('VK_network_hide').classList.add('d-none')
 }
