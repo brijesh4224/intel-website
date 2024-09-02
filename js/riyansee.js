@@ -12,6 +12,21 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
 
+
+  //intel foundry vedio play 
+document.addEventListener('DOMContentLoaded', function() {
+    const playIcon = document.getElementById('playIcona');
+    const video = document.getElementById('myVideoa');
+    const thumbnailImg = document.querySelector('.video-container img');
+  
+    playIcon.addEventListener('click', function() {
+      video.style.display = 'block';
+      thumbnailImg.style.display = 'none';
+      playIcon.style.display = 'none';
+      video.play();
+    });
+  });
+
 // intel foundary slider(items)
 $(document).ready(function () {
     $('.owl-carousel').owlCarousel({
