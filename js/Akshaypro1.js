@@ -1,63 +1,4 @@
-// const products = [
-//     { name: 'Intel® Core™ Ultra 7 Processor 155UL (12M Cache, up to 4.80 GHz)', launhdate: "Q2'24", cores: 12, turbo: '4.80 GHz', cache: '12 MB', Graphics: 'Intel® Graphics' },
-// ]
 
-// let currentSort = {
-//     column: '',
-//     ascending: true
-// };
-
-// function renderTable(data) {
-//     const tbody = document.querySelector('#productTable tbody');
-//     tbody.innerHTML = '';
-
-//     data.forEach(product => {
-//         const row = `<tr>
-//             <td class="w-50" style="min-width: 18.75rem;"><input type="checkbox"><a href="#" class="v_item_product">${product.name}</a></td>
-//             <td>${product.launhdate}</td>
-//             <td>${product.cores}</td>
-//             <td>${product.turbo}</td>
-//             <td>${product.cache}</td>
-//             <td>${product.Graphics}</td>
-//         </tr>`;
-//         tbody.innerHTML += row;
-//     });
-// }
-
-// function sortTable(column) {
-//     let sortedData;
-//     if (currentSort.column === column) {
-//         currentSort.ascending = !currentSort.ascending;
-//     } else {
-//         currentSort.column = column;
-//         currentSort.ascending = true;
-//     }
-
-//     switch (column) {
-//         case 'Product Name':
-//             sortedData = products.sort((a, b) => currentSort.ascending ? a.name.localeCompare(b.name) : b.name.localeCompare(a.name));
-//             break;
-//         case 'Launch Date':
-//             sortedData = products.sort((a, b) => currentSort.ascending ? new Date(a.launhdate) - new Date(b.launhdate) : new Date(b.launhdate) - new Date(a.launhdate));
-//             break;
-//         case 'Total Cores':
-//             sortedData = products.sort((a, b) => currentSort.ascending ? a.cores - b.cores : b.cores - a.cores);
-//             break;
-//         case 'Max Turbo Frequency':
-//             sortedData = products.sort((a, b) => currentSort.ascending ? parseFloat(a.turbo) - parseFloat(b.turbo) : parseFloat(b.turbo) - parseFloat(a.turbo));
-//             break;
-//         case 'Cache':
-//             sortedData = products.sort((a, b) => currentSort.ascending ? parseFloat(a.cache) - parseFloat(b.cache) : parseFloat(b.cache) - parseFloat(a.cache));
-//             break;
-//         case 'Graphics':
-//             sortedData = products.sort((a, b) => currentSort.ascending ? parseFloat(a.tdp) - parseFloat(b.tdp) : parseFloat(b.tdp) - parseFloat(a.tdp));
-//             break;
-//     }
-
-//     renderTable(sortedData);
-// }
-
-// renderTable(products);
 
 const products = [
     { name: 'Intel® Core™ Ultra 7 Processor 155UL (12M Cache, up to 4.80 GHz)', launchdate: "Q2'24", cores: 12, turbo: '4.80 GHz', cache: '12 MB', Graphics: 'Intel® Graphics' },
@@ -132,4 +73,27 @@ document.getElementById('toggleButton').addEventListener('click', function() {
     } else {
         optionsContainer.classList.add('v_hidden');
     }
+});
+// //////////////////////////////////////////////////////////////////////////////////////
+document.getElementById('toggleText').addEventListener('click', function(event) {
+    event.preventDefault();
+    
+    var hiddenElements = document.querySelectorAll('.hide-on-small');
+    hiddenElements.forEach(function(element) {
+        if (element.style.display === 'none' || element.style.display === '') {
+            element.style.display = 'block';
+        } else {
+            element.style.display = 'none';
+        }
+    });
+
+    // Toggle the text between "Show more" and "Show less"
+    if (this.innerText === 'Show more') {
+        this.innerText = 'Show less';
+    } else {
+        this.innerText = 'Show more';
+    }
+
+    // Toggle the arrow direction
+    this.classList.toggle('collapsed');
 });
