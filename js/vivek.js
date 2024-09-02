@@ -6103,7 +6103,7 @@ function VK_show_less(id, index) {
 
 // ------------------------------------------------------------ ai netweok ----------------------------------------------
 
-function VK_network_show(){
+function VK_network_show() {
     let ele = document.querySelectorAll('.VK_hide_col')
     for (let i = 0; i < ele.length; i++) {
         ele[i].classList.remove('d-none')
@@ -6112,11 +6112,96 @@ function VK_network_show(){
     document.getElementById('VK_network_hide').classList.remove('d-none')
 }
 
-function VK_network_hide(){
+function VK_network_hide() {
     let ele = document.querySelectorAll('.VK_hide_col')
     for (let i = 0; i < ele.length; i++) {
         ele[i].classList.add('d-none')
     }
     document.getElementById('VK_network_show').classList.remove('d-none')
     document.getElementById('VK_network_hide').classList.add('d-none')
+}
+
+
+// ---------------------------------------------------------- tiber developer cloud ----------------------------------------------------
+
+function VK_cloud_expands() {
+    let ele = document.querySelectorAll('.VK_cloud_accoridan .accordion-collapse')
+    ele.forEach(el => {
+        let acc = new bootstrap.Collapse(el, {
+            toggle: false
+        })
+        acc.show();
+    })
+    document.getElementById('VK_cloud_expand').classList.add('d-none')
+    document.getElementById('VK_cloud_collapse').classList.remove('d-none')
+}
+
+function VK_cloud_collapses() {
+    let ele = document.querySelectorAll('.VK_cloud_accoridan .accordion-collapse')
+    ele.forEach(el => {
+        let acc = new bootstrap.Collapse(el, {
+            toggle: false
+        })
+        acc.hide();
+    })
+    document.getElementById('VK_cloud_expand').classList.remove('d-none')
+    document.getElementById('VK_cloud_collapse').classList.add('d-none')
+}
+
+
+
+// -------------------------------------------------------- intel oneapi toolkit download ----------------------------------------------------------
+function VK_download_btn(name) {
+    if (document.getElementById('VK_download_btn_parent').classList.contains('d-none')) {
+        document.getElementById('VK_download_btn_parent').classList.remove('d-none')
+    }
+    if (name == 'window') {
+
+        // button
+        document.getElementById('VK_op_window_bt').classList.add('VK_op_active_btn')
+        document.getElementById('VK_op_linux_bt').classList.remove('VK_op_active_btn')
+
+        // packages 
+        document.getElementById('VK_window_packages').classList.remove('d-none')
+        document.getElementById('VK_linux_packages').classList.add('d-none')
+    } else if (name == 'linux') {
+
+        // button
+        document.getElementById('VK_op_window_bt').classList.remove('VK_op_active_btn')
+        document.getElementById('VK_op_linux_bt').classList.add('VK_op_active_btn')
+
+        // packages
+        document.getElementById('VK_window_packages').classList.add('d-none')
+        document.getElementById('VK_linux_packages').classList.remove('d-none')
+    }
+}
+
+
+function VK_window_package_btn(id,index){
+    if(id == 1){
+
+        let el = document.querySelectorAll('#VK_linux_packages button')
+        for(let i = 0; i < el.length; i++){
+            el[i].classList.remove('VK_op_active_btn')
+        }
+
+        let ele = document.querySelectorAll('#VK_window_packages button')
+        for(let i = 0; i < ele.length; i++){
+            ele[i].classList.remove('VK_op_active_btn')
+        }
+        ele[index].classList.add('VK_op_active_btn')
+    }
+    else if(id == 2){
+        
+        let el = document.querySelectorAll('#VK_window_packages button')
+        for(let i = 0; i < el.length; i++){
+            el[i].classList.remove('VK_op_active_btn')
+        }
+
+        let ele = document.querySelectorAll('#VK_linux_packages button')
+        for(let i = 0; i < ele.length; i++){
+            ele[i].classList.remove('VK_op_active_btn')
+        }
+        ele[index].classList.add('VK_op_active_btn')
+    }
 }
