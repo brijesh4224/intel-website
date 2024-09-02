@@ -680,7 +680,7 @@ let main_data = [
     {
         dis: 4,
         install: [
-            { title: '# Step 1: Use Git to clone the OpenVINO toolkit repository', def: ['git clone -b 2024.3.0 https://gitee.com/openvinotoolkit-prc/openvino.git']},
+            { title: '# Step 1: Use Git to clone the OpenVINO toolkit repository', def: ['git clone -b 2024.3.0 https://gitee.com/openvinotoolkit-prc/openvino.git'] },
             { title: '# Step 2: Follow the', def: ['instructions to build from source'] },
         ],
         resource: [
@@ -918,16 +918,16 @@ function loaddata() {
     var id = document.getElementById('dynamic_data');
     id.innerHTML = `<div class="bg-light p-3 my-5">
                     <div class="row  d-flex px-2  mb-1" style="border-left: 2px solid grey;">
-                        <div class="col-3 d-flex gx-0">Package</div>
-                        <div class="col-9 gx-0">
-                            <div class="d-flex text-center">
-                                <div class=" flex-fill  p-1 pb-0">
+                        <div class="col-md-3 col-12 d-flex gx-0 ">Package</div>
+                        <div class="col-md-9 col-12 gx-0">
+                            <div class="d-md-flex text-center flex-wrap">
+                                <div class="flex-md-fill  p-1 pb-0">
                                     <div class="border p-2 b_active_btn b_special_box b_package" id="package1" onclick="btnhanddler('package1',1)">
                                         <p class="mb-0">OpenVINO Base Package</p>
                                         <small class="b_small_text">Full inference with basic GenAI</small>
                                     </div>
                                 </div>
-                                <div class=" flex-fill  p-1 pb-0 " >
+                                <div class=" flex-md-fill  p-1 pb-0 " >
                                     <div class="border p-2 b_special_box b_package" id="package2" onclick="btnhanddler('package2',1)">
                                         <p class="mb-0">OpenVINO with GenAI</p>
                                         <small class="b_small_text">Full inference + complete GenAI package</small>
@@ -937,17 +937,17 @@ function loaddata() {
                         </div>
                     </div>
                     <div class="row  d-flex px-2  mb-1" style="border-left: 2px solid grey;">
-                        <div class="col-3 d-flex gx-0">Version</div>
-                        <div class="col-9 gx-0">
-                            <div class="d-flex text-center " id="version">
+                        <div class="col-md-3 col-12 d-flex gx-0">Version</div>
+                        <div class="col-md-9 col-12 gx-0">
+                            <div class="d-md-flex text-center flex-wrap" id="version">
                             </div>
                         </div>
                     </div>
                     <div class="row  d-flex px-2  mb-1 d-none" style="border-left: 2px solid grey;" id="environment">
-                        <div class="col-3 d-flex gx-0 " >Environment</div>
-                        <div class="col-9 gx-0">
-                            <div class="d-flex text-center ">
-                                <div class=" flex-fill  p-1 pb-0">
+                        <div class="col-md-3 col-12 d-flex gx-0 " >Environment</div>
+                        <div class="col-md-9 col-12 gx-0">
+                            <div class="d-md-flex text-center flex-wrap">
+                                <div class=" flex-md-fill  p-1 pb-0">
                                     <div
                                         class="border p-2 h-100 d-flex align-items-center justify-content-center b_active_btn b_special_box b_env" id="env1" onclick="btnhanddler('env1',5,4)">
                                         <div>
@@ -956,7 +956,7 @@ function loaddata() {
                                         </div>
                                     </div>
                                 </div>
-                                <div class=" flex-fill  p-1 pb-0">
+                                <div class=" flex-md-fill  p-1 pb-0">
                                     <div
                                         class="border p-2 h-100 d-flex align-items-center justify-content-center b_special_box b_env" id="env2" onclick="btnhanddler('env2',5,7)">
                                         <div>
@@ -969,10 +969,10 @@ function loaddata() {
                         </div>
                     </div>
                     <div class="row  d-flex px-2  mb-1" style="border-left: 2px solid grey;">
-                        <div class="col-3 d-flex gx-0">Operating System</div>
-                        <div class="col-9 gx-0">
-                            <div class="d-flex text-center ">
-                                <div class=" flex-fill  p-1 pb-0">
+                        <div class="col-md-3 col-12 d-flex gx-0">Operating System</div>
+                        <div class="col-md-9 col-12 gx-0">
+                            <div class="d-md-flex text-center flex-wrap">
+                                <div class=" flex-md-fill  p-1 pb-0">
                                     <div
                                         class="border p-2 h-100 d-flex align-items-center justify-content-center b_active_btn b_special_box b_system" id="system1" onclick="btnhanddler('system1',3,1)">
                                         <div>
@@ -981,7 +981,7 @@ function loaddata() {
                                         </div>
                                     </div>
                                 </div>
-                                <div class=" flex-fill  p-1 pb-0">
+                                <div class=" flex-md-fill  p-1 pb-0">
                                     <div
                                         class="border p-2 h-100 d-flex align-items-center justify-content-center b_special_box b_system" id="system2" onclick="btnhanddler('system2',3,2)">
                                         <div>
@@ -990,7 +990,7 @@ function loaddata() {
                                         </div>
                                     </div>
                                 </div>
-                                <div class=" flex-fill  p-1 pb-0">
+                                <div class=" flex-md-fill  p-1 pb-0">
                                     <div
                                         class="border p-2 h-100 d-flex align-items-center justify-content-center b_special_box b_system" id="system3" onclick="btnhanddler('system3',3,3)">
                                         <div>
@@ -1003,19 +1003,34 @@ function loaddata() {
                         </div>
                     </div>
                     <div class="row  d-flex px-2  mb-1" style="border-left: 2px solid grey;">
-                        <div class="col-3 d-flex gx-0">Distribution</div>
-                        <div class="col-9 gx-0">
-                            <div class=" d-flex text-center flex-wrap" id="distrubution">
+                        <div class="col-md-3 col-12 d-flex gx-0">Distribution</div>
+                        <div class="col-md-9 col-12 gx-0">
+                            <div class=" d-md-flex text-center flex-wrap" id="distrubution">
    
                                
                             </div>
                         </div>
                     </div>
                     <div class="row  d-flex px-2  mb-1 d-none" style="border-left: 2px solid grey;" id="frame">
-                        <div class="col-3 d-flex gx-0">Framework</div>
-                        <div class="col-9 gx-0">
-                            <div class=" d-flex text-center flex-wrap d-none" id="framework" onclick=showframe()>
-                                <div class=" flex-fill  p-1 pb-0 " >
+                        <div class="col-md-3 col-12 d-flex gx-0">Framework</div>
+                        <div class="col-md-9 col-12 gx-0">
+                            <div class="p-1 d-flex">
+                            <label class="b_switch123 px-2">
+                                <input type="checkbox" onclick=showframe()>
+                                <span class="b_slider123"></span>
+                            </label>
+                            <p class="px-2 mb-0">Install Frameworks</p>
+                            <div class="b_help_toolkit_icon px-2">
+                                <i class="fa-regular fa-circle-question"></i>
+                                <div class="b_help_toolkit_text">
+                                    We assume that needed frameworks are already installed in your environment. If not, you can install them with OpenVINO toolkit.
+                                    Available frameworks: Caffe, Kaldi, Apache MXNet, PyTorch, ONNX, TensorFlow.
+                                </div>
+                            </div>
+                            </div>
+                            <div class="text-center  d-none" id="framework" >
+                                <div class="d-md-flex flex-wrap_">
+                                    <div class=" flex-md-fill  p-1 pb-0 " >
                                     <div
                                         class="border p-2 px-3 h-100 d-flex align-items-center justify-content-center b_active_btn b_special_box b_system" id="s1" onclick="btnhanddler('s1',6)">
                                         <div>
@@ -1024,7 +1039,7 @@ function loaddata() {
                                         </div>
                                     </div>
                                 </div>
-                                <div class=" flex-fill  p-1 pb-0">
+                                <div class=" flex-md-fill  p-1 pb-0">
                                     <div
                                         class="border p-2 px-3 h-100 d-flex align-items-center justify-content-center  b_special_box b_system" id="s2" onclick="btnhanddler('s2',6)">
                                         <div>
@@ -1033,7 +1048,7 @@ function loaddata() {
                                         </div>
                                     </div>
                                 </div>
-                                <div class=" flex-fill  p-1 pb-0">
+                                <div class=" flex-md-fill  p-1 pb-0">
                                     <div
                                         class="border p-2 px-3 h-100 d-flex align-items-center justify-content-center  b_special_box b_system" id="s3" onclick="btnhanddler('s3',6)">
                                         <div>
@@ -1042,7 +1057,7 @@ function loaddata() {
                                         </div>
                                     </div>
                                 </div>
-                                <div class=" flex-fill  p-1 pb-0">
+                                <div class=" flex-md-fill  p-1 pb-0">
                                     <div
                                         class="border p-2 px-3 h-100 d-flex align-items-center justify-content-center  b_special_box b_system" id="s4" onclick="btnhanddler('s4',6)">
                                         <div>
@@ -1051,7 +1066,7 @@ function loaddata() {
                                         </div>
                                     </div>
                                 </div>
-                                <div class=" flex-fill  p-1 pb-0">
+                                <div class=" flex-md-fill  p-1 pb-0">
                                     <div
                                         class="border p-2  px-3 h-100 d-flex align-items-center justify-content-center  b_special_box b_system" id="s5" onclick="btnhanddler('s5',6)">
                                         <div>
@@ -1060,46 +1075,47 @@ function loaddata() {
                                         </div>
                                     </div>
                                 </div>
-                                <div class=" flex-fill  p-1 pb-0">
+                                <div class=" flex-md-fill  p-1 pb-0">
                                     <div
-                                        class="border p-2 px-3 h-100 d-flex align-items-center justify-content-center  b_special_box b_system" id="s6" onclick="btnhanddler('s6',6)">
+                                        class="border p-2 px-3 h-100 d-flex align-items-center justify-content-center  b_special_box b_system  b_frame" id="s6" onclick="btnhanddler('s6',6)">
                                         <div>
                                             <p class="mb-0">TensorFlow 1.x</p>
                                             <p class="mb-0"></p>
                                         </div>
                                     </div>
                                 </div>
-                                <div class=" flex-fill  p-1 pb-0">
+                                <div class=" flex-md-fill  p-1 pb-0">
                                     <div
-                                        class="border p-2  px-3 h-100 d-flex align-items-center justify-content-center  b_special_box b_system" id="s7" onclick="btnhanddler('s7',6)">
+                                        class="border p-2  px-3 h-100 d-flex align-items-center justify-content-center  b_special_box b_system b_frame" id="s7" onclick="btnhanddler('s7',6)">
                                         <div>
                                             <p class="mb-0">TensorFlow 2.x</p>
                                             <p class="mb-0"></p>
                                         </div>
                                     </div>
                                 </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                     <div class="row  d-flex px-2  mb-1" style="border-left: 2px solid #0054ae;">
-                        <div class="col-3 d-flex gx-0">Distribution</div>
-                        <div class="col-9 gx-0">
-                            <div class=" text-center" id="install">
+                        <div class="col-md-3 col-12 d-flex gx-0">Distribution</div>
+                        <div class="col-md-9 col-12 gx-0">
+                            <div class="text-center" id="install">
                                
                             </div>
                         </div>
                     </div>
                     <div class="row  d-flex px-2  mb-1" style="border-left: 2px solid #0054ae;">
-                        <div class="col-3 d-flex gx-0">Resources</div>
-                        <div class="col-9 gx-0">
-                            <div class="d-flex flex-wrap" id="resource">
+                        <div class="col-md-3 col-12 d-flex gx-0">Resources</div>
+                        <div class="col-md-9 col-12 gx-0">
+                            <div class="d-md-flex flex-wrap" id="resource">
                                
                             </div>
                         </div>
                     </div>
                     <div class="row  d-flex px-2  mb-1" style="border-left: 2px dashed #0054ae;">
-                        <div class="col-3 d-flex gx-0">Related Tools</div>
-                        <div class="col-9 gx-0" id="related">
+                        <div class="col-md-3 col-12 d-flex gx-0">Related Tools</div>
+                        <div class="col-md-9 col-12 gx-0" id="related">
                         </div>
                     </div>
                 </div>`;
@@ -1129,12 +1145,12 @@ function btnhanddler(n, n1, n2) {
             val[j].classList.remove('b_active_btn');
         }
         document.getElementById(n).classList.add('b_active_btn');
-        if(n2==4){
-            var value123= document.getElementById('frame');
+        if (n2 == 4) {
+            var value123 = document.getElementById('frame');
             value123.classList.remove('d-none');
         }
-        else{
-            var value123= document.getElementById('frame');
+        else {
+            var value123 = document.getElementById('frame');
             value123.classList.add('d-none');
         }
         ver = n2;
@@ -1171,18 +1187,33 @@ function btnhanddler(n, n1, n2) {
         document.getElementById(n).classList.add('b_active_btn');
         ver = n2;
         dis(ver, sys);
-        if(n2!=4){
-            var value123= document.getElementById('frame');
+        if (n2 != 4) {
+            var value123 = document.getElementById('frame');
             value123.classList.add('d-none');
         }
-        else{
-            var value123= document.getElementById('frame');
+        else {
+            var value123 = document.getElementById('frame');
             value123.classList.remove('d-none');
         }
     }
-    if ( n1 == 6) {
-        var val= document.getElementById(n);
-        val.classList.add('b_active_btn');
+    if (n1 == 6) {
+        var val = document.getElementById(n);
+        // Toggle 'd-none' class
+        if (val.classList.contains('b_active_btn')) {
+            val.classList.remove('b_active_btn');
+            // Remove 'd-none' if present
+        }
+        else if (n == 's6' || n == 's7') {
+            var val = document.getElementsByClassName('b_frame')
+            for (var j = 0; j < val.length; j++) {
+                val[j].classList.remove('b_active_btn');
+            }
+            document.getElementById(n).classList.add('b_active_btn');
+        }
+        else {
+            val.classList.add('b_active_btn');
+            // Add 'd-none' if not present
+        }
     }
 }
 
@@ -1196,7 +1227,7 @@ function version(package) {
     console.log('version', version_data[version_id]);
     let id = document.getElementById('version');
     id.innerHTML = version_data[version_id].map((ele, ind) => {
-        return `<div class="flex-fill  p-1 pb-0 " >
+        return `<div class="flex-md-fill  p-1 pb-0 " >
             <div class="border p-2 h-100 d-flex align-items-center justify-content-center b_special_box  ${ind == 0 ? 'b_active_btn' : ''} b_version" id="version${ind}" onclick=btnhanddler('version${ind}','2','${ele.id}')>
             <div>
                  <p class="mb-0">${ele.name}</p>
@@ -1213,7 +1244,7 @@ function dis(x, y) {
     console.log('data', data[0].dis);
     let id = document.getElementById('distrubution');
     id.innerHTML = data[0].dis.map((ele, ind) => {
-        return `<div class=" flex-fill  p-1 pb-0">
+        return `<div class=" flex-md-fill  p-1 pb-0">
                 <div
         class="border p-2 h-100 d-flex align-items-center justify-content-center ${ind == 0 ? 'b_active_btn' : ''} b_special_box b_dis" id="dis${ind}" onclick=btnhanddler('dis${ind}','4','${ele.id}')>
         <div>
@@ -1289,31 +1320,45 @@ function all_data(d) {
     }).join('');
 
 }
+function showframe() {
+    var value123 = document.getElementById('framework');
+
+    // Toggle 'd-none' class
+    if (value123.classList.contains('d-none')) {
+        value123.classList.remove('d-none'); // Remove 'd-none' if present
+    } else {
+        value123.classList.add('d-none'); // Add 'd-none' if not present
+    }
+}
+var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+    return new bootstrap.Tooltip(tooltipTriggerEl)
+})
 window.onload = function () {
     loaddata();
     version('package1');
     dis(1, 1);
     all_data(1)
 }
-{/* <div class=" flex-fill  p-1 pb-0">
+{/* <div class=" flex-md-fill  p-1 pb-0">
 <div
     class="border p-2 h-100 d-flex align-items-center justify-content-center b_special_box">
     <p class="mb-0">Nightly</p>
 </div>
 </div>
-<div class=" flex-fill  p-1 pb-0 ">
+<div class=" flex-md-fill  p-1 pb-0 ">
 <div
     class="border p-2 h-100 d-flex align-items-center justify-content-center b_special_box">
     <p class="mb-0">2023.3 LTS</p>
 </div>
 </div>
-<div class=" flex-fill  p-1 pb-0">
+<div class=" flex-md-fill  p-1 pb-0">
 <div class="border p-2 h-100 b_special_box">
     <p class="mb-0">2022.3.2 LTS</p>
     <small class="b_small_text">Includes NCS2/HDDl support</small>
 </div>
 </div> */}
-{/* <div class=" flex-fill  p-1 pb-0">
+{/* <div class=" flex-md-fill  p-1 pb-0">
 <div
     class="border p-2 h-100 d-flex align-items-center justify-content-center b_active_btn b_special_box">
     <div>
