@@ -174,3 +174,23 @@ function playVideo() {
     video.play(); // Start playing the video
 }
 
+// On Demand Webinars
+document.querySelectorAll('.m_genAI_btn').forEach(function (button) {
+    button.addEventListener('click', function () {
+        const icon = this.parentElement.nextElementSibling;
+        if (icon.textContent === '+') {
+            icon.textContent = '-';
+        } else {
+            icon.textContent = '+';
+        }
+    });
+});
+$(document).ready(function () {
+    $('#m_genAI_accordion').on('shown.bs.collapse', function (e) {
+        $(e.target).parent().find('.m_genAI_toggle').text('-');
+    });
+
+    $('#m_genAI_accordion').on('hidden.bs.collapse', function (e) {
+        $(e.target).parent().find('.m_genAI_toggle').text('+');
+    });
+})
