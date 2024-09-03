@@ -1,239 +1,91 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Intel Headquarters Carousel</title>
-    <link rel="stylesheet" href="../css/riyansee.css">
-    <link rel="stylesheet" href="../css/yatri.css">
-    <link rel="stylesheet" href="../css/all.min.css">
-    <link href="https://fonts.cdnfonts.com/css/intel-clear" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <title>Multiple Video Thumbnails with Play Buttons</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.carousel.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.theme.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
     <style>
-        /* Main carousel styles */
-        .main-carousel .item {
+        .video-container {
             position: relative;
-        }
-        .main-carousel .item img {
             width: 100%;
-            height: auto;
-        }
-        .opacity-layer {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: rgba(0, 0, 0, 0.3);
-        }
-        .image-content {
-            position: absolute;
-            bottom: 20px;
-            left: 20px;
-            right: 20px;
-            color: white;
-            z-index: 2;
+            margin: auto;
         }
 
-        /* Thumbnail carousel styles */
-        .thumbnail-carousel {
-            margin-top: 10px;
-        }
-        .thumbnail-carousel .item {
+        .video-thumbnail {
+            width: 100%;
+            display: block;
             cursor: pointer;
         }
-        .thumbnail-carousel .item img {
+
+        .play-button {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 3rem;
+            color: white;
+            opacity: 0.8;
+            cursor: pointer;
+            display: none;
+        }
+
+        .video-container:hover .play-button {
+            display: block;
+        }
+
+        .video-player {
+            display: none;
             width: 100%;
-            height: auto;
-            opacity: 0.5;
-            transition: opacity 0.3s ease;
-        }
-        .thumbnail-carousel .synced .item img {
-            opacity: 1;
-        }
-
-        /* Custom dot styles */
-        .owl-theme .owl-controls .owl-page span {
-            background-color: #ccc;
-        }
-        .owl-theme .owl-controls .owl-page.active span {
-            background-color: #007bff;
-        }
-
-        /* Responsive styles */
-        @media (max-width: 767.98px) {
-            .opacity-layer, .image-content {
-                display: none;
-            }
-            .thumbnail-carousel {
-                display: none;
-            }
-        }
-        @media (min-width: 768px) {
-            .main-carousel .owl-controls .owl-pagination {
-                display: none !important;
-            }
         }
     </style>
 </head>
-
 <body>
-    <div id="navbar"></div>
-    <main style="padding-top:71px;">
-        <!-- Main Carousel -->
-        <div id="main-carousel" class="main-carousel owl-carousel">
-            <div class="item">
-                <img src="/api/placeholder/1200/800" alt="Intel Headquarters 1">
-                <div class="opacity-layer"></div>
-                <div class="image-content">
-                    <p>The Robert Noyce Building in Santa Clara, California, is the headquarters for the Intel Corporation. (Credit: Intel Corporation)</p>
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-md-6 mb-4">
+                <div class="video-container">
+                    <img src="../img/r_img/ai.jpg" alt="Video Thumbnail 1" class="video-thumbnail">
+                    <div class="play-button" onclick="playVideo(this)">
+                        <i class="bi bi-play-circle"></i>
+                    </div>
+                    <video class="video-player" controls>
+                        <source src="../img/r_img/ai.jpg" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
                 </div>
             </div>
-            <div class="item">
-                <img src="/api/placeholder/1200/800" alt="Intel Headquarters 2">
-                <div class="opacity-layer"></div>
-                <div class="image-content">
-                    <p>Another view of the Intel headquarters. (Credit: Intel Corporation)</p>
+            <div class="col-md-6 mb-4">
+                <div class="video-container">
+                    <img src="../img/r_img/ai.jpg" alt="Video Thumbnail 2" class="video-thumbnail">
+                    <div class="play-button" onclick="playVideo(this)">
+                        <i class="bi bi-play-circle"></i>
+                    </div>
+                    <video class="video-player" controls>
+                        <source src="../img/r_img/ai.jpg" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
                 </div>
             </div>
-            <!-- Add more items as needed -->
+            <!-- Add more video containers here -->
         </div>
-
-        <!-- Thumbnail Carousel -->
-        <div id="thumbnail-carousel" class="thumbnail-carousel owl-carousel">
-            <div class="item">
-                <img src="/api/placeholder/200/150" alt="Thumbnail 1">
-            </div>
-            <div class="item">
-                <img src="/api/placeholder/200/150" alt="Thumbnail 2">
-            </div>
-            <!-- Add more thumbnails as needed -->
-        </div>
-    </main>
-    <div id="footer"></div>
-    <!-- Scripts -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.carousel.min.js"></script>
-    <script src="../js/riyansee.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    </div>
 
     <script>
-        $(document).ready(function () {
-            var sync1 = $("#main-carousel");
-            var sync2 = $("#thumbnail-carousel");
+        function playVideo(element) {
+            const videoContainer = element.closest('.video-container');
+            const thumbnail = videoContainer.querySelector('.video-thumbnail');
+            const playButton = videoContainer.querySelector('.play-button');
+            const videoPlayer = videoContainer.querySelector('.video-player');
 
-            sync1.owlCarousel({
-                singleItem: true,
-                slideSpeed: 1000,
-                navigation: false,
-                pagination: true,
-                afterAction: syncPosition,
-                responsiveRefreshRate: 200,
-                autoPlay: 5000,
-                stopOnHover: true
-            });
+            thumbnail.style.display = 'none';
+            playButton.style.display = 'none';
+            videoPlayer.style.display = 'block';
 
-            sync2.owlCarousel({
-                items: 4,
-                itemsDesktop: [1199,4],
-                itemsDesktopSmall: [979,4],
-                itemsTablet: [768,3],
-                itemsMobile: [479,2],
-                pagination: false,
-                responsiveRefreshRate: 100,
-                afterInit: function(el) {
-                    el.find(".owl-item").eq(0).addClass("synced");
-                }
-            });
-
-            function syncPosition(el) {
-                var current = this.currentItem;
-                $("#thumbnail-carousel")
-                    .find(".owl-item")
-                    .removeClass("synced")
-                    .eq(current)
-                    .addClass("synced");
-                if ($("#thumbnail-carousel").data("owlCarousel") !== undefined) {
-                    center(current);
-                }
-            }
-
-            $("#thumbnail-carousel").on("click", ".owl-item", function(e) {
-                e.preventDefault();
-                var number = $(this).data("owlItem");
-                sync1.trigger("owl.goTo", number);
-            });
-
-            function center(number) {
-                var sync2visible = sync2.data("owlCarousel").owl.visibleItems;
-                var num = number;
-                var found = false;
-                for (var i in sync2visible) {
-                    if (num === sync2visible[i]) {
-                        found = true;
-                    }
-                }
-
-                if (found === false) {
-                    if (num > sync2visible[sync2visible.length - 1]) {
-                        sync2.trigger("owl.goTo", num - sync2visible.length + 2);
-                    } else {
-                        if (num - 1 === -1) {
-                            num = 0;
-                        }
-                        sync2.trigger("owl.goTo", num);
-                    }
-                } else if (num === sync2visible[sync2visible.length - 1]) {
-                    sync2.trigger("owl.goTo", sync2visible[1]);
-                } else if (num === sync2visible[0]) {
-                    sync2.trigger("owl.goTo", num - 1);
-                }
-            }
-
-            // Update carousel configuration on window resize
-            function updateCarouselConfig() {
-                var isSmallScreen = $(window).width() < 768;
-                if (isSmallScreen) {
-                    $(".opacity-layer, .image-content").hide();
-                    $("#thumbnail-carousel").hide();
-                    sync1.data("owlCarousel").options.pagination = true;
-                } else {
-                    $(".opacity-layer, .image-content").show();
-                    $("#thumbnail-carousel").show();
-                    sync1.data("owlCarousel").options.pagination = false;
-                }
-                sync1.data("owlCarousel").updateVars();
-            }
-
-            $(window).resize(updateCarouselConfig).trigger("resize");
-        });
+            videoPlayer.play();
+        }
     </script>
-
-
-<script>
-    // navbar include  
-    fetch('../y_index/y_navbar.html')
-        .then(response => response.text())
-        .then(data => {
-            document.getElementById('navbar').innerHTML = data;
-        });
-    // footer include 
-    fetch('../y_index/y_footer.html')
-        .then(response => response.text())
-        .then(data => {
-            document.getElementById('footer').innerHTML = data;
-        });
-</script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
-
 </html>

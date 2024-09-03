@@ -16,6 +16,38 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css" rel="stylesheet">
     <style>
+         .video-container {
+            position: relative;
+            width: 100%;
+            margin: auto;
+        }
+
+        .video-thumbnail {
+            width: 100%;
+            display: block;
+            cursor: pointer;
+        }
+
+        .play-button{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 3rem;
+            color: white;
+            opacity: 0.8;
+            cursor: pointer;
+            background-image: radial-gradient(circle, rgba(0, 0, 0, 0.25) 25%, rgba(38, 38, 38, 0.2) 40%, rgba(38, 38, 38, 0) 50%, transparent 0);
+        }
+
+        .video-container:hover .play-button {
+            display: block;
+        }
+
+        .video-player {
+            display: none;
+            width: 100%;
+        }
         @media screen and (max-width: 768px) {
             .r_newcontainer {
                 max-width: 100% !important;
@@ -36,7 +68,7 @@
                     Developers
                 </button>
                 <ul class="dropdown-menu">
-                    <li><a class="dropdown-item m_dropActive" href="m_sol_bs_business.html">Overview</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="">Overview</a></li>
                     <li><a class="dropdown-item" href="">Topics & Technologies</a></li>
                     <li><a class="dropdown-item" href="">Artificial Intelligence</a></li>
                     <li><a class="dropdown-item" href="">Tools</a></li>
@@ -92,7 +124,7 @@
                 <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                     oneAPI
                 </button>
-                <ul class="dropdown-menu" id="one">
+                <ul class="dropdown-menu">
                     <li><a class="dropdown-item m_dropActive" href="">Overview</a></li>
                     <li><a class="dropdown-item" href="">Data Parallel C++/SYCL*</a></li>
                     <li><a class="dropdown-item" href="">Toolkits</a></li>
@@ -176,13 +208,23 @@
                 </div>
                 <div class="row">
                     <div class="col-md-6  col-sm-12 r_photo">
-                        <div class="video-container">
+                        <!-- <div class="video-container">
                             <img src="../img/r_img/chart.png" alt="Video thumbnail" class="img-fluid p-0">
                             <div class="r_play-icon1" id="playIcon">
                                 <i class="bi bi-play-circle-fill"></i>
                             </div>
                             <video id="myVideo" controls style="display: none;">
                                 <source src="../img/r_img/video.mp4" type="video/mp4">
+                            </video>
+                        </div> -->
+                        <div class="video-container">
+                            <img src="../img/r_img/chart.png" alt="Video Thumbnail 1" class="video-thumbnail">
+                            <div class="play-button" onclick="playVideo(this)">
+                                <i class="bi bi-play-circle"></i>
+                            </div>
+                            <video class="video-player" controls>
+                                <source src="../img/r_img/video.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
                             </video>
                         </div>
                     </div>
@@ -434,12 +476,21 @@
                         </div>
                     </div>
                     <div class="col-md-6 col-sm-12">
-                        <div class="video-container">
+                        <!-- <div class="video-container">
                             <img src="../img/r_img/accelerate.jpg" alt="Video thumbnail" class="img-fluid ">
-                            <div class="r_play-icon" id="playIcon">
+                            <div class="r_play-icon" id="playIcona">
                                 <i class="bi bi-play-circle-fill"></i>
                             </div>
-                            <video id="myVideo" controls style="display: none;">
+                            <video id="myVideoa" controls style="display: none;">
+                                <source src="../img/r_img/video.mp4" type="video/mp4">
+                            </video>
+                        </div> -->
+                        <div class="video-container">
+                            <img src="../img/r_img/accelerate.jpg" alt="Video Thumbnail 1" class="video-thumbnail">
+                            <div class="play-button" onclick="playVideo(this)">
+                                <i class="bi bi-play-circle"></i>
+                            </div>
+                            <video class="video-player" controls>
                                 <source src="../img/r_img/video.mp4" type="video/mp4">
                             </video>
                         </div>
@@ -966,6 +1017,21 @@
         crossorigin="anonymous"></script>
 
 
+        <script>
+            function playVideo(element) {
+                const videoContainer = element.closest('.video-container');
+                const thumbnail = videoContainer.querySelector('.video-thumbnail');
+                const playButton = videoContainer.querySelector('.play-button');
+                const videoPlayer = videoContainer.querySelector('.video-player');
+    
+                thumbnail.style.display = 'none';
+                playButton.style.display = 'none';
+                videoPlayer.style.display = 'block';
+    
+                videoPlayer.play();
+            }
+        </script>
+
     <script>
         // navbar include  
         fetch('../y_index/y_navbar.html')
@@ -981,6 +1047,7 @@
             });
     </script>
 
+   
 </body>
 
 </html>
