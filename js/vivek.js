@@ -1030,6 +1030,14 @@ window.onload = function () {
     // software guard documantation
     VK_display_software_result_accridan();
 
+
+    // intel oneAPI documantation
+    VK_intel_oneapi_toolkit();
+    // content checkbox
+    VK_oneAPI_content_type_checkbox()
+    // software checkbox
+    VK_oneapi_software_checkbox();
+
 }
 
 if (document.getElementById('VK_select_filters')) {
@@ -2603,6 +2611,231 @@ let VK_Interposers_data = [
     },
 ]
 
+var VK_IMVP9_data = [
+    {
+        name: "BGA1264-ADL-N Interposer for Low Power VR Test Tool",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "BGA1781-ADL-M Interposer for Low Power VR Test Tool",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "BGA1338-JSL Interposer for Low Power VR Test Tool",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "BGA1341-DG1 Interposer for Low Power VR Test Tool",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "BGA1344-ICL-UN Interposer for Low Power VR Test Tool (Internal Only)",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "BGA1377-AML-Y42 Interposer for Low Power VRTT",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "BGA1377-ICL-Y Interposer",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "BGA1421-ICL-I Interposer for Low Power VR Test Tool",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "BGA1449-TGL-U42 Interposer for Low Power VR Test Tool",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "BGA1598-TGL-Y42 Interposer for Low Power VR Test Tool",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "BGA1617-KSL-I Interposer",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "BGA1693-MEV-BLUE Interposer for Low Power VR Test Tool",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "BGA1693-MEV-RED Interposer for Low Power VR Test Tool",
+        image: "nophoto-base_1.png"
+    },
+
+]
+
+var VK_IMVP8_data = [
+    {
+        name: "BGA1787-TGL-H Interposer for the Gen5 VR Test Tool",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "LGA1151-CFL-S (Blue) Interposer",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "LGA1151-CFL-S (Red) Interposer",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "BGA1528-CFL-U Interposer",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "BGA1528-WHL-U42 (CML-U) Interposer",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "BGA1016-LKF interposer",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "BGA1090-GLK Interposer",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "BGA1440-CFL-H Interposer",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "BGA2270-KBL-G Interposer",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "BGA1296-APL Interposer",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "BGA1356 (SKL-U) Interposer (also for KBL-U22 and 23e)",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "BGA1440 (SKL-H) Interposer",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "BGA1515 Interposer (SKL-Y/KBL-Y/AML-Y22 compatible) for Gen4 VR Test Tool",
+        image: "nophoto-base_1.png"
+    },
+]
+
+var VK_VR13_data = [
+    {
+        name: "Socket P0 (LGA3647) Bundle",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "BGA1310-DNV-16C-BLACK Interposer for the Low Power VR Test Tool",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "BGA1310 Retention Mechanism",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "G5-LGA2066-GCF Interposer",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "Socket P0 (LGA3647) Blue Interposer",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "Socket P0 (LGA3647) Red Interposer",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "Socket R4 (LGA2066) [Blue] Interposer",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "Socket R4 (LGA2066) [Red] Interposer",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "Socket P0 (LGA3647) Black Interposer",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "BGA1310-DNV-LPVRTT Interposer",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "BGA2518-SKX-DE (Blue) Interposer",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "BGA2518-SKX-DE (Red) Interposer",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "BGA1310-DNV Interposer",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "Socket P0 (LGA3647) Retention Mechanism Kit for Gen4 and Gen5 VR Test Tools",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "LGA3647-CLX Retention Mechanism Top Plate for Gen5 VR Test Tool",
+        image: "nophoto-base_1.png"
+    },
+]
+
+var VK_VR13HC_data = [
+    {
+        name: "LGA4189-ICX Retention Mechanism (Rev C) Back Plate for Gen5 VR Test Tool",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "LGA4189-ICX Retention Mechanism (Rev C) Kit for Gen5 VR Test Tool",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "LGA4677-SPR Retention Mechanism Kit for Gen5 VR Test Tool",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "BGA2227-ICX-D-LCC-Blue Interposer for the Gen5 VR Test Tool",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "BGA2227-ICX-D-LCC-Red Interposer for the Gen5 VR Test Tool",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "BGA2579-ICX-D-HCC-Blue Interposer for the Gen5 VR Test Tool",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "BGA2579-ICX-D-HCC-Red Interposer for the Gen5 VR Test Tool",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "LGA4189-ICX-Blue Interposer for the Gen5 VR Test Tool",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "LGA4189-ICX-Red Interposer for the Gen5 VR Test Tool",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "Socket P0 (LGA3647) Retention Mechanism Kit for Gen4 and Gen5 VR Test Tools",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "LGA3647-CLX Retention Mechanism Top Plate for Gen5 VR Test Tool",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "LGA3647-CLX-RED Interposer",
+        image: "nophoto-base_1.png"
+    },
+]
+
 let VK_tool_heads_data = [
     {
         name: "Gen5 VR Test Tool Base Kit With 750A Upgrade Installed",
@@ -4043,6 +4276,26 @@ let VK_chk_page = () => {
                 fetch_data = VK_Interposers_data;
                 break;
 
+            case 'VK_IMVP9_tools':
+                id = 'VK_IMVP9_card_parent'
+                fetch_data = VK_IMVP9_data
+                break;
+
+            case 'VK_IMVP8_tools':
+                id = 'VK_IMVP8_card_parent'
+                fetch_data = VK_IMVP8_data
+                break;
+
+            case 'VK_VR13_tools':
+                id = 'VK_VR13_card_parent'
+                fetch_data = VK_VR13_data;
+                break;
+
+            case 'VK_VR13HC_tools':
+                id = 'VK_VR13HC_card_parent';
+                fetch_data = VK_VR13HC_data;
+                break;
+
             case 'VK_tool_heads_tools':
                 id = 'VK_tool_heads_card_parent';
                 fetch_data = VK_tool_heads_data;
@@ -4185,7 +4438,6 @@ let VK_chk_page = () => {
 
 function design_tools_sort() {
     let sort_order = document.getElementById('VK_design_tools_sort_by').value
-    console.log(sort_order);
     switch (sort_order) {
         case 'A-Z':
             fetch_data.sort((a, b) => a.name.localeCompare(b.name));
@@ -4199,7 +4451,6 @@ function design_tools_sort() {
 }
 
 let custom_pagination = (current_page, limit, fetch_data, id) => {
-    console.log(fetch_data);
     let first_element = (limit * current_page) - limit;
     let last_element = limit * current_page;
     let total_page = Math.ceil(fetch_data.length / limit);
@@ -5958,13 +6209,10 @@ function VK_software_chk_search() {
         searchBox = document.getElementById('VK_guard_chk_search_box')
     }
     const searchTerm = searchBox.value.trim().toLowerCase();
-    console.log(searchTerm);
 
     const filteredContentTypes = searchTerm
         ? contentTypes.filter(ele => ele.toLowerCase().includes(searchTerm))
         : contentTypes;
-
-    // console.log(filteredContentTypes);
 
     VK_software_content_type(filteredContentTypes);
 }
@@ -5983,7 +6231,6 @@ function VK_guard_checkbox() {
 
     software_data = filteredData;
 
-    console.log(software_data);
     VK_display_software_result_accridan();
 }
 
@@ -6177,31 +6424,461 @@ function VK_download_btn(name) {
 }
 
 
-function VK_window_package_btn(id,index){
-    if(id == 1){
+function VK_window_package_btn(id, index) {
+    if (id == 1) {
 
         let el = document.querySelectorAll('#VK_linux_packages button')
-        for(let i = 0; i < el.length; i++){
+        for (let i = 0; i < el.length; i++) {
             el[i].classList.remove('VK_op_active_btn')
         }
 
         let ele = document.querySelectorAll('#VK_window_packages button')
-        for(let i = 0; i < ele.length; i++){
+        for (let i = 0; i < ele.length; i++) {
             ele[i].classList.remove('VK_op_active_btn')
         }
         ele[index].classList.add('VK_op_active_btn')
     }
-    else if(id == 2){
-        
+    else if (id == 2) {
+
         let el = document.querySelectorAll('#VK_window_packages button')
-        for(let i = 0; i < el.length; i++){
+        for (let i = 0; i < el.length; i++) {
             el[i].classList.remove('VK_op_active_btn')
         }
 
         let ele = document.querySelectorAll('#VK_linux_packages button')
-        for(let i = 0; i < ele.length; i++){
+        for (let i = 0; i < ele.length; i++) {
             ele[i].classList.remove('VK_op_active_btn')
         }
         ele[index].classList.add('VK_op_active_btn')
     }
 }
+
+
+// --------------------------------------------------- intel OneAPI toolkit documantation -------------------------------------------------
+
+// data
+let oneAPI_toolkit_documantation_data = [
+    {
+        title: "Intel® oneAPI DPC++/C++ Compiler Release Notes",
+        id: "768207",
+        date: "07/26/24",
+        version: "2024.2.1",
+        download: false,
+        bookmark: false,
+        file: "URL",
+        content: "Release Notes",
+        description: "Intel oneAPI DPC++/C++ compiler release notes."
+    },
+    {
+        title: "oneAPI GPU Optimization Guide",
+        id: "771772",
+        date: "07/18/24",
+        version: [
+            "2024.2",
+            "2024.1",
+            "2024.0",
+            "2023.2",
+            "2023.1",
+            "2023.0"
+        ],
+        download: true,
+        bookmark: true,
+        file: "URL (7.16 MB)",
+        content: "Development Guides",
+        description: "Programming oneAPI projects to maximize hardware abilities."
+    },
+    {
+        title: "Cookbook",
+        id: "766316",
+        date: "06/24/24",
+        version: [
+            "2024.2",
+            "2024.1",
+            "2024.0",
+            "2023.2",
+            "2023.1",
+            "2023.0"
+        ],
+        download: true,
+        bookmark: true,
+        file: "URL (24.6 MB)",
+        content: "Cookbooks",
+        description: "Follow tuning and configuration recipes to use analysis types in Intel® VTune™ Profiler. Analyze your code, identify ineffective algorithm and hardware usage, and get tuning advice on performance."
+    },
+    {
+        title: "Code Sample: Hello-Encode",
+        id: "670188",
+        date: "05/29/24",
+        version: "1.0",
+        download: false,
+        bookmark: true,
+        file: "URL",
+        content: "Code Samples",
+        description: "This sample demonstrates how to use the oneAPI Video Processing Library to encode a simple video."
+    }
+]
+
+
+let oneapi_data = oneAPI_toolkit_documantation_data;
+
+// display data
+function VK_intel_oneapi_toolkit() {
+
+    const div = document.getElementById('VK_oneapi_toolkit');
+
+    // result count 
+    if (document.getElementById('VK_intel_oneapi_cnt1')) {
+        document.getElementById('VK_intel_oneapi_cnt1').innerHTML = oneapi_data.length + " results";
+    }
+
+
+    // display accoridan
+    if (div) {
+
+        const htmlele = oneapi_data.map((ele, ind) => {
+            const uniqueID = `flush-collapse-${ind}`;
+            const uniqueHeadingID = `flush-heading-${ind}`;
+
+            const versionDisplay = Array.isArray(ele.version)
+                ? `<select class="py-2 pe-xl-4 pe-5">${ele.version.map(v => `<option value="${v}">${v}</option>`).join('')}</select>`
+                : ele.version;
+
+            return `
+            <div class="accordion-item">
+                <div class="row m-0 flex-column flex-xl-row py-xl-3 px-3 p-2">
+                    <div class="col-xxl-7 col-xl-6 col-12 align-self-center">
+                        <p class="m-xl-0 mb-4">
+                            <a href="#" class="VK_red_normal_font text-decoration-none VK_a">
+                                ${ele.title}
+                            </a>
+                        </p>
+                    </div>
+                    <div class="col-xxl-4 col-xl-5 col-12 p-0 text-xl-center d-flex flex-column flex-xl-row justify-content-between align-items-center">
+                        <p class="m-0 my-1 VK_red_small_font w-100">
+                            <span class="d-xl-none"><b>ID :</b></span> ${ele.id}
+                        </p>
+                        <p class="m-0 my-1 VK_red_small_font w-100">
+                            <span class="d-xl-none"><b>Date :</b></span> ${ele.date}
+                        </p>
+                        <p class="m-0 my-1 VK_red_small_font w-100">
+                            <span class="d-xl-none"><b>Version: </b></span>
+                            ${versionDisplay}
+                        </p>
+                    </div>
+                    <div class="col-xl-1 col-12 p-0 my-xl-0 my-2 align-self-center">
+                        <p class="d-flex m-0 justify-content-xl-between justify-content-end">
+                            ${ele.download ? `
+                                <button class="bg-transparent border-0 text-primary mx-2 m-xl-0">
+                                    <i class="fa-solid fa-download"></i>
+                                </button>
+                            ` : ''}
+                            ${ele.bookmark ? `
+                                <button class="bg-transparent border-0 text-primary mx-2 m-xl-0">
+                                    <i class="fa-regular fa-bookmark"></i>
+                                </button>
+                            ` : ''}
+                            <button class="accordion-button collapsed mx-2 m-xl-0" type="button"
+                                data-bs-toggle="collapse" data-bs-target="#${uniqueID}"
+                                aria-expanded="false" aria-controls="${uniqueID}">
+                            </button>
+                        </p>
+                    </div>
+                </div>
+                <div id="${uniqueID}" class="accordion-collapse collapse"
+                    aria-labelledby="${uniqueHeadingID}" data-bs-parent="#accordionFlushExample">
+                    <div class="accordion-body">
+                        <p class="m-0">
+                            <span class="d-inline-block mx-2">
+                                <b>File:</b>
+                                <span>${ele.file}</span>
+                            </span>
+                            <span class="d-inline-block mx-2">
+                                <b>Content Type :</b>
+                                <span>${ele.content}</span>
+                            </span>
+                        </p>
+                        <p class="m-0">${ele.description}</p>
+                    </div>
+                </div>
+            </div>`;
+        });
+
+        div.innerHTML = htmlele.join('');
+
+        const accordionButtons = div.querySelectorAll('.accordion-button');
+        accordionButtons.forEach(button => {
+            const collapseElement = document.querySelector(button.getAttribute('data-bs-target'));
+            const collapseInstance = new bootstrap.Collapse(collapseElement, {
+                toggle: false
+            });
+
+            button.addEventListener('click', function () {
+                collapseInstance.toggle();
+            });
+        });
+    } else {
+        return;
+    }
+}
+
+// data sort by
+function VK_oneapi_data_softby() {
+    let sort_by = document.getElementById('VK_oneapi_data_sortby').value;
+    if (sort_by == 'A-Z') {
+        oneapi_data.sort((a, b) => a.title.localeCompare(b.title));
+    } else if (sort_by == 'Z-A') {
+        oneapi_data.sort((a, b) => b.title.localeCompare(a.title));
+    }else if(sort_by == 'Content Type')
+    {
+        oneapi_data.sort((a, b) => a.content.localeCompare(b.content));
+    }
+    VK_intel_oneapi_toolkit();
+}
+
+// data searchbox
+function VK_oneapi_data_search_box() {
+    let search_txt = document.getElementById('VK_oneapi_toolkit_search_bar').value;
+    oneapi_data = oneAPI_toolkit_documantation_data.filter((ele) => {
+        return ele.title.toLowerCase().includes(search_txt.toLowerCase()) || ele.content.toLowerCase().includes(search_txt.toLowerCase())
+    })
+    VK_intel_oneapi_toolkit();
+}
+
+// clear all 
+function VK_oneapi_clear_All() {
+    oneapi_data = oneAPI_toolkit_documantation_data;
+
+    VK_intel_oneapi_toolkit();
+
+    VK_oneAPI_content_type_checkbox()
+
+    VK_oneapi_software_checkbox();
+}
+
+
+// content type checkbox
+let api_content_type_arr = [
+    "Code Samples",
+    "Cookbooks",
+    "Development Guides",
+    "Development Reference Guides",
+    "Development User Guides",
+    "Getting Started Guides",
+    "How-To Training",
+    "Installation Guides",
+    "Release Notes",
+    "System Requirements",
+    "Technical Articles",
+    "Training and Learning",
+    "Tutorials"
+];
+
+let api_content_arr = api_content_type_arr
+
+// display content type checkbox
+function VK_oneAPI_content_type_checkbox() {
+    if (document.getElementById('VK_oneapi_toolkit_checkbox')) {
+        let html = api_content_arr.map((ele, ind) => {
+            return `
+        <div class="${ind > 7 ? "d-none" : ""} my-1"> 
+            <input type="checkbox" value="${ele}" class="me-2 VK_oneapi_content_checkbox" onclick="VK_oneapi_content_type()">
+            <span>${ele}</span>
+        </div>
+        `;
+        }).join(' ');
+
+        if (api_content_arr.length > 7) {
+            html += `
+        <button class="border-0 bg-transparent VK_a" onclick="VK_oneapi_toolkit_showmore()" id="VK_toolkit_content_show_more">
+            <span>Show More</span>
+        </button>
+        `;
+        }
+
+        document.getElementById('VK_oneapi_toolkit_checkbox').innerHTML = html;
+    } else {
+        return;
+    }
+}
+
+// content type checkbox show more or less
+function VK_oneapi_toolkit_showmore() {
+    let showMoreButton = document.getElementById('VK_toolkit_content_show_more');
+    let hiddenItems = document.querySelectorAll('#VK_oneapi_toolkit_checkbox .d-none');
+    let visibleItems = document.querySelectorAll('#VK_oneapi_toolkit_checkbox > div:not(.d-none)');
+
+    if (showMoreButton.innerText.trim() === "Show More") {
+        showMoreButton.innerHTML = "<span>Show Less</span>";
+        hiddenItems.forEach(item => item.classList.remove('d-none'));
+    } else {
+        showMoreButton.innerHTML = "<span>Show More</span>";
+        visibleItems.forEach((item, ind) => {
+            if (ind > 7) {
+                item.classList.add('d-none');
+            }
+        });
+    }
+}
+
+// search box
+function VK_oneapi_content_search() {
+    let srch = document.getElementById('VK_onepai_content_search').value
+    let arr = api_content_type_arr.filter((ele) => {
+        return ele.toLowerCase().includes(srch.toLowerCase())
+    })
+    api_content_arr = arr
+    VK_oneAPI_content_type_checkbox()
+}
+
+// orderby
+function VK_content_order_By() {
+    let orderby = document.getElementById('VK_content_type_sort').value
+    if (orderby == 'A-Z') {
+        api_content_arr.sort((a, b) => a.localeCompare(b))
+    }
+    else if (orderby == 'Z-A') {
+        api_content_arr.sort((a, b) => b.localeCompare(a))
+    }
+    VK_oneAPI_content_type_checkbox()
+}
+
+// checkbox event
+function VK_oneapi_content_type() {
+    let checkboxes = document.querySelectorAll('.VK_oneapi_content_checkbox');
+    let checkedBoxes = Array.from(checkboxes).filter(checkbox => checkbox.checked);
+
+    if (checkedBoxes.length === 0) {
+        oneapi_data = oneAPI_toolkit_documantation_data;
+    } else {
+        let selectedContentTypes = checkedBoxes.map(checkbox => checkbox.value.toLowerCase());
+        oneapi_data = oneAPI_toolkit_documantation_data.filter(item => {
+            return selectedContentTypes.includes(item.content.toLowerCase());
+        });
+    }
+
+    VK_intel_oneapi_toolkit();
+}
+
+
+
+var VK_oneapi_software_data = [
+    "AI Tools",
+    "GNU* Debugger",
+    "Intel® Advisor",
+    "Intel® C++ Compiler",
+    "Intel® Distribution for Python*",
+    "Intel® DPC++ Compatibility Tool",
+    "Intel® Extension for Scikit_learn*",
+    "Intel® Fortran Compiler",
+    "Intel® FPGA Add-On for oneAPI Base Toolkit",
+    "Intel® HPC Toolkit",
+    "Intel® Integrated Performance Primitives",
+    "Intel® IoT Toolkit",
+    "Intel® oneAPI Base Toolkit",
+    "Intel® oneAPI Collective Communications Library",
+    "Intel® oneAPI Data Analytics Library",
+    "Intel® oneAPI Deep Neural Network Library",
+    "Intel® oneAPI DL Framework Developer Toolkit",
+    "Intel® oneAPI DPC++ C++ Compiler",
+    "Intel® oneAPI DPC++ Library",
+    "Intel® oneAPI Math Kernel Library",
+    "Intel® oneAPI Threading Building Blocks",
+    "Intel® Parallel Studio XE",
+    "Intel® Rendering Toolkit",
+    "Intel® Video Processing Library",
+    "Intel® VTune™ Profiler (formerly Intel® VTune™ Amplifier)"
+]
+
+var VK_api_software = VK_oneapi_software_data
+
+// software checkboxs
+function VK_oneapi_software_checkbox() {
+    if (document.getElementById('VK_oneapi_toolkit_software_checkbox')) {
+        let html = VK_api_software.map((ele, ind) => {
+            return `
+        <div class="${ind > 7 ? "d-none" : ""} my-1 w-100 VK_white_space"> 
+            <input type="checkbox" value="${ele}" class="me-2 VK_oneapi_software_checkbox w-auto" onclick="VK_oneapi_software_type()">
+            <span class="w-auto d-inline-block">${ele}</span>
+        </div>
+        `;
+        }).join(' ');
+
+        if (api_content_arr.length > 7) {
+            html += `
+        <button class="border-0 bg-transparent VK_a" onclick="VK_oneapi_toolkit_software_showmore()" id="VK_toolkit_software_show_more">
+            <span>Show More</span>
+        </button>
+        `;
+        }
+
+        document.getElementById('VK_oneapi_toolkit_software_checkbox').innerHTML = html;
+    } else {
+        return;
+    }
+}
+
+// content type checkbox show more or less
+function VK_oneapi_toolkit_software_showmore() {
+    let showMoreButton = document.getElementById('VK_toolkit_software_show_more');
+    let hiddenItems = document.querySelectorAll('#VK_oneapi_toolkit_software_checkbox .d-none');
+    let visibleItems = document.querySelectorAll('#VK_oneapi_toolkit_software_checkbox > div:not(.d-none)');
+
+    if (showMoreButton.innerText.trim() === "Show More") {
+        showMoreButton.innerHTML = "<span>Show Less</span>";
+        hiddenItems.forEach(item => item.classList.remove('d-none'));
+    } else {
+        showMoreButton.innerHTML = "<span>Show More</span>";
+        visibleItems.forEach((item, ind) => {
+            if (ind > 7) {
+                item.classList.add('d-none');
+            }
+        });
+    }
+}
+
+// orderby
+function VK_software_order_By() {
+    let orderby = document.getElementById('VK_oneapi_software_filters').value
+    if (orderby == 'A-Z') {
+        VK_api_software.sort((a, b) => a.localeCompare(b))
+    }
+    else if (orderby == 'Z-A') {
+        VK_api_software.sort((a, b) => b.localeCompare(a))
+    }
+    VK_oneapi_software_checkbox()
+}
+
+// software search
+function VK_oneapi_software_search() {
+    let srch = document.getElementById('VK_onepai_software_search').value
+    let arr = VK_oneapi_software_data.filter((ele) => {
+        return ele.toLowerCase().includes(srch.toLowerCase())
+    })
+    VK_api_software = arr
+    VK_oneapi_software_checkbox()
+}
+
+
+// expand all 
+function VK_expand_All(id) {
+    let ele = document.querySelectorAll(`#${id} .accordion-collapse`)
+    ele.forEach(el => {
+        let acc = new bootstrap.Collapse(el, {
+            toggle: false
+        })
+        acc.show();
+    })
+}
+
+// collapse all
+function VK_collapese_All(id) {
+    let accoridan = document.querySelectorAll(`#${id} .accordion-collapse`)
+    accoridan.forEach(el => {
+        let acco = new bootstrap.Collapse(el, {
+            toggle: false
+        })
+        acco.hide();
+    })
+}
+
+
