@@ -1038,6 +1038,14 @@ window.onload = function () {
     // software checkbox
     VK_oneapi_software_checkbox();
 
+
+    // intel hpc toolkit documantation
+    VK_hpc_toolkit_display_accoridan();
+    // content type checkbox
+    VK_hpc_content_type_checkbox();
+    // software type checkbox
+    VK_hpc_software_checkbox();
+
 }
 
 if (document.getElementById('VK_select_filters')) {
@@ -6398,60 +6406,9 @@ function VK_cloud_collapses() {
 
 
 // -------------------------------------------------------- intel oneapi toolkit download ----------------------------------------------------------
-function VK_download_btn(name) {
-    if (document.getElementById('VK_download_btn_parent').classList.contains('d-none')) {
-        document.getElementById('VK_download_btn_parent').classList.remove('d-none')
-    }
-    if (name == 'window') {
-
-        // button
-        document.getElementById('VK_op_window_bt').classList.add('VK_op_active_btn')
-        document.getElementById('VK_op_linux_bt').classList.remove('VK_op_active_btn')
-
-        // packages 
-        document.getElementById('VK_window_packages').classList.remove('d-none')
-        document.getElementById('VK_linux_packages').classList.add('d-none')
-    } else if (name == 'linux') {
-
-        // button
-        document.getElementById('VK_op_window_bt').classList.remove('VK_op_active_btn')
-        document.getElementById('VK_op_linux_bt').classList.add('VK_op_active_btn')
-
-        // packages
-        document.getElementById('VK_window_packages').classList.add('d-none')
-        document.getElementById('VK_linux_packages').classList.remove('d-none')
-    }
-}
 
 
-function VK_window_package_btn(id, index) {
-    if (id == 1) {
 
-        let el = document.querySelectorAll('#VK_linux_packages button')
-        for (let i = 0; i < el.length; i++) {
-            el[i].classList.remove('VK_op_active_btn')
-        }
-
-        let ele = document.querySelectorAll('#VK_window_packages button')
-        for (let i = 0; i < ele.length; i++) {
-            ele[i].classList.remove('VK_op_active_btn')
-        }
-        ele[index].classList.add('VK_op_active_btn')
-    }
-    else if (id == 2) {
-
-        let el = document.querySelectorAll('#VK_window_packages button')
-        for (let i = 0; i < el.length; i++) {
-            el[i].classList.remove('VK_op_active_btn')
-        }
-
-        let ele = document.querySelectorAll('#VK_linux_packages button')
-        for (let i = 0; i < ele.length; i++) {
-            ele[i].classList.remove('VK_op_active_btn')
-        }
-        ele[index].classList.add('VK_op_active_btn')
-    }
-}
 
 
 // --------------------------------------------------- intel OneAPI toolkit documantation -------------------------------------------------
@@ -6515,7 +6472,163 @@ let oneAPI_toolkit_documantation_data = [
         file: "URL",
         content: "Code Samples",
         description: "This sample demonstrates how to use the oneAPI Video Processing Library to encode a simple video."
-    }
+    },
+    {
+        title: "Release Notes for Intel® oneAPI Data Analytics Library",
+        id: "763738",
+        date: "07/25/24",
+        version: "2024.6.0",
+        download: false,
+        bookmark: false,
+        file: "URL",
+        content: "Release Notes",
+        description: "Release Notes for Intel® oneAPI Data Analytics Library"
+    },
+    {
+        title: "oneAPI Collective Communications Library Release Notes",
+        id: "763686",
+        date: "07/25/24",
+        version: "2021.13.1",
+        download: false,
+        bookmark: false,
+        file: "URL",
+        content: "Release Notes",
+        description: "This is the Beta release of oneAPI Collective Communications Library (oneCCL) with major features supported below..."
+    },
+    {
+        title: "oneAPI GPU Optimization Guide",
+        id: "771772",
+        date: "07/18/24",
+        version: [
+            "2024.2",
+            "2024.1",
+            "2024.0",
+            "2023.2",
+            "2023.1",
+            "2023.0"
+        ],
+        download: true,
+        bookmark: true,
+        file: "URL (7.16 MB)",
+        content: "Development Guides",
+        description: "Programming oneAPI projects to maximize hardware abilities."
+    },
+    {
+        title: "Intel® Distribution for GDB* Release Notes",
+        id: "763674",
+        date: "07/11/24",
+        version: "2024.2.1",
+        download: false,
+        bookmark: false,
+        file: "URL",
+        content: "Release Notes",
+        description: "Provides details about new features and known issues for the Intel® oneAPI Intel-enhanced GDB*."
+    },
+    {
+        title: "Intel® oneAPI Deep Neural Network Library Release Notes",
+        id: "763685",
+        date: "07/11/24",
+        version: "2024.2.1 (latest)",
+        download: false,
+        bookmark: false,
+        file: "URL",
+        content: "Release Notes",
+        description: "Beta release notes of Intel® oneAPI Deep Neural Network Library (oneDNN) for DPC++."
+    },
+    {
+        title: "Debugging with Intel® Distribution for GDB* on Linux* OS Host",
+        id: "766459",
+        date: "06/27/24",
+        version: [
+            "2024.2",
+            "2024.1",
+            "2024.0",
+            "2023.2",
+            "2023.1",
+            "2023.0"
+        ],
+        download: true,
+        bookmark: true,
+        file: "URL (254 KB)",
+        content: "Tutorials",
+        description: "Go through the basic debugging scenario for SYCL applications."
+    },
+    {
+        title: "Debugging with Intel® Distribution for GDB* on Windows* OS Host",
+        id: "766461",
+        date: "06/27/24",
+        version: [
+            "2024.2",
+            "2024.1",
+            "2024.0",
+            "2023.2",
+            "2023.1",
+            "2023.0"
+        ],
+        download: true,
+        bookmark: true,
+        file: "URL (1.57 MB)",
+        content: "Tutorials",
+        description: "Go through the basic debugging scenario for SYCL applications."
+    },
+    {
+        title: "Get Started with Intel® Distribution for GDB* on Linux* OS Host",
+        id: "766463",
+        date: "06/27/24",
+        version: [
+            "2024.2",
+            "2024.1",
+            "2024.0",
+            "2023.2",
+            "2023.1",
+            "2023.0"
+        ],
+        download: true,
+        bookmark: true,
+        file: " URL (376 KB)",
+        content: "Getting Started Guides",
+        description: "Set up Intel® Distribution for GDB* to debug SYCL applications."
+    },
+    {
+        title: "Get Started with Intel® Distribution for GDB* on Windows* OS Host",
+        id: "766465",
+        date: "06/27/24",
+        version: [
+            "2024.2",
+            "2024.1",
+            "2024.0",
+            "2023.2",
+            "2023.1",
+            "2023.0"
+        ],
+        download: true,
+        bookmark: true,
+        file: "URL (1.35 MB)",
+        content: "Getting Started Guides",
+        description: "Set up Intel® Distribution for GDB* to debug SYCL applications."
+    },
+    {
+        title: "Intel® oneAPI DPC++/C++ Compiler System Requirements",
+        id: "768757",
+        date: "06/24/24",
+        version: "2024.2",
+        download: false,
+        bookmark: false,
+        file: "URL",
+        content: "System Requirements",
+        description: "Intel® oneAPI System Requirements details about hardware, operating system, and software prerequisites for the Intel® oneAPI DPC++ Compiler and Library"
+    },
+    {
+        title: "Intel® Distribution for Python* Release Notes and New Features",
+        id: "763681",
+        date: "06/24/24",
+        version: "Latest",
+        download: false,
+        bookmark: false,
+        file: "URL",
+        content: "Release Notes",
+        description: "This page provides the current Release Notes for the Intel® Distribution for Python*. The notes are categorized by year, from"
+    },
 ]
 
 
@@ -6628,8 +6741,7 @@ function VK_oneapi_data_softby() {
         oneapi_data.sort((a, b) => a.title.localeCompare(b.title));
     } else if (sort_by == 'Z-A') {
         oneapi_data.sort((a, b) => b.title.localeCompare(a.title));
-    }else if(sort_by == 'Content Type')
-    {
+    } else if (sort_by == 'Content Type') {
         oneapi_data.sort((a, b) => a.content.localeCompare(b.content));
     }
     VK_intel_oneapi_toolkit();
@@ -6761,6 +6873,7 @@ function VK_oneapi_content_type() {
 
 
 
+// software data checkbox
 var VK_oneapi_software_data = [
     "AI Tools",
     "GNU* Debugger",
@@ -6882,3 +6995,659 @@ function VK_collapese_All(id) {
 }
 
 
+// ------------------------------------------------- hpc toolkit documantation ---------------------------------------------------
+
+// data
+let hpc_toolkit_data = [
+    {
+        title: "Intel® oneAPI DPC++/C++ Compiler Release Notes",
+        id: "768207",
+        date: "07/26/24",
+        version: "2024.2.1",
+        download: false,
+        bookmark: false,
+        file: "URL",
+        content: "Release Notes",
+        description: "Intel oneAPI DPC++/C++ compiler release notes."
+    },
+    {
+        title: "oneAPI GPU Optimization Guide",
+        id: "771772",
+        date: "07/18/24",
+        version: [
+            "2024.2",
+            "2024.1",
+            "2024.0",
+            "2023.2",
+            "2023.1",
+            "2023.0"
+        ],
+        download: true,
+        bookmark: true,
+        file: " URL (7.16 MB)",
+        content: "Development Guides",
+        description: "Programming oneAPI projects to maximize hardware abilities."
+    },
+    {
+        title: "Intel® MPI Library System Requirements",
+        id: "690041",
+        date: "06/25/24",
+        version: "2021.13",
+        download: false,
+        bookmark: false,
+        file: "URL",
+        content: "System Requirements",
+        description: "System Requirements for Intel® MPI Library"
+    },
+    {
+        title: "Intel® Fortran Compiler for oneAPI System Requirements",
+        id: "765569",
+        date: "06/24/24",
+        version: "2024.2.0",
+        download: false,
+        bookmark: false,
+        file: "URL",
+        content: "System Requirements",
+        description: "This document provides details about hardware, operating system, and software prerequisites for the Intel® Fortran compiler for oneAPI."
+    },
+    {
+        title: "Intel® MPI Library Developer Guide for Linux* OS",
+        id: "768728",
+        date: "06/24/24",
+        version: [
+            "2021.13",
+            "2021.12",
+            "2021.11",
+            "2021.10",
+            "2021.6"
+        ],
+        download: true,
+        bookmark: true,
+        file: "URL (346 KB)",
+        content: "Development Guides",
+        description: "This Developer Guide contains instructions for running, debugging, and tuning the Intel® MPI Library."
+    },
+    {
+        title: "Intel® Fortran Compiler Classic and Intel® Fortran Compiler Developer Guide and Reference",
+        id: "767251",
+        date: "06/24/24",
+        version: [
+            "2024.2",
+            "2024.1",
+            "2024.0",
+            "2023.2",
+            "2023.1",
+            "2023.0"
+        ],
+        download: true,
+        bookmark: true,
+        file: "URL (12.6 MB)",
+        content: "Development Reference Guides",
+        description: "Developer guide and reference for users of the Intel® Fortran Compiler Classic and Intel® Fortran Compiler"
+    },
+    {
+        title: "Intel® MPI Library Developer Guide for Windows* OS",
+        id: "768730",
+        date: "06/24/24",
+        version: [
+            "2021.13",
+            "2021.12",
+            "2021.11",
+            "2021.10",
+            "2021.9",
+            "2021.6"
+        ],
+        download: true,
+        bookmark: true,
+        file: "URL (259 KB)",
+        content: "Development Guides",
+        description: "This Developer Guide contains instructions for running, debugging, and tuning the Intel® MPI Library."
+    },
+    {
+        title: "Intel® MPI Library Developer Reference for Windows* OS",
+        id: "768734",
+        date: "06/24/24",
+        version: [
+            "2021.13",
+            "2021.12",
+            "2021.11",
+            "2021.10",
+            "2021.9",
+            "2021.8"
+        ],
+        download: true,
+        bookmark: true,
+        file: "URL (259 KB)",
+        content: "Development Guides",
+        description: "This Developer Guide contains instructions for running, debugging, and tuning the Intel® MPI Library."
+    },
+    {
+        title: "Intel® MPI Library Developer Reference for Linux* OS",
+        id: "768732",
+        date: "06/24/24",
+        version: [
+            "2021.13",
+            "2021.12",
+            "2021.11",
+            "2021.10",
+            "2021.9",
+            "2021.8"
+        ],
+        download: true,
+        bookmark: true,
+        file: "URL (935 KB)",
+        content: "Development Reference Guides",
+        description: "This Developer Reference provides you with the complete reference for the Intel(R) MPI Library."
+    },
+    {
+        title: "Intel® oneAPI DPC++/C++ Compiler Developer Guide and Reference",
+        id: "767253",
+        date: "06/24/24",
+        version: [
+            "2024.2",
+            "2024.1",
+            "2024.0",
+            "2023.2",
+            "2023.1",
+            "2023.0"
+        ],
+        download: true,
+        bookmark: true,
+        file: "URL (3.84 MB)",
+        content: "Development Reference Guides",
+        description: "Developer guide and reference for users of the Intel® oneAPI DPC++/C++ Compiler."
+    },
+    {
+        title: "Intel® oneAPI Programming Guide",
+        id: "771723",
+        date: "06/24/24",
+        version: [
+            "2024.2",
+            "2024.1",
+            "2024.0",
+            "2023.2",
+            "2023.1",
+            "2023.0"
+        ],
+        download: true,
+        bookmark: true,
+        file: "URL (1.40 MB)",
+        content: "Development Guides",
+        description: "Programming oneAPI projects to maximize hardware abilities."
+    },
+    {
+        title: "Intel® Compilers compatibility with Microsoft Visual Studio* and...",
+        id: "658720",
+        date: "06/21/24",
+        version: "Latest",
+        download: false,
+        bookmark: false,
+        file: "URL",
+        content: "Software Reference Implementations",
+        description: "Intel compilers usually support the latest available update of Microsoft Visual Studio and Xcode*/macOS* available at the rel"
+    },
+    {
+        title: "Intel® oneAPI HPC Toolkit Release Notes",
+        id: "768266",
+        date: "06/14/24",
+        version: "2024.2.0",
+        download: false,
+        bookmark: false,
+        file: "URL",
+        content: "Release Notes",
+        description: "Release notes for Intel® oneAPI HPC Toolkit."
+    },
+    {
+        title: "Intel® oneAPI HPC Toolkit Release Notes",
+        id: "829871",
+        date: "06/14/24",
+        version: [
+            "2024.2.0",
+            "2022.3.1",
+            "2021.4"
+        ],
+        download: false,
+        bookmark: false,
+        file: "URL",
+        content: "Release Notes",
+        description: "Release notes for Intel® oneAPI HPC Toolkit."
+    },
+    {
+        title: "Intel® oneAPI HPC Toolkit Release Notes",
+        id: "829871",
+        date: "06/14/24",
+        version: [
+            "2024.2.0",
+            "2022.3.1",
+            "2021.4"
+        ],
+        download: false,
+        bookmark: false,
+        file: "URL",
+        content: "Release Notes",
+        description: "Release notes for Intel® oneAPI HPC Toolkit."
+    },
+]
+
+var hpc_data = hpc_toolkit_data;
+
+// display data
+function VK_hpc_toolkit_display_accoridan() {
+
+    const div = document.getElementById('VK_hpc_toolkit');
+
+    // result count 
+    if (document.getElementById('VK_intel_hpc_cnt1')) {
+        document.getElementById('VK_intel_hpc_cnt1').innerHTML = hpc_data.length + " results";
+    }
+
+
+    // display accoridan
+    if (div) {
+
+        const htmlele = hpc_data.map((ele, ind) => {
+            const uniqueID = `flush-collapse-${ind}`;
+            const uniqueHeadingID = `flush-heading-${ind}`;
+
+            const versionDisplay = Array.isArray(ele.version)
+                ? `<select class="py-2 pe-xl-4 pe-5">${ele.version.map(v => `<option value="${v}">${v}</option>`).join('')}</select>`
+                : ele.version;
+
+            return `
+            <div class="accordion-item">
+                <div class="row m-0 flex-column flex-xl-row py-xl-3 px-3 p-2">
+                    <div class="col-xxl-7 col-xl-6 col-12 align-self-center">
+                        <p class="m-xl-0 mb-4">
+                            <a href="#" class="VK_red_normal_font text-decoration-none VK_a">
+                                ${ele.title}
+                            </a>
+                        </p>
+                    </div>
+                    <div class="col-xxl-4 col-xl-5 col-12 p-0 text-xl-center d-flex flex-column flex-xl-row justify-content-between align-items-center">
+                        <p class="m-0 my-1 VK_red_small_font w-100">
+                            <span class="d-xl-none"><b>ID :</b></span> ${ele.id}
+                        </p>
+                        <p class="m-0 my-1 VK_red_small_font w-100">
+                            <span class="d-xl-none"><b>Date :</b></span> ${ele.date}
+                        </p>
+                        <p class="m-0 my-1 VK_red_small_font w-100">
+                            <span class="d-xl-none"><b>Version: </b></span>
+                            ${versionDisplay}
+                        </p>
+                    </div>
+                    <div class="col-xl-1 col-12 p-0 my-xl-0 my-2 align-self-center">
+                        <p class="d-flex m-0 justify-content-xl-between justify-content-end">
+                            ${ele.download ? `
+                                <button class="bg-transparent border-0 text-primary mx-2 m-xl-0">
+                                    <i class="fa-solid fa-download"></i>
+                                </button>
+                            ` : ''}
+                            ${ele.bookmark ? `
+                                <button class="bg-transparent border-0 text-primary mx-2 m-xl-0">
+                                    <i class="fa-regular fa-bookmark"></i>
+                                </button>
+                            ` : ''}
+                            <button class="accordion-button collapsed mx-2 m-xl-0" type="button"
+                                data-bs-toggle="collapse" data-bs-target="#${uniqueID}"
+                                aria-expanded="false" aria-controls="${uniqueID}">
+                            </button>
+                        </p>
+                    </div>
+                </div>
+                <div id="${uniqueID}" class="accordion-collapse collapse"
+                    aria-labelledby="${uniqueHeadingID}" data-bs-parent="#accordionFlushExample">
+                    <div class="accordion-body">
+                        <p class="m-0">
+                            <span class="d-inline-block mx-2">
+                                <b>File:</b>
+                                <span>${ele.file}</span>
+                            </span>
+                            <span class="d-inline-block mx-2">
+                                <b>Content Type :</b>
+                                <span>${ele.content}</span>
+                            </span>
+                        </p>
+                        <p class="m-0 my-2">${ele.description}</p>
+                    </div>
+                </div>
+            </div>`;
+        });
+
+        div.innerHTML = htmlele.join('');
+
+        const accordionButtons = div.querySelectorAll('.accordion-button');
+        accordionButtons.forEach(button => {
+            const collapseElement = document.querySelector(button.getAttribute('data-bs-target'));
+            const collapseInstance = new bootstrap.Collapse(collapseElement, {
+                toggle: false
+            });
+
+            button.addEventListener('click', function () {
+                collapseInstance.toggle();
+            });
+        });
+    } else {
+        return;
+    }
+}
+
+// data sort by
+function VK_hpc_data_softby() {
+    let sort_by = document.getElementById('VK_hpc_data_sortby').value;
+    if (sort_by == 'A-Z') {
+        hpc_data.sort((a, b) => a.title.localeCompare(b.title));
+    } else if (sort_by == 'Z-A') {
+        hpc_data.sort((a, b) => b.title.localeCompare(a.title));
+    } else if (sort_by == 'Content Type') {
+        hpc_data.sort((a, b) => a.content.localeCompare(b.content));
+    }
+    VK_hpc_toolkit_display_accoridan();
+}
+
+// data searchbox
+function VK_hpc_data_search_box() {
+    let search_txt = document.getElementById('VK_hpc_toolkit_search_bar').value;
+    hpc_data = hpc_toolkit_data.filter((ele) => {
+        return ele.title.toLowerCase().includes(search_txt.toLowerCase()) || ele.content.toLowerCase().includes(search_txt.toLowerCase())
+    })
+    VK_hpc_toolkit_display_accoridan();
+}
+
+// clear all 
+function VK_hpc_clear_All() {
+    hpc_data = hpc_toolkit_data;
+    document.getElementById('VK_hpc_toolkit_search_bar').blur();
+    document.getElementById('VK_hpc_toolkit_search_bar').value = '';
+
+    VK_hpc_toolkit_display_accoridan();
+
+    VK_hpc_content_type_checkbox()
+
+    VK_hpc_software_checkbox();
+}
+
+
+
+// content type checkbox
+var VK_hpc_content_data = [
+    "Code Samples",
+    "Design Reference",
+    "Development Guides",
+    "Development Reference Guides",
+    "Development User Guides",
+    "Getting Started Guides",
+    "Installation Guides",
+    "Release Notes",
+    "Software Reference Implementations",
+    "System Requirements",
+    "Technical Articles",
+    "Tutorials"
+]
+
+var VK_hpc_content_arr = VK_hpc_content_data
+
+// display content type checkbox
+function VK_hpc_content_type_checkbox() {
+    if (document.getElementById('VK_hpc_toolkit_checkbox')) {
+        let html = VK_hpc_content_arr.map((ele, ind) => {
+            return `
+        <div class="${ind > 7 ? "d-none" : ""} my-1 VK_white_space"> 
+            <input type="checkbox" value="${ele}" class="me-2 VK_overflow_checkbox VK_hpc_content_checkbox" onclick="VK_hpc_content_type()">
+            <span>${ele}</span>
+        </div>
+        `;
+        }).join(' ');
+
+        if (VK_hpc_content_arr.length > 7) {
+            html += `
+        <button class="border-0 bg-transparent VK_a" onclick="VK_hpc_toolkit_showmore()" id="VK_toolkit_content_show_more">
+            <span>Show More</span>
+        </button>
+        `;
+        }
+
+        document.getElementById('VK_hpc_toolkit_checkbox').innerHTML = html;
+    } else {
+        return;
+    }
+}
+
+
+// content type checkbox show more or less
+function VK_hpc_toolkit_showmore() {
+    let showMoreButton = document.getElementById('VK_toolkit_content_show_more');
+    let hiddenItems = document.querySelectorAll('#VK_hpc_toolkit_checkbox .d-none');
+    let visibleItems = document.querySelectorAll('#VK_hpc_toolkit_checkbox > div:not(.d-none)');
+
+    if (showMoreButton.innerText.trim() === "Show More") {
+        showMoreButton.innerHTML = "<span>Show Less</span>";
+        hiddenItems.forEach(item => item.classList.remove('d-none'));
+    } else {
+        showMoreButton.innerHTML = "<span>Show More</span>";
+        visibleItems.forEach((item, ind) => {
+            if (ind > 7) {
+                item.classList.add('d-none');
+            }
+        });
+    }
+}
+
+
+// search box
+function VK_hpc_content_search() {
+    let srch = document.getElementById('VK_hpc_content_search').value
+    let arr = VK_hpc_content_data.filter((ele) => {
+        return ele.toLowerCase().includes(srch.toLowerCase())
+    })
+    VK_hpc_content_arr = arr
+    VK_hpc_content_type_checkbox()
+}
+
+// orderby
+function VK_content_order_By() {
+    let orderby = document.getElementById('VK_hpc_content_type_sort').value
+    if (orderby == 'A-Z') {
+        VK_hpc_content_arr.sort((a, b) => a.localeCompare(b))
+    }
+    else if (orderby == 'Z-A') {
+        VK_hpc_content_arr.sort((a, b) => b.localeCompare(a))
+    }
+    VK_hpc_content_type_checkbox()
+}
+
+
+// checkbox event
+function VK_hpc_content_type() {
+    let checkboxes = document.querySelectorAll('.VK_hpc_content_checkbox');
+    let checkedBoxes = Array.from(checkboxes).filter(checkbox => checkbox.checked);
+
+    if (checkedBoxes.length === 0) {
+        hpc_data = hpc_toolkit_data;
+    } else {
+        let selectedContentTypes = checkedBoxes.map(checkbox => checkbox.value.toLowerCase());
+        hpc_data = hpc_toolkit_data.filter(item => {
+            return selectedContentTypes.includes(item.content.toLowerCase());
+        });
+    }
+    VK_hpc_toolkit_display_accoridan();
+}
+
+
+
+
+// software type checkox
+var VK_hpc_software_checkbox_data = [
+    "AI Tools",
+    "Compilers",
+    "Development Tools",
+    "Intel® Advisor",
+    "Intel® C++ Compiler",
+    "Intel® Cluster Checker",
+    "Intel® DPC++ Compatibility Tool",
+    "Intel® Fortran Compiler",
+    "Intel® HPC Toolkit",
+    "Intel® Inspector",
+    "Intel® IoT Toolkit",
+    "Intel® MPI Library",
+    "Intel® oneAPI Base Toolkit",
+    "Intel® oneAPI DL Framework Developer Toolkit",
+    "Intel® oneAPI DPC++ C++ Compiler",
+    "Intel® oneAPI Math Kernel Library",
+    "Intel® Parallel Studio XE",
+    "Intel® Parallel Studio XE Cluster Edition",
+    "Intel® Rendering Toolkit",
+    "Intel® System Bring-Up Toolkit",
+    "Intel® VTune™ Profiler (formerly Intel® VTune™ Amplifier)"
+]
+
+
+var VK_hpc_software_arr = VK_hpc_software_checkbox_data
+
+// software checkboxs
+function VK_hpc_software_checkbox() {
+    if (document.getElementById('VK_hpc_toolkit_software_checkbox')) {
+        let html = VK_hpc_software_arr.map((ele, ind) => {
+            return `
+        <div class="${ind > 7 ? "d-none" : ""} my-1 w-100 VK_white_space"> 
+            <input type="checkbox" value="${ele}" class="me-2 VK_hpc_software_checkbox VK_overflow_checkbox w-auto" onclick="VK_hpc_software_type()">
+            <span class="w-auto d-inline-block">${ele}</span>
+        </div>
+        `;
+        }).join(' ');
+
+        if (VK_hpc_software_arr.length > 7) {
+            html += `
+        <button class="border-0 bg-transparent VK_a" onclick="VK_hpc_toolkit_software_showmore()" id="VK_toolkit_software_show_more">
+            <span>Show More</span>
+        </button>
+        `;
+        }
+
+        document.getElementById('VK_hpc_toolkit_software_checkbox').innerHTML = html;
+    } else {
+        return;
+    }
+}
+
+
+// content type checkbox show more or less
+function VK_hpc_toolkit_software_showmore() {
+    let showMoreButton = document.getElementById('VK_toolkit_software_show_more');
+    let hiddenItems = document.querySelectorAll('#VK_hpc_toolkit_software_checkbox .d-none');
+    let visibleItems = document.querySelectorAll('#VK_hpc_toolkit_software_checkbox > div:not(.d-none)');
+
+    if (showMoreButton.innerText.trim() === "Show More") {
+        showMoreButton.innerHTML = "<span>Show Less</span>";
+        hiddenItems.forEach(item => item.classList.remove('d-none'));
+    } else {
+        showMoreButton.innerHTML = "<span>Show More</span>";
+        visibleItems.forEach((item, ind) => {
+            if (ind > 7) {
+                item.classList.add('d-none');
+            }
+        });
+    }
+}
+
+
+// orderby
+function VK_hpc_software_order_By() {
+    let orderby = document.getElementById('VK_hpc_software_filters').value
+    if (orderby == 'A-Z') {
+        VK_hpc_software_arr.sort((a, b) => a.localeCompare(b))
+    }
+    else if (orderby == 'Z-A') {
+        VK_hpc_software_arr.sort((a, b) => b.localeCompare(a))
+    }
+    VK_hpc_software_checkbox()
+}
+
+
+// software search
+function VK_hpc_software_search() {
+    let srch = document.getElementById('VK_hpc_software_search').value
+    let arr = VK_hpc_software_checkbox_data.filter((ele) => {
+        return ele.toLowerCase().includes(srch.toLowerCase())
+    })
+    VK_hpc_software_arr = arr
+    VK_hpc_software_checkbox()
+}
+
+
+// ---------------------------------------------------- intel hcp toolkit download ---------------------------------------------------------
+function VK_hpc_btn(name){
+    if (document.getElementById('VK_download_btn_parent').classList.contains('d-none')) {
+        document.getElementById('VK_download_btn_parent').classList.remove('d-none')
+    }
+
+    if (name == 'window') {
+
+        let html = document.querySelectorAll('.VK_hpc_linux_installer_desc')
+        html.forEach((it)=>{
+            it.classList.add('d-none')
+        })
+        document.getElementById('VK_installer').classList.remove('d-none')
+
+        // button
+        document.getElementById('VK_op_window_bt').classList.add('VK_op_active_btn')
+        document.getElementById('VK_op_linux_bt').classList.remove('VK_op_active_btn')
+
+        // packages 
+        document.getElementById('VK_window_packages').classList.remove('d-none')
+        document.getElementById('VK_linux_packages').classList.add('d-none')
+
+        let el = document.querySelectorAll('#VK_linux_packages button')
+        for (let i = 0; i < el.length; i++) {
+            el[i].classList.remove('VK_op_active_btn')
+        }
+        
+    } else if (name == 'linux') {
+
+        let html = document.querySelectorAll('.VK_hpc_window_installer_desc')
+        html.forEach((it)=>{
+            it.classList.add('d-none')
+        })
+        document.getElementById('VK_installer').classList.remove('d-none')
+
+        // button
+        document.getElementById('VK_op_window_bt').classList.remove('VK_op_active_btn')
+        document.getElementById('VK_op_linux_bt').classList.add('VK_op_active_btn')
+
+        // packages
+        document.getElementById('VK_window_packages').classList.add('d-none')
+        document.getElementById('VK_linux_packages').classList.remove('d-none')
+
+        let el = document.querySelectorAll('#VK_window_packages button')
+        for (let i = 0; i < el.length; i++) {
+            el[i].classList.remove('VK_op_active_btn')
+        }
+    }
+}
+
+function VK_hpc_window_installer(id){
+    let ele = document.querySelectorAll('.VK_hpc_window_installer_btn')
+    let html = document.querySelectorAll('.VK_hpc_window_installer_desc')
+    document.getElementById('VK_installer').classList.add('d-none')
+    html.forEach(itm=>{
+        itm.classList.add('d-none')
+    })
+    html[id].classList.remove('d-none')
+    ele.forEach((e)=>{
+        e.classList.remove('VK_op_active_btn')
+    })
+    ele[id].classList.add('VK_op_active_btn')
+}
+
+function VK_hpc_linux_installer(id){
+    let ele = document.querySelectorAll('.VK_hpc_linux_installer_btn')
+    let html = document.querySelectorAll('.VK_hpc_linux_installer_desc')
+    document.getElementById('VK_installer').classList.add('d-none')
+    html.forEach(itm=>{
+        itm.classList.add('d-none')
+    })
+    html[id].classList.remove('d-none')
+    ele.forEach((e)=>{
+        e.classList.remove('VK_op_active_btn')
+    })
+    ele[id].classList.add('VK_op_active_btn')
+} 
