@@ -148,7 +148,7 @@ $(document).ready(function(){
 
 });
 
-// (Intel Data Center GPU Max Series) Maximize Impact
+// (Intel Data Center GPU Max Series -> (Intel Data Center GPU Max Series Overview)) Maximize Impact
 $(document).ready(function(){
 
     $('.owl-carousel.mv_maximize_carousel').owlCarousel({
@@ -183,4 +183,27 @@ $(document).ready(function(){
         }
     })
 
+});
+
+// (Ai Accelerator -> (Siemens Taboola)) Media Slider
+$(document).ready(function(){
+    var owl = $('.mv_media_slider').owlCarousel({
+        items: 1,
+        loop: true,
+        margin: 10,
+        nav: true,
+        dots: false,
+        smartSpeed: 500
+    });
+
+    $('.mv_media_image_button a').click(function(event) {
+        event.preventDefault();
+        
+        $('.mv_media_image_button a').removeClass('active');
+        $(this).addClass('active');
+        
+        var index = $(this).index();
+        
+        owl.trigger('to.owl.carousel', [index, 300]);
+    });
 });
