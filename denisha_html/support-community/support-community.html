@@ -50,7 +50,6 @@
             text-decoration: none;
             font-weight: bold;
             font-size: 14px;
-            background-color: #0056a6;
             padding: 8px 16px;
             display: flex;
             align-items: center;
@@ -140,6 +139,94 @@
 
             }
         }
+        .db_accordion {
+  width: 100%; /* The accordion takes the full width of the container */
+}
+
+.db_accordion-btn {
+  width: 100%; /* Button takes the full width */
+  background-color: #0056a6; /* Set the background color to blue */
+  color: white; /* Set the font color to white */
+  cursor: pointer; /* Pointer cursor for button hover */
+  padding: 18px; /* Padding for better appearance */
+  text-align: left; /* Align the text to the left */
+  border: none; /* Remove default button border */
+  outline: none; /* Remove default outline */
+  transition: 0.4s; /* Smooth transition for interaction effects */
+  font-size: 16px; /* Font size for readability */
+}
+
+.db_accordion-btn:hover {
+  background-color: #0056a6; /* Change background color on hover for visual feedback */
+}
+
+.db_accordion-content {
+  padding: 0 18px;
+  display: none; /* Initially hide the content */
+  overflow: hidden; /* Ensure no content overflow */
+  background-color: white; /* Content background color */
+  max-width: 100%; /* Content should not exceed full width */
+}
+
+.db_accordion-content.open {
+  display: block; /* Show the content when the accordion is opened */
+  height: auto; /* Adjust height automatically based on content */
+}
+/* Styles for the main accordion button */
+.db_accordion-btn {
+  width: 100%; /* Full width button */
+  background-color: #0056a6; /* Blue background for the button */
+  color: white; /* White text on the button */
+  cursor: pointer; /* Pointer cursor on hover */
+  padding: 18px; /* Padding for space */
+  text-align: left; /* Text aligned to the left */
+  border: none; /* Remove button border */
+  outline: none; /* Remove button outline */
+  font-size: 16px; /* Font size for the button */
+  transition: background-color 0.4s; /* Smooth transition on hover */
+}
+
+/* Change background on hover */
+.db_accordion-btn:hover {
+  background-color: #0056a6;
+}
+
+/* Accordion content hidden by default */
+.db_accordion-content {
+  display: none; /* Content is hidden initially */
+  overflow: hidden; /* Prevent content overflow */
+  background-color: white; /* Background color for the content */
+}
+
+/* When accordion is open, show content */
+.db_accordion.open .db_accordion-content {
+  display: block;
+}
+
+/* Styles for the dropdown (list inside the accordion) */
+.db_768_support_nav_dropdown_content {
+  list-style-type: none; /* Remove bullet points */
+  padding-left: 0; /* Remove left padding */
+}
+
+/* Each list item */
+.db_768_support_nav_dropdown_content li {
+  padding: 10px 0; /* Padding between each list item */
+}
+
+/* Links inside the list */
+.db_768_support_nav_dropdown_content li a {
+  text-decoration: none; /* Remove underline from the links */
+  color: black; /* Set link color to black */
+  font-size: 16px; /* Font size for the links */
+  transition: color 0.3s; /* Smooth color change on hover */
+}
+
+/* Hover effect on the links */
+.db_768_support_nav_dropdown_content li a:hover {
+  color: darkgray; /* Change to dark gray on hover */
+}
+
     </style>
 </head>
 
@@ -147,8 +234,8 @@
     <div id="navbar" class="pb-5"></div>
     <main class="pt-4"> 
         <header class="db_support_header">
-            <div class="db_support_header-top d-flex justify-content-between align-items-center px-2 py-1">
-                <div class="db_nav">
+            <div class="db_support_header-top d-flex justify-content-between align-items-center px-md-2 py-1 ">
+                <div class="db_nav  db_nav_lg">
                     <ul class="d-flex m-0">
                         <li class="db_support_nav_dropdown" id="db_supportDropdown1">
                             <a href="#" class="db_support_nav_link">
@@ -261,7 +348,7 @@
                         </li>
                     </ul>
                 </div>
-                <!-- <nav class="db_nav d-block d-md-none">
+                <!-- <div class="db_nav  db_nav_md">
                     <ul class="d-flex m-0">
                         <li class="db_support_nav_dropdown" id="db_supportDropdown1">
                             <a href="#" class="db_support_nav_link">
@@ -276,7 +363,60 @@
                             </ul>
                         </li>
                     </ul>
-                </nav> -->
+                </div> -->
+                <!-- <div class="db_768_nav db_768_nav_md">
+                    <ul class="db_768_flex db_768_m-0">
+                        <li class="db_768_support_nav_dropdown" id="db_768_supportDropdown1">
+                            <a href="#" class="db_768_support_nav_link">
+                                Support Community
+                                <i class="fa-solid fa-chevron-down"></i>
+                            </a>
+                            <div class="db_768_accordion">
+                                <ul class="db_768_support_nav_dropdown_content">
+                                    <li><a href="#">Gaming Forums</a></li>
+                                    <li><a href="#">Intel® ARC™ Graphics</a></li>
+                                    <li><a href="#">Gaming on Intel® Processors with Intel® Graphics</a></li>
+                                    <li><a href="#">Developing Games on Intel Graphics</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                    </ul>
+                </div> -->
+                <div class="db_accordion">
+                    <!-- Accordion Button -->
+                    <button type="button" class="db_accordion-btn">Developer Software Forums</button>
+                    
+                    <!-- Accordion Content (including your <ul> list) -->
+                    <div class="db_accordion-content">
+                      <!-- Dropdown Content inside the Accordion -->
+                      <div class="db_768_accordion">
+                        <ul class="db_768_support_nav_dropdown_content">
+                          <li><a href="#">Gaming Forums</a></li>
+                          <li><a href="#">Intel® ARC™ Graphics</a></li>
+                          <li><a href="#">Gaming on Intel® Processors with Intel® Graphics</a></li>
+                          <li><a href="#">Developing Games on Intel Graphics</a></li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                <script>
+                document.querySelectorAll('.db_accordion-btn').forEach(button => {
+                    button.addEventListener('click', function() {
+                        // Toggle class for the corresponding content
+                        let content = this.nextElementSibling;
+                        
+                        if (content.classList.contains('open')) {
+                        content.classList.remove('open');
+                        } else {
+                        // Ensure other accordions close
+                        document.querySelectorAll('.db_accordion-content').forEach(item => {
+                            item.classList.remove('open');
+                        });
+                        content.classList.add('open');
+                        }
+                    });
+                    });
+                </script>
                 <div class="db_user-icon">
                     <i class="fa-regular fa-circle-question"></i>
                 </div>
