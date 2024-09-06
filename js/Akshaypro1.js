@@ -295,7 +295,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 function V_dynamic_li(id){
-    let ele = document.querySelectorAll('.v_dynamic_li')
+    let ele = document.querySelectorAll(`.v_dynamic_li`)
     let img = document.querySelectorAll('.V_imag_div')
     img.forEach((it)=>{
         it.classList.add('d-none')
@@ -306,4 +306,49 @@ function V_dynamic_li(id){
     })
     ele[id].classList.add('V_active_li')
 
+}
+
+// document.getElementById('toggleText1').addEventListener('click', function(event) {
+//     event.preventDefault();
+    
+//     var hiddenElements = document.querySelectorAll('.hide-on-small1');
+//     hiddenElements.forEach(function(element) {
+//         if (element.style.display === 'none' || element.style.display === '') {
+//             element.style.display = 'block';  // Show hidden elements
+//         } else {
+//             element.style.display = 'none';  // Hide them again
+//         }
+//     });
+
+//     // Toggle the text between "Show more" and "Show less"
+//     if (this.innerText === 'Show more') {
+//         this.innerText = 'Show less';
+//     } else {
+//         this.innerText = 'Show more';
+//     }
+// });
+
+
+function V_show_more(name,id){
+    let ele = document.querySelectorAll(`.${name} .V_hide_col1`)
+    console.log(ele);
+    ele.forEach((el,index)=>{
+        if(index >= id){
+            el.classList.remove('d-none')
+        }
+    })
+    document.querySelector(`.${name} #V_show_btn`).classList.add('d-none')
+    document.querySelector(`.${name} #V_hide_btn`).classList.remove('d-none')
+}
+
+function V_show_less(name,id){
+    let ele = document.querySelectorAll(`.${name} .V_hide_col1`)
+    console.log(ele);
+    ele.forEach((el,index)=>{
+        if(index >= id){
+            el.classList.add('d-none')
+        }
+    })
+    document.querySelector(`.${name} #V_show_btn`).classList.remove('d-none')
+    document.querySelector(`.${name} #V_hide_btn`).classList.add('d-none')
 }

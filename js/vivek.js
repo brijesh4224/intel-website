@@ -1046,6 +1046,14 @@ window.onload = function () {
     // software type checkbox
     VK_hpc_software_checkbox();
 
+
+    // ai tools doucmantation
+    VK_ai_tools_documantaion();
+    // content type checkbox
+    VK_ai_tools_content_checkbox();
+    // software type checkbox
+    VK_ai_software_checkbox();
+
 }
 
 if (document.getElementById('VK_select_filters')) {
@@ -7575,7 +7583,7 @@ function VK_hpc_software_search() {
 
 
 // ---------------------------------------------------- intel hcp toolkit download ---------------------------------------------------------
-function VK_hpc_btn(name){
+function VK_hpc_btn(name) {
     if (document.getElementById('VK_download_btn_parent').classList.contains('d-none')) {
         document.getElementById('VK_download_btn_parent').classList.remove('d-none')
     }
@@ -7583,7 +7591,7 @@ function VK_hpc_btn(name){
     if (name == 'window') {
 
         let html = document.querySelectorAll('.VK_hpc_linux_installer_desc')
-        html.forEach((it)=>{
+        html.forEach((it) => {
             it.classList.add('d-none')
         })
         document.getElementById('VK_installer').classList.remove('d-none')
@@ -7600,11 +7608,11 @@ function VK_hpc_btn(name){
         for (let i = 0; i < el.length; i++) {
             el[i].classList.remove('VK_op_active_btn')
         }
-        
+
     } else if (name == 'linux') {
 
         let html = document.querySelectorAll('.VK_hpc_window_installer_desc')
-        html.forEach((it)=>{
+        html.forEach((it) => {
             it.classList.add('d-none')
         })
         document.getElementById('VK_installer').classList.remove('d-none')
@@ -7624,30 +7632,544 @@ function VK_hpc_btn(name){
     }
 }
 
-function VK_hpc_window_installer(id){
+function VK_hpc_window_installer(id) {
     let ele = document.querySelectorAll('.VK_hpc_window_installer_btn')
     let html = document.querySelectorAll('.VK_hpc_window_installer_desc')
     document.getElementById('VK_installer').classList.add('d-none')
-    html.forEach(itm=>{
+    html.forEach(itm => {
         itm.classList.add('d-none')
     })
     html[id].classList.remove('d-none')
-    ele.forEach((e)=>{
+    ele.forEach((e) => {
         e.classList.remove('VK_op_active_btn')
     })
     ele[id].classList.add('VK_op_active_btn')
 }
 
-function VK_hpc_linux_installer(id){
+function VK_hpc_linux_installer(id) {
     let ele = document.querySelectorAll('.VK_hpc_linux_installer_btn')
     let html = document.querySelectorAll('.VK_hpc_linux_installer_desc')
     document.getElementById('VK_installer').classList.add('d-none')
-    html.forEach(itm=>{
+    html.forEach(itm => {
         itm.classList.add('d-none')
     })
     html[id].classList.remove('d-none')
-    ele.forEach((e)=>{
+    ele.forEach((e) => {
         e.classList.remove('VK_op_active_btn')
     })
     ele[id].classList.add('VK_op_active_btn')
-} 
+}
+
+
+
+
+// ----------------------------------------------- ai tools documantaiton -------------------------------------------------
+
+var VK_ai_tools_dcoumantation_data = [
+    {
+        title: "Get Started with the AI Tools for Linux*",
+        id: "766885",
+        date: "08/11/24",
+        version: [
+            "2024.2",
+            "2024.0",
+            "2023.2",
+            "2023.1",
+            "2023.1"
+        ],
+        download: true,
+        bookmark: true,
+        file: "URL (132 KB)",
+        content: "Getting Started Guides",
+        description: "Build and run your first sample project using the AI Tools"
+    },
+    {
+        title: "Intel® AI Tools Release Notes",
+        id: "767619",
+        date: "07/31/24",
+        version: "2024.2.0",
+        download: false,
+        bookmark: false,
+        file: "URL",
+        content: "Release Notes",
+        description: "Release Notes for Intel® AI Tools."
+    },
+    {
+        title: "oneAPI GPU Optimization Guide",
+        id: "771772",
+        date: "07/18/24",
+        version: [
+            "2024.2",
+            "2024.1",
+            "2024.0",
+            "2023.2",
+            "2023.1",
+            "2023.0"
+        ],
+        download:true,
+        bookmark: true,
+        file: "URL (7.16 MB)",
+        content: "Development Guides",
+        description: "Programming oneAPI projects to maximize hardware abilities."
+    },
+    {
+        title: "Intel® oneAPI Programming Guide",
+        id: "771723",
+        date: "06/24/24",
+        version: [
+            "2024.2",
+            "2024.1",
+            "2024.0",
+            "2023.2",
+            "2023.1",
+            "2023.0"
+        ],
+        download:true,
+        bookmark: true,
+        file: " URL (1.40 MB)",
+        content: "Development Guides",
+        description: "Programming oneAPI projects to maximize hardware abilities."
+    },
+    {
+        title: "Intel® AI Tools System Requirements",
+        id: "678721",
+        date: "03/15/24",
+        version: "2024.1",
+        download:false,
+        bookmark: false,
+        file: "URL",
+        content: "System Requirements",
+        description: "System requirements listing for Intel® AI Tools."
+    },
+    {
+        title: "Get Started With Intel® Distribution for Python*",
+        id: "768369",
+        date: "11/07/23",
+        version: "Latest",
+        download:false,
+        bookmark: false,
+        file: "URL",
+        content: "Getting Started Guides",
+        description: "Intel® Distribution for Python* is a cluster of pacakeges includes Numba, NumPy and more. All these pacakeges are optimized via oneMKL and oneDAL to make your python application more efficient."
+    },
+    {
+        title: "Get Started with the Intel® AI Tools for Windows*",
+        id: "766879",
+        date: "11/07/23",
+        version: [
+            "2024.0",
+            "2023.2",
+            "2023.1",
+            "2023.1"
+        ],
+        download:true,
+        bookmark: true,
+        file: "URL (105 KB)",
+        content: "Getting Started Guides",
+        description: "Build and run your first sample project using the Intel® AI Tools"
+    },
+    {
+        title: "Installation Guide for Intel® oneAPI Toolkits",
+        id: "671998",
+        date: "07/17/23",
+        version: "Latest",
+        download:false,
+        bookmark: false,
+        file: "URL",
+        content: "Installation Guides",
+        description: "This document contains the instructions to download and install Intel® oneAPI Toolkits for both Windows* and Linux*."
+    },
+    {
+        title: "Code Sample: Intel® Neural Compressor Examples",
+        id: "777051",
+        date: "04/19/23",
+        version: "Original",
+        download:false,
+        bookmark: true,
+        file: "URL",
+        content: "Code Samples",
+        description: "Intel® Neural Compressor validated examples with multiple compression techniques, including quantization, pruning, knowledge distillation and orchestration."
+    },
+    {
+        title: "Intel® Neural Compressor API Documentation",
+        id: "777042",
+        date: "04/19/23",
+        version: "Original",
+        download:false,
+        bookmark: true,
+        file: "URL",
+        content: "API Reference Manuals",
+        description: "API Documentation on GitHub* for Intel® Neural Compressor"
+    },
+    {
+        title: "Intel® Neural Compressor Installation Guide",
+        id: "777041",
+        date: "04/19/23",
+        version: "Original",
+        download:false,
+        bookmark: true,
+        file: "URL",
+        content: "Installation Guides",
+        description: "Installation Guide for Intel® Neural Compressor"
+    },
+    {
+        title: "Intel® Neural Compressor System Requirements",
+        id: "777033",
+        date: "04/19/23",
+        version: "Original",
+        download:false,
+        bookmark: true,
+        file: "URL",
+        content: "System Requirements",
+        description: "System Requirements for Intel® Neural Compressor"
+    },
+    {
+        title: "Intel® Neural Compressor Release Notes",
+        id: "777030",
+        date: "04/19/23",
+        version: "2.1",
+        download:false,
+        bookmark: true,
+        file: "URL",
+        content: "Release Notes",
+        description: "Release Notes on GitHub* for Intel® Neural Compressor"
+    },
+    {
+        title: "Code Sample: Tutorials on numba-dppy",
+        id: "710077",
+        date: "03/04/23",
+        version: "2.0",
+        download:false,
+        bookmark: true,
+        file: "URL",
+        content: "Code Samples",
+        description: "Get training on the essentials of the numby-dppy extension using a Jupyter* notebook."
+    },
+    {
+        title: "Code Sample: Get Started with Training Multinodes Using Intel® Extension for PyTorch* and Intel® Collective Communications Library",
+        id: "669999",
+        date: "03/03/23",
+        version: "2.0",
+        download:false,
+        bookmark: true,
+        file: "URL",
+        content: "Code Samples",
+        description: "Learn how to scale deep-learning training for multinodes using bindings."
+    },
+]
+
+var VK_ai_tools_data = VK_ai_tools_dcoumantation_data
+
+// display data
+function VK_ai_tools_documantaion() {
+    const div = document.getElementById('VK_ai_tools_docx');
+
+    // result count 
+    if (document.getElementById('VK_intel_ai_tools_cnt1')) {
+        document.getElementById('VK_intel_ai_tools_cnt1').innerHTML = VK_ai_tools_data.length + " results";
+    }
+
+
+    // display accoridan
+    if (div) {
+
+        const htmlele = VK_ai_tools_data.map((ele, ind) => {
+            const uniqueID = `flush-collapse-${ind}`;
+            const uniqueHeadingID = `flush-heading-${ind}`;
+
+            const versionDisplay = Array.isArray(ele.version)
+                ? `<select class="py-2 pe-xl-4 pe-5">${ele.version.map(v => `<option value="${v}">${v}</option>`).join('')}</select>`
+                : ele.version;
+
+            return `
+            <div class="accordion-item">
+                <div class="row m-0 flex-column flex-xl-row py-xl-3 px-3 p-2">
+                    <div class="col-xxl-7 col-xl-6 col-12 align-self-center">
+                        <p class="m-xl-0 mb-4">
+                            <a href="#" class="VK_red_normal_font text-decoration-none VK_a">
+                                ${ele.title}
+                            </a>
+                        </p>
+                    </div>
+                    <div class="col-xxl-4 col-xl-5 col-12 p-0 text-xl-center d-flex flex-column flex-xl-row justify-content-between align-items-center">
+                        <p class="m-0 my-1 VK_red_small_font w-100">
+                            <span class="d-xl-none"><b>ID :</b></span> ${ele.id}
+                        </p>
+                        <p class="m-0 my-1 VK_red_small_font w-100">
+                            <span class="d-xl-none"><b>Date :</b></span> ${ele.date}
+                        </p>
+                        <p class="m-0 my-1 VK_red_small_font w-100">
+                            <span class="d-xl-none"><b>Version: </b></span>
+                            ${versionDisplay}
+                        </p>
+                    </div>
+                    <div class="col-xl-1 col-12 p-0 my-xl-0 my-2 align-self-center">
+                        <p class="d-flex m-0 justify-content-xl-between justify-content-end">
+                            ${ele.download ? `
+                                <button class="bg-transparent border-0 text-primary mx-2 m-xl-0">
+                                    <i class="fa-solid fa-download"></i>
+                                </button>
+                            ` : ''}
+                            ${ele.bookmark ? `
+                                <button class="bg-transparent border-0 text-primary mx-2 m-xl-0">
+                                    <i class="fa-regular fa-bookmark"></i>
+                                </button>
+                            ` : ''}
+                            <button class="accordion-button collapsed mx-2 m-xl-0" type="button"
+                                data-bs-toggle="collapse" data-bs-target="#${uniqueID}"
+                                aria-expanded="false" aria-controls="${uniqueID}">
+                            </button>
+                        </p>
+                    </div>
+                </div>
+                <div id="${uniqueID}" class="accordion-collapse collapse"
+                    aria-labelledby="${uniqueHeadingID}" data-bs-parent="#accordionFlushExample">
+                    <div class="accordion-body">
+                        <p class="m-0">
+                            <span class="d-inline-block mx-2">
+                                <b>File:</b>
+                                <span>${ele.file}</span>
+                            </span>
+                            <span class="d-inline-block mx-2">
+                                <b>Content Type :</b>
+                                <span>${ele.content}</span>
+                            </span>
+                        </p>
+                        <p class="m-0 my-2">${ele.description}</p>
+                    </div>
+                </div>
+            </div>`;
+        });
+
+        div.innerHTML = htmlele.join('');
+
+        const accordionButtons = div.querySelectorAll('.accordion-button');
+        accordionButtons.forEach(button => {
+            const collapseElement = document.querySelector(button.getAttribute('data-bs-target'));
+            const collapseInstance = new bootstrap.Collapse(collapseElement, {
+                toggle: false
+            });
+
+            button.addEventListener('click', function () {
+                collapseInstance.toggle();
+            });
+        });
+    } else {
+        return;
+    }
+}
+
+// data sort by
+function VK_ai_tools_data_softby() {
+    let sort_by = document.getElementById('VK_ai_tools_data_sortby').value;
+    if (sort_by == 'A-Z') {
+        VK_ai_tools_data.sort((a, b) => a.title.localeCompare(b.title));
+    } else if (sort_by == 'Z-A') {
+        VK_ai_tools_data.sort((a, b) => b.title.localeCompare(a.title));
+    } else if (sort_by == 'Content Type') {
+        VK_ai_tools_data.sort((a, b) => a.content.localeCompare(b.content));
+    }
+    VK_ai_tools_documantaion();
+}
+
+// data searchbox
+function VK_ai_tools_data_search() {
+    let search_txt = document.getElementById('VK_ai_tool_search_bar').value;
+    VK_ai_tools_data = VK_ai_tools_dcoumantation_data.filter((ele) => {
+        return ele.title.toLowerCase().includes(search_txt.toLowerCase()) || ele.content.toLowerCase().includes(search_txt.toLowerCase())
+    })
+    VK_ai_tools_documantaion();
+}
+
+// clear all 
+function VK_ai_tools_clear_All() {
+    VK_ai_tools_data = VK_ai_tools_dcoumantation_data;
+    document.getElementById('VK_ai_tool_search_bar').blur();
+    document.getElementById('VK_ai_tool_search_bar').value = '';
+
+    VK_ai_tools_documantaion();
+
+    VK_ai_tools_content_checkbox()
+
+    VK_ai_software_checkbox();
+}
+
+
+
+
+// content type checkbox
+var VK_ai_tools_content_data = [
+    "API Reference Manuals",
+    "Code Samples",
+    "Development Guides",
+    "Getting Started Guides",
+    "Installation Guides",
+    "Release Notes",
+    "System Requirements",
+    "Tuning and Optimization Guides"
+]
+
+var VK_ai_tools_content = VK_ai_tools_content_data
+
+// display content type checkbox
+function VK_ai_tools_content_checkbox() {
+    if (document.getElementById('VK_api_tools_checkbox')) {
+        let html = VK_ai_tools_content.map((ele, ind) => {
+            return `
+        <div class="${ind > 9 ? "d-none" : ""} my-1 VK_white_space"> 
+            <input type="checkbox" value="${ele}" class="me-2 VK_ai_content_chkbox VK_overflow_checkbox" onclick="VK_ai_content_type()">
+            <span>${ele}</span>
+        </div>
+        `;
+        }).join(' ');
+
+        if (VK_ai_tools_content.length > 9) {
+            html += `
+        <button class="border-0 bg-transparent VK_a" onclick="VK_ai_tools_showmore()" id="VK_toolkit_content_show_more">
+            <span>Show More</span>
+        </button>
+        `;
+        }
+
+        document.getElementById('VK_api_tools_checkbox').innerHTML = html;
+    } else {
+        return;
+    }
+}
+
+// checkbox search box
+function VK_ai_content_search() {
+    let srch = document.getElementById('VK_ai_content_search').value
+    let arr = VK_ai_tools_content_data.filter((ele) => {
+        return ele.toLowerCase().includes(srch.toLowerCase())
+    })
+    VK_ai_tools_content = arr
+    VK_ai_tools_content_checkbox()
+}
+
+// checkbox orderby
+function VK_ai_content_order_By() {
+    let orderby = document.getElementById('VK_ai_content_type_sort').value
+    if (orderby == 'A-Z') {
+        VK_ai_tools_content.sort((a, b) => a.localeCompare(b))
+    }
+    else if (orderby == 'Z-A') {
+        VK_ai_tools_content.sort((a, b) => b.localeCompare(a))
+    }
+    VK_ai_tools_content_checkbox()
+}
+
+// checkbox event
+function VK_ai_content_type() {
+    let checkboxes = document.querySelectorAll('.VK_ai_content_chkbox');
+    let checkedBoxes = Array.from(checkboxes).filter(checkbox => checkbox.checked);
+
+    if (checkedBoxes.length === 0) {
+        VK_ai_tools_data = VK_ai_tools_dcoumantation_data;
+    } else {
+        let selectedContentTypes = checkedBoxes.map(checkbox => checkbox.value.toLowerCase());
+        VK_ai_tools_data = VK_ai_tools_dcoumantation_data.filter(item => {
+            return selectedContentTypes.includes(item.content.toLowerCase());
+        });
+    }
+    VK_ai_tools_documantaion();
+}
+
+
+// ai tools software checkbox
+var ai_tools_software_checkbox = [
+    "AI Tools",
+    "Intel® Advisor",
+    "Intel® C++ Compiler",
+    "Intel® Distribution for Python*",
+    "Intel® Distribution of Modin*",
+    "Intel® DPC++ Compatibility Tool",
+    "Intel® Extension for Scikit_learn*",
+    "Intel® HPC Toolkit",
+    "Intel® IoT Toolkit",
+    "Intel® Neural Compressor",
+    "Intel® oneAPI Base Toolkit",
+    "Intel® oneAPI Data Analytics Library",
+    "Intel® oneAPI Deep Neural Network Library",
+    "Intel® oneAPI DL Framework Developer Toolkit",
+    "Intel® oneAPI DPC++ C++ Compiler",
+    "Intel® oneAPI DPC++ Library",
+    "Intel® oneAPI Math Kernel Library",
+    "Intel® Optimization for PyTorch*",
+    "Intel® Optimization for TensorFlow*",
+    "Intel® Optimization for XGBoost*",
+    "Intel® Rendering Toolkit",
+    "Intel® System Bring-Up Toolkit",
+    "Intel® VTune™ Profiler (formerly Intel® VTune™ Amplifier)"
+]
+
+var ai_tools_software = ai_tools_software_checkbox
+
+// software checkboxs
+function VK_ai_software_checkbox() {
+    if (document.getElementById('VK_ai_toolkit_software_checkbox')) {
+        let html = ai_tools_software.map((ele, ind) => {
+            return `
+        <div class="${ind > 7 ? "d-none" : ""} my-1 w-100 VK_white_space"> 
+            <input type="checkbox" value="${ele}" class="me-2 VK_ai_software_checkbox VK_overflow_checkbox w-auto" onclick="VK_ai_software_type()">
+            <span class="w-auto d-inline-block">${ele}</span>
+        </div>
+        `;
+        }).join(' ');
+
+        if (ai_tools_software.length > 7) {
+            html += `
+        <button class="border-0 bg-transparent VK_a" onclick="VK_ai_software_showmore()" id="VK_toolkit_software_show_more">
+            <span>Show More</span>
+        </button>
+        `;
+        }
+
+        document.getElementById('VK_ai_toolkit_software_checkbox').innerHTML = html;
+    } else {
+        return;
+    }
+}
+
+
+// content type checkbox show more or less
+function VK_ai_software_showmore() {
+    let showMoreButton = document.getElementById('VK_toolkit_software_show_more');
+    let hiddenItems = document.querySelectorAll('#VK_ai_toolkit_software_checkbox .d-none');
+    let visibleItems = document.querySelectorAll('#VK_ai_toolkit_software_checkbox > div:not(.d-none)');
+
+    if (showMoreButton.innerText.trim() === "Show More") {
+        showMoreButton.innerHTML = "<span>Show Less</span>";
+        hiddenItems.forEach(item => item.classList.remove('d-none'));
+    } else {
+        showMoreButton.innerHTML = "<span>Show More</span>";
+        visibleItems.forEach((item, ind) => {
+            if (ind > 7) {
+                item.classList.add('d-none');
+            }
+        });
+    }
+}
+
+
+// checkbox orderby
+function VK_ai_software_order_By() {
+    let orderby = document.getElementById('VK_ai_software_filters').value
+    if (orderby == 'A-Z') {
+        ai_tools_software_checkbox.sort((a, b) => a.localeCompare(b))
+    }
+    else if (orderby == 'Z-A') {
+        ai_tools_software_checkbox.sort((a, b) => b.localeCompare(a))
+    }
+    VK_ai_software_checkbox()
+}
+
+// software checkbox search
+function VK_ai_software_search() {
+    let srch = document.getElementById('VK_ai_software_search').value
+    let arr = ai_tools_software_checkbox.filter((ele) => {
+        return ele.toLowerCase().includes(srch.toLowerCase())
+    })
+    ai_tools_software = arr
+    VK_ai_software_checkbox()
+}
