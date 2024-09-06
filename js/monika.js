@@ -194,3 +194,30 @@ $(document).ready(function () {
         $(e.target).parent().find('.m_genAI_toggle').text('+');
     });
 })
+
+
+// AI PC
+$('.m_aiPcCar').owlCarousel({
+    loop: true,
+    margin: 10,
+    nav: true,
+    dots: true,
+    navText: [
+        '<i class="fas fa-arrow-left"></i>', 
+        '<i class="fas fa-arrow-right"></i>'
+    ],
+    responsive: {
+        0: {
+            items: 1,
+            nav:false
+        },
+        768: {
+            items: 3,
+            nav:false
+        },
+        1000: {
+            nav:true
+        }
+    }
+});
+
