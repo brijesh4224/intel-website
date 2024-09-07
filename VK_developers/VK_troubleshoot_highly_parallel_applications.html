@@ -1,0 +1,906 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <!-- font family -->
+    <link href="https://fonts.cdnfonts.com/css/intel-clear" rel="stylesheet">
+    <!-- boootstap file -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <!-- costom css file -->
+    <link rel="stylesheet" href="/css/vivek.css">
+    <link rel="stylesheet" href="/css/yatri.css">
+
+    <!-- all.min file -->
+    <link rel="stylesheet" href="/css/all.min.css">
+
+</head>
+
+<body>
+
+    <main>
+
+        <!-- header -->
+        <header>
+            <div id="navbar"></div>
+        </header>
+
+        <!-- slider section -->
+        <section class="VK_tensor_flow_slider">
+            <div class="VK_ai_solution_container">
+                <div class="row m-0">
+                    <div class="col">
+                        <h1 class="text-center text-white VK_gai_heading">
+                            Troubleshoot Highly Parallel Applications
+                        </h1>
+                    </div>
+                </div>
+        </section>
+
+        <!-- overviwe -->
+        <section class="py-5 VK_theme_bg">
+            <div class="VK_cont">
+                <div class="row m-0">
+                    <div class="col">
+                        <h2 class="VK_page_heading fw-light">
+                            Overview
+                        </h2>
+                        <p>
+                            Running compute-intensive code on a CPU or motherboard can strain resources. Using attached
+                            accelerators such as GPUs and FGPAs to free up CPU resources is referred to as offloading.
+                            This workflow shows you the steps to take to troubleshoot your applications that use OpenMP*
+                            or the SYCL* API with extensions to offload resources.
+                        </p>
+                        <p class="mt-4">
+                            This workflow provides a recommended path for troubleshooting, as well as documentation and
+                            resources for common problems. For hands-on learning, there are three samples referenced in
+                            the workflow, all based on matrix multiply. The samples include source code with errors and
+                            source code that illustrates the solution with step-by-step instructions.
+                        </p>
+                        <p>
+                            Samples included:
+                        </p>
+                        <ul>
+                            <li>
+                                <a href="" class="Vk_text_underline_dots VK_a d-inline-block">
+                                    Guided Matrix Multiply Invalid Contexts
+                                </a>
+                            </li>
+                            <li>
+                                <a href="" class="Vk_text_underline_dots VK_a d-inline-block">
+                                    Guided Matrix Multiply Exceptions
+                                </a>
+                            </li>
+                            <li>
+                                <a href="" class="Vk_text_underline_dots VK_a d-inline-block">
+                                    Guided Matrix Multiply Race Conditions
+                                </a>
+                            </li>
+                            <li>
+                                <a href="" class="Vk_text_underline_dots VK_a d-inline-block">
+                                    Guided Matrix Multiplication Bad Buffers
+                                </a>
+                            </li>
+                            <li>
+                                <a href="" class="Vk_text_underline_dots VK_a d-inline-block">
+                                    Guided Matrix Multiplication Illegal Shared Local Memory (SLM) Size
+                                </a>
+                            </li>
+                        </ul>
+                        <p>
+                            <b>
+                                Who This Is For
+                            </b>
+                            <br>
+                            Software developers familiar with targeting attached accelerators (such as GPUs and FPGAs)
+                            using the
+                            <a href="" class="Vk_text_underline_dots VK_a d-inline-block">
+                                Intel® oneAPI Base Toolkit
+                            </a>
+                            and
+                            <a href="" class="Vk_text_underline_dots VK_a d-inline-block">
+                                Intel® HPC Toolkit
+                            </a>
+                            software.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- workflow -->
+        <section class="">
+            <div class="VK_cont">
+                <div class="row flex-md-row flex-column-reverse m-0">
+                    <div class="col-md-5 col-12 align-self-center">
+                        <h2 class="VK_pahe_heading fw-light">
+                            The Workflow
+                        </h2>
+                        <p>
+                            <a href="" class="Vk_text_underline_dots VK_a d-inline-block my-1">
+                                Prerequisites
+                            </a>
+                            <br>
+                            <a href="" class="Vk_text_underline_dots VK_a d-inline-block my-1">
+                                Step 1: Prepare the Application
+                            </a>
+                            <br>
+                            <a href="" class="Vk_text_underline_dots VK_a d-inline-block my-1">
+                                Step 2: Resolve Build and Runtime Crashes
+                            </a>
+                            <br>
+                            <a href="" class="Vk_text_underline_dots VK_a d-inline-block my-1">
+                                Step 3: Resolve Application-Level Problems
+                            </a>
+                            <br>
+                            <a href="" class="Vk_text_underline_dots VK_a d-inline-block my-1">
+                                Step 4: Address Application Performance Issues
+                            </a>
+                            <br>
+                        </p>
+                    </div>
+                    <div class="col-md-7 col-12">
+                        <div class="VK_model_img">
+                            <img src="/img/vivek/VK_17.jpg" class="w-100" alt="">
+                            <div class="VK_zoom_btn">
+                                <button type="button" class="VK_zoom_arrow border-0 text-white" data-bs-toggle="modal"
+                                    data-bs-target="#exampleModal">
+                                    <i class="fa-solid fa-up-right-and-down-left-from-center py-1 px-1"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row m-0">
+                    <div class="col">
+                        <h2 class="VK_page_heading fw-light">
+                            Prerequisites: Configure Your Development Environment
+                        </h2>
+                    </div>
+                </div>
+                <div class="row py-5 m-0">
+                    <div class="col-sm-6 col-12 text-center">
+                        <img src="/img/vivek/VK_19.jpg" class="w-75" alt="">
+                    </div>
+                    <div class="col-sm-6 col-12">
+                        <p>
+                            Ensure that your oneAPI development environment is configured correctly and rule out common
+                            problems.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Configure Your oneAPI Environment -->
+        <section class="py-5">
+            <div class="VK_cont">
+                <div class="row m-0">
+                    <div class="col-sm-6 col-12 my-3">
+                        <h3 class="VK_gai_card_heading">
+                            Configure Your oneAPI Environment
+                        </h3>
+                        <ol>
+                            <li>
+                                Use the following guides
+                                <ul class="VK_li">
+                                    <li>
+                                        <a href="" class="Vk_text_underline_dots VK_a d-inline-block">
+                                            oneAPI Installation Guide
+                                        </a>
+                                    </li>
+                                    <li>
+                                        Get Started Guides
+                                        <a href="" class="Vk_text_underline_dots VK_a d-inline-block">
+                                            Linux*
+                                        </a>
+                                        |
+                                        <a href="" class="Vk_text_underline_dots VK_a d-inline-block">
+                                            Windows*
+                                        </a>
+                                        |
+                                        <a href="" class="Vk_text_underline_dots VK_a d-inline-block">
+                                            macOS*
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="" class="Vk_text_underline_dots VK_a d-inline-block">
+                                            Install Intel® Toolkits and Intel® Graphics Compute Runtime in HPC Cluster
+                                            Environment
+                                        </a>
+                                    </li>
+                                    <li>
+                                        Install the latest driver updates for OpenCL™ platform and oneAPI Level Zero
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                Install the latest driver updates for OpenCL™ platform and oneAPI Level Zero
+                                <ul>
+                                    <li>
+                                        <a href="" class="Vk_text_underline_dots VK_a d-inline-block">
+                                            Linux
+                                        </a>
+                                        |
+                                        <a href="" class="Vk_text_underline_dots VK_a d-inline-block">
+                                            Windows
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                Use the Diagnostics Utility for Intel toolkits to check for common configuration
+                                problems.
+                                This is included in your oneAPI installation.
+                                <ul>
+                                    <li>
+                                        <a href="" class="Vk_text_underline_dots VK_a d-inline-block">
+                                            User Guide
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ol>
+                    </div>
+                    <div class="col-sm-6 col-12 my-3">
+                        <h3 class="VK_gai_card_heading">
+                            Get Help
+                        </h3>
+                        <p>
+                            At any point in the following steps, you can also submit requests to the
+                            <a href="" class="Vk_text_underline_dots VK_a d-inline-block">
+                                Online Service Center
+                            </a>
+                            Once you are signed in:
+                        </p>
+                        <ol>
+                            <li>
+                                Select
+                                <b>
+                                    Request Support,
+                                </b>
+                                and then select
+                                <b>
+                                    Choose from a List.
+                                </b>
+                            </li>
+                            <li>
+                                From the list, select
+                                <b>
+                                    Software
+                                </b>
+                                or
+                                <b>
+                                    Development Software.
+                                </b>
+                            </li>
+                            <li>
+                                Choose either
+                                <b>
+                                    Compiler
+                                </b>
+                                or
+                                <b>
+                                    GPU Software Stack,
+                                </b>
+                                and then include the output of errors in your request.
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Step 1: Prepare the Application -->
+        <section class="py-5">
+            <div class="VK_cont">
+                <div class="row m-0">
+                    <div class="col">
+                        <h2 class="VK_page_heading fw-light mb-5">
+                            Step 1: Prepare the Application
+                        </h2>
+                    </div>
+                </div>
+                <div class="row m-0 ">
+                    <div class="col-sm-6 col-12 my-3">
+                        <img src="/img/vivek/VK_20.jpg" class="w-100" alt="">
+                    </div>
+                    <div class="col-sm-6 col-12 my-3">
+                        <p>
+                            Prepare and write your application:
+                        </p>
+                        <ol class="ps-3">
+                            <li>
+                                Start with a serial implementation of the algorithm that you can use to verify expected
+                                results.
+                            </li>
+                            <li>
+                                Identify areas of the code that might benefit from parallelism, and then implement them
+                                as parallel loops or parallel kernel invocations.
+                            </li>
+                        </ol>
+                        <p>
+                            By default, SYCL applications use the oneAPI Level Zero runtime, which provides a low-level,
+                            direct-to-metal interface for the devices in a oneAPI platform.
+                        </p>
+                    </div>
+                </div>
+                <div class="row m-0 pt-5">
+                    <div class="col-sm-6 col-12 my-3">
+                        <h3 class="VK_gai_card_heading">
+                            Kernel-Based Application Development
+                        </h3>
+                        <p>
+                            Take advantage of additional parallelism on attached compute accelerators by implementing
+                            some of the parallelism in the application using the kernel-based approach from SYCL. Test
+                            it during host-only execution using the OpenCL driver for CPI. (It is easier to debug many
+                            issues on the CPU.)
+                        </p>
+                        <p>
+                            Throughout this process, check the results of the parallel implementation against the serial
+                            implementation with various real-world datasets.
+                        </p>
+                        <p>
+                            <b>
+                                Tip
+                            </b>
+                            If the code fails to build, the most common errors are caused by linking and compilation
+                            failures. Compile using
+                            <b>
+                                --save-temps -v
+                            </b>
+                            to generate verbose error output. This may illustrate if the failure is happening in other
+                            binaries like clang-offload-bundler, llvm-link, or llvm-spirv.
+                        </p>
+                    </div>
+                    <div class="col-sm-6 col-12 my-3">
+                        <h3 class="VK_gai_card_heading">
+                            Resources
+                        </h3>
+                        <ul>
+                            <li class="my-1">
+                                <a href="" class="Vk_text_underline_dots VK_a d-inline-block">
+                                    oneAPI Level Zero runtime
+                                </a>
+                            </li>
+                            <li class="my-1">
+                                <a href="" class="Vk_text_underline_dots VK_a d-inline-block">
+                                    Intel® 64 and IA-32 Architectures Software Developer Manuals
+                                </a>
+                            </li>
+                            <li>
+                                Intel compilers and op class="my-1"timizations
+                                <a href="" class="Vk_text_underline_dots VK_a d-inline-block">
+                                    Intel® oneAPI DPC++/C++ Compiler Developer Guide and Reference
+                                </a>
+                            </li>
+                            <li class="my-1">
+                                <a href="" class="Vk_text_underline_dots VK_a d-inline-block">
+                                    Intel oneAPI Programming Guide
+                                </a>
+                            </li>
+                            <li>
+                                Intel-optimized librar class="my-1"ies:
+                                <a href="" class="Vk_text_underline_dots VK_a d-inline-block">
+                                    Intel oneAPI Programming Guide: oneAPI Library Overview
+                                </a>
+                            </li>
+                            <li class="my-1">
+                                <a href="" class="Vk_text_underline_dots VK_a d-inline-block">
+                                    Intel oneAPI GPU Optimization Guide
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Step 2: Resolve Build and Runtime Crashes -->
+        <section class="py-5">
+            <div class="VK_cont">
+                <div class="row m-0">
+                    <div class="col">
+                        <h2 class="VK_page_heading fw-light mb-5">
+                            Step 2: Resolve Build and Runtime Crashes
+                        </h2>
+                    </div>
+                </div>
+                <div class="row m-0">
+                    <div class="col-sm-6 col-12 my-3">
+                        <img src="/img/vivek/VK_21.jpg" class="w-100" alt="">
+                    </div>
+                    <div class="col-sm-6 col-12 my-3">
+                        <p>
+                            <b>
+                                Debug on CPU or GPU
+                            </b>
+                        </p>
+                        <p>
+                            To debug failed attempts to run parallel code (kernels) on a specific device (CPU or GPU),
+                            do the following:
+                        </p>
+                        <ol class="ps-3">
+                            <li>
+                                Run the kernels on the CPU before trying on the GPU, because CPU debugging tends to be
+                                easier. Once your code is running correctly on the CPU, target the GPU using either the
+                                OpenCL or oneAPI Level Zero runtimes.
+                            </li>
+                            <li>
+                                If your code fails when it tries to run a kernel, but does not actually fail inside the
+                                kernel itself (such as in a library or driver you did not write), troubleshoot the
+                                problem at the runtime and driver level.
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+                <div class="row pt-5 m-0">
+                    <div class="col-sm-6 col-12 my-3">
+                        <p>
+                            <b>
+                                Build Your Application without Optimizations
+                            </b>
+                        </p>
+                        <p>
+                            Removing optimizations makes it possible to follow all local and passed variables, get
+                            reliable line numbers, and makes it easier to find the root cause of issues like memory
+                            overruns or bad pointers.
+                        </p>
+                        <p>
+                            Sometimes applications only show problems when built with optimizations. To find the root
+                            cause of those issues, do this only after you have found all the problems that can be solved
+                            in a build without optimizations.
+                        </p>
+
+                        <p class="mt-4">
+                            <b>
+                                First: Run the Application on the CPU
+                            </b>
+                        </p>
+                        <p>
+                            If your program fails when it attempts to call a kernel, the problem may be the result of an
+                            error that was detected by the SYCL, OpenMP, or OpenCL runtimes.
+                        </p>
+                        <p>
+                            To fix this error:
+                        </p>
+                        <ol>
+                            <li>
+                                Force your application to use the CPU using
+                                <a href="" class="Vk_text_underline_dots VK_a d-inline-block">
+                                    SYCL environment variables.
+                                </a>
+                                <ul class="VK_li">
+                                    <li>
+                                        By default, SYCL applications use the oneAPI Level Zero runtime. The SYCL
+                                        environment variables also allow you to switch to the OpenCL runtime for
+                                        testing.
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                If you experience runtime crashes
+                                <ul class="VK_li">
+                                    <li>
+                                        To get a summary of how your program got where it is, conduct a backtrace. See
+                                        Backtrace in the
+                                        <a href="" class="Vk_text_underline_dots VK_a d-inline-block">
+                                            Intel® Distribution for GDB* User Guide.
+                                        </a>
+                                    </li>
+                                    <li>
+                                        To generate trace reports, see
+                                        <a href="" class="Vk_text_underline_dots VK_a d-inline-block">
+                                            Profiling Tools Interfaces for GPU (PTI for GPU):
+                                        </a>
+                                        <ul class="VK_li">
+                                            <li>
+                                                <b>
+                                                    oneTrace*:
+                                                </b>
+                                                A host and device tracing tool for OpenCL runtime and oneAPI Level Zero
+                                                back ends.
+                                            </li>
+                                            <li>
+                                                <b>
+                                                    zeTrace
+                                                </b>
+                                                The standard for oneAPI Level Zero API call tracing and profiling.
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                Use the Intel Distribution for GDB for application-level debugging.
+                                <ul class="VK_li">
+                                    <li>
+                                        See the Get Started Guide:
+                                        <a href="" class="Vk_text_underline_dots VK_a d-inline-block">
+                                            : Linux
+                                        </a>
+                                        |
+                                        <a href="" class="Vk_text_underline_dots VK_a d-inline-block">
+                                            Windows
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                Repeat the previous steps until you can verify that your kernel starts to run.
+                            </li>
+                            <li>
+                                Once you are sure that your offload kernel code runs on the CPU, try to run it on the
+                                GPU.
+                            </li>
+                        </ol>
+                        <p>
+                            <b>
+                                Resources
+                            </b>
+                        </p>
+                        <ul>
+                            <li>
+                                <a href="" class="Vk_text_underline_dots VK_a d-inline-block">
+                                    Debug the DPC++ and OpenMP Offload Process.
+                                </a>
+                            </li>
+                            <li>
+                                For instructions on how to use the Intel Distribution for GDB, see the
+                                <a href="" class="Vk_text_underline_dots VK_a d-inline-block">
+                                    Guided Matrix Multiply Exceptions
+                                </a>
+                                sample available on GitHub*.
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-sm-6 col-12 my-3">
+                        <p>
+                            <b>
+                                Tips for GPU Offload
+                            </b>
+                        </p>
+                        <ul>
+                            <li>
+                                Start small. Go one kernel at a time.
+                            </li>
+                            <li>
+                                Run your kernel on only a few threads and build from there. Stepping through a few
+                                threads to find problems is much easier than stepping through thousands of threads.
+                            </li>
+                        </ul>
+                        <p class="mt-4">
+                            <b>
+                                Next: Run the Application on the GPU
+                            </b>
+                        </p>
+                        <p>
+                            If the kernel fails to run on the GPU, the problem is likely related to the OpenMP or SYCL
+                            runtime, the OpenCL Driver, or the oneAPI Level Zero driver.
+                        </p>
+                        <p>
+                            To help triage your application, follow these steps.
+                        </p>
+                        <ol>
+                            <li>
+                                Force your application to use the GPU using
+                                <a href="" class="Vk_text_underline_dots VK_a d-inline-block">
+                                    SYCL environment variables.
+                                </a>
+                            </li>
+                            <li>
+                                If you experience runtime crashes, try switching from Just in Time (JIT) compilation to
+                                <a href="" class="Vk_text_underline_dots VK_a d-inline-block">
+                                    Ahead of Time (AOT) Compilation.
+                                </a>
+                            </li>
+                            <li>
+                                To switch between the default oneAPI Level Zero runtime and OpenCL runtime, use
+                                <a href="" class="Vk_text_underline_dots VK_a d-inline-block">
+                                    SYCL environment variables.
+                                </a>
+                            </li>
+                            <li>
+                                If you continue to experience runtime crashes, generate trace reports using
+                                <a href="" class="Vk_text_underline_dots VK_a d-inline-block">
+                                    Profiling Tools Interfaces for GPU (PTI for GPU):
+                                </a>
+                                <ul class="VK_li">
+                                    <li>
+                                        <b>
+                                            oneTrace
+                                        </b>
+                                        A host and device tracing tool for OpenCL platform and oneAPI Level Zero back
+                                        ends.
+                                    </li>
+                                    <li>
+                                        <b>
+                                            zeTrace
+                                        </b>
+                                        The standard for oneAPI Level Zero API call tracing and profiling.
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                If you continue to experience runtime crashes, generate trace reports using
+                                <ul class="VK_li">
+                                    <li>
+                                        Use the
+                                        <a href="" class="Vk_text_underline_dots VK_a">
+                                            Profiling Tools Interfaces for GPU (PTI for GPU)
+                                        </a>
+                                        to identify which operation is not responding and to further localize
+                                        investigation.
+                                    </li>
+                                    <li>
+                                        To get a summary of the status of your program, conduct a backtrace. See
+                                        Backtrace in the
+                                        <a href="" class="Vk_text_underline_dots VK_a">
+                                            Intel Distribution for GDB User Guide.
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ol>
+                        <p>
+                            <b>
+                                Note
+                            </b>
+                            On some GPUs,
+                            <b>
+                                ctrl-c
+                            </b>
+                            may be used to recover the system when it stops responding.
+                        </p>
+                        <p class="mt-4">
+                            <b>
+                                Resources
+                            </b>
+                        </p>
+                        <p>
+                            To see how to use the oneTrace from the PTI for GPU set, see the
+                            <a href="" class="Vk_text_underline_dots VK_a">
+                                Guided Matrix Invalid Contexts
+                            </a>
+                            and
+                            <a href="" class="Vk_text_underline_dots VK_a">
+                                Guided Matrix Multiply SLM Size
+                            </a>
+                            samples available on GitHub.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- Step 3: Resolve Application-Level Problems -->
+        <section class="py-5">
+            <div class="VK_cont">
+                <div class="row m-0">
+                    <div class="col">
+                        <h2 class="VK_page_heading fw-light mb-5">
+                            Step 3: Resolve Application-Level Problems
+                        </h2>
+                    </div>
+                </div>
+                <div class="row m-0">
+                    <div class="col-sm-6 col-12 my-3">
+                        <img src="/img/vivek/VK_22.jpg" class="w-75" alt="">
+                    </div>
+                    <div class="col-sm-6 col-12 my-3">
+                        <p>
+                            With application kernels now running, program crashes or runtime problems are likely
+                            attributed to errors in the code.
+                        </p>
+                        <ul>
+                            <li>
+                                Focus on debugging kernel execution using the Intel Distribution for GDB, which is a
+                                model more closely aligned with traditional debug techniques.
+                            </li>
+                            <li>
+                                Compare your application results between CPU-only and accelerated implementations (where
+                                some of the program runs on an attached compute accelerator, like a GPU). If necessary,
+                                compare your results with the original application. If the results differ by more than
+                                the expected precision differences, there may be a problem in one of the
+                                implementations.
+                            </li>
+                        </ul>
+                        <p>
+                            <b>
+                                Resources
+                            </b>
+                        </p>
+                        <ul>
+                            <li>
+                                Intel Distribution for GDB:
+                                <a href="" class="Vk_text_underline_dots VK_a d-inline-block">
+                                    Linux
+                                </a>
+                                |
+                                <a href="" class="Vk_text_underline_dots VK_a d-inline-block">
+                                    Windows
+                                </a>
+                            </li>
+                            <li>
+                                <a href="" class="Vk_text_underline_dots VK_a d-inline-block">
+                                    Debug the Offload Process
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="row m-0 pt-5">
+                    <div class="col-sm-6 col-12 my-3">
+                        <h3 class="VK_gai_card_heading">
+                            Tips for GPU Debugging
+                        </h3>
+                        <p>
+                            As you scale up your problem sizes and thread count, continue to debug while monitoring your
+                            overall performance improvements and correctness.
+                        </p>
+                        <p>
+                            <b>
+                                Note
+                            </b>
+                            As you continue to modify and expand your kernel-based code, you may encounter errors or
+                            problems that require you to revert to
+                            <a href="" class="Vk_text_underline_dots VK_a d-inline-block">
+                                Step 2.
+                            </a>
+                        </p>
+                    </div>
+                    <div class="col-sm-6 col-12 my-3">
+                        <ol>
+                            <li>
+                                Use the Intel Distribution for GDB for application-level debugging.
+                                <ul class="VK_li">
+                                    <li>
+                                        See the Intel Distribution for GDB Get Started Guide:
+                                        <a href="" class="Vk_text_underline_dots VK_a d-inline-block">
+                                            Linux
+                                        </a>
+                                        |
+                                        <a href="" class="Vk_text_underline_dots VK_a d-inline-block">
+                                            Windows
+                                        </a>
+                                    </li>
+                                    <li>
+                                        For common strategies, in the Intel oneAPI programming guide, see the
+                                        <a href="" class="Vk_text_underline_dots VK_a d-inline-block">
+                                            Debug the Offload Process.
+                                        </a>
+                                    </li>
+                                    <li>
+                                        To learn more about debugging programs with multiple threads, see Chapter 4.10
+                                        of the
+                                        <a href="" class="Vk_text_underline_dots VK_a d-inline-block">
+                                            Intel Distribution for GDB User Guide.
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                If your results are incorrect:
+                                <ul class="VK_li">
+                                    <li>
+                                        Verify that the results are still accurate on the CPU.
+                                    </li>
+                                    <li>
+                                        Use
+                                        <a href="" class="Vk_text_underline_dots VK_a d-inline-block">
+                                            Intel® Inspector
+                                        </a>
+                                        or Valgrind* to find correctness problems such as bad pointers or pointer
+                                        overruns in GPU-offloaded code. The CPU OpenCL driver can be used to find GPU
+                                        issues.
+                                    </li>
+                                </ul>
+                            </li>
+                        </ol>
+                        <p>
+                            To learn how to use GDB stack traces to locate problems in your code, see the
+                            <a href="" class="Vk_text_underline_dots VK_a d-inline-block">
+                                Guided Matrix Multiple Race Conditions
+                            </a>
+                            and
+                            <a href="" class="Vk_text_underline_dots VK_a d-inline-block">
+                                Guided Matrix Multiply Bad Buffers
+                            </a>
+                            samples available on GitHub.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Step 4: Address Application Performance Issues -->
+        <section class="py-5">
+            <div class="VK_cont">
+                <div class="row m-0">
+                    <div class="col">
+                        <h2 class="VK_page_heading fw-light">
+                            Step 4: Address Application Performance Issues
+                        </h2>
+                    </div>
+                </div>
+                <div class="row py-5">
+                    <div class="col-sm-6 col-12 my-3">
+                        <img src="/img/vivek/VK_23.jpg" class="w-75" alt="">
+                    </div>
+                    <div class="col-sm-6 col-12 my-3">
+                        <p>
+                            With your application successfully running on the CPU and GPU, you can now focus on getting
+                            the most out of the available hardware.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- footer -->
+        <footer>
+            <div id="footer"></div>
+        </footer>
+
+    </main>
+
+
+
+    <!------------------------------------------------------------------  model  ------------------------------------------------------------->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="VK_ai_solution_container">
+            <div class="modal-dialog VK_img_model_box">
+                <div class="modal-content rounded-0 border-0">
+                    <div class="text-end pt-2 px-2">
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body p-0">
+                        <img src="/img/vivek/VK_18.jpg" class="w-100" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!---------------- Javascript Files ---------------->
+
+    <!-- <script>
+        // navbar include
+        fetch('/y_index/y_navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar').innerHTML = data;
+            });
+        // footer include 
+        fetch('/y_index/y_footer.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('footer').innerHTML = data;
+            });
+    </script> -->
+
+    <!-- jquery -->
+    <script src="/js/jquery-3.7.1.js"></script>
+
+
+    <!-- bootstrap js file -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+
+    <!-- costom js file -->
+    <script src="/js/vivek.js"></script>
+
+    <!-- all min -->
+    <script src="/js/all.min.js"></script>
+
+</body>
+
+</html>

@@ -6335,9 +6335,11 @@ function VK_ai_show_more() {
     btn.innerHTML = ' <i class="fa-solid fa-chevron-up in"></i> Show Less'
 }
 
-
+// ---------------------------------------------------------- show more -------------------------------------------------------
 function VK_show_more(id, index) {
+    console.log(id);
     let eles = document.querySelectorAll(`.${id} .VK_col`);
+    console.log(eles);
     for (let i = 0; i < eles.length; i++) {
         if (i >= index) {
             eles[i].classList.remove('d-none')
@@ -6345,10 +6347,12 @@ function VK_show_more(id, index) {
     }
     let show = document.querySelector(`.${id} #VK_ai_pc_show`)
     let hide = document.querySelector(`.${id} #VK_ai_pc_hide`)
+    console.log(show);
     show.classList.add('d-none');
     hide.classList.remove('d-none')
 }
 
+// ----------------------------------------------------- show less ----------------------------------------------------------
 function VK_show_less(id, index) {
     let eles = document.querySelectorAll(`.${id} .VK_col`);
     for (let i = 0; i < eles.length; i++) {
