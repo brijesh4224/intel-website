@@ -237,3 +237,28 @@ const productListContainer = document.getElementById('productlist-container');
 productList.forEach(product => {
     productListContainer.innerHTML += createProductHTML(product);
 });
+
+
+function V_show_more(name,id){
+  let ele = document.querySelectorAll(`.${name} .V_hide_col1`)
+  console.log(ele);
+  ele.forEach((el,index)=>{
+      if(index >= id){
+          el.classList.remove('d-none')
+      }
+  })
+  document.querySelector(`.${name} #V_show_btn`).classList.add('d-none')
+  document.querySelector(`.${name} #V_hide_btn`).classList.remove('d-none')
+}
+
+function V_show_less(name,id){
+  let ele = document.querySelectorAll(`.${name} .V_hide_col1`)
+  console.log(ele);
+  ele.forEach((el,index)=>{
+      if(index >= id){
+          el.classList.add('d-none')
+      }
+  })
+  document.querySelector(`.${name} #V_show_btn`).classList.remove('d-none')
+  document.querySelector(`.${name} #V_hide_btn`).classList.add('d-none')
+}
