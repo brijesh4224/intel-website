@@ -29,24 +29,23 @@ const processorData = [
 function generateProcessorHTML(data) {
     return `
     
-        <div class="v_Proc_bg1">
-            <div class="row d-flex align-items-center">
-                <div class="col-md-4 d-flex align-items-center">
-                    <div class="v_i9_img">
-                    <a href="#">
-                        <img src="${data.imgSrc}" alt="">
+        <div class="v_Proc_bg1 w-100">
+            <div class="d-flex align-items-center justify-content-between">
+                <div class="d-flex align-items-center">
+                    <div class="v_i9_img w-auto">
+                        <a href="#" class="px-sm-4 d-inline-block py-2">
+                            <img class="w-100" src="${data.imgSrc}" class="px-1" alt="">
                         </a>
                     </div>
                     <div>
-                     <a href="#" class="v_text_1">
-                    <div >${data.title}</div>
-                      </a>  
+                        <a href="#" class="v_text_1">
+                            <div >${data.title}</div>
+                        </a>  
                     </div>
                 </div>
-                
-                <div class="col-md-8  ">
+                <div class="col-md-7 d-md-block d-none pe-5">
                   <a href="#" class="v_text_2">
-                    <div>${data.description}</div>
+                    <div class="">${data.description}</div>
                     </a>
                 </div>
             </div>
