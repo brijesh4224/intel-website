@@ -2919,7 +2919,7 @@ let fgpa_feature_data = [
     },
     {
         name: "SYSTEC Corporation",
-        text:"Gold Partner",
+        text: "Gold Partner",
         description: "'1. Design to manufacturing (one-stop system for software, hardware, mechanism, and manufacturing)2. Development of FPGAs, boards, and drivers for high-speed communication control3. Engineering Dispatch(software design, hardware design, mechanism design, FPGA solutions)'",
         image: "img16.png",
         link: "",
@@ -2928,7 +2928,7 @@ let fgpa_feature_data = [
     },
     {
         name: "DELL TECHNOLOGIES",
-        text:"Titanium Partner",
+        text: "Titanium Partner",
         description: "Dell original equipment manufacturer (OEM) solutions offer an extensive product portfolio and comprehensive services from Dell to help its customers power their own solutions. Our standards-based technologies are built to order and customized for the specific needs of our customers and their end users.",
         image: "img17.png",
         link: "",
@@ -2937,7 +2937,7 @@ let fgpa_feature_data = [
     },
     {
         name: "SUPER MICRO COMPUTER, INC.",
-        text:"Titanium Partner",
+        text: "Titanium Partner",
         description: "Supermicro®, a global leader in high-performance, high-efficiency server technology and innovation is a premier provider of end-to-end green computing solutions and integration/support services for Data Center, Cloud Computing, Enterprise IT, Hadoop/Big Data, HPC and Embedded Systems worldwide.",
         image: "img18.png",
         link: "",
@@ -2946,7 +2946,7 @@ let fgpa_feature_data = [
     },
     {
         name: "CREONIC GMBH",
-        text:"Gold Partner",
+        text: "Gold Partner",
         description: "Creonic is an ISO 9001:2015 certified provider of ready-for-use IP cores for wired, wireless, fiber, and free-space optical communications. All relevant digital signal processing algorithms are covered, including, but not limited to, forward error correction, modulation, equalization, and demodulation. We offer the richest product portfolio in this field, covering standards like 3GPP 5G.",
         image: "img19.png",
         link: "",
@@ -2955,7 +2955,7 @@ let fgpa_feature_data = [
     },
     {
         name: "IMAGOS",
-        text:"Gold Partner",
+        text: "Gold Partner",
         description: "Imagos s.a.s. is specialized in electronic design and software development for artificial vision systems. The company was started in 1999 with the aim to offer high level services in the fields of the electronic and software design for industrial applications. Currently we are operating in systems for: Computer vision Contactless optical measurement Frame.",
         image: "img20.png",
         link: "",
@@ -2964,7 +2964,7 @@ let fgpa_feature_data = [
     },
     {
         name: "IWAVE SYSTEMS TECHNOLOGIES",
-        text:"Titanium Partner",
+        text: "Titanium Partner",
         description: "As an embedded design and engineering services company offering an extensive portfolio of FPGA & SoC FPGA system on modules and embedded computing solutions, iWave is committed to being your reliable technology partner. With over 25 years of expertise and projects on Arria®, Intel Agilex®, Intel® Stratix®.",
         image: "img21.png",
         link: "",
@@ -2973,7 +2973,7 @@ let fgpa_feature_data = [
     },
     {
         name: "Hitek Systems",
-        text:"Titanium Partner",
+        text: "Titanium Partner",
         description: "A nimble hardware, software and systems development company providing FPGA platforms and leading edge networking IP solutions.Custom and COTS acceleration, computational storage, networked-computational storage PCIe cards and embedded SOM (eSOM™) hardware with leading edge Intel® FPGAs. Solutions targeted at cloud, 5G/wireless.",
         image: "img22.png",
         link: "",
@@ -2982,7 +2982,7 @@ let fgpa_feature_data = [
     },
     {
         name: "WISTRON CORPORATION",
-        text:"Gold Partner",
+        text: "Gold Partner",
         description: "Founded in 1996, WNC specializes in the design, research, development, and manufacture of communications products, in particular in the fields of radio frequency (RF) antenna design, software and hardware design, mechanical design, system integration, user interface development, and product testing and certification.",
         image: "img23.png",
         link: "",
@@ -2991,7 +2991,7 @@ let fgpa_feature_data = [
     },
     {
         name: "IEI Integration Corp.",
-        text:"Titanium Partner",
+        text: "Titanium Partner",
         description: "IEI Integration Corp. is a leading industrial computing service provider that integrates computing platforms and customization services as its core service.  IEI provides hundreds of industrial computer boards, systems and peripherals in thousands of customer applications, and supports OEM/ODM services thereby reducing  customers'  design .",
         image: "img24.png",
         link: "",
@@ -2999,7 +2999,7 @@ let fgpa_feature_data = [
         type: "Partner"
     }, {
         name: "Fujitsu Technology Solutions",
-        text:"Titanium Partner",
+        text: "Titanium Partner",
         description: "Fujitsu is one of the leading IT-companies in the world. Based on its broad knowledge and experience the company offers a huge variety of IT products and services. For more than 25 years, mainboards have been and are being developed and produced in Augsburg/Germany.",
         image: "img25.png",
         link: "",
@@ -3008,7 +3008,7 @@ let fgpa_feature_data = [
     },
     {
         name: "TTTECH INDUSTRIAL",
-        text:"Titanium Partner",
+        text: "Titanium Partner",
         description: "TTTech Industrial develops innovative computing and connectivity solutions that help customers to modernize automation systems and become IoT leaders in their field. TTTech Industrial integrates open, standard technologies to offer flexible platforms for connecting, controlling and managing machines.",
         image: "img26.png",
         link: "",
@@ -3017,7 +3017,7 @@ let fgpa_feature_data = [
     },
     {
         name: "HCL Technologies",
-        text:"Titanium Partner",
+        text: "Titanium Partner",
         description: "HCL Technologies is a next-generation global technology company that helps enterprises reimagine their businesses for the digital age. Our technology products and services are built on four decades of innovation, with a world-renowned management philosophy, a strong culture of invention and risk-taking, and a relentless focus on customer relationships.",
         image: "img27.png",
         link: "",
@@ -3025,7 +3025,7 @@ let fgpa_feature_data = [
         type: "Partner"
     }, {
         name: "Hitachi Vantara",
-        text:"Gold Partner",
+        text: "Gold Partner",
         description: "Hitachi pursues Social Innovation with data-driven technology solutions that help you build a strong business and a healthier, safer, smarter society. To succeed in a world of disruptive change requires technological adaptation and smart decisions. We help you achieve both with a focus on data that offers real value – what we call the Internet of Things that matter.",
         image: "img28.png",
         link: "",
@@ -3039,7 +3039,7 @@ let fgpa_feature_data = [
 let gen_xeon_data = [
     {
         name: "QUANTA COMPUTER INC.",
-        text:"Titanium Partner",
+        text: "Titanium Partner",
         description: "Quanta Computer Incorporated (TWSE: 2382) is a Taiwan-based manufacturer of notebook computers and other electronic hardware. It is the largest manufacturer of notebook computers in the world. Its customers include Apple Inc., Compaq, Dell, Gateway, Hewlett-Packard, Alienware, Amazon.com, Casper, Cisco, Fujitsu, Gericom, Lenovo, LG, Maxdata.",
         image: "img29.png",
         link: "",
@@ -3048,7 +3048,7 @@ let gen_xeon_data = [
     },
     {
         name: "AVALUE TECHNOLOGY INCORPORATION",
-        text:"Gold Partner",
+        text: "Gold Partner",
         description: "Avalue Technology (TAIEX: 3479-TW) is a professional Industrial Computer manufacturing company, who is dedicated to developing the x86 and other architecture products, including Embedded Computers, Single Board Computers (Full Size SBC), Systems-on-Modules/ ETX (SoM/ ETX), Industrial.",
         image: "img30.png",
         link: "",
@@ -3057,7 +3057,7 @@ let gen_xeon_data = [
     },
     {
         name: "Kontron",
-        text:"Titanium Partner",
+        text: "Titanium Partner",
         description: "Kontron is a global leader in IoT/Embedded Computing Technology (ECT) and offers individual solutions in the areas of Internet of Things (IoT) and Industry 4.0 through a combined portfolio of hardware, software and services. With its standard and customized products based on highly reliable state-of-the-art technologies, Kontron provides secure.",
         image: "img31.png",
         link: "",
@@ -3066,7 +3066,7 @@ let gen_xeon_data = [
     },
     {
         name: "LANNER ELECTRONICS INC.",
-        text:"Titanium Partner",
+        text: "Titanium Partner",
         description: "Lanner Electronics Inc (TAIEX 6245) is a world leading provider of design, engineering and manufacturing services for advanced network appliances and rugged applied computing platforms for system integrator, service providers and application developers. Founded in 1986, Lanner is an ISO 9001 accredited organization with headquarters in Taipei, Taiwan.",
         image: "img32.png",
         link: "",
@@ -3075,7 +3075,7 @@ let gen_xeon_data = [
     },
     {
         name: "Prodrive Technologies",
-        text:"Titanium Partner",
+        text: "Titanium Partner",
         description: "Prodrive Technologies is an OEM and provider of high-end embedded systems and solutions. With locations in the Netherlands, China, and USA and sales offices in Israel and Japan our footprint is global. Prodrive Technologies' portfolio includes the Zeus server series, the Poseidon Industrial PC series,, the Hermes motherboard series, and the Zeus High Performance.",
         image: "img33.png",
         link: "",
@@ -3084,7 +3084,7 @@ let gen_xeon_data = [
     },
     {
         name: "NEXCOM INTERNATIONAL CO., LTD.",
-        text:"Titanium Partner",
+        text: "Titanium Partner",
         description: "ounded in 1992, NEXCOM is committed to being the trustworthy partner in building intelligent solutions. NEXCOM integrates its capabilities and operates six global businesses, which are IoT Automation Solutions, Intelligent Digital Security, Intelligent Platform @ Smart City, Mobile Computing Solutions.",
         image: "img34.png",
         link: "",
@@ -3093,7 +3093,7 @@ let gen_xeon_data = [
     },
     {
         name: "NCA-5540 1U 19” Rackmount Network Appliance Powered ",
-        text:"",
+        text: "",
         description: "The NCA-5540 is a 1U 19” rackmount security network appliance built with Intel® Xeon® Processor Scalable Family (Sapphire Rapids-SP) and Emmisburg PCH. The introduction of the NCA-5540 fulfills network service providers’ demand for a more robust and flexible hardware platform.",
         image: "img35.png",
         link: "",
@@ -3102,7 +3102,7 @@ let gen_xeon_data = [
     },
     {
         name: "NCA-6530 2U 19” Rackmount Network Appliance Built",
-        text:"",
+        text: "",
         description: "The NCA-6530, a high-performance 2U rackmount network appliance, is powered by Intel® Xeon® Processor Scalable family (Codenamed Sapphire Rapids-SP) and supports up to 8x NIC slots, Max. 1536GB system memory, 6x hot-swappable fans, 1600W/2000W redundant PSUs.",
         image: "img36.png",
         link: "",
@@ -3111,7 +3111,7 @@ let gen_xeon_data = [
     },
     {
         name: "NCA-6040 2U 19” Rackmount Network Appliance Powered by the",
-        text:"",
+        text: "",
         description: "The NCA-6040 is a 2U 19” rackmount security network appliance built with Intel® Xeon® Processor Scalable Family (Sapphire Rapids-SP) and Emmisburg PCH. The introduction of the NCA-6040 fulfills network service providers’ demand for a more robust and flexible hardware platform.",
         image: "img37.png",
         link: "",
@@ -3120,16 +3120,16 @@ let gen_xeon_data = [
     },
     {
         name: "ECA-5540 1U 19” Rackmount Open RAN Appliance Powered by 4th Gen Intel®",
-        text:"",
+        text: "",
         description: "Featuring a short-depth chassis and front access IO design, the ECA-5540 is powered by the latest 4th Gen Intel® Xeon® Scalable Processor, which is equipped with Intel® vRAN boost for improved virtualization performance and power efficiency. Powered by 4th Gen Intel® Xeon® Scalable.",
         image: "img38.png",
         link: "",
         anchor: "LANNER ELECTRONICS INC",
         type: "Offering"
-    }, 
+    },
     {
         name: "Avalue HPM-ERSDE Intel® dual 5th Gen. Xeon® Scalable Processor",
-        text:"",
+        text: "",
         description: "Dual Intel® LGA4677 Sockets support 5th Gen. Intel® Xeon® Scalable Processor (Max. TDP at 270W) Intel® C741 Chipset12 x DDR5 5600 MHz RDIMM up to 3TBTPM 2.0 onboardIPMI 2.0 with AST 2600 BMC controller onboard1 x Intel® I210AT Giga-bit Etherne.",
         image: "img39.png",
         link: "",
@@ -3138,7 +3138,7 @@ let gen_xeon_data = [
     },
     {
         name: "NSA 7160R - High-Performance Cyber Security Appliance",
-        text:"",
+        text: "",
         description: "NEXCOM’s NSA 7160R is a 2U rackmount high-performance networking appliance intended for networking security and 5G network applications. Based on the 5th Gen Intel® Xeon® product family (formerly: Eagle Stream), NSA 7160R features enhancements .",
         image: "img40.png",
         link: "",
@@ -3159,7 +3159,7 @@ let built_edge_data = [
     },
     {
         name: "SYSTEC Corporation",
-        text:"Gold Partner",
+        text: "Gold Partner",
         description: "'1. Design to manufacturing (one-stop system for software, hardware, mechanism, and manufacturing)2. Development of FPGAs, boards, and drivers for high-speed communication control3. Engineering Dispatch(software design, hardware design, mechanism design, FPGA solutions)'",
         image: "img16.png",
         link: "",
@@ -3168,7 +3168,7 @@ let built_edge_data = [
     },
     {
         name: "DELL TECHNOLOGIES",
-        text:"Titanium Partner",
+        text: "Titanium Partner",
         description: "Dell original equipment manufacturer (OEM) solutions offer an extensive product portfolio and comprehensive services from Dell to help its customers power their own solutions. Our standards-based technologies are built to order and customized for the specific needs of our customers and their end users.",
         image: "img17.png",
         link: "",
@@ -3177,7 +3177,7 @@ let built_edge_data = [
     },
     {
         name: "SUPER MICRO COMPUTER, INC.",
-        text:"Titanium Partner",
+        text: "Titanium Partner",
         description: "Supermicro®, a global leader in high-performance, high-efficiency server technology and innovation is a premier provider of end-to-end green computing solutions and integration/support services for Data Center, Cloud Computing, Enterprise IT, Hadoop/Big Data, HPC and Embedded Systems worldwide.",
         image: "img18.png",
         link: "",
@@ -3186,7 +3186,7 @@ let built_edge_data = [
     },
     {
         name: "CREONIC GMBH",
-        text:"Gold Partner",
+        text: "Gold Partner",
         description: "Creonic is an ISO 9001:2015 certified provider of ready-for-use IP cores for wired, wireless, fiber, and free-space optical communications. All relevant digital signal processing algorithms are covered, including, but not limited to, forward error correction, modulation, equalization, and demodulation. We offer the richest product portfolio in this field, covering standards like 3GPP 5G.",
         image: "img19.png",
         link: "",
@@ -3195,7 +3195,7 @@ let built_edge_data = [
     },
     {
         name: "IMAGOS",
-        text:"Gold Partner",
+        text: "Gold Partner",
         description: "Imagos s.a.s. is specialized in electronic design and software development for artificial vision systems. The company was started in 1999 with the aim to offer high level services in the fields of the electronic and software design for industrial applications. Currently we are operating in systems for: Computer vision Contactless optical measurement Frame.",
         image: "img20.png",
         link: "",
@@ -3204,7 +3204,7 @@ let built_edge_data = [
     },
     {
         name: "IWAVE SYSTEMS TECHNOLOGIES",
-        text:"Titanium Partner",
+        text: "Titanium Partner",
         description: "As an embedded design and engineering services company offering an extensive portfolio of FPGA & SoC FPGA system on modules and embedded computing solutions, iWave is committed to being your reliable technology partner. With over 25 years of expertise and projects on Arria®, Intel Agilex®, Intel® Stratix®.",
         image: "img21.png",
         link: "",
@@ -3213,7 +3213,7 @@ let built_edge_data = [
     },
     {
         name: "Hitek Systems",
-        text:"Titanium Partner",
+        text: "Titanium Partner",
         description: "A nimble hardware, software and systems development company providing FPGA platforms and leading edge networking IP solutions.Custom and COTS acceleration, computational storage, networked-computational storage PCIe cards and embedded SOM (eSOM™) hardware with leading edge Intel® FPGAs. Solutions targeted at cloud, 5G/wireless.",
         image: "img22.png",
         link: "",
@@ -3222,7 +3222,7 @@ let built_edge_data = [
     },
     {
         name: "WISTRON CORPORATION",
-        text:"Gold Partner",
+        text: "Gold Partner",
         description: "Founded in 1996, WNC specializes in the design, research, development, and manufacture of communications products, in particular in the fields of radio frequency (RF) antenna design, software and hardware design, mechanical design, system integration, user interface development, and product testing and certification.",
         image: "img23.png",
         link: "",
@@ -3231,7 +3231,7 @@ let built_edge_data = [
     },
     {
         name: "IEI Integration Corp.",
-        text:"Titanium Partner",
+        text: "Titanium Partner",
         description: "IEI Integration Corp. is a leading industrial computing service provider that integrates computing platforms and customization services as its core service.  IEI provides hundreds of industrial computer boards, systems and peripherals in thousands of customer applications, and supports OEM/ODM services thereby reducing  customers'  design .",
         image: "img24.png",
         link: "",
@@ -3239,7 +3239,7 @@ let built_edge_data = [
         type: "Partner"
     }, {
         name: "Fujitsu Technology Solutions",
-        text:"Titanium Partner",
+        text: "Titanium Partner",
         description: "Fujitsu is one of the leading IT-companies in the world. Based on its broad knowledge and experience the company offers a huge variety of IT products and services. For more than 25 years, mainboards have been and are being developed and produced in Augsburg/Germany.",
         image: "img25.png",
         link: "",
@@ -3248,7 +3248,7 @@ let built_edge_data = [
     },
     {
         name: "TTTECH INDUSTRIAL",
-        text:"Titanium Partner",
+        text: "Titanium Partner",
         description: "TTTech Industrial develops innovative computing and connectivity solutions that help customers to modernize automation systems and become IoT leaders in their field. TTTech Industrial integrates open, standard technologies to offer flexible platforms for connecting, controlling and managing machines.",
         image: "img26.png",
         link: "",
@@ -3257,7 +3257,7 @@ let built_edge_data = [
     },
     {
         name: "HCL Technologies",
-        text:"Titanium Partner",
+        text: "Titanium Partner",
         description: "HCL Technologies is a next-generation global technology company that helps enterprises reimagine their businesses for the digital age. Our technology products and services are built on four decades of innovation, with a world-renowned management philosophy, a strong culture of invention and risk-taking, and a relentless focus on customer relationships.",
         image: "img27.png",
         link: "",
@@ -3265,7 +3265,7 @@ let built_edge_data = [
         type: "Partner"
     }, {
         name: "Hitachi Vantara",
-        text:"Gold Partner",
+        text: "Gold Partner",
         description: "Hitachi pursues Social Innovation with data-driven technology solutions that help you build a strong business and a healthier, safer, smarter society. To succeed in a world of disruptive change requires technological adaptation and smart decisions. We help you achieve both with a focus on data that offers real value – what we call the Internet of Things that matter.",
         image: "img28.png",
         link: "",
@@ -3278,7 +3278,7 @@ let built_edge_data = [
 let private_network_data = [
     {
         name: "QUANTA COMPUTER INC.",
-        text:"Titanium Partner",
+        text: "Titanium Partner",
         description: "Quanta Computer Incorporated (TWSE: 2382) is a Taiwan-based manufacturer of notebook computers and other electronic hardware. It is the largest manufacturer of notebook computers in the world. Its customers include Apple Inc., Compaq, Dell, Gateway, Hewlett-Packard, Alienware, Amazon.com, Casper, Cisco, Fujitsu, Gericom, Lenovo, LG, Maxdata, MPC.",
         image: "img41.png",
         link: "",
@@ -3287,7 +3287,7 @@ let private_network_data = [
     },
     {
         name: "ADLINK TECHNOLOGY INC.",
-        text:"Titanium Partner",
+        text: "Titanium Partner",
         description: "ADLINK Technology is a global leader in edge computing. Our mission is to affect positive change in society and industry by connecting people, places and things with AI. We do this through the delivery of leading edge, robust solutions addressing our customer’s critical business and technology challenges. Our offerings include robust boards, modules and syste.",
         image: "img42.png",
         link: "",
@@ -3296,7 +3296,7 @@ let private_network_data = [
     },
     {
         name: "ALPHA NETWORKS INC.",
-        text:"Gold Partner",
+        text: "Gold Partner",
         description: "Alpha Networks Inc. was founded in 2003 and is currently one of the largest professional network equipment manufacturers in Taiwan. With years of profound experience in product development and design, Alpha Networks has been a major service provider for network product design, development, and manufacturing for renowned global brand names.",
         image: "img43.png",
         link: "",
@@ -3305,7 +3305,7 @@ let private_network_data = [
     },
     {
         name: "HTC CORPORATION",
-        text:"Gold Partner",
+        text: "Gold Partner",
         description: "HTC brings brilliance to life through leading innovation in smart mobile device and experience design. Beginning with a vision to put a personal computer in the palm of our customers' hands, we have led the way in the evolution from palm PC to smartphone. The Pursuit of Brilliance is at the heart of everything we do, inspiring best-in-class design.",
         image: "img44.png",
         link: "",
@@ -3314,7 +3314,7 @@ let private_network_data = [
     },
     {
         name: "WAVE-IN COMMUNICATION INC.",
-        text:"Gold Partner",
+        text: "Gold Partner",
         description: "Founded in 2014, Wave-In Communication has the industry-leading technologies to provide custom-tailored services and innovative solutions for our clients. Our business units includes indoor coverage solutions, big data analytics platform, NB-IoT and 5G private network system integration.",
         image: "img45.png",
         link: "",
@@ -3467,7 +3467,7 @@ let ai_retails_data = [
 let vipro_data = [
     {
         name: 'ADVANTECH CO., LTD.',
-        text:"Titanium Partner",
+        text: "Titanium Partner",
         description: "Founded in 1983, Advantech has more than 5,000 employees worldwide and a global reach with teams in seven geographic regions. Our products are distributed and serviced by an extensive global network of offices and an industry leading eBusiness infrastructure designed to provide fast and responsive service that benefits customers",
         image: "img327.png",
         link: "",
@@ -3492,7 +3492,7 @@ let vipro_data = [
     },
     {
         name: 'Scalefusion',
-        text:"",
+        text: "",
         description: "Ambitious companies around the world trust Scalefusion to secure and manage endpoints including smartphones, tablets, laptops, rugged devices, Point of Sale (POS), and digital signages. Our mission is to make Device Management simple and effortless along with providing world-class customer support.Scalefusion simplifies the management of a diverse fleet of Android, Windows, iOS, macOS",
         image: "img330.png",
         link: "",
@@ -3501,7 +3501,7 @@ let vipro_data = [
     },
     {
         name: 'Impero Software',
-        text:"",
+        text: "",
         description: "Impero software is meticulously crafted to provide you with centralized control while maintaining the flexibility to adapt to the unique demands of your business. The integration of Intel® AMT within the Connect Portal, users can oversee Intel vPro® devices right down to the BIOS level, regardless of their location. These management capabilities encompass functions.",
         image: "img331.png",
         link: "",
@@ -3515,7 +3515,7 @@ let vipro_data = [
 let accelerated_by_intel_data = [
     {
         name: 'IBM Cloud',
-        text:"Titanium Partner",
+        text: "Titanium Partner",
         description: "IBM is a leading global hybrid cloud and AI, and business services provider, helping clients in more than 175 countries capitalize on insights from their data, streamline business processes, reduce costs and gain the competitive edge in their industries. Nearly 3,800 government and corporate entities in critical infrastructure areas such as financial services, telecommunications.",
         image: "img332.png",
         link: "",
@@ -3524,7 +3524,7 @@ let accelerated_by_intel_data = [
     },
     {
         name: 'Intelligent Security Systems (ISS)',
-        text:"Titanium Partner",
+        text: "Titanium Partner",
         description: "Intelligent Security Systems, ISS, is a world leading developer of security surveillance and control systems through audio and video capture, recording, and analysis of patterns, of video images and digital data transmission. ISS provides a comprehensive line of digital video surveillance solutions that are at the forefront of security.",
         image: "img333.png",
         link: "",
@@ -3533,7 +3533,7 @@ let accelerated_by_intel_data = [
     },
     {
         name: 'ISSD Electronics',
-        text:"Gold Partner",
+        text: "Gold Partner",
         description: "ISSD is working on system design and integration, digital signal processing, software development and electronic design. ISSD provides solutions for Intelligent Transportation Systems, Traffic Management and Enforcement Systems. The company delivers A to Z Smart Traffic Solution Applications to the Cities Worldwide.",
         image: "img334.png",
         link: "",
@@ -3542,7 +3542,7 @@ let accelerated_by_intel_data = [
     },
     {
         name: 'BAUNE ECOSYSTEM INC.',
-        text:"Gold Partner",
+        text: "Gold Partner",
         description: "Baüne® is a solutions integrator of smart ecosystems, pioneering with a combination of emerging technologies such as edge computing, physical web, internet of things, remote management system, big data, mobile payments, artificial intelligence and blockchain. We have completed projects in the Automation and Control area and successful execution.",
         image: "img335.png",
         link: "",
@@ -3715,6 +3715,159 @@ let solution_data = [
     },
 ]
 
+// intel network builders 
+
+let intel_network_builder_data = [
+    {
+        name: 'Hewlett Packard Enterprise Company',
+        text: "Titanium Partner",
+        description: "Solutions for HPE",
+        image: "img354.png",
+        link: "",
+        anchor: "",
+        type: "Partner"
+    },
+    {
+        name: 'NEXCOM INTERNATIONAL CO., LTD.',
+        text: "Titanium Partner",
+        description: "NEXCOM, founded in 1992 and headquartered in Taiwan, stands as a distinguished global leader in edge computing and industrial IoT solutions. Demonstrating an unwavering commitment to excellence, NEXCOM provides integrated services encompassing SD-Edge Computing (software-defined edge computing) .",
+        image: "img355.png",
+        link: "",
+        anchor: "",
+        type: "Partner"
+    },
+    {
+        name: 'DELL TECHNOLOGIES',
+        text: "Titanium Partner",
+        description: "Dell original equipment manufacturer (OEM) solutions offer an extensive product portfolio and comprehensive services from Dell to help its customers power their own solutions. Our standards-based technologies are built to order and customized for the specific needs of our customers and their end users. By making use of Dell’s buying.",
+        image: "img356.png",
+        link: "",
+        anchor: "",
+        type: "Partner"
+    },
+    {
+        name: 'LANNER ELECTRONICS INC.',
+        text: "Titanium Partner",
+        description: "Lanner Electronics Inc (TAIEX 6245) is a world leading provider of design, engineering and manufacturing services for advanced network appliances and rugged applied computing platforms for system integrator, service providers and application developers. Founded in 1986, Lanner is an ISO 9001 accredited organization with headquarters in Taipei.",
+        image: "img357.png",
+        link: "",
+        anchor: "",
+        type: "Partner"
+    },
+    {
+        name: '新华三技术有限公司(h3c)',
+        text: "Titanium Partner",
+        description: "紫光旗下新华三集团作为数字化解决方案领导者，致力于成为客户业务创新、数字化转型最可信赖的合作伙伴。新华三拥有计算、存储、网络、5G、安全等全方位的数字化基础设施整体能力，提供云计算、大数据、人工智能、工业互联网、信息安全、智能联接、新安防、边缘计算等在内的一站式数字化解决方案，以及端到端的技术服务。同时，新华三也是HPE ® 服务器、存储和技术服务的中国独家提供商.",
+        image: "img358.png",
+        link: "",
+        anchor: "",
+        type: "Partner"
+    },
+    {
+        name: 'HCL Technologies',
+        text: "Titanium Partner",
+        description: "HCL Technologies is a next-generation global technology company that helps enterprises reimagine their businesses for the digital age. Our technology products and services are built on four decades of innovation, with a world-renowned management philosophy, a strong culture of invention and risk-taking, and a relentless focus on customer relationships.",
+        image: "img359.png",
+        link: "",
+        anchor: "",
+        type: "Partner"
+    },
+    {
+        name: 'ADVANTECH CO., LTD.',
+        text: "Titanium Partner",
+        description: "Founded in 1983, Advantech has more than 5,000 employees worldwide and a global reach with teams in seven geographic regions. Our products are distributed and serviced by an extensive global network of offices and an industry leading eBusiness infrastructure designed to provide fast and responsive service that benefits customers.",
+        image: "img360.png",
+        link: "",
+        anchor: "",
+        type: "Partner"
+    },
+    {
+        name: 'WIND RIVER SYSTEMS',
+        text: "Gold Partner",
+        description: "The era of software-defined everything is pushing the pace of innovation and transforming market segments ranging from aerospace to industrial, defense to medical, and networking to automotive. A global leader in delivering software for intelligent connected systems, Wind River offers a comprehensive, edge-to-cloud software portfolio designed to address the challenges.",
+        image: "img361.png",
+        link: "",
+        anchor: "",
+        type: "Partner"
+    },
+    {
+        name: 'QUANTA COMPUTER INC.',
+        text: "Titanium Partner",
+        description: "Quanta Computer Incorporated (TWSE: 2382) is a Taiwan-based manufacturer of notebook computers and other electronic hardware. It is the largest manufacturer of notebook computers in the world. Its customers include Apple Inc., Compaq, Dell, Gateway, Hewlett-Packard, Alienware, Amazon.com, Casper, Cisco, Fujitsu, Gericom, Lenovo, LG, Maxdata.",
+        image: "img362.png",
+        link: "",
+        anchor: "",
+        type: "Partner"
+    },
+    {
+        name: 'SUPER MICRO COMPUTER, INC.',
+        text: "Titanium Partner",
+        description: "Supermicro®, a global leader in high-performance, high-efficiency server technology and innovation is a premier provider of end-to-end green computing solutions and integration/support services for Data Center, Cloud Computing, Enterprise IT, Hadoop/Big Data, HPC and Embedded Systems worldwide.",
+        image: "img363.png",
+        link: "",
+        anchor: "",
+        type: "Partner"
+    },
+    {
+        name: 'CISCO SYSTEMS',
+        text: "Titanium Partner",
+        description: "Cisco is the worldwide leader in IT that helps companies seize the opportunities of tomorrow by proving that amazing things can happen when you connect the previously unconnected. At Cisco customers come first and an integral part of our DNA is creating long-lasting customer partnerships and working with them to identify their needs and provide solutions that support their success. ",
+        image: "img364.png",
+        link: "",
+        anchor: "",
+        type: "Partner"
+    },
+    {
+        name: "Gcore Custom Software Development",
+        description: "Custom Software Development. Delivered on time, with quality assurance, there is no need to hire developers or invest in infrastructure. After releasing the product, we take over the technical support and continue working on the new features. Reduce your costs and accelerate the development!.",
+        image: "img365.png",
+        link: "",
+        anchor: "Gcore",
+        type: "Offering"
+    },
+]
+
+// network attached storage
+
+let network_attached_storage_data = [
+    {
+        name: "QNAP Systems, Inc.",
+        text: "Titanium Partner",
+        description: "QNAP Systems, Inc. is a privately held company founded in 2004 and is dedicated to bringing world class NAS storage, professional NVR video surveillance, and network video players to consumer, small/medium business, and entry level enterprise market segments. QNAP leverages not only hardware design but also a growing core competency in software.",
+        image: "img366.png",
+        link: "",
+        anchor: "",
+        type: "Partner"
+    },
+    {
+        name: "PROMISE TECHNOLOGY INC.",
+        text: "Gold Partner",
+        description: "PROMISE Technology Inc. is a recognized global leader in the storage industry and the leading developer of high-performance storage solutions tailor-made for the data center, surveillance, cloud, and rich media markets. Always striving to meet the unique demands of our customers, PROMISE has earned a reputation for developing innovative storage solutions for vertical markets. ",
+        image: "img367.png",
+        link: "",
+        anchor: "",
+        type: "Partner"
+    },
+    {
+        name: "Noon Technology Co.,Ltd",
+        text: "Gold Partner",
+        description: "Established in 2010, TerraMaster’s focus has been on digital storage products. In line with the evolving technological landscape, TerraMaster has developed a distinctive product line, which includes both direct and network attached storage devices. TerraMaster’s products are designed with home users in mind, as well as small and medium-sized businesse.",
+        image: "img368.png",
+        link: "",
+        anchor: "",
+        type: "Partner"
+    },
+    {
+        name: "Infortrend Technology Inc",
+        text: "Gold Partner",
+        description: "Since its founding in 1993, Infortrend has been delivering storage technology innovation and performance to customers worldwide with acclaimed quality and flexibility combined with superior value. Based in New Taipei City and trading as Public TPE: 2495, Infortrend stands as one of the few fully integrated technology firms in the world completely.",
+        image: "img369.png",
+        link: "",
+        anchor: "",
+        type: "Partner"
+    },
+]
+
 function initializePage() {
     let originalRecords, currentRecords, page = 1;
     let pageId;
@@ -3831,7 +3984,7 @@ function initializePage() {
         edge_accelerator = false
         cloudetv = false;
         showcasesearch = false;
-    } 
+    }
     else if (window.location.pathname.includes('d_5th-gen-xeon.html')) {
         originalRecords = gen_xeon_data;
         pageId = 'VK_card_parent17';
@@ -3854,7 +4007,7 @@ function initializePage() {
         cloudetv = false;
         showcasesearch = false;
     } else if (window.location.pathname.includes('d_ai-retail.html')) {
-        originalRecords = ai_retails_data   ;
+        originalRecords = ai_retails_data;
         pageId = 'VK_card_parent20';
         isFPGAServicePage = true;
         edge_accelerator = false
@@ -3879,6 +4032,21 @@ function initializePage() {
         pageId = 'VK_card_parent23';
         isFPGAServicePage = false;
         edge_accelerator = false;
+        cloudetv = false;
+        showcasesearch = false;
+    }
+    else if (window.location.pathname.includes('d_intel-network-builders.html')) {
+        originalRecords = intel_network_builder_data;
+        pageId = 'VK_card_parent24';
+        isFPGAServicePage = false;
+        edge_accelerator = false;
+        cloudetv = false;
+        showcasesearch = true;
+    } else if (window.location.pathname.includes('d_network-attached-storage.html')) {
+        originalRecords = network_attached_storage_data;
+        pageId = 'VK_card_parent25';
+        isFPGAServicePage = true;
+        edge_accelerator = false
         cloudetv = false;
         showcasesearch = false;
     } else {
@@ -7199,7 +7367,7 @@ const casestudy = [
         title: "Optalio",
         img: "is1.avif",
         desc: "Optalio's AI process optimization solution improves manufacturing by boosting productivity and profitability. ",
-        link: "",
+        link: "d_optalio-bergi-plast-case-study.html",
         link1: ""
     },
     {
@@ -7207,7 +7375,7 @@ const casestudy = [
         title: "Eigen Innovations",
         img: "is2.jpg",
         desc: "Eigen Innovations' OneView Machine Vision software, centrally-managed machine vision solutions designed for defect prevention.",
-        link: "",
+        link: "d_eigen-innovations-oneview-machine-vision-partner-brief.html",
         link1: ""
     },
     {
@@ -7215,7 +7383,7 @@ const casestudy = [
         title: "Aotu",
         img: "is3.jpg",
         desc: "Aotu BrainFrame is an AI platform that reduces the complexity of AI video analysis integration into manufaturing and industrial environments, streamlining manufacturing processes and enhancing industrial safety.",
-        link: "",
+        link: "d_aotu-brainframe-partner-brief.html",
         link1: ""
     },
     {
@@ -7223,7 +7391,7 @@ const casestudy = [
         title: "Visionatics Inc.",
         img: "is4.jpg",
         desc: "Visionatics Inc's panel inspection solution for manufacturing, delivering quality assurance with automated product inspection.",
-        link: "",
+        link: "d_visionatics-panel-inspection-solution-partner-brief.html",
         link1: ""
     },
     {
@@ -7292,9 +7460,9 @@ function renderItems1(startIndex, endIndex) {
                     <div class="d_img mb-2">
                         <img src="/img/darshan_image/${casestudy[i].img}" alt="">
                     </div>
-                    <h3><a href="">${casestudy[i].title}</a></h3>
+                    <h3><a href="/d_partner/${casestudy[i].link}">${casestudy[i].title}</a></h3>
                     <p>${casestudy[i].desc}</p>
-                    <p><a href="">Watch the video</a></p>
+                    <p><a href="/d_partner/${casestudy[i].link}">Watch the video</a></p>
                     ${casestudy[i].link1 ? `<p><a href="">Read the partner brief</a></p>` : ''}
                 </div>
             </div>`;
@@ -7482,7 +7650,7 @@ const successretail = [
         title: "Autocanteen",
         img: "rs1.jpg",
         desc: "Autocanteen is helping a major bank enhance their employee experience with AI-powered self-service checkout terminals. Autocanteen is a touchless self-checkout solution which increases checkout efficiency.",
-        link: "",
+        link: "d_autocanteen-touchless-checkout-case-study.html",
         link1: ""
     },
     {
@@ -7490,7 +7658,7 @@ const successretail = [
         title: "Shanghai Kaijing",
         img: "rs2.jpg",
         desc: "Shanghai Kaijing Canteen, improving efficiency for food retailers with AI-powered automated checkout services.",
-        link: "",
+        link: "d_shanghai-kaijing-canteen-partner-brief.html",
         link1: ""
     },
     {
@@ -7498,7 +7666,7 @@ const successretail = [
         title: "Pathr.ai",
         img: "rs3.jpg",
         desc: "Pathr.ai spatial intelligence, empowering data-driven decisions and improving operational efficiency with AI-driven video analytics.",
-        link: "",
+        link: "d_pathrai-spatial-intelligence-partner-brief.html",
         link1: ""
     },
     {
@@ -7506,7 +7674,7 @@ const successretail = [
         title: "C2RO",
         img: "rs4.jpg",
         desc: "ENTERA's GDPR-compliant video analytics platform empowers customers to maximize the value from their mission-critical video data.",
-        link: "",
+        link: "d_c2ro-entera-partner-brief.html",
         link1: ""
     },
     {
@@ -7575,9 +7743,9 @@ function renderItems3(startIndex, endIndex) {
                     <div class="d_img mb-2">
                         <img src="/img/darshan_image/${successretail[i].img}" alt="">
                     </div>
-                    <h3><a href="">${successretail[i].title}</a></h3>
+                    <h3><a href="/d_partner/${successretail[i].link}">${successretail[i].title}</a></h3>
                     <p>${successretail[i].desc}</p>
-                    <p><a href="">Watch the video</a></p>
+                    <p><a href="/d_partner/${successretail[i].link}">Read the case study</a></p>
                     ${successretail[i].link1 ? `<p><a href="">Read the partner brief</a></p>` : ''}
                 </div>
             </div>`;
@@ -7631,7 +7799,7 @@ const successsecurity = [
         title: "Cathexis Technologies",
         img: "ss2.jpg",
         desc: "CathexisVision video management software and video analytics, enhancing safety and security with a suite of AI-enhanced features.",
-        link: "",
+        link: "d_cathexisvision-partner-brief.html",
         link1: ""
     },
     {
@@ -7639,7 +7807,7 @@ const successsecurity = [
         title: "Irisity IRIS+",
         img: "ss3.jpg",
         desc: "Smart security with validated video analytics.",
-        link: "",
+        link: "d_irisity-iris-solution-brief.html",
         link1: ""
     },
     {
@@ -7647,7 +7815,7 @@ const successsecurity = [
         title: "AerVision AerWatch",
         img: "ss4.jpg",
         desc: "AI enabled video monitoring and event detection.",
-        link: "",
+        link: "d_aervision-aerwatch-solution-brief.html",
         link1: ""
     },
     {
@@ -7655,7 +7823,7 @@ const successsecurity = [
         title: "WaitTime Crowd Management",
         img: "ss5.jpg",
         desc: "WaitTime is an artificial intelligence software that uses state-of-the-art imaging techniques to monitor crowd behavior in large scale venues.",
-        link: "",
+        link: "d_waittime-crowd-intelligence-partner-brief.html",
         link1: ""
     },
     {
@@ -7716,9 +7884,9 @@ function renderItems4(startIndex, endIndex) {
                     <div class="d_img mb-2">
                         <img src="/img/darshan_image/${successsecurity[i].img}" alt="">
                     </div>
-                    <h3><a href="">${successsecurity[i].title}</a></h3>
+                    <h3><a href="/d_partner/${successsecurity[i].link}">${successsecurity[i].title}</a></h3>
                     <p>${successsecurity[i].desc}</p>
-                    <p><a href="">Watch the video</a></p>
+                    <p><a href="/d_partner/${successsecurity[i].link}">Watch the video</a></p>
                     ${successsecurity[i].link1 ? `<p><a href="">Read the partner brief</a></p>` : ''}
                 </div>
             </div>`;
@@ -7764,7 +7932,7 @@ const transport = [
         title: "Ignitarium TYQ-i",
         img: "ts1.jpg",
         desc: "Empowering smarter inspection with vision intelligence.",
-        link: "",
+        link: "d_ignitarium-tyq-i-partner-brief.html",
         link1: ""
     },
     {
@@ -7772,7 +7940,7 @@ const transport = [
         title: "7 StarLake Smart Traffic",
         img: "ts2.jpg",
         desc: "5G C-V2X smart traffic, improving public safety with AI-based traffic monitoring.",
-        link: "",
+        link: "d_7-starlake-smart-traffic-partner-brief.html",
         link1: ""
     },
     {
@@ -7780,7 +7948,7 @@ const transport = [
         title: "Siena Analytics Insights",
         img: "ts3.jpg",
         desc: "Improving supply chain logistics with AI and image recognition.",
-        link: "",
+        link: "d_siena-analytics-insights-solution-brief.html",
         link1: ""
     },
     {
@@ -7857,9 +8025,9 @@ function renderItems5(startIndex, endIndex) {
                     <div class="d_img mb-2">
                         <img src="/img/darshan_image/${transport[i].img}" alt="">
                     </div>
-                    <h3><a href="">${transport[i].title}</a></h3>
+                    <h3><a href="/d_partner/${transport[i].link}">${transport[i].title}</a></h3>
                     <p>${transport[i].desc}</p>
-                    <p><a href="">Watch the video</a></p>
+                    <p><a href="/d_partner/${transport[i].link}">Watch the video</a></p>
                     ${transport[i].link1 ? `<p><a href="">Read the partner brief</a></p>` : ''}
                 </div>
             </div>`;
@@ -7905,7 +8073,7 @@ const technology = [
         title: "NavAjna",
         img: "es1.avif",
         desc: "NavAjna Avanta AI, creating meaningful customer experiences with intelligent digital interactions.",
-        link: "",
+        link: "d_navajna-avanta-ai-partner-brief.html",
         link1: ""
     },
     {
@@ -7913,7 +8081,7 @@ const technology = [
         title: "Course5",
         img: "es2.jpg",
         desc: "Course5 Discovery AI-powered Augmented Analytics Platform is an AI-powered suite of tools that helps businesses make quick, data-driven decisions by providing a powerful and intuitive solution to multi-stream analytics.",
-        link: "",
+        link: "d_course5-discovery-platform-partner-brief.html",
         link1: ""
     },
     {
@@ -7921,7 +8089,7 @@ const technology = [
         title: "Taboola",
         img: "es3.jpg",
         desc: "Driving meaningful customer engagement with AI-driven content rocommendations.",
-        link: "",
+        link: "d_taboola-customer-engagement-partner-brief.html",
         link1: ""
     },
     {
@@ -7929,7 +8097,7 @@ const technology = [
         title: "brighter AI",
         img: "es4.jpg",
         desc: "brighter AI's image and video anonymization solution, improving identity protection and privacy compliance with AI-powered anonymization at scale.",
-        link: "",
+        link: "d_brighter-ai-partner-brief.html",
         link1: ""
     },
     {
@@ -7998,9 +8166,9 @@ function renderItems6(startIndex, endIndex) {
                     <div class="d_img mb-2">
                         <img src="/img/darshan_image/${technology[i].img}" alt="">
                     </div>
-                    <h3><a href="">${technology[i].title}</a></h3>
+                    <h3><a href="/d_partner/${technology[i].link}">${technology[i].title}</a></h3>
                     <p>${technology[i].desc}</p>
-                    <p><a href="">Watch the video</a></p>
+                    <p><a href="/d_partner/${technology[i].link}">Read the solution brief</a></p>
                     ${technology[i].link1 ? `<p><a href="">Read the partner brief</a></p>` : ''}
                 </div>
             </div>`;
@@ -8187,7 +8355,7 @@ const knowecosystem = [
         title: "Wind River Systems",
         img: "eco1.png",
         desc: "Helix Virtualization Platform, advancing safety avionics with Intel Xeon D-1700/2700 and 11th Gen Intel® Core™ processors.",
-        link: "",
+        link: "d_windriver-ecosystem-partner-presentation.html",
         link1: ""
     },
     {
@@ -8195,7 +8363,7 @@ const knowecosystem = [
         title: "Portwell",
         img: "eco2.png",
         desc: "12th Gen Intel® Core™ Processor PICMG 1.3 single host board.",
-        link: "",
+        link: "d_portwell-ecosystem-partner-presentation.html",
         link1: ""
     },
     {
@@ -8203,7 +8371,7 @@ const knowecosystem = [
         title: "Asus",
         img: "eco3.png",
         desc: "Completed industrial components portfolio with 12th Gen Intel® Core™ processors.",
-        link: "",
+        link: "d_asus-12th-gen-ecosystem-partner-presentation.html",
         link1: ""
     },
     {
@@ -8211,7 +8379,7 @@ const knowecosystem = [
         title: "Advantech",
         img: "",
         desc: "Intel 12th Gen Core processors embedded platforms",
-        link: "",
+        link: "d_404.html",
         link1: ""
     },
     {
@@ -8219,7 +8387,7 @@ const knowecosystem = [
         title: "Seavo Solutions",
         img: "",
         desc: "Scalable and expandable Vision AI solution.",
-        link: "",
+        link: "d_404.html",
         link1: ""
     },
     {
@@ -8227,7 +8395,7 @@ const knowecosystem = [
         title: "Congatec",
         img: "",
         desc: "COM-HPC Modules Leverage Intel® Xeon® D Processor for Server-Level Performance at the Edge",
-        link: "",
+        link: "d_404.html",
         link1: ""
     },
     {
@@ -8235,7 +8403,7 @@ const knowecosystem = [
         title: "DFI",
         img: "",
         desc: "The Virtualized Infrastructure for Industrial Automation Based on Intel 12th Core Processor and Ubuntu.",
-        link: "",
+        link: "d_404.html",
         link1: ""
     },
     {
@@ -8243,7 +8411,7 @@ const knowecosystem = [
         title: "JWIPC (D34)",
         img: "",
         desc: "E098 Edge AI Box for video analytics",
-        link: "",
+        link: "d_404.html",
         link1: ""
     },
     {
@@ -8251,7 +8419,7 @@ const knowecosystem = [
         title: "Advantech (D33)",
         img: "",
         desc: "Next Generation AI Applications Powered by 11th Gen Intel® Core™ and Intel® Celeron® processors, and Intel® Xe™ Graphics",
-        link: "",
+        link: "d_404.html",
         link1: ""
     },
     {
@@ -8259,7 +8427,7 @@ const knowecosystem = [
         title: "IEI (D32)",
         img: "",
         desc: "Scalable and expandable Vision AI solution.",
-        link: "",
+        link: "d_404.html",
         link1: ""
     },
     {
@@ -8267,7 +8435,7 @@ const knowecosystem = [
         title: "Adlink (D31)",
         img: "",
         desc: "Adlink SMARC modules offer more CPU power for low-power applications. ",
-        link: "",
+        link: "d_404.html",
         link1: ""
     },
 ]
@@ -8280,10 +8448,10 @@ function renderItems10(startIndex, endIndex) {
                     <div class="d_img mb-2">
                         <img src="/img/darshan_image/${knowecosystem[i].img}" alt="">
                     </div>
-                    <h3><a href="">${knowecosystem[i].title}</a></h3>
+                    <h3><a href="/d_partner/${knowecosystem[i].link}">${knowecosystem[i].title}</a></h3>
                     <p>${knowecosystem[i].desc}</p>
-                    <p><a href="">View the presentation</a></p>
-                    <p><a href="">Watch the video</a></p>
+                    <p><a href="/d_partner/${knowecosystem[i].link}">View the presentation</a></p>
+                    <p><a href="/d_partner/${knowecosystem[i].link}">Watch the video</a></p>
                 </div>
             </div>`;
     }
@@ -8322,7 +8490,7 @@ if (D_knowecosystem) {
 
 let D_type = document.getElementById('D_type');
 const types = [
-    'Cloud & Comms Service Provider', 'FPGA Design Services','Independent Software Vendor','Manufacturer','Original Equipment Manufacturer (OEM)','Service Integrator','Solution Provider'
+    'Cloud & Comms Service Provider', 'FPGA Design Services', 'Independent Software Vendor', 'Manufacturer', 'Original Equipment Manufacturer (OEM)', 'Service Integrator', 'Solution Provider'
 ];
 
 if (D_type) {
@@ -8376,7 +8544,7 @@ if (D_type1) {
 
 let D_asset1 = document.getElementById('D_asset1');
 const asset1 = [
-    'Partners','Offerings'
+    'Partners', 'Offerings'
 ];
 
 if (D_asset1) {
@@ -8389,4 +8557,1118 @@ if (D_asset1) {
                                                 </div>`;
     }
 }
+
+// Submitting a Solution—Application Readiness Guide
+
+// Function to create video gallery
+function createVideoGallery(containerId, videoData) {
+    const container = document.getElementById(containerId);
+    if (!container) return;
+
+    container.innerHTML = videoData.map(video => `
+      <div class="col-xs-12 col-ms-6 col-sm-4 col-md-3 col-xl-2">
+        <div class="d_item">
+          <div class="d_img">
+            <a href="${video.link}"><img src="/img/darshan_image/${video.img}" alt="${video.title}"></a>
+          </div>
+          <h3><a href="${video.link}">${video.title} ${video.time ? `<small>(${video.time})</small>` : ''}</a></h3>
+          <p>${video.text}</p>
+        </div>
+      </div>
+    `).join('');
+}
+
+function createpdf(containerId, pdfData) {
+    const container = document.getElementById(containerId);
+    if (!container) return;
+
+    container.innerHTML = pdfData.map(pdf => `
+      <div class="col-xs-12 col-ms-6 col-sm-4 col-md-3 col-xl-2">
+                    <div class="d_box">
+                        <div class="d-flex">
+                            <div class="d_img me-1">
+                                <img src="/img/darshan_image/${pdf.img}"  alt="">
+                            </div>
+                            <h4><a href="">${pdf.title}</a></h4>
+                        </div>
+                    </div>
+                </div>`).join('');
+}
+
+
+
+const pdfvideo11 = [
+    {
+        id: 1,
+        title: "Tech Data Scaling at the Edge ",
+        time: "",
+        text: "Scaling IoT Soluti",
+        img: "video15.png",
+        link: "",
+    },
+    {
+        id: 2,
+        title: "C2RO Partner Chat Video",
+        time: "22:06",
+        text: "Collaboration between Intel and C2RO has enabled 'Journey-to-Touch Analysis' scalable to thousands of enterprise locations. ",
+        img: "video15.png",
+        link: "",
+    },
+    {
+        id: 3,
+        title: "meldCX Partner Chat Video",
+        time: "3:25",
+        text: "Measuring how people work, shop, learn, and play in physical spaces without the need for complex development.  ",
+        img: "video15.png",
+        link: "",
+    },
+    {
+        id: 4,
+        title: "NexCOBOT Scaling at the Edge Video",
+        time: "9:55",
+        text: "Functional safety control platform for autonomous mobile robots. ",
+        img: "video15.png",
+        link: "",
+    },
+    {
+        id: 5,
+        title: "WaitTime Scaling at the Edge Video",
+        time: "18:16",
+        text: "WaitTime is a patented, real-time and historical artificial intelligence software that uses state-of-the-art imaging techniques to monitor crowd behavior in large scale venues. ",
+        img: "video15.png",
+        link: "",
+    },
+    {
+        id: 6,
+        title: "CoreAVI Edge Testimonial Video",
+        time: "2:13",
+        text: "Intel edge AI testimonial by Neil Stroud, VP of Marketing and Business Development at CoreAVI.  ",
+        img: "video15.png",
+        link: "",
+    },
+]
+
+createVideoGallery('D_pdfvideo11', pdfvideo11);
+
+
+
+const pdfmaterial21 = [
+    {
+        id: 1,
+        title: "Axis Smart City eBook",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 2,
+        title: "iGenius Crystal Partner Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 3,
+        title: "Vistry Discrn Solution Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 4,
+        title: "Enhancing worker safety and improving productivity for manufacturers...",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 5,
+        title: "SHELFIE Partner Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 6,
+        title: "WaitTime Platform Solution Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 7,
+        title: "SHELFIE White Paper",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 8,
+        title: "LinkingMed Radiotherapy Planning Solution Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 9,
+        title: "CVEDIA ITS Edge Solutions Case Study",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 10,
+        title: "C2RO ENTERA Partner Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 11,
+        title: "WaitTime Platform Partner Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 12,
+        title: "Cathexis CathexisVision Solution Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+
+]
+
+createpdf('D_pdfmaterial21', pdfmaterial21)
+
+// irisity
+
+const pdfvideo12 = [
+    {
+        id: 1,
+        title: "Intel® AI: In Production: CrowdOptic Demo Video ",
+        time: "6:57",
+        text: "This system uses AI and triangulation algorithms at the network edge to analyze and redirect cameras. ",
+        img: "video15.png",
+        link: "",
+    },
+    {
+        id: 2,
+        title: "C2RO Partner Chat Video",
+        time: "22:06",
+        text: "Collaboration between Intel and C2RO has enabled 'Journey-to-Touch Analysis' scalable to thousands of enterprise locations. ",
+        img: "video15.png",
+        link: "",
+    },
+    {
+        id: 3,
+        title: "WaitTime Scaling at the Edge Video",
+        time: "18:16",
+        text: "WaitTime is a patented, real-time and historical artificial intelligence software that uses state-of-the-art imaging techniques to monitor crowd behavior in large scale venues. ",
+        img: "video15.png",
+        link: "",
+    },
+    {
+        id: 4,
+        title: "Intel® AI: In Production: Gorilla Technology Demo Video",
+        time: "5:46",
+        text: "See how this platform performs facial recognition, site detection, license plate recognition, and loitering detection analytics on multiple channels.  ",
+        img: "video15.png",
+        link: "",
+    },
+    {
+        id: 5,
+        title: "Intel® AI: In Production: Cortexica Vision Systems Ltd. Demo Video",
+        time: "1:01",
+        text: "This solution improves compliance, reporting, and operational efficiencies while helping reduce liability and operational down times.  ",
+        img: "video15.png",
+        link: "",
+    },
+    {
+        id: 6,
+        title: "Intel® AI: In Production: Outdu MediaTech Pvt. Ltd. Demo Video",
+        time: "4:54",
+        text: "This AI solution uses analytics at the edge to customize and transform the retail customer journey while helping drive business success.",
+        img: "video15.png",
+        link: "",
+    },
+]
+
+createVideoGallery('D_pdfvideo12', pdfvideo12);
+
+
+
+const pdfmaterial22 = [
+    {
+        id: 1,
+        title: "JLK MEDIHUB CXR Partner Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 2,
+        title: "Pratexo Studio Solution Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 3,
+        title: "CVEDIA ITS Edge Solutions Case Study",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 4,
+        title: "Eigen Innovations Machine Vision Solution Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 5,
+        title: "SILO AI Weather Insights Solution Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 6,
+        title: "Intel-Enabled AI from Sensormatic Solution Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 7,
+        title: "AerVision AerWatch Partner Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 8,
+        title: "GIBots DigiDoc White Paper",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 9,
+        title: "Netown Babybot Smart Health Partner Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 10,
+        title: "Cathexis CathexisVision Solution Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 11,
+        title: "iSIZE BitClear Partner Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 12,
+        title: "Awiros Video AI OS and Marketplace Partner Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+
+]
+
+createpdf('D_pdfmaterial22', pdfmaterial22)
+
+// aervision
+
+const pdfvideo13 = [
+    {
+        id: 1,
+        title: "ThunderSoft Partner Chat Video",
+        time: "21:09",
+        text: "ThunderSoft smart building solution supports connection and communication with smart building IoT devices such as sensors, devices and building automation systems. ",
+        img: "video15.png",
+        link: "",
+    },
+    {
+        id: 2,
+        title: "meldCX Partner Chat Video",
+        time: "",
+        text: "Measuring how people work, shop, learn, and play in physical spaces without the need for complex development. ",
+        img: "video15.png",
+        link: "",
+    },
+    {
+        id: 3,
+        title: "JelloX Scaling at the Edge Video",
+        time: "4:31",
+        text: "JelloX MetaLite digital pathology solution. ",
+        img: "video15.png",
+        link: "",
+    },
+    {
+        id: 4,
+        title: "C2RO Partner Chat Video",
+        time: "22:06",
+        text: "Collaboration between Intel and C2RO has enabled 'Journey-to-Touch Analysis' scalable to thousands of enterprise locations.  ",
+        img: "video15.png",
+        link: "",
+    },
+    {
+        id: 5,
+        title: "iBASE Digital Embedded World",
+        time: "1:01",
+        text: "A look at the iBASE IB953 3.5 inch single board computer and SI-654-N 8K digital signage player. ",
+        img: "video15.png",
+        link: "",
+    },
+    {
+        id: 6,
+        title: "Intel® AI: In Production: CrowdOptic Demo Video",
+        time: "6:57",
+        text: "This system uses AI and triangulation algorithms at the network edge to analyze and redirect cameras. ",
+        img: "video15.png",
+        link: "",
+    },
+]
+
+createVideoGallery('D_pdfvideo13', pdfvideo13);
+
+
+
+const pdfmaterial23 = [
+    {
+        id: 1,
+        title: "GIBots DigiDoc Partner Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 2,
+        title: "JLK MEDIHUB CXR Partner Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 3,
+        title: "Beseye AI Video Analysis Partner Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 4,
+        title: "SILO AI Weather Insights Solution Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 5,
+        title: "Netown Babybot Smart Health Solution Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 6,
+        title: "C2RO ENTERA Partner Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 7,
+        title: "NexAIoT AMR Partner Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 8,
+        title: "GDDi Algorithms Defined AIBox Partner Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 9,
+        title: "AerVision AerWatch Partner Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 10,
+        title: "PM AM Corporation i3Di Partner Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 11,
+        title: "Profet AI AutoML Platform Partner Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 12,
+        title: "SHELFIE White Paper",
+        img: "pdf2.png",
+        link: "",
+    },
+
+]
+
+createpdf('D_pdfmaterial23', pdfmaterial23)
+
+// waittime crowd 
+
+const pdfvideo14 = [
+    {
+        id: 1,
+        title: "Megh Computing Edge Testimonial Video",
+        time: "2:14",
+        text: "Intel edge AI testimonial by Prabhat K Gupta, founder and CEO of Megh Computing. ",
+        img: "video15.png",
+        link: "",
+    },
+    {
+        id: 2,
+        title: "Luxonis Edge Testimonial Video",
+        time: "2:14",
+        text: "Intel edge AI testimonial by Brandon Gilles, founder and CEO of Luxonis. ",
+        img: "video15.png",
+        link: "",
+    },
+    {
+        id: 3,
+        title: "EPIC IO Edge Testimonial Video",
+        time: "2:07",
+        text: "Intel edge AI testimonial by Ken Mills, CEO of Epic IO, IntelliSite and Broad Sky Networks.  ",
+        img: "video15.png",
+        link: "",
+    },
+    {
+        id: 4,
+        title: "Vispera Edge Testimonial Video",
+        time: "2:09",
+        text: "Intel edge AI testimonial video by Erdem Yoruk, CTO at Vispera Information Technologies Co.. ",
+        img: "video15.png",
+        link: "",
+    },
+    {
+        id: 5,
+        title: "WaitTime Scaling at the Edge Video",
+        time: "18:16",
+        text: "WaitTime is a patented, real-time and historical artificial intelligence software that uses state-of-the-art imaging techniques to monitor crowd behavior in large scale venues. ",
+        img: "video15.png",
+        link: "",
+    },
+    {
+        id: 6,
+        title: "NodeWeaver Partner Chat Video",
+        time: "12:34",
+        text: "NodeWeaver bridges the world of private cloud platforms and hyperconverged infrastructure with a unified cloud fabric that brings all pieces together in building-block style. ",
+        img: "video15.png",
+        link: "",
+    },
+]
+
+createVideoGallery('D_pdfvideo14', pdfvideo14);
+
+
+
+const pdfmaterial24 = [
+    {
+        id: 1,
+        title: "GIBots DigiDoc Partner Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 2,
+        title: "JLK MEDIHUB CXR Partner Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 3,
+        title: "Beseye AI Video Analysis Partner Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 4,
+        title: "SILO AI Weather Insights Solution Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 5,
+        title: "Netown Babybot Smart Health Solution Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 6,
+        title: "C2RO ENTERA Partner Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 7,
+        title: "NexAIoT AMR Partner Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 8,
+        title: "GDDi Algorithms Defined AIBox Partner Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 9,
+        title: "AerVision AerWatch Partner Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 10,
+        title: "PM AM Corporation i3Di Partner Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 11,
+        title: "Profet AI AutoML Platform Partner Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 12,
+        title: "SHELFIE White Paper",
+        img: "pdf2.png",
+        link: "",
+    },
+
+]
+
+createpdf('D_pdfmaterial24', pdfmaterial24)
+
+// ignitarium
+
+const pdfvideo15 = [
+    {
+        id: 1,
+        title: "CoreAVI Edge Testimonial Video",
+        time: "2:13",
+        text: "Intel edge AI testimonial by Neil Stroud, VP of Marketing and Business Development at CoreAVI.  ",
+        img: "video15.png",
+        link: "",
+    },
+    {
+        id: 2,
+        title: "Vispera Edge Testimonial Video",
+        time: "2:09",
+        text: "Intel edge AI testimonial video by Erdem Yoruk, CTO at Vispera Information Technologies Co..  ",
+        img: "video15.png",
+        link: "",
+    },
+    {
+        id: 3,
+        title: "Cognitifai Edge Testimonial Video",
+        time: "2:12",
+        text: "Intel edge AI testimonial by Kanishka Nithin, co-founder and CEO at Cognitifai. ",
+        img: "video15.png",
+        link: "",
+    },
+    {
+        id: 4,
+        title: "WaitTime Scaling at the Edge Video",
+        time: "18:16",
+        text: "WaitTime is a patented, real-time and historical artificial intelligence software that uses state-of-the-art imaging techniques to monitor crowd behavior in large scale venues. ",
+        img: "video15.png",
+        link: "",
+    },
+    {
+        id: 5,
+        title: "NexCOBOT Scaling at the Edge Video",
+        time: "9:55",
+        text: "Functional safety control platform for autonomous mobile robots.  ",
+        img: "video15.png",
+        link: "",
+    },
+    {
+        id: 6,
+        title: "NodeWeaver Partner Chat Video",
+        time: "12:34",
+        text: "NodeWeaver bridges the world of private cloud platforms and hyperconverged infrastructure with a unified cloud fabric that brings all pieces together in building-block style. ",
+        img: "video15.png",
+        link: "",
+    },
+]
+
+createVideoGallery('D_pdfvideo15', pdfvideo15);
+
+
+
+const pdfmaterial25 = [
+    {
+        id: 1,
+        title: "Ignitarium TYQ-i Solution Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 2,
+        title: "Broox Audience Analytics Suite Solution Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 3,
+        title: "CVEDIA ITS Edge Solutions Partner Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 4,
+        title: "SHELFIE Partner Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 5,
+        title: "Profet AI AutoML Platform Solution Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 6,
+        title: "Vistry Discrn Solution Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 7,
+        title: "WaitTime Platform Solution Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 8,
+        title: "Intel® AI: In Production | Cities and Transportation",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 9,
+        title: "QCT OmniPOD Partner Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 10,
+        title: "ThunderSoft Smart Building Solution Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 11,
+        title: "Beseye AI Video Analysis Solution Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 12,
+        title: "PMY Solution Briefz`",
+        img: "pdf2.png",
+        link: "",
+    },
+
+]
+
+createpdf('D_pdfmaterial25', pdfmaterial25)
+
+// 7 starlake smart
+
+const pdfvideo16 = [
+    {
+        id: 1,
+        title: "WaitTime Scaling at the Edge Video",
+        time: "18:16",
+        text: "WaitTime is a patented, real-time and historical artificial intelligence software that uses state-of-the-art imaging techniques to monitor crowd behavior in large scale venues. ",
+        img: "video15.png",
+        link: "",
+    },
+    {
+        id: 2,
+        title: "NexCOBOT Scaling at the Edge Video",
+        time: "9:55",
+        text: "Functional safety control platform for autonomous mobile robots.  ",
+        img: "video15.png",
+        link: "",
+    },
+    {
+        id: 3,
+        title: "CoreAVI Edge Testimonial Video",
+        time: "2:13",
+        text: "Intel edge AI testimonial by Neil Stroud, VP of Marketing and Business Development at CoreAVI.  ",
+        img: "video15.png",
+        link: "",
+    },
+    {
+        id: 4,
+        title: "Luxonis Edge Testimonial Video",
+        time: "2:14",
+        text: "Intel edge AI testimonial by Brandon Gilles, founder and CEO of Luxonis.   ",
+        img: "video15.png",
+        link: "",
+    },
+    {
+        id: 5,
+        title: "Megh Computing Edge Testimonial Video",
+        time: "2:14",
+        text: "Intel edge AI testimonial by Prabhat K Gupta, founder and CEO of Megh Computing.",
+        img: "video15.png",
+        link: "",
+    },
+    {
+        id: 6,
+        title: "Epic iO Edge Testimonial Video",
+        time: "2:07",
+        text: "Intel edge AI testimonial by Ken Mills, CEO of Epic IO, IntelliSite and Broad Sky Networks.  ",
+        img: "video15.png",
+        link: "",
+    },
+]
+
+createVideoGallery('D_pdfvideo16', pdfvideo16);
+
+
+
+const pdfmaterial26 = [
+    {
+        id: 1,
+        title: "7 StarLake Smart Traffic Solution Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 2,
+        title: "PM AM Corporation i3Di Partner Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 3,
+        title: "PM AM Corporation i3Di Solution Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 4,
+        title: "WaitTime Crowd Intelligence Partner Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 5,
+        title: "Axiomtek AMR Partner Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 6,
+        title: "NexCOBOT SCB100 Partner Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 7,
+        title: "AIRA airaFace Partner Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 8,
+        title: "NexAIoT AMR Partner Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 9,
+        title: "ST Engineering Video Analytics White Paper",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 10,
+        title: "CVEDIA ITS Edge Solutions Partner Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 11,
+        title: "CVEDIA ITS Edge Solutions Case Study",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 12,
+        title: "SAIMOS Video Analytics Solution Partner Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+
+]
+
+createpdf('D_pdfmaterial26', pdfmaterial26)
+
+// siena analytics insights
+
+const pdfvideo17 = [
+    {
+        id: 1,
+        title: "Axiomtek Scaling at the Edge Video",
+        time: "7:45",
+        text: "Axiomtek AMR building package aims to accelerate time-to-market through a complete support program. System integrators can build a working AMR rapidly and easily. ",
+        img: "video15.png",
+        link: "",
+    },
+    {
+        id: 2,
+        title: "ThunderSoft Partner Chat Video",
+        time: "21:09",
+        text: "ThunderSoft smart building solution supports connection and communication with smart building IoT devices such as sensors, devices and building automation systems. ",
+        img: "video15.png",
+        link: "",
+    },
+    {
+        id: 3,
+        title: "meldCX Partner Chat Video",
+        time: "2:13",
+        text: "Measuring how people work, shop, learn, and play in physical spaces without the need for complex development.  ",
+        img: "video15.png",
+        link: "",
+    },
+    {
+        id: 4,
+        title: "Eigen Innovations Partner Chat Video",
+        time: "14:12",
+        text: "Eigen Innovations' easy to deploy machine vision platform enables machine learning and artificial intelligence that helps manufacturers solve complex engineering problems. ",
+        img: "video15.png",
+        link: "",
+    },
+    {
+        id: 5,
+        title: "DarwinAI Partner Chat Video",
+        time: "",
+        text: "Helping manufacturers automate their visual quality inspection and provide more consistent product quality.",
+        img: "video15.png",
+        link: "",
+    },
+    {
+        id: 6,
+        title: "Advantech Veridify Scaling at the Edge Video",
+        time: "10:12",
+        text: "Making industrial IoT and smart buildings cyber safe. ",
+        img: "video15.png",
+        link: "",
+    },
+]
+
+createVideoGallery('D_pdfvideo17', pdfvideo17);
+
+const pdfmaterial27 = [
+    {
+        id: 1,
+        title: "Pathr.ai Supermarket Operations Solution Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 2,
+        title: "WaitTime Platform Solution Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 3,
+        title: "Viso AI Viso Suite Solution",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 4,
+        title: "Enhancing worker safety and improving productivity for manufacturers...",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 5,
+        title: "WaitTime Crowd Intelligence Partner Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 6,
+        title: "OnePlan Venue Experience Solution Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 7,
+        title: "meldCX AI Playground Partner Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 8,
+        title: "Hitachi Industrial Edge Computer",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 9,
+        title: "ST Engineering Video Analytics White Paper",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 10,
+        title: "IBM Watson NLU Solution Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 11,
+        title: "SeeWise Smart Factory Partner Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 12,
+        title: "JelloX MetaLite Digital Pathology Partner Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+
+]
+
+createpdf('D_pdfmaterial27', pdfmaterial27);
+
+// c2ro entera partner
+
+const pdfvideo18 = [
+    {
+        id: 1,
+        title: "C2RO Partner Chat Video",
+        time: "22:06",
+        text: "Collaboration between Intel and C2RO has enabled 'Journey-to-Touch Analysis' scalable to thousands of enterprise locations.  ",
+        img: "video15.png",
+        link: "",
+    },
+    {
+        id: 2,
+        title: "Intel® AI: In Production: CrowdOptic Demo Video",
+        time: "6:57",
+        text: "This system uses AI and triangulation algorithms at the network edge to analyze and redirect cameras. ",
+        img: "video15.png",
+        link: "",
+    },
+    {
+        id: 3,
+        title: "ThunderSoft Partner Chat Video",
+        time: "21:09",
+        text: "ThunderSoft smart building solution supports connection and communication with smart building IoT devices such as sensors, devices and building automation systems. ",
+        img: "video15.png",
+        link: "",
+    },
+    {
+        id: 4,
+        title: "meldCX Partner Chat Video",
+        time: "",
+        text: "Measuring how people work, shop, learn, and play in physical spaces without the need for complex development. ",
+        img: "video15.png",
+        link: "",
+    },
+    {
+        id: 5,
+        title: "HTC Scaling at the Edge Video",
+        time: "",
+        text: "HTC private 5G network solution. ",
+        img: "video15.png",
+        link: "",
+    },
+    {
+        id: 6,
+        title: "Intel® AI: In Production: Cortexica Vision Systems Ltd. Demo Video",
+        time: "1:01",
+        text: "This solution improves compliance, reporting, and operational efficiencies while helping reduce liability and operational down times.",
+        img: "video15.png",
+        link: "",
+    },
+]
+
+createVideoGallery('D_pdfvideo18', pdfvideo18);
+
+const pdfmaterial28 = [
+    {
+        id: 1,
+        title: "GIBots DigiDoc Partner Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 2,
+        title: "JLK MEDIHUB CXR Partner Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 3,
+        title: "Beseye AI Video Analysis Partner Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 4,
+        title: "SILO AI Weather Insights Solution Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 5,
+        title: "Netown Babybot Smart Health Solution Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 6,
+        title: "NexAIoT AMR Partner Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 7,
+        title: "GDDi Algorithms Defined AIBox Partner Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 8,
+        title: "AerVision AerWatch Partner Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 9,
+        title: "PM AM Corporation i3Di Partner Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 10,
+        title: "Profet AI AutoML Platform Partner Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 11,
+        title: "SHELFIE White Paper",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 12,
+        title: "Satsafeti Intelligent Conveyor Partner Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+
+]
+
+createpdf('D_pdfmaterial28', pdfmaterial28);
+
 
