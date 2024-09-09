@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fine-Tuning Text Classification</title>
+
+    <link rel="stylesheet" href="../css/mv_ai_software_solution_fine_tuning_text.css">
+
+    <!-- header footer -->
+    <link rel="stylesheet" href='/css/yatri.css'>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+
+    <!-- header -->
+    <div id="navbar"></div>
+
+    <!-- Intel AMX ? -->
+    <section>
+        <div class="mv_intel_amx_bg_color">
+            <div class="container">
+                <div class="row mv_intel_amx_content">
+                    <div class="col-sm-12 mv_intel_amx_item">
+                        <div class="mv_intel_amx">
+                            <h3>Fine-Tuning Text Classification with Intel<sup>®</sup> Neural Compressor</h3>
+                            <p class="mb-0">&nbsp;</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="container py-5">
+        <div class="row">
+            <div class="d-flex justify-content-end col-xl-10 py-3 d-md-none">
+                <i class="fa-solid fa-print fs-4 px-2 " style="color:#0068B5"></i>
+                <i class="fa-regular fa-envelope fs-4 px-2" style="color:#0068B5"></i>
+            </div>
+            <div class="col-lg-3 col-md-4">
+                <!-- nav -->
+                <div class="VK_client_app_navigation VK_ai_navigation">
+                    <div class="justify-content-center align-items-center overflow-hidden flex-nowrap mb-4">
+                        <ul class="VK_ai_nav_bar list-unstyled m-0">
+                            <li>
+                                <a href="#ds_HPC-port" class="text-dark text-decoration-none d-block">
+                                    Why Is Fine-Tuning Important?		
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#ds_HPC-tools" class="text-dark text-decoration-none d-block VK_ai_nav_link">
+                                    Using Intel Neural Compressor for Fine-Tuning Optimization		
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#ds_HPC-get" class="text-dark text-decoration-none d-block VK_ai_nav_link">
+                                    Code Sample
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#ds_HPC-reso" class="text-dark text-decoration-none d-block VK_ai_nav_link">
+                                    What’s Next?
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#ds_HPC-useful" class="text-dark text-decoration-none d-block VK_ai_nav_link">
+                                    Useful Resources
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#ds_HPC-explore" class="text-dark text-decoration-none d-block VK_ai_nav_link">
+                                    Explore More AI Code Samples
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- Ramya -->
+                <div class="bg-light" style="padding: 0px 12px;">
+                    <div class="mv_name_heading">
+                        <h6>Ramya Ravi</h6>
+                        <p>AI Software marketing engineer</p>
+                        <a href="">LinkedIn</a>
+                    </div>
+                    <div class="mv_name_heading">
+                        <h6>Urszula Zofia Gumińska</h6>
+                        <p>Development Tools Software Engineer</p>
+                        <a href="">LinkedIn</a>
+                    </div>
+                    <div class="mv_name_heading">
+                        <h6>Chandan Damannagari</h6>
+                        <p>Director, AI Software</p>
+                        <a href="">LinkedIn</a>
+                    </div>
+                    <p class="mb-0">Intel Corporation</p>
+                </div>
+            </div>
+            <div class="col-lg-9 col-md-8" >
+                <div class="d-md-flex justify-content-end col-xl-10 py-3 d-none">  
+                    <i class="fa-solid fa-print fs-4 px-2 " style="color:#0068B5"></i>
+                    <i class="fa-regular fa-envelope fs-4 px-2" style="color:#0068B5"></i>
+                </div>
+                <div class="col-xl-10">
+                    <section id="ds_HPC-port">
+                        <p>
+                            Fine-tuning is the process of using the weights of a trained neural network as the starting values for training a new neural network. In simple words, fine-tuning means making small adjustments to improve the performance of a model for a specific task.
+                        </p>
+                        <p>
+                            Previously, training a model entailed starting with randomized weights and adjusting them during the lengthy process of learning on a massive dataset when creating new neural networks. But now, the best practice is to start with a pretrained model on a large dataset and modify it. This is particularly useful for language models. In this way, you can take a trained model on general knowledge of the language. At that point, the model already knows how the natural language works, and the process of fine-tuning can focus on a narrow task, such as classifying a sentiment, an emotion, a topic of text, and in the case of generative language models, responding to a selected topic or in a particular way.
+                        <p>
+                            This article showcases <a class="b_special_a1" href="">a code sample</a> on how to fine-tune a BERT tiny model for an emotion classification task using quantization-aware training from <a class="b_special_a1" href="">Intel<sup>®</sup> Neural Compressor</a>.
+                        </p>
+                        <p>
+                            Fine-tuning helps to use pretrained language representations for specific downstream tasks, enabling effective text or emotion classification in various applications, and the fine-tuned models are based on the knowledge of emotional vocabulary and do not require training data. This process of fine-tuning can be expanded to any text classification task where a task-specific vocabulary is available.
+                        </p>
+                        <p class="mb-0">&nbsp;</p>
+                    </section>
+                    <section>
+                        <h3 style="font-weight: 350; margin: 2.5rem 0 11px;">Why Is Fine-Tuning Important?</h3>
+                        <p>
+                            Fine-tuning has the following advantages over training neural networks from scratch:
+                        </p>
+                        <ol class="mb-0">
+                            <li class="mb-2">Saving time and resources. This allows developers to use the knowledge that has already been learned by a pretrained model.</li>
+                            <li class="mb-2">Improving performance and accuracy of the model. Data scientists and developers can create a model that is optimized for the new problem by adapting a pretrained model to a new task. This can lead to improved performance on the new task, especially if the pretrained model was trained on a large dataset.</li>
+                        </ol>
+                        <p class="mb-0">&nbsp;</p>
+                    </section>
+                    <section id="ds_HPC-tools">
+                        <h3 style="font-weight: 350; margin: 2.5rem 0 11px;">Using Intel Neural Compressor for Fine-Tuning Optimization</h3>
+                        <p>
+                            Intel Neural Compressor helps to optimize the fine-tuning process using quantization-aware training. Quantization-aware training replicates inference-time quantization and all the weight adjustments during training are made while being aware of the fact that the model will ultimately be quantized. In other words, it provides quantization to the model during training (or fine-tuning like in our case) based on the provided quantization configuration.
+                        </p>
+                        <p>
+                            Fine-Tuning Text ClassificationIntel Neural Compressor offers configuration for quantization-aware training. To perform quantization-aware training, import the <span class="mv_code_simple">neural_compressor</span> package and initialize the appropriate configurationusing the following code:
+                        </p>
+                        <!-- code toolbar -->
+                        <div class="mv_code_toolbar">
+                            <div class="mv_toolbar_item" id="mv_copy_icon">
+                                <i class="fa-regular fa-copy"></i>
+                            </div>
+                            <div class="d-flex mv_pre">
+                                <div style="border-right: 1px solid #ccc;" class="pe-3">
+                                    1
+                                </div>
+                                <div class="">
+                                    <div class="mv_code text-break" id="code-content">
+                                        <span class="mv_text_color">from</span> neural_compressor <span class="mv_text_color">import</span> QuantizationAwareTrainingConfigquantization_config <span class="mv_sign_color">=</span>
+                                        QuantizationAwareTrainingConfig<span class="mv_breckat_color">(</span>
+                                        <span class="mv_breckat_color">)</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <p>To use this configuration during the fine-tuning process, you can use <a class="b_special_a1" href="">INCTrainer</a>, an optimize trainer from Hugging Face Optimum* for Intel. Also, provide all necessary parameters:</p>
+                        <ul>
+                            <li>Initialized model and tokenizer</li>
+                            <li>Configuration for quantization aware training</li>
+                            <li>Training arguments</li>
+                            <li>Datasets for training and evaluation</li>
+                            <li>Prepared metrics that allow you to see progress in training</li>
+                        </ul>
+                        <p><b>Note</b> To install Optimum Intel with Intel Neural Compressor accelerator, use:</p>
+                        <!-- code toolbar -->
+                        <div class="mv_code_toolbar">
+                            <div class="mv_toolbar_item" id="mv_copy_icon">
+                                <i class="fa-regular fa-copy"></i>
+                            </div>
+                            <div class="d-flex mv_pre">
+                                <div style="border-right: 1px solid #ccc;" class="pe-3">
+                                    1
+                                </div>
+                                <div class="">
+                                    <div class="mv_code text-break" id="code-content">
+                                        pip install --upgrade-strategy eager <span style="color: blue;">"optimum[neural-compressor]"</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <p>The following example shows how to use INCTrainer:</p>
+                        <!-- code toolbar -->
+                        <div class="mv_code_toolbar">
+                            <div class="mv_toolbar_item" id="mv_copy_icon">
+                                <i class="fa-regular fa-copy"></i>
+                            </div>
+                            <div class="d-flex mv_pre">
+                                <div style="border-right: 1px solid #ccc;" class="pe-3">
+                                    1
+                                </div>
+                                <div class="">
+                                    <div class="mv_code text-break" id="code-content">
+                                        <span class="mv_text_color">from</span> optimum.intel <span class="mv_text_color">import</span> INCTrainer trainer <span class="mv_sign_color">=</span> INCTrainer<span class="mv_breckat_color">(</span>model, quantization_config, args, train_dataset, eval_dataset, compute_metrics, tokenizer<span class="mv_breckat_color">)</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    <section id="ds_HPC-get">
+                        <h3 style="font-weight: 350; margin: 4.5rem 0 11px;">Code Sample</h3>
+                        <h4 style="margin-top: 22px; margin-bottom: 11px;">Emotion Dataset</h4>
+                        <p>
+                            The Emotion dataset from Hugging Face is used for the code sample. This dataset has two different configurations, split and unsplit, both with different texts collected from X<sup>*</sup> (formerly Twitter<sup>*</sup>) messages.
+                        </p>
+                        <p class="mb-0">
+                            In this code sample, we are using split configuration. It contains 20,000 examples in total, and is split into three datasets:
+                        </p>
+                        <ul>
+                            <li>Train (16,000 texts)</li>
+                            <li>Test (2,000 texts)</li>
+                            <li>Validation (2,000 texts)</li>
+                        </ul>
+                        <p>We use a split configuration dataset instead of an unsplit configuration as it contains over 400,000 texts, which is overkill for fine-tuning.</p>
+                        <p>The dataset contains six different labels represented by digits from 0 to 5. Every digit symbolizes a different emotion:</p>
+                        <p>0 - sadness</p>
+                        <p>1 - joy</p>
+                        <p>2 - love</p>
+                        <p>3 - anger</p>
+                        <p>4 - fear</p>
+                        <p>5 – surprise</p>
+                        <p>
+                            The following diagram shows the class distribution of the dataset. We can observe that the distribution of classes in the dataset is not equal, but the train, test, and validation distributions are similar.
+                        </p>
+                        <div class="mv_diagram_img">
+                            <img src="/img/mv_image/fine-tuning-text-classification-fig1.png" alt="">
+                        </div>
+                        <p>A few example sentences from the dataset are:</p>
+                        <!-- sentences table -->
+                        <div style="display: flex; justify-content: center;">
+                            <table class="mv_sentences_table" align="center" cellpadding="1" cellspacing="1" width="50%">
+                                <tbody>
+                                    <tr>
+                                        <td><strong>text (string)</strong></td>
+                                        <td><strong>label (class label)</strong></td>
+                                    </tr>
+                                    <tr>
+                                        <td>"i didnt feel humiliated"</td>
+                                        <td>0 (sadness)</td>
+                                    </tr>
+                                    <tr>
+                                        <td>"i can go from feeling so hopeless to so damned hopeful just from being around someone who cares and is awake"</td>
+                                        <td>0 (sadness)</td>
+                                    </tr>
+                                    <tr>
+                                        <td>"im grabbing a minute to post i feel greedy wrong"</td>
+                                        <td>3 (anger)</td>
+                                    </tr>
+                                    <tr>
+                                        <td>"i am ever feeling nostalgic about the fireplace i will know that it is still on the property"</td>
+                                        <td>2 (love)</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <h3 style="font-weight: 350; margin: 2.5rem 0 11px;">Implementation</h3>
+                        <p>The following steps are implemented in the code sample:</p>
+                        <ol>
+                            <li>Load model and tokenizer. In this code sample, we use a small model, model_id = prajjwal1/bert-tiny. You can also use a different model, but remember that using larger models can be resource consuming and time consuming.</li>
+
+                            <!-- code toolbar 1 -->
+                            <div class="mv_code_toolbar">
+                                <div class="mv_toolbar_item" id="mv_copy_icon">
+                                    <i class="fa-regular fa-copy"></i>
+                                </div>
+                                <div style="padding-bottom: 0rem !important;" class="d-flex mv_pre">
+                                    <div style="border-right: 1px solid #ccc;" class="pe-3">
+                                        1
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break" id="code-content">
+                                            model <span class="mv_sign_color">=</span> AutoModelForSequenceClassification.from_pretrained<span class="mv_breckat_color">(</span>, num_labels<span class="mv_sign_color">=</span><span>6</span><span class="mv_breckat_color">)</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important; padding-top: 0rem !important;" class="d-flex mv_pre">
+                                    <div style="border-right: 1px solid #ccc;" class="pe-3">
+                                        2
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break" id="code-content">
+                                            tokenizer <span class="mv_sign_color">=</span> AutoTokenizer.from_pretrained<span class="mv_breckat_color">(</span>model_id, 
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important;" class="d-flex mv_pre">
+                                    <div style="border-right: 1px solid #ccc;" class="pe-3">
+                                        3
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break" id="code-content">
+                                            model_max_length<span class="mv_sign_color">=</span><span class="mv_text_color">512</span><span class="mv_breckat_color">)</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <p>When loading the model, we should also specify the number of labels for the model used.</p>
+                            
+                            <li>Load the dataset. In the code sample, the dataset parameters, like distribution or example texts, are also explored.</li>
+
+                            <!-- code toolbar 2 -->
+                            <div class="mv_code_toolbar">
+                                <div class="mv_toolbar_item" id="mv_copy_icon">
+                                    <i class="fa-regular fa-copy"></i>
+                                </div>
+                                <div class="d-flex mv_pre">
+                                    <div style="border-right: 1px solid #ccc;" class="pe-3">
+                                        1
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break" id="code-content">
+                                            dataset <span class="mv_sign_color">=</span> load_dataset(<span style="color: blue;">"emotion"</span>, name<span class="mv_sign_color">=</span><span style="color: blue;">"split"</span>)
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <li>Perform tokenization on the loaded dataset. Create a function that takes every text from dataset and tokenize it with maximum token length (128).</li>
+
+                            <!-- code toolbar 3 -->
+                            <div class="mv_code_toolbar">
+                                <div class="mv_toolbar_item" id="mv_copy_icon">
+                                    <i class="fa-regular fa-copy"></i>
+                                </div>
+                                <div style="padding-bottom: 0rem !important;" class="d-flex mv_pre">
+                                    <div style="border-right: 1px solid #ccc;" class="pe-3">
+                                        1
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break" id="code-content">
+                                            <span class="mv_text_color">def</span> tokenize_data<span class="mv_breckat_color">(</span>example<span class="mv_breckat_color">) :</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important; padding-top: 0rem !important;" class="d-flex mv_pre">
+                                    <div style="border-right: 1px solid #ccc;" class="pe-3">
+                                        2
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break" id="code-content">
+                                            <span class="mv_text_color">return</span> tokenizer<span class="mv_breckat_color">(</span>example<span class="mv_breckat_color">[</span><span style="color: blue;">'text'</span><span class="mv_breckat_color">]</span>, padding<span class="mv_sign_color">(</span><span style="color: blue;">'max_length'</span>,  
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre">
+                                    <div style="border-right: 1px solid #ccc;" class="pe-3">
+                                        3
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break" id="code-content">
+                                            max_length<span class="mv_sign_color">=</span><span class="mv_text_color">128</span>)
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important;" class="d-flex mv_pre">
+                                    <div style="border-right: 1px solid #ccc;" class="pe-3">
+                                        4
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break" id="code-content">
+                                            dataset <span class="mv_sign_color">=</span> dataset.<span style="color: blue;">map</span>(tokenize_data, batched<span class="mv_sign_color">=</span><span class="mv_text_color">True</span>)
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <li>
+                                Prepare evaluation metrics. We are using accuracy as a metric showing how well the model is doing. To do that, we created compute_metrics method, where we take predicted label values and compare them with referenced ones.
+                            </li>
+
+                            <!-- code toolbar 4 -->
+                            <div class="mv_code_toolbar">
+                                <div class="mv_toolbar_item" id="mv_copy_icon">
+                                    <i class="fa-regular fa-copy"></i>
+                                </div>
+                                <div style="padding-bottom: 0rem !important;" class="d-flex mv_pre">
+                                    <div style="border-right: 1px solid #ccc;" class="pe-3">
+                                        1
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break" id="code-content">
+                                            metric <span class="mv_sign_color">=</span> evaluate.load<span class="mv_breckat_color">(</span><span style="color: blue;">"accuracy"</span><span class="mv_breckat_color">)</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important; padding-top: 0rem !important;" class="d-flex mv_pre">
+                                    <div style="border-right: 1px solid #ccc;" class="pe-3">
+                                        2
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break" id="code-content">
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre">
+                                    <div style="border-right: 1px solid #ccc;" class="pe-3">
+                                        3
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break" id="code-content">
+                                            <span class="mv_text_color">def</span> compute_metrics<span class="mv_breckat_color">(</span>eval_pred<span class="mv_breckat_color">)</span>: 
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre">
+                                    <div style="border-right: 1px solid #ccc;" class="pe-3">
+                                        4
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break" id="code-content">
+                                            logits, labels <span class="mv_sign_color">=</span> eval_pred 
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre">
+                                    <div style="border-right: 1px solid #ccc;" class="pe-3">
+                                        5
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break" id="code-content">
+                                            predictions = np.argmax<span class="mv_breckat_color">(</span>logits, axis<span class="mv_sign_color">=</span><span class="mv_sign_color">-</span><span class="mv_text_color">1</span><span class="mv_breckat_color">)</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre">
+                                    <div style="border-right: 1px solid #ccc;" class="pe-3">
+                                        6
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break" id="code-content">
+                                            <span class="mv_text_color">return</span> metric.compute<span class="mv_breckat_color">(</span>predictions=predictions,
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important;" class="d-flex mv_pre">
+                                    <div style="border-right: 1px solid #ccc;" class="pe-3">
+                                        7
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break" id="code-content">
+                                            references=labels<span class="mv_breckat_color">)</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <li>
+                                Prepare configuration. For this fine-tuning process, we use Intel Neural Compressor quantization-aware training configuration.
+                            </li>
+
+                            <!-- code toolbar 5 -->
+                            <div class="mv_code_toolbar">
+                                <div class="mv_toolbar_item" id="mv_copy_icon">
+                                    <i class="fa-regular fa-copy"></i>
+                                </div>
+                                <div style="padding-bottom: 0rem !important;" class="d-flex mv_pre">
+                                    <div style="border-right: 1px solid #ccc;" class="pe-3">
+                                        1
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break" id="code-content">
+                                            <span class="mv_text_color">from</span> neural_compressor <span class="mv_text_color">import</span> QuantizationAwareTrainingConfig 
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important;" class="d-flex mv_pre">
+                                    <div style="border-right: 1px solid #ccc;" class="pe-3">
+                                        2
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break" id="code-content">
+                                            quantization_config <span class="mv_sign_color">=</span> QuantizationAwareTrainingConfig<span class="mv_sign_color">(</span><span class="mv_sign_color">)</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <li>
+                                Create a trainer with prepared configuration. Use <a class="b_special_a1" href="">INCTrainer</a> from optimum.intel package.
+                            </li>
+
+                            <!-- code toolbar 6 -->
+                            <div class="mv_code_toolbar">
+                                <div class="mv_toolbar_item" id="mv_copy_icon">
+                                    <i class="fa-regular fa-copy"></i>
+                                </div>
+                                <div style="padding-bottom: 0rem !important;" class="d-flex mv_pre">
+                                    <div style="border-right: 1px solid #ccc;" class="pe-3">
+                                        1
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break" id="code-content">
+                                            trainer <span class="mv_sign_color">=</span> INCTrainer<span class="mv_breckat_color">(</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important; padding-top: 0rem !important;" class="d-flex mv_pre">
+                                    <div style="border-right: 1px solid #ccc;" class="pe-3">
+                                        2
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break" id="code-content">
+                                            model<span class="mv_sign_color">=</span>model,
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre">
+                                    <div style="border-right: 1px solid #ccc;" class="pe-3">
+                                        3
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break" id="code-content">
+                                            quantization_config<span class="mv_sign_color">=</span>quantization_config,
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre">
+                                    <div style="border-right: 1px solid #ccc;" class="pe-3">
+                                        4
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break" id="code-content">
+                                            args<span class="mv_sign_color">=</span>TrainingArguments<span class="mv_breckat_color">(</span>save_dir, num_train_epochs= <span class="mv_text_color">2.0</span>,
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre">
+                                    <div style="border-right: 1px solid #ccc;" class="pe-3">
+                                        5
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break" id="code-content">
+                                            do_train<span class="mv_sign_color">=</span> <span class="mv_text_color">True</span>, do_eval= <span class="mv_text_color">False</span><span class="mv_breckat_color">)</span>,
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre">
+                                    <div style="border-right: 1px solid #ccc;" class="pe-3">
+                                        6
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break" id="code-content">
+                                            train_dataset<span class="mv_sign_color">=</span>dataset<span class="mv_breckat_color">[</span><span style="color: blue;">"train"</span><span class="mv_breckat_color">]</span>,
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre">
+                                    <div style="border-right: 1px solid #ccc;" class="pe-3">
+                                        7
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break" id="code-content">
+                                            eval_dataset<span class="mv_sign_color">=</span>dataset<span class="mv_breckat_color">[</span><span style="color: blue;">"validation"</span><span class="mv_breckat_color">]</span>,
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre">
+                                    <div style="border-right: 1px solid #ccc;" class="pe-3">
+                                        8
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break" id="code-content">
+                                            compute_metrics<span class="mv_sign_color">=</span>compute_metrics,
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important;" class="d-flex mv_pre">
+                                    <div style="border-right: 1px solid #ccc;" class="pe-3">
+                                        9
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break" id="code-content">
+                                            tokenizer<span class="mv_sign_color">=</span>tokenizer, <span class="mv_sign_color">)</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <li>
+                                Train the model. We are using the <b>train()</b> method available in the created trainer. After training, you can see information about the model printed under <span class="mv_code_simple">*****Mixed Precision Statistics*****</span>
+                            </li>
+
+                            <!-- code toolbar 7 -->
+                            <div class="mv_code_toolbar">
+                                <div class="mv_toolbar_item" id="mv_copy_icon">
+                                    <i class="fa-regular fa-copy"></i>
+                                </div>
+                                <div class="d-flex mv_pre">
+                                    <div style="border-right: 1px solid #ccc;" class="pe-3">
+                                        1
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break" id="code-content">
+                                            train_result <span class="mv_sign_color">=</span> trainer.train<span class="mv_breckat_color">(</span><span class="mv_breckat_color">)</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <li>
+                                Evaluate the model. We are using the <b>evaluate()</b> method on the prepared trainer. It will show results prepared before evaluation metrics (evaluation accuracy and loss).
+                            </li>
+
+                            <!-- code toolbar 8 -->
+                            <div class="mv_code_toolbar">
+                                <div class="mv_toolbar_item" id="mv_copy_icon">
+                                    <i class="fa-regular fa-copy"></i>
+                                </div>
+                                <div class="d-flex mv_pre">
+                                    <div style="border-right: 1px solid #ccc;" class="pe-3">
+                                        1
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break" id="code-content">
+                                            metrics <span class="mv_sign_color">=</span> trainer.evaluate<span class="mv_breckat_color">(</span><span class="mv_breckat_color">)</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </ol>
+                        <p class="mb-0">&nbsp;</p>
+                    </section>
+                    <section id="ds_HPC-reso">
+                        <h3 style="font-weight: 350; margin: 2.5rem 0 11px;">What’s Next?</h3>
+                        <p>
+                            Try out the preceding code sample to fine-tune your text model on a pretrained BERT-tiny model and see how Intel Neural Compressor optimizes the fine-tuning process using quantization-aware training. Download and try the <a class="b_special_a1" href="">AI Tools</a> and <a class="b_special_a1" href="">Intel<sup>®</sup> Neural Compressor</a> for yourself to build various end-to-end AI applications.
+                        </p>
+                        <p>
+                            We encourage you to also check out and incorporate other <a class="b_special_a1" href="">AI and machine learning frameworks</a> and <a class="b_special_a1" href="">end-to-end tools</a> from Intel into your AI workflow. Learn about the unified, open, standards-based oneAPI programming model that forms the foundation of Intel's <a class="b_special_a1" href="">AI software portfolio</a> to help you prepare, build, deploy, and scale your AI solutions.
+                        </p>
+                        <p class="mb-0">
+                            For more details about the 4th generation Intel<sup>®</sup> Xeon<sup>®</sup> Scalable processors, see <a class="b_special_a1" href="">Intel's AI Platform</a> where you can learn how Intel is empowering developers to run end-to-end AI pipelines on these powerful CPUs.
+                        </p>
+                        <h3 style="font-weight: 350; margin: 2.5rem 0 11px;">Useful Resources</h3>
+                        <ul>
+                            <li><a class="b_special_a1" href="">Intel AI and Machine Learning Resources</a></li>
+                            <li><a class="b_special_a1" href="">oneAPI Unified Programming Model</a></li>
+                            <li><a class="b_special_a1" href="">Intel<sup>®</sup> Neural Compressor Documentation</a></li>
+                        </ul>
+                        <h3 style="font-weight: 350; margin: 2.5rem 0 11px;">Explore More AI Code Samples</h3>
+                        <ul>
+                            <li><a class="b_special_a1" href="">Language Identification: Building an End-to-End AI Solution Using PyTorch<sup>*</sup></a></li>
+                            <li><a class="b_special_a1" href="">How to Build an Interactive Chat-Generation Model Using DialoGPT and PyTorch<sup>*</sup></a></li>
+                            <li><a class="b_special_a1" href="">Accelerate PyTorch Training and Inference Performance Using Intel AMX</a></li>
+                            <li><a class="b_special_a1" href="">See All Code Samples</a></li>
+                        </ul>
+                    </section>
+                </div>
+            </div>
+            <p class="mb-0">&nbsp;</p>
+        </div>
+    </section>
+
+    <section style="border-top: 1px solid #d7d7d7;" class="container py-5">
+        <h4 class="h6">Product and Performance Information</h4>
+        <div class="disclaimer" style="font-size: 12px;"><sup>1</sup>1Performance varies by use, configuration and other factors. Learn more at <a class="b_special_a1" href="">www.Intel.com/PerformanceIndex</a>.</div>
+    </section>
+
+    <!-- footer -->
+    <div id="footer"></div>
+
+    <!-- script header and footer -->
+    <script>
+        // navbar include  
+        fetch('/y_index/y_navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar').innerHTML = data;
+            });
+        // footer include 
+        fetch('/y_index/y_footer.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('footer').innerHTML = data;
+            });
+    </script>
+
+    <!-- nav script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+        const nav = document.querySelector('.VK_client_app_navigation');
+        const navLinks = document.querySelectorAll('.VK_ai_nav_bar a');
+        const sections = document.querySelectorAll('section[id]');
+        let navOffset = nav.offsetTop;
+
+            // Add smooth scrolling to all links
+            navLinks.forEach(link => {
+                link.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+
+            // Sticky Navigation
+            window.addEventListener('scroll', () => {
+                if (window.pageYOffset >= navOffset) {
+                    nav.classList.add('VK_sticky_nav_bar');
+                } else {
+                    nav.classList.remove('VK_sticky_nav_bar');
+                }                
+                // Section highlighting
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop - nav.clientHeight;
+                    const sectionHeight = section.clientHeight;
+                    console.log(sectionTop);
+                    console.log(sectionHeight);
+                    if (window.pageYOffset >= sectionTop && window.pageYOffset <= sectionTop + sectionHeight) {
+                        navLinks.forEach(link => {
+                            link.classList.remove('active');
+                            if (link.getAttribute('href') === `#${section.id}`) {
+                                link.classList.add('active');
+                                
+                                // Ensure the active link is visible in the nav bar
+                                const navBar = document.querySelector('.VK_ai_nav_bar');
+                                const activeLink = document.querySelector('.VK_ai_nav_bar a.active');
+                                const linkRect = activeLink.getBoundingClientRect();
+                                const navBarRect = navBar.getBoundingClientRect();
+
+                                if (linkRect.left < navBarRect.left || linkRect.right > navBarRect.right) {
+                                    activeLink.scrollIntoView({ inline: 'center', behavior: 'smooth' });
+                                }
+                            }
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+
+    <script>
+        document.getElementById('mv_copy_icon').addEventListener('click', function() {
+            const codeContent = document.getElementById('code-content').innerText;
+
+            // Create a temporary textarea element to copy the text
+            const textarea = document.createElement('textarea');
+            textarea.value = codeContent;
+            document.body.appendChild(textarea);
+            textarea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textarea);
+
+            alert('Code copied to clipboard!');
+        });
+    </script>
+
+</body>
+</html>
