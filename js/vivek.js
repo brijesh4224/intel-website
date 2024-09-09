@@ -920,7 +920,7 @@ let Pagination = (page, record) => {
                                         </div>
                                         <hr class="m-0">
                                         <div class="VK_card_details px-3 pb-3 mt-3">
-                                        <div class="VK_card_Title">
+                                            <div class="VK_card_Title">
                                                 <a href="" class="text-decoration-none fw-normal">${result[i].name}</a>
                                             </div>
                                             ${result[i].system ? `<div class="VK_card_system py-1">
@@ -1053,6 +1053,17 @@ window.onload = function () {
     VK_ai_tools_content_checkbox();
     // software type checkbox
     VK_ai_software_checkbox();
+
+
+    
+    // api training
+    VK_api_training_card_display()
+    // api training software
+    VK_api_training_software_checkbox();
+    // programming
+    VK_api_training_programming_checkbox();
+    // skill
+    VK_api_training_skill_checkboxes();
 
 }
 
@@ -7710,7 +7721,7 @@ var VK_ai_tools_dcoumantation_data = [
             "2023.1",
             "2023.0"
         ],
-        download:true,
+        download: true,
         bookmark: true,
         file: "URL (7.16 MB)",
         content: "Development Guides",
@@ -7728,7 +7739,7 @@ var VK_ai_tools_dcoumantation_data = [
             "2023.1",
             "2023.0"
         ],
-        download:true,
+        download: true,
         bookmark: true,
         file: " URL (1.40 MB)",
         content: "Development Guides",
@@ -7739,7 +7750,7 @@ var VK_ai_tools_dcoumantation_data = [
         id: "678721",
         date: "03/15/24",
         version: "2024.1",
-        download:false,
+        download: false,
         bookmark: false,
         file: "URL",
         content: "System Requirements",
@@ -7750,7 +7761,7 @@ var VK_ai_tools_dcoumantation_data = [
         id: "768369",
         date: "11/07/23",
         version: "Latest",
-        download:false,
+        download: false,
         bookmark: false,
         file: "URL",
         content: "Getting Started Guides",
@@ -7766,7 +7777,7 @@ var VK_ai_tools_dcoumantation_data = [
             "2023.1",
             "2023.1"
         ],
-        download:true,
+        download: true,
         bookmark: true,
         file: "URL (105 KB)",
         content: "Getting Started Guides",
@@ -7777,7 +7788,7 @@ var VK_ai_tools_dcoumantation_data = [
         id: "671998",
         date: "07/17/23",
         version: "Latest",
-        download:false,
+        download: false,
         bookmark: false,
         file: "URL",
         content: "Installation Guides",
@@ -7788,7 +7799,7 @@ var VK_ai_tools_dcoumantation_data = [
         id: "777051",
         date: "04/19/23",
         version: "Original",
-        download:false,
+        download: false,
         bookmark: true,
         file: "URL",
         content: "Code Samples",
@@ -7799,7 +7810,7 @@ var VK_ai_tools_dcoumantation_data = [
         id: "777042",
         date: "04/19/23",
         version: "Original",
-        download:false,
+        download: false,
         bookmark: true,
         file: "URL",
         content: "API Reference Manuals",
@@ -7810,7 +7821,7 @@ var VK_ai_tools_dcoumantation_data = [
         id: "777041",
         date: "04/19/23",
         version: "Original",
-        download:false,
+        download: false,
         bookmark: true,
         file: "URL",
         content: "Installation Guides",
@@ -7821,7 +7832,7 @@ var VK_ai_tools_dcoumantation_data = [
         id: "777033",
         date: "04/19/23",
         version: "Original",
-        download:false,
+        download: false,
         bookmark: true,
         file: "URL",
         content: "System Requirements",
@@ -7832,7 +7843,7 @@ var VK_ai_tools_dcoumantation_data = [
         id: "777030",
         date: "04/19/23",
         version: "2.1",
-        download:false,
+        download: false,
         bookmark: true,
         file: "URL",
         content: "Release Notes",
@@ -7843,7 +7854,7 @@ var VK_ai_tools_dcoumantation_data = [
         id: "710077",
         date: "03/04/23",
         version: "2.0",
-        download:false,
+        download: false,
         bookmark: true,
         file: "URL",
         content: "Code Samples",
@@ -7854,7 +7865,7 @@ var VK_ai_tools_dcoumantation_data = [
         id: "669999",
         date: "03/03/23",
         version: "2.0",
-        download:false,
+        download: false,
         bookmark: true,
         file: "URL",
         content: "Code Samples",
@@ -8176,4 +8187,446 @@ function VK_ai_software_search() {
     })
     ai_tools_software = arr
     VK_ai_software_checkbox()
+}
+
+
+
+
+
+
+
+
+
+
+// --------------------------------------------------- Explore Training for oneAPI -----------------------------------
+
+let VK_training_oneapi_data = [
+    {
+        image:"VK_59.jpg",
+        title: "Intel® OSPRay Essentials",
+        date: "09/03/24",
+        contentType: "On-Demand Training",
+        description: "Learn the basics of Intel oneAPI, Intel® Rendering Toolkit, and Intel® OSPRay, an industry-leading, ray tracing rendering library.",
+        bookmark: false,
+        download: false
+    },
+    {
+        image:"VK_60.png",
+        title: "Code Sample: Two-Dimensional Finite-Difference Wave Propagation in...",
+        date: "08/12/24",
+        contentType: "Code Samples",
+        description: "Intel® oneAPI DPC++ Compiler Example-Basic structures of the language:Two-Dimensional Finite-Difference Wave Propagation in Isotropic Media (ISO2DFD)",
+        bookmark: false,
+        download: false
+    },
+    {
+        image:"VK_61.svg",
+        title: "Get Started with the AI Tools for Linux*",
+        date: "08/11/24",
+        contentType: "Getting Started Guides",
+        description: "Build and run your first sample project using the AI Tools",
+        bookmark: true,
+        download: true
+    },
+    {
+        image:"VK_61.svg",
+        title: "Debugging with Intel® Distribution for GDB* on Linux* OS Host",
+        date: "06/27/24",
+        contentType: "Tutorials",
+        description: "Go through the basic debugging scenario for SYCL applications.",
+        bookmark: true,
+        download: true
+    },
+    {
+        image:"VK_61.svg",
+        title: "Debugging with Intel® Distribution for GDB* on Windows* OS Host",
+        date: "06/27/24",
+        contentType: "Tutorials",
+        description: "Go through the basic debugging scenario for SYCL applications.",
+        bookmark: true,
+        download: true
+    },
+    {
+        image:"VK_61.svg",
+        title: "Cookbook",
+        date: "06/24/24",
+        contentType: "Cookbooks",
+        description: "Follow tuning and configuration recipes to use analysis types in Intel® VTune™ Profiler. Analyze your code, identify ineffective algorithm and hardware usage, and get tuning advice on performance.",
+        bookmark: true,
+        download: true
+    },
+    {
+        image:"VK_61.svg",
+        title: "Performance Analysis Tutorial for Linux* OS",
+        date: "06/24/24",
+        contentType: "Tutorials",
+        description: "Follow this tutorial to identify and resolve common performance bottlenecks in a sample matrix multiplication application (Linux* OS environment).",
+        bookmark: true,
+        download: true
+    },
+    {
+        image:"VK_61.svg",
+        title: "Performance Analysis Tutorial for Windows* OS",
+        date: "06/24/24",
+        contentType: "Tutorials",
+        description: "Follow this tutorial to identify and resolve common performance bottlenecks in a sample matrix multiplication application (Windows* OS environment).",
+        bookmark: true,
+        download: true
+    },
+    {
+        image:"VK_61.svg",
+        title: "Intel® oneAPI Deep Neural Network Developer Guide and Reference",
+        date: "06/20/24",
+        contentType: "Development Reference Guides",
+        description: "For developers wanting to use the Intel® oneAPI Deep Neural Network Developer Guide and Reference.",
+        bookmark: true,
+        download: true
+    },
+    {
+        image:"VK_59.jpg",
+        title: "Essentials of SYCL",
+        date: "05/31/24",
+        contentType: "On-Demand Training",
+        description: "Learn the essentials of SYCL* for use in heterogeneous computing through hand-on practice.",
+        bookmark: false,
+        download: false
+    },
+    {
+        image:"VK_59.jpg",
+        title: "Performance, Portability, and Productivity with oneAPI and DPC++",
+        date: "05/30/24",
+        contentType: "Tutorials",
+        description: "Learn how to use oneAPI and Data Parallel C++ (DPC++) to build cross-platform, performant, portable code on Intel® Developer Cloud.",
+        bookmark: false,
+        download: false
+    },
+    {
+        image:"VK_62.png",
+        title: "Workflow for a CUDA* to SYCL* Migration using Jacobi sample code",
+        date: "05/21/24",
+        contentType: "Training and Learning",
+        description: "Use Jacobi sample code to learn a basic workflow for how to migrate CUDA* applications to SYCL* and optimize kernels for Intel GPUs.",
+        bookmark: false,
+        download: false
+    },
+    {
+        image:"VK_61.svg",
+        title: "Get Started with the Intel® Rendering Toolkit for macOS*",
+        date: "03/22/24",
+        contentType: "Getting Started Guides",
+        description: "Build and run your first sample project using the Intel® Rendering Toolkit for macOS*.",
+        bookmark: true,
+        download: true
+    },
+    {
+        image:"VK_61.svg",
+        title: "Get Started with the Intel® Rendering Toolkit for Linux*",
+        date: "03/22/24",
+        contentType: "Getting Started Guides",
+        description: "Build and run your first sample project using the Intel® Rendering Toolkit for Linux* OS.",
+        bookmark: true,
+        download: true
+    },
+    {
+        image:"VK_61.svg",
+        title: "Get Started with the Intel® Rendering Toolkit for Windows*",
+        date: "03/22/24",
+        contentType: "Getting Started Guides",
+        description: "Build and run your first sample project using the Intel® Rendering Toolkit for Windows*.",
+        bookmark: true,
+        download: true
+    },
+]
+
+var VK_training_oneapi = VK_training_oneapi_data
+
+function VK_api_training_card_display(){
+    if(document.getElementById('VK_api_skill_display_card')){
+
+        document.getElementById('VK_api_training_cnt1').innerText = VK_training_oneapi.length + ' results'
+
+        let div = document.getElementById('VK_api_skill_display_card');
+
+        let html = VK_training_oneapi.map((ele) => {
+            return `
+                <div class="col-12 col-md-4 col-xxl-3 my-3">
+                    <div class="bg-white px-3 h-100 d-flex flex-column">
+                        <div class="VK_api_training_card_img">
+                            <img src="/img/vivek/${ele.image}" class="w-100 h-100 pt-2 VK_object-cover" alt="">
+                        </div>
+                        <div class="d-flex flex-column flex-grow-1 mt-3 pb-3">
+                            <p>
+                                <a href="" class="VK_a text-decoration-none d-inline-block">
+                                    ${ele.title}
+                                </a>
+                            </p>
+                            <span class="d-inline-block">
+                                <strong>Date:</strong> ${ele.date}
+                            </span>
+                            <span class="d-inline-block">
+                                <strong>Content Type:</strong> ${ele.contentType}
+                            </span>
+                            <p class="mt-3">${ele.description}</p>
+                            <div class="mt-auto text-end">
+                                <span>
+                                    ${ele.bookmark ? `<button class="VK_a border-0 bg-transparent mx-2">
+                                        <i class="fa-regular fa-bookmark"></i>
+                                    </button>` : ""}
+                                    ${ele.download ? `<button class="VK_a border-0 bg-transparent mx-2">
+                                        <i class="fa-solid fa-download"></i>
+                                    </button>` : ""}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }).join('');
+        
+        div.innerHTML = html;
+    } else {
+        return;
+    }
+}
+
+
+// api training sortby
+function VK_api_training_sortby(){
+    let sortby = document.getElementById('VK_api_training_data_sortby').value
+    if(sortby == 'A-Z'){
+        VK_training_oneapi_data.sort((a,b)=>a.title.localeCompare(b.title))
+    }
+    else if(sortby == 'Z-A'){
+        VK_training_oneapi_data.sort((a,b)=>b.title.localeCompare(a.title))
+    }
+    else if(sortby == 'Content Type'){
+        VK_training_oneapi_data.sort((a,b)=>a.contentType.localeCompare(b.contentType))
+    }
+    VK_api_training_card_display();
+}
+
+
+// api training search box
+function VK_api_training_data_search_box(){
+    let search = document.getElementById('VK_api_training_search_bar').value
+    let arr = VK_training_oneapi_data.filter((ele)=>{
+        return ele.title.toLowerCase().includes(search.toLowerCase())
+    })
+    console.log(arr);
+    VK_training_oneapi = arr
+    VK_api_training_card_display();
+}
+
+
+
+// software checkbox
+var VK_api_taining_checkbox_data = [
+    "AI Tools",
+    "Development Tools",
+    "GNU* Debugger (GDB)",
+    "Intel® Advisor",
+    "Intel® Distribution for Python*",
+    "Intel® Distribution of Modin*",
+    "Intel® Distribution of OpenVINO™ toolkit",
+    "Intel® DPC++ Compatibility Tool",
+    "Intel® Extension for Scikit_learn*",
+    "Intel® Fortran Compiler",
+    "Intel® FPGA Add-On for oneAPI Base Toolkit",
+    "Intel® HPC Toolkit",
+    "Intel® Inspector",
+    "Intel® Integrated Performance Primitives",
+    "Intel® IoT Toolkit",
+    "Intel® MPI Library",
+    "Intel® Neural Compressor",
+    "Intel® oneAPI Base Toolkit",
+    "Intel® oneAPI Collective Communications Library",
+    "Intel® oneAPI Data Analytics Library",
+    "Intel® oneAPI Deep Neural Network Library",
+    "Intel® oneAPI DL Framework Developer Toolkit",
+    "Intel® oneAPI DPC++ C++ Compiler",
+    "Intel® oneAPI Math Kernel Library",
+    "Intel® oneAPI Threading Building Blocks",
+    "Intel® oneAPI Toolkits",
+    "Intel® Open Image Denoise",
+    "Intel® Optimization for PyTorch*",
+    "Intel® Optimization for TensorFlow*",
+    "Intel® Optimization for XGBoost*",
+    "Intel® OSPRay",
+    "Intel® Parallel Studio XE",
+    "Intel® Rendering Toolkit",
+    "Intel® System Bring-Up Toolkit",
+    "Intel® Trace Analyzer and Collector",
+    "Intel® Video Processing Library",
+    "Intel® VTune™ Profiler (formerly Intel® VTune™ Amplifier)"
+]
+
+var api_training_software = VK_api_taining_checkbox_data
+
+// software checkboxes
+function VK_api_training_software_checkbox() {
+    if (document.getElementById('VK_api_training_software_checkbox')) {
+        let html = api_training_software.map((ele, ind) => {
+            return `
+        <div class="${ind > 7 ? "d-none" : ""} my-1 w-100 VK_white_space"> 
+            <input type="checkbox" value="${ele}" class="me-2 VK_api_training_software_checkbox VK_overflow_checkbox w-auto" onclick="VK_ai_software_type()">
+            <span class="w-auto d-inline-block">${ele}</span>
+        </div>
+        `;
+        }).join(' ');
+
+        if (api_training_software.length > 7) {
+            html += `
+        <button class="border-0 bg-transparent VK_a" onclick="VK_api_training_software_showmore()" id="VK_toolkit_software_show_more">
+            <span>Show More</span>
+        </button>
+        `;
+        }
+
+        document.getElementById('VK_api_training_software_checkbox').innerHTML = html;
+    } else {
+        return;
+    }
+}
+
+// software checkbox show more or less
+function VK_api_training_software_showmore() {
+    let showMoreButton = document.getElementById('VK_toolkit_software_show_more');
+    let hiddenItems = document.querySelectorAll('#VK_api_training_software_checkbox .d-none');
+    let visibleItems = document.querySelectorAll('#VK_api_training_software_checkbox > div:not(.d-none)');
+
+    if (showMoreButton.innerText.trim() === "Show More") {
+        showMoreButton.innerHTML = "<span>Show Less</span>";
+        hiddenItems.forEach(item => item.classList.remove('d-none'));
+    } else {
+        showMoreButton.innerHTML = "<span>Show More</span>";
+        visibleItems.forEach((item, ind) => {
+            if (ind > 7) {
+                item.classList.add('d-none');
+            }
+        });
+    }
+}
+
+// checkbox search box
+function VK_api_training_software_search() {
+    let srch = document.getElementById('VK_api_training_software_search').value
+    let arr = VK_api_taining_checkbox_data.filter((ele) => {
+        return ele.toLowerCase().includes(srch.toLowerCase())
+    })
+    api_training_software = arr
+    VK_api_training_software_checkbox()
+}
+
+// checkbox orderby
+function VK_api_software_order_By() {
+    let orderby = document.getElementById('VK_api_software_sort').value
+    if (orderby == 'A-Z') {
+        VK_api_taining_checkbox_data.sort((a, b) => a.localeCompare(b))
+    }
+    else if (orderby == 'Z-A') {
+        VK_api_taining_checkbox_data.sort((a, b) => b.localeCompare(a))
+    }
+    VK_api_training_software_checkbox()
+}
+
+
+// programming language 
+var VK_api_programming_checkbox_data = [
+    "C C++",
+    "C#",
+    "CUDA*",
+    "Data Parallel C++ (DPC++)",
+    "Fortran",
+    "Python*",
+    "SYCL*"
+]
+
+var VK_api_programming_checkbox = VK_api_programming_checkbox_data
+
+
+// programming language checkbox
+function VK_api_training_programming_checkbox() {
+    if (document.getElementById('VK_api_programming_checkbox')) {
+        let html = VK_api_programming_checkbox.map((ele, ind) => {
+            return `
+        <div class="${ind > 7 ? "d-none" : ""} my-1 w-100 VK_white_space"> 
+            <input type="checkbox" value="${ele}" class="me-2 VK_api_training_software_checkbox VK_overflow_checkbox w-auto" onclick="VK_ai_software_type()">
+            <span class="w-auto d-inline-block">${ele}</span>
+        </div>
+        `;
+        }).join(' ');
+
+        if (VK_api_programming_checkbox.length > 7) {
+            html += `
+        <button class="border-0 bg-transparent VK_a" onclick="VK_api_training_software_showmore()" id="VK_toolkit_software_show_more">
+            <span>Show More</span>
+        </button>
+        `;
+        }
+
+        document.getElementById('VK_api_programming_checkbox').innerHTML = html;
+    } else {
+        return;
+    }
+}
+
+
+// checkbox orderby
+function VK_api_programming_sortby() {
+    let orderby = document.getElementById('VK_api_programming_filters').value
+    if (orderby == 'A-Z') {
+        VK_api_programming_checkbox_data.sort((a, b) => a.localeCompare(b))
+    }
+    else if (orderby == 'Z-A') {
+        VK_api_programming_checkbox_data.sort((a, b) => b.localeCompare(a))
+    }
+    VK_api_training_programming_checkbox()
+}
+
+
+var VK_api_training_skill_checkbox_data = [
+    "Advanced",
+    "Beginner",
+    "Intermediate"
+]
+
+var VK_api_training_skill_checkbox = VK_api_training_skill_checkbox_data
+
+// skill checkbox
+function VK_api_training_skill_checkboxes() {
+    if (document.getElementById('VK_api_skill_checkbox')) {
+        let html = VK_api_training_skill_checkbox.map((ele, ind) => {
+            return `
+        <div class="${ind > 7 ? "d-none" : ""} my-1 w-100 VK_white_space"> 
+            <input type="checkbox" value="${ele}" class="me-2 VK_api_training_skill_checkbox VK_overflow_checkbox w-auto" onclick="VK_ai_software_type()">
+            <span class="w-auto d-inline-block">${ele}</span>
+        </div>
+        `;
+        }).join(' ');
+
+        if (VK_api_training_skill_checkbox.length > 7) {
+            html += `
+        <button class="border-0 bg-transparent VK_a" onclick="VK_api_training_software_showmore()" id="VK_toolkit_software_show_more">
+            <span>Show More</span>
+        </button>
+        `;
+        }
+
+        document.getElementById('VK_api_skill_checkbox').innerHTML = html;
+    } else {
+        return;
+    }
+}
+
+
+// checkbox orderby
+function VK_api_skill_order_By() {
+    let orderby = document.getElementById('VK_api_skills_filters').value
+    if (orderby == 'A-Z') {
+        VK_api_training_skill_checkbox_data.sort((a, b) => a.localeCompare(b))
+    }
+    else if (orderby == 'Z-A') {
+        VK_api_training_skill_checkbox_data.sort((a, b) => b.localeCompare(a))
+    }
+    VK_api_training_skill_checkboxes()
 }
