@@ -3323,6 +3323,398 @@ let private_network_data = [
     },
 ]
 
+// ai retail
+let ai_retails_data = [
+    {
+        name: "BlueStar, Inc.",
+        text: "Gold Partner",
+        description: "BlueStar is the leading global distributor of solutions-based Digital Identification, Mobility, Point-of-Sale, RFID, IoT, AI. AR, M2M, Digital Signage, Networking, Blockchain, and Security technology solutions. BlueStar works exclusively with Value-Added Resellers (VARs) to provide complete solutions, custom configuration offerings.",
+        image: "img312.png",
+        link: "",
+        anchor: "",
+        type: "Partner"
+    },
+    {
+        name: "AvidBeam",
+        text: "Gold Partner",
+        description: "We are an AI based video analytics company. We develop applications for the surveillance industry that span security, safety and business intelligence. We target Smart Cities, critical infrastructure, malls, financial institutions, big retailers, manufacturers, smart buildings, ports and railway stations and gated smart communities, ",
+        image: "img313.png",
+        link: "",
+        anchor: "",
+        type: "Partner"
+    },
+    {
+        name: "IBM Cloud",
+        text: "Titanium Partner",
+        description: "IBM is a leading global hybrid cloud and AI, and business services provider, helping clients in more than 175 countries capitalize on insights from their data, streamline business processes, reduce costs and gain the competitive edge in their industries. Nearly 3,800 government and corporate entities in critical infrastructure areas such as financial services",
+        image: "img314.png",
+        link: "",
+        anchor: "",
+        type: "Partner"
+    },
+    {
+        name: "JOHNSON CONTROLS INC",
+        text: "Gold Partner",
+        description: "Powering impactful sustainability, respectful safety and security, while delivering an enhanced customer experience. Your buildings have a purpose. They are places for people to live or work. Facilities for learning or healing. Venues for entertainment and shopping. Sites for the specialized storage of tangible goods or mission-critical data.",
+        image: "img315.png",
+        link: "",
+        anchor: "",
+        type: "Partner"
+    },
+    {
+        name: "Sensormatic Solutions",
+        text: "Gold Partner",
+        description: "Sensormatic Solutions is the leading global retail solutions portfolio of Johnson Controls powering operational excellence at scale and enabling smart and connected shopper engagement. As a global leader in retail technology with nearly 60 years of experience, Sensormatic Solutions delivers connected, powerful, and comprehensive solutions",
+        image: "img316.png",
+        link: "",
+        anchor: "",
+        type: "Partner"
+    },
+    {
+        name: "CyberLink Corp",
+        text: "Gold Partner",
+        description: "CyberLink is the world's leading multimedia software company and pioneer in video and audio technologies in both PC and Mobile devices. Key products -- PowerDVD, PowerDirector, PhotoDirector, U Meeting, and FaceMe AI technology",
+        image: "img317.png",
+        link: "",
+        anchor: "",
+        type: "Partner"
+    },
+    {
+        name: "Diebold Nixdorf Inc",
+        text: "Titanium Partner",
+        description: "We started out making safes—security is embedded in our DNA. Today, we are strategic, collaborative, end-to-end provider of services, software, hardware and, yes, security. With our clients around the world, we’re driving connected commerce for the future of banking and retail. ",
+        image: "img318.png",
+        link: "",
+        anchor: "",
+        type: "Partner"
+    },
+    {
+        name: "EPIC IO",
+        text: "Gold Partner",
+        description: "EPIC iO strives to make organizations and communities safer, smarter, and more connected through our robust portfolio of connectivity and AI + IoT solutions. With over 20 years of experience, our 4G/5G network solutions include Failover, Bonded Connectivity, Wireless WAN as primary, Fixed wireless access, Private LTE.",
+        image: "img319.png",
+        link: "",
+        anchor: "",
+        type: "Partner"
+    },
+    {
+        name: "THUNDERSOFT SOFTWARE TECHNOLOGY CO LTD",
+        text: "Gold Partner",
+        description: "ThunderSoft is a provider of operating system technologies, superior products and solutions, experts in mobile, IoT, automotive, and enterprise. ﻿ Founded in 2008, through ThunderSoft’s expertise in edge intelligence and operating systems including Android, Linux, Windows and others, a profound middleware, application",
+        image: "img320.png",
+        link: "",
+        anchor: "",
+        type: "Partner"
+    },
+    {
+        name: "viso.ai",
+        text: "Gold Partner",
+        description: "About viso.ai Switzerland-based viso.ai seeks to advance humanity through the power of computer vision. The company works closely with organizations in manufacturing, farming, medicine, transportation, and disaster response to guide product development for their widely accessible AI vision application",
+        image: "img321.png",
+        link: "",
+        anchor: "",
+        type: "Partner"
+    },
+    {
+        name: "Shekel Brainweigh Limited",
+        text: "",
+        description: "Member Partner",
+        image: "img322.png",
+        link: "",
+        anchor: "",
+        type: "Partner"
+    },
+    {
+        name: "Irisity",
+        text: "Gold Partner",
+        description: "Agent Video Intelligence (Agent Vi) is the leading global provider of open architecture, video analytics solutions. Agent Vi's comprehensive video analytics offering includes software products for on-premise installations as well as cloud-based SaaS, with capabilities ranging from real-time video analysis and alerts to video search and business intelligence. ",
+        image: "img323.png",
+        link: "",
+        anchor: "",
+        type: "Partner"
+    },
+    {
+        name: "Milestone Systems, Inc.",
+        text: "Titanium Partner",
+        description: "Milestone is the world's leading provider of open platform IP video surveillance software with more then 150.000 installations world wide. Represented in more then 150 countries through more than 10.000 resellers and integrators. Milestone's XProtect Video Management Software is designed as an Open Platform, with free downloadable API .",
+        image: "img324.png",
+        link: "",
+        anchor: "",
+        type: "Partner"
+    },
+    {
+        name: "NCR Corporation",
+        text: "Gold Partner",
+        description: "At NCR, we know digital has completely changed how brands compete. To differentiate and win more business, having a digital-first mindset is key—even for physical locations—it’s the way to meet consumers in every moment and transform transactions into meaningful interactions. Shaping the future for 135 years, NCR is the world’s enterprise technology.",
+        image: "img325.png",
+        link: "",
+        anchor: "",
+        type: "Partner"
+    },
+    {
+        name: "Digital Content Technologies (DGCT)",
+        text: "Gold Partner",
+        description: "DiGital Content Technologies is a solution provider specialized in smart visual solution for retail, digital out-of-home media and smart cities. Based in Singapore since 2002, we propose, distribute and build innovative solutions integrating digital signage, video analytic (OpenVINO™), 3D technologies",
+        image: "img326.png",
+        link: "",
+        anchor: "",
+        type: "Partner"
+    },
+]
+
+// vpro 
+
+let vipro_data = [
+    {
+        name: 'ADVANTECH CO., LTD.',
+        text:"Titanium Partner",
+        description: "Founded in 1983, Advantech has more than 5,000 employees worldwide and a global reach with teams in seven geographic regions. Our products are distributed and serviced by an extensive global network of offices and an industry leading eBusiness infrastructure designed to provide fast and responsive service that benefits customers",
+        image: "img327.png",
+        link: "",
+        anchor: "",
+        type: "Partner"
+    },
+    {
+        name: "Connect Self Hosted Portal",
+        description: "Impero software is meticulously crafted to provide you with centralized control while maintaining the flexibility to adapt to the unique demands of your business. Through the integration of Intel® AMT within the Connect Portal, users can oversee Intel vPro® devices right down to the BIOS level, regardless of their location.",
+        image: "img328.png",
+        link: "",
+        anchor: "Impero Software",
+        type: "Offering"
+    },
+    {
+        name: "Connect Cloud Portal",
+        description: "Impero software is meticulously crafted to provide you with centralized control while maintaining the flexibility to adapt to the unique demands of your business. Through the integration of Intel® AMT within the Connect Portal, users can oversee Intel vPro® devices right t down to the BIOS level, regardless of their location.",
+        image: "img329.png",
+        link: "",
+        anchor: "Impero Software",
+        type: "Offering"
+    },
+    {
+        name: 'Scalefusion',
+        text:"",
+        description: "Ambitious companies around the world trust Scalefusion to secure and manage endpoints including smartphones, tablets, laptops, rugged devices, Point of Sale (POS), and digital signages. Our mission is to make Device Management simple and effortless along with providing world-class customer support.Scalefusion simplifies the management of a diverse fleet of Android, Windows, iOS, macOS",
+        image: "img330.png",
+        link: "",
+        anchor: "",
+        type: "Partner"
+    },
+    {
+        name: 'Impero Software',
+        text:"",
+        description: "Impero software is meticulously crafted to provide you with centralized control while maintaining the flexibility to adapt to the unique demands of your business. The integration of Intel® AMT within the Connect Portal, users can oversee Intel vPro® devices right down to the BIOS level, regardless of their location. These management capabilities encompass functions.",
+        image: "img331.png",
+        link: "",
+        anchor: "",
+        type: "Partner"
+    },
+]
+
+// accelerated by intel 
+
+let accelerated_by_intel_data = [
+    {
+        name: 'IBM Cloud',
+        text:"Titanium Partner",
+        description: "IBM is a leading global hybrid cloud and AI, and business services provider, helping clients in more than 175 countries capitalize on insights from their data, streamline business processes, reduce costs and gain the competitive edge in their industries. Nearly 3,800 government and corporate entities in critical infrastructure areas such as financial services, telecommunications.",
+        image: "img332.png",
+        link: "",
+        anchor: "",
+        type: "Partner"
+    },
+    {
+        name: 'Intelligent Security Systems (ISS)',
+        text:"Titanium Partner",
+        description: "Intelligent Security Systems, ISS, is a world leading developer of security surveillance and control systems through audio and video capture, recording, and analysis of patterns, of video images and digital data transmission. ISS provides a comprehensive line of digital video surveillance solutions that are at the forefront of security.",
+        image: "img333.png",
+        link: "",
+        anchor: "",
+        type: "Partner"
+    },
+    {
+        name: 'ISSD Electronics',
+        text:"Gold Partner",
+        description: "ISSD is working on system design and integration, digital signal processing, software development and electronic design. ISSD provides solutions for Intelligent Transportation Systems, Traffic Management and Enforcement Systems. The company delivers A to Z Smart Traffic Solution Applications to the Cities Worldwide.",
+        image: "img334.png",
+        link: "",
+        anchor: "",
+        type: "Partner"
+    },
+    {
+        name: 'BAUNE ECOSYSTEM INC.',
+        text:"Gold Partner",
+        description: "Baüne® is a solutions integrator of smart ecosystems, pioneering with a combination of emerging technologies such as edge computing, physical web, internet of things, remote management system, big data, mobile payments, artificial intelligence and blockchain. We have completed projects in the Automation and Control area and successful execution.",
+        image: "img335.png",
+        link: "",
+        anchor: "",
+        type: "Partner"
+    },
+    {
+        name: "Quantization of ML-Models and Performance-Boost in Pre-Processing",
+        description: "Real-time and streaming applications are becoming increasingly popular due to their enormous, cross-domain application potential for generating company-wide added value. Increasing core requirements are primarily defined by the pursuit of ever lower latencies and computing times, while at the.",
+        image: "img336.png",
+        link: "",
+        anchor: "scieneers GmbH",
+        type: "Offering"
+    },
+    {
+        name: "Numenta Platform for Intelligent Computing (NuPIC™)",
+        description: "NuPIC™ is an AI software platform that draws on Numenta's decades of neuroscience research to enable large language model (LLM) deployments on CPUs with simplicity, scalability, and speed. NuPIC comes with a highly optimized inference server and production-ready pretrained mode.",
+        image: "img337.png",
+        link: "",
+        anchor: " Numenta",
+        type: "Offering"
+    },
+    {
+        name: "Eigen Machine Vision",
+        description: "Eigen Machine Vision is a suite of software tools and engineering services that helps manufacturers in both discrete and continuous manufacturing unlock the value of image data to better manage product and process variability across their machines, lines, and factories. It features Intel®-powered, OpenVINO™- optimized Edge.",
+        image: "img338.png",
+        link: "",
+        anchor: "Eigen Innovations Inc.",
+        type: "Offering"
+    },
+    {
+        name: "AI-Traffic-Deep",
+        description: "AI-Traffic DEEP is a video-analysis software that leverages deep neural networks for monitoring vehicles and pedestrians within designated areas. Its capabilities extend to recognizing vehicle types, colors, and average speeds, and it is adept at sending notifications based on these observations. The software is designed to enhance traffic management and safety.",
+        image: "img339.png",
+        link: "",
+        anchor: "A.I.Tech Srl",
+        type: "Offering"
+    },
+    {
+        name: "AI-PPE",
+        description: "AI-PPE is a video analysis application powered by deep neural networks, designed to identify individuals wearing personal protective equipment (PPE) such as helmets, vests, or both within a designated area. It serves dual purposes: as an access control mechanism in work areas requiring specific PPE for entry, and as a continuous surveillance.",
+        image: "img339.png",
+        link: "",
+        anchor: "A.I.Tech Srl",
+        type: "Offering"
+    },
+    {
+        name: "AI-INTRUSION",
+        description: "AI-INTRUSION is a video analytics app based on the most advanced artificial intelligence and computer vision algorithms. It enables intrusion detection, in terms of access and/or persistence in a sterile area (sterile zone detection), virtual line crossing (crossing line or tripwire detection) and multiple virtual line crossing. In addition to the real size of the object.",
+        image: "img339.png",
+        link: "",
+        anchor: "A.I.Tech Srl",
+        type: "Offering"
+    },
+    {
+        name: "AI-FIRE-PLUS",
+        description: "AI-FIRE-PLUS is an advanced video-analysis software developed to enhance fire detection in environments where traditional fire and smoke alarms may not be effective. Utilizing sophisticated computer vision techniques and deep neural networks, it is capable of identifying flames and smoke across vast or hard-to-monitor areas such as large indoor spaces, forests.",
+        image: "img340.png",
+        link: "",
+        anchor: "A.I.Tech Srl",
+        type: "Offering"
+    },
+    {
+        name: "Chooch Ready Now Application for PPE Detection",
+        description: "Chooch, an award winning leader in computer vision, offers the flexibility of custom and Ready Now applications that solve mission critical use cases. The Chooch Ready Now Application for PPE Detection, analyzes streaming video to determine if employees are wearing hard hats, high visibility vests, safety goggles.",
+        image: "img341.png",
+        link: "",
+        anchor: "Chooch Intelligence Technologies Co.",
+        type: "Offering"
+    },
+]
+
+// solution
+
+let solution_data = [
+    {
+        name: "Juniper RAN Intelligent Controller (RIC)",
+        description: "The Juniper RAN Intelligent Controller (RIC) brings intelligence, agility, and programmability to the radio access network (RAN). It supports third-party applications that can improve service experience, reduce infrastructure and operational costs, and deliver new business models. The Juniper RIC platform is based on a cloud-native",
+        image: "img342  .png",
+        link: "",
+        anchor: "Marconi Wireless",
+        type: "Offering"
+    },
+    {
+        name: "Acromove Private 5G",
+        description: "Acromove Private 5G Network In-a-Box, addresses crucial challenges faced by the broadcast industry when using traditional wireless technologies and public 5G networks for live event broadcasting. Traditionally, broadcast relied on point-to-point COFDM digital technologies, which lacked the flexibility of cellular networks, resulting in limited",
+        image: "img343.png",
+        link: "",
+        anchor: "Acromove Inc",
+        type: "Offering"
+    },
+    {
+        name: '"BxBFFT" Fast Fourier Transform for FPGAs',
+        description: 'The "BxBFFT" Fast Fourier Transform is a hardware FFT for FPGAs or ASICs. It has features not supported by the Altera® Parallel FFT or other FFTs, including Real FFTs and Non-Power-of-2 FFTs. It supports larger FFT sizes and higher levels of parallelism at higher clock rates than other FFTs, making it uniquely capable of supporting.',
+        image: "img344.png",
+        link: "",
+        anchor: "Bit by Bit Signal Processing LLC",
+        type: "Offering"
+    },
+    {
+        name: "Pathr.ai Spatial Intelligence",
+        description: "Pathr.ai delivers a retail Spatial Intelligence solution that captures customer and staff movement leveraging existing cameras and data sources. As online retailers have unprecedented visibility into their shopper behavior, brick-and-mortar retailers are at a disadvantage when it comes to acquiring in-store insights surrounding their customer behavior.",
+        image: "img345.png",
+        link: "",
+        anchor: "Pathr.ai",
+        type: "Offering"
+    },
+    {
+        name: "TensorGo Hyperspace Platform",
+        description: "1. Description The TensorGo Hyperspace Platform is a highly secure, comprehensive AI solution, designed to streamline AI adoption for enterprises. It provides a modular, scalable, and flexible infrastructure for deploying, managing, and optimizing AI models across various environments, including cloud, on-premises.",
+        image: "img346.png",
+        link: "",
+        anchor: "TensorGo Software Private Ltd",
+        type: "Offering"
+    },
+    {
+        name: "An AI Smart Vision Solution for Factory Worker Safety [7-18-2023 1:50 PM]",
+        description: "OSHA reported that in 2021, an average of 14 fatal occupational injuries occurred each day. Despite the prevalence of slip hazards, dangerous vehicles, and limited human supervision, factories have few tools to manage safety. In response, Aotu and Intel® created an intelligent video solution.",
+        image: "img347.png",
+        link: "",
+        anchor: "Aotu.ai",
+        type: "Offering"
+    },
+    {
+        name: "Ingram Micro Internet of things",
+        description: "ngram Micro is helping businesses realize the promise of IoTAs organizations accelerate their adoption of digital technology to gain insights from their data, IoT opportunities become nearly endless while the underpinning technology needed to deliver these solutions continues to evolve. It can be overwhelming.",
+        image: "img348.png",
+        link: "",
+        anchor: "Ingram Micro Inc Canada",
+        type: "Offering"
+    },
+    {
+        name: "BenQ RP04 Series Education Interactive Display.",
+        description: "BenQ education interactive displays are designed to help teaching, presentation and collaboration. It allows for extended, seamless collaboration, and stimulating innovative ideas and is perfect for fostering collaboration then turning students creativities from abstract to real. RP04 series is powerful in every way.",
+        image: "img349.png",
+        link: "",
+        anchor: "BenQ Corporation",
+        type: "Offering"
+    },
+    {
+        name: "RobotHPC™ Robotics HPC Edge Platform",
+        description: "The RobotHPC™ robotics HPC edge platform enables high performance, computationally intensive processing in small and low-power form-factors. Examples include multi-thousand image and speech recognition and failure prediction in mobile robots, drones, automatic vehicles, emergency and maintenance vehicles.",
+        image: "img350.png",
+        link: "",
+        anchor: "Signalogic, Inc.",
+        type: "Offering"
+    },
+    {
+        name: "AyeFace",
+        description: "A biometric payment-enabled SaaS that provides in-store AI agents that captures customers' face as a unique identifier to be used as both loyalty and payment IDs. This automation streamlines the order & pay journey without the need for a third-party device (scanner/card terminal/mobile phone), while allowing AI agents to recognize the encrypted faces.",
+        image: "img351.png",
+        link: "",
+        anchor: " Aye",
+        type: "Offering"
+    }, {
+        name: "Quantization of ML-Models and Performance-Boost in Pre-Processing",
+        description: "Real-time and streaming applications are becoming increasingly popular due to their enormous, cross-domain application potential for generating company-wide added value. Increasing core requirements are primarily defined by the pursuit of ever lower latencies and computing times.",
+        image: "img352.png",
+        link: "",
+        anchor: "scieneers GmbH",
+        type: "Offering"
+    },
+    {
+        name: "Noname Security Confidential Computing on GCP",
+        description: "Leverage the Intel® Trust Authority to attest that the most recent innovations from Intel® are properly configured on GCP instances with Intel® SGX processors for container-level Anjuna seaglass enclaves. Remote Attestation adds the ability to verify that the application.",
+        image: "img353.png",
+        link: "",
+        anchor: "Noname Security",
+        type: "Offering"
+    },
+]
+
 function initializePage() {
     let originalRecords, currentRecords, page = 1;
     let pageId;
@@ -3459,6 +3851,34 @@ function initializePage() {
         pageId = 'VK_card_parent19';
         isFPGAServicePage = false;
         edge_accelerator = false
+        cloudetv = false;
+        showcasesearch = false;
+    } else if (window.location.pathname.includes('d_ai-retail.html')) {
+        originalRecords = ai_retails_data   ;
+        pageId = 'VK_card_parent20';
+        isFPGAServicePage = true;
+        edge_accelerator = false
+        cloudetv = false;
+        showcasesearch = false;
+    } else if (window.location.pathname.includes('d_vpro.html')) {
+        originalRecords = vipro_data;
+        pageId = 'VK_card_parent21';
+        isFPGAServicePage = false;
+        edge_accelerator = false;
+        cloudetv = false;
+        showcasesearch = true;
+    } else if (window.location.pathname.includes('d_accelerated-by-intel.html')) {
+        originalRecords = accelerated_by_intel_data;
+        pageId = 'VK_card_parent22';
+        isFPGAServicePage = false;
+        edge_accelerator = false;
+        cloudetv = false;
+        showcasesearch = true;
+    } else if (window.location.pathname.includes('d_solution.html')) {
+        originalRecords = solution_data;
+        pageId = 'VK_card_parent23';
+        isFPGAServicePage = false;
+        edge_accelerator = false;
         cloudetv = false;
         showcasesearch = false;
     } else {
@@ -7898,4 +8318,75 @@ if (D_knowecosystem) {
     showMoreBtn.addEventListener('click', toggleItems10);
 }
 
+// ai retail
+
+let D_type = document.getElementById('D_type');
+const types = [
+    'Cloud & Comms Service Provider', 'FPGA Design Services','Independent Software Vendor','Manufacturer','Original Equipment Manufacturer (OEM)','Service Integrator','Solution Provider'
+];
+
+if (D_type) {
+    for (let i = 0; i < types.length; i++) {
+        D_type.innerHTML += `
+        <div class="VK_check_box_filter mt-2">
+                                                    <input type="checkbox" class="me-2" id="VK_filter_checkbox"
+                                                        onclick="content_type()"><span>${types[i]}
+                                                        (100)</span>
+                                                </div>`;
+    }
+}
+
+// ai retail
+
+let D_asset = document.getElementById('D_asset');
+const asset = [
+    'Partners'
+];
+
+if (D_asset) {
+    for (let i = 0; i < asset.length; i++) {
+        D_asset.innerHTML += `
+            <div class="VK_check_box_filter mt-2">
+                                                    <input type="checkbox" class="me-2" id="VK_filter_checkbox"
+                                                        onclick="content_type()"><span>${asset[i]}
+                                                        (100)</span>
+                                                </div>`;
+    }
+}
+
+// ai retail
+
+let D_type1 = document.getElementById('D_type1');
+const types1 = [
+    'Manufacturer'
+];
+
+if (D_type1) {
+    for (let i = 0; i < types1.length; i++) {
+        D_type1.innerHTML += `
+        <div class="VK_check_box_filter mt-2">
+                                                    <input type="checkbox" class="me-2" id="VK_filter_checkbox"
+                                                        onclick="content_type()"><span>${types1[i]}
+                                                        (100)</span>
+                                                </div>`;
+    }
+}
+
+// ai retail
+
+let D_asset1 = document.getElementById('D_asset1');
+const asset1 = [
+    'Partners','Offerings'
+];
+
+if (D_asset1) {
+    for (let i = 0; i < asset1.length; i++) {
+        D_asset1.innerHTML += `
+            <div class="VK_check_box_filter mt-2">
+                                                    <input type="checkbox" class="me-2" id="VK_filter_checkbox"
+                                                        onclick="content_type()"><span>${asset1[i]}
+                                                        (100)</span>
+                                                </div>`;
+    }
+}
 
