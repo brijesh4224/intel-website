@@ -40,6 +40,12 @@
             }
         }
 
+        @media (max-width:425px) {
+            .s_sticky-container1 {
+                position: static;
+            }
+        }
+
         .card {
             border: none;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -61,30 +67,30 @@
 
 
         .pagination {
-    display: flex;
-    align-items: center;
-}
+            display: flex;
+            align-items: center;
+        }
 
-.pagination .page-item {
-    margin: 0 5px;
-}
+        .pagination .page-item {
+            margin: 0 5px;
+        }
 
-.pagination .page-link {
-    border: none;
-    background: none;
-    color: #0068B5;
-    font-weight: bold;
-}
+        .pagination .page-link {
+            border: none;
+            background: none;
+            color: #0068B5;
+            font-weight: bold;
+        }
 
-.pagination .page-item.active .page-link {
-    background-color: #0068B5;
-    color: white;
-    border-radius: 5px;
-}
+        .pagination .page-item.active .page-link {
+            background-color: #0068B5;
+            color: white;
+            border-radius: 5px;
+        }
 
-#pagination-numbers {
-    display: flex;
-}
+        #pagination-numbers {
+            display: flex;
+        }
     </style>
 </head>
 
@@ -161,21 +167,21 @@
                 <!-- Cards will be inserted here dynamically -->
             </div>
             <!-- <nav aria-label="Page navigation" class="mt-5"> -->
-                <ul class="pagination justify-content-center align-items-center" style="padding-bottom: 60px;">
-                    <li class="page-item">
-                        <a class="page-link" href="#" aria-label="Previous">
-                            <i class="fa-solid fa-chevron-left"></i>
-                        </a>
-                    </li>
-                    <li id="pagination-numbers">
-                        <!-- Pagination numbers will be inserted here dynamically -->
-                    </li>
-                    <li class="page-item">
-                        <a class="page-link" href="#" aria-label="Next">
-                            <i class="fa-solid fa-chevron-right"></i>
-                        </a>
-                    </li>
-                </ul>
+            <ul class="pagination justify-content-center align-items-center" style="padding-bottom: 60px;">
+                <li class="page-item">
+                    <a class="page-link" href="#" aria-label="Previous">
+                        <i class="fa-solid fa-chevron-left"></i>
+                    </a>
+                </li>
+                <li id="pagination-numbers">
+                    <!-- Pagination numbers will be inserted here dynamically -->
+                </li>
+                <li class="page-item">
+                    <a class="page-link" href="#" aria-label="Next">
+                        <i class="fa-solid fa-chevron-right"></i>
+                    </a>
+                </li>
+            </ul>
             <!-- </nav> -->
         </div>
 
@@ -273,43 +279,43 @@
         }
 
         function renderPagination() {
-    const paginationNumbers = document.getElementById('pagination-numbers');
-    paginationNumbers.innerHTML = "";
+            const paginationNumbers = document.getElementById('pagination-numbers');
+            paginationNumbers.innerHTML = "";
 
-    const totalPages = Math.ceil(cardsData.length / cardsPerPage);
+            const totalPages = Math.ceil(cardsData.length / cardsPerPage);
 
-    for (let i = 1; i <= totalPages; i++) {
-        const li = document.createElement('li');
-        li.classList.add('page-item');
-        if (i === currentPage) {
-            li.classList.add('active');
-        }
-        li.innerHTML = `<a class="page-link" href="#" data-page="${i}">${i}</a>`;
-        paginationNumbers.appendChild(li);
-    }
-
-    const prevButton = document.querySelector('.pagination .page-item:first-child');
-    const nextButton = document.querySelector('.pagination .page-item:last-child');
-
-    prevButton.classList.toggle('disabled', currentPage === 1);
-    nextButton.classList.toggle('disabled', currentPage === totalPages);
-
-    document.querySelector('.pagination').addEventListener('click', (e) => {
-        e.preventDefault();
-        if (e.target.tagName === 'A') {
-            const page = parseInt(e.target.dataset.page);
-            if (page) {
-                currentPage = page;
-            } else if (e.target.getAttribute('aria-label') === 'Previous' && currentPage > 1) {
-                currentPage--;
-            } else if (e.target.getAttribute('aria-label') === 'Next' && currentPage < totalPages) {
-                currentPage++;
+            for (let i = 1; i <= totalPages; i++) {
+                const li = document.createElement('li');
+                li.classList.add('page-item');
+                if (i === currentPage) {
+                    li.classList.add('active');
+                }
+                li.innerHTML = `<a class="page-link" href="#" data-page="${i}">${i}</a>`;
+                paginationNumbers.appendChild(li);
             }
-            renderCards();
-            renderPagination();
+
+            const prevButton = document.querySelector('.pagination .page-item:first-child');
+            const nextButton = document.querySelector('.pagination .page-item:last-child');
+
+            prevButton.classList.toggle('disabled', currentPage === 1);
+            nextButton.classList.toggle('disabled', currentPage === totalPages);
+
+            document.querySelector('.pagination').addEventListener('click', (e) => {
+                e.preventDefault();
+                if (e.target.tagName === 'A') {
+                    const page = parseInt(e.target.dataset.page);
+                    if (page) {
+                        currentPage = page;
+                    } else if (e.target.getAttribute('aria-label') === 'Previous' && currentPage > 1) {
+                        currentPage--;
+                    } else if (e.target.getAttribute('aria-label') === 'Next' && currentPage < totalPages) {
+                        currentPage++;
+                    }
+                    renderCards();
+                    renderPagination();
+                }
+            });
         }
-    });
-}
         function init() {
             renderCards();
             renderPagination();
