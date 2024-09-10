@@ -239,26 +239,179 @@ productList.forEach(product => {
 });
 
 
-function V_show_more(name,id){
-  let ele = document.querySelectorAll(`.${name} .V_hide_col1`)
-  console.log(ele);
-  ele.forEach((el,index)=>{
-      if(index >= id){
-          el.classList.remove('d-none')
-      }
-  })
-  document.querySelector(`.${name} #V_show_btn`).classList.add('d-none')
-  document.querySelector(`.${name} #V_hide_btn`).classList.remove('d-none')
-}
+// function V_show_more(name,id){
+//   let ele = document.querySelectorAll(`.${name} .V_hide_col1`)
+//   console.log(ele);
+//   ele.forEach((el,index)=>{
+//       if(index >= id){
+//           el.classList.remove('d-none')
+//       }
+//   })
+//   document.querySelector(`.${name} #V_show_btn`).classList.add('d-none')
+//   document.querySelector(`.${name} #V_hide_btn`).classList.remove('d-none')
+// }
 
-function V_show_less(name,id){
-  let ele = document.querySelectorAll(`.${name} .V_hide_col1`)
-  console.log(ele);
-  ele.forEach((el,index)=>{
-      if(index >= id){
-          el.classList.add('d-none')
-      }
-  })
-  document.querySelector(`.${name} #V_show_btn`).classList.remove('d-none')
-  document.querySelector(`.${name} #V_hide_btn`).classList.add('d-none')
+// function V_show_less(name,id){
+//   let ele = document.querySelectorAll(`.${name} .V_hide_col1`)
+//   console.log(ele);
+//   ele.forEach((el,index)=>{
+//       if(index >= id){
+//           el.classList.add('d-none')
+//       }
+//   })
+//   document.querySelector(`.${name} #V_show_btn`).classList.remove('d-none')
+//   document.querySelector(`.${name} #V_hide_btn`).classList.add('d-none')
+// }
+
+
+
+
+
+
+function showchoose(x) {
+  var value = document.getElementsByClassName('hide');
+if (x == 1) {
+  for (var j = 0; j < value.length; j++) {
+      value[j].classList.remove('d-none');
+  }
+  var data = document.getElementById('showmore');
+  data.classList.add('d-none');
+  var data1 = document.getElementById('showless');
+  data1.classList.remove('d-none')
+}
+if (x == 2) {
+  for (var j = 0; j < value.length; j++) {
+      value[j].classList.add('d-none');
+  }
+  var data = document.getElementById('showmore');
+  data.classList.remove('d-none');
+  var data1 = document.getElementById('showless');
+  data1.classList.add('d-none')
+}
+if (x == 3) {
+  for (var j = 0; j < value.length; j++) {
+      value[j].classList.remove('d-none');
+  }
+  var data = document.getElementById('showmore2');
+  data.classList.add('d-none');
+  var data1 = document.getElementById('showless2');
+  data1.classList.remove('d-none')
+}
+if (x == 4) {
+  for (var j = 0; j < value.length; j++) {
+      value[j].classList.add('d-none');
+  }
+  var data = document.getElementById('showmore2');
+  data.classList.remove('d-none');
+  var data1 = document.getElementById('showless2');
+  data1.classList.add('d-none')
+}
+if (x == 5) {
+  for (var j = 0; j < value.length; j++) {
+      value[j].classList.remove('d-none');
+  }
+  var data = document.getElementById('showmore3');
+  data.classList.add('d-none');
+  var data1 = document.getElementById('showless3');
+  data1.classList.remove('d-none')
+}
+if (x == 6) {
+  for (var j = 0; j < value.length; j++) {
+      value[j].classList.add('d-none');
+  }
+  var data = document.getElementById('showmore3');
+  data.classList.remove('d-none');
+  var data1 = document.getElementById('showless3');
+  data1.classList.add('d-none')
+}
+if (x == 7) {
+  for (var j = 0; j < value.length; j++) {
+      value[j].classList.remove('d-none');
+  }
+  var data = document.getElementById('showmore4');
+  data.classList.add('d-none');
+  var data1 = document.getElementById('showless4');
+  data1.classList.remove('d-none')
+}
+if (x == 8) {
+  for (var j = 0; j < value.length; j++) {
+      value[j].classList.add('d-none');
+  }
+  var data = document.getElementById('showmore4');
+  data.classList.remove('d-none');
+  var data1 = document.getElementById('showless4');
+  data1.classList.add('d-none')
+}
+if (x == 9) {
+  for (var j = 0; j < value.length; j++) {
+      value[j].classList.remove('d-none');
+  }
+  var data = document.getElementById('showmore5');
+  data.classList.add('d-none');
+  var data1 = document.getElementById('showless5');
+  data1.classList.remove('d-none')
+}
+if (x == 10) {
+  for (var j = 0; j < value.length; j++) {
+      value[j].classList.add('d-none');
+  }
+  var data = document.getElementById('showmore5');
+  data.classList.remove('d-none');
+  var data1 = document.getElementById('showless5');
+  data1.classList.add('d-none')
+}
+if (x == 11) {
+  for (var j = 0; j < value.length; j++) {
+      value[j].classList.remove('d-none');
+  }
+  var data = document.getElementById('showmore6');
+  data.classList.add('d-none');
+  var data1 = document.getElementById('showless6');
+  data1.classList.remove('d-none')
+}
+if (x == 12) {
+  for (var j = 0; j < value.length; j++) {
+      value[j].classList.add('d-none');
+  }
+  var data = document.getElementById('showmore6');
+  data.classList.remove('d-none');
+  var data1 = document.getElementById('showless6');
+  data1.classList.add('d-none')
+}
+if (x == 13) {
+  for (var j = 0; j < value.length; j++) {
+      value[j].classList.remove('d-none');
+  }
+  var data = document.getElementById('showmore7');
+  data.classList.add('d-none');
+  var data1 = document.getElementById('showless7');
+  data1.classList.remove('d-none')
+}
+if (x == 14) {
+  for (var j = 0; j < value.length; j++) {
+      value[j].classList.add('d-none');
+  }
+  var data = document.getElementById('showmore7');
+  data.classList.remove('d-none');
+  var data1 = document.getElementById('showless7');
+  data1.classList.add('d-none')
+}
+if (x == 15) {
+  for (var j = 0; j < value.length; j++) {
+      value[j].classList.remove('d-none');
+  }
+  var data = document.getElementById('showmore8');
+  data.classList.add('d-none');
+  var data1 = document.getElementById('showless8');
+  data1.classList.remove('d-none')
+}
+if (x == 16) {
+  for (var j = 0; j < value.length; j++) {
+      value[j].classList.add('d-none');
+  }
+  var data = document.getElementById('showmore8');
+  data.classList.remove('d-none');
+  var data1 = document.getElementById('showless8');
+  data1.classList.add('d-none')
+}
 }
