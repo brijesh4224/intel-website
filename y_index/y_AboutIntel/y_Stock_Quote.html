@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Intel</title>
+    <link rel="stylesheet" href="../../css/yatri1.css">
+    <link rel="stylesheet" href="../../css/S_investors.css">
+    <link rel="stylesheet" href="../../css/all.min.css">
+    <link rel="stylesheet" href="/css/owl.carousel.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link href="https://fonts.cdnfonts.com/css/intel-clear" rel="stylesheet">
+    <style>
+        * {
+            font-family: 'Intel Clear', sans-serif;
+        }
+
+        .s_sticky-container1 {
+            top: 104px;
+            left: 0;
+            width: 100%;
+            z-index: 999;
+            position: sticky;
+        }
+
+        #stockChart {
+            height: 400px !important;
+        }
+
+        #timeRangeButtons {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        button {
+            margin: 0 5px;
+            padding: 12px 35px;
+            background-color: #F8F8F8;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+            color: white;
+        }
+
+        button.active {
+            background-color: #0056b3;
+            color: white;
+        }
+
+        @media (max-width:768px) {
+            .s_sticky-container1 {
+                top: 80px;
+                left: 0;
+            }
+
+            .s_nav_tabs {
+                justify-content: start;
+            }
+
+            #stockChart {
+                max-height: 300px;
+                /* Adjust height for smaller screens */
+            }
+        }
+
+        @media (max-width:425px) {
+            .s_sticky-container1 {
+                position: static;
+            }
+
+            .s_btn2 button {
+                width: 100%;
+            }
+
+            #stockChart {
+                max-height: 200px;
+                /* Adjust further for very small screens */
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="header"></div>
+
+    <div style="margin-top: 90px;"> </div>
+    <div class="s_bg_img6">
+        <div class="container">
+            <h2 class="s_hadding">Quote</h2>
+        </div>
+    </div>
+    <div></div>
+    <div style="background-color: #0068B5; overflow-x: auto;" class="s_sticky-container1">
+        <ul class="s_nav_tabs">
+            <li><a href="./y_Stock_Quote.html">Quote</a></li>
+            <li><a href="">Charts</a></li>
+            <li><a href="">Historical Data</a></li>
+            <li><a href="">Stock Splits</a></li>
+            <li><a href="">Dividends & Buybacks</a></li>
+            <li><a href="">Mobileye Acquisition</a></li>
+            <li><a href="">FAQ</a></li>
+        </ul>
+    </div>
+
+    <!-- Stock Quote -->
+
+    <section style="padding: 100px 0;">
+        <div class="y_container">
+            <div class="row" style="position: static; margin: auto; width: 100%; color: black;">
+                <div class="col-md-2"></div>
+                <div class="col-md-8 col-12">
+                    <h1 class="fw-bold" style="margin-bottom: 40px;">Stock Quote</h1>
+                    <h5 class="fw-bold m-0">Intel Corporation</h5>
+                    <p>Nasdaq Global Select: INTC</p>
+                </div>
+            </div>
+
+            <div>
+                <canvas id="stockChart"></canvas>
+                <div id="timeRangeButtons">
+                    <button onclick="updateChartRange('1M')">1M</button>
+                    <button onclick="updateChartRange('3M')">3M</button>
+                    <button onclick="updateChartRange('6M')">6M</button>
+                    <button onclick="updateChartRange('1Y')">1Y</button>
+                    <button onclick="updateChartRange('2Y')">2Y</button>
+                    <button onclick="updateChartRange('5Y')" class="active">5Y</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Detailed Information -->
+    <section>
+        <div style="padding-top: 50px;">
+            <div class="container">
+                <div class="row" style="position: static; margin: auto; width: 100%; color: black;">
+                    <div class="col-12">
+                        <h1>Detailed Information</h1>
+                    </div>
+                    <div class="col-12 d-md-flex d-block justify-content-between ">
+                        <p><b>Today</b></p>
+                        <p><b>September 9, 2024 4:00 PM EDT</b></p>
+                    </div>
+                </div>
+                <div class="row g-5 mb-5" style="position: static; margin: auto; width: 100%; color: black;">
+                    <div class="col-lg-4 col-md-6 col-12 m-0">
+                        <div style="border-bottom: 1px solid #DDDDDD;" class="d-flex justify-content-between">
+                            <p>Last</p>
+                            <p>19.07</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-12 m-0 ">
+                        <div style="border-bottom: 1px solid #DDDDDD;" class="d-flex justify-content-between my-2">
+                            <p>Volume</p>
+                            <p>64.24m</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-12 m-0 ">
+                        <div style="border-bottom: 1px solid #DDDDDD;" class="d-flex justify-content-between my-2">
+                            <p>$ Chg</p>
+                            <p style="color: #008800;">0.18</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-12 m-0 ">
+                        <div style="border-bottom: 1px solid #DDDDDD;" class="d-flex justify-content-between my-2">
+                            <p>% Chg</p>
+                            <p>0.95%</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-12 m-0 ">
+                        <div style="border-bottom: 1px solid #DDDDDD;" class="d-flex justify-content-between my-2">
+                            <p>Open</p>
+                            <p>19.00</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-12 m-0 ">
+                        <div style="border-bottom: 1px solid #DDDDDD;" class="d-flex justify-content-between my-2">
+                            <p>Prev. Close</p>
+                            <p>18.89</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-12 m-0 ">
+                        <div style="border-bottom: 1px solid #DDDDDD;" class="d-flex justify-content-between my-2">
+                            <p>High</p>
+                            <p>19.54</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-12 m-0 ">
+                        <div style="border-bottom: 1px solid #DDDDDD;" class="d-flex justify-content-between my-2">
+                            <p>Low</p>
+                            <p>18.95</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-12 m-0 ">
+                        <div style="border-bottom: 1px solid #DDDDDD;" class="d-flex justify-content-between my-2">
+                            <p>Bid</p>
+                            <p>18.98</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-12 m-0 ">
+                        <div style="border-bottom: 1px solid #DDDDDD;" class="d-flex justify-content-between my-2">
+                            <p>Bid Size</p>
+                            <p>100</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-12 m-0 ">
+                        <div style="border-bottom: 1px solid #DDDDDD;" class="d-flex justify-content-between my-2">
+                            <p>Ask</p>
+                            <p>19.00</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-12 m-0 ">
+                        <div style="border-bottom: 1px solid #DDDDDD;" class="d-flex justify-content-between my-2">
+                            <p>Ask Size</p>
+                            <p>1000</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div style="padding-top: 50px;">
+            <div class="container">
+                <div class="row" style="position: static; margin: auto; width: 100%; color: black;">
+                    <div class="col-12 d-md-flex d-block justify-content-between ">
+                        <p><b>After Hours</b></p>
+                        <p><b>September 9, 2024 7:59 PM EDT</b></p>
+                    </div>
+                </div>
+                <div class="row g-5 mb-5" style="position: static; margin: auto; width: 100%; color: black;">
+                    <div class="col-lg-4 col-md-6 col-12 m-0">
+                        <div style="border-bottom: 1px solid #DDDDDD;" class="d-flex justify-content-between">
+                            <p>Price</p>
+                            <p>$ 19.12</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-12 m-0 ">
+                        <div style="border-bottom: 1px solid #DDDDDD;" class="d-flex justify-content-between my-2">
+                            <p>Change</p>
+                            <p>0.05</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-12 m-0 ">
+                        <div style="border-bottom: 1px solid #DDDDDD;" class="d-flex justify-content-between my-2">
+                            <p>$ Chg</p>
+                            <p>0.26%</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-12 m-0 ">
+                        <div style="border-bottom: 1px solid #DDDDDD;" class="d-flex justify-content-between my-2">
+                            <p>Volume</p>
+                            <p>2,181,561</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div style="padding-top: 50px;">
+            <div class="container">
+                <div class="row" style="position: static; margin: auto; width: 100%; color: black;">
+                    <div class="col-12 ">
+                        <p><b>Dividend</b></p>
+                    </div>
+                </div>
+                <div class="row g-5 mb-5" style="position: static; margin: auto; width: 100%; color: black;">
+                    <div class="col-lg-4 col-md-6 col-12 m-0">
+                        <div style="border-bottom: 1px solid #DDDDDD;" class="d-flex justify-content-between">
+                            <p>Dividend</p>
+                            <p>0.125 USD</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-12 m-0 ">
+                        <div style="border-bottom: 1px solid #DDDDDD;" class="d-flex justify-content-between my-2">
+                            <p>Yield</p>
+                            <p>2.622</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-12 m-0 ">
+                        <div style="border-bottom: 1px solid #DDDDDD;" class="d-flex justify-content-between my-2">
+                            <p>Div. Pay Date</p>
+                            <p>2024-09-01</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-12 m-0 ">
+                        <div style="border-bottom: 1px solid #DDDDDD;" class="d-flex justify-content-between my-2">
+                            <p>Ex-Div Date</p>
+                            <p>2024-08-07</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-12 m-0 ">
+                        <div style="border-bottom: 1px solid #DDDDDD;" class="d-flex justify-content-between my-2">
+                            <p>Div. Freq.</p>
+                            <p>Q</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div style="padding-top: 50px;">
+            <div class="container">
+                <div class="row" style="position: static; margin: auto; width: 100%; color: black;">
+                    <div class="col-12 ">
+                        <p><b>Share Information</b></p>
+                    </div>
+                </div>
+                <div class="row g-5 mb-5" style="position: static; margin: auto; width: 100%; color: black;">
+                    <div class="col-lg-4 col-md-6 col-12 m-0">
+                        <div style="border-bottom: 1px solid #DDDDDD;" class="d-flex justify-content-between">
+                            <p>Year High</p>
+                            <p>51.28</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-12 m-0 ">
+                        <div style="border-bottom: 1px solid #DDDDDD;" class="d-flex justify-content-between my-2">
+                            <p>Year Low</p>
+                            <p>18.64</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-12 m-0 ">
+                        <div style="border-bottom: 1px solid #DDDDDD;" class="d-flex justify-content-between my-2">
+                            <p>Exchange</p>
+                            <p>NGS</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-12 m-0 ">
+                        <div style="border-bottom: 1px solid #DDDDDD;" class="d-flex justify-content-between my-2">
+                            <p>Shares Out</p>
+                            <p>4.28b</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-12 m-0 ">
+                        <div style="border-bottom: 1px solid #DDDDDD;" class="d-flex justify-content-between my-2">
+                            <p>Market Cap</p>
+                            <p>81.54b</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-12 m-0 ">
+                        <div style="border-bottom: 1px solid #DDDDDD;" class="d-flex justify-content-between my-2">
+                            <p>EPS</p>
+                            <p>0.24</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-12 m-0 ">
+                        <div style="border-bottom: 1px solid #DDDDDD;" class="d-flex justify-content-between my-2">
+                            <p>PE Ratio</p>
+                            <p>82.84</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-12 m-0 ">
+                        <div style="border-bottom: 1px solid #DDDDDD;" class="d-flex justify-content-between my-2">
+                            <p>PB Ratio</p>
+                            <p>0.708</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-12 m-0 ">
+                        <div style="border-bottom: 1px solid #DDDDDD;" class="d-flex justify-content-between my-2">
+                            <p>VWAP</p>
+                            <p>19.16975</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- card -->
+    <div style="background-color: #F8F8F8;">
+        <div style="padding: 100px 0;">
+            <div class="y_container">
+                <div class="row" style="color: black !important; position: static; width: 100%; margin: 0 auto;">
+                    <div class="col-lg-1"></div>
+                    <div class="col-lg-5 col-md-6 col-12 p-4">
+                        <div style="background-color: white;">
+                            <div class="s_card_height1">
+                                <div class="s_div_height1">
+                                    <h3><a href="#">Interactive Stock Chart</a></h3>
+                                    <p>Customize the view of stock chart with the ability to show key indicators such as
+                                        Earnings, Dividends & Splits as well as filtering to view only Pre- and
+                                        Post-Market prices.</p>
+                                </div>
+                                <a href="#" class="s_btn2 mt-5"><button>View Chart</button></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-5 col-md-6 col-12 p-4">
+                        <div style="background-color: white;">
+                            <div class="s_card_height1">
+                                <div class="s_div_height1">
+                                    <h3><a href="#">Historical Data</a></h3>
+                                    <p>Filter stock price historical data by date with the ability to view Opens, Highs,
+                                        Lows, Closes, VWAPs, Volume % Change, Change, Trade Value and Trades.</p>
+                                </div>
+                                <a href="#" class="s_btn2 mt-5"><button>View Historical Data</button></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-1"></div>
+                    <div class="col-lg-1"></div>
+                    <div class="col-lg-5 col-md-6 col-12 p-4">
+                        <div style="background-color: white;">
+                            <div class="s_card_height1">
+                                <div class="s_div_height1">
+                                    <h3><a href="#">Stock Splits</a></h3>
+                                    <p>View stock splits and additional information on our company.</p>
+                                </div>
+                                <a href="#" class="s_btn2 mt-5"><button>View Stock Splits</button></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-5 col-md-6 col-12 p-4">
+                        <div style="background-color: white;">
+                            <div class="s_card_height1">
+                                <div class="s_div_height1">
+                                    <h3><a href="#">Dividends</a></h3>
+                                    <p>View scheduled upcoming and historical dividends by Date, Amount, Frequency,
+                                        Payment, Record and Announcement.</p>
+                                </div>
+                                <a href="#" class="s_btn2 mt-5"><button>View Dividends</button></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Have Mobileye Shares? -->
+
+    <div style="padding: 100px 0;">
+        <div class="y_container">
+            <div class="row" style="position: static; margin: auto; width: 100%; color: black;">
+                <div class="col-12 text-center">
+                    <h1 class="fw-bold" style="padding-bottom: 16px;"   >Have Mobileye Shares?</h1>
+                    <p style="padding-bottom: 20px;">Learn more about what Intel’s acquisition of Mobileye means for your shares.</p>
+                    <a href="#"><button class="s_btn" style="background-color: #0068B5; color: white;">Learn more</button></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--Frequently Asked Questions  -->
+    <div style="background-color: #022D51;">
+        <div style="padding: 100px 0;">
+            <div class="y_container">
+                <div class="row" style="position: static; margin: auto; width: 100%; ">
+                    <div class="col-12 text-center">
+                        <h1 class="fw-bold" style="padding-bottom: 16px;">Frequently Asked Questions</h1>
+                        <p style="padding-bottom: 20px;">Browse our commonly asked investor-related questions.</p>
+                        <a href="#"><button class="s_btn" >View FAQ</button></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="y-links">
+        <ul class="d-block d-md-flex justify-content-center">
+            <li>
+                <a href="#">
+                    <i class="fa-solid fa-envelope"></i>
+                    <span>Email Alerts</span>
+                </a>
+            </li>
+            <li>
+                <a href="#" target="_blank">
+                    <i class="fa-solid fa-id-badge"></i>
+                    <span>Tear Sheet</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="fa-solid fa-user-group"></i>
+                    <span>Contacts</span>
+                </a>
+            </li>
+            <li>
+                <a href="#" target="_blank">
+                    <i class="fa-solid fa-square-rss"></i>
+                    <span>RSS News Feed</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <div id="footer"></div>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script
+        src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns/dist/chartjs-adapter-date-fns.bundle.min.js"></script>
+    <script src="../../js/jquery-3.7.1.js"></script>
+    <script src="../../js/owl.carousel.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+    <script>
+        fetch('./y_intel_header.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('header').innerHTML = data;
+            });
+
+        fetch('../../y_index/y_footer.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('footer').innerHTML = data;
+            });
+    </script>
+    <script>
+        // Sample data (replace with your actual data)
+        const stockData = {
+            dates: [
+                '2020-01-01', '2020-07-01', '2021-01-01', '2021-07-01', '2022-01-01',
+                '2022-07-01', '2023-01-01', '2023-07-01', '2024-01-01', '2024-07-01'
+            ],
+            prices: [20, 22, 30, 28, 25, 24, 29, 21, 27, 30]
+        };
+
+        let myChart;
+
+        function createChart() {
+            const ctx = document.getElementById('stockChart').getContext('2d');
+            myChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: stockData.dates,
+                    datasets: [{
+                        label: 'INTC Stock Price',
+                        data: stockData.prices,
+                        borderColor: '#022D51',
+                        tension: 0.1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        x: {
+                            type: 'time',
+                            time: {
+                                unit: 'month'
+                            }
+                        },
+                        y: {
+                            beginAtZero: false
+                        }
+                    }
+                }
+            });
+        }
+
+        function updateChartRange(range) {
+            const endDate = new Date();
+            let startDate;
+
+            switch (range) {
+                case '1M':
+                    startDate = new Date(endDate.getFullYear(), endDate.getMonth() - 1, endDate.getDate());
+                    break;
+                case '3M':
+                    startDate = new Date(endDate.getFullYear(), endDate.getMonth() - 3, endDate.getDate());
+                    break;
+                case '6M':
+                    startDate = new Date(endDate.getFullYear(), endDate.getMonth() - 6, endDate.getDate());
+                    break;
+                case '1Y':
+                    startDate = new Date(endDate.getFullYear() - 1, endDate.getMonth(), endDate.getDate());
+                    break;
+                case '2Y':
+                    startDate = new Date(endDate.getFullYear() - 2, endDate.getMonth(), endDate.getDate());
+                    break;
+                case '5Y':
+                    startDate = new Date(endDate.getFullYear() - 5, endDate.getMonth(), endDate.getDate());
+                    break;
+            }
+
+            const filteredData = filterDataByDateRange(startDate, endDate);
+
+            myChart.data.labels = filteredData.dates;
+            myChart.data.datasets[0].data = filteredData.prices;
+            myChart.update();
+
+            // Update active button
+            document.querySelectorAll('#timeRangeButtons button').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            document.querySelector(`button[onclick="updateChartRange('${range}')"]`).classList.add('active');
+        }
+
+        function filterDataByDateRange(start, end) {
+            const filteredDates = [];
+            const filteredPrices = [];
+
+            for (let i = 0; i < stockData.dates.length; i++) {
+                const currentDate = new Date(stockData.dates[i]);
+                if (currentDate >= start && currentDate <= end) {
+                    filteredDates.push(stockData.dates[i]);
+                    filteredPrices.push(stockData.prices[i]);
+                }
+            }
+
+            return { dates: filteredDates, prices: filteredPrices };
+        }
+
+        // Initialize the chart when the page loads
+        document.addEventListener('DOMContentLoaded', function () {
+            createChart();
+            updateChartRange('5Y');  // Start with 5-year view
+        });
+    </script>
+</body>
+
+</html>

@@ -25,6 +25,31 @@
             position: sticky;
         }
 
+        .accordion-button {
+            color: white !important;
+            background-color: #0068B5 !important;
+            font-size: 2rem !important;
+            font-weight: bold;
+        }
+
+        .accordion-button::after {
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23ffffff'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e") !important;
+        }
+
+        .accordion-button:focus {
+            box-shadow: none !important;
+        }
+
+        .accordion-button:not(.collapsed) {
+            color: white !important;
+            background-color: #0068B5 !important;
+        }
+
+        .accordion-button:not(.collapsed)::after {
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23ffffff'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e") !important;
+            transform: rotate(-180deg);
+        }
+
         @media (max-width:768px) {
             .s_sticky-container1 {
                 top: 80px;
@@ -33,6 +58,12 @@
 
             .s_nav_tabs {
                 justify-content: start;
+            }
+        }
+
+        @media (max-width:425px) {
+            .s_sticky-container1 {
+                position: static;
             }
         }
     </style>
@@ -53,36 +84,23 @@
         <ul class="s_nav_tabs">
             <li><a href="./y_financial_info.html">Overview</a></li>
             <li><a href="./y_Financial_Results.html">Financial Results</a></li>
-            <li><a href="#">Balance Sheet</a></li>
-            <li><a href="#">Income Statement</a></li>
-            <li><a href="#">Cash Flow</a></li>
+            <li><a href="./y_Balance_Sheet.html">Balance Sheet</a></li>
+            <li><a href="./y_Income_Statement.html">Income Statement</a></li>
+            <li><a href="./y_Cash_Flow.html">Cash Flow</a></li>
         </ul>
     </div>
 
-<div style="margin: 60px 0;">
-    <div class="container">
-        <div class="row" style="position: static; margin: auto; width: 100%; color: black;">
-            <div class="col-md-2"></div>
-            <div class="col-md-8 col-12">
-                <div class="accordion" id="accordionExample">
-                    <div class="accordion-item">
-                      <h2 class="accordion-header">
-                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                         2024
-                        </button>
-                      </h2>
-                      <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
-                        <div class="accordion-body">
-                            
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+    <div style="margin: 60px 0;">
+        <div class="container">
+            <div class="row " style="position: static; margin: auto; width: 100%; color: black;">
+                <div class="col-md-2"></div>
+                <div class="col-md-8 col-12 " id="accordionContainer">
+                    <!-- Accordion will be inserted here -->
+                </div>
             </div>
         </div>
     </div>
-</div>
- 
+
     <div class="y-links">
         <ul class="d-block d-md-flex justify-content-center">
             <li>
@@ -132,6 +150,278 @@
             });
     </script>
 
+    <script>
+        const accordionData = [
+            {
+                year: "2024",
+                quarters: [
+                    {
+                        name: "Q2 2024",
+                        date: "Quarter Ended Jun 29, 2024",
+                        items: [
+                            { name: "Earnings Release", links: ["HTML", "PDF"] },
+                            { name: "Earnings Webcast", links: ["AUDIO"] },
+                            { name: "Earnings Presentation", links: ["PDF"] },
+                            { name: "Infographic", links: ["PDF"] },
+                            { name: "Prepared Remarks", links: ["PDF"] },
+                            { name: "10-Q", links: ["HTML", "PDF"] },
+                            { name: "XBRL", links: ["HTML", "XLS", "ZIP"] }
+                        ]
+                    },
+                    {
+                        name: "Q1 2024",
+                        date: "Quarter Ended Mar 30, 2024",
+                        items: [
+                            { name: "Earnings Release", links: ["HTML", "PDF"] },
+                            { name: "Earnings Webcast", links: ["AUDIO"] },
+                            { name: "Earnings Presentation", links: ["PDF"] },
+                            { name: "Infographic", links: ["PDF"] },
+                            { name: "Prepared Remarks", links: ["PDF"] },
+                            { name: "10-Q", links: ["HTML", "PDF"] },
+                            { name: "XBRL", links: ["HTML", "XLS", "ZIP"] }
+                        ]
+                    }
+                ]
+            },
+            {
+                year: "2023",
+                quarters: [
+                    {
+                        name: "FY 2023",
+                        date: "Fiscal Year Ended Dec 30, 2023",
+                        items: [
+                            { name: "Earnings Release", links: ["HTML", "PDF"] },
+                            { name: "Earnings Webcast", links: ["AUDIO"] },
+                            { name: "Earnings Presentation", links: ["PDF"] },
+                            { name: "Infographic", links: ["PDF"] },
+                            { name: "Prepared Remarks", links: ["PDF"] },
+                            { name: "10-Q", links: ["HTML", "PDF"] },
+                            { name: "XBRL", links: ["HTML", "XLS", "ZIP"] },
+                            { name: "2024 Proxy Statement", links: ["PDF"] },
+                            { name: "2023 Annual Report", links: ["PDF"] }
+                        ]
+                    },
+                    {
+                        name: "Q3 2023",
+                        date: "Quarter Ended Sep 30, 2023",
+                        items: [
+                            { name: "Earnings Release", links: ["HTML", "PDF"] },
+                            { name: "Earnings Webcast", links: ["AUDIO"] },
+                            { name: "Earnings Presentation", links: ["PDF"] },
+                            { name: "Infographic", links: ["PDF"] },
+                            { name: "Prepared Remarks", links: ["PDF"] },
+                            { name: "10-Q", links: ["HTML", "PDF"] },
+                            { name: "XBRL", links: ["HTML", "XLS", "ZIP"] }
+                        ]
+                    },
+                    {
+                        name: "Q2 2023",
+                        date: "Quarter Ended Jul 1, 2023",
+                        items: [
+                            { name: "Earnings Release", links: ["HTML", "PDF"] },
+                            { name: "Earnings Webcast", links: ["AUDIO"] },
+                            { name: "Earnings Presentation", links: ["PDF"] },
+                            { name: "Infographic", links: ["PDF"] },
+                            { name: "Prepared Remarks", links: ["PDF"] },
+                            { name: "10-Q", links: ["HTML", "PDF"] },
+                            { name: "XBRL", links: ["HTML", "XLS", "ZIP"] },
+                        ]
+                    },
+                    {
+                        name: "Q1 2023",
+                        date: "Quarter Ended Apr 1, 2023",
+                        items: [
+                            { name: "Earnings Release", links: ["HTML", "PDF"] },
+                            { name: "Earnings Webcast", links: ["AUDIO"] },
+                            { name: "Earnings Presentation", links: ["PDF"] },
+                            { name: "Infographic", links: ["PDF"] },
+                            { name: "Prepared Remarks", links: ["PDF"] },
+                            { name: "Segmentation Updates", links: ["PDF"] },
+                            { name: "10-Q", links: ["HTML", "PDF"] },
+                            { name: "XBRL", links: ["HTML", "XLS", "ZIP"] }
+                        ]
+                    },
+                ]
+            },
+            {
+                year: "2022",
+                quarters: [
+                    {
+                        name: "FY 2022",
+                        date: "Fiscal Year Ended Dec 31, 2022",
+                        image: "../../img/yatri_img/acco1.jpg",
+                        items: [
+                            { name: "Earnings Release", links: ["HTML", "PDF"] },
+                            { name: "Earnings Webcast", links: ["AUDIO"] },
+                            { name: "Earnings Presentation", links: ["PDF"] },
+                            { name: "Infographic", links: ["PDF"] },
+                            { name: "Prepared Remarks", links: ["PDF"] },
+                            { name: "10-Q", links: ["HTML", "PDF"] },
+                            { name: "XBRL", links: ["HTML", "XLS", "ZIP"] },
+                            { name: "2024 Proxy Statement", links: ["PDF"] },
+                            { name: "2023 Annual Report", links: ["PDF"] },
+                            { name: "Annual Report", links: ["PDF"] }
+                        ]
+                    },
+                    {
+                        name: "Q3 2022",
+                        date: "Quarter Ended Oct 1, 2022",
+                        items: [
+                            { name: "Earnings Release", links: ["HTML", "PDF"] },
+                            { name: "Earnings Webcast", links: ["AUDIO"] },
+                            { name: "Earnings Presentation", links: ["PDF"] },
+                            { name: "Infographic", links: ["PDF"] },
+                            { name: "Prepared Remarks", links: ["PDF"] },
+                            { name: "10-Q", links: ["HTML", "PDF"] },
+                            { name: "XBRL", links: ["HTML", "XLS", "ZIP"] }
+                        ]
+                    },
+                    {
+                        name: "Q2 2022",
+                        date: "Quarter Ended Jul 2, 2022",
+                        items: [
+                            { name: "Earnings Release", links: ["HTML", "PDF"] },
+                            { name: "Earnings Webcast", links: ["AUDIO"] },
+                            { name: "Earnings Presentation", links: ["PDF"] },
+                            { name: "Infographic", links: ["PDF"] },
+                            { name: "Prepared Remarks", links: ["PDF"] },
+                            { name: "10-Q", links: ["HTML", "PDF"] },
+                            { name: "XBRL", links: ["HTML", "XLS", "ZIP"] },
+                        ]
+                    },
+                    {
+                        name: "Q1 2022",
+                        date: "Quarter Ended Apr 2, 2022",
+                        items: [
+                            { name: "Earnings Release", links: ["HTML", "PDF"] },
+                            { name: "Earnings Webcast", links: ["AUDIO"] },
+                            { name: "Earnings Presentation", links: ["PDF"] },
+                            { name: "Infographic", links: ["PDF"] },
+                            { name: "Prepared Remarks", links: ["PDF"] },
+                            { name: "Segmentation Updates", links: ["PDF"] },
+                            { name: "10-Q", links: ["HTML", "PDF"] },
+                            { name: "XBRL", links: ["HTML", "XLS", "ZIP"] }
+                        ]
+                    },
+                ]
+            },
+            {
+                year: "2021",
+                quarters: [
+                    {
+                        name: "FY 2021",
+                        date: "Fiscal Year Ended Dec 25, 2021",
+                        items: [
+                            { name: "Earnings Release", links: ["HTML", "PDF"] },
+                            { name: "Earnings Webcast", links: ["AUDIO"] },
+                            { name: "Earnings Presentation", links: ["PDF"] },
+                            { name: "Infographic", links: ["PDF"] },
+                            { name: "Prepared Remarks", links: ["PDF"] },
+                            { name: "10-Q", links: ["HTML", "PDF"] },
+                            { name: "XBRL", links: ["HTML", "XLS", "ZIP"] },
+                        ]
+                    },
+                    {
+                        name: "Q3 2021",
+                        date: "Quarter Ended Sep 25, 2021",
+                        items: [
+                            { name: "Earnings Release", links: ["HTML", "PDF"] },
+                            { name: "Earnings Webcast", links: ["AUDIO"] },
+                            { name: "Earnings Presentation", links: ["PDF"] },
+                            { name: "Infographic", links: ["PDF"] },
+                            { name: "Prepared Remarks", links: ["PDF"] },
+                            { name: "10-Q", links: ["HTML", "PDF"] },
+                            { name: "XBRL", links: ["HTML", "XLS", "ZIP"] }
+                        ]
+                    },
+                    {
+                        name: "Q2 2021",
+                        date: "Quarter Ended Jun 26, 2021",
+                        items: [
+                            { name: "Earnings Release", links: ["HTML", "PDF"] },
+                            { name: "Earnings Webcast", links: ["AUDIO"] },
+                            { name: "Earnings Presentation", links: ["PDF"] },
+                            { name: "Infographic", links: ["PDF"] },
+                            { name: "Prepared Remarks", links: ["PDF"] },
+                            { name: "10-Q", links: ["HTML", "PDF"] },
+                            { name: "XBRL", links: ["HTML", "XLS", "ZIP"] },
+                        ]
+                    },
+                    {
+                        name: "Q1 2021",
+                        date: "Quarter Ended Mar 27, 2021",
+                        items: [
+                            { name: "Earnings Release", links: ["HTML", "PDF"] },
+                            { name: "Earnings Webcast", links: ["AUDIO"] },
+                            { name: "Earnings Presentation", links: ["PDF"] },
+                            { name: "Infographic", links: ["PDF"] },
+                            { name: "Prepared Remarks", links: ["PDF"] },
+                            { name: "Segmentation Updates", links: ["PDF"] },
+                            { name: "10-Q", links: ["HTML", "PDF"] },
+                            { name: "XBRL", links: ["HTML", "XLS", "ZIP"] }
+                        ]
+                    },
+                ]
+            },
+
+        ];
+
+        function generateAccordionHTML(data) {
+            let html = '<div class="accordion " id="accordionExample">';
+
+            data.forEach((year, yearIndex) => {
+                html += `
+                <div class="accordion-item my-4">
+                    <h2 class="accordion-header">
+                    <button class="accordion-button ${yearIndex !== 0 ? 'collapsed' : ''}" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapse${year.year}" aria-expanded="${yearIndex === 0 ? 'true' : 'false'}" aria-controls="collapse${year.year}">
+                        ${year.year}
+                    </button>
+                    </h2>
+                    <div id="collapse${year.year}" class="accordion-collapse collapse ${yearIndex === 0 ? 'show' : ''}"
+                    data-bs-parent="#accordionExample">
+                    <div class="accordion-body p-0">
+                        ${year.quarters.map((quarter, quarterIndex) => `
+                        <div style="${quarterIndex % 2 === 1 ? 'background-color: #F8F8F8; border-top: 1px solid #DDDDDD;' : ''}">
+                            <div class="row" style="color: black !important; position: static; width: 100%; padding: 10px 20px;">
+                            <div class="col-md-4 col-12">
+                                <h4 class="fw-bold">${quarter.name}</h4>
+                                <p style="font-size: 12px;"><b>${quarter.date}</b></p>
+                                       <img src=${quarter.image} alt="">
+                            </div>
+                            <div class="col-md-8 col-12">
+                                ${quarter.items.map(item => `
+                                <div class="s_main_div">
+                                    <div class="s_financial_tax">
+                                    <a href="#">${item.name}</a>
+                                    </div>
+                                    <div class="s_financial_icon">
+                                    ${item.links.map(link => `
+                                        <a href="#"><i class="fa-solid fa-${link.toLowerCase() === 'html' ? 'display' :
+                        link.toLowerCase() === 'pdf' ? 'file-pdf' :
+                            link.toLowerCase() === 'audio' ? 'volume-high' :
+                                'file'} mx-2"></i>${link}</a>
+                                    `).join('')}
+                                    </div>
+                                </div>
+                                `).join('')}
+                            </div>
+                            </div>
+                        </div>
+                        `).join('')}
+                    </div>
+                    </div>
+                </div>
+                `;
+            });
+
+            html += '</div>';
+            return html;
+        }
+
+        // Insert the generated HTML into your page
+        document.getElementById('accordionContainer').innerHTML = generateAccordionHTML(accordionData);
+    </script>
 </body>
 
 </html>
