@@ -1018,7 +1018,13 @@ window.onload = function () {
     intel_latest_cards();
 
     // Vturn profiler documentation page
-    VK_vturn_onload();
+    VK_vturn_profiler_toolkit();
+    // content checkbox
+    VK_vturn_content_type_checkbox();
+    // software checkbox
+    VK_vturn_programming_checkbox();
+
+
 
     // celadon documantation
     createDocumentElementforceladon();
@@ -1055,7 +1061,7 @@ window.onload = function () {
     VK_ai_software_checkbox();
 
 
-    
+
     // api training
     VK_api_training_card_display()
     // api training software
@@ -1065,6 +1071,15 @@ window.onload = function () {
     // skill
     VK_api_training_skill_checkboxes();
 
+
+    // technical library
+    VK_technical_accoridan();
+    // software
+    VK_technical_software_checkbox();
+    // programming language
+    VK_technical_programming_checkbox();
+    // content type
+    VK_technical_content_type_checkbox();
 }
 
 if (document.getElementById('VK_select_filters')) {
@@ -5442,7 +5457,7 @@ function VK_data_nav(id) {
 
 // -------------------------------------------------------- Vturn profiler documantation --------------------------------------------------------
 
-let VK_vturn_data = [
+var VK_vturn_profiler_data = [
     {
         title: "Performance Analysis Tutorial for Linux* OS",
         id: "762029",
@@ -5460,8 +5475,8 @@ let VK_vturn_data = [
         description: "Follow this tutorial to identify and resolve common performance bottlenecks in a sample matrix multiplication application (Linux* OS environment)."
     },
     {
-        title: "Performance Analysis Tutorial for Linux* OS",
-        id: "762029",
+        title: "Install Intel® VTune™ Profiler",
+        id: "767438",
         date: "06/24/24",
         version: [
             "2024.2",
@@ -5471,13 +5486,13 @@ let VK_vturn_data = [
         ],
         download: true,
         bookmark: true,
-        file: "URL (487KB)",
-        content: "Tutorials",
-        description: "Follow this tutorial to identify and resolve common performance bottlenecks in a sample matrix multiplication application (Linux* OS environment)."
+        file: "URL (487 KB)",
+        content: "Installation Guides",
+        description: "Learn how to install and configure Intel® VTune™ Profiler on Windows*, Linux*, and macOS* systems."
     },
     {
-        title: "Performance Analysis Tutorial for Linux* OS",
-        id: "762029",
+        title: "Performance Analysis Tutorial for Windows* OS",
+        id: "762031",
         date: "06/24/24",
         version: [
             "2024.2",
@@ -5487,78 +5502,397 @@ let VK_vturn_data = [
         ],
         download: true,
         bookmark: true,
-        file: "URL (487KB)",
+        file: "URL (1.32 MB)",
         content: "Tutorials",
-        description: "Follow this tutorial to identify and resolve common performance bottlenecks in a sample matrix multiplication application (Linux* OS environment)."
+        description: "Follow this tutorial to identify and resolve common performance bottlenecks in a sample matrix multiplication application (Windows* OS environment)."
     },
     {
-        title: "Performance Analysis Tutorial for Linux* OS",
-        id: "762029",
+        title: "Get Started",
+        id: "769038",
         date: "06/24/24",
         version: [
             "2024.2",
             "2024.1",
+            "2024.0",
             "2023.1",
-            "2020"
+            "2023"
         ],
         download: true,
         bookmark: true,
-        file: "URL (487KB)",
-        content: "Tutorials",
-        description: "Follow this tutorial to identify and resolve common performance bottlenecks in a sample matrix multiplication application (Linux* OS environment)."
+        file: "URL (731 KB)",
+        content: "Getting Started Guides",
+        description: "Start profiling applications and systems with Intel® VTune™ Profiler on a Windows, Linux, or macOS host machine. Configure your first analysis and interpret results."
     },
     {
-        title: "Performance Analysis Tutorial for Linux* OS",
-        id: "762029",
+        title: "Intel® oneAPI Programming Guide",
+        id: "771723",
         date: "06/24/24",
         version: [
             "2024.2",
             "2024.1",
+            "2024.0",
+            "2023.2",
             "2023.1",
-            "2020"
+            "2023.0"
         ],
         download: true,
         bookmark: true,
-        file: "URL (487KB)",
+        file: "URL (1.40 MB)",
+        content: "Development Guides",
+        description: "Programming oneAPI projects to maximize hardware abilities."
+    },
+    {
+        title: "User Guide",
+        id: "766319",
+        date: "06/24/24",
+        version: [
+            "2024.2",
+            "2024.1",
+            "2024.0",
+            "2023.2",
+            "2023.1",
+            "2023.0"
+        ],
+        download: true,
+        bookmark: true,
+        file: "URL (19.4 MB)",
+        content: "Development User Guides",
+        description: "Get a comprehensive overview of Intel® VTune™ Profiler for performance analysis. Understand workflows and tuning methodologies to profile serial and multithreaded applications with Intel® VTune™ Profiler for execution on a variety of hardware platforms (CPU, GPU, and FPGA)."
+    },
+    {
+        title: "Cookbook",
+        id: "766316",
+        date: "06/24/24",
+        version: [
+            "2024.2",
+            "2024.1",
+            "2024.0",
+            "2023.2",
+            "2023.1",
+            "2023.0"
+        ],
+        download: true,
+        bookmark: true,
+        file: "URL (24.6 MB)",
+        content: "Cookbooks",
+        description: "Follow tuning and configuration recipes to use analysis types in Intel® VTune™ Profiler. Analyze your code, identify ineffective algorithm and hardware usage, and get tuning advice on performance."
+    },
+    {
+        title: "Get Started with Application Performance Snapshot for Linux* OS",
+        id: "761880",
+        date: "03/22/24",
+        version: [
+            "2024.1",
+            "2024.0",
+            "2023.1",
+            "2021.3",
+        ],
+        download: true,
+        bookmark: true,
+        file: "URL (317 KB)",
+        content: "Getting Started Guides",
+        description: "Get Started with Intel® Application Performance Snapshot on Linux* OS"
+    },
+    {
+        title: "Application Performance Snapshot User Guide for Linux* OS",
+        id: "772048",
+        date: "11/07/23",
+        version: [
+            "2024.0",
+            "2023.1",
+            "2023.0",
+        ],
+        download: true,
+        bookmark: true,
+        file: "URL (432 KB)",
+        content: "Development User Guides",
+        description: "Learn how to use Intel® Application Performance Snapshot on Linux* OS"
+    },
+    {
+        title: "Code Sample: N-Body Simulation",
+        id: "669972",
+        date: "01/12/23",
+        version: "1.0",
+        download: false,
+        bookmark: true,
+        file: "URL",
+        content: "Code Samples",
+        description: "This demonstration applies Data Parallel C++ (DPC++) to a many-particle simulation."
+    },
+    {
+        title: "Intel® VTune™ Profiler Tutorials",
+        id: "673132",
+        date: "09/13/22",
+        version: "Original",
+        download: false,
+        bookmark: false,
+        file: "URL",
         content: "Tutorials",
-        description: "Follow this tutorial to identify and resolve common performance bottlenecks in a sample matrix multiplication application (Linux* OS environment)."
+        description: "Get tutorials for finding hotspots, analyzing energy use, and more for Intel® VTune™ Profiler."
+    },
+    {
+        title: "Code Sample: Matrix Multiplication for Intel® VTune™ Profiler",
+        id: "669916",
+        date: "09/10/20",
+        version: "1.0",
+        download: false,
+        bookmark: true,
+        file: "URL",
+        content: "Code Samples",
+        description: "Learn how to profile an application using Intel® VTune™ Profiler."
     },
 ]
 
-function VK_vturn_onload() {
-    if (document.getElementById('VK_vturn_cnt1')) {
-        document.getElementById('VK_vturn_cnt1').innerHTML = VK_vturn_data.length + " results"
+var VK_vturn_data = VK_vturn_profiler_data;
+
+// display data
+function VK_vturn_profiler_toolkit() {
+
+    const div = document.getElementById('VK_vturn_profiler');
+    // result count 
+    if (document.getElementById('VK_vturn_profiler_cnt1')) {
+        document.getElementById('VK_vturn_profiler_cnt1').innerHTML = VK_vturn_data.length + " results";
+    }
+    // display accoridan
+    if (div) {
+        const htmlele = VK_vturn_data.map((ele, ind) => {
+            const uniqueID = `flush-collapse-${ind}`;
+            const uniqueHeadingID = `flush-heading-${ind}`;
+
+            const versionDisplay = Array.isArray(ele.version)
+                ? `<select class="py-2 pe-xl-4 pe-5">${ele.version.map(v => `<option value="${v}">${v}</option>`).join('')}</select>`
+                : ele.version;
+
+            return `
+            <div class="accordion-item">
+                <div class="row m-0 flex-column flex-xl-row py-xl-3 px-3 p-2">
+                    <div class="col-xxl-7 col-xl-6 col-12 align-self-center">
+                        <p class="m-xl-0 mb-4">
+                            <a href="#" class="VK_red_normal_font text-decoration-none VK_a">
+                                ${ele.title}
+                            </a>
+                        </p>
+                    </div>
+                    <div class="col-xxl-4 col-xl-5 col-12 p-0 text-xl-center d-flex flex-column flex-xl-row justify-content-between align-items-center">
+                        <p class="m-0 my-1 VK_red_small_font w-100">
+                            <span class="d-xl-none"><b>ID :</b></span> ${ele.id}
+                        </p>
+                        <p class="m-0 my-1 VK_red_small_font w-100">
+                            <span class="d-xl-none"><b>Date :</b></span> ${ele.date}
+                        </p>
+                        <p class="m-0 my-1 VK_red_small_font w-100">
+                            <span class="d-xl-none"><b>Version: </b></span>
+                            ${versionDisplay}
+                        </p>
+                    </div>
+                    <div class="col-xl-1 col-12 p-0 my-xl-0 my-2 align-self-center">
+                        <p class="d-flex m-0 justify-content-end">
+                            ${ele.download ? `
+                                <button class="bg-transparent border-0 text-primary mx-2 px-3 m-xl-0">
+                                    <i class="fa-solid fa-download"></i>
+                                </button>
+                            ` : ''}
+                            ${ele.bookmark ? `
+                                <button class="bg-transparent border-0 text-primary mx-2 px-3 m-xl-0">
+                                    <i class="fa-regular fa-bookmark"></i>
+                                </button>
+                            ` : ''}
+                            <button class="accordion-button collapsed mx-2 m-xl-0 px-3" type="button"
+                                data-bs-toggle="collapse" data-bs-target="#${uniqueID}"
+                                aria-expanded="false" aria-controls="${uniqueID}">
+                                <span>&nbsp;</span>
+                            </button>
+                        </p>
+                    </div>
+                </div>
+                <div id="${uniqueID}" class="accordion-collapse collapse"
+                    aria-labelledby="${uniqueHeadingID}" data-bs-parent="#accordionFlushExample">
+                    <div class="accordion-body">
+                        <p class="m-0">
+                            <span class="d-inline-block mx-2">
+                                <b>File:</b>
+                                <span>${ele.file}</span>
+                            </span>
+                            <span class="d-inline-block mx-2">
+                                <b>Content Type :</b>
+                                <span>${ele.content}</span>
+                            </span>
+                        </p>
+                        <p class="m-0">${ele.description}</p>
+                    </div>
+                </div>
+            </div>`;
+        });
+
+        div.innerHTML = htmlele.join('');
+
+        const accordionButtons = div.querySelectorAll('.accordion-button');
+        accordionButtons.forEach(button => {
+            const collapseElement = document.querySelector(button.getAttribute('data-bs-target'));
+            const collapseInstance = new bootstrap.Collapse(collapseElement, {
+                toggle: false
+            });
+
+            button.addEventListener('click', function () {
+                collapseInstance.toggle();
+            });
+        });
+    } else {
+        return;
     }
 }
 
-function VK_toggle_filter() {
-    if (document.getElementById('VK_full_filter')) {
-        let fill = document.getElementById('VK_full_filter')
-        fill.classList.toggle('d-none')
+// data sort by
+function VK_vturn_data_softby() {
+    let sort_by = document.getElementById('VK_vturn_data_sortby').value;
+    if (sort_by == 'A-Z') {
+        VK_vturn_data.sort((a, b) => a.title.localeCompare(b.title));
+    } else if (sort_by == 'Z-A') {
+        VK_vturn_data.sort((a, b) => b.title.localeCompare(a.title));
+    } else if (sort_by == 'Content Type') {
+        VK_vturn_data.sort((a, b) => a.content.localeCompare(b.content));
     }
+    VK_vturn_profiler_toolkit();
 }
-function VK_chk_fillter() {
-    if (document.getElementById('VK_full_filter')) {
-        let fill = document.getElementById('VK_full_filter')
-        if (window.innerWidth > 1200) {
-            fill.classList.add('d-none')
+
+// data searchbox
+function VK_vturn_data_search_box() {
+    let search_txt = document.getElementById('VK_vturn_profiler_search_bar').value;
+    VK_vturn_data = VK_vturn_profiler_data.filter((ele) => {
+        return ele.title.toLowerCase().includes(search_txt.toLowerCase()) || ele.content.toLowerCase().includes(search_txt.toLowerCase())
+    })
+    VK_vturn_profiler_toolkit();
+}
+
+// clear all 
+function VK_vturn_clear_All() {
+    VK_vturn_data = VK_vturn_profiler_data;
+
+    VK_vturn_profiler_toolkit();
+
+    VK_vturn_content_type_checkbox()
+
+    VK_vturn_programming_checkbox();
+}
+
+
+
+// content type checkbox
+var VK_vturn_content_data = [
+    "Code Samples",
+    "Cookbooks",
+    "Development Guides",
+    "Getting Started Guides",
+    "Installation Guides",
+    "Tutorials"
+]
+
+var VK_vturn_content = VK_vturn_content_data
+
+// display content type checkbox
+function VK_vturn_content_type_checkbox() {
+    if (document.getElementById('VK_vturn_content_checkbox')) {
+        let html = VK_vturn_content.map((ele, ind) => {
+            return `
+        <div class="${ind > 7 ? "d-none" : ""} my-1"> 
+            <input type="checkbox" value="${ele}" class="me-2 VK_vturn_content_checkbox" onclick="VK_vturn_content_type()">
+            <span>${ele}</span>
+        </div>
+        `;
+        }).join(' ');
+
+        if (VK_vturn_content.length > 7) {
+            html += `
+        <button class="border-0 bg-transparent VK_a" onclick="VK_oneapi_toolkit_showmore()" id="VK_toolkit_content_show_more">
+            <span>Show More</span>
+        </button>
+        `;
         }
+
+        document.getElementById('VK_vturn_content_checkbox').innerHTML = html;
+    } else {
+        return;
     }
 }
 
-window.addEventListener('resize', function () {
-    VK_chk_fillter();
-})
-
-function VK_vturn_result() {
-    document.getElementById('VK_result_div');
+// orderby
+function VK_vturn_content_order_By() {
+    let orderby = document.getElementById('VK_vturn_content_type_sort').value
+    if (orderby == 'A-Z') {
+        VK_vturn_content.sort((a, b) => a.localeCompare(b))
+    }
+    else if (orderby == 'Z-A') {
+        VK_vturn_content.sort((a, b) => b.localeCompare(a))
+    }
+    VK_vturn_content_type_checkbox()
 }
 
-function createDocumentElement() {
+// content type checkbox event
+function VK_vturn_content_type() {
+    let checkboxes = document.querySelectorAll('.VK_vturn_content_checkbox');
+    let checkedBoxes = Array.from(checkboxes).filter(checkbox => checkbox.checked);
 
-    let div = document.getElementById('VK_result_div')
-    // let htmlele = 
+    if (checkedBoxes.length === 0) {
+        VK_vturn_data = VK_vturn_profiler_data;
+    } else {
+        let selectedContentTypes = checkedBoxes.map(checkbox => checkbox.value.toLowerCase());
+        VK_vturn_data = VK_vturn_profiler_data.filter(item => {
+            return selectedContentTypes.includes(item.content.toLowerCase());
+        });
+    }
 
+    VK_vturn_profiler_toolkit();
+}
+
+
+//  programming language checkbx
+
+var VK_vturn_programming_data = [
+    "C C++",
+    "C#",
+    "Data Parallel C++ (DPC++)",
+    "Fortran",
+    "SYCL*"
+]
+
+var VK_vturn_programming = VK_vturn_programming_data
+
+// display content type checkbox
+function VK_vturn_programming_checkbox() {
+    if (document.getElementById('VK_vturn_software_checkbox')) {
+        let html = VK_vturn_programming.map((ele, ind) => {
+            return `
+        <div class="${ind > 7 ? "d-none" : ""} my-1"> 
+            <input type="checkbox" value="${ele}" class="me-2 VK_vturn_content_checkbox" onclick="VK_vturn_programming_type()">
+            <span>${ele}</span>
+        </div>
+        `;
+        }).join(' ');
+
+        if (VK_vturn_programming.length > 7) {
+            html += `
+        <button class="border-0 bg-transparent VK_a" onclick="VK_oneapi_toolkit_showmore()" id="VK_toolkit_content_show_more">
+            <span>Show More</span>
+        </button>
+        `;
+        }
+
+        document.getElementById('VK_vturn_software_checkbox').innerHTML = html;
+    } else {
+        return;
+    }
+}
+
+// orderby
+function VK_vturn_programming_order_By() {
+    let orderby = document.getElementById('VK_vturn_programming_filters').value
+    if (orderby == 'A-Z') {
+        VK_vturn_programming.sort((a, b) => a.localeCompare(b))
+    }
+    else if (orderby == 'Z-A') {
+        VK_vturn_programming.sort((a, b) => b.localeCompare(a))
+    }
+    VK_vturn_programming_checkbox()
 }
 
 
@@ -8202,7 +8536,7 @@ function VK_ai_software_search() {
 
 let VK_training_oneapi_data = [
     {
-        image:"VK_59.jpg",
+        image: "VK_59.jpg",
         title: "Intel® OSPRay Essentials",
         date: "09/03/24",
         contentType: "On-Demand Training",
@@ -8211,7 +8545,7 @@ let VK_training_oneapi_data = [
         download: false
     },
     {
-        image:"VK_60.png",
+        image: "VK_60.png",
         title: "Code Sample: Two-Dimensional Finite-Difference Wave Propagation in...",
         date: "08/12/24",
         contentType: "Code Samples",
@@ -8220,7 +8554,7 @@ let VK_training_oneapi_data = [
         download: false
     },
     {
-        image:"VK_61.svg",
+        image: "VK_61.svg",
         title: "Get Started with the AI Tools for Linux*",
         date: "08/11/24",
         contentType: "Getting Started Guides",
@@ -8229,7 +8563,7 @@ let VK_training_oneapi_data = [
         download: true
     },
     {
-        image:"VK_61.svg",
+        image: "VK_61.svg",
         title: "Debugging with Intel® Distribution for GDB* on Linux* OS Host",
         date: "06/27/24",
         contentType: "Tutorials",
@@ -8238,7 +8572,7 @@ let VK_training_oneapi_data = [
         download: true
     },
     {
-        image:"VK_61.svg",
+        image: "VK_61.svg",
         title: "Debugging with Intel® Distribution for GDB* on Windows* OS Host",
         date: "06/27/24",
         contentType: "Tutorials",
@@ -8247,7 +8581,7 @@ let VK_training_oneapi_data = [
         download: true
     },
     {
-        image:"VK_61.svg",
+        image: "VK_61.svg",
         title: "Cookbook",
         date: "06/24/24",
         contentType: "Cookbooks",
@@ -8256,7 +8590,7 @@ let VK_training_oneapi_data = [
         download: true
     },
     {
-        image:"VK_61.svg",
+        image: "VK_61.svg",
         title: "Performance Analysis Tutorial for Linux* OS",
         date: "06/24/24",
         contentType: "Tutorials",
@@ -8265,7 +8599,7 @@ let VK_training_oneapi_data = [
         download: true
     },
     {
-        image:"VK_61.svg",
+        image: "VK_61.svg",
         title: "Performance Analysis Tutorial for Windows* OS",
         date: "06/24/24",
         contentType: "Tutorials",
@@ -8274,7 +8608,7 @@ let VK_training_oneapi_data = [
         download: true
     },
     {
-        image:"VK_61.svg",
+        image: "VK_61.svg",
         title: "Intel® oneAPI Deep Neural Network Developer Guide and Reference",
         date: "06/20/24",
         contentType: "Development Reference Guides",
@@ -8283,7 +8617,7 @@ let VK_training_oneapi_data = [
         download: true
     },
     {
-        image:"VK_59.jpg",
+        image: "VK_59.jpg",
         title: "Essentials of SYCL",
         date: "05/31/24",
         contentType: "On-Demand Training",
@@ -8292,7 +8626,7 @@ let VK_training_oneapi_data = [
         download: false
     },
     {
-        image:"VK_59.jpg",
+        image: "VK_59.jpg",
         title: "Performance, Portability, and Productivity with oneAPI and DPC++",
         date: "05/30/24",
         contentType: "Tutorials",
@@ -8301,7 +8635,7 @@ let VK_training_oneapi_data = [
         download: false
     },
     {
-        image:"VK_62.png",
+        image: "VK_62.png",
         title: "Workflow for a CUDA* to SYCL* Migration using Jacobi sample code",
         date: "05/21/24",
         contentType: "Training and Learning",
@@ -8310,7 +8644,7 @@ let VK_training_oneapi_data = [
         download: false
     },
     {
-        image:"VK_61.svg",
+        image: "VK_61.svg",
         title: "Get Started with the Intel® Rendering Toolkit for macOS*",
         date: "03/22/24",
         contentType: "Getting Started Guides",
@@ -8319,7 +8653,7 @@ let VK_training_oneapi_data = [
         download: true
     },
     {
-        image:"VK_61.svg",
+        image: "VK_61.svg",
         title: "Get Started with the Intel® Rendering Toolkit for Linux*",
         date: "03/22/24",
         contentType: "Getting Started Guides",
@@ -8328,7 +8662,7 @@ let VK_training_oneapi_data = [
         download: true
     },
     {
-        image:"VK_61.svg",
+        image: "VK_61.svg",
         title: "Get Started with the Intel® Rendering Toolkit for Windows*",
         date: "03/22/24",
         contentType: "Getting Started Guides",
@@ -8340,8 +8674,8 @@ let VK_training_oneapi_data = [
 
 var VK_training_oneapi = VK_training_oneapi_data
 
-function VK_api_training_card_display(){
-    if(document.getElementById('VK_api_skill_display_card')){
+function VK_api_training_card_display() {
+    if (document.getElementById('VK_api_skill_display_card')) {
 
         document.getElementById('VK_api_training_cnt1').innerText = VK_training_oneapi.length + ' results'
 
@@ -8382,7 +8716,7 @@ function VK_api_training_card_display(){
                 </div>
             `;
         }).join('');
-        
+
         div.innerHTML = html;
     } else {
         return;
@@ -8391,25 +8725,25 @@ function VK_api_training_card_display(){
 
 
 // api training sortby
-function VK_api_training_sortby(){
+function VK_api_training_sortby() {
     let sortby = document.getElementById('VK_api_training_data_sortby').value
-    if(sortby == 'A-Z'){
-        VK_training_oneapi_data.sort((a,b)=>a.title.localeCompare(b.title))
+    if (sortby == 'A-Z') {
+        VK_training_oneapi_data.sort((a, b) => a.title.localeCompare(b.title))
     }
-    else if(sortby == 'Z-A'){
-        VK_training_oneapi_data.sort((a,b)=>b.title.localeCompare(a.title))
+    else if (sortby == 'Z-A') {
+        VK_training_oneapi_data.sort((a, b) => b.title.localeCompare(a.title))
     }
-    else if(sortby == 'Content Type'){
-        VK_training_oneapi_data.sort((a,b)=>a.contentType.localeCompare(b.contentType))
+    else if (sortby == 'Content Type') {
+        VK_training_oneapi_data.sort((a, b) => a.contentType.localeCompare(b.contentType))
     }
     VK_api_training_card_display();
 }
 
 
 // api training search box
-function VK_api_training_data_search_box(){
+function VK_api_training_data_search_box() {
     let search = document.getElementById('VK_api_training_search_bar').value
-    let arr = VK_training_oneapi_data.filter((ele)=>{
+    let arr = VK_training_oneapi_data.filter((ele) => {
         return ele.title.toLowerCase().includes(search.toLowerCase())
     })
     console.log(arr);
@@ -8629,4 +8963,810 @@ function VK_api_skill_order_By() {
         VK_api_training_skill_checkbox_data.sort((a, b) => b.localeCompare(a))
     }
     VK_api_training_skill_checkboxes()
+}
+
+
+
+
+// ------------------------------------------------- Technical Library -----------------------------------------------
+
+var VK_techical_library_data = [
+    {
+        title: "Case Study: Emotion Detection & Classification from Audio Samples",
+        id: "771106",
+        date: "09/10/24",
+        version: "Original",
+        bookmark: false,
+        download: false,
+        file: "URL",
+        content: "Tutorials",
+        description: "Use a deep neural network to detect underlying emotions in recorded speech samples.",
+        status: "Updated"
+    },
+    {
+        title: "GeekBench Execution Environments and Optimization",
+        id: "832658",
+        date: "09/09/24",
+        version: "Original",
+        bookmark: false,
+        download: false,
+        file: "URL",
+        content: "Technical Articles",
+        description: "A Deep Dive into GeekBench Execution Environments and Performance Optimization",
+        status: "New"
+    },
+    {
+        title: "Gaming Workloads in VMs through Guest Halt Polling",
+        id: "832657",
+        date: "09/09/24",
+        version: "Original",
+        bookmark: false,
+        download: false,
+        file: "URL",
+        content: "Technical Articles",
+        description: "Enhancing Performance of Gaming Workloads in Virtual Machines through Guest Halt Polling Optimization",
+        status: "New"
+    },
+    {
+        title: "Optimization Guide for ChromeOS Libraries",
+        id: "832654",
+        date: "09/09/24",
+        version: "Original",
+        bookmark: false,
+        download: false,
+        file: "URL",
+        content: "Technical Articles",
+        description: "Hardware Profile Guided Optimization Usage Guide for ChromeOS Libraries",
+        status: "New"
+    },
+    {
+        title: "Optimizing LLC for Steam Gaming on ChromeOS",
+        id: "832650",
+        date: "09/09/24",
+        version: "Original",
+        bookmark: false,
+        download: false,
+        file: "URL",
+        content: "Technical Articles",
+        description: "Optimizing Last-Level Cache Allocation for Enhanced Steam Gaming Performance on ChromeOS",
+        status: "New"
+    },
+    {
+        title: "Optimizing Mining and Extraction Operations and Improving Ore Grade Management with NTWIST’s nVision POSOC Application",
+        id: "832561",
+        date: "09/09/24",
+        version: "361291-001",
+        bookmark: true,
+        download: true,
+        file: "pdf (1.65 MB)",
+        content: "Use Cases",
+        description: "NTWIST nVision Prediction of Oil Sands Ore Characteristics (POSOC) Application helps extraction and processing operators enhance productivity and quality control through real-time data-driven insights",
+        status: "New"
+    },
+    {
+        title: "The Gamma TITANUS EYEoT Solution Accelerates Smart Transformation of Transportation",
+        id: "832529",
+        date: "09/08/24",
+        version: "1",
+        bookmark: true,
+        download: true,
+        file: "pdf (3.53 MB)",
+        content: "White Papers",
+        description: "Gamma's TITANUS EYEoT smart transportation solution integrates algorithms such as number plate and vehicle recognition to efficiently analyze video in smart parking and traffic behavior situations.",
+        status: "New"
+    },
+    {
+        title: "Hummingbirds AI Guacamole",
+        id: "832523",
+        date: "09/08/24",
+        version: "1",
+        bookmark: true,
+        download: true,
+        file: "Partner Briefs",
+        content: "Tutorials",
+        description: "Using a suite of advanced vision AI algorithms, Guacamole processes webcam footage in real-time to support continuous re-authentication of users through facial biometrics.",
+        status: "New"
+    },
+    {
+        title: "Siena Analytics - Siena Insights Solution Brief",
+        id: "832503",
+        date: "09/07/24",
+        version: "1",
+        bookmark: true,
+        download: true,
+        file: "pdf (610 KB)",
+        content: "Solution Briefs",
+        description: "Improving and optimizing logistics for smarter utilization and understanding available space with Siena Analytics.",
+        status: "New"
+    },
+    {
+        title: "Top Tips and Tricks for LLM Fine-tuning and Inference",
+        id: "830925",
+        date: "09/07/24",
+        version: "Original",
+        bookmark: false,
+        download: false,
+        file: "URL",
+        content: "Technical Articles",
+        description: "This guide provides top tips and tricks for LLM Fine-tuning and Inference",
+        status: "Updated"
+    },
+    {
+        title: "How to deploy AI applications on AI PCs",
+        id: "830175",
+        date: "09/07/24",
+        version: "Original",
+        bookmark: false,
+        download: false,
+        file: "URL",
+        content: "Technical Articles",
+        description: "An Easy Guide to deploying AI Applications on AI PCs",
+        status: "Updated"
+    },
+    {
+        title: "Developer's Guide to Adapting to Enterprise AI",
+        id: "832269",
+        date: "09/07/24",
+        version: "Original",
+        bookmark: false,
+        download: false,
+        file: "URL",
+        content: "Technical Articles",
+        description: "Developer's Guide to Adapting to Enterprise AI",
+        status: "Updated"
+    },
+    {
+        title: "Detect Dynamic Shapes",
+        id: "832481",
+        date: "09/06/24",
+        version: "Original",
+        bookmark: false,
+        download: false,
+        file: "URL",
+        content: "Technical Articles",
+        description: "Tools can detect dynamic inputs and operations for dynamic shapes—model behaviors that affect how variable-output tensor shapes generate.",
+        status: "New"
+    },
+    {
+        title: "When You Have to Fork a Project: All About Valkey",
+        id: "832417",
+        date: "09/06/24",
+        version: "Original",
+        bookmark: false,
+        download: false,
+        file: "URL",
+        content: "Blogs",
+        description: "AWS Engineer Madelyn Olson talks with Open at Intel host Katherine Druckman about the creation of Valkey, what’s next for the popular project, when to fork a project, and how to handle maintainer burn",
+        status: "New"
+    },
+    {
+        title: "Become a Certified Instructor",
+        id: "817869",
+        date: "09/06/24",
+        version: "Original",
+        bookmark: false,
+        download: false,
+        file: "URL",
+        content: "Instructor-Led Training",
+        description: "Register for the Intel® Certified Instructor Program to access high-quality curriculum and the Intel® Tiber™ Developer Cloud.",
+        status: "Updated"
+    },
+    {
+        title: "Decoupling Non-Critical Workloads",
+        id: "819066",
+        date: "09/05/24",
+        version: "Original",
+        bookmark: false,
+        download: false,
+        file: "URL",
+        content: "Technical Articles",
+        description: "How to get more out of modern compute platforms by decoupling non-critical workloads.",
+        status: "Updated"
+    },
+]
+
+var VK_techical_data = VK_techical_library_data
+
+// display data
+function VK_technical_accoridan() {
+
+    const div = document.getElementById('VK_technical_library');
+
+    // result count 
+    if (document.getElementById('VK_technical_library_cnt1')) {
+        document.getElementById('VK_technical_library_cnt1').innerHTML = VK_techical_data.length + " results";
+    }
+
+
+    // display accoridan
+    if (div) {
+
+        const htmlele = VK_techical_data.map((ele, ind) => {
+            const uniqueID = `flush-collapse-${ind}`;
+            const uniqueHeadingID = `flush-heading-${ind}`;
+
+            const versionDisplay = Array.isArray(ele.version)
+                ? `<select class="py-2 pe-xl-4 pe-5">${ele.version.map(v => `<option value="${v}">${v}</option>`).join('')}</select>`
+                : ele.version;
+
+            return `
+            <div class="accordion-item">
+                <div class="row m-0 flex-column flex-xl-row py-xl-3 px-3 p-2">
+                    <div class="col-xxl-7 col-xl-6 col-12 align-self-center">
+                        <p class="m-xl-0 mb-4">
+                            <a href="#" class="VK_red_normal_font text-decoration-none VK_a">
+                                ${ele.title}
+                            </a>
+                        </p>
+                    </div>
+                    <div class="col-xxl-4 col-xl-5 col-12 p-0 text-xl-center d-flex flex-column flex-xl-row justify-content-between align-items-center">
+                        <p class="m-0 my-1 VK_red_small_font w-100">
+                            <span class="d-xl-none"><b>ID :</b></span> ${ele.id}
+                        </p>
+                        <p class="m-0 my-1 VK_red_small_font w-100">
+                            <span class="d-xl-none"><b>Date :</b></span> ${ele.date}
+                        </p>
+                        <p class="m-0 my-1 VK_red_small_font w-100">
+                            <span class="d-xl-none"><b>Version: </b></span>
+                            ${versionDisplay}
+                        </p>
+                    </div>
+                    <div class="col-xl-1 col-12 p-0 my-xl-0 my-2 align-self-center">
+                        <p class="d-flex m-0 justify-content-end justify-content-end">
+                            ${ele.download ? `
+                                <button class="bg-transparent border-0 text-primary px-2 mx-2 m-xl-0">
+                                    <i class="fa-solid fa-download"></i>
+                                </button>
+                            ` : ''}
+                            ${ele.bookmark ? `
+                                <button class="bg-transparent border-0 text-primary px-2 mx-2 m-xl-0">
+                                    <i class="fa-regular fa-bookmark"></i>
+                                </button>
+                            ` : ''}
+                            <button class="accordion-button collapsed mx-2 m-xl-0 px-2" type="button"
+                                data-bs-toggle="collapse" data-bs-target="#${uniqueID}"
+                                aria-expanded="false" aria-controls="${uniqueID}">
+                                <span>&nbsp;</span>
+                            </button>
+                        </p>
+                    </div>
+                </div>
+                <div id="${uniqueID}" class="accordion-collapse collapse"
+                    aria-labelledby="${uniqueHeadingID}" data-bs-parent="#accordionFlushExample">
+                    <div class="accordion-body">
+                        <p class="m-0">
+                            <span class="d-inline-block mx-2">
+                                <b>File:</b>
+                                <span>${ele.file}</span>
+                            </span>
+                            <span class="d-inline-block mx-2">
+                                <b>Content Type :</b>
+                                <span>${ele.content}</span>
+                            </span>
+                        </p>
+                        <p class="m-0">${ele.description}</p>
+                    </div>
+                </div>
+            </div>`;
+        });
+
+        div.innerHTML = htmlele.join('');
+
+        const accordionButtons = div.querySelectorAll('.accordion-button');
+        accordionButtons.forEach(button => {
+            const collapseElement = document.querySelector(button.getAttribute('data-bs-target'));
+            const collapseInstance = new bootstrap.Collapse(collapseElement, {
+                toggle: false
+            });
+
+            button.addEventListener('click', function () {
+                collapseInstance.toggle();
+            });
+        });
+    } else {
+        return;
+    }
+}
+
+// data sort by
+function VK_technical_data_softby() {
+    let sort_by = document.getElementById('VK_technical_data_sortby').value;
+    if (sort_by == 'A-Z') {
+        VK_techical_data.sort((a, b) => a.title.localeCompare(b.title));
+    } else if (sort_by == 'Z-A') {
+        VK_techical_data.sort((a, b) => b.title.localeCompare(a.title));
+    } else if (sort_by == 'Content Type') {
+        VK_techical_data.sort((a, b) => a.content.localeCompare(b.content));
+    }
+    VK_technical_accoridan();
+}
+
+// data searchbox
+function VK_technical_data_search_box() {
+    let search_txt = document.getElementById('VK_technical_library_search_bar').value;
+    VK_techical_data = VK_techical_library_data.filter((ele) => {
+        return ele.title.toLowerCase().includes(search_txt.toLowerCase()) || ele.content.toLowerCase().includes(search_txt.toLowerCase())
+    })
+    VK_technical_accoridan();
+}
+
+
+
+
+// software checkbox
+var VK_technical_software_data = [
+    "AI Tools",
+    "Assistive Context-Aware Toolkit (ACAT)",
+    "BigDL",
+    "BIOS",
+    "BIOS and Firmware",
+    "Boot Loader Development Kit",
+    "C for Metal Software Development Kit (CM SDK)",
+    "Cluster Tools",
+    "Compilers",
+    "Components & Products",
+    "Data Center Software",
+    "Data Plane Development Kit (DPDK)",
+    "Development Tools",
+    "Firmware",
+    "GNU* Debugger (GDB)",
+    "GStreamer* Video Analytics (GVA) Plugin",
+    "Hyperscan",
+    "Intel in Cloud Native (Kubernetes*)",
+    "Intel Unite® Plugin SDK",
+    "Intel® Active Management Technology SDK",
+    "Intel® Advisor",
+    "Intel® Architecture Code Analyzer",
+    "Intel® C++ Compiler",
+    "Intel® Cilk™ Plus",
+    "Intel® Cluster Checker",
+    "Intel® Collaboration Suite for WebRTC",
+    "Intel® CPU Runtime for OpenCL™ Applications",
+    "Intel® Cryptography Primitives Library",
+    "Intel® Data Analytics Acceleration Library (Intel® DAAL)",
+    "Intel® Data Center Manager Console",
+    "Intel® Debug Extensions for WinDbg*",
+    "Intel® Distribution for Python*",
+    "Intel® Distribution of Modin*",
+    "Intel® Distribution of OpenVINO™ toolkit",
+    "Intel® DPC++ Compatibility Tool",
+    "Intel® Embree",
+    "Intel® Extension for Scikit_learn*",
+    "Intel® Firmware Support Package (Intel® FSP)",
+    "Intel® Fortran Compiler",
+    "Intel® FPGA Add-On for oneAPI Base Toolkit",
+    "Intel® Graphics Performance Analyzers",
+    "Intel® Homomorphic Encryption Toolkit (Intel® HE Toolkit)",
+    "Intel® HPC Toolkit",
+    "Intel® Inspector",
+    "Intel® Integrated Performance Primitives",
+    "Intel® Integrated Simulation Infrastructure with Modeling (Intel® ISIM)",
+    "Intel® Intelligent Storage Acceleration Library (ISA-L)",
+    "Intel® IoT Toolkit",
+    "Intel® License Manager for FLEXlm*",
+    "Intel® Math Kernel Library",
+    "Intel® Media SDK",
+    "Intel® Media Server Studio",
+    "Intel® Media Server Studio Essentials Edition",
+    "Intel® Media Server Studio Professional Edition",
+    "Intel® MPI Library",
+    "Intel® Neural Compressor",
+    "Intel® oneAPI Base Toolkit",
+    "Intel® oneAPI Collective Communications Library",
+    "Intel® oneAPI Data Analytics Library",
+    "Intel® oneAPI Deep Neural Network Library",
+    "Intel® oneAPI DL Framework Developer Toolkit",
+    "Intel® oneAPI DPC++ C++ Compiler",
+    "Intel® oneAPI DPC++ Library",
+    "Intel® oneAPI Math Kernel Library",
+    "Intel® oneAPI Threading Building Blocks",
+    "Intel® oneAPI Toolkits",
+    "Intel® Open Image Denoise",
+    "Intel® Open Path Guiding Library (Intel® Open PGL)",
+    "Intel® Open Volume Kernel Library (Intel® Open VKL)",
+    "Intel® OpenSWR",
+    "Intel® Optimization for PyTorch*",
+    "Intel® Optimization for TensorFlow*",
+    "Intel® Optimization for XGBoost*",
+    "Intel® OSPRay",
+    "Intel® Parallel Studio XE",
+    "Intel® Parallel Studio XE Cluster Edition",
+    "Intel® Parallel Studio XE Composer Edition",
+    "Intel® Parallel Studio XE Professional Edition",
+    "Intel® Platform Analysis Library",
+    "Intel® Platform Service Record (Intel® PSR)",
+    "Intel® RealSense™ SDK",
+    "Intel® Rendering Toolkit",
+    "Intel® SDK for OpenCL™ Applications",
+    "Intel® Secure Device Onboard",
+    "Intel® Smart Edge Open",
+    "Intel® SoC Watch",
+    "Intel® Software Development Emulator",
+    "Intel® Software Development Products Registration Center",
+    "Intel® Software Guard Extensions SDK",
+    "Intel® System Bring-Up Toolkit",
+    "Intel® System Debugger",
+    "Intel® System Studio",
+    "Intel® System Studio Composer Edition",
+    "Intel® System Studio for Microcontrollers",
+    "Intel® System Studio Professional Edition",
+    "Intel® System Studio Professional Edition",
+    "Intel® Threading Building Blocks",
+    "Intel® Time Coordinated Computing Tools (Intel® TCC Tools)",
+    "Intel® Trace Analyzer and Collector",
+    "Intel® vCMTS Reference Dataplane",
+    "Intel® Video Pro Analyzer",
+    "Intel® Video Processing Library",
+    "Intel® VTune™ Profiler (formerly Intel® VTune™ Amplifier)",
+    "Key Management Reference Application (KMRA)",
+    "Legacy Products",
+    "Libraries and SDKs",
+    "NumaTOP",
+    "OP-TEE* for Intel® Architecture",
+    "Open Source Media Framework",
+    "Open Source Software Projects",
+    "OpenVINO™ Toolkit",
+    "Other Software Tools",
+    "Performance Analyzers",
+    "Pin",
+    "PM-Graph",
+    "Program Record Replay Toolkit",
+    "SDK for Intel® Dynamic Application Loader (Intel® DAL)",
+    "Simics",
+    "Software Development Platform",
+    "Software Quality",
+    "Storage Performance Development Kit (SPDK)",
+    "System Tools",
+    "UEFI",
+    "Useful Packages & Modules (UPM) MRAA Library"
+]
+
+var VK_technical_software = VK_technical_software_data
+
+// display software type checkbox
+function VK_technical_software_checkbox() {
+    if (document.getElementById('VK_technical_software_checkbox')) {
+        let html = VK_technical_software.map((ele, ind) => {
+            return `
+        <div class="${ind > 7 ? "d-none" : ""} my-1 VK_white_space"> 
+            <input type="checkbox" value="${ele}" class="me-2 VK_overflow_checkbox" onclick="VK_oneapi_content_type()">
+            <span>${ele}</span>
+        </div>
+        `;
+        }).join(' ');
+
+        if (VK_technical_software.length > 7) {
+            html += `
+        <button class="border-0 bg-transparent VK_a" onclick="VK_oneapi_toolkit_software_showmore()" id="VK_toolkit_software_show_more">
+            <span>Show More</span>
+        </button>
+        `;
+        }
+
+        document.getElementById('VK_technical_software_checkbox').innerHTML = html;
+    } else {
+        return;
+    }
+}
+
+// software checkbox show more or less
+function VK_oneapi_toolkit_software_showmore() {
+    let showMoreButton = document.getElementById('VK_toolkit_software_show_more');
+    let hiddenItems = document.querySelectorAll('#VK_technical_software_checkbox .d-none');
+    let visibleItems = document.querySelectorAll('#VK_technical_software_checkbox > div:not(.d-none)');
+
+    if (showMoreButton.innerText.trim() === "Show More") {
+        showMoreButton.innerHTML = "<span>Show Less</span>";
+        hiddenItems.forEach(item => item.classList.remove('d-none'));
+    } else {
+        showMoreButton.innerHTML = "<span>Show More</span>";
+        visibleItems.forEach((item, ind) => {
+            if (ind > 7) {
+                item.classList.add('d-none');
+            }
+        });
+    }
+}
+
+// checkbox search box
+function VK_techincal_software_search() {
+    let srch = document.getElementById('VK_technical_software_search').value
+    let arr = VK_technical_software_data.filter((ele) => {
+        return ele.toLowerCase().includes(srch.toLowerCase())
+    })
+    VK_technical_software = arr
+    VK_technical_software_checkbox()
+}
+
+// orderby
+function VK_technical_software_order_By() {
+    let orderby = document.getElementById('VK_technical_software_sort').value
+    if (orderby == 'A-Z') {
+        VK_technical_software.sort((a, b) => a.localeCompare(b))
+    }
+    else if (orderby == 'Z-A') {
+        VK_technical_software.sort((a, b) => b.localeCompare(a))
+    }
+    VK_technical_software_checkbox()
+}
+
+
+
+
+// programming language
+var VK_techical_programming_data = [
+    "C C++",
+    "C#",
+    "CUDA*",
+    "Data Parallel C++ (DPC++)",
+    "Fortran",
+    "Go*",
+    "Hack HHVM",
+    "HTML5",
+    "Java*",
+    "JavaScript*",
+    "Julia*",
+    "Microsoft .NET*",
+    "Node.js*",
+    "PHP",
+    "Python*",
+    "R*",
+    "ROCm*",
+    "SYCL*"
+]
+
+var VK_technical_programming = VK_techical_programming_data
+
+// display programming type checkbox
+function VK_technical_programming_checkbox() {
+    if (document.getElementById('VK_technical_programming_checkbox')) {
+        let html = VK_technical_programming.map((ele, ind) => {
+            return `
+        <div class="${ind > 7 ? "d-none" : ""} my-1 VK_white_space"> 
+            <input type="checkbox" value="${ele}" class="me-2 VK_overflow_checkbox" onclick="VK_oneapi_content_type()">
+            <span>${ele}</span>
+        </div>
+        `;
+        }).join(' ');
+
+        if (VK_technical_programming.length > 7) {
+            html += `
+        <button class="border-0 bg-transparent VK_a" onclick="VK_technical_programming_showmore()" id="VK_toolkit_programming_show_more">
+            <span>Show More</span>
+        </button>
+        `;
+        }
+
+        document.getElementById('VK_technical_programming_checkbox').innerHTML = html;
+    } else {
+        return;
+    }
+}
+
+// programming checkbox show more or less
+function VK_technical_programming_showmore() {
+    let showMoreButton = document.getElementById('VK_toolkit_programming_show_more');
+    let hiddenItems = document.querySelectorAll('#VK_technical_programming_checkbox .d-none');
+    let visibleItems = document.querySelectorAll('#VK_technical_programming_checkbox > div:not(.d-none)');
+
+    if (showMoreButton.innerText.trim() === "Show More") {
+        showMoreButton.innerHTML = "<span>Show Less</span>";
+        hiddenItems.forEach(item => item.classList.remove('d-none'));
+    } else {
+        showMoreButton.innerHTML = "<span>Show More</span>";
+        visibleItems.forEach((item, ind) => {
+            if (ind > 7) {
+                item.classList.add('d-none');
+            }
+        });
+    }
+}
+
+
+// checkbox search box
+function VK_techincal_programming_search() {
+    let srch = document.getElementById('VK_technical_programming_search').value
+    let arr = VK_techical_programming_data.filter((ele) => {
+        return ele.toLowerCase().includes(srch.toLowerCase())
+    })
+    VK_technical_programming = arr
+    VK_technical_programming_checkbox()
+}
+
+// orderby
+function VK_technical_programming_order_By() {
+    let orderby = document.getElementById('VK_technical_programming_filters').value
+    if (orderby == 'A-Z') {
+        VK_technical_programming.sort((a, b) => a.localeCompare(b))
+    }
+    else if (orderby == 'Z-A') {
+        VK_technical_programming.sort((a, b) => b.localeCompare(a))
+    }
+    VK_technical_programming_checkbox()
+}
+
+
+
+
+// content Type
+var VK_technical_content_type_data = [
+    "Analyst Reports",
+    "Application Notes",
+    "Applications",
+    "Architecture Guides",
+    "Architecture Specifications",
+    "Benchmarks",
+    "Best Practices",
+    "Biographies",
+    "BIOS Specifications",
+    "Blogs",
+    "Briefs",
+    "Business Briefs",
+    "Case Studies",
+    "Certification",
+    "Code Samples",
+    "Communications",
+    "Conference Sessions",
+    "Conferences and Events",
+    "Configuration Guides",
+    "Cookbooks",
+    "Courseware",
+    "Customer Presentations",
+    "Datasheets",
+    "Dear Customer Letters (DCL)",
+    "Demo Videos",
+    "Demos",
+    "Design Reference",
+    "Development Guides",
+    "Development Reference Guides",
+    "Development User Guides",
+    "Device Overviews",
+    "Drivers",
+    "Event Overviews",
+    "Event Schedules",
+    "FAQs",
+    "Feature Lists",
+    "Firmware",
+    "Getting Started Guides",
+    "How-To Training",
+    "Implementation Guides",
+    "Infographics",
+    "Installation Guides",
+    "Instructional Materials",
+    "Instructor-Led Training",
+    "Internal Training",
+    "Known Issues",
+    "Learning Plans and Paths",
+    "Machine Learning Models",
+    "Marketing Guides",
+    "Marketing Tools",
+    "On-Demand Training",
+    "Partner Briefs",
+    "Playbooks",
+    "Product Briefs",
+    "Product Snapshots",
+    "Product Specifications",
+    "Product Updates",
+    "Programming Reference",
+    "Release Notes",
+    "Sales and Marketing Materials",
+    "Sales Quick Reference",
+    "Sales Tools",
+    "Sample Applications",
+    "Schematic and Layout Files",
+    "Scripts",
+    "Software Containers",
+    "Software Development Kits (SDKs)",
+    "Software Downloads",
+    "Software Kits",
+    "Software Packages",
+    "Software Patches",
+    "Software Reference Implementations",
+    "Software, Drivers and Utilities",
+    "Solution Briefs",
+    "Stock Video",
+    "Success Stories",
+    "Support Articles",
+    "System Requirements",
+    "Technical Advisories",
+    "Technical Articles",
+    "Technical Documentation Kits",
+    "Technical Specifications",
+    "Testimonials",
+    "Training and Learning",
+    "Training Manuals",
+    "Troubleshooting",
+    "Tuning and Optimization Guides",
+    "Tutorials",
+    "Use Cases",
+    "User Guides",
+    "Validation and Debug Guides",
+    "White Papers",
+    "Workshop Events"
+]
+
+var VK_technical_content_type = VK_technical_content_type_data
+
+// display content type checkbox
+function VK_technical_content_type_checkbox() {
+    if (document.getElementById('VK_technical_content_type_checkbox')) {
+        let html = VK_technical_content_type.map((ele, ind) => {
+            return `
+        <div class="${ind > 7 ? "d-none" : ""} my-1 VK_white_space"> 
+            <input type="checkbox" value="${ele}" class="me-2 VK_overflow_checkbox VK_technical_content_checkbox" onclick="VK_oneapi_content_type()">
+            <span>${ele}</span>
+        </div>
+        `;
+        }).join(' ');
+
+        if (VK_technical_content_type.length > 7) {
+            html += `
+        <button class="border-0 bg-transparent VK_a" onclick="VK_technical_content_showmore()" id="VK_technical_content_show_more">
+            <span>Show More</span>
+        </button>
+        `;
+        }
+
+        document.getElementById('VK_technical_content_type_checkbox').innerHTML = html;
+    } else {
+        return;
+    }
+}
+
+// content checkbox show more or less
+function VK_technical_content_showmore() {
+    let showMoreButton = document.getElementById('VK_technical_content_show_more');
+    let hiddenItems = document.querySelectorAll('#VK_technical_content_type_checkbox .d-none');
+    let visibleItems = document.querySelectorAll('#VK_technical_content_type_checkbox > div:not(.d-none)');
+
+    if (showMoreButton.innerText.trim() === "Show More") {
+        showMoreButton.innerHTML = "<span>Show Less</span>";
+        hiddenItems.forEach(item => item.classList.remove('d-none'));
+    } else {
+        showMoreButton.innerHTML = "<span>Show More</span>";
+        visibleItems.forEach((item, ind) => {
+            if (ind > 7) {
+                item.classList.add('d-none');
+            }
+        });
+    }
+}
+
+// checkbox search box
+function VK_techincal_content_search() {
+    let srch = document.getElementById('VK_technical_content_search').value
+    let arr = VK_technical_content_type_data.filter((ele) => {
+        return ele.toLowerCase().includes(srch.toLowerCase())
+    })
+    VK_technical_content_type = arr
+    VK_technical_content_type_checkbox()
+}
+
+// orderby
+function VK_technical_content_order_By() {
+    let orderby = document.getElementById('VK_technical_content_filters').value
+    if (orderby == 'A-Z') {
+        VK_technical_content_type.sort((a, b) => a.localeCompare(b))
+    }
+    else if (orderby == 'Z-A') {
+        VK_technical_content_type.sort((a, b) => b.localeCompare(a))
+    }
+    VK_technical_content_type_checkbox()
+}
+
+// content type checkbox event
+function VK_oneapi_content_type() {
+    let checkboxes = document.querySelectorAll('.VK_technical_content_checkbox');
+    let checkedBoxes = Array.from(checkboxes).filter(checkbox => checkbox.checked);
+
+    if (checkedBoxes.length === 0) {
+        VK_techical_data = VK_techical_library_data;
+    } else {
+        let selectedContentTypes = checkedBoxes.map(checkbox => checkbox.value.toLowerCase());
+        VK_techical_data = VK_techical_library_data.filter(item => {
+            return selectedContentTypes.includes(item.content.toLowerCase());
+        });
+    }
+
+    VK_technical_accoridan();
 }
