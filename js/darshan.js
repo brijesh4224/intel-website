@@ -7150,7 +7150,7 @@ const successpartner = [
         title: "CoreAVI",
         img: "ps4.png",
         desc: "CoreAVI has partnered with Intel to deliver integrated Platforms for Safety-Critical Applications (PSCAs) that reduce time to safe deployment, deliver incredible performance, consolidate workflows, and allow for a scalable solution with amazing costs.",
-        link: "",
+        link: "d_coreavi-partner-chat-video.html",
         link1: ""
     },
     {
@@ -7158,7 +7158,7 @@ const successpartner = [
         title: "ThunderSoft",
         img: "ps5.png",
         desc: "ThunderSoft smart building solution supports connection and communication with smart building IoT devices such as sensors, devices and building automation systems.",
-        link: "",
+        link: "d_thundersoft-partner-chat-video.html",
         link1: ""
     },
     {
@@ -7516,7 +7516,7 @@ const successhealth = [
         title: "Sycai Medical",
         img: "hp2.jpg",
         desc: "Sycai Medical's AI medical imaging improves patient care through AI-assisted detection of pancreatic cystic lesions.",
-        link: "",
+        link: "d_sycai-medical-pancreatic-imaging-partner-brief.html",
         link1: ""
     },
     {
@@ -7524,7 +7524,7 @@ const successhealth = [
         title: "LinkingMed",
         img: "hp3.jpg",
         desc: "LinkingMed AIPlan automatic radiotherapy treatment planning system, improving patient outcomes and optimizing treatment plans with AI-powered tools.",
-        link: "",
+        link: "d_linkingmed-radiotherapy-planning-partner-brief.html",
         link1: ""
     },
     {
@@ -7540,7 +7540,7 @@ const successhealth = [
         title: "Netown Babybot Smart Health Solution",
         img: "hp5.jpg",
         desc: "Providing personalized health enhancement experiences with AI.",
-        link: "",
+        link: "d_netown-babybot-smart-health-partner-brief.html",
         link1: ""
     },
     {
@@ -7601,10 +7601,10 @@ function renderItems2(startIndex, endIndex) {
                     <div class="d_img mb-2">
                         <img src="/img/darshan_image/${successhealth[i].img}" alt="">
                     </div>
-                    <h3><a href="">${successhealth[i].title}</a></h3>
+                    <h3><a href="/d_partner/${successhealth[i].link}">${successhealth[i].title}</a></h3>
                     <p>${successhealth[i].desc}</p>
-                    <p><a href="">Watch the video</a></p>
-                    ${successhealth[i].link1 ? `<p><a href="">Read the partner brief</a></p>` : ''}
+                    <p><a href="/d_partner/${successhealth[i].link}">Read the partner brief</a></p>
+                    ${successhealth[i].link1 ? `<p><a href="">Read the solution brief</a></p>` : ''}
                 </div>
             </div>`;
     }
@@ -8214,7 +8214,7 @@ const successvideo = [
         title: "NexCOBOT",
         img: "vs1.png",
         desc: "Functional safety control platform for autonomous mobile robots.",
-        link: "",
+        link: "d_nexcobot-scaling-edge-video.html",
         link1: ""
     },
     {
@@ -8222,7 +8222,7 @@ const successvideo = [
         title: "WaitTime",
         img: "vs2.png",
         desc: "WaitTime is a patented, real-time and historical artificial intelligence software that uses state-of-the-art imaging techniques to monitor crowd behavior in large scale venues.",
-        link: "",
+        link: "d_waittime-scaling-edge-video.html",
         link1: ""
     },
     {
@@ -8230,7 +8230,7 @@ const successvideo = [
         title: "Axiomtek",
         img: "vs3.png",
         desc: "Axiomtek AMR building package aims to accelerate time-to-market through a complete support program.",
-        link: "",
+        link: "d_axiomtek-scaling-edge-video.html",
         link1: ""
     },
     {
@@ -8238,7 +8238,7 @@ const successvideo = [
         title: "AAEON",
         img: "vs4.png",
         desc: "AAEON UP Element i12 Edge, autonomous mobile robot modular toolkit.",
-        link: "",
+        link: "d_aaeon-scaling-at-the-edge-video.html",
         link1: ""
     },
     {
@@ -8246,7 +8246,7 @@ const successvideo = [
         title: "NexAIoT",
         img: "vs5.png",
         desc: "Delivering user-centric service with smart autonomous mobile robots (AMR).",
-        link: "",
+        link: "d_nexaiot-scaling-at-the-edge-video.html",
         link1: ""
     },
     {
@@ -8307,9 +8307,9 @@ function renderItems7(startIndex, endIndex) {
                     <div class="d_img mb-2">
                         <img src="/img/darshan_image/${successvideo[i].img}" alt="">
                     </div>
-                    <h3><a href="">${successvideo[i].title}</a></h3>
+                    <h3><a href="/d_partner/${successvideo[i].link}">${successvideo[i].title}</a></h3>
                     <p>${successvideo[i].desc}</p>
-                    <p><a href="">Watch the video</a></p>
+                    <p><a href="/d_partner/${successvideo[i].link}">Watch the video</a></p>
                     ${successvideo[i].link1 ? `<p><a href="">Read the partner brief</a></p>` : ''}
                 </div>
             </div>`;
@@ -9671,4 +9671,721 @@ const pdfmaterial28 = [
 
 createpdf('D_pdfmaterial28', pdfmaterial28);
 
+// sycai medical
 
+const pdfvideo19 = [
+    {
+        id: 1,
+        title: "CoreAVI Edge Testimonial Video",
+        time: "2:13",
+        text: "Intel edge AI testimonial by Neil Stroud, VP of Marketing and Business Development at CoreAVI.",
+        img: "video15.png",
+        link: "",
+    },
+    {
+        id: 2,
+        title: "Vispera Edge Testimonial Video",
+        time: "2:09",
+        text: "Intel edge AI testimonial video by Erdem Yoruk, CTO at Vispera Information Technologies Co.. ",
+        img: "video15.png",
+        link: "",
+    },
+    {
+        id: 3,
+        title: "Cognitifai Edge Testimonial Video",
+        time: "2:12",
+        text: "Intel edge AI testimonial by Kanishka Nithin, co-founder and CEO at Cognitifai. ",
+        img: "video15.png",
+        link: "",
+    },
+    {
+        id: 4,
+        title: "NodeWeaver Partner Chat Video",
+        time: "12:34",
+        text: "NodeWeaver bridges the world of private cloud platforms and hyperconverged infrastructure with a unified cloud fabric that brings all pieces together in building-block style. ",
+        img: "video15.png",
+        link: "",
+    },
+    {
+        id: 5,
+        title: "Epic iO Edge Testimonial Video",
+        time: "2:07",
+        text: "Intel edge AI testimonial by Ken Mills, CEO of Epic IO, IntelliSite and Broad Sky Networks. ",
+        img: "video15.png",
+        link: "",
+    },
+    {
+        id: 6,
+        title: "Luxonis Edge Testimonial Video",
+        time: "2:14",
+        text: "Intel edge AI testimonial by Brandon Gilles, founder and CEO of Luxonis. ",
+        img: "video15.png",
+        link: "",
+    },
+]
+
+createVideoGallery('D_pdfvideo19', pdfvideo19);
+
+const pdfmaterial29 = [
+    {
+        id: 1,
+        title: "LinkingMed Radiotherapy Planning Partner Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 2,
+        title: "7 StarLake Smart Traffic Partner Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 3,
+        title: "CathexisVision Partner Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 4,
+        title: "AerVision AerWatch Solution Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 5,
+        title: "Irisity IRIS Solution Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 6,
+        title: "Profet AI AutoML Platform Solution Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 7,
+        title: "Axiomtek AMR Partner Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 8,
+        title: "IBM Watson NLU Solution Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 9,
+        title: "Vistry Discrn Solution Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 10,
+        title: "Ignitarium TYQ-i Partner Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 11,
+        title: "SeeWise Smart Factory Partner Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 12,
+        title: "LinkingMed Radiotherapy Planning Solution Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+
+]
+
+createpdf('D_pdfmaterial29', pdfmaterial29);
+
+
+// linkingmed radiotherapy
+
+const pdfvideo20 = [
+    {
+        id: 1,
+        title: "CoreAVI Edge Testimonial Video",
+        time: "2:13",
+        text: "Intel edge AI testimonial by Neil Stroud, VP of Marketing and Business Development at CoreAVI.",
+        img: "video15.png",
+        link: "",
+    },
+    {
+        id: 2,
+        title: "Vispera Edge Testimonial Video",
+        time: "2:09",
+        text: "Intel edge AI testimonial video by Erdem Yoruk, CTO at Vispera Information Technologies Co.. ",
+        img: "video15.png",
+        link: "",
+    },
+    {
+        id: 3,
+        title: "Cognitifai Edge Testimonial Video",
+        time: "2:12",
+        text: "Intel edge AI testimonial by Kanishka Nithin, co-founder and CEO at Cognitifai. ",
+        img: "video15.png",
+        link: "",
+    },
+    {
+        id: 4,
+        title: "WaitTime Scaling at the Edge Video",
+        time: "18:36",
+        text: "WaitTime is a patented, real-time and historical artificial intelligence software that uses state-of-the-art imaging techniques to monitor crowd behavior in large scale venues. ",
+        img: "video15.png",
+        link: "",
+    },
+    {
+        id: 5,
+        title: "NodeWeaver Partner Chat Video",
+        time: "12:34",
+        text: "NodeWeaver bridges the world of private cloud platforms and hyperconverged infrastructure with a unified cloud fabric that brings all pieces together in building-block style. ",
+        img: "video15.png",
+        link: "",
+    },
+    {
+        id: 6,
+        title: "NexCOBOT Scaling at the Edge Video",
+        time: "9:55",
+        text: "Functional safety control platform for autonomous mobile robots. ",
+        img: "video15.png",
+        link: "",
+    },
+]
+
+createVideoGallery('D_pdfvideo20', pdfvideo20);
+
+const pdfmaterial30 = [
+    {
+        id: 1,
+        title: "7 StarLake Smart Traffic Partner Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 2,
+        title: "Sycai Medical Pancreatic Imaging Partner Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 3,
+        title: "CathexisVision Partner Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 4,
+        title: "AerVision AerWatch Solution Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 5,
+        title: "Irisity IRIS Solution Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 6,
+        title: "Profet AI AutoML Platform Solution Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 7,
+        title: "Axiomtek AMR Partner Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 8,
+        title: "IBM Watson NLU Solution Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 9,
+        title: "Vistry Discrn Solution Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 10,
+        title: "Ignitarium TYQ-i Partner Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 11,
+        title: "SeeWise Smart Factory Partner Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 12,
+        title: "LinkingMed Radiotherapy Planning Solution Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+
+]
+
+createpdf('D_pdfmaterial30', pdfmaterial30);
+
+
+// netown babybot smart health
+
+const pdfvideo21 = [
+    {
+        id: 1,
+        title: "CoreAVI Edge Testimonial Video",
+        time: "2:13",
+        text: "Intel edge AI testimonial by Neil Stroud, VP of Marketing and Business Development at CoreAVI.",
+        img: "video15.png",
+        link: "",
+    },
+    {
+        id: 2,
+        title: "Epic iO Edge Testimonial Video",
+        time: "2:07",
+        text: "Intel edge AI testimonial by Ken Mills, CEO of Epic IO, IntelliSite and Broad Sky Networks. ",
+        img: "video15.png",
+        link: "",
+    },
+    {
+        id: 3,
+        title: "Luxonis Edge Testimonial Video",
+        time: "2:14",
+        text: "Intel edge AI testimonial by Brandon Gilles, founder and CEO of Luxonis. ",
+        img: "video15.png",
+        link: "",
+    },
+    {
+        id: 4,
+        title: "Vispera Edge Testimonial Video",
+        time: "2:09",
+        text: "Intel edge AI testimonial video by Erdem Yoruk, CTO at Vispera Information Technologies Co.. ",
+        img: "video15.png",
+        link: "",
+    },
+    {
+        id: 5,
+        title: "Cognitifai Edge Testimonial Video",
+        time: "2:12",
+        text: "Intel edge AI testimonial by Kanishka Nithin, co-founder and CEO at Cognitifai. ",
+        img: "video15.png",
+        link: "",
+    },
+    {
+        id: 6,
+        title: "NodeWeaver Partner Chat Video",
+        time: "12:34",
+        text: "NodeWeaver bridges the world of private cloud platforms and hyperconverged infrastructure with a unified cloud fabric that brings all pieces together in building-block style. ",
+        img: "video15.png",
+        link: "",
+    },
+]
+
+createVideoGallery('D_pdfvideo21', pdfvideo21);
+
+const pdfmaterial31 = [
+    {
+        id: 1,
+        title: "Meet Today’s Retail Challenges",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 2,
+        title: "Reap the Benefits of IT/OT Convergence",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 3,
+        title: "FOX Sports Delivers World-Class Viewing Experience",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 4,
+        title: "AIX-COVNET: AI and Visualization Fight COVID-19",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 5,
+        title: "LTIMindtree Optimizes AI-Enabled Chatbot Abilities",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 6,
+        title: "JAXA Launches Multi-cluster TOKI Supercomputer",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 7,
+        title: "Artificial Intelligence (AI) in Higher Education - Intel",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 8,
+        title: "MetaApp Revamps AI-Based Recommendation System",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 9,
+        title: "Equideum Health: Revolutionizing Health Data",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 10,
+        title: "How AI Will Revolutionize the Computing Experience",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 11,
+        title: "Google Cloud Platform and Intel® AI",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 12,
+        title: "How to Choose High Performance Computing (HPC) Processors - Intel",
+        img: "pdf2.png",
+        link: "",
+    },
+
+]
+
+createpdf('D_pdfmaterial31', pdfmaterial31);
+
+// coreavi partners
+
+const pdfmaterial32 = [
+    {
+        id: 1,
+        title: "iSIZE BitClear Partner Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 2,
+        title: "Accelerating AI on Intel® Xeon® Scalable Processors",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 3,
+        title: "Lucas A. Wilson, Ph.D.",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 4,
+        title: "Konstantin Rodyushkin",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 5,
+        title: "Neslihan Köse Cihangir",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 6,
+        title: "Melanie Hart Buehler",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 7,
+        title: "Deci.AI Deep Learning Platform Partner Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 8,
+        title: "Sailing the Seas of Autonomous Shipping",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 9,
+        title: "Dina Suehiro Jones",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 10,
+        title: "Video Wall on IA Whitepaper",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 11,
+        title: "Federated Learning for Medical Imaging",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 12,
+        title: "Unlocking DL Performance with nGraph",
+        img: "pdf2.png",
+        link: "",
+    },
+
+]
+
+createpdf('D_pdfmaterial32', pdfmaterial32);
+
+// thunadersoft partner chat video
+
+const pdfmaterial33 = [
+    {
+        id: 1,
+        title: "PMY Solution Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 2,
+        title: "ICURO Semiconductor Manufacturing Partner Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 3,
+        title: "iOmniscient IQ Suite Solution Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 4,
+        title: "Ignitarium TYQ-i Solution Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 5,
+        title: "Ignitarium TYQ-i Partner Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 6,
+        title: "Siena Analytics Insights Solution Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 7,
+        title: "Ombori Grid SaaS Solution Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 8,
+        title: "Vispera Shelfsight Solution Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 9,
+        title: "Pathr.ai Supermarket Operations Solution Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 10,
+        title: "Extreme Vision Smart Traffic Violation Review Solution Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 11,
+        title: "Intel-Enabled AI from Sensormatic Solution Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 12,
+        title: "Quividi Audience Measurement Platform Solution Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+
+]
+
+createpdf('D_pdfmaterial33', pdfmaterial33);
+
+// nexaiot scaling 
+
+const pdfmaterial34 = [
+    {
+        id: 1,
+        title: "ICURO Mobile Robots AI Edge Platform Partner Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 2,
+        title: "Hitachi Industrial Edge Computer",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 3,
+        title: "AAEON Technology Inc.",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 4,
+        title: "Microvision Intelligent Manufacturing Technology",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 5,
+        title: "JWIPC E099*",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 6,
+        title: "What Is Discrete Manufacturing? IIoT in Manufacturing - Intel",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 7,
+        title: "SECO JULIET COM Express® with the Intel® Xeon® D-1700 Processor",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 8,
+        title: "ST Engineering Video Analytics White Paper",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 9,
+        title: "Advantech EI-52",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 10,
+        title: "WaitTime Crowd Intelligence Partner Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 11,
+        title: "NexCOBOT SCB100 Partner Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 12,
+        title: "4th Gen Intel® Xeon® Scalable Processors for IoT Infographic",
+        img: "pdf2.png",
+        link: "",
+    },
+]
+
+createpdf('D_pdfmaterial34', pdfmaterial34);
+
+// nexaiot scaling 
+
+const pdfmaterial35 = [
+    {
+        id: 1,
+        title: "Intel® AI: In Production | Success Stories",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 2,
+        title: "iSIZE BitClear Partner Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 3,
+        title: "Deci.AI Deep Learning Platform Partner Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 4,
+        title: "Video Wall on IA Whitepaper",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 5,
+        title: "Developer Resources for Retail",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 6,
+        title: "Machine Vision Technology",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 7,
+        title: "Braemac",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 8,
+        title: "DSIPC BU11D",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 9,
+        title: "Uzel Information US-M5520*",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 10,
+        title: "byteLAKE",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 11,
+        title: "Cathexis",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 12,
+        title: "XZSTEAM",
+        img: "pdf2.png",
+        link: "",
+    },
+]
+
+createpdf('D_pdfmaterial35', pdfmaterial35);
