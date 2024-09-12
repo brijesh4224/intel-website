@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Full Width & Height Dropdown</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        header {
+            background-color: #333;
+            padding: 1em;
+        }
+
+        .db_nav {
+            list-style: none;
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .db_nav li a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.2em;
+        }
+
+        .db_content {
+            padding: 2em;
+        }
+
+        .db_fullscreenDropdown {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            color: white;
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .db_dropdownContent {
+            text-align: center;
+        }
+
+        .db_dropdownContent h2 {
+            font-size: 2em;
+            margin-bottom: 1em;
+        }
+
+        .db_dropdownContent ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .db_dropdownContent ul li {
+            margin: 1em 0;
+        }
+
+        .db_dropdownContent ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.5em;
+        }
+
+        #db_closeDropdown {
+            margin-top: 2em;
+            background-color: red;
+            color: white;
+            border: none;
+            padding: 0.5em 2em;
+            font-size: 1em;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul class="db_nav">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#" id="db_communityLink">Community</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="db_content">
+        <p>This is your content area. It will be hidden when the dropdown is opened.</p>
+    </div>
+
+    <div class="db_fullscreenDropdown" id="db_fullscreenDropdown">
+        <div class="db_dropdownContent">
+            <h2>Community Dropdown</h2>
+            <ul>
+                <li><a href="#">Community 1</a></li>
+                <li><a href="#">Community 2</a></li>
+                <li><a href="#">Community 3</a></li>
+            </ul>
+            <button id="db_closeDropdown"><i class="fas fa-times"></i> Close</button>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('db_communityLink').addEventListener('click', function() {
+            document.getElementById('db_fullscreenDropdown').style.display = 'flex';
+            document.body.style.overflow = 'hidden';  // Prevent scrolling when dropdown is open
+        });
+
+        document.getElementById('db_closeDropdown').addEventListener('click', function() {
+            document.getElementById('db_fullscreenDropdown').style.display = 'none';
+            document.body.style.overflow = 'auto';  // Allow scrolling when dropdown is closed
+        });
+    </script>
+</body>
+</html>
