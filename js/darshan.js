@@ -7682,7 +7682,7 @@ const successretail = [
         title: "Broox",
         img: "rs5.jpg",
         desc: "Broox Audience Analytics Suite, create meaningful customer engagement through intelligent digital signage.",
-        link: "",
+        link: "d_broox-audience-analytics-suite-partner-brief.html",
         link1: ""
     },
     {
@@ -7690,7 +7690,7 @@ const successretail = [
         title: "WaitTime",
         img: "rs6.jpg",
         desc: "Improve customer experiences and operations using real-time crowd intelligence.",
-        link: "",
+        link: "d_waittime-platform-partner-brief.html",
         link1: ""
     },
     {
@@ -7698,7 +7698,7 @@ const successretail = [
         title: "SHELFIE",
         img: "rs7.jpg",
         desc: "Empowering retailers with an intelligent shelf monitoring system for real-time, actionable insights.",
-        link: "",
+        link: "d_shelfie-white-paper.html",
         link1: ""
     },
     {
@@ -7706,7 +7706,7 @@ const successretail = [
         title: "Vistry Discrn",
         img: "rs8.jpg",
         desc: "Vistry brings AI-enabled automation to enterprise quick service restaurants",
-        link: "",
+        link: "d_vistry-discrn-solution-brief.html",
         link1: ""
     },
     {
@@ -7791,7 +7791,7 @@ const successsecurity = [
         title: "Yumai",
         img: "ss1.jpg",
         desc: "Yumai Palm Vein Identification Box, enhancing individual authentication privacy through Palmar Vein Recognition.",
-        link: "",
+        link: "d_yumai-palm-vein-identification-ai-box-partner-brief.html",
         link1: ""
     },
     {
@@ -7831,7 +7831,7 @@ const successsecurity = [
         title: "Scale Computing VMS",
         img: "ss6.jpg",
         desc: "Intel and Scale Computing present a powerful and innovative solution for high-demand security stacks and edge computing.",
-        link: "",
+        link: "d_aioverview.html",
         link1: ""
     },
     {
@@ -7839,7 +7839,7 @@ const successsecurity = [
         title: "PMY Venue Operational Insights",
         img: "ss7.jpg",
         desc: "PMY delivers smart operating platform with Intel technology for venues and events.",
-        link: "",
+        link: "d_pmy-solution-brief.html",
         link1: ""
     },
     {
@@ -8105,7 +8105,7 @@ const technology = [
         title: "iGenius",
         img: "es5.jpg",
         desc: "iGenius's Crystal is a voice and text-based data platform that lets people effortlessly access and analyze their business data.",
-        link: "",
+        link: "d_igenius-crystal-partner-brief.html",
         link1: ""
     },
     {
@@ -10389,3 +10389,949 @@ const pdfmaterial35 = [
 ]
 
 createpdf('D_pdfmaterial35', pdfmaterial35);
+
+// broox
+
+const pdfvideo26 = [
+    {
+        id: 1,
+        title: "WaitTime Scaling at the Edge Video",
+        time: "18:16",
+        text: "WaitTime is a patented, real-time and historical artificial intelligence software that uses state-of-the-art imaging techniques to monitor crowd behavior in large scale venues.  ",
+        img: "video15.png",
+        link: "",
+    },
+    {
+        id: 2,
+        title: "13th Gen Intel® Core™ Processors for IoT Edge Overview Video",
+        time: "2:41",
+        text: "Accelerate time to value for IoT with more options, performance and features for AI, analytics, computer vision, and industrial solutions at the edge.  ",
+        img: "video15.png",
+        link: "",
+    },
+    {
+        id: 3,
+        title: "Advantech Veridify Scaling at the Edge Video",
+        time: "10:12",
+        text: "Making industrial IoT and smart buildings cyber safe.  ",
+        img: "video15.png",
+        link: "",
+    },
+    {
+        id: 4,
+        title: "Cognitifai Edge Testimonial Video",
+        time: "2:12",
+        text: "Intel edge AI testimonial by Kanishka Nithin, co-founder and CEO at Cognitifai. ",
+        img: "video15.png",
+        link: "",
+    },
+    {
+        id: 5,
+        title: "Megh Computing Edge Testimonial Video",
+        time: "2:14",
+        text: "Intel edge AI testimonial by Prabhat K Gupta, founder and CEO of Megh Computing. ",
+        img: "video15.png",
+        link: "",
+    },
+    {
+        id: 6,
+        title: "NexAIoT Scaling at the Edge Video",
+        time: "6:55",
+        text: "Delivering user-centric service with smart autonomous mobile robots (AMR). ",
+        img: "video15.png",
+        link: "",
+    },
+]
+
+createVideoGallery('D_pdfvideo26', pdfvideo26);
+
+
+
+const pdfmaterial36 = [
+    {
+        id: 1,
+        title: "LinkingMed Radiotherapy Planning Solution Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 2,
+        title: "JLK MEDIHUB CXR Partner Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 3,
+        title: "SILO AI Weather Insights Solution Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 4,
+        title: "Netown Babybot Smart Health Solution Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 5,
+        title: "NexAIoT AMR Partner Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 6,
+        title: "GDDi Algorithms Defined AIBox Partner Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 7,
+        title: "Visionatics Panel Inspection Partner Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 8,
+        title: "AerVision AerWatch Partner Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 9,
+        title: "Pratexo Studio Solution Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 10,
+        title: "GIBots DigiDoc White Paper",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 11,
+        title: "SHELFIE White Paper",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 12,
+        title: "Satsafeti Intelligent Conveyor Partner Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+
+]
+
+createpdf('D_pdfmaterial36', pdfmaterial36)
+
+// waittime
+
+const pdfvideo27 = [
+    {
+        id: 1,
+        title: "EPIC IO Edge Testimonial Video",
+        time: "2:07",
+        text: "Intel edge AI testimonial by Ken Mills, CEO of Epic IO, IntelliSite and Broad Sky Networks. ",
+        img: "video15.png",
+        link: "",
+    },
+    {
+        id: 2,
+        title: "Cognitifai Edge Testimonial Video",
+        time: "2:12",
+        text: "Intel edge AI testimonial by Kanishka Nithin, co-founder and CEO at Cognitifai. ",
+        img: "video15.png",
+        link: "",
+    },
+    {
+        id: 3,
+        title: "NexCOBOT Scaling at the Edge Video",
+        time: "9:55",
+        text: "Functional safety control platform for autonomous mobile robots.  ",
+        img: "video15.png",
+        link: "",
+    },
+    {
+        id: 4,
+        title: "Intel® AI: In Production: CrowdOptic Demo Video",
+        time: "6:57",
+        text: "This system uses AI and triangulation algorithms at the network edge to analyze and redirect cameras. ",
+        img: "video15.png",
+        link: "",
+    },
+    {
+        id: 5,
+        title: "C2RO Partner Chat Video",
+        time: "22:06",
+        text: "Collaboration between Intel and C2RO has enabled 'Journey-to-Touch Analysis' scalable to thousands of enterprise locations. ",
+        img: "video15.png",
+        link: "",
+    },
+    {
+        id: 6,
+        title: "meldCX Partner Chat Video",
+        time: "6:55",
+        text: "Measuring how people work, shop, learn, and play in physical spaces without the need for complex development.  ",
+        img: "video15.png",
+        link: "",
+    },
+]
+
+createVideoGallery('D_pdfvideo27', pdfvideo27);
+
+
+
+const pdfmaterial37 = [
+    {
+        id: 1,
+        title: "WaitTime Platform Solution Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 2,
+        title: "C2RO ENTERA Partner Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 3,
+        title: "SHELFIE Partner Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 4,
+        title: "SHELFIE White Paper",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 5,
+        title: "Vistry Discrn Solution Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 6,
+        title: "iGenius Crystal Partner Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 7,
+        title: "Enhancing worker safety and improving productivity for manufacturers...",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 8,
+        title: "IBM Watson NLU Partner Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 9,
+        title: "IBM Watson NLU Solution Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 10,
+        title: "CathexisVision Partner Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 11,
+        title: "SAIMOS Video Analytics Solution Partner Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 12,
+        title: "Cathexis CathexisVision Solution Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+
+]
+
+createpdf('D_pdfmaterial37', pdfmaterial37)
+
+// shelfie
+
+const pdfvideo28 = [
+    {
+        id: 1,
+        title: "EPIC IO Edge Testimonial Video",
+        time: "2:07",
+        text: "Intel edge AI testimonial by Ken Mills, CEO of Epic IO, IntelliSite and Broad Sky Networks. ",
+        img: "video15.png",
+        link: "",
+    },
+    {
+        id: 2,
+        title: "Cognitifai Edge Testimonial Video",
+        time: "2:12",
+        text: "Intel edge AI testimonial by Kanishka Nithin, co-founder and CEO at Cognitifai. ",
+        img: "video15.png",
+        link: "",
+    },
+    {
+        id: 3,
+        title: "NexCOBOT Scaling at the Edge Video",
+        time: "9:55",
+        text: "Functional safety control platform for autonomous mobile robots.  ",
+        img: "video15.png",
+        link: "",
+    },
+    {
+        id: 4,
+        title: "Intel® AI: In Production: CrowdOptic Demo Video",
+        time: "6:57",
+        text: "This system uses AI and triangulation algorithms at the network edge to analyze and redirect cameras. ",
+        img: "video15.png",
+        link: "",
+    },
+    {
+        id: 5,
+        title: "C2RO Partner Chat Video",
+        time: "22:06",
+        text: "Collaboration between Intel and C2RO has enabled 'Journey-to-Touch Analysis' scalable to thousands of enterprise locations. ",
+        img: "video15.png",
+        link: "",
+    },
+    {
+        id: 6,
+        title: "meldCX Partner Chat Video",
+        time: "6:55",
+        text: "Measuring how people work, shop, learn, and play in physical spaces without the need for complex development.  ",
+        img: "video15.png",
+        link: "",
+    },
+]
+
+createVideoGallery('D_pdfvideo28', pdfvideo28);
+
+
+
+const pdfmaterial38 = [
+    {
+        id: 1,
+        title: "LinkingMed Radiotherapy Planning Solution Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 2,
+        title: "JLK MEDIHUB CXR Partner Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 3,
+        title: "SILO AI Weather Insights Solution Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 4,
+        title: "Netown Babybot Smart Health Solution Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 5,
+        title: "NexAIoT AMR Partner Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 6,
+        title: "GDDi Algorithms Defined AIBox Partner Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 7,
+        title: "Visionatics Panel Inspection Partner Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 8,
+        title: "AerVision AerWatch Partner Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 9,
+        title: "Pratexo Studio Solution Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 10,
+        title: "GIBots DigiDoc White Paper",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 11,
+        title: "Satsafeti Intelligent Conveyor Partner Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 12,
+        title: "Beseye AI Video Analysis Solution Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+
+]
+
+createpdf('D_pdfmaterial38', pdfmaterial38)
+
+// vistry
+
+const pdfvideo29 = [
+    {
+        id: 1,
+        title: "Intel® AI: In Production: CrowdOptic Demo Video",
+        time: "6:57",
+        text: "This system uses AI and triangulation algorithms at the network edge to analyze and redirect cameras. ",
+        img: "video15.png",
+        link: "",
+    },
+    {
+        id: 2,
+        title: "C2RO Partner Chat Video",
+        time: "22:06",
+        text: "Collaboration between Intel and C2RO has enabled 'Journey-to-Touch Analysis' scalable to thousands of enterprise locations. ",
+        img: "video15.png",
+        link: "",
+    },
+    {
+        id: 3,
+        title: "Luxonis Edge Testimonial Video",
+        time: "2:14",
+        text: "Intel edge AI testimonial by Brandon Gilles, founder and CEO of Luxonis. ",
+        img: "video15.png",
+        link: "",
+    },
+    {
+        id: 4,
+        title: "CoreAVI Edge Testimonial Video",
+        time: "2:13",
+        text: "Intel edge AI testimonial by Neil Stroud, VP of Marketing and Business Development at CoreAVI.",
+        img: "video15.png",
+        link: "",
+    },
+    {
+        id: 5,
+        title: "Tech Data Scaling at the Edge",
+        time: "",
+        text: "Scaling IoT Solutions through the Power of Strategic Alliance.  ",
+        img: "video15.png",
+        link: "",
+    },
+    {
+        id: 6,
+        title: "ThunderSoft Partner Chat Video",
+        time: "21:09",
+        text: "ThunderSoft smart building solution supports connection and communication with smart building IoT devices such as sensors, devices and building automation systems.   ",
+        img: "video15.png",
+        link: "",
+    },
+]
+
+createVideoGallery('D_pdfvideo29', pdfvideo29);
+
+
+
+const pdfmaterial39 = [
+    {
+        id: 1,
+        title: "Ignitarium TYQ-i Partner Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 2,
+        title: "Beseye AI Video Analysis Partner Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 3,
+        title: "SHELFIE Partner Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 4,
+        title: "Irida Labs PerCV.ai Partner Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 5,
+        title: "PM AM Corporation i3Di Partner Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 6,
+        title: "Profet AI AutoML Platform Partner Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 7,
+        title: "LinkingMed Radiotherapy Planning Partner Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 8,
+        title: "Irisity IRIS Solution Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 9,
+        title: "Sycai Medical Pancreatic Imaging Partner Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 10,
+        title: "LinkingMed Radiotherapy Planning Solution Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 11,
+        title: "JLK MEDIHUB CXR Partner Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 12,
+        title: "SILO AI Weather Insights Solution Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+
+]
+
+createpdf('D_pdfmaterial39', pdfmaterial39)
+
+// pmy solution
+
+const pdfvideo30 = [
+    {
+        id: 1,
+        title: "C2RO Partner Chat Video",
+        time: "22:06",
+        text: "Collaboration between Intel and C2RO has enabled 'Journey-to-Touch Analysis' scalable to thousands of enterprise locations. ",
+        img: "video15.png",
+        link: "",
+    },
+    {
+        id: 2,
+        title: "ThunderSoft Partner Chat Video",
+        time: "21:09",
+        text: "ThunderSoft smart building solution supports connection and communication with smart building IoT devices such as sensors, devices and building automation systems.  ",
+        img: "video15.png",
+        link: "",
+    },
+    {
+        id: 3,
+        title: "meldCX Partner Chat Video",
+        time: "",
+        text: "Measuring how people work, shop, learn, and play in physical spaces without the need for complex development.  ",
+        img: "video15.png",
+        link: "",
+    },
+    {
+        id: 4,
+        title: "NEXCOM Scaling at the Edge Video",
+        time: "4:49",
+        text: "NEXCOM 5G uCPE for Virtual edge services management. ",
+        img: "video15.png",
+        link: "",
+    },
+    {
+        id: 5,
+        title: "Tech Data Scaling at the Edge",
+        time: "",
+        text: "Scaling IoT Solutions through the Power of Strategic Alliance.  ",
+        img: "video15.png",
+        link: "",
+    },
+    {
+        id: 6,
+        title: "Intel® AI: In Production: Cortexica Vision Systems Ltd. Demo Video",
+        time: "1:01",
+        text: "This solution improves compliance, reporting, and operational efficiencies while helping reduce liability and operational down times.",
+        img: "video15.png",
+        link: "",
+    },
+]
+
+createVideoGallery('D_pdfvideo30', pdfvideo30);
+
+
+
+const pdfmaterial40 = [
+    {
+        id: 1,
+        title: "Ignitarium TYQ-i Partner Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 2,
+        title: "Pathr.ai Supermarket Operations Solution Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 3,
+        title: "WaitTime Platform Solution Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 4,
+        title: "Viso AI Viso Suite Solution",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 5,
+        title: "Enhancing worker safety and improving productivity for manufacturers...",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 6,
+        title: "WaitTime Crowd Intelligence Partner Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 7,
+        title: "OnePlan Venue Experience Solution Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 8,
+        title: "AerVision AerWatch Solution Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 9,
+        title: "SeeWise Smart Factory Partner Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 10,
+        title: "JelloX MetaLite Digital Pathology Partner Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 11,
+        title: "ST Engineering Video Analytics White Paper",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 12,
+        title: "IBM Watson NLU Solution Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+
+]
+
+createpdf('D_pdfmaterial40', pdfmaterial40)
+
+// neuroo solution
+
+const pdfvideo31 = [
+    {
+        id: 1,
+        title: "C2RO Partner Chat Video",
+        time: "22:06",
+        text: "Collaboration between Intel and C2RO has enabled 'Journey-to-Touch Analysis' scalable to thousands of enterprise locations. ",
+        img: "video15.png",
+        link: "",
+    },
+    {
+        id: 2,
+        title: "iBASE Digital Embedded World",
+        time: "",
+        text: "A look at the iBASE IB953 3.5 inch single board computer and SI-654-N 8K digital signage player. ",
+        img: "video15.png",
+        link: "",
+    },
+    {
+        id: 3,
+        title: "Geek+ Smart Logistics Solution Partner Chat",
+        time: "",
+        text: "How Geek+ realizes flexible, reliable, and highly efficient logistics and supply chain management. ",
+        img: "video15.png",
+        link: "",
+    },
+    {
+        id: 4,
+        title: "NEXCOM Scaling at the Edge Video",
+        time: "4:49",
+        text: "NEXCOM 5G uCPE for Virtual edge services management. ",
+        img: "video15.png",
+        link: "",
+    },
+    {
+        id: 5,
+        title: "HTC Scaling at the Edge Video",
+        time: "",
+        text: "HTC private 5G network solution. ",
+        img: "video15.png",
+        link: "",
+    },
+    {
+        id: 6,
+        title: "Intel® AI: In Production: Cortexica Vision Systems Ltd. Demo Video",
+        time: "1:01",
+        text: "This solution improves compliance, reporting, and operational efficiencies while helping reduce liability and operational down times.",
+        img: "video15.png",
+        link: "",
+    },
+]
+
+createVideoGallery('D_pdfvideo31', pdfvideo31);
+
+
+
+const pdfmaterial41 = [
+    {
+        id: 1,
+        title: "Pathr.ai Supermarket Operations Solution Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 2,
+        title: "WaitTime Platform Solution Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 3,
+        title: "Viso AI Viso Suite Solution",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 4,
+        title: "Enhancing worker safety and improving productivity for manufacturers...",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 5,
+        title: "WaitTime Crowd Intelligence Partner Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 6,
+        title: "OnePlan Venue Experience Solution Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 7,
+        title: "AerVision AerWatch Solution Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 8,
+        title: "SeeWise Smart Factory Partner Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 9,
+        title: "JelloX MetaLite Digital Pathology Partner Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 10,
+        title: "ST Engineering Video Analytics White Paper",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 11,
+        title: "IBM Watson NLU Solution Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 12,
+        title: "Siena Analytics Insights Solution Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+]
+
+createpdf('D_pdfmaterial41', pdfmaterial41)
+
+// igenius crystal partner
+
+const pdfvideo32 = [
+    {
+        id: 1,
+        title: "Epic iO Edge Testimonial Video",
+        time: "22:06",
+        text: "Intel edge AI testimonial by Ken Mills, CEO of Epic IO, IntelliSite and Broad Sky Networks. ",
+        img: "video15.png",
+        link: "",
+    },
+    {
+        id: 2,
+        title: "CoreAVI Edge Testimonial Video",
+        time: "",
+        text: "Intel edge AI testimonial by Neil Stroud, VP of Marketing and Business Development at CoreAVI. ",
+        img: "video15.png",
+        link: "",
+    },
+    {
+        id: 3,
+        title: "EPIC IO Edge Testimonial Video",
+        time: "",
+        text: "Intel edge AI testimonial by Ken Mills, CEO of Epic IO, IntelliSite and Broad Sky Networks.  ",
+        img: "video15.png",
+        link: "",
+    },
+    {
+        id: 4,
+        title: "Vispera Edge Testimonial Video",
+        time: "4:49",
+        text: "Intel edge AI testimonial video by Erdem Yoruk, CTO at Vispera Information Technologies Co..  ",
+        img: "video15.png",
+        link: "",
+    },
+    {
+        id: 5,
+        title: "Cognitifai Edge Testimonial Video",
+        time: "",
+        text: "Intel edge AI testimonial by Kanishka Nithin, co-founder and CEO at Cognitifai.",
+        img: "video15.png",
+        link: "",
+    },
+    {
+        id: 6,
+        title: "WaitTime Scaling at the Edge Video",
+        time: "1:01",
+        text: "WaitTime is a patented, real-time and historical artificial intelligence software that uses state-of-the-art imaging techniques to monitor crowd behavior in large scale venues. ",
+        img: "video15.png",
+        link: "",
+    },
+]
+
+createVideoGallery('D_pdfvideo32', pdfvideo32);
+
+
+
+const pdfmaterial42 = [
+    {
+        id: 1,
+        title: "LinkingMed Radiotherapy Planning Solution Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 2,
+        title: "JLK MEDIHUB CXR Partner Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 3,
+        title: "SILO AI Weather Insights Solution Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 4,
+        title: "Netown Babybot Smart Health Solution Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 5,
+        title: "NexAIoT AMR Partner Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 6,
+        title: "GDDi Algorithms Defined AIBox Partner Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 7,
+        title: "Visionatics Panel Inspection Partner Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 8,
+        title: "AerVision AerWatch Partner Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 9,
+        title: "Pratexo Studio Solution Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 10,
+        title: "GIBots DigiDoc White Paper",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 11,
+        title: "SHELFIE White Paper",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 12,
+        title: "Satsafeti Intelligent Conveyor Partner Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+]
+
+createpdf('D_pdfmaterial42', pdfmaterial42)
+
+
+
