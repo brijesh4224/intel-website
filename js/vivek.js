@@ -1080,6 +1080,14 @@ window.onload = function () {
     VK_technical_programming_checkbox();
     // content type
     VK_technical_content_type_checkbox();
+
+
+    // gamedev technical library
+    VK_gamedev_technical_accoridan();
+    // content type
+    VK_gamedev_technical_content_checkbox();
+    // software
+    VK_gamedev_technical_software_checkbox();
 }
 
 if (document.getElementById('VK_select_filters')) {
@@ -9769,4 +9777,625 @@ function VK_oneapi_content_type() {
     }
 
     VK_technical_accoridan();
+}
+
+
+
+
+
+// ----------------------------------------------    ------------------------------------------------------------------
+
+document.addEventListener('DOMContentLoaded', function () {
+    if (document.getElementsByClassName('VK_all_sections section') && document.getElementsByClassName('VK_sidebar_dropdown')) {
+        const sections = document.querySelectorAll('.VK_all_sections section');
+        const navLinks = document.querySelectorAll('.VK_sidebar_dropdown a');
+        const detailsElements = document.querySelectorAll('.VK_sidebar_dropdown details');
+
+        function removeActiveClass() {
+            navLinks.forEach(link => link.classList.remove('VK_sidebar_active_link'));
+            detailsElements.forEach(details => {
+                details.removeAttribute('open');
+                details.setAttribute('close', ''); // Optional: to visually indicate it's closed
+            });
+        }
+
+        function activateLinkAndDetails(targetId) {
+            navLinks.forEach(link => {
+                if (link.getAttribute('href') === `#${targetId}`) {
+                    link.classList.add('VK_sidebar_active_link');
+                    let parentDetails = link.closest('details');
+
+                    // Open all ancestor details elements
+                    while (parentDetails) {
+                        parentDetails.setAttribute('open', '');
+                        parentDetails.removeAttribute('close'); // Optional: remove the closed indicator
+                        parentDetails = parentDetails.parentElement.closest('details');
+                    }
+                }
+            });
+        }
+
+        function onScroll() {
+            let currentSection = '';
+            sections.forEach(section => {
+                const sectionTop = section.getBoundingClientRect().top;
+                const sectionBottom = section.getBoundingClientRect().bottom;
+
+                // Check if the section is in view
+                if (sectionTop <= 100 && sectionBottom >= 0) {
+                    currentSection = section.getAttribute('id');
+                }
+            });
+
+            if (currentSection) {
+                removeActiveClass();
+                activateLinkAndDetails(currentSection);
+            } else {
+                removeActiveClass();
+            }
+        }
+
+        window.addEventListener('scroll', onScroll);
+    } else {
+        return
+    }
+});
+
+
+
+// ----------------------------------------------------- GameDev Technical Library --------------------------------------------------
+
+
+var VK_gamedev_techincal_data = [
+    {
+        title: "Decoupling Non-Critical Workloads",
+        id: "819066",
+        date: "09/05/24",
+        version: "Original",
+        download: false,
+        bookmark: false,
+        file: "URL",
+        content: "Technical Articles",
+        description: "How to get more out of modern compute platforms by decoupling non-critical workloads."
+    },
+    {
+        title: "Intel® XeSS Inspector",
+        id: "829080",
+        date: "08/01/24",
+        version: "Original",
+        download: false,
+        bookmark: false,
+        file: "URL",
+        content: "Technical Articles",
+        description: "Learning and using Intel® XeSS Inspector"
+    },
+    {
+        title: "Integrating XeSS with Velocity and Luminance Adaptive Rasterization",
+        id: "783953",
+        date: "06/12/24",
+        version: "Latest",
+        download: false,
+        bookmark: false,
+        file: "URL",
+        content: "Technical Articles",
+        description: "Integrating XeSS with Velocity and Luminance Adaptive Rasterization"
+    },
+    {
+        title: "Optimizing Threading for Gaming Performance",
+        id: "818689",
+        date: "04/13/24",
+        version: "Latest",
+        download: false,
+        bookmark: false,
+        file: "URL",
+        content: "Technical Articles",
+        description: "Learn how to optimize P and E cores threading for gaming performance."
+    },
+    {
+        title: "oneAPI DPC++/C++ Compiler and Optimization Usage Guide for Unreal...",
+        id: "818856",
+        date: "04/13/24",
+        version: "Original",
+        download: false,
+        bookmark: false,
+        file: "URL",
+        content: "Technical Articles",
+        description: "Learning the Intel® oneAPI DPC++/C++ compiler and optimizing usage for Unreal Engine® 5."
+    },
+    {
+        title: "Intel® Arc™ Graphics Developer Guide for Real-Time Ray Tracing in...",
+        id: "766813",
+        date: "04/09/24",
+        version: "Original",
+        download: false,
+        bookmark: false,
+        file: "URL",
+        content: "Technical Articles",
+        description: "Intel® Arc™ GPUs support DirectX* 12 Ultimate features with variable-rate shading (VRS), mesh shading, and DirectX* Raytracing (DXR) through new built-in hardware acceleration blocks."
+    },
+    {
+        title: "Intel® Graphics Performance Analyzers 2024.2 Release Notes",
+        id: "764276",
+        date: "03/15/23",
+        version: "Latest",
+        download: false,
+        bookmark: false,
+        file: "URL",
+        content: "Release Notes",
+        description: "This article contains the online version of the Release Notes for the Intel® Graphics Performance Analyzers (Intel® GPA). You'll find system requirements, installation instructions, issues and limitations, and legal information for the product."
+    },
+    {
+        title: "Intel® Xe Super Sampling (XeSS) API Developer Guide",
+        id: "758579",
+        date: "11/17/22",
+        version: "Original",
+        download: false,
+        bookmark: false,
+        file: "URL",
+        content: "Technical Articles",
+        description: "This developer guide is intended to supplement the XᵉSS API Reference Guide."
+    },
+    {
+        title: "Introduction to the Xe-HPG Architecture",
+        id: "758306",
+        date: "11/05/22",
+        version: "Latest",
+        download: false,
+        bookmark: false,
+        file: "URL",
+        content: "Getting Started Guides",
+        description: "Current Release Notes for Intel® vCMTS Reference Dataplane. The notes are categorized by major version, from newest to oldest, with individual releases listed within each version section."
+    },
+    {
+        title: "DirectStorage on Intel GPUs",
+        id: "757350",
+        date: "11/05/22",
+        version: "Latest",
+        download: false,
+        bookmark: false,
+        file: "URL",
+        content: "News",
+        description: "DirectStorage on Intel GPUs"
+    },
+    {
+        title: "Velocity and Luminance Adaptive Rasterization Using VRS Tier 2",
+        id: "726907",
+        date: "03/18/22",
+        version: "Latest",
+        download: false,
+        bookmark: false,
+        file: "URL",
+        content: "Technical Articles",
+        description: "The goal of VRS Tier 2 is to give developers additional control of where shading resources are used to produce an image."
+    },
+    {
+        title: "Removing CPU-GPU sync stalls in Galactic Civilizations* 3",
+        id: "671632",
+        date: "02/03/22",
+        version: "Original",
+        download: false,
+        bookmark: false,
+        file: "URL",
+        content: "Case Studies",
+        description: "Galactic Civilizations* 3 is a turn-based 4X strategy game recently released by Stardock Entertainment. This article describes how Intel® Graphics Performance Analyzer's (GPA) Platform Analyzer was used to improve the game's performance by finding and removing several CPU-GPU sync stalls that had caused a loss of parallelism between the CPU and GPU."
+    },
+    {
+        title: "Developing OpenVINO Object Detection Inferencing Plugin for Unity*...",
+        id: "774978",
+        date: "10/25/21",
+        version: "Original",
+        download: false,
+        bookmark: false,
+        file: "URL",
+        content: "Development User Guides",
+        description: "Demonstrate how to create a Unity* project to access the DLL as a plugin."
+    },
+    {
+        title: "Developing OpenVINO™ Object Detection Inferencing Plugin for Unity* :...",
+        id: "676377",
+        date: "10/05/21",
+        version: "Original",
+        download: false,
+        bookmark: false,
+        file: "URL",
+        content: " Installation Guides",
+        description: "How similar development methodologies can be used to implement AI object detection technology in games."
+    },
+    {
+        title: "Developing OpenVINO Inferencing Plugin for Unity*",
+        id: "673109",
+        date: "08/10/21",
+        version: "Original",
+        download: false,
+        bookmark: false,
+        file: "URL",
+        content: "Tutorials",
+        description: "To create a plugin that leverages the OpenVINO™ Toolkit for the Unity* game engine."
+    },
+    {
+        title: "Developer and Optimization Guide for Intel® Processor Graphics Gen11...",
+        id: "671957",
+        date: "08/03/21",
+        version: "Latest",
+        download: false,
+        bookmark: false,
+        file: "URL",
+        content: "Tuning and Optimization Guides",
+        description: "This document presents developer guidance and optimization methods for the graphics hardware architecture of Intel® Processor Graphics Gen11."
+    },
+    {
+        title: "Setting up Unity* Barracuda to Enable AI Style Transfer",
+        id: "672572",
+        date: "07/19/21",
+        version: "Original",
+        download: false,
+        bookmark: false,
+        file: "URL",
+        content: "Technical Articles",
+        description: "AI Tutorial series Part 1, covering Setting up Unity* Barracuda to enable AI Style transfer"
+    },
+    {
+        title: "Developing OpenVINO Inferencing Plugin for Unity*",
+        id: "676389",
+        date: "07/18/21",
+        version: "Latest",
+        download: false,
+        bookmark: false,
+        file: "URL",
+        content: "Tutorials",
+        description: "To create a plugin that leverages the OpenVINO™ Toolkit for the Unity* game engine."
+    },
+]
+
+var VK_gamedev_technical = VK_gamedev_techincal_data
+
+// display data
+function VK_gamedev_technical_accoridan() {
+
+    const div = document.getElementById('VK_gamedev_technical_library');
+
+    // result count 
+    if (document.getElementById('VK_technical_library_cnt1')) {
+        document.getElementById('VK_technical_library_cnt1').innerHTML = VK_gamedev_technical.length + " results";
+    }
+
+
+    // display accoridan
+    if (div) {
+
+        const htmlele = VK_gamedev_technical.map((ele, ind) => {
+            const uniqueID = `flush-collapse-${ind}`;
+            const uniqueHeadingID = `flush-heading-${ind}`;
+
+            const versionDisplay = Array.isArray(ele.version)
+                ? `<select class="py-2 pe-xl-4 pe-5">${ele.version.map(v => `<option value="${v}">${v}</option>`).join('')}</select>`
+                : ele.version;
+
+            return `
+            <div class="accordion-item">
+                <div class="row m-0 flex-column flex-xl-row py-xl-3 px-3 p-2">
+                    <div class="col-xxl-7 col-xl-6 col-12 align-self-center">
+                        <p class="m-xl-0 mb-4">
+                            <a href="#" class="VK_red_normal_font text-decoration-none VK_a">
+                                ${ele.title}
+                            </a>
+                        </p>
+                    </div>
+                    <div class="col-xxl-4 col-xl-5 col-12 p-0 text-xl-center d-flex flex-column flex-xl-row justify-content-between align-items-center">
+                        <p class="m-0 my-1 VK_red_small_font w-100">
+                            <span class="d-xl-none"><b>ID :</b></span> ${ele.id}
+                        </p>
+                        <p class="m-0 my-1 VK_red_small_font w-100">
+                            <span class="d-xl-none"><b>Date :</b></span> ${ele.date}
+                        </p>
+                        <p class="m-0 my-1 VK_red_small_font w-100">
+                            <span class="d-xl-none"><b>Version: </b></span>
+                            ${versionDisplay}
+                        </p>
+                    </div>
+                    <div class="col-xl-1 col-12 p-0 my-xl-0 my-2 align-self-center">
+                        <p class="d-flex m-0 justify-content-end justify-content-end">
+                            ${ele.download ? `
+                                <button class="bg-transparent border-0 text-primary px-2 mx-2 m-xl-0">
+                                    <i class="fa-solid fa-download"></i>
+                                </button>
+                            ` : ''}
+                            ${ele.bookmark ? `
+                                <button class="bg-transparent border-0 text-primary px-2 mx-2 m-xl-0">
+                                    <i class="fa-regular fa-bookmark"></i>
+                                </button>
+                            ` : ''}
+                            <button class="accordion-button collapsed mx-2 m-xl-0 px-2" type="button"
+                                data-bs-toggle="collapse" data-bs-target="#${uniqueID}"
+                                aria-expanded="false" aria-controls="${uniqueID}">
+                                <span>&nbsp;</span>
+                            </button>
+                        </p>
+                    </div>
+                </div>
+                <div id="${uniqueID}" class="accordion-collapse collapse"
+                    aria-labelledby="${uniqueHeadingID}" data-bs-parent="#accordionFlushExample">
+                    <div class="accordion-body">
+                        <p class="m-0">
+                            <span class="d-inline-block mx-2">
+                                <b>File:</b>
+                                <span>${ele.file}</span>
+                            </span>
+                            <span class="d-inline-block mx-2">
+                                <b>Content Type :</b>
+                                <span>${ele.content}</span>
+                            </span>
+                        </p>
+                        <p class="m-0">${ele.description}</p>
+                    </div>
+                </div>
+            </div>`;
+        });
+
+        div.innerHTML = htmlele.join('');
+
+        const accordionButtons = div.querySelectorAll('.accordion-button');
+        accordionButtons.forEach(button => {
+            const collapseElement = document.querySelector(button.getAttribute('data-bs-target'));
+            const collapseInstance = new bootstrap.Collapse(collapseElement, {
+                toggle: false
+            });
+
+            button.addEventListener('click', function () {
+                collapseInstance.toggle();
+            });
+        });
+    } else {
+        return;
+    }
+}
+
+// data sort by
+function VK_gamedev_technical_data_softby() {
+    let sort_by = document.getElementById('VK_gamedev_technical_data_sortby').value;
+    if (sort_by == 'A-Z') {
+        VK_gamedev_technical.sort((a, b) => a.title.localeCompare(b.title));
+    } else if (sort_by == 'Z-A') {
+        VK_gamedev_technical.sort((a, b) => b.title.localeCompare(a.title));
+    } else if (sort_by == 'Content Type') {
+        VK_gamedev_technical.sort((a, b) => a.content.localeCompare(b.content));
+    }
+    VK_gamedev_technical_accoridan();
+}
+
+// data searchbox
+function VK_gamedev_technical_data_search_box() {
+    let search_txt = document.getElementById('VK_gamedev_technical_search_bar').value;
+    VK_gamedev_technical = VK_gamedev_techincal_data.filter((ele) => {
+        return ele.title.toLowerCase().includes(search_txt.toLowerCase()) || ele.content.toLowerCase().includes(search_txt.toLowerCase())
+    })
+    VK_gamedev_technical_accoridan();
+}
+
+// clear all 
+function VK_gamedev_technical_clear_All() {
+    VK_gamedev_technical = VK_gamedev_techincal_data
+    document.getElementById('VK_gamedev_technical_search_bar').blur();
+    document.getElementById('VK_gamedev_technical_search_bar').value = '';
+
+    VK_gamedev_technical_accoridan();
+
+    VK_gamedev_technical_content_checkbox()
+
+    VK_gamedev_technical_software_checkbox();
+}
+
+
+
+
+
+// content type checkbox
+var VK_gamedev_content_chkbox_data = [
+    "Case Studies",
+    "Code Samples",
+    "Development Guides",
+    "Development User Guides",
+    "Event Overviews",
+    "Getting Started Guides",
+    "How-To Training",
+    "Implementation Guides",
+    "Installation Guides",
+    "News",
+    "On-Demand Training",
+    "Product Updates",
+    "Release Notes",
+    "Software Overviews",
+    "Success Stories",
+    "Technical Articles",
+    "Troubleshooting",
+    "Tuning and Optimization Guides",
+    "Tutorials",
+    "Use Cases"
+]
+
+var VK_gamedev_content = VK_gamedev_content_chkbox_data
+
+// display content type checkbox
+function VK_gamedev_technical_content_checkbox() {
+    if (document.getElementById('VK_gamedev_technical_content_checkbox')) {
+        let html = VK_gamedev_content.map((ele, ind) => {
+            return `
+        <div class="${ind > 7 ? "d-none" : ""} my-1 VK_white_space"> 
+            <input type="checkbox" value="${ele}" class="me-2 VK_overflow_checkbox VK_gamedev_content_checkbox" onclick="VK_oneapi_content_type()">
+            <span>${ele}</span>
+        </div>
+        `;
+        }).join(' ');
+
+        if (VK_gamedev_content.length > 7) {
+            html += `
+        <button class="border-0 bg-transparent VK_a" onclick="VK_gamedev_content_showmore()" id="VK_gamedev_content_show_more">
+            <span>Show More</span>
+        </button>
+        `;
+        }
+
+        document.getElementById('VK_gamedev_technical_content_checkbox').innerHTML = html;
+    } else {
+        return;
+    }
+}
+
+// content checkbox show more or less
+function VK_gamedev_content_showmore() {
+    let showMoreButton = document.getElementById('VK_gamedev_content_show_more');
+    let hiddenItems = document.querySelectorAll('#VK_gamedev_technical_content_checkbox .d-none');
+    let visibleItems = document.querySelectorAll('#VK_gamedev_technical_content_checkbox > div:not(.d-none)');
+
+    if (showMoreButton.innerText.trim() === "Show More") {
+        showMoreButton.innerHTML = "<span>Show Less</span>";
+        hiddenItems.forEach(item => item.classList.remove('d-none'));
+    } else {
+        showMoreButton.innerHTML = "<span>Show More</span>";
+        visibleItems.forEach((item, ind) => {
+            if (ind > 7) {
+                item.classList.add('d-none');
+            }
+        });
+    }
+}
+
+// content type checkbox search box
+function VK_gamedev_techincal_content_search() {
+    let srch = document.getElementById('VK_gamedev_technical_content_search').value
+    let arr = VK_gamedev_content_chkbox_data.filter((ele) => {
+        return ele.toLowerCase().includes(srch.toLowerCase())
+    })
+    VK_gamedev_content = arr
+    VK_gamedev_technical_content_checkbox()
+}
+
+// orderby
+function VK_gamedev_technical_content_order_By() {
+    let orderby = document.getElementById('VK_gamedev_technical_content_sort').value
+    if (orderby == 'A-Z') {
+        VK_gamedev_content.sort((a, b) => a.localeCompare(b))
+    }
+    else if (orderby == 'Z-A') {
+        VK_gamedev_content.sort((a, b) => b.localeCompare(a))
+    }
+    VK_gamedev_technical_content_checkbox()
+}
+
+// content type checkbox event
+function VK_oneapi_content_type() {
+    let checkboxes = document.querySelectorAll('.VK_gamedev_content_checkbox');
+    let checkedBoxes = Array.from(checkboxes).filter(checkbox => checkbox.checked);
+
+    if (checkedBoxes.length === 0) {
+        VK_gamedev_technical = VK_gamedev_techincal_data
+    } else {
+        let selectedContentTypes = checkedBoxes.map(checkbox => checkbox.value.toLowerCase());
+        VK_gamedev_technical = VK_gamedev_techincal_data.filter(item => {
+            return selectedContentTypes.includes(item.content.toLowerCase());
+        });
+    }
+
+    VK_gamedev_technical_accoridan();
+}
+
+
+
+
+
+// software checkbox
+var VK_gamedev_software_chkbox_data = [
+    "Compilers",
+    "Development Tools",
+    "Intel® Distribution of OpenVINO™ toolkit",
+    "Intel® Embree",
+    "Intel® Graphics Performance Analyzers",
+    "Intel® Math Kernel Library",
+    "Intel® Open Image Denoise",
+    "Intel® OSPRay",
+    "Intel® SDK for OpenCL™ Applications",
+    "Intel® Threading Building Blocks",
+    "Intel® Trace Analyzer and Collector",
+    "Intel® VTune™ Profiler (formerly Intel® VTune™ Amplifier)",
+    "OpenVINO™ Toolkit",
+    "Performance Analyzers"
+]
+
+var VK_gamedev_softeare = VK_gamedev_software_chkbox_data
+
+// display software checkbox
+function VK_gamedev_technical_software_checkbox() {
+    if (document.getElementById('VK_technical_software_checkbox')) {
+        let html = VK_gamedev_softeare.map((ele, ind) => {
+            return `
+        <div class="${ind > 7 ? "d-none" : ""} my-1 VK_white_space"> 
+            <input type="checkbox" value="${ele}" class="me-2 VK_overflow_checkbox VK_gamedev_software_checkbox" onclick="VK_oneapi_content_type()">
+            <span>${ele}</span>
+        </div>
+        `;
+        }).join(' ');
+
+        if (VK_gamedev_softeare.length > 7) {
+            html += `
+        <button class="border-0 bg-transparent VK_a" onclick="VK_gamedev_software_showmore()" id="VK_gamedev_software_show_more">
+            <span>Show More</span>
+        </button>
+        `;
+        }
+
+        document.getElementById('VK_technical_software_checkbox').innerHTML = html;
+    } else {
+        return;
+    }
+}
+
+// content software show more or less
+function VK_gamedev_software_showmore() {
+    let showMoreButton = document.getElementById('VK_gamedev_software_show_more');
+    let hiddenItems = document.querySelectorAll('#VK_technical_software_checkbox .d-none');
+    let visibleItems = document.querySelectorAll('#VK_technical_software_checkbox > div:not(.d-none)');
+
+    if (showMoreButton.innerText.trim() === "Show More") {
+        showMoreButton.innerHTML = "<span>Show Less</span>";
+        hiddenItems.forEach(item => item.classList.remove('d-none'));
+    } else {
+        showMoreButton.innerHTML = "<span>Show More</span>";
+        visibleItems.forEach((item, ind) => {
+            if (ind > 7) {
+                item.classList.add('d-none');
+            }
+        });
+    }
+}
+
+// software checkbox search box
+function VK_gamedev_techincal_software_search() {
+    let srch = document.getElementById('VK_gamedev_technical_software_search').value
+    let arr = VK_gamedev_software_chkbox_data.filter((ele) => {
+        return ele.toLowerCase().includes(srch.toLowerCase())
+    })
+    VK_gamedev_softeare = arr
+    VK_gamedev_technical_software_checkbox()
+}
+
+// software checkbox search box
+function VK_gamedev_techincal_software_search() {
+    let srch = document.getElementById('VK_gamedev_technical_software_search').value
+    let arr = VK_gamedev_software_chkbox_data.filter((ele) => {
+        return ele.toLowerCase().includes(srch.toLowerCase())
+    })
+    VK_gamedev_softeare = arr
+    VK_gamedev_technical_software_checkbox()
+}
+
+// orderby
+function VK_gamedev_technical_software_order_By() {
+    let orderby = document.getElementById('VK_gamedev_technical_software_order').value
+    if (orderby == 'A-Z') {
+        VK_gamedev_softeare.sort((a, b) => a.localeCompare(b))
+    }
+    else if (orderby == 'Z-A') {
+        VK_gamedev_softeare.sort((a, b) => b.localeCompare(a))
+    }
+    VK_gamedev_technical_software_checkbox()
 }
