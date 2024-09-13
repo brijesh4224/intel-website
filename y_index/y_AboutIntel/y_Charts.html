@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Intel</title>
+    <link rel="stylesheet" href="../../css/yatri1.css">
+    <link rel="stylesheet" href="../../css/S_investors.css">
+    <link rel="stylesheet" href="../../css/all.min.css">
+    <link rel="stylesheet" href="/css/owl.carousel.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link href="https://fonts.cdnfonts.com/css/intel-clear" rel="stylesheet">
+    <style>
+        * {
+            font-family: 'Intel Clear', sans-serif;
+        }
+
+        .s_sticky-container1 {
+            top: 104px;
+            left: 0;
+            width: 100%;
+            z-index: 999;
+            position: sticky;
+        }
+
+        #stockChart {
+            height: 400px !important;
+            width: 100% !important;
+            object-fit: contain;
+        }
+
+        .chart-container {
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .controls {
+            margin: 20px 0;
+        }
+
+        .controls select {
+            padding: 5px;
+            margin-right: 10px;
+        }
+        .timeframes{
+            text-align: center;
+        }
+        .timeframes button {
+            padding: 10px 20px;
+            margin: 5px;
+            border: none;
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+        }
+
+        .timeframes button:hover {
+            background-color: #0056b3;
+        }
+
+        canvas {
+            max-width: 100%;
+            height: auto;
+        }
+
+        @media (max-width:768px) {
+            .s_sticky-container1 {
+                position: static;
+            }
+
+            .s_nav_tabs {
+                justify-content: start;
+            }
+
+            #stockChart {
+                max-height: 300px;
+                /* Adjust height for smaller screens */
+            }
+        }
+
+        @media (max-width:425px) {
+            .s_btn2 button {
+                width: 100%;
+            }
+
+            #stockChart {
+                max-height: 200px;
+                /* Adjust further for very small screens */
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="header"></div>
+
+    <div style="margin-top: 65px;"> </div>
+    <div class="s_bg_img6">
+        <div class="container">
+            <h2 class="s_hadding">Quote</h2>
+        </div>
+    </div>
+    <div></div>
+    <div style="background-color: #0068B5; overflow-x: auto;" class="s_sticky-container1">
+        <ul class="s_nav_tabs">
+            <li><a href="./y_Stock_Quote.html">Quote</a></li>
+            <li><a href="./y_Charts.html">Charts</a></li>
+            <li><a href="">Historical Data</a></li>
+            <li><a href="./y_stock_splits.html">Stock Splits</a></li>
+            <li><a href="./y_Dividends.html">Dividends & Buybacks</a></li>
+            <li><a href="./y_Mobileye.html">Mobileye Acquisition</a></li>
+            <li><a href="./y_faq.html">FAQ</a></li>
+        </ul>
+    </div>
+
+    <!-- Stock Quote -->
+
+    <section style="padding: 100px 0;">
+        <div class="y_container">
+            <div class="row" style="position: static; margin: auto; width: 100%; color: black;">
+                <div class="col-md-2"></div>
+                <div class="col-md-8 col-12">
+                    <h1 class="fw-bold" style="margin-bottom: 40px;">Charting</h1>
+                    <h5 class="fw-bold m-0">Intel Corporation</h5>
+                    <p>Nasdaq Global Select: INTC</p>
+                </div>
+            </div>
+
+            <div>
+                <div class="chart-container">
+                    <canvas id="stockChart"></canvas>
+                </div>
+                <!-- Timeframe Buttons -->
+                <div class="timeframes">
+                    <button onclick="updateChart('1D')">1D</button>
+                    <button onclick="updateChart('5D')">5D</button>
+                    <button onclick="updateChart('1M')">1M</button>
+                    <button onclick="updateChart('3M')">3M</button>
+                    <button onclick="updateChart('1Y')">1Y</button>
+                    <button onclick="updateChart('5Y')">5Y</button>
+                </div>
+            </div>
+    </section>
+
+    <div class="y-links">
+        <ul class="d-block d-md-flex justify-content-center">
+            <li>
+                <a href="#">
+                    <i class="fa-solid fa-envelope"></i>
+                    <span>Email Alerts</span>
+                </a>
+            </li>
+            <li>
+                <a href="#" target="_blank">
+                    <i class="fa-solid fa-id-badge"></i>
+                    <span>Tear Sheet</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="fa-solid fa-user-group"></i>
+                    <span>Contacts</span>
+                </a>
+            </li>
+            <li>
+                <a href="#" target="_blank">
+                    <i class="fa-solid fa-square-rss"></i>
+                    <span>RSS News Feed</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <div id="footer"></div>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script
+        src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns/dist/chartjs-adapter-date-fns.bundle.min.js"></script>
+    <script src="../../js/jquery-3.7.1.js"></script>
+    <script src="../../js/owl.carousel.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+    <script>
+        fetch('./y_intel_header.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('header').innerHTML = data;
+            });
+
+        fetch('../../y_index/y_footer.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('footer').innerHTML = data;
+            });
+    </script>
+      <script>
+        // Define the stock data (price and volume)
+        const stockData = {
+    labels: ['Sep 6', 'Sep 7', 'Sep 8', 'Sep 9', 'Sep 10', 'Sep 11', 'Sep 12'], // Default labels for 1 month
+    prices: [19.27, 18.5, 18.7, 19.0, 19.4, 19.2, 19.5], // 1-month prices
+    volumes: [4002000, 3500000, 4500000, 4200000, 4900000, 4100000, 4600000], // 1-month volumes
+    
+    prices3M: [19.1, 18.7, 18.9, 19.4, 19.0, 19.2, 19.5, 19.7, 19.8, 19.3, 19.6, 19.8, 20.1], // 3-month prices
+    volumes3M: [4200000, 4100000, 4300000, 4500000, 4000000, 4600000, 4900000, 4200000, 4300000, 4500000, 4700000, 4800000, 5000000], // 3-month volumes
+    
+    prices1Y: [18.2, 17.8, 17.5, 18.0, 18.7, 19.1, 19.5, 19.8, 20.2, 19.9, 19.4, 19.7, 19.2], // 1-year prices
+    volumes1Y: [3000000, 3200000, 3100000, 3400000, 3800000, 4200000, 4500000, 4700000, 4900000, 4600000, 4500000, 4800000, 5000000], // 1-year volumes
+
+    prices5Y: [15.0, 15.2, 16.5, 17.2, 18.0, 18.7, 19.5, 19.9, 20.5, 19.8, 19.4, 18.7, 17.9, 18.5, 19.8], // 5-year prices
+    volumes5Y: [2500000, 2600000, 2700000, 2800000, 3000000, 3200000, 3400000, 3500000, 3700000, 3900000, 4000000, 4200000, 4400000, 4500000, 4700000], // 5-year volumes
+};
+
+
+        // Create the chart
+        const ctx = document.getElementById('stockChart').getContext('2d');
+        let stockChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: stockData.labels,
+                datasets: [
+                    {
+                        label: 'Price',
+                        data: stockData.prices,
+                        borderColor: 'blue',
+                        fill: false,
+                        yAxisID: 'y-price',
+                    },
+                    {
+                        label: 'Volume',
+                        data: stockData.volumes,
+                        type: 'bar',
+                        backgroundColor: 'rgba(0, 0, 255, 0.2)',
+                        yAxisID: 'y-volume',
+                    }
+                ]
+            },
+            options: {
+                scales: {
+                    'y-price': {
+                        beginAtZero: false,
+                        type: 'linear',
+                        position: 'left',
+                        ticks: {
+                            callback: function(value) {
+                                return '$' + value;
+                            }
+                        }
+                    },
+                    'y-volume': {
+                        beginAtZero: true,
+                        type: 'linear',
+                        position: 'right',
+                        ticks: {
+                            callback: function(value) {
+                                return value / 1000000 + 'M';
+                            }
+                        }
+                    }
+                }
+            }
+        });
+
+        // Function to update the chart with the selected timeframe
+        function updateChart(timeframe) {
+    let newPriceData, newVolumeData, newLabels;
+
+    switch (timeframe) {
+        case '1D':
+            newLabels = ['Sep 12'];
+            newPriceData = [19.5];
+            newVolumeData = [4600000];
+            break;
+        case '5D':
+            newLabels = ['Sep 7', 'Sep 8', 'Sep 9', 'Sep 10', 'Sep 11'];
+            newPriceData = [18.5, 18.7, 19.0, 19.4, 19.2];
+            newVolumeData = [3500000, 4500000, 4200000, 4900000, 4100000];
+            break;
+        case '1M':
+            newLabels = stockData.labels;  // Labels already represent 1 month
+            newPriceData = stockData.prices;
+            newVolumeData = stockData.volumes;
+            break;
+        case '3M':
+            newLabels = ['Jul 1', 'Jul 8', 'Jul 15', 'Jul 22', 'Jul 29', 'Aug 5', 'Aug 12', 'Aug 19', 'Aug 26', 'Sep 2', 'Sep 9', 'Sep 16', 'Sep 23'];
+            newPriceData = stockData.prices3M;
+            newVolumeData = stockData.volumes3M;
+            break;
+        case '1Y':
+            newLabels = ['Sep 2023', 'Oct 2023', 'Nov 2023', 'Dec 2023', 'Jan 2024', 'Feb 2024', 'Mar 2024', 'Apr 2024', 'May 2024', 'Jun 2024', 'Jul 2024', 'Aug 2024', 'Sep 2024'];
+            newPriceData = stockData.prices1Y;
+            newVolumeData = stockData.volumes1Y;
+            break;
+        case '5Y':
+            newLabels = ['2019', '2020', '2021', '2022', '2023', '2024']; // Example labels for 5 years
+            newPriceData = stockData.prices5Y;
+            newVolumeData = stockData.volumes5Y;
+            break;
+    }
+
+    // Update chart data
+    stockChart.data.labels = newLabels;
+    stockChart.data.datasets[0].data = newPriceData;  // Price
+    stockChart.data.datasets[1].data = newVolumeData;  // Volume
+    stockChart.update();
+}
+
+    </script>
+
+</body>
+
+</html>
