@@ -10399,3 +10399,30 @@ function VK_gamedev_technical_software_order_By() {
     }
     VK_gamedev_technical_software_checkbox()
 }
+
+
+
+// ------------------------------  Intel® Arc™ Graphics Developer Guide for Real-Time Ray Tracing in Games ---------------------------------
+
+document.addEventListener("scroll", function () {
+    const sections = document.querySelectorAll("section");  
+    const navLinks = document.querySelectorAll(".VK_arc_navbar a"); 
+    
+    const observer = new IntersectionObserver(
+        (entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && entry.boundingClientRect.top <= 0) {
+                    navLinks.forEach(link => link.classList.remove("VK_active_arc_link"));
+                    
+                    const activeLink = document.querySelector(`.VK_arc_navbar a[href="#${entry.target.id}"]`);
+                    if (activeLink) {
+                        activeLink.classList.add("VK_active_arc_link");
+                    }
+                }
+            });
+        },
+       
+    );
+    
+    sections.forEach(section => observer.observe(section));
+});
