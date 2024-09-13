@@ -11453,5 +11453,272 @@ const pdfmaterial42 = [
 
 createpdf('D_pdfmaterial42', pdfmaterial42)
 
+// dynamic device person
+
+const pdfvideo33 = [
+    {
+        id: 1,
+        title: "Changing RAN Deployments Offers Transformation for vRAN",
+        time: "3:59",
+        text: "Changing RAN Deployments Offers Transformation for vRAN",
+        img: "video15.png",
+        link: "",
+    },
+    {
+        id: 2,
+        title: "Ethernet Port Configuration Tool",
+        time: "3:13",
+        text: "This video provides an overview of the Ethernet Port Configuration Tool, which helps IT Managers bring versatility and flexibility into the data center, and at the same time reduces complexity.  ",
+        img: "video15.png",
+        link: "",
+    },
+    {
+        id: 3,
+        title: "Intel and Tile* Bluetooth® Technology Help Find Your Lost Things",
+        time: "",
+        text: "Intel and Tile* Bluetooth® Technology Help Find Your Lost Things",
+        img: "video15.png",
+        link: "",
+    },
+    {
+        id: 4,
+        title: "Intel's Next Generation FPGAs 224 Gbps-PAM4-LR Transceiver Video",
+        time: "13:44",
+        text: "The 224 Gbps-PAM4-LR transceiver meets high-speed transceiver requirements in cloud, network, data center, AI, and more.  ",
+        img: "video15.png",
+        link: "",
+    },
+    {
+        id: 5,
+        title: "Grow Revenue with AI",
+        time: "30:11",
+        text: "30 minute webinar with IDC, and Intel for Architects and Devops on how to grow revenue with AI. ",
+        img: "video15.png",
+        link: "",
+    },
+    {
+        id: 6,
+        title: "Fireside Chat with Telefonica",
+        time: "8:15",
+        text: "Intel and Telefonica discuss collaborations in driving sustainability and performance in 5G networks.  ",
+        img: "video15.png",
+        link: "",
+    },
+]
+
+createVideoGallery('D_pdfvideo33', pdfvideo33);
+
+
+
+const pdfmaterial43 = [
+    {
+        id: 1,
+        title: "Application Device Queues (ADQ) Resource Center",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 2,
+        title: "Reap the Benefits of IT/OT Convergence",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 3,
+        title: "Meet Today’s Retail Challenges",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 4,
+        title: "Network Connectivity in the Data Center",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 5,
+        title: "Scale to Meet Microsoft SQL Demands with Azure",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 6,
+        title: "50% More Website Traffic and Services Azure",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 7,
+        title: "Improve Microsoft SQL Service Times with Azure",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 8,
+        title: "OpenFoam Performance on AWS",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 9,
+        title: "MySQL on Azure Optimized via Intel® Technology",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 10,
+        title: "Ansys LS-DYNA on Azure Instances",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 11,
+        title: "Ansys LS-DYNA on Azure Instances",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 12,
+        title: "STAC-A2 and 3rd Gen Intel Xeon Scalable Processors",
+        img: "pdf2.png",
+        link: "",
+    },
+]
+
+createpdf('D_pdfmaterial43', pdfmaterial43)
+
+
+// threat sense foe utilities solution
+
+const pdfvideo34 = [
+    {
+        id: 1,
+        title: "Neuromorphic Computing: Kapoho Point Development Board and Lava...",
+        time: "1:18",
+        text: "This demo introduces Intel’s latest neuromorphic innovation, Kapoho Point. ",
+        img: "video15.png",
+        link: "",
+    },
+    {
+        id: 2,
+        title: "Agilex™ FPGA Portfolio Overview Video",
+        time: "3:37",
+        text: "Watch this video to learn about the expanded Agilex™ FPGA portfolio.  ",
+        img: "video15.png",
+        link: "",
+    },
+    {
+        id: 3,
+        title: "4th Gen Intel® Xeon® Scalable Processors for IoT Edge Video",
+        time: "3:34",
+        text: "4th Gen Intel® Xeon® Scalable processors deliver increased performance to accelerate IoT and edge deployments and drive faster time to results. ",
+        img: "video15.png",
+        link: "",
+    },
+    {
+        id: 4,
+        title: "So You Found a Vulnerability",
+        time: "6:27",
+        text: "So You Found a Vulnerability ",
+        img: "video15.png",
+        link: "",
+    },
+    {
+        id: 5,
+        title: "Security Mindset Journey",
+        time: "5:23",
+        text: "Learn more about Intel's security mindset journey.  ",
+        img: "video15.png",
+        link: "",
+    },
+    {
+        id: 6,
+        title: "Exploring the Untapped Potential of AI and Computer Vision",
+        time: "38:31",
+        text: "Exploring the untapped potential of AI and computer vision + how these technologies can pave the way for a visionary future.   ",
+        img: "video15.png",
+        link: "",
+    },
+]
+
+createVideoGallery('D_pdfvideo34', pdfvideo34);
+
+
+const pdfmaterial44 = [
+    {
+        id: 1,
+        title: "Edge Computing Solutions and Technologies - Intel",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 2,
+        title: "Energy Transition Solutions - Intel",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 3,
+        title: "Southern California Edison Modernizes Future Grid",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 4,
+        title: "Intel® Tiber™ Edge Platform",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 5,
+        title: "Intel® SceneScape",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 6,
+        title: "Machine Vision Technology",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 7,
+        title: "What Is the Network Edge? — Intel",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 8,
+        title: "Edge AI: Bring AI to Your Edge Computing Environment - Intel",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 9,
+        title: "What Is Edge Computing? — Intel",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 10,
+        title: "Optimize Throughput and Power Efficiency for NGFWs",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 11,
+        title: "Industrial IoT Security - Intel",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 12,
+        title: "Government Technology and Digital Transformation Solutions - Intel",
+        img: "pdf2.png",
+        link: "",
+    },
+]
+
+createpdf('D_pdfmaterial44', pdfmaterial44)
 
 
