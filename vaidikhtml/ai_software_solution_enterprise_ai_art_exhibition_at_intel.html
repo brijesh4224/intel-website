@@ -633,49 +633,60 @@
     <!-- nav script -->
     <script>
         document.addEventListener('DOMContentLoaded', function () {
-        const sections = document.querySelectorAll('.VK_all_sections section');
-        const navLinks = document.querySelectorAll('.VK_sidebar_dropdown a');
-        const detailsElements = document.querySelectorAll('.VK_sidebar_dropdown details');
+        if (document.getElementsByClassName('VK_all_sections section') && document.getElementsByClassName('VK_sidebar_dropdown')) {
+            const sections = document.querySelectorAll('.VK_all_sections section');
+            const navLinks = document.querySelectorAll('.VK_sidebar_dropdown a');
+            const detailsElements = document.querySelectorAll('.VK_sidebar_dropdown details');
 
-        function removeActiveClass() {
-            navLinks.forEach(link => link.classList.remove('VK_sidebar_active_link'));
-            detailsElements.forEach(details => details.removeAttribute('open'));
-            detailsElements.forEach(details => details.setAttribute('close', ''))
-        }
+            function removeActiveClass() {
+                navLinks.forEach(link => link.classList.remove('VK_sidebar_active_link'));
+                detailsElements.forEach(details => {
+                    details.removeAttribute('open');
+                    details.setAttribute('close', ''); // Optional: to visually indicate it's closed
+                });
+            }
 
-        function activateLinkAndDetails(targetId) {
-            navLinks.forEach(link => {
-                if (link.getAttribute('href') === `#${targetId}`) {
-                    link.classList.add('VK_sidebar_active_link');
-                    const parentDetails = link.closest('details');
-                    if (parentDetails) {
-                        parentDetails.setAttribute('open', '');
+            function activateLinkAndDetails(targetId) {
+                navLinks.forEach(link => {
+                    if (link.getAttribute('href') === `#${targetId}`) {
+                        link.classList.add('VK_sidebar_active_link');
+                        let parentDetails = link.closest('details');
+
+                        // Open all ancestor details elements
+                        while (parentDetails) {
+                            parentDetails.setAttribute('open', '');
+                            parentDetails.removeAttribute('close'); // Optional: remove the closed indicator
+                            parentDetails = parentDetails.parentElement.closest('details');
+                        }
                     }
-                }
-            });
-        }
-
-        function onScroll() {
-            let currentSection = '';
-            sections.forEach(section => {
-                const sectionTop = section.getBoundingClientRect().top;
-                const sectionBottom = section.getBoundingClientRect().bottom;
-                if (sectionTop <= 0 && sectionBottom >= 0) {
-                    currentSection = section.getAttribute('id');
-                }
-            });
-
-            if (currentSection) {
-                removeActiveClass();
-                activateLinkAndDetails(currentSection);
+                });
             }
-            else{
-                removeActiveClass();
-            }
-        }
 
-        window.addEventListener('scroll', onScroll);
-        });
+            function onScroll() {
+                let currentSection = '';
+                sections.forEach(section => {
+                    const sectionTop = section.getBoundingClientRect().top;
+                    const sectionBottom = section.getBoundingClientRect().bottom;
+
+                    // Check if the section is in view
+                    if (sectionTop <= 100 && sectionBottom >= 0) {
+                        currentSection = section.getAttribute('id');
+                    }
+                });
+
+                if (currentSection) {
+                    removeActiveClass();
+                    activateLinkAndDetails(currentSection);
+                } else {
+                    removeActiveClass();
+                }
+            }
+
+            window.addEventListener('scroll', onScroll);
+        } else {
+            return
+        }
+    });
     </script>
 
 </body>

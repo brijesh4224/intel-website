@@ -70,9 +70,9 @@ window.onload = function () {
     }
 
     // Related Materials
-    let D_pdfmaterial4 = document.getElementById('D_pdfmaterial4')
+    let D_pdfmaterial1 = document.getElementById('D_pdfmaterial1')
 
-    const pdfmaterial4 = [
+    const pdfmaterial1 = [
         {
             id: 1,
             title: "Elevate Performance with Intel® Accelerator Engines",
@@ -148,33 +148,32 @@ window.onload = function () {
 
     ]
 
-    if (D_pdfmaterial4) {
-        for (let i = 0; i < pdfmaterial4.length; i++) {
-            D_pdfmaterial4.innerHTML += `<div class="col-xs-12 col-ms-6 col-sm-4 col-md-3 col-xl-2">
+    if (D_pdfmaterial1) {
+        for (let i = 0; i < pdfmaterial1.length; i++) {
+            D_pdfmaterial1.innerHTML += `<div class="col-xs-12 col-ms-6 col-sm-4 col-md-3 col-xl-2">
                         <div class="d_box">
                             <div class="d-flex">
                                 <div class="d_img me-1">
-                                    <img src="/img/mv_image/${pdfmaterial4[i].img}"  alt="">
+                                    <img src="/img/mv_image/${pdfmaterial1[i].img}"  alt="">
                                 </div>
-                                <h4><a href="">${pdfmaterial4[i].title}</a></h4>
+                                <h4><a href="">${pdfmaterial1[i].title}</a></h4>
                             </div>
                         </div>
                     </div>`
         }
     }
 
-}
+
 
 
 
 
 // (AI Accelerator -> (Intel HPC Engines)) Read the HPC Accelerated product brief
-window.onload = function () {
 
     // Related Videos
     let mv_pdf_hpc = document.getElementById('mv_pdf_hpc')
 
-    const pdfvideo1 = [
+    const pdfvideo2 = [
         {
             id: 1,
             title: "Netflix Optimizes Amazon Instance Performance and Reduces Costs,...",
@@ -226,14 +225,14 @@ window.onload = function () {
     ]
 
     if (mv_pdf_hpc) {
-        for (let i = 0; i < pdfvideo1.length; i++) {
+        for (let i = 0; i < pdfvideo2.length; i++) {
             mv_pdf_hpc.innerHTML += `<div class="col-xs-12 col-ms-6 col-sm-4 col-md-3 col-xl-2">
                         <div class="d_item">
                             <div class="d_img mv_img_icon">
-                                <a href=""><img src="/img/mv_image/${pdfvideo1[i].img}" alt=""></a>
+                                <a href=""><img src="/img/mv_image/${pdfvideo2[i].img}" alt=""></a>
                             </div>
-                            <h3><a href="">${pdfvideo1[i].title} <small>(${pdfvideo1[i].time})</small> </a></h3>
-                            <p>${pdfvideo1[i].text}</p>
+                            <h3><a href="">${pdfvideo2[i].title} <small>(${pdfvideo2[i].time})</small> </a></h3>
+                            <p>${pdfvideo2[i].text}</p>
                         </div>
                     </div>`
         }
@@ -242,7 +241,7 @@ window.onload = function () {
     // Related Materials
     let mv_pdf_hpc_material = document.getElementById('mv_pdf_hpc_material')
 
-    const pdfmaterial4 = [
+    const pdfmaterial2 = [
         {
             id: 1,
             title: "Elevate Performance with Intel® Accelerator Engines",
@@ -319,14 +318,14 @@ window.onload = function () {
     ]
 
     if (mv_pdf_hpc_material) {
-        for (let i = 0; i < pdfmaterial4.length; i++) {
+        for (let i = 0; i < pdfmaterial2.length; i++) {
             mv_pdf_hpc_material.innerHTML += `<div class="col-xs-12 col-ms-6 col-sm-4 col-md-3 col-xl-2">
                         <div class="d_box">
                             <div class="d-flex">
                                 <div class="d_img me-1">
-                                    <img src="/img/mv_image/${pdfmaterial4[i].img}"  alt="">
+                                    <img src="/img/mv_image/${pdfmaterial2[i].img}"  alt="">
                                 </div>
-                                <h4><a href="">${pdfmaterial4[i].title}</a></h4>
+                                <h4><a href="">${pdfmaterial2[i].title}</a></h4>
                             </div>
                         </div>
                     </div>`
@@ -334,3 +333,99 @@ window.onload = function () {
     }
 
 }
+
+// (Intel Data Center GPU Max Series) Product brief: Intel Data Center GPU Max Series
+
+        // Related Materials
+        let mv_pdf_gpu_material = document.getElementById('mv_pdf_gpu_material')
+
+        const pdfmaterial3 = [
+            {
+                id: 1,
+                title: "Intel® Max Series Product Family for HPC",
+                img: "brief.png",
+                link: "",
+            },
+            {
+                id: 2,
+                title: "Tools and Software for Intel® Data Center GPU Max Series",
+                img: "related-materials.png",
+                link: "",
+            },
+            {
+                id: 3,
+                title: "Intel® Data Center GPU Flex Series Solution Brief",
+                img: "brief.png",
+                link: "",
+            },
+            {
+                id: 4,
+                title: "Performance Data for Intel® Data Center GPU Flex Series 140",
+                img: "tools.png",
+                link: "",
+            },
+            {
+                id: 5,
+                title: "AI Accelerated Intel® Xeon® Scalable Processors Product Brief",
+                img: "brief.png",
+                link: "",
+            },
+            {
+                id: 6,
+                title: "Intel Gaudi 2 Remains Only Benchmarked Alternative to NV H100 for...",
+                img: "related-materials.png",
+                link: "",
+            },
+            {
+                id: 7,
+                title: "High Performance Computing (HPC) Solutions - Intel",
+                img: "article.png",
+                link: "",
+            },
+            {
+                id: 8,
+                title: "Numenta and Intel Accelerate Inference",
+                img: "article.png",
+                link: "",
+            },
+            {
+                id: 9,
+                title: "AI Software – Intel",
+                img: "article.png",
+                link: "",
+            },
+            {
+                id: 10,
+                title: "Edge Computing Solutions and Technologies - Intel",
+                img: "tools.png",
+                link: "",
+            },
+            {
+                id: 11,
+                title: "Leading Bottling Company Automates Worker Safety",
+                img: "best-practices.png",
+                link: "",
+            },
+            {
+                id: 12,
+                title: "Gunpowder Cuts Digital Rendering Time and Cost",
+                img: "best-practices.png",
+                link: "",
+            },
+
+        ]
+
+        if (mv_pdf_gpu_material) {
+            for (let i = 0; i < pdfmaterial3.length; i++) {
+                mv_pdf_gpu_material.innerHTML += `<div class="col-xs-12 col-ms-6 col-sm-4 col-md-3 col-xl-2">
+                            <div class="d_box">
+                                <div class="d-flex">
+                                    <div class="d_img me-1">
+                                        <img src="/img/mv_image/${pdfmaterial3[i].img}"  alt="">
+                                    </div>
+                                    <h4><a href="">${pdfmaterial3[i].title}</a></h4>
+                                </div>
+                            </div>
+                        </div>`
+            }
+        }
