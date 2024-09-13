@@ -62,7 +62,7 @@ window.onload = function () {
                             <div class="d_img mv_img_icon">
                                 <a href=""><img src="/img/mv_image/${pdfvideo1[i].img}" alt=""></a>
                             </div>
-                            <h3><a href="">${pdfvideo1[i].title} <small>(${pdfvideo1[i].time})</small> </a></h3>
+                            <h3><a href="">${pdfvideo1[i].title} ${pdfvideo1[i].time ? `<small>(${pdfvideo1[i].time})</small>` : ""} </a></h3>
                             <p>${pdfvideo1[i].text}</p>
                         </div>
                     </div>`
@@ -166,8 +166,6 @@ window.onload = function () {
 
 
 
-
-
 // (AI Accelerator -> (Intel HPC Engines)) Read the HPC Accelerated product brief
 
     // Related Videos
@@ -231,7 +229,7 @@ window.onload = function () {
                             <div class="d_img mv_img_icon">
                                 <a href=""><img src="/img/mv_image/${pdfvideo2[i].img}" alt=""></a>
                             </div>
-                            <h3><a href="">${pdfvideo2[i].title} <small>(${pdfvideo2[i].time})</small> </a></h3>
+                            <h3><a href="">${pdfvideo2[i].title} ${pdfvideo2[i].time ? `<small>(${pdfvideo2[i].time})</small>` : ""} </a></h3>
                             <p>${pdfvideo2[i].text}</p>
                         </div>
                     </div>`
@@ -332,7 +330,8 @@ window.onload = function () {
         }
     }
 
-}
+
+
 
 // (Intel Data Center GPU Max Series) Product brief: Intel Data Center GPU Max Series
 
@@ -429,3 +428,170 @@ window.onload = function () {
                         </div>`
             }
         }
+
+
+// (Intel® Data Center GPU Flex Series) Download the VDI solution brief
+
+    // Related Videos
+    let mv_video_VDI = document.getElementById('mv_video_VDI')
+
+    const pdfvideo3 = [
+        {
+            id: 1,
+            title: "Intel and Tile* Bluetooth® Technology Help Find Your Lost Things",
+            time: "",
+            text: "Find your lost things, including your next Intel®-based laptop, with the Tile* app or one of the Tile* Bluetooth® technology-enabled devices. ",
+            img: "related-video.png.rendition.cq5dam.thumbnail.319.319.png",
+            link: "",
+        },
+        {
+            id: 2,
+            title: "Intel's Next Generation FPGAs 224 Gbps-PAM4-LR Transceiver Video",
+            time: "13:44",
+            text: "The 224 Gbps-PAM4-LR transceiver meets high-speed transceiver requirements in cloud, network, data center, AI, and more.",
+            img: "fpg_img.jpg",
+            link: "",
+        },
+        {
+            id: 3,
+            title: "Getting the Most out of the Intel® HD Graphics Control Panel Demo",
+            time: "3:00",
+            text: "Demos Intel® HD Graphics Control Panel uses that you may not know about, including multiple monitors, display profiles, screen colors, and more.",
+            img: "graphics.jpg",
+            link: "",
+        },
+        {
+            id: 4,
+            title: "Chips and Salsa Episode 35: Intel Hardware Security Academic Award",
+            time: "26:55",
+            text: "CRob and Jerry interview the winners of Intel's 2022 Hardware Security Academic Award.",
+            img: "getting.jpg",
+            link: "",
+        },
+        {
+            id: 5,
+            title: "Maximize Value with Better Performance and Efficiency",
+            time: "2:32",
+            text: "Modernize your tech to take advantage of AI, improve cybersecurity, and improve competitiveness. Enter new markets and surpass the competition.",
+            img: "related-video.png.rendition.cq5dam.thumbnail.319.319.png",
+            link: "",
+        },
+        {
+            id: 6,
+            title: "Intel Creates World's First Conflict-Free Microprocessor",
+            time: "1:00",
+            text: "Intel introduces the world's first commercial conflict-free microprocessor and reconnects the dots across the globe for a responsible supply chain.",
+            img: "creates.jpg",
+            link: "",
+        },
+    ]
+
+    if (mv_video_VDI) {
+        for (let i = 0; i < pdfvideo3.length; i++) {
+            mv_video_VDI.innerHTML += `<div class="col-xs-12 col-ms-6 col-sm-4 col-md-3 col-xl-2">
+                        <div class="d_item">
+                            <div class="d_img mv_img_icon">
+                                <a href=""><img src="/img/mv_image/${pdfvideo3[i].img}" alt=""></a>
+                            </div>
+                            <h3><a href="">${pdfvideo3[i].title} ${pdfvideo3[i].time ? `<small>(${pdfvideo3[i].time})</small>` : ""} </a></h3>
+                            <p>${pdfvideo3[i].text}</p>
+                        </div>
+                    </div>`
+        }
+    }
+
+    // Related Materials
+    let mv_pdf_vdi_material = document.getElementById('mv_pdf_vdi_material')
+
+    const mv_vdi_material = [
+        {
+            id: 1,
+            title: "VDI Performance on Intel® Data Center GPU Flex Series White Paper",
+            img: "brief.png",
+            link: "",
+        },
+        {
+            id: 2,
+            title: "Intel® Data Center GPU Ready Systems",
+            img: "related-materials.png",
+            link: "",
+        },
+        {
+            id: 3,
+            title: "Intel® Data Center GPU Flex Series Windows Cloud Gaming Brief",
+            img: "brief.png",
+            link: "",
+        },
+        {
+            id: 4,
+            title: "Reduce Memory Costs of Microsoft SQL Running on vSphere",
+            img: "brief.png",
+            link: "",
+        },
+        {
+            id: 5,
+            title: "Intel® Optane™ Persistent Memory Workload Partner Solutions",
+            img: "brief.png",
+            link: "",
+        },
+        {
+            id: 6,
+            title: "Tiered Memory in VMware’s Production Tanzu Environment",
+            img: "whitepaper.png",
+            link: "",
+        },
+        {
+            id: 7,
+            title: "Intel Flex Series GPU Updated Software Packages",
+            img: "related-materials.png",
+            link: "",
+        },
+        {
+            id: 8,
+            title: "Intel® Partner Alliance Sales Enablement Resources",
+            img: "article.png",
+            link: "",
+        },
+        {
+            id: 9,
+            title: "Intel® Arc™ GPU for the Edge",
+            img: "related-materials.png",
+            link: "",
+        },
+        {
+            id: 10,
+            title: "Intel Xeon Processors Accelerate GenAI Workloads with Aible",
+            img: "related-materials.png",
+            link: "",
+        },
+        {
+            id: 11,
+            title: "Intel Xeon Processors Accelerate GenAI Workloads with Aible",
+            img: "related-materials.png",
+            link: "",
+        },
+        {
+            id: 12,
+            title: "Intel® Xeon® 6 Processor with Performance and Efficiency Use Cases",
+            img: "related-materials.png",
+            link: "",
+        },
+
+    ]
+
+    if (mv_pdf_vdi_material) {
+        for (let i = 0; i < mv_vdi_material.length; i++) {
+            mv_pdf_vdi_material.innerHTML += `<div class="col-xs-12 col-ms-6 col-sm-4 col-md-3 col-xl-2">
+                        <div class="d_box">
+                            <div class="d-flex">
+                                <div class="d_img me-1">
+                                    <img src="/img/mv_image/${mv_vdi_material[i].img}"  alt="">
+                                </div>
+                                <h4><a href="">${mv_vdi_material[i].title}</a></h4>
+                            </div>
+                        </div>
+                    </div>`
+        }
+    }
+
+}
