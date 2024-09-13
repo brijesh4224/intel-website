@@ -1,0 +1,844 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <!-- font family -->
+    <link href="https://fonts.cdnfonts.com/css/intel-clear" rel="stylesheet">
+    <!-- boootstap file -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <!-- costom css file -->
+    <link rel="stylesheet" href="/css/vivek.css">
+    <link rel="stylesheet" href="/css/yatri.css">
+
+    <!-- all.min file -->
+    <link rel="stylesheet" href="/css/all.min.css">
+
+</head>
+
+<body>
+
+    <main>
+
+        <!-- header -->
+        <header>
+            <div id="navbar"></div>
+        </header>
+
+        <!-- poster -->
+        <section class=" VK_light_blue">
+            <div class="VK_cont">
+                <div class="row m-0">
+                    <div class="col text-white">
+                        <h1 class="VK_py_pre_heading fw-light m-0 pt-3 pb-5">
+                            Getting More out of Modern Compute Platforms by Decoupling Non-Critical Workloads
+                        </h1>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!--  -->
+        <section>
+            <div class="VK_cont py-5 VK_border_bottom">
+                <div class="row m-0">
+                    <div class="col-md-4 col-lg-3 d-md-block d-none">
+                        <div class="VK_sticky_side_bar VK_side_bar_postion_stickey">
+                            <div>
+                                <div>
+                                    <div class="VK_sidebar_dropdown">
+                                        <p class="m-0">
+                                            <a href="#VK_Introduction" class="text-decoration-none VK_a">
+                                                Introduction
+                                            </a>
+                                        </p>
+                                        <p class="m-0">
+                                            <a href="#VK_Using_Decoupled_Workloads" class="text-decoration-none VK_a">
+                                                Using Decoupled Workloads
+                                            </a>
+                                        </p>
+                                        <p class="m-0">
+                                            <a href="#VK_Refinement_Linear_Interpolation"
+                                                class="text-decoration-none VK_a">
+                                                Refinement 1: Linear Interpolation
+                                            </a>
+                                        </p>
+                                        <p class="m-0">
+                                            <a href="#VK_Refinement_NonLinear_Interpolation_using_spline"
+                                                class="text-decoration-none VK_a">
+                                                Refinement 2: Non-Linear Interpolation using a Spline
+                                            </a>
+                                        </p>
+                                        <p class="m-0">
+                                            <a href="#VK_Time_Talk_About_Time" class="text-decoration-none VK_a">
+                                                Time to Talk About Time
+                                            </a>
+                                        </p>
+                                        <p class="m-0">
+                                            <a href="#VK_Conclusions" class="text-decoration-none VK_a">
+                                                Conclusions
+                                            </a>
+                                        </p>
+                                        <p class="m-0">
+                                            <a href="#VK_Parting_Segue_Future_Beyond" class="text-decoration-none VK_a">
+                                                A Parting Segue – To the Future, and Beyond!
+                                            </a>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="VK_theme_bg py-2 px-3 mt-4">
+                            <p>
+                                <b>
+                                    Authors:
+                                </b>
+                            </p>
+                            <ul class="m-0">
+                                <li>
+                                    Steve Hughes
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-8 col-lg-7">
+                        <div class="VK_all_sections">
+                            <div class="VK_section_descriptions">
+                                <div class="text-end">
+                                    <p class="m-0 VK_print_email_font">
+                                        <span class="VK_a mx-2 d-inline-block">
+                                            <i class="fa-solid fa-print"></i>
+                                        </span>
+                                        <span class="VK_a mx-2 d-inline-block">
+                                            <i class="fa-regular fa-envelope"></i>
+                                        </span>
+                                    </p>
+                                </div>
+                            </div>
+                            <section class="mt-5" id="VK_Introduction">
+                                <h3 class="VK_side_heading fw-light">
+                                    Introduction
+                                </h3>
+                                <p>
+                                    A few years ago I published
+                                    <a href="" class="Vk_text_underline_dots VK_a">
+                                        this blog on the problem of the diminishing returns
+                                    </a>
+                                    when adding more threads to a thread pool after you are already 8-10 cores wide. I
+                                    focused on complexity and synchronisation in that document, and I didn’t dive much
+                                    into Amdahl’s law to see what it says about performance scaling with high thread
+                                    counts. Let’s have a quick look at that now.
+                                </p>
+                                <div class="my-4 VK_yellow_border VK_bg_e6 p-4">
+                                    <p>
+                                        <b>
+                                            Amdahl’s law – talking about P and n
+                                        </b>
+                                    </p>
+                                    <p>
+                                        Amdahl’s law is well-covered in literature as the basis for predicting the
+                                        speedup S for a given code sample where:
+                                    </p>
+                                    <p class="ps-4">
+                                        P is a proportion of the code we can accelerate, and
+                                        <br>
+                                        n is the degree to which we can speed it up.
+                                    </p>
+                                    <p>
+                                        For simplicity I treat P as the proportion of code which can be threaded and n
+                                        as the number of cores which will execute it. This is equivalent if the
+                                        proportion of code P can be perfectly threaded.
+                                    </p>
+                                    <p class="ps-4">
+                                        <span class="math"><mjx-container class="MathJax CtxtMenu_Attached_0"
+                                                jax="CHTML" tabindex="0" ctxtmenu_counter="0"
+                                                style="font-size: 113.1%; position: relative;"><mjx-math class="MJX-TEX"
+                                                    aria-hidden="true"><mjx-mi class="mjx-i"><mjx-c
+                                                            class="mjx-c1D446 TEX-I"></mjx-c></mjx-mi><mjx-mi
+                                                        class="mjx-i"><mjx-c
+                                                            class="mjx-c1D45D TEX-I"></mjx-c></mjx-mi><mjx-mi
+                                                        class="mjx-i"><mjx-c
+                                                            class="mjx-c1D452 TEX-I"></mjx-c></mjx-mi><mjx-mi
+                                                        class="mjx-i"><mjx-c
+                                                            class="mjx-c1D452 TEX-I"></mjx-c></mjx-mi><mjx-mi
+                                                        class="mjx-i"><mjx-c
+                                                            class="mjx-c1D451 TEX-I"></mjx-c></mjx-mi><mjx-mi
+                                                        class="mjx-i"><mjx-c
+                                                            class="mjx-c1D462 TEX-I"></mjx-c></mjx-mi><mjx-mi
+                                                        class="mjx-i"><mjx-c
+                                                            class="mjx-c1D45D TEX-I"></mjx-c></mjx-mi><mjx-mo
+                                                        class="mjx-n" space="4"><mjx-c
+                                                            class="mjx-c3D"></mjx-c></mjx-mo><mjx-mfrac
+                                                        space="4"><mjx-frac><mjx-num><mjx-nstrut></mjx-nstrut><mjx-mn
+                                                                    class="mjx-n" size="s"><mjx-c
+                                                                        class="mjx-c31"></mjx-c></mjx-mn></mjx-num><mjx-dbox><mjx-dtable><mjx-line></mjx-line><mjx-row><mjx-den><mjx-dstrut></mjx-dstrut><mjx-mrow
+                                                                                size="s"><mjx-mn class="mjx-n"><mjx-c
+                                                                                        class="mjx-c31"></mjx-c></mjx-mn><mjx-mo
+                                                                                    class="mjx-n"><mjx-c
+                                                                                        class="mjx-c2212"></mjx-c></mjx-mo><mjx-mi
+                                                                                    class="mjx-i"><mjx-c
+                                                                                        class="mjx-c1D443 TEX-I"></mjx-c></mjx-mi><mjx-mo
+                                                                                    class="mjx-n"><mjx-c
+                                                                                        class="mjx-c2B"></mjx-c></mjx-mo><mjx-mfrac><mjx-frac><mjx-num><mjx-nstrut></mjx-nstrut><mjx-mi
+                                                                                                class="mjx-i"
+                                                                                                size="s"><mjx-c
+                                                                                                    class="mjx-c1D443 TEX-I"></mjx-c></mjx-mi></mjx-num><mjx-dbox><mjx-dtable><mjx-line></mjx-line><mjx-row><mjx-den><mjx-dstrut></mjx-dstrut><mjx-mi
+                                                                                                            class="mjx-i"
+                                                                                                            size="s"><mjx-c
+                                                                                                                class="mjx-c1D45B TEX-I"></mjx-c></mjx-mi></mjx-den></mjx-row></mjx-dtable></mjx-dbox></mjx-frac></mjx-mfrac></mjx-mrow></mjx-den></mjx-row></mjx-dtable></mjx-dbox></mjx-frac></mjx-mfrac></mjx-math><mjx-assistive-mml
+                                                    unselectable="on" display="inline"><math
+                                                        xmlns="http://www.w3.org/1998/Math/MathML">
+                                                        <mi>S</mi>
+                                                        <mi>p</mi>
+                                                        <mi>e</mi>
+                                                        <mi>e</mi>
+                                                        <mi>d</mi>
+                                                        <mi>u</mi>
+                                                        <mi>p</mi>
+                                                        <mo>=</mo>
+                                                        <mfrac>
+                                                            <mn>1</mn>
+                                                            <mrow>
+                                                                <mn>1</mn>
+                                                                <mo>−</mo>
+                                                                <mi>P</mi>
+                                                                <mo>+</mo>
+                                                                <mfrac>
+                                                                    <mi>P</mi>
+                                                                    <mi>n</mi>
+                                                                </mfrac>
+                                                            </mrow>
+                                                        </mfrac>
+                                                    </math></mjx-assistive-mml></mjx-container>
+                                        </span>
+                                    </p>
+                                    <p>
+                                        It’s obvious in this form that as P trends towards zero, there is no benefit in
+                                        increasing n. It’s also obvious that even as P trends toward 1, changing n from
+                                        2 to 4 makes a far bigger difference than changing it from 10 to 12. Slightly
+                                        less obvious is that if n is infinite (Quantum Computer?), then P / n is zero,
+                                        and the maximum scaling is now 1 / (1 – P). This suggests that with very high
+                                        core counts like modern processors with 32 cores, it is important to focus on P,
+                                        rather than n.
+                                    </p>
+                                </div>
+                                <p>
+                                    Shall we focus on P or on n? There is a third option: we can just remove some code
+                                    from the critical path altogether by executing it on its own thread and – crucially
+                                    – not have any critical path code stall while it waits for the removed code to
+                                    finish. Work we typically consider background tasks like landscape generation, LOD
+                                    or MIP streaming etc., are often written in this way. I’ve seen high-level NPC AI
+                                    decision making code done this way, so the AI gets new goals every second or so.
+                                    Audio is usually done this way too, since it doesn’t need to sync with the framerate
+                                    of the game. With audio we trigger a sample, then a background thread ticks along at
+                                    its own pace, keeping the circular buffer loaded when it needs to, regardless of the
+                                    framerate of the game.
+                                </p>
+                                <p>
+                                    But why stop there? We can take almost any work we want and decouple it from the
+                                    critical path, as long as we guarantee the decoupled work’s data is ready when the
+                                    critical path code needs it.
+                                </p>
+                                <p>
+                                    Time to formalise the decoupling idea a bit…
+                                </p>
+                                <div class="my-4 VK_yellow_border VK_bg_e6 p-4">
+                                    <p>
+                                        <b>
+                                            Decoupled workload definition
+                                        </b>
+                                    </p>
+                                    <p>
+                                        A task which we trigger and leave to run on its own thread or group of threads
+                                        until it’s done. Once it has finished, we take the data the task has created and
+                                        swap it into the game, replacing the old data. For the task to be fully
+                                        decoupled, the main thread of the game should never wait for the task to
+                                        complete and ideally should be totally ignorant of the decoupled task’s current
+                                        state. The decoupled task will typically build a new data set which the game
+                                        will swap over to using once the task has finished. If Q is the proportion of
+                                        code we can decouple, and it has the same proportion of threaded code in it as
+                                        the rest of the game does, then Amdahl’s Law expands to:
+                                    </p>
+                                    <p>
+                                        <span class="math"><mjx-container class="MathJax CtxtMenu_Attached_0"
+                                                jax="CHTML" tabindex="0" ctxtmenu_counter="1"
+                                                style="font-size: 113.1%; position: relative;"><mjx-math class="MJX-TEX"
+                                                    aria-hidden="true"><mjx-mi class="mjx-i"><mjx-c
+                                                            class="mjx-c1D446 TEX-I"></mjx-c></mjx-mi><mjx-mi
+                                                        class="mjx-i"><mjx-c
+                                                            class="mjx-c1D45D TEX-I"></mjx-c></mjx-mi><mjx-mi
+                                                        class="mjx-i"><mjx-c
+                                                            class="mjx-c1D452 TEX-I"></mjx-c></mjx-mi><mjx-mi
+                                                        class="mjx-i"><mjx-c
+                                                            class="mjx-c1D452 TEX-I"></mjx-c></mjx-mi><mjx-mi
+                                                        class="mjx-i"><mjx-c
+                                                            class="mjx-c1D451 TEX-I"></mjx-c></mjx-mi><mjx-mi
+                                                        class="mjx-i"><mjx-c
+                                                            class="mjx-c1D462 TEX-I"></mjx-c></mjx-mi><mjx-mi
+                                                        class="mjx-i"><mjx-c
+                                                            class="mjx-c1D45D TEX-I"></mjx-c></mjx-mi><mjx-mo
+                                                        class="mjx-n" space="4"><mjx-c
+                                                            class="mjx-c3D"></mjx-c></mjx-mo><mjx-mfrac
+                                                        space="4"><mjx-frac><mjx-num><mjx-nstrut></mjx-nstrut><mjx-mn
+                                                                    class="mjx-n" size="s"><mjx-c
+                                                                        class="mjx-c31"></mjx-c></mjx-mn></mjx-num><mjx-dbox><mjx-dtable><mjx-line></mjx-line><mjx-row><mjx-den><mjx-dstrut></mjx-dstrut><mjx-mrow
+                                                                                size="s"><mjx-mo class="mjx-n"><mjx-c
+                                                                                        class="mjx-c28"></mjx-c></mjx-mo><mjx-mn
+                                                                                    class="mjx-n"><mjx-c
+                                                                                        class="mjx-c31"></mjx-c></mjx-mn><mjx-mo
+                                                                                    class="mjx-n"><mjx-c
+                                                                                        class="mjx-c2212"></mjx-c></mjx-mo><mjx-mi
+                                                                                    class="mjx-i"><mjx-c
+                                                                                        class="mjx-c1D444 TEX-I"></mjx-c></mjx-mi><mjx-mo
+                                                                                    class="mjx-n"><mjx-c
+                                                                                        class="mjx-c29"></mjx-c></mjx-mo><mjx-mo
+                                                                                    class="mjx-n"><mjx-c
+                                                                                        class="mjx-c2217"></mjx-c></mjx-mo><mjx-mo
+                                                                                    class="mjx-n"><mjx-c
+                                                                                        class="mjx-c28"></mjx-c></mjx-mo><mjx-mn
+                                                                                    class="mjx-n"><mjx-c
+                                                                                        class="mjx-c31"></mjx-c></mjx-mn><mjx-mo
+                                                                                    class="mjx-n"><mjx-c
+                                                                                        class="mjx-c2212"></mjx-c></mjx-mo><mjx-mi
+                                                                                    class="mjx-i"><mjx-c
+                                                                                        class="mjx-c1D443 TEX-I"></mjx-c></mjx-mi><mjx-mo
+                                                                                    class="mjx-n"><mjx-c
+                                                                                        class="mjx-c2B"></mjx-c></mjx-mo><mjx-mfrac><mjx-frac><mjx-num><mjx-nstrut></mjx-nstrut><mjx-mi
+                                                                                                class="mjx-i"
+                                                                                                size="s"><mjx-c
+                                                                                                    class="mjx-c1D443 TEX-I"></mjx-c></mjx-mi></mjx-num><mjx-dbox><mjx-dtable><mjx-line></mjx-line><mjx-row><mjx-den><mjx-dstrut></mjx-dstrut><mjx-mi
+                                                                                                            class="mjx-i"
+                                                                                                            size="s"><mjx-c
+                                                                                                                class="mjx-c1D45B TEX-I"></mjx-c></mjx-mi></mjx-den></mjx-row></mjx-dtable></mjx-dbox></mjx-frac></mjx-mfrac><mjx-mo
+                                                                                    class="mjx-n"><mjx-c
+                                                                                        class="mjx-c29"></mjx-c></mjx-mo></mjx-mrow></mjx-den></mjx-row></mjx-dtable></mjx-dbox></mjx-frac></mjx-mfrac></mjx-math><mjx-assistive-mml
+                                                    unselectable="on" display="inline"><math
+                                                        xmlns="http://www.w3.org/1998/Math/MathML">
+                                                        <mi>S</mi>
+                                                        <mi>p</mi>
+                                                        <mi>e</mi>
+                                                        <mi>e</mi>
+                                                        <mi>d</mi>
+                                                        <mi>u</mi>
+                                                        <mi>p</mi>
+                                                        <mo>=</mo>
+                                                        <mfrac>
+                                                            <mn>1</mn>
+                                                            <mrow>
+                                                                <mo stretchy="false">(</mo>
+                                                                <mn>1</mn>
+                                                                <mo>−</mo>
+                                                                <mi>Q</mi>
+                                                                <mo stretchy="false">)</mo>
+                                                                <mo>∗</mo>
+                                                                <mo stretchy="false">(</mo>
+                                                                <mn>1</mn>
+                                                                <mo>−</mo>
+                                                                <mi>P</mi>
+                                                                <mo>+</mo>
+                                                                <mfrac>
+                                                                    <mi>P</mi>
+                                                                    <mi>n</mi>
+                                                                </mfrac>
+                                                                <mo stretchy="false">)</mo>
+                                                            </mrow>
+                                                        </mfrac>
+                                                    </math></mjx-assistive-mml></mjx-container></span>
+                                    </p>
+                                </div>
+                            </section>
+                            <section class="mt-5" id="VK_Using_Decoupled_Workloads">
+                                <h3 class="VK_side_heading">
+                                    Using Decoupled Workloads
+                                </h3>
+                                <p>
+                                    In a picture, the decoupled workload will work like this:
+                                </p>
+                                <div>
+                                    <img src="/img/vivek/VK_89.png" class="w-100" alt="">
+                                    <p>
+                                        <b>
+                                            Fig. 1:
+                                        </b>
+                                        Decoupled workload delivering a data set every 2 frames.
+                                    </p>
+                                </div>
+                                <p>
+                                    In this example, the decoupled work always finishes within two game frames, but we
+                                    could theoretically make it as long as we want, so long as the CPU frame that the
+                                    decoupled task supplies with data isn’t going to stall until the data is ready. Once
+                                    the decoupled work has finished, it copies its results to the critical path at an
+                                    appropriate moment – say end of frame. A trivial example could be an algorithm which
+                                    determines whether a higher MIP for a texture is needed. If it is needed, then the
+                                    algorithm can trigger a decoupled load to fetch the MIP from disk and continue using
+                                    the old one in the meantime. Each frame, the algorithm can look to see if the new
+                                    MIP is loaded, and once it is the algorithm can gradually introduce it.
+                                </p>
+                                <p>
+                                    This is not a new idea. As I previously mentioned, some games use this technique to
+                                    change high level AI goals of groups of AI agents, but in those implementations the
+                                    new data represents a sudden change of strategy and isn’t directly driving frame to
+                                    frame changes. However, we can refine the idea of a decoupled workload quite a bit,
+                                    to make it a much more powerful tool.
+                                </p>
+                            </section>
+                            <section class="mt-5" id="VK_Refinement_Linear_Interpolation">
+                                <h3 class="VK_side_heading">
+                                    Refinement 1: Linear Interpolation
+                                </h3>
+                                <p>
+                                    What if you have no linkage to game frames at all, and you trigger workloads on a
+                                    timer? You could have a big task with a length just under 1/10th of a second and
+                                    trigger that task every 1/10th of a second. The workload creates the data, then
+                                    transfers it to the critical path code at the point where the next workload is
+                                    triggered. That way you always have 2 data sets spaced 1/10th of a second apart, and
+                                    the critical path code can derive its data by interpolating between the 2 data sets.
+                                </p>
+                                <div>
+                                    <img src="/img/vivek/VK_90.png" class="w-100" alt="">
+                                    <p>
+                                        <b>
+                                            Fig. 2:
+                                        </b>
+                                        Decoupled work triggering every 1/10th second and updating alternate data sets
+                                        in the game.
+                                    </p>
+                                </div>
+                                <p>
+                                    In the Fig. 2. case, you can avoid any unnecessary copying by using an array of 3
+                                    data sets which you use as a circular buffer (there’s that audio thread again…).
+                                    Initially, the game will interpolate between data set 0 and data set 1, while the
+                                    decoupled task updates data set 2. After the decoupled workload finishes, we
+                                    increment our pointers so we are now interpolating between data set 1, and data set
+                                    2, while the decoupled workload updates data set 0.
+                                </p>
+                                <p>
+                                    In a picture:
+                                </p>
+                                <div>
+                                    <img src="/img/vivek/VK_91.png" class="w-100" alt="">
+                                    <p>
+                                        <b>
+                                            Fig. 3:
+                                        </b>
+                                        Decoupled work triggering every 1/10th second and writing directly to data sets.
+                                    </p>
+                                </div>
+                                <p>
+                                    The table below shows how the two main threads in Hitman 3 by IO Interactive are
+                                    scheduled mostly to the most performant cores without any affinity applied.
+                                </p>
+                                <div class="overflow-auto">
+                                    <table class="VK_side_nav_table">
+                                        <thead class="VK_theme_thead">
+                                            <tr>
+                                                <th class="px-3 py-2">
+                                                    Decoupled Frame
+                                                </th>
+                                                <th class="px-3 py-2">
+                                                    Data Set 0
+                                                </th>
+                                                <th class="px-3 py-2">
+                                                    Data Set 1
+                                                </th>
+                                                <th class="px-3 py-2">
+                                                    Data Set 2
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="VK_theme_tbody">
+                                            <tr>
+                                                <td>
+                                                    0
+                                                </td>
+                                                <td>
+                                                    Start Value
+                                                </td>
+                                                <td>
+                                                    End Value
+                                                </td>
+                                                <td>
+                                                    Calculating
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    1
+                                                </td>
+                                                <td>
+                                                    Calculating
+                                                </td>
+                                                <td>
+                                                    Start Valu
+                                                </td>
+                                                <td>
+                                                    End Value
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    2
+                                                </td>
+                                                <td>
+                                                    End Value
+                                                </td>
+                                                <td>
+                                                    Calculating
+                                                </td>
+                                                <td>
+                                                    Start Valu
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    3
+                                                </td>
+                                                <td>
+                                                    Start Valu
+                                                </td>
+                                                <td>
+                                                    End Value
+                                                </td>
+                                                <td>
+                                                    Calculating
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <p>
+                                        <b>
+                                            Table 1.
+                                        </b>
+                                        Usage for each data set during each decoupled workload.
+                                    </p>
+                                </div>
+                                <p>
+                                    With this kind of setup, you could simulate something like a huge 3D vector field
+                                    representing airflow or water movement. In Fig. 2., while the first decoupled frame
+                                    is calculating Data Set 2, the game will interpolate between the flow vectors in
+                                    Data Set 0, and the flow vectors in Data Set 1, using the elapsed time since the
+                                    last 1/10th second tick. When the time reaches the 2nd 1/10th second marker, the
+                                    first Decoupled Frame is finished, the next decoupled frame starts writing to Data
+                                    Set 0, and the game can derive the flow vectors by using the time elapsed since the
+                                    last 1/10th second tick to interpolate between Data Set 1 and Data Set 2.
+                                </p>
+                            </section>
+                            <section class="mt-5" id="VK_Refinement_NonLinear_Interpolation_using_spline">
+                                <h3 class="VK_side_heading">
+                                    Refinement 2: Non-Linear Interpolation using a Spline
+                                </h3>
+                                <p>
+                                    The other big issue with the linear interpolation model above, is that if the
+                                    changes from frame to frame are non-linear, say using accelerations etc., then you
+                                    will not get a smooth set of values: the values will suddenly change directions at
+                                    the end of each Frame creation. This might not be an issue for some kinds of data,
+                                    but for the vector field example you need something smoother with no angles in it. A
+                                    way around this is to increase the number of data sets to 5 and interpolate using a
+                                    Catmull-Rom spline. There are many versions of this useful spline available on the
+                                    Internet, including a lot of
+                                    <a href="" class="Vk_text_undrline_dots VK_a">
+                                        useful math and code here.
+                                    </a>
+                                    The good thing about this spline is it passes through every control point, and
+                                    (seldom) has any crazy sharp changes in direction.
+                                </p>
+                                <p>
+                                    The general idea is that at any moment in time we have 4 data sets in use, and the
+                                    decoupled workload is writing to the fifth. We have a planned update period P which
+                                    guaranteed to be longer than the longest the decoupled load is likely to take. Our
+                                    interpolation value t is:
+                                </p>
+                                <p class="text-center">
+                                    <span class="math"><mjx-container class="MathJax CtxtMenu_Attached_0" jax="CHTML"
+                                            tabindex="0" ctxtmenu_counter="2"
+                                            style="font-size: 113.1%; position: relative;"><mjx-math class="MJX-TEX"
+                                                aria-hidden="true"><mjx-mi class="mjx-i"><mjx-c
+                                                        class="mjx-c1D461 TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n"
+                                                    space="4"><mjx-c class="mjx-c3D"></mjx-c></mjx-mo><mjx-mo
+                                                    class="mjx-n" space="4"><mjx-c
+                                                        class="mjx-c28"></mjx-c></mjx-mo><mjx-mi class="mjx-i"><mjx-c
+                                                        class="mjx-c1D436 TEX-I"></mjx-c></mjx-mi><mjx-mi
+                                                    class="mjx-i"><mjx-c
+                                                        class="mjx-c1D462 TEX-I"></mjx-c></mjx-mi><mjx-mi
+                                                    class="mjx-i"><mjx-c
+                                                        class="mjx-c1D45F TEX-I"></mjx-c></mjx-mi><mjx-mi
+                                                    class="mjx-i"><mjx-c
+                                                        class="mjx-c1D45F TEX-I"></mjx-c></mjx-mi><mjx-mi
+                                                    class="mjx-i"><mjx-c
+                                                        class="mjx-c1D452 TEX-I"></mjx-c></mjx-mi><mjx-mi
+                                                    class="mjx-i"><mjx-c
+                                                        class="mjx-c1D45B TEX-I"></mjx-c></mjx-mi><mjx-mi
+                                                    class="mjx-i"><mjx-c
+                                                        class="mjx-c1D461 TEX-I"></mjx-c></mjx-mi><mjx-mi
+                                                    class="mjx-i"><mjx-c
+                                                        class="mjx-c1D447 TEX-I"></mjx-c></mjx-mi><mjx-mi
+                                                    class="mjx-i"><mjx-c
+                                                        class="mjx-c1D456 TEX-I"></mjx-c></mjx-mi><mjx-mi
+                                                    class="mjx-i"><mjx-c
+                                                        class="mjx-c1D45A TEX-I"></mjx-c></mjx-mi><mjx-mi
+                                                    class="mjx-i"><mjx-c
+                                                        class="mjx-c1D452 TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n"
+                                                    space="3"><mjx-c class="mjx-c2212"></mjx-c></mjx-mo><mjx-mi
+                                                    class="mjx-i" space="3"><mjx-c
+                                                        class="mjx-c1D43F TEX-I"></mjx-c></mjx-mi><mjx-mi
+                                                    class="mjx-i"><mjx-c
+                                                        class="mjx-c1D44E TEX-I"></mjx-c></mjx-mi><mjx-mi
+                                                    class="mjx-i"><mjx-c
+                                                        class="mjx-c1D460 TEX-I"></mjx-c></mjx-mi><mjx-mi
+                                                    class="mjx-i"><mjx-c
+                                                        class="mjx-c1D461 TEX-I"></mjx-c></mjx-mi><mjx-mi
+                                                    class="mjx-i"><mjx-c
+                                                        class="mjx-c1D448 TEX-I"></mjx-c></mjx-mi><mjx-mi
+                                                    class="mjx-i"><mjx-c
+                                                        class="mjx-c1D45D TEX-I"></mjx-c></mjx-mi><mjx-mi
+                                                    class="mjx-i"><mjx-c
+                                                        class="mjx-c1D451 TEX-I"></mjx-c></mjx-mi><mjx-mi
+                                                    class="mjx-i"><mjx-c
+                                                        class="mjx-c1D44E TEX-I"></mjx-c></mjx-mi><mjx-mi
+                                                    class="mjx-i"><mjx-c
+                                                        class="mjx-c1D461 TEX-I"></mjx-c></mjx-mi><mjx-mi
+                                                    class="mjx-i"><mjx-c
+                                                        class="mjx-c1D452 TEX-I"></mjx-c></mjx-mi><mjx-mi
+                                                    class="mjx-i"><mjx-c
+                                                        class="mjx-c1D447 TEX-I"></mjx-c></mjx-mi><mjx-mi
+                                                    class="mjx-i"><mjx-c
+                                                        class="mjx-c1D456 TEX-I"></mjx-c></mjx-mi><mjx-mi
+                                                    class="mjx-i"><mjx-c
+                                                        class="mjx-c1D45A TEX-I"></mjx-c></mjx-mi><mjx-mi
+                                                    class="mjx-i"><mjx-c
+                                                        class="mjx-c1D452 TEX-I"></mjx-c></mjx-mi><mjx-mo
+                                                    class="mjx-n"><mjx-c class="mjx-c29"></mjx-c></mjx-mo><mjx-texatom
+                                                    texclass="ORD"><mjx-mo class="mjx-n"><mjx-c
+                                                            class="mjx-c2F"></mjx-c></mjx-mo></mjx-texatom><mjx-mi
+                                                    class="mjx-i"><mjx-c
+                                                        class="mjx-c1D443 TEX-I"></mjx-c></mjx-mi></mjx-math><mjx-assistive-mml
+                                                unselectable="on" display="inline"><math
+                                                    xmlns="http://www.w3.org/1998/Math/MathML">
+                                                    <mi>t</mi>
+                                                    <mo>=</mo>
+                                                    <mo stretchy="false">(</mo>
+                                                    <mi>𝐶</mi>
+                                                    <mi>𝑢</mi>
+                                                    <mi>𝑟</mi>
+                                                    <mi>𝑟</mi>
+                                                    <mi>𝑒</mi>
+                                                    <mi>𝑛</mi>
+                                                    <mi>𝑡</mi>
+                                                    <mi>𝑇</mi>
+                                                    <mi>𝑖</mi>
+                                                    <mi>𝑚</mi>
+                                                    <mi>𝑒</mi>
+                                                    <mo>−</mo>
+                                                    <mi>𝐿</mi>
+                                                    <mi>𝑎</mi>
+                                                    <mi>𝑠</mi>
+                                                    <mi>𝑡</mi>
+                                                    <mi>𝑈</mi>
+                                                    <mi>𝑝</mi>
+                                                    <mi>𝑑</mi>
+                                                    <mi>𝑎</mi>
+                                                    <mi>𝑡</mi>
+                                                    <mi>𝑒</mi>
+                                                    <mi>𝑇</mi>
+                                                    <mi>𝑖</mi>
+                                                    <mi>𝑚</mi>
+                                                    <mi>𝑒</mi>
+                                                    <mo stretchy="false">)</mo>
+                                                    <mrow data-mjx-texclass="ORD">
+                                                        <mo>/</mo>
+                                                    </mrow>
+                                                    <mi>𝑃</mi>
+                                                </math></mjx-assistive-mml></mjx-container></span>
+                                </p>
+                                <p>
+                                    When t == 1 the decoupled workload is finished, so we
+                                </p>
+                                <ol>
+                                    <li>
+                                        increment our start pointer in the circular buffer.
+                                    </li>
+                                    <li>
+                                        Set Last Update Time = Current Time.
+                                    </li>
+                                    <li>
+                                        Trigger a decoupled workload to write to the data set after the one it
+                                        previously updated.
+                                    </li>
+                                </ol>
+                                <div>
+                                    <img src="/img/vivek/VK_92.png" class="w-100" alt="">
+                                    <p>
+                                        <b>
+                                            Fig. 4:
+                                        </b>
+                                        Decoupled work triggering every 1/10th second and writing directly to data sets
+                                        with Catmull-Rom spline interpolation.
+                                    </p>
+                                </div>
+                            </section>
+                            <section class="mt-5" id="VK_Time_Talk_About_Time">
+                                <h3 class="VK_side_heading">
+                                    Time to Talk About Time
+                                </h3>
+                                <p>
+                                    You have probably noticed two key problems with this method with regards to time.
+                                </p>
+                                <ol>
+                                    <li>
+                                        All the data is in the past. In Fig. 3, we don’t get to the actual value
+                                        generated by the decoupled work until 1/10th second later. In figure 4, we don’t
+                                        get to the data until 2/10th second later. If your physics is time based this
+                                        shouldn’t be much a problem for big tasks – you just add 2/10th second to the
+                                        time which the decoupled work is using to generate its data. If your physics is
+                                        incremental, then you need to think about predicting the location of actors
+                                        which will affect the physics.
+                                    </li>
+                                    <li>
+                                        You don’t get new data every frame, rather, each frame is an interpolation
+                                        between some point in the past and the present. This is like a low-pass filter
+                                        on the data so spikes in data which affect the decoupled work, and which are
+                                        shorter than the period of the decoupled work, will not affect the output. But
+                                        that’s not always a bad thing, right? It wouldn’t be the first time we have
+                                        calculated exact data then blurred the result – that’s just ‘Graphics’, isn’t
+                                        it?
+                                    </li>
+                                </ol>
+                            </section>
+                            <section class="mt-5" id="VK_Conclusions">
+                                <h3 class="VK_side_heading">
+                                    Conclusions
+                                </h3>
+                                <p>
+                                    In the previous article I was barking at the futility of chasing diminishing returns
+                                    by adding more threads once your thread count is very large. Here I have presented
+                                    here an argument for running more work asynchronously, and outlined one way to get
+                                    some more flexibility from what is quite an old technique. In the race for optimised
+                                    code, someone once pointed out that the fastest code is code that doesn’t actually
+                                    run at all. As far as the critical path is concerned, decoupled work is exactly
+                                    that.
+                                </p>
+                                <p>
+                                    Decoupling workloads in games presents a number of opportunities. Firstly, it is an
+                                    optimisation technique where you escape the complexity of safely threading content
+                                    on the critical path. Also, it enables the integration of code that might otherwise
+                                    be impossible at the required framerate. Decoupling code from the critical path and
+                                    running it independently will result in tangible framerate improvements if we do it
+                                    right. Another benefit could be that decoupling helps hide sporadic CPU loads which
+                                    are notorious for causing workload variations and uneven framerates.
+                                </p>
+                                <p>
+                                    Decoupling not only tackles technical obstacles but also represents an opportunity
+                                    to free the developer to create complex systems to enhance games, without the worry
+                                    of how it will impact the smooth display of the game's visuals. Such attention to
+                                    detail could significantly enhance the realism of games, crafting a deeper and more
+                                    immersive experience for gamers.
+                                </p>
+                            </section>
+                            <section class="mt-5" id="VK_Parting_Segue_Future_Beyond">
+                                <h3 class="VK_side_heading">
+                                    A Parting Segue – To the Future, and Beyond!
+                                </h3>
+                                <p>
+                                    Lately I’ve been thinking about modern compute platforms from the point of view of
+                                    imagining a good games programming model for a diverse collection of cores. We are
+                                    likely to see this diversity in future hardware, and decoupling continues to look
+                                    promising. For example, decoupling looks like a successful way to exploit the
+                                    Efficient-cores in Intel’s latest range of hybrid CPUs, seamlessly hiding the
+                                    occasional latency due to workload variations. Better still, if we think about the
+                                    <a href="" class="Vk_text_underline_dots VK_a">
+                                        Neural Processing Unit
+                                    </a>
+                                    (NPU) in Intel’s latest offering of Core Ultra, we would be able to construct far
+                                    more complex and adaptable ML tools to enrich game content while not being
+                                    constrained by a specific framerate. It seems to me that NPUs and decoupled
+                                    programming models could lead to highly adaptable player driven gaming scenarios and
+                                    graphical content.
+                                </p>
+                                <p>
+                                    We live in interesting times as the proverb goes, but rather than a curse we should
+                                    embrace the opportunities available by marrying the right programming model to the
+                                    right processor, developing and exploiting the massive range of possibilities the
+                                    modern compute platform is opening for us, in the bold new future of heterogenous
+                                    computing!
+                                </p>
+                                <p>
+                                    Happy coding all.
+                                </p>
+                                <p>
+                                    Steve
+                                </p>
+                            </section>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-5">
+            <div class="VK_cont">
+                <div class="row m-0">
+                    <div class="col">
+                        <p>
+                            Product and Performance Information
+                        </p>
+                        <p class="VK_font14">
+                            Performance varies by use, configuration and other factors. Learn more at
+                            <a href="" class="Vk_text_underline_dots VK_a">
+                                www.Intel.com/PerformanceIndex.
+                            </a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- footer -->
+        <footer>
+            <div id="footer"></div>
+        </footer>
+
+    </main>
+
+
+    <!---------------- Javascript Files ---------------->
+
+    <script>
+        // navbar include
+        fetch('/y_index/y_navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar').innerHTML = data;
+            });
+        // footer include 
+        fetch('/y_index/y_footer.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('footer').innerHTML = data;
+            });
+    </script>
+
+    <!-- jquery -->
+    <script src="/js/jquery-3.7.1.js"></script>
+
+
+    <!-- bootstrap js file -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+
+    <!-- costom js file -->
+    <script src="/js/vivek.js"></script>
+
+    <!-- all min -->
+    <!-- <script src="/js/all.min.js"></script> -->
+
+
+</body>
+
+</html>

@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <!-- font family -->
+    <link href="https://fonts.cdnfonts.com/css/intel-clear" rel="stylesheet">
+    <!-- boootstap file -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <!-- costom css file -->
+    <link rel="stylesheet" href="/css/vivek.css">
+    <link rel="stylesheet" href="/css/yatri.css">
+
+    <!-- all.min file -->
+    <link rel="stylesheet" href="/css/all.min.css">
+
+</head>
+
+<body>
+
+
+    <main>
+        <!-- header -->
+        <header>
+            <div id="navbar"></div>
+        </header>
+
+        <!-- poster -->
+        <section class=" VK_light_blue">
+            <div class="VK_cont">
+                <div class="row m-0">
+                    <div class="col text-white">
+                        <h1 class="VK_py_pre_heading fw-light m-0 pt-3 pb-5">
+                            Finding the Right Balance: Optimizing Threading for Gaming Performance
+                        </h1>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <section>
+            <div class="VK_cont py-5 VK_border_bottom">
+                <div class="row m-0">
+                    <div class="col-md-4 col-lg-3 d-md-block d-none">
+                        <div class="VK_sticky_side_bar VK_side_bar_postion_stickey">
+                            <div>
+                                <div>
+                                    <div class="VK_sidebar_dropdown">
+                                        <p class="m-0">
+                                            <a href="#VK_Introduction" class="text-decoration-none VK_a">
+                                                Introduction
+                                            </a>
+                                        </p>
+                                        <p class="m-0">
+                                            <a href="#VK_Architecting_Workload" class="text-decoration-none VK_a">
+                                                Architecting the Workload
+                                            </a>
+                                        </p>
+                                        <p class="m-0">
+                                            <a href="#VK_Determining_Maximum_Concurrency"
+                                                class="text-decoration-none VK_a">
+                                                Determining Maximum Concurrency
+                                            </a>
+                                        </p>
+                                        <p class="m-0">
+                                            <a href="#VK_Steering_Workload" class="text-decoration-none VK_a">
+                                                Steering the Workload
+                                            </a>
+                                        </p>
+                                        <p class="m-0">
+                                            <a href="#VK_Closing_Thoughts" class="text-decoration-none VK_a">
+                                                Closing Thoughts
+                                            </a>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="VK_theme_bg py-2 px-3 mt-4">
+                            <p>
+                                <b>
+                                    Authors:
+                                </b>
+                            </p>
+                            <ul class="m-0">
+                                <li>
+                                    Leigh Davies
+                                </li>
+                                <li>
+                                    Martin Moerth
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-8 col-lg-7">
+                        <div class="VK_all_sections">
+                            <div class="VK_section_descriptions">
+                                <div class="text-end">
+                                    <p class="m-0 VK_print_email_font">
+                                        <span class="VK_a mx-2 d-inline-block">
+                                            <i class="fa-solid fa-print"></i>
+                                        </span>
+                                        <span class="VK_a mx-2 d-inline-block">
+                                            <i class="fa-regular fa-envelope"></i>
+                                        </span>
+                                    </p>
+                                </div>
+                            </div>
+                            <section class="mt-4" id="VK_Introduction">
+                                <h3 class="VK_side_heading fw-light">
+                                    Introduction
+                                </h3>
+                                <p>
+                                    Can you have too much of a good thing? When it comes to the number of CPU cores in a
+                                    high-end gaming PC, some recent articles suggest that you can. However, a deeper
+                                    dive into game processes shows that it's not normally the hardware at fault, but how
+                                    the game chooses to use available resources.
+                                </p>
+                                <p>
+                                    Below are two articles which discuss game performance on modern multi-core hybrid
+                                    hardware:
+                                </p>
+                                <ul>
+                                    <li>
+                                        <a href="" class="Vk_text_underline_dots VK_a">
+                                            Disabling Intel E-Cores On Hybrid CPU Nets 50% Better Performance In Atlas
+                                            Fallen
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="" class="Vk_text_underline_dots VK_a">
+                                            Counter-Strike 2 CPU Benchmarks: E-Core Challenges & X3D Benefits
+                                        </a>
+                                    </li>
+                                </ul>
+                                <p>
+                                    Both articles share a common theme: disabling the Efficient-cores (E-cores) leads to
+                                    better performance.
+                                </p>
+                                <p>
+                                    However, neither delves into the reasons behind this phenomenon. Upon closer
+                                    inspection, it’s evident that the games reviewed adapt their code based on the
+                                    number of processors in the system, creating one thread for each physical core and
+                                    attempting to distribute large parts of the workload evenly. This inadvertently
+                                    results in games using a multitude of threads, each performing only a small amount
+                                    of work and not actually reducing the work on the game’s critical path.
+                                </p>
+                                <p>
+                                    As hardware becomes even more complex and the OS attempts to manage all the software
+                                    running simultaneously under many different usage scenarios, it is becoming more
+                                    important than ever to use only the resources you need and allow the OS flexibility
+                                    on how best to schedule the work.
+                                </p>
+                            </section>
+                            <section class="mt-4" id="VK_Architecting_Workload">
+                                <h3 class="VK_side_heading">
+                                    Architecting the Workload
+                                </h3>
+                                <p>
+                                    The first stage is to architect the workload in a way that gives the OS context
+                                    about the behaviour the developer is expecting:
+                                </p>
+                                <ul>
+                                    <li>
+                                        Identify the critical path work (per-frame tasks that could impact the critical
+                                        path) and background/asynchronous work.
+                                        <ul>
+                                            <li>
+                                                Arrange separate thread pools based on per-frame and background work.
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        Limit concurrency and thread pool size to what your workload really needs.
+                                        <ul>
+                                            <li>
+                                                This will have to be benchmarked (ideally across target system
+                                                configurations).
+                                                <ul>
+                                                    <li>
+                                                        Are you getting the expected gains on the overall/realistic
+                                                        workload when increasing thread pool size?
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li>
+                                                If you do not keep your pools busy, the OS will start parking cores and
+                                                serialize your work onto fewer processors than you might expect.
+                                            </li>
+                                            <li>
+                                                Be aware that the overhead of managing threads with very small tasks
+                                                might become greater than the gain from the extra parallelism in some
+                                                situations.
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                                <p>
+                                    The advice in this section is valid for all multi-threaded workloads, regardless of
+                                    whether you are executing them on a hybrid CPU or not. Amdahl’s Law is highly
+                                    relevant for gaming where there is always some serial code, and if the workload is
+                                    GPU bound, you're waiting on something that's completely independent from the CPU.
+                                    Effectively, there is only going to be so much gain to be had from increasing a
+                                    game’s thread count.
+                                    <a href="" class="Vk_text_underline_dots VK_a">
+                                        Amdahl’s Law
+                                    </a>
+                                    also deals only with theoretical limits. In the real world, the overhead of
+                                    frequently managing many threads means performance can start to decrease quickly
+                                    once you pass the peak. By limiting the number of concurrent threads, you simplify
+                                    the OS’s job of scheduling, while still benefiting from its ability to park cores to
+                                    conserve power and potentially increase the frequency of the processors that are
+                                    doing important work. This is especially true for power- and/or thermal-limited
+                                    scenarios.
+                                </p>
+                            </section>
+                            <section class="mt-4" id="VK_Determining_Maximum_Concurrency">
+                                <h3 class="VK_side_heading">
+                                    Determining Maximum Concurrency
+                                </h3>
+                                <p>
+                                    The next stage is to determine the maximum concurrency the game can expect from the
+                                    OS based on the hardware available:
+                                </p>
+                                <ul>
+                                    <li>
+                                        Determine processor count based on processors’ relative performance.
+                                        <ul>
+                                            <li>
+                                                A: Count processors from higher relative performance cores.
+                                            </li>
+                                            <li>
+                                                B: Count processors from lower relative performance cores.
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        Determine cache hierarchy.
+                                        <ul>
+                                            <li>
+                                                Remove any processors that don’t share a suitable last level cache.
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        Your
+                                        <b>
+                                            maximum
+                                        </b>
+                                        concurrency is the sum of processors in A and B.
+                                    </li>
+                                    <li>
+                                        Further advice:
+                                        <ul>
+                                            <li>
+                                                Reduce maximum application concurrency for middleware and OS overhead.
+                                            </li>
+                                            <li>
+                                                Compare size of thread pools identified in
+                                                <b>
+                                                    ‘Architecting the Workload‘
+                                                </b>
+                                                above with number of processors in A and B.
+                                                <ul>
+                                                    <li>
+                                                        A → Critical path work thread pool.
+                                                    </li>
+                                                    <li>
+                                                        B → Background/asynchronous work thread pool.
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li>
+                                                On mobile systems you must be careful when restricting yourself to A for
+                                                critical path work as processor count in A might be very limited.
+                                            </li>
+                                            <li>
+                                                If your workload does not require full concurrency remove SMT siblings
+                                                from A.
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                                <p>
+                                    A game shouldn’t automatically use all available resources in the system. As
+                                    hardware gets more specialized, the OS might be constrained from using some of the
+                                    available resources exposed through topology enumeration APIs (e.g.
+                                    <a href="" class="Vk_text_underline_dots VK_a d-inline-block">
+                                        GetLogicalProcessorInformationEx
+                                    </a>
+                                    or
+                                    <a href="" class="Vk_text_underline_dots VK_a d-inline-block">
+                                        GetSystemCpuSetInformation
+                                    </a>
+                                    ).An example would be the low-power E-cores included in CPUs such as Intel Core
+                                    Ultra processors, which are intended to be used at the OS’s discretion when most of
+                                    the compute resources aren’t needed and can be put to sleep. Using the processor's
+                                    relative performance together with the cache hierarchy is enough to filter these
+                                    out.
+                                </p>
+                                <p>
+                                    Another factor to consider is the potential for hardware resource contention between
+                                    threads, primarily arising in two ways:
+                                </p>
+                                <ul>
+                                    <li>
+                                        Firstly, in the case of Hyper-Threading or simultaneous multithreading (SMT).
+                                        When two hardware threads operate on the same physical core, they share the
+                                        resources of that processor, including the local cache and internal execution
+                                        units. While this arrangement can enhance overall throughput, it also results in
+                                        a reduction of Instructions Per Clock (IPC) for each individual thread.
+                                    </li>
+                                    <li>
+                                        Secondly, there is an increased likelihood of data contention. Wherein more
+                                        active threads lead to additional caches to monitor, this results in heightened
+                                        latency as data must travel from more distant locations.
+                                    </li>
+                                </ul>
+                            </section>
+                            <section class="mt-5" id="VK_Steering_Workload">
+                                <h3 class="VK_side_heading fw-light">
+                                    Steering the Workload
+                                </h3>
+                                <p>
+                                    The third stage is configuring the games threads, so they are run in the best
+                                    location:
+                                </p>
+                                <ul>
+                                    <li>
+                                        Let the OS do it for you! *
+                                    </li>
+                                    <li>
+                                        Isolate threads with SIMD-heavy work (e.g. support Intel® Thread Director).
+                                        <ul>
+                                            <li>
+                                                Don’t mix SIMD and scalar work on the same thread (pool).
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        Critical path work threads:
+                                        <ul>
+                                            <li>
+                                                Bump priority to ABOVE_NORMAL or 2 above general workers.
+                                                <ul>
+                                                    <li>
+                                                        Only if critical path work is a small subset of overall
+                                                        workload.
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        Background/asynchronous work threads
+                                        <ul>
+                                            <li>
+                                                Soft-affinitize to cores with lower relative performance.
+                                                <ul>
+                                                    <li>
+                                                        Set
+                                                        <a href="" class="Vk_text_underline_dots VK_a">
+                                                            Eco QoS
+                                                        </a>
+                                                        or use
+                                                        <a href="" class="Vk_text_underline_dots VK_a">
+                                                            SetThreadIdealProcessor.
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        Notes on soft affinity:
+                                        <ul>
+                                            <li>
+                                                Work soft-affinitized to lower relative performance cores might migrate
+                                                to higher relative performance cores (e.g. when the OS starts parking
+                                                lower relative performance cores for power efficiency).
+                                            </li>
+                                            <li>
+                                                Work soft-affinitized to higher relative performance cores might be
+                                                prevented from migrating to lower relative performance cores.
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        Only use
+                                        <a href="" class="Vk_text_underline_dots VK_a">
+                                            hard affinity
+                                        </a>
+                                        if work must never migrate off certain set of cores.
+                                        <ul>
+                                            <li>
+                                                Assumptions around execution time and cache coherency.
+                                            </li>
+                                            <li>
+                                                Always benchmark your assumptions (ideally across target SKUs)
+                                                <ul>
+                                                    <li>
+                                                        Are you getting the expected gains on the overall workload?
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                                <p class="mt-4">
+                                    * Yes really, we mean it! If you try and control exactly where threads run on a
+                                    modern PC you will be fighting against a host of input from both the OS and the
+                                    underlying hardware providing suggestions where threads should be scheduled. The
+                                    important part is to give the OS enough context information about the workload and
+                                    allow it enough room to make the scheduling decisions.
+                                </p>
+                                <p>
+                                    For example, you should not mix tasks with very different workload characteristics
+                                    onto a single thread. Intel’s recent hybrid architectures come with
+                                    <a href="" class="Vk_text_underline_dots VK_a">
+                                        Intel® Thread Director,
+                                    </a>
+                                    which monitors the workload and classifies it so the OS can better schedule it. If,
+                                    on a single thread, all the SIMD-heavy tasks are mixed in with tasks that are memory
+                                    heavy or branch heavy then the OS will classify everything the same. The benefits
+                                    may not be obvious today but separating types of work on an algorithm basis is good
+                                    coding practice moving forward and will allow much easier use of specialized
+                                    hardware such as AI co-processors.
+                                </p>
+                                <p>
+                                    Thread priority is also a powerful tool but it is not to be overused. Windows uses
+                                    priority to sort which threads get executed, not necessarily where they get run. If
+                                    an E-core is free at the time a high-priority thread is scheduled, then the OS will
+                                    use it unless it thinks the cost of context switching threads around is worth it
+                                    (which is a fairly high threshold when considering typical durations a game thread
+                                    is scheduled for). Nevertheless, it's worth ensuring the most important threads
+                                    stand out from the general thread pool. Over time, Windows creates a hysteretic
+                                    model of the running threads so the longest running threads will favor the most
+                                    performant cores.
+                                </p>
+                                <p>
+                                    The table below shows how the two main threads in Hitman 3 by IO Interactive are
+                                    scheduled mostly to the most performant cores without any affinity applied.
+                                </p>
+                                <div class="overflow-auto">
+                                    <table class="VK_side_nav_table">
+                                        <thead class="VK_theme_thead">
+                                            <tr>
+                                                <th class="px-4 py-2">
+                                                    Thread Type
+                                                </th>
+                                                <th class="px-4 py-2">
+                                                    Total CPU [%]
+                                                </th>
+                                                <th class="px-4 py-2">
+                                                    P-Core [%]
+                                                </th>
+                                                <th class="px-4 py-2">
+                                                    E-Core [%]
+                                                </th>
+                                                <th class="px-4 py-2">
+                                                    P-Core [ms]
+                                                </th>
+                                                <th class="px-4 py-2">
+                                                    E-Core [ms]
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="VK_theme_tbody">
+                                            <tr>
+                                                <td>
+                                                    Game Thread
+                                                </td>
+                                                <td>
+                                                    96.98
+                                                </td>
+                                                <td>
+                                                    96.72
+                                                </td>
+                                                <td>
+                                                    0.26
+                                                </td>
+                                                <td>
+                                                    19886.10
+                                                </td>
+                                                <td>
+                                                    53.45
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    Render Thread
+                                                </td>
+                                                <td>
+                                                    96.61
+                                                </td>
+                                                <td>
+                                                    96.30
+                                                </td>
+                                                <td>
+                                                    0.31
+                                                </td>
+                                                <td>
+                                                    19799.75
+                                                </td>
+                                                <td>
+                                                    63.73
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    Task Thread
+                                                </td>
+                                                <td>
+                                                    38.13
+                                                </td>
+                                                <td>
+                                                    20.70
+                                                </td>
+                                                <td>
+                                                    17.43
+                                                </td>
+                                                <td>
+                                                    4256.02
+                                                </td>
+                                                <td>
+                                                    3583.69
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    Task Thread
+                                                </td>
+                                                <td>
+                                                    36.51
+                                                </td>
+                                                <td>
+                                                    20.05
+                                                </td>
+                                                <td>
+                                                    16.46
+                                                </td>
+                                                <td>
+                                                    4122.37
+                                                </td>
+                                                <td>
+                                                    3384.25
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    Task Thread
+                                                </td>
+                                                <td>
+                                                    36.41
+                                                </td>
+                                                <td>
+                                                    19.89
+                                                </td>
+                                                <td>
+                                                    16.52
+                                                </td>
+                                                <td>
+                                                    4089.48
+                                                </td>
+                                                <td>
+                                                    3396.59
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    Task Thread
+                                                </td>
+                                                <td>
+                                                    36.39
+                                                </td>
+                                                <td>
+                                                    20.22
+                                                </td>
+                                                <td>
+                                                    16.17
+                                                </td>
+                                                <td>
+                                                    4157.33
+                                                </td>
+                                                <td>
+                                                    3324.63
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    Task Thread
+                                                </td>
+                                                <td>
+                                                    36.36
+                                                </td>
+                                                <td>
+                                                    19.60
+                                                </td>
+                                                <td>
+                                                    16.76
+                                                </td>
+                                                <td>
+                                                    4029.85
+                                                </td>
+                                                <td>
+                                                    3445.93
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <p>
+                                    <b>
+                                        Table 1.
+                                    </b>
+                                    8 Most CPU Intensive Threads in Hitman 3.
+                                </p>
+                                <p>
+                                    Using OS API features like Eco QoS is another good way to bias threads that have
+                                    a high latency tolerance to the E-cores, leaving the P-cores free to do the
+                                    remaining work.
+                                </p>
+                                <p>
+                                    Hard thread affinity is seldom advised due to its tendency to eliminate the OS's
+                                    ability to try and intelligently arrange threads based on current workload and
+                                    hardware considerations. While assigning tasks to specific cores can enhance
+                                    performance in specific situations, it also has the potential to result in
+                                    suboptimal resource utilization if not carefully managed. This challenge is
+                                    especially pertinent in gaming, where software is designed to operate across a
+                                    diverse range of hardware configurations.
+                                </p>
+                            </section>
+                            <section class="mt-5" id="VK_Closing_Thoughts">
+                                <h3 class="VK_side_heading">
+                                    Closing Thoughts
+                                </h3>
+                                <ul>
+                                    <li>
+                                        Selecting the right number of threads for a particular game is highly workload
+                                        dependent; the most important thing is to test across target system
+                                        configurations
+                                    </li>
+                                    <li>
+                                        Don’t assume only using the P-cores will automatically fix performance issues.
+                                        In many cases gains are achievable by better matching the application’s
+                                        requirements with the available hardware. Using E-cores instead of both SMT
+                                        siblings on a P-core might give significant benefits.
+                                    </li>
+                                    <li>
+                                        It is possible that small changes can significantly boost performance. In the
+                                        case of Atlas Fallen mentioned at the start of this article, simply reducing the
+                                        number of background threads spawned fixed the performance inversion and meant
+                                        that systems with E-cores enabled were slightly faster than those without
+                                        E-cores.
+                                    </li>
+                                </ul>
+                            </section>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!--  -->
+        <section class="py-5">
+            <div class="VK_cont">
+                <div class="row m-0">
+                    <div class="col">
+                        <p class="mb-2">
+                            Product and Performance Information
+                        </p>
+                        <p class="VK_font14">
+                            Performance varies by use, configuration and other factors. Learn more at
+                            <a href="" class="Vk_text_underline_dots VK_a">
+                                www.Intel.com/PerformanceIndex.
+                            </a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- footer -->
+        <footer>
+            <div id="footer"></div>
+        </footer>
+
+    </main>
+
+
+    <!---------------- Javascript Files ---------------->
+
+    <script>
+        // navbar include
+        fetch('/y_index/y_navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar').innerHTML = data;
+            });
+        // footer include 
+        fetch('/y_index/y_footer.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('footer').innerHTML = data;
+            });
+    </script>
+
+    <!-- jquery -->
+    <script src="/js/jquery-3.7.1.js"></script>
+
+
+    <!-- bootstrap js file -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+
+    <!-- costom js file -->
+    <script src="/js/vivek.js"></script>
+
+    <!-- all min -->
+    <!-- <script src="/js/all.min.js"></script> -->
+
+</body>
+
+</html>
