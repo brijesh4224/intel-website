@@ -3827,6 +3827,8 @@ let intel_network_builder_data = [
     },
 ]
 
+
+
 // network attached storage
 
 let network_attached_storage_data = [
@@ -3866,6 +3868,117 @@ let network_attached_storage_data = [
         anchor: "",
         type: "Partner"
     },
+]
+
+// iot market ready data
+
+let iot_market_ready_data = [
+    {
+        name: 'ABILITY ENTERPRISE CO., LTD.',
+        text: "Gold Partner",
+        description: "With decades of dedication in image processing, Ability has been developing Edge AI computer vision and bringing new values and innovative vision solutions to OEM customers Since its inception, Ability has been the leader in image sensor and optical integration. Leveraging on its solid foundation in high end camera and advanced",
+        image: "img464.png",
+        link: "",
+        anchor: "",
+        type: "Partner"
+    },
+    {
+        name: "Agile & Adaptive Transportation Management",
+        description: "Little effort is required is integrate the Edge AI system above with the traffic signal system. A signal control box connected to the internet is installed in each intersection. This allows real-time traffic flow management in the entire traffic system to happen immediately. The key to resolving the challenge is to make a rigid traffic signal control",
+        image: "img465.png",
+        link: "",
+        anchor: "ABILITY ENTERPRISE CO., LTD.",
+        type: "Offering"
+    },
+    {
+        name: 'Broox Technologies',
+        text: "Gold Partner",
+        description: "Maximize retail media & DOOH success: Broox suite™ snhances digital signage with targeted marketing, Personalized experiences, and data driven insights. No-code audience analytics and interactivity platform baked by Intel®: effortlessly connect triggers from many sources as cameras and sensors to trigger analytics and interactive content with any digita.",
+        image: "img466.png",
+        link: "",
+        anchor: "",
+        type: "Partner"
+    },
+    {
+        name: 'CISCO SYSTEMS',
+        text: "Titanium Partner",
+        description: "Cisco is the worldwide leader in IT that helps companies seize the opportunities of tomorrow by proving that amazing things can happen when you connect the previously unconnected. At Cisco customers come first and an integral part of our DNA is creating long-lasting customer partnerships and working with them to identify their needs and provide solutions.",
+        image: "img467.png",
+        link: "",
+        anchor: "",
+        type: "Partner"
+    },
+    {
+        name: 'Cloudpick',
+        text: "Titanium Partner",
+        description: "Cloudpick was founded in 2017, endeavored to provide smart store solutions with AI technology to the world retail industry. Built on computer vision, machine learning and multi-sensor integration technologies, the self-developed patented behavior recognition and product learning algorithm engine  Cloudpick  , is able to accurately identify product information and.",
+        image: "img468.png",
+        link: "",
+        anchor: "",
+        type: "Partner"
+    },
+    {
+        name: 'Digital China Limited IoT Aggregator',
+        text: "Titanium Partner",
+        description: "In 2000, to accommodating the development of the information industry in the era of internet, the original Legend Holdings was reorganized into two divisions, thereby Digital China (神州数码集团) was born. In 2001, Digital China was listed on the main board of the Hong Kong Stock Exchange (Stock Code: 00861.HK).",
+        image: "img469.png",
+        link: "",
+        anchor: "",
+        type: "Partner"
+    },
+    {
+        name: 'ForwardX Robotics, Inc.',
+        text: "Gold Partner",
+        description: "ForwardX Robotics is a global AI and Robotics developer of autonomous robotics. Pioneering vision-guided robotics to help supply chains transform, ForwardX solutions employ world-leading computer vision algorithms to give their technology a true understanding of the dynamic environments seen in warehouses, distribution centers, fulfillment.",
+        image: "img470.png",
+        link: "",
+        anchor: "",
+        type: "Partner"
+    },
+    {
+        name: "Nerve",
+        description: "Nerve is cloud-managed edge computing IIoT software platform that enables machine builders to deliver data and offer services to customers from machines installed anywhere in the world. Nerve offers an out-of-the-box experience that allows users to collect, store and analyze machine data, consolidate multiple functions on one device, and remotely manage software.",
+        image: "img471.png",
+        link: "",
+        anchor: "TTTECH INDUSTRIAL",
+        type: "Offering"
+    },
+    {
+        name: 'OnLogic Inc.',
+        text: "Titanium Partner",
+        description: "OnLogic is a global industrial computer manufacturer who designs highly-configurable, solution-focused computers engineered for reliability at the IoT edge. Their systems operate in the world’s harshest environments, empowering customers to solve their most complex computing challenges, no matter their industry. Founded in 2003.",
+        image: "img472.png",
+        link: "",
+        anchor: "",
+        type: "Partner"
+    },
+    {
+        name: 'Perch',
+        text: "Gold Partner",
+        description: "Perch is the leader in interactive physical and digital retail displays that can detect what products customers are touching, picking up or putting down and respond with dynamic digital content. Perch has worked with Macy's, Sunglass Hut, Jo Malone, Neiman Marcus, Kate Spade, Lenovo, Petco, Johnson & Johnson, MAC, Bumble & bumble, Story.",
+        image: "img473.png",
+        link: "",
+        anchor: "",
+        type: "Partner"
+    },
+    {
+        name: "Smart Hygiene Control Solutions",
+        description: "Wincomm smart process control under hygiene method solutions is under full IP66/67/69K requirement to optimize computing power with various connectivity at Process Control Solutions , such as anti-water, anti-dust, anti-corrosion, anti-oxidation and so on, to keep manufacturing, quality assurance and package tracking suit for food.",
+        image: "img474.png",
+        link: "",
+        anchor: "WINCOMM CORPORATION",
+        type: "Offering"
+    },
+    {
+        name: 'TELELOGOS',
+        text: "Gold Partner",
+        description: "Telelogos - a leader in software & digital transformation - creates solutions to improve onsite Customer and Employee Experience (CX & EX).Digital signage, room booking, flex office, device management, internal communication : Telelogos solutions are used by the most demanding corporations across multiple industries to make information visible in real time at physical places: shopfloors, warehouses, offices, shops, airports. Over 2,000 customers in 50+ countries have already chosen Telelogos. ",
+        image: "img475.png",
+        link: "",
+        anchor: "",
+        type: "Partner"
+    },
+    
 ]
 
 function initializePage() {
@@ -4049,6 +4162,13 @@ function initializePage() {
         edge_accelerator = false
         cloudetv = false;
         showcasesearch = false;
+    } else if (window.location.pathname.includes('d_iot-market-ready.html')) {
+        originalRecords = iot_market_ready_data;
+        pageId = 'VK_card_parent26';
+        isFPGAServicePage = false;
+        edge_accelerator = false;
+        cloudetv = false;
+        showcasesearch = true;
     } else {
         console.error('Unknown page');
         return;
