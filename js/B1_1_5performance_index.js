@@ -1,0 +1,737 @@
+var b_data = [
+    {
+        title: 'Overview',
+        des: [
+            '“Truth and Transparency” is a core Intel value. We believe it is a best practice to disclose testing information or other substantiation—including workloads, system configuration details, and testing dates—to enable intended audiences to understand the bases of our performance and power claims.',
+            'Our Performance Index not only does that, it also provides enough detail to enable more sophisticated audiences to closely review and evaluate our claims, testing choices, and configurations.', 'Our Performance Index not only does that, it also provides enough detail to enable more sophisticated audiences to closely review and evaluate our claims, testing choices, and configurations.',
+            'Consistent with this approach, Intel has re-formatted the Performance Index to make it even easier to find information about the claims we make in public marketing materials.', 'The Performance Index does not include testing information for every performance or power claim that Intel has made publicly. If you do not see the claim and backup details you are looking for, check the marketing materials that contain the claim you are interested in.',
+            'We will continue to develop the Performance Index with our latest claims and explore new ways to educate our audiences about the performance of Intels products and technologies.', 'Click here to learn more about Intel product performance.'],
+        type: [
+            {
+                title: 'Processors', typedata: [
+                    {
+                        name: 'Intel® Core™ Ultra Processors1',
+                        subtype: [
+                            { type: 'Mobile', link: '#' },
+                            { type: 'Edge', link: '#' }
+                        ]
+                    },
+                    {
+                        name: 'Intel® Core™ Processors',
+                        subtype: [
+                            { type: '	Mobile', link: '#' },
+                            { type: 'Desktop', link: '#' },
+                            { type: 'Edge', link: '#' },
+                        ]
+                    },
+                    {
+                        name: 'Intel® Xeon® Processors',
+                        subtype: [
+                            { type: 'Intel® Xeon® 6', link: '#' },
+                            { type: '5th Generation Intel® Xeon® Scalable Processors', link: '#' },
+                            { type: '4th Generation Intel® Xeon® Scalable Processors', link: '#' },
+                            { type: '3rd Generation Intel® Xeon® Scalable Processors', link: '#' },
+                            { type: '2nd Generation Intel® Xeon® Scalable Processors', link: '#' },
+                            { type: '1st Generation Intel® Xeon® Scalable Processors', link: '#' },
+                            { type: 'Intel® Xeon® D Processors', link: '#' },
+                            { type: 'Intel® Xeon® W Processors', link: '#' },
+                        ]
+                    },
+                    {
+                        name: 'Intel® Pentium® Processors',
+                        subtype: [
+                            { type: 'Pentium® Gold Processors', link: '#' },
+                            { type: 'Pentium® Silver Processors', link: '#' }
+                        ]
+                    },
+                    {
+                        name: 'Intel® Celeron® Processors',
+                        subtype: [
+                            { type: 'Mobile', link: '#' },
+                        ]
+                    },
+                    {
+                        name: 'Intel Atom® Processors',
+                        subtype: [
+                            { type: 'Mobile', link: '#' },
+                            { type: 'Edge', link: '#' }
+                        ]
+                    },
+                    {
+                        name: 'Intel® Processors',
+                        subtype: [
+                            { type: 'Mobile', link: '#' },
+                            { type: 'Edge', link: '#' }
+                        ]
+                    },
+                ]
+            },
+            {
+                title: 'Graphics and Accelerators', typedata: [
+                    {
+                        name: 'Intel® Data Center GPU Flex Series',
+                        subtype: [
+                            { type: '	Intel® Data Center GPU Flex Series', link: '#' },
+                        ]
+                    },
+                    {
+                        name: 'Mobile',
+                        subtype: [
+                            { type: '	Intel® Iris® Xᵉ MAX', link: '#' },
+                        ]
+                    },
+                    {
+                        name: 'Intel Server GPU',
+                        subtype: [
+                            { type: '	Intel® Server GPU', link: '#' },
+                        ]
+                    },
+                    {
+                        name: 'Intel® Agilex™ FPGA',
+                        subtype: [
+                            { type: '	Intel® Agilex™ FPGA', link: '#' },
+                        ]
+                    },
+                    {
+                        name: 'Intel® Arc™ Graphics',
+                        subtype: [
+                            { type: 'Desktop', link: '#' },
+                            { type: 'Mobile', link: '#' },
+                        ]
+                    },
+                ]
+            },
+            {
+                title: 'Platforms', typedata: [
+                    {
+                        name: '',
+                        subtype: [
+                            { type: 'Intel® Evo™', link: '#' },
+                        ]
+                    },
+                    {
+                        name: '',
+                        subtype: [
+                            { type: 'Intel vPro®', link: '#' },
+                        ]
+                    },
+                ]
+            },
+            {
+                title: 'Connectivity', typedata: [
+                    {
+                        name: 'Wireless',
+                        subtype: [
+                            { type: 'Wi-Fi', link: '#' },
+                            { type: 'Bluetooth', link: '#' },
+                            { type: 'WWAN', link: '#' },
+                        ]
+                    },
+                    {
+                        name: 'Wired',
+                        subtype: [
+                            { type: 'Wired', link: '#' },
+                        ]
+                    },
+                ]
+            },
+            {
+                title: 'Memory and Storage', typedata: [
+                    {
+                        name: 'Intel® Optane™ Persistent Memory',
+                        subtype: [
+                            { type: 'Intel® Optane™ Persistent Memory 200 Series', link: '#' },
+                            { type: 'Intel® Optane™ Persistent Memory 100 Series', link: '#' },
+                        ]
+                    },
+                    {
+                        name: 'Intel® Optane™ Technology',
+                        subtype: [
+                            { type: 'Intel® Optane™ Memory H10 with Solid State Storage', link: '#' },
+                            { type: 'Intel® Optane™ Memory M10 Series', link: '#' },
+                            { type: 'Intel® Optane™ SSD P5800X Series', link: '#' },
+                            { type: 'Intel® Optane™ SSD DC P4800X Series', link: '#' },
+                        ]
+                    },
+                ]
+            },
+            {
+                title: 'Events', typedata: [
+                    {
+                        name: '',
+                        subtype: [
+                            { type: 'Computex 2024', link: '#' },
+                        ]
+                    },
+                    {
+                        name: '',
+                        subtype: [
+                            { type: 'Vision 2024', link: '#' },
+                        ]
+                    },
+                    {
+                        name: '',
+                        subtype: [
+                            { type: 'CES 2024', link: '#' },
+                        ]
+                    },
+                    {
+                        name: '',
+                        subtype: [
+                            { type: 'Supercomputing 23', link: '#' },
+                        ]
+                    },
+                    {
+                        name: '',
+                        subtype: [
+                            { type: 'Intel® Innovation 2023', link: '#' },
+                        ]
+                    },
+                    {
+                        name: '',
+                        subtype: [
+                            { type: 'ISC 2023', link: '#' },
+                        ]
+                    },
+                    {
+                        name: '',
+                        subtype: [
+                            { type: 'Supercomputing 22', link: '#' },
+                        ]
+                    },
+                    {
+                        name: '',
+                        subtype: [
+                            { type: 'Intel® Innovation 2022', link: '#' },
+                        ]
+                    },
+                    {
+                        name: '',
+                        subtype: [
+                            { type: 'ISC 2022', link: '#' },
+                        ]
+                    },
+                    {
+                        name: '',
+                        subtype: [
+                            { type: 'Vision 2022', link: '#' },
+                        ]
+                    },
+                    {
+                        name: '',
+                        subtype: [
+                            { type: 'Investor Day 2022', link: '#' },
+                        ]
+                    },
+                    {
+                        name: '',
+                        subtype: [
+                            { type: 'Events Archive', link: '#' },
+                        ]
+                    },
+                ]
+            },
+            {
+                title: 'Disclosures', typedata: [
+                    {
+                        name: '',
+                        subtype: [
+                            { type: 'Benchmarks and Measurements', link: '#' },
+                        ]
+                    },
+                    {
+                        name: '',
+                        subtype: [
+                            { type: '13th Gen Intel® Core™ Mobile Processor Technical Specifications', link: '#' },
+                        ]
+                    },
+                    {
+                        name: '',
+                        subtype: [
+                            { type: '12th Gen Intel® Core™ Mobile Processor Technical Specifications', link: '#' },
+                        ]
+                    },
+                    {
+                        name: '',
+                        subtype: [
+                            { type: '11th Gen Intel® Core™ Mobile Processor Technical Specifications', link: '#' },
+                        ]
+                    },
+                    {
+                        name: '',
+                        subtype: [
+                            { type: 'Battery Life', link: '#' },
+                        ]
+                    },
+                    {
+                        name: '',
+                        subtype: [
+                            { type: 'Sustainability', link: '#' },
+                        ]
+                    },
+                ]
+            },
+            {
+                title: 'Use Cases', typedata: [
+                    {
+                        name: '',
+                        subtype: [
+                            { type: 'Small Business', link: '#' },
+                        ]
+                    },
+                    {
+                        name: '',
+                        subtype: [
+                            { type: 'Artificial Intelligence', link: '#' },
+                        ]
+                    },
+                ]
+            },
+        ]
+    },
+    {
+        title: 'Processors',
+        des: [
+            ],            
+        type: [
+            {
+                title: 'Processors', typedata: [
+                    {
+                        name: 'Intel® Core™ Ultra Processors1',
+                        subtype: [
+                            { type: 'Mobile', link: '#' },
+                            { type: 'Edge', link: '#' }
+                        ]
+                    },
+                    {
+                        name: 'Intel® Core™ Processors',
+                        subtype: [
+                            { type: '	Mobile', link: '#' },
+                            { type: 'Desktop', link: '#' },
+                            { type: 'Edge', link: '#' },
+                        ]
+                    },
+                    {
+                        name: 'Intel® Xeon® Processors',
+                        subtype: [
+                            { type: 'Intel® Xeon® 6', link: '#' },
+                            { type: '5th Generation Intel® Xeon® Scalable Processors', link: '#' },
+                            { type: '4th Generation Intel® Xeon® Scalable Processors', link: '#' },
+                            { type: '3rd Generation Intel® Xeon® Scalable Processors', link: '#' },
+                            { type: '2nd Generation Intel® Xeon® Scalable Processors', link: '#' },
+                            { type: '1st Generation Intel® Xeon® Scalable Processors', link: '#' },
+                            { type: 'Intel® Xeon® D Processors', link: '#' },
+                            { type: 'Intel® Xeon® W Processors', link: '#' },
+                        ]
+                    },
+                    {
+                        name: 'Intel® Pentium® Processors',
+                        subtype: [
+                            { type: 'Pentium® Gold Processors', link: '#' },
+                            { type: 'Pentium® Silver Processors', link: '#' }
+                        ]
+                    },
+                    {
+                        name: 'Intel® Celeron® Processors',
+                        subtype: [
+                            { type: 'Mobile', link: '#' },
+                        ]
+                    },
+                    {
+                        name: 'Intel Atom® Processors',
+                        subtype: [
+                            { type: 'Mobile', link: '#' },
+                            { type: 'Edge', link: '#' }
+                        ]
+                    },
+                    {
+                        name: 'Intel® Processors',
+                        subtype: [
+                            { type: 'Mobile', link: '#' },
+                            { type: 'Edge', link: '#' }
+                        ]
+                    },
+                ]
+            }
+        ]
+    },
+    {
+        title: 'Graphics and Accelerators',
+        des: [
+            ],            
+        type: [
+            {
+                title: 'Graphics and Accelerators', typedata: [
+                    {
+                        name: 'Intel® Data Center GPU Flex Series',
+                        subtype: [
+                            { type: '	Intel® Data Center GPU Flex Series', link: '#' },
+                        ]
+                    },
+                    {
+                        name: 'Mobile',
+                        subtype: [
+                            { type: '	Intel® Iris® Xᵉ MAX', link: '#' },
+                        ]
+                    },
+                    {
+                        name: 'Intel Server GPU',
+                        subtype: [
+                            { type: '	Intel® Server GPU', link: '#' },
+                        ]
+                    },
+                    {
+                        name: 'Intel® Agilex™ FPGA',
+                        subtype: [
+                            { type: '	Intel® Agilex™ FPGA', link: '#' },
+                        ]
+                    },
+                    {
+                        name: 'Intel® Arc™ Graphics',
+                        subtype: [
+                            { type: 'Desktop', link: '#' },
+                            { type: 'Mobile', link: '#' },
+                        ]
+                    },
+                ]
+            }
+        ]
+    },
+    {
+        title: 'Platforms',
+        des: [
+            ],            
+        type: [
+            {
+                title: 'Platforms', typedata: [
+                    {
+                        name: '',
+                        subtype: [
+                            { type: 'Intel® Evo™', link: '#' },
+                        ]
+                    },
+                    {
+                        name: '',
+                        subtype: [
+                            { type: 'Intel vPro®', link: '#' },
+                        ]
+                    },
+                ]
+            },
+        ]
+    },
+    {
+        title: 'Security and Manageability',
+        des: [
+            ],            
+        type: [
+            {
+                title: 'Security and Manageability', typedata: [
+                    {
+                        name: '11th Gen Intel Core Processors',
+                        subtype: [
+                            { type: '11th Gen Intel Core Processors', link: '#' },
+                        ]
+                    },
+                ]
+            },
+        ]
+    },
+    {
+        title: 'Connectivity',
+        des: [
+            ],            
+        type: [
+            {
+                title: 'Connectivity', typedata: [
+                    {
+                        name: 'Wireless',
+                        subtype: [
+                            { type: 'Wi-Fi', link: '#' },
+                            { type: 'Bluetooth', link: '#' },
+                            { type: 'WWAN', link: '#' },
+                        ]
+                    },
+                    {
+                        name: 'Wired',
+                        subtype: [
+                            { type: 'Wired', link: '#' },
+                        ]
+                    },
+                ]
+            },
+        ]
+    }, 
+    {
+        title: 'Memory and Storage',
+        des: [
+            ],            
+        type: [
+            {
+                title: 'Memory and Storage', typedata: [
+                    {
+                        name: 'Intel® Optane™ Persistent Memory',
+                        subtype: [
+                            { type: 'Intel® Optane™ Persistent Memory 200 Series', link: '#' },
+                            { type: 'Intel® Optane™ Persistent Memory 100 Series', link: '#' },
+                        ]
+                    },
+                    {
+                        name: 'Intel® Optane™ Technology',
+                        subtype: [
+                            { type: 'Intel® Optane™ Memory H10 with Solid State Storage', link: '#' },
+                            { type: 'Intel® Optane™ Memory M10 Series', link: '#' },
+                            { type: 'Intel® Optane™ SSD P5800X Series', link: '#' },
+                            { type: 'Intel® Optane™ SSD DC P4800X Series', link: '#' },
+                        ]
+                    },
+                ]
+            },
+        ]
+    }, 
+    {
+        title: 'Events',
+        des: [
+            ],            
+        type: [
+            {
+                title: 'Events', typedata: [
+                    {
+                        name: '',
+                        subtype: [
+                            { type: 'Computex 2024', link: '#' },
+                        ]
+                    },
+                    {
+                        name: '',
+                        subtype: [
+                            { type: 'Vision 2024', link: '#' },
+                        ]
+                    },
+                    {
+                        name: '',
+                        subtype: [
+                            { type: 'CES 2024', link: '#' },
+                        ]
+                    },
+                    {
+                        name: '',
+                        subtype: [
+                            { type: 'Supercomputing 23', link: '#' },
+                        ]
+                    },
+                    {
+                        name: '',
+                        subtype: [
+                            { type: 'Intel® Innovation 2023', link: '#' },
+                        ]
+                    },
+                    {
+                        name: '',
+                        subtype: [
+                            { type: 'ISC 2023', link: '#' },
+                        ]
+                    },
+                    {
+                        name: '',
+                        subtype: [
+                            { type: 'Supercomputing 22', link: '#' },
+                        ]
+                    },
+                    {
+                        name: '',
+                        subtype: [
+                            { type: 'Intel® Innovation 2022', link: '#' },
+                        ]
+                    },
+                    {
+                        name: '',
+                        subtype: [
+                            { type: 'ISC 2022', link: '#' },
+                        ]
+                    },
+                    {
+                        name: '',
+                        subtype: [
+                            { type: 'Vision 2022', link: '#' },
+                        ]
+                    },
+                    {
+                        name: '',
+                        subtype: [
+                            { type: 'Investor Day 2022', link: '#' },
+                        ]
+                    },
+                    {
+                        name: '',
+                        subtype: [
+                            { type: 'Events Archive', link: '#' },
+                        ]
+                    },
+                ]
+            },
+        ]
+    },
+    {
+        title: 'Disclosures',
+        des: [
+            ],            
+        type: [
+            {
+                title: 'Disclosures', typedata: [
+                    {
+                        name: '',
+                        subtype: [
+                            { type: 'Benchmarks and Measurements', link: '#' },
+                        ]
+                    },
+                    {
+                        name: '',
+                        subtype: [
+                            { type: '13th Gen Intel® Core™ Mobile Processor Technical Specifications', link: '#' },
+                        ]
+                    },
+                    {
+                        name: '',
+                        subtype: [
+                            { type: '12th Gen Intel® Core™ Mobile Processor Technical Specifications', link: '#' },
+                        ]
+                    },
+                    {
+                        name: '',
+                        subtype: [
+                            { type: '11th Gen Intel® Core™ Mobile Processor Technical Specifications', link: '#' },
+                        ]
+                    },
+                    {
+                        name: '',
+                        subtype: [
+                            { type: 'Battery Life', link: '#' },
+                        ]
+                    },
+                    {
+                        name: '',
+                        subtype: [
+                            { type: 'Sustainability', link: '#' },
+                        ]
+                    },
+                ]
+            },
+        ]
+    },  
+]
+var b_data1=[
+    {title: 'Intel® Core™ Ultra Processors (Series 2)',des:[],data:[
+        {Series:'Intel Core Ultra processors',Use_case:'Overall Performance',Claim:'Intel® Core™ Ultra processors deliver the best AI PC experiences Alt: Get the Best AI PC Experience on Intel® Core™ Ultra processors',	Processor:'Intel Core Ultra processors',Systems_Measured:'Processor: Intel Core Ultra 9 288V 8 Core; tested in Asus Zenbook S 14; Memory: LPDDR5-8533 32GB; Storage: Samsung SSD 990 PRO 1TB; Display Resolution: 1920x1080; OS: Microsoft Windows 11 Pro 26100.1150 & 26100.1301; Intel Arc Graphics Pre-Production driver; NPU Driver: Pre-Production driver; BIOS: UX5406SA.205 (PV); Power Plan set to Balanced, Power Mode set to "Best Performance"; OEM App: "MyAsus = Performance" Processor: Intel Core Ultra 7 155H 16 Core; tested in Asus Zenbook 14; Memory: LPDDR5-7467 32GB; Storage: Samsung SSD 990 PRO 1TB; Display Resolution: 1920x1080; OS: Microsoft Windows 11 Pro 26100.1150; Intel Arc Graphics 32.0.101.5768; NPU Driver: 32.0.100.2540; BIOS: UX3405MA.307; Power Plan set to Balanced, Power Mode set to "Best Performance"; OEM App: "MyAsus = Performance" Processor: AMD Ryzen AI 9 HX 370 ; tested in Asus Zenbook S16; Memory: 32GB LPDDR5-7500; Storage: Samsung SSD 990 PRO 1TB; Display Resolution: 1920x1080; OS: Windows 11 Professional 26100.1150; Radeon 890M Graphics Driver 32.0.11018.8007; NPU Driver: 32.0.201.174; BIOS: UM5606WA.308; Power Plan set to Balanced, Power Mode set to "Best Performance"; OEM App: "MyAsus = Performance" Processor: Qualcomm Snapdragon X Elite - X1E-78-100; tested in Asus Vivobook S15 Copilot+ ; Memory: 16GB LPDDR5-8448Mhz; Storage: Samsung SSD 990 PRO 1TB; Display Resolution: 1920x1080; OS: Microsoft Windows 11 Home (ARM64) 26100.1150; Qualcomm Adreno GPU 31.0.56.0; NPU Driver: N/A; BIOS: S5507QAD.307; Power Plan set to Balanced, Power Mode set to "Best Performance"; OEM App: "MyAsus = Performance" Processor: Apple M3; 8(4performance +4 efficiency); tested on MacBook Pro 14" Model A2918, Memory: LPDDR5 24GB; Storage Brand: Apple, Storage: Apple SSD AP2048Z 2TB; OS: MacOS Version:14.6; Kernel Version: Darwin 23.1.0; Graphics: Apple 10 cores integrated GPU; Resolution set to default; Screen Size: 14" 3024x1964 Liquid Retina XDR; PC BIOS: N/A; GPU Mode: N/A; OS Power Plan: Preferences->Battery->Power Adaptor->energy mode is set to "Default"; VBS: N/A; Defender: N/A: Tamper Protection: N/A',Measurement:'As of August 2024, based on the broad compatibility, extensive software options, unique architecture, and impressive performance and other attributes of Intel® Core™ Ultra processors that combine to deliver the best overall AI experience, including in comparison to AMD Ryzen™ AI 9 HX 370, Qualcomm Snapdragon X Elite, and Apple M3, as measured by: • Strong AI performance on CPU, GPU, and NPU features, including on UL Procyon AI Computer Vision & Geekbench AI • Broad selection of publicly available applications & proof of concepts • Ongoing expansion of AI features and ISV-developed application • Dedicated AI engine to enable increased security and privacy with local AI processing AI features may require software purchase, subscription or enablement by a software or platform provider, or may have specific configuration or compatibility requirements. Learn more at intel.com/aipc. Performance varies by use, configuration and other details.',Measurement_Period:'As of August 2024'},
+        {Series:'Intel Core Ultra processors',Use_case:'Overall Performance',Claim:'Intel® Core™ Ultra processors deliver the best AI PC experiences Alt: Get the Best AI PC Experience on Intel® Core™ Ultra processors',	Processor:'Intel Core Ultra processors',Systems_Measured:'Processor: Intel Core Ultra 9 288V 8 Core; tested in Asus Zenbook S 14; Memory: LPDDR5-8533 32GB; Storage: Samsung SSD 990 PRO 1TB; Display Resolution: 1920x1080; OS: Microsoft Windows 11 Pro 26100.1150 & 26100.1301; Intel Arc Graphics Pre-Production driver; NPU Driver: Pre-Production driver; BIOS: UX5406SA.205 (PV); Power Plan set to Balanced, Power Mode set to "Best Performance"; OEM App: "MyAsus = Performance" Processor: Intel Core Ultra 7 155H 16 Core; tested in Asus Zenbook 14; Memory: LPDDR5-7467 32GB; Storage: Samsung SSD 990 PRO 1TB; Display Resolution: 1920x1080; OS: Microsoft Windows 11 Pro 26100.1150; Intel Arc Graphics 32.0.101.5768; NPU Driver: 32.0.100.2540; BIOS: UX3405MA.307; Power Plan set to Balanced, Power Mode set to "Best Performance"; OEM App: "MyAsus = Performance" Processor: AMD Ryzen AI 9 HX 370 ; tested in Asus Zenbook S16; Memory: 32GB LPDDR5-7500; Storage: Samsung SSD 990 PRO 1TB; Display Resolution: 1920x1080; OS: Windows 11 Professional 26100.1150; Radeon 890M Graphics Driver 32.0.11018.8007; NPU Driver: 32.0.201.174; BIOS: UM5606WA.308; Power Plan set to Balanced, Power Mode set to "Best Performance"; OEM App: "MyAsus = Performance" Processor: Qualcomm Snapdragon X Elite - X1E-78-100; tested in Asus Vivobook S15 Copilot+ ; Memory: 16GB LPDDR5-8448Mhz; Storage: Samsung SSD 990 PRO 1TB; Display Resolution: 1920x1080; OS: Microsoft Windows 11 Home (ARM64) 26100.1150; Qualcomm Adreno GPU 31.0.56.0; NPU Driver: N/A; BIOS: S5507QAD.307; Power Plan set to Balanced, Power Mode set to "Best Performance"; OEM App: "MyAsus = Performance" Processor: Apple M3; 8(4performance +4 efficiency); tested on MacBook Pro 14" Model A2918, Memory: LPDDR5 24GB; Storage Brand: Apple, Storage: Apple SSD AP2048Z 2TB; OS: MacOS Version:14.6; Kernel Version: Darwin 23.1.0; Graphics: Apple 10 cores integrated GPU; Resolution set to default; Screen Size: 14" 3024x1964 Liquid Retina XDR; PC BIOS: N/A; GPU Mode: N/A; OS Power Plan: Preferences->Battery->Power Adaptor->energy mode is set to "Default"; VBS: N/A; Defender: N/A: Tamper Protection: N/A',Measurement:'As of August 2024, based on the broad compatibility, extensive software options, unique architecture, and impressive performance and other attributes of Intel® Core™ Ultra processors that combine to deliver the best overall AI experience, including in comparison to AMD Ryzen™ AI 9 HX 370, Qualcomm Snapdragon X Elite, and Apple M3, as measured by: • Strong AI performance on CPU, GPU, and NPU features, including on UL Procyon AI Computer Vision & Geekbench AI • Broad selection of publicly available applications & proof of concepts • Ongoing expansion of AI features and ISV-developed application • Dedicated AI engine to enable increased security and privacy with local AI processing AI features may require software purchase, subscription or enablement by a software or platform provider, or may have specific configuration or compatibility requirements. Learn more at intel.com/aipc. Performance varies by use, configuration and other details.',Measurement_Period:'As of August 2024'},
+        {Series:'Intel Core Ultra processors',Use_case:'Overall Performance',Claim:'Intel® Core™ Ultra processors deliver the best AI PC experiences Alt: Get the Best AI PC Experience on Intel® Core™ Ultra processors',	Processor:'Intel Core Ultra processors',Systems_Measured:'Processor: Intel Core Ultra 9 288V 8 Core; tested in Asus Zenbook S 14; Memory: LPDDR5-8533 32GB; Storage: Samsung SSD 990 PRO 1TB; Display Resolution: 1920x1080; OS: Microsoft Windows 11 Pro 26100.1150 & 26100.1301; Intel Arc Graphics Pre-Production driver; NPU Driver: Pre-Production driver; BIOS: UX5406SA.205 (PV); Power Plan set to Balanced, Power Mode set to "Best Performance"; OEM App: "MyAsus = Performance" Processor: Intel Core Ultra 7 155H 16 Core; tested in Asus Zenbook 14; Memory: LPDDR5-7467 32GB; Storage: Samsung SSD 990 PRO 1TB; Display Resolution: 1920x1080; OS: Microsoft Windows 11 Pro 26100.1150; Intel Arc Graphics 32.0.101.5768; NPU Driver: 32.0.100.2540; BIOS: UX3405MA.307; Power Plan set to Balanced, Power Mode set to "Best Performance"; OEM App: "MyAsus = Performance" Processor: AMD Ryzen AI 9 HX 370 ; tested in Asus Zenbook S16; Memory: 32GB LPDDR5-7500; Storage: Samsung SSD 990 PRO 1TB; Display Resolution: 1920x1080; OS: Windows 11 Professional 26100.1150; Radeon 890M Graphics Driver 32.0.11018.8007; NPU Driver: 32.0.201.174; BIOS: UM5606WA.308; Power Plan set to Balanced, Power Mode set to "Best Performance"; OEM App: "MyAsus = Performance" Processor: Qualcomm Snapdragon X Elite - X1E-78-100; tested in Asus Vivobook S15 Copilot+ ; Memory: 16GB LPDDR5-8448Mhz; Storage: Samsung SSD 990 PRO 1TB; Display Resolution: 1920x1080; OS: Microsoft Windows 11 Home (ARM64) 26100.1150; Qualcomm Adreno GPU 31.0.56.0; NPU Driver: N/A; BIOS: S5507QAD.307; Power Plan set to Balanced, Power Mode set to "Best Performance"; OEM App: "MyAsus = Performance" Processor: Apple M3; 8(4performance +4 efficiency); tested on MacBook Pro 14" Model A2918, Memory: LPDDR5 24GB; Storage Brand: Apple, Storage: Apple SSD AP2048Z 2TB; OS: MacOS Version:14.6; Kernel Version: Darwin 23.1.0; Graphics: Apple 10 cores integrated GPU; Resolution set to default; Screen Size: 14" 3024x1964 Liquid Retina XDR; PC BIOS: N/A; GPU Mode: N/A; OS Power Plan: Preferences->Battery->Power Adaptor->energy mode is set to "Default"; VBS: N/A; Defender: N/A: Tamper Protection: N/A',Measurement:'As of August 2024, based on the broad compatibility, extensive software options, unique architecture, and impressive performance and other attributes of Intel® Core™ Ultra processors that combine to deliver the best overall AI experience, including in comparison to AMD Ryzen™ AI 9 HX 370, Qualcomm Snapdragon X Elite, and Apple M3, as measured by: • Strong AI performance on CPU, GPU, and NPU features, including on UL Procyon AI Computer Vision & Geekbench AI • Broad selection of publicly available applications & proof of concepts • Ongoing expansion of AI features and ISV-developed application • Dedicated AI engine to enable increased security and privacy with local AI processing AI features may require software purchase, subscription or enablement by a software or platform provider, or may have specific configuration or compatibility requirements. Learn more at intel.com/aipc. Performance varies by use, configuration and other details.',Measurement_Period:'As of August 2024'},
+        {Series:'Intel Core Ultra processors',Use_case:'Overall Performance',Claim:'Intel® Core™ Ultra processors deliver the best AI PC experiences Alt: Get the Best AI PC Experience on Intel® Core™ Ultra processors',	Processor:'Intel Core Ultra processors',Systems_Measured:'Processor: Intel Core Ultra 9 288V 8 Core; tested in Asus Zenbook S 14; Memory: LPDDR5-8533 32GB; Storage: Samsung SSD 990 PRO 1TB; Display Resolution: 1920x1080; OS: Microsoft Windows 11 Pro 26100.1150 & 26100.1301; Intel Arc Graphics Pre-Production driver; NPU Driver: Pre-Production driver; BIOS: UX5406SA.205 (PV); Power Plan set to Balanced, Power Mode set to "Best Performance"; OEM App: "MyAsus = Performance" Processor: Intel Core Ultra 7 155H 16 Core; tested in Asus Zenbook 14; Memory: LPDDR5-7467 32GB; Storage: Samsung SSD 990 PRO 1TB; Display Resolution: 1920x1080; OS: Microsoft Windows 11 Pro 26100.1150; Intel Arc Graphics 32.0.101.5768; NPU Driver: 32.0.100.2540; BIOS: UX3405MA.307; Power Plan set to Balanced, Power Mode set to "Best Performance"; OEM App: "MyAsus = Performance" Processor: AMD Ryzen AI 9 HX 370 ; tested in Asus Zenbook S16; Memory: 32GB LPDDR5-7500; Storage: Samsung SSD 990 PRO 1TB; Display Resolution: 1920x1080; OS: Windows 11 Professional 26100.1150; Radeon 890M Graphics Driver 32.0.11018.8007; NPU Driver: 32.0.201.174; BIOS: UM5606WA.308; Power Plan set to Balanced, Power Mode set to "Best Performance"; OEM App: "MyAsus = Performance" Processor: Qualcomm Snapdragon X Elite - X1E-78-100; tested in Asus Vivobook S15 Copilot+ ; Memory: 16GB LPDDR5-8448Mhz; Storage: Samsung SSD 990 PRO 1TB; Display Resolution: 1920x1080; OS: Microsoft Windows 11 Home (ARM64) 26100.1150; Qualcomm Adreno GPU 31.0.56.0; NPU Driver: N/A; BIOS: S5507QAD.307; Power Plan set to Balanced, Power Mode set to "Best Performance"; OEM App: "MyAsus = Performance" Processor: Apple M3; 8(4performance +4 efficiency); tested on MacBook Pro 14" Model A2918, Memory: LPDDR5 24GB; Storage Brand: Apple, Storage: Apple SSD AP2048Z 2TB; OS: MacOS Version:14.6; Kernel Version: Darwin 23.1.0; Graphics: Apple 10 cores integrated GPU; Resolution set to default; Screen Size: 14" 3024x1964 Liquid Retina XDR; PC BIOS: N/A; GPU Mode: N/A; OS Power Plan: Preferences->Battery->Power Adaptor->energy mode is set to "Default"; VBS: N/A; Defender: N/A: Tamper Protection: N/A',Measurement:'As of August 2024, based on the broad compatibility, extensive software options, unique architecture, and impressive performance and other attributes of Intel® Core™ Ultra processors that combine to deliver the best overall AI experience, including in comparison to AMD Ryzen™ AI 9 HX 370, Qualcomm Snapdragon X Elite, and Apple M3, as measured by: • Strong AI performance on CPU, GPU, and NPU features, including on UL Procyon AI Computer Vision & Geekbench AI • Broad selection of publicly available applications & proof of concepts • Ongoing expansion of AI features and ISV-developed application • Dedicated AI engine to enable increased security and privacy with local AI processing AI features may require software purchase, subscription or enablement by a software or platform provider, or may have specific configuration or compatibility requirements. Learn more at intel.com/aipc. Performance varies by use, configuration and other details.',Measurement_Period:'As of August 2024'},
+        {Series:'Intel Core Ultra processors',Use_case:'Overall Performance',Claim:'Intel® Core™ Ultra processors deliver the best AI PC experiences Alt: Get the Best AI PC Experience on Intel® Core™ Ultra processors',	Processor:'Intel Core Ultra processors',Systems_Measured:'Processor: Intel Core Ultra 9 288V 8 Core; tested in Asus Zenbook S 14; Memory: LPDDR5-8533 32GB; Storage: Samsung SSD 990 PRO 1TB; Display Resolution: 1920x1080; OS: Microsoft Windows 11 Pro 26100.1150 & 26100.1301; Intel Arc Graphics Pre-Production driver; NPU Driver: Pre-Production driver; BIOS: UX5406SA.205 (PV); Power Plan set to Balanced, Power Mode set to "Best Performance"; OEM App: "MyAsus = Performance" Processor: Intel Core Ultra 7 155H 16 Core; tested in Asus Zenbook 14; Memory: LPDDR5-7467 32GB; Storage: Samsung SSD 990 PRO 1TB; Display Resolution: 1920x1080; OS: Microsoft Windows 11 Pro 26100.1150; Intel Arc Graphics 32.0.101.5768; NPU Driver: 32.0.100.2540; BIOS: UX3405MA.307; Power Plan set to Balanced, Power Mode set to "Best Performance"; OEM App: "MyAsus = Performance" Processor: AMD Ryzen AI 9 HX 370 ; tested in Asus Zenbook S16; Memory: 32GB LPDDR5-7500; Storage: Samsung SSD 990 PRO 1TB; Display Resolution: 1920x1080; OS: Windows 11 Professional 26100.1150; Radeon 890M Graphics Driver 32.0.11018.8007; NPU Driver: 32.0.201.174; BIOS: UM5606WA.308; Power Plan set to Balanced, Power Mode set to "Best Performance"; OEM App: "MyAsus = Performance" Processor: Qualcomm Snapdragon X Elite - X1E-78-100; tested in Asus Vivobook S15 Copilot+ ; Memory: 16GB LPDDR5-8448Mhz; Storage: Samsung SSD 990 PRO 1TB; Display Resolution: 1920x1080; OS: Microsoft Windows 11 Home (ARM64) 26100.1150; Qualcomm Adreno GPU 31.0.56.0; NPU Driver: N/A; BIOS: S5507QAD.307; Power Plan set to Balanced, Power Mode set to "Best Performance"; OEM App: "MyAsus = Performance" Processor: Apple M3; 8(4performance +4 efficiency); tested on MacBook Pro 14" Model A2918, Memory: LPDDR5 24GB; Storage Brand: Apple, Storage: Apple SSD AP2048Z 2TB; OS: MacOS Version:14.6; Kernel Version: Darwin 23.1.0; Graphics: Apple 10 cores integrated GPU; Resolution set to default; Screen Size: 14" 3024x1964 Liquid Retina XDR; PC BIOS: N/A; GPU Mode: N/A; OS Power Plan: Preferences->Battery->Power Adaptor->energy mode is set to "Default"; VBS: N/A; Defender: N/A: Tamper Protection: N/A',Measurement:'As of August 2024, based on the broad compatibility, extensive software options, unique architecture, and impressive performance and other attributes of Intel® Core™ Ultra processors that combine to deliver the best overall AI experience, including in comparison to AMD Ryzen™ AI 9 HX 370, Qualcomm Snapdragon X Elite, and Apple M3, as measured by: • Strong AI performance on CPU, GPU, and NPU features, including on UL Procyon AI Computer Vision & Geekbench AI • Broad selection of publicly available applications & proof of concepts • Ongoing expansion of AI features and ISV-developed application • Dedicated AI engine to enable increased security and privacy with local AI processing AI features may require software purchase, subscription or enablement by a software or platform provider, or may have specific configuration or compatibility requirements. Learn more at intel.com/aipc. Performance varies by use, configuration and other details.',Measurement_Period:'As of August 2024'},
+        {Series:'Intel Core Ultra processors',Use_case:'Overall Performance',Claim:'Intel® Core™ Ultra processors deliver the best AI PC experiences Alt: Get the Best AI PC Experience on Intel® Core™ Ultra processors',	Processor:'Intel Core Ultra processors',Systems_Measured:'Processor: Intel Core Ultra 9 288V 8 Core; tested in Asus Zenbook S 14; Memory: LPDDR5-8533 32GB; Storage: Samsung SSD 990 PRO 1TB; Display Resolution: 1920x1080; OS: Microsoft Windows 11 Pro 26100.1150 & 26100.1301; Intel Arc Graphics Pre-Production driver; NPU Driver: Pre-Production driver; BIOS: UX5406SA.205 (PV); Power Plan set to Balanced, Power Mode set to "Best Performance"; OEM App: "MyAsus = Performance" Processor: Intel Core Ultra 7 155H 16 Core; tested in Asus Zenbook 14; Memory: LPDDR5-7467 32GB; Storage: Samsung SSD 990 PRO 1TB; Display Resolution: 1920x1080; OS: Microsoft Windows 11 Pro 26100.1150; Intel Arc Graphics 32.0.101.5768; NPU Driver: 32.0.100.2540; BIOS: UX3405MA.307; Power Plan set to Balanced, Power Mode set to "Best Performance"; OEM App: "MyAsus = Performance" Processor: AMD Ryzen AI 9 HX 370 ; tested in Asus Zenbook S16; Memory: 32GB LPDDR5-7500; Storage: Samsung SSD 990 PRO 1TB; Display Resolution: 1920x1080; OS: Windows 11 Professional 26100.1150; Radeon 890M Graphics Driver 32.0.11018.8007; NPU Driver: 32.0.201.174; BIOS: UM5606WA.308; Power Plan set to Balanced, Power Mode set to "Best Performance"; OEM App: "MyAsus = Performance" Processor: Qualcomm Snapdragon X Elite - X1E-78-100; tested in Asus Vivobook S15 Copilot+ ; Memory: 16GB LPDDR5-8448Mhz; Storage: Samsung SSD 990 PRO 1TB; Display Resolution: 1920x1080; OS: Microsoft Windows 11 Home (ARM64) 26100.1150; Qualcomm Adreno GPU 31.0.56.0; NPU Driver: N/A; BIOS: S5507QAD.307; Power Plan set to Balanced, Power Mode set to "Best Performance"; OEM App: "MyAsus = Performance" Processor: Apple M3; 8(4performance +4 efficiency); tested on MacBook Pro 14" Model A2918, Memory: LPDDR5 24GB; Storage Brand: Apple, Storage: Apple SSD AP2048Z 2TB; OS: MacOS Version:14.6; Kernel Version: Darwin 23.1.0; Graphics: Apple 10 cores integrated GPU; Resolution set to default; Screen Size: 14" 3024x1964 Liquid Retina XDR; PC BIOS: N/A; GPU Mode: N/A; OS Power Plan: Preferences->Battery->Power Adaptor->energy mode is set to "Default"; VBS: N/A; Defender: N/A: Tamper Protection: N/A',Measurement:'As of August 2024, based on the broad compatibility, extensive software options, unique architecture, and impressive performance and other attributes of Intel® Core™ Ultra processors that combine to deliver the best overall AI experience, including in comparison to AMD Ryzen™ AI 9 HX 370, Qualcomm Snapdragon X Elite, and Apple M3, as measured by: • Strong AI performance on CPU, GPU, and NPU features, including on UL Procyon AI Computer Vision & Geekbench AI • Broad selection of publicly available applications & proof of concepts • Ongoing expansion of AI features and ISV-developed application • Dedicated AI engine to enable increased security and privacy with local AI processing AI features may require software purchase, subscription or enablement by a software or platform provider, or may have specific configuration or compatibility requirements. Learn more at intel.com/aipc. Performance varies by use, configuration and other details.',Measurement_Period:'As of August 2024'},
+        {Series:'Intel Core Ultra processors',Use_case:'Overall Performance',Claim:'Intel® Core™ Ultra processors deliver the best AI PC experiences Alt: Get the Best AI PC Experience on Intel® Core™ Ultra processors',	Processor:'Intel Core Ultra processors',Systems_Measured:'Processor: Intel Core Ultra 9 288V 8 Core; tested in Asus Zenbook S 14; Memory: LPDDR5-8533 32GB; Storage: Samsung SSD 990 PRO 1TB; Display Resolution: 1920x1080; OS: Microsoft Windows 11 Pro 26100.1150 & 26100.1301; Intel Arc Graphics Pre-Production driver; NPU Driver: Pre-Production driver; BIOS: UX5406SA.205 (PV); Power Plan set to Balanced, Power Mode set to "Best Performance"; OEM App: "MyAsus = Performance" Processor: Intel Core Ultra 7 155H 16 Core; tested in Asus Zenbook 14; Memory: LPDDR5-7467 32GB; Storage: Samsung SSD 990 PRO 1TB; Display Resolution: 1920x1080; OS: Microsoft Windows 11 Pro 26100.1150; Intel Arc Graphics 32.0.101.5768; NPU Driver: 32.0.100.2540; BIOS: UX3405MA.307; Power Plan set to Balanced, Power Mode set to "Best Performance"; OEM App: "MyAsus = Performance" Processor: AMD Ryzen AI 9 HX 370 ; tested in Asus Zenbook S16; Memory: 32GB LPDDR5-7500; Storage: Samsung SSD 990 PRO 1TB; Display Resolution: 1920x1080; OS: Windows 11 Professional 26100.1150; Radeon 890M Graphics Driver 32.0.11018.8007; NPU Driver: 32.0.201.174; BIOS: UM5606WA.308; Power Plan set to Balanced, Power Mode set to "Best Performance"; OEM App: "MyAsus = Performance" Processor: Qualcomm Snapdragon X Elite - X1E-78-100; tested in Asus Vivobook S15 Copilot+ ; Memory: 16GB LPDDR5-8448Mhz; Storage: Samsung SSD 990 PRO 1TB; Display Resolution: 1920x1080; OS: Microsoft Windows 11 Home (ARM64) 26100.1150; Qualcomm Adreno GPU 31.0.56.0; NPU Driver: N/A; BIOS: S5507QAD.307; Power Plan set to Balanced, Power Mode set to "Best Performance"; OEM App: "MyAsus = Performance" Processor: Apple M3; 8(4performance +4 efficiency); tested on MacBook Pro 14" Model A2918, Memory: LPDDR5 24GB; Storage Brand: Apple, Storage: Apple SSD AP2048Z 2TB; OS: MacOS Version:14.6; Kernel Version: Darwin 23.1.0; Graphics: Apple 10 cores integrated GPU; Resolution set to default; Screen Size: 14" 3024x1964 Liquid Retina XDR; PC BIOS: N/A; GPU Mode: N/A; OS Power Plan: Preferences->Battery->Power Adaptor->energy mode is set to "Default"; VBS: N/A; Defender: N/A: Tamper Protection: N/A',Measurement:'As of August 2024, based on the broad compatibility, extensive software options, unique architecture, and impressive performance and other attributes of Intel® Core™ Ultra processors that combine to deliver the best overall AI experience, including in comparison to AMD Ryzen™ AI 9 HX 370, Qualcomm Snapdragon X Elite, and Apple M3, as measured by: • Strong AI performance on CPU, GPU, and NPU features, including on UL Procyon AI Computer Vision & Geekbench AI • Broad selection of publicly available applications & proof of concepts • Ongoing expansion of AI features and ISV-developed application • Dedicated AI engine to enable increased security and privacy with local AI processing AI features may require software purchase, subscription or enablement by a software or platform provider, or may have specific configuration or compatibility requirements. Learn more at intel.com/aipc. Performance varies by use, configuration and other details.',Measurement_Period:'As of August 2024'},
+        {Series:'Intel Core Ultra processors',Use_case:'Overall Performance',Claim:'Intel® Core™ Ultra processors deliver the best AI PC experiences Alt: Get the Best AI PC Experience on Intel® Core™ Ultra processors',	Processor:'Intel Core Ultra processors',Systems_Measured:'Processor: Intel Core Ultra 9 288V 8 Core; tested in Asus Zenbook S 14; Memory: LPDDR5-8533 32GB; Storage: Samsung SSD 990 PRO 1TB; Display Resolution: 1920x1080; OS: Microsoft Windows 11 Pro 26100.1150 & 26100.1301; Intel Arc Graphics Pre-Production driver; NPU Driver: Pre-Production driver; BIOS: UX5406SA.205 (PV); Power Plan set to Balanced, Power Mode set to "Best Performance"; OEM App: "MyAsus = Performance" Processor: Intel Core Ultra 7 155H 16 Core; tested in Asus Zenbook 14; Memory: LPDDR5-7467 32GB; Storage: Samsung SSD 990 PRO 1TB; Display Resolution: 1920x1080; OS: Microsoft Windows 11 Pro 26100.1150; Intel Arc Graphics 32.0.101.5768; NPU Driver: 32.0.100.2540; BIOS: UX3405MA.307; Power Plan set to Balanced, Power Mode set to "Best Performance"; OEM App: "MyAsus = Performance" Processor: AMD Ryzen AI 9 HX 370 ; tested in Asus Zenbook S16; Memory: 32GB LPDDR5-7500; Storage: Samsung SSD 990 PRO 1TB; Display Resolution: 1920x1080; OS: Windows 11 Professional 26100.1150; Radeon 890M Graphics Driver 32.0.11018.8007; NPU Driver: 32.0.201.174; BIOS: UM5606WA.308; Power Plan set to Balanced, Power Mode set to "Best Performance"; OEM App: "MyAsus = Performance" Processor: Qualcomm Snapdragon X Elite - X1E-78-100; tested in Asus Vivobook S15 Copilot+ ; Memory: 16GB LPDDR5-8448Mhz; Storage: Samsung SSD 990 PRO 1TB; Display Resolution: 1920x1080; OS: Microsoft Windows 11 Home (ARM64) 26100.1150; Qualcomm Adreno GPU 31.0.56.0; NPU Driver: N/A; BIOS: S5507QAD.307; Power Plan set to Balanced, Power Mode set to "Best Performance"; OEM App: "MyAsus = Performance" Processor: Apple M3; 8(4performance +4 efficiency); tested on MacBook Pro 14" Model A2918, Memory: LPDDR5 24GB; Storage Brand: Apple, Storage: Apple SSD AP2048Z 2TB; OS: MacOS Version:14.6; Kernel Version: Darwin 23.1.0; Graphics: Apple 10 cores integrated GPU; Resolution set to default; Screen Size: 14" 3024x1964 Liquid Retina XDR; PC BIOS: N/A; GPU Mode: N/A; OS Power Plan: Preferences->Battery->Power Adaptor->energy mode is set to "Default"; VBS: N/A; Defender: N/A: Tamper Protection: N/A',Measurement:'As of August 2024, based on the broad compatibility, extensive software options, unique architecture, and impressive performance and other attributes of Intel® Core™ Ultra processors that combine to deliver the best overall AI experience, including in comparison to AMD Ryzen™ AI 9 HX 370, Qualcomm Snapdragon X Elite, and Apple M3, as measured by: • Strong AI performance on CPU, GPU, and NPU features, including on UL Procyon AI Computer Vision & Geekbench AI • Broad selection of publicly available applications & proof of concepts • Ongoing expansion of AI features and ISV-developed application • Dedicated AI engine to enable increased security and privacy with local AI processing AI features may require software purchase, subscription or enablement by a software or platform provider, or may have specific configuration or compatibility requirements. Learn more at intel.com/aipc. Performance varies by use, configuration and other details.',Measurement_Period:'As of August 2024'},
+        {Series:'Intel Core Ultra processors',Use_case:'Overall Performance',Claim:'Intel® Core™ Ultra processors deliver the best AI PC experiences Alt: Get the Best AI PC Experience on Intel® Core™ Ultra processors',	Processor:'Intel Core Ultra processors',Systems_Measured:'Processor: Intel Core Ultra 9 288V 8 Core; tested in Asus Zenbook S 14; Memory: LPDDR5-8533 32GB; Storage: Samsung SSD 990 PRO 1TB; Display Resolution: 1920x1080; OS: Microsoft Windows 11 Pro 26100.1150 & 26100.1301; Intel Arc Graphics Pre-Production driver; NPU Driver: Pre-Production driver; BIOS: UX5406SA.205 (PV); Power Plan set to Balanced, Power Mode set to "Best Performance"; OEM App: "MyAsus = Performance" Processor: Intel Core Ultra 7 155H 16 Core; tested in Asus Zenbook 14; Memory: LPDDR5-7467 32GB; Storage: Samsung SSD 990 PRO 1TB; Display Resolution: 1920x1080; OS: Microsoft Windows 11 Pro 26100.1150; Intel Arc Graphics 32.0.101.5768; NPU Driver: 32.0.100.2540; BIOS: UX3405MA.307; Power Plan set to Balanced, Power Mode set to "Best Performance"; OEM App: "MyAsus = Performance" Processor: AMD Ryzen AI 9 HX 370 ; tested in Asus Zenbook S16; Memory: 32GB LPDDR5-7500; Storage: Samsung SSD 990 PRO 1TB; Display Resolution: 1920x1080; OS: Windows 11 Professional 26100.1150; Radeon 890M Graphics Driver 32.0.11018.8007; NPU Driver: 32.0.201.174; BIOS: UM5606WA.308; Power Plan set to Balanced, Power Mode set to "Best Performance"; OEM App: "MyAsus = Performance" Processor: Qualcomm Snapdragon X Elite - X1E-78-100; tested in Asus Vivobook S15 Copilot+ ; Memory: 16GB LPDDR5-8448Mhz; Storage: Samsung SSD 990 PRO 1TB; Display Resolution: 1920x1080; OS: Microsoft Windows 11 Home (ARM64) 26100.1150; Qualcomm Adreno GPU 31.0.56.0; NPU Driver: N/A; BIOS: S5507QAD.307; Power Plan set to Balanced, Power Mode set to "Best Performance"; OEM App: "MyAsus = Performance" Processor: Apple M3; 8(4performance +4 efficiency); tested on MacBook Pro 14" Model A2918, Memory: LPDDR5 24GB; Storage Brand: Apple, Storage: Apple SSD AP2048Z 2TB; OS: MacOS Version:14.6; Kernel Version: Darwin 23.1.0; Graphics: Apple 10 cores integrated GPU; Resolution set to default; Screen Size: 14" 3024x1964 Liquid Retina XDR; PC BIOS: N/A; GPU Mode: N/A; OS Power Plan: Preferences->Battery->Power Adaptor->energy mode is set to "Default"; VBS: N/A; Defender: N/A: Tamper Protection: N/A',Measurement:'As of August 2024, based on the broad compatibility, extensive software options, unique architecture, and impressive performance and other attributes of Intel® Core™ Ultra processors that combine to deliver the best overall AI experience, including in comparison to AMD Ryzen™ AI 9 HX 370, Qualcomm Snapdragon X Elite, and Apple M3, as measured by: • Strong AI performance on CPU, GPU, and NPU features, including on UL Procyon AI Computer Vision & Geekbench AI • Broad selection of publicly available applications & proof of concepts • Ongoing expansion of AI features and ISV-developed application • Dedicated AI engine to enable increased security and privacy with local AI processing AI features may require software purchase, subscription or enablement by a software or platform provider, or may have specific configuration or compatibility requirements. Learn more at intel.com/aipc. Performance varies by use, configuration and other details.',Measurement_Period:'As of August 2024'},
+    ]}
+]
+function load_data(x) {
+    console.log(x);
+    var b_data1=b_data.filter((el,id)=>{
+        return el.title.includes(x);
+    })
+    console.log(b_data1);
+    var value = document.getElementById('b_data');
+    var desc = document.getElementById('b_des');
+    var title = document.getElementById('b_title');
+    title.innerHTML = b_data1[0].title;
+    // console.log(b_data.overview.des);
+    var val = b_data.overview;
+    desc.innerHTML =b_data1[0].des.map((ele, ind) => {
+        return `<p key=${ind}>${ele}</p>`
+    }).join('');
+    value.innerHTML = b_data1.map((el, id) => {
+        return `${el.type.map((el, id) => {
+            return `<table class="table border border-dark border-light border-bottom-0">
+                    <thead>
+                            <tr colspan='2'>
+                                <th class="w-50">${el.title}</th>
+                                <th class="w-50"></th>
+                            </tr>
+                    </thead>
+                    <tbody>
+                    ${el.typedata.map(type => {
+                        return `
+                                <tr>
+                                ${type.name=='' ? `<td></td>` : `<td>${type.name}</td>`}
+                                    <td class="p-0 h-100">
+                                        <table class="table mb-0 border border-dark border-top-0 border-end-0 border-bottom-0">
+                                            ${type.subtype.map((sub, ind) => {
+                                                return `
+                                                    <tr >
+                                                        <td class='${ind == type.subtype.length - 1 ? "border-bottom-0" : ''}'><a href=${sub.link} class="text-decoration-none" style="color:#0068b5">${sub.type}</a></td>
+                                                    </tr>`;
+                                            }).join('')}
+                                        </table>
+                                    </td>
+                                </tr>`;
+                    }).join('')}
+                    </tbody>
+                    </table> `
+        }).join('')}
+                           `
+    }).join('');
+    ;
+}
+function load_data2(x){
+    console.log(x);
+    var data2=b_data1.filter((el,id)=>{
+        return el.title.includes(x);
+    })
+// Get an array of the keys
+const thead = Object.keys(b_data1[0].data[0]);
+
+// Filter the keys (if you want to apply a condition, otherwise you can skip this step)
+// const filteredKeys = keys.filter(key => true); // Replace `true` with your condition if needed
+
+console.log(thead); // Output: ['data', 'data1', 'data2'] 
+
+    console.log(data2);
+    var value = document.getElementById('b_data');
+    var desc = document.getElementById('b_des');
+    var title = document.getElementById('b_title');
+    title.innerHTML = data2[0].title;
+    // console.log(b_data.overview.des);
+    var val = data2.overview;
+    desc.innerHTML = data2[0].des.map((ele, ind) => {
+        return `<p key=${ind}>${ele}</p>`
+    }).join('');
+    value.innerHTML = `
+    <table class="table">
+        <thead>
+            <tr class="row">
+                ${thead.map(el => `<th class="col">${el}</th>`).join('')}
+            </tr>
+        </thead>
+        <tbody>
+            ${data2[0].data.map(row => 
+                `
+                <tr>
+                    ${thead.map(header => {console.log(header); `<td class="col">${row.header}</td>`}).join('')}
+                </tr>
+            `).join('')}
+        </tbody>
+    </table>
+`;
+}
+function fliterdata(data,no){
+    console.log(data);  
+    if(no==1){
+        load_data(data);
+    }
+    if(no==2){
+        load_data2(data);
+    }  
+}
+window.onload = function () {
+    // Load b_data from API
+    load_data('Overview');
+}
