@@ -1088,6 +1088,10 @@ window.onload = function () {
     VK_gamedev_technical_content_checkbox();
     // software
     VK_gamedev_technical_software_checkbox();
+
+
+    // gpu reserach publisher
+    VK_gpu_publishr_display_card();
 }
 
 if (document.getElementById('VK_select_filters')) {
@@ -10405,15 +10409,15 @@ function VK_gamedev_technical_software_order_By() {
 // ------------------------------  Intel® Arc™ Graphics Developer Guide for Real-Time Ray Tracing in Games ---------------------------------
 
 document.addEventListener("scroll", function () {
-    const sections = document.querySelectorAll("section");  
-    const navLinks = document.querySelectorAll(".VK_arc_navbar a"); 
-    
+    const sections = document.querySelectorAll("section");
+    const navLinks = document.querySelectorAll(".VK_arc_navbar a");
+
     const observer = new IntersectionObserver(
         (entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting && entry.boundingClientRect.top <= 0) {
                     navLinks.forEach(link => link.classList.remove("VK_active_arc_link"));
-                    
+
                     const activeLink = document.querySelector(`.VK_arc_navbar a[href="#${entry.target.id}"]`);
                     if (activeLink) {
                         activeLink.classList.add("VK_active_arc_link");
@@ -10421,8 +10425,286 @@ document.addEventListener("scroll", function () {
                 }
             });
         },
-       
+
     );
-    
+
     sections.forEach(section => observer.observe(section));
 });
+
+
+
+
+// ------------------------------------------------------ gpu research publisher ------------------------------------------------------
+
+var VK_gpu_research_publisher_data = [
+    {
+        title: "New Publications and Tools for GenAI",
+        date: "07/26/24",
+        description: "Get the latest on generative AI (GenAI) from researcher presentations at SIGGRAPH and High-Performance Graphics (HPG) 2024.",
+        image: "VK_139.png",
+        link: "",
+    },
+    {
+        title: "Concurrent Binary Trees for Large-Scale Game Components",
+        date: "07/02/24",
+        description: "Process large sceneries (like planetary scales) at high speeds while making the system easier to use for developers and artists.",
+        image: "VK_140.png",
+        link: "",
+    },
+    {
+        title: "Nonorthogonal Reduction for Rendering Fluorescent Materials",
+        date: "06/26/24",
+        description: "Learn how a research team used nonorthogonal functions to accurately render fluorescent materials in nonspectral engines.",
+        image: "VK_141.png",
+        link: "",
+    },
+    {
+        title: "N-dimensional Gaussians for Fitting of High-Dimensional Functions",
+        date: "05/31/24",
+        description: "Learn about a research team's method to optimize N-dimensional Gaussians to approximate high-dimensional anisotropic functions in a few minutes.",
+        image: "VK_142.png",
+        link: "",
+    },
+    {
+        title: "Transform Rasterizers with Stochastic Gradient Estimation",
+        date: "05/14/24",
+        description: "Learn how a research team used stochastic gradient estimation to transform a nondifferentiable rasterizer into a differentiable rasterizer.",
+        image: "VK_143.png",
+        link: "",
+    },
+    {
+        title: "Physically Based Lighting for 3D Generative Models of Cars",
+        date: "04/30/24",
+        description: "Computing physically based lighting for car models created from a 3D-aware generative model creates realistic imagery with accurate reflections.",
+        image: "VK_144.png",
+        link: "",
+    },
+    {
+        title: "ExtraSS: A Framework for Joint Spatial Super Sampling and Frame...",
+        date: "12/12/23",
+        description: "We introduce ExtraSS, a novel framework that combines spatial super sampling and frame extrapolation to enhance real-time rendering performance.",
+        image: "VK_145.png",
+        link: "",
+    },
+    {
+        title: "The effect of display capabilities on the gloss consistency",
+        date: "12/12/23",
+        description: "A faithful reproduction of gloss is inherently difficult because of the limited dynamic range, peak luminance, and 3D capabilities of display devices.",
+        image: "VK_146.png",
+        link: "",
+    },
+    {
+        title: "Raycasting for Memory Constrained Isosurface Visualization",
+        date: "12/07/23",
+        description: "We propose an isosurface-rendering algorithm for visualization of volumes by traversing rays through data to perform ray-isosurface intersections.",
+        image: "VK_147.png",
+        link: "",
+    },
+    {
+        title: "VESTEC",
+        date: "08/03/23",
+        description: "Learn about the VESTEC framework and how it can help public authorities plan for and respond to natural disasters and epidemics.",
+        image: "VK_148.jpg",
+        link: "",
+    },
+    {
+        title: "Real-Time Rendering of Glinty Appearances using Distributed Binomial...",
+        date: "08/03/23",
+        description: "We render in real-time glittery materials caused by discrete flakes on the surface. One has to count the number of flakes reflecting the light towards the camera within every texel covered.",
+        image: "VK_149.png",
+        link: "",
+    },
+    {
+        title: "Sampling Visible GGX Normals with Spherical Caps",
+        date: "08/03/23",
+        description: "In computer graphics, the most common way to capture the distribution of these reflected directions is to rely on a mathematical function called GGX.",
+        image: "VK_150.jpg",
+        link: "",
+    },
+    {
+        title: "Real-Time Ray Tracing of Micro-Poly Geometry with Hierarchical Level...",
+        date: "08/03/23",
+        description: "In recent work, Nanite has demonstrated how to rasterize virtualized micro-poly geometry in real time, thus enabling immense geometric complexity.",
+        image: "VK_151.png",
+        link: "",
+    },
+    {
+        title: "Neural Prefiltering for Correlation-Aware Levels of Detail",
+        date: "07/27/23",
+        description: "Introducing the latest research of Intel Graphics Research at SIGGRAPH 2023, the premier conference for computer graphics.",
+        image: "VK_152.jpg",
+        link: "",
+    },
+    {
+        title: "Iterative α-(de)Blending: a Minimalist Deterministic Diffusion Model",
+        date: "07/23/23",
+        description: "At the core of tools such as Dall.E or Stable Diffusion are a recent family of methods known as diffusion models. Diffusion models aim at reproducing content from noise.",
+        image: "VK_153.png",
+        link: "",
+    },
+    {
+        title: "Instant Neural Representation for Interactive Volume Rendering",
+        date: "07/08/23",
+        description: "By simultaneously leveraging modern GPU tensor cores, a native CUDA neural network framework, and a well-designed rendering algorithm we can interactively ray trace volumetric neural",
+        image: "VK_154.png",
+        link: "",
+    },
+    {
+        title: "Intel's Latest Research for Graphics and Generative AI",
+        date: "06/24/23",
+        description: "Find out about Intel's latest research for graphics and generative AI.",
+        image: "VK_155.png",
+        link: "",
+    },
+    {
+        title: "Stochastic Subsets for BVH Construction",
+        date: "05/24/23",
+        description: "BVH construction is a critical component of real-time and interactive ray-tracing systems.",
+        image: "VK_156.png",
+        link: "",
+    },
+    {
+        title: "SynPeDS: Synthetic Dataset for Pedestrian Detection",
+        date: "12/09/22",
+        description: "Learn about SynPeDS, a synthetic dataset that helps with pedestrian detection tasks in urban scenes.",
+        image: "VK_157.jpg",
+        link: "",
+    },
+    {
+        title: "Temporally Stable Real-Time Joint Neural Denoising and Supersampling",
+        date: "07/27/22",
+        description: "Given noisy, low-resolution input, our network performs spatiotemporal filtering to produce denoised and antialiased output at twice the resolution.",
+        image: "VK_158.png",
+        link: "",
+    },
+    {
+        title: "PLOC++, Parallel Locally-Ordered Clustering for Bounding Volume",
+        date: "07/27/22",
+        description: "We propose a novel version of the GPU-oriented massively parallel locally-ordered clustering (PLOC) algorithm for constructing bounding volume hierarchies (BVHs)",
+        image: "VK_159.png",
+        link: "",
+    },
+    {
+        title: "Scalable Ray Tracing for In Situ Visualization Using Intel® OSPRay",
+        date: "05/06/22",
+        description: "In situ visualization entails rendering images for post hoc exploration. We cover developments in Intel® OSPRay support for MPI-parallel applications.",
+        image: "VK_160.jpg",
+        link: "",
+    },
+    {
+        title: "Wide BVH Traversal with a Short Stack",
+        date: "05/02/22",
+        description: "In this paper we discuss an algorithm for wide bounding volume hierarchy (BVH) traversal",
+        image: "VK_161.png",
+        link: "",
+    },
+    {
+        title: "ANARI: A 3D Rendering API Standard",
+        date: "03/31/22",
+        description: "Learn about ANARI, a 3D rendering API that enables state-of-the-art rendering techniques across hardware platforms and rendering engines.",
+        image: "VK_162.jpg",
+        link: "",
+    },
+    {
+        title: "Lazy Build of Acceleration Structures with Traversal Shaders",
+        date: "11/17/20",
+        description: "In this paper, we propose multi-pass lazy build (MPLB), an algorithm for real-time ray tracing that resolves this problem with an extended programming model called traversal shader",
+        image: "VK_163.png",
+        link: "",
+    },
+    {
+        title: "Flexible Ray Traversal with an Extended Programming Model",
+        date: "11/17/19",
+        description: "In this paper, we propose an extended programming model for ray tracing which includes an additional programmable stage called the traversal shader th",
+        image: "VK_164.png",
+        link: "",
+    },
+    {
+        title: "Coarse Pixel Shading with Temporal Supersampling",
+        date: "05/16/18",
+        description: "In this paper we extend coarse pixel shading with a temporal supersampling scheme that notably improves image quality and provides substantial reduction in shading cost compared to",
+        image: "VK_165.png",
+        link: "",
+    },
+    {
+        title: "Bandwidth-Efficient BVH Layout for Incremental Hardware Traversal",
+        date: "06/21/16",
+        description: "The memory footprint of bounding volume hierarchies (BVHs) can be significantly reduced using incremental encoding, which enables the coarse quantization of bounding volumes. However, this",
+        image: "VK_166.png",
+        link: "",
+    },
+    {
+        title: "Watertight Ray Traversal with Reduced Precision",
+        date: "06/20/16",
+        description: "Reduced precision bounding volume hierarchies and ray traversal can significantly improve the efficiency of ray tracing through low-cost dedicated hardware. A key approach to enabling reduced precision computations during traversal is to translate the ray origin closer to the bounding volume hierarchy node after each traversal step. However, this approach precludes sharing of intersection computations between a parent node and its two children, which is an important optimization. In this paper, we introduce a novel traversal algorithm that addresses this limitation and achieves a significant reduction in the computational complexity of traversal compared to previous approaches. We also include an analysis that shows how our algorithm guarantees watertight intersections which is a key requirement for robust image quality, especially with reduced precision traversal where numerical errors can be large.",
+        image: "VK_167.png",
+        link: "",
+    },
+    {
+        title: "Masked Software Occlusion Culling",
+        date: "06/20/16",
+        description: "An efficient occlusion culling algorithm targeting SIMD architectures. The algorithm supports interleaving occluder rendering and occlusion queries, and outperforms previous work by a factor 3x.",
+        image: "VK_168.png",
+        link: "",
+    },
+]
+
+var VK_gpu_publisher = VK_gpu_research_publisher_data
+
+
+function VK_gpu_publishr_display_card() {
+    if (document.getElementById('VK_gpu_publish_result_div')) {
+        document.getElementById('VK_gpu_publish_results_cnt').innerHTML = VK_gpu_publisher.length + " Results"
+
+        let html = VK_gpu_publisher.map((ele) => {
+            return ` 
+            <div class="col-md-4 col-xxl-3 my-3">
+                <div class="bg-white h-100">
+                    <div class="text-center VK_border_bottom VK_gpu_card_img">
+                        <img src="/img/vivek/${ele.image}" class="h-100 w-100 VK_object-cover" alt="">
+                    </div>
+                    <div class="mt-4 pb-3 px-3">
+                        <p class="d-block">
+                            <a href="${ele.link}" class="VK_a text-decoration-none">
+                                ${ele.title}
+                            </a>
+                        </p>
+                        <p>
+                            <b>
+                                Date:
+                            </b>
+                            ${ele.date}
+                        </p>
+                        <p>
+                            ${ele.description.length >= 200 ? ele.description.slice(0,200)+'...' : ele.description}
+                        </p>
+                    </div>
+                </div>
+            </div>`
+        }).join('');
+        document.getElementById('VK_gpu_publish_result_div').innerHTML = html
+    }
+    else {
+        return
+    }
+}
+
+function VK_gpu_publisher_sortby() {
+    let orderby = document.getElementById('VK_gpu_publisher_sortby').value
+    console.log(orderby);
+    if (orderby == 'A-Z') {
+        VK_gpu_publisher.sort((a, b) => a.title.localeCompare(b.title))
+    }
+    else if (orderby == 'Z-A') {
+        VK_gpu_publisher.sort((a, b) => b.title.localeCompare(a.title))
+    }
+    VK_gpu_publishr_display_card();
+}
+
+function VK_gpu_publisher_search() {
+    let search = document.getElementById('VK_gpu_publisher_result_search').value;
+    VK_gpu_publisher = VK_gpu_research_publisher_data.filter((ele) => {
+        return ele.title.toLowerCase().includes(search.toLowerCase())
+    })
+    VK_gpu_publishr_display_card();
+}
