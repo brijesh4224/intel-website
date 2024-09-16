@@ -1,95 +1,36 @@
 const documents = [
     {
         id: "825857",
-        title: "GTS Transceiver Dual-Simplex Interfaces User Guide",
+        title: "Intel® Core™ Ultra Processors PS Series Infographic",
         date: "08/19/24",
         version: "24.2",
         file : "URL (47.4KB)",
-        content_type : "Brochures",
+        content_type : "Infographics",
         discription:"The GTS Transceiver Dual-Simplex Interfaces User Guide describes the method to implement the dual-simplex mode in Agilex™ 5 GTS transceivers.",
         isNew: true,
-        cat1:"Interface Protocols",
-        cat2:"Serial",
+        codename: "Meteor Lake",
     },
     {
         id: "777142",
-        title: "Agilex™ 7 FPGA – Nios V/m Processor OCM to OCM Design Example",
+        title: "Intel® Core™ Ultra Processors PS Series for the Edge",
         date: "04/20/23",
         version: "23.1.0 Pro",
         file : "URL (3.54 MB)",
-        content_type : "Development User Guides",
+        content_type : "Solution Briefs",
         discription:"This design example shows on-chip memory (OCM) access using the Nios V/m processor.",
         isNew: false,
-        cat1:"Interface Protocols",
-        cat2:"Serial",
-        cat3:"JTAG UART Intel FPGA IP"
+        codename: "Meteor Lake",
     },
     {
         id: "714478",
-        title: "Agilex™ 7 M-Series FPGA Network-on-Chip (NoC) User Guide",
+        title: "Heterogeneous AI Powerhouse: Unveiling the Hardware and Software Foundation of Intel® Core™ Ultra Processors for the Edge",
         date: "12/12/22",
         version: "22.3.0 Pro",
         file : "URL (5.48 MB)",
-        content_type : "Product Briefs",
+        content_type : "White Papers",
         discription:"This application note provides guidelines to scale up the single link in the JESD204C Intel FPGA IP core design example generated from the Intel Quartus Prime software to handle a multipoint link system. A single link in JESD204C has one or more high-speed transceiver lanes or channels.",
         isNew: true,
-        cat1:"Interface Protocols",
-        cat2:"Serial",  
-        cat3:"SPI (3 Wire Serial) Intel FPGA IP"
-    },
-    {
-        id: "768844",
-        title: "Agilex™ 7 M-Series FPGA Network-on-Chip (NoC) User Guide",
-        date: "08/05/24",
-        version: "24.2",
-        file : " xlsx (53.0 KB)",
-        content_type : "Product Catalog",
-        discription:"This table lists the registers available in the O-RAN Intel FPGA IP. All unlisted locations are reserved.",
-        isNew: false,
-        cat1:"Interface Protocols",
-        cat2:"Serial",  
-        cat3:"SPI (3 Wire Serial) Intel FPGA IP"
-    }
-    ,
-    {
-        id: "714716",
-        title: "Intel MAX 10 FPGA – GPIO, QSPI Flash, UART, ADC, LEDs, and Switches Design Example",
-        date: "10/31/17",
-        version: "24.2",
-        file : "URL (47.4KB)",
-        content_type : "Product Catalog",
-        discription:"This design example is used to check out the general-purpose interfaces on the Intel MAX 10 FPGA Development Kit, such as LEDs, dual in-line package (DIP) switches, push buttons, USB-side bus, PMOD, QSPI flash, digital-to-analog converter (DAC), UART, as well as the GPIO-attribute analog-to-digital (ADC) interface. Please download the Intel MAX 10 FPGA Development Kit installer and use the board test system (BTS) GUI to try it out.",
-        isNew: true ,
-        cat1:"Interface Protocols",
-        cat2:"Serial",  
-        cat3:"UART (RS-232 Serial Port) Intel FPGA IP"
-    },
-    {
-        id: "768843",
-        title: "Agilex™ 7 M-Series FPGA Network-on-Chip (NoC) User Guide",
-        date: "08/05/24",
-        version: "24.2",
-        file : " xlsx (53.0 KB)",
-        content_type : "Register Maps",
-        discription:"This table lists the registers available in the O-RAN Intel FPGA IP. All unlisted locations are reserved.",
-        isNew: false,
-        cat1:"White Papers",
-        cat2:"Serial",  
-        cat3:"UART (RS-232 Serial Port) Intel FPGA IP"
-    }
-    ,
-    {
-        id: "825853",
-        title: "GTS Transceiver Dual-Simplex Interfaces User Guide",
-        date: "08/19/24",
-        version: "24.2",
-        file : "URL (47.4KB)",
-        content_type : "Development User Guides",
-        discription:"The GTS Transceiver Dual-Simplex Interfaces User Guide describes the method to implement the dual-simplex mode in Agilex™ 5 GTS transceivers.",
-        isNew: true,
-        cat1:"White Papers",
-        cat2:"Serial",  
-        cat3:"UART (RS-232 Serial Port) Intel FPGA IP"
+        codename: "Meteor Lake",
     },
 ];
 function createDocumentElement(doc) {
@@ -106,26 +47,9 @@ function createDocumentElement(doc) {
                         </div>
                         <div class="col-xxl-8 col-12">
                             <div class="ms-3">
-                                ${doc.isNew ? '<span class="new-tag">New</span>' : '<span class="new-tag">Update</span>'}
                                 <p class="mt-2">
                                     <a href="#" class="document-title">${doc.title}</a>
                                 </p>
-                            </div>
-                        </div>
-                        <div class="col-xxl-1 col-12 ms-3 ms-xl-0 d-flex">
-                            <h6 class="d-block d-xl-none">ID : </h6>
-                            <p class="mb-0" style="font-size: 14px;">${doc.id}</p>
-                        </div>
-                        <div class="col-xxl-1 col-12 ms-3 ms-xl-0 d-flex">
-                            <h6 class="d-block d-xl-none">Date : </h6>
-                            <p class="mb-0" style="font-size: 14px;">${doc.date}</p>
-                        </div>
-                        <div class="col-xl-2 col-12 ms-3 row ms-xl-0 px-0">
-                            <div class="d-flex px-0">
-                                <h6 class="d-flex d-xl-none">Version : </h6>
-                                <select class="py-2 px-2 mx-2  border-secondary" aria-label="Version select">
-                                    <option selected value="1">${doc.version}</option>
-                                </select>
                             </div>
                         </div>
                     </div>
@@ -173,12 +97,10 @@ function renderDocuments() {
     for (var i = 0; i < subs.length; i++) {
         subs[i].classList.remove('active');
     }
-    
     for (var j = 0; j < subs1.length; j++) {
         subs1[j].style.display = "none";
     }
 }
-
 function content(x){
     console.log(x);
     var val= documents.filter((ele,ind)=>{
@@ -189,6 +111,20 @@ function content(x){
     console.log("val",val);
     const container = document.getElementById('documentContainer');
     container.innerHTML = val.map(createDocumentElement).join('');
+}
+function codename(x){
+    console.log(x);
+    var val= documents.filter((ele,ind)=>{
+        return ele.codename == x;
+    })
+    var total = document.getElementById('b_total');
+    total.innerHTML = `${val.length} Results`
+    console.log("val",val);
+    const container = document.getElementById('documentContainer');
+    container.innerHTML = val.map(createDocumentElement).join('');
+}
+function sortByNameAscending(arr) {
+    return arr.sort((a, b) => a.name.localeCompare(b.name));
 }
 function clearall() {
     // Optional: Display an alert if needed
@@ -202,9 +138,6 @@ function clearall() {
         checkbox.checked = false;
     });
     renderDocuments();
-}
-function sortByNameAscending(arr) {
-    return arr.sort((a, b) => a.name.localeCompare(b.name));
 }
 function sortByName(x) {
             var total = document.getElementById('b_total');
@@ -255,3 +188,18 @@ function sortJsonByDate(data) {
     });
   }
 renderDocuments();
+
+var gen=['4th Generation Intel® Core™ i7 Processors','4th Generation Intel® Core™ i5 Processors','4th Generation Intel® Core™ i3 Processors','Legacy Intel® Core™ Processors','5th Generation Intel® Core™ i7 Processors','5th Generation Intel® Core™ i5 Processors','5th Generation Intel® Core™ i3 Processors','6th Generation Intel® Core™ i7 Processors','6th Generation Intel® Core™ i5 Processors','6th Generation Intel® Core™ i3 Processors'];
+var available=[];
+var b_data = []
+function loadata(){
+    var data = document.getElementById('b_result');
+    data.innerHTML = b_data.length == 0 ? `<h4 class="text-center">No results found for this product.<h4>` : b_data.length;
+    var b_gen = document.getElementById('b_gen');
+    b_gen.innerHTML =` <select class="p-2 my-3 w-100"> <option>All generation </option> ${gen.map(el => `<option value="${el}">${el}</option>`).join('')} </select>`;
+    var b_available = document.getElementById('b_available');
+    b_available.innerHTML = ` <select class="p-2  w-100"> <option>All </option> ${available.map(el => `<option value="${el}">${el}</option>`).join('')} </select>`;
+}
+window.onload = function(){
+    loadata();
+}
