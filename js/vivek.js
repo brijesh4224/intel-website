@@ -10708,3 +10708,45 @@ function VK_gpu_publisher_search() {
     })
     VK_gpu_publishr_display_card();
 }
+
+
+
+
+window.onload = function() {
+    // Select all code blocks and their corresponding line number containers
+    const codeBlocks = document.querySelectorAll('.VK_code-block');
+    const lineNumberContainers = document.querySelectorAll('.VK_line-number');
+    
+    // Ensure that the number of code blocks matches the number of line number containers
+    if (codeBlocks.length !== lineNumberContainers.length) {
+        console.error('Mismatch between code blocks and line number containers.');
+        return;
+    }
+
+    // Iterate over each code block and line number container pair
+    codeBlocks.forEach((codeBlock, index) => {
+        const lineNumberContainer = lineNumberContainers[index];
+        
+        // Split code into lines
+        const lines = codeBlock.textContent.split('\n');
+        
+        // Clear existing line numbers (if any)
+        lineNumberContainer.innerHTML = '';
+
+        // Generate line numbers
+        lines.forEach((_, lineIndex) => {
+            const p = document.createElement('p');
+            p.className = 'VK_line-number-item m-0';
+            p.textContent = lineIndex + 1;
+            lineNumberContainer.appendChild(p);
+        });
+
+        // Adjust height of line number container to match code block height
+        // lineNumberContainer.style.height = `${codeBlock.scrollHeight}px`;
+    });
+};
+
+
+
+
+
