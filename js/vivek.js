@@ -6694,9 +6694,7 @@ function VK_ai_show_more() {
 
 // ---------------------------------------------------------- show more -------------------------------------------------------
 function VK_show_more(id, index) {
-    console.log(id);
     let eles = document.querySelectorAll(`.${id} .VK_col`);
-    console.log(eles);
     for (let i = 0; i < eles.length; i++) {
         if (i >= index) {
             eles[i].classList.remove('d-none')
@@ -6704,7 +6702,6 @@ function VK_show_more(id, index) {
     }
     let show = document.querySelector(`.${id} #VK_ai_pc_show`)
     let hide = document.querySelector(`.${id} #VK_ai_pc_hide`)
-    console.log(show);
     show.classList.add('d-none');
     hide.classList.remove('d-none')
 }
@@ -10712,39 +10709,43 @@ function VK_gpu_publisher_search() {
 
 
 
-window.onload = function() {
-    // Select all code blocks and their corresponding line number containers
-    const codeBlocks = document.querySelectorAll('.VK_code-block');
-    const lineNumberContainers = document.querySelectorAll('.VK_line-number');
-    
-    // Ensure that the number of code blocks matches the number of line number containers
-    if (codeBlocks.length !== lineNumberContainers.length) {
-        console.error('Mismatch between code blocks and line number containers.');
-        return;
-    }
+document.addEventListener('DOMContentLoaded',function(){
+    VK_code_liner();
+})
 
-    // Iterate over each code block and line number container pair
-    codeBlocks.forEach((codeBlock, index) => {
-        const lineNumberContainer = lineNumberContainers[index];
-        
-        // Split code into lines
-        const lines = codeBlock.textContent.split('\n');
-        
-        // Clear existing line numbers (if any)
-        lineNumberContainer.innerHTML = '';
-
-        // Generate line numbers
-        lines.forEach((_, lineIndex) => {
-            const p = document.createElement('p');
-            p.className = 'VK_line-number-item m-0';
-            p.textContent = lineIndex + 1;
-            lineNumberContainer.appendChild(p);
-        });
-
-        // Adjust height of line number container to match code block height
-        // lineNumberContainer.style.height = `${codeBlock.scrollHeight}px`;
-    });
-};
+function VK_code_liner(){
+     // Select all code blocks and their corresponding line number containers
+     const codeBlocks = document.querySelectorAll('.VK_code-block');
+     const lineNumberContainers = document.querySelectorAll('.VK_line-number');
+     
+     // Ensure that the number of code blocks matches the number of line number containers
+     if (codeBlocks.length !== lineNumberContainers.length) {
+         console.error('Mismatch between code blocks and line number containers.');
+         return;
+     }
+ 
+     // Iterate over each code block and line number container pair
+     codeBlocks.forEach((codeBlock, index) => {
+         const lineNumberContainer = lineNumberContainers[index];
+         
+         // Split code into lines
+         const lines = codeBlock.textContent.split('\n');
+         
+         // Clear existing line numbers (if any)
+         lineNumberContainer.innerHTML = '';
+ 
+         // Generate line numbers
+         lines.forEach((_, lineIndex) => {
+             const p = document.createElement('p');
+             p.className = 'VK_line-number-item m-0';
+             p.textContent = lineIndex + 1;
+             lineNumberContainer.appendChild(p);
+         });
+ 
+         // Adjust height of line number container to match code block height
+         // lineNumberContainer.style.height = `${codeBlock.scrollHeight}px`;
+     });
+}
 
 
 
