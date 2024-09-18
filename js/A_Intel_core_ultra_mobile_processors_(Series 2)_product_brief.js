@@ -18,6 +18,10 @@ function showchoose(x) {
     var data1 = document.getElementById('showless');
     data1.classList.add('d-none')
   }
+}
+
+  function showchoose1(x) {
+    var value = document.getElementsByClassName('hide1');
   if (x == 3) {
     for (var j = 0; j < value.length; j++) {
         value[j].classList.remove('d-none');
