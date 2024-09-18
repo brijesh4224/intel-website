@@ -26,83 +26,8 @@
 </head>
 <body>
     
-    <!-- Offcanvas -->
-    <section>
-        <header>
-            <nav class="navbar navbar-expand-md bg-body-tertiary fixed-top">
-                <div class="container-fluid">
-                  <div class="mv_nav_img">
-                    <img src="/img/mv_image/geti-logo-2.svg" alt="">
-                  </div>
-                  <div class="mv_header">
-                    <ul class="mv_main_menu">
-                        <li class="active"><a href="">Home</a></li>
-                        <li><a href="">Product</a></li>
-                        <li><a href="">Partner</a></li>
-                        <li><a href="">Industries</a></li>
-                        <li><a href="">Resources<i class="fa-solid fa-chevron-down"></i>
-                            <ul type="square" class="mv_sub_menu">
-                                <li>Documentation</li>
-                                <li>Technology Briefs</li>
-                                <li>Blog</li>
-                                <li>Videos</li>
-                                <li>Case Studies</li>
-                                <li>Events</li>
-                                <li>FAQ</li>
-                            </ul>
-                        </a></li>
-                        <li><a href="">Our Mission</a></li>
-                      </ul>
-                  </div>
-                  <div class="mv_nav_btn d-flex">
-                    <div class="mv_header">
-                        <ul class="mv_main_menu">
-                            <li class="mv_contact_us"><a href="">Contact Us</a></li>
-                        </ul>
-                    </div>
-                    <div style="align-self: center;">
-                        <button><a href="">Request Trail</a></button>
-                    </div>
-                    <div class="offcanvas-header">
-                        <!-- <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close">
-                            <i class="fa-solid fa-xmark"></i>
-                        </button> -->
-                        <button type="button" data-bs-dismiss="modal" aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
-                    </div>
-                  </div>
-                  <p style="color: #fff;"></p>
-                  <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
-                    <i style="color: #fff;" class="fa-solid fa-bars"></i>
-                  </button>
-                  <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
-                    <div class="offcanvas-body">
-                        <div class="mv_offcanvas">
-                            <ul>
-                                <li><a href="">Home</a></li>
-                                <li><a href="">Product</a></li>
-                                <li><a href="">Partner</a></li>
-                                <li><a href="">Industries</a></li>
-                                <li><a href="">Resources<i class="fa-solid fa-chevron-down"></i></a>
-                                    <ul class="mv_offcanvas_submenu">
-                                        <li>Documentation</li>
-                                        <li>Technology Briefs</li>
-                                        <li>Blog</li>
-                                        <li>Videos</li>
-                                        <li>Case Studies</li>
-                                        <li>Events</li>
-                                        <li>FAQ</li>
-                                    </ul>
-                                </li>
-                                <li><a href="">Our Mission</a></li>
-                                <li><a href="">Contact Us</a></li>
-                              </ul>
-                        </div>
-                    </div>
-                  </div>
-                </div>
-            </nav>
-        </header>
-    </section>
+    <!-- Intel Geti Header -->
+    <div id="mv_navbar"></div>
 
     <!-- Bgimg -->
     <section>
@@ -279,7 +204,46 @@
     <!-- Footer -->
     <div id="footer"></div>
 
-    <!-- script header and footer -->
+    <!-- script intel geti header -->
+    <script>
+        // header include
+        fetch("/vaidikhtml/intel_geti_platform_header.html")
+            .then((response) => response.text())
+            .then((data) => {
+            document.getElementById("mv_navbar").innerHTML = data;
+            setupDropdown();
+            });
+
+        function setupDropdown() {
+            const dropdownToggle = document.getElementById("dropdownToggle");
+            const dropdownMenu = document.getElementById("dropdownMenu");
+            const dropdownIcon = document.getElementById("dropdownIcon");
+
+            console.log(dropdownToggle, dropdownMenu, dropdownIcon); // Check if any are null
+
+            if (dropdownToggle && dropdownMenu && dropdownIcon) {
+            dropdownToggle.addEventListener("click", function (event) {
+                event.preventDefault(); // Prevent the default anchor behavior
+                const isOpen = dropdownMenu.style.display === "block";
+
+                // Toggle dropdown visibility
+                dropdownMenu.style.display = isOpen ? "none" : "block";
+
+                // Change the icon based on dropdown state
+                dropdownIcon.classList.toggle("fa-chevron-down", isOpen);
+                dropdownIcon.classList.toggle("fa-chevron-up", !isOpen);
+            });
+            } else {
+            console.error("One or more dropdown elements are null:", {
+                dropdownToggle,
+                dropdownMenu,
+                dropdownIcon,
+            });
+            }
+        }
+    </script>
+
+    <!-- script footer -->
     <script>
         // footer include 
         fetch('/y_index/y_footer.html')
