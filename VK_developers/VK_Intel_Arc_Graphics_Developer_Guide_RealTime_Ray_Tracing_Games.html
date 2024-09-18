@@ -44,10 +44,10 @@
             </div>
         </section>
 
-        <section class="py-5">
-            <div class="VK_cont">
+        <section class="">
+            <div class="VK_cont py-5 VK_border_bottom">
                 <div class="row m-0">
-                    <div class="col-3 p-0">
+                    <div class="col-md-4 col-lg-3 p-0">
                         <div class="VK_side_bar_postion_stickey bg-white">
                             <ul class="list-unstyled VK_arc_navbar ps-3 ">
                                 <li>
@@ -69,47 +69,55 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="" class="VK_a text-decoration-none d-inline-block ps-2 py-1">
+                                    <a href="#VK_Ray_Tracing_Intrinsic_implementation_Details"
+                                        class="VK_a text-decoration-none d-inline-block ps-2 py-1">
                                         Ray Tracing Intrinsic Implementation Details
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="" class="VK_a text-decoration-none d-inline-block ps-2 py-1">
+                                    <a href="#VK_PipelineLevel_Compiler_Optimizations"
+                                        class="VK_a text-decoration-none d-inline-block ps-2 py-1">
                                         Pipeline-Level Compiler Optimizations
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="" class="VK_a text-decoration-none d-inline-block ps-2 py-1">
+                                    <a href="#VK_Performance_Guidelines_Developers"
+                                        class="VK_a text-decoration-none d-inline-block ps-2 py-1">
                                         Performance Guidelines for Developers
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="" class="VK_a text-decoration-none d-inline-block ps-2 py-1">
+                                    <a href="#VK_Acceleration_Structure_Guidelines"
+                                        class="VK_a text-decoration-none d-inline-block ps-2 py-1">
                                         Acceleration Structure Guidelines
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="" class="VK_a text-decoration-none d-inline-block ps-2 py-1">
+                                    <a href="#VK_General_Acceleration_Structure_Guidelines"
+                                        class="VK_a text-decoration-none d-inline-block ps-2 py-1">
                                         General Acceleration Structure Guidelines
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="" class="VK_a text-decoration-none d-inline-block ps-2 py-1">
+                                    <a href="#VK_General_Shader_Optimization_Guidelines"
+                                        class="VK_a text-decoration-none d-inline-block ps-2 py-1">
                                         General Shader Optimization Guidelines
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="" class="VK_a text-decoration-none d-inline-block ps-2 py-1">
+                                    <a href="#VK_DXR1_RayQueries"
+                                        class="VK_a text-decoration-none d-inline-block ps-2 py-1">
                                         DXR1.1 and RayQueries
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="" class="VK_a text-decoration-none d-inline-block px-2 py-1">
+                                    <a href="#VK_Conclusion" class="VK_a text-decoration-none d-inline-block px-2 py-1">
                                         Conclusion
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="" class="VK_a text-decoration-none d-inline-block px-2 py-1">
+                                    <a href="#VK_Additional_Resources"
+                                        class="VK_a text-decoration-none d-inline-block px-2 py-1">
                                         Additional Resources
                                     </a>
                                 </li>
@@ -133,7 +141,7 @@
                             </p>
                         </div>
                     </div>
-                    <div class="col-8 ps-5">
+                    <div class="col-md-8 ps-sm-5">
                         <div class="">
                             <div class="VK_section_descriptions">
                                 <div class="text-end">
@@ -405,20 +413,1255 @@
                                             </b>
                                             call.
                                         </p>
-                                        <div class="bg-light border p-4 rounded-3">
-                                            <code>
-                                                
-                                            </code>
+                                        <div class="VK_theme_bg border p-4 rounded-3">
+                                            <div class="VK_code-container">
+                                                <div class="VK_line-number"></div>
+                                                <code class="VK_theme_color">
+        <pre class="VK_code-block"><p class="m-0"><span class="VK_code_blue">struct</span> MyRayPayload
+{
+    float3 hit_position;
+    float3 normal;
+    float3 diffuse_color;
+    <span class="VK_code_blue">bool</span> was_hit;
+};
+
+
+[shader(<span class="VK_code_blue">"closesthit"</span>)]
+<span class="VK_code_blue">void</span> chs_main( inout MyRayPayload pl )
+{
+    pl.hit_position = ComputeHitPosition();
+    pl.normal = ComputeNormal();
+    pl.diffuse_color = ComputeDiffuseColor();
+    pl.was_hit = <span class="VK_code_blue">true</span>;
+}
+
+
+[shader( <span class="VK_code_blue">"miss"</span>)]
+<span class="VK_code_blue">void </span> miss_main( inout MyRayPayload pl )
+{
+    pl.was_hit = <span class="VK_code_blue">false</span>;
+}
+
+RWTexture2D&lt;float3&gt; render_target;
+
+[shader(<span class="VK_code_blue">"raygeneration"</span>)]
+<span class="VK_code_blue">void</span>main( )
+{
+    MyRayPayload pl;
+    float3 color = render_target.Load( DispatchRaysIndex().xy );
+    TraceRay( ... ray, pl );
+
+    <span class="VK_code_blue"> if </span>( pl.was_hit )
+        color += DoLighting( pl.hit_position, pl.normal, pl.diffuse_color );
+    <span class="VK_code_blue">else</span>
+        color += ComputeMissColor(ray.Origin,ray.Direction);
+    
+        render_target.Store( DispatchRaysIndex().xy, pl.color );
+}
+
+
+
+<span class="VK_code_comment">//For contrast, the next code sample shows an optimized implementation of the same algorithm. The ray payload is as small as possible, data is not communicated between shader stages, the was_hit value is completely eliminated, and there is no need for control to return back to the ray generation shader.</span>
+
+<span class="VK_code_blue">struct </span>MyRayPayload
+{
+    <span class="VK_code_comment">// note the use of a lower precision data type to reduce payload size</span>
+    float16_t3 color;
+};
+
+RWTexture2D&lt;float3&gt; render_target;
+
+[shader(<span class="VK_code_blue">"closesthit"</span>)]
+<span class="VK_code_blue">void </span>chs_main( inout MyRayPayload pl )
+{
+    float3 hit_position = ComputeHitPosition();
+    float3 normal = ComputeNormal();
+    float3 diffuse_color = ComputeDiffuseColor();
+    float3 lighting = DoLighting( pl.hit_position,pl.normal,pl.diffuse_color );
+    render_target.Store( DispatchRaysIndex().xy, pl.color + lighting );
+}
+
+[shader(<span class="VK_code_blue">"miss"</span>)]
+<span class="VK_code_blue">void </span>miss_main( inout MyRayPayload pl )
+{
+    float3 miss_color = ComputeMissColor(WorldRayOrigin(),WorldRayDirection());
+    render_target.Store( DispatchRaysIndex().xy, pl.color + miss_color );
+}
+
+[shader(<span class="VK_code_blue">"raygeneration"</span>)]
+<span class="VK_code_blue">void </span>main( )
+{
+    MyRayPayload pl;
+    pl.color = render_target.Load( DispatchRaysIndex().xy );
+    TraceRay( ... ray, pl );
+}</p></pre>
+                                                </code>
+                                            </div>
+                                        </div>
+                                        <div class="mt-4">
+                                            For contrast, the next code sample shows an optimized implementation of the
+                                            same algorithm. The ray payload is as small as possible, data is not
+                                            communicated between shader stages, the
+                                            <b>
+                                                was_hit
+                                            </b>
+                                            value is completely eliminated, and there is no need for control to return
+                                            back to the ray generation shader.
+                                        </div>
+                                        <div class="VK_theme_bg border p-4 rounded-3">
+                                            <div class="VK_code-container">
+                                                <div class="VK_line-number"></div>
+                                                <code class="VK_theme_color">
+<pre class="VK_code-block"><p class="m-0"><span class="VK_code_blue">struct </span>MyRayPayload
+{
+    <span class="VK_code_comment">// note the use of a lower precision data type to reduce payload size</span>
+    float16_t3 color;
+};
+
+
+RWTexture2D&lt;float3&gt;  render_target;
+
+[shader(<span class="VK_code_blue">"closesthit"</span>)]
+<span class="VK_code_blue">void </span>chs_main( inout MyRayPayload pl )
+{
+    float3 hit_position = ComputeHitPosition();
+    float3 normal = ComputeNormal();
+    float3 diffuse_color = ComputeDiffuseColor();
+    float3 lighting = DoLighting( pl.hit_position,pl.normal,pl.diffuse_color );
+    render_target.Store( DispatchRaysIndex().xy, pl.color + lighting );
+}
+
+
+[shader(<span class="VK_code_blue">"miss"</span>)]
+<span class="VK_code_blue">void </span>miss_main( inout MyRayPayload pl )
+{
+    float3 miss_color = ComputeMissColor(WorldRayOrigin(),WorldRayDirection());
+    render_target.Store( DispatchRaysIndex().xy, pl.color + miss_color );
+}
+
+
+[shader(<span class="VK_code_blue">"raygeneration"</span>)]
+<span class="VK_code_blue">void </span>main( )
+{
+    MyRayPayload pl;
+    pl.color = render_target.Load( DispatchRaysIndex().xy );
+    TraceRay( ... ray, pl );
+}</p></pre>
+                                                </code>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </section>
+                            <section class="mt-5" id="VK_Ray_Tracing_Intrinsic_implementation_Details">
+                                <h3 class="VK_side_heading mb-3">
+                                    Ray Tracing Intrinsic Implementation Details
+                                </h3>
+                                <p>
+                                    At launch time, each hit-shader thread receives a 16-bit stack ID, a pointer to the
+                                    shader record, and a global pointer which is used to access the global root
+                                    signature, stack base address, dispatch dimensions, and other global constants. All
+                                    other data is read and written by VEs and RTRT hardware, as required.
+                                </p>
+                                <p>
+                                    Ray payloads and intersection attributes all map to cached memory reads and writes.
+                                    Hardware will write hit information and transformed rays into designated locations
+                                    in the ray stack memory, which software can read.
+                                    <b>
+                                        TraceRay()
+                                    </b>
+                                    shader intrinsics will write the entire ray to the stack before sending the trace
+                                    message and terminating the thread, as described in the
+                                    <a href="" class="Vk_text_underline_dots VK_a">
+                                        Understanding the Thread Sorting Unit
+                                    </a>
+                                    section.
+                                    <b>
+                                        CallShader()
+                                    </b>
+                                    is handled in the same way, but it writes considerably less data.
+                                </p>
+                                <p>
+                                    All of the ray and hit-info accessors will map to loads from the ray stack memory.
+                                    In some cases, there will also be arithmetic logic unit (ALU) instructions to unpack
+                                    from bit-fields. Where possible, the compiler will vectorize the loads (for example,
+                                    calling
+                                    <b>
+                                        WorldRayOrigin()
+                                    </b>
+                                    will emit a three-channel untyped read message).
+                                </p>
+                                <p class="m-0">
+                                    The following DXR shader intrinsics are implemented as loads from the ray stack
+                                    memory:
+                                </p>
+                                <ul>
+                                    <li>
+                                        DispatchRaysIndex()
+                                    </li>
+                                    <li>
+                                        DispatchRaysDimensions() (This maps to a load from a wave-uniform location)
+                                    </li>
+                                    <li>
+                                        RayTMin()
+                                    </li>
+                                    <li>
+                                        RayTCurrent()
+                                    </li>
+                                    <li>
+                                        RayFlags()
+                                    </li>
+                                    <li>
+                                        HitKind()
+                                    </li>
+                                    <li>
+                                        PrimitiveIndex()
+                                    </li>
+                                    <li>
+                                        WorldRayOrigin()
+                                    </li>
+                                    <li>
+                                        WorldRayDirection()
+                                    </li>
+                                </ul>
+                                <p class="m-0">
+                                    The implementations of the following intrinsics depend on the shader type:
+                                </p>
+                                <ul>
+                                    <li>
+                                        ObjectRayOrigin()
+                                    </li>
+                                    <li>
+                                        ObjectRayDirection()
+                                    </li>
+                                </ul>
+                                <p>
+                                    For intersection and any-hit shaders, the object-space ray is available on the ray
+                                    stack during traversal, and these intrinsics will simply load it. For closest-hit
+                                    shaders, the values are computed on the fly by multiplying the world-space values by
+                                    the
+                                    <b>
+                                        WorldToObject
+                                    </b>
+                                    transform matrix.
+                                </p>
+                                <p>
+                                    Implementing the DXR instance data accessors requires two levels of indirection; the
+                                    first to read an instance pointer from the ray stack, and the second to access the
+                                    required data. The compiler will amortize the instance pointer lookup over calls to
+                                    different intrinsics. For example, calling two different instance intrinsics will
+                                    typically result in, at most, three load instructions.
+                                </p>
+                                <ul>
+                                    <li>
+                                        InstanceIndex()
+                                    </li>
+                                    <li>
+                                        InstanceID()
+                                    </li>
+                                    <li>
+                                        WorldToObject3x4/4x3()
+                                    </li>
+                                    <li>
+                                        ObjectToWorld3x4/4x3()
+                                    </li>
+                                </ul>
+                                <p>
+                                    The
+                                    <b>
+                                        CallShader()
+                                    </b>
+                                    and
+                                    <b>
+                                        TraceRay()
+                                    </b>
+                                    intrinsics will write ray parameters to the ray stack, spill any live values, send
+                                    corresponding messages to the TSU or the RTU, and terminate the thread. The thread
+                                    will be restarted by a continuation dispatch as discussed in the
+                                    <a href="" class="Vk_text_underline_dots VK_a">
+                                        Understanding the Thread Sorting Unit
+                                    </a>
+                                    section.
+                                </p>
+                                <p>
+                                    Any-hit shaders have access to two different sets of hit information from the ray
+                                    stack. There is a potential hit, which is the current hit being considered by the
+                                    shader, and a committed hit, which is the last hit which was accepted for the ray.
+                                    The RTU automatically writes these hit records to memory whenever they need to
+                                    change.
+                                </p>
+                                <p>
+                                    The
+                                    <b>
+                                        AcceptHitAndEndSearch()
+                                    </b>
+                                    intrinsic will do the following:
+                                </p>
+                                <ul>
+                                    <li>
+                                        Copy the potential hit into the committed hit
+                                    </li>
+                                    <li>
+                                        Send a TSU dispatch for the closest-hit shader in the current shader record
+                                    </li>
+                                    <li>
+                                        Terminate the thread
+                                    </li>
+                                </ul>
+                                <p class="m-0">
+                                    If control reaches the end of an any-hit shader, the following actions take place:
+                                </p>
+                                <ul>
+                                    <li>
+                                        A commit message is sent to the RTU
+                                    </li>
+                                    <li>
+                                        The thread terminates
+                                    </li>
+                                </ul>
+                                <p>
+                                    The
+                                    <b>
+                                        IgnoreHit()
+                                    </b>
+                                    intrinsic will send a ”continue” message and terminate the thread.
+                                </p>
+                                <p>
+                                    Intel’s RTRT implementation will inline the any-hit shaders into the intersection
+                                    shaders. Each call to the
+                                    <b>
+                                        ReportHit()
+                                    </b>
+                                    intrinsic will invoke the any-hit shader (if any) and write the hit attributes to
+                                    memory if the hit was accepted. When executing from an intersection shader, the
+                                    <b>
+                                        IgnoreHit()
+                                    </b>
+                                    intrinsic will simply branch back to the intersection shader.
+                                    <b>
+                                        AcceptHitAndEndSearch()
+                                    </b>
+                                    will terminate the intersection shader thread.
+                                </p>
+                            </section>
+                            <section class="mt-5" id="VK_PipelineLevel_Compiler_Optimizations">
+                                <h3 class="VK_side_heading mb-3">
+                                    Pipeline-Level Compiler Optimizations
+                                </h3>
+                                <p class="m-0">
+                                    The DXR API requires applications to enumerate all possible shaders that might be
+                                    used with a given ray-tracing pipeline, and to specify the maximum recursion depth.
+                                    There are a variety of possible link-time optimizations which the driver and
+                                    compiler may perform, as appropriate. These include, but are not limited to:
+                                </p>
+                                <ul>
+                                    <li>
+                                        Inlining hit/miss shaders into return continuations (or vice versa)
+                                    </li>
+                                    <li>
+                                        Code motion between shader stages to reduce payload sizes or spills
+                                    </li>
+                                    <li>
+                                        Eliminating unnecessary stores to initialize ray payloads
+                                    </li>
+                                    <li>
+                                        Eliminating stores of continuation addresses and inlining them if there is only
+                                        one return site
+                                    </li>
+                                    <li>
+                                        Optimizing out stack manipulation code if the recursion depth is known to be 1
+                                    </li>
+                                    <li>
+                                        Specializing shaders based on recursion depth
+                                    </li>
+                                    <li>
+                                        Skipping hit shader compilation if all
+                                        <b>
+                                            TraceRay()
+                                        </b>
+                                        calls use particular ray flags
+                                    </li>
+                                    <li>
+                                        For example, if all traces use SKIP_CLOSEST_HIT, the compiler can strip out the
+                                        closest hit shaders
+                                    </li>
+                                    <li>
+                                        Forcing an opaque ray flag if no any-hit shaders are used in the pipeline
+                                    </li>
+                                    <li>
+                                        Calculating optimal stack sizes based on global optimizations
+                                    </li>
+                                </ul>
+                                <p>
+                                    In order to give the compiler maximum freedom for optimization, it is recommended
+                                    that applications take a minimalistic approach to the design of ray-tracing
+                                    pipelines, so that the compiler can infer as much information as possible and avoid
+                                    making overly-conservative decisions. Ray Tracing Pipeline State Objects (RTPSOs)
+                                    should be kept as small as possible, separated out by use case, and shader authors
+                                    should always try to provide the implementation with as much information as
+                                    possible. We also encourage shader authors to think like a compiler, and perform as
+                                    much global optimization as possible. See the
+                                    <a href="" class="Vk_text_underline_dots VK_a">
+                                        General Shader Optimization
+                                    </a>
+                                    section for specific recommendations to application developers.
+                                </p>
+                            </section>
+                            <section class="mt-5" id="VK_Performance_Guidelines_Developers">
+                                <h3 class="VK_side_heading mb-3 fw-light">
+                                    Performance Guidelines for Developers
+                                </h3>
+                                <p>
+                                    The remainder of this document focuses on concrete guidelines for maximizing the
+                                    performance of DXR applications on Intel® hardware.
+                                </p>
+                            </section>
+                            <section class="mt-5" id="VK_Acceleration_Structure_Guidelines">
+                                <h3 class="VK_side_heading">
+                                    Acceleration Structure Guidelines
+                                </h3>
+                                <p>
+                                    The details of Intel’s ray-tracing acceleration structure are undocumented, and
+                                    subject to change. This document does not disclose the details, but attempts to
+                                    provide general guidelines which will always be applicable. For brevity, we use
+                                    abbreviations for ray-tracing acceleration structure (RTAS), top-level acceleration
+                                    structure (TLAS), and bottom-level acceleration structure (BLAS).
+                                </p>
+                            </section>
+                            <section class="mt-5" id="VK_General_Acceleration_Structure_Guidelines">
+                                <h3 class="VK_side_heading">
+                                    General Acceleration Structure Guidelines
+                                </h3>
+                                <ul>
+                                    <li>
+                                        The NO_DUPLICATE_ANYHIT_SHADER flag places severe constraints on the
+                                        acceleration structure builder, and can cause double-digit performance loss. It
+                                        should be avoided whenever possible. Any-hit shaders should always be designed
+                                        to be robust to multiple invocations. See the section on
+                                        <a href="" class="Vk_text_underline_dots VK_a">
+                                            Spatial Splits
+                                        </a>
+                                        for more details.
+                                    </li>
+                                    <li>
+                                        Always use indexed geometry with optimized index buffers. See the section on
+                                        <a href="" class="Vk_text_underline_dots VK_a">
+                                            Quad Formation
+                                        </a>
+                                        for details.
+                                    </li>
+                                    <li>
+                                        With ray tracing, applications must take great care to avoid degenerate geometry
+                                        cases that impact the acceleration structure quality. In game development, it is
+                                        not uncommon to accidentally stack copies of duplicate geometry in the same
+                                        location, or to transform large numbers of objects to the origin, below the
+                                        ground, to hide them from view. In a rasterization context, this sort of
+                                        sloppiness, while wasteful, will generally not cause catastrophic failures,
+                                        because Z-buffering can remove redundant pixels, and performance degrades
+                                        linearly with vertex count. In ray tracing, a large number of primitives placed
+                                        in exactly the same position can easily result in a Timeout Detection and
+                                        Recovery (TDR) if even a single ray happens to pass through that region. This
+                                        happens because the spatial hierarchy degrades to a flat primitive list, which
+                                        results in a traversal cost that is orders of magnitude higher than normal.
+                                    </li>
+                                    <li>
+                                        Whenever possible, do not combine geometries in a BLAS if they are too far
+                                        apart. Do not make one instance per material; use geometries instead.
+                                        Applications should prefer to use multiple geometries in one large BLAS, instead
+                                        of multiple instances of smaller BLAS. This will generally result in better ray
+                                        tracing performance, because it gives the RTAS builder more options for
+                                        partitioning the geometry and eliminating void areas. Our experiments have shown
+                                        performance gains of up to 2x on DXR content when the scene is fully flattened.
+                                        Naturally, this need must be balanced against other considerations such as
+                                        memory footprint and rebuild cost.
+                                    </li>
+                                    <li>
+                                        Do not create ray-tracing acceleration structures for sky-dome geometry. Use
+                                        miss shaders instead. This will improve performance by allowing missed rays to
+                                        quickly fall out of the top of the acceleration structure, rather than tracing
+                                        all the way to a leaf node.
+                                    </li>
+                                    <li>
+                                        Use RTAS build flags appropriately. The recommendation for different build flags
+                                        is to follow the guidelines laid out in the Microsoft* DXR spec. In particular,
+                                        we recommend PREFER_FAST_TRACE for static assets, and for top-level bounding
+                                        volume hierarchies (BVHs). PREFER_FAST_BUILD should be used only if profiling
+                                        indicates that PREFER_FAST_TRACE is too slow.
+                                    </li>
+                                    <li>
+                                        Updatable BLAS are likely to be more expensive in both footprint and ray-tracing
+                                        performance. BLAS should only be updatable when needed.
+                                    </li>
+                                    <li>
+                                        Drivers can use an optimization known as “re-braiding”, which hoists portions of
+                                        a bottom-level structure into the top-level structure to reduce spatial overlap.
+                                        This optimization does not interoperate well with BVH updates. If a BVH update
+                                        changes the referenced acceleration structure for an instance, this optimization
+                                        must be rolled back, resulting in wasted memory and sub-optimal performance. For
+                                        best results, applications should adhere to the following guidelines for
+                                        top-level acceleration structures:
+                                    </li>
+                                    <li>
+                                        Avoid making TLAS updateable. Instead, budget for a full build every frame. This
+                                        is the most robust strategy because it guarantees stable performance (at the
+                                        expense of a somewhat higher per-frame cost).
+                                    </li>
+                                    <li>
+                                        If you cannot afford a TLAS rebuild, and must resort to updates, you should
+                                        perform full rebuilds if any of the following circumstances apply:
+                                    </li>
+                                    <li>
+                                        The relative ordering of the instances in the instance buffer is changed
+                                    </li>
+                                    <li>
+                                        The acceleration structures referenced by a given instance are changed
+                                    </li>
+                                    <li>
+                                        There is a significant change in the relative positions of the instances—for
+                                        example: a character teleports from one place to another
+                                    </li>
+                                </ul>
+                                <h3 class="mt-5 VK_n22">
+                                    Be Mindful of Quads
+                                </h3>
+                                <p>
+                                    For performance reasons, Intel’s ray-triangle intersection pipeline will operate on
+                                    pairs of edge-adjacent triangles, called quads. Adjacent triangles in a quad are
+                                    required to be part of the same “geometry”, but do not need to be coplanar. The
+                                    diagram below demonstrates how two triangles, with overlapping AABBs, can be fused
+                                    into a single quad with a lower intersection cost.
+                                </p>
+                                <div class="d-flex">
+                                    <div class="">
+                                        <img src="/img/vivek/VK_169.png" class="w-100" alt="">
+                                    </div>
+                                </div>
+                                <div class="my-3 py-4 px-3 VK_bg_e6 mb-5">
+                                    <p class="m-0">
+                                        Figure 4. Two triangles, with overlapping AABBs, can be fused into a single quad
+                                        with a lower intersection cost.
+                                    </p>
+                                </div>
+                                <p>
+                                    Dynamic discovery and usage of these quads will be transparent to the application.
+                                    Hardware will resolve back-face culling and intersection ordering between the two
+                                    triangles, and produce barycentric coordinates and primitive IDs for shaders, which
+                                    match the API requirements. In the case of any-hit shaders without back-face
+                                    culling, two or more any-hit invocations can occur for a given quad with different
+                                    primitive IDs.
+                                </p>
+                                <p>
+                                    The Intel Graphics driver will attempt to group input triangles into quads at the
+                                    beginning of BVH construction. The algorithm uses a greedy search within 16-triangle
+                                    blocks, vectorized using wave-ops. Triangles which are unable to be paired will be
+                                    encoded as a quad containing a degenerate triangle. If the driver is not able to
+                                    form quads successfully, this can result in a significant performance and memory
+                                    consumption penalty.
+                                </p>
+                                <p class="m-0">
+                                    In order to ensure good quad formation rates, applications should adhere to the
+                                    following guidelines:
+                                </p>
+                                <ul>
+                                    <li>
+                                        Always use indexed geometry. The driver will identify edge-adjacent triangles by
+                                        their index values. Quad formation will not be attempted for non-indexed
+                                        geometry.
+                                    </li>
+                                    <li>
+                                        Avoid topologically disconnected triangles. A mesh with no index reuse between
+                                        triangles with adjacent edges will result in no quad formation.
+                                    </li>
+                                    <li>
+                                        Always perform vertex cache optimization on index buffers. Vertex cache
+                                        optimization algorithms produce triangle orderings which maximize local vertex
+                                        re-use. The vertex cache optimization is also ideal for greedy quad-formation
+                                        algorithms.
+                                    </li>
+                                    <li>
+                                        If you have a choice, we recommend providing topologies with UV and normal
+                                        discontinuities. Welding vertices by position is not necessarily beneficial,
+                                        because UV discontinuities can help guide quad formation, and prevent the
+                                        algorithm from pairing triangles which are in very different planes.
+                                    </li>
+                                    <li>
+                                        Animation calculations for updatable BLAS should be implemented using a compute
+                                        prepass if possible. If vertex shaders are already used for animation, and a
+                                        compute pass is difficult to retrofit, UAV writes from a vertex shader may also
+                                        be used, using SV_VertexID to generate the output location. This is safe,
+                                        provided that the vertex shader is deterministic (which should generally be the
+                                        case). Stream output should be avoided because it produces a disconnected mesh.
+                                    </li>
+                                    <li>
+                                        To build an RTAS from geometry produced by the tessellation pipeline, we
+                                        recommend using atomic increments in the domain shader to generate an index
+                                        value for each patch vertex, then passing these index values to the GS stage,
+                                        which generates an index buffer using UAV writes based on SV_PrimitiveID. Stream
+                                        output is, again, not recommended.
+                                    </li>
+                                    <li>
+                                        When building an RTAS using GPU-generated geometry, always perform the geometry
+                                        generation in one pass, and the RTAS construction in a second pass, with minimal
+                                        barriers in between. Do not interleave geometry generation with RTAS
+                                        construction, as this will serialize the BVH build.
+                                    </li>
+                                </ul>
+                                <h3 class="mt-5 VK_n22">
+                                    Avoid Void Areas in Procedural Geometry
+                                </h3>
+                                <p>
+                                    Procedural primitives in DXR are specified as axis-aligned bounding volumes which
+                                    trigger shader invocations whenever a ray enters the bounded region. Applications
+                                    are permitted to use multiple AABBs to specify a procedural object, and this can
+                                    greatly improve ray-tracing performance by minimizing shader invocations in void
+                                    areas, as illustrated in Figure 5.
+                                </p>
+                                <div class="d-flex">
+                                    <div>
+                                        <img src="/img/vivek/VK_170.png" class="w-100" alt="">
+                                    </div>
+                                </div>
+                                <div class="my-3 py-4 px-3 VK_bg_e6 mb-5">
+                                    <p class="m-0">
+                                        Figure 5. Using multiple AABBs to specify a procedural object can greatly
+                                        improve ray-tracing performance by minimizing shader invocations in void areas.
+                                    </p>
+                                </div>
+                                <p>
+                                    In the above example, the 14 AABBs on the right will be more efficient than the
+                                    single AABB on the left, because rays passing through the center of the torus will
+                                    not generate any intersection shader invocations. This cost saving can easily
+                                    outweigh the additional cycles spent in the traversal hardware, as long as a
+                                    moderate number of AABBs are used.
+                                </p>
+                                <p>
+                                    A similar principle applies to alpha-tested geometry implemented using textured
+                                    triangles and any-hit shaders. If the texture is known to contain large, transparent
+                                    regions, then the geometry should be subdivided so that it tightly bounds the
+                                    non-transparent region. This is also a good content creation practice for
+                                    rasterization, but it is especially important for ray tracing, due to the
+                                    comparatively high cost of any-hit shaders.
+                                </p>
+                                <h3 class="mt-5 VK_n22 mb-3">
+                                    Be Mindful of Spatial Splits
+                                </h3>
+                                <p>
+                                    The BVH is the de facto standard for ray tracing acceleration structures. In a
+                                    classical BVH, every primitive is placed in exactly one leaf, which guarantees that
+                                    a given ray traversal will test a given primitive once, at most. In a classical BVH,
+                                    duplicate any-hit shader invocations can never occur by construction.
+                                </p>
+                                <div class="d-flex">
+                                    <div>
+                                        <img src="/img/vivek/VK_171.png" class="w-100" alt="">
+                                    </div>
+                                </div>
+                                <div class="my-3 py-4 px-3 VK_bg_e6 mb-5">
+                                    <p class="m-0">
+                                        Figure 6. Three scenarios for eliminating void areas in spatial splits in
+                                        bounding volume hierarchies (BVHs).
+                                    </p>
+                                </div>
+                                <p>
+                                    Modern ray-tracing engines support spatial splits in BVH, where multiple AABBs are
+                                    used to tightly bound large primitives. This technique eliminates void areas from
+                                    the spatial data structure, resulting in fewer node traversals. This can yield
+                                    double-digit performance gains for ray traversal, but it also introduces the
+                                    possibility of duplicate intersection tests. If the BVH stores AABBs in a quantized
+                                    form, this can introduce overlap between the spatial splits, which can result in
+                                    duplicate any-hit shader invocations for the same primitive. Figure 6 illustrates
+                                    these three scenarios.
+                                </p>
+                                <p class="mt-5">
+                                    The NO_DUPLICATE_ANYHIT_SHADERS flag requires the implementation to guarantee that
+                                    an any-hit shader will be invoked only once per-ray for a given primitive. In order
+                                    to provide this guarantee, it may be necessary to disable spatial splits for all
+                                    primitives which bear the flag. This can seriously degrade ray-tracing performance,
+                                    and should be avoided unless absolutely necessary.
+                                </p>
+                                <h3 class="VK_n22 ">
+                                    Be Mindful of Geometry Compression
+                                </h3>
+                                <p class="m-0">
+                                    While not currently supported on Intel’s Xe-HPG ray-tracing hardware, lossless
+                                    geometry compression in the RTAS may be supported by future ray-tracing
+                                    implementations. The guidelines in the
+                                    <a href="" class="Vk_text_underline_dots VK_a">
+                                        DXR spec
+                                    </a>
+                                    are generally applicable, and should be followed. Some additional guidelines are
+                                    listed below:
+                                </p>
+                                <ul>
+                                    <li>
+                                        Lossless compression might be disabled for “updatable” RTAS to remove its impact
+                                        on BVH refit performance. Therefore, updatable BVHs are likely to consume more
+                                        memory and be slower to trace, even if no updates are ever performed. Do not
+                                        make RTAS updatable unless necessary.
+                                    </li>
+                                    <li>
+                                        Lossless compression might be disabled for FAST_BUILD ray flags to improve build
+                                        performance. We recommend using PREFER_FAST_TRACE for static geometry.
+                                    </li>
+                                    <li>
+                                        Lossless compression may be deferred until the RTAS is compacted. Always compact
+                                        static RTAS.
+                                    </li>
+                                    <li>
+                                        Compressed vertex formats such as float16 and snorm may make lossless
+                                        compression more effective, and reduce memory footprint. However, per-geo
+                                        transforms will always be applied at full precision, so use of the per-geo
+                                        transform may erase any benefit from compressed vertices.
+                                    </li>
+                                </ul>
+                            </section>
+                            <section class="mt-5" id="VK_General_Shader_Optimization_Guidelines">
+                                <h3 class="VK_side_heading">
+                                    General Shader Optimization Guidelines
+                                </h3>
+                                <p>
+                                    This section provides authoring guidelines for ray-tracing shaders.
+                                </p>
+                                <h3 class="VK_n22">
+                                    Create Space for Compiler Optimization
+                                </h3>
+                                <ul>
+                                    <li>
+                                        Always use as many ray flags as possible. Ray flags communicate information
+                                        which the compiler can exploit. If you know that all your instances are already
+                                        opaque, it is still worthwhile to use RAY_FLAG_FORCE_OPAQUE. Avoid passing ray
+                                        flags via constant buffers. Use compile-time constants instead, so the compiler
+                                        can see them.
+                                    </li>
+                                    <li>
+                                        Never include a shader in an RTPSO that will not be used by a particular
+                                        dispatch.
+                                    </li>
+                                    <li>Use separate RTPSOs for separate ray-tracing passes (shadows, Ambient Occlusion
+                                        [AO], reflections, etc.). Remember that the compiler has no visibility into
+                                        which shaders are used in which shader-records. Combining all possible shaders
+                                        into a single “uber-PSO” forces the compiler to assume that all of them might be
+                                        used at once, even if the app knows that this is not the case.
+                                    </li>
+                                    <li>
+                                        If you do not use ray recursion, set the recursion depth to 1. Set maximum
+                                        payload size and hit shader attribute counts as low as possible.
+                                    </li>
+                                    <li>
+                                        If possible, use only one
+                                        <b>TraceRay()</b>
+                                        call per shader.
+                                    </li>
+                                    <li>
+                                        Use only one ray-generation shader per RTPSO, ideally with only one
+                                        <b>
+                                            TraceRay()
+                                        </b>
+                                        call. This allows the compiler to see what the calling code will be doing during
+                                        hit shader compilation, and optimize accordingly.
+                                    </li>
+                                    <li>
+                                        Immutable PSOs provide considerably more optimization flexibility for the driver
+                                        and compiler, because all shaders are visible to the compiler at the same time.
+                                        RT-PSOs should be immutable whenever practical.
+                                    </li>
+                                </ul>
+                                <p>
+                                    Be mindful of Intel RTRT’s TSU-based implementation by considering the following:
+                                </p>
+                                <div class="VK_theme_bg border p-4 rounded-3">
+                                    <div class="VK_code-container">
+                                        <div class="VK_line-number"></div>
+                                        <code class="VK_theme_color">
+<pre class="VK_code-block"><p class="m-0"><span class="VK_code_blue">struct </span> MyRayPayload
+{
+    uint material_index;
+    uint geometry_index;
+    float2 barycentrics;
+	uint prim_index;
+};
+
+RWTexture2D &lt;float3&gt; render_target;
+
+<span class="VK_code_blue">struct </span>LocalRootArguments
+{
+    uint material_index;
+    uint geometry_index;
+};
+
+ConstantBuffer&lt;LocalRootArguments&gt; local_arguments;
+Texture2D all_my_textures[];
+StructuredBuffer&lt;float2&gt; all_my_uvs[];
+StructuredBuffer&ltuint3&gt; all_my_index_buffers[];
+sampler all_my_samplers[];
+RWTexture2D&lt;float3&gt; render_target;
+
+[shader(<span class="VK_code_blue">"closesthit"</span>)]
+<span class="VK_code_blue">void </span>chs_main( inout MyRayPayload pl, BuiltInTriangleIntersectionAttributes hit_attributes )
+{
+    pl.material_index = local_arguments.material_index;
+    pl.geometry_index = local_arguments.geometry_index;
+    pl.barycentrics = hit_attributes.barycentrics;
+    pl.prim_index = PrimitiveIndex();
+}
+
+[shader(<span class="VK_code_blue">"raygeneration"</span>)]
+<span class="VK_code_blue">void </span>main( )
+{
+    MyRayPayload pl;
+    TraceRay( ... pl );
+
+    <span class="VK_code_comment">// BAD: Resource operations use non-uniform descriptor indices</span>
+    uint3 indices = all_my_index_buffers[pl.geometry_index][3*pl.prim_index];
+    float2 uv0 = all_my_uvs[pl.geometry_index][indices.x];
+    float2 uv1 = all_my_uvs[pl.geometry_index][indices.y];
+    float2 uv2 = all_my_uvs[pl.geometry_index][indices.z];
+    float2 bary = pl.barycentrics.xy;
+    float2 interpolated_uv = uv0*bary.x + uv1*bary.y + uv2*(1-bary.x-bary.y);
+
+    float3 color = all_my_textures[pl.material_id].Sample( all_my_samplers[pl.material_id], interpolated_uv );
+
+render_target.Store( DispatchRaysIndex().xy, color );
+}</p></pre>
+                                        </code>
+                                    </div>
+                                </div>
+                                <p class="mt-5">
+                                    The following code sample shows the proper implementation, which minimizes
+                                    communication and exploits the fact that local root arguments are wave-uniform on
+                                    Intel® Xe-HPG Architecture.
+                                </p>
+                                <div class="VK_theme_bg border p-4 rounded-3">
+                                    <div class="VK_code-container">
+                                        <div class="VK_line-number"></div>
+                                        <code class="VK_theme_color">
+<pre class="VK_code-block"><p class="m-0"><span class="VK_code_blue">struct</span> MyRayPayload
+{
+    <span class="VK_code_comment">// no payload necessary</span>
+};
+
+
+RWTexture2D&lt;float3&gt; render_target;
+
+<span class="VK_code_comment">// these resources are bound to the shader using</span>
+<span class="VK_code_comment">// local root buffers or descriptor tables</span>
+StructuredBuffer&lt;float2&gt; local_geometry_uvs;
+StructuredBuffer&lt;uint3&gt; local_index_buffer;
+Texture2D local_texture;
+sampler local_sampler;
+
+
+[shader(<span class="VK_code_blue">"closesthit"</span>)]
+<span class="VK_code_blue">void </span>chs_main( inout MyRayPayload pl, BuiltInTriangleIntersectionAttributes hit_attributes )
+{
+    <span class="VK_code_comment">// GOOD: Resource operations use uniform descriptors</span>
+    uint3 indices = local_index_buffer[PrimitiveIndex()];
+    float2 uv0 = local_geometry_uvs[indices.x];
+    float2 uv1 = local_geometry_uvs[indices.y];
+    float2 uv2 = local_geometry_uvs[indices.z];
+    float2 bary = hit_attributes.barycentrics.xy;
+    float2 interpolated_uv = uv0*bary.x + uv1*bary.y + uv2*(1-bary.x-bary.y);
+
+    float3 color = local_texture.Sample( local_sampler, interpolated_uv );
+    render_target.Store( DispatchRaysIndex().xy, color );
+}
+
+
+
+[shader(<span class="VK_code_blur">"raygeneration"</span>)]
+<span class="VK_code_blue">void </span>main( )
+{
+    MyRayPayload pl;
+    TraceRay( ... pl );
+}</p></pre>
+                                        </code>
+                                    </div>
+                                </div>
+                                <ul class="mt-5">
+                                    <li>
+                                        Avoid spills at re-packing points by minimizing live values across trace calls.
+                                        If possible, make all
+                                        <b>
+                                            TraceRay()
+                                        </b>
+                                        alls tail recursive.
+                                    </li>
+                                    <li>
+                                        Minimize redundant shader invocations. Use ray flags liberally. If you can
+                                        eliminate a shader stage then do so. There is a substantial cost for executing a
+                                        shader even if that shader is empty.
+                                    </li>
+                                    <li>
+                                        Pass ray payloads by reference to
+                                        <b>
+                                            TraceRay()
+                                        </b>
+                                        instead of copying them. Copying payload data may introduce a spill if a
+                                        <b>
+                                            TraceRay()
+                                        </b>
+                                        or
+                                        <b>
+                                            CallShader()
+                                        </b>
+                                        occurs.
+                                    </li>
+                                    <li>
+                                        Use callable shaders for compute tasks which exhibit high SIMD divergence. This
+                                        will give the TSU a chance to repack shaders for improved SIMD coherence.
+                                    </li>
+                                    <li>
+                                        In Intel RTRT’s implementation, ray payload structures are stored in memory.
+                                        Reads and writes to ray payloads compile to memory loads and stores. To conserve
+                                        cache footprint, and minimize memory transfers, applications should do the
+                                        following:
+                                    </li>
+                                    <li>
+                                        Keep ray payloads as small as possible. It is worthwhile to store ray payload
+                                        data in low-precision formats such as unorm or snorm, using ALU instructions to
+                                        convert back and forth.
+                                    </li>
+                                    <li>
+                                        Remove unnecessary fields from ray payloads. Do not put things in the ray
+                                        payload that you can get from other places, such as ray data or global
+                                        constants.
+                                    </li>
+                                    <li>
+                                        Do not initialize ray payloads before tracing unless downstream shaders depend
+                                        on it (and avoid depending on it).
+                                    </li>
+                                    <li>
+                                        Prefer recompute to save-and-restore. It is generally better to do work in hit
+                                        shaders than to store data in payloads and pass back up.
+                                    </li>
+                                    <li>
+                                        Avoid redundant payload updates.
+
+                                    </li>
+                                </ul>
+                                <h3 class="VK_n22 mb-5">
+                                    Any-Hit Shaders
+                                </h3>
+                                <ul>
+                                    <li>
+                                        Avoid any-hit shaders as much as possible. Added cost for triangles is very high
+                                        in extra shader launches and memory traffic. If you already have an intersection
+                                        shader, the added cost is not as high, but still non-zero.
+                                    </li>
+                                    <li>
+                                        Use opaque flags aggressively to avoid shader-record access during traversal. If
+                                        there is no opaque flag used, there will always be a performance penalty, even
+                                        if the shader record specifies a null any-hit shader.
+                                    </li>
+                                    <li>
+                                        Do not use any-hit shaders for intersection filtering by ray type. Instead, use
+                                        instance masking and ray flags whenever possible. Any-hit shaders should only be
+                                        used when there are no reasonable alternatives.
+                                    </li>
+                                    <li>
+                                        Make your any-hit shaders robust to redundant invocations. Do not use the
+                                        NO_DUPLICATE_ANY_HIT_SHADERS flag. See the section on
+                                        <a href="" class="Vk_text_underline_dots VK_a">
+                                            spatial splits
+                                        </a>
+                                        to understand why.
+                                    </li>
+                                    <li>
+                                        Avoid executing any-hit shaders. For alpha-tested geometry, ensure that the base
+                                        triangles tightly enclose the non-transparent areas. In general, the performance
+                                        penalty is larger for an additional shader invocation than for a few additional
+                                        triangles.
+                                    </li>
+                                </ul>
+                                <h3 class="VK_n22 mb-4">
+                                    Intersection Shaders
+                                </h3>
+                                <ul>
+                                    <li>
+                                        These are expensive for the same reasons as any-hit shaders. Avoid them as much
+                                        as possible.
+                                    </li>
+                                    <li>
+                                        Remember that implementations are allowed to invoke intersection shaders
+                                        multiple times. Be robust to duplicate invocations.
+                                    </li>
+                                    <li>
+                                        Do not use intersection shaders for ray/polygon intersection. Tessellate into
+                                        triangles and use hardware instead. Do not use intersection shaders if triangles
+                                        with any-hit shaders can accomplish the same task.
+                                    </li>
+                                    <li>
+                                        Do not traverse spatial data structures in intersection shaders. Generate
+                                        leaf-node AABBs and let the hardware do this for you.
+                                    </li>
+                                    <li>
+                                        Be generous with AABBs. A large cloud of AABBs with tight, non-overlapping
+                                        bounds is better than fewer AABBs with large void areas around the procedural
+                                        surface. See the section on
+                                        <a href="" class="Vk_text_underline_dots VK_a">
+                                            void areas
+                                        </a>
+                                        for more details.
+                                    </li>
+                                    <li>
+                                        Early-out of intersection shaders whenever possible. If it is not necessary to
+                                        enumerate every intersection (e.g., for alpha testing) then don’t do it.
+                                    </li>
+                                </ul>
+                            </section>
+                            <section class="mt-5" id="VK_DXR1_RayQueries">
+                                <h3 class="VK_side_heading">
+                                    DXR1.1 and RayQueries
+                                </h3>
+                                <p>
+                                    DXR1.1 and RayQueries expose a lower-level abstraction to ray tracing, and allow ray
+                                    tracing from all shader stages. As expected, a lower-level abstraction pushes more
+                                    responsibility to the developer.
+                                </p>
+                                <p>
+                                    DXR1.1 and RayQueries are fully supported on Intel GPUs from Intel® Arc™ GPU
+                                    onwards. However, on Intel® hardware, they come at the cost of disabling the use of
+                                    the TSU to generate coherent shading requests, as RayQueries implement a synchronous
+                                    form of ray tracing. As a result, RayQueries don't fully leverage Intel’s
+                                    ray-tracing hardware which has been designed with asynchronous ray tracing in mind.
+                                </p>
+                                <p>
+                                    Above, this guide describes how the TSU 'sorts’ the execution of hit shaders to make
+                                    sure that all SIMD lanes of the XVE, that run the hit shaders, run the same code,
+                                    and access the same material resources. (See
+                                    <a href="" class="Vk_text_underline_dots VK_a">
+                                        Understanding the Thread Sorting Unit
+                                    </a>)
+                                </p>
+                                <p class="m-0">
+                                    As a reminder, the main reasons for poor XVE/SIMD utilization in ray-tracing
+                                    workloads are as follows:
+                                </p>
+                                <ol>
+                                    <li>
+                                        Divergent ray traversal duration/steps for rays, which cause all SIMD lanes of a
+                                        wave to be blocked until the longest ray traversal path is done.
+                                        <br>
+                                        <br>
+                                        This is depicted on the right-hand side of Figure 7. It shows how RayQueries
+                                        stall the execution on all lanes until the longest ray is done. In the same
+                                        throw, RayQueries also stalls the thread of execution which executes the current
+                                        wave. This thread is not available to execute other asynchronous work anymore,
+                                        as depicted on the left-hand side of Figure 7.
+                                        <br>
+                                        As shown in Figure 8, Intel Arc GPUs can avoid all these issues by using DXR1.0
+                                        and hit shaders.
+                                    </li>
+                                    <li>
+                                        As rays hit geometry, they trigger the execution of divergent shader code paths.
+                                        Therefore, the lanes of a SIMD wave may need to execute different hit/material
+                                        shaders. This can mean that all shader paths need to be executed sequentially
+                                        <br>
+                                        <br>
+                                        Here it falls to the developer to write rendering/compute passes that sort ray
+                                        hits by execution path to make sure hits can be processed efficiently by the
+                                        SIMD engines of modern GPUs.
+                                        <br>
+                                        <br>
+                                        These sorting passes add complexity and reduce the time budget the GPU can spend
+                                        tracing rays in each frame.
+                                        Intel Arc GPUs can typically skip these sorting passes if DXR1.0 is used and the
+                                        TSU can sort shader code execution.
+                                    </li>
+                                    <li>
+                                        Because rays hit geometry with divergent materials, SIMD lanes may need to fetch
+                                        from diverging resources to satisfy shading requests.
+                                        <br>
+                                        <br>
+                                        Again, to work around this issue developers need to add sorting passes. Intel
+                                        Arc GPUs can typically skip these sorting passes if DXR1.0 is used and the TSU
+                                        can manage requests.
+                                    </li>
+                                </ol>
+                                <div class="d-flex">
+                                    <div>
+                                        <img src="/img/vivek/VK_172.png" class="w-100" alt="">
+                                    </div>
+                                </div>
+                                <div class="my-3 py-4 px-3 VK_bg_e6">
+                                    <p class="m-0">
+                                        Figure 7. RayQueries can stall execution in many places.
+                                    </p>
+                                </div>
+                                <div class="d-flex">
+                                    <div>
+                                        <img src="/img/vivek/VK_173.png" class="w-100" alt="">
+                                    </div>
+                                </div>
+                                <div class="my-3 py-4 px-3 VK_bg_e6">
+                                    <p class="m-0">
+                                        Figure 8. DXR1.0 shaders benefit from Intel® Arc™ GPUs asynchronous ray-tracing
+                                        architecture
+                                    </p>
+                                </div>
+                                <p class="m-0">
+                                    Shaders that use RayQueries need to be implemented with care, especially in compute
+                                    shaders:
+                                </p>
+                                <ul>
+                                    <li>
+                                        On Intel architecture, groupshared memory is allocated out of the same L1 cache
+                                        which services the RTU. As a result, use of groupshared memory in a kernel can
+                                        degrade ray-tracing performance. This can occur even if the groupshared memory
+                                        is running on a different queue (e.g. an Async compute queue).
+                                    </li>
+                                    <li>
+                                        For best results, compute shaders that use ray queries should avoid using
+                                        groupshared memory, and the application should avoid scheduling
+                                        groupshared-intensive work concurrently with other kernels that use ray tracing.
+                                    </li>
+                                    <li>
+                                        If you cannot avoid using groupshared memory and ray-tracing together, be
+                                        careful with barriers in multi-wave workgroups.
+                                    </li>
+                                    <li>
+                                        Try to avoid barriers straight after issuing ray queries.
+                                    </li>
+                                    <li>
+                                        A barrier may force all waves to wait for the longest ray in all waves.
+                                    </li>
+                                    <li>
+                                        Try to keep data within a wave as long as possible.
+                                    </li>
+                                    <li>
+                                        Inside a wave, use wave intrinsics instead of barriers.
+                                    </li>
+                                </ul>
+                                <p>
+                                    Refer to the code sample below to review a shader snippet that can result in all
+                                    waves waiting for the longest ray in a workgroup, which isn’t optimal.
+                                </p>
+                                <div class="VK_theme_bg border p-4 rounded-3">
+                                    <div class="VK_code-container">
+                                        <div class="VK_line-number"></div>
+                                        <code class="VK_theme_color">
+<pre class="VK_code-block"><p class="m-0">groupshared <span class="VK_code_blur">float</span>RayResults[N_RESULTS];
+
+[numthreads(N_WAVES*WAVE_SIZE,<span class="VK_code_blue">1</span>, <span class="VK_code_blue">1</span>)]
+main(...)
+{
+    ZeroRayResults(); <span class="VK_code_comment">// set RayResults to 0.0f</span>
+    <span class="VK_code_blue">while</span>( GetRaysForCurrentWave(...) )
+    {
+        RayQuery<...> rq;
+        rq.TraceRayInline(gRtScene, <span class="VK_code_blue">0</span>,<span class="VK_code_blue"> 0xff,</span>Rays[lane]);
+        rq.Proceed();
+        GroupMemoryBarrierWithGroupSync();
+    
+        <span class="VK_code_blue">if</span>(rq.CommittedStatus()==COMMITTED_NOTHING)
+        RayResults[GetRayResultsIndex()] += <span class="VK_code_blue">1.0f</span>;
+    }
+
+    <span class="VK_code_comment">// iterate over RayResults to compute final result</span>
+    ...
+}</p></pre>
+                                        </code>
+                                    </div>
+                                </div>
+                                <p class="mt-5">
+                                    The following code sample is a better example, showing a good multi-wave workgroup.
+                                </p>
+                                <div class="VK_theme_bg border p-4 rounded-3">
+                                    <div class="VK_code-container">
+                                        <div class="VK_line-number"></div>
+                                        <code class="VK_theme_color">
+<pre class="VK_code-block"><p class="m-0">groupshared <span class="VK_code_blue">float </span>RayResults[N_WAVES][N_RESULTS];
+
+[numthreads(N_WAVES*WAVE_SIZE, <span class="VK_code_blue">1</span>, <span class="VK_code_blue">1</span>)]
+main(...)
+{
+    <span class="VK_code_blue">float </span>LocalRayResults[N_RESULTS] = { <span class="VK_code_blue">0.0f </span>};
+    ZeroRayResults(); <span class="VK_code_comment">// set RayResults to 0.0f</span>
+
+    <span class="VK_code_blue">while</span>( GetRaysForCurrentWave(...) )
+    {
+        RayQuery<...> rq;
+        rq.TraceRayInline(gRtScene,<span class="VK_code_blue"> 0</span>,<span class="VK_code_blue"> 0xff</span>, Rays[lane]));
+        rq.Proceed();
+    
+        <span class="VK_code_blue">if</span>(rq.CommittedStatus()==COMMITTED_NOTHING)
+            LocalRayResults[GetRayResultsIndex()] += <span class="VK_code_blue">1.0f</span>;
+    }
+
+    <span class="VK_code_comment">// use wave intrinsics to combine results from waves</span>
+
+    <span class="VK_code_blue">if</span>(WaveIsFirstLane() ) 
+    {
+        <span class="VK_code_blue">for</span> ( <span class="VK_code_blue"> int</span> i = 0; i < N_RESULTS; ++i )
+            RayResults[current_wave][i] = WaveActiveSum(LocalRayResults[i]);
+    }
+
+    GroupMemoryBarrierWithGroupSync();
+
+    <span class="VK_code_comment">// iterate over RayResults to compute final result</span>
+    ...
+}</p></pre>
+                                        </code>
+                                    </div>
+                                </div>
+                            </section>
+                            <section class="mt-5" id="VK_Conclusion">
+                                <h3 class="VK_side_heading fw-light">
+                                    Conclusion
+                                </h3>
+                                <p>
+                                    Real-time ray tracing was once considered too resource-intensive for real-time
+                                    performance, but the technology continues to gain acceptance. Developers seeking to
+                                    add realism and build immersive qualities into their projects should consider the
+                                    benefits of learning this technology as it grows in importance. This guide joins a
+                                    growing suite of tools, APIs, specifications, and guidelines to help in that effort.
+                                </p>
+                            </section>
+                            <section class="mt-5" id="VK_Additional_Resources">
+                                <h3 class="fw-light VK_side_heading">
+                                    Additional Resources
+                                </h3>
+                                <ul>
+                                    <li>
+                                        <a href="" class="Vk_text_underline_dots VK_a">
+                                            DirectX* Ray Tracing Functional Specification
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="" class="Vk_text_underline_dots VK_a">
+                                            Intel Ray Tracing landing page
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="" class="Vk_text_underline_dots VK_a">
+                                            Intel® Graphics Processing Units (GPUs) landing page
+                                        </a>
+                                    </li>
+                                </ul>
+                            </section>
                         </div>
                     </div>
                 </div>
-            </div>
+        </section>
+
+        <section class="py-5">
+            <div class="VK_cont">
+                <div class="row m-0">
+                    <div class="col">
+                        <p>
+                            Product and Performance Information
+                        </p>
+                        <p class="VK_font14">
+                            Performance varies by use, configuration and other factors. Learn more at
+                            <a href="" class="Vk_text_underline_dots VK_a">
+                                www.Intel.com/PerformanceIndex.
+                            </a>
+                        </p>
+                    </div>
+                </div>
             </div>
         </section>
+
 
         <!-- footer -->
         <footer>
@@ -430,7 +1673,7 @@
 
     <!---------------- Javascript Files ---------------->
 
-    <!-- <script>
+    <script>
         // navbar include
         fetch('/y_index/y_navbar.html')
             .then(response => response.text())
@@ -443,7 +1686,7 @@
             .then(data => {
                 document.getElementById('footer').innerHTML = data;
             });
-    </script> -->
+    </script>
 
     <!-- jquery -->
     <script src="/js/jquery-3.7.1.js"></script>
@@ -458,7 +1701,7 @@
     <script src="/js/vivek.js"></script>
 
     <!-- all min -->
-    <script src="/js/all.min.js"></script>
+    <!-- <script src="/js/all.min.js"></script> -->
 
 </body>
 
