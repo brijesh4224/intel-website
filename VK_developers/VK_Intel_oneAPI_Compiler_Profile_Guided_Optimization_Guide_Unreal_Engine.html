@@ -113,12 +113,13 @@
                                             </a>
                                         </p>
                                         <p class="mb-2">
-                                            <a href="#VK_Parting_Segue_Future_Beyond" class="text-decoration-none VK_a">
+                                            <a href="#VK_Build_Profile_Optimized_Configuration"
+                                                class="text-decoration-none VK_a">
                                                 Build Profile-Optimized Configuration
                                             </a>
                                         </p>
                                         <p class="mb-2">
-                                            <a href="#VK_Parting_Segue_Future_Beyond" class="text-decoration-none VK_a">
+                                            <a href="#VK_Closing_Thoughts" class="text-decoration-none VK_a">
                                                 Closing Thoughts
                                             </a>
                                         </p>
@@ -523,6 +524,9 @@ bPGOOptimize = false;</p></pre>
                                         </div>
                                     </section>
                                     <section class="mt-5" id="VK_CaptureRepresentative_Profile">
+                                        <h3 class="VK_side_heading fw-light">
+                                            Capture Representative Profile
+                                        </h3>
                                         <p class="m-0">
                                             Once the profile-enabled build has completed, a representative profile needs
                                             to be gathered by running the game.
@@ -543,10 +547,136 @@ bPGOOptimize = false;</p></pre>
                                             </li>
                                         </ul>
                                     </section>
-                                    <section class="mt-5" id="VK_Merge_Profiles"></section>
+                                    <section class="mt-5" id="VK_Merge_Profiles">
+                                        <h3 class="VK_side_heading fw-light">
+                                            Merge Profiles
+                                        </h3>
+                                        <p>
+                                            The generated profraw from the previous step and previous profdata file(s)
+                                            need to be merged into a final profdata file the linker can apply for the
+                                            profile-optimized build. This step uses
+                                            <span class="d-inline-block VK_bg_e6">llvm-profgen.exe</span>
+                                            and
+                                            <span class="d-inline-block VK_bg_e6">llvm-profdata.exe</span>
+                                            which are included in the install directory of the Intel®
+                                            oneAPI DPC++/C++ compiler. These tools are different from the similarly
+                                            named ones installed with Clang/LLVM and are not interoperable.
+                                        </p>
+                                        <p>
+                                            Multiple files from multiple different systems can be merged in this step to
+                                            produce the final output file.
+                                        </p>
+                                        <div>
+                                            <div class="VK_theme_bg border p-3 rounded-3">
+                                                <div class="text-end">
+                                                    <button
+                                                        class="m-0 text-primary border-0 bg-transparent VK_copy_btn">
+                                                        <i class="fa-regular fa-copy"></i>
+                                                    </button>
+                                                </div>
+                                                <code class="VK_theme_color">
+<pre><p class="m-0">llvm-profdata.exe merge CitySample-Win64-Test-IRPGO.profraw [profile...] -output CitySample-Win64-Test.profdata</p></pre>
+                                                </code>
+                                            </div>
+                                        </div>
+                                        <ul>
+                                            <li>
+                                                The profdata file should be named
+                                                Project-Platform-Configuration.profdata, ex:
+                                                CitySample-Win64-Test.profdata for a CitySample Test build on Windows.
+                                            </li>
+                                            <li>
+                                                The profdata file should be placed in
+                                                ProjectDir\Platforms\Windows\Build\PGO\ so the build tool can find the
+                                                profile during the link step.
+                                            </li>
+                                        </ul>
+                                    </section>
+                                    <section class="mt-5" id="VK_Build_Profile_Optimized_Configuration">
+                                        <h3 class="VK_side_heading fw-light">
+                                            Build Profile-Optimized Configuration
+                                        </h3>
+                                        <p>
+                                            The last step to produce an optimized build is applying the profiles. In the
+                                            project's Target.cs file, set the following variables to enable link time
+                                            optimization and a PGO optimized build. Be sure the build configuration
+                                            (Development, Test, Shipping) matches the configuration of the profdata
+                                            generated in the last steps:
+                                        </p>
+                                        <div>
+                                            <div class="VK_theme_bg border p-3 rounded-3">
+                                                <div class="text-end">
+                                                    <button
+                                                        class="m-0 text-primary border-0 bg-transparent VK_copy_btn">
+                                                        <i class="fa-regular fa-copy"></i>
+                                                    </button>
+                                                </div>
+                                                <code class="VK_theme_color">
+<pre><p class="m-0">bAllowLTCG = true;
+bPGOProfile = false;
+bPGOOptimize = true;</p></pre>
+                                                </code>
+                                            </div>
+                                        </div>
+                                        <ul>
+                                            <li>
+                                                Rebuild
+                                            </li>
+                                            <li>
+                                                Binary is now optimized by instrumented PGO!
+                                            </li>
+                                        </ul>
+                                    </section>
+                                    <section class="mt-5" id="VK_Closing_Thoughts">
+                                        <h3 class="VK_side_heading fw-light">
+                                            Closing Thoughts
+                                        </h3>
+                                        <ul>
+                                            <li>
+                                                Profile guided optimization is a powerful technique to optimize your
+                                                Unreal Engine 5 workload.
+                                            </li>
+                                            <li>
+                                                PGO on ICX works across all PC CPU hardware and vendors without any code
+                                                changes.
+                                            </li>
+                                            <li>
+                                                PGO can increase overall performance on CPU-bound workloads and improve
+                                                power on GPU-bound ones.
+                                            </li>
+                                            <li>
+                                                On systems with a shared power budget between the CPU and GPU (often
+                                                mobile), lowering the demands on the CPU with PGO can increase overall
+                                                performance by allowing the system to give more power to the GPU.
+                                            </li>
+                                            <li>
+                                                Profiles should be re-gathered when a large amount of code changes. For
+                                                example, as part of an engine upgrade or code refactor.
+                                            </li>
+                                        </ul>
+                                    </section>
                                 </div>
                             </div>
                         </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!--  -->
+        <section class="py-5">
+            <div class="VK_cont">
+                <div class="row m-0">
+                    <div class="col">
+                        <p>
+                            Product and Performance Information
+                        </p>
+                        <p class="VK_font14">
+                            Performance varies by use, configuration and other factors. Learn more at
+                            <a href="" class="Vk_text_underline_dots VK_a">
+                                www.Intel.com/PerformanceIndex.
+                            </a>
+                        </p>
                     </div>
                 </div>
             </div>
@@ -565,7 +695,7 @@ bPGOOptimize = false;</p></pre>
 
     <!---------------- Javascript Files ---------------->
 
-    <!-- <script>
+    <script>
         // navbar include
         fetch('/y_index/y_navbar.html')
             .then(response => response.text())
@@ -578,7 +708,7 @@ bPGOOptimize = false;</p></pre>
             .then(data => {
                 document.getElementById('footer').innerHTML = data;
             });
-    </script> -->
+    </script>
 
     <!-- jquery -->
     <script src="/js/jquery-3.7.1.js"></script>
@@ -593,7 +723,7 @@ bPGOOptimize = false;</p></pre>
     <script src="/js/vivek.js"></script>
 
     <!-- all min -->
-    <script src="/js/all.min.js"></script>
+    <!-- <script src="/js/all.min.js"></script> -->
 
 
 </body>
