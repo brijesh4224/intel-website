@@ -1675,7 +1675,7 @@ let VK_purley_power_delivery_data = [
     },
 ]
 
-
+// purley 
 let VK_purley_high_speed_data = [
     {
         name: "Intel® Interconnect Model Analyzer and Domain Converter (Intel® IMADC)",
@@ -1951,6 +1951,8 @@ let VK_purley_menufacturing_data = [
     }
 ]
 
+
+// harrisonville
 let VK_harrisonville_tools_data = [
     {
         name: "DDR4 Memory VR Test Tool Master Module for Narrow DIMM Pitch Platforms",
@@ -2014,6 +2016,183 @@ let VK_harrisonville_tools_data = [
     },
 ]
 
+let VK_Harrisonville_Power_Delivery_VRD_Design_Power_Management_data = [
+    {
+        name: "BGA1310-DNV-16C-BLACK Interposer for the Low Power VR Test Tool",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "BGA1310 Retention Mechanism",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "BGA1310-DNV-LPVRTT Interposer",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "BGA1310-DNV Interposer",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: '.300"\/0.297" DIMM Pitch Rigid Connector For Narrow DIMM Pitch DDR4 Memory VR Test Tool',
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: '0.310" DIMM Pitch Rigid Connector For Narrow DIMM Pitch DDR4 Memory VR Test Tool',
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "DDR4 Memory VR Test Tool Master Module for Narrow DIMM Pitch Platforms",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "DDR4 Memory VR Test Tool Kit for Narrow DIMM Pitch Platforms",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "DDR4 Memory VR Test Tool Master Module for Narrow DIMM Pitch Platforms Rev. J",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "DDR4 Memory VR Test Tool Slave Module for Narrow DIMM Pitch Platforms Rev. J",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "Platform - VRTT Test Spreadsheet",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "Platform Power Delivery Validation Plan",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "Platform Memory Power Budget Calculator",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "Intel® TurboBoost/ Energy Counter Interrogation",
+        image: "VK_215.jpeg"
+    },
+]
+
+let VK_Harrisonville_Models_Simulation_Layout_data = [
+    {
+        name: "Channel Quality Comparison and Channel Check Tool",
+        image: "VK_216.jpeg"
+    },
+    {
+        name: "FloTHERM* Thermal Models",
+        image: "VK_217.jpeg"
+    },
+    {
+        name: "HSPICE* Signal Integrity Models and User Guide for USB",
+        image: "VK_218.jpeg"
+    },
+    {
+        name: "Processor DDR4 HSPICE* Signal Integrity Models and Model User's Guide",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "Memory Trace Length Calculator (TLC)",
+        image: "VK_217.jpeg"
+    },
+    {
+        name: "Intel® Memory Bit Error Rate Executable (Intel® MBERE)",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "HSPICE* Signal Integrity Models and User's Guide for SATA Interface",
+        image: "VK_217.jpeg"
+    },
+    {
+        name: "HSPICE* Signal Integrity Model and User Guide for PCIe* Gen 3",
+        image: "VK_217.jpeg"
+    },
+    {
+        name: "HSPICE* Signal Integrity Model and User Guide for Misc I/O",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "Platform HSPICE* Signal Integrity Model and User Guide for System Reference Clock Signals",
+        image: "VK_217.jpeg"
+    },
+]
+
+let VK_Harrisonville_BIOS_Firmware_System_Validation_Debug_data = [
+    {
+        name: "QuickAssist Technology (QAT)",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "CScripts for Platforms",
+        image: "VK_219.jpeg"
+    },
+    {
+        name: "Arium ECM-XDP3 or LX-1000 Intel JTAG Debugger",
+        image: "VK_220.jpeg"
+    },
+    {
+        name: "ASSET InterTech SourcePoint",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "LeCroy IOTA S/W for Intel® Silicon View Technology - Intel® AET and IOT",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "Tektronix* Solutions for Intel® Silicon View Technology - Intel® AET & IOT",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "Intel® Server Platform Services (SPS) Manageability Engine (ME) Firmware & Tools",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "Intel® Virtualization Technology (Intel® VT) for Directed I/O (VT-d) Firmware Tool Kit",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name: "Lauterbach Trace 32 Tools",
+        image: "nophoto-base_1.png"
+    },
+]
+
+let VK_Harrisonville_Buses_Electrical_Validation_Debug_data = [
+    {
+        name:"HSPICE* Signal Integrity Models and User Guide for USB",
+        image:"VK_221.jpeg"
+    },
+    {
+        name:"Processor DDR4 HSPICE* Signal Integrity Models and Model User's Guide",
+        image:"nophoto-base_1.png"
+    },
+    {
+        name:"Physical Layer Electrical Validation Tool (PLEVT)",
+        image:"VK_222.jpeg"
+    },
+    {
+        name:"Intel® Memory Bit Error Rate Executable (Intel® MBERE)",
+        image:"nophoto-base_1.png"
+    },
+    {
+        name:"HSPICE* Signal Integrity Models and User's Guide for SATA Interface",
+        image:"VK_217.jpeg"
+    },
+]
+
+let VK_Harrisonville_Thermal_Mechanical_Engineering_card_data = [
+    {
+        name:"DDR4 DIMM Thermal Test Vehicle (TTV)",
+        image:"nophoto-base_1.png"
+    },
+    {
+        name:"Platform Power Thermal Utility (PTU aka Maximum Power Program)",
+        image:"VK_223.jpeg"
+    },
+]
+
+
+// grangeville
 let VK_grangeville_tools_data = [
     {
         name: "Intel® ITP PDT Software Subscription",
@@ -2100,6 +2279,257 @@ let VK_grangeville_tools_data = [
         image: "nophoto-base_1.png"
     },
 ]
+
+let VK_VK_Grangeville_BIOS_Firmware_SystemValidation_Debug_data = [
+    {
+        name:"DTC 8.1 (DCPMM Error Injection) Card",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name:"Intel® ITP PDT Software Subscription",
+        image: "VK_224.jpeg"
+    },
+    {
+        name:"Intel® I3C USB Type-C Level Shift Adapter ",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name:"RSC2 System Control Cable (aka. Squid Cable)",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name:"Remote System Controller 2",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name:"Processor Update Utility (CHECKUP)",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name:"Microcode PDB Tool",
+        image: "VK_217.jpeg"
+    },
+    {
+        name:"Intel® TXT ToolKit (TTK) for Debug ACM",
+        image: "VK_217.jpeg"
+    },
+    {
+        name:"TXT: Intel® TXT Launch Policy Reference Kit",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name:"Trusted Compute Pools with Intel® Trusted Execution Technology (Intel® TXT)",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name:"Selftest 7",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name:"Flash Descriptor Tool (FDTool)",
+        image: "nophoto-base_1.png"
+    },
+]
+
+let VK_Grangeville_Power_Delivery_Power_Management_card_data = [
+    {
+        name:"PCI-e Power Delivery Adapter Card",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name:"5A Mini Slammer",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name:"Mini Slammer Control Cable",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name:"DDR3 SODIMM Memory VR Test Tool",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name:"BGA1667-BDX-NS Interposer",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name:"BGA2518-SKX-DE (Blue) Interposer",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name:"BGA2518-SKX-DE (Red) Interposer",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name:"BGA1667 (BDX-DE SOC) Interposer",
+        image: "nophoto-base_1.png"
+    },
+    {
+        name:'0.300"/0.297" DIMM Pitch Rigid Connector For Narrow DIMM Pitch DDR4 Memory VR Test Tool',
+        image: "nophoto-base_1.png"
+    },
+    {
+        name:'0.310" DIMM Pitch Rigid Connector For Narrow DIMM Pitch DDR4 Memory VR Test Tool',
+        image: "nophoto-base_1.png"
+    },
+    {
+        name:'DDR4 Memory VR Test Tool Master Module for Narrow DIMM Pitch Platforms',
+        image: "nophoto-base_1.png"
+    },
+    {
+        name:'DDR4 Memory VR Test Tool Kit for Narrow DIMM Pitch Platforms',
+        image: "nophoto-base_1.png"
+    },
+]
+
+let VK_Grangeville_Models_Simulation_Layout_data = [
+    {
+        name:"Equalization Tap Conversion Tool",
+        image:"VK_225.jpeg"
+    },
+    {
+        name:"Channel Quality Comparison and Channel Check Tool",
+        image:"VK_226.jpeg"
+    },
+    {
+        name:"Intel® Interconnect Model Analyzer and Domain Converter (Intel® IMADC)",
+        image:"nophoto-base_1.png"
+    },
+    {
+        name:"Intel® Channel Checker",
+        image:"VK_227.jpeg"
+    },
+    {
+        name:"DDR3 Memory Trace Length Calculator (TLC)",
+        image:"VK_217.jpeg"
+    },
+    {
+        name:"FloTHERM* Thermal Models",
+        image:"VK_217.jpeg"
+    },
+    {
+        name:"IcePak* Thermal Models",
+        image:"VK_228.jpeg"
+    },
+    {
+        name:"HSPICE* Signal Integrity Models and User Guide for USB",
+        image:"VK_229.jpeg"
+    },
+    {
+        name:"Mechanical Models",
+        image:"VK_230.jpeg"
+    },
+    {
+        name:"Processor DDR4 HSPICE* Signal Integrity Models and Model User's Guide",
+        image:"nophoto-base_1.png"
+    },
+    {
+        name:"Intel® Interconnect Modeler and Loss Calculator (Intel® IMLC)",
+        image:"nophoto-base_1.png"
+    },
+    {
+        name:"Memory Trace Length Calculator (TLC)",
+        image:"VK_217.jpeg"
+    },
+]
+
+let VK_Grangeville_High_speed_Electrical_Validation_Debug_data = [
+    {
+        name:"Intel® Interconnect Model Analyzer and Domain Converter (Intel® IMADC)",
+        image:"nophoto-base_1.png"
+    },
+    {
+        name:"Intel® Electrical Validation Test Suite (Intel® EVTS)",
+        image:"nophoto-base_1.png"
+    },
+    {
+        name:"RMT extractor & Results Explorer",
+        image:"VK_217.jpeg"
+    },
+    {
+        name:"Public PCI Express* Resources from Intel",
+        image:"VK_231.jpeg"
+    },
+    {
+        name:"Intel® Interconnect Modeler and Loss Calculator (Intel® IMLC)",
+        image:"nophoto-base_1.png"
+    },
+    {
+        name:"PCI Sig - Compliance Base Board G3 (CBB3)",
+        image:"nophoto-base_1.png"
+    },
+    {
+        name:"PCI Sig - Compliance Load Board G3 (CLB3)",
+        image:"VK_232.jpeg"
+    },
+    {
+        name:"PCI Sig/Intel - PCIe* Signal Quality Control & Analysis Software (SigTest) support PCIe Gen3",
+        image:"VK_231.jpeg"
+    },
+    {
+        name:"Intel® Chipset SATA Motherboard Signal Quality Testing (MSQT) Methodology",
+        image:"VK_233.jpeg"
+    },
+    {
+        name:"SATA 3 Test Fixture (supports 6 Gb/s)",
+        image:"nophoto-base_1.png"
+    },
+    {
+        name:"Physical Layer Electrical Validation Tool (PLEVT)",
+        image:"VK_222.jpeg"
+    },
+    {
+        name:"USB 3.0 Signal Quality Test Software and Electrical Analysis Tool",
+        image:"nophoto-base_1.png"
+    },
+]
+
+let VK_Grangeville_Thermal_Mechanical_Engineering_card_data = [
+    {
+        name:"FloTHERM* Thermal Models",
+        image:"VK_217.jpeg"
+    },
+    {
+        name:"IcePak* Thermal Models",
+        image:"VK_228.jpeg"
+    },
+    {
+        name:"Mechanical Models",
+        image:"VK_230.jpeg"
+    },
+    {
+        name:"DDR3/DDR4 DIMM System Thermal Design Power (TDP) Calculator for Platforms",
+        image:"nophoto-base_1.png"
+    },
+    {
+        name:"DDR3/DDR4 DIMM System Thermal Calculator for Platforms",
+        image:"nophoto-base_1.png"
+    },
+    {
+        name:"DDR4 DIMM Thermal Test Vehicle (TTV)",
+        image:"nophoto-base_1.png"
+    },
+    {
+        name:"Platform Power Thermal Utility (PTU aka Maximum Power Program)",
+        image:"VK_223.jpeg"
+    },
+    {
+        name:"Processor Thermal Test Vehicle (TTV)",
+        image:"nophoto-base_1.png"
+    },
+]
+
+let VK_Grangeville_Manufacturing_Tool_data = [
+    {
+        name:"Boundry Scan Description Language (BSDL) File - SoC",
+        image:"nophoto-base_1.png"
+    },
+    {
+        name:"Boundary Scan Description Language (BSDL) File",
+        image:"VK_217.jpeg"
+    },
+]
+
 
 let VK_grantley_tools_data = [
     {
@@ -4215,6 +4645,8 @@ let VK_chk_page = () => {
                 fetch_data = VK_server_tools_data;
                 break;
 
+
+            // purley
             case 'VK_Purley_tools':
                 id = 'VK_Purley_tool_card_parent';
                 fetch_data = VK_Purley_tools_data;
@@ -4280,15 +4712,76 @@ let VK_chk_page = () => {
                 fetch_data = VK_purley_menufacturing_data
                 break;
 
+
+            // harrisonville
             case 'VK_Harrisonville_tools':
                 id = "VK_harrisonville_card_parent";
                 fetch_data = VK_harrisonville_tools_data;
                 break;
 
+            case 'VK_Harrisonville_Power_Delivery_VRD_Design_Power_Management':
+                id = "VK_Harrisonville_Power_Delivery_VRD_Design_Power_Management_card_parrent"
+                fetch_data = VK_Harrisonville_Power_Delivery_VRD_Design_Power_Management_data
+                break;
+
+            case 'VK_Harrisonville_Models_Simulation_Layout':
+                id = 'VK_Harrisonville_Models_Simulation_Layout_card_parent';
+                fetch_data = VK_Harrisonville_Models_Simulation_Layout_data;
+                break;
+
+            case 'VK_Harrisonville_BIOS_Firmware_System_Validation_Debug':
+                id = 'VK_Harrisonville_BIOS_Firmware_System_Validation_Debug_card_parent';
+                fetch_data = VK_Harrisonville_BIOS_Firmware_System_Validation_Debug_data;
+                break;
+
+            case 'VK_Harrisonville_Buses_Electrical_Validation_Debug':
+                id = 'VK_Harrisonville_Buses_Electrical_Validation_Debug_card_parent';
+                fetch_data = VK_Harrisonville_Buses_Electrical_Validation_Debug_data
+                break;
+
+            case 'VK_Harrisonville_Thermal_Mechanical_Engineering':
+                id = 'VK_Harrisonville_Thermal_Mechanical_Engineering_card';
+                fetch_data = VK_Harrisonville_Thermal_Mechanical_Engineering_card_data;
+                break;
+
+
+            // grangeville
             case 'VK_grangeville_tools':
                 id = 'VK_grangeville_card_parent';
                 fetch_data = VK_grangeville_tools_data;
                 break;
+
+            case 'VK_Grangeville_BIOS_Firmware_SystemValidation_Debug':
+                id = 'VK_Grangeville_BIOS_Firmware_SystemValidation_Debug_card_parent';
+                fetch_data = VK_VK_Grangeville_BIOS_Firmware_SystemValidation_Debug_data;
+                break;
+
+            case 'VK_Grangeville_Power_Delivery_Power_Management':
+                id = 'VK_Grangeville_Power_Delivery_Power_Management_card_data'
+                fetch_data = VK_Grangeville_Power_Delivery_Power_Management_card_data;
+                break;
+            
+            case 'VK_Grangeville_Models_Simulation_Layout':
+                id = 'VK_Grangeville_Models_Simulation_Layout_card'
+                fetch_data = VK_Grangeville_Models_Simulation_Layout_data;
+                break;
+            
+            case 'VK_Grangeville_High_speed_Electrical_Validation_Debug':
+                id = 'VK_Grangeville_High_speed_Electrical_Validation_Debug_card'
+                fetch_data = VK_Grangeville_High_speed_Electrical_Validation_Debug_data;
+                break;
+
+            case 'VK_Grangeville_Thermal_Mechanical_Engineering':
+                id = 'VK_Grangeville_Thermal_Mechanical_Engineering_card_parent'
+                fetch_data = VK_Grangeville_Thermal_Mechanical_Engineering_card_data
+                break;
+
+            case 'VK_Grangeville_Manufacturing_Tool':
+                id = 'VK_Grangeville_Manufacturing_Tool_data'
+                fetch_data = VK_Grangeville_Manufacturing_Tool_data
+                break;
+
+
 
             case 'VK_grantley_tools':
                 id = 'VK_grantley_card_parent';
@@ -4483,6 +4976,7 @@ let VK_chk_page = () => {
             default:
                 return;
         }
+        id
         custom_pagination(current_page, limit, fetch_data, id);
     }
     else {
@@ -4548,7 +5042,7 @@ let print_data = (Final_record_data, id) => {
             return `<div class="col-xxl-3 col-xl-3 col-lg-4 col-md-6 col-sm-6 col-12 my-2 my-4 VK_board_product_cart">
                         <a href="" class="text-decoration-none d-flex flex-column VK_board_overlap_link h-100">
                             <div class="VK_board_img">
-                                <img src="/img/vivek/${ele.image}" class="w-100" alt="">
+                                <img src="/img/vivek/${ele.image}" class="w-100 h-100 VK_object-cover" alt="">
                             </div>
                             <div class="d-flex align-items-stretch flex-column my-2">
                                 <div class="VK_board_card_name">
@@ -10673,7 +11167,7 @@ function VK_gpu_publishr_display_card() {
                             ${ele.date}
                         </p>
                         <p>
-                            ${ele.description.length >= 200 ? ele.description.slice(0,200)+'...' : ele.description}
+                            ${ele.description.length >= 200 ? ele.description.slice(0, 200) + '...' : ele.description}
                         </p>
                     </div>
                 </div>
@@ -10709,42 +11203,42 @@ function VK_gpu_publisher_search() {
 
 
 
-document.addEventListener('DOMContentLoaded',function(){
+document.addEventListener('DOMContentLoaded', function () {
     VK_code_liner();
 })
 
-function VK_code_liner(){
-     // Select all code blocks and their corresponding line number containers
-     const codeBlocks = document.querySelectorAll('.VK_code-block');
-     const lineNumberContainers = document.querySelectorAll('.VK_line-number');
-     
-     // Ensure that the number of code blocks matches the number of line number containers
-     if (codeBlocks.length !== lineNumberContainers.length) {
-         console.error('Mismatch between code blocks and line number containers.');
-         return;
-     }
- 
-     // Iterate over each code block and line number container pair
-     codeBlocks.forEach((codeBlock, index) => {
-         const lineNumberContainer = lineNumberContainers[index];
-         
-         // Split code into lines
-         const lines = codeBlock.textContent.split('\n');
-         
-         // Clear existing line numbers (if any)
-         lineNumberContainer.innerHTML = '';
- 
-         // Generate line numbers
-         lines.forEach((_, lineIndex) => {
-             const p = document.createElement('p');
-             p.className = 'VK_line-number-item m-0';
-             p.textContent = lineIndex + 1;
-             lineNumberContainer.appendChild(p);
-         });
- 
-         // Adjust height of line number container to match code block height
-         // lineNumberContainer.style.height = `${codeBlock.scrollHeight}px`;
-     });
+function VK_code_liner() {
+    // Select all code blocks and their corresponding line number containers
+    const codeBlocks = document.querySelectorAll('.VK_code-block');
+    const lineNumberContainers = document.querySelectorAll('.VK_line-number');
+
+    // Ensure that the number of code blocks matches the number of line number containers
+    if (codeBlocks.length !== lineNumberContainers.length) {
+        console.error('Mismatch between code blocks and line number containers.');
+        return;
+    }
+
+    // Iterate over each code block and line number container pair
+    codeBlocks.forEach((codeBlock, index) => {
+        const lineNumberContainer = lineNumberContainers[index];
+
+        // Split code into lines
+        const lines = codeBlock.textContent.split('\n');
+
+        // Clear existing line numbers (if any)
+        lineNumberContainer.innerHTML = '';
+
+        // Generate line numbers
+        lines.forEach((_, lineIndex) => {
+            const p = document.createElement('p');
+            p.className = 'VK_line-number-item m-0';
+            p.textContent = lineIndex + 1;
+            lineNumberContainer.appendChild(p);
+        });
+
+        // Adjust height of line number container to match code block height
+        // lineNumberContainer.style.height = `${codeBlock.scrollHeight}px`;
+    });
 }
 
 
