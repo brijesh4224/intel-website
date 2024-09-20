@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <!-- font family -->
+    <link href="https://fonts.cdnfonts.com/css/intel-clear" rel="stylesheet">
+    <!-- boootstap file -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <!-- costom css file -->
+    <link rel="stylesheet" href="/css/vivek.css">
+    <link rel="stylesheet" href="/css/yatri.css">
+
+    <!-- all.min file -->
+    <link rel="stylesheet" href="/css/all.min.css">
+
+</head>
+
+<body>
+
+
+    <main>
+
+        <!-- header -->
+        <header>
+            <div id="navbar"></div>
+        </header>
+
+        <!-- poster -->
+        <section class=" VK_light_blue">
+            <div class="VK_cont">
+                <div class="row m-0">
+                    <div class="col-md-11 text-white">
+                        <h1 class="VK_py_pre_heading fw-light m-0 py-4">
+                            Tuning Guide for BERT-Based AI Inference with Intel® Advanced Matrix Extensions with 4th
+                            Generation Intel® Xeon® Scalable Processors
+                        </h1>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!--  -->
+        <section class="">
+            <div class="VK_cont py-5 VK_border_bottom">
+                <div class="row m-0">
+                    <div class="col-md-4 col-lg-3 p-0">
+                        <div class="VK_side_bar_postion_stickey bg-white">
+                            <ul class="list-unstyled VK_arc_navbar ps-3 ">
+                                <li>
+                                    <a href="#VK_Introduction"
+                                        class="VK_a text-decoration-none d-inline-block ps-2 py-1 VK_active_arc_link">
+                                        Introduction
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#VK_Server_Configuration"
+                                        class="VK_a text-decoration-none d-inline-block ps-2 py-1">
+                                        Server Configuration
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#VK_Hardware_Tuning"
+                                        class="VK_a text-decoration-none d-inline-block ps-2 py-1">
+                                        Hardware Tuning
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#VK_Software_Tuning"
+                                        class="VK_a text-decoration-none d-inline-block ps-2 py-1">
+                                        Software Tuning
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#VK_Naming_Conventions"
+                                        class="VK_a text-decoration-none d-inline-block ps-2 py-1">
+                                        BERT Tuning with Intel AMX
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#VK_TAA_XeSS" class="VK_a text-decoration-none d-inline-block ps-2 py-1">
+                                        Conclusion
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#VK_XeSS_Game_Setting_Recommendations"
+                                        class="VK_a text-decoration-none d-inline-block ps-2 py-1">
+                                        Feedback
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-8 ps-sm-5">
+                        <div class="pb-4">
+                            <div class="VK_section_descriptions">
+                                <div class="text-end">
+                                    <p class="m-0 VK_print_email_font">
+                                        <span class="VK_a mx-2 d-inline-block">
+                                            <i class="fa-solid fa-print"></i>
+                                        </span>
+                                        <span class="VK_a mx-2 d-inline-block">
+                                            <i class="fa-regular fa-envelope"></i>
+                                        </span>
+                                    </p>
+                                </div>
+                            </div>
+                            <section class="mt-5" id="VK_Introduction">
+                                <h3 class="VK_side_heading fw-light">
+                                    Introduction
+                                </h3>
+                                <p>
+                                    This guide is for users who are already familiar with the BERT model. It provides
+                                    recommendations for configuring hardware and software that provide the best
+                                    performance in most situations. However, note that we rely on the users to carefully
+                                    consider these settings for their specific scenarios, since the workload can be
+                                    deployed in multiple ways.
+                                </p>
+                                <p>
+                                    In this tuning guide, we use the Light Model Transformer as main optimization tool.
+                                    Light Model Transformer is a lightweight software tool that transforms a trained
+                                    TensorFlow* model into C++ code. The generated code is based on Intel® Math Kernel
+                                    Library for Deep Neural Networks (Intel® MKL-DNN) and provides interface to do
+                                    inference without any framework, intent to accelerate the inference performance.
+                                </p>
+                                <p>
+                                    4th generation Intel® Xeon® Scalable processors deliver workload-optimized
+                                    performance with built-in acceleration for AI, encryption, HPC, storage, database
+                                    systems, and networking. They feature unique security technologies to help protect
+                                    data on-premises or in the cloud.
+                                </p>
+                                <ul>
+                                    <li>
+                                        New built-in accelerators for AI, HPC, networking, security, storage and
+                                        analytics
+                                    </li>
+                                    <li>
+                                        Intel® Ultra Path Interconnect (Intel® UPI)
+                                    </li>
+                                    <li>
+                                        Intel® Speed Select
+                                    </li>
+                                    <li>
+                                        Hardware-enhanced security
+                                    </li>
+                                    <li>
+                                        New flex bus I/O interface (PCIe* 5.0 and CXL)
+                                    </li>
+                                    <li>
+                                        New flexible I/O interface up to 20 high-speed I/O (HSIO) lanes (PCI 3.0)
+                                    </li>
+                                    <li>
+                                        Increased I/O bandwidth with PCIe 5.0 (up to 80 lanes)
+                                    </li>
+                                    <li>
+                                        Increased memory bandwidth with DDR5
+                                    </li>
+                                    <li>
+                                        Increased multisocket bandwidth with Intel UPI 2.0 (up to 16 GT/s)
+                                    </li>
+                                    <li>
+                                        Support for Intel® Optane™ PMem 300 series
+                                    </li>
+                                </ul>
+                                <p>
+                                    Intel® Advanced Matrix Extensions (Intel® AMX) architecture is shown in Figure 1.
+                                </p>
+                                <div class="d-flex justify-content-center">
+                                    <div class="col-lg-10 col-xl-8">
+                                        <img src="/img/vivek/VK_237.png" class="w-100" alt="">
+                                        <p class="mt-3 text-center">
+                                            Figure 1.
+                                        </p>
+                                    </div>
+                                </div>
+                                <p>
+                                    Tiles are two-dimensional registers, and Tile Matrix Multiply Unite (TMUL) is an
+                                    accelerator, which carries out operations on the tiles. Specifically, TMUL is a grid
+                                    of fused multiply-add units that can read and write tiles. TMUL reads from two
+                                    source tiles, multiplies their values in a systolic pattern, and adds the result
+                                    into a destination tile.
+                                </p>
+                                <p>
+                                    For more information on Intel AMX, see
+                                    <a href="" class="Vk_text_underline_dots VK_a">
+                                        LWN.net.
+                                    </a>
+                                </p>
+                            </section>
+                            <section class="mt-5 pb-4" id="VK_Server_Configuration">
+                                <h3 class="VK_side_heading fw-light">
+                                    Server Configuration
+                                </h3>
+                                <p>
+                                    <b>
+                                        Hardware
+                                    </b>
+                                </p>
+                                <p>
+                                    The configuration described in this article is based on 4th generation Intel Xeon
+                                    processors. The server platform, memory, hard drives, and network interface cards
+                                    can be determined according to your usage requirements.
+                                </p>
+                                <div class="my-5">
+                                    <table class="">
+                                        <thead>
+                                            <tr>
+                                                <th class="text-center p-4 VK_table_color VK_table_start">
+                                                    Hardware
+                                                </th>
+                                                <th class="text-center p-4 VK_table_color VK_table_start">
+                                                    Model
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="VK_tbody">
+                                            <tr>
+                                                <td class="pb-4 VK_vertical_top VK_table_start">
+                                                    CPU
+                                                </td>
+                                                <td class="pb-4 VK_vertical_top VK_table_start">
+                                                    4th generation Intel Xeon Scalable processors, base frequency 1.9
+                                                    GHz
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="pb-4 VK_vertical_top VK_table_start">
+                                                    BIOS
+                                                </td>
+                                                <td class="pb-4 VK_vertical_top VK_table_start">
+                                                    EGSDCRB1.SYS.0090.D03.2210040200
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="pb-4 VK_vertical_top VK_table_start">
+                                                    Memory
+                                                </td>
+                                                <td class="pb-4 VK_vertical_top VK_table_start">
+                                                    512 GB (16x32 GB 4800 MT/s [4800 MT/s])
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="pb-4 VK_vertical_top VK_table_start">
+                                                    Storage/Disks
+                                                </td>
+                                                <td class="pb-4 VK_vertical_top VK_table_start">
+                                                    1x 349.3G Intel SSDPE21K375GA
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="pb-4 VK_vertical_top VK_table_start">
+                                                    NIC
+                                                </td>
+                                                <td class="pb-4 VK_vertical_top VK_table_start">
+                                                    1x Ethernet controller I225-LM
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <p class="mt-4">
+                                    <b>
+                                        Software
+                                    </b>
+                                </p>
+                                <div class="my-5">
+                                    <table class="">
+                                        <thead>
+                                            <tr>
+                                                <th class="text-center p-4 VK_table_color VK_table_start">
+                                                    Software
+                                                </th>
+                                                <th class="text-center p-4 VK_table_color VK_table_start">
+                                                    Version
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="VK_tbody">
+                                            <tr>
+                                                <td class="pb-4 VK_vertical_top VK_table_start">
+                                                    Operating System
+                                                </td>
+                                                <td class="pb-4 VK_vertical_top VK_table_start">
+                                                    CentOS* Stream release 8
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="pb-4 VK_vertical_top VK_table_start">
+                                                    Kernel
+                                                </td>
+                                                <td class="pb-4 VK_vertical_top VK_table_start">
+                                                    5.16.0+
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="pb-4 VK_vertical_top VK_table_start">
+                                                    Workload
+                                                </td>
+                                                <td class="pb-4 VK_vertical_top VK_table_start">
+                                                    BERT model
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="pb-4 VK_vertical_top VK_table_start">
+                                                    GNU Compiler Collection (GCC)*
+                                                </td>
+                                                <td class="pb-4 VK_vertical_top VK_table_start">
+                                                    8.5+
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="pb-4 VK_vertical_top VK_table_start">
+                                                    Intel® oneAPI Deep Neural Network Library (oneDNN)
+                                                </td>
+                                                <td class="pb-4 VK_vertical_top VK_table_start">
+                                                    2.6+
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </section>
+                            <section class="mt-5 pb-4" id="VK_Hardware_Tuning">
+                                <h3 class="VK_side_heading fw-light">
+                                    Hardware Tuning
+                                </h3>
+                                <p>
+                                    This guide targets using BERT optimizations on 4th gen Intel Xeon Scalable
+                                    processors with Intel® Advanced Matrix Extensions (Intel® AMX).
+                                </p>
+                                <p>
+                                    <b>
+                                        BIOS Settings
+                                    </b>
+                                </p>
+                                <p>
+                                    Download BIOS binaries from Intel or ODM-released BKC matched firmware binaries and
+                                    flush them to the board. This document is based on BKC#57.
+                                </p>
+                            </section>
+                            <section class="mt-5 pb-4" id="VK_Software_Tuning">
+                                <h3 class="VK_side_heading fw-light">
+                                    Software Tuning
+                                </h3>
+                                <p>
+                                    Software configuration tuning is essential. From the operating system to workload
+                                    configuration settings, they are all designed for general purpose applications and
+                                    default settings are almost never tuned for best performance.
+                                </p>
+                                <p>
+                                    <b>
+                                        Linux* Kernel Settings
+                                    </b>
+                                </p>
+                                <p>
+                                    Typically, a CentOS 8 Stream is chosen for the POC environment, but to enable AMX,
+                                    you need to update its kernel. At the current stage, you can use public version
+                                    5.16. In version 5.16 or the newer version, the Intel AMX feature is enabled by
+                                    default. No other specific settings are needed.
+                                </p>
+                                <p>
+                                    To check the kernel version after rebooting, use the
+                                    <b>
+                                        uname
+                                    </b>
+                                    command.
+                                </p>
+                                <p>
+                                    <b>
+                                        oneDNN Settings
+                                    </b>
+                                </p>
+                                <p>
+                                    In this tool, use oneDNN to call a function related to Intel AMX. For the Linux*
+                                    kernel version 5.16 and higher, only oneDNN version 2.6 and higher can support Intel
+                                    AMX instructions.
+                                </p>
+                                <p>
+                                    You can install oneDNN according to
+                                    <a href="" class="text-decoration-underline VK_a">
+                                        this reference
+                                    </a>.
+                                    Only oneDNN needs to be installed. No other components are needed.
+                                </p>
+                            </section>
+                            <section class="mt-5 pb-4" id="">
+                                <h3 class="VK_side_heading fw-light">
+                                    BERT Tuning with Intel AMX
+                                </h3>
+                                <p>
+                                    BERT is a widely used machine learning technique for natural language processing
+                                    (NLP) that has refreshed lots of records in NLP tasks since its inception. BERT has
+                                    also shown extremely strong performance in practical applications. For search,
+                                    machine translation, man-machine interaction, and other NLP services, BERT has been
+                                    widely adopted across multiple user scenarios. As the performance of BERT directly
+                                    affects the user experience of applications, engineers have thought about all kinds
+                                    of ways to optimize the model to improve its performance.
+                                </p>
+                                <p>
+                                    BERT includes large amount of matrix computing that can be accelerated with Intel
+                                    AMX features. Theoretically, Intel AMX can improve performance by eight times
+                                    compared with Vector Neural Network Instructions (VNNI) for int8 or bf16 vector
+                                    computing. If you can make full use of the Intel AMX feature in the workload, you
+                                    can greatly improve the business performance.
+                                </p>
+                                <p>
+                                    <b>
+                                        Download the Tool and Compile
+                                    </b>
+                                </p>
+                                <div class="VK_theme_bg border mt-5 p-4 rounded-3">
+                                    <div class="text-end">
+                                        <button class="m-0 text-primary border-0 bg-transparent VK_copy_btn">
+                                            <i class="fa-regular fa-copy"></i>
+                                        </button>
+                                    </div>
+                                    <div class="VK_code-container">
+                                        <div class="VK_line-number"></div>
+                                        <code class="VK_theme_color">
+<pre class="VK_code-block"><p class="m-0">git clone https://github.com/intel/light-model-transformer
+cd light-model-transformer/BERT
+mkdir build
+cd build
+source /opt/intel/oneapi/setvars.sh<span class="VK_code_comment"># Make sure CMake can find oneDNN</span>
+cmake ..
+cmake --build . -j <span class="VK_code_blue">8</span></p></pre>
+                                        </code>
+                                    </div>
+                                </div>
+                                <p>
+                                    <b>
+                                        Run Benchmark
+                                    </b>
+                                </p>
+                                <p>
+                                    Run benchmark to prove that this tool can work normally:
+                                </p>
+                                <div class="VK_theme_bg border mt-5 px-4 pb-4 pt-2 rounded-3">
+                                    <div class="text-end">
+                                        <button class="m-0 text-primary border-0 bg-transparent VK_copy_btn">
+                                            <i class="fa-regular fa-copy"></i>
+                                        </button>
+                                    </div>
+                                    <div class="VK_code-container">
+                                        <div class="VK_line-number"></div>
+                                        <code class="VK_theme_color">
+<pre class="VK_code-block"><p class="m-0">tests/benchmark/benchmark</p></pre></code>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!--  -->
+        <section class="py-5">
+            <div class="VK_cont">
+                <div class="row m-0">
+                    <div class="col">
+                        <p>
+                            Product and Performance Information
+                        </p>
+                        <p class="VK_font14">
+                            Performance varies by use, configuration and other factors. Learn more at
+                            <a href="" class="Vk_text_underline_dots VK_a">
+                                www.Intel.com/PerformanceIndex.
+                            </a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- footer -->
+        <footer>
+            <div id="footer"></div>
+        </footer>
+
+    </main>
+
+
+    <!---------------- Javascript Files ---------------->
+
+    <!-- <script>
+        // navbar include
+        fetch('/y_index/y_navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar').innerHTML = data;
+            });
+        // footer include 
+        fetch('/y_index/y_footer.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('footer').innerHTML = data;
+            });
+    </script> -->
+
+    <!-- jquery -->
+    <script src="/js/jquery-3.7.1.js"></script>
+
+
+    <!-- bootstrap js file -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+
+    <!-- costom js file -->
+    <script src="/js/vivek.js"></script>
+
+    <!-- all min -->
+    <script src="/js/all.min.js"></script>
+
+</body>
+
+</html>
