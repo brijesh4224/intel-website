@@ -1595,6 +1595,8 @@ window.onload = function () {
     mv_intel_blog_geti(1);
     mv_video_intel_geti();
     mv_intel_case_study_geti(1);
+    loaddatatable1();
+    loaddatatable2();
 }
 
 
@@ -2060,5 +2062,132 @@ function mv_intel_case_study_geti(page) {
     }
     else{
         return;
+    }
+}
+
+
+
+
+// Intel® Data Center GPU Flex Series -> (See AI performance data 140) Table Data
+var table1_data =[
+    {FrameworkVersion:'OpenVINO 2023.2',Model:'ResNet50 v1.5',Dataset:'ImageNet2012',Usage:'Image Recognition',Mode:'Inference',Precision:'int8',Throughput:'3,125 img/s',BatchSize:'256'},
+    {FrameworkVersion:'OpenVINO 2023.2',Model:'ResNet50 v1.5',Dataset:'ImageNet2013',Usage:'Image Recognition',Mode:'Inference',Precision:'int8',Throughput:'1,573 img/s',BatchSize:'1'},
+    {FrameworkVersion:'OpenVINO 2023.2',Model:'Yolov 4',Dataset:'COCO2017_detection',Usage:'Object Detection',Mode:'Inference',Precision:'int8',Throughput:'402 img/s',BatchSize:'64'},
+    {FrameworkVersion:'OpenVINO 2023.2',Model:'Yolov 4',Dataset:'COCO2017_detection',Usage:'Object Detection',Mode:'Inference',Precision:'int8',Throughput:'259 img/s',BatchSize:'1'},
+    {FrameworkVersion:'Intel® Pytorch 1.13',Model:'ResNet50 v1.5',Dataset:'ImageNet2012',Usage:'Image Recognition',Mode:'Inference',Precision:'int8',Throughput:'3,001 img/s',BatchSize:'256'},
+    {FrameworkVersion:'Intel® Pytorch 1.13',Model:'Yolov 4',Dataset:'COCO2017_detection',Usage:'Object Detection',Mode:'Inference',Precision:'int8',Throughput:'365 img/s',BatchSize:'64'},
+    {FrameworkVersion:'Intel TensorFlow 2.13',Model:'ResNet50 v1.5',Dataset:'ImageNet2012',Usage:'Image Recognition',Mode:'Inference',Precision:'int8',Throughput:'3,203 img/s',BatchSize:'	256'},
+]
+function loaddatatable1(x,y){
+    console.log(x,y);
+    if(y=='table1'){
+    var val=table1_data.filter((ele,ind)=>{
+            return ele.PlatformName.includes(x);
+    });
+    console.log(val);
+    table1(val);
+    }
+    if(x==undefined){
+    table1(table1_data);    
+    }
+}
+function table1(table){
+    console.log('table',table)
+    var table1=document.getElementById('table1');
+    table1.innerHTML=table.map((ele,ind)=>{
+        return `
+            <tr>
+                <td class="PlatformName px-2">${ele.FrameworkVersion}</td>
+                <td class="px-2 CPU">${ele.Model}</td>
+                <td class="px-2 DiscreteAccelerator">${ele.Dataset}</td>
+                <td class="px-2 Device">${ele.Usage}</td>
+                <td class="px-2 Frameworks">${ele.Mode}</td>
+                <td class="px-2 Model">${ele.Precision}</td>
+                <td class="px-2 VideoTypeResolution">${ele.Throughput}</td>
+                <td class="px-2 Presicion">${ele.BatchSize}</td>
+            </tr>
+        `;
+    }).join('');
+}
+function fliterdata(x){
+    var checkbox = document.getElementById(x);
+    var isChecked = checkbox.checked;
+    console.log(isChecked);
+    if (!isChecked) {
+        var elements = document.getElementsByClassName(x);
+        for (var i = 0; i < elements.length; i++) {
+            elements[i].classList.add('d-none');
+        }
+    }
+    else{
+                var elements = document.getElementsByClassName(x);
+                for (var i = 0; i < elements.length; i++) {
+                    elements[i].classList.remove('d-none');
+                }
+    }
+}
+
+
+
+
+// Intel® Data Center GPU Flex Series -> (See AI performance data 170) Table Data
+var table1_data =[
+    {FrameworkVersion:'Intel TensorFlow 2.13',Model:'Stable Diffusion',Dataset:'Text Prompts',Usage:'Generative AI',Precision:'fp16',Throughput:'6.45 its/s',BatchSize:'1'},
+    {FrameworkVersion:'OpenVINO 2023.2',Model:'	ResNet50 v1.5',Dataset:'ImageNet2012',Usage:'Image Recognition',Precision:'	int8',Throughput:'9,499 img/s',BatchSize:'256'},
+    {FrameworkVersion:'OpenVINO 2023.2',Model:'	ResNet50 v1.5',Dataset:'ImageNet2013',Usage:'Image Recognition',Precision:'	int8',Throughput:'3,297 img/s',BatchSize:'1'},
+    {FrameworkVersion:'OpenVINO 2023.2',Model:'Yolov 4',Dataset:'COCO2017_detection',Usage:'Object Detection',Precision:'	int8',Throughput:'1,209 img/s',BatchSize:'256'},
+    {FrameworkVersion:'OpenVINO 2023.2',Model:'Yolov 4',Dataset:'COCO2017_detection',Usage:'Object Detection',Precision:'	int8',Throughput:'595 img/s',BatchSize:'1'},
+    {FrameworkVersion:'Intel® Pytorch 1.13',Model:'	ResNet50 v1.5',Dataset:'ImageNet2012',Usage:'Image Recognition',Precision:'int8',Throughput:'9,673 img/s',BatchSize:'1024'},
+    {FrameworkVersion:'Intel® Pytorch 1.13',Model:'Yolov4',Dataset:'COCO2017_detection',Usage:'Object Detection',Precision:'int8',Throughput:'1,139 img/s',BatchSize:'256'},
+    {FrameworkVersion:'Intel TensorFlow 2.13',Model:'ResNet50 v1.5',Dataset:'ImageNet2012',Usage:'Image Recognition',Precision:'int8',Throughput:'9,801 img/s',BatchSize:'1024'},
+    {FrameworkVersion:'Intel TensorFlow 2.13',Model:'EfficientNet-B0',Dataset:'ImageNet2012',Usage:'Image Recognition',Precision:'fp16',Throughput:'1,890 img/s',BatchSize:'128'},
+    {FrameworkVersion:'Intel TensorFlow 2.13',Model:'EfficientNet-B3',Dataset:'ImageNet2012',Usage:'Image Recognition',Precision:'fp16',Throughput:'527 img/s',BatchSize:'128'},
+    {FrameworkVersion:'Intel TensorFlow 2.13',Model:'MaskRCNN',Dataset:'COCO2017_detection',Usage:'image Segmentation',Precision:'fp16',Throughput:'30 img/s',BatchSize:'16'}
+]
+function loaddatatable2(x,y){
+    console.log(x,y);
+    if(y=='table1'){
+    var val=table1_data.filter((ele,ind)=>{
+            return ele.PlatformName.includes(x);
+    });
+    console.log(val);
+    table1(val);
+    }
+    if(x==undefined){
+    table1(table1_data);    
+    }
+}
+function table1(table){
+    console.log('table',table)
+    var table1=document.getElementById('table1');
+    table1.innerHTML=table.map((ele,ind)=>{
+        return `
+            <tr>
+                <td class="PlatformName px-2">${ele.FrameworkVersion}</td>
+                <td class="px-2 CPU">${ele.Model}</td>
+                <td class="px-2 DiscreteAccelerator">${ele.Dataset}</td>
+                <td class="px-2 Device">${ele.Usage}</td>
+                <td class="px-2 Model">${ele.Precision}</td>
+                <td class="px-2 VideoTypeResolution">${ele.Throughput}</td>
+                <td class="px-2 Presicion">${ele.BatchSize}</td>
+            </tr>
+        `;
+    }).join('');
+}
+function fliterdata(x){
+    var checkbox = document.getElementById(x);
+    var isChecked = checkbox.checked;
+    console.log(isChecked);
+    if (!isChecked) {
+        var elements = document.getElementsByClassName(x);
+        for (var i = 0; i < elements.length; i++) {
+            elements[i].classList.add('d-none');
+        }
+    }
+    else{
+                var elements = document.getElementsByClassName(x);
+                for (var i = 0; i < elements.length; i++) {
+                    elements[i].classList.remove('d-none');
+                }
     }
 }

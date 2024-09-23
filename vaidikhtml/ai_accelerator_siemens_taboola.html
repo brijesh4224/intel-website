@@ -129,23 +129,39 @@
                         <!-- Media Slider -->
                         <div class="mv_media_slider owl-carousel owl-theme mv_owl_theme">
                             <div class="mv_media_item">
-                                <img data-hash="mv_media_img_1" src="/img/mv_image/taboola-data-center-stack-door-rwd.jpg.rendition.intel.web.1920.1080.jpg" alt="">
+                                <img data-hash="mv_media_img_1"
+                                    src="/img/mv_image/taboola-data-center-stack-door-rwd.jpg.rendition.intel.web.1920.1080.jpg"
+                                    alt="">
                             </div>
                             <div class="mv_media_item">
-                                <img data-hash="mv_media_img_2" src="/img/mv_image/taboola-cable-hanging-rwd.jpg.rendition.intel.web.1920.1080.jpg" alt="">
+                                <img data-hash="mv_media_img_2"
+                                    src="/img/mv_image/taboola-cable-hanging-rwd.jpg.rendition.intel.web.1920.1080.jpg"
+                                    alt="">
                             </div>
                             <div class="mv_media_item">
-                                <img data-hash="mv_media_img_3" src="/img/mv_image/taboola-data-center-rack-rwd.jpg.rendition.intel.web.1920.1080.jpg" alt="">
+                                <img data-hash="mv_media_img_3"
+                                    src="/img/mv_image/taboola-data-center-rack-rwd.jpg.rendition.intel.web.1920.1080.jpg"
+                                    alt="">
                             </div>
                             <div class="mv_media_item">
-                                <img data-hash="mv_media_img_4" src="/img/mv_image/taboola-collaboration-rwd.jpg.rendition.intel.web.1920.1080.jpg" alt="">
+                                <img data-hash="mv_media_img_4"
+                                    src="/img/mv_image/taboola-collaboration-rwd.jpg.rendition.intel.web.1920.1080.jpg"
+                                    alt="">
                             </div>
                         </div>
                         <div class="mv_media_image_button">
-                            <a class="active" href="#mv_media_img_1"><img src="/img/mv_image/taboola-data-center-stack-door-rwd.jpg.rendition.intel.web.1920.1080.jpg" alt=""></a>
-                            <a href="#mv_media_img_2"><img src="/img/mv_image/taboola-cable-hanging-rwd.jpg.rendition.intel.web.1920.1080.jpg" alt=""></a>
-                            <a href="#mv_media_img_3"><img src="/img/mv_image/taboola-data-center-rack-rwd.jpg.rendition.intel.web.1920.1080.jpg" alt=""></a>
-                            <a href="#mv_media_img_4"><img src="/img/mv_image/taboola-collaboration-rwd.jpg.rendition.intel.web.1920.1080.jpg" alt=""></a>
+                            <a href="#mv_media_img_1" data-index="0"><img
+                                    src="/img/mv_image/taboola-data-center-stack-door-rwd.jpg.rendition.intel.web.1920.1080.jpg"
+                                    alt=""></a>
+                            <a href="#mv_media_img_2" data-index="1"><img
+                                    src="/img/mv_image/taboola-cable-hanging-rwd.jpg.rendition.intel.web.1920.1080.jpg"
+                                    alt=""></a>
+                            <a href="#mv_media_img_3" data-index="2"><img
+                                    src="/img/mv_image/taboola-data-center-rack-rwd.jpg.rendition.intel.web.1920.1080.jpg"
+                                    alt=""></a>
+                            <a href="#mv_media_img_4" data-index="3"><img
+                                    src="/img/mv_image/taboola-collaboration-rwd.jpg.rendition.intel.web.1920.1080.jpg"
+                                    alt=""></a>
                         </div>
                         <p class="mb-0">&nbsp;</p>
                         <p>
@@ -422,25 +438,42 @@
 
     <script>
         // (Ai Accelerator -> (Siemens Taboola)) Media Slider
-        $(document).ready(function(){
-            var owl = $('.mv_media_slider').owlCarousel({
+        $(document).ready(function () {
+            var $owl = $('.mv_media_slider');
+            var owl = $owl.owlCarousel({
                 items: 1,
                 loop: true,
                 margin: 10,
                 nav: true,
                 dots: false,
-                smartSpeed: 500
+                smartSpeed: 500,
+                onInitialized: syncPosition,
+                onTranslated: syncPosition
+            }).data('owl.carousel');
+
+            function syncPosition() {
+                if (!owl) return;
+                var current = owl.relative(owl.current());
+                updateSubImageOpacity(current);
+            }
+
+            $('.mv_media_image_button a').click(function (event) {
+                event.preventDefault();
+                var index = $(this).data('index');
+                $owl.trigger('to.owl.carousel', [index, 300]);
             });
 
-            $('.mv_media_image_button a').click(function(event) {
-                event.preventDefault();
-                
+            function updateSubImageOpacity(index) {
                 $('.mv_media_image_button a').removeClass('active');
-                $(this).addClass('active');
-                
-                var index = $(this).index();
-                
-                owl.trigger('to.owl.carousel', [index, 300]);
+                $('.mv_media_image_button a').eq(index).addClass('active');
+            }
+
+            // Initial call to set the opacity correctly
+            updateSubImageOpacity(0);
+
+            // Add drag event listeners
+            $owl.on('drag.owl.carousel', function (event) {
+                setTimeout(syncPosition, 100);
             });
         });
     </script>
