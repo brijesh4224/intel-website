@@ -2159,35 +2159,35 @@ let VK_Harrisonville_BIOS_Firmware_System_Validation_Debug_data = [
 
 let VK_Harrisonville_Buses_Electrical_Validation_Debug_data = [
     {
-        name:"HSPICE* Signal Integrity Models and User Guide for USB",
-        image:"VK_221.jpeg"
+        name: "HSPICE* Signal Integrity Models and User Guide for USB",
+        image: "VK_221.jpeg"
     },
     {
-        name:"Processor DDR4 HSPICE* Signal Integrity Models and Model User's Guide",
-        image:"nophoto-base_1.png"
+        name: "Processor DDR4 HSPICE* Signal Integrity Models and Model User's Guide",
+        image: "nophoto-base_1.png"
     },
     {
-        name:"Physical Layer Electrical Validation Tool (PLEVT)",
-        image:"VK_222.jpeg"
+        name: "Physical Layer Electrical Validation Tool (PLEVT)",
+        image: "VK_222.jpeg"
     },
     {
-        name:"Intel® Memory Bit Error Rate Executable (Intel® MBERE)",
-        image:"nophoto-base_1.png"
+        name: "Intel® Memory Bit Error Rate Executable (Intel® MBERE)",
+        image: "nophoto-base_1.png"
     },
     {
-        name:"HSPICE* Signal Integrity Models and User's Guide for SATA Interface",
-        image:"VK_217.jpeg"
+        name: "HSPICE* Signal Integrity Models and User's Guide for SATA Interface",
+        image: "VK_217.jpeg"
     },
 ]
 
 let VK_Harrisonville_Thermal_Mechanical_Engineering_card_data = [
     {
-        name:"DDR4 DIMM Thermal Test Vehicle (TTV)",
-        image:"nophoto-base_1.png"
+        name: "DDR4 DIMM Thermal Test Vehicle (TTV)",
+        image: "nophoto-base_1.png"
     },
     {
-        name:"Platform Power Thermal Utility (PTU aka Maximum Power Program)",
-        image:"VK_223.jpeg"
+        name: "Platform Power Thermal Utility (PTU aka Maximum Power Program)",
+        image: "VK_223.jpeg"
     },
 ]
 
@@ -2282,251 +2282,251 @@ let VK_grangeville_tools_data = [
 
 let VK_VK_Grangeville_BIOS_Firmware_SystemValidation_Debug_data = [
     {
-        name:"DTC 8.1 (DCPMM Error Injection) Card",
+        name: "DTC 8.1 (DCPMM Error Injection) Card",
         image: "nophoto-base_1.png"
     },
     {
-        name:"Intel® ITP PDT Software Subscription",
+        name: "Intel® ITP PDT Software Subscription",
         image: "VK_224.jpeg"
     },
     {
-        name:"Intel® I3C USB Type-C Level Shift Adapter ",
+        name: "Intel® I3C USB Type-C Level Shift Adapter ",
         image: "nophoto-base_1.png"
     },
     {
-        name:"RSC2 System Control Cable (aka. Squid Cable)",
+        name: "RSC2 System Control Cable (aka. Squid Cable)",
         image: "nophoto-base_1.png"
     },
     {
-        name:"Remote System Controller 2",
+        name: "Remote System Controller 2",
         image: "nophoto-base_1.png"
     },
     {
-        name:"Processor Update Utility (CHECKUP)",
+        name: "Processor Update Utility (CHECKUP)",
         image: "nophoto-base_1.png"
     },
     {
-        name:"Microcode PDB Tool",
+        name: "Microcode PDB Tool",
         image: "VK_217.jpeg"
     },
     {
-        name:"Intel® TXT ToolKit (TTK) for Debug ACM",
+        name: "Intel® TXT ToolKit (TTK) for Debug ACM",
         image: "VK_217.jpeg"
     },
     {
-        name:"TXT: Intel® TXT Launch Policy Reference Kit",
+        name: "TXT: Intel® TXT Launch Policy Reference Kit",
         image: "nophoto-base_1.png"
     },
     {
-        name:"Trusted Compute Pools with Intel® Trusted Execution Technology (Intel® TXT)",
+        name: "Trusted Compute Pools with Intel® Trusted Execution Technology (Intel® TXT)",
         image: "nophoto-base_1.png"
     },
     {
-        name:"Selftest 7",
+        name: "Selftest 7",
         image: "nophoto-base_1.png"
     },
     {
-        name:"Flash Descriptor Tool (FDTool)",
+        name: "Flash Descriptor Tool (FDTool)",
         image: "nophoto-base_1.png"
     },
 ]
 
 let VK_Grangeville_Power_Delivery_Power_Management_card_data = [
     {
-        name:"PCI-e Power Delivery Adapter Card",
+        name: "PCI-e Power Delivery Adapter Card",
         image: "nophoto-base_1.png"
     },
     {
-        name:"5A Mini Slammer",
+        name: "5A Mini Slammer",
         image: "nophoto-base_1.png"
     },
     {
-        name:"Mini Slammer Control Cable",
+        name: "Mini Slammer Control Cable",
         image: "nophoto-base_1.png"
     },
     {
-        name:"DDR3 SODIMM Memory VR Test Tool",
+        name: "DDR3 SODIMM Memory VR Test Tool",
         image: "nophoto-base_1.png"
     },
     {
-        name:"BGA1667-BDX-NS Interposer",
+        name: "BGA1667-BDX-NS Interposer",
         image: "nophoto-base_1.png"
     },
     {
-        name:"BGA2518-SKX-DE (Blue) Interposer",
+        name: "BGA2518-SKX-DE (Blue) Interposer",
         image: "nophoto-base_1.png"
     },
     {
-        name:"BGA2518-SKX-DE (Red) Interposer",
+        name: "BGA2518-SKX-DE (Red) Interposer",
         image: "nophoto-base_1.png"
     },
     {
-        name:"BGA1667 (BDX-DE SOC) Interposer",
+        name: "BGA1667 (BDX-DE SOC) Interposer",
         image: "nophoto-base_1.png"
     },
     {
-        name:'0.300"/0.297" DIMM Pitch Rigid Connector For Narrow DIMM Pitch DDR4 Memory VR Test Tool',
+        name: '0.300"/0.297" DIMM Pitch Rigid Connector For Narrow DIMM Pitch DDR4 Memory VR Test Tool',
         image: "nophoto-base_1.png"
     },
     {
-        name:'0.310" DIMM Pitch Rigid Connector For Narrow DIMM Pitch DDR4 Memory VR Test Tool',
+        name: '0.310" DIMM Pitch Rigid Connector For Narrow DIMM Pitch DDR4 Memory VR Test Tool',
         image: "nophoto-base_1.png"
     },
     {
-        name:'DDR4 Memory VR Test Tool Master Module for Narrow DIMM Pitch Platforms',
+        name: 'DDR4 Memory VR Test Tool Master Module for Narrow DIMM Pitch Platforms',
         image: "nophoto-base_1.png"
     },
     {
-        name:'DDR4 Memory VR Test Tool Kit for Narrow DIMM Pitch Platforms',
+        name: 'DDR4 Memory VR Test Tool Kit for Narrow DIMM Pitch Platforms',
         image: "nophoto-base_1.png"
     },
 ]
 
 let VK_Grangeville_Models_Simulation_Layout_data = [
     {
-        name:"Equalization Tap Conversion Tool",
-        image:"VK_225.jpeg"
+        name: "Equalization Tap Conversion Tool",
+        image: "VK_225.jpeg"
     },
     {
-        name:"Channel Quality Comparison and Channel Check Tool",
-        image:"VK_226.jpeg"
+        name: "Channel Quality Comparison and Channel Check Tool",
+        image: "VK_226.jpeg"
     },
     {
-        name:"Intel® Interconnect Model Analyzer and Domain Converter (Intel® IMADC)",
-        image:"nophoto-base_1.png"
+        name: "Intel® Interconnect Model Analyzer and Domain Converter (Intel® IMADC)",
+        image: "nophoto-base_1.png"
     },
     {
-        name:"Intel® Channel Checker",
-        image:"VK_227.jpeg"
+        name: "Intel® Channel Checker",
+        image: "VK_227.jpeg"
     },
     {
-        name:"DDR3 Memory Trace Length Calculator (TLC)",
-        image:"VK_217.jpeg"
+        name: "DDR3 Memory Trace Length Calculator (TLC)",
+        image: "VK_217.jpeg"
     },
     {
-        name:"FloTHERM* Thermal Models",
-        image:"VK_217.jpeg"
+        name: "FloTHERM* Thermal Models",
+        image: "VK_217.jpeg"
     },
     {
-        name:"IcePak* Thermal Models",
-        image:"VK_228.jpeg"
+        name: "IcePak* Thermal Models",
+        image: "VK_228.jpeg"
     },
     {
-        name:"HSPICE* Signal Integrity Models and User Guide for USB",
-        image:"VK_229.jpeg"
+        name: "HSPICE* Signal Integrity Models and User Guide for USB",
+        image: "VK_229.jpeg"
     },
     {
-        name:"Mechanical Models",
-        image:"VK_230.jpeg"
+        name: "Mechanical Models",
+        image: "VK_230.jpeg"
     },
     {
-        name:"Processor DDR4 HSPICE* Signal Integrity Models and Model User's Guide",
-        image:"nophoto-base_1.png"
+        name: "Processor DDR4 HSPICE* Signal Integrity Models and Model User's Guide",
+        image: "nophoto-base_1.png"
     },
     {
-        name:"Intel® Interconnect Modeler and Loss Calculator (Intel® IMLC)",
-        image:"nophoto-base_1.png"
+        name: "Intel® Interconnect Modeler and Loss Calculator (Intel® IMLC)",
+        image: "nophoto-base_1.png"
     },
     {
-        name:"Memory Trace Length Calculator (TLC)",
-        image:"VK_217.jpeg"
+        name: "Memory Trace Length Calculator (TLC)",
+        image: "VK_217.jpeg"
     },
 ]
 
 let VK_Grangeville_High_speed_Electrical_Validation_Debug_data = [
     {
-        name:"Intel® Interconnect Model Analyzer and Domain Converter (Intel® IMADC)",
-        image:"nophoto-base_1.png"
+        name: "Intel® Interconnect Model Analyzer and Domain Converter (Intel® IMADC)",
+        image: "nophoto-base_1.png"
     },
     {
-        name:"Intel® Electrical Validation Test Suite (Intel® EVTS)",
-        image:"nophoto-base_1.png"
+        name: "Intel® Electrical Validation Test Suite (Intel® EVTS)",
+        image: "nophoto-base_1.png"
     },
     {
-        name:"RMT extractor & Results Explorer",
-        image:"VK_217.jpeg"
+        name: "RMT extractor & Results Explorer",
+        image: "VK_217.jpeg"
     },
     {
-        name:"Public PCI Express* Resources from Intel",
-        image:"VK_231.jpeg"
+        name: "Public PCI Express* Resources from Intel",
+        image: "VK_231.jpeg"
     },
     {
-        name:"Intel® Interconnect Modeler and Loss Calculator (Intel® IMLC)",
-        image:"nophoto-base_1.png"
+        name: "Intel® Interconnect Modeler and Loss Calculator (Intel® IMLC)",
+        image: "nophoto-base_1.png"
     },
     {
-        name:"PCI Sig - Compliance Base Board G3 (CBB3)",
-        image:"nophoto-base_1.png"
+        name: "PCI Sig - Compliance Base Board G3 (CBB3)",
+        image: "nophoto-base_1.png"
     },
     {
-        name:"PCI Sig - Compliance Load Board G3 (CLB3)",
-        image:"VK_232.jpeg"
+        name: "PCI Sig - Compliance Load Board G3 (CLB3)",
+        image: "VK_232.jpeg"
     },
     {
-        name:"PCI Sig/Intel - PCIe* Signal Quality Control & Analysis Software (SigTest) support PCIe Gen3",
-        image:"VK_231.jpeg"
+        name: "PCI Sig/Intel - PCIe* Signal Quality Control & Analysis Software (SigTest) support PCIe Gen3",
+        image: "VK_231.jpeg"
     },
     {
-        name:"Intel® Chipset SATA Motherboard Signal Quality Testing (MSQT) Methodology",
-        image:"VK_233.jpeg"
+        name: "Intel® Chipset SATA Motherboard Signal Quality Testing (MSQT) Methodology",
+        image: "VK_233.jpeg"
     },
     {
-        name:"SATA 3 Test Fixture (supports 6 Gb/s)",
-        image:"nophoto-base_1.png"
+        name: "SATA 3 Test Fixture (supports 6 Gb/s)",
+        image: "nophoto-base_1.png"
     },
     {
-        name:"Physical Layer Electrical Validation Tool (PLEVT)",
-        image:"VK_222.jpeg"
+        name: "Physical Layer Electrical Validation Tool (PLEVT)",
+        image: "VK_222.jpeg"
     },
     {
-        name:"USB 3.0 Signal Quality Test Software and Electrical Analysis Tool",
-        image:"nophoto-base_1.png"
+        name: "USB 3.0 Signal Quality Test Software and Electrical Analysis Tool",
+        image: "nophoto-base_1.png"
     },
 ]
 
 let VK_Grangeville_Thermal_Mechanical_Engineering_card_data = [
     {
-        name:"FloTHERM* Thermal Models",
-        image:"VK_217.jpeg"
+        name: "FloTHERM* Thermal Models",
+        image: "VK_217.jpeg"
     },
     {
-        name:"IcePak* Thermal Models",
-        image:"VK_228.jpeg"
+        name: "IcePak* Thermal Models",
+        image: "VK_228.jpeg"
     },
     {
-        name:"Mechanical Models",
-        image:"VK_230.jpeg"
+        name: "Mechanical Models",
+        image: "VK_230.jpeg"
     },
     {
-        name:"DDR3/DDR4 DIMM System Thermal Design Power (TDP) Calculator for Platforms",
-        image:"nophoto-base_1.png"
+        name: "DDR3/DDR4 DIMM System Thermal Design Power (TDP) Calculator for Platforms",
+        image: "nophoto-base_1.png"
     },
     {
-        name:"DDR3/DDR4 DIMM System Thermal Calculator for Platforms",
-        image:"nophoto-base_1.png"
+        name: "DDR3/DDR4 DIMM System Thermal Calculator for Platforms",
+        image: "nophoto-base_1.png"
     },
     {
-        name:"DDR4 DIMM Thermal Test Vehicle (TTV)",
-        image:"nophoto-base_1.png"
+        name: "DDR4 DIMM Thermal Test Vehicle (TTV)",
+        image: "nophoto-base_1.png"
     },
     {
-        name:"Platform Power Thermal Utility (PTU aka Maximum Power Program)",
-        image:"VK_223.jpeg"
+        name: "Platform Power Thermal Utility (PTU aka Maximum Power Program)",
+        image: "VK_223.jpeg"
     },
     {
-        name:"Processor Thermal Test Vehicle (TTV)",
-        image:"nophoto-base_1.png"
+        name: "Processor Thermal Test Vehicle (TTV)",
+        image: "nophoto-base_1.png"
     },
 ]
 
 let VK_Grangeville_Manufacturing_Tool_data = [
     {
-        name:"Boundry Scan Description Language (BSDL) File - SoC",
-        image:"nophoto-base_1.png"
+        name: "Boundry Scan Description Language (BSDL) File - SoC",
+        image: "nophoto-base_1.png"
     },
     {
-        name:"Boundary Scan Description Language (BSDL) File",
-        image:"VK_217.jpeg"
+        name: "Boundary Scan Description Language (BSDL) File",
+        image: "VK_217.jpeg"
     },
 ]
 
@@ -4760,12 +4760,12 @@ let VK_chk_page = () => {
                 id = 'VK_Grangeville_Power_Delivery_Power_Management_card_data'
                 fetch_data = VK_Grangeville_Power_Delivery_Power_Management_card_data;
                 break;
-            
+
             case 'VK_Grangeville_Models_Simulation_Layout':
                 id = 'VK_Grangeville_Models_Simulation_Layout_card'
                 fetch_data = VK_Grangeville_Models_Simulation_Layout_data;
                 break;
-            
+
             case 'VK_Grangeville_High_speed_Electrical_Validation_Debug':
                 id = 'VK_Grangeville_High_speed_Electrical_Validation_Debug_card'
                 fetch_data = VK_Grangeville_High_speed_Electrical_Validation_Debug_data;
@@ -11243,5 +11243,470 @@ function VK_code_liner() {
 
 
 
+function BERT_copy1(id) {
+    navigator.clipboard.writeText(`git clone https://github.com/intel/light-model-transformer
+        <br/>
+        cd light-model-transformer/BERT
+        mkdir build
+        cd build
+        source /opt/intel/oneapi/setvars.sh # Make sure CMake can find oneDNN
+        cmake ..
+    cmake --build . -j 8`)
+    document.getElementById('VK_beet_btn' + id).innerHTML = "<span class='VK_font14 VK_theme_color'>copied</span>"
+    setTimeout(() => {
+        document.getElementById('VK_beet_btn' + id).innerHTML = '<i class="fa-regular fa-copy"></i>'
+    }, 4000)
+}
+
+function BERT_copy2(id) {
+    navigator.clipboard.writeText(`tests/benchmark/benchmark`)
+    document.getElementById('VK_beet_btn' + id).innerHTML = "<span class='VK_font14 VK_theme_color'>copied</span>"
+    setTimeout(() => {
+        document.getElementById('VK_beet_btn' + id).innerHTML = '<i class="fa-regular fa-copy"></i>'
+    }, 4000)
+}
 
 
+function BERT_copy3(id) {
+    navigator.clipboard.writeText(`python run_classifier.py -b $encoder_handle -p $preprocessor_handle -e $epochs -l $learning_rate $output_dir`)
+    document.getElementById('VK_beet_btn' + id).innerHTML = "<span class='VK_font14 VK_theme_color'>copied</span>"
+    setTimeout(() => {
+        document.getElementById('VK_beet_btn' + id).innerHTML = '<i class="fa-regular fa-copy"></i>'
+    }, 4000)
+}
+
+function BERT_copy4(id) {
+    navigator.clipboard.writeText(`$ cd <repo_root>/python/proto
+    $ ./compile_proto.sh $tensorflow_include_dir`)
+    document.getElementById('VK_beet_btn' + id).innerHTML = "<span class='VK_font14 VK_theme_color'>copied</span>"
+    setTimeout(() => {
+        document.getElementById('VK_beet_btn' + id).innerHTML = '<i class="fa-regular fa-copy"></i>'
+    }, 4000)
+}
+
+function BERT_copy5(id) {
+    navigator.clipboard.writeText(`export PYTHONPATH=<repo_root/python>:$PYTHONPATH`)
+    document.getElementById('VK_beet_btn' + id).innerHTML = "<span class='VK_font14 VK_theme_color'>copied</span>"
+    setTimeout(() => {
+        document.getElementById('VK_beet_btn' + id).innerHTML = '<i class="fa-regular fa-copy"></i>'
+    }, 4000)
+}
+
+
+function BERT_copy6(id) {
+    navigator.clipboard.writeText(`$ cd <repo_root>/util/tf2/bert_en_uncased_L-12_H-768_A-12_4
+
+$ ./replace_full_bert.sh $path_to_bert_encoder $path_to_fine_tuned_model`)
+    document.getElementById('VK_beet_btn' + id).innerHTML = "<span class='VK_font14 VK_theme_color'>copied</span>"
+    setTimeout(() => {
+        document.getElementById('VK_beet_btn' + id).innerHTML = '<i class="fa-regular fa-copy"></i>'
+    }, 4000)
+}
+
+
+function BERT_copy7(id) {
+    navigator.clipboard.writeText(`$ cd $path_to_model
+
+$ mv saved_model.pb original_saved_model.pb
+
+$ ln -s modified_saved_model.pb saved_model.pb`)
+    document.getElementById('VK_beet_btn' + id).innerHTML = "<span class='VK_font14 VK_theme_color'>copied</span>"
+    setTimeout(() => {
+        document.getElementById('VK_beet_btn' + id).innerHTML = '<i class="fa-regular fa-copy"></i>'
+    }, 4000)
+}
+
+function BERT_copy8(id) {
+    navigator.clipboard.writeText(`export PYTHONPATH=$PYTHONPATH:$<repo_root>/python
+
+python -m model_modifier.configure_bert_op --no-quantization --no-bfloat16 $path_to_fine_tuned_model`)
+    document.getElementById('VK_beet_btn' + id).innerHTML = "<span class='VK_font14 VK_theme_color'>copied</span>"
+    setTimeout(() => {
+        document.getElementById('VK_beet_btn' + id).innerHTML = '<i class="fa-regular fa-copy"></i>'
+    }, 4000)
+}
+
+
+function BERT_copy9(id) {
+    navigator.clipboard.writeText(`python accuracy.py $model_dir $op_library`)
+    document.getElementById('VK_beet_btn' + id).innerHTML = "<span class='VK_font14 VK_theme_color'>copied</span>"
+    setTimeout(() => {
+        document.getElementById('VK_beet_btn' + id).innerHTML = '<i class="fa-regular fa-copy"></i>'
+    }, 4000)
+}
+
+
+
+function gen_4th_copy1(id) {
+    navigator.clipboard.writeText(`$ cat /proc/cpuinfo`)
+    document.getElementById('VK_beet_btn' + id).innerHTML = "<span class='VK_font14 VK_theme_color'>copied</span>"
+    setTimeout(() => {
+        document.getElementById('VK_beet_btn' + id).innerHTML = '<i class="fa-regular fa-copy"></i>'
+    }, 4000)
+}
+
+function gen_4th_copy2(id) {
+    navigator.clipboard.writeText(`# taskset -C xxx-xxx –p pid (limits the number of CPU cores used in service)`)
+    document.getElementById('VK_beet_btn' + id).innerHTML = "<span class='VK_font14 VK_theme_color'>copied</span>"
+    setTimeout(() => {
+        document.getElementById('VK_beet_btn' + id).innerHTML = '<i class="fa-regular fa-copy"></i>'
+    }, 4000)
+}
+
+
+function gen_4th_copy3(id) {
+    navigator.clipboard.writeText(`#numactl -N NUMA_NODE -l command args ... (controls NUMA nodes running in service)`)
+    document.getElementById('VK_beet_btn' + id).innerHTML = "<span class='VK_font14 VK_theme_color'>copied</span>"
+    setTimeout(() => {
+        document.getElementById('VK_beet_btn' + id).innerHTML = '<i class="fa-regular fa-copy"></i>'
+    }, 4000)
+}
+
+function gen_4th_copy4(id) {
+    navigator.clipboard.writeText(`# cpupower frequency-set -g performance`)
+    document.getElementById('VK_beet_btn' + id).innerHTML = "<span class='VK_font14 VK_theme_color'>copied</span>"
+    setTimeout(() => {
+        document.getElementById('VK_beet_btn' + id).innerHTML = '<i class="fa-regular fa-copy"></i>'
+    }, 4000)
+}
+
+function gen_4th_copy5(id) {
+    navigator.clipboard.writeText(`#cpupower idle-set -d 2,3`)
+    document.getElementById('VK_beet_btn' + id).innerHTML = "<span class='VK_font14 VK_theme_color'>copied</span>"
+    setTimeout(() => {
+        document.getElementById('VK_beet_btn' + id).innerHTML = '<i class="fa-regular fa-copy"></i>'
+    }, 4000)
+}
+
+function gen_4th_copy6(id) {
+    navigator.clipboard.writeText(`conda create -n intel-tf python=3.8 -y
+conda activate intel-tf
+pip install intel-tensorflow==2.11.dev202242`)
+    document.getElementById('VK_beet_btn' + id).innerHTML = "<span class='VK_font14 VK_theme_color'>copied</span>"
+    setTimeout(() => {
+        document.getElementById('VK_beet_btn' + id).innerHTML = '<i class="fa-regular fa-copy"></i>'
+    }, 4000)
+}
+
+function gen_4th_copy7(id) {
+    navigator.clipboard.writeText(`pip install tensorflow_hub`)
+    document.getElementById('VK_beet_btn' + id).innerHTML = "<span class='VK_font14 VK_theme_color'>copied</span>"
+    setTimeout(() => {
+        document.getElementById('VK_beet_btn' + id).innerHTML = '<i class="fa-regular fa-copy"></i>'
+    }, 4000)
+}
+
+function gen_4th_copy8(id) {
+    navigator.clipboard.writeText(`import os
+import tensorflow as tf
+import tensorflow_hub as tf_hub
+
+# Enable Auto Mixed Precision
+tf.config.optimizer.set_experimental_options({"auto_mixed_precision_onednn_bfloat16": True})
+
+os.environ["TFHUB_CACHE_DIR"] = 'tfhub_models'
+model = tf_hub.KerasLayer('https://tfhub.dev/google/imagenet/resnet_v1_50/classification/5')
+model(tf.random.uniform((1, 224, 224, 3)))`)
+    document.getElementById('VK_beet_btn' + id).innerHTML = "<span class='VK_font14 VK_theme_color'>copied</span>"
+    setTimeout(() => {
+        document.getElementById('VK_beet_btn' + id).innerHTML = '<i class="fa-regular fa-copy"></i>'
+    }, 4000)
+}
+
+function gen_4th_copy9(id) {
+    navigator.clipboard.writeText(`export ONEDNN_VERBOSE=1
+python inference.py`)
+    document.getElementById('VK_beet_btn' + id).innerHTML = "<span class='VK_font14 VK_theme_color'>copied</span>"
+    setTimeout(() => {
+        document.getElementById('VK_beet_btn' + id).innerHTML = '<i class="fa-regular fa-copy"></i>'
+    }, 4000)
+}
+
+function gen_4th_copy10(id) {
+    navigator.clipboard.writeText(`dst_bf16::blocked:Adcb16a:f0,,,64x3x7x7,69.343
+onednn_verbose,exec,cpu,convolution,jit:avx512_core_amx_bf16,forward_training,src_bf16::blocked:acdb:f0 wei_bf16::blocked:Adcb16a:f0 bia_undef::undef::f0 dst_bf16::blocked:acdb:f0,attr-scratchpad:user attr-post-ops:binary_sub:f32:2+binary_mul:f32:2+binary_mul:f32:2+binary_add:f32:2+eltwise_relu ,alg:convolution_direct,mb1_ic3oc64_ih224oh112kh7sh2dh0ph3_iw224ow112kw7sw2dw0pw3,3.29614
+onednn_verbose,exec,cpu,pooling_v2,jit:avx512_core_bf16,forward_training,src_bf16::blocked:acdb:f0 dst_bf16::blocked:acdb:f0 ws_u8::blocked:acdb:f0,,alg:pooling_max,mb1ic64_ih112oh56kh3sh2dh0ph0_iw112ow56kw3sw2dw0pw0,5.21802`)
+    document.getElementById('VK_beet_btn' + id).innerHTML = "<span class='VK_font14 VK_theme_color'>copied</span>"
+    setTimeout(() => {
+        document.getElementById('VK_beet_btn' + id).innerHTML = '<i class="fa-regular fa-copy"></i>'
+    }, 4000)
+}
+
+function gen_4th_copy11(id) {
+    navigator.clipboard.writeText(`import tensorflow as tf
+from keras.utils import np_utils
+from tensorflow.keras import mixed_precision
+
+# Enable Auto Mixed Precision
+mixed_precision.set_global_policy('mixed_bfloat16')
+
+# load data
+cifar10 = tf.keras.datasets.cifar10
+(x_train, y_train), (x_test, y_test) = cifar10.load_data()
+num_classes = 10
+
+# pre-process
+x_train, x_test = x_train/255.0, x_test/255.0
+y_train = np_utils.to_categorical(y_train, num_classes)
+y_test = np_utils.to_categorical(y_test, num_classes)
+
+# build model
+feature_extractor_layer = tf.keras.applications.ResNet50(include_top=False, weights='imagenet')
+feature_extractor_layer.trainable = False
+model = tf.keras.Sequential([
+    tf.keras.layers.Input(shape=(32, 32, 3)),
+    feature_extractor_layer,
+    tf.keras.layers.Flatten(),
+    tf.keras.layers.Dense(1024, activation='relu'),
+    tf.keras.layers.Dropout(0.2),
+    tf.keras.layers.Dense(num_classes, activation='softmax')
+])
+model.compile(
+  optimizer=tf.keras.optimizers.Adam(),
+  loss=tf.keras.losses.CategoricalCrossentropy(),
+  metrics=['acc'])
+
+# train model
+model.fit(x_train, y_train,
+    batch_size = 128,
+    validation_data=(x_test, y_test), 
+    epochs=1)
+
+model.save('resnet_bf16_model')`)
+    document.getElementById('VK_beet_btn' + id).innerHTML = "<span class='VK_font14 VK_theme_color'>copied</span>"
+    setTimeout(() => {
+        document.getElementById('VK_beet_btn' + id).innerHTML = '<i class="fa-regular fa-copy"></i>'
+    }, 4000)
+}
+
+function gen_4th_copy12(id) {
+    navigator.clipboard.writeText(`export ONEDNN_VERBOSE=1
+    python training.py`)
+    document.getElementById('VK_beet_btn' + id).innerHTML = "<span class='VK_font14 VK_theme_color'>copied</span>"
+    setTimeout(() => {
+        document.getElementById('VK_beet_btn' + id).innerHTML = '<i class="fa-regular fa-copy"></i>'
+    }, 4000)
+}
+
+function gen_4th_copy0(id) {
+    navigator.clipboard.writeText(`dst_bf16::blocked:Adcb16a:f0,,,64x3x7x7,160.375
+onednn_verbose,exec,cpu,convolution,jit:avx512_core_amx_bf16,forward_training,src_bf16::blocked:acdb:f0 wei_bf16::blocked:Adcb16a:f0 bia_bf16::blocked:a:f0 dst_bf16::blocked:acdb:f0,attr-scratchpad:user ,alg:convolution_direct,mb128_ic3oc64_ih32oh16kh7sh2dh0ph3_iw32ow16kw7sw2dw0pw3,2.0481
+onednn_verbose,exec,cpu,batch_normalization,bnorm_jit:avx512_core_bf16,forward_inference,data_bf16::blocked:acdb:f0 diff_undef::undef::f0,,flags:GSR,mb128ic64ih16iw16,0.783203
+onednn_verbose,exec,cpu,pooling_v2,jit:avx512_core_bf16,forward_training,src_bf16::blocked:acdb:f0 dst_bf16::blocked:acdb:f0 ws_u8::blocked:acdb:f0,,alg:pooling_max,mb128ic64_ih18oh8kh3sh2dh0ph0_iw18ow8kw3sw2dw0pw0,0.908936`)
+    document.getElementById('VK_beet_btn' + id).innerHTML = "<span class='VK_font14 VK_theme_color'>copied</span>"
+    setTimeout(() => {
+        document.getElementById('VK_beet_btn' + id).innerHTML = '<i class="fa-regular fa-copy"></i>'
+    }, 4000)
+}
+
+function gen_4th_copy13(id) {
+    navigator.clipboard.writeText(`pip3 install torch torchvision torchaudio --extra-index-url https://download.pytorch.org/whl/cpu`)
+    document.getElementById('VK_beet_btn' + id).innerHTML = "<span class='VK_font14 VK_theme_color'>copied</span>"
+    setTimeout(() => {
+        document.getElementById('VK_beet_btn' + id).innerHTML = '<i class="fa-regular fa-copy"></i>'
+    }, 4000)
+}
+
+function gen_4th_copy14(id) {
+    navigator.clipboard.writeText(`python -m pip install intel_extension_for_pytorch`)
+    document.getElementById('VK_beet_btn' + id).innerHTML = "<span class='VK_font14 VK_theme_color'>copied</span>"
+    setTimeout(() => {
+        document.getElementById('VK_beet_btn' + id).innerHTML = '<i class="fa-regular fa-copy"></i>'
+    }, 4000)
+}
+
+function gen_4th_copy15(id) {
+    navigator.clipboard.writeText(`python -m pip install intel_extension_for_pytorch -f https://software.intel.com/ipex-whl-stable`)
+    document.getElementById('VK_beet_btn' + id).innerHTML = "<span class='VK_font14 VK_theme_color'>copied</span>"
+    setTimeout(() => {
+        document.getElementById('VK_beet_btn' + id).innerHTML = '<i class="fa-regular fa-copy"></i>'
+    }, 4000)
+}
+
+function gen_4th_copy16(id) {
+    navigator.clipboard.writeText(`import torch
+import intel_extension_for_pytorch as ipex
+
+model = Model()
+model = model.to(memory_format=torch.channels_last)
+criterion = ...
+optimizer = ...
+model.train()
+
+# For FP32
+model, optimizer = ipex.optimize(model, optimizer=optimizer)
+
+# For BF16
+model, optimizer = ipex.optimize(model, optimizer=optimizer, dtype=torch.bfloat16)
+
+# Setting memory_format to torch.channels_last could improve performance with 4D input data. This is optional.
+data = data.to(memory_format=torch.channels_last)
+optimizer.zero_grad()
+output = model(data)`)
+    document.getElementById('VK_beet_btn' + id).innerHTML = "<span class='VK_font14 VK_theme_color'>copied</span>"
+    setTimeout(() => {
+        document.getElementById('VK_beet_btn' + id).innerHTML = '<i class="fa-regular fa-copy"></i>'
+    }, 4000)
+}
+
+function gen_4th_copy17(id) {
+    navigator.clipboard.writeText(`class SimpleNet(torch.nn.Module):
+    def __init__(self):
+        super(SimpleNet, self).__init__()
+        self.conv = torch.nn.Conv2d(64, 128, (3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+
+    def forward(self, x):
+        return self.conv(x)`)
+    document.getElementById('VK_beet_btn' + id).innerHTML = "<span class='VK_font14 VK_theme_color'>copied</span>"
+    setTimeout(() => {
+        document.getElementById('VK_beet_btn' + id).innerHTML = '<i class="fa-regular fa-copy"></i>'
+    }, 4000)
+}
+
+function gen_4th_copy18(id) {
+    navigator.clipboard.writeText(`model = SimpleNet().eval()
+x = torch.rand(64, 64, 224, 224)
+with torch.cpu.amp.autocast():
+    y = model(x)`)
+    document.getElementById('VK_beet_btn' + id).innerHTML = "<span class='VK_font14 VK_theme_color'>copied</span>"
+    setTimeout(() => {
+        document.getElementById('VK_beet_btn' + id).innerHTML = '<i class="fa-regular fa-copy"></i>'
+    }, 4000)
+}
+
+function gen_4th_copy19(id) {
+    navigator.clipboard.writeText(`conda create -n env_inc python=3.9
+conda activate env_inc`)
+    document.getElementById('VK_beet_btn' + id).innerHTML = "<span class='VK_font14 VK_theme_color'>copied</span>"
+    setTimeout(() => {
+        document.getElementById('VK_beet_btn' + id).innerHTML = '<i class="fa-regular fa-copy"></i>'
+    }, 4000)
+}
+
+function gen_4th_copy20(id) {
+    navigator.clipboard.writeText(`# install stable basic version from pip
+pip install neural-compressor
+# install stable full version from pip (including GUI)
+pip install neural-compressor-full`)
+    document.getElementById('VK_beet_btn' + id).innerHTML = "<span class='VK_font14 VK_theme_color'>copied</span>"
+    setTimeout(() => {
+        document.getElementById('VK_beet_btn' + id).innerHTML = '<i class="fa-regular fa-copy"></i>'
+    }, 4000)
+}
+
+function gen_4th_copy21(id) {
+    navigator.clipboard.writeText(`# install nightly basic version from pip
+pip install -i https://test.pypi.org/simple/ neural-compressor
+# install nightly full version from pip (including GUI)
+pip install -i https://test.pypi.org/simple/ neural-compressor-full`)
+    document.getElementById('VK_beet_btn' + id).innerHTML = "<span class='VK_font14 VK_theme_color'>copied</span>"
+    setTimeout(() => {
+        document.getElementById('VK_beet_btn' + id).innerHTML = '<i class="fa-regular fa-copy"></i>'
+    }, 4000)
+}
+
+function gen_4th_copy22(id) {
+    navigator.clipboard.writeText(`# install stable basic version from from conda
+conda install neural-compressor -c conda-forge -c https://software.repos.intel.com/python/conda/
+# install stable full version from from conda (including GUI)
+conda install neural-compressor-full -c conda-forge -c https://software.repos.intel.com/python/conda/`)
+    document.getElementById('VK_beet_btn' + id).innerHTML = "<span class='VK_font14 VK_theme_color'>copied</span>"
+    setTimeout(() => {
+        document.getElementById('VK_beet_btn' + id).innerHTML = '<i class="fa-regular fa-copy"></i>'
+    }, 4000)
+}
+
+function gen_4th_copy23(id) {
+    navigator.clipboard.writeText(`# install intel-tensorflow from pip
+pip install intel-tensorflow`)
+    document.getElementById('VK_beet_btn' + id).innerHTML = "<span class='VK_font14 VK_theme_color'>copied</span>"
+    setTimeout(() => {
+        document.getElementById('VK_beet_btn' + id).innerHTML = '<i class="fa-regular fa-copy"></i>'
+    }, 4000)
+}
+
+function gen_4th_copy24(id) {
+    navigator.clipboard.writeText(`mkdir –p img_raw/val
+cd img_raw
+wget http://www.image-net.org/challenges/LSVRC/2012/xxxxxxxx/ILSVRC2012_img_val.tar
+tar –xvf ILSVRC2012_img_val.tar -C val`)
+    document.getElementById('VK_beet_btn' + id).innerHTML = "<span class='VK_font14 VK_theme_color'>copied</span>"
+    setTimeout(() => {
+        document.getElementById('VK_beet_btn' + id).innerHTML = '<i class="fa-regular fa-copy"></i>'
+    }, 4000)
+}
+
+function gen_4th_copy25(id) {
+    navigator.clipboard.writeText(`cd val
+wget -qO- https://raw.githubusercontent.com/soumith/imagenetloader.torch/master/valprep.sh | bash`)
+    document.getElementById('VK_beet_btn' + id).innerHTML = "<span class='VK_font14 VK_theme_color'>copied</span>"
+    setTimeout(() => {
+        document.getElementById('VK_beet_btn' + id).innerHTML = '<i class="fa-regular fa-copy"></i>'
+    }, 4000)
+}
+
+function gen_4th_copy26(id) {
+    navigator.clipboard.writeText(`git clone https://github.com/intel/neural-compressor.git
+cd neural-compressor/
+git checkout 6663f7b
+cd examples/tensorflow/image_recognition/tensorflow_models/quantization/ptq
+bash prepare_dataset.sh --output_dir=./data --raw_dir=/PATH/TO/img_raw/val/ --shards=128 --subset=validation`)
+    document.getElementById('VK_beet_btn' + id).innerHTML = "<span class='VK_font14 VK_theme_color'>copied</span>"
+    setTimeout(() => {
+        document.getElementById('VK_beet_btn' + id).innerHTML = '<i class="fa-regular fa-copy"></i>'
+    }, 4000)
+}
+
+function gen_4th_copy27(id) {
+    navigator.clipboard.writeText(`wget https://storage.googleapis.com/intel-optimized-tensorflow/models/v1_6/resnet50_fp32_pretrained_model.pb`)
+    document.getElementById('VK_beet_btn' + id).innerHTML = "<span class='VK_font14 VK_theme_color'>copied</span>"
+    setTimeout(() => {
+        document.getElementById('VK_beet_btn' + id).innerHTML = '<i class="fa-regular fa-copy"></i>'
+    }, 4000)
+}
+
+function gen_4th_copy28(id) {
+    navigator.clipboard.writeText(`cd examples/tensorflow/image_recognition/tensorflow_models/quantization/ptq
+bash run_tuning.sh --config=resnet50_v1.yaml \
+    --input_model=/PATH/TO/resnet50_fp32_pretrained_model.pb \
+    --output_model=./nc_resnet50_v1.pb`)
+    document.getElementById('VK_beet_btn' + id).innerHTML = "<span class='VK_font14 VK_theme_color'>copied</span>"
+    setTimeout(() => {
+        document.getElementById('VK_beet_btn' + id).innerHTML = '<i class="fa-regular fa-copy"></i>'
+    }, 4000)
+}
+
+function gen_4th_copy29(id) {
+    navigator.clipboard.writeText(`python convert_bf16_without_tuning.py
+
+from neural_compressor.experimental import MixedPrecision
+converter = MixedPrecision()
+converter.precisions = 'bf16'
+converter.model = '/PATH/TO/resnet50_fp32_pretrained_model.pb'
+optimized_model = converter()
+optimized_model.save('nc_resnet50_v1_bf16.pb')
+`)
+    document.getElementById('VK_beet_btn' + id).innerHTML = "<span class='VK_font14 VK_theme_color'>copied</span>"
+    setTimeout(() => {
+        document.getElementById('VK_beet_btn' + id).innerHTML = '<i class="fa-regular fa-copy"></i>'
+    }, 4000)
+}
+
+function gen_4th_copy30(id) {
+    navigator.clipboard.writeText(`mixed_precision:
+  precisions: 'bf16'`)
+    document.getElementById('VK_beet_btn' + id).innerHTML = "<span class='VK_font14 VK_theme_color'>copied</span>"
+    setTimeout(() => {
+        document.getElementById('VK_beet_btn' + id).innerHTML = '<i class="fa-regular fa-copy"></i>'
+    }, 4000)
+}
+
+function gen_4th_copy111(id) {
+    let div = document.getElementById('VK_code_cont'+id).innerText
+
+    navigator.clipboard.writeText(div)
+    document.getElementById('VK_beet_btn' + id).innerHTML = "<span class='VK_font14 VK_theme_color'>copied</span>"
+    setTimeout(() => {
+        document.getElementById('VK_beet_btn' + id).innerHTML = '<i class="fa-regular fa-copy"></i>'
+    }, 4000)
+}
