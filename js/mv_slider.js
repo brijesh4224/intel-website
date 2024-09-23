@@ -1592,4 +1592,473 @@ window.onload = function () {
         }
     }
 
+    mv_intel_blog_geti(1);
+    mv_video_intel_geti();
+    mv_intel_case_study_geti(1);
+}
+
+
+
+
+// Intel® Geti™ Platform -> (Blog) Blog Card
+var mv_intel_geti_blog_data = [
+    // page 1
+    {
+        image:"software-recognized-may-2024.jpg",
+        category:"Blog",
+        title:"Intel® Geti™ 2.0.0 Release: Advancing AI Model Development",
+        date: "Jun. 5, 2024",
+        description: "Intel® Geti™ 2.0.0 is here. A new release of Intel’s Vision AI software for building computer vision models faster and with less. This release includes several additions for data labeling, model training, and inferencing.The release is part of Intel’s ongoing commitment to deliver high-quality software. All existing customers are invited to upgrade to Intel Geti 2.0.0 and take advantage of the latest functionality!",
+    },
+    {
+        image:"dashboard-456x300.png",
+        category:"Blog",
+        title:"Data and AI Metrics with Intel® Geti™",
+        date: "May. 24, 2024",
+        description: "Learn how to define and leverage metrics to identify improvements and repetitively refine your AI project with Intel® Geti™ software.",
+    },
+    {
+        image:"blog_intel_Geti_ai_Platform-466x300.webp",
+        category:"Blog",
+        title:"Intel® Geti™ AI Software Overview: Learn What Is Under the Hood",
+        date: "May. 14, 2024",
+        description: "Intel® Geti™ software enables anyone to build models rapidly and accelerate innovation across their businesses with AI. Learn about its features that can help you speed up your computer vision model development workflow and create new computer vision solutions for your organization.",
+    },
+    {
+        image:"ISC-West-Award-thumbnail.jpg",
+        category:"Blog",
+        title:"Intel® Geti™ Software Recognized by SIA as Winner of the Best New Products & Solutions Award for Video Analytics  at ISC West, 2024",
+        date: "May. 7, 2024",
+        description: "Intel® Geti™ software was selected as the 2024 Winner of the Video Analytics for its Intel® Geti™ software and honored April 10 during an award ceremony on the Bridge Stage on the ISC West Show Floor. The product name was also displayed on the ISC West show floor throughout the event from April 9-12.",
+    },
+    {
+        image:"MicrosoftTeams-image-1-500x253-1.png",
+        category:"Blog",
+        title:"Mastering the Intel® Geti™ SDK in 9 Steps: A Beginner’s Guide",
+        date: "Nov. 23, 2023",
+        description: "When you have your production system working 24/7, it will be difficult or sometimes impossible to stop your production in order to update your models, add new objects to detect, replace a camera and recalibrate, or change elements in your workload.",
+    },
+    {
+        image:"intel-500x281-1.webp",
+        category:"Blog",
+        title:"The Next Evolution: Intel® Geti™ 1.8.0 is here",
+        date: "Oct. 25, 2023",
+        description: "Intel’s software platform for building custom computer vision models more efficiently just launched a new version: Intel® Geti™ 1.8.0. This release includes additions for an enhanced data labeling experience with the Segment Anything Model (SAM), new storage management resources, and ready-to-use datasets.",
+    },
+    {
+        image:"getty-1082066722-fill-500x281-1.png",
+        category:"Blog",
+        title:"Interactive Annotation with SAM – speeding up the time to model",
+        date: "Oct. 25, 2023",
+        description: "Interactive Annotation with SAM – speeding up the time to model Request Trial In this post, we will discuss how we are utilizing the power of Segment Anything Model (SAM) in an interactive annotation process and speeding up the time to model for users of Intel® Geti™ software. Data preparation and the quality of data...",
+    },
+    {
+        image:"Computer-vision-1.jpg",
+        category:"Blog",
+        title:"Computer Vision Task Overview and Applications",
+        date: "Oct. 13, 2023",
+        description: "Learn what computer vision tasks are supported in Intel® Geti™ software and how it can help you solve your business automation challenges with computer vision.",
+    },
+    {
+        image:"blog_img1.jpg",
+        category:"Blog",
+        title:"The Intel® Geti™ SDK: A Game-Changer for Rapid AI Model Development and Deployment in your production system",
+        date: "Sep. 5, 2023",
+        description: "In today's fast-paced world, businesses require quick and accurate decision-making abilities. This is where Artificial Intelligence (AI) models come into play. AI models can analyze vast amounts of data, extract insights, and provide businesses with the intelligence required to make quick, data-driven decisions.",
+    },
+    // page 2
+    {
+        image:"brand-photography-library-71-fill-500x281-1.png",
+        category:"Blog",
+        title:"Enhance your experience: Introducing Intel® Geti™ 1.5.0",
+        date: "Jun. 7, 2023",
+        description: "We are excited to announce the launch of Intel Geti 1.5.0, a new platform version! Intel Geti software enables teams to build computer vision models for their AI applications. This release includes new features and expands functionality for a more effective and agile model development and deployment path. The release is part of our ongoing commitment to deliver high-quality software.",
+    },
+    {
+        image:"faq-mobile-1.webp",
+        category:"Blog",
+        title:"Efficient, custom object detection training template made easy",
+        date: "Feb. 1, 2023",
+        description: "Deep Learning algorithms are widely used in the industry today – from detecting defects in parts on the factory production line to recommending products to shoppers on e-commerce websites. These algorithms proved their high accuracy and efficiency and have driven significant innovations in businesses utilizing them.",
+    },
+    {
+        image:"Streamlining-AIs-Path-to-Production-with-the-Intel®-Geti™-Platform-500x261-1.png",
+        category:"Blog",
+        title:"Streamlining AI’s Path to Production with Intel® Geti™ Software",
+        date: "Dec. 13, 2022",
+        description: "We are thrilled to announce Intel Geti software is now commercially available for select customers. The software unites the right people and the right data for an efficient path to building high-quality solutions, overcoming obstacles to bring AI pilots to production.",
+    },
+    {
+        image:"blog_does_active_learning--466x300.webp",
+        category:"Blog",
+        title:"Does Active Learning Help Speed Up AI Model Development?",
+        date: "Sept. 27, 2022",
+        description: "The key to improving the productivity of computer vision AI model development is to involve human experts in the model-building loop for a continuous feedback process. Learn how active learning in the Intel® Geti™ computer vision AI platform enables just that",
+    },
+    {
+        image:"challenge-1-500x295.webp",
+        category:"Blog",
+        title:"Challenges for Organizations Building Computer Vision AI Models",
+        date: "Sept. 27, 2022",
+        description: "Computer vision is one of the most exciting subsets of artificial intelligence and machine learning. We’re already seeing a wealth of real-world use cases in industries from manufacturing to agriculture to retail. The possibilities that computer vision offers span essentially every single industry and field and are growing rapidly.",
+    },
+    {
+        image:"computer-vision-1-500x295.webp",
+        category:"Blog",
+        title:"Computer Vision Applications that Span Industries and Sectors",
+        date: "Sept. 27, 2022",
+        description: "How many security camera feeds can a single person monitor effectively? Even assuming one person can handle all camera feeds for an entire facility, how many people are needed for 24/7 monitoring of twenty different sites, each in a different state or country? Now let’s give this task to a computer that can simultaneously monitor every single camera feed for all facilities without needing to take a break or even blink.",
+    }
+]
+
+function mv_intel_blog_geti(page) {
+    const div = document.getElementById('mv_blog_parent');
+    if (div) {
+
+        const limit = 9;
+        const last = limit * page;
+        const first = last - limit;
+        const total_page = Math.ceil(mv_intel_geti_blog_data.length / limit);
+
+        // Update pagination links
+        const pagination = document.getElementById('mv_intel_geti_pagination');
+        const pagi = Array.from({ length: total_page }, (el, ind) => {
+            const pageNumber = ind + 1;
+            return `<a class=" ${page === pageNumber ? 'mv_blog_page_number' : ''}" onclick="mv_intel_blog_geti(${pageNumber})">${pageNumber}</a>`;
+        }).join('');
+        pagination.innerHTML = `<div class="text-center mt-5">
+                                    <div class="mv_blog_pagination">
+                                        <a class="${page === 1 ? 'd-none' : ''}" id="mv_prevoius" onclick="mv_intel_blog_geti(${page - 1})">Previous</a>
+                                        ${pagi}
+                                        <a class="${page === total_page ? 'd-none' : ''}" id="mv_next" onclick="mv_intel_blog_geti(${page + 1})">Next</a>
+                                    </div>
+                                </div>`;
+
+        // Fetch and display the current page data
+        const arr = mv_intel_geti_blog_data.slice(first, last);
+            const html = arr.map(ele => {
+                return `<div class="col-lg-4 col-md-6 col-sm-12 mb-3">
+                            <div class="mv_spark_card_featured">
+                                <div class="mv_imgboxhiden">
+                                    <div class="mv_spark_card_featured_img mv_spark_card_featured_img1" style="background-image: url('/img/mv_image/${ele.image}');"></div>
+                                </div>
+                                <div class="mv_industrie_overlay">
+                                    <div class="mv_spark_card_titles">
+                                        <p style="color: #fff;" class="mv_subtitle">${ele.category}</p>
+                                        <div class="mv_spark_card_metrics text-white">
+                                            <span>${ele.title}</span>
+                                        </div>
+                                    </div>
+                                    <div class="mv_spark_card_description">
+                                        <p class="mv_dated">${ele.date}</p>
+                                        <p class="mv_textellipsis">${ele.description}</p>
+                                    </div>
+                                </div>
+                                <div class="mv_spark_card_vertical_buttons">
+                                    <a href="#">
+                                        <span class="mv_spark_button_content">Read More</span>
+                                        <span><i style="font-size: 15px !important;" class="fa-solid fa-arrow-right-long"></i></span>
+                                    </a>
+                                    <span class="mv_socialIcon">
+                                        <a href="#"><i class="fa-solid fa-share-nodes"></i></a>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>`;
+            }).join('');
+            div.innerHTML = html;
+    }
+    else{
+        return;
+    }
+}
+
+
+
+
+// Intel® Geti™ Platform -> (Video) video Card
+var mv_intel_geti_video_data = [
+    // page 1
+    {
+        image:"software-recognized-may-2024.jpg",
+        category:"Video",
+        title:"Intel® Geti™ 2.0.0 Release: Advancing AI Model Development",
+        date: "Jun. 5, 2024",
+        description: "Intel® Geti™ 2.0.0 is here. A new release of Intel’s Vision AI software for building computer vision models faster and with less. This release includes several additions for data labeling, model training, and inferencing.The release is part of Intel’s ongoing commitment to deliver high-quality software. All existing customers are invited to upgrade to Intel Geti 2.0.0 and take advantage of the latest functionality!",
+    },
+    {
+        image:"software-recognized-may-2024.jpg",
+        category:"Video",
+        title:"Building end-to-end pipelines with the Intel® Geti™ SDK",
+        date: "Apr. 15, 2024",
+        description: "The demo showcases key features and functionalities of the Intel Geti SDK to help developers build end-to-end AI application pipelines, utilizing the computer vision models built using Intel Geti software.",
+    },
+    {
+        image:"software-recognized-may-2024.jpg",
+        category:"Video",
+        title:"Revolutionizing Sports Broadcasting with AI",
+        date: "Feb. 8, 2024",
+        description: "Dive into the future of sports broadcasting as WSC showcases its AI platform, which automatically and in real-time understands sports broadcasts and creates short-form content at scale.",
+    },
+    {
+        image:"software-recognized-may-2024.jpg",
+        category:"Video",
+        title:"Product Demo: Core Capabilities Overview",
+        date: "Jun. 15, 2023",
+        description: "The Intel Geti Platform's core capabilities empower business and data science users to work together within a single platform. This demo video showcases the capabilities enabling these users with varied expertise utilize the platform to accelerate computer vision workflows.",
+    },
+    {
+        image:"software-recognized-may-2024.jpg",
+        category:"Video",
+        title:"Introduction to Intel’s Next Generation Computer Vision AI Platform",
+        date: "Sept. 27, 2022",
+        description: "Get a look into Intel Geti computer vision platform. We will show you how you can build and deploy AI models faster.",
+    },
+    {
+        image:"software-recognized-may-2024.jpg",
+        category:"Video",
+        title:"Product Demo: Build AI Models with Intel Geti Software",
+        date: "Sept. 27, 2022",
+        description: "Intel Geti software offers a powerful yet intuitive interface to develop computer vision models for various applications from manufacturing to healthcare and smart cities. This demo video features an agricultural use case example.",
+    },
+    {
+        image:"software-recognized-may-2024.jpg",
+        category:"Video",
+        title:"Bravent Creates Industrial Vision Solutions with Intel® Geti™ Software",
+        date: "Sept. 27, 2022",
+        description: "Experts from IT consultancy Bravent discuss how Intel® Geti™ software enables them to collaborate with their enterprise customers to develop computer vision solutions more quickly than ever before.",
+        language:"Spanish Subtitles",
+    },
+    {
+        image:"software-recognized-may-2024.jpg",
+        category:"Video",
+        title:"Using Intel® Geti™ Software to Transform Medical Research",
+        date: "Sept. 27, 2022",
+        description: "London-based hospital Royal Brompton leverages Intel® Geti™ software to train AI models that are used to diagnose rare diseases.",
+    },
+    {
+        image:"software-recognized-may-2024.jpg",
+        category:"Video",
+        title:"Getting Started with Computer Vision AI Models",
+        date: "Sept. 27, 2022",
+        description: "Get an introduction into computer vision and artificial intelligence and learn how Intel® Geti™ software brings them all together.",
+    },
+]
+
+function mv_video_intel_geti() {
+    const div = document.getElementById('mv_video_parent');
+    // Fetch and display the current page data
+    if (div) {
+        const html = mv_intel_geti_video_data.map(ele => {
+            return `<div class="col-lg-4 col-md-6 col-sm-12 mb-3">
+                        <div class="mv_spark_card_featured">
+                            <div class="mv_imgboxhiden">
+                                 <video controls loop class="w-100">
+                                    <source src="/img/mv_video/video.mp4" type="video/mp4">
+                                </video>
+                            </div>
+                            <div class="mv_industrie_overlay">
+                                <div class="mv_spark_card_titles">
+                                    <p style="color: #fff;" class="mv_subtitle">${ele.category}</p>
+                                    <div class="mv_spark_card_metrics text-white">
+                                        <span>${ele.title}</span>
+                                    </div>
+                                </div>
+                                <div class="mv_spark_card_description">
+                                    <p class="mv_dated">${ele.date}</p>
+                                    <p class="mv_textellipsis">${ele.description}</p>
+                                </div>
+                            </div>
+                            <div class="mv_spark_card_vertical_buttons">
+                                <ul class="mb-0 ps-0">
+                                    <li>
+                                        <a href="#">
+                                            <span class="mv_spark_button_content">Watch Video</span>
+                                            <span><i style="font-size: 15px !important;" class="fa-solid fa-arrow-right-long"></i></span>
+                                        </a>
+                                    </li>
+                                    ${ele.language ? `<li>
+                                        <a href="#">
+                                            <span class="mv_spark_button_content">${ele.language}</span>
+                                            <span><i style="font-size: 15px !important;" class="fa-solid fa-arrow-right-long"></i></span>
+                                        </a>
+                                    </li>` : ""}
+                                </ul>
+                                <span class="mv_socialIcon">
+                                    <img src="/img/mv_image/Vector.svg" alt="">
+                                    <a href="#"><i class="fa-solid fa-share-nodes"></i></a>
+                                </span>
+                            </div>
+                        </div>
+                    </div>`;
+        }).join('');
+        div.innerHTML = html;
+    }
+    else{
+        return;
+    }
+}
+
+
+
+
+// Intel® Geti™ Platform -> (Case Study) Case Study Card
+var mv_intel_geti_case_data = [
+    // page 1
+    {
+        image:"Streamlining-AI-Model-Development-in-Biotech-for-Cancer-Diagnosis.png",
+        category:"Case Study",
+        title:"Streamlining AI Model Development in Biotech for Cancer Diagnosis",
+        date: "Dec. 15, 2023",
+        description: "The JelloX Federated Learning Platform allows clinical data from multiple healthcare organizations to be used for collaborative AI model development while meeting regulatory requirements and maintaining patient privacy. The solution utilizes Intel® Geti™ software to overcome intense resource requirements for clinical workers to label the data and train vision models.",
+    },
+    {
+        image:"download.png",
+        category:"Case Study",
+        title:"Optimizing AI Model Training and Refinement for Automated Optical Inspection (AOI)",
+        date: "Dec. 18, 2023",
+        description: "Fatigue and other human limitations are a familiar impediment to the accuracy and efficiency of visual inspection on manufacturing lines. ASRock Industrial set out to overcome those challenges with an implementation of state-of-the-art AI Automated Optical Inspection (AOI) in production of printed circuit boards at its OEM factory...",
+    },
+    {
+        image:"Computer-Vision-AI-Education-and-Deployment-Leaps-for-featured.webp",
+        category:"Case Study",
+        title:"Computer Vision AI Education and Deployment Leaps Forward with a New Approach from ITis and Intel",
+        date: "Feb. 2, 2023",
+        description: "While computer vision and other forms of AI have the potential to transform a wide range of processes across many industries, it can be incredibly challenging to integrate these technologies into real-world applications. One of the more formidable roadblocks is developing internal expertise and equipping people with the hands-on skills to tackle complex data science tasks.",
+    },
+    {
+        image:"Naturalis-and-DIOPSIS-Harness-the-Power-of-the-Intel®-Geti™-Platform-to-Overcome-Data-Challenges-in-Biodiversity-Research-1.webp",
+        category:"Case Study",
+        title:"Naturalis and DIOPSIS Harness the Power of Intel® Geti™ Software to Overcome Data Challenges in Biodiversity Research",
+        date: "Nov. 28, 2022",
+        description: "With Intel Geti software, the DIOPSIS Consortium created an innovative AI-based insect monitoring method to better understand insect population declines and to help protect biodiversity.",
+    },
+    {
+        image:"getiimages-1180547365-16x9-1-500x281.jpg",
+        category:"Case Study",
+        title:"Intel Geti Software Accelerates AI Model Training for Real-Time Nerve Detection in Samsung Ultrasound Systems",
+        date: "May. 27, 2024",
+        description: "Samsung Medison’s NerveTrack™ is an innovative ultrasound feature used to identify nerve structures in real time during the application of anesthesia. Training of NerveTrack™’s deep learning inference models requires thousands of annotated ultrasound reference images. The image annotation process is best performed by doctors with years of medical training and experience in identifying the small, elusive nerve structures.",
+    },
+    {
+        image:"1-500x261.webp",
+        category:"Case Study",
+        title:"Small Robot Co uses Intel® Geti™ Software for efficient modelling to create more sustainable crops",
+        date: "Oct. 24, 2022",
+        description: "Helping farmers feed the world while regenerating the planet is the driving force behind Small Robot Co. Their vision is “per plant farming”: rather than treating a field of crops together as one entity, they treat each plant individually to reduce external inputs such as fertilizers, pesticides and herbicides. Machine learning and AI are a crucial part of the per plant farming process...",
+    },
+    {
+        image:"adobestock-191187347-450x300-1.webp",
+        category:"Case Study",
+        title:"Monitoring Pedestrian Rail Crossings with Computer Vision AI",
+        date: "Dec. 20, 2022",
+        description: "Sensing Feeling uses Intel Geti software to accelerate training of AI models for automated pedestrian sensing solutions at railway crossings.Pedestrian incursions into railway crossings are a dramatic safety issue and point of liability for rail infrastructure operators. Automated sensing solutions that use computer vision (CV) to address these issues have been hampered by the low-quality images from decades-old...",
+    },
+    {
+        image:"monitoring-500x281.webp",
+        category:"Case Study",
+        title:"Monitoring Construction Worker Safety with Custom Computer Vision AI Models",
+        date: "Dec. 1, 2022",
+        description: "Sensing Feeling, a solution provider based in the UK, is working on developing custom AI models of heavy equipment with Intel Geti software to increase workers' safety. The Sensing Feeling smart visual sensing platform provides edge-based analytics using the machine vision AI models built with Intel Geti software. The occupational-safety solution monitors the safety zones surrounding heavy equipment to identify unsafe proximity by personnel.",
+    },
+    {
+        image:"cities-meets-500x281.webp",
+        category:"Case Study",
+        title:"Building Custom AI Models to Help Cities Meet Their Net-Zero Goals",
+        date: "May. 27, 2024",
+        description: "To mitigate climate change, local authorities can optimize their planning and operations with smart cities technology. In the UK, SSE Energy Solutions is developing AI-powered optical sensors based on Intel® architecture, Intel Geti AI software, and the Sensing Feeling software to transform video feeds into insights at the network edge that help cities meet environmental imperatives.",
+    },
+    // page 2
+    {
+        image:"img_building_custom_AI_models-1-448x300.webp",
+        category:"Case Study",
+        title:"New Computer Vision Platform Helps Clinicians Train AI to Recognize a Rare Disease",
+        date: "May. 27, 2024",
+        description: "London-based hospital Royal Brompton used the Intel® Geti™ software to translate their expertise into a machine learning inference algorithm that transforms their research.",
+    },
+    {
+        image:"bravent-creates-agile-500x295.webp",
+        category:"Case Study",
+        title:"Bravent Creates Agile, Scalable Industrial Vision Solutions with Intel® Geti™ Software and OpenVINO™ Toolkit",
+        date: "Sep. 19, 2022",
+        description: "IT consultancy Bravent developed an efficient, flexible AI-based computer vision solution to reduce human error in complex machinery assemblies, which can be scaled and adapted across a range of industries.",
+        languageenglish:" (English)",
+        languagespanish:"Download (Spanish)",
+    },
+]
+
+function mv_intel_case_study_geti(page) {
+    const div = document.getElementById('mv_case_study_parent');
+    if (div) {
+
+        const limit = 9;
+        const last = limit * page;
+        const first = last - limit;
+        const total_page = Math.ceil(mv_intel_geti_case_data.length / limit);
+
+        // Update pagination links
+        const pagination = document.getElementById('mv_intel_geti_pagination');
+        const pagi = Array.from({ length: total_page }, (el, ind) => {
+            const pageNumber = ind + 1;
+            return `<a class=" ${page === pageNumber ? 'mv_blog_page_number' : ''}" onclick="mv_intel_case_study_geti(${pageNumber})">${pageNumber}</a>`;
+        }).join('');
+        pagination.innerHTML = `<div class="text-center mt-5">
+                                    <div class="mv_blog_pagination">
+                                        <a class="${page === 1 ? 'd-none' : ''}" id="mv_prevoius" onclick="mv_intel_case_study_geti(${page - 1})">Previous</a>
+                                        ${pagi}
+                                        <a class="${page === total_page ? 'd-none' : ''}" id="mv_next" onclick="mv_intel_case_study_geti(${page + 1})">Next</a>
+                                    </div>
+                                </div>`;
+
+        // Fetch and display the current page data
+        const arr = mv_intel_geti_case_data.slice(first, last);
+            const html = arr.map(ele => {
+                return `<div class="col-lg-4 col-md-6 col-sm-12 mb-3">
+                            <div class="mv_spark_card_featured">
+                                <div class="mv_imgboxhiden">
+                                    <div class="mv_spark_card_featured_img mv_spark_card_featured_img1" style="background-image: url('/img/mv_image/${ele.image}');"></div>
+                                </div>
+                                <div class="mv_industrie_overlay">
+                                    <div class="mv_spark_card_titles">
+                                        <p style="color: #fff;" class="mv_subtitle">${ele.category}</p>
+                                        <div class="mv_spark_card_metrics text-white">
+                                            <span>${ele.title}</span>
+                                        </div>
+                                    </div>
+                                    <div class="mv_spark_card_description">
+                                        <p class="mv_dated">${ele.date}</p>
+                                        <p class="mv_textellipsis">${ele.description}</p>
+                                    </div>
+                                </div>
+                                <div class="mv_spark_card_vertical_buttons">
+                                    <ul class="mb-0 ps-0">
+                                        ${ele.languageenglish ? 
+                                        `<li>
+                                            <a href="#">
+                                                <span class="mv_spark_button_content">Download${ele.languageenglish}</span>
+                                            </a>
+                                        </li>` : 
+                                        `<li>
+                                            <a href="#">
+                                                <span class="mv_spark_button_content">Download</span>
+                                            </a>
+                                        </li>`}
+                                        ${ele.languagespanish ? `<li>
+                                            <a href="#">
+                                                <span class="mv_spark_button_content">${ele.languagespanish}</span>
+                                            </a>
+                                        </li>` : ""}
+                                    </ul>
+                                    <span class="mv_socialIcon">
+                                        <a href="#"><i class="fa-solid fa-share-nodes"></i></a>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>`;
+            }).join('');
+            div.innerHTML = html;
+    }
+    else{
+        return;
+    }
 }
