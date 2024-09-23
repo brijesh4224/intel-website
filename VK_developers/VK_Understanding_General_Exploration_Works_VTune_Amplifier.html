@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <!-- font family -->
+    <link href="https://fonts.cdnfonts.com/css/intel-clear" rel="stylesheet">
+    <!-- boootstap file -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <!-- costom css file -->
+    <link rel="stylesheet" href="/css/vivek.css">
+    <link rel="stylesheet" href="/css/yatri.css">
+
+    <!-- all.min file -->
+    <link rel="stylesheet" href="/css/all.min.css">
+
+</head>
+
+<body>
+
+
+    <main>
+
+        <!-- header -->
+        <header>
+            <div id="navbar"></div>
+        </header>
+
+        <!-- poster -->
+        <section class=" VK_light_blue">
+            <div class="VK_cont">
+                <div class="row m-0">
+                    <div class="col text-white">
+                        <h1 class="VK_py_pre_heading fw-light m-0 py-4 mt-2">
+                            Understanding How General Exploration Works in Intel® VTune™ Amplifier
+                        </h1>
+                        <div
+                            class="d-flex pb-4 col-md-4 col-sm-6 col-12 flex-md-row flex-column justify-content-between">
+                            <div class="d-flex flex-md-column flex-row">
+                                <p class="mb-2 me-3 w-100">
+                                    ID
+                                </p>
+                                <p class="mb-2 me-3 w-100">
+                                    660393
+                                </p>
+                            </div>
+                            <div class="d-flex flex-md-column flex-row">
+                                <p class="mb-2 me-3 w-100">
+                                    Updated
+                                </p>
+                                <p class="mb-2 me-3 w-100">
+                                    5/6/2019
+                                </p>
+                            </div>
+                            <div class="d-flex flex-md-column flex-row">
+                                <p class="mb-2 me-3 w-100">
+                                    Version
+                                </p>
+                                <p class="mb-2 me-3 w-100">
+                                    Latest
+                                </p>
+                            </div>
+                            <div class="d-flex flex-md-column flex-row">
+                                <p class="mb-2 me-3 d-none d-md-block">
+                                    &nbsp;
+                                </p>
+                                <p class="mb-2 me-3 w-100">
+                                    Public
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!--  -->
+        <section class="">
+            <div class="VK_cont py-5 VK_border_bottom">
+                <div class="row m-0">
+                    <div class="col-md-4 col-lg-3 p-0">
+
+                    </div>
+                    <div class="col-md-8 ps-sm-5">
+                        <div class="">
+                            <div class="VK_section_descriptions">
+                                <div class="text-end">
+                                    <p class="m-0 VK_print_email_font">
+                                        <span class="VK_a mx-2 d-inline-block">
+                                            <i class="fa-solid fa-print"></i>
+                                        </span>
+                                        <span class="VK_a mx-2 d-inline-block">
+                                            <i class="fa-regular fa-envelope"></i>
+                                        </span>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="mt-5">
+                                <p>
+                                    The General Exploration (replaced with the Microarchitecture Exploration in the
+                                    latest product versions) analysis type in Intel® VTune™ Amplifier is used to detect
+                                    microarchitectural hardware bottlenecks in an application or system. General
+                                    Exploration uses hardware event counters to detect and locate issues and presents
+                                    the data in a user-friendly and actionable format. This article will explain the
+                                    mechanisms used in this analysis, a few best-known-methods for interpreting the
+                                    results, and the various complexities and issues that arise when doing this type of
+                                    analysis.
+                                </p>
+                            </div>
+                            <div class="mt-4">
+                                <h4 class="VK_n22 mb-5">
+                                    The Mechanisms behind General Exploration
+                                </h4>
+                                <p>
+                                    The majority of the data collected and displayed in the General Exploration profile
+                                    is based on hardware events collected by the Performance Monitoring Units (PMU) on
+                                    the CPU. These PMU counters are hardware registers that can be programmed to count
+                                    various events, for example cache misses or mispredicted branches. You can find
+                                    details about the PMUs and events in the
+                                    <a href="" class="Vk_text_underline_dots VK_a">
+                                        Software Developers Manual.
+                                    </a>
+                                    VTune Amplifier collects the events in a mode known as Event-Based Sampling (EBS).
+                                    In EBS, each PMU register is programmed to count a specific event and given a
+                                    sample-after value (SAV). When the event occurs, the counter increments, and when it
+                                    reaches the SAV, an interrupt fires and some data is collected, e.g. instruction
+                                    pointer (IP), call stack, PID, etc... For example, if we programmed a PMU to count
+                                    the L2 Cache Miss event with a SAV of 2000, on the 2000th L2 cache miss an interrupt
+                                    would occur, the data would be collected, and VTune Amplifier would attribute all
+                                    2000 cache misses to the singe IP collected in the interrupt handler. Then the PMU
+                                    would reset and start counting to 2000 again.
+                                </p>
+                                <p>
+                                    The fact that all 2000 cache misses are attributed to a single IP is the reason that
+                                    this technique is called Event-Based
+                                    <b>
+                                        Sampling
+                                    </b>
+                                    It is unlikely that all 2000 cache misses are actually caused by that single
+                                    instruction, however, if enough samples are collected in this manner, the results
+                                    should be a statistical representation of the actual behavior. When sufficient
+                                    symbol information and source code is available, these instruction pointers can be
+                                    resolved to specific modules, functions, and often times lines of code within an
+                                    application.
+                                </p>
+                                <p>
+                                    There are hundreds of events that can be collected on a given microarchitecture, and
+                                    these events can change from generation to generation. The General Exploration
+                                    analysis is designed to harness the expert knowledge of the architects and abstract
+                                    away the complexities of selecting which events to collect and present the user with
+                                    understandable metrics that remain consistent across platforms. To do so, it is
+                                    based on the Top-Down Analysis Method [1], which is briefly mentioned in next
+                                    section. General Exploration collects approximately 60 events on recent
+                                    microarchitectures. There are a limited number of PMU counters (usually four per
+                                    logical core) so this set of events must be multiplexed in order to collect them all
+                                    in a single profile. This means that four events are collected for some period of
+                                    time, then they are swapped out for a different four events, and this process
+                                    repeats continuously for the entire profile. The behavior of specific events must be
+                                    estimated during the times when that event is not being collected. This multiplexing
+                                    can introduce issues, which are described in the complexities section later in the
+                                    article.
+                                </p>
+                                <p>
+                                    This is all done automatically when you select the General Exploration Analysis Type
+                                    in VTune Amplifier.
+                                </p>
+                            </div>
+                            <div class="mt-4">
+                                <h4 class="VK_n22 mb-5">
+                                    Interpreting General Exploration Results
+                                </h4>
+                                <p>
+                                    After running a General Exploration analysis you are presented with a summary of all
+                                    the data collected. In addition to some common performance data such as elapsed
+                                    time, the majority of the General Exploration data are metrics based on the hardware
+                                    events described above. A
+                                    <b>
+                                        metric
+                                    </b>
+                                    is a combination of events into some useful value. For example, if we divide the
+                                    Clockticks (CPU_CLK_UNHALTED.THREAD event) by Instructions (INST_RETIRED.ANY event),
+                                    we get the commonly used metric Cycles per Instruction (CPI).
+                                </p>
+                                <p>
+                                    The metrics in VTune Amplifier are organized in a hierarchical fashion which is used
+                                    to identify microarchitectural bottlenecks. This hierarchy and methodology is known
+                                    as the Top-Down Analysis Method – a simplified, accurate and fast method to identify
+                                    critical bottlenecks at the architecture and microarchitecture levels. Frequent
+                                    performance bottlenecks are organized in a hierarchical structure and their cost is
+                                    weighted using microarchitecture-independent metrics. As a result, the hierarchy is
+                                    consistent and forward-compatible across processor generations which reduces the
+                                    high learning curve traditionally required to understand new microarchitectures and
+                                    their model-specific events. A detailed description of this methodology can be found
+                                    in the IEEE paper [1]. A useful white paper is also available at
+                                    <a href="" class="Vk_text_underline_dots VK_a">
+                                        How to Tune Applications Using a Top-Down Characterization of Microarchitectural
+                                        Issues.
+                                    </a>
+                                    Additionally, there is a tuning guide for each hardware platform largely based on
+                                    General Exploration available from
+                                    <a href="" class="Vk_text_underline_dots VK_a">
+                                        www.intel.com/vtune-tuning-guides
+                                    </a>
+                                    After running an analysis, it’s important to focus on the hotspots within your
+                                    application. These will have the largest counts for the CPU_CLK_UNHALTED.THREAD
+                                    event. Next, focus on metrics that are highlighted in the GUI at the highest level
+                                    of the hierarchy. Highlighted metrics have values outside a predefined threshold
+                                    that represents when performance starts to be impacted negatively. Expand the
+                                    highlighted metrics to see sub metrics that relate to the parent. Again look for
+                                    highlighted metrics to identify performance impacts and continue expanding the
+                                    highlighted metrics. Start by focusing on the lowest level of the hierarchy that has
+                                    a highlighted metric. Use the hover text and documentation to understand the meaning
+                                    of various metrics and how they can affect performance. The tuning guides include
+                                    lots of suggestions for improving performance depending on which metrics are
+                                    highlighted. If no metrics are highlighted at the lowest level, focus on the
+                                    highlighted level above and try to understand what causes the performance issue
+                                    indicated by that metric. After making code changes, rerun a General Exploration
+                                    analysis to see if they have affected performance and how the metrics characterize
+                                    the optimized code. You can use the VTune Amplifier GUI to compare results
+                                    side-by-side. This performance tuning process is iterative, and can continue as long
+                                    as the developer is willing to invest the time. Generally, the first fixes will have
+                                    the most impact on performance, and subsequent changes will begin to have
+                                    diminishing returns.
+                                </p>
+                            </div>
+                            <div class="mt-4">
+                                <h4 class="VK_n22 mb-5">
+                                    Understanding the Complexities of Event-Based Sampling
+                                </h4>
+                                <p>
+                                    There are a number of complexities associated with EBS that aren’t necessarily
+                                    prevalent in standard user-mode performance analysis. It is important to understand
+                                    these issues and how they may be affecting your data as you analyze results from
+                                    VTune Amplifier.
+                                </p>
+                                <p>
+                                    <b>
+                                        Complexity 1: Intel® Hyper-Threading Technology
+                                    </b>
+                                </p>
+                                <p>
+                                    One such set of complexities are introduced by the use of Intel® Hyper-Threading
+                                    Technology, sometimes referred to as an implementation of simultaneous
+                                    multithreading (SMT). In a system running with SMT enabled, each physical core has
+                                    additional hardware which allows it to appear as two logical processors, although
+                                    most of the hardware is still shared. You can imagine that designing PMUs and events
+                                    for this case can be complex. Some events become less accurate when SMT is enabled
+                                    because it can be difficult to distinguish the logical core responsible for the
+                                    event. Additionally, calculating metrics using these events is complex because
+                                    metrics make some assumptions about the underlying hardware. For example, a modern
+                                    Intel CPU can allocate and retire four micro-operations (uops) per cycle. Therefore
+                                    the ideal CPI would be 0.25. However, when SMT is enabled, this limit of four uops
+                                    per cycle still holds true for the core, each SMT thread must share the allocate and
+                                    retire resources. Thus, in an application with SMT enabled and multiple software
+                                    threads consistently running, i.e. very few stalls due to memory accesses or port
+                                    contention, a per-logical core (SMT core) CPI of 0.5 is the best you can do. And
+                                    most applications are a mix of parallel and serial. Because of this, some metric
+                                    values may vary when SMT is enabled and should be interpreted with this in mind. The
+                                    main metrics to note that are affected by SMT are the top-level metrcs (categories):
+                                    Retiring, Bad Speculation, Back-End Bound, and Front-End bound. The effects of SMT
+                                    are proportional to amount that both SMT threads are executing simultaneously on a
+                                    core and competing for the same resource, e.g. allocation slots. In the case with
+                                    lots of simultaneous execution, the Retiring, Bad Speculation, and Front-End Bound
+                                    metrics can be underestimated and Back-End Bound will be overestimated. In a
+                                    worst-case scenario, these metrics can be off by ~1X, however the variance is
+                                    generally less than that. Additionally, VTune Amplifier has thresholds built in to
+                                    highlight metrics when they may indicate a performance issue, and in most cases this
+                                    variance will not affect whether a metric is highlighted. It’s important to be aware
+                                    of how SMT may be affecting your results, and if you suspect such effects, try
+                                    running an analysis with SMT disabled in the BIOS.
+                                </p>
+                                <p>
+                                    <b>
+                                        Complexity 2: Event Skid
+                                    </b>
+                                </p>
+                                <p>
+                                    Another complexity introduced by EBS is the event skid that occurs when PMU
+                                    interrupt handlers collect the Instruction Pointer (IP) that caused the event. Due
+                                    to complexities in the hardware and delays in interrupt processing, the IP collected
+                                    at the time of the interrupt handler which is assigned to a given event may skid to
+                                    several IPs later in the execution then when the event actually occurred. In the
+                                    case that metrics are being evaluated at a module or function level, this is
+                                    generally not an issue because the IP will often still be in the same module or
+                                    function. However, if you are looking at source lines or assembly instructions, the
+                                    event counts and metrics values may skid to a line or instruction later in the
+                                    binary. If metric values don’t seem to make sense, look at the few source lines
+                                    before and think about whether skid may be affecting the values and whether it makes
+                                    sense for the metrics to be associated with a previous line in the program. A
+                                    special case of event skid can occur on branch instructions where events may get
+                                    associated to branch targets which may be far away in the binary. Pay special
+                                    attention to this effect if it looks like metrics associated with branch targets are
+                                    actually from branch sources. Some events can be collected in a “precise” mode.
+                                    These events are usually denoted with a _PS at the end of their name, for example
+                                    BR_INST_RETIRED.ALL_BRANCHES_PS. These events usually have a reduced skid of just
+                                    one instruction. They are attributed to the IP directly after the eventing IP -
+                                    often referred to as IP+1. It is not always trivial to determine the previous IP, as
+                                    in the branch case described above, so VTune Amplifier cannot do this automatically.
+                                    If you’re profiling on a 4th generation Core™ processor or later, there is a fix for
+                                    IP+1 issue and the eventing IP is reported. When looking at event locations for
+                                    precise events on older processors, keep this IP+1 skid in mind.
+                                </p>
+                                <p>
+                                    <b>
+                                        Complexity 3: Event Multiplexing
+                                    </b>
+                                </p>
+                                <p>
+                                    The General Exploration analysis type collects 60+ events on recent processors,
+                                    which requires event multiplexing, as described above. This multiplexing can cause
+                                    additional variance in the collected data if runs are too short or don’t repeat any
+                                    type of steady state within the time it takes to cycle through all multiplexed event
+                                    groups multiple times. Obviously there is a lot of variance in the amount of time
+                                    you must run your specific application to get valid representative data, but keep in
+                                    mind that each group is rotated approximately every 10ms and there are ~15 groups in
+                                    General Exploration. Additionally, there is a “
+                                    <b>
+                                        MUX Reliability
+                                    </b>"
+                                    metric in VTune Amplifier which attempts to determine how accurate any given set of
+                                    metrics for a row in the grid are, with respect to multiplexing inaccuracies. This
+                                    value ranges from 0 to 1, and values above 0.9 generally represent a high confidence
+                                    in the metrics for that row. If you think your data may be affected by multiplexing
+                                    based on the symptoms described above (low MUX Reliability values, short run
+                                    durations), try running the analysis for a longer period of time or enable multiple
+                                    runs in the GUI.
+                                </p>
+                                <p>
+                                    <b>
+                                        Complexity 4: Interrupt Handlers and Masking
+                                    </b>
+                                </p>
+                                <p>
+                                    One more issue to be aware of when doing EBS with VTune Amplifier is the effect
+                                    interrupt handlers and masking interrupts can have on sampling. As described above,
+                                    samples are counted through the use of an interrupt and interrupt handler. If the
+                                    platform or application being analyzed has lots of time spent with interrupts
+                                    masked, for example in other interrupt handlers, samples cannot be collected during
+                                    that time. This also means that interrupt handlers themselves cannot be fully
+                                    profiled by EBS. If multiple PMU interrupts arrive while interrupts are masked, only
+                                    the last one will be handled when interrupts are eventually unmasked. This issue is
+                                    often seen as many more samples than expected being attributed to the kernel idle
+                                    loop, where interrupts are regularly masked and unmasked.
+                                </p>
+                                <p>
+                                    It’s important to be aware of these issues and be able to recognize when your
+                                    analysis may be affected by some of these complexities.
+                                </p>
+                                <p>
+                                    <b>
+                                        References
+                                    </b>
+                                </p>
+                                <p>
+                                    <b>
+                                        [1] A. Yasin, “A Top-Down Method for Performance Analysis and Counters
+                                        Architecture”, Performance Analysis of Systems and Software (ISPASS), IEEE
+                                        International Symposium on, 2014
+                                    </b>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!--  -->
+        <section class="py-5">
+            <div class="VK_cont">
+                <div class="row m-0">
+                    <div class="col">
+                        <p>
+                            Product and Performance Information
+                        </p>
+                        <p class="VK_font12">
+                            1Performance varies by use, configuration and other factors. Learn more at
+                            <a href="" class="Vk_text_underline_dots VK_a">
+                                www.Intel.com/PerformanceIndex.
+                            </a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- footer -->
+        <footer>
+            <div id="footer"></div>
+        </footer>
+
+    </main>
+
+
+    <!---------------- Javascript Files ---------------->
+
+    <script>
+        // navbar include
+        fetch('/y_index/y_navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar').innerHTML = data;
+            });
+        // footer include 
+        fetch('/y_index/y_footer.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('footer').innerHTML = data;
+            });
+    </script>
+
+    <!-- jquery -->
+    <script src="/js/jquery-3.7.1.js"></script>
+
+
+    <!-- bootstrap js file -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+
+    <!-- costom js file -->
+    <script src="/js/vivek.js"></script>
+
+    <!-- all min -->
+    <!-- <script src="/js/all.min.js"></script> -->
+
+</body>
+
+</html>
