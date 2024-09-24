@@ -76,18 +76,18 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#VK_Naming_Conventions"
+                                    <a href="#VK_BERT_Tuning_Intel_AMX"
                                         class="VK_a text-decoration-none d-inline-block ps-2 py-1">
                                         BERT Tuning with Intel AMX
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#VK_TAA_XeSS" class="VK_a text-decoration-none d-inline-block ps-2 py-1">
+                                    <a href="#VK_Conclusion" class="VK_a text-decoration-none d-inline-block ps-2 py-1">
                                         Conclusion
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#VK_XeSS_Game_Setting_Recommendations"
+                                    <a href="#VK_Feedback"
                                         class="VK_a text-decoration-none d-inline-block ps-2 py-1">
                                         Feedback
                                     </a>
@@ -205,7 +205,7 @@
                                     processors. The server platform, memory, hard drives, and network interface cards
                                     can be determined according to your usage requirements.
                                 </p>
-                                <div class="my-5">
+                                <div class="my-5 overflow-auto">
                                     <table class="">
                                         <thead>
                                             <tr>
@@ -267,7 +267,7 @@
                                         Software
                                     </b>
                                 </p>
-                                <div class="my-5">
+                                <div class="my-5 overflow-auto">
                                     <table class="">
                                         <thead>
                                             <tr>
@@ -387,7 +387,7 @@
                                     Only oneDNN needs to be installed. No other components are needed.
                                 </p>
                             </section>
-                            <section class="mt-5 pb-4" id="">
+                            <section class="mt-5 pb-4" id="VK_BERT_Tuning_Intel_AMX">
                                 <h3 class="VK_side_heading fw-light">
                                     BERT Tuning with Intel AMX
                                 </h3>
@@ -412,9 +412,9 @@
                                         Download the Tool and Compile
                                     </b>
                                 </p>
-                                <div class="VK_theme_bg border mt-5 p-4 rounded-3">
+                                <div class="VK_theme_bg border my-5 p-4 rounded-3">
                                     <div class="text-end">
-                                        <button class="m-0 text-primary border-0 bg-transparent VK_copy_btn">
+                                        <button class="m-0 text-primary border-0 bg-transparent VK_copy_btn" onclick="BERT_copy1(1)" id="VK_beet_btn1">
                                             <i class="fa-regular fa-copy"></i>
                                         </button>
                                     </div>
@@ -431,7 +431,7 @@ cmake --build . -j <span class="VK_code_blue">8</span></p></pre>
                                         </code>
                                     </div>
                                 </div>
-                                <p>
+                                <p class="pt-3">
                                     <b>
                                         Run Benchmark
                                     </b>
@@ -439,9 +439,9 @@ cmake --build . -j <span class="VK_code_blue">8</span></p></pre>
                                 <p>
                                     Run benchmark to prove that this tool can work normally:
                                 </p>
-                                <div class="VK_theme_bg border mt-5 px-4 pb-4 pt-2 rounded-3">
+                                <div class="VK_theme_bg border my-5 px-4 pb-4 pt-2 rounded-3">
                                     <div class="text-end">
-                                        <button class="m-0 text-primary border-0 bg-transparent VK_copy_btn">
+                                        <button class="m-0 text-primary border-0 bg-transparent VK_copy_btn" onclick="BERT_copy2(2)" id="VK_beet_btn2">
                                             <i class="fa-regular fa-copy"></i>
                                         </button>
                                     </div>
@@ -451,6 +451,396 @@ cmake --build . -j <span class="VK_code_blue">8</span></p></pre>
 <pre class="VK_code-block"><p class="m-0">tests/benchmark/benchmark</p></pre></code>
                                     </div>
                                 </div>
+                                <p>
+                                    <b>
+                                        A Tuning BERT Model Based on TensorFlow* Version 2.x
+                                    </b>
+                                </p>
+                                <p>
+                                    <b>
+                                        How It Works
+                                    </b>
+                                </p>
+                                <div class="d-flex justify-content-center">
+                                    <div class="">
+                                        <img src="/img/vivek/VK_238.png" class="w-100" alt="">
+                                        <p class="mt-4 text-center">
+                                            Figure 2.
+                                        </p>
+                                    </div>
+                                </div>
+                                <p class="mt-4">
+                                    In Figure 2, the BERT model is fused into a big operation based on a TensorFlow
+                                    wrapper. In this big operation, reimplement all operations by oneDNN primitives or
+                                    intrinsic instructions. In these operations, functions that are related to Intel AMX
+                                    are called for
+                                    <b>
+                                        matmul
+                                    </b>
+                                    operations based on oneDNN on 4th generation Intel Xeon Scalable processors.
+                                </p>
+                                <p>
+                                    <b>
+                                        Requirements
+                                    </b>
+                                </p>
+                                <ul>
+                                    <li>
+                                        Dataset for testing (to download MRPC, see the following section)
+                                    </li>
+                                    <li>
+                                        <a href="" class="Vk_text_underline_dots VK_a">
+                                            Google* BERT-Based Model
+                                        </a>
+                                    </li>
+                                    <li>
+                                        Python* version 3.x (3.8 is verified)
+                                    </li>
+                                    <li>
+                                        TensorFlow version 2.x (2.9 is verified)
+                                    </li>
+                                    <li>
+                                        <b>
+                                            tensorflow-text
+                                        </b>
+                                    </li>
+                                    <li>
+                                        <b>
+                                            tensorflow-datasets
+                                        </b>
+                                    </li>
+                                    <li>
+                                        <b>
+                                            tensorflow-hub
+                                        </b>
+                                    </li>
+                                    <li>
+                                        pandas
+                                    </li>
+                                    <li>
+                                        pytest
+                                    </li>
+                                </ul>
+                                <p>
+                                    <b>
+                                        Fine Tuning a Model
+                                    </b>
+                                </p>
+                                <p>
+                                    To download MRPC and fine tune a BERT-based model, follow the tutorial in
+                                    <a href="" class="Vk_text_underline_dots VK_a">
+                                        Fine-Tune a Script for a BERT Model.
+                                    </a>
+                                </p>
+                                <p>
+                                    <b>
+                                        Usage of run_classifier.py
+                                    </b>
+                                </p>
+                                <div class="VK_theme_bg border my-5 p-4 rounded-3">
+                                    <div class="text-end">
+                                        <button class="m-0 text-primary border-0 bg-transparent VK_copy_btn" onclick="BERT_copy3(3)" id="VK_beet_btn3">
+                                            <i class="fa-regular fa-copy"></i>
+                                        </button>
+                                    </div>
+                                    <div class="VK_code-container">
+                                        <div class="VK_line-number"></div>
+                                        <code class="VK_theme_color">
+<pre class="VK_code-block"><p class="m-0">python run_classifier.py -b $encoder_handle -p $preprocessor_handle -e $epochs -l $learning_rate $output_dir</p></pre>
+                                        </code>
+                                    </div>
+                                </div>
+                                <p>
+                                    The tool builds a model consisting of the specified preprocessor and a BERT encoder,
+                                    adds a classification head to it, and fine-tunes it using the GLUE/MRPC dataset.
+                                </p>
+                                <p>
+                                    <b>
+                                        Default Model
+                                    </b>
+                                </p>
+                                <ul>
+                                    <li>
+                                        Run the run_classifier.py tool.
+                                    </li>
+                                </ul>
+                                <p>
+                                    All arguments except output_dir have defaults and are optional. The
+                                    <a href="" class="Vk_text_underline_dots VK_a">
+                                        default BERT model
+                                    </a>
+                                    is downloaded, fine-tuned, and saved in output_dir.
+                                </p>
+                                <p class="mt-4">
+                                    <b>
+                                        Select a Different Model (Model Modification May Not Work)
+                                    </b>
+                                </p>
+                                <p>
+                                    For details, see
+                                    <a href="" class="Vk_text_underline_dots VK_a">
+                                        Modify the Model.
+                                    </a>
+                                </p>
+                                <ul>
+                                    <li>
+                                        Pick a
+                                        <a href="" class="Vk_text_underline_dots VK_a">
+                                            BERT encoder.
+                                        </a>
+                                    </li>
+                                    <li>
+                                        Find a compatible preprocessor model for your
+                                        <a href="" class="Vk_text_underline_dots VK_a">
+                                            BERT encoder.
+                                        </a>
+                                    </li>
+                                    <li>
+                                        (Optional) Download the models.
+                                    </li>
+                                    <li>
+                                        Run the
+                                        <b>
+                                            run_classifier.py
+                                        </b>
+                                        tool. All arguments except
+                                        <b>
+                                            output_dir
+                                        </b>
+                                        have defaults and are optional, but you want to use your selected models, you
+                                        must provide handles for the TensorFlow Hub:
+                                        <ul>
+                                            <li>
+                                                If you downloaded the models, the handles are the download paths.
+                                            </li>
+                                            <li>
+                                                Otherwise, provide the TensorFlow Hub URL. (TensorFlow Hub caches the
+                                                downloads between runs.)
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                                <p>
+                                    <b>
+                                        Modify the Model
+                                    </b>
+                                </p>
+                                <p>
+                                    Modifying the model to use the monolithic
+                                    <b>
+                                        BertOp
+                                    </b>
+                                    is done using the
+                                    <a href="" class="Vk_text_underline_dots VK_a">
+                                        model modifier tool.
+                                    </a>
+                                    Rather than calling the tool directly, it’s easier to use a script preconfigured for
+                                    a specific BERT model. Those scripts are available in the
+                                    <a href="" class="Vk_text_underline_dots VK_a">
+                                        util directory.
+                                    </a>
+                                    Currently only the
+                                    <a href="" class="Vk_text_underline_dots VK_a">
+                                        default model
+                                    </a>
+                                    is supported.
+                                </p>
+                                <p class="m-0">
+                                    The steps to modify the model are:
+                                </p>
+                                <ol>
+                                    <li>
+                                        (If not done previously) Compile the model modifier protos :
+                                    </li>
+                                </ol>
+                                <div class="VK_theme_bg border my-5 pt-2 px-4 pb-3 rounded-3">
+                                    <div class="text-end">
+                                        <button class="m-0 text-primary border-0 bg-transparent VK_copy_btn" onclick="BERT_copy4(4)" id="VK_beet_btn4">
+                                            <i class="fa-regular fa-copy"></i>
+                                        </button>
+                                    </div>
+                                    <div class="VK_code-container">
+                                        <div class="VK_line-number"></div>
+                                        <code class="VK_theme_color">
+<pre class="VK_code-block"><p class="m-0">$ cd <repo_root>/python/proto
+
+$ ./compile_proto.sh $tensorflow_include_dir</p></pre>
+                                        </code>
+                                    </div>
+                                </div>
+                                <p>
+                                    For TensorFlow2.x, tensorflow_include_dir will be <...>
+                                        /site-packages/tensorflow/include
+                                </p>
+                                <p class="m-0">
+                                    TensorFlow1.x does not seem to include .proto files with the package. In this case,
+                                    TensorFlow sources can be used. tensorflow_include_dir is the root of the TensorFlow
+                                    repository.
+                                </p>
+                                <ol>
+                                    <li>
+                                        Put the model modifier on PYTHONPATH:
+                                    </li>
+                                </ol>
+                                <div class="VK_theme_bg border my-5 pt-2 px-4 pb-3 rounded-3">
+                                    <div class="text-end">
+                                        <button class="m-0 text-primary border-0 bg-transparent VK_copy_btn"  onclick="BERT_copy5(5)" id="VK_beet_btn5">
+                                            <i class="fa-regular fa-copy"></i>
+                                        </button>
+                                    </div>
+                                    <div class="VK_code-container">
+                                        <div class="VK_line-number"></div>
+                                        <code class="VK_theme_color">
+<pre class="VK_code-block"><p class="m-0">export PYTHONPATH=&lt;repo_root/python>:$PYTHONPATH</p></pre>
+                                        </code>
+                                    </div>
+                                </div>
+                                <ol>
+                                    <li>
+                                        Run the preconfigured script:
+                                    </li>
+                                </ol>
+                                <div class="VK_theme_bg border my-5 pt-2 px-4 pb-3 rounded-3">
+                                    <div class="text-end">
+                                        <button class="m-0 text-primary border-0 bg-transparent VK_copy_btn" onclick="BERT_copy6(6)" id="VK_beet_btn6">
+                                            <i class="fa-regular fa-copy"></i>
+                                        </button>
+                                    </div>
+                                    <div class="VK_code-container">
+                                        <div class="VK_line-number"></div>
+                                        <code class="VK_theme_color">
+<pre class="VK_code-block"><p class="m-0">$ cd <repo_root>/util/tf2/bert_en_uncased_L-12_H-768_A-12_4
+
+$ ./replace_full_bert.sh $path_to_bert_encoder $path_to_fine_tuned_model</p></pre>
+                                        </code>
+                                    </div>
+                                </div>
+                                <p>
+                                    The path_to_bert_encoder should be the BERT encoder model, as downloaded from TF
+                                    Hub.
+                                </p>
+                                <p>
+                                    The path_to_fine_tuned_model is the path to the output model of run_classifier.py
+                                </p>
+                                <p>
+                                    The preconfigured script uses the model modifier tools to generate a BERT pattern.pb
+                                    from the original encoder model, combine it with the fused_bert_node_def.pb included
+                                    with the script to create a recipe.pb, then use that recipe to locate the BERT
+                                    pattern in the fine-tuned model and replace it with the fused BERT operation. The
+                                    intermediate pattern.pb and recipe.pb are created in a temporary directory and
+                                    removed when finished.
+                                </p>
+                                <p class="m-0">
+                                    This requires the original BERT encoder model to be available, which is not ideal
+                                    and may be changed in the future. For example, the recipe.pb can be stored in the
+                                    repository.
+                                </p>
+                                <ol>
+                                    <li>
+                                        Enable the modified model graph.
+                                    </li>
+                                </ol>
+                                <p>
+                                    The previous tool creates a modified_saved_model.pb next to the saved_model.pb of
+                                    the fine-tuned model. To use the modified graph, do:
+                                </p>
+                                <div class="VK_theme_bg border my-5 pt-2 px-4 pb-3 rounded-3">
+                                    <div class="text-end">
+                                        <button class="m-0 text-primary border-0 bg-transparent VK_copy_btn" onclick="BERT_copy7(7)" id="VK_beet_btn7">
+                                            <i class="fa-regular fa-copy"></i>
+                                        </button>
+                                    </div>
+                                    <div class="VK_code-container">
+                                        <div class="VK_line-number"></div>
+                                        <code class="VK_theme_color">
+<pre class="VK_code-block"><p class="m-0">$ cd $path_to_model
+
+$ mv saved_model.pb original_saved_model.pb
+
+$ ln -s modified_saved_model.pb saved_model.pb</p></pre>
+                                        </code>
+                                    </div>
+                                </div>
+                                <p>
+                                    This will preserve the original model graph, but calls to tf.saved_model.load(...)
+                                    do not use the modified version.
+                                </p>
+                                <p>
+                                    <b>
+                                        Configure BERT Operations
+                                    </b>
+                                </p>
+                                <p>
+                                    Users are required to configure BERT operations. A full tutorial on all possible
+                                    options can be found
+                                    <a href="" class="Vk_text_underline_dots VK_a">
+                                        here.
+                                    </a>
+                                </p>
+                                <p>
+                                    However to launch this particular model with no quantization and no bfloat16, you
+                                    can do the following:
+                                </p>
+                                <div class="VK_theme_bg border my-5 pt-2 px-4 pb-3 rounded-3">
+                                    <div class="text-end">
+                                        <button class="m-0 text-primary border-0 bg-transparent VK_copy_btn" onclick="BERT_copy8(8)" id="VK_beet_btn8">
+                                            <i class="fa-regular fa-copy"></i>
+                                        </button>
+                                    </div>
+                                    <div class="VK_code-container">
+                                        <div class="VK_line-number"></div>
+                                        <code class="VK_theme_color">
+<pre class="VK_code-block"><p class="m-0">export PYTHONPATH=$PYTHONPATH:$&lt;repo_root>/python
+
+python -m model_modifier.configure_bert_op --no-quantization --no-bfloat16 $path_to_fine_tuned_model</p></pre>
+                                        </code>
+                                    </div>
+                                </div>
+                                <p>
+                                    <b>
+                                        Accuracy Checking and Performance Evaluating
+                                    </b>
+                                </p>
+                                <p>
+                                    Accuracy checking and performance evaluating can be done using the accuracy.py
+                                    script.
+                                </p>
+                                <div class="VK_theme_bg border my-5 pt-2 px-4 pb-3 rounded-3">
+                                    <div class="text-end">
+                                        <button class="m-0 text-primary border-0 bg-transparent VK_copy_btn" onclick="BERT_copy9(9)" id="VK_beet_btn9">
+                                            <i class="fa-regular fa-copy"></i>
+                                        </button>
+                                    </div>
+                                    <div class="VK_code-container">
+                                        <div class="VK_line-number"></div>
+                                        <code class="VK_theme_color">
+<pre class="VK_code-block"><p class="m-0">python accuracy.py $model_dir $op_library</p></pre>
+                                        </code>
+                                    </div>
+                                </div>
+                            </section>
+                            <section class="mt-5 pb-4" id="VK_Conclusion">
+                                <h3 class="VK_side_heading fw-light">
+                                    Conclusion
+                                </h3>
+                                <p>
+                                    According to this test, the 4th generation Intel Xeon Scalable processors can
+                                    improve the performance in some use cases using the VNNI instructions or Intel AMX
+                                    instructions. Intel AMX instruction, can greatly promote the competitiveness of
+                                    Intel CPUs in AI.
+                                </p>
+                            </section>
+                            <section class="mt-5" id="VK_Feedback">
+                                <h3 class="VK_side_heading fw-light">
+                                    Feedback
+                                </h3>
+                                <p>
+                                    We value your feedback. If you have comments (positive or negative) on this guide or
+                                    are seeking something that is not part of this guide,
+                                    <a href="" class="Vk_text_underline_dots VK_a">
+                                        reach out and let us know what you think.
+                                    </a>
+                                </p>
                             </section>
                         </div>
                     </div>
@@ -489,7 +879,7 @@ cmake --build . -j <span class="VK_code_blue">8</span></p></pre>
 
     <!---------------- Javascript Files ---------------->
 
-    <!-- <script>
+    <script>
         // navbar include
         fetch('/y_index/y_navbar.html')
             .then(response => response.text())
@@ -502,7 +892,7 @@ cmake --build . -j <span class="VK_code_blue">8</span></p></pre>
             .then(data => {
                 document.getElementById('footer').innerHTML = data;
             });
-    </script> -->
+    </script>
 
     <!-- jquery -->
     <script src="/js/jquery-3.7.1.js"></script>
@@ -517,7 +907,7 @@ cmake --build . -j <span class="VK_code_blue">8</span></p></pre>
     <script src="/js/vivek.js"></script>
 
     <!-- all min -->
-    <script src="/js/all.min.js"></script>
+    <!-- <script src="/js/all.min.js"></script> -->
 
 </body>
 
