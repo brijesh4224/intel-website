@@ -8691,7 +8691,7 @@ function createVideoGallery(containerId, videoData) {
           <div class="d_img">
             <a href="${video.link}"><img src="/img/darshan_image/${video.img}" alt="${video.title}"></a>
           </div>
-          <h3><a href="${video.link}">${video.title} ${video.time ? `<small>(${video.time})</small>` : ''}</a></h3>
+          <h3 class="d_fw3 d_lh"><a href="${video.link}">${video.title} </a>${video.time ? `<small>(${video.time})</small>` : ''}</h3>
           <p>${video.text}</p>
         </div>
       </div>
@@ -11721,4 +11721,135 @@ const pdfmaterial44 = [
 
 createpdf('D_pdfmaterial44', pdfmaterial44)
 
+// five challenges hinder microservices paper
 
+const pdfvideo35 = [
+    {
+        id: 1,
+        title: "Accelerate Your Cloud with Intel Technologies",
+        time: "1:19",
+        text: "Intel Accelerators built in on 4th gen Intel® Xeon® Scalable processors are helping activate mature and agile cloud strategies across workloads.  ",
+        img: "video15.png",
+        link: "",
+    },
+    {
+        id: 2,
+        title: "Maximize Value with Better Performance and Efficiency",
+        time: "2:32",
+        text: "Modernize your tech to take advantage of AI, improve cybersecurity, and improve competitiveness. Enter new markets and surpass the competition.  ",
+        img: "video15.png",
+        link: "",
+    },
+    {
+        id: 3,
+        title: "Intel Security Accelerators Video",
+        time: "1:58",
+        text: "4th Gen Intel® Xeon® Scalable processors deliver increased performance to accelerate IoT and edge deployments and drive faster time to results. ",
+        img: "video15.png",
+        link: "",
+    },
+    {
+        id: 4,
+        title: "Intel and Tile* Bluetooth® Technology Help Find Your Lost Things",
+        time: "",
+        text: "Find your lost things, including your next Intel®-based laptop, with the Tile* app or one of the Tile* Bluetooth® technology-enabled devices. ",
+        img: "video15.png",
+        link: "",
+    },
+    {
+        id: 5,
+        title: "Intel's Next Generation FPGAs 224 Gbps-PAM4-LR Transceiver Video",
+        time: "13:34",
+        text: "The 224 Gbps-PAM4-LR transceiver meets high-speed transceiver requirements in cloud, network, data center, AI, and more.  ",
+        img: "video15.png",
+        link: "",
+    },
+    {
+        id: 6,
+        title: "Fireside Chat with Telefonica",
+        time: "8:15",
+        text: "Intel and Telefonica discuss collaborations in driving sustainability and performance in 5G networks. ",
+        img: "video15.png",
+        link: "",
+    },
+]
+
+createVideoGallery('D_pdfvideo35', pdfvideo35);
+
+
+const pdfmaterial45 = [
+    {
+        id: 1,
+        title: "Reap the Benefits of IT/OT Convergence",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 2,
+        title: "Network Connectivity in the Data Center",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 3,
+        title: "Intel vPro®, Intel® Evo™ Edition Laptops",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 4,
+        title: "Application Device Queues (ADQ) Resource Center",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 5,
+        title: "Dynamic Device Personalization (DDP) Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 6,
+        title: "Intel® Tiber™ Edge Platform: Transform Infrastructure Management",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 7,
+        title: "Overcoming Developer Challenges with Microservices",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 8,
+        title: "Meet Today’s Retail Challenges",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 9,
+        title: "ASP.NET on Azure Dsv5 VMs vs. Dv2 VMs",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 10,
+        title: "STAC-A2 and 3rd Gen Intel Xeon Scalable Processors",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 11,
+        title: "Accelerated by Intel®",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 12,
+        title: "Intel® Cloud.U – Comprehensive Cloud Training",
+        img: "pdf2.png",
+        link: "",
+    },
+]
+
+createpdf('D_pdfmaterial45', pdfmaterial45)
