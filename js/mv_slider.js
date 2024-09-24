@@ -1,5 +1,17 @@
-// (AI Accelerator) Read the AI Accelerated product brief
 window.onload = function () {
+
+    mv_intel_blog_geti(1);
+    mv_video_intel_geti();
+    mv_intel_case_study_geti(1);
+    // loaddatatable1();
+    // loaddatatable2();
+    mv_table_5gen();
+    mv_table_4gen();
+    mv_table_3gen();
+    mv_table_2gen();
+    mv_table_1gen();
+
+// (AI Accelerator) Read the AI Accelerated product brief
 
     // Related Videos
     let D_pdfvideo1 = document.getElementById('D_pdfvideo1')
@@ -1592,11 +1604,172 @@ window.onload = function () {
         }
     }
 
-    mv_intel_blog_geti(1);
-    mv_video_intel_geti();
-    mv_intel_case_study_geti(1);
-    loaddatatable1();
-    loaddatatable2();
+
+// (AI Accelerator) -> Intel® Advanced Matrix Extensions (Intel® AMX) -> Accelerate AI Workloads with Intel® AMX
+
+    // Related Videos
+    let mv_accelerate_ai_video = document.getElementById('mv_accelerate_ai_video')
+
+    const pdfvideo11 = [
+        {
+            id: 1,
+            title: "3rd Gen Intel® Xeon® Scalable processors Video for IoT",
+            time: "",
+            text: "Learn how 3rd Gen Intel® Xeon® Scalable processors enable flexible performance for IoT workloads.",
+            img: "related-video.png.rendition.cq5dam.thumbnail.319.319.png",
+            link: "",
+        },
+        {
+            id: 2,
+            title: "Getting the Most out of the Intel® HD Graphics Control Panel Demo",
+            time: "3:00",
+            text: "Demos Intel® HD Graphics Control Panel uses that you may not know about, including multiple monitors, display profiles, screen colors, and more.",
+            img: "getting.jpg",
+            link: "",
+        },
+        {
+            id: 3,
+            title: "Chips and Salsa Episode 29: STORM with Thais Moreira",
+            time: "14:05",
+            text: "Intel STORM Team: Thais Moreira.",
+            img: "chips.jpg",
+            link: "",
+        },
+        {
+            id: 4,
+            title: "Intel Creates World's First Conflict-Free Microprocessor",
+            time: "1:00",
+            text: "Intel introduces the world's first commercial conflict-free microprocessor and reconnects the dots across the globe for a responsible supply chain.",
+            img: "related-video.png.rendition.cq5dam.thumbnail.319.319.png",
+            link: "",
+        },
+        {
+            id: 5,
+            title: "Chips and Salsa Episode 36: HW Sec Test of Time Award",
+            time: "25:18",
+            text: "Professor Srinivas Devadas and Professor Ed Suh discuss the paper they wrote over 20 years ago that won the Intel Test of Time Award in 2022.",
+            img: "related-video.png.rendition.cq5dam.thumbnail.319.319.png",
+            link: "",
+        },
+        {
+            id: 6,
+            title: "Intel and Tile* Bluetooth® Technology Help Find Your Lost Things",
+            time: "",
+            text: "Find your lost things, including your next Intel®-based laptop, with the Tile* app or one of the Tile* Bluetooth® technology-enabled devices.",
+            img: "tile.jpg",
+            link: "",
+        },
+    ]
+
+    if (mv_accelerate_ai_video) {
+        for (let i = 0; i < pdfvideo11.length; i++) {
+            mv_accelerate_ai_video.innerHTML += `<div class="col-xs-12 col-ms-6 col-sm-4 col-md-3 col-xl-2">
+                        <div class="d_item">
+                            <div class="d_img mv_img_icon">
+                                <a href=""><img src="/img/mv_image/${pdfvideo11[i].img}" alt=""></a>
+                            </div>
+                            <h3><a href="">${pdfvideo11[i].title} ${pdfvideo11[i].time ? `<small>(${pdfvideo11[i].time})</small>` : ""} </a></h3>
+                            <p>${pdfvideo11[i].text}</p>
+                        </div>
+                    </div>`
+        }
+    }
+
+    // Related Materials
+    let mv_accelerate_ai_material = document.getElementById('mv_accelerate_ai_material')
+
+    const pdfmaterial11 = [
+        {
+            id: 1,
+            title: "Elevate Performance with Intel® Accelerator Engines",
+            img: "guide.png",
+            link: "",
+        },
+        {
+            id: 2,
+            title: "High-Performance Computing with Intel HPC Engines",
+            img: "brief.png",
+            link: "",
+        },
+        {
+            id: 3,
+            title: "Built-In Accelerators Encrypt, Compress and Move Data",
+            img: "brief.png",
+            link: "",
+        },
+        {
+            id: 4,
+            title: "Improved Machine Learning with Intel AMX",
+            img: "brief.png",
+            link: "",
+        },
+        {
+            id: 5,
+            title: "Accelerate AI Workloads - Intel® AMX Solution Brief",
+            img: "brief.png",
+            link: "",
+        },
+        {
+            id: 6,
+            title: "Faster, More Flexible Networks with Built-in Accelerators",
+            img: "brief.png",
+            link: "",
+        },
+        {
+            id: 7,
+            title: "Maximizing Growth, Return on Investment, and Data Security with AI",
+            img: "brief.png",
+            link: "",
+        },
+        {
+            id: 8,
+            title: "System Offerings",
+            img: "related-materials.png",
+            link: "",
+        },
+        {
+            id: 9,
+            title: "Offerings by Category",
+            img: "related-materials.png",
+            link: "",
+        },
+        {
+            id: 10,
+            title: "Drive Business Value with Analytics Acceleration",
+            img: "brief.png",
+            link: "",
+        },
+        {
+            id: 11,
+            title: "Independent Hardware Vendors Acceleration Program",
+            img: "article.png",
+            link: "",
+        },
+        {
+            id: 12,
+            title: "Bringing AI Everywhere",
+            img: "related-materials.png",
+            link: "",
+        },
+
+    ]
+
+    if (mv_accelerate_ai_material) {
+        for (let i = 0; i < pdfmaterial11.length; i++) {
+            mv_accelerate_ai_material.innerHTML += `<div class="col-xs-12 col-ms-6 col-sm-4 col-md-3 col-xl-2">
+                        <div class="d_box">
+                            <div class="d-flex">
+                                <div class="d_img me-1">
+                                    <img src="/img/mv_image/${pdfmaterial11[i].img}"  alt="">
+                                </div>
+                                <h4><a href="">${pdfmaterial11[i].title}</a></h4>
+                            </div>
+                        </div>
+                    </div>`
+        }
+    }
+
+   
 }
 
 
@@ -2069,125 +2242,1679 @@ function mv_intel_case_study_geti(page) {
 
 
 // Intel® Data Center GPU Flex Series -> (See AI performance data 140) Table Data
-var table1_data =[
-    {FrameworkVersion:'OpenVINO 2023.2',Model:'ResNet50 v1.5',Dataset:'ImageNet2012',Usage:'Image Recognition',Mode:'Inference',Precision:'int8',Throughput:'3,125 img/s',BatchSize:'256'},
-    {FrameworkVersion:'OpenVINO 2023.2',Model:'ResNet50 v1.5',Dataset:'ImageNet2013',Usage:'Image Recognition',Mode:'Inference',Precision:'int8',Throughput:'1,573 img/s',BatchSize:'1'},
-    {FrameworkVersion:'OpenVINO 2023.2',Model:'Yolov 4',Dataset:'COCO2017_detection',Usage:'Object Detection',Mode:'Inference',Precision:'int8',Throughput:'402 img/s',BatchSize:'64'},
-    {FrameworkVersion:'OpenVINO 2023.2',Model:'Yolov 4',Dataset:'COCO2017_detection',Usage:'Object Detection',Mode:'Inference',Precision:'int8',Throughput:'259 img/s',BatchSize:'1'},
-    {FrameworkVersion:'Intel® Pytorch 1.13',Model:'ResNet50 v1.5',Dataset:'ImageNet2012',Usage:'Image Recognition',Mode:'Inference',Precision:'int8',Throughput:'3,001 img/s',BatchSize:'256'},
-    {FrameworkVersion:'Intel® Pytorch 1.13',Model:'Yolov 4',Dataset:'COCO2017_detection',Usage:'Object Detection',Mode:'Inference',Precision:'int8',Throughput:'365 img/s',BatchSize:'64'},
-    {FrameworkVersion:'Intel TensorFlow 2.13',Model:'ResNet50 v1.5',Dataset:'ImageNet2012',Usage:'Image Recognition',Mode:'Inference',Precision:'int8',Throughput:'3,203 img/s',BatchSize:'	256'},
-]
-function loaddatatable1(x,y){
-    console.log(x,y);
-    if(y=='table1'){
-    var val=table1_data.filter((ele,ind)=>{
-            return ele.PlatformName.includes(x);
-    });
-    console.log(val);
-    table1(val);
-    }
-    if(x==undefined){
-    table1(table1_data);    
-    }
-}
-function table1(table){
-    console.log('table',table)
-    var table1=document.getElementById('table1');
-    table1.innerHTML=table.map((ele,ind)=>{
-        return `
-            <tr>
-                <td class="PlatformName px-2">${ele.FrameworkVersion}</td>
-                <td class="px-2 CPU">${ele.Model}</td>
-                <td class="px-2 DiscreteAccelerator">${ele.Dataset}</td>
-                <td class="px-2 Device">${ele.Usage}</td>
-                <td class="px-2 Frameworks">${ele.Mode}</td>
-                <td class="px-2 Model">${ele.Precision}</td>
-                <td class="px-2 VideoTypeResolution">${ele.Throughput}</td>
-                <td class="px-2 Presicion">${ele.BatchSize}</td>
-            </tr>
-        `;
-    }).join('');
-}
-function fliterdata(x){
-    var checkbox = document.getElementById(x);
-    var isChecked = checkbox.checked;
-    console.log(isChecked);
-    if (!isChecked) {
-        var elements = document.getElementsByClassName(x);
-        for (var i = 0; i < elements.length; i++) {
-            elements[i].classList.add('d-none');
-        }
-    }
-    else{
-                var elements = document.getElementsByClassName(x);
-                for (var i = 0; i < elements.length; i++) {
-                    elements[i].classList.remove('d-none');
-                }
-    }
-}
+// var table1_data =[
+//     {FrameworkVersion:'OpenVINO 2023.2',Model:'ResNet50 v1.5',Dataset:'ImageNet2012',Usage:'Image Recognition',Mode:'Inference',Precision:'int8',Throughput:'3,125 img/s',BatchSize:'256'},
+//     {FrameworkVersion:'OpenVINO 2023.2',Model:'ResNet50 v1.5',Dataset:'ImageNet2013',Usage:'Image Recognition',Mode:'Inference',Precision:'int8',Throughput:'1,573 img/s',BatchSize:'1'},
+//     {FrameworkVersion:'OpenVINO 2023.2',Model:'Yolov 4',Dataset:'COCO2017_detection',Usage:'Object Detection',Mode:'Inference',Precision:'int8',Throughput:'402 img/s',BatchSize:'64'},
+//     {FrameworkVersion:'OpenVINO 2023.2',Model:'Yolov 4',Dataset:'COCO2017_detection',Usage:'Object Detection',Mode:'Inference',Precision:'int8',Throughput:'259 img/s',BatchSize:'1'},
+//     {FrameworkVersion:'Intel® Pytorch 1.13',Model:'ResNet50 v1.5',Dataset:'ImageNet2012',Usage:'Image Recognition',Mode:'Inference',Precision:'int8',Throughput:'3,001 img/s',BatchSize:'256'},
+//     {FrameworkVersion:'Intel® Pytorch 1.13',Model:'Yolov 4',Dataset:'COCO2017_detection',Usage:'Object Detection',Mode:'Inference',Precision:'int8',Throughput:'365 img/s',BatchSize:'64'},
+//     {FrameworkVersion:'Intel TensorFlow 2.13',Model:'ResNet50 v1.5',Dataset:'ImageNet2012',Usage:'Image Recognition',Mode:'Inference',Precision:'int8',Throughput:'3,203 img/s',BatchSize:'	256'},
+// ]
+// function loaddatatable1(x,y){
+//     console.log(x,y);
+//     if(y=='table1'){
+//     var val=table1_data.filter((ele,ind)=>{
+//             return ele.PlatformName.includes(x);
+//     });
+//     console.log(val);
+//     table1(val);
+//     }
+//     if(x==undefined){
+//     table1(table1_data);    
+//     }
+// }
+// function table1(table){
+//     console.log('table',table)
+//     var table1=document.getElementById('table1');
+//     table1.innerHTML=table.map((ele,ind)=>{
+//         return `
+//             <tr>
+//                 <td class="PlatformName px-2">${ele.FrameworkVersion}</td>
+//                 <td class="px-2 CPU">${ele.Model}</td>
+//                 <td class="px-2 DiscreteAccelerator">${ele.Dataset}</td>
+//                 <td class="px-2 Device">${ele.Usage}</td>
+//                 <td class="px-2 Frameworks">${ele.Mode}</td>
+//                 <td class="px-2 Model">${ele.Precision}</td>
+//                 <td class="px-2 VideoTypeResolution">${ele.Throughput}</td>
+//                 <td class="px-2 Presicion">${ele.BatchSize}</td>
+//             </tr>
+//         `;
+//     }).join('');
+// }
+// function fliterdata(x){
+//     var checkbox = document.getElementById(x);
+//     var isChecked = checkbox.checked;
+//     console.log(isChecked);
+//     if (!isChecked) {
+//         var elements = document.getElementsByClassName(x);
+//         for (var i = 0; i < elements.length; i++) {
+//             elements[i].classList.add('d-none');
+//         }
+//     }
+//     else{
+//                 var elements = document.getElementsByClassName(x);
+//                 for (var i = 0; i < elements.length; i++) {
+//                     elements[i].classList.remove('d-none');
+//                 }
+//     }
+// }
 
 
 
 
 // Intel® Data Center GPU Flex Series -> (See AI performance data 170) Table Data
-var table1_data =[
-    {FrameworkVersion:'Intel TensorFlow 2.13',Model:'Stable Diffusion',Dataset:'Text Prompts',Usage:'Generative AI',Precision:'fp16',Throughput:'6.45 its/s',BatchSize:'1'},
-    {FrameworkVersion:'OpenVINO 2023.2',Model:'	ResNet50 v1.5',Dataset:'ImageNet2012',Usage:'Image Recognition',Precision:'	int8',Throughput:'9,499 img/s',BatchSize:'256'},
-    {FrameworkVersion:'OpenVINO 2023.2',Model:'	ResNet50 v1.5',Dataset:'ImageNet2013',Usage:'Image Recognition',Precision:'	int8',Throughput:'3,297 img/s',BatchSize:'1'},
-    {FrameworkVersion:'OpenVINO 2023.2',Model:'Yolov 4',Dataset:'COCO2017_detection',Usage:'Object Detection',Precision:'	int8',Throughput:'1,209 img/s',BatchSize:'256'},
-    {FrameworkVersion:'OpenVINO 2023.2',Model:'Yolov 4',Dataset:'COCO2017_detection',Usage:'Object Detection',Precision:'	int8',Throughput:'595 img/s',BatchSize:'1'},
-    {FrameworkVersion:'Intel® Pytorch 1.13',Model:'	ResNet50 v1.5',Dataset:'ImageNet2012',Usage:'Image Recognition',Precision:'int8',Throughput:'9,673 img/s',BatchSize:'1024'},
-    {FrameworkVersion:'Intel® Pytorch 1.13',Model:'Yolov4',Dataset:'COCO2017_detection',Usage:'Object Detection',Precision:'int8',Throughput:'1,139 img/s',BatchSize:'256'},
-    {FrameworkVersion:'Intel TensorFlow 2.13',Model:'ResNet50 v1.5',Dataset:'ImageNet2012',Usage:'Image Recognition',Precision:'int8',Throughput:'9,801 img/s',BatchSize:'1024'},
-    {FrameworkVersion:'Intel TensorFlow 2.13',Model:'EfficientNet-B0',Dataset:'ImageNet2012',Usage:'Image Recognition',Precision:'fp16',Throughput:'1,890 img/s',BatchSize:'128'},
-    {FrameworkVersion:'Intel TensorFlow 2.13',Model:'EfficientNet-B3',Dataset:'ImageNet2012',Usage:'Image Recognition',Precision:'fp16',Throughput:'527 img/s',BatchSize:'128'},
-    {FrameworkVersion:'Intel TensorFlow 2.13',Model:'MaskRCNN',Dataset:'COCO2017_detection',Usage:'image Segmentation',Precision:'fp16',Throughput:'30 img/s',BatchSize:'16'}
-]
-function loaddatatable2(x,y){
-    console.log(x,y);
-    if(y=='table1'){
-    var val=table1_data.filter((ele,ind)=>{
-            return ele.PlatformName.includes(x);
-    });
-    console.log(val);
-    table1(val);
-    }
-    if(x==undefined){
-    table1(table1_data);    
-    }
-}
-function table1(table){
-    console.log('table',table)
-    var table1=document.getElementById('table1');
-    table1.innerHTML=table.map((ele,ind)=>{
-        return `
-            <tr>
-                <td class="PlatformName px-2">${ele.FrameworkVersion}</td>
-                <td class="px-2 CPU">${ele.Model}</td>
-                <td class="px-2 DiscreteAccelerator">${ele.Dataset}</td>
-                <td class="px-2 Device">${ele.Usage}</td>
-                <td class="px-2 Model">${ele.Precision}</td>
-                <td class="px-2 VideoTypeResolution">${ele.Throughput}</td>
-                <td class="px-2 Presicion">${ele.BatchSize}</td>
-            </tr>
-        `;
-    }).join('');
-}
-function fliterdata(x){
-    var checkbox = document.getElementById(x);
-    var isChecked = checkbox.checked;
-    console.log(isChecked);
-    if (!isChecked) {
-        var elements = document.getElementsByClassName(x);
-        for (var i = 0; i < elements.length; i++) {
-            elements[i].classList.add('d-none');
+// var table1_data =[
+//     {FrameworkVersion:'Intel TensorFlow 2.13',Model:'Stable Diffusion',Dataset:'Text Prompts',Usage:'Generative AI',Precision:'fp16',Throughput:'6.45 its/s',BatchSize:'1'},
+//     {FrameworkVersion:'OpenVINO 2023.2',Model:'	ResNet50 v1.5',Dataset:'ImageNet2012',Usage:'Image Recognition',Precision:'	int8',Throughput:'9,499 img/s',BatchSize:'256'},
+//     {FrameworkVersion:'OpenVINO 2023.2',Model:'	ResNet50 v1.5',Dataset:'ImageNet2013',Usage:'Image Recognition',Precision:'	int8',Throughput:'3,297 img/s',BatchSize:'1'},
+//     {FrameworkVersion:'OpenVINO 2023.2',Model:'Yolov 4',Dataset:'COCO2017_detection',Usage:'Object Detection',Precision:'	int8',Throughput:'1,209 img/s',BatchSize:'256'},
+//     {FrameworkVersion:'OpenVINO 2023.2',Model:'Yolov 4',Dataset:'COCO2017_detection',Usage:'Object Detection',Precision:'	int8',Throughput:'595 img/s',BatchSize:'1'},
+//     {FrameworkVersion:'Intel® Pytorch 1.13',Model:'	ResNet50 v1.5',Dataset:'ImageNet2012',Usage:'Image Recognition',Precision:'int8',Throughput:'9,673 img/s',BatchSize:'1024'},
+//     {FrameworkVersion:'Intel® Pytorch 1.13',Model:'Yolov4',Dataset:'COCO2017_detection',Usage:'Object Detection',Precision:'int8',Throughput:'1,139 img/s',BatchSize:'256'},
+//     {FrameworkVersion:'Intel TensorFlow 2.13',Model:'ResNet50 v1.5',Dataset:'ImageNet2012',Usage:'Image Recognition',Precision:'int8',Throughput:'9,801 img/s',BatchSize:'1024'},
+//     {FrameworkVersion:'Intel TensorFlow 2.13',Model:'EfficientNet-B0',Dataset:'ImageNet2012',Usage:'Image Recognition',Precision:'fp16',Throughput:'1,890 img/s',BatchSize:'128'},
+//     {FrameworkVersion:'Intel TensorFlow 2.13',Model:'EfficientNet-B3',Dataset:'ImageNet2012',Usage:'Image Recognition',Precision:'fp16',Throughput:'527 img/s',BatchSize:'128'},
+//     {FrameworkVersion:'Intel TensorFlow 2.13',Model:'MaskRCNN',Dataset:'COCO2017_detection',Usage:'image Segmentation',Precision:'fp16',Throughput:'30 img/s',BatchSize:'16'}
+// ]
+// function loaddatatable2(x,y){
+//     console.log(x,y);
+//     if(y=='table1'){
+//     var val=table1_data.filter((ele,ind)=>{
+//             return ele.PlatformName.includes(x);
+//     });
+//     console.log(val);
+//     table1(val);
+//     }
+//     if(x==undefined){
+//     table1(table1_data);    
+//     }
+// }
+// function table1(table){
+//     console.log('table',table)
+//     var table1=document.getElementById('table1');
+//     table1.innerHTML=table.map((ele,ind)=>{
+//         return `
+//             <tr>
+//                 <td class="PlatformName px-2">${ele.FrameworkVersion}</td>
+//                 <td class="px-2 CPU">${ele.Model}</td>
+//                 <td class="px-2 DiscreteAccelerator">${ele.Dataset}</td>
+//                 <td class="px-2 Device">${ele.Usage}</td>
+//                 <td class="px-2 Model">${ele.Precision}</td>
+//                 <td class="px-2 VideoTypeResolution">${ele.Throughput}</td>
+//                 <td class="px-2 Presicion">${ele.BatchSize}</td>
+//             </tr>
+//         `;
+//     }).join('');
+// }
+// function fliterdata(x){
+//     var checkbox = document.getElementById(x);
+//     var isChecked = checkbox.checked;
+//     console.log(isChecked);
+//     if (!isChecked) {
+//         var elements = document.getElementsByClassName(x);
+//         for (var i = 0; i < elements.length; i++) {
+//             elements[i].classList.add('d-none');
+//         }
+//     }
+//     else{
+//                 var elements = document.getElementsByClassName(x);
+//                 for (var i = 0; i < elements.length; i++) {
+//                     elements[i].classList.remove('d-none');
+//                 }
+//     }
+// }
+
+
+
+
+// ( AI Accelerators) -> Intel® Advanced Matrix Extensions (Intel® AMX) -> See the list
+    // Partners 5th Gen
+    var mv_partner_5gen = [
+        {
+            name:"Accenture",
+            visit:"Accenture"
+        },
+        {
+            name:"Accton",
+            visit:"Accton"
+        },
+        {
+            name:"Aewin",
+            visit:"Aewin"
+        },
+        {
+            name:"AIC",
+            visit:"AIC"
+        },
+        {
+            name:"Alibaba Cloud",
+            visit:"Alibaba Cloud"
+        },
+        {
+            name:"Altos Computing Inc.",
+            visit:"Altos Computing Inc."
+        },
+        {
+            name:"ASROCK Rack",
+            visit:"ASROCK Rack"
+        },
+        {
+            name:"Astera Labs",
+            visit:"Astera Labs"
+        },
+        {
+            name:"ASUS",
+            visit:"ASUS"
+        },
+        {
+            name:"AWS",
+            visit:"AWS"
+        },
+        {
+            name:"Axiomtek",
+            visit:"Axiomtek"
+        },
+        {
+            name:"Baidu",
+            visit:"Baidu"
+        },
+        {
+            name:"BCM Advanced Research",
+            visit:"BCM Advanced Research"
+        },
+        {
+            name:"Bytedance",
+            visit:"Bytedance"
+        },
+        {
+            name:"Canonical Group Limited",
+            visit:"Canonical Group Limited"
+        },
+        {
+            name:"Cisco",
+            visit:"Cisco"
+        },
+        {
+            name:"Cloudera",
+            visit:"Cloudera"
+        },
+        {
+            name:"Compal",
+            visit:"Compal"
+        },
+        {
+            name:"Databricks",
+            visit:"Databricks"
+        },
+        {
+            name:"Dell",
+            visit:"Dell"
+        },
+        {
+            name:"DerQ, USA",
+            visit:"DerQ, USA"
+        },
+        {
+            name:"Foxconn/FII",
+            visit:"Foxconn/FII"
+        },
+        {
+            name:"Fujitsu",
+            visit:"Fujitsu"
+        },
+        {
+            name:"Gigabyte",
+            visit:"Gigabyte"
+        },
+        {
+            name:"Google Cloud",
+            visit:"Google Cloud"
+        },
+        {
+            name:"Hitachi",
+            visit:"Hitachi"
+        },
+        {
+            name:"HPE",
+            visit:"HPE"
+        },
+        {
+            name:"Hypertec",
+            visit:"Hypertec"
+        },
+        {
+            name:"iBase Technology, Inc",
+            visit:"iBase Technology, Inc"
+        },
+        {
+            name:"IBM",
+            visit:"IBM"
+        },
+        {
+            name:"Infrasky",
+            visit:"Infrasky"
+        },
+        {
+            name:"Ingrasys",
+            visit:"Ingrasys"
+        },
+        {
+            name:"Insight",
+            visit:"Insight"
+        },
+        {
+            name:"Inventec",
+            visit:"Inventec"
+        },
+        {
+            name:"Lanner",
+            visit:"Lanner"
+        },
+        {
+            name:"Lekha Wireless",
+            visit:"Lekha Wireless"
+        },
+        {
+            name:"Lenovo",
+            visit:"Lenovo"
+        },
+        {
+            name:"Mettle Networks",
+            visit:"Mettle Networks"
+        },
+        {
+            name:"Microsoft",
+            visit:"Microsoft"
+        },
+        {
+            name:"Microsoft Azure",
+            visit:"Microsoft Azure"
+        },
+        {
+            name:"MiTAC Computing Technology Corp",
+            visit:"MiTAC Computing Technology Corp"
+        },
+        {
+            name:"MSi",
+            visit:"MSi"
+        },
+        {
+            name:"NEC Corporation",
+            visit:"NEC Corporation"
+        },
+        {
+            name:"NetElastic",
+            visit:"NetElastic"
+        },
+        {
+            name:"Nexcom",
+            visit:"Nexcom"
+        },
+        {
+            name:"Niral Networks",
+            visit:"Niral Networks"
+        },
+        {
+            name:"Nor-Tech",
+            visit:"Nor-Tech"
+        },
+        {
+            name:"NoviFlow, Inc",
+            visit:"NoviFlow, Inc"
+        },
+        {
+            name:"OVH",
+            visit:"OVH"
+        },
+        {
+            name:"Presidio",
+            visit:"Presidio"
+        },
+        {
+            name:"Prodrive",
+            visit:"Prodrive"
+        },
+        {
+            name:"QCT (Quanta)",
+            visit:"QCT (Quanta)"
+        },
+        {
+            name:"Red Hat",
+            visit:"Red Hat"
+        },
+        {
+            name:"Samsung",
+            visit:"Samsung"
+        },
+        {
+            name:"SAP",
+            visit:"SAP"
+        },
+        {
+            name:"SK Hynix",
+            visit:"SK Hynix"
+        },
+        {
+            name:"Supermicro",
+            visit:"Supermicro"
+        },
+        {
+            name:"Tech Mahindra",
+            visit:"Tech Mahindra"
+        },
+        {
+            name:"Tencent",
+            visit:"Tencent"
+        },
+        {
+            name:"TietoEvry",
+            visit:"TietoEvry"
+        },
+        {
+            name:"TQ",
+            visit:"TQ"
+        },
+        {
+            name:"Tyan Corp (sub of MiTAC)",
+            visit:"Tyan Corp (sub of MiTAC)"
+        },
+        {
+            name:"Varnish SW",
+            visit:"Varnish SW"
+        },
+        {
+            name:"VizuaMatix",
+            visit:"VizuaMatix"
+        },
+        {
+            name:"VMware",
+            visit:"VMware"
+        },
+        {
+            name:"VoerEir",
+            visit:"VoerEir"
+        },
+        {
+            name:"Wiwynn",
+            visit:"Wiwynn"
+        },
+        {
+            name:"WWT",
+            visit:"WWT"
+        },
+        {
+            name:"xfusion",
+            visit:"xfusion"
+        }
+    ]
+    function mv_table_5gen(){
+        if(document.querySelector('.mv_partner_data_5gen'))
+        {
+            let div = document.querySelector('.mv_partner_data_5gen')
+            
+            let html = mv_partner_5gen.map((ele)=>{
+                return `<tr>
+                <td>${ele.name}</td>
+                <td><b>Visit:</b> <a href="">${ele.visit}</a></td>
+                </tr>`
+            }).join('')
+            div.innerHTML = html
+        }else{
+            return;
         }
     }
-    else{
-                var elements = document.getElementsByClassName(x);
-                for (var i = 0; i < elements.length; i++) {
-                    elements[i].classList.remove('d-none');
-                }
+
+    // Partners 4th Gen
+    var mv_partner_4gen = [
+        {
+            name:"Adlink",
+            visit:"Adlink"
+        },
+        {
+            name:"Advantech Co., Ltd.",
+            visit:"Advantech Co., Ltd."
+        },
+        {
+            name:"AIC",
+            visit:"AIC"
+        },
+        {
+            name:"Alibaba Cloud",
+            visit:"Alibaba Cloud"
+        },
+        {
+            name:"Altos Computing Inc.",
+            visit:"Altos Computing Inc."
+        },
+        {
+            name:"AMAX",
+            visit:"AMAX"
+        },
+        {
+            name:"Arrow",
+            visit:"Arrow"
+        },
+        {
+            name:"ASI",
+            visit:"ASI"
+        },
+        {
+            name:"ASROCK Rack",
+            visit:"ASROCK Rack"
+        },
+        {
+            name:"ASUS",
+            visit:"ASUS"
+        },
+        {
+            name:"Atos",
+            visit:"Atos"
+        },
+        {
+            name:"Avnet",
+            visit:"Avnet"
+        },
+        {
+            name:"BCM Advanced Research",
+            visit:"BCM Advanced Research"
+        },
+        {
+            name:"Capgemini",
+            visit:"Capgemini"
+        },
+        {
+            name:"CBTS",
+            visit:"CBTS"
+        },
+        {
+            name:"CDW",
+            visit:"CDW"
+        },
+        {
+            name:"China Telecom",
+            visit:"China Telecom"
+        },
+        {
+            name:"Cisco",
+            visit:"Cisco"
+        },
+        {
+            name:"Clavister",
+            visit:"Clavister"
+        },
+        {
+            name:"ClusterVision",
+            visit:"ClusterVision"
+        },
+        {
+            name:"CommScope",
+            visit:"CommScope"
+        },
+        {
+            name:"Compal",
+            visit:"Compal"
+        },
+        {
+            name:"Compucom",
+            visit:"Compucom"
+        },
+        {
+            name:"Comset S.A",
+            visit:"Comset S.A"
+        },
+        {
+            name:"CoreWeave",
+            visit:"CoreWeave"
+        },
+        {
+            name:"D&H",
+            visit:"D&H"
+        },
+        {
+            name:"DataOn",
+            visit:"DataOn"
+        },
+        {
+            name:"Decentriq",
+            visit:"Decentriq"
+        },
+        {
+            name:"Dell",
+            visit:"Dell"
+        },
+        {
+            name:"E4 Computer Engineering",
+            visit:"E4 Computer Engineering"
+        },
+        {
+            name:"ePlus",
+            visit:"ePlus"
+        },
+        {
+            name:"Ericsson",
+            visit:"Ericsson"
+        },
+        {
+            name:"Eterio",
+            visit:"Eterio"
+        },
+        {
+            name:"Exoscale",
+            visit:"Exoscale"
+        },
+        {
+            name:"Flytech",
+            visit:"Flytech"
+        },
+        {
+            name:"FORMAT",
+            visit:"FORMAT"
+        },
+        {
+            name:"Gcore",
+            visit:"Gcore"
+        },
+        {
+            name:"Gigabyte",
+            visit:"Gigabyte"
+        },
+        {
+            name:"GleSYS",
+            visit:"GleSYS"
+        },
+        {
+            name:"Google Cloud",
+            visit:"Google Cloud"
+        },
+        {
+            name:"Hitachi",
+            visit:"Hitachi"
+        },
+        {
+            name:"HPE",
+            visit:"HPE"
+        },
+        {
+            name:"Hypertec",
+            visit:"Hypertec"
+        },
+        {
+            name:"Hyve Solutions",
+            visit:"Hyve Solutions"
+        },
+        {
+            name:"IBM Cloud",
+            visit:"IBM Cloud"
+        },
+        {
+            name:"IEI Integration Corp",
+            visit:"IEI Integration Corp"
+        },
+        {
+            name:"Ingram Micro",
+            visit:"Ingram Micro"
+        },
+        {
+            name:"Ingrasys",
+            visit:"Ingrasys"
+        },
+        {
+            name:"Insight Direct (UK) Ltd",
+            visit:"Insight Direct (UK) Ltd"
+        },
+        {
+            name:"Inspur",
+            visit:"Inspur"
+        },
+        {
+            name:"Inventec",
+            visit:"Inventec"
+        },
+        {
+            name:"Jabil Cloud & Enterprise Infrastructure",
+            visit:"Jabil Cloud & Enterprise Infrastructure"
+        },
+        {
+            name:"Kontron",
+            visit:"Kontron"
+        },
+        {
+            name:"Lanner",
+            visit:"Lanner"
+        },
+        {
+            name:"Lenovo",
+            visit:"Lenovo"
+        },
+        {
+            name:"Logicalis",
+            visit:"Logicalis"
+        },
+        {
+            name:"MAGUAY COMPUTERS",
+            visit:"MAGUAY COMPUTERS"
+        },
+        {
+            name:"Microsoft",
+            visit:"Microsoft"
+        },
+        {
+            name:"Mouser",
+            visit:"Mouser"
+        },
+        {
+            name:"Myungin Electronics",
+            visit:"Myungin Electronics"
+        },
+        {
+            name:"Nexcom",
+            visit:"Nexcom"
+        },
+        {
+            name:"Nokia",
+            visit:"Nokia"
+        },
+        {
+            name:"Oracle",
+            visit:"Oracle"
+        },
+        {
+            name:"OVH Cloud",
+            visit:"OVH Cloud"
+        },
+        {
+            name:"Presidio",
+            visit:"Presidio"
+        },
+        {
+            name:"Prodrive Technologies",
+            visit:"Prodrive Technologies"
+        },
+        {
+            name:"Quanta",
+            visit:"Quanta"
+        },
+        {
+            name:"SAS",
+            visit:"SAS"
+        },
+        {
+            name:"Scan",
+            visit:"Scan"
+        },
+        {
+            name:"SHI",
+            visit:"SHI"
+        },
+        {
+            name:"SI COMPUTER",
+            visit:"SI COMPUTER"
+        },
+        {
+            name:"Silicom",
+            visit:"Silicom"
+        },
+        {
+            name:"Silicon Mechanics",
+            visit:"Silicon Mechanics"
+        },
+        {
+            name:"Softcat",
+            visit:"Softcat"
+        },
+        {
+            name:"Supermicro",
+            visit:"Supermicro"
+        },
+        {
+            name:"SysAlign",
+            visit:"SysAlign"
+        },
+        {
+            name:"TD SYNNEX",
+            visit:"TD SYNNEX"
+        },
+        {
+            name:"Tencent",
+            visit:"Tencent"
+        },
+        {
+            name:"Thinkmate",
+            visit:"Thinkmate"
+        },
+        {
+            name:"Unicom",
+            visit:"Unicom"
+        },
+        {
+            name:"Varnish Software",
+            visit:"Varnish Software"
+        },
+        {
+            name:"Wind River",
+            visit:"Wind River"
+        },
+        {
+            name:"Wistron",
+            visit:"Wistron"
+        },
+        {
+            name:"Wiwynn",
+            visit:"Wiwynn"
+        },
+        {
+            name:"WWT",
+            visit:"WWT"
+        }
+    ]
+    function mv_table_4gen(){
+        if(document.querySelector('.mv_partner_data_4gen'))
+        {
+            let div = document.querySelector('.mv_partner_data_4gen')
+            
+            let html = mv_partner_4gen.map((ele)=>{
+                return `<tr>
+                <td>${ele.name}</td>
+                <td><b>Visit:</b> <a href="">${ele.visit}</a></td>
+                </tr>`
+            }).join('')
+            div.innerHTML = html
+        }else{
+            return;
+        }
     }
-}
+
+    // Partners 3th Gen
+    var mv_partner_3gen = [
+        {
+            name:"Advantech",
+            visit:"Advantech"
+        },
+        {
+            name:"AIC Inc.",
+            visit:"AIC Inc."
+        },
+        {
+            name:"Alibaba",
+            visit:"Alibaba"
+        },
+        {
+            name:"AMAX Engineering",
+            visit:"AMAX Engineering"
+        },
+        {
+            name:"ASRock Rack",
+            visit:"ASRock Rack"
+        },
+        {
+            name:"AWS",
+            visit:"AWS"
+        },
+        {
+            name:"Baidu",
+            visit:"Baidu"
+        },
+        {
+            name:"Boston Limited",
+            visit:"Boston Limited"
+        },
+        {
+            name:"CASwell Inc.",
+            visit:"CASwell Inc."
+        },
+        {
+            name:"CDW",
+            visit:"CDW"
+        },
+        {
+            name:"Cisco",
+            visit:"Cisco"
+        },
+        {
+            name:"Colfax",
+            visit:"Colfax"
+        },
+        {
+            name:"Dalco AG",
+            visit:"Dalco AG"
+        },
+        {
+            name:"Decentriq",
+            visit:"Decentriq"
+        },
+        {
+            name:"Dell",
+            visit:"Dell"
+        },
+        {
+            name:"E4 COMPUTER ENGINEERING SPA",
+            visit:"E4 COMPUTER ENGINEERING SPA"
+        },
+        {
+            name:"Edgeless Systems",
+            visit:"Edgeless Systems"
+        },
+        {
+            name:"Exertis Enterprise",
+            visit:"Exertis Enterprise"
+        },
+        {
+            name:"Flytech S.A.",
+            visit:"Flytech S.A."
+        },
+        {
+            name:"FORMAT Sp. z o. o",
+            visit:"FORMAT Sp. z o. o"
+        },
+        {
+            name:"Fujitsu",
+            visit:"Fujitsu"
+        },
+        {
+            name:"GIGABYTE Technology",
+            visit:"GIGABYTE Technology"
+        },
+        {
+            name:"Google",
+            visit:"Google"
+        },
+        {
+            name:"HPE",
+            visit:"HPE"
+        },
+        {
+            name:"Huawei Technologies Co. Ltd",
+            visit:"Huawei Technologies Co. Ltd"
+        },
+        {
+            name:"Inspur",
+            visit:"Inspur"
+        },
+        {
+            name:"Inventec",
+            visit:"Inventec"
+        },
+        {
+            name:"JITStack",
+            visit:"JITStack"
+        },
+        {
+            name:"Koi Computers, Inc.",
+            visit:"Koi Computers, Inc."
+        },
+        {
+            name:"Lanner Electronics",
+            visit:"Lanner Electronics"
+        },
+        {
+            name:"Lenovo",
+            visit:"Lenovo"
+        },
+        {
+            name:"Lockheed Martin",
+            visit:"Lockheed Martin"
+        },
+        {
+            name:"MEGWARE",
+            visit:"MEGWARE"
+        },
+        {
+            name:"MSFT",
+            visit:"MSFT"
+        },
+        {
+            name:"NEXCOM",
+            visit:"NEXCOM"
+        },
+        {
+            name:"Nokia",
+            visit:"Nokia"
+        },
+        {
+            name:"Nutanix",
+            visit:"Nutanix"
+        },
+        {
+            name:"OmniSci",
+            visit:"OmniSci"
+        },
+        {
+            name:"Oracle HPC",
+            visit:"Oracle HPC"
+        },
+        {
+            name:"Oracle Compute",
+            visit:"Oracle Compute"
+        },
+        {
+            name:"ORock Technologies",
+            visit:"ORock Technologies"
+        },
+        {
+            name:"Phonenix NAP",
+            visit:"Phonenix NAP"
+        },
+        {
+            name:"Presidio",
+            visit:"Presidio"
+        },
+        {
+            name:"QCT",
+            visit:"QCT"
+        },
+        {
+            name:"QNAP Systems, Inc.",
+            visit:"QNAP Systems, Inc."
+        },
+        {
+            name:"Redhat",
+            visit:"Redhat"
+        },
+        {
+            name:"RSC Group",
+            visit:"RSC Group"
+        },
+        {
+            name:"SAP",
+            visit:"SAP"
+        },
+        {
+            name:"Scontain",
+            visit:"Scontain"
+        },
+        {
+            name:"Sirius Computer Solutions.",
+            visit:"Sirius Computer Solutions."
+        },
+        {
+            name:"Supermicro",
+            visit:"Supermicro"
+        },
+        {
+            name:"Tarox",
+            visit:"Tarox"
+        },
+        {
+            name:"Tencent",
+            visit:"Tencent"
+        },
+        {
+            name:"Tyan Computers",
+            visit:"Tyan Computers"
+        },
+        {
+            name:"UNICOM Engineering",
+            visit:"UNICOM Engineering"
+        },
+        {
+            name:"Visual Technology Inc.",
+            visit:"Visual Technology Inc."
+        },
+        {
+            name:"Wiwynn Corporation",
+            visit:"Wiwynn Corporation"
+        },
+        {
+            name:"WORTMANN AG",
+            visit:"WORTMANN AG"
+        },
+        {
+            name:"World Wide Technology",
+            visit:"World Wide Technology"
+        },
+        {
+            name:"Yandex Cloud",
+            visit:"Yandex Cloud"
+        },
+    ]
+    function mv_table_3gen(){
+        if(document.querySelector('.mv_partner_data_3gen'))
+        {
+            let div = document.querySelector('.mv_partner_data_3gen')
+            
+            let html = mv_partner_3gen.map((ele)=>{
+                return `<tr>
+                <td>${ele.name}</td>
+                <td><b>Visit:</b> <a href="">${ele.visit}</a></td>
+                </tr>`
+            }).join('')
+            div.innerHTML = html
+        }else{
+            return;
+        }
+    }
+
+    // Partners 2th Gen
+    var mv_partner_2gen = [
+        {
+            name:"Adlink Technology",
+            visit:"Adlink Technology"
+        },
+        {
+            name:"Advantech",
+            visit:"Advantech"
+        },
+        {
+            name:"Aerospike",
+            visit:"Aerospike"
+        },
+        {
+            name:"Aeon",
+            visit:"Aeon"
+        },
+        {
+            name:"Aewin",
+            visit:"Aewin"
+        },
+        {
+            name:"AgentVI",
+            visit:"AgentVI"
+        },
+        {
+            name:"AIC Inc.",
+            visit:"AIC Inc."
+        },
+        {
+            name:"Atipa",
+            visit:"Atipa"
+        },
+        {
+            name:"Atos",
+            visit:"Atos"
+        },
+        {
+            name:"Axiomtek'",
+            visit:"Axiomtek'"
+        },
+        {
+            name:"Boston Limited",
+            visit:"Boston Limited"
+        },
+        {
+            name:"CDW",
+            visit:"CDW"
+        },
+        {
+            name:"Cisco",
+            visit:"Cisco"
+        },
+        {
+            name:"Dalco",
+            visit:"Dalco"
+        },
+        {
+            name:"DataON",
+            visit:"DataON"
+        },
+        {
+            name:"Dell EMC",
+            visit:"Dell EMC"
+        },
+        {
+            name:"DFI",
+            visit:"DFI"
+        },
+        {
+            name:"EasyStack",
+            visit:"EasyStack"
+        },
+        {
+            name:"EISOO",
+            visit:"EISOO"
+        },
+        {
+            name:"ENGINETECH",
+            visit:"ENGINETECH"
+        },
+        {
+            name:"Equus Compute Solutions",
+            visit:"Equus Compute Solutions"
+        },
+        {
+            name:"Ericsson",
+            visit:"Ericsson"
+        },
+        {
+            name:"FiberHome",
+            visit:"FiberHome"
+        },
+        {
+            name:"Fujitsu",
+            visit:"Fujitsu"
+        },
+        {
+            name:"GigaSpaces",
+            visit:"GigaSpaces"
+        },
+        {
+            name:"H20",
+            visit:"H20"
+        },
+        {
+            name:"H3C",
+            visit:"H3C"
+        },
+        {
+            name:"Hitachi",
+            visit:"Hitachi"
+        },
+        {
+            name:"HPE",
+            visit:"HPE"
+        },
+        {
+            name:"IEI",
+            visit:"IEI"
+        },
+        {
+            name:"Insight",
+            visit:"Insight"
+        },
+        {
+            name:"Inspur",
+            visit:"Inspur"
+        },
+        {
+            name:"International Computer Concepts",
+            visit:"International Computer Concepts"
+        },
+        {
+            name:"Inventec",
+            visit:"Inventec"
+        },
+        {
+            name:"Kontron",
+            visit:"Kontron"
+        },
+        {
+            name:"Lanner Electronics",
+            visit:"Lanner Electronics"
+        },
+        {
+            name:"Lenovo",
+            visit:"Lenovo"
+        },
+        {
+            name:"Logicsupply",
+            visit:"Logicsupply"
+        },
+        {
+            name:"LON Microsystems",
+            visit:"LON Microsystems"
+        },
+        {
+            name:"MacroSAN",
+            visit:"MacroSAN"
+        },
+        {
+            name:"MBX Systems",
+            visit:"MBX Systems"
+        },
+        {
+            name:"Megware",
+            visit:"Megware"
+        },
+        {
+            name:"Mercury",
+            visit:"Mercury"
+        },
+        {
+            name:"Mercury Systems",
+            visit:"Mercury Systems"
+        },
+        {
+            name:"Microsoft",
+            visit:"Microsoft"
+        },
+        {
+            name:"Nanjing Cloud Innovative",
+            visit:"Nanjing Cloud Innovative"
+        },
+        {
+            name:"NCS Tech",
+            visit:"NCS Tech"
+        },
+        {
+            name:"NCS Technologies INC",
+            visit:"NCS Technologies INC"
+        },
+        {
+            name:"NEXCOM",
+            visit:"NEXCOM"
+        },
+        {
+            name:"Nokia",
+            visit:"Nokia"
+        },
+        {
+            name:"Nor-Tech",
+            visit:"Nor-Tech"
+        },
+        {
+            name:"Padova Technologies",
+            visit:"Padova Technologies"
+        },
+        {
+            name:"Patriot Technologies, Inc.",
+            visit:"Patriot Technologies, Inc."
+        },
+        {
+            name:"PingCAP",
+            visit:"PingCAP"
+        },
+        {
+            name:"PowerLeader Technology",
+            visit:"PowerLeader Technology"
+        },
+        {
+            name:"Presidio",
+            visit:"Presidio"
+        },
+        {
+            name:"QCT (Quanta)",
+            visit:"QCT (Quanta)"
+        },
+        {
+            name:"QNAP",
+            visit:"QNAP"
+        },
+        {
+            name:"Redis Labs",
+            visit:"Redis Labs"
+        },
+        {
+            name:"RSC",
+            visit:"RSC"
+        },
+        {
+            name:"SAS",
+            visit:"SAS"
+        },
+        {
+            name:"Shanghai DragonNet Technology – Change to Phegda",
+            visit:"Shanghai DragonNet Technology – Change to Phegda"
+        },
+        {
+            name:"Shanghai Link Computer Technology",
+            visit:"Shanghai Link Computer Technology"
+        },
+        {
+            name:"SHI",
+            visit:"SHI"
+        },
+        {
+            name:"Sugon",
+            visit:"Sugon"
+        },
+        {
+            name:"Supermicro",
+            visit:"Supermicro"
+        },
+        {
+            name:"Suzhou Supercluster – Change to AMAX",
+            visit:"Suzhou Supercluster – Change to AMAX"
+        },
+        {
+            name:"Trenton",
+            visit:"Trenton"
+        },
+        {
+            name:"Wiwynn Corporation",
+            visit:"Wiwynn Corporation"
+        },
+        {
+            name:"WWT",
+            visit:"WWT"
+        },
+        {
+            name:"Xi Computer",
+            visit:"Xi Computer"
+        },
+        {
+            name:"XSKy",
+            visit:"XSKy"
+        },
+        {
+            name:"ZTE",
+            visit:"ZTE"
+        }
+    ]
+    function mv_table_2gen(){
+        if(document.querySelector('.mv_partner_data_2gen'))
+        {
+            let div = document.querySelector('.mv_partner_data_2gen')
+            
+            let html = mv_partner_2gen.map((ele)=>{
+                return `<tr>
+                <td>${ele.name}</td>
+                <td><b>Visit:</b> <a href="">${ele.visit}</a></td>
+                </tr>`
+            }).join('')
+            div.innerHTML = html
+        }else{
+            return;
+        }
+    }
+
+    // Partners 1th Gen
+    var mv_partner_1gen = [
+        {
+            name:"Actina",
+            contact:"Dorota Gusiew",
+            email:"Dorota.Gusiew@action.pl",
+            visit:"Actina"
+        },
+        {
+            name:"Advanced Clustering",
+            contact:"Advanced Clustering Technologies",
+            phone:"+1 866 802 8222",
+            email:"sales@advancedclustering.com",
+            visit:"Advanced Clustering"
+        },
+        {
+            name:"Advantech",
+            contact:"Advantech Networks and Communications Group",
+            email:"ncg@advantech.com",
+            visit:"Advantech"
+        },
+        {
+            name:"AIC Inc.",
+            contact:"Mr. David Huang",
+            phone:"+886 3 433 9188 ext. 8100",
+            email:"sales@aicipc.com.tw, david.huang@aicipc.com.tw",
+            visit:"AIC Inc."
+        },
+        {
+            name:"Amax",
+            contact:"James Huang",
+            email:"james_huang@amax.com",
+            visit:"Amax"
+        },
+        {
+            name:"ASRock Rack",
+            contact:"Jessie Chang",
+            phone:"+886 25538790",
+            email:"jessie6_chang@asrockrack.com",
+            visit:"ASRock Rack"
+        },
+        {
+            name:"ASA Computers/Racklive",
+            contact:"Roger Kute",
+            email:"roger@asacomputers.com",
+            visit:"ASA Computers/Racklive"
+        },
+        {
+            name:"Atipa",
+            contact:"Dana Chang",
+            phone:"+1 785 841 9559",
+            email:"sales@atipa.com",
+            visit:"Atipa"
+        },
+        {
+            name:"Azken Muga",
+            contact:"Rafael Lainez",
+            phone:"+34 91 146 17 60",
+            email:"RLainez@azken.com",
+            visit:"Azken Muga"
+        },
+        {
+            name:"CDW",
+            visit:"CDW"
+        },
+        {
+            name:"Cisco",
+            visit:"Cisco"
+        },
+        {
+            name:"Colfax",
+            contact:"Jimmy Tran",
+            email:"jimmy@colfax-intl.com",
+            visit:"Colfax"
+        },
+        {
+            name:"Cray",
+            email:"c17733@cray.com",
+            visit:"Cray"
+        },
+        {
+            name:"Dalco",
+            contact:"Sales",
+            phone:"+41 44 908 38 38",
+            email:"sales@dalco.ch",
+            visit:"DALCO"
+        },
+        {
+            name:"DataON Storage",
+            phone:"+1 714 441 8820",
+            email:"dataon_sales@dataonstorage.com",
+            visit:"DataON Storage"
+        },
+        {
+            name:"Dell EMC",
+            visit:"Dell EMC"
+        },
+        {
+            name:"Exxact",
+            contact:"Mke Chen",
+            phone:"+1 510 226 7366",
+            email:"mchen@exxactcorp.com",
+            visit:"Exxact"
+        },
+        {
+            name:"Flytech",
+            contact:"Javier Fernandez",
+            phone:"+34 93 265 54 62",
+            email:"jfd@flytech.es",
+            visit:"Flytech"
+        },
+        {
+            name:"Format",
+            contact:"Piotr Sukiennik",
+            email:"piotr.sukiennik@format.com.pl",
+            visit:"Format"
+        },
+        {
+            name:"Huawei",
+            visit:"Huawei"
+        },
+        {
+            name:"HP Enterprise",
+            visit:"HP Enterprise"
+        },
+        {
+            name:"Inspur",
+            visit:"Inspur"
+        },
+        {
+            name:"International Computer Concepts",
+            contact:"Alex Leites",
+            email:"marketing@icc-usa.com",
+            visit:"International Computer Concepts"
+        },
+        {
+            name:"Inventec Corporation",
+            contact:"Steven Lin",
+            phone:"+886 3 3900000",
+            email:"lin.steven@inventec.com",
+            visit:"Inventec Corporation"
+        },
+        {
+            name:"iXsystems",
+            contact:"Denise Ebery",
+            email:"denise@ixsystems.com",
+            visit:"iXsystems"
+        },
+        {
+            name:"Koi Computer",
+            contact:"Catherine Ho",
+            phone:"+1 630 627 8811",
+            email:"catherineho1@koicomputer.com",
+            visit:"Koi Computer"
+        },
+        {
+            name:"Komputronik",
+            contact:"Adam Olszewski",
+            email:"adam.olszewski@komputronik.pl",
+            visit:"Komputronik"
+        },
+        {
+            name:"Kontron",
+            visit:"Kontron"
+        },
+        {
+            name:"Lanner Electronics",
+            contact:"Brian Chen",
+            phone:"+886 2 86926060 ext. 1195",
+            email:"brian_chen@lannerinc.com",
+            visit:"Lanner Electronics"
+        },
+        {
+            name:"Lenovo",
+            visit:"Lenovo"
+        },
+        {
+            name:"M Computers",
+            contact:"Brian Chen",
+            phone:"+420 515 538 120",
+            email:"brian_chen@lannerinc.com",
+            visit:"M Computers"
+        },
+        {
+            name:"Maguay",
+            email:"sales@maguay.ro",
+            visit:"Maguay"
+        },
+        {
+            name:"Maxta Inc.",
+            contact:"Sales",
+            phone:"+1 844 44 MAXTA",
+            email:"sales@maxta.com",
+            visit:"Maxta Inc."
+        },
+        {
+            name:"Mercury Systems",
+            visit:"Mercury Systems"
+        },
+        {
+            name:"NCS Technologies INC",
+            visit:"NCS Technologies INC"
+        },
+        {
+            name:"Nexcom",
+            contact:"Liyin Lin",
+            phone:"+886 2 8226 7786 ext. 2110",
+            email:"liyinlin@nexcom.com.tw",
+            visit:"Nexcom"
+        },
+        {
+            name:"Nokia",
+            phone:"+1 866 231 0264",
+            visit:"Nokia"
+        },
+        {
+            name:"NTT",
+            contact:"Tomasz Rajca",
+            email: "tomasz.rajca@ntt.pl",
+            visit:"NTT"
+        },
+        {
+            name:"Padova Technologies",
+            visit:"Padova Technologies"
+        },
+        {
+            name:"Patriot Technologies, Inc",
+            visit:"Patriot Technologies, Inc"
+        },
+        {
+            name:"Penguin Computing",
+            visit:"Penguin Computing"
+        },
+        {
+            name:"Persy",
+            phone:"+359 24225319",
+            email: "sales@persy.com",
+            visit:"Persy"
+        },
+        {
+            name:"Premio",
+            contact:"John Lam",
+            phone:"+1 888 713 4540",
+            email:"sales@premioinc.com; john.lam@premioinc.com",
+            visit:"Premio"
+        },
+        {
+            name:"Quanta",
+            visit:"Quanta"
+        },
+        {
+            name:"Radisys",
+            contact:"Lisa Marone",
+            phone:"+1 503 615 1545",
+            email:"lisa.marone@radisys.com",
+            visit:"Radisys"
+        },
+        {
+            name:"Silicon Mechanics",
+            contact:"Dustin Shatto",
+            email:"dustin.shatto@siliconmechanics.com",
+            visit:"Silicon Mechanics"
+        },
+        {
+            name:"Source Code",
+            contact:"Brian Corn",
+            phone:"+1 877 722 3478 ext. 4266",
+            email:"BrianC@sourcecode.com",
+            visit:"Source Code"
+        },
+        {
+            name:"Supermicro",
+            visit:"Supermicro"
+        },
+        {
+            name:"TYAN Computer",
+            contact:"Fenny Chen",
+            phone:"+886 3 3275988 ext. 2849",
+            email:"fenny.chen@mic.com.tw",
+            visit:"TYAN Computer"
+        },
+        {
+            name:"Unicom Engineering",
+            visit:"Unicom Engineering"
+        },
+        {
+            name:"Wiwynn Corporation",
+            contact:"Ethan Yang",
+            phone:"+886 2 66125209",
+            email:"Ethan_SL_Yang@wiwynn.com",
+            visit:"Wiwynn Corporation"
+        },
+        {
+            name:"Wortmann",
+            contact:"Terra Server",
+            phone:"+49 5744 944 189",
+            email:"server@wortmann.de",
+            visit:"Wortmann"
+        },
+    ]
+    function mv_table_1gen(){
+        if(document.querySelector('.mv_partner_data_1gen'))
+        {
+            let div = document.querySelector('.mv_partner_data_1gen')
+            
+            let html = mv_partner_1gen.map((ele)=>{
+                return `<tr>
+                <td>${ele.name}</td>
+                <td>
+                    ${ele.contact ? `<div><b>Contact:</b> ${ele.contact}</div>` : ""}
+                    ${ele.phone ? `<div><b>Phone:</b> ${ele.phone}</div>` : ""}
+                    ${ele.email ? `<div><b>E-mail:</b> <a href="">${ele.email}</a></div>` : ""}
+                    <div><b>Visit:</b> <a href="">${ele.visit}</a></div>
+                </td>
+                </tr>`
+            }).join('')
+            div.innerHTML = html
+        }else{
+            return;
+        }
+    }
