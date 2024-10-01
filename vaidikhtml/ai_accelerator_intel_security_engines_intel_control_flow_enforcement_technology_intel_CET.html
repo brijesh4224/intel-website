@@ -74,112 +74,67 @@
                 <div class="col-xl-10">
                     <section style="padding-bottom: 16px;">
                         <p class="mb-0">&nbsp;</p>
-                        <h3 style="font-weight: 350; margin: 2.5rem 0 11px;">Summary </h3>
-                        <p> 
-                            Natural language processing (NLP) has exploded with the evolution of transformers. But running these language models efficiently in production for either short text snippets, such as text messages or chats, with low latency requirements, or long documents with high throughput requirements, has been challenging–if not impossible–to do on a CPU. 
-                        </p>
-                        <p class="mb-0">
-                            In <a class="b_special_a1" href="">prior work</a>, Numenta showed how their custom-trained language models could run on 4th Gen Intel® Xeon® Scalable processors with 10ms latency and achieve 100x throughput speedup vs. current generation AMD Milan CPU implementations for BERT inference on short text sequences.1  In this project, Numenta showcases how their custom-trained large language models can run 20x faster for large documents (long sequence lengths) when they run on Intel® Xeon® CPU Max Series processors with high bandwidth memory located on the processor vs. current generation AMD Milan CPU implementations.2 In both cases, Numenta demonstrates the capacity to dramatically reduce the overall cost of running language models in production on Intel, unlocking entirely new NLP capabilities for customers.
-                        </p>
-                    </section>
-                    <section>
-                        <h3 style="font-weight: 350; margin: 2.5rem 0 11px;">Context </h3>
-                        <p>
-                            Numenta, a pioneer in applying brain-based principles to develop innovative AI solutions, has made breakthrough advances in AI and Deep Learning that enable customers to achieve 10 to more than 100X performance improvement across broad use cases, such as natural language processing and computer vision<sup>3</sup>.
-                        </p>
-                        <p>
-                            Numenta has been applying their expertise in accelerating large language models, helping customers improve inference performance on both short and long sequence length tasks without sacrificing accuracy. In NLP, long sequence length tasks involve analysis of documents or similarly lengthy strings of words, as opposed to shorter sequence length tasks that may be used to analyze sentences or text fragments in conversational AI. To further accelerate and simplify the workflow for these customers, Numenta has tested Intel’s recently released Intel Xeon Max Series CPU.
-                        </p>
-                        <p>
-                            The Intel Xeon CPU Max Series is an x86 CPU with high-bandwidth memory (HBM). The processor also includes the new <a class="b_special_a1" href="">Intel<sup>®</sup> Advanced Matrix Extensions (Intel<sup>®</sup> AMX)</a> instructions set for fast matrix multiplication and the <a class="b_special_a1" href="">OpenVINO toolkit</a> for automatic model optimization. The combination of Numenta’s neuroscience-inspired technology running on Intel Xeon Max Series CPUs led to this 20x gain in inference throughput on large language models.<sup>4</sup> This demonstration proves that CPUs can be the most efficient, scalable, and powerful platform for inference on these large language models. 
-                        </p>
-                        <p class="mb-0">
-                            Read further to learn more about the challenge of running inference for longer sequence lengths and how the combination of Numenta technology and Intel<sup>®</sup> hardware helps to address it. 
-                        </p>
-                        <p class="mb-0">&nbsp;</p>
-                    </section>
-                    <section>
-                        <h3 style="font-weight: 350; margin: 2.5rem 0 11px;">Problem</h3>
-                        <p>
-                            The length of text that a transformer model typically analyzes when performing each inference operation varies significantly between application spaces. For real-time conversational applications, the model might just consider a single sentence of user input, whereas for applications such as question answering or document summarization each operation might consider entire paragraphs of text (or even entire documents). Transformer models do not operate on the text data directly. Rather, the input text is tokenized and translated into a series of embedding vectors, which are fed into the model. For <a class="b_special_a1" href="">BERT-Large</a>, each embedding vector comprises 1,024 elements, which, when represented using FP32, requires 4 KB of state per token.
-                        </p>
-                        <p>
-                            BERT-Large can consider sequences of text that consist of up to 512 tokens, which amounts to 2 MB of state for operations on large sequence lengths. This input flows through the transformer from layer to layer, and even gets expanded when interacting with certain linear layers, e.g., in BERT-Large this can be as large as 8 MB. In addition to state associated with holding these activations, state is required to hold the model weights, and significant temporary scratch space is required as the inputs are transformed by each layer.
-                        </p>
-                        <p class="mb-0">
-                            For newer <a class="b_special_a1" href="">GPT</a> models, both the maximum sequence length and the size of the embedding vectors has increased. For instance, with GPT-J-6B, a sequence can contain up to 2,048 tokens, with each embedding representing 16 KB of state, for a total of 32 MB for operations leveraging the maximum sequence length. As a result, especially when processing large text inputs, the working set associated with an inference operation can be significant.
-                        </p>
-                        <p>
-                            If we consider an inference server processing multiple input streams in parallel, while the model weights can be shared between processing operations, input state is unique to each stream, increasing linearly with the number of concurrent operations. 
-                        </p>
-                        <p>
-                            Another difference between application spaces is the typical batch size. For real-time applications, batch sizes are small, often just 1 (minimum latency processing, responding in real-time to user interaction). However, for offline processing, overall throughput can typically be improved (at the expense of latency), by increasing the batch size, e.g., processing 64, 128, or even 256 queries in parallel. As can be imagined, this further increases the working set required for each operation.
-                        </p>
-                        <p>
-                            On today’s multi-core processors, the processor’s on-chip cache resources are shared between the cores. For instance, a 4th Gen Intel Xeon processor with 56-cores, might have a ~112 MB level-3 cache integrated on chip. While this is a significant amount of cache, the per-core resources amount to 2 MB of cache when each core is being utilized. As a result, for larger transformer models especially, even operating on larger documents, there is insufficient cache to hold all of the necessary state, requiring that data be constantly staged to and from memory. This results in significant memory bandwidth utilization. 
-                        </p>
-                        <p>
-                            When the working set is sufficiently small, the aggregate performance delivered by a processor can be compute bound, with the total achievable FLOPs (Floating Point Operations per second) approaching the values stated on company datasheets. However, when the working set is too large to be accommodated on chip, application performance is often first constrained by the available memory bandwidth and falls far short of the results that might be expected based solely on a processor’s compute power. 
-                        </p>
-                        <p>
-                            As a result, the computational power of a processor is frequently underutilized when performing inference operations with large transformer models at scale. 
-                        </p>
-                    </section>
-                    <section>
-                        <h4 style="font-weight: 400; margin: 2.5rem 0 11px;">Solution: Dramatic Acceleration of NLP Inference with Optimized Models, CPUs</h4>
-                        <p>
-                            Drawing on more than two decades of neuroscience research, Numenta has defined new architectures, data structures and algorithms that deliver disruptive performance improvements. When applied to models like GPT-3 or BERT-Large, they are dramatically more efficient for inference without sacrificing accuracy. Part of this is custom-training the model with hardware-aware optimized algorithms. And part of it entails optimizing runtime to fully utilize the computing platform for inference.
-                        </p>
-                        <p>
-                            Their brain-based techniques applied to a custom-trained version of BERT-Large enabled higher throughput in production. But running these models on prior generation CPU platforms like AMD Milan does not always achieve sufficient throughput to meet the needs of customers. As a result, many are forced to run with Nvidia A100s in production, which are far less cost efficient and much more time-intensive to maintain. For example, standing up a GPU system for NLP inference may take weeks of engineering time. Getting up and running with a comparable CPU platform typically takes a day or two. The same is true with any code changes required to meet the needs of changing datasets or customer demands. Each of these typically requires more engineering effort on a GPU platform versus a CPU platform.
-                        </p>
-                        <p>
-                            Numenta models are more compute efficient than traditional models, but this increased efficiency tends to place higher demands on memory bandwidth. When running large deep learning models at scale, typically memory bandwidth becomes the scaling limiter. HBM triples the memory bandwidth, allowing Numenta to better leverage the computational resources. 
-                        </p>
-                        <p>
-                            This is where the new Xeon Max Series CPU makes a significant difference. Equipped with HBM, the aggregate off-chip bandwidth that can be sustained is over 3X higher than what’s available on processors without HBM technology.<sup>5</sup>
-                        </p>
-                        <p>
-                            Finally, as discussed in more detail here, the <a class="b_special_a1" href="">Intel Xeon CPU Max Series</a> processor contains other innovations that accelerate deep-learning applications, including support for Intel AMX. Intel AMX not only introduces support for 16-bit BF16 operations, reducing the memory footprint associated with activation and weights, it also delivers significantly improved peak computational performance compared with what has been traditionally possible with <a class="b_special_a1" href="">Intel<sup>®</sup> Advanced Vector Extensions 512 (Intel<sup>®</sup> AVX-512)</a> instructions. Intel AMX is also designed to pair well with the Xeon Max Series CPU. Intel AMX delivers a significant compute throughput acceleration, which typically results in converting an AI inference problem from compute to bandwidth bound. The move from 32-bit to 16-bit representations with Intel AMX essentially halves the bandwidth requirements and, in the process, delivers improved inference throughput with large models. But this significant increase in potential compute throughput increases memory bandwidth demands required to fully utilize Intel AMX, thereby converting the problem to be bandwidth bound. The Xeon Max CPU, with HBM located on the processor, is designed to seamlessly handle this challenge. 
-                        </p>
-                    </section>
-                    <section>
-                        <h3 style="font-weight: 350; margin: 2.5rem 0 11px;">Results</h3>
-                        <p>
-                            To demonstrate the benefits of the synergistic combination of Intel’s latest generation of processors and Numenta’s technology, we chose to demonstrate BERT-Large inference throughput improvements when using large 512-element sequence lengths. This benchmark was undertaken using optimized ONNX models, which were run using Intel’s OpenVINO toolkit and the number of concurrent streams was matched to the available processor cores. Intel’s optimized, open, and scalable software available via oneAPI, enabled Numenta to efficiently integrate their technology into OpenVINO toolkit.  
-                        </p>
-                        <p>
-                            The performance baseline was created using OpenVINO toolkit on a 48-core AMD Milan system, demonstrating the performance available to customers without the combination Numenta’s technology and Intel’s latest generation of <a class="b_special_a1" href="">Intel<sup>®</sup> Xeon<sup>®</sup> processors</a>. As illustrated in Figure 1, moving from standard BERT-Large models (e.g., models on Huggingface.com) running on a 48-core AMD Milan system to using Numenta’s optimized BERT-Large models running on a 48-core Intel Xeon Max Series processor, inference throughput improved by over 20X.<sup>6</sup>
-                        </p>
-                        <div class="mv_speedup_image">
-                            <img src="/img/mv_image/numenta-article-2-figure-1.png.rendition.intel.web.1920.1080.png" alt="">
+                        <div class="text-center">
+                            <strong>Intel Fellow Client Computing Group</strong>
                         </div>
                         <p class="mb-0">&nbsp;</p>
+                        <p> 
+                            Intel has a long history of working with the software community and making strides in strengthening protections of operating systems and software running on modern computer systems. As these protections came into effect, adversaries started looking for creative alternatives to bypass these protections. Return Oriented Programming (also known as ROP) and Jump Oriented Programming (also known as JOP) are two such techniques that has been gaining popularity. JOP or ROP attacks can be particularly hard to detect or prevent because the attacker uses existing code running from executable memory in a creative way to change program behavior. What makes it hard to detect or prevent ROP/JOP is the fact that attacker uses existing code running from executable memory. Many software-based detection and prevention techniques have been developed and deployed with limited success. 
+                        </p>
+                        <p class="mb-0">
+                            ROP is where the attacker relies on RET (return) instruction to stitch together a malicious code flow that was not programmer-intended. Per the design, return instructions fetch the address of next instruction from stack (which was pushed on the stack by the prior CALL instruction) and executes instructions from that address. In the case of ROP-based attacks, the attacker apriori or at runtime scans for sequence of bytes in existing program code by scanning the program on disk or in memory. Figure 1 shows an example of existing instruction stream.
+                        </p>
+                    </section>
+                    <section>
+                        <div class="text-center">
+                            <strong>Figure 1</strong>
+                        </div>
+                        <div class="mv_speedup_image">
+                            <p>
+                                <img src="/img/mv_image/cet-instruction-stream.jpg" alt="">
+                            </p>
+                        </div>
                         <p>
-                            <i>Fig 1. For long sequence length of 512, this combination of technology achieved 20x throughput over current generation AMD Milan.<sup>6</sup></i>
+                            This example shows three instructions executed in a sequence (notice there are no RET instructions in this programmer-intended sequence) and corresponding bytes of program in blue boxes below. The same set of code bytes, when interpreted starting at an invalid offset, can also mean alternate set of instructions that cause the sequence to end with a RET as shown in the figure below where bytes in red boxes correspond to a different instruction sequence and in this example, each instruction is followed by C3 which corresponds to the return instruction. These instruction sequences are called “gadgets”.
                         </p>
                         <p class="mb-0">&nbsp;</p>
                     </section>
                     <section>
-                        <h3 style="font-weight: 350; margin: 2.5rem 0 11px;">Summary</h3>
-                        <p class="mb-0">For applications using large transformer models, this combination of technologies proves to be significantly more productive and efficient than was otherwise previously possible:</p>
-                        <ul>
-                            <li>Numenta’s optimized version of BERT-Large increases performance and is designed to fully leverage the target compute it will run on.</li>
-                            <li>The Intel Xeon CPU Max Series is a version of the 4th Gen Intel Xeon Scalable processor that locates HBM on the processor, enabling workloads that would otherwise be bandwidth constrained with 3x the bandwidth capacity.</li>
-                            <li>Intel AMX offers significant acceleration over prior-generation Intel AVX-512, making the 4th Gen Intel Xeon Scalable processors much more efficient in general for AI tasks.</li>
-                            <li>OpenVINO toolkit and the open oneAPI software stack maintained by Intel allow for a powerful developer experience that works seamlessly out of the box, vastly reducing maintenance overhead for engineering teams.</li>
-                            <li>With the Intel Xeon CPU Max Series and the Numenta optimized version of BERT-Large, Numenta was able to run at a fast enough throughput to meet their customer needs without having to run on Nvidia A100s.  </li>
-                        </ul>
+                        <div class="text-center">
+                            <strong>Figure 1</strong>
+                        </div>
+                        <div class="mv_speedup_image">
+                            <p>
+                                <img src="/img/mv_image/cet-gadgets.jpg" alt="">
+                            </p>
+                        </div>
+                        <p>
+                            By carefully placing starting addresses of these alternate instruction-sets or “gadgets” that are all terminated by the ret instruction, the attacker can execute arbitrary attack code flows that were not intended in the original program using already-executable bytes of the original program. So, with a ROP attack, the attacker can execute arbitrary code composed via gadgets using the existing program inheriting all the permissions of the program. This makes these attacks effective and hard to detect and potentially allow an attacker to escalate privileges or break out of process sandboxes. These types of malware target operating systems (OS), browsers, readers and many other applications, and it takes deep integration with hardware at the foundation to deliver more effective protection with minimal performance impact.
+                        </p>
+                        <p>
+                            Since ROP relies on RET instructions, where the address of the next instruction to execute is fetched from a stack, stack corruption plays a critical role in ROP attacks. CET enables the OS to create a Shadow Stack, which is designed to be protected from application code memory accesses, and stores CPU-stored copies of the return addresses. This helps ensure that even when an attacker is able to modify/corrupt the return addresses in the data stack for the purpose of carrying out a ROP attack, the attacker is not able to modify the Shadow Stack, and the CET state machine in the CPU detects mismatches between the address on the shadow and data stack to help prevent the attack via an exception reported to the OS.
+                        </p>
+                        <p>
+                            Similarly, other indirect branch instructions, such as Call and Jump indirect can be used to launch variant attacks - called COP (call oriented programming) or JOP (jump oriented programming). CET also adds an Indirect Branch Tracking capability to provide software the ability to restrict COP/JOP attacks.
+                        </p>
+                        <p>
+                            Intel has been actively collaborating with Microsoft and other industry partners to address control-flow hijacking by using Intel’s CET technology to augment the previous software-only control-flow integrity solutions. Intel’s CET, when used properly by software, is a big step in helping to prevent exploits from hijacking the control-flow transfer instructions. For more details, reference Microsoft’s BLOG <a class="b_special_a1" href="">“Understanding Hardware-enforced Stack Protection”</a>. 
+                        </p>
                     </section>
                     <section>
-                        <h3 style="font-weight: 350; margin: 2.5rem 0 11px;">Learn More</h3>
-                        <p class="mb-0">If you have a similar problem, you can get started with this same stack on your specific problem today:</p>
+                        <h3 style="font-weight: 350; margin: 2.5rem 0 11px;">Reference Links</h3>
+                        <p class="mb-0"><a class="b_special_a1" href="">Security Analysis of Processor Instruction Set Architecture for Enforcing Control-Flow Integrity (ACM Digital Library)</a></p>
+                        <p class="mb-0"><a class="b_special_a1" href="">Paper PDF</a></p>
+                        <p class="mb-0"><a class="b_special_a1" href="">Intel Software Development Emulating (SDE)</a></p>
+                        <p class="mb-0"><a class="b_special_a1" href="">Intel Compiler</a></p>
+                        <p class="mb-0"><a class="b_special_a1" href="">GCC Instrumentation Options</a></p>
+                        <div>
+                            <strong>Linux Kernel Patches</strong>
+                        </div>
                         <ul>
-                            <li>Access the Intel Xeon Max Series CPU via the Intel® DevCloud.</li>
-                            <li>Install OpenVINO toolkit today. </li>
-                            <li>Run SigOpt for experiment tracking and hyperparameter optimization.</li>
+                            <li><a class="b_special_a1" href="">Intel CET Support Still Getting Squared Away For Linux In 2020</a></li>
+                            <li><a class="b_special_a1" href="">Control-flow Enforcement: Shadow Stack</a></li>
                         </ul>
-                        <p class="mb-0">Intel and Numenta have a wide range of solutions that fit your needs regardless of which AI problem you need to address.</p>
                     </section>
                 </div>
             </div>
@@ -189,7 +144,7 @@
     <!-- noticed -->
     <section style="border-top: 1px solid #d7d7d7;" class="container py-5">
         <h4 class="h6">Product and Performance Information</h4>
-        <div class="disclaimer" style="font-size: 12px;"><sup>1</sup> Performance varies by use, configuration and other factors. Learn more at <a class="" href="">www.Intel.com/PerformanceIndex</a>.</div>
+        <div class="disclaimer" style="font-size: 12px;"><sup>1</sup> Performance varies by use, configuration and other factors. Learn more at <a class="b_special_a1" href="">www.Intel.com/PerformanceIndex</a>.</div>
     </section>
 
     <!-- footer -->
