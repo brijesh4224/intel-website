@@ -1921,7 +1921,7 @@ function mv_intel_blog_geti(page) {
                                     <div class="mv_spark_card_titles">
                                         <p style="color: #fff;" class="mv_subtitle">${ele.category}</p>
                                         <div class="mv_spark_card_metrics text-white">
-                                            <span>${ele.title}</span>
+                                            <span><a href="">${ele.title}</a></span>
                                         </div>
                                     </div>
                                     <div class="mv_spark_card_description">
@@ -1930,10 +1930,10 @@ function mv_intel_blog_geti(page) {
                                     </div>
                                 </div>
                                 <div class="mv_spark_card_vertical_buttons">
-                                    <a href="#">
-                                        <span class="mv_spark_button_content">Read More</span>
+                                    <div>
+                                        <span class="mv_spark_button_content"><a href="">Read More</a></span>
                                         <span><i style="font-size: 15px !important;" class="fa-solid fa-arrow-right-long"></i></span>
-                                    </a>
+                                    </div>
                                     <span class="mv_socialIcon">
                                         <a href="#"><i class="fa-solid fa-share-nodes"></i></a>
                                     </span>
@@ -2036,7 +2036,7 @@ function mv_video_intel_geti() {
                                 <div class="mv_spark_card_titles">
                                     <p style="color: #fff;" class="mv_subtitle">${ele.category}</p>
                                     <div class="mv_spark_card_metrics text-white">
-                                        <span>${ele.title}</span>
+                                        <span><a href="">${ele.title}</a></span>
                                     </div>
                                 </div>
                                 <div class="mv_spark_card_description">
@@ -2047,16 +2047,16 @@ function mv_video_intel_geti() {
                             <div class="mv_spark_card_vertical_buttons">
                                 <ul class="mb-0 ps-0">
                                     <li>
-                                        <a href="#">
-                                            <span class="mv_spark_button_content">Watch Video</span>
+                                        <div>
+                                            <span class="mv_spark_button_content"><a href="">Watch Video</a></span>
                                             <span><i style="font-size: 15px !important;" class="fa-solid fa-arrow-right-long"></i></span>
-                                        </a>
+                                        </div>
                                     </li>
                                     ${ele.language ? `<li>
-                                        <a href="#">
-                                            <span class="mv_spark_button_content">${ele.language}</span>
+                                        <div>
+                                            <span class="mv_spark_button_content"><a href="">${ele.language}</a></span>
                                             <span><i style="font-size: 15px !important;" class="fa-solid fa-arrow-right-long"></i></span>
-                                        </a>
+                                        </div>
                                     </li>` : ""}
                                 </ul>
                                 <span class="mv_socialIcon">
@@ -2197,7 +2197,7 @@ function mv_intel_case_study_geti(page) {
                                     <div class="mv_spark_card_titles">
                                         <p style="color: #fff;" class="mv_subtitle">${ele.category}</p>
                                         <div class="mv_spark_card_metrics text-white">
-                                            <span>${ele.title}</span>
+                                            <span><a href="">${ele.title}</a></span>
                                         </div>
                                     </div>
                                     <div class="mv_spark_card_description">
@@ -2209,19 +2209,19 @@ function mv_intel_case_study_geti(page) {
                                     <ul class="mb-0 ps-0">
                                         ${ele.languageenglish ? 
                                         `<li>
-                                            <a href="#">
-                                                <span class="mv_spark_button_content">Download${ele.languageenglish}</span>
-                                            </a>
+                                            <div>
+                                                <span class="mv_spark_button_content"><a href="#">Download${ele.languageenglish}</a></span>
+                                            </div>
                                         </li>` : 
                                         `<li>
-                                            <a href="#">
-                                                <span class="mv_spark_button_content">Download</span>
-                                            </a>
+                                            <div>
+                                                <span class="mv_spark_button_content"><a href="">Download</a></span>
+                                            </div>
                                         </li>`}
                                         ${ele.languagespanish ? `<li>
-                                            <a href="#">
-                                                <span class="mv_spark_button_content">${ele.languagespanish}</span>
-                                            </a>
+                                            <div>
+                                                <span class="mv_spark_button_content"><a href="">${ele.languagespanish}</a></span>
+                                            </div>
                                         </li>` : ""}
                                     </ul>
                                     <span class="mv_socialIcon">
