@@ -1448,8 +1448,351 @@
                             <p>&nbsp;</p>
                             <hr>
                         </section>
+                        <section id="dk_summary">
+                            <h2>Summary and Next Steps</h2>
+                            <p>The PCB demo sample application when deployed on the Intel® Smart Edge Open&nbsp;Developer Experience Kit&nbsp;creates an impactful edge computing use case that utilizes the capability of Intel® Smart Edge Open&nbsp;Developer Experience Kit&nbsp;and Open Edge Insights (OEI).&nbsp;</p>
+                            <hr>
+                        </section>
+                        <section id="dk_learn_more">
+                            <h2>Learn More</h2>
+                            <p>To continue learning, see the following guides and software resources:</p>
+                            <ul> 
+                                <li><a class="b_special_a1" href="">Intel® Smart Edge Open&nbsp;Architecture</a></li> 
+                                <li><a class="b_special_a1" href="">Intel® Open Edge Insights</a></li> 
+                               </ul>
+                            <hr>
+                        </section>
+                        <section id="dk_troubleshooting">
+                            <h2>Troubleshooting</h2>
+                            <p>&nbsp;</p>
+                            <p>If any issue is faced during installation, ensure that the <a class="b_special_a1" href="">Installation Prerequisites</a> are configured properly.&nbsp;</p>
+                        </section>
+                        <section id="check">
+                            <h3>Pods Status Check</h3>
+                            <p>Verify that the pods are Ready&nbsp;as well as in Running&nbsp;state using the following command:</p> 
+                                   <!-- code toolbar 3 -->
+                                   <div class="mv_code_toolbar">
+                                    <div class="mv_toolbar_item mv_copy_icon">
+                                        <i class="fa-regular fa-copy"></i>
+                                    </div>
+                                    <div class="mv_copy_message text-end hidden">Copied</div>
+                                    <div class="code-content">
+                                        <div style="padding-bottom: 1rem !important" class="d-flex mv_pre">
+                                            <div style="border-right: 1px solid #ccc" class="pe-3">
+                                                1
+                                            </div>
+                                            <div class="">
+                                                <div class="mv_code text-break">
+                                                    <p class="mb-0">kubectl get pods -A</p>
+                                                </div>
+                                            </div>
+                                        </div>   
+                                    </div>
+                                </div> 
+                                <p>&nbsp;</p>  
+                        </section>
+                        <section id="dk_imagepullbackoff">
+                            <h3>Pod Status shows "ImagePullBackOff" for a long time</h3>
+                            <p>If the pods are in ImagePullBackOff&nbsp;state for a long time as shown below, run the following commands.</p>
+                            <p><img alt="A console window showing system output with certain pods showing &quot;ImagePullBackOff&quot; status." height="107" src="/content/dam/developer/articles/reference-implementation/wireless-network-ready-pcb-defect-detection/wireless-network-ready-pcb-defect-detection-image-pull-backoff.png" width="1433"></p>
+                            <p>&nbsp;</p>
+                            <p>Describe the pods&nbsp;using:</p>
+                             <!-- code toolbar 3 -->
+                             <div class="mv_code_toolbar">
+                                <div class="mv_toolbar_item mv_copy_icon">
+                                    <i class="fa-regular fa-copy"></i>
+                                </div>
+                                <div class="mv_copy_message text-end hidden">Copied</div>
+                                <div class="code-content">
+                                    <div style="padding-bottom: 1rem !important" class="d-flex mv_pre">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            1
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0">kubectl describe pod -n smartedge-apps <pod name></p>
+                                            </div>
+                                        </div>
+                                    </div>   
+                                </div>
+                            </div> 
+                            <p>&nbsp;</p>   
+                            <p>Fetch the image name with the tag and do a manual Docker pull using the commands:</p>
+                            <!-- code toolbar 3 -->
+                            <div class="mv_code_toolbar">
+                                <div class="mv_toolbar_item mv_copy_icon">
+                                    <i class="fa-regular fa-copy"></i>
+                                </div>
+                                <div class="mv_copy_message text-end hidden">Copied</div>
+                                <div class="code-content">
+                                    <div style="padding-bottom: 0rem !important" class="d-flex mv_pre">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            1
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0">docker login </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="
+                              padding-top: 0rem !important;
+                            " class="d-flex mv_pre">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            2
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0">docker pull<span class="mv_sign_color">&lt;</span>image-name:tag<span class="mv_sign_color">&gt;</span></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <p>&nbsp;</p>
+                        </section>
+
+                        <section id="dk_containercreating">
+                            <h3>Pod Status shows "ContainerCreating" for a long time</h3>
+                            <p>If pod status shows ContainerCreating&nbsp;or Error&nbsp;or CrashLoopBackOff&nbsp;for 5 minutes or more, run the following commands:</p>
+                             <!-- code toolbar 3 -->
+                             <div class="mv_code_toolbar">
+                                <div class="mv_toolbar_item mv_copy_icon">
+                                    <i class="fa-regular fa-copy"></i>
+                                </div>
+                                <div class="mv_copy_message text-end hidden">Copied</div>
+                                <div class="code-content">
+                                    <div style="padding-bottom: 0rem !important" class="d-flex mv_pre">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            1
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0">./edgesoftware uninstall -a</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="
+                              padding-top: 0rem !important;
+                            " class="d-flex mv_pre">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            2
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0">./edgesoftware install </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <p>&nbsp;</p>
+                            <p>&nbsp;</p>
+                        </section>
+                        <section id="dk_pending">
+                            <h3>Pod Status shows "pending" for a long time</h3>
+                            <p>If only video-analytics pod status is pending for 5 minutes or more, run the following command:</p>
+                            <!-- code toolbar 3 -->
+                            <div class="mv_code_toolbar">
+                                <div class="mv_toolbar_item mv_copy_icon">
+                                    <i class="fa-regular fa-copy"></i>
+                                </div>
+                                <div class="mv_copy_message text-end hidden">Copied</div>
+                                <div class="code-content">
+                                    <div style="padding-bottom: 1rem !important" class="d-flex mv_pre">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            1
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0">kubectl describe pods -n smartedge-apps</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <p>&nbsp;</p>
+                            <p>In video-analytics pod, if you see the following event due to FailedScheduling, it may be possible that AVX-512VNNI instruction set is not available in system CPU as mentioned in the <a class="b_special_a1" href="">NFD feature</a> section.</p>
+                             <!-- code toolbar 3 -->
+                             <div class="mv_code_toolbar">
+                                <div class="mv_toolbar_item mv_copy_icon">
+                                    <i class="fa-regular fa-copy"></i>
+                                </div>
+                                <div class="mv_copy_message text-end hidden">Copied</div>
+                                <div class="code-content">
+                                    <div style="padding-bottom: 0rem !important" class="d-flex mv_pre">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            1
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0">Events:</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important;" class="d-flex mv_pre pb-0">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            2
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0">Type Reason Age From Message</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important;" class="d-flex mv_pre pb-0">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            3
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0">---- ------ ---- ---- -------</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important;" class="d-flex mv_pre">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            4
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0">Warning FailedScheduling 43s (x9 over 7m58s) default-scheduler 0/1 nodes are available: 1 node(s) didn <span class="mv_span_color">'t match Pod'</span> s node affinity/selector.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <p>&nbsp;</p>
+                            <p>If all four pods etcd-ui, video-analytics, video-ingestion and web-visualizer are in pending state for more than 5 minutes, check if the Operating system is Ubuntu 20.04 LTS or not.&nbsp;</p>
+                            <p>&nbsp;</p>
+                        </section>
+                        <section id="dk_uninstallation">
+                            <h3>Uninstallation Failure  </h3>
+                            <p>If&nbsp;uninstall command (<span class="dk_code_simple">./edgesoftware uninstall &lt; module id &gt;</span>) fails,&nbsp;manually uninstall PCB Defect Detection deployment and network policy, which are specific to pcb defect detection pod:&nbsp;</p>
+                            <!-- code toolbar 3 -->
+                            <div class="mv_code_toolbar">
+                                <div class="mv_toolbar_item mv_copy_icon">
+                                    <i class="fa-regular fa-copy"></i>
+                                </div>
+                                <div class="mv_copy_message text-end hidden">Copied</div>
+                                <div class="code-content">
+                                    <div style="padding-bottom: 0rem !important" class="d-flex mv_pre">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            1
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0">helm uninstall eii-deploy -n smartedge-apps; helm uninstall eii-provision -n smartedge-apps</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="
+                              padding-top: 0rem !important;
+                            " class="d-flex mv_pre">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            2
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0">kubectl delete networkpolicy etcd-ui-network-policy webvisualizer-network-policy -n smartedge-apps  </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                        <section id="dk_debug">
+                            <h3>Installation and Debug Log Info File Path</h3>
+                            <p>Installation log info of Intel® Smart Edge Open&nbsp;Developer Experience Kit&nbsp;will be available at: &nbsp;</p>
+                            <!-- code toolbar 3 -->
+                            <div class="mv_code_toolbar">
+                                <div class="mv_toolbar_item mv_copy_icon">
+                                    <i class="fa-regular fa-copy"></i>
+                                </div>
+                                <div class="mv_copy_message text-end hidden">Copied</div>
+                                <div class="code-content">
+                                    <div style="padding-bottom: 1rem !important" class="d-flex mv_pre">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            1
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0">/var/log/esb-cli/Smart_Edge_Open_Developer_Experience_Kits_3.0.0/Smart_Edge_Open_Developer_Experience_Kits/install.log </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <p>&nbsp;</p>
+                            <p>Installation log info of <strong>Wireless Network Ready PCB Defect Detection</strong>&nbsp;module will be available at:&nbsp;</p>
+                             <!-- code toolbar 3 -->
+                             <div class="mv_code_toolbar">
+                                <div class="mv_toolbar_item mv_copy_icon">
+                                    <i class="fa-regular fa-copy"></i>
+                                </div>
+                                <div class="mv_copy_message text-end hidden">Copied</div>
+                                <div class="code-content">
+                                    <div style="padding-bottom: 1rem !important" class="d-flex mv_pre">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            1
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0">/var/log/esb-cli/Wireless_NetworkReady_PCB_defect_detection_<span class="mv_sign_color">&lt;</span>version<span class="mv_sign_color">&gt;</span>/WirelessNetwork_Ready_PCB_defect_detection/install.log
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <p>Where <span class="dk_code_simple">&lt;version&gt;</span> is the package version downloaded.</p>
+                            <p>&nbsp;</p>
+                            <p>Execute the command below to consolidate a list of the log files in tar.gz compressed&nbsp;format, e.g.,&nbsp;<strong>Wireless_NetworkReady_PCB_defect_detection.tar.gz</strong>.&nbsp;&nbsp;</p>
+                            <!-- code toolbar 3 -->
+                            <div class="mv_code_toolbar">
+                                <div class="mv_toolbar_item mv_copy_icon">
+                                    <i class="fa-regular fa-copy"></i>
+                                </div>
+                                <div class="mv_copy_message text-end hidden">Copied</div>
+                                <div class="code-content">
+                                    <div style="padding-bottom: 1rem !important" class="d-flex mv_pre">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            1
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0">tar -czvf Wireless_NetworkReady_PCB_defect_detection.tar.gz /var/log/esb-cli/Wireless_NetworkReady_PCB_defect_detection_5.0.0/Wireless_NetworkReady_PCB_defect_detection/ /var/log/esb-cli/Smart_Edge_Open_Developer_Experience_Kits_3.0.0/Smart_Edge_Open_Developer_Experience_Kits/ 
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <p>&nbsp;</p>
+                        </section>
+                        
+                        <section id="dk_support">
+                            <h3>Support Forum </h3>
+                            <p class="mb-0">If you're unable to resolve your issues, contact the <a class="b_special_a1" href="">Support Forum</a>. &nbsp;</p>
+                            <ul> 
+                                <li> <p>Make sure you have an active internet connection during the full installation. If you lose Internet connectivity at any time, the installation might fail.</p> </li> 
+                                <li> <p>Make sure you are using a fresh installation. Earlier software, especially Docker* and Docker Compose*, can cause issues.</p> </li> 
+                                <li> <p>Use the kubectl commands like describe, log, get etc. to analyze the problems.</p> </li> 
+                                <li> <p>Ensure the proxy settings are properly set.</p> </li> 
+                                <li> <p>In case of Docker pull rate limit issue, we recommend you use the Premium/PRO Docker teams to get unlimited Docker pull support.</p> </li> 
+                               </ul>
+                               <p>&nbsp;</p>
+                               <p>&nbsp;</p>
+                               <p></p>
+                        </section>
                 </div>
             </div>
+        </div>
+    </section>
+
+    <section style="border-top: 1px solid #d7d7d7;" class="container py-5">
+        <h4 class="h6">Product and Performance Information</h4>
+        <div class="disclaimer" style="font-size: 12px;"><sup>1</sup> Performance varies by use, configuration and other factors. Learn more at <a class="b_special_a1" href="">www.Intel.com/PerformanceIndex.</a></div>
         </div>
     </section>
     
