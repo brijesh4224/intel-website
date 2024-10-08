@@ -1784,6 +1784,8 @@ var mv_intel_geti_blog_data = [
         title:"Intel® Geti™ 2.0.0 Release: Advancing AI Model Development",
         date: "Jun. 5, 2024",
         description: "Intel® Geti™ 2.0.0 is here. A new release of Intel’s Vision AI software for building computer vision models faster and with less. This release includes several additions for data labeling, model training, and inferencing.The release is part of Intel’s ongoing commitment to deliver high-quality software. All existing customers are invited to upgrade to Intel Geti 2.0.0 and take advantage of the latest functionality!",
+        link: "blog_read_more_card_one.html",
+        model_link: "https://geti.intel.com/blog/intel-geti-2-0-0-release-advancing-ai-model-development",
     },
     {
         image:"dashboard-456x300.png",
@@ -1791,6 +1793,8 @@ var mv_intel_geti_blog_data = [
         title:"Data and AI Metrics with Intel® Geti™",
         date: "May. 24, 2024",
         description: "Learn how to define and leverage metrics to identify improvements and repetitively refine your AI project with Intel® Geti™ software.",
+        link: "blog_read_more_card_two.html",
+        model_link: "https://geti.intel.com/blog/data-and-ai-metrics-with-intel-geti",
     },
     {
         image:"blog_intel_Geti_ai_Platform-466x300.webp",
@@ -1798,6 +1802,8 @@ var mv_intel_geti_blog_data = [
         title:"Intel® Geti™ AI Software Overview: Learn What Is Under the Hood",
         date: "May. 14, 2024",
         description: "Intel® Geti™ software enables anyone to build models rapidly and accelerate innovation across their businesses with AI. Learn about its features that can help you speed up your computer vision model development workflow and create new computer vision solutions for your organization.",
+        link: "blog_read_more_card_three.html",
+        model_link: "https://geti.intel.com/blog/intel-geti-ai-platform-overview-learn-what-is-under-the-hood",
     },
     {
         image:"ISC-West-Award-thumbnail.jpg",
@@ -1805,6 +1811,8 @@ var mv_intel_geti_blog_data = [
         title:"Intel® Geti™ Software Recognized by SIA as Winner of the Best New Products & Solutions Award for Video Analytics  at ISC West, 2024",
         date: "May. 7, 2024",
         description: "Intel® Geti™ software was selected as the 2024 Winner of the Video Analytics for its Intel® Geti™ software and honored April 10 during an award ceremony on the Bridge Stage on the ISC West Show Floor. The product name was also displayed on the ISC West show floor throughout the event from April 9-12.",
+        link: "blog_read_more_main_card_one.html",
+        model_link: "https://geti.intel.com/blog/intel-geti-software-recognized-by-sia-as-winner-of-the-best-new-products-solutions-award-for-video-analytics-at-isc-west-2024",
     },
     {
         image:"MicrosoftTeams-image-1-500x253-1.png",
@@ -1812,6 +1820,8 @@ var mv_intel_geti_blog_data = [
         title:"Mastering the Intel® Geti™ SDK in 9 Steps: A Beginner’s Guide",
         date: "Nov. 23, 2023",
         description: "When you have your production system working 24/7, it will be difficult or sometimes impossible to stop your production in order to update your models, add new objects to detect, replace a camera and recalibrate, or change elements in your workload.",
+        link: "blog_read_more_card_five.html",
+        model_link: "https://geti.intel.com/blog/mastering-the-intel-geti-sdk-in-9-steps-a-beginners-guide",
     },
     {
         image:"intel-500x281-1.webp",
@@ -1819,6 +1829,8 @@ var mv_intel_geti_blog_data = [
         title:"The Next Evolution: Intel® Geti™ 1.8.0 is here",
         date: "Oct. 25, 2023",
         description: "Intel’s software platform for building custom computer vision models more efficiently just launched a new version: Intel® Geti™ 1.8.0. This release includes additions for an enhanced data labeling experience with the Segment Anything Model (SAM), new storage management resources, and ready-to-use datasets.",
+        link: "blog_read_more_card_six.html",
+        model_link: "https://geti.intel.com/blog/the-next-evolution-intel-getitm-1-8-0-is-here",
     },
     {
         image:"getty-1082066722-fill-500x281-1.png",
@@ -1911,7 +1923,7 @@ function mv_intel_blog_geti(page) {
 
         // Fetch and display the current page data
         const arr = mv_intel_geti_blog_data.slice(first, last);
-            const html = arr.map(ele => {
+            const html = arr.map((ele ,ind)=> {
                 return `<div class="col-lg-4 col-md-6 col-sm-12 mb-3">
                             <div class="mv_spark_card_featured">
                                 <div class="mv_imgboxhiden">
@@ -1921,7 +1933,7 @@ function mv_intel_blog_geti(page) {
                                     <div class="mv_spark_card_titles">
                                         <p style="color: #fff;" class="mv_subtitle">${ele.category}</p>
                                         <div class="mv_spark_card_metrics text-white">
-                                            <span><a href="">${ele.title}</a></span>
+                                            <span><a href="${ele.link}">${ele.title}</a></span>
                                         </div>
                                     </div>
                                     <div class="mv_spark_card_description">
@@ -1931,11 +1943,14 @@ function mv_intel_blog_geti(page) {
                                 </div>
                                 <div class="mv_spark_card_vertical_buttons">
                                     <div>
-                                        <span class="mv_spark_button_content"><a href="">Read More</a></span>
+                                        <span class="mv_spark_button_content"><a href="${ele.link}">Read More</a></span>
                                         <span><i style="font-size: 15px !important;" class="fa-solid fa-arrow-right-long"></i></span>
                                     </div>
-                                    <span class="mv_socialIcon">
-                                        <a href="#"><i class="fa-solid fa-share-nodes"></i></a>
+                                    <!-- Card One Model -->
+                                    <span class="mv_socialIcon" onclick="handle_model_open(event, ${ind})">
+                                        <div>
+                                            <i class="fa-solid fa-share-nodes"></i>
+                                        </div>
                                     </span>
                                 </div>
                             </div>
@@ -1947,6 +1962,18 @@ function mv_intel_blog_geti(page) {
         return;
     }
 }
+
+function handle_model_open(event, id) {
+    event.preventDefault();
+
+    let modal = new bootstrap.Modal(document.getElementById('mv_blog_card_share_model'));
+    modal.show();
+
+    document.getElementById('mv_model_title').innerText = mv_intel_geti_blog_data[id].title;
+    document.getElementById('mv_model_link').innerText = mv_intel_geti_blog_data[id].model_link;
+
+}
+
 
 
 
