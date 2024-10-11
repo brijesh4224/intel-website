@@ -11,7 +11,7 @@ window.onload = function () {
     mv_table_2gen();
     mv_table_1gen();
 
-// (AI Accelerator) Read the AI Accelerated product brief
+    // (AI Accelerator) Read the AI Accelerated product brief
 
     // Related Videos
     let D_pdfvideo1 = document.getElementById('D_pdfvideo1')
@@ -178,7 +178,7 @@ window.onload = function () {
 
 
 
-// (AI Accelerator -> (Intel HPC Engines)) Read the HPC Accelerated product brief
+    // (AI Accelerator -> (Intel HPC Engines)) Read the HPC Accelerated product brief
 
     // Related Videos
     let mv_pdf_hpc = document.getElementById('mv_pdf_hpc')
@@ -345,7 +345,7 @@ window.onload = function () {
 
 
 
-// (Intel Data Center GPU Max Series) Product brief: Intel Data Center GPU Max Series
+    // (Intel Data Center GPU Max Series) Product brief: Intel Data Center GPU Max Series
 
     // Related Materials
     let mv_pdf_gpu_material = document.getElementById('mv_pdf_gpu_material')
@@ -444,7 +444,7 @@ window.onload = function () {
 
 
 
-// (Intel® Data Center GPU Flex Series) Download the VDI solution brief
+    // (Intel® Data Center GPU Flex Series) Download the VDI solution brief
 
     // Related Videos
     let mv_video_VDI = document.getElementById('mv_video_VDI')
@@ -611,7 +611,7 @@ window.onload = function () {
 
 
 
-// (Intel® Data Center GPU Flex Series) Download the media delivery solution brief
+    // (Intel® Data Center GPU Flex Series) Download the media delivery solution brief
     // Related Videos
     let mv_video_media = document.getElementById('mv_video_media')
 
@@ -776,9 +776,9 @@ window.onload = function () {
 
 
 
-    
-// (Intel® Data Center GPU Flex Series) Find Systems with Intel® GPUs
-     // Related Videos
+
+    // (Intel® Data Center GPU Flex Series) Find Systems with Intel® GPUs
+    // Related Videos
     let mv_find_system = document.getElementById('mv_find_system')
 
     const pdfvideo6 = [
@@ -831,7 +831,7 @@ window.onload = function () {
             link: "",
         },
     ]
- 
+
     if (mv_find_system) {
         for (let i = 0; i < pdfvideo6.length; i++) {
             mv_find_system.innerHTML += `<div class="col-xs-12 col-ms-6 col-sm-4 col-md-3 col-xl-2">
@@ -845,10 +845,10 @@ window.onload = function () {
                     </div>`
         }
     }
- 
+
     // Related Materials
     let mv_system_materials = document.getElementById('mv_system_materials')
- 
+
     const pdfmaterial6 = [
         {
             id: 1,
@@ -922,9 +922,9 @@ window.onload = function () {
             img: "tools.png",
             link: "",
         },
- 
+
     ]
- 
+
     if (mv_system_materials) {
         for (let i = 0; i < pdfmaterial6.length; i++) {
             mv_system_materials.innerHTML += `<div class="col-xs-12 col-ms-6 col-sm-4 col-md-3 col-xl-2">
@@ -943,64 +943,64 @@ window.onload = function () {
 
 
 
-// (Intel® Data Center GPU Flex Series) Explore GPU-Ready Systems
-        // Related Videos
-        let mv_video_GPU_ready = document.getElementById('mv_video_GPU_ready')
+    // (Intel® Data Center GPU Flex Series) Explore GPU-Ready Systems
+    // Related Videos
+    let mv_video_GPU_ready = document.getElementById('mv_video_GPU_ready')
 
-        const pdfvideo7 = [
-            {
-                id: 1,
-                title: "Optimizing Microsoft Data Center Networking with Intel® FPGAs",
-                time: "2:38",
-                text: "Learn how Microsoft deployed millions of Intel® FPGAs to improve efficiency and decrease latency to support disaggregation in cloud and telco markets. ",
-                img: "related-video.png.rendition.cq5dam.thumbnail.319.319.png",
-                link: "",
-            },
-            {
-                id: 2,
-                title: "Chips and Salsa Episode 36: HW Sec Test of Time Award",
-                time: "25:18",
-                text: "Professor Srinivas Devadas and Professor Ed Suh discuss the paper they wrote over 20 years ago that won the Intel Test of Time Award in 2022.",
-                img: "chips-and-salsa-ep-39.jpg",
-                link: "",
-            },
-            {
-                id: 3,
-                title: "Hypertec Immersion Cooling for FSI and M&E",
-                time: "3:42",
-                text: "Hypertec selected 4th Gen Intel® Xeon® processor as the basis for their immersion born server because of its unrivaled performance in HPC applications. ",
-                img: "related-video.png.rendition.cq5dam.thumbnail.319.319.png",
-                link: "",
-            },
-            {
-                id: 4,
-                title: "Saving Power in the 5G Core",
-                time: "4:35",
-                text: "Saving power in the 5G core with Intel Infrastructure Power Manager.",
-                img: "related-video.png.rendition.cq5dam.thumbnail.319.319.png",
-                link: "",
-            },
-            {
-                id: 5,
-                title: "Introducing Intel® Future Skills",
-                time: "1:50",
-                text: "Intel® Future Skills transforms workforce development and youth empowerment programs to help youth develop the skills and mindset for tomorrow's jobs. ",
-                img: "introducing-intel.jpg",
-                link: "",
-            },
-            {
-                id: 6,
-                title: "Netflix Optimizes Amazon Instance Performance and Reduces Costs,...",
-                time: "1:02",
-                text: "The latest Intel tools help identify bottlenecks down to the micro-architecture level.",
-                img: "related-video.png.rendition.cq5dam.thumbnail.319.319.png",
-                link: "",
-            },
-        ]
-    
-        if (mv_video_GPU_ready) {
-            for (let i = 0; i < pdfvideo7.length; i++) {
-                mv_video_GPU_ready.innerHTML += `<div class="col-xs-12 col-ms-6 col-sm-4 col-md-3 col-xl-2">
+    const pdfvideo7 = [
+        {
+            id: 1,
+            title: "Optimizing Microsoft Data Center Networking with Intel® FPGAs",
+            time: "2:38",
+            text: "Learn how Microsoft deployed millions of Intel® FPGAs to improve efficiency and decrease latency to support disaggregation in cloud and telco markets. ",
+            img: "related-video.png.rendition.cq5dam.thumbnail.319.319.png",
+            link: "",
+        },
+        {
+            id: 2,
+            title: "Chips and Salsa Episode 36: HW Sec Test of Time Award",
+            time: "25:18",
+            text: "Professor Srinivas Devadas and Professor Ed Suh discuss the paper they wrote over 20 years ago that won the Intel Test of Time Award in 2022.",
+            img: "chips-and-salsa-ep-39.jpg",
+            link: "",
+        },
+        {
+            id: 3,
+            title: "Hypertec Immersion Cooling for FSI and M&E",
+            time: "3:42",
+            text: "Hypertec selected 4th Gen Intel® Xeon® processor as the basis for their immersion born server because of its unrivaled performance in HPC applications. ",
+            img: "related-video.png.rendition.cq5dam.thumbnail.319.319.png",
+            link: "",
+        },
+        {
+            id: 4,
+            title: "Saving Power in the 5G Core",
+            time: "4:35",
+            text: "Saving power in the 5G core with Intel Infrastructure Power Manager.",
+            img: "related-video.png.rendition.cq5dam.thumbnail.319.319.png",
+            link: "",
+        },
+        {
+            id: 5,
+            title: "Introducing Intel® Future Skills",
+            time: "1:50",
+            text: "Intel® Future Skills transforms workforce development and youth empowerment programs to help youth develop the skills and mindset for tomorrow's jobs. ",
+            img: "introducing-intel.jpg",
+            link: "",
+        },
+        {
+            id: 6,
+            title: "Netflix Optimizes Amazon Instance Performance and Reduces Costs,...",
+            time: "1:02",
+            text: "The latest Intel tools help identify bottlenecks down to the micro-architecture level.",
+            img: "related-video.png.rendition.cq5dam.thumbnail.319.319.png",
+            link: "",
+        },
+    ]
+
+    if (mv_video_GPU_ready) {
+        for (let i = 0; i < pdfvideo7.length; i++) {
+            mv_video_GPU_ready.innerHTML += `<div class="col-xs-12 col-ms-6 col-sm-4 col-md-3 col-xl-2">
                             <div class="d_item">
                                 <div class="d_img mv_img_icon">
                                     <a href=""><img src="/img/mv_image/${pdfvideo7[i].img}" alt=""></a>
@@ -1009,91 +1009,91 @@ window.onload = function () {
                                 <p>${pdfvideo7[i].text}</p>
                             </div>
                         </div>`
-            }
         }
-    
-        // Related Materials
-        let mv_GPU_ready_material = document.getElementById('mv_GPU_ready_material')
-    
-        const pdfmaterial7 = [
-            {
-                id: 1,
-                title: "Intel GPU Flex Series for Virtual Desktop Infrastructure",
-                img: "brief.png",
-                link: "",
-            },
-            {
-                id: 2,
-                title: "VDI Performance on Intel® Data Center GPU Flex Series White Paper",
-                img: "brief.png",
-                link: "",
-            },
-            {
-                id: 3,
-                title: "Intel® Data Center GPU Flex Series Windows Cloud Gaming Brief",
-                img: "brief.png",
-                link: "",
-            },
-            {
-                id: 4,
-                title: "Reduce Memory Costs of Microsoft SQL Running on vSphere",
-                img: "brief.png",
-                link: "",
-            },
-            {
-                id: 5,
-                title: "Tiered Memory in VMware’s Production Tanzu Environment",
-                img: "whitepaper.png",
-                link: "",
-            },
-            {
-                id: 6,
-                title: "Intel® Optane™ Persistent Memory Workload Partner Solutions",
-                img: "brief.png",
-                link: "",
-            },
-            {
-                id: 7,
-                title: "Intel Flex Series GPU Updated Software Packages",
-                img: "related-materials.png",
-                link: "",
-            },
-            {
-                id: 8,
-                title: "Intel® Max Series Product Family for HPC",
-                img: "brief.png",
-                link: "",
-            },
-            {
-                id: 9,
-                title: "Silicon Photonics 100G Active Optical Cable",
-                img: "brief.png",
-                link: "",
-            },
-            {
-                id: 10,
-                title: "Silicon Photonics 100G SR4 Optical Transceiver",
-                img: "brief.png",
-                link: "",
-            },
-            {
-                id: 11,
-                title: "ADLINK AOI with Intel® Arc™ Graphics for the Edge Solution Brief",
-                img: "brief.png",
-                link: "",
-            },
-            {
-                id: 12,
-                title: "Silicon Photonics 100G DR, FR and LR Optical Transceiver",
-                img: "brief.png",
-                link: "",
-            },
-    
-        ]
-    
-        if (mv_GPU_ready_material) {
-            for (let i = 0; i < pdfmaterial7.length; i++) {
-                mv_GPU_ready_material.innerHTML += `<div class="col-xs-12 col-ms-6 col-sm-4 col-md-3 col-xl-2">
+    }
+
+    // Related Materials
+    let mv_GPU_ready_material = document.getElementById('mv_GPU_ready_material')
+
+    const pdfmaterial7 = [
+        {
+            id: 1,
+            title: "Intel GPU Flex Series for Virtual Desktop Infrastructure",
+            img: "brief.png",
+            link: "",
+        },
+        {
+            id: 2,
+            title: "VDI Performance on Intel® Data Center GPU Flex Series White Paper",
+            img: "brief.png",
+            link: "",
+        },
+        {
+            id: 3,
+            title: "Intel® Data Center GPU Flex Series Windows Cloud Gaming Brief",
+            img: "brief.png",
+            link: "",
+        },
+        {
+            id: 4,
+            title: "Reduce Memory Costs of Microsoft SQL Running on vSphere",
+            img: "brief.png",
+            link: "",
+        },
+        {
+            id: 5,
+            title: "Tiered Memory in VMware’s Production Tanzu Environment",
+            img: "whitepaper.png",
+            link: "",
+        },
+        {
+            id: 6,
+            title: "Intel® Optane™ Persistent Memory Workload Partner Solutions",
+            img: "brief.png",
+            link: "",
+        },
+        {
+            id: 7,
+            title: "Intel Flex Series GPU Updated Software Packages",
+            img: "related-materials.png",
+            link: "",
+        },
+        {
+            id: 8,
+            title: "Intel® Max Series Product Family for HPC",
+            img: "brief.png",
+            link: "",
+        },
+        {
+            id: 9,
+            title: "Silicon Photonics 100G Active Optical Cable",
+            img: "brief.png",
+            link: "",
+        },
+        {
+            id: 10,
+            title: "Silicon Photonics 100G SR4 Optical Transceiver",
+            img: "brief.png",
+            link: "",
+        },
+        {
+            id: 11,
+            title: "ADLINK AOI with Intel® Arc™ Graphics for the Edge Solution Brief",
+            img: "brief.png",
+            link: "",
+        },
+        {
+            id: 12,
+            title: "Silicon Photonics 100G DR, FR and LR Optical Transceiver",
+            img: "brief.png",
+            link: "",
+        },
+
+    ]
+
+    if (mv_GPU_ready_material) {
+        for (let i = 0; i < pdfmaterial7.length; i++) {
+            mv_GPU_ready_material.innerHTML += `<div class="col-xs-12 col-ms-6 col-sm-4 col-md-3 col-xl-2">
                             <div class="d_box">
                                 <div class="d-flex">
                                     <div class="d_img me-1">
@@ -1103,13 +1103,13 @@ window.onload = function () {
                                 </div>
                             </div>
                         </div>`
-            }
         }
+    }
 
 
 
 
-// (Intel® Data Center GPU Flex Series) Find Systems with Intel® GPUs
+    // (Intel® Data Center GPU Flex Series) Find Systems with Intel® GPUs
     // Related Videos
     let mv_white_paper = document.getElementById('mv_white_paper')
 
@@ -1163,7 +1163,7 @@ window.onload = function () {
             link: "",
         },
     ]
-  
+
     if (mv_white_paper) {
         for (let i = 0; i < pdfvideo8.length; i++) {
             mv_white_paper.innerHTML += `<div class="col-xs-12 col-ms-6 col-sm-4 col-md-3 col-xl-2">
@@ -1177,10 +1177,10 @@ window.onload = function () {
                     </div>`
         }
     }
-  
+
     // Related Materials
     let mv_paper_materials = document.getElementById('mv_paper_materials')
-  
+
     const pdfmaterial8 = [
         {
             id: 1,
@@ -1254,9 +1254,9 @@ window.onload = function () {
             img: "brief.png",
             link: "",
         },
-  
+
     ]
-  
+
     if (mv_paper_materials) {
         for (let i = 0; i < pdfmaterial8.length; i++) {
             mv_paper_materials.innerHTML += `<div class="col-xs-12 col-ms-6 col-sm-4 col-md-3 col-xl-2">
@@ -1275,7 +1275,7 @@ window.onload = function () {
 
 
 
-// (Intel® Data Center GPU Flex Series) Download the media delivery solution brief
+    // (Intel® Data Center GPU Flex Series) Download the media delivery solution brief
     // Related Videos
     let mv_video_product = document.getElementById('mv_video_product')
 
@@ -1441,7 +1441,7 @@ window.onload = function () {
 
 
 
-// (Intel® Data Center GPU Flex Series) nav&tabs Download the AI solution brief
+    // (Intel® Data Center GPU Flex Series) nav&tabs Download the AI solution brief
     // Related Videos
     let mv_video_Download_AI_solution = document.getElementById('mv_video_Download_AI_solution')
 
@@ -1605,7 +1605,7 @@ window.onload = function () {
     }
 
 
-// (AI Accelerator) -> Intel® Advanced Matrix Extensions (Intel® AMX) -> Accelerate AI Workloads with Intel® AMX
+    // (AI Accelerator) -> Intel® Advanced Matrix Extensions (Intel® AMX) -> Accelerate AI Workloads with Intel® AMX
 
     // Related Videos
     let mv_accelerate_ai_video = document.getElementById('mv_accelerate_ai_video')
@@ -1769,7 +1769,7 @@ window.onload = function () {
         }
     }
 
-   
+
 }
 
 
@@ -1779,120 +1779,126 @@ window.onload = function () {
 var mv_intel_geti_blog_data = [
     // page 1
     {
-        image:"software-recognized-may-2024.jpg",
-        category:"Blog",
-        title:"Intel® Geti™ 2.0.0 Release: Advancing AI Model Development",
+        image: "software-recognized-may-2024.jpg",
+        category: "Blog",
+        title: "Intel® Geti™ 2.0.0 Release: Advancing AI Model Development",
         date: "Jun. 5, 2024",
         description: "Intel® Geti™ 2.0.0 is here. A new release of Intel’s Vision AI software for building computer vision models faster and with less. This release includes several additions for data labeling, model training, and inferencing.The release is part of Intel’s ongoing commitment to deliver high-quality software. All existing customers are invited to upgrade to Intel Geti 2.0.0 and take advantage of the latest functionality!",
         link: "blog_read_more_card_one.html",
         model_link: "https://geti.intel.com/blog/intel-geti-2-0-0-release-advancing-ai-model-development",
     },
     {
-        image:"dashboard-456x300.png",
-        category:"Blog",
-        title:"Data and AI Metrics with Intel® Geti™",
+        image: "dashboard-456x300.png",
+        category: "Blog",
+        title: "Data and AI Metrics with Intel® Geti™",
         date: "May. 24, 2024",
         description: "Learn how to define and leverage metrics to identify improvements and repetitively refine your AI project with Intel® Geti™ software.",
         link: "blog_read_more_card_two.html",
         model_link: "https://geti.intel.com/blog/data-and-ai-metrics-with-intel-geti",
     },
     {
-        image:"blog_intel_Geti_ai_Platform-466x300.webp",
-        category:"Blog",
-        title:"Intel® Geti™ AI Software Overview: Learn What Is Under the Hood",
+        image: "blog_intel_Geti_ai_Platform-466x300.webp",
+        category: "Blog",
+        title: "Intel® Geti™ AI Software Overview: Learn What Is Under the Hood",
         date: "May. 14, 2024",
         description: "Intel® Geti™ software enables anyone to build models rapidly and accelerate innovation across their businesses with AI. Learn about its features that can help you speed up your computer vision model development workflow and create new computer vision solutions for your organization.",
         link: "blog_read_more_card_three.html",
         model_link: "https://geti.intel.com/blog/intel-geti-ai-platform-overview-learn-what-is-under-the-hood",
     },
     {
-        image:"ISC-West-Award-thumbnail.jpg",
-        category:"Blog",
-        title:"Intel® Geti™ Software Recognized by SIA as Winner of the Best New Products & Solutions Award for Video Analytics  at ISC West, 2024",
+        image: "ISC-West-Award-thumbnail.jpg",
+        category: "Blog",
+        title: "Intel® Geti™ Software Recognized by SIA as Winner of the Best New Products & Solutions Award for Video Analytics  at ISC West, 2024",
         date: "May. 7, 2024",
         description: "Intel® Geti™ software was selected as the 2024 Winner of the Video Analytics for its Intel® Geti™ software and honored April 10 during an award ceremony on the Bridge Stage on the ISC West Show Floor. The product name was also displayed on the ISC West show floor throughout the event from April 9-12.",
         link: "blog_read_more_main_card_one.html",
         model_link: "https://geti.intel.com/blog/intel-geti-software-recognized-by-sia-as-winner-of-the-best-new-products-solutions-award-for-video-analytics-at-isc-west-2024",
     },
     {
-        image:"MicrosoftTeams-image-1-500x253-1.png",
-        category:"Blog",
-        title:"Mastering the Intel® Geti™ SDK in 9 Steps: A Beginner’s Guide",
+        image: "MicrosoftTeams-image-1-500x253-1.png",
+        category: "Blog",
+        title: "Mastering the Intel® Geti™ SDK in 9 Steps: A Beginner’s Guide",
         date: "Nov. 23, 2023",
         description: "When you have your production system working 24/7, it will be difficult or sometimes impossible to stop your production in order to update your models, add new objects to detect, replace a camera and recalibrate, or change elements in your workload.",
         link: "blog_read_more_card_five.html",
         model_link: "https://geti.intel.com/blog/mastering-the-intel-geti-sdk-in-9-steps-a-beginners-guide",
     },
     {
-        image:"intel-500x281-1.webp",
-        category:"Blog",
-        title:"The Next Evolution: Intel® Geti™ 1.8.0 is here",
+        image: "intel-500x281-1.webp",
+        category: "Blog",
+        title: "The Next Evolution: Intel® Geti™ 1.8.0 is here",
         date: "Oct. 25, 2023",
         description: "Intel’s software platform for building custom computer vision models more efficiently just launched a new version: Intel® Geti™ 1.8.0. This release includes additions for an enhanced data labeling experience with the Segment Anything Model (SAM), new storage management resources, and ready-to-use datasets.",
         link: "blog_read_more_card_six.html",
         model_link: "https://geti.intel.com/blog/the-next-evolution-intel-getitm-1-8-0-is-here",
     },
     {
-        image:"getty-1082066722-fill-500x281-1.png",
-        category:"Blog",
-        title:"Interactive Annotation with SAM – speeding up the time to model",
+        image: "getty-1082066722-fill-500x281-1.png",
+        category: "Blog",
+        title: "Interactive Annotation with SAM – speeding up the time to model",
         date: "Oct. 25, 2023",
         description: "Interactive Annotation with SAM – speeding up the time to model Request Trial In this post, we will discuss how we are utilizing the power of Segment Anything Model (SAM) in an interactive annotation process and speeding up the time to model for users of Intel® Geti™ software. Data preparation and the quality of data...",
+        link: "blog_read_more_card_seven.html",
+        model_link: "https://geti.intel.com/blog/interactive-annotation-with-sam-speeding-up-the-time-to-mode",
     },
     {
-        image:"Computer-vision-1.jpg",
-        category:"Blog",
-        title:"Computer Vision Task Overview and Applications",
+        image: "Computer-vision-1.jpg",
+        category: "Blog",
+        title: "Computer Vision Task Overview and Applications",
         date: "Oct. 13, 2023",
         description: "Learn what computer vision tasks are supported in Intel® Geti™ software and how it can help you solve your business automation challenges with computer vision.",
+        link: "blog_read_more_card_eight.html",
+        model_link: "https://geti.intel.com/blog/computer-vision-task-overview-and-applications",
     },
     {
-        image:"blog_img1.jpg",
-        category:"Blog",
-        title:"The Intel® Geti™ SDK: A Game-Changer for Rapid AI Model Development and Deployment in your production system",
+        image: "blog_img1.jpg",
+        category: "Blog",
+        title: "The Intel® Geti™ SDK: A Game-Changer for Rapid AI Model Development and Deployment in your production system",
         date: "Sep. 5, 2023",
         description: "In today's fast-paced world, businesses require quick and accurate decision-making abilities. This is where Artificial Intelligence (AI) models come into play. AI models can analyze vast amounts of data, extract insights, and provide businesses with the intelligence required to make quick, data-driven decisions.",
+        link: "blog_read_more_card_nine.html",
+        model_link: "https://geti.intel.com/blog/the-intel-geti-sdk-a-game-changer-for-rapid-ai-model-development-and-deployment-in-your-production-system",
     },
     // page 2
     {
-        image:"brand-photography-library-71-fill-500x281-1.png",
-        category:"Blog",
-        title:"Enhance your experience: Introducing Intel® Geti™ 1.5.0",
+        image: "brand-photography-library-71-fill-500x281-1.png",
+        category: "Blog",
+        title: "Enhance your experience: Introducing Intel® Geti™ 1.5.0",
         date: "Jun. 7, 2023",
         description: "We are excited to announce the launch of Intel Geti 1.5.0, a new platform version! Intel Geti software enables teams to build computer vision models for their AI applications. This release includes new features and expands functionality for a more effective and agile model development and deployment path. The release is part of our ongoing commitment to deliver high-quality software.",
     },
     {
-        image:"faq-mobile-1.webp",
-        category:"Blog",
-        title:"Efficient, custom object detection training template made easy",
+        image: "faq-mobile-1.webp",
+        category: "Blog",
+        title: "Efficient, custom object detection training template made easy",
         date: "Feb. 1, 2023",
         description: "Deep Learning algorithms are widely used in the industry today – from detecting defects in parts on the factory production line to recommending products to shoppers on e-commerce websites. These algorithms proved their high accuracy and efficiency and have driven significant innovations in businesses utilizing them.",
     },
     {
-        image:"Streamlining-AIs-Path-to-Production-with-the-Intel®-Geti™-Platform-500x261-1.png",
-        category:"Blog",
-        title:"Streamlining AI’s Path to Production with Intel® Geti™ Software",
+        image: "Streamlining-AIs-Path-to-Production-with-the-Intel®-Geti™-Platform-500x261-1.png",
+        category: "Blog",
+        title: "Streamlining AI’s Path to Production with Intel® Geti™ Software",
         date: "Dec. 13, 2022",
         description: "We are thrilled to announce Intel Geti software is now commercially available for select customers. The software unites the right people and the right data for an efficient path to building high-quality solutions, overcoming obstacles to bring AI pilots to production.",
     },
     {
-        image:"blog_does_active_learning--466x300.webp",
-        category:"Blog",
-        title:"Does Active Learning Help Speed Up AI Model Development?",
+        image: "blog_does_active_learning--466x300.webp",
+        category: "Blog",
+        title: "Does Active Learning Help Speed Up AI Model Development?",
         date: "Sept. 27, 2022",
         description: "The key to improving the productivity of computer vision AI model development is to involve human experts in the model-building loop for a continuous feedback process. Learn how active learning in the Intel® Geti™ computer vision AI platform enables just that",
     },
     {
-        image:"challenge-1-500x295.webp",
-        category:"Blog",
-        title:"Challenges for Organizations Building Computer Vision AI Models",
+        image: "challenge-1-500x295.webp",
+        category: "Blog",
+        title: "Challenges for Organizations Building Computer Vision AI Models",
         date: "Sept. 27, 2022",
         description: "Computer vision is one of the most exciting subsets of artificial intelligence and machine learning. We’re already seeing a wealth of real-world use cases in industries from manufacturing to agriculture to retail. The possibilities that computer vision offers span essentially every single industry and field and are growing rapidly.",
     },
     {
-        image:"computer-vision-1-500x295.webp",
-        category:"Blog",
-        title:"Computer Vision Applications that Span Industries and Sectors",
+        image: "computer-vision-1-500x295.webp",
+        category: "Blog",
+        title: "Computer Vision Applications that Span Industries and Sectors",
         date: "Sept. 27, 2022",
         description: "How many security camera feeds can a single person monitor effectively? Even assuming one person can handle all camera feeds for an entire facility, how many people are needed for 24/7 monitoring of twenty different sites, each in a different state or country? Now let’s give this task to a computer that can simultaneously monitor every single camera feed for all facilities without needing to take a break or even blink.",
     }
@@ -1923,8 +1929,8 @@ function mv_intel_blog_geti(page) {
 
         // Fetch and display the current page data
         const arr = mv_intel_geti_blog_data.slice(first, last);
-            const html = arr.map((ele ,ind)=> {
-                return `<div class="col-lg-4 col-md-6 col-sm-12 mb-3">
+        const html = arr.map((ele, ind) => {
+            return `<div class="col-lg-4 col-md-6 col-sm-12 mb-3">
                             <div class="mv_spark_card_featured">
                                 <div class="mv_imgboxhiden">
                                     <div class="mv_spark_card_featured_img mv_spark_card_featured_img1" style="background-image: url('/img/mv_image/${ele.image}');"></div>
@@ -1955,10 +1961,10 @@ function mv_intel_blog_geti(page) {
                                 </div>
                             </div>
                         </div>`;
-            }).join('');
-            div.innerHTML = html;
+        }).join('');
+        div.innerHTML = html;
     }
-    else{
+    else {
         return;
     }
 }
@@ -1982,66 +1988,66 @@ function handle_model_open(event, id) {
 var mv_intel_geti_video_data = [
     // page 1
     {
-        image:"software-recognized-may-2024.jpg",
-        category:"Video",
-        title:"Intel® Geti™ 2.0.0 Release: Advancing AI Model Development",
+        image: "software-recognized-may-2024.jpg",
+        category: "Video",
+        title: "Intel® Geti™ 2.0.0 Release: Advancing AI Model Development",
         date: "Jun. 5, 2024",
         description: "Intel® Geti™ 2.0.0 is here. A new release of Intel’s Vision AI software for building computer vision models faster and with less. This release includes several additions for data labeling, model training, and inferencing.The release is part of Intel’s ongoing commitment to deliver high-quality software. All existing customers are invited to upgrade to Intel Geti 2.0.0 and take advantage of the latest functionality!",
     },
     {
-        image:"software-recognized-may-2024.jpg",
-        category:"Video",
-        title:"Building end-to-end pipelines with the Intel® Geti™ SDK",
+        image: "software-recognized-may-2024.jpg",
+        category: "Video",
+        title: "Building end-to-end pipelines with the Intel® Geti™ SDK",
         date: "Apr. 15, 2024",
         description: "The demo showcases key features and functionalities of the Intel Geti SDK to help developers build end-to-end AI application pipelines, utilizing the computer vision models built using Intel Geti software.",
     },
     {
-        image:"software-recognized-may-2024.jpg",
-        category:"Video",
-        title:"Revolutionizing Sports Broadcasting with AI",
+        image: "software-recognized-may-2024.jpg",
+        category: "Video",
+        title: "Revolutionizing Sports Broadcasting with AI",
         date: "Feb. 8, 2024",
         description: "Dive into the future of sports broadcasting as WSC showcases its AI platform, which automatically and in real-time understands sports broadcasts and creates short-form content at scale.",
     },
     {
-        image:"software-recognized-may-2024.jpg",
-        category:"Video",
-        title:"Product Demo: Core Capabilities Overview",
+        image: "software-recognized-may-2024.jpg",
+        category: "Video",
+        title: "Product Demo: Core Capabilities Overview",
         date: "Jun. 15, 2023",
         description: "The Intel Geti Platform's core capabilities empower business and data science users to work together within a single platform. This demo video showcases the capabilities enabling these users with varied expertise utilize the platform to accelerate computer vision workflows.",
     },
     {
-        image:"software-recognized-may-2024.jpg",
-        category:"Video",
-        title:"Introduction to Intel’s Next Generation Computer Vision AI Platform",
+        image: "software-recognized-may-2024.jpg",
+        category: "Video",
+        title: "Introduction to Intel’s Next Generation Computer Vision AI Platform",
         date: "Sept. 27, 2022",
         description: "Get a look into Intel Geti computer vision platform. We will show you how you can build and deploy AI models faster.",
     },
     {
-        image:"software-recognized-may-2024.jpg",
-        category:"Video",
-        title:"Product Demo: Build AI Models with Intel Geti Software",
+        image: "software-recognized-may-2024.jpg",
+        category: "Video",
+        title: "Product Demo: Build AI Models with Intel Geti Software",
         date: "Sept. 27, 2022",
         description: "Intel Geti software offers a powerful yet intuitive interface to develop computer vision models for various applications from manufacturing to healthcare and smart cities. This demo video features an agricultural use case example.",
     },
     {
-        image:"software-recognized-may-2024.jpg",
-        category:"Video",
-        title:"Bravent Creates Industrial Vision Solutions with Intel® Geti™ Software",
+        image: "software-recognized-may-2024.jpg",
+        category: "Video",
+        title: "Bravent Creates Industrial Vision Solutions with Intel® Geti™ Software",
         date: "Sept. 27, 2022",
         description: "Experts from IT consultancy Bravent discuss how Intel® Geti™ software enables them to collaborate with their enterprise customers to develop computer vision solutions more quickly than ever before.",
-        language:"Spanish Subtitles",
+        language: "Spanish Subtitles",
     },
     {
-        image:"software-recognized-may-2024.jpg",
-        category:"Video",
-        title:"Using Intel® Geti™ Software to Transform Medical Research",
+        image: "software-recognized-may-2024.jpg",
+        category: "Video",
+        title: "Using Intel® Geti™ Software to Transform Medical Research",
         date: "Sept. 27, 2022",
         description: "London-based hospital Royal Brompton leverages Intel® Geti™ software to train AI models that are used to diagnose rare diseases.",
     },
     {
-        image:"software-recognized-may-2024.jpg",
-        category:"Video",
-        title:"Getting Started with Computer Vision AI Models",
+        image: "software-recognized-may-2024.jpg",
+        category: "Video",
+        title: "Getting Started with Computer Vision AI Models",
         date: "Sept. 27, 2022",
         description: "Get an introduction into computer vision and artificial intelligence and learn how Intel® Geti™ software brings them all together.",
     },
@@ -2096,7 +2102,7 @@ function mv_video_intel_geti() {
         }).join('');
         div.innerHTML = html;
     }
-    else{
+    else {
         return;
     }
 }
@@ -2108,84 +2114,84 @@ function mv_video_intel_geti() {
 var mv_intel_geti_case_data = [
     // page 1
     {
-        image:"Streamlining-AI-Model-Development-in-Biotech-for-Cancer-Diagnosis.png",
-        category:"Case Study",
-        title:"Streamlining AI Model Development in Biotech for Cancer Diagnosis",
+        image: "Streamlining-AI-Model-Development-in-Biotech-for-Cancer-Diagnosis.png",
+        category: "Case Study",
+        title: "Streamlining AI Model Development in Biotech for Cancer Diagnosis",
         date: "Dec. 15, 2023",
         description: "The JelloX Federated Learning Platform allows clinical data from multiple healthcare organizations to be used for collaborative AI model development while meeting regulatory requirements and maintaining patient privacy. The solution utilizes Intel® Geti™ software to overcome intense resource requirements for clinical workers to label the data and train vision models.",
     },
     {
-        image:"download.png",
-        category:"Case Study",
-        title:"Optimizing AI Model Training and Refinement for Automated Optical Inspection (AOI)",
+        image: "download.png",
+        category: "Case Study",
+        title: "Optimizing AI Model Training and Refinement for Automated Optical Inspection (AOI)",
         date: "Dec. 18, 2023",
         description: "Fatigue and other human limitations are a familiar impediment to the accuracy and efficiency of visual inspection on manufacturing lines. ASRock Industrial set out to overcome those challenges with an implementation of state-of-the-art AI Automated Optical Inspection (AOI) in production of printed circuit boards at its OEM factory...",
     },
     {
-        image:"Computer-Vision-AI-Education-and-Deployment-Leaps-for-featured.webp",
-        category:"Case Study",
-        title:"Computer Vision AI Education and Deployment Leaps Forward with a New Approach from ITis and Intel",
+        image: "Computer-Vision-AI-Education-and-Deployment-Leaps-for-featured.webp",
+        category: "Case Study",
+        title: "Computer Vision AI Education and Deployment Leaps Forward with a New Approach from ITis and Intel",
         date: "Feb. 2, 2023",
         description: "While computer vision and other forms of AI have the potential to transform a wide range of processes across many industries, it can be incredibly challenging to integrate these technologies into real-world applications. One of the more formidable roadblocks is developing internal expertise and equipping people with the hands-on skills to tackle complex data science tasks.",
     },
     {
-        image:"Naturalis-and-DIOPSIS-Harness-the-Power-of-the-Intel®-Geti™-Platform-to-Overcome-Data-Challenges-in-Biodiversity-Research-1.webp",
-        category:"Case Study",
-        title:"Naturalis and DIOPSIS Harness the Power of Intel® Geti™ Software to Overcome Data Challenges in Biodiversity Research",
+        image: "Naturalis-and-DIOPSIS-Harness-the-Power-of-the-Intel®-Geti™-Platform-to-Overcome-Data-Challenges-in-Biodiversity-Research-1.webp",
+        category: "Case Study",
+        title: "Naturalis and DIOPSIS Harness the Power of Intel® Geti™ Software to Overcome Data Challenges in Biodiversity Research",
         date: "Nov. 28, 2022",
         description: "With Intel Geti software, the DIOPSIS Consortium created an innovative AI-based insect monitoring method to better understand insect population declines and to help protect biodiversity.",
     },
     {
-        image:"getiimages-1180547365-16x9-1-500x281.jpg",
-        category:"Case Study",
-        title:"Intel Geti Software Accelerates AI Model Training for Real-Time Nerve Detection in Samsung Ultrasound Systems",
+        image: "getiimages-1180547365-16x9-1-500x281.jpg",
+        category: "Case Study",
+        title: "Intel Geti Software Accelerates AI Model Training for Real-Time Nerve Detection in Samsung Ultrasound Systems",
         date: "May. 27, 2024",
         description: "Samsung Medison’s NerveTrack™ is an innovative ultrasound feature used to identify nerve structures in real time during the application of anesthesia. Training of NerveTrack™’s deep learning inference models requires thousands of annotated ultrasound reference images. The image annotation process is best performed by doctors with years of medical training and experience in identifying the small, elusive nerve structures.",
     },
     {
-        image:"1-500x261.webp",
-        category:"Case Study",
-        title:"Small Robot Co uses Intel® Geti™ Software for efficient modelling to create more sustainable crops",
+        image: "1-500x261.webp",
+        category: "Case Study",
+        title: "Small Robot Co uses Intel® Geti™ Software for efficient modelling to create more sustainable crops",
         date: "Oct. 24, 2022",
         description: "Helping farmers feed the world while regenerating the planet is the driving force behind Small Robot Co. Their vision is “per plant farming”: rather than treating a field of crops together as one entity, they treat each plant individually to reduce external inputs such as fertilizers, pesticides and herbicides. Machine learning and AI are a crucial part of the per plant farming process...",
     },
     {
-        image:"adobestock-191187347-450x300-1.webp",
-        category:"Case Study",
-        title:"Monitoring Pedestrian Rail Crossings with Computer Vision AI",
+        image: "adobestock-191187347-450x300-1.webp",
+        category: "Case Study",
+        title: "Monitoring Pedestrian Rail Crossings with Computer Vision AI",
         date: "Dec. 20, 2022",
         description: "Sensing Feeling uses Intel Geti software to accelerate training of AI models for automated pedestrian sensing solutions at railway crossings.Pedestrian incursions into railway crossings are a dramatic safety issue and point of liability for rail infrastructure operators. Automated sensing solutions that use computer vision (CV) to address these issues have been hampered by the low-quality images from decades-old...",
     },
     {
-        image:"monitoring-500x281.webp",
-        category:"Case Study",
-        title:"Monitoring Construction Worker Safety with Custom Computer Vision AI Models",
+        image: "monitoring-500x281.webp",
+        category: "Case Study",
+        title: "Monitoring Construction Worker Safety with Custom Computer Vision AI Models",
         date: "Dec. 1, 2022",
         description: "Sensing Feeling, a solution provider based in the UK, is working on developing custom AI models of heavy equipment with Intel Geti software to increase workers' safety. The Sensing Feeling smart visual sensing platform provides edge-based analytics using the machine vision AI models built with Intel Geti software. The occupational-safety solution monitors the safety zones surrounding heavy equipment to identify unsafe proximity by personnel.",
     },
     {
-        image:"cities-meets-500x281.webp",
-        category:"Case Study",
-        title:"Building Custom AI Models to Help Cities Meet Their Net-Zero Goals",
+        image: "cities-meets-500x281.webp",
+        category: "Case Study",
+        title: "Building Custom AI Models to Help Cities Meet Their Net-Zero Goals",
         date: "May. 27, 2024",
         description: "To mitigate climate change, local authorities can optimize their planning and operations with smart cities technology. In the UK, SSE Energy Solutions is developing AI-powered optical sensors based on Intel® architecture, Intel Geti AI software, and the Sensing Feeling software to transform video feeds into insights at the network edge that help cities meet environmental imperatives.",
     },
     // page 2
     {
-        image:"img_building_custom_AI_models-1-448x300.webp",
-        category:"Case Study",
-        title:"New Computer Vision Platform Helps Clinicians Train AI to Recognize a Rare Disease",
+        image: "img_building_custom_AI_models-1-448x300.webp",
+        category: "Case Study",
+        title: "New Computer Vision Platform Helps Clinicians Train AI to Recognize a Rare Disease",
         date: "May. 27, 2024",
         description: "London-based hospital Royal Brompton used the Intel® Geti™ software to translate their expertise into a machine learning inference algorithm that transforms their research.",
     },
     {
-        image:"bravent-creates-agile-500x295.webp",
-        category:"Case Study",
-        title:"Bravent Creates Agile, Scalable Industrial Vision Solutions with Intel® Geti™ Software and OpenVINO™ Toolkit",
+        image: "bravent-creates-agile-500x295.webp",
+        category: "Case Study",
+        title: "Bravent Creates Agile, Scalable Industrial Vision Solutions with Intel® Geti™ Software and OpenVINO™ Toolkit",
         date: "Sep. 19, 2022",
         description: "IT consultancy Bravent developed an efficient, flexible AI-based computer vision solution to reduce human error in complex machinery assemblies, which can be scaled and adapted across a range of industries.",
-        languageenglish:" (English)",
-        languagespanish:"Download (Spanish)",
+        languageenglish: " (English)",
+        languagespanish: "Download (Spanish)",
     },
 ]
 
@@ -2214,8 +2220,8 @@ function mv_intel_case_study_geti(page) {
 
         // Fetch and display the current page data
         const arr = mv_intel_geti_case_data.slice(first, last);
-            const html = arr.map(ele => {
-                return `<div class="col-lg-4 col-md-6 col-sm-12 mb-3">
+        const html = arr.map(ele => {
+            return `<div class="col-lg-4 col-md-6 col-sm-12 mb-3">
                             <div class="mv_spark_card_featured">
                                 <div class="mv_imgboxhiden">
                                     <div class="mv_spark_card_featured_img mv_spark_card_featured_img1" style="background-image: url('/img/mv_image/${ele.image}');"></div>
@@ -2234,13 +2240,13 @@ function mv_intel_case_study_geti(page) {
                                 </div>
                                 <div class="mv_spark_card_vertical_buttons">
                                     <ul class="mb-0 ps-0">
-                                        ${ele.languageenglish ? 
-                                        `<li>
+                                        ${ele.languageenglish ?
+                    `<li>
                                             <div>
                                                 <span class="mv_spark_button_content"><a href="#">Download${ele.languageenglish}</a></span>
                                             </div>
-                                        </li>` : 
-                                        `<li>
+                                        </li>` :
+                    `<li>
                                             <div>
                                                 <span class="mv_spark_button_content"><a href="">Download</a></span>
                                             </div>
@@ -2257,10 +2263,10 @@ function mv_intel_case_study_geti(page) {
                                 </div>
                             </div>
                         </div>`;
-            }).join('');
-            div.innerHTML = html;
+        }).join('');
+        div.innerHTML = html;
     }
-    else{
+    else {
         return;
     }
 }
@@ -2396,1541 +2402,1536 @@ function mv_intel_case_study_geti(page) {
 
 
 // ( AI Accelerators) -> Intel® Advanced Matrix Extensions (Intel® AMX) -> See the list
-    // Partners 5th Gen
-    var mv_partner_5gen = [
-        {
-            name:"Accenture",
-            visit:"Accenture"
-        },
-        {
-            name:"Accton",
-            visit:"Accton"
-        },
-        {
-            name:"Aewin",
-            visit:"Aewin"
-        },
-        {
-            name:"AIC",
-            visit:"AIC"
-        },
-        {
-            name:"Alibaba Cloud",
-            visit:"Alibaba Cloud"
-        },
-        {
-            name:"Altos Computing Inc.",
-            visit:"Altos Computing Inc."
-        },
-        {
-            name:"ASROCK Rack",
-            visit:"ASROCK Rack"
-        },
-        {
-            name:"Astera Labs",
-            visit:"Astera Labs"
-        },
-        {
-            name:"ASUS",
-            visit:"ASUS"
-        },
-        {
-            name:"AWS",
-            visit:"AWS"
-        },
-        {
-            name:"Axiomtek",
-            visit:"Axiomtek"
-        },
-        {
-            name:"Baidu",
-            visit:"Baidu"
-        },
-        {
-            name:"BCM Advanced Research",
-            visit:"BCM Advanced Research"
-        },
-        {
-            name:"Bytedance",
-            visit:"Bytedance"
-        },
-        {
-            name:"Canonical Group Limited",
-            visit:"Canonical Group Limited"
-        },
-        {
-            name:"Cisco",
-            visit:"Cisco"
-        },
-        {
-            name:"Cloudera",
-            visit:"Cloudera"
-        },
-        {
-            name:"Compal",
-            visit:"Compal"
-        },
-        {
-            name:"Databricks",
-            visit:"Databricks"
-        },
-        {
-            name:"Dell",
-            visit:"Dell"
-        },
-        {
-            name:"DerQ, USA",
-            visit:"DerQ, USA"
-        },
-        {
-            name:"Foxconn/FII",
-            visit:"Foxconn/FII"
-        },
-        {
-            name:"Fujitsu",
-            visit:"Fujitsu"
-        },
-        {
-            name:"Gigabyte",
-            visit:"Gigabyte"
-        },
-        {
-            name:"Google Cloud",
-            visit:"Google Cloud"
-        },
-        {
-            name:"Hitachi",
-            visit:"Hitachi"
-        },
-        {
-            name:"HPE",
-            visit:"HPE"
-        },
-        {
-            name:"Hypertec",
-            visit:"Hypertec"
-        },
-        {
-            name:"iBase Technology, Inc",
-            visit:"iBase Technology, Inc"
-        },
-        {
-            name:"IBM",
-            visit:"IBM"
-        },
-        {
-            name:"Infrasky",
-            visit:"Infrasky"
-        },
-        {
-            name:"Ingrasys",
-            visit:"Ingrasys"
-        },
-        {
-            name:"Insight",
-            visit:"Insight"
-        },
-        {
-            name:"Inventec",
-            visit:"Inventec"
-        },
-        {
-            name:"Lanner",
-            visit:"Lanner"
-        },
-        {
-            name:"Lekha Wireless",
-            visit:"Lekha Wireless"
-        },
-        {
-            name:"Lenovo",
-            visit:"Lenovo"
-        },
-        {
-            name:"Mettle Networks",
-            visit:"Mettle Networks"
-        },
-        {
-            name:"Microsoft",
-            visit:"Microsoft"
-        },
-        {
-            name:"Microsoft Azure",
-            visit:"Microsoft Azure"
-        },
-        {
-            name:"MiTAC Computing Technology Corp",
-            visit:"MiTAC Computing Technology Corp"
-        },
-        {
-            name:"MSi",
-            visit:"MSi"
-        },
-        {
-            name:"NEC Corporation",
-            visit:"NEC Corporation"
-        },
-        {
-            name:"NetElastic",
-            visit:"NetElastic"
-        },
-        {
-            name:"Nexcom",
-            visit:"Nexcom"
-        },
-        {
-            name:"Niral Networks",
-            visit:"Niral Networks"
-        },
-        {
-            name:"Nor-Tech",
-            visit:"Nor-Tech"
-        },
-        {
-            name:"NoviFlow, Inc",
-            visit:"NoviFlow, Inc"
-        },
-        {
-            name:"OVH",
-            visit:"OVH"
-        },
-        {
-            name:"Presidio",
-            visit:"Presidio"
-        },
-        {
-            name:"Prodrive",
-            visit:"Prodrive"
-        },
-        {
-            name:"QCT (Quanta)",
-            visit:"QCT (Quanta)"
-        },
-        {
-            name:"Red Hat",
-            visit:"Red Hat"
-        },
-        {
-            name:"Samsung",
-            visit:"Samsung"
-        },
-        {
-            name:"SAP",
-            visit:"SAP"
-        },
-        {
-            name:"SK Hynix",
-            visit:"SK Hynix"
-        },
-        {
-            name:"Supermicro",
-            visit:"Supermicro"
-        },
-        {
-            name:"Tech Mahindra",
-            visit:"Tech Mahindra"
-        },
-        {
-            name:"Tencent",
-            visit:"Tencent"
-        },
-        {
-            name:"TietoEvry",
-            visit:"TietoEvry"
-        },
-        {
-            name:"TQ",
-            visit:"TQ"
-        },
-        {
-            name:"Tyan Corp (sub of MiTAC)",
-            visit:"Tyan Corp (sub of MiTAC)"
-        },
-        {
-            name:"Varnish SW",
-            visit:"Varnish SW"
-        },
-        {
-            name:"VizuaMatix",
-            visit:"VizuaMatix"
-        },
-        {
-            name:"VMware",
-            visit:"VMware"
-        },
-        {
-            name:"VoerEir",
-            visit:"VoerEir"
-        },
-        {
-            name:"Wiwynn",
-            visit:"Wiwynn"
-        },
-        {
-            name:"WWT",
-            visit:"WWT"
-        },
-        {
-            name:"xfusion",
-            visit:"xfusion"
-        }
-    ]
-    function mv_table_5gen(){
-        if(document.querySelector('.mv_partner_data_5gen'))
-        {
-            let div = document.querySelector('.mv_partner_data_5gen')
-            
-            let html = mv_partner_5gen.map((ele)=>{
-                return `<tr>
+// Partners 5th Gen
+var mv_partner_5gen = [
+    {
+        name: "Accenture",
+        visit: "Accenture"
+    },
+    {
+        name: "Accton",
+        visit: "Accton"
+    },
+    {
+        name: "Aewin",
+        visit: "Aewin"
+    },
+    {
+        name: "AIC",
+        visit: "AIC"
+    },
+    {
+        name: "Alibaba Cloud",
+        visit: "Alibaba Cloud"
+    },
+    {
+        name: "Altos Computing Inc.",
+        visit: "Altos Computing Inc."
+    },
+    {
+        name: "ASROCK Rack",
+        visit: "ASROCK Rack"
+    },
+    {
+        name: "Astera Labs",
+        visit: "Astera Labs"
+    },
+    {
+        name: "ASUS",
+        visit: "ASUS"
+    },
+    {
+        name: "AWS",
+        visit: "AWS"
+    },
+    {
+        name: "Axiomtek",
+        visit: "Axiomtek"
+    },
+    {
+        name: "Baidu",
+        visit: "Baidu"
+    },
+    {
+        name: "BCM Advanced Research",
+        visit: "BCM Advanced Research"
+    },
+    {
+        name: "Bytedance",
+        visit: "Bytedance"
+    },
+    {
+        name: "Canonical Group Limited",
+        visit: "Canonical Group Limited"
+    },
+    {
+        name: "Cisco",
+        visit: "Cisco"
+    },
+    {
+        name: "Cloudera",
+        visit: "Cloudera"
+    },
+    {
+        name: "Compal",
+        visit: "Compal"
+    },
+    {
+        name: "Databricks",
+        visit: "Databricks"
+    },
+    {
+        name: "Dell",
+        visit: "Dell"
+    },
+    {
+        name: "DerQ, USA",
+        visit: "DerQ, USA"
+    },
+    {
+        name: "Foxconn/FII",
+        visit: "Foxconn/FII"
+    },
+    {
+        name: "Fujitsu",
+        visit: "Fujitsu"
+    },
+    {
+        name: "Gigabyte",
+        visit: "Gigabyte"
+    },
+    {
+        name: "Google Cloud",
+        visit: "Google Cloud"
+    },
+    {
+        name: "Hitachi",
+        visit: "Hitachi"
+    },
+    {
+        name: "HPE",
+        visit: "HPE"
+    },
+    {
+        name: "Hypertec",
+        visit: "Hypertec"
+    },
+    {
+        name: "iBase Technology, Inc",
+        visit: "iBase Technology, Inc"
+    },
+    {
+        name: "IBM",
+        visit: "IBM"
+    },
+    {
+        name: "Infrasky",
+        visit: "Infrasky"
+    },
+    {
+        name: "Ingrasys",
+        visit: "Ingrasys"
+    },
+    {
+        name: "Insight",
+        visit: "Insight"
+    },
+    {
+        name: "Inventec",
+        visit: "Inventec"
+    },
+    {
+        name: "Lanner",
+        visit: "Lanner"
+    },
+    {
+        name: "Lekha Wireless",
+        visit: "Lekha Wireless"
+    },
+    {
+        name: "Lenovo",
+        visit: "Lenovo"
+    },
+    {
+        name: "Mettle Networks",
+        visit: "Mettle Networks"
+    },
+    {
+        name: "Microsoft",
+        visit: "Microsoft"
+    },
+    {
+        name: "Microsoft Azure",
+        visit: "Microsoft Azure"
+    },
+    {
+        name: "MiTAC Computing Technology Corp",
+        visit: "MiTAC Computing Technology Corp"
+    },
+    {
+        name: "MSi",
+        visit: "MSi"
+    },
+    {
+        name: "NEC Corporation",
+        visit: "NEC Corporation"
+    },
+    {
+        name: "NetElastic",
+        visit: "NetElastic"
+    },
+    {
+        name: "Nexcom",
+        visit: "Nexcom"
+    },
+    {
+        name: "Niral Networks",
+        visit: "Niral Networks"
+    },
+    {
+        name: "Nor-Tech",
+        visit: "Nor-Tech"
+    },
+    {
+        name: "NoviFlow, Inc",
+        visit: "NoviFlow, Inc"
+    },
+    {
+        name: "OVH",
+        visit: "OVH"
+    },
+    {
+        name: "Presidio",
+        visit: "Presidio"
+    },
+    {
+        name: "Prodrive",
+        visit: "Prodrive"
+    },
+    {
+        name: "QCT (Quanta)",
+        visit: "QCT (Quanta)"
+    },
+    {
+        name: "Red Hat",
+        visit: "Red Hat"
+    },
+    {
+        name: "Samsung",
+        visit: "Samsung"
+    },
+    {
+        name: "SAP",
+        visit: "SAP"
+    },
+    {
+        name: "SK Hynix",
+        visit: "SK Hynix"
+    },
+    {
+        name: "Supermicro",
+        visit: "Supermicro"
+    },
+    {
+        name: "Tech Mahindra",
+        visit: "Tech Mahindra"
+    },
+    {
+        name: "Tencent",
+        visit: "Tencent"
+    },
+    {
+        name: "TietoEvry",
+        visit: "TietoEvry"
+    },
+    {
+        name: "TQ",
+        visit: "TQ"
+    },
+    {
+        name: "Tyan Corp (sub of MiTAC)",
+        visit: "Tyan Corp (sub of MiTAC)"
+    },
+    {
+        name: "Varnish SW",
+        visit: "Varnish SW"
+    },
+    {
+        name: "VizuaMatix",
+        visit: "VizuaMatix"
+    },
+    {
+        name: "VMware",
+        visit: "VMware"
+    },
+    {
+        name: "VoerEir",
+        visit: "VoerEir"
+    },
+    {
+        name: "Wiwynn",
+        visit: "Wiwynn"
+    },
+    {
+        name: "WWT",
+        visit: "WWT"
+    },
+    {
+        name: "xfusion",
+        visit: "xfusion"
+    }
+]
+function mv_table_5gen() {
+    if (document.querySelector('.mv_partner_data_5gen')) {
+        let div = document.querySelector('.mv_partner_data_5gen')
+
+        let html = mv_partner_5gen.map((ele) => {
+            return `<tr>
                 <td>${ele.name}</td>
                 <td><b>Visit:</b> <a href="">${ele.visit}</a></td>
                 </tr>`
-            }).join('')
-            div.innerHTML = html
-        }else{
-            return;
-        }
+        }).join('')
+        div.innerHTML = html
+    } else {
+        return;
     }
+}
 
-    // Partners 4th Gen
-    var mv_partner_4gen = [
-        {
-            name:"Adlink",
-            visit:"Adlink"
-        },
-        {
-            name:"Advantech Co., Ltd.",
-            visit:"Advantech Co., Ltd."
-        },
-        {
-            name:"AIC",
-            visit:"AIC"
-        },
-        {
-            name:"Alibaba Cloud",
-            visit:"Alibaba Cloud"
-        },
-        {
-            name:"Altos Computing Inc.",
-            visit:"Altos Computing Inc."
-        },
-        {
-            name:"AMAX",
-            visit:"AMAX"
-        },
-        {
-            name:"Arrow",
-            visit:"Arrow"
-        },
-        {
-            name:"ASI",
-            visit:"ASI"
-        },
-        {
-            name:"ASROCK Rack",
-            visit:"ASROCK Rack"
-        },
-        {
-            name:"ASUS",
-            visit:"ASUS"
-        },
-        {
-            name:"Atos",
-            visit:"Atos"
-        },
-        {
-            name:"Avnet",
-            visit:"Avnet"
-        },
-        {
-            name:"BCM Advanced Research",
-            visit:"BCM Advanced Research"
-        },
-        {
-            name:"Capgemini",
-            visit:"Capgemini"
-        },
-        {
-            name:"CBTS",
-            visit:"CBTS"
-        },
-        {
-            name:"CDW",
-            visit:"CDW"
-        },
-        {
-            name:"China Telecom",
-            visit:"China Telecom"
-        },
-        {
-            name:"Cisco",
-            visit:"Cisco"
-        },
-        {
-            name:"Clavister",
-            visit:"Clavister"
-        },
-        {
-            name:"ClusterVision",
-            visit:"ClusterVision"
-        },
-        {
-            name:"CommScope",
-            visit:"CommScope"
-        },
-        {
-            name:"Compal",
-            visit:"Compal"
-        },
-        {
-            name:"Compucom",
-            visit:"Compucom"
-        },
-        {
-            name:"Comset S.A",
-            visit:"Comset S.A"
-        },
-        {
-            name:"CoreWeave",
-            visit:"CoreWeave"
-        },
-        {
-            name:"D&H",
-            visit:"D&H"
-        },
-        {
-            name:"DataOn",
-            visit:"DataOn"
-        },
-        {
-            name:"Decentriq",
-            visit:"Decentriq"
-        },
-        {
-            name:"Dell",
-            visit:"Dell"
-        },
-        {
-            name:"E4 Computer Engineering",
-            visit:"E4 Computer Engineering"
-        },
-        {
-            name:"ePlus",
-            visit:"ePlus"
-        },
-        {
-            name:"Ericsson",
-            visit:"Ericsson"
-        },
-        {
-            name:"Eterio",
-            visit:"Eterio"
-        },
-        {
-            name:"Exoscale",
-            visit:"Exoscale"
-        },
-        {
-            name:"Flytech",
-            visit:"Flytech"
-        },
-        {
-            name:"FORMAT",
-            visit:"FORMAT"
-        },
-        {
-            name:"Gcore",
-            visit:"Gcore"
-        },
-        {
-            name:"Gigabyte",
-            visit:"Gigabyte"
-        },
-        {
-            name:"GleSYS",
-            visit:"GleSYS"
-        },
-        {
-            name:"Google Cloud",
-            visit:"Google Cloud"
-        },
-        {
-            name:"Hitachi",
-            visit:"Hitachi"
-        },
-        {
-            name:"HPE",
-            visit:"HPE"
-        },
-        {
-            name:"Hypertec",
-            visit:"Hypertec"
-        },
-        {
-            name:"Hyve Solutions",
-            visit:"Hyve Solutions"
-        },
-        {
-            name:"IBM Cloud",
-            visit:"IBM Cloud"
-        },
-        {
-            name:"IEI Integration Corp",
-            visit:"IEI Integration Corp"
-        },
-        {
-            name:"Ingram Micro",
-            visit:"Ingram Micro"
-        },
-        {
-            name:"Ingrasys",
-            visit:"Ingrasys"
-        },
-        {
-            name:"Insight Direct (UK) Ltd",
-            visit:"Insight Direct (UK) Ltd"
-        },
-        {
-            name:"Inspur",
-            visit:"Inspur"
-        },
-        {
-            name:"Inventec",
-            visit:"Inventec"
-        },
-        {
-            name:"Jabil Cloud & Enterprise Infrastructure",
-            visit:"Jabil Cloud & Enterprise Infrastructure"
-        },
-        {
-            name:"Kontron",
-            visit:"Kontron"
-        },
-        {
-            name:"Lanner",
-            visit:"Lanner"
-        },
-        {
-            name:"Lenovo",
-            visit:"Lenovo"
-        },
-        {
-            name:"Logicalis",
-            visit:"Logicalis"
-        },
-        {
-            name:"MAGUAY COMPUTERS",
-            visit:"MAGUAY COMPUTERS"
-        },
-        {
-            name:"Microsoft",
-            visit:"Microsoft"
-        },
-        {
-            name:"Mouser",
-            visit:"Mouser"
-        },
-        {
-            name:"Myungin Electronics",
-            visit:"Myungin Electronics"
-        },
-        {
-            name:"Nexcom",
-            visit:"Nexcom"
-        },
-        {
-            name:"Nokia",
-            visit:"Nokia"
-        },
-        {
-            name:"Oracle",
-            visit:"Oracle"
-        },
-        {
-            name:"OVH Cloud",
-            visit:"OVH Cloud"
-        },
-        {
-            name:"Presidio",
-            visit:"Presidio"
-        },
-        {
-            name:"Prodrive Technologies",
-            visit:"Prodrive Technologies"
-        },
-        {
-            name:"Quanta",
-            visit:"Quanta"
-        },
-        {
-            name:"SAS",
-            visit:"SAS"
-        },
-        {
-            name:"Scan",
-            visit:"Scan"
-        },
-        {
-            name:"SHI",
-            visit:"SHI"
-        },
-        {
-            name:"SI COMPUTER",
-            visit:"SI COMPUTER"
-        },
-        {
-            name:"Silicom",
-            visit:"Silicom"
-        },
-        {
-            name:"Silicon Mechanics",
-            visit:"Silicon Mechanics"
-        },
-        {
-            name:"Softcat",
-            visit:"Softcat"
-        },
-        {
-            name:"Supermicro",
-            visit:"Supermicro"
-        },
-        {
-            name:"SysAlign",
-            visit:"SysAlign"
-        },
-        {
-            name:"TD SYNNEX",
-            visit:"TD SYNNEX"
-        },
-        {
-            name:"Tencent",
-            visit:"Tencent"
-        },
-        {
-            name:"Thinkmate",
-            visit:"Thinkmate"
-        },
-        {
-            name:"Unicom",
-            visit:"Unicom"
-        },
-        {
-            name:"Varnish Software",
-            visit:"Varnish Software"
-        },
-        {
-            name:"Wind River",
-            visit:"Wind River"
-        },
-        {
-            name:"Wistron",
-            visit:"Wistron"
-        },
-        {
-            name:"Wiwynn",
-            visit:"Wiwynn"
-        },
-        {
-            name:"WWT",
-            visit:"WWT"
-        }
-    ]
-    function mv_table_4gen(){
-        if(document.querySelector('.mv_partner_data_4gen'))
-        {
-            let div = document.querySelector('.mv_partner_data_4gen')
-            
-            let html = mv_partner_4gen.map((ele)=>{
-                return `<tr>
+// Partners 4th Gen
+var mv_partner_4gen = [
+    {
+        name: "Adlink",
+        visit: "Adlink"
+    },
+    {
+        name: "Advantech Co., Ltd.",
+        visit: "Advantech Co., Ltd."
+    },
+    {
+        name: "AIC",
+        visit: "AIC"
+    },
+    {
+        name: "Alibaba Cloud",
+        visit: "Alibaba Cloud"
+    },
+    {
+        name: "Altos Computing Inc.",
+        visit: "Altos Computing Inc."
+    },
+    {
+        name: "AMAX",
+        visit: "AMAX"
+    },
+    {
+        name: "Arrow",
+        visit: "Arrow"
+    },
+    {
+        name: "ASI",
+        visit: "ASI"
+    },
+    {
+        name: "ASROCK Rack",
+        visit: "ASROCK Rack"
+    },
+    {
+        name: "ASUS",
+        visit: "ASUS"
+    },
+    {
+        name: "Atos",
+        visit: "Atos"
+    },
+    {
+        name: "Avnet",
+        visit: "Avnet"
+    },
+    {
+        name: "BCM Advanced Research",
+        visit: "BCM Advanced Research"
+    },
+    {
+        name: "Capgemini",
+        visit: "Capgemini"
+    },
+    {
+        name: "CBTS",
+        visit: "CBTS"
+    },
+    {
+        name: "CDW",
+        visit: "CDW"
+    },
+    {
+        name: "China Telecom",
+        visit: "China Telecom"
+    },
+    {
+        name: "Cisco",
+        visit: "Cisco"
+    },
+    {
+        name: "Clavister",
+        visit: "Clavister"
+    },
+    {
+        name: "ClusterVision",
+        visit: "ClusterVision"
+    },
+    {
+        name: "CommScope",
+        visit: "CommScope"
+    },
+    {
+        name: "Compal",
+        visit: "Compal"
+    },
+    {
+        name: "Compucom",
+        visit: "Compucom"
+    },
+    {
+        name: "Comset S.A",
+        visit: "Comset S.A"
+    },
+    {
+        name: "CoreWeave",
+        visit: "CoreWeave"
+    },
+    {
+        name: "D&H",
+        visit: "D&H"
+    },
+    {
+        name: "DataOn",
+        visit: "DataOn"
+    },
+    {
+        name: "Decentriq",
+        visit: "Decentriq"
+    },
+    {
+        name: "Dell",
+        visit: "Dell"
+    },
+    {
+        name: "E4 Computer Engineering",
+        visit: "E4 Computer Engineering"
+    },
+    {
+        name: "ePlus",
+        visit: "ePlus"
+    },
+    {
+        name: "Ericsson",
+        visit: "Ericsson"
+    },
+    {
+        name: "Eterio",
+        visit: "Eterio"
+    },
+    {
+        name: "Exoscale",
+        visit: "Exoscale"
+    },
+    {
+        name: "Flytech",
+        visit: "Flytech"
+    },
+    {
+        name: "FORMAT",
+        visit: "FORMAT"
+    },
+    {
+        name: "Gcore",
+        visit: "Gcore"
+    },
+    {
+        name: "Gigabyte",
+        visit: "Gigabyte"
+    },
+    {
+        name: "GleSYS",
+        visit: "GleSYS"
+    },
+    {
+        name: "Google Cloud",
+        visit: "Google Cloud"
+    },
+    {
+        name: "Hitachi",
+        visit: "Hitachi"
+    },
+    {
+        name: "HPE",
+        visit: "HPE"
+    },
+    {
+        name: "Hypertec",
+        visit: "Hypertec"
+    },
+    {
+        name: "Hyve Solutions",
+        visit: "Hyve Solutions"
+    },
+    {
+        name: "IBM Cloud",
+        visit: "IBM Cloud"
+    },
+    {
+        name: "IEI Integration Corp",
+        visit: "IEI Integration Corp"
+    },
+    {
+        name: "Ingram Micro",
+        visit: "Ingram Micro"
+    },
+    {
+        name: "Ingrasys",
+        visit: "Ingrasys"
+    },
+    {
+        name: "Insight Direct (UK) Ltd",
+        visit: "Insight Direct (UK) Ltd"
+    },
+    {
+        name: "Inspur",
+        visit: "Inspur"
+    },
+    {
+        name: "Inventec",
+        visit: "Inventec"
+    },
+    {
+        name: "Jabil Cloud & Enterprise Infrastructure",
+        visit: "Jabil Cloud & Enterprise Infrastructure"
+    },
+    {
+        name: "Kontron",
+        visit: "Kontron"
+    },
+    {
+        name: "Lanner",
+        visit: "Lanner"
+    },
+    {
+        name: "Lenovo",
+        visit: "Lenovo"
+    },
+    {
+        name: "Logicalis",
+        visit: "Logicalis"
+    },
+    {
+        name: "MAGUAY COMPUTERS",
+        visit: "MAGUAY COMPUTERS"
+    },
+    {
+        name: "Microsoft",
+        visit: "Microsoft"
+    },
+    {
+        name: "Mouser",
+        visit: "Mouser"
+    },
+    {
+        name: "Myungin Electronics",
+        visit: "Myungin Electronics"
+    },
+    {
+        name: "Nexcom",
+        visit: "Nexcom"
+    },
+    {
+        name: "Nokia",
+        visit: "Nokia"
+    },
+    {
+        name: "Oracle",
+        visit: "Oracle"
+    },
+    {
+        name: "OVH Cloud",
+        visit: "OVH Cloud"
+    },
+    {
+        name: "Presidio",
+        visit: "Presidio"
+    },
+    {
+        name: "Prodrive Technologies",
+        visit: "Prodrive Technologies"
+    },
+    {
+        name: "Quanta",
+        visit: "Quanta"
+    },
+    {
+        name: "SAS",
+        visit: "SAS"
+    },
+    {
+        name: "Scan",
+        visit: "Scan"
+    },
+    {
+        name: "SHI",
+        visit: "SHI"
+    },
+    {
+        name: "SI COMPUTER",
+        visit: "SI COMPUTER"
+    },
+    {
+        name: "Silicom",
+        visit: "Silicom"
+    },
+    {
+        name: "Silicon Mechanics",
+        visit: "Silicon Mechanics"
+    },
+    {
+        name: "Softcat",
+        visit: "Softcat"
+    },
+    {
+        name: "Supermicro",
+        visit: "Supermicro"
+    },
+    {
+        name: "SysAlign",
+        visit: "SysAlign"
+    },
+    {
+        name: "TD SYNNEX",
+        visit: "TD SYNNEX"
+    },
+    {
+        name: "Tencent",
+        visit: "Tencent"
+    },
+    {
+        name: "Thinkmate",
+        visit: "Thinkmate"
+    },
+    {
+        name: "Unicom",
+        visit: "Unicom"
+    },
+    {
+        name: "Varnish Software",
+        visit: "Varnish Software"
+    },
+    {
+        name: "Wind River",
+        visit: "Wind River"
+    },
+    {
+        name: "Wistron",
+        visit: "Wistron"
+    },
+    {
+        name: "Wiwynn",
+        visit: "Wiwynn"
+    },
+    {
+        name: "WWT",
+        visit: "WWT"
+    }
+]
+function mv_table_4gen() {
+    if (document.querySelector('.mv_partner_data_4gen')) {
+        let div = document.querySelector('.mv_partner_data_4gen')
+
+        let html = mv_partner_4gen.map((ele) => {
+            return `<tr>
                 <td>${ele.name}</td>
                 <td><b>Visit:</b> <a href="">${ele.visit}</a></td>
                 </tr>`
-            }).join('')
-            div.innerHTML = html
-        }else{
-            return;
-        }
+        }).join('')
+        div.innerHTML = html
+    } else {
+        return;
     }
+}
 
-    // Partners 3th Gen
-    var mv_partner_3gen = [
-        {
-            name:"Advantech",
-            visit:"Advantech"
-        },
-        {
-            name:"AIC Inc.",
-            visit:"AIC Inc."
-        },
-        {
-            name:"Alibaba",
-            visit:"Alibaba"
-        },
-        {
-            name:"AMAX Engineering",
-            visit:"AMAX Engineering"
-        },
-        {
-            name:"ASRock Rack",
-            visit:"ASRock Rack"
-        },
-        {
-            name:"AWS",
-            visit:"AWS"
-        },
-        {
-            name:"Baidu",
-            visit:"Baidu"
-        },
-        {
-            name:"Boston Limited",
-            visit:"Boston Limited"
-        },
-        {
-            name:"CASwell Inc.",
-            visit:"CASwell Inc."
-        },
-        {
-            name:"CDW",
-            visit:"CDW"
-        },
-        {
-            name:"Cisco",
-            visit:"Cisco"
-        },
-        {
-            name:"Colfax",
-            visit:"Colfax"
-        },
-        {
-            name:"Dalco AG",
-            visit:"Dalco AG"
-        },
-        {
-            name:"Decentriq",
-            visit:"Decentriq"
-        },
-        {
-            name:"Dell",
-            visit:"Dell"
-        },
-        {
-            name:"E4 COMPUTER ENGINEERING SPA",
-            visit:"E4 COMPUTER ENGINEERING SPA"
-        },
-        {
-            name:"Edgeless Systems",
-            visit:"Edgeless Systems"
-        },
-        {
-            name:"Exertis Enterprise",
-            visit:"Exertis Enterprise"
-        },
-        {
-            name:"Flytech S.A.",
-            visit:"Flytech S.A."
-        },
-        {
-            name:"FORMAT Sp. z o. o",
-            visit:"FORMAT Sp. z o. o"
-        },
-        {
-            name:"Fujitsu",
-            visit:"Fujitsu"
-        },
-        {
-            name:"GIGABYTE Technology",
-            visit:"GIGABYTE Technology"
-        },
-        {
-            name:"Google",
-            visit:"Google"
-        },
-        {
-            name:"HPE",
-            visit:"HPE"
-        },
-        {
-            name:"Huawei Technologies Co. Ltd",
-            visit:"Huawei Technologies Co. Ltd"
-        },
-        {
-            name:"Inspur",
-            visit:"Inspur"
-        },
-        {
-            name:"Inventec",
-            visit:"Inventec"
-        },
-        {
-            name:"JITStack",
-            visit:"JITStack"
-        },
-        {
-            name:"Koi Computers, Inc.",
-            visit:"Koi Computers, Inc."
-        },
-        {
-            name:"Lanner Electronics",
-            visit:"Lanner Electronics"
-        },
-        {
-            name:"Lenovo",
-            visit:"Lenovo"
-        },
-        {
-            name:"Lockheed Martin",
-            visit:"Lockheed Martin"
-        },
-        {
-            name:"MEGWARE",
-            visit:"MEGWARE"
-        },
-        {
-            name:"MSFT",
-            visit:"MSFT"
-        },
-        {
-            name:"NEXCOM",
-            visit:"NEXCOM"
-        },
-        {
-            name:"Nokia",
-            visit:"Nokia"
-        },
-        {
-            name:"Nutanix",
-            visit:"Nutanix"
-        },
-        {
-            name:"OmniSci",
-            visit:"OmniSci"
-        },
-        {
-            name:"Oracle HPC",
-            visit:"Oracle HPC"
-        },
-        {
-            name:"Oracle Compute",
-            visit:"Oracle Compute"
-        },
-        {
-            name:"ORock Technologies",
-            visit:"ORock Technologies"
-        },
-        {
-            name:"Phonenix NAP",
-            visit:"Phonenix NAP"
-        },
-        {
-            name:"Presidio",
-            visit:"Presidio"
-        },
-        {
-            name:"QCT",
-            visit:"QCT"
-        },
-        {
-            name:"QNAP Systems, Inc.",
-            visit:"QNAP Systems, Inc."
-        },
-        {
-            name:"Redhat",
-            visit:"Redhat"
-        },
-        {
-            name:"RSC Group",
-            visit:"RSC Group"
-        },
-        {
-            name:"SAP",
-            visit:"SAP"
-        },
-        {
-            name:"Scontain",
-            visit:"Scontain"
-        },
-        {
-            name:"Sirius Computer Solutions.",
-            visit:"Sirius Computer Solutions."
-        },
-        {
-            name:"Supermicro",
-            visit:"Supermicro"
-        },
-        {
-            name:"Tarox",
-            visit:"Tarox"
-        },
-        {
-            name:"Tencent",
-            visit:"Tencent"
-        },
-        {
-            name:"Tyan Computers",
-            visit:"Tyan Computers"
-        },
-        {
-            name:"UNICOM Engineering",
-            visit:"UNICOM Engineering"
-        },
-        {
-            name:"Visual Technology Inc.",
-            visit:"Visual Technology Inc."
-        },
-        {
-            name:"Wiwynn Corporation",
-            visit:"Wiwynn Corporation"
-        },
-        {
-            name:"WORTMANN AG",
-            visit:"WORTMANN AG"
-        },
-        {
-            name:"World Wide Technology",
-            visit:"World Wide Technology"
-        },
-        {
-            name:"Yandex Cloud",
-            visit:"Yandex Cloud"
-        },
-    ]
-    function mv_table_3gen(){
-        if(document.querySelector('.mv_partner_data_3gen'))
-        {
-            let div = document.querySelector('.mv_partner_data_3gen')
-            
-            let html = mv_partner_3gen.map((ele)=>{
-                return `<tr>
+// Partners 3th Gen
+var mv_partner_3gen = [
+    {
+        name: "Advantech",
+        visit: "Advantech"
+    },
+    {
+        name: "AIC Inc.",
+        visit: "AIC Inc."
+    },
+    {
+        name: "Alibaba",
+        visit: "Alibaba"
+    },
+    {
+        name: "AMAX Engineering",
+        visit: "AMAX Engineering"
+    },
+    {
+        name: "ASRock Rack",
+        visit: "ASRock Rack"
+    },
+    {
+        name: "AWS",
+        visit: "AWS"
+    },
+    {
+        name: "Baidu",
+        visit: "Baidu"
+    },
+    {
+        name: "Boston Limited",
+        visit: "Boston Limited"
+    },
+    {
+        name: "CASwell Inc.",
+        visit: "CASwell Inc."
+    },
+    {
+        name: "CDW",
+        visit: "CDW"
+    },
+    {
+        name: "Cisco",
+        visit: "Cisco"
+    },
+    {
+        name: "Colfax",
+        visit: "Colfax"
+    },
+    {
+        name: "Dalco AG",
+        visit: "Dalco AG"
+    },
+    {
+        name: "Decentriq",
+        visit: "Decentriq"
+    },
+    {
+        name: "Dell",
+        visit: "Dell"
+    },
+    {
+        name: "E4 COMPUTER ENGINEERING SPA",
+        visit: "E4 COMPUTER ENGINEERING SPA"
+    },
+    {
+        name: "Edgeless Systems",
+        visit: "Edgeless Systems"
+    },
+    {
+        name: "Exertis Enterprise",
+        visit: "Exertis Enterprise"
+    },
+    {
+        name: "Flytech S.A.",
+        visit: "Flytech S.A."
+    },
+    {
+        name: "FORMAT Sp. z o. o",
+        visit: "FORMAT Sp. z o. o"
+    },
+    {
+        name: "Fujitsu",
+        visit: "Fujitsu"
+    },
+    {
+        name: "GIGABYTE Technology",
+        visit: "GIGABYTE Technology"
+    },
+    {
+        name: "Google",
+        visit: "Google"
+    },
+    {
+        name: "HPE",
+        visit: "HPE"
+    },
+    {
+        name: "Huawei Technologies Co. Ltd",
+        visit: "Huawei Technologies Co. Ltd"
+    },
+    {
+        name: "Inspur",
+        visit: "Inspur"
+    },
+    {
+        name: "Inventec",
+        visit: "Inventec"
+    },
+    {
+        name: "JITStack",
+        visit: "JITStack"
+    },
+    {
+        name: "Koi Computers, Inc.",
+        visit: "Koi Computers, Inc."
+    },
+    {
+        name: "Lanner Electronics",
+        visit: "Lanner Electronics"
+    },
+    {
+        name: "Lenovo",
+        visit: "Lenovo"
+    },
+    {
+        name: "Lockheed Martin",
+        visit: "Lockheed Martin"
+    },
+    {
+        name: "MEGWARE",
+        visit: "MEGWARE"
+    },
+    {
+        name: "MSFT",
+        visit: "MSFT"
+    },
+    {
+        name: "NEXCOM",
+        visit: "NEXCOM"
+    },
+    {
+        name: "Nokia",
+        visit: "Nokia"
+    },
+    {
+        name: "Nutanix",
+        visit: "Nutanix"
+    },
+    {
+        name: "OmniSci",
+        visit: "OmniSci"
+    },
+    {
+        name: "Oracle HPC",
+        visit: "Oracle HPC"
+    },
+    {
+        name: "Oracle Compute",
+        visit: "Oracle Compute"
+    },
+    {
+        name: "ORock Technologies",
+        visit: "ORock Technologies"
+    },
+    {
+        name: "Phonenix NAP",
+        visit: "Phonenix NAP"
+    },
+    {
+        name: "Presidio",
+        visit: "Presidio"
+    },
+    {
+        name: "QCT",
+        visit: "QCT"
+    },
+    {
+        name: "QNAP Systems, Inc.",
+        visit: "QNAP Systems, Inc."
+    },
+    {
+        name: "Redhat",
+        visit: "Redhat"
+    },
+    {
+        name: "RSC Group",
+        visit: "RSC Group"
+    },
+    {
+        name: "SAP",
+        visit: "SAP"
+    },
+    {
+        name: "Scontain",
+        visit: "Scontain"
+    },
+    {
+        name: "Sirius Computer Solutions.",
+        visit: "Sirius Computer Solutions."
+    },
+    {
+        name: "Supermicro",
+        visit: "Supermicro"
+    },
+    {
+        name: "Tarox",
+        visit: "Tarox"
+    },
+    {
+        name: "Tencent",
+        visit: "Tencent"
+    },
+    {
+        name: "Tyan Computers",
+        visit: "Tyan Computers"
+    },
+    {
+        name: "UNICOM Engineering",
+        visit: "UNICOM Engineering"
+    },
+    {
+        name: "Visual Technology Inc.",
+        visit: "Visual Technology Inc."
+    },
+    {
+        name: "Wiwynn Corporation",
+        visit: "Wiwynn Corporation"
+    },
+    {
+        name: "WORTMANN AG",
+        visit: "WORTMANN AG"
+    },
+    {
+        name: "World Wide Technology",
+        visit: "World Wide Technology"
+    },
+    {
+        name: "Yandex Cloud",
+        visit: "Yandex Cloud"
+    },
+]
+function mv_table_3gen() {
+    if (document.querySelector('.mv_partner_data_3gen')) {
+        let div = document.querySelector('.mv_partner_data_3gen')
+
+        let html = mv_partner_3gen.map((ele) => {
+            return `<tr>
                 <td>${ele.name}</td>
                 <td><b>Visit:</b> <a href="">${ele.visit}</a></td>
                 </tr>`
-            }).join('')
-            div.innerHTML = html
-        }else{
-            return;
-        }
+        }).join('')
+        div.innerHTML = html
+    } else {
+        return;
     }
+}
 
-    // Partners 2th Gen
-    var mv_partner_2gen = [
-        {
-            name:"Adlink Technology",
-            visit:"Adlink Technology"
-        },
-        {
-            name:"Advantech",
-            visit:"Advantech"
-        },
-        {
-            name:"Aerospike",
-            visit:"Aerospike"
-        },
-        {
-            name:"Aeon",
-            visit:"Aeon"
-        },
-        {
-            name:"Aewin",
-            visit:"Aewin"
-        },
-        {
-            name:"AgentVI",
-            visit:"AgentVI"
-        },
-        {
-            name:"AIC Inc.",
-            visit:"AIC Inc."
-        },
-        {
-            name:"Atipa",
-            visit:"Atipa"
-        },
-        {
-            name:"Atos",
-            visit:"Atos"
-        },
-        {
-            name:"Axiomtek'",
-            visit:"Axiomtek'"
-        },
-        {
-            name:"Boston Limited",
-            visit:"Boston Limited"
-        },
-        {
-            name:"CDW",
-            visit:"CDW"
-        },
-        {
-            name:"Cisco",
-            visit:"Cisco"
-        },
-        {
-            name:"Dalco",
-            visit:"Dalco"
-        },
-        {
-            name:"DataON",
-            visit:"DataON"
-        },
-        {
-            name:"Dell EMC",
-            visit:"Dell EMC"
-        },
-        {
-            name:"DFI",
-            visit:"DFI"
-        },
-        {
-            name:"EasyStack",
-            visit:"EasyStack"
-        },
-        {
-            name:"EISOO",
-            visit:"EISOO"
-        },
-        {
-            name:"ENGINETECH",
-            visit:"ENGINETECH"
-        },
-        {
-            name:"Equus Compute Solutions",
-            visit:"Equus Compute Solutions"
-        },
-        {
-            name:"Ericsson",
-            visit:"Ericsson"
-        },
-        {
-            name:"FiberHome",
-            visit:"FiberHome"
-        },
-        {
-            name:"Fujitsu",
-            visit:"Fujitsu"
-        },
-        {
-            name:"GigaSpaces",
-            visit:"GigaSpaces"
-        },
-        {
-            name:"H20",
-            visit:"H20"
-        },
-        {
-            name:"H3C",
-            visit:"H3C"
-        },
-        {
-            name:"Hitachi",
-            visit:"Hitachi"
-        },
-        {
-            name:"HPE",
-            visit:"HPE"
-        },
-        {
-            name:"IEI",
-            visit:"IEI"
-        },
-        {
-            name:"Insight",
-            visit:"Insight"
-        },
-        {
-            name:"Inspur",
-            visit:"Inspur"
-        },
-        {
-            name:"International Computer Concepts",
-            visit:"International Computer Concepts"
-        },
-        {
-            name:"Inventec",
-            visit:"Inventec"
-        },
-        {
-            name:"Kontron",
-            visit:"Kontron"
-        },
-        {
-            name:"Lanner Electronics",
-            visit:"Lanner Electronics"
-        },
-        {
-            name:"Lenovo",
-            visit:"Lenovo"
-        },
-        {
-            name:"Logicsupply",
-            visit:"Logicsupply"
-        },
-        {
-            name:"LON Microsystems",
-            visit:"LON Microsystems"
-        },
-        {
-            name:"MacroSAN",
-            visit:"MacroSAN"
-        },
-        {
-            name:"MBX Systems",
-            visit:"MBX Systems"
-        },
-        {
-            name:"Megware",
-            visit:"Megware"
-        },
-        {
-            name:"Mercury",
-            visit:"Mercury"
-        },
-        {
-            name:"Mercury Systems",
-            visit:"Mercury Systems"
-        },
-        {
-            name:"Microsoft",
-            visit:"Microsoft"
-        },
-        {
-            name:"Nanjing Cloud Innovative",
-            visit:"Nanjing Cloud Innovative"
-        },
-        {
-            name:"NCS Tech",
-            visit:"NCS Tech"
-        },
-        {
-            name:"NCS Technologies INC",
-            visit:"NCS Technologies INC"
-        },
-        {
-            name:"NEXCOM",
-            visit:"NEXCOM"
-        },
-        {
-            name:"Nokia",
-            visit:"Nokia"
-        },
-        {
-            name:"Nor-Tech",
-            visit:"Nor-Tech"
-        },
-        {
-            name:"Padova Technologies",
-            visit:"Padova Technologies"
-        },
-        {
-            name:"Patriot Technologies, Inc.",
-            visit:"Patriot Technologies, Inc."
-        },
-        {
-            name:"PingCAP",
-            visit:"PingCAP"
-        },
-        {
-            name:"PowerLeader Technology",
-            visit:"PowerLeader Technology"
-        },
-        {
-            name:"Presidio",
-            visit:"Presidio"
-        },
-        {
-            name:"QCT (Quanta)",
-            visit:"QCT (Quanta)"
-        },
-        {
-            name:"QNAP",
-            visit:"QNAP"
-        },
-        {
-            name:"Redis Labs",
-            visit:"Redis Labs"
-        },
-        {
-            name:"RSC",
-            visit:"RSC"
-        },
-        {
-            name:"SAS",
-            visit:"SAS"
-        },
-        {
-            name:"Shanghai DragonNet Technology – Change to Phegda",
-            visit:"Shanghai DragonNet Technology – Change to Phegda"
-        },
-        {
-            name:"Shanghai Link Computer Technology",
-            visit:"Shanghai Link Computer Technology"
-        },
-        {
-            name:"SHI",
-            visit:"SHI"
-        },
-        {
-            name:"Sugon",
-            visit:"Sugon"
-        },
-        {
-            name:"Supermicro",
-            visit:"Supermicro"
-        },
-        {
-            name:"Suzhou Supercluster – Change to AMAX",
-            visit:"Suzhou Supercluster – Change to AMAX"
-        },
-        {
-            name:"Trenton",
-            visit:"Trenton"
-        },
-        {
-            name:"Wiwynn Corporation",
-            visit:"Wiwynn Corporation"
-        },
-        {
-            name:"WWT",
-            visit:"WWT"
-        },
-        {
-            name:"Xi Computer",
-            visit:"Xi Computer"
-        },
-        {
-            name:"XSKy",
-            visit:"XSKy"
-        },
-        {
-            name:"ZTE",
-            visit:"ZTE"
-        }
-    ]
-    function mv_table_2gen(){
-        if(document.querySelector('.mv_partner_data_2gen'))
-        {
-            let div = document.querySelector('.mv_partner_data_2gen')
-            
-            let html = mv_partner_2gen.map((ele)=>{
-                return `<tr>
+// Partners 2th Gen
+var mv_partner_2gen = [
+    {
+        name: "Adlink Technology",
+        visit: "Adlink Technology"
+    },
+    {
+        name: "Advantech",
+        visit: "Advantech"
+    },
+    {
+        name: "Aerospike",
+        visit: "Aerospike"
+    },
+    {
+        name: "Aeon",
+        visit: "Aeon"
+    },
+    {
+        name: "Aewin",
+        visit: "Aewin"
+    },
+    {
+        name: "AgentVI",
+        visit: "AgentVI"
+    },
+    {
+        name: "AIC Inc.",
+        visit: "AIC Inc."
+    },
+    {
+        name: "Atipa",
+        visit: "Atipa"
+    },
+    {
+        name: "Atos",
+        visit: "Atos"
+    },
+    {
+        name: "Axiomtek'",
+        visit: "Axiomtek'"
+    },
+    {
+        name: "Boston Limited",
+        visit: "Boston Limited"
+    },
+    {
+        name: "CDW",
+        visit: "CDW"
+    },
+    {
+        name: "Cisco",
+        visit: "Cisco"
+    },
+    {
+        name: "Dalco",
+        visit: "Dalco"
+    },
+    {
+        name: "DataON",
+        visit: "DataON"
+    },
+    {
+        name: "Dell EMC",
+        visit: "Dell EMC"
+    },
+    {
+        name: "DFI",
+        visit: "DFI"
+    },
+    {
+        name: "EasyStack",
+        visit: "EasyStack"
+    },
+    {
+        name: "EISOO",
+        visit: "EISOO"
+    },
+    {
+        name: "ENGINETECH",
+        visit: "ENGINETECH"
+    },
+    {
+        name: "Equus Compute Solutions",
+        visit: "Equus Compute Solutions"
+    },
+    {
+        name: "Ericsson",
+        visit: "Ericsson"
+    },
+    {
+        name: "FiberHome",
+        visit: "FiberHome"
+    },
+    {
+        name: "Fujitsu",
+        visit: "Fujitsu"
+    },
+    {
+        name: "GigaSpaces",
+        visit: "GigaSpaces"
+    },
+    {
+        name: "H20",
+        visit: "H20"
+    },
+    {
+        name: "H3C",
+        visit: "H3C"
+    },
+    {
+        name: "Hitachi",
+        visit: "Hitachi"
+    },
+    {
+        name: "HPE",
+        visit: "HPE"
+    },
+    {
+        name: "IEI",
+        visit: "IEI"
+    },
+    {
+        name: "Insight",
+        visit: "Insight"
+    },
+    {
+        name: "Inspur",
+        visit: "Inspur"
+    },
+    {
+        name: "International Computer Concepts",
+        visit: "International Computer Concepts"
+    },
+    {
+        name: "Inventec",
+        visit: "Inventec"
+    },
+    {
+        name: "Kontron",
+        visit: "Kontron"
+    },
+    {
+        name: "Lanner Electronics",
+        visit: "Lanner Electronics"
+    },
+    {
+        name: "Lenovo",
+        visit: "Lenovo"
+    },
+    {
+        name: "Logicsupply",
+        visit: "Logicsupply"
+    },
+    {
+        name: "LON Microsystems",
+        visit: "LON Microsystems"
+    },
+    {
+        name: "MacroSAN",
+        visit: "MacroSAN"
+    },
+    {
+        name: "MBX Systems",
+        visit: "MBX Systems"
+    },
+    {
+        name: "Megware",
+        visit: "Megware"
+    },
+    {
+        name: "Mercury",
+        visit: "Mercury"
+    },
+    {
+        name: "Mercury Systems",
+        visit: "Mercury Systems"
+    },
+    {
+        name: "Microsoft",
+        visit: "Microsoft"
+    },
+    {
+        name: "Nanjing Cloud Innovative",
+        visit: "Nanjing Cloud Innovative"
+    },
+    {
+        name: "NCS Tech",
+        visit: "NCS Tech"
+    },
+    {
+        name: "NCS Technologies INC",
+        visit: "NCS Technologies INC"
+    },
+    {
+        name: "NEXCOM",
+        visit: "NEXCOM"
+    },
+    {
+        name: "Nokia",
+        visit: "Nokia"
+    },
+    {
+        name: "Nor-Tech",
+        visit: "Nor-Tech"
+    },
+    {
+        name: "Padova Technologies",
+        visit: "Padova Technologies"
+    },
+    {
+        name: "Patriot Technologies, Inc.",
+        visit: "Patriot Technologies, Inc."
+    },
+    {
+        name: "PingCAP",
+        visit: "PingCAP"
+    },
+    {
+        name: "PowerLeader Technology",
+        visit: "PowerLeader Technology"
+    },
+    {
+        name: "Presidio",
+        visit: "Presidio"
+    },
+    {
+        name: "QCT (Quanta)",
+        visit: "QCT (Quanta)"
+    },
+    {
+        name: "QNAP",
+        visit: "QNAP"
+    },
+    {
+        name: "Redis Labs",
+        visit: "Redis Labs"
+    },
+    {
+        name: "RSC",
+        visit: "RSC"
+    },
+    {
+        name: "SAS",
+        visit: "SAS"
+    },
+    {
+        name: "Shanghai DragonNet Technology – Change to Phegda",
+        visit: "Shanghai DragonNet Technology – Change to Phegda"
+    },
+    {
+        name: "Shanghai Link Computer Technology",
+        visit: "Shanghai Link Computer Technology"
+    },
+    {
+        name: "SHI",
+        visit: "SHI"
+    },
+    {
+        name: "Sugon",
+        visit: "Sugon"
+    },
+    {
+        name: "Supermicro",
+        visit: "Supermicro"
+    },
+    {
+        name: "Suzhou Supercluster – Change to AMAX",
+        visit: "Suzhou Supercluster – Change to AMAX"
+    },
+    {
+        name: "Trenton",
+        visit: "Trenton"
+    },
+    {
+        name: "Wiwynn Corporation",
+        visit: "Wiwynn Corporation"
+    },
+    {
+        name: "WWT",
+        visit: "WWT"
+    },
+    {
+        name: "Xi Computer",
+        visit: "Xi Computer"
+    },
+    {
+        name: "XSKy",
+        visit: "XSKy"
+    },
+    {
+        name: "ZTE",
+        visit: "ZTE"
+    }
+]
+function mv_table_2gen() {
+    if (document.querySelector('.mv_partner_data_2gen')) {
+        let div = document.querySelector('.mv_partner_data_2gen')
+
+        let html = mv_partner_2gen.map((ele) => {
+            return `<tr>
                 <td>${ele.name}</td>
                 <td><b>Visit:</b> <a href="">${ele.visit}</a></td>
                 </tr>`
-            }).join('')
-            div.innerHTML = html
-        }else{
-            return;
-        }
+        }).join('')
+        div.innerHTML = html
+    } else {
+        return;
     }
+}
 
-    // Partners 1th Gen
-    var mv_partner_1gen = [
-        {
-            name:"Actina",
-            contact:"Dorota Gusiew",
-            email:"Dorota.Gusiew@action.pl",
-            visit:"Actina"
-        },
-        {
-            name:"Advanced Clustering",
-            contact:"Advanced Clustering Technologies",
-            phone:"+1 866 802 8222",
-            email:"sales@advancedclustering.com",
-            visit:"Advanced Clustering"
-        },
-        {
-            name:"Advantech",
-            contact:"Advantech Networks and Communications Group",
-            email:"ncg@advantech.com",
-            visit:"Advantech"
-        },
-        {
-            name:"AIC Inc.",
-            contact:"Mr. David Huang",
-            phone:"+886 3 433 9188 ext. 8100",
-            email:"sales@aicipc.com.tw, david.huang@aicipc.com.tw",
-            visit:"AIC Inc."
-        },
-        {
-            name:"Amax",
-            contact:"James Huang",
-            email:"james_huang@amax.com",
-            visit:"Amax"
-        },
-        {
-            name:"ASRock Rack",
-            contact:"Jessie Chang",
-            phone:"+886 25538790",
-            email:"jessie6_chang@asrockrack.com",
-            visit:"ASRock Rack"
-        },
-        {
-            name:"ASA Computers/Racklive",
-            contact:"Roger Kute",
-            email:"roger@asacomputers.com",
-            visit:"ASA Computers/Racklive"
-        },
-        {
-            name:"Atipa",
-            contact:"Dana Chang",
-            phone:"+1 785 841 9559",
-            email:"sales@atipa.com",
-            visit:"Atipa"
-        },
-        {
-            name:"Azken Muga",
-            contact:"Rafael Lainez",
-            phone:"+34 91 146 17 60",
-            email:"RLainez@azken.com",
-            visit:"Azken Muga"
-        },
-        {
-            name:"CDW",
-            visit:"CDW"
-        },
-        {
-            name:"Cisco",
-            visit:"Cisco"
-        },
-        {
-            name:"Colfax",
-            contact:"Jimmy Tran",
-            email:"jimmy@colfax-intl.com",
-            visit:"Colfax"
-        },
-        {
-            name:"Cray",
-            email:"c17733@cray.com",
-            visit:"Cray"
-        },
-        {
-            name:"Dalco",
-            contact:"Sales",
-            phone:"+41 44 908 38 38",
-            email:"sales@dalco.ch",
-            visit:"DALCO"
-        },
-        {
-            name:"DataON Storage",
-            phone:"+1 714 441 8820",
-            email:"dataon_sales@dataonstorage.com",
-            visit:"DataON Storage"
-        },
-        {
-            name:"Dell EMC",
-            visit:"Dell EMC"
-        },
-        {
-            name:"Exxact",
-            contact:"Mke Chen",
-            phone:"+1 510 226 7366",
-            email:"mchen@exxactcorp.com",
-            visit:"Exxact"
-        },
-        {
-            name:"Flytech",
-            contact:"Javier Fernandez",
-            phone:"+34 93 265 54 62",
-            email:"jfd@flytech.es",
-            visit:"Flytech"
-        },
-        {
-            name:"Format",
-            contact:"Piotr Sukiennik",
-            email:"piotr.sukiennik@format.com.pl",
-            visit:"Format"
-        },
-        {
-            name:"Huawei",
-            visit:"Huawei"
-        },
-        {
-            name:"HP Enterprise",
-            visit:"HP Enterprise"
-        },
-        {
-            name:"Inspur",
-            visit:"Inspur"
-        },
-        {
-            name:"International Computer Concepts",
-            contact:"Alex Leites",
-            email:"marketing@icc-usa.com",
-            visit:"International Computer Concepts"
-        },
-        {
-            name:"Inventec Corporation",
-            contact:"Steven Lin",
-            phone:"+886 3 3900000",
-            email:"lin.steven@inventec.com",
-            visit:"Inventec Corporation"
-        },
-        {
-            name:"iXsystems",
-            contact:"Denise Ebery",
-            email:"denise@ixsystems.com",
-            visit:"iXsystems"
-        },
-        {
-            name:"Koi Computer",
-            contact:"Catherine Ho",
-            phone:"+1 630 627 8811",
-            email:"catherineho1@koicomputer.com",
-            visit:"Koi Computer"
-        },
-        {
-            name:"Komputronik",
-            contact:"Adam Olszewski",
-            email:"adam.olszewski@komputronik.pl",
-            visit:"Komputronik"
-        },
-        {
-            name:"Kontron",
-            visit:"Kontron"
-        },
-        {
-            name:"Lanner Electronics",
-            contact:"Brian Chen",
-            phone:"+886 2 86926060 ext. 1195",
-            email:"brian_chen@lannerinc.com",
-            visit:"Lanner Electronics"
-        },
-        {
-            name:"Lenovo",
-            visit:"Lenovo"
-        },
-        {
-            name:"M Computers",
-            contact:"Brian Chen",
-            phone:"+420 515 538 120",
-            email:"brian_chen@lannerinc.com",
-            visit:"M Computers"
-        },
-        {
-            name:"Maguay",
-            email:"sales@maguay.ro",
-            visit:"Maguay"
-        },
-        {
-            name:"Maxta Inc.",
-            contact:"Sales",
-            phone:"+1 844 44 MAXTA",
-            email:"sales@maxta.com",
-            visit:"Maxta Inc."
-        },
-        {
-            name:"Mercury Systems",
-            visit:"Mercury Systems"
-        },
-        {
-            name:"NCS Technologies INC",
-            visit:"NCS Technologies INC"
-        },
-        {
-            name:"Nexcom",
-            contact:"Liyin Lin",
-            phone:"+886 2 8226 7786 ext. 2110",
-            email:"liyinlin@nexcom.com.tw",
-            visit:"Nexcom"
-        },
-        {
-            name:"Nokia",
-            phone:"+1 866 231 0264",
-            visit:"Nokia"
-        },
-        {
-            name:"NTT",
-            contact:"Tomasz Rajca",
-            email: "tomasz.rajca@ntt.pl",
-            visit:"NTT"
-        },
-        {
-            name:"Padova Technologies",
-            visit:"Padova Technologies"
-        },
-        {
-            name:"Patriot Technologies, Inc",
-            visit:"Patriot Technologies, Inc"
-        },
-        {
-            name:"Penguin Computing",
-            visit:"Penguin Computing"
-        },
-        {
-            name:"Persy",
-            phone:"+359 24225319",
-            email: "sales@persy.com",
-            visit:"Persy"
-        },
-        {
-            name:"Premio",
-            contact:"John Lam",
-            phone:"+1 888 713 4540",
-            email:"sales@premioinc.com; john.lam@premioinc.com",
-            visit:"Premio"
-        },
-        {
-            name:"Quanta",
-            visit:"Quanta"
-        },
-        {
-            name:"Radisys",
-            contact:"Lisa Marone",
-            phone:"+1 503 615 1545",
-            email:"lisa.marone@radisys.com",
-            visit:"Radisys"
-        },
-        {
-            name:"Silicon Mechanics",
-            contact:"Dustin Shatto",
-            email:"dustin.shatto@siliconmechanics.com",
-            visit:"Silicon Mechanics"
-        },
-        {
-            name:"Source Code",
-            contact:"Brian Corn",
-            phone:"+1 877 722 3478 ext. 4266",
-            email:"BrianC@sourcecode.com",
-            visit:"Source Code"
-        },
-        {
-            name:"Supermicro",
-            visit:"Supermicro"
-        },
-        {
-            name:"TYAN Computer",
-            contact:"Fenny Chen",
-            phone:"+886 3 3275988 ext. 2849",
-            email:"fenny.chen@mic.com.tw",
-            visit:"TYAN Computer"
-        },
-        {
-            name:"Unicom Engineering",
-            visit:"Unicom Engineering"
-        },
-        {
-            name:"Wiwynn Corporation",
-            contact:"Ethan Yang",
-            phone:"+886 2 66125209",
-            email:"Ethan_SL_Yang@wiwynn.com",
-            visit:"Wiwynn Corporation"
-        },
-        {
-            name:"Wortmann",
-            contact:"Terra Server",
-            phone:"+49 5744 944 189",
-            email:"server@wortmann.de",
-            visit:"Wortmann"
-        },
-    ]
-    function mv_table_1gen(){
-        if(document.querySelector('.mv_partner_data_1gen'))
-        {
-            let div = document.querySelector('.mv_partner_data_1gen')
-            
-            let html = mv_partner_1gen.map((ele)=>{
-                return `<tr>
+// Partners 1th Gen
+var mv_partner_1gen = [
+    {
+        name: "Actina",
+        contact: "Dorota Gusiew",
+        email: "Dorota.Gusiew@action.pl",
+        visit: "Actina"
+    },
+    {
+        name: "Advanced Clustering",
+        contact: "Advanced Clustering Technologies",
+        phone: "+1 866 802 8222",
+        email: "sales@advancedclustering.com",
+        visit: "Advanced Clustering"
+    },
+    {
+        name: "Advantech",
+        contact: "Advantech Networks and Communications Group",
+        email: "ncg@advantech.com",
+        visit: "Advantech"
+    },
+    {
+        name: "AIC Inc.",
+        contact: "Mr. David Huang",
+        phone: "+886 3 433 9188 ext. 8100",
+        email: "sales@aicipc.com.tw, david.huang@aicipc.com.tw",
+        visit: "AIC Inc."
+    },
+    {
+        name: "Amax",
+        contact: "James Huang",
+        email: "james_huang@amax.com",
+        visit: "Amax"
+    },
+    {
+        name: "ASRock Rack",
+        contact: "Jessie Chang",
+        phone: "+886 25538790",
+        email: "jessie6_chang@asrockrack.com",
+        visit: "ASRock Rack"
+    },
+    {
+        name: "ASA Computers/Racklive",
+        contact: "Roger Kute",
+        email: "roger@asacomputers.com",
+        visit: "ASA Computers/Racklive"
+    },
+    {
+        name: "Atipa",
+        contact: "Dana Chang",
+        phone: "+1 785 841 9559",
+        email: "sales@atipa.com",
+        visit: "Atipa"
+    },
+    {
+        name: "Azken Muga",
+        contact: "Rafael Lainez",
+        phone: "+34 91 146 17 60",
+        email: "RLainez@azken.com",
+        visit: "Azken Muga"
+    },
+    {
+        name: "CDW",
+        visit: "CDW"
+    },
+    {
+        name: "Cisco",
+        visit: "Cisco"
+    },
+    {
+        name: "Colfax",
+        contact: "Jimmy Tran",
+        email: "jimmy@colfax-intl.com",
+        visit: "Colfax"
+    },
+    {
+        name: "Cray",
+        email: "c17733@cray.com",
+        visit: "Cray"
+    },
+    {
+        name: "Dalco",
+        contact: "Sales",
+        phone: "+41 44 908 38 38",
+        email: "sales@dalco.ch",
+        visit: "DALCO"
+    },
+    {
+        name: "DataON Storage",
+        phone: "+1 714 441 8820",
+        email: "dataon_sales@dataonstorage.com",
+        visit: "DataON Storage"
+    },
+    {
+        name: "Dell EMC",
+        visit: "Dell EMC"
+    },
+    {
+        name: "Exxact",
+        contact: "Mke Chen",
+        phone: "+1 510 226 7366",
+        email: "mchen@exxactcorp.com",
+        visit: "Exxact"
+    },
+    {
+        name: "Flytech",
+        contact: "Javier Fernandez",
+        phone: "+34 93 265 54 62",
+        email: "jfd@flytech.es",
+        visit: "Flytech"
+    },
+    {
+        name: "Format",
+        contact: "Piotr Sukiennik",
+        email: "piotr.sukiennik@format.com.pl",
+        visit: "Format"
+    },
+    {
+        name: "Huawei",
+        visit: "Huawei"
+    },
+    {
+        name: "HP Enterprise",
+        visit: "HP Enterprise"
+    },
+    {
+        name: "Inspur",
+        visit: "Inspur"
+    },
+    {
+        name: "International Computer Concepts",
+        contact: "Alex Leites",
+        email: "marketing@icc-usa.com",
+        visit: "International Computer Concepts"
+    },
+    {
+        name: "Inventec Corporation",
+        contact: "Steven Lin",
+        phone: "+886 3 3900000",
+        email: "lin.steven@inventec.com",
+        visit: "Inventec Corporation"
+    },
+    {
+        name: "iXsystems",
+        contact: "Denise Ebery",
+        email: "denise@ixsystems.com",
+        visit: "iXsystems"
+    },
+    {
+        name: "Koi Computer",
+        contact: "Catherine Ho",
+        phone: "+1 630 627 8811",
+        email: "catherineho1@koicomputer.com",
+        visit: "Koi Computer"
+    },
+    {
+        name: "Komputronik",
+        contact: "Adam Olszewski",
+        email: "adam.olszewski@komputronik.pl",
+        visit: "Komputronik"
+    },
+    {
+        name: "Kontron",
+        visit: "Kontron"
+    },
+    {
+        name: "Lanner Electronics",
+        contact: "Brian Chen",
+        phone: "+886 2 86926060 ext. 1195",
+        email: "brian_chen@lannerinc.com",
+        visit: "Lanner Electronics"
+    },
+    {
+        name: "Lenovo",
+        visit: "Lenovo"
+    },
+    {
+        name: "M Computers",
+        contact: "Brian Chen",
+        phone: "+420 515 538 120",
+        email: "brian_chen@lannerinc.com",
+        visit: "M Computers"
+    },
+    {
+        name: "Maguay",
+        email: "sales@maguay.ro",
+        visit: "Maguay"
+    },
+    {
+        name: "Maxta Inc.",
+        contact: "Sales",
+        phone: "+1 844 44 MAXTA",
+        email: "sales@maxta.com",
+        visit: "Maxta Inc."
+    },
+    {
+        name: "Mercury Systems",
+        visit: "Mercury Systems"
+    },
+    {
+        name: "NCS Technologies INC",
+        visit: "NCS Technologies INC"
+    },
+    {
+        name: "Nexcom",
+        contact: "Liyin Lin",
+        phone: "+886 2 8226 7786 ext. 2110",
+        email: "liyinlin@nexcom.com.tw",
+        visit: "Nexcom"
+    },
+    {
+        name: "Nokia",
+        phone: "+1 866 231 0264",
+        visit: "Nokia"
+    },
+    {
+        name: "NTT",
+        contact: "Tomasz Rajca",
+        email: "tomasz.rajca@ntt.pl",
+        visit: "NTT"
+    },
+    {
+        name: "Padova Technologies",
+        visit: "Padova Technologies"
+    },
+    {
+        name: "Patriot Technologies, Inc",
+        visit: "Patriot Technologies, Inc"
+    },
+    {
+        name: "Penguin Computing",
+        visit: "Penguin Computing"
+    },
+    {
+        name: "Persy",
+        phone: "+359 24225319",
+        email: "sales@persy.com",
+        visit: "Persy"
+    },
+    {
+        name: "Premio",
+        contact: "John Lam",
+        phone: "+1 888 713 4540",
+        email: "sales@premioinc.com; john.lam@premioinc.com",
+        visit: "Premio"
+    },
+    {
+        name: "Quanta",
+        visit: "Quanta"
+    },
+    {
+        name: "Radisys",
+        contact: "Lisa Marone",
+        phone: "+1 503 615 1545",
+        email: "lisa.marone@radisys.com",
+        visit: "Radisys"
+    },
+    {
+        name: "Silicon Mechanics",
+        contact: "Dustin Shatto",
+        email: "dustin.shatto@siliconmechanics.com",
+        visit: "Silicon Mechanics"
+    },
+    {
+        name: "Source Code",
+        contact: "Brian Corn",
+        phone: "+1 877 722 3478 ext. 4266",
+        email: "BrianC@sourcecode.com",
+        visit: "Source Code"
+    },
+    {
+        name: "Supermicro",
+        visit: "Supermicro"
+    },
+    {
+        name: "TYAN Computer",
+        contact: "Fenny Chen",
+        phone: "+886 3 3275988 ext. 2849",
+        email: "fenny.chen@mic.com.tw",
+        visit: "TYAN Computer"
+    },
+    {
+        name: "Unicom Engineering",
+        visit: "Unicom Engineering"
+    },
+    {
+        name: "Wiwynn Corporation",
+        contact: "Ethan Yang",
+        phone: "+886 2 66125209",
+        email: "Ethan_SL_Yang@wiwynn.com",
+        visit: "Wiwynn Corporation"
+    },
+    {
+        name: "Wortmann",
+        contact: "Terra Server",
+        phone: "+49 5744 944 189",
+        email: "server@wortmann.de",
+        visit: "Wortmann"
+    },
+]
+function mv_table_1gen() {
+    if (document.querySelector('.mv_partner_data_1gen')) {
+        let div = document.querySelector('.mv_partner_data_1gen')
+
+        let html = mv_partner_1gen.map((ele) => {
+            return `<tr>
                 <td>${ele.name}</td>
                 <td>
                     ${ele.contact ? `<div><b>Contact:</b> ${ele.contact}</div>` : ""}
@@ -3939,9 +3940,9 @@ function mv_intel_case_study_geti(page) {
                     <div><b>Visit:</b> <a href="">${ele.visit}</a></div>
                 </td>
                 </tr>`
-            }).join('')
-            div.innerHTML = html
-        }else{
-            return;
-        }
+        }).join('')
+        div.innerHTML = html
+    } else {
+        return;
     }
+}
