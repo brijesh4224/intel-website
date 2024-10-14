@@ -1866,6 +1866,8 @@ var mv_intel_geti_blog_data = [
         title: "Enhance your experience: Introducing Intel® Geti™ 1.5.0",
         date: "Jun. 7, 2023",
         description: "We are excited to announce the launch of Intel Geti 1.5.0, a new platform version! Intel Geti software enables teams to build computer vision models for their AI applications. This release includes new features and expands functionality for a more effective and agile model development and deployment path. The release is part of our ongoing commitment to deliver high-quality software.",
+        link: "blog_read_more_card_ten.html",
+        model_link: "https://geti.intel.com/blog/enhance-your-experience-introducing-intel-geti-1-5-0",
     },
     {
         image: "faq-mobile-1.webp",
@@ -1873,6 +1875,8 @@ var mv_intel_geti_blog_data = [
         title: "Efficient, custom object detection training template made easy",
         date: "Feb. 1, 2023",
         description: "Deep Learning algorithms are widely used in the industry today – from detecting defects in parts on the factory production line to recommending products to shoppers on e-commerce websites. These algorithms proved their high accuracy and efficiency and have driven significant innovations in businesses utilizing them.",
+        link: "blog_read_more_card_eleven.html",
+        model_link: "https://geti.intel.com/blog/efficient-custom-object-detection-training-template-made-easy"
     },
     {
         image: "Streamlining-AIs-Path-to-Production-with-the-Intel®-Geti™-Platform-500x261-1.png",
@@ -1880,6 +1884,8 @@ var mv_intel_geti_blog_data = [
         title: "Streamlining AI’s Path to Production with Intel® Geti™ Software",
         date: "Dec. 13, 2022",
         description: "We are thrilled to announce Intel Geti software is now commercially available for select customers. The software unites the right people and the right data for an efficient path to building high-quality solutions, overcoming obstacles to bring AI pilots to production.",
+        link: "blog_read_more_card_twelve.html",
+        model_link: "https://geti.intel.com/blog/streamlining-ais-path-to-production-with-the-intel-geti-platform",
     },
     {
         image: "blog_does_active_learning--466x300.webp",
@@ -1887,6 +1893,8 @@ var mv_intel_geti_blog_data = [
         title: "Does Active Learning Help Speed Up AI Model Development?",
         date: "Sept. 27, 2022",
         description: "The key to improving the productivity of computer vision AI model development is to involve human experts in the model-building loop for a continuous feedback process. Learn how active learning in the Intel® Geti™ computer vision AI platform enables just that",
+        link: "blog_read_more_card_thirteen.html",
+        model_link: "https://geti.intel.com/blog/does-active-learning-help-speed-up-ai-model-development"
     },
     {
         image: "challenge-1-500x295.webp",
@@ -1894,6 +1902,8 @@ var mv_intel_geti_blog_data = [
         title: "Challenges for Organizations Building Computer Vision AI Models",
         date: "Sept. 27, 2022",
         description: "Computer vision is one of the most exciting subsets of artificial intelligence and machine learning. We’re already seeing a wealth of real-world use cases in industries from manufacturing to agriculture to retail. The possibilities that computer vision offers span essentially every single industry and field and are growing rapidly.",
+        link: "blog_read_more_card_fourteen.html",
+        model_link: "https://geti.intel.com/blog/challenges-for-organizations-building-computer-vision-ai-models"
     },
     {
         image: "computer-vision-1-500x295.webp",
@@ -1901,6 +1911,8 @@ var mv_intel_geti_blog_data = [
         title: "Computer Vision Applications that Span Industries and Sectors",
         date: "Sept. 27, 2022",
         description: "How many security camera feeds can a single person monitor effectively? Even assuming one person can handle all camera feeds for an entire facility, how many people are needed for 24/7 monitoring of twenty different sites, each in a different state or country? Now let’s give this task to a computer that can simultaneously monitor every single camera feed for all facilities without needing to take a break or even blink.",
+        link: "blog_read_more_card_fifteen.html",
+        model_link: "https://geti.intel.com/blog/computer-vision-applications-that-span-industries-and-sectors"
     }
 ]
 
@@ -1993,6 +2005,8 @@ var mv_intel_geti_video_data = [
         title: "Intel® Geti™ 2.0.0 Release: Advancing AI Model Development",
         date: "Jun. 5, 2024",
         description: "Intel® Geti™ 2.0.0 is here. A new release of Intel’s Vision AI software for building computer vision models faster and with less. This release includes several additions for data labeling, model training, and inferencing.The release is part of Intel’s ongoing commitment to deliver high-quality software. All existing customers are invited to upgrade to Intel Geti 2.0.0 and take advantage of the latest functionality!",
+        link: "video_read_more_card_one.html",
+        model_link: "https://geti.intel.com/video/transforming-olympic-games-viewing-with-the-intel-geti-platform"
     },
     {
         image: "software-recognized-may-2024.jpg",
@@ -2000,6 +2014,8 @@ var mv_intel_geti_video_data = [
         title: "Building end-to-end pipelines with the Intel® Geti™ SDK",
         date: "Apr. 15, 2024",
         description: "The demo showcases key features and functionalities of the Intel Geti SDK to help developers build end-to-end AI application pipelines, utilizing the computer vision models built using Intel Geti software.",
+        link: "video_read_more_card_two.html",
+        model_link: "https://geti.intel.com/video/building-end-to-end-pipelines-with-the-the-intel-getitm-sdk"
     },
     {
         image: "software-recognized-may-2024.jpg",
@@ -2007,6 +2023,8 @@ var mv_intel_geti_video_data = [
         title: "Revolutionizing Sports Broadcasting with AI",
         date: "Feb. 8, 2024",
         description: "Dive into the future of sports broadcasting as WSC showcases its AI platform, which automatically and in real-time understands sports broadcasts and creates short-form content at scale.",
+        link: "video_read_more_card_three.html",
+        model_link: "https://geti.intel.com/video/revolutionizing-sports-broadcasting-with-ai"
     },
     {
         image: "software-recognized-may-2024.jpg",
@@ -2014,6 +2032,8 @@ var mv_intel_geti_video_data = [
         title: "Product Demo: Core Capabilities Overview",
         date: "Jun. 15, 2023",
         description: "The Intel Geti Platform's core capabilities empower business and data science users to work together within a single platform. This demo video showcases the capabilities enabling these users with varied expertise utilize the platform to accelerate computer vision workflows.",
+        link: "video_read_more_card_four.html",
+        model_link: "https://geti.intel.com/video/product-demo-core-capabilities-overview"
     },
     {
         image: "software-recognized-may-2024.jpg",
@@ -2021,6 +2041,8 @@ var mv_intel_geti_video_data = [
         title: "Introduction to Intel’s Next Generation Computer Vision AI Platform",
         date: "Sept. 27, 2022",
         description: "Get a look into Intel Geti computer vision platform. We will show you how you can build and deploy AI models faster.",
+        link: "video_read_more_card_five.html",
+        model_link: "https://geti.intel.com/video/introduction-to-intels-next-generation-computer-vision-ai-platform"
     },
     {
         image: "software-recognized-may-2024.jpg",
@@ -2028,6 +2050,8 @@ var mv_intel_geti_video_data = [
         title: "Product Demo: Build AI Models with Intel Geti Software",
         date: "Sept. 27, 2022",
         description: "Intel Geti software offers a powerful yet intuitive interface to develop computer vision models for various applications from manufacturing to healthcare and smart cities. This demo video features an agricultural use case example.",
+        link: "video_read_more_card_six.html",
+        model_link: "https://geti.intel.com/video/product-demo-build-ai-models-with-intel-geti-platform"
     },
     {
         image: "software-recognized-may-2024.jpg",
@@ -2036,6 +2060,8 @@ var mv_intel_geti_video_data = [
         date: "Sept. 27, 2022",
         description: "Experts from IT consultancy Bravent discuss how Intel® Geti™ software enables them to collaborate with their enterprise customers to develop computer vision solutions more quickly than ever before.",
         language: "Spanish Subtitles",
+        link: "video_read_more_card_seven.html",
+        model_link: "https://geti.intel.com/video/bravent-creates-industrial-vision-solutions-with-intel-geti-platform"
     },
     {
         image: "software-recognized-may-2024.jpg",
@@ -2043,6 +2069,8 @@ var mv_intel_geti_video_data = [
         title: "Using Intel® Geti™ Software to Transform Medical Research",
         date: "Sept. 27, 2022",
         description: "London-based hospital Royal Brompton leverages Intel® Geti™ software to train AI models that are used to diagnose rare diseases.",
+        link: "video_read_more_card_eight.html",
+        model_link: "https://geti.intel.com/video/bravent-creates-industrial-vision-solutions-with-intel-geti-platform"
     },
     {
         image: "software-recognized-may-2024.jpg",
@@ -2050,6 +2078,8 @@ var mv_intel_geti_video_data = [
         title: "Getting Started with Computer Vision AI Models",
         date: "Sept. 27, 2022",
         description: "Get an introduction into computer vision and artificial intelligence and learn how Intel® Geti™ software brings them all together.",
+        link: "video_read_more_card_nine.html",
+        model_link: "https://geti.intel.com/video/getting-started-with-computer-vision-ai-models"
     },
 ]
 
