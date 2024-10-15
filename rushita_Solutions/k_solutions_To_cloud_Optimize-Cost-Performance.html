@@ -43,6 +43,23 @@
             height: auto;
             display: none;
         }
+        .sticky-sidebar {
+        position: sticky;
+        top: 0px; /* Adjust this value based on your navbar height */
+        overflow-y: auto;
+        background-color: white;
+    }
+
+    .K_sticky_side_bar {
+        padding-right: 15px;
+    }
+
+    @media (max-width: 991px) {
+        .sticky-sidebar {
+            position: static;
+            height: auto;
+        }
+    }
     </style>
 </head>
 
@@ -114,8 +131,8 @@
                 </div>
                 <div class="col-lg-3 col-md-4 col-sm-12">
                     <!-- <div id="k_sticky-section"> -->
-                        <div>
-                            <div>
+                        <div class="sticky-sidebar">
+                            <div class="K_sticky_side_bar">
                                 <div class="tab-container">
                                     <div class="k_btn k_incorbtn1 k_text active" data-tab="key1">
                                         <a href="#key1">What Cloud Computing Tools Are Available?</a>
@@ -126,19 +143,18 @@
                                     <div class="k_btn k_incorbtn1 k_text" data-tab="key3">
                                         <a href="#key3">Midmigration Cloud Tools</a>
                                     </div>
-                                    <div class="k_btn k_incorbtn1 k_text" data-tab="key3">
+                                    <div class="k_btn k_incorbtn1 k_text" data-tab="key4">
                                         <a href="#key4">Cloud Optimization Tools</a>
                                     </div>
-                                    <div class="k_btn k_incorbtn1 k_text" data-tab="key3">
-                                        <a href="#key4">Intel® Cloud Products and Solutions</a>
+                                    <div class="k_btn k_incorbtn1 k_text" data-tab="key5">
+                                        <a href="#key5">Intel® Cloud Products and Solutions</a>
                                     </div>
-                                    <div class="k_btn k_incorbtn1 k_text" data-tab="key3">
-                                        <a href="#key4">Cross-Disciplinary Cloud Management</a>
+                                    <div class="k_btn k_incorbtn1 k_text" data-tab="key6">
+                                        <a href="#key6">Cross-Disciplinary Cloud Management</a>
                                     </div>
-                                  
                                 </div>
                             </div>
-                        </div>
+                            </div>
                         <!-- </div> -->
                     <div class="k_bggrey p-3">
                         <p><b>Intel® Cloud Tools</b></p>
@@ -252,7 +268,7 @@
                 <div class="accordion accordion-flush" id="accordionFlushExample">
                     <div class="accordion-item">
                         <h2 class="accordion-header k_topborder" id="flush-headingOne">
-                            <button class="accordion-button collapsed k_vlink2" type="button"
+                            <button class="accordion-button ruchi2 collapsed k_vlink2" type="button"
                                 data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false"
                                 aria-controls="flush-collapseOne">
                                 What types of cloud computing tools are available?
@@ -324,6 +340,52 @@
             .then(data => {
                 document.getElementById('footer').innerHTML = data;
             });
+    </script>
+     <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const sections = document.querySelectorAll('.VK_all_sections section');
+            const navLinks = document.querySelectorAll('.VK_sidebar_dropdown a');
+            const detailsElements = document.querySelectorAll('.VK_sidebar_dropdown details');
+
+            function removeActiveClass() {
+                navLinks.forEach(link => link.classList.remove('VK_sidebar_active_link'));
+                detailsElements.forEach(details => details.removeAttribute('open'));
+                detailsElements.forEach(details => details.setAttribute('close', ''))
+            }
+
+            function activateLinkAndDetails(targetId) {
+                navLinks.forEach(link => {
+                    if (link.getAttribute('href') === `#${targetId}`) {
+                        link.classList.add('VK_sidebar_active_link');
+                        const parentDetails = link.closest('details');
+                        if (parentDetails) {
+                            parentDetails.setAttribute('open', '');
+                        }
+                    }
+                });
+            }
+
+            function onScroll() {
+                let currentSection = '';
+                sections.forEach(section => {
+                    const sectionTop = section.getBoundingClientRect().top;
+                    const sectionBottom = section.getBoundingClientRect().bottom;
+                    if (sectionTop <= 0 && sectionBottom >= 0) {
+                        currentSection = section.getAttribute('id');
+                    }
+                });
+
+                if (currentSection) {
+                    removeActiveClass();
+                    activateLinkAndDetails(currentSection);
+                }
+                else {
+                    removeActiveClass();
+                }
+            }
+
+            window.addEventListener('scroll', onScroll);
+        });
     </script>
     <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
     <script src="../js/jquery-3.7.1.js"></script>
