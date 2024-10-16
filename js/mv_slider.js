@@ -2149,6 +2149,8 @@ var mv_intel_geti_case_data = [
         title: "Streamlining AI Model Development in Biotech for Cancer Diagnosis",
         date: "Dec. 15, 2023",
         description: "The JelloX Federated Learning Platform allows clinical data from multiple healthcare organizations to be used for collaborative AI model development while meeting regulatory requirements and maintaining patient privacy. The solution utilizes Intel® Geti™ software to overcome intense resource requirements for clinical workers to label the data and train vision models.",
+        link: "casestudy_read_more_card_one.html",
+        model_link: "https://geti.intel.com/case-study/streamlining-ai-model-development-in-biotech-for-cancer-diagnosis"
     },
     {
         image: "download.png",
@@ -2156,6 +2158,8 @@ var mv_intel_geti_case_data = [
         title: "Optimizing AI Model Training and Refinement for Automated Optical Inspection (AOI)",
         date: "Dec. 18, 2023",
         description: "Fatigue and other human limitations are a familiar impediment to the accuracy and efficiency of visual inspection on manufacturing lines. ASRock Industrial set out to overcome those challenges with an implementation of state-of-the-art AI Automated Optical Inspection (AOI) in production of printed circuit boards at its OEM factory...",
+        link: "casestudy_read_more_card_two.html",
+        model_link: "https://geti.intel.com/case-study/optimizing-ai-model-training-and-refinement-for-automated-optical-inspection-aoi"
     },
     {
         image: "Computer-Vision-AI-Education-and-Deployment-Leaps-for-featured.webp",
@@ -2163,6 +2167,8 @@ var mv_intel_geti_case_data = [
         title: "Computer Vision AI Education and Deployment Leaps Forward with a New Approach from ITis and Intel",
         date: "Feb. 2, 2023",
         description: "While computer vision and other forms of AI have the potential to transform a wide range of processes across many industries, it can be incredibly challenging to integrate these technologies into real-world applications. One of the more formidable roadblocks is developing internal expertise and equipping people with the hands-on skills to tackle complex data science tasks.",
+        link: "casestudy_read_more_card_three.html",
+        model_link: "https://geti.intel.com/case-study/computer-vision-ai-education-and-deployment-leaps-forward-with-a-new-approach-from-itis-and-intel"
     },
     {
         image: "Naturalis-and-DIOPSIS-Harness-the-Power-of-the-Intel®-Geti™-Platform-to-Overcome-Data-Challenges-in-Biodiversity-Research-1.webp",
@@ -2170,6 +2176,8 @@ var mv_intel_geti_case_data = [
         title: "Naturalis and DIOPSIS Harness the Power of Intel® Geti™ Software to Overcome Data Challenges in Biodiversity Research",
         date: "Nov. 28, 2022",
         description: "With Intel Geti software, the DIOPSIS Consortium created an innovative AI-based insect monitoring method to better understand insect population declines and to help protect biodiversity.",
+        link: "casestudy_read_more_card_four.html",
+        model_link: "https://geti.intel.com/case-study/naturalis-and-diopsis-harness-the-power-of-the-intel-geti-platform-to-overcome-data-challenges-in-biodiversity-research"
     },
     {
         image: "getiimages-1180547365-16x9-1-500x281.jpg",
@@ -2177,6 +2185,8 @@ var mv_intel_geti_case_data = [
         title: "Intel Geti Software Accelerates AI Model Training for Real-Time Nerve Detection in Samsung Ultrasound Systems",
         date: "May. 27, 2024",
         description: "Samsung Medison’s NerveTrack™ is an innovative ultrasound feature used to identify nerve structures in real time during the application of anesthesia. Training of NerveTrack™’s deep learning inference models requires thousands of annotated ultrasound reference images. The image annotation process is best performed by doctors with years of medical training and experience in identifying the small, elusive nerve structures.",
+        link: "casestudy_read_more_card_five.html",
+        model_link: "https://geti.intel.com/case-study/intel-geti-platform-accelerates-ai-model-training-for-real-time-nerve-detection-in-samsung-ultrasound-systems"
     },
     {
         image: "1-500x261.webp",
@@ -2184,6 +2194,8 @@ var mv_intel_geti_case_data = [
         title: "Small Robot Co uses Intel® Geti™ Software for efficient modelling to create more sustainable crops",
         date: "Oct. 24, 2022",
         description: "Helping farmers feed the world while regenerating the planet is the driving force behind Small Robot Co. Their vision is “per plant farming”: rather than treating a field of crops together as one entity, they treat each plant individually to reduce external inputs such as fertilizers, pesticides and herbicides. Machine learning and AI are a crucial part of the per plant farming process...",
+        link: "casestudy_read_more_card_six.html",
+        model_link: "https://geti.intel.com/case-study/monitoring-pedestrian-rail-crossings-with-computer-vision-ai"
     },
     {
         image: "adobestock-191187347-450x300-1.webp",
@@ -2191,6 +2203,8 @@ var mv_intel_geti_case_data = [
         title: "Monitoring Pedestrian Rail Crossings with Computer Vision AI",
         date: "Dec. 20, 2022",
         description: "Sensing Feeling uses Intel Geti software to accelerate training of AI models for automated pedestrian sensing solutions at railway crossings.Pedestrian incursions into railway crossings are a dramatic safety issue and point of liability for rail infrastructure operators. Automated sensing solutions that use computer vision (CV) to address these issues have been hampered by the low-quality images from decades-old...",
+        link: "casestudy_read_more_card_seve.html",
+        model_link: "https://geti.intel.com/case-study/monitoring-pedestrian-rail-crossings-with-computer-vision-ai"
     },
     {
         image: "monitoring-500x281.webp",
@@ -2198,6 +2212,8 @@ var mv_intel_geti_case_data = [
         title: "Monitoring Construction Worker Safety with Custom Computer Vision AI Models",
         date: "Dec. 1, 2022",
         description: "Sensing Feeling, a solution provider based in the UK, is working on developing custom AI models of heavy equipment with Intel Geti software to increase workers' safety. The Sensing Feeling smart visual sensing platform provides edge-based analytics using the machine vision AI models built with Intel Geti software. The occupational-safety solution monitors the safety zones surrounding heavy equipment to identify unsafe proximity by personnel.",
+        link: "casestudy_read_more_card_eight.html",
+        model_link: "https://geti.intel.com/case-study/monitoring-construction-worker-safety-with-custom-computer-vision-ai-models"
     },
     {
         image: "cities-meets-500x281.webp",
@@ -2205,6 +2221,8 @@ var mv_intel_geti_case_data = [
         title: "Building Custom AI Models to Help Cities Meet Their Net-Zero Goals",
         date: "May. 27, 2024",
         description: "To mitigate climate change, local authorities can optimize their planning and operations with smart cities technology. In the UK, SSE Energy Solutions is developing AI-powered optical sensors based on Intel® architecture, Intel Geti AI software, and the Sensing Feeling software to transform video feeds into insights at the network edge that help cities meet environmental imperatives.",
+        link: "casestudy_read_more_card_nine.html",
+        model_link: "https://geti.intel.com/case-study/building-custom-ai-models-to-help-cities-meet-their-net-zero-goals"
     },
     // page 2
     {
@@ -2213,6 +2231,8 @@ var mv_intel_geti_case_data = [
         title: "New Computer Vision Platform Helps Clinicians Train AI to Recognize a Rare Disease",
         date: "May. 27, 2024",
         description: "London-based hospital Royal Brompton used the Intel® Geti™ software to translate their expertise into a machine learning inference algorithm that transforms their research.",
+        link: "casestudy_read_more_card_ten.html",
+        model_link: "https://geti.intel.com/case-study/new-computer-vision-platform-helps-clinicians-train-ai-to-recognize-a-rare-disease"
     },
     {
         image: "bravent-creates-agile-500x295.webp",
@@ -2222,6 +2242,8 @@ var mv_intel_geti_case_data = [
         description: "IT consultancy Bravent developed an efficient, flexible AI-based computer vision solution to reduce human error in complex machinery assemblies, which can be scaled and adapted across a range of industries.",
         languageenglish: " (English)",
         languagespanish: "Download (Spanish)",
+        link: "casestudy_read_more_card_eleven.html",
+        model_link: "https://geti.intel.com/case-study/bravent-creates-agile-scalable-industrial-vision-solutions-with-intel-geti-platform-and-openvino-toolkit"
     },
 ]
 
