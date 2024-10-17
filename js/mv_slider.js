@@ -2150,7 +2150,7 @@ var mv_intel_geti_case_data = [
         date: "Dec. 15, 2023",
         description: "The JelloX Federated Learning Platform allows clinical data from multiple healthcare organizations to be used for collaborative AI model development while meeting regulatory requirements and maintaining patient privacy. The solution utilizes Intel® Geti™ software to overcome intense resource requirements for clinical workers to label the data and train vision models.",
         link: "casestudy_read_more_card_one.html",
-        model_link: "https://geti.intel.com/video/getting-started-with-computer-vision-ai-models"
+        model_link: "https://geti.intel.com/case-study/streamlining-ai-model-development-in-biotech-for-cancer-diagnosis"
     },
     {
         image: "download.png",
@@ -2186,6 +2186,7 @@ var mv_intel_geti_case_data = [
         date: "May. 27, 2024",
         description: "Samsung Medison’s NerveTrack™ is an innovative ultrasound feature used to identify nerve structures in real time during the application of anesthesia. Training of NerveTrack™’s deep learning inference models requires thousands of annotated ultrasound reference images. The image annotation process is best performed by doctors with years of medical training and experience in identifying the small, elusive nerve structures.",
         link: "casestudy_read_more_card_five.html",
+        model_link: "https://geti.intel.com/case-study/intel-geti-platform-accelerates-ai-model-training-for-real-time-nerve-detection-in-samsung-ultrasound-systems"
     },
     {
         image: "1-500x261.webp",
@@ -2194,7 +2195,7 @@ var mv_intel_geti_case_data = [
         date: "Oct. 24, 2022",
         description: "Helping farmers feed the world while regenerating the planet is the driving force behind Small Robot Co. Their vision is “per plant farming”: rather than treating a field of crops together as one entity, they treat each plant individually to reduce external inputs such as fertilizers, pesticides and herbicides. Machine learning and AI are a crucial part of the per plant farming process...",
         link: "casestudy_read_more_card_six.html",
-        model_link: "https://geti.intel.com/case-study/small-robot-co-uses-intel-geti-platform-for-efficient-modelling-to-create-more-sustainable-crops"
+        model_link: "https://geti.intel.com/case-study/monitoring-pedestrian-rail-crossings-with-computer-vision-ai"
     },
     {
         image: "adobestock-191187347-450x300-1.webp",
@@ -2202,7 +2203,7 @@ var mv_intel_geti_case_data = [
         title: "Monitoring Pedestrian Rail Crossings with Computer Vision AI",
         date: "Dec. 20, 2022",
         description: "Sensing Feeling uses Intel Geti software to accelerate training of AI models for automated pedestrian sensing solutions at railway crossings.Pedestrian incursions into railway crossings are a dramatic safety issue and point of liability for rail infrastructure operators. Automated sensing solutions that use computer vision (CV) to address these issues have been hampered by the low-quality images from decades-old...",
-        link: "casestudy_read_more_card_seven.html",
+        link: "casestudy_read_more_card_seve.html",
         model_link: "https://geti.intel.com/case-study/monitoring-pedestrian-rail-crossings-with-computer-vision-ai"
     },
     {
@@ -2231,7 +2232,7 @@ var mv_intel_geti_case_data = [
         date: "May. 27, 2024",
         description: "London-based hospital Royal Brompton used the Intel® Geti™ software to translate their expertise into a machine learning inference algorithm that transforms their research.",
         link: "casestudy_read_more_card_ten.html",
-        model_link: "https://geti.intel.com/case-study/new-computer-vision-platform-helps-clinicians-train-ai-to-recognize-a-rare-diseas"
+        model_link: "https://geti.intel.com/case-study/new-computer-vision-platform-helps-clinicians-train-ai-to-recognize-a-rare-disease"
     },
     {
         image: "bravent-creates-agile-500x295.webp",
