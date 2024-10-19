@@ -1069,3 +1069,46 @@ document.querySelector('.m_re_fval p').addEventListener('click', function () {
 });
 
 toggleFilterContainer();
+
+document.addEventListener('DOMContentLoaded', function () {
+  const sections = document.querySelectorAll('section');
+  const navLinks = document.querySelectorAll('.k_btn a');
+  
+  function removeActiveClass() {
+      document.querySelectorAll('.k_btn').forEach(btn => {
+          btn.classList.remove('active');
+      });
+  }
+
+  function activateLink(targetId) {
+      document.querySelectorAll('.k_btn').forEach(btn => {
+          const link = btn.querySelector('a');
+          if (link.getAttribute('href') === `#${targetId}`) {
+              btn.classList.add('active');
+          }
+      });
+  }
+
+  function onScroll() {
+      let currentSection = '';
+      sections.forEach(section => {
+          const sectionTop = section.getBoundingClientRect().top;
+          const sectionBottom = section.getBoundingClientRect().bottom;
+          
+          if (sectionTop <= 100 && sectionBottom >= 100) {
+              currentSection = section.getAttribute('id');
+          }
+      });
+
+      if (currentSection) {
+          removeActiveClass();
+          activateLink(currentSection);
+      }
+  }
+
+  window.addEventListener('scroll', onScroll);
+  window.addEventListener('resize', onScroll);
+  
+  // Initial check on page load
+  onScroll();
+});
