@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Performance Debugging</title>
+
+    <!-- slider -->
+    <link rel="stylesheet" href="/css/all.min.css">
+    <link rel="stylesheet" href="/css/animate.min.css">
+    <link rel="stylesheet" href="/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="/css/owl.theme.default.min.css">
+
+    <!-- Style Css -->
+    <link rel="stylesheet" href="/css/mv_AI_Performance_Debugging_on_Intel_CPUs.css">
+
+    <!-- header footer -->
+    <link rel="stylesheet" href='/css/yatri.css'>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" rel="stylesheet">
+
+</head>
+
+<body>
+    <div id="navbar"></div>
+    <section>
+        <div class="">
+            <div class="mv_featured_bg_color">
+                <div class="mv_download_product">
+                    <div class="mv_breadcrumb row">
+                        <div class="col-md-12">
+                        </div>
+                    </div>
+                    <div class="row mv_enhance_content">
+                        <div class="col-md-12 ">
+                            <div class="mv_date_row">
+                            </div>
+
+                            <div class="mv_enhance_heading mb-4 mx-auto">
+                                <h3 class="mt-5" style="font-weight: 200;">AI Performance Debugging on Intel® CPUs</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- <div class="mv_main_product1 mx-auto">
+
+            </div> -->
+
+            <div class="row">
+                <!-- Sidebar -->
+                <!-- Main Content -->
+                <div class="mv_enhance_heading mx-auto d-flex">
+                    <div class="col-md-3 flex-column d-flex">
+                        <div>
+                            <a href="">Part I - Introduction</a>
+                            <a href="">Part II - System Configuration</a>
+                            <a href="">Part III - Benchmarking Methodology</a>
+                            <a href="">Part IV - Model Analysis</a>
+                            <a href="">Part V - AI Model Precision</a>
+                            <a href="">Part V - AI Model Precision</a>
+                            <a href="">Part VI – Support Resources</a>
+                        </div>
+                        <b>Get the Latest on All Things CODE</b>
+                        <button>Sign Up</button>
+                        <p><b>Ben Olson</b>,AI Software Engineer</p>
+                        <p><b>Bibek Bhattarai</b>,AI Software Engineer</p>
+                        <p><b>Rama Ketineni</b>, AI Software Development Manager</p>
+                        <p><b>Swanand Mhalagi</b>, AI Software Engineer</p>
+                        <p>Intel Corporation</p>
+                    </div>
+                    <div class="col-md-9">
+                        <div class="description-section">
+                            <h2 class="description-title" style="font-weight: 200;">Part I - Introduction</h2>
+                            <p class="description-text">
+                                Whether you are a data scientist, AI developer, application developer, or another role
+                                involved with AI, improving the runtime performance of your AI models is crucial to:
+                            </p>
+
+                            <ul>
+                                <li>Efficiently use the compute resources that you already have.</li>
+                                <li>Reduce the cost of acquiring new compute resources.</li>
+                                <li>Improve turnaround time for everyone working on the model.</li>
+                                <li>Increase the complexity of what you can model with a given latency goal.</li>
+                            </ul>
+
+                            <p>
+                                This guide is for anyone who wants to improve model performance on Intel® CPUs—whether
+                                you are trying to meet an aggressive baseline performance target or you just want to
+                                experiment to see if you can get more out of your system.
+                            </p>
+
+                            <h2 class="description-title" style="font-weight: 200;">Part II - System Configuration</h2>
+                            <p>
+                                The first step is to simply check configurations at the operating system level. These
+                                are good places to start because they can quickly improve overall system performance.
+                            </p>
+
+                            <h4>Intel® System Health Inspector</h4>
+                            <p>To quickly gather these system-level parameters, you can use <a href="">Intel® System
+                                    Health Inspector.</a>
+                            </p>
+                            <p>
+                                Just run this utility to examine your system profile, test for performance issues, and
+                                get recommendations for improvements. It generates both an HTML report and a JSON file
+                                showing all the settings discussed in this section. It also provides recommendations for
+                                optimal settings, so you can quickly iterate over which settings to potentially change.
+                            </p>
+
+                            <h4>CPU Frequency Governors</h4>
+                            <p>
+                                The first system configuration to pay attention to is clock frequency. This is
+                                controlled by a driver, which in turn has various governors that dictate how the
+                                per-core frequency should scale.
+                            </p>
+
+                            <p>
+                                The default driver on most Intel-powered systems is the Intel® P-State driver
+                                (<a>intel_pstate</a>). This example shows how to check your driver information:
+                            </p>
+
+                            <div class="mv_terminal">
+                                <pre><span class="">$ </span><span class="">cpupower frequency-info</span>
+                        analyzing CPU 0:
+                            driver: <span class="">intel_pstate</span>
+                            CPUs which run at the same hardware frequency: <span class="">0</span>
+                            CPUs which need to have their frequency coordinated by software: <span class="">0</span>
+                            maximum transition latency: <span class="">Cannot determine or is not supported.</span>
+                            hardware limits: <span class="">400 MHz - 4.50 GHz</span>
+                            available cpufreq governors: <span class="">performance powersave</span>
+                            current policy: frequency should be within <span class="">400 MHz</span> and <span class="">4.50 GHz</span>.
+                                           The governor "<span class="highlight">powersave</span>" may decide which speed to use
+                                           within this range.
+                            current CPU frequency: <span class="">Unable to call hardware</span>
+                            current CPU frequency: <span class="">1.31 GHz</span> (asserted by call to kernel)
+                            boost state support:
+                              Supported: <span class="highlight">yes</span>
+                              Active: <span class="highlight">yes</span></pre>
+                            </div>
+
+                            <p>
+                                The output shows that the available <a href="">cpufreq governors</a> are
+                                <mark>performance</mark> and
+                                <mark>powersave</mark>.
+                                Typically the default governor is <mark>powersave</mark> – you can check your system
+                                with the
+                                following command:
+                            </p>
+
+                            <div class="mv_terminal">
+                                <pre><span class="">$ </span><span class="">cat /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor</span>
+                                <span>powersave</span>
+                                <span>powersave</span>
+                                <span>...</span>
+                            </div>
+                            <p>
+                                If you are using powersave, you can typically improve performance from simply setting this to performance using one of the following methods:
+                            </p>
+
+                            <div class="mv_terminal">
+                                <pre><span class="">#</span><span class="">echo performance > /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor</span>
+                            </div>
+
+                            <p>Or using the cpupower tool, if available:</p>
+                            <div class="mv_terminal">
+                                <pre><span class="">#</span><span class="">cpupower frequency-set -g performance</span>
+                            </div>
+
+                            <p>Learn more about <a href="">CPU frequency scaling, governors, and drivers</a>.</p>
+                            <p><a href="">Hyper-Threading</a> allows more than one thread to run on each core. But many TensorFlow* and PyTorch* models do not benefit from Hyper-Threading. For this reason, Part III shows how to use various tools to bind workloads to a specific subset of cores on the system.</p>
+                            <p>However, if your workload contains other components besides the TensorFlow or PyTorch model, you can <a href="">test the overhead</a> of Hyper-Threading to help determine the best approach for your workload.</p>
+                            <p>First, check if you have Hyper-Threading enabled:</p>
+
+                            <div class="mv_terminal">
+                                <pre><span class="">$</span><span class="">cat /sys/devices/system/cpu/smt/control</span>
+                            </div>
+                            <p>The output shows that it is enabled. If you wish to disable it, use the following command at runtime. Note that this will reset after a reboot:</p>
+
+                            <div class="mv_terminal">
+                                <pre><span class=""></span><span class="">echo off | sudo tee /sys/devices/system/cpu/smt/control</span>
+                            </div>
+
+                            <h3>Linux* Kernel Version</h3>
+                            <p>Differences in Linux* kernel versions can affect performance results. So if you are comparing performance between multiple systems, be sure to use identical kernel versions.</p>
+                            <p>In general, there is no single kernel version that offers the best performance for all workloads. However, Linux kernel version 5.16 introduces support for Intel® Advanced Matrix Extensions (<a href="">Intel® AMX</a>). Therefore, for systems based on 4th Gen Intel® Xeon® Scalable processors (code-named Sapphire Rapids) or Intel® Xeon® CPU Max Series (code-named Sapphire Rapids HBM), be sure to use at least version 5.16.</p>
+
+                            <h3>Transparent Huge Pages (THP)</h3>
+                            <p>The <a href="">Transparent Huge Pages (THP)</a> feature causes the kernel to aggregate individual 4KB pages into larger (usually 2MB) pages.  This may or may not improve the performance of your workload, and it usually requires some experimentation.</p>
+                            <p>There are three possible values: always, madvise, and never. The default value, madvise, allows applications to use the madvise system call to request that specific page ranges should use THP.  always and never attempt to aggregate pages regardless of application hints.</p>
+                            <p>The following command checks which setting you are using:</p>
+
+                            <div class="mv_terminal">
+                                <span class="">$</span><span class="">cat /sys/kernel/mm/transparent_hugepage/enabled
+                                    <p>always [madvise] never</p>
+                                </span>
+                            </div>
+
+                            <p>Usually, the best way to change this setting is in the kernel parameters, followed by a reboot. Edit the file /etc/default/grub, adding the setting to the kernel command-line invocation:</p>
+
+                            <div class="mv_terminal">
+                                <p>GRUB_TIMEOUT=5</p>
+                                <p>GRUB_DEFAULT=saved</p>
+                                <p>GRUB_CMDLINE_LINUX="transparent_hugepage=never" # HERE</p>
+                                <p>GRUB_DISABLE_RECOVERY="true"</p>
+                            </div>
+
+                            <p>Then re-create your GRUB boot configuration with something like this (depending on your distribution):</p>
+
+                            <div class="mv_terminal">
+                                <p>grub-mkconfig -o /boot/grub/grub.cfg</p>
+                            </div>
+
+                            <h3 style="font-weight: 200;">Transparent Huge Pages (THP)</h3>
+                            <p>Many AI workloads offer plenty of opportunities to improve performance by changing environment variables or software libraries.</p>
+                            <p>A general approach for performance testing is as follows:</p>
+                            <ul>
+                                <li>Choose a model and dataset that you want to optimize.</li>
+                                <li>Choose a use case that suits your application and write a script to run it (See Part III for use cases and example scripts).</li>
+                                <li>Establish a baseline run with no system or application changes.</li>
+                                <li>Make one (1) change.</li>
+                                <li>Rerun your benchmarking script and compare the result.</li>
+                            </ul>
+
+                            <h3>General AI Performance Methodology</h3>
+                            <p>You can perform deep learning inference using two different strategies, or use-cases, each with a different metric for measuring performance.</p>
+                            <p>The first is max throughput:</p>
+                            <ul>
+                                <li>Process as many examples per second as possible, passing in batches of size > 1.</li>
+                                <li>Typically uses all physical cores within a socket.</li>
+                                <li>Parallelize as much as possible within a single instance of the model.</li>
+                            </ul>
+
+                            <p>The second is real-time inference (RTI), also referred to as low-latency:</p>
+                            <ul>
+                                <li>Process a single example as quickly as possible, with batch size = 1.</li>
+                                <li>Tries to avoid overhead from excessive threading or contention between processes.</li>
+                                <li>Confine instances to a smaller number of cores - in general, 2 or 4.</li>
+                            </ul>
+
+                            <p>AI use cases usually benefit from binding to a specific subset of physical cores with numactl according to the following guidelines:</p>
+
+                            <ul>
+                                <li>For maximum throughput, try to use all physical cores on a given socket. One instance per socket:</li>
+                                <li>
+                                    <div class="mv_terminal">
+                                        <p>numactl --localalloc --physcpubind=0-N [workload]</p>
+                                    </div>
+                                </li>
+
+                                <li>For real-time inference, usually 2-4 cores per instance works best, with multiple instances of the model to fill all available cores. For example:</li>
+                                <li>
+                                    <div class="mv_terminal">
+                                        <p>numactl --localalloc --physcpubind=0-3 [workload]</p>
+                                    </div>
+                                </li>
+                            </ul>
+
+                            <p>
+                                Many <a href="">AI and machine learning frameworks</a> use <a href="">oneAPI</a> software libraries to accelerate performance across a variety of hardware architectures. Deep learning frameworks use Intel® oneAPI Deep Neural Network Library (<a href="">oneDNN</a>) for multiarchitecture acceleration of key building blocks. The method by which you can take advantage of oneDNN may differ by framework and version.
+                            </p>
+
+                            <h3>TensorFlow</h3>
+
+                            <p>oneDNN is built into open source TensorFlow starting with version 2.5 and can be enabled with an environment variable. And starting with TensorFlow 2.9, oneDNN is enabled by default when running on all x86 Linux package and 2nd Gen Intel Xeon Scalable processors and newer CPUs. First, install TensorFlow:</p>
+                            <div class="mv_terminal">
+                                <p>pip3 install tensorflow</p>
+                            </div>
+
+                            <p>Then depending on your version of TensorFlow, you may need to set the TF_ENABLE_ONEDNN_OPTS. The following table shows how to control which backend <a href="">TensorFlow</a> uses:</p>
+
+                            <div class="table-responsive product-table ">
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th style="width: 40%; background-color: #e9e9e9" class="text-center">
+                                                TensorFlow Version</th>
+                                            <th style="width: 20%; background-color: #e9e9e9" class="text-center">
+                                                oneDNN Backend</th>
+                                            <th style="width: 20%; background-color: #e9e9e9" class="text-center">
+                                                Eigen Backend</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td> < 2.9</td>
+                                            <td>export TF_ENABLE_ONEDNN_OPTS=1</td>
+                                            <td>Enabled by default</td>
+                                        </tr>
+                                        <tr>
+                                            <td>>= 2.9</td>
+                                            <td>Enabled by default for 2nd Generation Intel® Xeon® Scalable Processors (formerly Cascade Lake) and later</td>
+                                            <td>export TF_ENABLE_ONEDNN_OPTS=0</td>
+                                         </tr>
+                                        </tbody>
+                                     </table>
+                            </div>
+
+                                        <p>Two additional environment variables can unlock additional TensorFlow performance:</p>
+
+                                        <ul>
+                                            <li>
+                                                <div class="mv_terminal">
+                                                    <p>TF_ONEDNN_ASSUME_FROZEN_WEIGHTS</p>
+                                                </div>
+                                            </li>
+                                            <p>False by default, this forces TensorFlow to use optimized formats for storing weights when performing inference. This enables caching the weights, even when a model is not frozen.</p>
+                                            <li>
+                                                <div class="mv_terminal">
+                                                    <p>TF_ONEDNN_USE_SYSTEM_ALLOCATOR</p>
+                                                </div>
+                                                <p>
+                                                    False by default, this tells TensorFlow to use the system allocator rather than the internal TensorFlow allocator. In some small models, this can improve performance.
+                                                </p>
+                                            </li>
+                                        </ul>
+                                            <p>You can check the TensorFlow <a href="">onednn_env_vars.cc</a> file for any potential updates to these performance-critical environment variables.</p>
+                                            <p>TensorFlow supports two methods of parallelization:</p>
+
+                                            <ul>
+                                                <li>Model-level: the maximum number of operators that can be executed in parallel</li>
+                                                <ul>
+                                                    <li>Environment variable: TF_NUM_INTEROP_THREADS</li>
+                                                    <li>The recommended setting for both the max throughput and the real-time inference use cases is 1</li>
+                                                </ul>
+                                                <li>Operator-level: the maximum number of threads to use for an individual operator</li>
+                                                <ul>
+                                                    <li>Environment variable: TF_NUM_INTRAOP_THREADS</li>
+                                                    <li>The recommended setting for the RTI use case is to sweep from 1-4 cores</li>
+                                                    <li>The recommended setting for the max throughput use case is the number of physical cores on a single socket of your system</li>
+                                                </ul>
+                                            </ul>
+                                            <p>For a tutorial that walks through these steps, see <a href="">Optimize TensorFlow Pre-trained Model for Inference</a>.</p>
+                                        
+                                            <h3>PyTorch</h3>
+                                            <p>Install PyTorch with the following command:</p>
+
+                                        <div class="mv_terminal">
+                                            <p>pip3 install torch torchvision torchaudio --extra-index-url https://download.pytorch.org/whl/cpu</p>
+                                        </div>
+                                        
+                                        <p>Intel® Extension for PyTorch extends PyTorch with the most up-to-date optimizations that take advantage of Intel® Advanced Vector Extensions 512 (Intel® AVX-512), Intel AVX-512 Vector Neural Network Instructions (AVX-512-VNNI), and Intel AMX instruction sets on the latest Xeon CPUs. You can install it with the following command:</p>
+                                        <div class="mv_terminal">
+                                            <p>pip3 install intel_extension_for_pytorch -f</p>
+                                            <p>https://developer.intel.com/ipex-whl-stable-cpu</p>
+                                        </div>
+
+                                        <p>Enable these optimizations by adding just a couple of lines of code in a PyTorch program:</p>
+
+                                        <div class="mv_terminal">
+                                            <p># Original model</p>
+                                            <p>model = ...</p>
+
+                                            <p># Optimize with IPEX</p>
+                                            <p>import intel_extension_for_pytorch as ipex</p>
+                                            <p>model = ipex.optimize(model)</p>
+                                        </div>
+
+                                        <p>Consult the following resources for more details on Intel Extension for PyTorch:</p>
+
+                                        <ul>
+                                            <li><a href="">Documentation</a></li>
+                                            <li><a href="">Examples</a></li>
+                                            <li><a href="">Performance tuning guide</a></li>
+                                        </ul>
+
+                                        <P>TorchScript captures the structure of PyTorch models and converts them into a static representation. It applies operator fusions and constant folding to reduce the overhead of operations and execution time. Intel Extension for PyTorch amplifies these performance advantages.</P>
+                                        <P>To use TorchScript together with Intel Extension for PyTorch:</P>
+
+                                        <div class="mv_terminal">
+                                            <span class="variable">model</span> <span class="operator">=</span> <span class="string">...</span><br>
+                                            <span class="variable">data</span> <span class="operator">=</span> <span class="string">...</span><br>
+                                            <br>
+                                            <span class="keyword">import</span> <span class="variable">intel_extension_for_pytorch</span> <span class="keyword">as</span> <span class="variable">ipex</span><br>
+                                            <span class="variable">optimized_model</span> <span class="operator">=</span> <span class="variable">ipex</span>.<span class="function">optimize</span>(<span class="variable">model</span>)<br>
+                                            <br>
+                                            <span class="keyword">with</span> <span class="variable">torch</span>.<span class="function">no_grad</span>():<br>
+                                            &nbsp;&nbsp;&nbsp;&nbsp;<span class="variable">traced_model</span> <span class="operator">=</span> <span class="variable">torch</span>.<span class="variable">jit</span>.<span class="function">trace</span>(<span class="variable">optimized_model</span>, <span class="variable">data</span>)<br>
+                                            &nbsp;&nbsp;&nbsp;&nbsp;<span class="variable">model</span> <span class="operator">=</span> <span class="variable">torch</span>.<span class="variable">jit</span>.<span class="function">freeze</span>(<span class="variable">traced_model</span>)
+                                        </div>
+
+                                        <p>oneDNN Graph is an experimental backend within TorchScript, which further fuses operators within the model. An example of using oneDNN Graph:</p>
+
+                                        <div class="mv_terminal">
+                                            <span class="code-line">model = ...</span>
+                                            <span class="code-line">data = ...</span>
+                                            <span class="code-line"></span>
+                                            <span class="code-line"><span class="function">torch.jit</span>.enable_onednn_fusion(<span class="boolean">True</span>)</span>
+                                            <span class="code-line"></span>
+                                            <span class="code-line"><span class="keyword">with</span> <span class="function">torch.no_grad()</span>:</span>
+                                            <span class="code-line">    traced_model = <span class="function">torch.jit.trace</span>(model, data)</span>
+                                            <span class="code-line">    model = <span class="function">torch.jit.freeze</span>(traced_model)</span>
+                                            <span class="code-line"></span>
+                                            <span class="code-line"><span class="comment"># use the model for inference</span></span>
+                                        </div>
+
+                                        <p>oneDNN Graph is available in the PyTorch nightly release as well as the main branch of the PyTorch source code.</p>
+
+                                        <h3 style="font-weight: 200;">Part IV - Model Analysis</h3>
+
+                                        <p>If you find a performance issue that you think resulted from changing one of the settings previously discussed, debugging the issue requires collecting traces while running the model. An example scenario typically proceeds as follows:</p>
+
+                                        <ol>
+                                            <li>You identify that oneDNN is not showing any performance gains, or showing a performance regression, compared to another backend.</li>
+                                            <li>Depending on your framework, collect traces of your model's runtime with and without oneDNN.</li>
+                                            <li>Visualize the traces, observe the top-10 operator list or statistics. oneDNN operators will begin with _Mkl.</li>
+                                            <li>Identify the issue by comparing the amount of time that the CPU spends on a particular operator.</li>
+                                        </ol>
+
+                                        <p>You can use this approach to analyze a variety of scenarios, such as the modification of batch size, environment variables, or framework API calls. This is typically an iterative process and may require assistance.</p>
+                                        <p>The following sections describe framework-specific analysis tools, and for additional support you can post that information to the <a href="">Intel® Optimized AI Frameworks forum</a>.</p>
+
+                                        <h3>TensorFlow</h3>
+
+                                        <ol>
+                                            <li>Instrument code. Use the TensorFlow Profiler to collect performance data from your model.</li>
+                                            If you are interested in the resulting graph, you can generate it by running your model with the following environment variables set:
+
+                                            <div class="mv_terminal">
+                                                <p>TF_CPP_MAX_VLOG_LEVEL=1</p>
+                                                <p>TF_DUMP_GRAPH_PREFIX=./dump_graphs</p>
+                                            </div>
+
+                                            <li>Analyze. Follow the steps in the TensorFlow Profiler tutorial to analyze performance for both inference and training.</li>
+                                            <li>Visualize. Use either TensorBoard* or Chrome* tracing to visualize the TensorFlow Profiler output.</li>
+                                        </ol>
+
+                                        <h3>PyTorch</h3>
+                                        <ol>
+                                            <li>Instrument code. Use the PyTorch profiler to collect performance data from your model.</li>
+                                            <li>Analyze the execution time as shown in the profiler guide. You can also <a>analyze memory consumption</a>.</li>
+                                            <li>Visualize profiler stack traces as <a href="">text output</a>, using <a href="">Chrome tracing</a>, or using <a href="">TensorBoard with PyTorch</a>.</li>
+                                        </ol>
+
+                                        <h3>oneDNN</h3>
+                                        <ol>
+                                            <li>Generate verbose output. Use <a href="">run-time controls</a> to generate information on primitive calls and their execution time.</li>
+                                            <li>Trace oneDNN kernel usage. Use the oneDNN <a href="">verbose log parser</a> to visualize usage of primitive types and JIT kernels.</li>
+                                            <li>Deeply analyze performance. Get started with the examples shown on the oneDNN <a href="">performance profiling guide</a>.</li>
+                                        </ol>
+
+                                        <h3 style="font-weight: 200;">Part V - AI Model Precision</h3>
+                                        <p>Usually, model parameters are stored as 32-bit floating-point values (FP32 format). For many models, using lower-precision formats such as bfloat16 or int8 can significantly improve throughput and latency while oftentimes maintaining precision.</p>
+                                        <p>Lower-precision formats reduce memory consumption and bandwidth, which is often a model’s key performance limiter. And using these formats enables advanced Instruction Set Architectures (ISAs) available on Intel CPUs. This table shows which ISAs take advantage of each datatype:</p>
+
+                                        <div class="table-responsive product-table ">
+                                            <table class="table table-bordered">
+                                                <thead>
+                                                    <tr>
+                                                        <th style="width: 40%; background-color: #e9e9e9" class="text-center">
+                                                            Supported ISA</th>
+                                                        <th style="width: 20%; background-color: #e9e9e9" class="text-center">
+                                                            FP32</th>
+                                                        <th style="width: 20%; background-color: #e9e9e9" class="text-center">
+                                                            int8</th>
+                                                        <th style="width: 20%; background-color: #e9e9e9" class="text-center">
+                                                            bfloat16</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td><a href="">Intel AVX-512</a></td>
+                                                        <td>Yes</td>
+                                                        <td>Yes</td>
+                                                        <td>Yes</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Intel AVX-512 VNNI</td>
+                                                        <td>No</td>
+                                                        <td>Yes</td>
+                                                        <td>Only on 3rd Gen and 4th Gen Intel Xeon Scalable processors</td>
+                                                     </tr>
+                                                    <tr>
+                                                        <td>Intel AMX</td>
+                                                        <td>No</td>
+                                                        <td>Yes</td>
+                                                        <td>Yes</td>
+                                                     </tr>
+                                                    </tbody>
+                                                 </table>
+                                        </div>
+
+                                        <p>You can see if your hardware supports an ISA with <a href="">this guide</a>.</p>
+
+                                        <p>The method by which you convert your model to a lower-precision datatype depends on your framework.</p>
+
+                                        <h3>PyTorch</h3>
+                                        <p>Automatic Mixed Precision (AMP) modifies a model such that some operations use the FP32 datatype while others use a lower-precision datatype, such as bfloat16. Operations such as Linear or the Convolution operations are much faster in lower-precision computation. Other operations, like Reduction, often require the dynamic range of FP32. Use the autocast Python* decorator to enable regions of the Python script to use AMP:</p>
+                                        <div class="mv_terminal">
+                                            <p>model = ...</p>
+                                            <p>data = ...</p>
+                                            <p>with torch.cpu.amp.autocast(model, dtype=bfloat16):</p>
+                                            <span>model(**data)</span>
+                                        </div>
+
+                                        <p>You can use this together with Intel Extension for PyTorch by calling ipex.optimize(model) before calling autocast.</p>
+
+
+                                        <h3>TensorFlow</h3>
+                                        <p>Similar to PyTorch, TensorFlow mixed precision supports mixing FP32, FP16, and bfloat16 datatypes. Intel contributed support for the bfloat16 format. Mixed precision is supported in graph-based and Keras* models by adding a couple lines of code. The following snippets illustrate:</p>
+                                        <b>bfloat16 with Keras models:</b>
+
+                                        <div class="mv_terminal ">
+                                            <p>from tensorflow import keras</p>
+                                            <p>from tensorflow.keras import layers</p>
+                                            <b># Enable bfloat16</b>
+                                            <p>from tensorflow.keras import mixed_precision</p>
+                                            <p>policy = mixed_precision.Policy(<a href="">'mixed_bfloat16'</a>)</p>
+                                            <p>mixed_precision.set_global_policy(policy)</p>
+                                        </div>
+
+                                        <b>bfloat16 with graph-based models:</b>
+
+                                        <div class="mv_terminal ">
+                                            <p>graph_options = tf.compat.v1.GraphOptions(</p>
+                                            <p> rewrite_options=rewriter_config_pb2.RewriterConfig(</p>
+                                            <b>auto_mixed_precision_mkl=rewriter_config_pb2.RewriterConfig.ON)</b>
+                                            <p>)</p>
+                                            <p>with tf.compat.v1.Session(config=tf.compat.v1.ConfigProto(</p>
+                                            <p>graph_options=graph_options)) as sess:</p>
+                                        </div>
+
+                                        <b>bfloat16 with saved or TensorFlow Hub models:</b>
+
+                                        <div class="mv_terminal ">
+                                            <p>hub_model = hub.load(model_handle)</p>
+                                            <p>tf.config.optimizer.set_experimental_options(</p>
+                                            <b>auto_mixed_precision_mkl=rewriter_config_pb2.RewriterConfig.ON)</b>
+                                            <p>{<a href="">'auto_mixed_precision_mkl'</a>:True}</p>
+                                            <p>results = hub_model(input)</p>
+                                        </div>
+
+                                        <p>For more detail and examples, see <a href="">Getting Started with Mixed Precision Support in oneDNN Bfloat16</a>.</p>
+                                        <h3>Model Quantization</h3>
+                                        <p>Quantization is the process of converting a model to use lower-precision datatypes while trying to meet an accuracy goal. This allows for a more compact model representation and usage of high-performance vectorized operations, as in the ISAs described above.</p>
+
+                                        <p>You can perform basic quantization using the APIs in <a href="">PyTorch</a> and <a href="">TensorFlow</a>, or for more customization, a dedicated product such as <a href="">Intel® Neural Compressor</a>. Intel Extension for PyTorch uses Intel Neural Compressor for both static and dynamic quantization. Here is an example of static quantization:</p>
+                                        <p>Intel Neural Compressor can quantize your model with a unified interface across deep-learning frameworks. Using technologies such as quantization, pruning, and knowledge distillation, the scripts provided by Intel Neural Compressor can generate highly optimized quantized models which meet your specified accuracy goals. See <a href="">Intel Neural Compressor examples repository</a> to learn how to get started with various frameworks and model types.</p>
+                                        
+                                        <h3 style="font-weight: 200;">Part VI – Support Resources</h3>
+
+                                        <p>If you have any further questions on the suggestions in this document, or if would like further support in improving AI performance on CPUs, a good place to start is the <a href="">Intel Optimized AI Frameworks</a> developer forum.</p>
+                                        <p>To learn more about Intel’s full offering of AI tools and frameworks optimized for CPU and GPU, visit <a href="">developer.intel.com/ai</a>.</p>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+                <div class="mv_enhance_heading mx-auto">
+                    <h6>Product and Performance Information </h6>
+                    <p style="font-size: 11px;">
+                        1Performance varies by use, configuration and other factors. Learn more at
+                        <a href="">www.Intel.com/PerformanceIndex.</a>
+                    </p>
+                </div>
+
+            </div>
+        </div>
+
+    </section>
+    <div id="footer"></div>
+
+    <script>
+        fetch('/y_index/y_navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar').innerHTML = data;
+            });
+        fetch('/y_index/y_footer.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('footer').innerHTML = data;
+            });
+    </script>
+</body>
+
+</html>
