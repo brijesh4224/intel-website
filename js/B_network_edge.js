@@ -9,25 +9,25 @@ const cardsData = [
         imgSrc: "/img/brijesh/image1.jpg",
         title: "Intel® Core™ Ultra Processors (PS Series)",
         description: "Incredible AI-ready CPU, built-in GPU and NPU enhancements and power efficiency in an LGA package, with the PS Series of Intel Core Ultra processors.",
-        link: "#"
+        link: "./B1_2_ultraprocessors.html"
     },
     {
         imgSrc: "/img/brijesh/image2.jpg",
         title: "Intel® Core™ Processors (PS Series)",
         description: "Get more graphics and AI performance at the edge in LGA packaging, with the PS Series of Intel Core processors.",
-        link: "#"
+        link: "./B1_3_CoreProcessors.html"
     },
     {
         imgSrc: "/img/brijesh/image3.jpg",
         title: "Intel Atom® Processors x7000RE Series",
         description: "Easily deploy ruggedized deep learning inference and compute for Industry 4.0 capabilities.",
-        link: "#"
+        link: "./B1_4_7000REProcessor.html"
     },
     {
         imgSrc: "/img/brijesh/image4.jpg",
         title: "Intel® Core™ Ultra Processors",
         description: "Accelerate performance for AI and graphics at the edge with multiple compute engines, built-in Intel® Arc™ graphics, and additional low-power E-cores in a power-efficient BGA package.",
-        link: "#"
+        link: "./B1_5_coreultra.html"
     },
     {
         imgSrc: "/img/brijesh/image5.jpg",
