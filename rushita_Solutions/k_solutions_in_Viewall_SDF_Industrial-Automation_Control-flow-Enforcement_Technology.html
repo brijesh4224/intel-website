@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Control-flow Enforcement Technology</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
@@ -97,20 +97,17 @@
             <div class="row  g-4">
                 <div class="col-md-10 col-sm-12 mx-0 text-white align-content-center k_tstartauto k_text2 px-0 mx-0">
                     <h2 class="fw-lighter   mb-2 k_marketsmall">
-                        
+                        A Technical Look at Intel’s Control-flow Enforcement Technology
                     </h2>
                     <div id="hiddenContent" >
                        
                         <div class="d-md-flex gap-5 mt-4 k_dwrap">
                             <div class="k_mdflex ">
                                 <p>ID</p>
-                                <p >660171</p>
+                                <p >660329</p>
     
                             </div>
-                            <div class="k_mdflex ">
-                                <p>Updated</p>
-                                <p style="justify-content: end;">7/16/2019</p>
-                            </div>
+                       
                             <div class="k_mdflex ">
                                 <p>Updated</p>
                                 <p style="justify-content: end;">6/13/2020</p>
@@ -152,29 +149,38 @@
                         </div>
                     </div>
                     <div class=" k_smpaddnone k_smpaddnone1 pt-5">
-                        <p class="intro-paragraph k_plink1 k_intext1blue1">To help protect platforms and data, and enable developers to build more trusted applications, <a href="#">Intel® Security Essentials</a> offers a framework of hardware-based security capabilities across Intel® processor lines. Intel Security Essentials core capabilities seed solutions leveraging hardware-rooted security in a consistent way in a variety of security usage models. The lower cost and consistent implementation continues to encourage the rapidly growing adoption of hardware-rooted security in devices, networks, and cloud platforms.</p>
-                        <div class="k_img1 col-lg-8 m-auto mt-4">
-                            <img src="../img/rushita_img/enfo1.jpg" alt="" width="100%">
+                        <p class="text-center"><strong >Intel Fellow Client Computing Group</strong></p>
+                        <p>Intel has a long history of working with the software community and making strides in strengthening protections of operating systems and software running on modern computer systems. As these protections came into effect, adversaries started looking for creative alternatives to bypass these protections. Return Oriented Programming (also known as ROP) and Jump Oriented Programming (also known as JOP) are two such techniques that has been gaining popularity. JOP or ROP attacks can be particularly hard to detect or prevent because the attacker uses existing code running from executable memory in a creative way to change program behavior. What makes it hard to detect or prevent ROP/JOP is the fact that attacker uses existing code running from executable memory. Many software-based detection and prevention techniques have been developed and deployed with limited success.</p>
+                        <p>ROP is where the attacker relies on RET (return) instruction to stitch together a malicious code flow that was not programmer-intended. Per the design, return instructions fetch the address of next instruction from stack (which was pushed on the stack by the prior CALL instruction) and executes instructions from that address. In the case of ROP-based attacks, the attacker apriori or at runtime scans for sequence of bytes in existing program code by scanning the program on disk or in memory. Figure 1 shows an example of existing instruction stream.</p>
+                        <p class="text-center mt-5"><strong >Figure 1</strong></p>
+                        <div class="my-">
+                            <img src="../img/rushita_img/figer1.jpg" alt="" width="100%">
                         </div>
-                        <p class="text-center">Figure 1. Security at the core.</p>
-                        <p>Today, implementing hardware-based security is a widely recognized best practice compared to software-only based approaches. However, the complexities of enabling systems with discrete hardware security components from multiple vendors creates design, deployment, and operational barriers that can hinder adoption. With multiple discrete hardware security components, each with different and disconnected root-of-trust capabilities, it may not be possible to fully integrate the components’ security capabilities into a cohesive security architecture. The result is often a fragmented solution with significant barriers for upgrades, post-deployment.</p>
-                        <p>The industry is moving to a software-defined model where applications and workloads span devices and servers running at the edge (Internet of Things and fog) to data center platforms running in the cloud. So, the need for consistent and reliable security implementations is greater than ever.</p>
-                        <div class="k_img1 col-lg-8 m-auto mt-4">
-                            <img src="../img/rushita_img/enfo2.png" alt="" width="100%">
-                        </div>
-                        <p class="text-center">Figure 2. Security at the core.</p>
-                        <h2 class="fw-lighter mt-5">About the Author</h2>
-                        <div class="k_img1 col-sm-12  my-4 d-flex">
-                            <div class="col-lg-4">
+                        <p>This example shows three instructions executed in a sequence (notice there are no RET instructions in this programmer-intended sequence) and corresponding bytes of program in blue boxes below. The same set of code bytes, when interpreted starting at an invalid offset, can also mean alternate set of instructions that cause the sequence to end with a RET as shown in the figure below where bytes in red boxes correspond to a different instruction sequence and in this example, each instruction is followed by C3 which corresponds to the return instruction. These instruction sequences are called “gadgets”.
 
-                                <img src="../img/rushita_img/enfo3.jpg" alt="" width="100%">
-                            </div>
-                            <div class="align-content-center">
-                                <p>Lorie Wigle is vice president of Intel Architecture, Graphics and Software, and</p>
-                            </div>
-                        </div>
-                        <p class="k_plink1 k_intext1blue1">general manager of Platform Security Product Management. Follow <a href="#">@LWigle </a>on Twitter* and keep up with her team’s developments at <a href="#">@IntelSecurity.</a></p>
+                        </p>
+                        <p class="text-center mt-5"><strong >Figure 2</strong></p>
 
+                        <div class="my-">
+                            <img src="../img/rushita_img/figer2.jpg" alt="" width="100%">
+                        </div>
+
+                        <p>By carefully placing starting addresses of these alternate instruction-sets or “gadgets” that are all terminated by the ret instruction, the attacker can execute arbitrary attack code flows that were not intended in the original program using already-executable bytes of the original program. So, with a ROP attack, the attacker can execute arbitrary code composed via gadgets using the existing program inheriting all the permissions of the program. This makes these attacks effective and hard to detect and potentially allow an attacker to escalate privileges or break out of process sandboxes. These types of malware target operating systems (OS), browsers, readers and many other applications, and it takes deep integration with hardware at the foundation to deliver more effective protection with minimal performance impact.</p>
+                        <p>Since ROP relies on RET instructions, where the address of the next instruction to execute is fetched from a stack, stack corruption plays a critical role in ROP attacks. CET enables the OS to create a Shadow Stack, which is designed to be protected from application code memory accesses, and stores CPU-stored copies of the return addresses. This helps ensure that even when an attacker is able to modify/corrupt the return addresses in the data stack for the purpose of carrying out a ROP attack, the attacker is not able to modify the Shadow Stack, and the CET state machine in the CPU detects mismatches between the address on the shadow and data stack to help prevent the attack via an exception reported to the OS.</p>
+                        <p>Similarly, other indirect branch instructions, such as Call and Jump indirect can be used to launch variant attacks - called COP (call oriented programming) or JOP (jump oriented programming). CET also adds an Indirect Branch Tracking capability to provide software the ability to restrict COP/JOP attacks.</p>
+                        <p class="k_plink1 k_intext1blue1"><br>
+                            Intel has been actively collaborating with Microsoft and other industry partners to address control-flow hijacking by using Intel’s CET technology to augment the previous software-only control-flow integrity solutions. Intel’s CET, when used properly by software, is a big step in helping to prevent exploits from hijacking the control-flow transfer instructions. For more details, reference Microsoft’s BLOG “<a href="#">Understanding Hardware-enforced Stack Protection</a>”.</p>
+                            <h2 class="fw-light mt-5 pt-4">Reference Links</h2>
+                            <p class="k_plink1 k_intext1blue1"><a href="#">Security Analysis of Processor Instruction Set Architecture for Enforcing Control-Flow Integrity (ACM Digital Library)</a><br>
+                                <a href="#">Paper PDF</a><br>
+                                <a href="#">Intel Software Development Emulating (SDE)</a><br>
+                                <a href="#">Intel Compiler</a><br>
+                                <a href="#">GCC Instrumentation Options</a><br>
+                                <strong>Linux Kernel Patches</strong></p>
+                                <ul class="k_plink1 k_intext1blue1">
+                                    <li><a href="#">Intel CET Support Still Getting Squared Away For Linux In 2020</a></li>
+                                    <li><a href="#">Control-flow Enforcement: Shadow Stack</a></li>
+                                </ul>
                        
 
                     </div>
