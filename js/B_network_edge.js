@@ -33,7 +33,7 @@ const cardsData = [
         imgSrc: "/img/brijesh/image5.jpg",
         title: "5th Gen Intel® Xeon® Scalable Processors",
         description: "Unlock new edge opportunities with built-in accelerators, better efficiency, and lower TCO.",
-        link: "#"
+        link: "./B1_6_5thgen.html"
     }
 ];
 
