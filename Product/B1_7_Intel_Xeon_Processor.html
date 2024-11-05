@@ -19,12 +19,15 @@
     <link rel="stylesheet" href="../css/owl.carousel.min.css">
     <link rel="stylesheet" href="../css/owl.theme.default.min.css">
     <style>
-
+        th:hover {
+            background-color: #808080 !important;
+            color: white;
+        }
     </style>
 </head>
 
 <body>
-    <!-- <div id="navbar"></div> -->
+    <div id="navbar"></div>
     <section style="background-color: #00285A;" class="p-5">
         <div class="row">
             <div class="col-lg-9 text-white order-2 order-lg-1">
@@ -55,54 +58,89 @@
             <li class="bg-light text-center py-3" style="width: 100px;">Overview</li>
         </ul>
     </div>
-    <div class="d-flex align-items-center py-3 b_container">
-        <h6>Filter by : </h6>
-        <div class="col-xxl-2 px-3 ">
-            <select class="form-select border-1 border-secondary b_select_mar ms-0 rounded-0" aria-label="Default select example" onchange="sortByName(value)">
-                <option selected="" value="0">All Generation</option>
-                <option value="1">Intel® Xeon® 6</option>
-                <option value="2">5th Gen Intel® Xeon® Scalable Processors</option>
-                <option value="3">Intel® Xeon® CPU Max Series</option>
-                <option value="4">4th Gen Intel® Xeon® Scalable Processors</option>
-                <option value="5">3rd Gen Intel® Xeon® Scalable Processors</option>
-                <option value="6">2nd Gen Intel® Xeon® Scalable Processors</option>
-                <option value="7">Intel® Xeon® E Processor</option>
-                <option value="8">Intel® Xeon® Scalable Processors</option>
-                <option value="9">Intel® Xeon® W Processor</option>
-                <option value="10">Intel® Xeon® Processor E3 v6 Family</option>
-                <option value="11">Intel® Xeon® Processor E5 v4 Family</option>
-                <option value="12">Intel® Xeon® Processor E3 v5 Family</option>
-                <option value="13">Intel® Xeon® Processor E3 v4 Family</option>
-                <option value="14">Intel® Xeon® D Processor</option>
-                <option value="15">Intel® Xeon® Processor E5 v3 Family</option>
-                <option value="16">Intel® Xeon® Processor E5 v2 Family</option>
-                <option value="17">Intel® Xeon® Processor E3 v3 Family</option>
-                <option value="18">Intel® Xeon® Processor E3 v2 Family</option>
-                <option value="19">Legacy Intel® Xeon® Processors</option>
-                <option value="20">Intel® Xeon® Processor E5 Family</option>
-                <option value="21">Intel® Xeon® Processor E3 Family</option>
-            </select>
+    <section class="bg-light">
+        <div class="d-md-flex align-items-center b_container py-3">
+            <h6 class="col-lg-1 col-md-2 col-12 d-none d-md-block">Filter by : </h6>
+            <h6 class="border w-25 p-2 bg-white text-center d-block d-md-none" onclick="fiterhanddler()">Filter </h6>
+            <div class="row gx-0 py-3  b_container d-none d-md-flex" id="b_filter">
+                <div class="col-xxl-2 col-lg-3 col-md-6 px-3 my-1">
+                    <select class="form-select border-1 border-secondary b_select_mar ms-0 rounded-0 b_outline"
+                        aria-label="Default select example" onchange="load_data(value,'Generation')">
+                        <option selected="" value="">All Generation</option>
+                        <option value="Intel Xeon 6">Intel® Xeon® 6</option>
+                        <option value="5th Gen Intel Xeon Scalable Processors">5th Gen Intel® Xeon® Scalable Processors</option>
+                        <option value="Intel Xeon® CPU Max Series">Intel® Xeon® CPU Max Series</option>
+                        <option value="4th Gen Intel Xeon Scalable Processors">4th Gen Intel® Xeon® Scalable Processors</option>
+                        <option value="3rd Gen Intel Xeon Scalable Processors">3rd Gen Intel® Xeon® Scalable Processors</option>
+                        <option value="2nd Gen Intel Xeon Scalable Processors">2nd Gen Intel® Xeon® Scalable Processors</option>
+                        <option value="Intel Xeon E Processor">Intel® Xeon® E Processor</option>
+                        <option value="Intel Xeon Scalable Processors">Intel® Xeon® Scalable Processors</option>
+                        <option value="Intel Xeon W Processor">Intel® Xeon® W Processor</option>
+                        <option value="Intel Xeon Processor E3 v6 Family">Intel® Xeon® Processor E3 v6 Family</option>
+                        <option value="Intel Xeon Processor E5 v4 Family">Intel® Xeon® Processor E5 v4 Family</option>
+                        <option value="Intel Xeon Processor E3 v5 Family">Intel® Xeon® Processor E3 v5 Family</option>
+                        <option value="Intel Xeon Processor E3 v4 Family">Intel® Xeon® Processor E3 v4 Family</option>
+                        <option value="Intel Xeon D Processor">Intel® Xeon® D Processor</option>
+                        <option value="Intel Xeon Processor E5 v3 Family">Intel® Xeon® Processor E5 v3 Family</option>
+                        <option value="Intel Xeon Processor E5 v2 Family">Intel® Xeon® Processor E5 v2 Family</option>
+                        <option value="Intel Xeon Processor E3 v3 Family">Intel® Xeon® Processor E3 v3 Family</option>
+                        <option value="Intel Xeon Processor E3 v2 Family">Intel® Xeon® Processor E3 v2 Family</option>
+                        <option value="Legacy Intel Xeon Processors">Legacy Intel® Xeon® Processors</option>
+                        <option value="Intel Xeon Processor E5 Family">Intel® Xeon® Processor E5 Family</option>
+                        <option value="Intel Xeon Processor E3 Family">Intel® Xeon® Processor E3 Family</option>
+                    </select>
+                </div>
+                <div class="col-xxl-2 col-lg-3 col-md-6  px-3 my-1">
+                    <select class="form-select border-1 border-secondary b_select_mar ms-0 rounded-0 b_outline"
+                        aria-label="Default select example" onchange="load_data(value,'Type')">
+                        <option selected="" value="">View All</option>
+                        <option value="Mobile">Mobile</option>
+                        <option value="Server">Server</option>
+                        <option value="RetailBox">Retail Box</option>
+                        <option value="Embedded">Embedded Option Available</option>
+                    </select>
+                </div>
+                <div class="col-xxl-2  col-lg-3 col-md-6  px-3 my-1">
+                    <select class="form-select border-1 border-secondary b_select_mar ms-0 rounded-0 b_outline"
+                        aria-label="Default select example" onchange="load_data(value,'Status')">
+                        <option selected="" value="true">Current</option>
+                        <option value="false">Discontinued</option>
+                    </select>
+                </div>
+            </div>
         </div>
-        <div class="col-xxl-2 px-3 ">
-            <select class="form-select border-1 border-secondary b_select_mar ms-0 rounded-0" aria-label="Default select example" onchange="sortByName(value)">
-                <option selected="" value="0">View All</option>
-                <option value="1">Mobile</option>
-                <option value="2">Server</option>
-                <option value="3">Retail Box</option>
-                <option value="4">Embedded Option Available</option>
-            </select>
+
+        <div class="b_container">
+            <div class="d-flex">
+                <p class="mb-0" id="b_table"></p>
+                <a href="#" class="b_special_a1 mx-3" onclick="campareall()">COMPARE ALL</a>
+            </div>
         </div>
-        <div class="col-xxl-2 px-3 ">
-            <select class="form-select border-1 border-secondary b_select_mar ms-0 rounded-0" aria-label="Default select example" onchange="sortByName(value)">
-                <option selected="" value="0">Current</option>
-                <option value="1">Discontinued</option>
-            </select>
+        <div class=" b_container py-3 overflow-auto">
+            <table class="b_table_responsive table ">
+                <thead>
+                    <tr class="b_gray text-center">
+                        <th class="py-4 border-1 border-white w-50">Product Name</th>
+                        <th class="py-4 border-1 border-white">Launch</th>
+                        <th class="py-4 border-1 border-white"># of cores</th>
+                        <th class="py-4 border-1 border-white">Max Turbo Frequency</th>
+                        <th class="py-4 border-1 border-white">Processor Base Frequency</th>
+                        <th class="py-4 border-1 border-white">Cache</th>
+                        <th class="py-4 border-1 border-white">TDP</th>
+                        <th class="py-4 border-1 border-white">Processor Graphics ‡</th>
+                    </tr>
+                </thead>
+                <tbody id="b_data">
+
+                </tbody>
+            </table>
+            <div class="b_special_btn d-flex justify-content-center">
+                <a href="#" >See all Intel® Xeon® processors for embedded applications</a>
+            </div>
         </div>
-    </div>
-    <section>
-        <div class="d-flex">
-            <p>196 product</p>
-            <a href="#" class="b_special_a1">COMPARE ALL</a>
+        <div class="b_special_btn b_compare_box d-flex justify-content-center d-none" onclick="closecompare()">
+            <a href="#">Compare Product <span class="border px-2 border-white" id="compare_product"></span></a>
+            <a href="#"><i class="fa-solid fa-xmark"></i></a>
         </div>
     </section>
     <div id="footer"></div>
@@ -120,6 +158,7 @@
                 document.getElementById('footer').innerHTML = data;
             });
     </script>
+    <script src="../js/B1_7_intel_xeon_processor.js"></script>
 </body>
 
 </html>
