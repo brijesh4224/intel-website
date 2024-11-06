@@ -1029,7 +1029,7 @@ function loaddata() {
                             </div>
                             </div>
                             <div class="text-center  d-none" id="framework" >
-                                <div class="d-md-flex flex-wrap_">
+                                <div class="d-md-flex flex-wrap">
                                     <div class=" flex-md-fill  p-1 pb-0 " >
                                     <div
                                         class="border p-2 px-3 h-100 d-flex align-items-center justify-content-center b_active_btn b_special_box b_system" id="s1" onclick="btnhanddler('s1',6)">
