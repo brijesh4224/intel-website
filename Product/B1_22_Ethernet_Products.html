@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Ethernet Products</title>
     <!-- EXTERNAL STYLE SHEET -->
     <link rel="stylesheet" href="/css/B_style.css">
     <link rel="stylesheet" href="/css/yatri.css">
@@ -17,31 +17,83 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
         integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        /* General Accordion Styles */
+        .accordion {
+            width: 300px;
+            margin: 20px auto;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .accordion-heading {
+            padding: 15px;
+            background-color: #f1f1f1;
+            cursor: pointer;
+            border-bottom: 1px solid #ccc;
+        }
+
+        .accordion-content {
+            padding: 15px;
+            display: none;
+            background-color: #fff;
+        }
+
+        /* Off-Canvas Style for Small Screens */
+        @media (max-width: 480px) {
+            .accordion {
+                width: 100%;
+            }
+
+            .accordion-content {
+                position: fixed;
+                top: 0;
+                left: -100%;
+                width: 80%;
+                height: 100%;
+                background-color: #fff;
+                transition: left 0.3s ease;
+                box-shadow: 2px 0 5px rgba(0, 0, 0, 0.3);
+                padding: 20px;
+                z-index: 1000;
+            }
+
+            .accordion-content.open {
+                left: 0;
+            }
+        }
+    </style>
 </head>
+
 <body>
     <div id="navbar"></div>
     <div class="b_inteli_bg text-white">
         <div class=b_container>
             <div class="row ">
                 <div class="col-lg-8 col-12">
-                    <h1 class="fw-lighter">Edge-to-Cloud Network Connectivity</h1>
-                    <p>Intel delivers a full portfolio of high performance, flexible networking products that meet the
-                        demands of cloud, telecom, enterprise, storage and more. Explore our products here.</p>
+                    <h1 class="fw-lighter">Ethernet Products</h1>
+                    <p>Intel provides data centers worldwide with innovative Ethernet components and solutions that are
+                        extensively tested for network interoperability, reliability, and performance. Intel Ethernet
+                        controllers, adapters and accessories deliver speeds from 1 to 100GbE – with versatile
+                        capabilities to optimize workload performance.</p>
+                    <a href="#" class="b_special_a">View the product selector guide ›</a>
                 </div>
                 <div class="col-lg-4 col-12 b_img_posi ">
-                    <img src="/img/brijesh/image52.jpg" width="368" height="207" class="b_0image" alt="">
+                    <img src="/img/brijesh/image555.png " width="368" height="207" class="b_0image" alt="">
                 </div>
             </div>
         </div>
     </div>
     <div class="b_container  py-5">
-        <div class="row b_box_line_height123 mb-1 ms-0 ps-0 b_backremove b_top_border ">
+        <div class="row b_box_line_height123 mb-1 ms-0 ps-0 b_backremove b_top_border " onclick="toggleAccordion()">
             <div class="col-md-4 pt-2 b_padding_remove  ">
                 <h4 class="b_padding ">
                     <a href="#" class="b_fontweight ">
                         Intel® Ethernet Technologies
                     </a>
                 </h4>
+                
             </div>
             <div class="col-md-8 pt-2 b_hide_sec  ">
                 <p>
@@ -97,6 +149,7 @@
                         efficient compute for cloud native applications and micro-services. The applications delivering
                         these services must have access to high-speed, low latency storage and a secure networking
                         infrastructure.
+
                     </a>
                 </p>
             </div>
@@ -147,8 +200,31 @@
                         and enterprises require their networks to work smarter. Intel® Intelligent Fabric Processors
                         (Intel® IFPs) enhance Ethernet switching with intelligence, high-performance, and real-time
                         edge-to-cloud telemetry for visibility and manageability.
+
                     </a>
                 </p>
+            </div>
+        </div>
+    </div>
+    <div class="accordion">
+        <div class="accordion-heading" onclick="toggleAccordion()">
+            <h3>Accordion Heading</h3>
+        </div>
+        <div class="accordion-content" id="accordionContent">
+            <p>This is the content of the accordion. It will show and hide on click. On smaller screens, it will appear
+                as an off-canvas menu.</p>
+        </div>
+    </div>
+    <div class="b_container">
+        <div class="row py-5">
+            <div class="col-5">
+                <img src="/img/brijesh/image556.jpg" class="w-100">
+            </div>
+            <div class="col-7">
+                <h4>Move Data Faster</h4>
+                <p>Intel Ethernet Products, with speeds from 1 to 100gbps, move data faster with innovative technologies
+                    and architecture that scale with business demands.</p>
+                <p>Learn more at <a href="B2_network_intel_ethter.html">intel.com/ethernet.</a></p>
             </div>
         </div>
     </div>
@@ -166,6 +242,32 @@
             .then(data => {
                 document.getElementById('footer').innerHTML = data;
             });
+    </script>
+    <script>
+        function toggleAccordion() {
+            const content = document.getElementById("accordionContent");
+            console.log(content.classList)
+            // For small screens, apply an "open" class to slide in the off-canvas menu
+            if (window.innerWidth <= 480) {
+                content.classList.toggle("open");
+                content.style.display = content.style.display === "block" ? "none" : "block";
+            } else {
+                // For larger screens, toggle display normally
+                content.style.display = content.style.display === "none" ? "block" : "none";
+            }
+        }
+
+        // Close off-canvas if clicked outside on small screens
+        window.onclick = function (event) {
+            const content = document.getElementById("accordionContent");
+            if (window.innerWidth <= 480 && content.classList.contains("open")) {
+                if (!event.target.closest(".accordion")) {
+                    content.classList.remove("open");
+                    content.style.display ="none";
+                }
+            }
+        };
+
     </script>
 </body>
 
