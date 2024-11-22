@@ -56,6 +56,7 @@ let data = [
 ];
 
 let tbody = document.getElementById("ds_tbody");
+
 let result = data.map((element , index)=>{
     return `<tr ${index}>
                     <td class="ds_td-title">
@@ -176,7 +177,6 @@ let Content_TypeResult = Content_TypeArr.map((element , index)=>{
                 </tr>`
 }).join(" ")
 Content_TypeBody.innerHTML += Content_TypeResult
-
 
 
 
