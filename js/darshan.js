@@ -11853,3 +11853,193 @@ const pdfmaterial45 = [
 ]
 
 createpdf('D_pdfmaterial45', pdfmaterial45)
+
+// With Amazon and Intel Solutions, the aiScout app Connects Prospective...
+
+let D_pdfmaterialamzon = document.getElementById('D_pdfmaterialamzon')
+
+const pdfmaterialamzon = [
+    {
+        id: 1,
+        title: "Amazon Web Services (AWS)",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 2,
+        title: "How Intel Wins with AWS",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 3,
+        title: "Run Threading Perspective from GUI",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 4,
+        title: "株式会社FNexs",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 5,
+        title: "Intel® Pentium® Silver and Intel® Celeron® Processor Datasheet Volume 2 of 2",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 6,
+        title: "Intel NAND Flash Memory MD128 - 7112 - MDDS",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 7,
+        title: "fsycl-targets",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 8,
+        title: "Using Intel® oneMKL BLAS and LAPACK with PETSc",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 9,
+        title: "Wideband DDC Digital Down Converter",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 10,
+        title: "fsycl-targets",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 11,
+        title: "Examples for Linking a Fortran Application",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 12,
+        title: "Examples for Linking a Fortran Application",
+        img: "pdf2.png",
+        link: "",
+    },
+
+]
+
+if (D_pdfmaterialamzon) {
+    for (let i = 0; i < pdfmaterialamzon.length; i++) {
+        D_pdfmaterialamzon.innerHTML += `<div class="col-xs-12 col-ms-6 col-sm-4 col-md-3 col-xl-2">
+                    <div class="d_box">
+                        <div class="d-flex">
+                            <div class="d_img me-1">
+                                <img src="/img/darshan_image/${pdfmaterialamzon[i].img}"  alt="">
+                            </div>
+                            <h4><a href="">${pdfmaterialamzon[i].title}</a></h4>
+                        </div>
+                    </div>
+                </div>`
+    }
+}
+
+// With Amazon and Intel Solutions, the aiScout app Connects Prospective...
+
+let D_pdfmaterialhuggigstudy = document.getElementById('D_pdfmaterialhuggigstudy')
+
+const pdfmaterialhuggigstudy = [
+    {
+        id: 1,
+        title: "AI In-Store Analytics",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 2,
+        title: "Intel and Oracle Cloud Partnership",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 3,
+        title: "5G Private Network Featured Partners and Offerings",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 4,
+        title: "Microsoft Leverages Intel to Protect $25B in Customer Payments",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 5,
+        title: "AI Reimagines Retail",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 6,
+        title: "4th Gen Intel® Xeon® Scalable Processors",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 7,
+        title: "Share Data While Helping to Protect User Privacy",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 8,
+        title: "Trust Your Zero Trust Security Strategy",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 9,
+        title: "AI Quick Service Restaurants",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 10,
+        title: "AI Self Checkout",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 11,
+        title: "AI Virtual Fitting Rooms",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 12,
+        title: "Intel and Nutanix Accelerate Infrastructure Modernization",
+        img: "pdf2.png",
+        link: "",
+    },
+
+]
+
+if (D_pdfmaterialhuggigstudy) {
+    for (let i = 0; i < pdfmaterialhuggigstudy.length; i++) {
+        D_pdfmaterialhuggigstudy.innerHTML += `<div class="col-xs-12 col-ms-6 col-sm-4 col-md-3 col-xl-2">
+                    <div class="d_box">
+                        <div class="d-flex">
+                            <div class="d_img me-1">
+                                <img src="/img/darshan_image/${pdfmaterialhuggigstudy[i].img}"  alt="">
+                            </div>
+                            <h4><a href="">${pdfmaterialhuggigstudy[i].title}</a></h4>
+                        </div>
+                    </div>
+                </div>`
+    }
+}
