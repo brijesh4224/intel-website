@@ -12253,6 +12253,721 @@ const pdfmaterial48 = [
 
 createpdf('D_pdfmaterial48', pdfmaterial48)
 
+// d_asus-ecosystem-partner-video
+
+const pdfmaterial49 = [
+    {
+        id: 1,
+        title: "Cathexis",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 2,
+        title: "a2 Technology",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 3,
+        title: "Uzel Information US-M5520*",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 4,
+        title: "byteLAKE",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 5,
+        title: "Kibernetika Inc.",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 6,
+        title: "Vulcan AI",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 7,
+        title: "Apuqi Intelligent Manufacturing",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 8,
+        title: "Mech-Mind Robotics Technologies Ltd.",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 9,
+        title: "ASTERIA Corporation",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 10,
+        title: "XZSTEAM",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 11,
+        title: "Asseco Data Systems S.A.",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 12,
+        title: "AAEON PICO-TGU4-SEMI",
+        img: "pdf2.png",
+        link: "",
+    },
+]
+
+createpdf('D_pdfmaterial49', pdfmaterial49);
+
+// d_portwell-ecosystem-partner-video
+
+const pdfmaterial50 = [
+    {
+        id: 1,
+        title: "UVic: New Cloud Computing and ML Resources",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 2,
+        title: "Apuqi Intelligent Manufacturing",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 3,
+        title: "SandStar Computer Vision",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 4,
+        title: "DFI Digital Embedded World",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 5,
+        title: "WEIBU Information Inc.",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 6,
+        title: "ThunderSoft Software Technology Co Ltd",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 7,
+        title: "Baüne Ecosystems Inc.",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 8,
+        title: "Jian 24 Smart Retail",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 9,
+        title: "12th Gen Intel Core Processor for IoT Announced",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 10,
+        title: "Beijing Winsense Technology Co Ltd",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 11,
+        title: "XINJE Automation",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 12,
+        title: "Lecoo AI Technologies",
+        img: "pdf2.png",
+        link: "",
+    },
+]
+
+createpdf('D_pdfmaterial50', pdfmaterial50);
+
+// d_windriver-ecosystem-partner-video
+
+const pdfmaterial51 = [
+    {
+        id: 1,
+        title: "4tiitoo NUIA Eye Control Partner Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 2,
+        title: "Cathexis",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 3,
+        title: "a2 Technology",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 4,
+        title: "Uzel Information US-M5520*",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 5,
+        title: "AAEON PICO-TGU4-SEMI",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 6,
+        title: "byteLAKE",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 7,
+        title: "Kibernetika Inc.",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 8,
+        title: "Vulcan AI",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 9,
+        title: "ASTERIA Corporation",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 10,
+        title: "XZSTEAM",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 11,
+        title: "Zeblok Computational Ai-MicroCloud Solution Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 12,
+        title: "Asseco Data Systems S.A.",
+        img: "pdf2.png",
+        link: "",
+    },
+]
+
+createpdf('D_pdfmaterial51', pdfmaterial51);
+
+// d_12th-gen-iot-mobile-desktop-processors-infographic
+
+const pdfvideo52 = [
+    {
+        id: 1,
+        title: "Hellometer with 13th Gen Intel Core Mobile Processor Demo Video",
+        time: "3:48",
+        text: "Video demonstrating how 13th Gen Intel Core mobile processors enables Hellometer to deliver more intelligence and performance for restaurants. ",
+        img: "video15.png",
+        link: "",
+    },
+    {
+        id: 2,
+        title: "4th Gen Intel Xeon Scalable processors Siemens Healthineers video",
+        time: "4:31",
+        text: "4th Gen Intel Xeon Scalable processor AI acceleration, helps Siemens Healthineers to improve performance and sustainability.  ",
+        img: "video15.png",
+        link: "",
+    },
+    {
+        id: 3,
+        title: "Intel Atom® Processors x7000E Series Overview Video",
+        time: "2:53",
+        text: "Intel Atom® processors x7000E series and Intel® Core™ i3 processors break new ground for x86 processors in the 6W to 15W base processor power range.  ",
+        img: "video15.png",
+        link: "",
+    },
+    {
+        id: 4,
+        title: "13th Gen Intel® Core™ Processors for IoT Edge Overview Video",
+        time: "2:41",
+        text: "Accelerate time to value for IoT with more options, performance and features for AI, analytics, computer vision, and industrial solutions at the edge. ",
+        img: "video15.png",
+        link: "",
+    },
+    {
+        id: 5,
+        title: "13th Gen Intel Core Mobile Processors with BiriminD Demo Video",
+        time: "3:41",
+        text: "Learn how 13th Gen Intel Core processors improve BirminD manufacturing efficiency and performance for industrial wastewater treatment.   ",
+        img: "video15.png",
+        link: "",
+    },
+    {
+        id: 6,
+        title: "4th Gen Intel® Xeon® Scalable Processors for IoT Edge Video",
+        time: "3:34",
+        text: "4th Gen Intel® Xeon® Scalable processors deliver increased performance to accelerate IoT and edge deployments and drive faster time to results. ",
+        img: "video15.png",
+        link: "",
+    },
+]
+
+createVideoGallery('D_pdfvideo52', pdfvideo52);
+
+
+const pdfmaterial52 = [
+    {
+        id: 1,
+        title: "12th Gen Intel® Core™ Desktop Processors for Edge Performance",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 2,
+        title: "12th Gen Intel® Core™ Mobile Processors for Edge AI and Media",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 3,
+        title: "12th Gen Intel® Core™ Processor for IoT Edge – Infographic",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 4,
+        title: "Intel Atom® x7000E Series, Intel® Core™ i3 Processors Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 5,
+        title: "Enhanced Speed and Capability with 13th Gen Intel® Core™ Processors",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 6,
+        title: "13th Gen Intel® Core™ Mobile CPUs for AMRs and Optical Inspection",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 7,
+        title: "Kontron COMs with 13th Gen Intel® Core™ Mobile Processors",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 8,
+        title: "UP Squared Pro 7000 Board with Intel® Processors Brief ‒ Intel",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 9,
+        title: "12th Gen Intel® Core™ Processors for IoT Edge Product Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 10,
+        title: "Baüne Ecosystems Inc.",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 11,
+        title: "Guangdong Rosmart Technology Co., Ltd.",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 12,
+        title: "12th Gen Intel Core Processor for IoT Announced",
+        img: "pdf2.png",
+        link: "",
+    },
+]
+
+createpdf('D_pdfmaterial52', pdfmaterial52)
+
+// d_12th-gen-iot-mobile-desktop-processors-infographic
+
+const pdfvideo53 = [
+    {
+        id: 1,
+        title: "Hellometer with 13th Gen Intel Core Mobile Processor Demo Video",
+        time: "3:48",
+        text: "Video demonstrating how 13th Gen Intel Core mobile processors enables Hellometer to deliver more intelligence and performance for restaurants. ",
+        img: "video15.png",
+        link: "",
+    },
+    {
+        id: 2,
+        title: "4th Gen Intel Xeon Scalable processors Siemens Healthineers video",
+        time: "4:31",
+        text: "4th Gen Intel Xeon Scalable processor AI acceleration, helps Siemens Healthineers to improve performance and sustainability.  ",
+        img: "video15.png",
+        link: "",
+    },
+    {
+        id: 3,
+        title: "Intel Atom® Processors x7000E Series Overview Video",
+        time: "2:53",
+        text: "Intel Atom® processors x7000E series and Intel® Core™ i3 processors break new ground for x86 processors in the 6W to 15W base processor power range.  ",
+        img: "video15.png",
+        link: "",
+    },
+    {
+        id: 4,
+        title: "13th Gen Intel® Core™ Processors for IoT Edge Overview Video",
+        time: "2:41",
+        text: "Accelerate time to value for IoT with more options, performance and features for AI, analytics, computer vision, and industrial solutions at the edge. ",
+        img: "video15.png",
+        link: "",
+    },
+    {
+        id: 5,
+        title: "13th Gen Intel Core Mobile Processors with BiriminD Demo Video",
+        time: "3:41",
+        text: "Learn how 13th Gen Intel Core processors improve BirminD manufacturing efficiency and performance for industrial wastewater treatment.   ",
+        img: "video15.png",
+        link: "",
+    },
+    {
+        id: 6,
+        title: "4th Gen Intel® Xeon® Scalable Processors for IoT Edge Video",
+        time: "3:34",
+        text: "4th Gen Intel® Xeon® Scalable processors deliver increased performance to accelerate IoT and edge deployments and drive faster time to results. ",
+        img: "video15.png",
+        link: "",
+    },
+]
+
+createVideoGallery('D_pdfvideo53', pdfvideo53);
+
+
+const pdfmaterial53 = [
+    {
+        id: 1,
+        title: "12th Gen Intel® Core™ Desktop Processors for Edge Performance",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 2,
+        title: "12th Gen Intel® Core™ Mobile Processors for Edge AI and Media",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 3,
+        title: "12th Gen Intel® Core™ Processor for IoT Edge – Infographic",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 4,
+        title: "Enhanced Speed and Capability with 13th Gen Intel® Core™ Processors",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 5,
+        title: "UP Squared Pro 7000 Board with Intel® Processors Brief ‒ Intel",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 6,
+        title: "12th Gen Intel® Core™ Processors for IoT Edge Product Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 7,
+        title: "Intel Atom® x7000E Series, Intel® Core™ i3 Processors Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 8,
+        title: "Baüne Ecosystems Inc.",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 9,
+        title: "Guangdong Rosmart Technology Co., Ltd.",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 10,
+        title: "12th Gen Intel Core Processor for IoT Announced",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 11,
+        title: "Jian 24 Smart Retail",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 12,
+        title: "10th Gen Intel® Core™ Desktop Processors",
+        img: "pdf2.png",
+        link: "",
+    },
+]
+
+createpdf('D_pdfmaterial53', pdfmaterial53)
+
+// d_iot-applications-infographic
+
+const pdfvideo54 = [
+    {
+        id: 1,
+        title: "Intel® Xeon® D Processors Overview Video",
+        time: "",
+        text: "Put Intel® Xeon® platform performance to work in rugged edge and IoT applications with Intel® Xeon® D-1700 and D-2700 processors. ",
+        img: "video15.png",
+        link: "",
+    },
+    {
+        id: 2,
+        title: "IoT Video Analytics with Intel® Xeon® D Processor Demo",
+        time: "",
+        text: "Intel® Xeon® D processors are ideal for live video analytics at the edge, efficiently scaling from a few video streams to many. ",
+        img: "video15.png",
+        link: "",
+    },
+    {
+        id: 3,
+        title: "Computer Vision in Retail",
+        time: "3:56",
+        text: "Computer Vision in Retail ",
+        img: "video15.png",
+        link: "",
+    },
+    {
+        id: 4,
+        title: "Computer Vision in Healthcare",
+        time: "5:34",
+        text: "Computer Vision in Healthcare ",
+        img: "video15.png",
+        link: "",
+    },
+    {
+        id: 5,
+        title: "Computer Vision in Gaming",
+        time: "3:34",
+        text: "Computer Vision in Gaming ",
+        img: "video15.png",
+        link: "",
+    },
+    {
+        id: 6,
+        title: "Computer Vision in Sales and Marketing Support",
+        time: "4:60",
+        text: "4th Gen Intel® Xeon® Scalable processors deliver increased performance to accelerate IoT and edge deployments and drive faster time to results. ",
+        img: "video15.png",
+        link: "",
+    },
+]
+
+createVideoGallery('D_pdfvideo54', pdfvideo54);
+
+
+const pdfmaterial54 = [
+    {
+        id: 1,
+        title: "Intel® Xeon® D-1700 and D-2700 Processors in BGA Packages",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 2,
+        title: "Intel® Xeon® D-2700 and D-1700 Product Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 3,
+        title: "Intel® Xeon® D Processor Is Built for the Edge",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 4,
+        title: "Intel® Xeon® D Processor Is Built for the Edge",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 5,
+        title: "SECO JULIET COM Express® with the Intel® Xeon® D-1700 Processor",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 6,
+        title: "Intel® Xeon® D Supplies the High-Performance You Need at the Edge",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 7,
+        title: "High-Efficiency Compute for Mid-Range vRAN Deployments",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 8,
+        title: "Intel® Xeon® D Processors Power Congatec COM-HPC Edge Servers",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 9,
+        title: "High Performance and Density with Low Power at the Enterprise Edge",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 10,
+        title: "Ice Lake D Storage Solution Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 11,
+        title: "Avnet Embedded MSC HSD-ILDL with Intel® Xeon® D-1700 Processor",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 12,
+        title: "Intel® Xeon® D Processor Powers Kontron COM-HPC for the Edge",
+        img: "pdf2.png",
+        link: "",
+    },
+]
+
+createpdf('D_pdfmaterial54', pdfmaterial54)
+
+// d_iot-overview-video
+
+const pdfmaterial55 = [
+    {
+        id: 1,
+        title: "Intel® Xeon® D-1700 and D-2700 Processors Infographic",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 2,
+        title: "Intel® oneAPI Collective Communications Library",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 3,
+        title: "Edge AI – Intel",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 4,
+        title: "Intel® Xeon® D-2700 and D-1700 Product Brief",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 5,
+        title: "Intel® Xeon® D-1700 and D-2700 Processors in BGA Packages",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 6,
+        title: "Intel® Xeon® D Processor Is Built for the Edge",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 7,
+        title: "Intel® Xeon® D Processor Is Built for the Edge",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 8,
+        title: "SECO JULIET COM Express® with the Intel® Xeon® D-1700 Processor",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 9,
+        title: "Intel® Xeon® D Supplies the High-Performance You Need at the Edge",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 10,
+        title: "High-Efficiency Compute for Mid-Range vRAN Deployments",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 11,
+        title: "Intel® Xeon® D Processors Power Congatec COM-HPC Edge Servers",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 12,
+        title: "High Performance and Density with Low Power at the Enterprise Edge",
+        img: "pdf2.png",
+        link: "",
+    },
+]
+
+createpdf('D_pdfmaterial55', pdfmaterial55)
+
 
 // With Amazon and Intel Solutions, the aiScout app Connects Prospective...
 
