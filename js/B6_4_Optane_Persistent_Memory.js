@@ -4,19 +4,6 @@ var data = [
     { product: 'Intel® Optane™ SSD DC D4800X Series (1.5TB, 2.5in PCIe 2x2, 3D XPoint™)', capacity: '1.5 TB', form_factor: 'U.2 15mm', interface: 'PCIe 3.0 2x2 dual port, NVMe', status: true },
     { product: 'Intel® Optane™ SSD DC D4800X Series (1.5TB, 2.5in PCIe 2x2, 3D XPoint™)', capacity: '1.5 TB', form_factor: 'U.2 15mm', interface: 'PCIe 3.0 2x2 dual port, NVMe', status: true },
     { product: 'Intel® Optane™ SSD DC D4800X Series (1.5TB, 2.5in PCIe 2x2, 3D XPoint™)', capacity: '1.5 TB', form_factor: 'U.2 15mm', interface: 'PCIe 3.0 2x2 dual port, NVMe', status: true },
-    { product: 'Intel® Optane™ SSD DC D4800X Series (1.5TB, 2.5in PCIe 2x2, 3D XPoint™)', capacity: '1.5 TB', form_factor: 'U.2 15mm', interface: 'PCIe 3.0 2x2 dual port, NVMe', status: true },
-    { product: 'Intel® Optane™ SSD DC D4800X Series (1.5TB, 2.5in PCIe 2x2, 3D XPoint™)', capacity: '1.5 TB', form_factor: 'U.2 15mm', interface: 'PCIe 3.0 2x2 dual port, NVMe', status: true },
-    { product: 'Intel® Optane™ SSD DC D4800X Series (1.5TB, 2.5in PCIe 2x2, 3D XPoint™)', capacity: '1.5 TB', form_factor: 'U.2 15mm', interface: 'PCIe 3.0 2x2 dual port, NVMe', status: true },
-    { product: 'Intel® Optane™ SSD DC D4800X Series (1.5TB, 2.5in PCIe 2x2, 3D XPoint™)', capacity: '1.5 TB', form_factor: 'U.2 15mm', interface: 'PCIe 3.0 2x2 dual port, NVMe', status: true },
-    { product: 'Intel® Optane™ SSD DC D4800X Series (1.5TB, 2.5in PCIe 2x2, 3D XPoint™)', capacity: '1.5 TB', form_factor: 'U.2 15mm', interface: 'PCIe 3.0 2x2 dual port, NVMe', status: true },
-    { product: 'Intel® Optane™ SSD DC D4800X Series (1.5TB, 2.5in PCIe 2x2, 3D XPoint™)', capacity: '1.5 TB', form_factor: 'U.2 15mm', interface: 'PCIe 3.0 2x2 dual port, NVMe', status: true },
-    { product: 'Intel® Optane™ SSD DC D4800X Series (1.5TB, 2.5in PCIe 2x2, 3D XPoint™)', capacity: '1.5 TB', form_factor: 'U.2 15mm', interface: 'PCIe 3.0 2x2 dual port, NVMe', status: true },
-    { product: 'Intel® Optane™ SSD DC D4800X Series (1.5TB, 2.5in PCIe 2x2, 3D XPoint™)', capacity: '1.5 TB', form_factor: 'U.2 15mm', interface: 'PCIe 3.0 2x2 dual port, NVMe', status: true },
-    { product: 'Intel® Optane™ SSD DC D4800X Series (1.5TB, 2.5in PCIe 2x2, 3D XPoint™)', capacity: '1.5 TB', form_factor: 'U.2 15mm', interface: 'PCIe 3.0 2x2 dual port, NVMe', status: true },
-    { product: 'Intel® Optane™ SSD DC D4800X Series (1.5TB, 2.5in PCIe 2x2, 3D XPoint™)', capacity: '1.5 TB', form_factor: 'U.2 15mm', interface: 'PCIe 3.0 2x2 dual port, NVMe', status: true },
-    { product: 'Intel® Optane™ SSD DC D4800X Series (1.5TB, 2.5in PCIe 2x2, 3D XPoint™)', capacity: '1.5 TB', form_factor: 'U.2 15mm', interface: 'PCIe 3.0 2x2 dual port, NVMe', status: true },
-    { product: 'Intel® Optane™ SSD DC D4800X Series (1.5TB, 2.5in PCIe 2x2, 3D XPoint™)', capacity: '1.5 TB', form_factor: 'U.2 15mm', interface: 'PCIe 3.0 2x2 dual port, NVMe', status: true },
-
 ]
 var gen = ['4th Generation Intel® Core™ i7 Processors', '4th Generation Intel® Core™ i5 Processors', '4th Generation Intel® Core™ i3 Processors', 'Legacy Intel® Core™ Processors', '5th Generation Intel® Core™ i7 Processors', '5th Generation Intel® Core™ i5 Processors', '5th Generation Intel® Core™ i3 Processors', '6th Generation Intel® Core™ i7 Processors', '6th Generation Intel® Core™ i5 Processors', '6th Generation Intel® Core™ i3 Processors'];
 var available = ['Windows 11* (23H2)', 'Windows 11* (24H2)', 'Windows 11* (22H2)', 'Windows 10* (22H2)'];
