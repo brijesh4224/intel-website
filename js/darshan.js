@@ -11854,6 +11854,406 @@ const pdfmaterial45 = [
 
 createpdf('D_pdfmaterial45', pdfmaterial45)
 
+// d_break-through-to-new-levels-of-insight-in-cloud
+
+const pdfvideo36 = [
+    {
+        id: 1,
+        title: "Fireside Chat with Telefonica",
+        time: "8:15",
+        text: "Intel and Telefonica discuss collaborations in driving sustainability and performance in 5G networks. ",
+        img: "video15.png",
+        link: "",
+    },
+    {
+        id: 2,
+        title: "Intel and Tile* Bluetooth® Technology Help Find Your Lost Things",
+        time: "",
+        text: "Find your lost things, including your next Intel®-based laptop, with the Tile* app or one of the Tile* Bluetooth® technology-enabled devices. ",
+        img: "video15.png",
+        link: "",
+    },
+    {
+        id: 3,
+        title: "Chips and Salsa Episode 29: STORM with Thais Moreira",
+        time: "14:05",
+        text: "Intel STORM Team: Thais Moreira. ",
+        img: "video15.png",
+        link: "",
+    },
+    {
+        id: 4,
+        title: "Intel's Next Generation FPGAs 224 Gbps-PAM4-LR Transceiver Video",
+        time: "13:44",
+        text: "The 224 Gbps-PAM4-LR transceiver meets high-speed transceiver requirements in cloud, network, data center, AI, and more. ",
+        img: "video15.png",
+        link: "",
+    },
+    {
+        id: 5,
+        title: "Chips and Salsa Episode 36: HW Sec Test of Time Award",
+        time: "25:18",
+        text: "Professor Srinivas Devadas and Professor Ed Suh discuss the paper they wrote over 20 years ago that won the Intel Test of Time Award in 2022. ",
+        img: "video15.png",
+        link: "",
+    },
+    {
+        id: 6,
+        title: "Chips and Salsa Episode 35: Intel Hardware Security Academic Award",
+        time: "26:55",
+        text: "CRob and Jerry interview the winners of Intel's 2022 Hardware Security Academic Award. ",
+        img: "video15.png",
+        link: "",
+    },
+]
+
+createVideoGallery('D_pdfvideo36', pdfvideo36);
+
+
+const pdfmaterial46 = [
+    {
+        id: 1,
+        title: "Resilient Enterprise with Intel and SAP Solutions",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 2,
+        title: "Deliver Business Agility Through Well-Architected Solutions",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 3,
+        title: "T-Systems NA Helps Customers on the Road to Cloud",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 4,
+        title: "Intel IT Uses Scale Up Memory for SAP HANA* Performance",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 5,
+        title: "Modernizing the Power Grid with Software Defined Infrastructure",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 6,
+        title: "Accelerate with Xeon",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 7,
+        title: "Accelerate AI and Security Workloads",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 8,
+        title: "Accelerate Network and Edge Transformation with E-cores",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 9,
+        title: "Level Up Network and Edge Scalability with E-cores",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 10,
+        title: "Share Data While Helping to Protect User Privacy",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 11,
+        title: "Intel® Platform Firmware Resilience Overview",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 12,
+        title: "4th Gen Intel® Xeon® Scalable Processors with Intel® vRAN Boost",
+        img: "pdf2.png",
+        link: "",
+    },
+]
+
+createpdf('D_pdfmaterial46', pdfmaterial46)
+
+// d_resilient-intelligent-industry-leading-solutions
+
+const pdfvideo37 = [
+    {
+        id: 1,
+        title: "Fireside Chat with Telefonica",
+        time: "8:15",
+        text: "Intel and Telefonica discuss collaborations in driving sustainability and performance in 5G networks. ",
+        img: "video15.png",
+        link: "",
+    },
+    {
+        id: 2,
+        title: "Better Application and Cloud Performance with Vcinity (Demo)",
+        time: "7:28",
+        text: "See how to improve app and cloud performance with better data infrastructure via access to data from anywhere, in real time, with Vcinity and Intel. ",
+        img: "video15.png",
+        link: "",
+    },
+    {
+        id: 3,
+        title: "Congatec COM-HPC Ecosystem Partner Video",
+        time: "17:48",
+        text: "COM-HPC Modules Leverage Intel® Xeon® D Processor for Server-Level Performance at the Edge ",
+        img: "video15.png",
+        link: "",
+    },
+    {
+        id: 4,
+        title: "Intel® 5G Solution 5000 Consumer",
+        time: "",
+        text: "Introducing the 5G Solution 5000, delivering game-changing wireless performance to PCs.",
+        img: "video15.png",
+        link: "",
+    },
+    {
+        id: 5,
+        title: "Ethernet Port Configuration Tool",
+        time: "3:13",
+        text: "This video provides an overview of the Ethernet Port Configuration Tool, which helps IT Managers bring versatility and flexibility into the data center, and at the same time reduces complexity. ",
+        img: "video15.png",
+        link: "",
+    },
+    {
+        id: 6,
+        title: "Chips and Salsa Episode 29: STORM with Thais Moreira",
+        time: "14:05",
+        text: "Intel STORM Team: Thais Moreira.",
+        img: "video15.png",
+        link: "",
+    },
+]
+
+createVideoGallery('D_pdfvideo37', pdfvideo37);
+
+
+const pdfmaterial47 = [
+    {
+        id: 1,
+        title: "Intel and SAP: Break Through to New Levels of Insight in the Cloud",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 2,
+        title: "Deliver Business Agility Through Well-Architected Solutions",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 3,
+        title: "T-Systems NA Helps Customers on the Road to Cloud",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 4,
+        title: "Intel IT Uses Scale Up Memory for SAP HANA* Performance",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 5,
+        title: "Accelerate AI and Security Workloads",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 6,
+        title: "Modernizing the Power Grid with Software Defined Infrastructure",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 7,
+        title: "Accelerate with Xeon",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 8,
+        title: "Accelerate Network and Edge Transformation with E-cores",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 9,
+        title: "Level Up Network and Edge Scalability with E-cores",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 10,
+        title: "Share Data While Helping to Protect User Privacy",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 11,
+        title: "Intel® Platform Firmware Resilience Overview",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 12,
+        title: "4th Gen Intel® Xeon® Scalable Processors with Intel® vRAN Boost",
+        img: "pdf2.png",
+        link: "",
+    },
+]
+
+createpdf('D_pdfmaterial47', pdfmaterial47)
+
+// d_critical-infrastructure-intelligence-packages
+
+const pdfvideo38 = [
+    {
+        id: 1,
+        title: "Intel® AI: In Production: CrowdOptic Demo Video",
+        time: "6:57",
+        text: "This system uses AI and triangulation algorithms at the network edge to analyze and redirect cameras. ",
+        img: "video15.png",
+        link: "",
+    },
+    {
+        id: 2,
+        title: "WaitTime Scaling at the Edge Video",
+        time: "18:16",
+        text: "WaitTime is a patented, real-time and historical artificial intelligence software that uses state-of-the-art imaging techniques to monitor crowd behavior in large scale venues. ",
+        img: "video15.png",
+        link: "",
+    },
+    {
+        id: 3,
+        title: "Intel® AI: In Production: Outdu MediaTech Pvt. Ltd. Demo Video",
+        time: "4:54",
+        text: "This AI solution uses analytics at the edge to customize and transform the retail customer journey while helping drive business success. ",
+        img: "video15.png",
+        link: "",
+    },
+    {
+        id: 4,
+        title: "Intel® AI: In Production: Gorilla Technology Demo Video",
+        time: "5:46",
+        text: "See how this platform performs facial recognition, site detection, license plate recognition, and loitering detection analytics on multiple channels. ",
+        img: "video15.png",
+        link: "",
+    },
+    {
+        id: 5,
+        title: "Intel® AI: In Production: Cortexica Vision Systems Ltd. Demo Video",
+        time: "1:01",
+        text: "This solution improves compliance, reporting, and operational efficiencies while helping reduce liability and operational down times.",
+        img: "video15.png",
+        link: "",
+    },
+    {
+        id: 6,
+        title: "Intel® AI: In Production: Matroid Inc. Demo Video",
+        time: "3:25",
+        text: "With this solution, users create computer vision detectors to recognize people, events, and objects.",
+        img: "video15.png",
+        link: "",
+    },
+]
+
+createVideoGallery('D_pdfvideo38', pdfvideo38);
+
+
+const pdfmaterial48 = [
+    {
+        id: 1,
+        title: "Intel and SAP Partnership",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 2,
+        title: "Speed Decision-Making with High-Performance SAP Hana Instances",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 3,
+        title: "Total Economic Impact of SUSE for SAP and Intel Environments",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 4,
+        title: "Increase Compliance, Financial Results for Faster Time to Insights",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 5,
+        title: "Forrester Total Economic Impact Infographic for SUSE, SAP, & Intel",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 6,
+        title: "Share Data While Helping to Protect User Privacy",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 7,
+        title: "Intel & SAP: Protect Confidential Customs Data",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 8,
+        title: "Jide Ramps Up Manufacturing While Maintaining Quality",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 9,
+        title: "Developer Resources from Intel and IBM*",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 10,
+        title: "Maximize TensorFlow* Performance on CPU: Considerations and...",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 11,
+        title: "Intel Accelerates PadChest and fMRI Models on Azure ML",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 12,
+        title: "3 Approaches to Optimizing Machine Learning Applications",
+        img: "pdf2.png",
+        link: "",
+    },
+]
+
+createpdf('D_pdfmaterial48', pdfmaterial48)
+
+
 // With Amazon and Intel Solutions, the aiScout app Connects Prospective...
 
 let D_pdfmaterialamzon = document.getElementById('D_pdfmaterialamzon')
