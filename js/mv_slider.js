@@ -9,7 +9,101 @@ window.onload = function () {
     mv_table_4gen();
     mv_table_3gen();
     mv_table_2gen();
-    mv_table_1gen();
+    mv_table_1gen();    
+
+    // Intel® Data Center GPU Flex Series -> Find Systems with Intel® GPUs -> Related Materials
+    let D_pdfmaterial0 = document.getElementById('D_pdfmaterial0')
+
+    const pdfmaterial0 = [
+        {
+            id: 1,
+            title: "Elevate Performance with Intel® Accelerator Engines",
+            img: "guide.png",
+            link: "",
+        },
+        {
+            id: 2,
+            title: "High-Performance Computing with Intel HPC Engines",
+            img: "brief.png",
+            link: "",
+        },
+        {
+            id: 3,
+            title: "Built-In Accelerators Encrypt, Compress and Move Data",
+            img: "brief.png",
+            link: "",
+        },
+        {
+            id: 4,
+            title: "Improved Machine Learning with Intel AMX",
+            img: "brief.png",
+            link: "",
+        },
+        {
+            id: 5,
+            title: "Accelerate AI Workloads - Intel® AMX Solution Brief",
+            img: "brief.png",
+            link: "",
+        },
+        {
+            id: 6,
+            title: "Faster, More Flexible Networks with Built-in Accelerators",
+            img: "brief.png",
+            link: "",
+        },
+        {
+            id: 7,
+            title: "Maximizing Growth, Return on Investment, and Data Security with AI",
+            img: "brief.png",
+            link: "",
+        },
+        {
+            id: 8,
+            title: "System Offerings",
+            img: "related-materials.png",
+            link: "",
+        },
+        {
+            id: 9,
+            title: "Offerings by Category",
+            img: "related-materials.png",
+            link: "",
+        },
+        {
+            id: 10,
+            title: "Drive Business Value with Analytics Acceleration",
+            img: "brief.png",
+            link: "",
+        },
+        {
+            id: 11,
+            title: "Independent Hardware Vendors Acceleration Program",
+            img: "article.png",
+            link: "",
+        },
+        {
+            id: 12,
+            title: "Bringing AI Everywhere",
+            img: "related-materials.png",
+            link: "",
+        },
+
+    ]
+
+    if (D_pdfmaterial0) {
+        for (let i = 0; i < pdfmaterial0.length; i++) {
+            D_pdfmaterial0.innerHTML += `<div class="col-xs-12 col-ms-6 col-sm-4 col-md-3 col-xl-2">
+                        <div class="d_box">
+                            <div class="d-flex">
+                                <div class="d_img me-1">
+                                    <img src="/img/mv_image/${pdfmaterial0[i].img}"  alt="">
+                                </div>
+                                <h4><a href="">${pdfmaterial0[i].title}</a></h4>
+                            </div>
+                        </div>
+                    </div>`
+        }
+    }
 
     // (AI Accelerator) Read the AI Accelerated product brief
 
@@ -839,7 +933,7 @@ window.onload = function () {
                             <div class="d_img mv_img_icon">
                                 <a href=""><img src="/img/mv_image/${pdfvideo6[i].img}" alt=""></a>
                             </div>
-                            <h3><a href="">${pdfvideo6[i].title} ${pdfvideo6[i].time ? `<small>(${pdfvideo6[i].time})</small>` : ""} </a></h3>
+                            <h3><a href="intel_data_center_GPU_flex_seriesFind_systems_with_intel_GPUs_related_vidoes.html">${pdfvideo6[i].title} ${pdfvideo6[i].time ? `<small>(${pdfvideo6[i].time})</small>` : ""} </a></h3>
                             <p>${pdfvideo6[i].text}</p>
                         </div>
                     </div>`
