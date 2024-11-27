@@ -5,13 +5,28 @@ var data = [
     { product: 'Intel® Optane™ SSD DC D4800X Series (1.5TB, 2.5in PCIe 2x2, 3D XPoint™)', capacity: '1.5 TB', form_factor: 'U.2 15mm', interface: 'PCIe 3.0 2x2 dual port, NVMe', status: true },
     { product: 'Intel® Optane™ SSD DC D4800X Series (1.5TB, 2.5in PCIe 2x2, 3D XPoint™)', capacity: '1.5 TB', form_factor: 'U.2 15mm', interface: 'PCIe 3.0 2x2 dual port, NVMe', status: true },
 ]
-var gen = ['4th Generation Intel® Core™ i7 Processors', '4th Generation Intel® Core™ i5 Processors', '4th Generation Intel® Core™ i3 Processors', 'Legacy Intel® Core™ Processors', '5th Generation Intel® Core™ i7 Processors', '5th Generation Intel® Core™ i5 Processors', '5th Generation Intel® Core™ i3 Processors', '6th Generation Intel® Core™ i7 Processors', '6th Generation Intel® Core™ i5 Processors', '6th Generation Intel® Core™ i3 Processors'];
+var gen = [' Intel® Optane™ Persistent Memory 100 Series','Intel® Optane™ Persistent Memory 200 Series','Intel® Optane™ Persistent Memory 300 Series'];
 var available = ['Windows 11* (23H2)', 'Windows 11* (24H2)', 'Windows 11* (22H2)', 'Windows 10* (22H2)'];
 var b_data = [
-    { id: "1212", name: 'Intel® Arc™ & Iris® Xe Graphics - Windows*', date: '10/29/2024', os: ['Windows 11* (23H2)', 'Windows 11* (24H2)', 'Windows 11* (21H2)', 'Windows 10* (22H2)', 'Windows 11* (21H2)'], download: true, des: 'This download installs Intel® Graphics Driver 32.0.101.6130/32.0.101.6048 for Intel® Arc™ A-Series Graphics, Intel® Iris® Xe Graphics, and Intel® Core™ Ultra Processors with Intel® Arc™ Graphics', version: '32.0.101.6130_101.6048', type: 'driver' },
+    { id: "1212", name: 'Intel® Arc™ & Iris® Xe Graphics - Windows*', date: '10/29/2024', os: ['Windows 11* (23H2)', 'Windows 11* (24H2)', 'Windows 11* (21H2)', 'Windows 10* (22H2)', 'Windows 11* (21H2)'], download: false, des: 'This download installs Intel® Graphics Driver 32.0.101.6130/32.0.101.6048 for Intel® Arc™ A-Series Graphics, Intel® Iris® Xe Graphics, and Intel® Core™ Ultra Processors with Intel® Arc™ Graphics', version: '32.0.101.6130_101.6048', type: 'driver' },
     { id: "1232", name: 'Intel® NPU Driver - Windows*', date: '10/29/2024', os: ['Windows 11* (23H2)', 'Windows 11* (24H2)', 'Windows 11* (21H2)', 'Windows 10* (22H2)', 'Windows 11* (21H2)'], download: false, des: 'This download installs Intel® Graphics Driver 32.0.101.6130/32.0.101.6048 for Intel® Arc™ A-Series Graphics, Intel® Iris® Xe Graphics, and Intel® Core™ Ultra Processors with Intel® Arc™ Graphics', version: '32.0.101.6130_101.6048', type: 'driver' },
-    { id: "1213", name: 'Intel® Arc™ Pro Graphics - Windows*', date: '10/29/2024', os: ['Windows 11* (23H2)', 'Windows 11* (24H2)', 'Windows 11* (21H2)', 'Windows 10* (22H2)', 'Windows 11* (21H2)'], download: true, des: 'This download installs Intel® Graphics Driver 32.0.101.6130/32.0.101.6048 for Intel® Arc™ A-Series Graphics, Intel® Iris® Xe Graphics, and Intel® Core™ Ultra Processors with Intel® Arc™ Graphics', version: '32.0.101.6130_101.6048', type: 'driver' },
-    { id: "1262", name: 'Intel® Processor Identification Utility - Windows* Version', date: '10/29/2024', os: ['Windows 11* (23H2)', 'Windows 11* (24H2)', 'Windows 11* (21H2)', 'Windows 10* (22H2)', 'Windows 11* (21H2)'], download: true, des: 'This download installs Intel® Graphics Driver 32.0.101.6130/32.0.101.6048 for Intel® Arc™ A-Series Graphics, Intel® Iris® Xe Graphics, and Intel® Core™ Ultra Processors with Intel® Arc™ Graphics', version: '32.0.101.6130_101.6048', type: 'driver' },
+    { id: "1213", name: 'Intel® Arc™ Pro Graphics - Windows*', date: '10/29/2024', os: ['Windows 11* (23H2)', 'Windows 11* (24H2)', 'Windows 11* (21H2)', 'Windows 10* (22H2)', 'Windows 11* (21H2)'], download: false, des: 'This download installs Intel® Graphics Driver 32.0.101.6130/32.0.101.6048 for Intel® Arc™ A-Series Graphics, Intel® Iris® Xe Graphics, and Intel® Core™ Ultra Processors with Intel® Arc™ Graphics', version: '32.0.101.6130_101.6048', type: 'driver' },
+    { id: "1262", name: 'Intel® Processor Identification Utility - Windows* Version', date: '10/29/2024', os: ['Windows 11* (23H2)', 'Windows 11* (24H2)', 'Windows 11* (21H2)', 'Windows 10* (22H2)', 'Windows 11* (21H2)'], download: false, des: 'This download installs Intel® Graphics Driver 32.0.101.6130/32.0.101.6048 for Intel® Arc™ A-Series Graphics, Intel® Iris® Xe Graphics, and Intel® Core™ Ultra Processors with Intel® Arc™ Graphics', version: '32.0.101.6130_101.6048', type: 'driver' },
+    { id: "1242", name: 'Intel® Processor Diagnostic Tool', date: '10/29/2024', os: ['Windows 11* (23H2)', 'Windows 11* (24H2)', 'Windows 11* (21H2)', 'Windows 10* (22H2)', 'Windows 11* (21H2)'], download: false, des: 'This download installs Intel® Graphics Driver 32.0.101.6130/32.0.101.6048 for Intel® Arc™ A-Series Graphics, Intel® Iris® Xe Graphics, and Intel® Core™ Ultra Processors with Intel® Arc™ Graphics', version: '32.0.101.6130_101.6048', type: 'driver' },
+    { id: "1212", name: 'Intel® Arc™ & Iris® Xe Graphics - Windows*', date: '10/29/2024', os: ['Windows 11* (23H2)', 'Windows 11* (24H2)', 'Windows 11* (21H2)', 'Windows 10* (22H2)', 'Windows 11* (21H2)'], download: false, des: 'This download installs Intel® Graphics Driver 32.0.101.6130/32.0.101.6048 for Intel® Arc™ A-Series Graphics, Intel® Iris® Xe Graphics, and Intel® Core™ Ultra Processors with Intel® Arc™ Graphics', version: '32.0.101.6130_101.6048', type: 'driver' },
+    { id: "1232", name: 'Intel® NPU Driver - Windows*', date: '10/29/2024', os: ['Windows 11* (23H2)', 'Windows 11* (24H2)', 'Windows 11* (21H2)', 'Windows 10* (22H2)', 'Windows 11* (21H2)'], download: false, des: 'This download installs Intel® Graphics Driver 32.0.101.6130/32.0.101.6048 for Intel® Arc™ A-Series Graphics, Intel® Iris® Xe Graphics, and Intel® Core™ Ultra Processors with Intel® Arc™ Graphics', version: '32.0.101.6130_101.6048', type: 'driver' },
+    { id: "1213", name: 'Intel® Arc™ Pro Graphics - Windows*', date: '10/29/2024', os: ['Windows 11* (23H2)', 'Windows 11* (24H2)', 'Windows 11* (21H2)', 'Windows 10* (22H2)', 'Windows 11* (21H2)'], download: false, des: 'This download installs Intel® Graphics Driver 32.0.101.6130/32.0.101.6048 for Intel® Arc™ A-Series Graphics, Intel® Iris® Xe Graphics, and Intel® Core™ Ultra Processors with Intel® Arc™ Graphics', version: '32.0.101.6130_101.6048', type: 'driver' },
+    { id: "1262", name: 'Intel® Processor Identification Utility - Windows* Version', date: '10/29/2024', os: ['Windows 11* (23H2)', 'Windows 11* (24H2)', 'Windows 11* (21H2)', 'Windows 10* (22H2)', 'Windows 11* (21H2)'], download: false, des: 'This download installs Intel® Graphics Driver 32.0.101.6130/32.0.101.6048 for Intel® Arc™ A-Series Graphics, Intel® Iris® Xe Graphics, and Intel® Core™ Ultra Processors with Intel® Arc™ Graphics', version: '32.0.101.6130_101.6048', type: 'driver' },
+    { id: "1242", name: 'Intel® Processor Diagnostic Tool', date: '10/29/2024', os: ['Windows 11* (23H2)', 'Windows 11* (24H2)', 'Windows 11* (21H2)', 'Windows 10* (22H2)', 'Windows 11* (21H2)'], download: false, des: 'This download installs Intel® Graphics Driver 32.0.101.6130/32.0.101.6048 for Intel® Arc™ A-Series Graphics, Intel® Iris® Xe Graphics, and Intel® Core™ Ultra Processors with Intel® Arc™ Graphics', version: '32.0.101.6130_101.6048', type: 'driver' },
+    { id: "1212", name: 'Intel® Arc™ & Iris® Xe Graphics - Windows*', date: '10/29/2024', os: ['Windows 11* (23H2)', 'Windows 11* (24H2)', 'Windows 11* (21H2)', 'Windows 10* (22H2)', 'Windows 11* (21H2)'], download: false, des: 'This download installs Intel® Graphics Driver 32.0.101.6130/32.0.101.6048 for Intel® Arc™ A-Series Graphics, Intel® Iris® Xe Graphics, and Intel® Core™ Ultra Processors with Intel® Arc™ Graphics', version: '32.0.101.6130_101.6048', type: 'driver' },
+    { id: "1232", name: 'Intel® NPU Driver - Windows*', date: '10/29/2024', os: ['Windows 11* (23H2)', 'Windows 11* (24H2)', 'Windows 11* (21H2)', 'Windows 10* (22H2)', 'Windows 11* (21H2)'], download: false, des: 'This download installs Intel® Graphics Driver 32.0.101.6130/32.0.101.6048 for Intel® Arc™ A-Series Graphics, Intel® Iris® Xe Graphics, and Intel® Core™ Ultra Processors with Intel® Arc™ Graphics', version: '32.0.101.6130_101.6048', type: 'driver' },
+    { id: "1213", name: 'Intel® Arc™ Pro Graphics - Windows*', date: '10/29/2024', os: ['Windows 11* (23H2)', 'Windows 11* (24H2)', 'Windows 11* (21H2)', 'Windows 10* (22H2)', 'Windows 11* (21H2)'], download: false, des: 'This download installs Intel® Graphics Driver 32.0.101.6130/32.0.101.6048 for Intel® Arc™ A-Series Graphics, Intel® Iris® Xe Graphics, and Intel® Core™ Ultra Processors with Intel® Arc™ Graphics', version: '32.0.101.6130_101.6048', type: 'driver' },
+    { id: "1262", name: 'Intel® Processor Identification Utility - Windows* Version', date: '10/29/2024', os: ['Windows 11* (23H2)', 'Windows 11* (24H2)', 'Windows 11* (21H2)', 'Windows 10* (22H2)', 'Windows 11* (21H2)'], download: false, des: 'This download installs Intel® Graphics Driver 32.0.101.6130/32.0.101.6048 for Intel® Arc™ A-Series Graphics, Intel® Iris® Xe Graphics, and Intel® Core™ Ultra Processors with Intel® Arc™ Graphics', version: '32.0.101.6130_101.6048', type: 'driver' },
+    { id: "1242", name: 'Intel® Processor Diagnostic Tool', date: '10/29/2024', os: ['Windows 11* (23H2)', 'Windows 11* (24H2)', 'Windows 11* (21H2)', 'Windows 10* (22H2)', 'Windows 11* (21H2)'], download: false, des: 'This download installs Intel® Graphics Driver 32.0.101.6130/32.0.101.6048 for Intel® Arc™ A-Series Graphics, Intel® Iris® Xe Graphics, and Intel® Core™ Ultra Processors with Intel® Arc™ Graphics', version: '32.0.101.6130_101.6048', type: 'driver' },
+    { id: "1212", name: 'Intel® Arc™ & Iris® Xe Graphics - Windows*', date: '10/29/2024', os: ['Windows 11* (23H2)', 'Windows 11* (24H2)', 'Windows 11* (21H2)', 'Windows 10* (22H2)', 'Windows 11* (21H2)'], download: false, des: 'This download installs Intel® Graphics Driver 32.0.101.6130/32.0.101.6048 for Intel® Arc™ A-Series Graphics, Intel® Iris® Xe Graphics, and Intel® Core™ Ultra Processors with Intel® Arc™ Graphics', version: '32.0.101.6130_101.6048', type: 'driver' },
+    { id: "1232", name: 'Intel® NPU Driver - Windows*', date: '10/29/2024', os: ['Windows 11* (23H2)', 'Windows 11* (24H2)', 'Windows 11* (21H2)', 'Windows 10* (22H2)', 'Windows 11* (21H2)'], download: false, des: 'This download installs Intel® Graphics Driver 32.0.101.6130/32.0.101.6048 for Intel® Arc™ A-Series Graphics, Intel® Iris® Xe Graphics, and Intel® Core™ Ultra Processors with Intel® Arc™ Graphics', version: '32.0.101.6130_101.6048', type: 'driver' },
+    { id: "1213", name: 'Intel® Arc™ Pro Graphics - Windows*', date: '10/29/2024', os: ['Windows 11* (23H2)', 'Windows 11* (24H2)', 'Windows 11* (21H2)', 'Windows 10* (22H2)', 'Windows 11* (21H2)'], download: false, des: 'This download installs Intel® Graphics Driver 32.0.101.6130/32.0.101.6048 for Intel® Arc™ A-Series Graphics, Intel® Iris® Xe Graphics, and Intel® Core™ Ultra Processors with Intel® Arc™ Graphics', version: '32.0.101.6130_101.6048', type: 'driver' },
+    { id: "1262", name: 'Intel® Processor Identification Utility - Windows* Version', date: '10/29/2024', os: ['Windows 11* (23H2)', 'Windows 11* (24H2)', 'Windows 11* (21H2)', 'Windows 10* (22H2)', 'Windows 11* (21H2)'], download: false, des: 'This download installs Intel® Graphics Driver 32.0.101.6130/32.0.101.6048 for Intel® Arc™ A-Series Graphics, Intel® Iris® Xe Graphics, and Intel® Core™ Ultra Processors with Intel® Arc™ Graphics', version: '32.0.101.6130_101.6048', type: 'driver' },
     { id: "1242", name: 'Intel® Processor Diagnostic Tool', date: '10/29/2024', os: ['Windows 11* (23H2)', 'Windows 11* (24H2)', 'Windows 11* (21H2)', 'Windows 10* (22H2)', 'Windows 11* (21H2)'], download: false, des: 'This download installs Intel® Graphics Driver 32.0.101.6130/32.0.101.6048 for Intel® Arc™ A-Series Graphics, Intel® Iris® Xe Graphics, and Intel® Core™ Ultra Processors with Intel® Arc™ Graphics', version: '32.0.101.6130_101.6048', type: 'driver' },
 ]
 const documents = [
@@ -21,11 +36,11 @@ const documents = [
         date: "08/19/24",
         version: "24.2",
         file: "URL (47.4KB)",
-        content_type: "Benchmarks",
+        content_type: "Case Studies",
         discription: "The GTS Transceiver Dual-Simplex Interfaces User Guide describes the method to implement the dual-simplex mode in Agilex™ 5 GTS transceivers.",
         isNew: true,
-        codename: "Alder Lake",
-        os: 'CentOS Linux Family'
+        codename: "Apache Pass",
+        os: 'Linux'
     },
     {
         id: "825858",
@@ -33,11 +48,11 @@ const documents = [
         date: "08/19/24",
         version: "24.2",
         file: "URL (47.4KB)",
-        content_type: "Benchmarks",
+        content_type: "Case Studies",
         discription: "The GTS Transceiver Dual-Simplex Interfaces User Guide describes the method to implement the dual-simplex mode in Agilex™ 5 GTS transceivers.",
         isNew: true,
-        codename: "Alder Stream",
-        os: 'Linux'
+        codename: "Barlow Pass",
+        os: 'SUSE Linux Family'
     },
     {
         id: "825859",
@@ -45,11 +60,11 @@ const documents = [
         date: "08/19/24",
         version: "24.2",
         file: "URL (47.4KB)",
-        content_type: "Best Practices",
+        content_type: "Case Studies",
         discription: "The GTS Transceiver Dual-Simplex Interfaces User Guide describes the method to implement the dual-simplex mode in Agilex™ 5 GTS transceivers.",
         isNew: true,
-        codename: "Alder Stream",
-        os: 'Linux'
+        codename: "Barlow Pass",
+        os: 'VMware'
     },
     {
         id: "825860",
@@ -57,7 +72,7 @@ const documents = [
         date: "08/19/24",
         version: "24.2",
         file: "URL (47.4KB)",
-        content_type: "Case Studies",
+        content_type: "Communications",
         discription: "The GTS Transceiver Dual-Simplex Interfaces User Guide describes the method to implement the dual-simplex mode in Agilex™ 5 GTS transceivers.",
         isNew: true,
         codename: "Barlow Pass",
@@ -69,10 +84,10 @@ const documents = [
         date: "08/19/24",
         version: "24.2",
         file: "URL (47.4KB)",
-        content_type: "Case Studies",
+        content_type: "Communications",
         discription: "The GTS Transceiver Dual-Simplex Interfaces User Guide describes the method to implement the dual-simplex mode in Agilex™ 5 GTS transceivers.",
         isNew: true,
-        codename: "Barlow Pass",
+        codename: "Cascade Lake",
         os: 'Red Hat Linux Family'
     },
     {
@@ -81,10 +96,10 @@ const documents = [
         date: "08/19/24",
         version: "24.2",
         file: "URL (47.4KB)",
-        content_type: "Customer Presentations",
+        content_type: "Configuration Guides",
         discription: "The GTS Transceiver Dual-Simplex Interfaces User Guide describes the method to implement the dual-simplex mode in Agilex™ 5 GTS transceivers.",
         isNew: true,
-        codename: "Barlow Pass",
+        codename: "Cooper Lake",
         os: 'Red Hat Linux Family'
     },
     {
@@ -93,10 +108,10 @@ const documents = [
         date: "08/19/24",
         version: "24.2",
         file: "URL (47.4KB)",
-        content_type: "Dear Customer Letters",
+        content_type: "Customer Presentations",
         discription: "The GTS Transceiver Dual-Simplex Interfaces User Guide describes the method to implement the dual-simplex mode in Agilex™ 5 GTS transceivers.",
         isNew: true,
-        codename: "Barlow Pass",
+        codename: "Crow Pass",
         os: 'VMware'
     },
     {
@@ -108,7 +123,7 @@ const documents = [
         content_type: "Declaration of Conformities",
         discription: "The GTS Transceiver Dual-Simplex Interfaces User Guide describes the method to implement the dual-simplex mode in Agilex™ 5 GTS transceivers.",
         isNew: true,
-        codename: "Cascade Lake",
+        codename: "Purley",
         os: ''
     },
     {
@@ -165,7 +180,7 @@ const documents = [
         date: "08/19/24",
         version: "24.2",
         file: "URL (47.4KB)",
-        content_type: "Design Reference",
+        content_type: "Development Guides",
         discription: "The GTS Transceiver Dual-Simplex Interfaces User Guide describes the method to implement the dual-simplex mode in Agilex™ 5 GTS transceivers.",
         isNew: true,
         codename: "Columbiaville",
@@ -177,7 +192,7 @@ const documents = [
         date: "08/19/24",
         version: "24.2",
         file: "URL (47.4KB)",
-        content_type: "Development User Guides",
+        content_type: "Development Guides",
         discription: "The GTS Transceiver Dual-Simplex Interfaces User Guide describes the method to implement the dual-simplex mode in Agilex™ 5 GTS transceivers.",
         isNew: true,
         codename: "Cooper Lake",
@@ -189,7 +204,7 @@ const documents = [
         date: "08/19/24",
         version: "24.2",
         file: "URL (47.4KB)",
-        content_type: "Development User Guides",
+        content_type: "Device Overviews",
         discription: "The GTS Transceiver Dual-Simplex Interfaces User Guide describes the method to implement the dual-simplex mode in Agilex™ 5 GTS transceivers.",
         isNew: true,
         codename: "Cooper Lake",
@@ -201,7 +216,7 @@ const documents = [
         date: "08/19/24",
         version: "24.2",
         file: "URL (47.4KB)",
-        content_type: "Development User Guides",
+        content_type: "Material Declaration Data Sheets",
         discription: "The GTS Transceiver Dual-Simplex Interfaces User Guide describes the method to implement the dual-simplex mode in Agilex™ 5 GTS transceivers.",
         isNew: true,
         codename: "Crow Pass",
@@ -213,7 +228,7 @@ const documents = [
         date: "08/19/24",
         version: "24.2",
         file: "URL (47.4KB)",
-        content_type: "Infographics",
+        content_type: "Partner Capabilities Guides",
         discription: "The GTS Transceiver Dual-Simplex Interfaces User Guide describes the method to implement the dual-simplex mode in Agilex™ 5 GTS transceivers.",
         isNew: true,
         codename: "Crow Pass",
@@ -225,7 +240,7 @@ const documents = [
         date: "08/19/24",
         version: "24.2",
         file: "URL (47.4KB)",
-        content_type: "Infographics",
+        content_type: "Product Briefs",
         discription: "The GTS Transceiver Dual-Simplex Interfaces User Guide describes the method to implement the dual-simplex mode in Agilex™ 5 GTS transceivers.",
         isNew: true,
         codename: "Ice Lake",
@@ -237,7 +252,7 @@ const documents = [
         date: "08/19/24",
         version: "24.2",
         file: "URL (47.4KB)",
-        content_type: "Material Declaration Data Sheets",
+        content_type: "Product Change Notifications",
         discription: "The GTS Transceiver Dual-Simplex Interfaces User Guide describes the method to implement the dual-simplex mode in Agilex™ 5 GTS transceivers.",
         isNew: true,
         codename: "Ice Lake",
@@ -249,7 +264,7 @@ const documents = [
         date: "08/19/24",
         version: "24.2",
         file: "URL (47.4KB)",
-        content_type: "Partner Capabilities Guides",
+        content_type: "Product Change Notifications",
         discription: "The GTS Transceiver Dual-Simplex Interfaces User Guide describes the method to implement the dual-simplex mode in Agilex™ 5 GTS transceivers.",
         isNew: true,
         codename: "Ice Lake",
@@ -261,7 +276,7 @@ const documents = [
         date: "08/19/24",
         version: "24.2",
         file: "URL (47.4KB)",
-        content_type: "Partner Capabilities Guides",
+        content_type: "Product Change Notifications",
         discription: "The GTS Transceiver Dual-Simplex Interfaces User Guide describes the method to implement the dual-simplex mode in Agilex™ 5 GTS transceivers.",
         isNew: true,
         codename: "Ice Lake",
@@ -273,7 +288,7 @@ const documents = [
         date: "08/19/24",
         version: "24.2",
         file: "URL (47.4KB)",
-        content_type: "Partner Capabilities Guides",
+        content_type: "Product Change Notifications",
         discription: "The GTS Transceiver Dual-Simplex Interfaces User Guide describes the method to implement the dual-simplex mode in Agilex™ 5 GTS transceivers.",
         isNew: true,
         codename: "Ice Lake",
@@ -285,7 +300,7 @@ const documents = [
         date: "08/19/24",
         version: "24.2",
         file: "URL (47.4KB)",
-        content_type: "Product Briefs",
+        content_type: "Product Change Notifications",
         discription: "The GTS Transceiver Dual-Simplex Interfaces User Guide describes the method to implement the dual-simplex mode in Agilex™ 5 GTS transceivers.",
         isNew: true,
         codename: "Purley",
@@ -297,7 +312,7 @@ const documents = [
         date: "08/19/24",
         version: "24.2",
         file: "URL (47.4KB)",
-        content_type: "Product Briefs",
+        content_type: "Product Change Notifications",
         discription: "The GTS Transceiver Dual-Simplex Interfaces User Guide describes the method to implement the dual-simplex mode in Agilex™ 5 GTS transceivers.",
         isNew: true,
         codename: "Purley",
@@ -357,7 +372,7 @@ const documents = [
         date: "08/19/24",
         version: "24.2",
         file: "URL (47.4KB)",
-        content_type: "Product Updates",
+        content_type: "Solution Briefs",
         discription: "The GTS Transceiver Dual-Simplex Interfaces User Guide describes the method to implement the dual-simplex mode in Agilex™ 5 GTS transceivers.",
         isNew: true,
         codename: "Sapphire Rapids",
@@ -369,7 +384,7 @@ const documents = [
         date: "08/19/24",
         version: "24.2",
         file: "URL (47.4KB)",
-        content_type: "Product Updates",
+        content_type: "Success Stories",
         discription: "The GTS Transceiver Dual-Simplex Interfaces User Guide describes the method to implement the dual-simplex mode in Agilex™ 5 GTS transceivers.",
         isNew: true,
         codename: "Meteor Lake",
@@ -381,7 +396,7 @@ const documents = [
         date: "08/19/24",
         version: "24.2",
         file: "URL (47.4KB)",
-        content_type: "Reference Architectures",
+        content_type: "Technical Articles",
         discription: "The GTS Transceiver Dual-Simplex Interfaces User Guide describes the method to implement the dual-simplex mode in Agilex™ 5 GTS transceivers.",
         isNew: true,
         codename: "Meteor Lake",
@@ -393,7 +408,7 @@ const documents = [
         date: "08/19/24",
         version: "24.2",
         file: "URL (47.4KB)",
-        content_type: "Regulatory and Safety Information",
+        content_type: "Technology Briefs",
         discription: "The GTS Transceiver Dual-Simplex Interfaces User Guide describes the method to implement the dual-simplex mode in Agilex™ 5 GTS transceivers.",
         isNew: true,
         codename: "Meteor Lake",
@@ -405,7 +420,7 @@ const documents = [
         date: "08/19/24",
         version: "24.2",
         file: "URL (47.4KB)",
-        content_type: "Regulatory and Safety Information",
+        content_type: "Topic Overviews",
         discription: "The GTS Transceiver Dual-Simplex Interfaces User Guide describes the method to implement the dual-simplex mode in Agilex™ 5 GTS transceivers.",
         isNew: true,
         codename: "Meteor Lake",
@@ -417,7 +432,7 @@ const documents = [
         date: "08/19/24",
         version: "24.2",
         file: "URL (47.4KB)",
-        content_type: "Regulatory and Safety Information",
+        content_type: "White Papers",
         discription: "The GTS Transceiver Dual-Simplex Interfaces User Guide describes the method to implement the dual-simplex mode in Agilex™ 5 GTS transceivers.",
         isNew: true,
         codename: "Meteor Lake",
@@ -429,7 +444,7 @@ const documents = [
         date: "08/19/24",
         version: "24.2",
         file: "URL (47.4KB)",
-        content_type: "Sales Quick Reference",
+        content_type: "White Papers",
         discription: "The GTS Transceiver Dual-Simplex Interfaces User Guide describes the method to implement the dual-simplex mode in Agilex™ 5 GTS transceivers.",
         isNew: true,
         codename: "Meteor Lake",
@@ -441,7 +456,7 @@ const documents = [
         date: "08/19/24",
         version: "24.2",
         file: "URL (47.4KB)",
-        content_type: "Sales Quick Reference",
+        content_type: "White Papers",
         discription: "The GTS Transceiver Dual-Simplex Interfaces User Guide describes the method to implement the dual-simplex mode in Agilex™ 5 GTS transceivers.",
         isNew: true,
         codename: "Meteor Lake",
@@ -453,126 +468,6 @@ const documents = [
         date: "08/19/24",
         version: "24.2",
         file: "URL (47.4KB)",
-        content_type: "Sales Tools",
-        discription: "The GTS Transceiver Dual-Simplex Interfaces User Guide describes the method to implement the dual-simplex mode in Agilex™ 5 GTS transceivers.",
-        isNew: true,
-        codename: "Meteor Lake",
-        os: ''
-    },
-    {
-        id: "825894",
-        title: "Intel® Core™ Ultra Processors PS Series Infographic",
-        date: "08/19/24",
-        version: "24.2",
-        file: "URL (47.4KB)",
-        content_type: "Solution Briefs",
-        discription: "The GTS Transceiver Dual-Simplex Interfaces User Guide describes the method to implement the dual-simplex mode in Agilex™ 5 GTS transceivers.",
-        isNew: true,
-        codename: "Meteor Lake",
-        os: ''
-    },
-    {
-        id: "825895",
-        title: "Intel® Core™ Ultra Processors PS Series Infographic",
-        date: "08/19/24",
-        version: "24.2",
-        file: "URL (47.4KB)",
-        content_type: "Solution Briefs",
-        discription: "The GTS Transceiver Dual-Simplex Interfaces User Guide describes the method to implement the dual-simplex mode in Agilex™ 5 GTS transceivers.",
-        isNew: true,
-        codename: "Meteor Lake",
-        os: ''
-    },
-    {
-        id: "825896",
-        title: "Intel® Core™ Ultra Processors PS Series Infographic",
-        date: "08/19/24",
-        version: "24.2",
-        file: "URL (47.4KB)",
-        content_type: "Solution Briefs",
-        discription: "The GTS Transceiver Dual-Simplex Interfaces User Guide describes the method to implement the dual-simplex mode in Agilex™ 5 GTS transceivers.",
-        isNew: true,
-        codename: "Meteor Lake",
-        os: ''
-    },
-    {
-        id: "825897",
-        title: "Intel® Core™ Ultra Processors PS Series Infographic",
-        date: "08/19/24",
-        version: "24.2",
-        file: "URL (47.4KB)",
-        content_type: "Success Stories",
-        discription: "The GTS Transceiver Dual-Simplex Interfaces User Guide describes the method to implement the dual-simplex mode in Agilex™ 5 GTS transceivers.",
-        isNew: true,
-        codename: "Meteor Lake",
-        os: ''
-    },
-    {
-        id: "825898",
-        title: "Intel® Core™ Ultra Processors PS Series Infographic",
-        date: "08/19/24",
-        version: "24.2",
-        file: "URL (47.4KB)",
-        content_type: "Success Stories",
-        discription: "The GTS Transceiver Dual-Simplex Interfaces User Guide describes the method to implement the dual-simplex mode in Agilex™ 5 GTS transceivers.",
-        isNew: true,
-        codename: "Meteor Lake",
-        os: ''
-    },
-    {
-        id: "825899",
-        title: "Intel® Core™ Ultra Processors PS Series Infographic",
-        date: "08/19/24",
-        version: "24.2",
-        file: "URL (47.4KB)",
-        content_type: "Technology Briefs",
-        discription: "The GTS Transceiver Dual-Simplex Interfaces User Guide describes the method to implement the dual-simplex mode in Agilex™ 5 GTS transceivers.",
-        isNew: true,
-        codename: "Meteor Lake",
-        os: ''
-    },
-    {
-        id: "825900",
-        title: "Intel® Core™ Ultra Processors PS Series Infographic",
-        date: "08/19/24",
-        version: "24.2",
-        file: "URL (47.4KB)",
-        content_type: "Topic Overviews",
-        discription: "The GTS Transceiver Dual-Simplex Interfaces User Guide describes the method to implement the dual-simplex mode in Agilex™ 5 GTS transceivers.",
-        isNew: true,
-        codename: "Meteor Lake",
-        os: ''
-    },
-    {
-        id: "825901",
-        title: "Intel® Core™ Ultra Processors PS Series Infographic",
-        date: "08/19/24",
-        version: "24.2",
-        file: "URL (47.4KB)",
-        content_type: "Topic Overviews",
-        discription: "The GTS Transceiver Dual-Simplex Interfaces User Guide describes the method to implement the dual-simplex mode in Agilex™ 5 GTS transceivers.",
-        isNew: true,
-        codename: "Meteor Lake",
-        os: ''
-    },
-    {
-        id: "825902",
-        title: "Intel® Core™ Ultra Processors PS Series Infographic",
-        date: "08/19/24",
-        version: "24.2",
-        file: "URL (47.4KB)",
-        content_type: "Topic Overviews",
-        discription: "The GTS Transceiver Dual-Simplex Interfaces User Guide describes the method to implement the dual-simplex mode in Agilex™ 5 GTS transceivers.",
-        isNew: true,
-        codename: "Meteor Lake",
-        os: ''
-    },
-    {
-        id: "825903",
-        title: "Intel® Core™ Ultra Processors PS Series Infographic",
-        date: "08/19/24",
-        version: "24.2",
-        file: "URL (47.4KB)",
         content_type: "White Papers",
         discription: "The GTS Transceiver Dual-Simplex Interfaces User Guide describes the method to implement the dual-simplex mode in Agilex™ 5 GTS transceivers.",
         isNew: true,
@@ -580,7 +475,7 @@ const documents = [
         os: ''
     },
     {
-        id: "825904",
+        id: "825894",
         title: "Intel® Core™ Ultra Processors PS Series Infographic",
         date: "08/19/24",
         version: "24.2",
@@ -721,9 +616,15 @@ const support_data = [
         icon: 'fa-solid fa-award'
     },
 ]
+let currentPage = 1;
+const itemsPerPage = 5;
 function load_data(x, y) {
     var data1 = document.getElementById('b_result');
     data1.innerHTML = b_data.length == 0 ? `<h4 class="text-center">No results found for this product.<h4>` : 'Downloads Available :' + b_data.length;
+    var b_gen = document.getElementsByClassName('b_genoption');
+    for(var i = 0; i < b_gen.length; i++) {
+    b_gen[i].innerHTML = ` <select class="p-2  w-100"> <option>All generation </option> ${gen.map(el => `<option value="${el}">${el}</option>`).join('')} </select>`;
+    }
     var b_available = document.getElementById('b_available');
     b_available.innerHTML = ` <select class="p-2  w-100"> <option>All </option> ${available.map(el => `<option value="${el}">${el}</option>`).join('')} </select>`;
     var b_gen1 = document.getElementById('b_gen_data');
@@ -775,6 +676,9 @@ function load_data(x, y) {
         </div>`;
         b_gen1.innerHTML += innerdata;
     });
+    // tab2 pagination
+    renderPage();
+    renderPaginationControls();
     var print_data;
     if (x == undefined || y == undefined) {
         print_data = data
@@ -804,7 +708,7 @@ function load_data(x, y) {
     });
 
     // support data 
-    
+
 }
 function check_items() {
     var cnt = 0;
@@ -1033,7 +937,90 @@ function sortJsonByDate(data) {
     });
 }
 renderDocuments();
+// tab 2 
+function renderPage() {
+    const b_gen1 = document.getElementById('b_gen_data');
+    b_gen1.innerHTML = '';
 
+    // Calculate starting and ending index for the current page
+    const start = (currentPage - 1) * itemsPerPage;
+    const end = start + itemsPerPage;
+    const pageData = b_data.slice(start, end);
+
+    // Render items for the current page
+    pageData.forEach(element => {
+        const innerdata = `<div class="document-item">
+            <div class="row gx-0 accordion accordion-flush" id="accordionFlushExample">
+                <div class="col-xxl-12 p-0 accordion-item border-0">
+                    <div class="row align-items-center accordion-header gx-0" id="flush-heading-${element.id}">
+                        <div class="col-md-9 col-lg-6 col-12">
+                            <div class="ms-3 d-flex">
+                                <a href="#" class="accordion-button collapsed p-0 document-title d-none d-sm-flex" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse-${element.id}" aria-expanded="false" aria-controls="flush-collapse-${element.id}"></a>
+                                <p class="mt-2 ms-sm-5 text-center w-75">
+                                    <a href="#" class="document-title">${element.name}</a>
+                                </p>
+                                <a href="#" class="accordion-button collapsed p-0 document-title d-flex d-sm-none" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse-${element.id}" aria-expanded="false" aria-controls="flush-collapse-${element.id}"></a>
+                            </div>
+                        </div>
+                        <div class="col-lg-2 col-12 ms-xl-0 d-flex d-none d-lg-block">
+                            <p class="mb-0" style="font-size: 14px;">${element.date}</p>
+                        </div>
+                        <div class="col-lg-2 col-12 ms-xl-0 d-none d-lg-block">
+                            <h6 class="d-block d-xl-none">Date:</h6>
+                            ${element.os.slice(0, 3).map(el => `<p class="mb-0" style="font-size: 14px;">${el}</p>`).join('')}
+                        </div>
+                        <div class="col-xl-1 col-md-2 ms-3 ms-lg-0">
+                            ${element.download ? '<div class="b_special_btn1 w-100"><p class="mb-0">Download</p></div>' : '<div class="b_special_btn2 w-100"><p class="mb-0">View Details</p></div>'}
+                        </div>
+                    </div>
+                </div>
+                <div id="flush-collapse-${element.id}" class="accordion-collapse collapse" aria-labelledby="flush-heading-${element.id}" data-bs-parent="#accordionFlushExample">
+                    <div class="accordion-body py-3 px-0">
+                        <div class="ms-3 col-xl-8"><p>${element.des}<a href="#" class="b_special_a3">View download options.</a></p></div>
+                        <div class="d-flex ms-3"><h6>Version:</h6><small>${element.version}</small></div>
+                        <div class="col-lg-2 col-12 ms-3 d-flex d-block d-lg-none">
+                            <h6 class="">Date:</h6>
+                            <p class="mb-0" style="font-size: 14px;">${element.date}</p>
+                        </div>
+                        <div class="d-flex ms-sm-3"><h6>OS:</h6><small class="d-flex flex-wrap">
+                         ${element.os.map(el => `<p class="mb-0 m-2 px-2 b_text_bold" style="font-size: 14px; background: #e3e3e3">${el}</p>`).join('')}</small></div>
+                        <div class="d-flex ms-3"><h6>Type:</h6><small>${element.type}</small></div>
+                    </div>
+                </div>
+            </div>
+        </div>`;
+        b_gen1.innerHTML += innerdata;
+    });
+}
+
+function renderPaginationControls() {
+    const paginationContainer = document.getElementById('pagination');
+    const totalPages = Math.ceil(b_data.length / itemsPerPage);
+
+    // Clear existing pagination
+    paginationContainer.innerHTML = '';
+
+    // Create Previous button
+    if (currentPage > 1) {
+        paginationContainer.innerHTML += `<i class="fa-solid fa-chevron-left mx-2" onclick="goToPage(${currentPage - 1})" style="color: #0071c5;"></i>
+`;
+    }
+
+    // Create Next button
+
+
+    // Show page number
+    paginationContainer.innerHTML += `Page <span class="border px-2" style=" width:30px; height: 40px !important;">${currentPage}</span>/<span id="total_page" class=""> ${totalPages}</span>`;
+    if (currentPage < totalPages) {
+        paginationContainer.innerHTML += `<i class="fa-solid fa-chevron-right mx-2" onclick="goToPage(${currentPage + 1})" style="color: #0071c5;"></i>`;
+    }
+}
+
+function goToPage(page) {
+    currentPage = page;
+    renderPage();
+    renderPaginationControls();
+}
 // tab 4 
 function tab4handler() {
     const support = document.getElementById('support_data');
@@ -1041,7 +1028,7 @@ function tab4handler() {
     const total_artical = document.getElementById('total_article');
     total_artical.innerHTML = `${support_data.length} Support Articles`;
 }
-function createSupportElement(doc){
+function createSupportElement(doc) {
     return `
         <div class='d-sm-flex justify-content-between py-3 border-bottom'>
             <div>
@@ -1102,5 +1089,5 @@ function fliteroption(x) {
     }
 }
 document.querySelector('.custom-dropdown .dropdown-header').addEventListener('click', function () {
-this.parentElement.classList.toggle('open');
+    this.parentElement.classList.toggle('open');
 });
