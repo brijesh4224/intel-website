@@ -12966,7 +12966,140 @@ const pdfmaterial55 = [
     },
 ]
 
-createpdf('D_pdfmaterial55', pdfmaterial55)
+createpdf('D_pdfmaterial55', pdfmaterial55);
+
+// d_financial-compliance-faster-insights-brief
+
+const pdfvideo56 = [
+    {
+        id: 1,
+        title: "Intel® Optane™ Technology and VMware vSAN",
+        time: "",
+        text: "Intel® Optane™ technology and VMware vSAN deliver highly scalable, faster, simpler and more cost-effective HCI solutions. ",
+        img: "video15.png",
+        link: "",
+    },
+    {
+        id: 2,
+        title: "Speed AI Development and Deployment Using 4th Gen Intel® Xeon®...",
+        time: "1:12",
+        text: "Amazon instances featuring Intel® AI acceleration technologies, with Optimum Intel and Optimum Habana libraries, give companies powerful tools for generative AI implementation. ",
+        img: "video15.png",
+        link: "",
+    },
+    {
+        id: 3,
+        title: "Hypertec Immersion Cooling for FSI and M&E",
+        time: "3:42",
+        text: "Hypertec selected 4th Gen Intel® Xeon® processor as the basis for their immersion born server because of its unrivaled performance in HPC applications.  ",
+        img: "video15.png",
+        link: "",
+    },
+    {
+        id: 4,
+        title: "Intel® AMX: The Next Big Step in AI",
+        time: "4:33",
+        text: "Intel created Intel® Advanced Matrix Extensions, an AI acceleration engine deeply embedded into every core of our 4th Gen Intel® Xeon® Scalable processor. ",
+        img: "video15.png",
+        link: "",
+    },
+    {
+        id: 5,
+        title: "Intel® Partner Lead Portal: Intro and Demo",
+        time: "14:12",
+        text: "This demo for the Intel® Partner Lead Portal shows how to get started with the tool and process individual leads. ",
+        img: "video15.png",
+        link: "",
+    },
+    {
+        id: 6,
+        title: "Processing Multiple Leads with Intel® Partner Lead Portal",
+        time: "5:06",
+        text: "Learn how to process multiple leads with the Intel® Partner Lead Portal, which can help you easily tell the status of the leads you are working with.  ",
+        img: "video15.png",
+        link: "",
+    },
+]
+
+createVideoGallery('D_pdfvideo56', pdfvideo56);
+
+
+const pdfmaterial56 = [
+    {
+        id: 1,
+        title: "Network Attached Storage (NAS) Featured Partners and Offerings",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 2,
+        title: "Software and IP Core Offerings",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 3,
+        title: "Component Offerings",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 4,
+        title: "NGINX on Google Cloud N2 Gen Over Gen",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 5,
+        title: "Workload Spotlight: Kafka",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 6,
+        title: "Intel & SAP: Protect Confidential Customs Data",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 7,
+        title: "Brought to You at embedded world 2024: Edge and AI Ecosystem...",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 8,
+        title: "Workstation Campaign—Sales Enablement",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 9,
+        title: "Grow Business with the Cloud",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 10,
+        title: "Build More Flexible Networks with Accelerators",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 11,
+        title: "How Confidential Computing Enhances Security",
+        img: "pdf2.png",
+        link: "",
+    },
+    {
+        id: 12,
+        title: "Cloud Workforce Enablement",
+        img: "pdf2.png",
+        link: "",
+    },
+]
+
+createpdf('D_pdfmaterial56', pdfmaterial56)
 
 
 // With Amazon and Intel Solutions, the aiScout app Connects Prospective...
