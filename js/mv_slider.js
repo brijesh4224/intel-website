@@ -17,74 +17,74 @@ window.onload = function () {
     const pdfmaterial0 = [
         {
             id: 1,
-            title: "Elevate Performance with Intel® Accelerator Engines",
+            title: "Accelerate with Xeon",
             img: "guide.png",
             link: "",
         },
         {
             id: 2,
-            title: "High-Performance Computing with Intel HPC Engines",
+            title: "Homomorphic Encryption on 3rd Gen Intel® Xeon® Scalable Processors",
             img: "brief.png",
             link: "",
         },
         {
             id: 3,
-            title: "Built-In Accelerators Encrypt, Compress and Move Data",
+            title: "12th Gen Intel® Core™ Mobile Processors for Edge AI and Media",
             img: "brief.png",
             link: "",
         },
         {
             id: 4,
-            title: "Improved Machine Learning with Intel AMX",
+            title: "Stream and Share Your Game With Intel® Arc™ Graphics - Intel",
             img: "brief.png",
             link: "",
         },
         {
             id: 5,
-            title: "Accelerate AI Workloads - Intel® AMX Solution Brief",
+            title: "Teaching Strategy: Resources and Guides for Teachers",
             img: "brief.png",
             link: "",
         },
         {
             id: 6,
-            title: "Faster, More Flexible Networks with Built-in Accelerators",
+            title: "Jolera Drives Double-Digit Business GrowthJolera Drives Double-Digit Business Growth",
             img: "brief.png",
             link: "",
         },
         {
             id: 7,
-            title: "Maximizing Growth, Return on Investment, and Data Security with AI",
+            title: "Prog-It: Agile, All-in-One Private Cloud System",
             img: "brief.png",
             link: "",
         },
         {
             id: 8,
-            title: "System Offerings",
-            img: "related-materials.png",
+            title: "Alibaba Cloud Accelerates Scientific Computing",
+            img: "brief.png",
             link: "",
         },
         {
             id: 9,
-            title: "Offerings by Category",
-            img: "related-materials.png",
+            title: "SoftBank Improves VM Capacity and Reduces Costs",
+            img: "brief.png",
             link: "",
         },
         {
             id: 10,
-            title: "Drive Business Value with Analytics Acceleration",
+            title: "GetCard: Achieves Rapid Payment Solutions Growth",
             img: "brief.png",
             link: "",
         },
         {
             id: 11,
-            title: "Independent Hardware Vendors Acceleration Program",
+            title: "CDS Delivers High Performance with Low TCO",
             img: "article.png",
             link: "",
         },
         {
             id: 12,
-            title: "Bringing AI Everywhere",
-            img: "related-materials.png",
+            title: "Arihant Capital Markets Offers Mobile Trading",
+            img: "brief.png",
             link: "",
         },
 
@@ -103,6 +103,42 @@ window.onload = function () {
                         </div>
                     </div>`
         }
+    }
+
+    
+    if (document.getElementById('show-more-btn')) {
+        document.getElementById('show-more-btn').addEventListener('click', function () {
+            if (document.getElementById('my-card')) {
+                var myCard = document.getElementById('my-card');
+                var icon = document.getElementById('toggle-icon');
+                var isHidden = myCard.classList.contains('ds_use-hidden');
+
+                if (isHidden) {
+                    myCard.classList.remove('ds_use-hidden');
+                    myCard.classList.add('ds_use-show');
+                    this.innerHTML = '<i id="toggle-icon" class="fa-solid fa-angle-up me-1"></i> Show Less';
+                } else {
+                    myCard.classList.remove('ds_use-show');
+                    myCard.classList.add('ds_use-hidden');
+                    this.innerHTML = '<i id="toggle-icon" class="fa-solid fa-angle-down me-1"></i> Show More';
+                }
+            }
+            else {
+                var myCard1 = document.getElementById('my-card1');
+                var icon = document.getElementById('toggle-icon');
+                var isHidden = myCard1.classList.contains('ds_use-hidden');
+
+                if (isHidden) {
+                    myCard1.classList.remove('ds_use-hidden');
+                    myCard1.classList.add('ds_use-show');
+                    this.innerHTML = '<span class="d_circle"><i class="fa-solid fa-minus"></i></span>';
+                } else {
+                    myCard1.classList.remove('ds_use-show');
+                    myCard1.classList.add('ds_use-hidden');
+                    this.innerHTML = '<span class="d_circle"><i class="fa-solid fa-plus"></i></span>';
+                }
+            }
+        });
     }
 
     // (AI Accelerator) Read the AI Accelerated product brief
@@ -882,7 +918,7 @@ window.onload = function () {
             time: "3:48",
             text: "Video demonstrating how 13th Gen Intel Core mobile processors enables Hellometer to deliver more intelligence and performance for restaurants.",
             img: "related-video.png.rendition.cq5dam.thumbnail.319.319.png",
-            link: "",
+            link: "intel_data_center_GPU_flex_seriesFind_systems_with_intel_GPUs_related_vidoes.html",
         },
         {
             id: 2,
@@ -890,7 +926,7 @@ window.onload = function () {
             time: "8:15",
             text: "Intel and Telefonica discuss collaborations in driving sustainability and performance in 5G networks.",
             img: "fireside-chat.jpg",
-            link: "",
+            link: "intel_data_center_GPU_flex_seriesFind_systems_with_intel_GPUs_related_vidoes.html",
         },
         {
             id: 3,
@@ -898,7 +934,7 @@ window.onload = function () {
             time: "11:05",
             text: "Next generation AI applications powered by 11th Gen Intel® Core™ and Intel® Celeron® processors, and Intel® Xe™ Graphics.",
             img: "related-video.png.rendition.cq5dam.thumbnail.319.319.png",
-            link: "",
+            link: "intel_data_center_GPU_flex_seriesFind_systems_with_intel_GPUs_related_vidoes.html",
         },
         {
             id: 4,
@@ -906,7 +942,7 @@ window.onload = function () {
             time: "4:13",
             text: "Watch this video and learn how 12th Gen Intel® Core™ processors allow for fine-tuning and per-core overclocking.  ",
             img: "related-video.png.rendition.cq5dam.thumbnail.319.319.png",
-            link: "",
+            link: "intel_data_center_GPU_flex_seriesFind_systems_with_intel_GPUs_related_vidoes.html",
         },
         {
             id: 5,
@@ -914,7 +950,7 @@ window.onload = function () {
             time: "7:38",
             text: "Learn about the 12th Gen Intel® Core™ processors, DDR5, and PCIe 5.0. Discover how Intel is leading the industry.",
             img: "related-video.png.rendition.cq5dam.thumbnail.319.319.png",
-            link: "",
+            link: "intel_data_center_GPU_flex_seriesFind_systems_with_intel_GPUs_related_vidoes.html",
         },
         {
             id: 6,
@@ -922,7 +958,7 @@ window.onload = function () {
             time: "10:07",
             text: "Intel 12th Gen Core processors embedded platforms.",
             img: "related-video.png.rendition.cq5dam.thumbnail.319.319.png",
-            link: "",
+            link: "intel_data_center_GPU_flex_seriesFind_systems_with_intel_GPUs_related_vidoes.html",
         },
     ]
 
@@ -933,7 +969,7 @@ window.onload = function () {
                             <div class="d_img mv_img_icon">
                                 <a href=""><img src="/img/mv_image/${pdfvideo6[i].img}" alt=""></a>
                             </div>
-                            <h3><a href="intel_data_center_GPU_flex_seriesFind_systems_with_intel_GPUs_related_vidoes.html">${pdfvideo6[i].title} ${pdfvideo6[i].time ? `<small>(${pdfvideo6[i].time})</small>` : ""} </a></h3>
+                            <h3><a href="/vaidikhtml/${pdfvideo6[i].link}">${pdfvideo6[i].title} ${pdfvideo6[i].time ? `<small>(${pdfvideo6[i].time})</small>` : ""} </a></h3>
                             <p>${pdfvideo6[i].text}</p>
                         </div>
                     </div>`
@@ -946,73 +982,73 @@ window.onload = function () {
     const pdfmaterial6 = [
         {
             id: 1,
-            title: "Advantech",
+            title: "Accelerate with Xeon",
             img: "article.png",
             link: "",
         },
         {
             id: 2,
-            title: "Advantech",
+            title: "Homomorphic Encryption on 3rd Gen Intel® Xeon® Scalable Processors",
             img: "article.png",
-            link: "",
+            link: "intel_data_center_GPU_flex_series_find_systems_with_intel_GPUs_related_materials_2.html",
         },
         {
             id: 3,
-            title: "Modernizing the Power Grid with Software Defined Infrastructure",
+            title: "12th Gen Intel® Core™ Mobile Processors for Edge AI and Media",
             img: "brief.png",
-            link: "",
+            link: "intel_data_center_GPU_flex_series_find_systems_with_intel_GPUs_related_materials_3.html",
         },
         {
             id: 4,
-            title: "Arrow Electronics, Inc.",
+            title: "Stream and Share Your Game With Intel® Arc™ Graphics - Intel",
             img: "article.png",
-            link: "",
+            link: "intel_data_center_GPU_flex_series_find_systems_with_intel_GPUs_related_materials_4.html",
         },
         {
             id: 5,
-            title: "High Performance Computing Needs High Performing Technology",
-            img: "related-materials.png",
-            link: "",
+            title: "Teaching Strategy: Resources and Guides for Teachers",
+            img: "article.png",
+            link: "intel_data_center_GPU_flex_series_find_systems_with_intel_GPUs_related_materials_5.html",
         },
         {
             id: 6,
-            title: "Accelerate AI and Security Workloads",
-            img: "related-materials.png",
+            title: "Jolera Drives Double-Digit Business Growth",
+            img: "article.png",
             link: "",
         },
         {
             id: 7,
-            title: "5th Gen Intel® Xeon® Processors for HPC",
+            title: "Prog-It: Agile, All-in-One Private Cloud System",
             img: "brief.png",
             link: "",
         },
         {
             id: 8,
-            title: "Intel® Advanced Matrix Extensions Overview",
-            img: "related-materials.png",
-            link: "",
+            title: "Alibaba Cloud Accelerates Scientific Computing",
+            img: "article.png",
+            link: "intel_data_center_GPU_flex_series_find_systems_with_intel_GPUs_related_materials_8.html",
         },
         {
             id: 9,
-            title: "The AI PC Opportunity",
+            title: "SoftBank Improves VM Capacity and Reduces Costs",
             img: "tools.png",
             link: "",
         },
         {
             id: 10,
-            title: "What Is High Performance Computing (HPC)? - Intel",
+            title: "GetCard: Achieves Rapid Payment Solutions Growth",
             img: "tools.png",
             link: "",
         },
         {
             id: 11,
-            title: "T-Systems NA Helps Customers on the Road to Cloud",
+            title: "CDS Delivers High Performance with Low TCO",
             img: "best-practices.png",
-            link: "",
+            link: "intel_data_center_GPU_flex_series_find_systems_with_intel_GPUs_related_materials_11",
         },
         {
             id: 12,
-            title: "Hardware Accelerators in the Cloud",
+            title: "Arihant Capital Markets Offers Mobile Trading",
             img: "tools.png",
             link: "",
         },
@@ -1027,7 +1063,7 @@ window.onload = function () {
                                 <div class="d_img me-1">
                                     <img src="/img/mv_image/${pdfmaterial6[i].img}"  alt="">
                                 </div>
-                                <h4><a href="">${pdfmaterial6[i].title}</a></h4>
+                                <h4><a href="/vaidikhtml/${pdfmaterial6[i].link}">${pdfmaterial6[i].title}</a></h4>
                             </div>
                         </div>
                     </div>`
@@ -1865,6 +1901,172 @@ window.onload = function () {
 
 
 }
+
+
+
+
+// (Intel® Data Center GPU Flex Series) Find Systems with Intel® GPUs -> Related Materials 3
+    // Related Videos
+    let mv_video_1 = document.getElementById('mv_video_1')
+
+    const pdfvideo13 = [
+        {
+            id: 1,
+            title: "Hellometer with 13th Gen Intel Core Mobile Processor Demo Video",
+            time: "3:48",
+            text: "Video demonstrating how 13th Gen Intel Core mobile processors enables Hellometer to deliver more intelligence and performance for restaurants.",
+            img: "related-video.png.rendition.cq5dam.thumbnail.319.319.png",
+            link: "intel_data_center_GPU_flex_seriesFind_systems_with_intel_GPUs_related_vidoes.html",
+        },
+        {
+            id: 2,
+            title: "4th Gen Intel Xeon Scalable processors Siemens Healthineers video",
+            time: "4:31",
+            text: "4th Gen Intel Xeon Scalable processor AI acceleration, helps Siemens Healthineers to improve performance and sustainability.",
+            img: "related-video.png.rendition.cq5dam.thumbnail.319.319.png",
+            link: "intel_data_center_GPU_flex_seriesFind_systems_with_intel_GPUs_related_vidoes.html",
+        },
+        {
+            id: 3,
+            title: "Intel Atom® Processors x7000E Series Overview Video",
+            time: "2:53",
+            text: "Intel Atom® processors x7000E series and Intel® Core™ i3 processors break new ground for x86 processors in the 6W to 15W base processor power range.",
+            img: "demo-video.jpg",
+            link: "intel_data_center_GPU_flex_seriesFind_systems_with_intel_GPUs_related_vidoes.html",
+        },
+        {
+            id: 4,
+            title: "13th Gen Intel® Core™ Processors for IoT Edge Overview Video",
+            time: "2:41",
+            text: "Accelerate time to value for IoT with more options, performance and features for AI, analytics, computer vision, and industrial solutions at the edge.",
+            img: "related-video.png.rendition.cq5dam.thumbnail.319.319.png",
+            link: "intel_data_center_GPU_flex_seriesFind_systems_with_intel_GPUs_related_vidoes.html",
+        },
+        {
+            id: 5,
+            title: "13th Gen Intel Core Mobile Processors with BiriminD Demo Video",
+            time: "3:41",
+            text: "Learn how 13th Gen Intel Core processors improve BirminD manufacturing efficiency and performance for industrial wastewater treatment.",
+            img: "related-video.png.rendition.cq5dam.thumbnail.319.319.png",
+            link: "intel_data_center_GPU_flex_seriesFind_systems_with_intel_GPUs_related_vidoes.html",
+        },
+        {
+            id: 6,
+            title: "4th Gen Intel® Xeon® Scalable Processors for IoT Edge Video",
+            time: "3:34",
+            text: "4th Gen Intel® Xeon® Scalable processors deliver increased performance to accelerate IoT and edge deployments and drive faster time to results.",
+            img: "Processing-Multiple.jpg",
+            link: "intel_data_center_GPU_flex_seriesFind_systems_with_intel_GPUs_related_vidoes.html",
+        },
+    ]
+
+    if (mv_video_1) {
+        for (let i = 0; i < pdfvideo13.length; i++) {
+            mv_video_1.innerHTML += `<div class="col-xs-12 col-ms-6 col-sm-4 col-md-3 col-xl-2">
+                        <div class="d_item">
+                            <div class="d_img mv_img_icon">
+                                <a href=""><img src="/img/mv_image/${pdfvideo13[i].img}" alt=""></a>
+                            </div>
+                            <h3><a href="/vaidikhtml/${pdfvideo13[i].link}">${pdfvideo13[i].title} ${pdfvideo13[i].time ? `<small>(${pdfvideo13[i].time})</small>` : ""} </a></h3>
+                            <p>${pdfvideo13[i].text}</p>
+                        </div>
+                    </div>`
+        }
+    }
+
+    // Related Materials
+    let mv_materials_1 = document.getElementById('mv_materials_1')
+
+    const pdfmaterial13 = [
+        {
+            id: 1,
+            title: "12th Gen Intel® Core™ Processors Infographic",
+            img: "brief.png",
+            link: "",
+        },
+        {
+            id: 2,
+            title: "12th Gen Intel® Core™ Desktop Processors for Edge Performance",
+            img: "brief.png",
+            link: "",
+        },
+        {
+            id: 3,
+            title: "12th Gen Intel® Core™ Processor for IoT Edge – Infographic",
+            img: "brief.png",
+            link: "",
+        },
+        {
+            id: 4,
+            title: "12th Gen Intel® Core™ Processors for IoT Edge Product Brief",
+            img: "brief.png",
+            link: "",
+        },
+        {
+            id: 5,
+            title: "Enhanced Speed and Capability with 13th Gen Intel® Core™ Processors",
+            img: "brief.png",
+            link: "",
+        },
+        {
+            id: 6,
+            title: "Intel Atom® x7000E Series, Intel® Core™ i3 Processors Brief",
+            img: "brief.png",
+            link: "",
+        },
+        {
+            id: 7,
+            title: "IoT and Embedded Processors",
+            img: "brief.png",
+            link: "",
+        },
+        {
+            id: 8,
+            title: "Baüne Ecosystems Inc.",
+            img: "brief.png",
+            link: "",
+        },
+        {
+            id: 9,
+            title: "Guangdong Rosmart Technology Co., Ltd.",
+            img: "tools.png",
+            link: "",
+        },
+        {
+            id: 10,
+            title: "12th Gen Intel Core Processor for IoT Announced",
+            img: "brief.png",
+            link: "",
+        },
+        {
+            id: 11,
+            title: "Jian 24 Smart Retail",
+            img: "brief.png",
+            link: "",
+        },
+        {
+            id: 12,
+            title: "WEIBU Information Inc.",
+            img: "brief.png",
+            link: "",
+        },
+
+    ]
+
+    if (mv_materials_1) {
+        for (let i = 0; i < pdfmaterial13.length; i++) {
+            mv_materials_1.innerHTML += `<div class="col-xs-12 col-ms-6 col-sm-4 col-md-3 col-xl-2">
+                        <div class="d_box">
+                            <div class="d-flex">
+                                <div class="d_img me-1">
+                                    <img src="/img/mv_image/${pdfmaterial13[i].img}"  alt="">
+                                </div>
+                                <h4><a href="/vaidikhtml/${pdfmaterial13[i].link}">${pdfmaterial13[i].title}</a></h4>
+                            </div>
+                        </div>
+                    </div>`
+        }
+    }
 
 
 
