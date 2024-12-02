@@ -11,7 +11,7 @@ window.onload = function () {
     mv_table_2gen();
     mv_table_1gen();    
 
-    // Intel® Data Center GPU Flex Series -> Find Systems with Intel® GPUs -> Related Materials
+// Intel® Data Center GPU Flex Series -> Find Systems with Intel® GPUs -> Related Materials
     let D_pdfmaterial0 = document.getElementById('D_pdfmaterial0')
 
     const pdfmaterial0 = [
@@ -105,7 +105,7 @@ window.onload = function () {
         }
     }
 
-    
+    // Show other section
     if (document.getElementById('show-more-btn')) {
         document.getElementById('show-more-btn').addEventListener('click', function () {
             if (document.getElementById('my-card')) {
@@ -141,8 +141,10 @@ window.onload = function () {
         });
     }
 
-    // (AI Accelerator) Read the AI Accelerated product brief
 
+
+    
+// (AI Accelerator) Read the AI Accelerated product brief
     // Related Videos
     let D_pdfvideo1 = document.getElementById('D_pdfvideo1')
 
@@ -153,7 +155,7 @@ window.onload = function () {
             time: "",
             text: "Learn how 3rd Gen Intel® Xeon® Scalable processors enable flexible performance for IoT workloads.",
             img: "related-video.png.rendition.cq5dam.thumbnail.319.319.png",
-            link: "",
+            link: "intel_data_center_GPU_flex_seriesFind_systems_with_intel_GPUs_related_vidoes.html",
         },
         {
             id: 2,
@@ -161,7 +163,7 @@ window.onload = function () {
             time: "3:00",
             text: "Demos Intel® HD Graphics Control Panel uses that you may not know about, including multiple monitors, display profiles, screen colors, and more.",
             img: "getting.jpg",
-            link: "",
+            link: "intel_data_center_GPU_flex_seriesFind_systems_with_intel_GPUs_related_vidoes.html",
         },
         {
             id: 3,
@@ -169,7 +171,7 @@ window.onload = function () {
             time: "14:05",
             text: "Intel STORM Team: Thais Moreira.",
             img: "chips.jpg",
-            link: "",
+            link: "intel_data_center_GPU_flex_seriesFind_systems_with_intel_GPUs_related_vidoes.html",
         },
         {
             id: 4,
@@ -177,7 +179,7 @@ window.onload = function () {
             time: "1:00",
             text: "Intel introduces the world's first commercial conflict-free microprocessor and reconnects the dots across the globe for a responsible supply chain.",
             img: "related-video.png.rendition.cq5dam.thumbnail.319.319.png",
-            link: "",
+            link: "intel_data_center_GPU_flex_seriesFind_systems_with_intel_GPUs_related_vidoes.html",
         },
         {
             id: 5,
@@ -185,7 +187,7 @@ window.onload = function () {
             time: "25:18",
             text: "Professor Srinivas Devadas and Professor Ed Suh discuss the paper they wrote over 20 years ago that won the Intel Test of Time Award in 2022.",
             img: "related-video.png.rendition.cq5dam.thumbnail.319.319.png",
-            link: "",
+            link: "intel_data_center_GPU_flex_seriesFind_systems_with_intel_GPUs_related_vidoes.html",
         },
         {
             id: 6,
@@ -193,7 +195,7 @@ window.onload = function () {
             time: "",
             text: "Find your lost things, including your next Intel®-based laptop, with the Tile* app or one of the Tile* Bluetooth® technology-enabled devices.",
             img: "tile.jpg",
-            link: "",
+            link: "intel_data_center_GPU_flex_seriesFind_systems_with_intel_GPUs_related_vidoes.html",
         },
     ]
 
@@ -204,7 +206,7 @@ window.onload = function () {
                             <div class="d_img mv_img_icon">
                                 <a href=""><img src="/img/mv_image/${pdfvideo1[i].img}" alt=""></a>
                             </div>
-                            <h3><a href="">${pdfvideo1[i].title} ${pdfvideo1[i].time ? `<small>(${pdfvideo1[i].time})</small>` : ""} </a></h3>
+                            <h3><a href="/vaidikhtml/${pdfvideo1[i].link}">${pdfvideo1[i].title} ${pdfvideo1[i].time ? `<small>(${pdfvideo1[i].time})</small>` : ""} </a></h3>
                             <p>${pdfvideo1[i].text}</p>
                         </div>
                     </div>`
@@ -219,73 +221,73 @@ window.onload = function () {
             id: 1,
             title: "Elevate Performance with Intel® Accelerator Engines",
             img: "guide.png",
-            link: "",
+            link: "ai_accelerator_support_todays_most_critical_workloads_read_the_eguide.html",
         },
         {
             id: 2,
             title: "High-Performance Computing with Intel HPC Engines",
             img: "brief.png",
-            link: "",
+            link: "ai_accelerator_Intel_hpc_engines_read_the_hpc_accelerated_product_brief.html",
         },
         {
             id: 3,
             title: "Built-In Accelerators Encrypt, Compress and Move Data",
             img: "brief.png",
-            link: "",
+            link: "ai_accelerator_intel_storage_engines_read_the_storage_accelerated_product_brief.html",
         },
         {
             id: 4,
-            title: "Improved Machine Learning with Intel AMX",
+            title: "Accelerate AI Workloads - Intel® AMX Solution Brief",
             img: "brief.png",
-            link: "",
+            link: "ai_accelerator_read_the_ai_accelerated_product_brief_related_materials_4.html",
         },
         {
             id: 5,
-            title: "Accelerate AI Workloads - Intel® AMX Solution Brief",
+            title: "Improved Machine Learning with Intel AMX",
             img: "brief.png",
-            link: "",
+            link: "ai_accelerator_read_the_ai_accelerated_product_brief_related_materials_5.html",
         },
         {
             id: 6,
-            title: "Faster, More Flexible Networks with Built-in Accelerators",
+            title: "Drive Business Value with Analytics Acceleration",
             img: "brief.png",
-            link: "",
+            link: "ai_accelerator_intel_analytics_engines_read_the_analytics_accelerated_product_brief.html",
         },
         {
             id: 7,
-            title: "Maximizing Growth, Return on Investment, and Data Security with AI",
+            title: "Built-in Intel Security Engines Enhance Data Protection",
             img: "brief.png",
-            link: "",
+            link: "/darshit/ai_accelerator_read_the_ai_accelerated_product_brief_related_materials_7.html",
         },
         {
             id: 8,
-            title: "System Offerings",
-            img: "related-materials.png",
-            link: "",
+            title: "Transforming Retail Banks in the Digital Era",
+            img: "brief.png",
+            link: "/darshit/ai_accelerator_read_the_ai_accelerated_product_brief_related_materials_8.html",
         },
         {
             id: 9,
-            title: "Offerings by Category",
-            img: "related-materials.png",
-            link: "",
+            title: "Accelerate Network and Edge Transformation with E-cores",
+            img: "brief.png",
+            link: "/darshit/ai_accelerator_read_the_ai_accelerated_product_brief_related_materials_9.html",
         },
         {
             id: 10,
-            title: "Drive Business Value with Analytics Acceleration",
+            title: "Intel® Data Center GPU Flex Series - Product Brief",
             img: "brief.png",
-            link: "",
+            link: "Intel_data_center_GPU_flex_series_download_product_brief.html",
         },
         {
             id: 11,
-            title: "Independent Hardware Vendors Acceleration Program",
+            title: "Intel® Data Center GPU Flex Series - Media Processing & Delivery...",
             img: "article.png",
-            link: "",
+            link: "intel_data_center_GPU_flex_series_download_the_media_delivery_solution_brief.html",
         },
         {
             id: 12,
-            title: "Bringing AI Everywhere",
-            img: "related-materials.png",
-            link: "",
+            title: "4th Gen Intel® Xeon® Scalable Processors",
+            img: "brief.png",
+            link: "ai_accelerator_read_the_ai_accelerated_product_brief_related_materials_12.html",
         },
 
     ]
@@ -298,7 +300,7 @@ window.onload = function () {
                                 <div class="d_img me-1">
                                     <img src="/img/mv_image/${pdfmaterial1[i].img}"  alt="">
                                 </div>
-                                <h4><a href="">${pdfmaterial1[i].title}</a></h4>
+                                <h4><a href="/vaidikhtml/${pdfmaterial1[i].link}">${pdfmaterial1[i].title}</a></h4>
                             </div>
                         </div>
                     </div>`
@@ -308,59 +310,58 @@ window.onload = function () {
 
 
 
-    // (AI Accelerator -> (Intel HPC Engines)) Read the HPC Accelerated product brief
-
+// (AI Accelerator -> (Intel HPC Engines)) Read the HPC Accelerated product brief
     // Related Videos
     let mv_pdf_hpc = document.getElementById('mv_pdf_hpc')
 
     const pdfvideo2 = [
         {
             id: 1,
-            title: "Netflix Optimizes Amazon Instance Performance and Reduces Costs,...",
-            time: "1:02",
-            text: "The latest Intel tools help identify bottlenecks down to the micro-architecture level. ",
+            title: "Intel's Next Generation FPGAs 224 Gbps-PAM4-LR Transceiver Video",
+            time: "13:44",
+            text: "The 224 Gbps-PAM4-LR transceiver meets high-speed transceiver requirements in cloud, network, data center, AI, and more.",
             img: "related-video.png.rendition.cq5dam.thumbnail.319.319.png",
-            link: "",
+            link: "intel_data_center_GPU_flex_seriesFind_systems_with_intel_GPUs_related_vidoes.html",
         },
         {
             id: 2,
-            title: "Intel® Partner Lead Portal: Intro and Demo",
-            time: "14:12",
-            text: "This demo for the Intel® Partner Lead Portal shows how to get started with the tool and process individual leads.",
+            title: "Intel® Wireless-AC 2x2 Provides Fast Wi-Fi Speed",
+            time: "3:33",
+            text: "When you're looking to buy a new PC, choose the right Intel® Wireless-AC Wi-Fi solution to maximize streaming, gaming, and sharing experiences.",
             img: "partner.jpg",
-            link: "",
+            link: "intel_data_center_GPU_flex_seriesFind_systems_with_intel_GPUs_related_vidoes.html",
         },
         {
             id: 3,
-            title: "Proof Trading's Cloud Migration Enables Real-Time Transactions,...",
-            time: "1:02",
-            text: "Amazon EC2 instances with Intel® Xeon® Processors and SingleStoreDB provide extensive benefits over Proof Trading’s  solution.",
+            title: "Intel® Advanced Vector Extensions 512 (Intel® AVX-512)",
+            time: "3:51",
+            text: "Intel® Advanced Vector Extensions 512, the latest x86 vector instruction set to accelerate performance for your most demanding computational tasks.",
             img: "related-video.png.rendition.cq5dam.thumbnail.319.319.png",
-            link: "",
+            link: "intel_data_center_GPU_flex_seriesFind_systems_with_intel_GPUs_related_vidoes.html",
         },
         {
             id: 4,
-            title: "Speed AI Development and Deployment Using 4th Gen Intel® Xeon®...",
-            time: "1:12",
-            text: "Amazon instances featuring Intel® AI acceleration technologies, with Optimum Intel and Optimum Habana libraries, give companies powerful tools for generative AI implementation.",
+            title: "Chips and Salsa Episode 29: STORM with Thais Moreira",
+            time: "14:05",
+            text: "Intel STORM Team: Thais Moreira.",
             img: "related-video.png.rendition.cq5dam.thumbnail.319.319.png",
-            link: "",
+            link: "intel_data_center_GPU_flex_seriesFind_systems_with_intel_GPUs_related_vidoes.html",
         },
         {
             id: 5,
-            title: "Ashling RiscFree IDE for Intel® FPGAs",
-            time: "6:08",
-            text: "Watch the video to learn how to debug the Nios® V processor using the Ashling RiscFree IDE for Intel FPGAs.",
+            title: "Chips and Salsa Episode 35: Intel Hardware Security Academic Award",
+            time: "26:55",
+            text: "CRob and Jerry interview the winners of Intel's 2022 Hardware Security Academic Award.",
             img: "nois.jpg",
-            link: "",
+            link: "intel_data_center_GPU_flex_seriesFind_systems_with_intel_GPUs_related_vidoes.html",
         },
         {
             id: 6,
-            title: "Intel Security Accelerators Video",
-            time: "1:58",
-            text: "4th Gen Intel Xeon Scalable processors provide the most built-in accelerators ensuring a zero trust security strategy with continuous data protection.",
+            title: "Introducing Intel® Future Skills",
+            time: "1:50",
+            text: "Intel® Future Skills transforms workforce development and youth empowerment programs to help youth develop the skills and mindset for tomorrow's jobs.",
             img: "related-video.png.rendition.cq5dam.thumbnail.319.319.png",
-            link: "",
+            link: "intel_data_center_GPU_flex_seriesFind_systems_with_intel_GPUs_related_vidoes.html",
         },
     ]
 
@@ -371,7 +372,7 @@ window.onload = function () {
                             <div class="d_img mv_img_icon">
                                 <a href=""><img src="/img/mv_image/${pdfvideo2[i].img}" alt=""></a>
                             </div>
-                            <h3><a href="">${pdfvideo2[i].title} ${pdfvideo2[i].time ? `<small>(${pdfvideo2[i].time})</small>` : ""} </a></h3>
+                            <h3><a href="/vaidikhtml/${pdfvideo2[i].link}">${pdfvideo2[i].title} ${pdfvideo2[i].time ? `<small>(${pdfvideo2[i].time})</small>` : ""} </a></h3>
                             <p>${pdfvideo2[i].text}</p>
                         </div>
                     </div>`
@@ -386,73 +387,73 @@ window.onload = function () {
             id: 1,
             title: "Elevate Performance with Intel® Accelerator Engines",
             img: "guide.png",
-            link: "",
+            link: "ai_accelerator_support_todays_most_critical_workloads_read_the_eguide.html",
         },
         {
             id: 2,
             title: "Boost Entire AI Pipeline Performance",
             img: "brief.png",
-            link: "",
+            link: "ai_accelerator_read_the_ai_accelerated_product_brief.html",
         },
         {
             id: 3,
-            title: "Drive Business Value with Analytics Acceleration",
+            title: "Built-In Accelerators Encrypt, Compress and Move Data",
             img: "brief.png",
-            link: "",
+            link: "ai_accelerator_intel_storage_engines_read_the_storage_accelerated_product_brief.html",
         },
         {
             id: 4,
-            title: "Built-In Accelerators Encrypt, Compress and Move Data",
+            title: "Accelerate AI Workloads - Intel® AMX Solution Brief",
             img: "brief.png",
-            link: "",
+            link: "ai_accelerator_read_the_ai_accelerated_product_brief_related_materials_4.html",
         },
         {
             id: 5,
-            title: "Faster, More Flexible Networks with Built-in Accelerators",
+            title: "Transforming Retail Banks in the Digital Era",
             img: "brief.png",
-            link: "",
+            link: "/rushita_Solutions/k_solutions_in_Viewall_Future-of-Banking_Digital-Era.html",
         },
         {
             id: 6,
-            title: "Improved Machine Learning with Intel AMX",
+            title: "Drive Business Value with Analytics Acceleration",
             img: "brief.png",
-            link: "",
+            link: "ai_accelerator_intel_analytics_engines_read_the_analytics_accelerated_product_brief.html",
         },
         {
             id: 7,
-            title: "Built-in Intel Security Engines Enhance Data Protection",
+            title: "Faster, More Flexible Networks with Built-in Accelerators",
             img: "brief.png",
-            link: "",
+            link: "ai_accelerator_intel_network_engines_read_the_network_accelerated_product_brief.html",
         },
         {
             id: 8,
-            title: "Accelerate AI Workloads - Intel® AMX Solution Brief",
+            title: "Built-in Intel Security Engines Enhance Data Protection",
             img: "brief.png",
-            link: "",
+            link: "ai_accelerator_intel_security_engines_read_the_security_accelerated_product_brief.html",
         },
         {
             id: 9,
-            title: "Partner Directory",
-            img: "related-materials.png",
-            link: "",
+            title: "4th Gen Intel® Xeon® Scalable Processors",
+            img: "brief.png",
+            link: "ai_accelerator_read_the_ai_accelerated_product_brief_related_materials_12.html",
         },
         {
             id: 10,
-            title: "The Intel Xeon 6 Processor Family",
+            title: "Improved Machine Learning with Intel AMX",
             img: "brief.png",
-            link: "",
+            link: "ai_accelerator_read_the_ai_accelerated_product_brief_related_materials_5.html",
         },
         {
             id: 11,
-            title: "FPGA Featured Partners and Offerings",
-            img: "related-materials.png",
-            link: "",
+            title: "NGINX on Google Cloud N2 Gen Over Gen",
+            img: "brief.png",
+            link: "ai_accelerator_intel_hpc_engines_read_the_hpc_accelerated_product_brief_related_materials_11.html",
         },
         {
             id: 12,
-            title: "Accelerators Test",
-            img: "related-materials.png",
-            link: "",
+            title: "Share Data While Helping to Protect User Privacy",
+            img: "brief.png",
+            link: "/darshit/ai_accelerator_intel_hpc_engines_read_the_hpc_accelerated_product_brief_related_materials_12.html",
         },
 
     ]
@@ -465,7 +466,7 @@ window.onload = function () {
                                 <div class="d_img me-1">
                                     <img src="/img/mv_image/${pdfmaterial2[i].img}"  alt="">
                                 </div>
-                                <h4><a href="">${pdfmaterial2[i].title}</a></h4>
+                                <h4><a href="/vaidikhtml/${pdfmaterial2[i].link}">${pdfmaterial2[i].title}</a></h4>
                             </div>
                         </div>
                     </div>`
@@ -475,8 +476,7 @@ window.onload = function () {
 
 
 
-    // (Intel Data Center GPU Max Series) Product brief: Intel Data Center GPU Max Series
-
+// (Intel Data Center GPU Max Series) Product brief: Intel Data Center GPU Max Series
     // Related Materials
     let mv_pdf_gpu_material = document.getElementById('mv_pdf_gpu_material')
 
@@ -575,7 +575,6 @@ window.onload = function () {
 
 
     // (Intel® Data Center GPU Flex Series) Download the VDI solution brief
-
     // Related Videos
     let mv_video_VDI = document.getElementById('mv_video_VDI')
 
@@ -1239,7 +1238,7 @@ window.onload = function () {
 
 
 
-    // (Intel® Data Center GPU Flex Series) Find Systems with Intel® GPUs
+// (Intel® Data Center GPU Flex Series) Find Systems with Intel® GPUs
     // Related Videos
     let mv_white_paper = document.getElementById('mv_white_paper')
 
@@ -1250,7 +1249,7 @@ window.onload = function () {
             time: "3:00",
             text: "Demos Intel® HD Graphics Control Panel uses that you may not know about, including multiple monitors, display profiles, screen colors, and more.",
             img: "panel.jpg",
-            link: "",
+            link: "intel_data_center_GPU_flex_seriesFind_systems_with_intel_GPUs_related_vidoes.html",
         },
         {
             id: 2,
@@ -1258,7 +1257,7 @@ window.onload = function () {
             time: "22:47",
             text: "Jerry and CRob chat about Intel SPEAR.",
             img: "joao.jpg",
-            link: "",
+            link: "intel_data_center_GPU_flex_seriesFind_systems_with_intel_GPUs_related_vidoes.html",
         },
         {
             id: 3,
@@ -1266,7 +1265,7 @@ window.onload = function () {
             time: "1:02",
             text: "The latest Intel tools help identify bottlenecks down to the micro-architecture level.",
             img: "related-video.png.rendition.cq5dam.thumbnail.319.319.png",
-            link: "",
+            link: "intel_data_center_GPU_flex_seriesFind_systems_with_intel_GPUs_related_vidoes.html",
         },
         {
             id: 4,
@@ -1274,7 +1273,7 @@ window.onload = function () {
             time: "",
             text: "Introducing the 5G Solution 5000, delivering game-changing wireless performance to PCs.",
             img: "related-video.png.rendition.cq5dam.thumbnail.319.319.png",
-            link: "",
+            link: "intel_data_center_GPU_flex_seriesFind_systems_with_intel_GPUs_related_vidoes.html",
         },
         {
             id: 5,
@@ -1282,7 +1281,7 @@ window.onload = function () {
             time: "2:32",
             text: "Modernize your tech to take advantage of AI, improve cybersecurity, and improve competitiveness. Enter new markets and surpass the competition.",
             img: "related-video.png.rendition.cq5dam.thumbnail.319.319.png",
-            link: "",
+            link: "intel_data_center_GPU_flex_seriesFind_systems_with_intel_GPUs_related_vidoes.html",
         },
         {
             id: 6,
@@ -1290,7 +1289,7 @@ window.onload = function () {
             time: "14:05",
             text: "Intel STORM Team: Thais Moreira.",
             img: "moreira.jpg",
-            link: "",
+            link: "intel_data_center_GPU_flex_seriesFind_systems_with_intel_GPUs_related_vidoes.html",
         },
     ]
 
@@ -1301,7 +1300,7 @@ window.onload = function () {
                             <div class="d_img mv_img_icon">
                                 <a href=""><img src="/img/mv_image/${pdfvideo8[i].img}" alt=""></a>
                             </div>
-                            <h3><a href="">${pdfvideo8[i].title} ${pdfvideo8[i].time ? `<small>(${pdfvideo8[i].time})</small>` : ""} </a></h3>
+                            <h3><a href="/vaidikhtml/${pdfvideo8[i].link}">${pdfvideo8[i].title} ${pdfvideo8[i].time ? `<small>(${pdfvideo8[i].time})</small>` : ""} </a></h3>
                             <p>${pdfvideo8[i].text}</p>
                         </div>
                     </div>`
@@ -1316,73 +1315,73 @@ window.onload = function () {
             id: 1,
             title: "Intel GPU Flex Series for Virtual Desktop Infrastructure",
             img: "brief.png",
-            link: "",
+            link: "/darshit/intel_data_center_GPU_flex_series_VDI_performance_white_paper_related_materials_1.html",
         },
         {
             id: 2,
             title: "Intel® Data Center GPU Ready Systems",
             img: "related-materials.png",
-            link: "",
+            link: "/darshit/intel_data_center_GPU_flex_series_VDI_performance_white_paper_related_materials_2.html",
         },
         {
             id: 3,
             title: "Intel® Data Center GPU Flex Series Windows Cloud Gaming Brief",
             img: "brief.png",
-            link: "",
+            link: "/darshit/intel_data_center_GPU_flex_series_VDI_performance_white_paper_related_materials_3.html",
         },
         {
             id: 4,
             title: "Reduce Memory Costs of Microsoft SQL Running on vSphere",
             img: "brief.png",
-            link: "",
+            link: "/darshit/intel_data_center_GPU_flex_series_VDI_performance_white_paper_related_materials_4.html",
         },
         {
             id: 5,
             title: "Tiered Memory in VMware’s Production Tanzu Environment",
             img: "whitepaper.png",
-            link: "",
+            link: "/darshit/intel_data_center_GPU_flex_series_VDI_performance_white_paper_related_materials_5.html",
         },
         {
             id: 6,
             title: "Introducing the Intel® Optane™ SSD P1600X for Boot Drives",
             img: "whitepaper.png",
-            link: "",
+            link: "/darshit/intel_data_center_GPU_flex_series_VDI_performance_white_paper_related_materials_6.html",
         },
         {
             id: 7,
             title: "Lenovo Solutions with Intel Technologies Hit the Sweet Spot",
             img: "gallry.png",
-            link: "",
+            link: "/darshit/intel_data_center_GPU_flex_series_VDI_performance_white_paper_related_materials_7.html",
         },
         {
             id: 8,
             title: "Improving Splunk & Kafka Platforms with Cloud-Native Technologies",
             img: "guide.png",
-            link: "",
+            link: "/darshit/intel_data_center_GPU_flex_series_VDI_performance_white_paper_related_materials_8.html",
         },
         {
             id: 9,
             title: "Intel® Memory Resilience Technology",
             img: "best-practices.png",
-            link: "",
+            link: "/darshit/intel_data_center_GPU_flex_series_VDI_performance_white_paper_related_materials_9.html",
         },
         {
             id: 10,
             title: "Intel® Advanced Vector Extensions 512 (AVX-512) Solution Brief",
             img: "brief.png",
-            link: "",
+            link: "/darshit/intel_data_center_GPU_flex_series_VDI_performance_white_paper_related_materials_10.html",
         },
         {
             id: 11,
             title: "2023-2024 Intel IT Annual Performance Report",
             img: "best-practices.png",
-            link: "",
+            link: "/darshit/intel_data_center_GPU_flex_series_explore_GPU_ready_systems_related_materials_5.html",
         },
         {
             id: 12,
             title: "Silicon Photonics 100G Active Optical Cable",
             img: "brief.png",
-            link: "",
+            link: "intel_data_center_GPU_flex_series_explore_GPU_ready_systems_related_materials_3.html",
         },
 
     ]
@@ -1395,7 +1394,7 @@ window.onload = function () {
                                 <div class="d_img me-1">
                                     <img src="/img/mv_image/${pdfmaterial8[i].img}"  alt="">
                                 </div>
-                                <h4><a href="">${pdfmaterial8[i].title}</a></h4>
+                                <h4><a href="${pdfmaterial8[i].link}">${pdfmaterial8[i].title}</a></h4>
                             </div>
                         </div>
                     </div>`
@@ -1714,7 +1713,7 @@ window.onload = function () {
             id: 12,
             title: "Equideum Health: Revolutionizing Health Data",
             img: "article.png",
-            link: "",
+            link: "intel_data_center_GPU_flex_series_download_the_ai_solution_brief_related_materials_12.html",
         },
 
     ]
@@ -3232,6 +3231,505 @@ window.onload = function () {
                     </div>`
         }
     }
+
+
+
+
+// (AI Accelerators) Read the AI Accelerated product brief -> Related Materials 4
+    // Related Videos
+    let mv_video_9 = document.getElementById('mv_video_9')
+
+    const pdfvideo21 = [
+        {
+            id: 1,
+            title: "Intel® AMX: The Next Big Step in AI",
+            time: "4:33",
+            text: "Intel created Intel® Advanced Matrix Extensions, an AI acceleration engine deeply embedded into every core of our 4th Gen Intel® Xeon® Scalable processor. ",
+            img: "related-video.png.rendition.cq5dam.thumbnail.319.319.png",
+            link: "intel_data_center_GPU_flex_seriesFind_systems_with_intel_GPUs_related_vidoes.html",
+        },
+        {
+            id: 2,
+            title: "Netflix Optimizes Amazon Instance Performance and Reduces Costs,...",
+            time: "1:02",
+            text: "The latest Intel tools help identify bottlenecks down to the micro-architecture level.",
+            img: "related-video.png.rendition.cq5dam.thumbnail.319.319.png",
+            link: "intel_data_center_GPU_flex_seriesFind_systems_with_intel_GPUs_related_vidoes.html",
+        },
+        {
+            id: 3,
+            title: "Amazon EC2 Instances, Supported by Intel® Xeon® Processors, Saved...",
+            time: "1:14",
+            text: "CloudSaver and Intel helped the organization identify optimal Amazon instances to accelerate its workloads while dramatically cutting costs.",
+            img: "demo-video.jpg",
+            link: "intel_data_center_GPU_flex_seriesFind_systems_with_intel_GPUs_related_vidoes.html",
+        },
+        {
+            id: 4,
+            title: "Hypertec Immersion Cooling for FSI and M&E",
+            time: "3:42",
+            text: "Hypertec selected 4th Gen Intel® Xeon® processor as the basis for their immersion born server because of its unrivaled performance in HPC applications.",
+            img: "related-video.png.rendition.cq5dam.thumbnail.319.319.png",
+            link: "intel_data_center_GPU_flex_seriesFind_systems_with_intel_GPUs_related_vidoes.html",
+        },
+        {
+            id: 5,
+            title: "Ashling RiscFree IDE for Intel® FPGAs",
+            time: "6:08",
+            text: "Watch the video to learn how to debug the Nios® V processor using the Ashling RiscFree IDE for Intel FPGAs.",
+            img: "related-video.png.rendition.cq5dam.thumbnail.319.319.png",
+            link: "intel_data_center_GPU_flex_seriesFind_systems_with_intel_GPUs_related_vidoes.html",
+        },
+        {
+            id: 6,
+            title: "Amazon EC2 Instances Featuring Intel® Gaudi® Processors Help Reply...",
+            time: "1:08",
+            text: "Rather than GPU-based instances, Reply chooses Amazon DL1 instances to train the open-source CARLA traffic light detection system that makes self-driving vehicles safer.",
+            img: "Processing-Multiple.jpg",
+            link: "intel_data_center_GPU_flex_seriesFind_systems_with_intel_GPUs_related_vidoes.html",
+        },
+    ]
+
+    if (mv_video_9) {
+        for (let i = 0; i < pdfvideo21.length; i++) {
+            mv_video_9.innerHTML += `<div class="col-xs-12 col-ms-6 col-sm-4 col-md-3 col-xl-2">
+                        <div class="d_item">
+                            <div class="d_img mv_img_icon">
+                                <a href=""><img src="/img/mv_image/${pdfvideo21[i].img}" alt=""></a>
+                            </div>
+                            <h3><a href="/vaidikhtml/${pdfvideo21[i].link}">${pdfvideo21[i].title} ${pdfvideo21[i].time ? `<small>(${pdfvideo21[i].time})</small>` : ""} </a></h3>
+                            <p>${pdfvideo21[i].text}</p>
+                        </div>
+                    </div>`
+        }
+    }
+
+    // Related Materials
+    let mv_materials_9 = document.getElementById('mv_materials_9')
+
+    const pdfmaterial21 = [
+        {
+            id: 1,
+            title: "Improved Machine Learning with Intel AMX",
+            img: "brief.png",
+            link: "",
+        },
+        {
+            id: 2,
+            title: "Boost Entire AI Pipeline Performance",
+            img: "brief.png",
+            link: "",
+        },
+        {
+            id: 3,
+            title: "High-Performance Computing with Intel HPC Engines",
+            img: "brief.png",
+            link: "",
+        },
+        {
+            id: 4,
+            title: "Elevate Performance with Intel® Accelerator Engines",
+            img: "brief.png",
+            link: "",
+        },
+        {
+            id: 5,
+            title: "Built-In Accelerators Encrypt, Compress and Move Data",
+            img: "brief.png",
+            link: "",
+        },
+        {
+            id: 6,
+            title: "5th Gen Intel® Xeon® Processors for HPC",
+            img: "brief.png",
+            link: "",
+        },
+        {
+            id: 7,
+            title: "Solution Offerings",
+            img: "brief.png",
+            link: "",
+        },
+        {
+            id: 8,
+            title: "Drive Business Value with Analytics Acceleration",
+            img: "brief.png",
+            link: "",
+        },
+        {
+            id: 9,
+            title: "Intel® Core™ Ultra Processors PS Series Product Brief",
+            img: "tools.png",
+            link: "",
+        },
+        {
+            id: 10,
+            title: "Sales and Marketing Resources & Documentation",
+            img: "brief.png",
+            link: "",
+        },
+        {
+            id: 11,
+            title: "Client Competition",
+            img: "brief.png",
+            link: "",
+        },
+        {
+            id: 12,
+            title: "NGINX on Google Cloud N2 Competitive",
+            img: "brief.png",
+            link: "",
+        },
+
+    ]
+
+    if (mv_materials_9) {
+        for (let i = 0; i < pdfmaterial21.length; i++) {
+            mv_materials_9.innerHTML += `<div class="col-xs-12 col-ms-6 col-sm-4 col-md-3 col-xl-2">
+                        <div class="d_box">
+                            <div class="d-flex">
+                                <div class="d_img me-1">
+                                    <img src="/img/mv_image/${pdfmaterial21[i].img}"  alt="">
+                                </div>
+                                <h4><a href="/vaidikhtml/${pdfmaterial21[i].link}">${pdfmaterial21[i].title}</a></h4>
+                            </div>
+                        </div>
+                    </div>`
+        }
+    }
+
+
+
+
+// (AI Accelerators) Read the AI Accelerated product brief -> Related Materials 5
+    // Related Videos
+    let mv_video_10 = document.getElementById('mv_video_10')
+
+    const pdfvideo22 = [
+        {
+            id: 1,
+            title: "Intel® AMX: The Next Big Step in AI",
+            time: "4:33",
+            text: "Intel created Intel® Advanced Matrix Extensions, an AI acceleration engine deeply embedded into every core of our 4th Gen Intel® Xeon® Scalable processor. ",
+            img: "related-video.png.rendition.cq5dam.thumbnail.319.319.png",
+            link: "intel_data_center_GPU_flex_seriesFind_systems_with_intel_GPUs_related_vidoes.html",
+        },
+        {
+            id: 2,
+            title: "Intel's Next Generation FPGAs 224 Gbps-PAM4-LR Transceiver Video",
+            time: "13:44",
+            text: "The 224 Gbps-PAM4-LR transceiver meets high-speed transceiver requirements in cloud, network, data center, AI, and more.",
+            img: "related-video.png.rendition.cq5dam.thumbnail.319.319.png",
+            link: "intel_data_center_GPU_flex_seriesFind_systems_with_intel_GPUs_related_vidoes.html",
+        },
+        {
+            id: 3,
+            title: "Chips and Salsa Episode 36: HW Sec Test of Time Award",
+            time: "25:18",
+            text: "Professor Srinivas Devadas and Professor Ed Suh discuss the paper they wrote over 20 years ago that won the Intel Test of Time Award in 2022.",
+            img: "demo-video.jpg",
+            link: "intel_data_center_GPU_flex_seriesFind_systems_with_intel_GPUs_related_vidoes.html",
+        },
+        {
+            id: 4,
+            title: "Robert Noyce: The Man Behind the Microchip",
+            time: "8:38",
+            text: "Learn about Robert Noyce, inventor of the first practical microchip and co-founder of Intel, with a biography and collection of historical stills.",
+            img: "related-video.png.rendition.cq5dam.thumbnail.319.319.png",
+            link: "intel_data_center_GPU_flex_seriesFind_systems_with_intel_GPUs_related_vidoes.html",
+        },
+        {
+            id: 5,
+            title: "Chips and Salsa Episode 35: Intel Hardware Security Academic Award",
+            time: "26:55",
+            text: "CRob and Jerry interview the winners of Intel's 2022 Hardware Security Academic Award.",
+            img: "related-video.png.rendition.cq5dam.thumbnail.319.319.png",
+            link: "intel_data_center_GPU_flex_seriesFind_systems_with_intel_GPUs_related_vidoes.html",
+        },
+        {
+            id: 6,
+            title: "3D XPoint™: A Breakthrough in Non-Volatile Memory Technology",
+            time: "44:28",
+            text: "Intel's Rob Crooke and Micron CEO Mark Durcan announce 3D XPoint™ non-volatile memory technology, a faster, denser, and revolutionary breakthrough.",
+            img: "Processing-Multiple.jpg",
+            link: "intel_data_center_GPU_flex_seriesFind_systems_with_intel_GPUs_related_vidoes.html",
+        },
+    ]
+
+    if (mv_video_10) {
+        for (let i = 0; i < pdfvideo22.length; i++) {
+            mv_video_10.innerHTML += `<div class="col-xs-12 col-ms-6 col-sm-4 col-md-3 col-xl-2">
+                        <div class="d_item">
+                            <div class="d_img mv_img_icon">
+                                <a href=""><img src="/img/mv_image/${pdfvideo22[i].img}" alt=""></a>
+                            </div>
+                            <h3><a href="/vaidikhtml/${pdfvideo22[i].link}">${pdfvideo22[i].title} ${pdfvideo22[i].time ? `<small>(${pdfvideo22[i].time})</small>` : ""} </a></h3>
+                            <p>${pdfvideo22[i].text}</p>
+                        </div>
+                    </div>`
+        }
+    }
+
+    // Related Materials
+    let mv_materials_10 = document.getElementById('mv_materials_10')
+
+    const pdfmaterial22 = [
+        {
+            id: 1,
+            title: "Accelerate AI Workloads - Intel® AMX Solution Brief",
+            img: "brief.png",
+            link: "",
+        },
+        {
+            id: 2,
+            title: "Boost Entire AI Pipeline Performance",
+            img: "brief.png",
+            link: "",
+        },
+        {
+            id: 3,
+            title: "Elevate Performance with Intel® Accelerator Engines",
+            img: "brief.png",
+            link: "",
+        },
+        {
+            id: 4,
+            title: "Faster, More Flexible Networks with Built-in Accelerators",
+            img: "brief.png",
+            link: "",
+        },
+        {
+            id: 5,
+            title: "High-Performance Computing with Intel HPC Engines",
+            img: "brief.png",
+            link: "",
+        },
+        {
+            id: 6,
+            title: "Transforming Retail Banks in the Digital Era",
+            img: "brief.png",
+            link: "",
+        },
+        {
+            id: 7,
+            title: "Microsoft Leverages Intel to Protect $25B in Customer Payments",
+            img: "brief.png",
+            link: "",
+        },
+        {
+            id: 8,
+            title: "Built-in Intel Security Engines Enhance Data Protection",
+            img: "brief.png",
+            link: "",
+        },
+        {
+            id: 9,
+            title: "Intel® Core™ Ultra Processors PS Series Product Brief",
+            img: "tools.png",
+            link: "",
+        },
+        {
+            id: 10,
+            title: "Built-In Accelerators Encrypt, Compress and Move Data",
+            img: "brief.png",
+            link: "",
+        },
+        {
+            id: 11,
+            title: "Sales and Marketing Resources & Documentation",
+            img: "brief.png",
+            link: "",
+        },
+        {
+            id: 12,
+            title: "DOOH (Digital Out of Home) Advertising - Intel",
+            img: "brief.png",
+            link: "",
+        },
+
+    ]
+
+    if (mv_materials_10) {
+        for (let i = 0; i < pdfmaterial22.length; i++) {
+            mv_materials_10.innerHTML += `<div class="col-xs-12 col-ms-6 col-sm-4 col-md-3 col-xl-2">
+                        <div class="d_box">
+                            <div class="d-flex">
+                                <div class="d_img me-1">
+                                    <img src="/img/mv_image/${pdfmaterial22[i].img}"  alt="">
+                                </div>
+                                <h4><a href="/vaidikhtml/${pdfmaterial22[i].link}">${pdfmaterial22[i].title}</a></h4>
+                            </div>
+                        </div>
+                    </div>`
+        }
+    }
+
+
+
+
+    // (AI Accelerators) Read the AI Accelerated product brief -> Related Materials 1
+    // Related Videos
+    let mv_video_11 = document.getElementById('mv_video_11')
+
+    const pdfvideo23 = [
+        {
+            id: 1,
+            title: "Fireside Chat with Telefonica",
+            time: "8:15",
+            text: "Intel and Telefonica discuss collaborations in driving sustainability and performance in 5G networks.",
+            img: "related-video.png.rendition.cq5dam.thumbnail.319.319.png",
+            link: "intel_data_center_GPU_flex_seriesFind_systems_with_intel_GPUs_related_vidoes.html",
+        },
+        {
+            id: 2,
+            title: "Netflix Optimizes Amazon Instance Performance and Reduces Costs,...",
+            time: "1:02",
+            text: "The latest Intel tools help identify bottlenecks down to the micro-architecture level.",
+            img: "related-video.png.rendition.cq5dam.thumbnail.319.319.png",
+            link: "intel_data_center_GPU_flex_seriesFind_systems_with_intel_GPUs_related_vidoes.html",
+        },
+        {
+            id: 3,
+            title: "Hypertec Immersion Cooling for FSI and M&E",
+            time: "3:42",
+            text: "Hypertec selected 4th Gen Intel® Xeon® processor as the basis for their immersion born server because of its unrivaled performance in HPC applications.",
+            img: "demo-video.jpg",
+            link: "intel_data_center_GPU_flex_seriesFind_systems_with_intel_GPUs_related_vidoes.html",
+        },
+        {
+            id: 4,
+            title: "Amazon EC2 Instances, Supported by Intel® Xeon® Processors, Saved...",
+            time: "1:14",
+            text: "CloudSaver and Intel helped the organization identify optimal Amazon instances to accelerate its workloads while dramatically cutting costs.",
+            img: "related-video.png.rendition.cq5dam.thumbnail.319.319.png",
+            link: "intel_data_center_GPU_flex_seriesFind_systems_with_intel_GPUs_related_vidoes.html",
+        },
+        {
+            id: 5,
+            title: "Ashling RiscFree IDE for Intel® FPGAs",
+            time: "6:08",
+            text: "Watch the video to learn how to debug the Nios® V processor using the Ashling RiscFree IDE for Intel FPGAs.",
+            img: "related-video.png.rendition.cq5dam.thumbnail.319.319.png",
+            link: "intel_data_center_GPU_flex_seriesFind_systems_with_intel_GPUs_related_vidoes.html",
+        },
+        {
+            id: 6,
+            title: "Amazon EC2 Instances Featuring Intel® Gaudi® Processors Help Reply...",
+            time: "1:08",
+            text: "Rather than GPU-based instances, Reply chooses Amazon DL1 instances to train the open-source CARLA traffic light detection system that makes self-driving vehicles safer.",
+            img: "Processing-Multiple.jpg",
+            link: "intel_data_center_GPU_flex_seriesFind_systems_with_intel_GPUs_related_vidoes.html",
+        },
+    ]
+
+    if (mv_video_11) {
+        for (let i = 0; i < pdfvideo23.length; i++) {
+            mv_video_11.innerHTML += `<div class="col-xs-12 col-ms-6 col-sm-4 col-md-3 col-xl-2">
+                        <div class="d_item">
+                            <div class="d_img mv_img_icon">
+                                <a href=""><img src="/img/mv_image/${pdfvideo23[i].img}" alt=""></a>
+                            </div>
+                            <h3><a href="/vaidikhtml/${pdfvideo23[i].link}">${pdfvideo23[i].title} ${pdfvideo23[i].time ? `<small>(${pdfvideo23[i].time})</small>` : ""} </a></h3>
+                            <p>${pdfvideo23[i].text}</p>
+                        </div>
+                    </div>`
+        }
+    }
+
+    // Related Materials
+    let mv_materials_11 = document.getElementById('mv_materials_11')
+
+    const pdfmaterial23 = [
+        {
+            id: 1,
+            title: "5th Gen Intel® Xeon® Processors for HPC",
+            img: "brief.png",
+            link: "",
+        },
+        {
+            id: 2,
+            title: "Introducing Intel® Xeon® 6 Processors",
+            img: "brief.png",
+            link: "",
+        },
+        {
+            id: 3,
+            title: "High-Performance Computing with Intel HPC Engines",
+            img: "brief.png",
+            link: "",
+        },
+        {
+            id: 4,
+            title: "The Intel Xeon 6 Processor Family",
+            img: "brief.png",
+            link: "",
+        },
+        {
+            id: 5,
+            title: "Boost Entire AI Pipeline Performances",
+            img: "brief.png",
+            link: "",
+        },
+        {
+            id: 6,
+            title: "Transforming Retail Banks in the Digital Era",
+            img: "brief.png",
+            link: "",
+        },
+        {
+            id: 7,
+            title: "Accelerate Network and Edge Transformation with E-cores",
+            img: "brief.png",
+            link: "",
+        },
+        {
+            id: 8,
+            title: "Homomorphic Encryption on 3rd Gen Intel® Xeon® Scalable Processors",
+            img: "brief.png",
+            link: "",
+        },
+        {
+            id: 9,
+            title: "Elevate Performance with Intel® Accelerator Engines",
+            img: "tools.png",
+            link: "",
+        },
+        {
+            id: 10,
+            title: "Trust Your Zero Trust Security Strategy",
+            img: "brief.png",
+            link: "",
+        },
+        {
+            id: 11,
+            title: "Enterprise PCs",
+            img: "brief.png",
+            link: "",
+        },
+        {
+            id: 12,
+            title: "Level Up Network and Edge Scalability with E-cores",
+            img: "brief.png",
+            link: "",
+        },
+
+    ]
+
+    if (mv_materials_11) {
+        for (let i = 0; i < pdfmaterial23.length; i++) {
+            mv_materials_11.innerHTML += `<div class="col-xs-12 col-ms-6 col-sm-4 col-md-3 col-xl-2">
+                        <div class="d_box">
+                            <div class="d-flex">
+                                <div class="d_img me-1">
+                                    <img src="/img/mv_image/${pdfmaterial23[i].img}"  alt="">
+                                </div>
+                                <h4><a href="/vaidikhtml/${pdfmaterial23[i].link}">${pdfmaterial23[i].title}</a></h4>
+                            </div>
+                        </div>
+                    </div>`
+        }
+    }
+
 
 
 
