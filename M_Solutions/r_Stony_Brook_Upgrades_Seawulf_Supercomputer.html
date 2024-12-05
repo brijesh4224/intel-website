@@ -212,10 +212,94 @@
                             and scaling and thread distribution (results not shown). The scaling and distribution
                             benchmark examined memory bandwidth across threads as operations were scaled to more
                             threads.</p>
-                            <figure>
-                                <img src="../img/Monika_img/hbmbenchmark.jpg" alt=""
-                                    style="width: 100%; object-fit: cover; box-sizing: border-box;">
-                            </figure>
+                        <figure>
+                            <img src="../img/Monika_img/hbmbenchmark.jpg" alt=""
+                                style="width: 100%; object-fit: cover; box-sizing: border-box;">
+                        </figure>
+                        <i>Figure 1. HBM benchmark results for Seawulf and Ookami clusters. Test Results conducted by
+                            Stony Brook.</i>
+                        <figure>
+                            <img src="../img/Monika_img/ddrbenchmark.jpg" alt=""
+                                style="width: 100%; object-fit: cover; box-sizing: border-box;">
+                        </figure>
+                        <i>Figure 2. DDR benchmark results for Seawulf cluster. Test results conducted by Stony
+                            Brook.</i>
+                        <p>Sustained memory bandwidth was 3.5X higher with HBM versus just DDR on the new Intel Xeon CPU
+                            Max Series. According to the study, the memory copy benchmark revealed HBM improves memory
+                            bandwidth utilization nearly linearly up to full subscription on a node, while with DDR
+                            only, bandwidth saturates quickly.</p>
+                        <p>It’s worth noting that, while all benchmarks show improvement with HBM versus DDR on the new
+                            Intel CPU, the degree of benefit varies across tests. This is expected, since some codes are
+                            not memory bandwidth bound, as was also seen in application testing.</p>
+                        <h2 style="margin-top: 2.5rem;">oneDNN Benchmark</h2>
+                        <p>For deep learning training and inference applications, functions of the Intel® oneAPI oneDNN
+                            library were evaluated.</p>
+                        <p>“While other benchmarks looked at the memory bandwidth, the oneDNN benchmark was of
+                            particular interest to me,” commented Smeet Chheda, a PhD candidate in the IACS, “because of
+                            the tile multiplication unit, which was new on the system. It is helpful in accelerating
+                            deep learning applications. I benchmarked the convolution operator because it’s an expensive
+                            and widely used operation. And it has matrix multiplication as well.”</p>
+                        <p>Different inputs with different configurations were tested, including different data types.
+                            Data types included fp32, BF16, and INT8, which are types used in various training and
+                            inference use cases. For fp32 data types, Intel Xeon CPU Max Series with HBM ran up to 1.7
+                            to 3.5 times faster than the previous version Intel® processor and the A64FX CPU,
+                            respectively. For BF16 data types, Intel Xeon CPU Max Series with HBM was 1.79 to 9.2 times
+                            faster than the fp32 benchmarks. For INT8 data types, the new Intel processor delivered from
+                            16.1X to 17.5X speedup over the previous version Intel processor and A64FX CPU,
+                            respectively.</p>
+                        <p>“Generally, for the Intel Xeon CPU Max series, I saw a 2X benefit with HBM versus DDR on the
+                            new CPU,” concluded Chheda.</p>
+                        <h2 style="margin-top: 2.5rem;">Gromacs</h2>
+                        <p>For Gromacs, several sized problems were run. The results show that HBM does not
+                            significantly benefit performance versus DDR on the new Intel processor. However, it does
+                            significantly outperform other CPUs, both when using HBM (Figure 3) and DDR (Figure 4).</p>
+                        <figure>
+                            <img src="../img/Monika_img/hbmrunning.jpg" alt=""
+                                style="width: 100%; object-fit: cover; box-sizing: border-box;">
+                        </figure>
+                        <i>Figure 3. Performance speedup of Intel Xeon Max 9468 processor with HBM running Gromacs. Test
+                            results conducted by Stony Brook.</i>
+                        <figure>
+                            <img src="../img/Monika_img/ddrrunning.jpg" alt=""
+                                style="width: 100%; object-fit: cover; box-sizing: border-box;">
+                        </figure>
+                        <i>Figure 4. Performance speedup of Intel Xeon Max 9468 processor with DDR running Gromacs. Test
+                            results conducted by Stony Brook.</i>
+                        <h2 style="margin-top: 2.5rem;">Exploding Stars</h2>
+                        <p>PhD candidates Catherine Feldman and Josh Martin are working on optimizing the astrophysics
+                            suite called Flash to run it on the new Seawulf partition. Flash is a Multiphysics code that
+                            simulates the explosion of a star.</p>
+                        <p>“We’re studying Type Ia supernovae, which is a stellar explosion that’s ten billion times
+                            brighter than our sun,” explained Feldman. “Observational astronomers use the brightness of
+                            these explosions to determine distances across the universe. The better we understand how
+                            these explosions happen, the better we can calibrate our measuring tape, so to speak, and
+                            make a better map of the universe. So, we use Flash to simulate an explosion and thereby
+                            better understand how they happen.”</p>
+                        <p>Flash has been around for 20 years, and Alan Calder, professor of astronomy and physics and
+                            deputy director of the IACS, is a contributor to part of the code. Until now, with current
+                            computing resources at Stony Brook, researchers have been limited to 2D simulations of these
+                            explosions. But Calder expects with the new partition of Seawulf, they will be able to
+                            perform 3D simulations of explosions.</p>
+                        <p>Feldman and Martin have been working with the code to run different sized 2D and 3D
+                            simulations on the Intel Xeon CPU Max Series. Their testing is currently ongoing and will be
+                            revealed in an upcoming paper.</p>
+                        <h2 style="margin-top: 2.5rem;">Solution Summary</h2>
+                        <p>Stony Brook University’s Seawulf cluster was due for an upgrade. With experience from their
+                            Fugaku-like Ookami cluster, they understood the benefits of HBM for memory bandwidth-bound
+                            workloads. Thus, they looked at the new Intel Xeon CPU Max Series as the foundation for a
+                            new set of nodes on Seawulf.</p>
+                        <p>HPE built the new partition with 94 nodes of HPE ProLiant DL360 Gen11 servers, each hosting
+                            two Intel Xeon Max 9468 processors with HBM. The system was put into production in 2023, and
+                            several researchers and computational scientists have been running it through its paces,
+                            resulting in one published research paper on performance of the new system compared to other
+                            IACS computational resources and another on the way revealing results of the astrophysics
+                            code, Flash, on the new system.</p>
+                        <p>Overall, the new partition delivers as much as 3.5X sustained memory bandwidth and better
+                            thread scaling running with HBM versus DDR. With its new tile multiplication unit, the new
+                            Intel CPU delivers better performance on deep learning with oneDNN across multiple data
+                            types used in training and inference. And, while all workloads do not benefit from
+                            HBM—irrespective of the computing resource it runs on—the new nodes with Intel Xeon Max 9368
+                            processor outperforms the other CPUs on nearly all workloads tested.</p>
                         <a href="">Download the PDF ›</a>
                     </div>
                 </div>
@@ -355,7 +439,29 @@
             </div>
         </div>
     </section>
-
+    <section style="margin: 3rem 0;">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <h4>Product and Performance Information</h4>
+                    <div>
+                        <sup>1</sup>
+                        <a href="">Brookhaven National Lab, Stony Brook University, and University of Buffalo have
+                            A64FX-based clusters.</a>
+                    </div>
+                    <div>
+                        <sup>2</sup>
+                        <p style="display: inline;"> <a href="">https://it.stonybrook.edu/help/kb/understanding-seawulf:</a>Cores per node x #
+                            nodes x base clock per core x Double Precision FLOPS per cycle + Nvidia GPUs Teraflops.</p>
+                    </div>
+                    <div>
+                        <sup>3</sup>
+                        <p style="display: inline;">Siegmann, Eva, et al.,<a href="">First Impressions of the Sapphire Rapids Processor with HBM for Scientific Workloads.</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
     <script>
         const playButton = document.querySelector('.play-button');
         const video = document.getElementById('myVideo');
