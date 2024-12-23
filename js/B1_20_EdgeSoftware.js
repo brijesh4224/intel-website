@@ -5,7 +5,7 @@ const documents = [
         title: "Social Distancing for Retail Settings",
         link: '#',
         date: "09/26/24",
-        content_type: "Infographics",
+        content_type: "Infographics",  
         system: 'Linux',
         sub_system: 'Ubuntu Family',
         discription: "Use video analytics solutions based on Intel® Distribution of OpenVINO™ toolkit models to support retail settings for pandemic scenarios.",
