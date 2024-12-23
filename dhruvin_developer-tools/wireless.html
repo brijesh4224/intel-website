@@ -1,100 +1,74 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Downloads Listing Page</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-        .sidebar {
-            background-color: #f8f9fa;
-            padding: 20px;
-        }
-        
-        .download-item {
-            border: 1px solid #dee2e6;
-            padding: 15px;
-            margin-bottom: 15px;
-            border-radius: 4px;
-        }
-
-        .filter-section {
-            margin-bottom: 20px;
-        }
-
-        .filter-title {
-            font-weight: bold;
-            margin-bottom: 10px;
-        }
-
-        .checkbox-list {
-            max-height: 200px;
-            overflow-y: auto;
-        }
-
-        .search-box {
-            margin-bottom: 20px;
-        }
-
-        .badge-count {
-            background-color: #f0f0f0;
-            color: #666;
-            padding: 2px 6px;
-            border-radius: 10px;
-            font-size: 0.8em;
-        }
-
-        .download-btn {
-            min-width: 100px;
-        }
-    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="../css/ds_Developer-programs/wireless.css">
 </head>
-<body>
-    <div class="container py-4">
+
+<body
+    style="background-image: url(../img/dhruvin/Development-Tools/wireless/background.png); object-fit: cover; box-sizing: border-box;">
+    <div class="ds_container py-4">
         <div class="row">
+            <div class="col-12">
+                <div class="search-container" style="background-color: white;">
+                    <input type="text" placeholder="Search Intel.com">
+                </div>
+            </div>
+        </div>
+        <div class="row mt-4">
             <!-- Sidebar Filters -->
-            <div class="col-md-3">
+            <div class="col-md-3 col-sm-12 m-0 p-0">
                 <div class="sidebar">
-                    <div class="search-box">
-                        <input type="text" class="form-control" placeholder="Search Products...">
+                    <div class="filterClass">
+                        Filter By
                     </div>
 
                     <div class="accordion" id="filterAccordion">
                         <!-- Category Filter -->
-                        <div class="accordion-item">
-                            <h2 class="accordion-header">
-                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#categoryCollapse">
-                                    Category
-                                </button>
-                            </h2>
-                            <div id="categoryCollapse" class="accordion-collapse collapse show" data-bs-parent="#filterAccordion">
-                                <div class="accordion-body">
-                                    <div class="checkbox-list">
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" id="cat1">
-                                            <label class="form-check-label" for="cat1">
-                                                Drivers & Software <span class="badge-count">23</span>
-                                            </label>
-                                        </div>
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" id="cat2">
-                                            <label class="form-check-label" for="cat2">
-                                                Platform Packages <span class="badge-count">15</span>
-                                            </label>
-                                        </div>
-                                    </div>
-                                </div>
+                        <div class="sidebar">
+                            <div class="category-header d-flex justify-content-between align-items-center">
+                                <span>Category</span>
+                                <span class="toggle-icon" id="toggleCategories">
+                                    <img src="../img/dhruvin/Development-Tools/wireless/down.svg" alt="Down Arrow"
+                                        id="toggleIconImg" />
+                                </span>
                             </div>
+                            <ul class="category-list">
+                                <li id="allCategoriesButton" style="display: block;">
+                                    <a href="#" onclick="showAllCategories()">All Categories</a>
+                                </li>
+                                <div id="mainCategories" style="display: block;">
+                                    <li>Drivers & Software (33)</li>
+                                </div>
+                                <div id="expandedCategories" style="display: none;">
+                                    <li>Product Information (12,111)</li>
+                                    <li>Support (23,590)</li>
+                                    <li>Drivers & Software (771)</li>
+                                    <li>Documentation & Resources (82,711)</li>
+                                    <li>Partners (18,254)</li>
+                                    <li>Communities (238,043)</li>
+                                    <li>Newsroom (1,427)</li>
+                                </div>
+                            </ul>
                         </div>
 
                         <!-- Product Filter -->
                         <div class="accordion-item">
                             <h2 class="accordion-header">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#productCollapse">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#productCollapse">
                                     Product
                                 </button>
                             </h2>
-                            <div id="productCollapse" class="accordion-collapse collapse" data-bs-parent="#filterAccordion">
+                            <div id="productCollapse" class="accordion-collapse collapse"
+                                data-bs-parent="#filterAccordion">
                                 <div class="accordion-body">
                                     <div class="checkbox-list">
                                         <div class="form-check">
@@ -118,47 +92,110 @@
             </div>
 
             <!-- Main Content -->
-            <div class="col-md-9">
+            <div class="col-md-9 col-sm-12 m-0 p-0">
                 <!-- Sort Controls -->
-                <div class="d-flex justify-content-between align-items-center mb-4">
+                <div class="d-flex justify-content-between align-items-center r_border">
                     <div class="results-count">
-                        Showing 45 results
+                       <p class="mb-0"> 771 Results</p>
                     </div>
                     <select class="form-select" style="width: auto;">
                         <option>Sort by: Relevance</option>
-                        <option>Date: Newest First</option>
-                        <option>Date: Oldest First</option>
-                        <option>Name: A to Z</option>
+                        <option>Relevancy</option>
+                        <option>A-Z</option>
+                        <option>Z-A</option>
+                        <option>Oldest to Newest</option>
+                        <option> Newest to Oldest</option>
                     </select>
                 </div>
 
-                <!-- Download Items -->
-                <div class="download-list">
-                    <div class="download-item">
-                        <div class="d-flex justify-content-between align-items-start">
-                            <div>
-                                <h5>Graphics Driver for Windows</h5>
-                                <p class="text-muted mb-2">Version: 5.2.1</p>
-                                <p class="mb-2">This download package contains the Graphics Driver for supported versions of Windows.</p>
-                                <small class="text-muted">Date: 2024-03-15</small>
-                            </div>
-                            <button class="btn btn-primary download-btn">Download</button>
-                        </div>
-                    </div>
-
-                    <div class="download-item">
-                        <div class="d-flex justify-content-between align-items-start">
-                            <div>
-                                <h5>Data Center GPU Driver</h5>
-                                <p class="text-muted mb-2">Version: 3.1.0</p>
-                                <p class="mb-2">Enterprise-grade GPU drivers for data center deployments.</p>
-                                <small class="text-muted">Date: 2024-03-10</small>
-                            </div>
-                            <button class="btn btn-primary download-btn">Download</button>
-                        </div>
-                    </div>
+                <div  class="mt-2">
+                    <small style="color: #003C71;">CLEAR ALL FILTERS</small>
                 </div>
-
+                <div>
+                    <button style="background-color: transparent; border-radius: 5px; padding: 3px 5px;">Drivers &
+                        Software <i class="fa-solid fa-xmark"></i></button>
+                    <button style="background-color: transparent; border-radius: 5px; padding: 3px 5px;">Graphics <i
+                            class="fa-solid fa-xmark"></i></button>
+                </div>
+                <div style="background-color: #76CEFF; padding: .5rem;" class="mt-3">
+                    <p class="text-center mb-0">Access to additional search results is restricted. Please <a
+                            href="">sign in</a> or
+                        <a href="">register</a> to view.
+                    </p>
+                </div>
+                <!-- Download Items -->
+                <div class="download-card">
+                    <div class="d-flex justify-content-between align-items-start">
+                        <h4 class="download-title intel-blue mb-0">Intel® Arc™ & Iris® Xe Graphics - Windows*</h4>
+                        <a href="#" class="view-details-btn">View Details</a>
+                    </div>
+                    
+                    <small><a href="https://www.intel.com/content/www/us/en/download/785597/intel-arc-iris-xe-graphics-windows.html" 
+                        class="download-link">
+                         https://www.intel.com/content/www/us/en/download/785597/intel-arc-iris-xe-graphics-windows.html
+                     </a></small>
+                    
+                    <div class="metadata-row m-0">
+                        <div class="metadata-item">
+                            <strong>Date:</strong> 12/20/2024
+                        </div>
+                        <div class="metadata-item">
+                            <strong>Version:</strong> 32.0.101.6325_101.6253
+                        </div>
+                    </div>
+                    
+                    <p class="mb-0">
+                        This download installs Intel® Graphics Driver 32.0.101.6325/32.0.101.101.6253 for Intel® Arc™ B-Series Graphics, Intel® Arc™ A-Series Graphics, Intel® Iris® Xe Graphics, and Intel® Core™ Ultra Processors with Intel® Arc™ Graphics.
+                    </p>
+                </div>
+                <div class="download-card">
+                    <div class="d-flex justify-content-between align-items-start">
+                        <h4 class="download-title intel-blue mb-0">Intel® Arc™ & Iris® Xe Graphics - Windows*</h4>
+                        <a href="#" class="view-details-btn">View Details</a>
+                    </div>
+                    
+                    <small><a href="https://www.intel.com/content/www/us/en/download/785597/intel-arc-iris-xe-graphics-windows.html" 
+                        class="download-link">
+                         https://www.intel.com/content/www/us/en/download/785597/intel-arc-iris-xe-graphics-windows.html
+                     </a></small>
+                    
+                    <div class="metadata-row m-0">
+                        <div class="metadata-item">
+                            <strong>Date:</strong> 12/20/2024
+                        </div>
+                        <div class="metadata-item">
+                            <strong>Version:</strong> 32.0.101.6325_101.6253
+                        </div>
+                    </div>
+                    
+                    <p class="mb-0">
+                        This download installs Intel® Graphics Driver 32.0.101.6325/32.0.101.101.6253 for Intel® Arc™ B-Series Graphics, Intel® Arc™ A-Series Graphics, Intel® Iris® Xe Graphics, and Intel® Core™ Ultra Processors with Intel® Arc™ Graphics.
+                    </p>
+                </div>
+                <div class="download-card">
+                    <div class="d-flex justify-content-between align-items-start">
+                        <h4 class="download-title intel-blue mb-0">Intel® Arc™ & Iris® Xe Graphics - Windows*</h4>
+                        <a href="#" class="view-details-btn">View Details</a>
+                    </div>
+                    
+                    <small><a href="https://www.intel.com/content/www/us/en/download/785597/intel-arc-iris-xe-graphics-windows.html" 
+                        class="download-link">
+                         https://www.intel.com/content/www/us/en/download/785597/intel-arc-iris-xe-graphics-windows.html
+                     </a></small>
+                    
+                    <div class="metadata-row m-0">
+                        <div class="metadata-item">
+                            <strong>Date:</strong> 12/20/2024
+                        </div>
+                        <div class="metadata-item">
+                            <strong>Version:</strong> 32.0.101.6325_101.6253
+                        </div>
+                    </div>
+                    
+                    <p class="mb-0">
+                        This download installs Intel® Graphics Driver 32.0.101.6325/32.0.101.101.6253 for Intel® Arc™ B-Series Graphics, Intel® Arc™ A-Series Graphics, Intel® Iris® Xe Graphics, and Intel® Core™ Ultra Processors with Intel® Arc™ Graphics.
+                    </p>
+                </div>
                 <!-- Pagination -->
                 <nav aria-label="Page navigation" class="mt-4">
                     <ul class="pagination justify-content-center">
@@ -178,5 +215,39 @@
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        const allCategoriesButton = document.getElementById("allCategoriesButton");
+        const mainCategories = document.getElementById("mainCategories");
+        const expandedCategories = document.getElementById("expandedCategories");
+        const toggleIcon = document.getElementById("toggleCategories");
+        const toggleIconImg = document.getElementById("toggleIconImg");
+
+        // Function to show all categories
+        function showAllCategories() {
+            mainCategories.style.display = "none";
+            allCategoriesButton.style.display = "none";
+            expandedCategories.style.display = "block";
+            toggleIconImg.src = "../img/dhruvin/Development-Tools/wireless/up.png"; // Change icon to up arrow
+        }
+
+        // Function to toggle categories visibility
+        toggleIcon.addEventListener("click", () => {
+            if (expandedCategories.style.display === "block") {
+                // Hide all categories and show default view
+                expandedCategories.style.display = "none";
+                mainCategories.style.display = "block";
+                allCategoriesButton.style.display = "block";
+                toggleIconImg.src = "../img/dhruvin/Development-Tools/wireless/down.svg"; // Change icon to down arrow
+            } else {
+                // Show all categories
+                mainCategories.style.display = "none";
+                allCategoriesButton.style.display = "none";
+                expandedCategories.style.display = "block";
+                toggleIconImg.src = "../img/dhruvin/Development-Tools/wireless/up.png"; // Change icon to up arrow
+            }
+        });
+    </script>
 </body>
+
 </html>
