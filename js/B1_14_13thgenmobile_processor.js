@@ -363,6 +363,23 @@ function sortJsonByDate(data) {
 }
 renderDocuments();
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 var gen = ['4th Generation Intel® Core™ i7 Processors', '4th Generation Intel® Core™ i5 Processors', '4th Generation Intel® Core™ i3 Processors', 'Legacy Intel® Core™ Processors', '5th Generation Intel® Core™ i7 Processors', '5th Generation Intel® Core™ i5 Processors', '5th Generation Intel® Core™ i3 Processors', '6th Generation Intel® Core™ i7 Processors', '6th Generation Intel® Core™ i5 Processors', '6th Generation Intel® Core™ i3 Processors'];
 var available = ['Windows 11* (23H2)', 'Windows 11* (24H2)', 'Windows 11* (22H2)', 'Windows 10* (22H2)'];
 var b_data = [
