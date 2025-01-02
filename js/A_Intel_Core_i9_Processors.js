@@ -853,3 +853,1683 @@ function goToPage(page) {
 window.onload = function () {
     loadata();
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+document.addEventListener('DOMContentLoaded', function () {
+    const data = {
+        home: {
+            popular: [{
+                    icon: 'fa-puzzle-piece',
+                    title: 'Compatibility',
+                    description: 'Socket LGA1700 with Comparison to Socket LGA1200',
+                    date: '12/16/2024'
+                },
+                {
+                    icon: 'fa-tools',
+                    title: 'Install & Setup',
+                    description: 'Processor Installation for Intel® Core™ 12th, 13th Generation and 14th gen (Socket LGA1700)',
+                    date: '12/16/2024'
+                },
+                {
+                    icon: 'fa-circle-info',
+                    title: 'Product Information & Documentation',
+                    description: 'Intel® Extreme Tuning Utility (Intel® XTU) AI Assist and How It May Offer Enhanced Overclocking Values',
+                    date: '11/06/2024'
+                },
+                {
+                    icon: 'fa-circle-info',
+                    title: 'Product Information & Documentation',
+                    description: 'Are Cooling Solutions Designed for LGA1700 Compatible with LGA1851 Socket?',
+                    date: '11/04/2024'
+                },
+                {
+                    icon: 'fa-circle-info',
+                    title: 'Product Information & Documentation',
+                    description: 'Boxed Packaging for Intel® Core™ i9 Processor 14900K and Intel® Core™ i9 Processor 14900KS',
+                    date: '10/29/2024'
+                },
+                {
+                    icon: 'fa-circle-info',
+                    title: 'Product Information & Documentation',
+                    description: 'Engineered For Intel® Evo™ Laptops: Verified Accessories',
+                    date: '12/17/2024'
+                },
+                {
+                    icon: 'fa-circle-info',
+                    title: 'Product Information & Documentation',
+                    description: 'Intel® Core™ i9K and i9KS Boxed Desktop Processors Packaging Transition',
+                    date: '10/29/2024'
+                }
+            ],
+            all: [{
+                    icon: 'fa-circle-info',
+                    title: 'Product Information & Documentation',
+                    description: 'Engineered For Intel® Evo™ Laptops: Verified Accessories',
+                    date: '12/20/2024'
+                },
+                {
+                    icon: 'fa-magnifying-glass',
+                    title: 'Product Information & Documentation',
+                    description: 'How to Find if an Intel® Processor Supports Intel® Thread Director',
+                    date: '12/18/2024'
+                },
+                {
+                    icon: 'fa-copy',
+                    title: 'Product Comparison',
+                    description: 'Comparison Chart for Intel® Processors for Laptops',
+                    date: '12/18/2024'
+                },
+                {
+                    icon: 'fa-circle-info',
+                    title: 'Product Information & Documentation',
+                    description: 'Supported Memory Type for Intel Laptop Processors',
+                    date: '12/18/2024'
+                },
+                {
+                    icon: 'fa-circle-info',
+                    title: 'Product Information & Documentation',
+                    description: 'HD Graphics for Intel Laptop Processors',
+                    date: '12/18/2024'
+                },
+                {
+                    icon: 'fa-puzzle-piece',
+                    title: 'Compatibility',
+                    description: 'Socket LGA1700 with Comparison to Socket LGA1200',
+                    date: '12/16/2024'
+                },
+                {
+                    icon: 'fa-tools',
+                    title: 'Install & Setup',
+                    description: 'Processor Installation for Intel® Core™ 12th, 13th Generation and 14th gen (Socket LGA1700)',
+                    date: '12/16/2024'
+                },
+                {
+                    icon: 'fa-copy',
+                    title: 'Product Comparison',
+                    description: 'How to Compare Intel® Processors Using Product Specifications Page (ARK)',
+                    date: '12/16/2024'
+                },
+                {
+                    icon: 'fa-magnifying-glass',
+                    title: 'Identify My Product',
+                    description: 'Differences Between Intel® Desktop and Mobile Processors',
+                    date: '12/10/2024'
+                },
+                {
+                    icon: 'fa-circle-info',
+                    title: 'Product Information & Documentation',
+                    description: 'Where to Find the Thermal Design Power (TDP) for Intel® Processors',
+                    date: '12/10/2024'
+                },
+                {
+                    icon: 'fa-circle-info',
+                    title: 'Product Information & Documentation',
+                    description: 'How to Find if Intel® Deep Learning Boost (Intel® DL Boost) Is Supported on My Intel® Processor',
+                    date: '12/10/2024'
+                },
+                {
+                    icon: 'fa-award',
+                    title: 'Warranty & RMA',
+                    description: 'What Warranty Return Services Are Offered by Intel?',
+                    date: '12/10/2024'
+                },
+                {
+                    icon: 'fa-award',
+                    title: 'Warranty & RMA',
+                    description: 'What Information Do I Need to Provide When Requesting a Warranty Return?',
+                    date: '12/10/2024'
+                },
+                {
+                    icon: 'fa-magnifying-glass',
+                    title: 'Identify My Product',
+                    description: 'How to Check Number of Cores and Threads in My Processor?',
+                    date: '12/04/2024'
+                },
+                {
+                    icon: 'fa-circle-info',
+                    title: 'Product Information & Documentation',
+                    description: 'Information about Temperature for Intel® Processors',
+                    date: '12/4/2024'
+                },
+                {
+                    icon: 'fa-circle-info',
+                    title: 'Product Information & Documentation',
+                    description: 'Online Service Requests Receive Responses Within One Business Day (How to View All Contact Support Options)',
+                    date: '11/27/2024'
+                },
+                {
+                    icon: 'fa-circle-info',
+                    title: 'Product Information & Documentation',
+                    description: 'How to Know If Intel® Processor Supports Intel® Boot Guard',
+                    date: '11/25/2024'
+                },
+                {
+                    icon: 'fa-puzzle-piece',
+                    title: 'Compatibility',
+                    description: 'Compatibility of Intel® Core™ Desktop Processors (12th, 13th and 14th gen)',
+                    date: '11/22/2024'
+                },
+                {
+                    icon: 'fa-circle-info',
+                    title: 'Error Messages',
+                    description: 'Getting Machine Boot Error with Windows*: MACHINE_CHECK_EXCEPTION',
+                    date: '11/22/2024'
+                },
+                {
+                    icon: 'fa-circle-info',
+                    title: 'Product Information & Documentation',
+                    description: 'Intel® Application Optimization Overview',
+                    date: '11/22/2024'
+                },
+                {
+                    icon: 'fa-magnifying-glass',
+                    title: 'Identify My Product',
+                    description: 'How to Get CPUID Information for a System with Intel® Processor',
+                    date: '11/14/2024'
+                },
+                {
+                    icon: 'fa-circle-info',
+                    title: 'Product Information & Documentation',
+                    description: 'Intel® Extreme Tuning Utility (Intel® XTU) AI Assist and How It May Offer Enhanced Overclocking Values',
+                    date: '11/06/2024'
+                },
+                {
+                    icon: 'fa-circle-info',
+                    title: 'Product Information & Documentation',
+                    description: 'Are Cooling Solutions Designed for LGA1700 Compatible with LGA1851 Socket?',
+                    date: '11/04/2024'
+                },
+                {
+                    icon: 'fa-circle-info',
+                    title: 'Product Information & Documentation',
+                    description: 'Overview of the Intel® Processor Identification Utility',
+                    date: '11/04/2024'
+                },
+                {
+                    icon: 'fa-circle-info',
+                    title: 'Product Information & Documentation',
+                    description: 'Boxed Packaging for Intel® Core™ i9 Processor 14900K and Intel® Core™ i9 Processor 14900KS',
+                    date: '10/29/2024'
+                },
+                {
+                    icon: 'fa-copy',
+                    title: 'Product Comparison',
+                    description: 'Comparison Charts for Intel® Desktop Processors Family',
+                    date: '10/28/2024'
+                },
+                {
+                    icon: 'fa-award',
+                    title: 'Warranty & RMA',
+                    description: 'Error Message: "Your product could not be located" When Checking Warranty Status or Coverage on an Intel® Processor',
+                    date: '10/24/2024'
+                },
+                {
+                    icon: 'fa-award',
+                    title: 'Warranty & RMA',
+                    description: 'How to Check the Warranty Status of My Intel® Boxed Processor',
+                    date: '10/23/2024'
+                },
+                {
+                    icon: 'fa-award',
+                    title: 'Warranty & RMA',
+                    description: 'Warranty Process Video for Intel® Processors',
+                    date: '10/23/2024'
+                },
+                {
+                    icon: 'fa-circle-info',
+                    title: 'Product Information & Documentation',
+                    description: 'How to Order Replacement Labels for Self-Built Systems with Intel® Boxed Processor or Laptops',
+                    date: '10/21/2024'
+                },
+                {
+                    icon: 'fa-truck-medical',
+                    title: 'Troubleshooting',
+                    description: 'Troubleshooting LED Lights Stuck ON in Systems with Intel® Desktop Boxed Processor',
+                    date: '10/21/2024'
+                },
+                {
+                    icon: 'fa-puzzle-piece',
+                    title: 'Compatibility',
+                    description: 'Does My Intel® Processor Support Microsoft Windows® 10?',
+                    date: '10/17/2024'
+                },
+                {
+                    icon: 'fa-circle-info',
+                    title: 'Product Information & Documentation',
+                    description: 'Intel® Application Optimization List of Games',
+                    date: '10/15/2024'
+                },
+                {
+                    icon: 'fa-circle-info',
+                    title: 'Product Information & Documentation',
+                    description: 'Intel® Core™ and Intel® Core™ Ultra Boxed Desktop Processors Shipped without Fan Heatsink',
+                    date: '10/14/2024'
+                },
+                {
+                    icon: 'fa-puzzle-piece',
+                    title: 'Compatibility',
+                    description: 'List of HD Graphics for Intel® Desktop Processors',
+                    date: '10/11/2024'
+                },
+                {
+                    icon: 'fa-circle-info',
+                    title: 'Product Information & Documentation',
+                    description: 'What Do the Letters Mean in Intel® Core™ Processor Names?',
+                    date: '10/11/2024'
+                },
+                {
+                    icon: 'fa-circle-info',
+                    title: 'Product Information & Documentation',
+                    description: 'Where Can I Buy an Intel Processor?',
+                    date: '10/11/2024'
+                },
+                {
+                    icon: 'fa-puzzle-piece',
+                    title: 'Compatibility',
+                    description: 'How to Choose Thermal Solutions for Intel® Core™ Boxed Desktop Processor',
+                    date: '10/10/2024'
+                },
+                {
+                    icon: 'fa-circle-info',
+                    title: 'Error Messages',
+                    description: 'Error: "Failed To Connect" While Opening Intel® Application Optimization',
+                    date: '10/10/2024'
+                },
+                {
+                    icon: 'fa-tools',
+                    title: 'Install & Setup',
+                    description: 'User Guide for Installing Intel® Boxed Processor in Your System',
+                    date: '10/10/2024'
+                },
+                {
+                    icon: 'fa-tools',
+                    title: 'Install & Setup',
+                    description: 'Installation Manuals for Intel® Boxed Desktop Processors',
+                    date: '10/10/2024'
+                },
+                {
+                    icon: 'fa-tools',
+                    title: 'Install & Setup',
+                    description: 'Intel® Processor Installation Center for Desktop and Server Processors',
+                    date: '10/10/2024'
+                },
+                {
+                    icon: 'fa-circle-info',
+                    title: 'Product Information & Documentation',
+                    description: 'Support Resources for Intel® Desktop Processors',
+                    date: '10/10/2024'
+                },
+                {
+                    icon: 'fa-circle-info',
+                    title: 'Product Information & Documentation',
+                    description: 'Intel® Core™ Desktop Processors: Collection, Code Name, and Launch Dates',
+                    date: '10/10/2024'
+                },
+                {
+                    icon: 'fa-circle-info',
+                    title: 'Product Information & Documentation',
+                    description: 'Performance Hybrid Core Architecture of Intel® Core™ Platform Using Windows® 10',
+                    date: '10/10/2024'
+                },
+                {
+                    icon: 'fa-circle-info',
+                    title: 'Product Information & Documentation',
+                    description: 'Which Intel® Processors Use the Solder Thermal Interface Material (STIM)?',
+                    date: '10/10/2024'
+                },
+                {
+                    icon: 'fa-circle-info',
+                    title: 'Product Information & Documentation',
+                    description: 'Intel® Boxed Desktop Processors with No Intel® Processor Graphics',
+                    date: '10/10/2024'
+                },
+                {
+                    icon: 'fa-circle-info',
+                    title: 'Product Information & Documentation',
+                    description: 'What Integrated Graphics do Intel® Core™ Desktop Processors Support?',
+                    date: '10/10/2024'
+                },
+                {
+                    icon: 'fa-award',
+                    title: 'Warranty & RMA',
+                    description: 'Intel® Boxed Processors Three-Year Limited Warranty Terms and Conditions',
+                    date: '10/10/2024'
+                },
+                {
+                    icon: 'fa-award',
+                    title: 'Warranty & RMA',
+                    description: 'Warranty Policy for Intel® Boxed and Tray Processors',
+                    date: '09/24/2024'
+                },
+                {
+                    icon: 'fa-puzzle-piece',
+                    title: 'Compatibility',
+                    description: 'How to Find Supported Operating Systems for Intel® Core™ Processors',
+                    date: '09/11/2024'
+                },
+                {
+                    icon: 'fa-truck-medical',
+                    title: 'Troubleshooting',
+                    description: 'Intel® Processor Troubleshooting Wizard Available in Virtual Chat',
+                    date: '09/11/2024'
+                },
+                {
+                    icon: 'fa-puzzle-piece',
+                    title: 'Compatibility',
+                    description: 'How to Check If Your Intel® Processor and Graphics Meets the Minimum Requirements of a Game',
+                    date: '09/04/2024'
+                },
+                {
+                    icon: 'fa-puzzle-piece',
+                    title: 'Compatibility',
+                    description: 'Unable To Increase the Native Resolution of My Laptop to More Than 1360x768',
+                    date: '09/04/2024'
+                },
+                {
+                    icon: 'fa-circle-info',
+                    title: 'Product Information & Documentation',
+                    description: 'How to Get Material Declaration Data Sheet (MDDS) for Intel® Processors',
+                    date: '09/04/2024'
+                },
+                {
+                    icon: 'fa-circle-info',
+                    title: 'Product Information & Documentation',
+                    description: 'How to Get Product Change Notification (PCN) for Intel® Processors',
+                    date: '09/04/2024'
+                },
+                {
+                    icon: 'fa-circle-info',
+                    title: 'Product Information & Documentation',
+                    description: 'How to Find China RoHS Documentation for Intel® Processors',
+                    date: '08/30/2024'
+                },
+                {
+                    icon: 'fa-circle-info',
+                    title: 'Product Information & Documentation',
+                    description: 'Does Using Liquid Metal Thermal Interface Material (LMTIM) Void the Warranty for Intel® Boxed Processors?',
+                    date: '08/20/2024'
+                },
+                {
+                    icon: 'fa-truck-medical',
+                    title: 'Troubleshooting',
+                    description: 'How to Check if Intel® Quick Sync Video Feature is Enabled or Not in Intel® Processors?',
+                    date: '08/08/2024'
+                },
+                {
+                    icon: 'fa-circle-info',
+                    title: 'Product Information & Documentation',
+                    description: 'How Can I Get Engineering Sample Processors from Intel?',
+                    date: '07/31/2024'
+                },
+                {
+                    icon: 'fa-truck-medical',
+                    title: 'Troubleshooting',
+                    description: 'Why Is My Intel® Core™ Processor Stuck at a Certain Frequency?',
+                    date: '07/31/2024'
+                },
+                {
+                    icon: 'fa-circle-info',
+                    title: 'Product Information & Documentation',
+                    description: 'How Can I Get Engineering Sample Processors from Intel?',
+                    date: '07/24/2024'
+                },
+                {
+                    icon: 'fa-award',
+                    title: 'Warranty & RMA',
+                    description: 'How to Identify the Warranty Status of an Intel® Product',
+                    date: '07/09/2024'
+                },
+                {
+                    icon: 'fa-magnifying-glass',
+                    title: 'Identify My Product',
+                    description: 'How to Identify Intel® Desktop Chipsets',
+                    date: '07/03/2024'
+                },
+                {
+                    icon: 'fa-circle-info',
+                    title: 'Product Information & Documentation',
+                    description: 'Right to Repair',
+                    date: '07/02/2024'
+                },
+                {
+                    icon: 'fa-magnifying-glass',
+                    title: 'Identify My Product',
+                    description: 'How to Find the Generation of Intel® Core™ Processors',
+                    date: '06/24/2024'
+                },
+                {
+                    icon: 'fa-truck-medical',
+                    title: 'Troubleshooting',
+                    description: 'My Intel® Core™ Processor Does Not Reach the Maximum Turbo Boost Frequency',
+                    date: '06/24/2024'
+                },
+                {
+                    icon: 'fa-magnifying-glass',
+                    title: 'Identify My Product',
+                    description: 'How to Identify Your Intel® Desktop Processor Socket',
+                    date: '06/11/2024'
+                },
+                {
+                    icon: 'fa-award',
+                    title: 'Warranty & RMA',
+                    description: 'Warranty Terms and Conditions for Intel® Products',
+                    date: '06/11/2024'
+                },
+                {
+                    icon: 'fa-circle-info',
+                    title: 'Product Information & Documentation',
+                    description: 'Why Information Is Not Listed Sometimes When Comparing Products Using the Product Specification Page (ARK)',
+                    date: '06/07/2024'
+                },
+                {
+                    icon: 'fa-award',
+                    title: 'Warranty & RMA',
+                    description: 'Unable to Submit an Intel Warranty Request',
+                    date: '06/06/2024'
+                },
+                {
+                    icon: 'fa-magnifying-glass',
+                    title: 'Identify My Product',
+                    description: 'What Is the Difference Between Intel® Boxed and Tray Processors?',
+                    date: '05/29/2024'
+                },
+                {
+                    icon: 'fa-truck-medical',
+                    title: 'Troubleshooting',
+                    description: 'What Is the Difference Between Intel® Boxed and Tray Processors?',
+                    date: '05/13/2024'
+                },
+                {
+                    icon: 'fa-circle-info',
+                    title: 'Product Information & Documentation',
+                    description: 'Where to Buy Computer Systems and Devices Powered by Intel®',
+                    date: '05/01/2024'
+                },
+                {
+                    icon: 'fa-gauge',
+                    title: 'Product Information & Documentation',
+                    description: 'Updated Guidance for Intel Drivers',
+                    date: '04/29/2024'
+                },
+                {
+                    icon: 'fa-circle-info',
+                    title: 'Product Information & Documentation',
+                    description: 'Intel® Application Optimization with Advanced Mode',
+                    date: '04/25/2024'
+                },
+                {
+                    icon: 'fa-magnifying-glass',
+                    title: 'Identify My Product',
+                    description: 'How to Identify Your Intel® Desktop Processor Socket',
+                    date: '04/16/2024'
+                },
+                {
+                    icon: 'fa-truck-medical',
+                    title: 'Troubleshooting',
+                    description: 'How to Fix a Noisy Fan in Built-in System with Intel® Processors',
+                    date: '04/16/2024'
+                },
+                {
+                    icon: 'fa-award',
+                    title: 'Warranty & RMA',
+                    description: 'Will My Intel® Product Be Replaced with the Same or Different Model?',
+                    date: '04/16/2024'
+                },
+                {
+                    icon: 'fa-award',
+                    title: 'Warranty & RMA',
+                    description: 'What Email Confirmations Should I Expect When Submitting a Warranty Request, and What if I Dont Get Them?',
+                    date: '04/16/2024'
+                },
+                {
+                    icon: 'fa-award',
+                    title: 'Warranty & RMA',
+                    description: 'How Do I Cancel My Warranty Return or Claim?',
+                    date: '04/16/2024'
+                },
+                {
+                    icon: 'fa-award',
+                    title: 'Warranty & RMA',
+                    description: 'How Do I Package Intel® Product for a Warranty Replacement?',
+                    date: '04/16/2024'
+                },
+                {
+                    icon: 'fa-award',
+                    title: 'Warranty & RMA',
+                    description: 'Where Do I Ship Intel® Product for a Warranty Replacement?',
+                    date: '04/16/2024'
+                },
+                {
+                    icon: 'fa-award',
+                    title: 'Warranty & RMA',
+                    description: 'Warranty Terms and Conditions for Intel® Products',
+                    date: '04/16/2024'
+                },
+                {
+                    icon: 'fa-award',
+                    title: 'Warranty & RMA',
+                    description: 'What Factors Determine if I Get New or Refurbished Intel® Products When a Warranty Replacement Order Is Approved?',
+                    date: '04/16/2024'
+                },
+                {
+                    icon: 'fa-truck-medical',
+                    title: 'Troubleshooting',
+                    description: 'Troubleshooting Tips for Blue Screen Error (BSOD) While Using Intel® Processors',
+                    date: '04/08/2024'
+                },
+                {
+                    icon: 'fa-circle-info',
+                    title: 'Product Information & Documentation',
+                    description: 'Troubleshooting Tips to Resolve Windows* BSOD of 0xc000021a',
+                    date: '03/28/2024'
+                },
+                {
+                    icon: 'fa-circle-info',
+                    title: 'Product Information & Documentation',
+                    description: 'What Is the Maximum Operating Temperature of My Intel® Processor?',
+                    date: '03/28/2024'
+                },
+                {
+                    icon: 'fa-circle-info',
+                    title: 'Product Information & Documentation',
+                    description: 'What is the Difference Between Core and Package Temperature?',
+                    date: '03/28/2024'
+                },
+                {
+                    icon: 'fa-circle-info',
+                    title: 'Product Information & Documentation',
+                    description: 'Performance Proxy Frequently Asked Questions (FAQs) for Intel® Processors',
+                    date: '03/18/2024'
+                },
+                {
+                    icon: 'fa-truck-medical',
+                    title: 'Troubleshooting',
+                    description: 'Why Do I Get Error Code 19 When Opening Certain Drivers?',
+                    date: '03/18/2024'
+                },
+                {
+                    icon: 'fa-puzzle-piece',
+                    title: 'Compatibility',
+                    description: 'Does Intel® Cryo Cooling Technology Support Intel® Core™ Processors (14th Gen)?',
+                    date: '03/06/2024'
+                },
+                {
+                    icon: 'fa-circle-info',
+                    title: 'Product Information & Documentation',
+                    description: 'Overview of Intel® Cryo Cooling Technology',
+                    date: '03/06/2024'
+                },
+                {
+                    icon: 'fa-puzzle-piece',
+                    title: 'Compatibility',
+                    description: 'Why Do Certain Games or Applications Have Compatibility Issues?',
+                    date: '02/23/2024'
+                },
+                {
+                    icon: 'fa-circle-info',
+                    title: 'Product Information & Documentation',
+                    description: 'Where to Find Information About Intel® Linux Processor Microcode Data Files',
+                    date: '02/21/2024'
+                },
+                {
+                    icon: 'fa-truck-medical',
+                    title: 'Troubleshooting',
+                    description: 'High Temperature Ranges Encountered on Intel® Processors Multi-Core Enhancement Is Enabled',
+                    date: '02/21/2024'
+                },
+                {
+                    icon: 'fa-truck-medical',
+                    title: 'Troubleshooting',
+                    description: 'Troubleshooting Tips for Random System Crashes on an Intel® Boxed Processor',
+                    date: '02/21/2024'
+                },
+                {
+                    icon: 'fa-magnifying-glass',
+                    title: 'Identify My Product',
+                    description: 'How to Check the Number of Performance Cores (P-cores) and Efficient Cores (E-cores) for Systems With Intel® Processor',
+                    date: '02/20/2024'
+                },
+                {
+                    icon: 'fa-truck-medical',
+                    title: 'Troubleshooting',
+                    description: 'How to Resolve Windows* Crash',
+                    date: '02/16/2024'
+                },
+                {
+                    icon: 'fa-magnifying-glass',
+                    title: 'Identify My Product',
+                    description: 'How to Find BIOS Version, Motherboard Manufacturer, and Model, Processor Number',
+                    date: '02/14/2024'
+                },
+                {
+                    icon: 'fa-magnifying-glass',
+                    title: 'Identify My Product',
+                    description: 'How Do I Check If My Intel® Processor Supports Intel® Turbo Boost Technology?',
+                    date: '02/12/2024'
+                },
+                {
+                    icon: 'fa-truck-medical',
+                    title: 'Troubleshooting',
+                    description: 'How to Clear CMOS to Reset BIOS Settings in Systems with Intel® Desktop Boxed Processors',
+                    date: '02/12/2024'
+                },
+                {
+                    icon: 'fa-truck-medical',
+                    title: 'Troubleshooting',
+                    description: 'Troubleshooting for No Boot and No Display Issues with Intel® Boxed Processors',
+                    date: '02/08/2024'
+                },
+                {
+                    icon: 'fa-award',
+                    title: 'Warranty & RMA',
+                    description: 'Intel Customer Support Services during COVID-19 Global Response Actions',
+                    date: '02/08/2024'
+                },
+                {
+                    icon: 'fa-tools',
+                    title: 'Install & Setup',
+                    description: 'Thermal Management Recommendations for Boxed Intel® Desktop Processors',
+                    date: '01/31/2024'
+                },
+                {
+                    icon: 'fa-magnifying-glass',
+                    title: 'Identify My Product',
+                    description: 'How to Identify My Intel® Processor',
+                    date: '01/11/2024'
+                },
+                {
+                    icon: 'fa-puzzle-piece',
+                    title: 'Compatibility',
+                    description: 'Required BIOS Updates for Intel® 600 and Intel® 700 Series Chipset with Intel® Core™ Desktop Processors (13th and 14th gen)',
+                    date: '01/08/2024'
+                },
+                {
+                    icon: 'fa-tools',
+                    title: 'Install & Setup',
+                    description: 'Intel® Laminar RH1 Cooler Installation Instructions and Video',
+                    date: '01/08/2024'
+                },
+                {
+                    icon: 'fa-circle-info',
+                    title: 'Product Information & Documentation',
+                    description: 'Where to Find Information about CATERR Error in My System with Intel Processor',
+                    date: '01/08/2024'
+                },
+                {
+                    icon: 'fa-circle-info',
+                    title: 'Product Information & Documentation',
+                    description: 'Compatibility of Intel® Core™ Desktop Processors (14th gen)',
+                    date: '01/08/2024'
+                },
+                {
+                    icon: 'fa-circle-info',
+                    title: 'Product Information & Documentation',
+                    description: 'Differences between Intel® Core™ i9, i7, i5, and i3 in Intel Desktop Processors',
+                    date: '01/08/2024'
+                },
+                {
+                    icon: 'fa-circle-info',
+                    title: 'Product Information & Documentation',
+                    description: 'How to Search for Intel® Core™ Processors (14th gen) in Product Page (ARK)',
+                    date: '01/08/2024'
+                },
+                {
+                    icon: 'fa-circle-info',
+                    title: 'Product Information & Documentation',
+                    description: 'Intel® Laminar RH1 Cooler Specifications for Intel® Core Processors 12th, 13th and 14th Generation.',
+                    date: '01/08/2024'
+                },
+                {
+                    icon: 'fa-tools',
+                    title: 'Install & Setup',
+                    description: 'Why Is There a Date of 1968 in the Intel® Chipset Device Software Utility?',
+                    date: '01/05/2024'
+                },
+                {
+                    icon: 'fa-circle-info',
+                    title: 'Product Information & Documentation',
+                    description: 'How Are Intel® Processors Made?',
+                    date: '01/05/2024'
+                },
+                {
+                    icon: 'fa-truck-medical',
+                    title: 'Troubleshooting',
+                    description: 'Intel® Extreme Tunning Utility (Intel® XTU) Is Reporting Incorrect Values',
+                    date: '01/05/2024'
+                },
+                {
+                    icon: 'fa-circle-info',
+                    title: 'Product Information & Documentation',
+                    description: 'How to Choose a Computer for School',
+                    date: '01/04/2024'
+                },
+                {
+                    icon: 'fa-circle-info',
+                    title: 'Product Information & Documentation',
+                    description: 'Where to Locate the Date Code and Lot Code of Intel® Boxed and Intel® Xeon® Processors',
+                    date: '11/27/2023'
+                },
+                {
+                    icon: 'fa-puzzle-piece',
+                    title: 'Compatibility',
+                    description: 'Compatible Thermal Paste for Intel® Core™ i9-14900K Processor',
+                    date: '11/20/2023'
+                },
+                {
+                    icon: 'fa-circle-info',
+                    title: 'Product Information & Documentation',
+                    description: 'What Is Intel® Thread Director?',
+                    date: '11/20/2023'
+                },
+                {
+                    icon: 'fa-circle-info',
+                    title: 'Product Information & Documentation',
+                    description: 'How Do I Find Mechanical Drawings for Intel® Processors?',
+                    date: '11/20/2023'
+                },
+                {
+                    icon: 'fa-circle-info',
+                    title: 'Product Information & Documentation',
+                    description: 'Support Information for INTEL-SA-00709 Intel® Active Management Technology and Intel® Standard Manageability Advisory',
+                    date: '11/14/2023'
+                },
+                {
+                    icon: 'fa-truck-medical',
+                    title: 'Troubleshooting',
+                    description: 'Intel® Extreme Tuning Utility (Intel® XTU) Showing 800MHz on Random Cores',
+                    date: '11/13/2024'
+                },
+                {
+                    icon: 'fa-circle-info',
+                    title: 'Product Information & Documentation',
+                    description: 'How to Know Which Processors Support ECC Memory',
+                    date: '11/09/2023'
+                },
+                {
+                    icon: 'fa-circle-info',
+                    title: 'Product Information & Documentation',
+                    description: 'Resources and Where to Download Intel® Processor Tools and Utilities',
+                    date: '11/06/2023'
+                },
+                {
+                    icon: 'fa-circle-info',
+                    title: 'Product Information & Documentation',
+                    description: 'What Is Intel® Thermal Velocity Boost and How Do I Find If It Is Supported in My Processors?',
+                    date: '10/30/2023'
+                },
+                {
+                    icon: 'fa-circle-info',
+                    title: 'Product Information & Documentation',
+                    description: 'How to Check the Maximum Supported Frequencies for Intel® Processors',
+                    date: '10/23/2023'
+                },
+                {
+                    icon: 'fa-puzzle-piece',
+                    title: 'Compatibility',
+                    description: 'Supported Processors for Windows® 10 Enterprise LTSC 2021',
+                    date: '10/18/2023'
+                },
+                {
+                    icon: 'fa-circle-info',
+                    title: 'Product Information & Documentation',
+                    description: 'Definition of Engineering Sample (ES) Processors and How to Identify an Intel ES',
+                    date: '10/11/2023'
+                },
+                {
+                    icon: 'fa-award',
+                    title: 'Warranty & RMA',
+                    description: 'Warranty Guide for Intel® Processors',
+                    date: '09/25/2024'
+                }
+            ]
+        },
+
+
+        profile: {
+            popular: [{
+                icon: 'fa-puzzle-piece',
+                title: 'Compatibility',
+                description: 'Socket LGA1700 with Comparison to Socket LGA1200',
+                date: '12/16/2024'
+            }],
+            all: [{
+                    icon: 'fa-puzzle-piece',
+                    title: 'Compatibility',
+                    description: 'Socket LGA1700 with Comparison to Socket LGA1200',
+                    date: '12/16/2024'
+                },
+                {
+                    icon: 'fa-puzzle-piece',
+                    title: 'Compatibility',
+                    description: 'Compatibility of Intel® Core™ Desktop Processors (12th, 13th and 14th gen)',
+                    date: '11/22/2024'
+                },
+                {
+                    icon: 'fa-puzzle-piece',
+                    title: 'Compatibility',
+                    description: 'Does My Intel® Processor Support Microsoft Windows® 10?',
+                    date: '10/16/2024'
+                },
+                {
+                    icon: 'fa-puzzle-piece',
+                    title: 'Compatibility',
+                    description: 'List of HD Graphics for Intel® Desktop Processors',
+                    date: '10/11/2024'
+                },
+                {
+                    icon: 'fa-puzzle-piece',
+                    title: 'Compatibility',
+                    description: 'How to Choose Thermal Solutions for Intel® Core™ Boxed Desktop Processor',
+                    date: '10/10/2024'
+                },
+                {
+                    icon: 'fa-puzzle-piece',
+                    title: 'Compatibility',
+                    description: 'How to Find Supported Operating Systems for Intel® Core™ Processors',
+                    date: '09/11/2024'
+                },
+                {
+                    icon: 'fa-puzzle-piece',
+                    title: 'Compatibility',
+                    description: 'How to Check If Your Intel® Processor and Graphics Meets the Minimum Requirements of a Game',
+                    date: '09/04/2024'
+                },
+                {
+                    icon: 'fa-puzzle-piece',
+                    title: 'Compatibility',
+                    description: 'Unable To Increase the Native Resolution of My Laptop to More Than 1360x768',
+                    date: '09/04/2024'
+                },
+                {
+                    icon: 'fa-puzzle-piece',
+                    title: 'Compatibility',
+                    description: 'Does Intel® Cryo Cooling Technology Support Intel® Core™ Processors (14th Gen)?',
+                    date: '03/06/2024'
+                },
+                {
+                    icon: 'fa-puzzle-piece',
+                    title: 'Compatibility',
+                    description: 'Why Do Certain Games or Applications Have Compatibility Issues?',
+                    date: '02/23/2024'
+                },
+                {
+                    icon: 'fa-puzzle-piece',
+                    title: 'Compatibility',
+                    description: 'Required BIOS Updates for Intel® 600 and Intel® 700 Series Chipset with Intel® Core™ Desktop Processors (13th and 14th gen)',
+                    date: '01/08/2024'
+                },
+                {
+                    icon: 'fa-puzzle-piece',
+                    title: 'Compatibility',
+                    description: 'Compatible Thermal Paste for Intel® Core™ i9-14900K Processor',
+                    date: '11/20/2023'
+                },
+                {
+                    icon: 'fa-puzzle-piece',
+                    title: 'Compatibility',
+                    description: 'Supported Processors for Windows® 10 Enterprise LTSC 2021',
+                    date: '10/18/2023'
+                }
+            ]
+        },
+
+        error: {
+            popular: [],
+            all: [{
+                    icon: 'fa-circle-info',
+                    title: 'Error Messages',
+                    description: 'Getting Machine Boot Error with Windows*: MACHINE_CHECK_EXCEPTION',
+                    date: '11/22/2024'
+                },
+                {
+                    icon: 'fa-circle-info',
+                    title: 'Error Messages',
+                    description: 'Error: "Failed To Connect" While Opening Intel® Application Optimization',
+                    date: '10/10/2024'
+                },
+                {
+                    icon: 'fa-circle-info',
+                    title: 'Error Messages',
+                    description: 'Troubleshooting Tips to Resolve Windows* BSOD of 0xc000021a',
+                    date: '03/28/2024'
+                },
+            ]
+        },
+
+
+
+        info: {
+            popular: [{
+                    icon: 'fa-circle-info',
+                    title: 'Product Information & Documentation',
+                    description: 'Intel® Extreme Tuning Utility (Intel® XTU) AI Assist and How It May Offer Enhanced Overclocking Values',
+                    date: '11/06/2024'
+                },
+                {
+                    icon: 'fa-circle-info',
+                    title: 'Product Information & Documentation',
+                    description: 'Are Cooling Solutions Designed for LGA1700 Compatible with LGA1851 Socket?',
+                    date: '11/04/2024'
+                },
+                {
+                    icon: 'fa-circle-info',
+                    title: 'Product Information & Documentation',
+                    description: 'Boxed Packaging for Intel® Core™ i9 Processor 14900K and Intel® Core™ i9 Processor 14900KS',
+                    date: '10/29/2024'
+                },
+                {
+                    icon: 'fa-circle-info',
+                    title: 'Product Information & Documentation',
+                    description: 'Engineered For Intel® Evo™ Laptops: Verified Accessories',
+                    date: '12/17/2024'
+                },
+                {
+                    icon: 'fa-circle-info',
+                    title: 'Product Information & Documentation',
+                    description: 'Intel® Core™ i9K and i9KS Boxed Desktop Processors Packaging Transition',
+                    date: '10/29/2024'
+                },
+            ],
+            all: [{
+                    icon: 'fa-circle-info',
+                    title: 'Product Information & Documentation',
+                    description: 'Engineered For Intel® Evo™ Laptops: Verified Accessories',
+                    date: '12/20/2024'
+                },
+                {
+                    icon: 'fa-circle-info',
+                    title: 'Product Information & Documentation',
+                    description: 'Supported Memory Type for Intel Laptop Processors',
+                    date: '12/18/2024'
+                },
+                {
+                    icon: 'fa-circle-info',
+                    title: 'Product Information & Documentation',
+                    description: 'HD Graphics for Intel Laptop Processors',
+                    date: '12/18/2024'
+                },
+                {
+                    icon: 'fa-circle-info',
+                    title: 'Product Information & Documentation',
+                    description: 'Where to Find the Thermal Design Power (TDP) for Intel® Processors',
+                    date: '12/10/2024'
+                },
+                {
+                    icon: 'fa-circle-info',
+                    title: 'Product Information & Documentation',
+                    description: 'How to Find if Intel® Deep Learning Boost (Intel® DL Boost) Is Supported on My Intel® Processor',
+                    date: '12/10/2024'
+                },
+                {
+                    icon: 'fa-circle-info',
+                    title: 'Product Information & Documentation',
+                    description: 'Information about Temperature for Intel® Processors',
+                    date: '12/04/2024'
+                },
+                {
+                    icon: 'fa-circle-info',
+                    title: 'Product Information & Documentation',
+                    description: 'Online Service Requests Receive Responses Within One Business Day (How to View All Contact Support Options)',
+                    date: '11/27/2024'
+                },
+                {
+                    icon: 'fa-circle-info',
+                    title: 'Product Information & Documentation',
+                    description: 'How to Know If Intel® Processor Supports Intel® Boot Guard',
+                    date: '11/25/2024'
+                },
+                {
+                    icon: 'fa-circle-info',
+                    title: 'Product Information & Documentation',
+                    description: 'Intel® Application Optimization Overview',
+                    date: '11/22/2024'
+                },
+                {
+                    icon: 'fa-circle-info',
+                    title: 'Product Information & Documentation',
+                    description: 'Intel® Extreme Tuning Utility (Intel® XTU) AI Assist and How It May Offer Enhanced Overclocking Values',
+                    date: '11/06/2024'
+                },
+                {
+                    icon: 'fa-circle-info',
+                    title: 'Product Information & Documentation',
+                    description: 'Are Cooling Solutions Designed for LGA1700 Compatible with LGA1851 Socket?',
+                    date: '11/04/2024'
+                },
+                {
+                    icon: 'fa-circle-info',
+                    title: 'Product Information & Documentation',
+                    description: 'Overview of the Intel® Processor Identification Utility',
+                    date: '11/04/2024'
+                },
+                {
+                    icon: 'fa-circle-info',
+                    title: 'Product Information & Documentation',
+                    description: 'Boxed Packaging for Intel® Core™ i9 Processor 14900K and Intel® Core™ i9 Processor 14900KS',
+                    date: '10/29/2024'
+                },
+                {
+                    icon: 'fa-circle-info',
+                    title: 'Product Information & Documentation',
+                    description: 'Intel® Core™ i9K and i9KS Boxed Desktop Processors Packaging Transition',
+                    date: '10/29/2024'
+                },
+                {
+                    icon: 'fa-circle-info',
+                    title: 'Product Information & Documentation',
+                    description: 'How to Order Replacement Labels for Self-Built Systems with Intel® Boxed Processor or Laptops',
+                    date: '10/21/2024'
+                },
+                {
+                    icon: 'fa-circle-info',
+                    title: 'Product Information & Documentation',
+                    description: 'Intel® Core™ and Intel® Core™ Ultra Boxed Desktop Processors Shipped without Fan Heatsink',
+                    date: '10/14/2024'
+                },
+                {
+                    icon: 'fa-circle-info',
+                    title: 'Product Information & Documentation',
+                    description: 'What Do the Letters Mean in Intel® Core™ Processor Names?',
+                    date: '10/11/2024'
+                },
+                {
+                    icon: 'fa-circle-info',
+                    title: 'Product Information & Documentation',
+                    description: 'Where Can I Buy an Intel Processor?',
+                    date: '10/11/2024'
+                },
+                {
+                    icon: 'fa-circle-info',
+                    title: 'Product Information & Documentation',
+                    description: 'Support Resources for Intel® Desktop Processors',
+                    date: '10/10/2024'
+                },
+                {
+                    icon: 'fa-circle-info',
+                    title: 'Product Information & Documentation',
+                    description: 'Support Resources for Intel® Desktop Processors',
+                    date: '10/10/2024'
+                },
+                {
+                    icon: 'fa-circle-info',
+                    title: 'Product Information & Documentation',
+                    description: 'Support Resources for Intel® Desktop Processors',
+                    date: '10/10/2024'
+                },
+                {
+                    icon: 'fa-circle-info',
+                    title: 'Product Information & Documentation',
+                    description: 'Support Resources for Intel® Desktop Processors',
+                    date: '10/10/2024'
+                },
+                {
+                    icon: 'fa-circle-info',
+                    title: 'Product Information & Documentation',
+                    description: 'Support Resources for Intel® Desktop Processors',
+                    date: '10/10/2024'
+                },
+                {
+                    icon: 'fa-circle-info',
+                    title: 'Product Information & Documentation',
+                    description: 'Support Resources for Intel® Desktop Processors',
+                    date: '10/10/2024'
+                },
+                {
+                    icon: 'fa-circle-info',
+                    title: 'Product Information & Documentation',
+                    description: 'Support Resources for Intel® Desktop Processors',
+                    date: '10/10/2024'
+                },
+                {
+                    icon: 'fa-circle-info',
+                    title: 'Product Information & Documentation',
+                    description: 'Support Resources for Intel® Desktop Processors',
+                    date: '10/10/2024'
+                },
+                {
+                    icon: 'fa-circle-info',
+                    title: 'Product Information & Documentation',
+                    description: 'Support Resources for Intel® Desktop Processors',
+                    date: '10/10/2024'
+                },
+                {
+                    icon: 'fa-circle-info',
+                    title: 'Product Information & Documentation',
+                    description: 'Support Resources for Intel® Desktop Processors',
+                    date: '10/10/2024'
+                },
+                {
+                    icon: 'fa-circle-info',
+                    title: 'Product Information & Documentation',
+                    description: 'Support Resources for Intel® Desktop Processors',
+                    date: '10/10/2024'
+                },
+                {
+                    icon: 'fa-circle-info',
+                    title: 'Product Information & Documentation',
+                    description: 'Support Resources for Intel® Desktop Processors',
+                    date: '10/10/2024'
+                },
+                {
+                    icon: 'fa-circle-info',
+                    title: 'Product Information & Documentation',
+                    description: 'Support Resources for Intel® Desktop Processors',
+                    date: '10/10/2024'
+                },
+
+                {
+                    icon: 'fa-circle-info',
+                    title: 'Product Information & Documentation',
+                    description: 'Support Resources for Intel® Desktop Processors',
+                    date: '10/10/2024'
+                },
+                {
+                    icon: 'fa-circle-info',
+                    title: 'Product Information & Documentation',
+                    description: 'Support Resources for Intel® Desktop Processors',
+                    date: '10/10/2024'
+                },
+                {
+                    icon: 'fa-circle-info',
+                    title: 'Product Information & Documentation',
+                    description: 'Support Resources for Intel® Desktop Processors',
+                    date: '10/10/2024'
+                },
+                {
+                    icon: 'fa-circle-info',
+                    title: 'Product Information & Documentation',
+                    description: 'Support Resources for Intel® Desktop Processors',
+                    date: '10/10/2024'
+                },
+                {
+                    icon: 'fa-circle-info',
+                    title: 'Product Information & Documentation',
+                    description: 'Support Resources for Intel® Desktop Processors',
+                    date: '10/10/2024'
+                },
+                {
+                    icon: 'fa-circle-info',
+                    title: 'Product Information & Documentation',
+                    description: 'Support Resources for Intel® Desktop Processors',
+                    date: '10/10/2024'
+                },
+                {
+                    icon: 'fa-circle-info',
+                    title: 'Product Information & Documentation',
+                    description: 'Support Resources for Intel® Desktop Processors',
+                    date: '10/10/2024'
+                },
+                {
+                    icon: 'fa-circle-info',
+                    title: 'Product Information & Documentation',
+                    description: 'Support Resources for Intel® Desktop Processors',
+                    date: '10/10/2024'
+                },
+                {
+                    icon: 'fa-circle-info',
+                    title: 'Product Information & Documentation',
+                    description: 'Support Resources for Intel® Desktop Processors',
+                    date: '10/10/2024'
+                },
+                {
+                    icon: 'fa-circle-info',
+                    title: 'Product Information & Documentation',
+                    description: 'Support Resources for Intel® Desktop Processors',
+                    date: '10/10/2024'
+                },
+                {
+                    icon: 'fa-circle-info',
+                    title: 'Product Information & Documentation',
+                    description: 'Support Resources for Intel® Desktop Processors',
+                    date: '10/10/2024'
+                },
+                {
+                    icon: 'fa-circle-info',
+                    title: 'Product Information & Documentation',
+                    description: 'Support Resources for Intel® Desktop Processors',
+                    date: '10/10/2024'
+                },
+                {
+                    icon: 'fa-circle-info',
+                    title: 'Product Information & Documentation',
+                    description: 'Support Resources for Intel® Desktop Processors',
+                    date: '10/10/2024'
+                },
+                {
+                    icon: 'fa-circle-info',
+                    title: 'Product Information & Documentation',
+                    description: 'Support Resources for Intel® Desktop Processors',
+                    date: '10/10/2024'
+                },
+                {
+                    icon: 'fa-circle-info',
+                    title: 'Product Information & Documentation',
+                    description: 'Support Resources for Intel® Desktop Processors',
+                    date: '10/10/2024'
+                },
+                {
+                    icon: 'fa-circle-info',
+                    title: 'Product Information & Documentation',
+                    description: 'Support Resources for Intel® Desktop Processors',
+                    date: '10/10/2024'
+                },
+                {
+                    icon: 'fa-circle-info',
+                    title: 'Product Information & Documentation',
+                    description: 'Support Resources for Intel® Desktop Processors',
+                    date: '10/10/2024'
+                },
+                {
+                    icon: 'fa-circle-info',
+                    title: 'Product Information & Documentation',
+                    description: 'Support Resources for Intel® Desktop Processors',
+                    date: '10/10/2024'
+                },
+                {
+                    icon: 'fa-circle-info',
+                    title: 'Product Information & Documentation',
+                    description: 'Support Resources for Intel® Desktop Processors',
+                    date: '10/10/2024'
+                },
+                {
+                    icon: 'fa-circle-info',
+                    title: 'Product Information & Documentation',
+                    description: 'Support Resources for Intel® Desktop Processors',
+                    date: '10/10/2024'
+                },
+                {
+                    icon: 'fa-circle-info',
+                    title: 'Product Information & Documentation',
+                    description: 'Support Resources for Intel® Desktop Processors',
+                    date: '10/10/2024'
+                },
+                {
+                    icon: 'fa-circle-info',
+                    title: 'Product Information & Documentation',
+                    description: 'Support Resources for Intel® Desktop Processors',
+                    date: '10/10/2024'
+                },
+            ]
+        },
+
+
+        identify: {
+            popular: [],
+
+            all: [{
+                    icon: 'fa-magnifying-glass',
+                    title: 'Identify My Product',
+                    description: 'How to Check If My Intel® Processor Has an Integrated Neural Processing Unit (NPU)',
+                    date: '08/07/2024'
+                },
+                {
+                    icon: 'fa-magnifying-glass',
+                    title: 'Identify My Product',
+                    description: 'How to Identify Your Intel® Desktop Processor Socket',
+                    date: '06/11/2024'
+                },
+                {
+                    icon: 'fa-magnifying-glass',
+                    title: 'Identify My Product',
+                    description: 'Differences Between Intel® Desktop and Mobile Processors',
+                    date: '05/29/2024'
+                },
+                {
+                    icon: 'fa-magnifying-glass',
+                    title: 'Identify My Product',
+                    description: 'How to Identify Your Intel® Desktop Processor Socket',
+                    date: '04/16/2024'
+                },
+                {
+                    icon: 'fa-magnifying-glass',
+                    title: 'Identify My Product',
+                    description: 'How to Check Number of Cores and Threads in My Processor?',
+                    date: '04/16/2024'
+                },
+                {
+                    icon: 'fa-magnifying-glass',
+                    title: 'Identify My Product',
+                    description: 'How to Check the Number of Performance Cores (P-cores) and Efficient Cores (E-cores) for Systems With Intel® Processor',
+                    date: '02/20/2024'
+                },
+                {
+                    icon: 'fa-magnifying-glass',
+                    title: 'Identify My Product',
+                    description: 'How Do I Check If My Intel® Processor Supports Intel® Turbo Boost Technology?',
+                    date: '02/12/2024'
+                },
+                {
+                    icon: 'fa-magnifying-glass',
+                    title: 'Identify My Product',
+                    description: 'How to Identify My Intel® Processor',
+                    date: '01/11/2024'
+                },
+                {
+                    icon: 'fa-magnifying-glass',
+                    title: 'Identify My Product',
+                    description: 'How Do I Know If a Laptop Is Intel® Evo™ Supported before Buying One?',
+                    date: '12/14/2023'
+                },
+                {
+                    icon: 'fa-magnifying-glass',
+                    title: 'Identify My Product',
+                    description: 'How Do I Know If a Laptop Is Intel® Evo™ Supported before Buying One?',
+                    date: '12/14/2023'
+                },
+                {
+                    icon: 'fa-magnifying-glass',
+                    title: 'Identify My Product',
+                    description: 'How Do I Know If a Laptop Is Intel® Evo™ Supported before Buying One?',
+                    date: '12/14/2023'
+                },
+                {
+                    icon: 'fa-magnifying-glass',
+                    title: 'Identify My Product',
+                    description: 'How Do I Know If a Laptop Is Intel® Evo™ Supported before Buying One?',
+                    date: '12/14/2023'
+                },
+                {
+                    icon: 'fa-magnifying-glass',
+                    title: 'Identify My Product',
+                    description: 'How Do I Know If a Laptop Is Intel® Evo™ Supported before Buying One?',
+                    date: '12/14/2023'
+                },
+            ]
+        },
+
+        install: {
+            popular: [
+                {
+                icon: 'fa-tools',
+                title: 'Install & Setup',
+                description: 'Processor Installation for Intel® Core™ 12th, 13th Generation and 14th gen (Socket LGA1700)',
+                date: '12/16/2024'
+            },
+        ],
+            all: [
+                {
+                    icon: 'fa-tools',
+                    title: 'Install & Setup',
+                    description: 'Processor Installation for Intel® Core™ 12th, 13th Generation and 14th gen (Socket LGA1700)',
+                    date: '12/16/2024'
+                },
+                {
+                    icon: 'fa-tools',
+                    title: 'Install & Setup',
+                    description: 'Processor Installation for Intel® Core™ 12th, 13th Generation and 14th gen (Socket LGA1700)',
+                    date: '12/16/2024'
+                },
+                {
+                    icon: 'fa-tools',
+                    title: 'Install & Setup',
+                    description: 'Processor Installation for Intel® Core™ 12th, 13th Generation and 14th gen (Socket LGA1700)',
+                    date: '12/16/2024'
+                },
+                {
+                    icon: 'fa-tools',
+                    title: 'Install & Setup',
+                    description: 'Processor Installation for Intel® Core™ 12th, 13th Generation and 14th gen (Socket LGA1700)',
+                    date: '12/16/2024'
+                },
+                {
+                    icon: 'fa-tools',
+                    title: 'Install & Setup',
+                    description: 'Processor Installation for Intel® Core™ 12th, 13th Generation and 14th gen (Socket LGA1700)',
+                    date: '12/16/2024'
+                },
+                {
+                    icon: 'fa-tools',
+                    title: 'Install & Setup',
+                    description: 'Processor Installation for Intel® Core™ 12th, 13th Generation and 14th gen (Socket LGA1700)',
+                    date: '12/16/2024'
+                },
+                {
+                    icon: 'fa-tools',
+                    title: 'Install & Setup',
+                    description: 'Processor Installation for Intel® Core™ 12th, 13th Generation and 14th gen (Socket LGA1700)',
+                    date: '12/16/2024'
+                }
+            ]
+        },
+
+        maintenance: {
+            popular: [
+
+            ],
+            all: [{
+                    icon: 'fa-gauge',
+                    title: 'Maintenance & Performance',
+                    description: 'Updated Guidance for Intel Drivers',
+                    date: '04/29/2024'
+                },
+                {
+                    icon: 'fa-gauge',
+                    title: 'Maintenance & Performance',
+                    description: 'Performance and Benchmark Information for AI (Machine Learning) with Intel® Core™ Ultra Processors',
+                    date: '03/11/2024'
+                },
+                {
+                    icon: 'fa-gauge',
+                    title: 'Maintenance & Performance',
+                    description: 'Why Is the Windows* Task Manager Reported Base Frequency Different from the Frequency Reported by the BIOS or Other Software?',
+                    date: '01/23/2024'
+                }
+            ]
+        },
+
+
+
+        troubleshoot: {
+            popular: [
+
+            ],
+            all: [{
+                    icon: 'fa-wrench',
+                    title: 'Troubleshooting',
+                    description: 'How to Check if Intel® Quick Sync Video Feature is Enabled or Not in Intel® Processors?',
+                    date: '08/08/2024'
+                },
+                {
+                    icon: 'fa-wrench',
+                    title: 'Troubleshooting',
+                    description: 'Why the Task Manager Is Showing No Activity on Neural Processing Unit',
+                    date: '05/29/2024'
+                },
+                {
+                    icon: 'fa-wrench',
+                    title: 'Troubleshooting',
+                    description: 'How to Fix a Noisy Fan in Built-in System with Intel® Processors',
+                    date: '04/16/2024'
+                },
+                {
+                    icon: 'fa-wrench',
+                    title: 'Troubleshooting',
+                    description: 'Troubleshooting Tips for Blue Screen Error (BSOD) While Using Intel® Processors',
+                    date: '04/08/2024'
+                },
+                {
+                    icon: 'fa-wrench',
+                    title: 'Troubleshooting',
+                    description: 'Blue Screen Error (BSOD) While Using Intel® Processors',
+                    date: '03/28/2024'
+                },
+                {
+                    icon: 'fa-wrench',
+                    title: 'Troubleshooting',
+                    description: 'Why Do I Get Error Code 19 When Opening Certain Drivers?',
+                    date: '03/18/2024'
+                },
+                {
+                    icon: 'fa-wrench',
+                    title: 'Troubleshooting',
+                    description: 'How to Resolve Windows* Crash',
+                    date: '02/16/2024'
+                },
+            ]
+        },
+
+
+
+        warranty: {
+            popular: [
+
+            ],
+            all: [{
+                    icon: 'fa-award',
+                    title: 'Warranty & RMA',
+                    description: 'How to Identify the Warranty Status of an Intel® Product',
+                    date: '07/09/2024'
+                },
+                {
+                    icon: 'fa-award',
+                    title: 'Warranty & RMA',
+                    description: 'Warranty Terms and Conditions for Intel® Products',
+                    date: '06/11/2024'
+                },
+                {
+                    icon: 'fa-award',
+                    title: 'Warranty & RMA',
+                    description: 'Unable to Submit an Intel Warranty Request',
+                    date: '06/06/2024'
+                },
+                {
+                    icon: 'fa-award',
+                    title: 'Warranty & RMA',
+                    description: 'Will My Intel® Product Be Replaced with the Same or Different Model?',
+                    date: '04/16/2024'
+                },
+                {
+                    icon: 'fa-award',
+                    title: 'Warranty & RMA',
+                    description: 'What Email Confirmations Should I Expect When Submitting a Warranty Request, and What if I Dont Get Them?',
+                    date: '04/16/2024'
+                },
+                {
+                    icon: 'fa-award',
+                    title: 'Warranty & RMA',
+                    description: 'How Do I Cancel My Warranty Return or Claim?',
+                    date: '04/16/2024'
+                },
+                {
+                    icon: 'fa-award',
+                    title: 'Warranty & RMA',
+                    description: 'How Do I Package Intel® Product for a Warranty Replacement?',
+                    date: '04/16/2024'
+                },
+                {
+                    icon: 'fa-award',
+                    title: 'Warranty & RMA',
+                    description: 'What Information Do I Need to Provide When Requesting a Warranty Return?',
+                    date: '04/16/2024'
+                },
+                {
+                    icon: 'fa-award',
+                    title: 'Warranty & RMA',
+                    description: 'Where Do I Ship Intel® Product for a Warranty Replacement?',
+                    date: '04/16/2024'
+                },
+                {
+                    icon: 'fa-award',
+                    title: 'Warranty & RMA',
+                    description: 'Warranty Terms and Conditions for Intel® Products',
+                    date: '04/16/2024'
+                },
+                {
+                    icon: 'fa-award',
+                    title: 'Warranty & RMA',
+                    description: 'What Factors Determine if I Get New or Refurbished Intel® Products When a Warranty Replacement Order Is Approved?',
+                    date: '04/16/2024'
+                },
+                {
+                    icon: 'fa-award',
+                    title: 'Warranty & RMA',
+                    description: 'What Warranty Return Services Are Offered by Intel?',
+                    date: '04/08/2024'
+                },
+                {
+                    icon: 'fa-award',
+                    title: 'Warranty & RMA',
+                    description: 'Intel Customer Support Services during COVID-19 Global Response Actions',
+                    date: '02/08/2024'
+                },
+            ]
+        }
+    };
+
+    // function generateContent(category, type) {
+    //     const contentContainer = document.getElementById(`${category}-${type}-content`);
+    //     contentContainer.innerHTML = '';
+    //     data[category][type].forEach(item => {
+    //         contentContainer.innerHTML += `
+    //             <li class="list-item d-flex align-items-center justify-content-between">
+    //                 <div>
+    //                     <i class="fa-solid ${item.icon} text-dark pe-2" style="padding-top: 5px;"></i>
+    //                     <span class="text-dark">${item.title}</span>
+    //                     <p style="color: #0068b5; padding-top: 5px;">${item.description}</p>
+    //                 </div>
+    //                 <div>
+    //                     <div class="text-dark" style="padding-top: 5px;">Last Reviewed</div>
+    //                     <div style="color: black; padding-top: 5px;">${item.date}</div>
+    //                 </div>
+    //             </li>
+    //         `;
+    //     });
+    // }
+
+
+
+
+    function generateContent(category, type) {
+        const contentContainer = document.getElementById(`${category}-${type}-content`);
+        if (!contentContainer) {
+            console.warn(`No content container found for ${category}-${type}`);
+            return;
+        }
+        contentContainer.innerHTML = ''; // Clear existing content
+        data[category][type].forEach(item => {
+            contentContainer.innerHTML += `
+                <li class="list-item d-flex align-items-center justify-content-between py-2" style=" border-bottom:1px solid #e9e9e9">
+                    <div >
+                        <i class="fa-solid ${item.icon} text-dark pe-2" style="padding-top: 5px;"></i>
+                        <span class="text-dark">${item.title}</span>
+                        <p style="color: #0068b5; padding-top: 5px;">${item.description}</p>
+                    </div>
+                    <div>
+                        <div class="text-dark" style="padding-top: 5px;">Last Reviewed</div>
+                        <div style="color: black; padding-top: 5px;">${item.date}</div>
+                    </div>
+                </li>
+            `;
+        });
+    }
+
+    // Generate content for all categories
+    const categories = ['home', 'profile', 'error', 'info', 'identify', 'install', 'maintenance', 'troubleshoot', 'warranty'];
+    categories.forEach(category => {
+        generateContent(category, 'popular');
+
+        generateContent(category, 'all');
+    });
+});
