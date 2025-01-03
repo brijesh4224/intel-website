@@ -1,5 +1,5 @@
 var data = [{
-        product: 'Intel® Core™ i5 processor 14701TE (33M Cache, up to 5.20 GHz)',
+        product: 'Intel® Core™ i3 processor 14701TE (33M Cache, up to 5.20 GHz)',
         date: "Q3' 24",
         cores: 8,
         max_turbo: '5.2 GHz',
@@ -8,10 +8,10 @@ var data = [{
         link: '#',
         type: 'Mobile',
         status: true,
-        generation: '8th Generation Intel® Core™ i5 Processors'
+        generation: '8th Generation Intel® Core™ i3 Processors'
     },
     {
-        product: 'Intel® Core™ i5 processor 14701E (33M Cache, up to 5.40 GHz)',
+        product: 'Intel® Core™ i3 processor 14701E (33M Cache, up to 5.40 GHz)',
         date: "Q3' 24",
         cores: 8,
         max_turbo: '5.4 GHz',
@@ -20,10 +20,10 @@ var data = [{
         link: '#',
         type: 'Server',
         status: true,
-        generation: '9th Generation Intel® Core™ i5 Processors'
+        generation: '9th Generation Intel® Core™ i3 Processors'
     },
     {
-        product: 'Intel® Core™ i5 processor 14650HX (30M Cache, up to 5.20 GHz)',
+        product: 'Intel® Core™ i3 processor 14650HX (30M Cache, up to 5.20 GHz)',
         date: "Q1' 24",
         cores: 16,
         max_turbo: '5.2 GHz',
@@ -32,10 +32,10 @@ var data = [{
         link: '#',
         type: 'RetailBox',
         status: true,
-        generation: '10th Generation Intel® Core™ i5 Processors'
+        generation: '10th Generation Intel® Core™ i3 Processors'
     },
     {
-        product: 'Intel® Core™ i5 processor 14700HX (33M Cache, up to 5.50 GHz)',
+        product: 'Intel® Core™ i3 processor 14700HX (33M Cache, up to 5.50 GHz)',
         date: "Q1' 24",
         cores: 20,
         max_turbo: '5.5 GHz',
@@ -44,10 +44,10 @@ var data = [{
         link: '#',
         type: 'Server',
         status: true,
-        generation: '11th Generation Intel® Core™ i5 Processors'
+        generation: '11th Generation Intel® Core™ i3 Processors'
     },
     {
-        product: 'Intel® Core™ i5 processor 14700 (33M Cache, up to 5.40 GHz)',
+        product: 'Intel® Core™ i3 processor 14700 (33M Cache, up to 5.40 GHz)',
         date: "Q1' 24",
         cores: 20,
         max_turbo: '5.4 GHz',
@@ -56,10 +56,10 @@ var data = [{
         link: '#',
         type: 'Mobile',
         status: true,
-        generation: '4th Generation Intel® Core™ i5 Processors'
+        generation: '4th Generation Intel® Core™ i3 Processors'
     },
     {
-        product: 'Intel® Core™ i5 processor 14700T (33M Cache, up to 5.20 GHz)',
+        product: 'Intel® Core™ i3 processor 14700T (33M Cache, up to 5.20 GHz)',
         date: "Q1' 24",
         cores: 20,
         max_turbo: '5.2 GHz',
@@ -68,10 +68,10 @@ var data = [{
         link: '#',
         type: 'Server',
         status: false,
-        generation: '5th Generation Intel® Core™ i5 Processors'
+        generation: '5th Generation Intel® Core™ i3 Processors'
     },
     {
-        product: 'Intel® Core™ i5 processor 14700F (33M Cache, up to 5.40 GHz)',
+        product: 'Intel® Core™ i3 processor 14700F (33M Cache, up to 5.40 GHz)',
         date: "Q1' 24",
         cores: 20,
         max_turbo: '5.4 GHz',
@@ -80,10 +80,10 @@ var data = [{
         link: '#',
         type: 'Mobile',
         status: false,
-        generation: '6th Generation Intel® Core™ i5 Processors'
+        generation: '6th Generation Intel® Core™ i3 Processors'
     },
     {
-        product: 'Intel® Core™ i5 processor 14700K (33M Cache, up to 5.60 GHz)',
+        product: 'Intel® Core™ i3 processor 14700K (33M Cache, up to 5.60 GHz)',
         date: "Q4' 23",
         cores: 20,
         max_turbo: '5.6 GHz',
@@ -92,10 +92,10 @@ var data = [{
         link: '#',
         type: 'Server',
         status: false,
-        generation: '7th Generation Intel® Core™ i5 Processors'
+        generation: '7th Generation Intel® Core™ i3 Processors'
     },
     {
-        product: 'Intel® Core™ i5 processor 14700KF (33M Cache, up to 5.60 GHz)',
+        product: 'Intel® Core™ i3 processor 14700KF (33M Cache, up to 5.60 GHz)',
         date: "Q4' 23",
         cores: 20,
         max_turbo: '5.6 GHz',
@@ -104,10 +104,10 @@ var data = [{
         link: '#',
         type: 'Mobile',
         status: false,
-        generation: '9th Generation Intel® Core™ i5 Processors'
+        generation: '9th Generation Intel® Core™ i3 Processors'
     },
     {
-        product: 'Intel® Core™ i5-1360P Processor (18M Cache, up to 5.00 GHz)',
+        product: 'Intel® Core™ i3-1360P Processor (18M Cache, up to 5.00 GHz)',
         date: "Q4' 23",
         cores: 12,
         max_turbo: '5.00 GHz',
@@ -116,10 +116,10 @@ var data = [{
         link: '#',
         type: 'Embedded',
         status: false,
-        generation: '12th Generation Intel® Core™ i5 Processors'
+        generation: '12th Generation Intel® Core™ i3 Processors'
     },
     {
-        product: 'Intel® Core™ i5-1355U Processor (12M Cache, up to 5.00 GHz)',
+        product: 'Intel® Core™ i3-1355U Processor (12M Cache, up to 5.00 GHz)',
         date: "Q1' 23",
         cores: 10,
         max_turbo: '5 GHz',
@@ -128,10 +128,10 @@ var data = [{
         link: '#',
         type: 'Mobile',
         status: false,
-        generation: '8th Generation Intel® Core™ i5 Processors'
+        generation: '8th Generation Intel® Core™ i3 Processors'
     },
     {
-        product: 'Intel® Core™ i5-13850HX Processor (30M Cache, up to 5.30 GHz)',
+        product: 'Intel® Core™ i3-13850HX Processor (30M Cache, up to 5.30 GHz)',
         date: "Q1' 23",
         cores: 20,
         max_turbo: '5.30 GHz',
@@ -143,7 +143,7 @@ var data = [{
         generation: '13th Generation Intel® Core™ i9 Processors'
     },
     {
-        product: 'Intel® Core™ i5-13800H Processor (24M Cache, up to 5.20 GHz)',
+        product: 'Intel® Core™ i3-13800H Processor (24M Cache, up to 5.20 GHz)',
         date: "Q1' 23",
         cores: 14,
         max_turbo: '5.2 GHz',
@@ -152,10 +152,10 @@ var data = [{
         link: '#',
         type: 'Mobile',
         status: false,
-        generation: '5th Generation Intel® Core™ i5 Processors'
+        generation: '5th Generation Intel® Core™ i3 Processors'
     },
     {
-        product: 'Intel® Core™ i5-13700HX Processor (30M Cache, up to 5.00 GHz)',
+        product: 'Intel® Core™ i3-13700HX Processor (30M Cache, up to 5.00 GHz)',
         date: "Q1' 23",
         cores: 16,
         max_turbo: '5.00 GHz',
@@ -164,10 +164,10 @@ var data = [{
         link: '#',
         type: 'Server',
         status: false,
-        generation: '12th Generation Intel® Core™ i5 Processors'
+        generation: '12th Generation Intel® Core™ i3 Processors'
     },
     {
-        product: 'Intel® Core™ i5-13700E Processor (30M Cache, up to 5.10 GHz)',
+        product: 'Intel® Core™ i3-13700E Processor (30M Cache, up to 5.10 GHz)',
         date: "Q1' 23",
         cores: 16,
         max_turbo: '5.10 GHz',
@@ -176,10 +176,10 @@ var data = [{
         link: '#',
         type: 'Mobile',
         status: false,
-        generation: '8th Generation Intel® Core™ i5 Processors'
+        generation: '8th Generation Intel® Core™ i3 Processors'
     },
     {
-        product: 'Intel® Core™ i5-1370PE Processor (24M Cache, up to 4.80 GHz)',
+        product: 'Intel® Core™ i3-1370PE Processor (24M Cache, up to 4.80 GHz)',
         date: "Q1' 23",
         cores: 14,
         max_turbo: '4.80 GHz',
@@ -188,10 +188,10 @@ var data = [{
         link: '#',
         type: 'Embedded',
         status: false,
-        generation: '9th Generation Intel® Core™ i5 Processors'
+        generation: '9th Generation Intel® Core™ i3 Processors'
     },
     {
-        product: 'Intel® Core™ i5-1365UE Processor (12M Cache, up to 4.90 GHz)',
+        product: 'Intel® Core™ i3-1365UE Processor (12M Cache, up to 4.90 GHz)',
         date: "Q1' 23",
         cores: 10,
         max_turbo: '4.90 GHz',
@@ -200,10 +200,10 @@ var data = [{
         link: '#',
         type: 'Mobile',
         status: false,
-        generation: '10th Generation Intel® Core™ i5 Processors'
+        generation: '10th Generation Intel® Core™ i3 Processors'
     },
     {
-        product: 'Intel® Core™ i5-1375PRE Processor (24M Cache, up to 4.80 GHz)',
+        product: 'Intel® Core™ i3-1375PRE Processor (24M Cache, up to 4.80 GHz)',
         date: "Q1' 23",
         cores: 14,
         max_turbo: '4.8 GHz',
@@ -212,10 +212,10 @@ var data = [{
         link: '#',
         type: 'RetailBox',
         status: false,
-        generation: '13th Generation Intel® Core™ i5 Processors'
+        generation: '13th Generation Intel® Core™ i3 Processors'
     },
     {
-        product: 'Intel® Core™ i5-13705H Processor (24M Cache, up to 5.00 GHz)',
+        product: 'Intel® Core™ i3-13705H Processor (24M Cache, up to 5.00 GHz)',
         date: "Q1' 23",
         cores: 14,
         max_turbo: '5.00 GHz',
@@ -224,10 +224,10 @@ var data = [{
         link: '#',
         type: 'Embedded',
         status: false,
-        generation: '8th Generation Intel® Core™ i5 Processors'
+        generation: '8th Generation Intel® Core™ i3 Processors'
     },
     {
-        product: 'Intel® Core™ i5-1365U Processor (12M Cache, up to 5.20 GHz)',
+        product: 'Intel® Core™ i3-1365U Processor (12M Cache, up to 5.20 GHz)',
         date: "Q1' 23",
         cores: 10,
         max_turbo: '5.2 GHz',
@@ -236,7 +236,7 @@ var data = [{
         link: '#',
         type: 'Mobile',
         status: false,
-        generation: '12th Generation Intel® Core™ i5 Processors'
+        generation: '12th Generation Intel® Core™ i3 Processors'
     },
     {
         product: 'Intel® Core™ i9-13950HX Processor (36M Cache, up to 5.50 GHz)',
@@ -248,10 +248,10 @@ var data = [{
         link: '#',
         type: 'RetailBox',
         status: false,
-        generation: 'Intel® Core™ i5 Processors (14th gen)'
+        generation: 'Intel® Core™ i3 Processors (14th gen)'
     },
     {
-        product: 'Intel® Core™ i5-13800HE Processor (24M Cache, up to 5.00 GHz)',
+        product: 'Intel® Core™ i3-13800HE Processor (24M Cache, up to 5.00 GHz)',
         date: "Q1' 23",
         cores: 14,
         max_turbo: '5.00 GHz',
@@ -260,10 +260,10 @@ var data = [{
         link: '#',
         type: 'Mobile',
         status: false,
-        generation: '11th Generation Intel® Core™ i5 Processors'
+        generation: '11th Generation Intel® Core™ i3 Processors'
     },
     {
-        product: 'Intel® Core™ i5-13700T Processor (30M Cache, up to 4.90 GHz)',
+        product: 'Intel® Core™ i3-13700T Processor (30M Cache, up to 4.90 GHz)',
         date: "Q1' 23   ",
         cores: 16,
         max_turbo: '4.90 GHz',
@@ -272,10 +272,10 @@ var data = [{
         link: '#',
         type: 'Embedded',
         status: false,
-        generation: '9th Generation Intel® Core™ i5 Processors'
+        generation: '9th Generation Intel® Core™ i3 Processors'
     },
     {
-        product: 'Intel® Core™ i5-13700 Processor (30M Cache, up to 5.20 GHz)',
+        product: 'Intel® Core™ i3-13700 Processor (30M Cache, up to 5.20 GHz)',
         date: "Q1' 23",
         cores: 16,
         max_turbo: '5.20 GHz',
@@ -284,10 +284,10 @@ var data = [{
         link: '#',
         type: 'Mobile',
         status: false,
-        generation: 'Intel® Core™ i5 Processors (14th gen)'
+        generation: 'Intel® Core™ i3 Processors (14th gen)'
     },
     {
-        product: 'Intel® Core™ i5-13700F Processor (30M Cache, up to 5.20 GHz)',
+        product: 'Intel® Core™ i3-13700F Processor (30M Cache, up to 5.20 GHz)',
         date: "Q1' 23",
         cores: 16,
         max_turbo: '5.20 GHz',
@@ -296,10 +296,10 @@ var data = [{
         link: '#',
         type: 'RetailBox',
         status: false,
-        generation: 'Intel® Core™ i5 Processors (14th gen)'
+        generation: 'Intel® Core™ i3 Processors (14th gen)'
     },
     {
-        product: 'Intel® Core™ i5-13650HX Processor (24M Cache, up to 4.90 GHz)',
+        product: 'Intel® Core™ i3-13650HX Processor (24M Cache, up to 4.90 GHz)',
         date: "Q1' 23",
         cores: 14,
         max_turbo: '4.90 GHz',
@@ -308,10 +308,10 @@ var data = [{
         link: '#',
         type: 'Mobile',
         status: false,
-        generation: '8th Generation Intel® Core™ i5 Processors'
+        generation: '8th Generation Intel® Core™ i3 Processors'
     },
     {
-        product: 'Intel® Core™ i5-13700H Processor (24M Cache, up to 5.00 GHz)',
+        product: 'Intel® Core™ i3-13700H Processor (24M Cache, up to 5.00 GHz)',
         date: "Q1' 23",
         cores: 14,
         max_turbo: '5 GHz',
@@ -320,10 +320,10 @@ var data = [{
         link: '#',
         type: 'Server',
         status: false,
-        generation: '12th Generation Intel® Core™ i5 Processors'
+        generation: '12th Generation Intel® Core™ i3 Processors'
     },
     {
-        product: 'Intel® Core™ i5-13620H Processor (24M Cache, up to 4.90 GHz)',
+        product: 'Intel® Core™ i3-13620H Processor (24M Cache, up to 4.90 GHz)',
         date: "Q1' 23",
         cores: 10,
         max_turbo: '4.90 GHz',
@@ -332,10 +332,10 @@ var data = [{
         link: '#',
         type: 'Mobile',
         status: false,
-        generation: '11th Generation Intel® Core™ i5 Processors'
+        generation: '11th Generation Intel® Core™ i3 Processors'
     },
     {
-        product: 'Intel® Core™ i5-13700TE Processor (30M Cache, up to 4.80 GHz)',
+        product: 'Intel® Core™ i3-13700TE Processor (30M Cache, up to 4.80 GHz)',
         date: "Q1' 23",
         cores: 16,
         max_turbo: '4.80 GHz',
@@ -344,10 +344,10 @@ var data = [{
         link: '#',
         type: 'Embedded',
         status: false,
-        generation: '10th Generation Intel® Core™ i5 Processors'
+        generation: '10th Generation Intel® Core™ i3 Processors'
     },
     {
-        product: 'Intel® Core™ i5-13800HRE Processor (24M Cache, up to 5.00 GHz)',
+        product: 'Intel® Core™ i3-13800HRE Processor (24M Cache, up to 5.00 GHz)',
         date: "Q1' 23",
         cores: 14,
         max_turbo: '5.00 GHz',
@@ -356,10 +356,10 @@ var data = [{
         link: '#',
         type: 'Mobile',
         status: false,
-        generation: 'Intel® Core™ i5 Processors (14th gen)'
+        generation: 'Intel® Core™ i3 Processors (14th gen)'
     },
     {
-        product: 'Intel® Core™ i5-13700K Processor (30M Cache, up to 5.40 GHz)',
+        product: 'Intel® Core™ i3-13700K Processor (30M Cache, up to 5.40 GHz)',
         date: "Q4' 22",
         cores: 16,
         max_turbo: '5.40 GHz',
@@ -368,10 +368,10 @@ var data = [{
         link: '#',
         type: 'RetailBox',
         status: false,
-        generation: '12th Generation Intel® Core™ i5 Processors'
+        generation: '12th Generation Intel® Core™ i3 Processors'
     },
     {
-        product: 'Intel® Core™ i5-13700KF Processor (30M Cache, up to 5.40 GHz)',
+        product: 'Intel® Core™ i3-13700KF Processor (30M Cache, up to 5.40 GHz)',
         date: "Q4' 22",
         cores: 16,
         max_turbo: '5.40 GHz',
@@ -380,10 +380,10 @@ var data = [{
         link: '#',
         type: 'Embedded',
         status: false,
-        generation: '7th Generation Intel® Core™ i5 Processors'
+        generation: '7th Generation Intel® Core™ i3 Processors'
     },
     {
-        product: 'Intel® Core™ i5-1370PRE Processor (24M Cache, up to 4.80 GHz)',
+        product: 'Intel® Core™ i3-1370PRE Processor (24M Cache, up to 4.80 GHz)',
         date: "Q1' 23",
         cores: 14,
         max_turbo: '4.80 GHz',
@@ -392,10 +392,10 @@ var data = [{
         link: '#',
         type: 'Mobile',
         status: false,
-        generation: '9th Generation Intel® Core™ i5 Processors'
+        generation: '9th Generation Intel® Core™ i3 Processors'
     },
     {
-        product: 'Intel® Core™ i5-1366URE Processor (12M Cache, up to 4.90 GHz)',
+        product: 'Intel® Core™ i3-1366URE Processor (12M Cache, up to 4.90 GHz)',
         date: "Q1' 23",
         cores: 10,
         max_turbo: '4.9 GHz',
@@ -404,10 +404,10 @@ var data = [{
         link: '#',
         type: 'RetailBox',
         status: false,
-        generation: '11th Generation Intel® Core™ i5 Processors'
+        generation: '11th Generation Intel® Core™ i3 Processors'
     },
     {
-        product: 'Intel® Core™ i5-1365URE Processor (12M Cache, up to 4.90 GHz)',
+        product: 'Intel® Core™ i3-1365URE Processor (12M Cache, up to 4.90 GHz)',
         date: "Q1' 23",
         cores: 10,
         max_turbo: '4.90 GHz',
@@ -416,10 +416,10 @@ var data = [{
         link: '#',
         type: 'Server',
         status: false,
-        generation: '9th Generation Intel® Core™ i5 Processors'
+        generation: '9th Generation Intel® Core™ i3 Processors'
     },
     {
-        product: 'Intel® Core™ i5-12800HL Processor (24M Cache, up to 4.80 GHz)',
+        product: 'Intel® Core™ i3-12800HL Processor (24M Cache, up to 4.80 GHz)',
         date: "Q3' 22",
         cores: 14,
         max_turbo: '4.80 GHz',
@@ -428,10 +428,10 @@ var data = [{
         link: '#',
         type: 'Mobile',
         status: false,
-        generation: '6th Generation Intel® Core™ i5 Processors'
+        generation: '6th Generation Intel® Core™ i3 Processors'
     },
     {
-        product: 'Intel® Core™ i5-12700HL Processor (24M Cache, up to 4.70 GHz)',
+        product: 'Intel® Core™ i3-12700HL Processor (24M Cache, up to 4.70 GHz)',
         date: "Q3' 22",
         cores: 14,
         max_turbo: '4.70 GHz',
@@ -440,10 +440,10 @@ var data = [{
         link: '#',
         type: 'Embedded',
         status: false,
-        generation: '8th Generation Intel® Core™ i5 Processors'
+        generation: '8th Generation Intel® Core™ i3 Processors'
     },
     {
-        product: 'Intel® Core™ i5-12700HL Processor (24M Cache, up to 4.70 GHz)',
+        product: 'Intel® Core™ i3-12700HL Processor (24M Cache, up to 4.70 GHz)',
         date: "Q3' 22",
         cores: 10,
         max_turbo: '4.70 GHz',
@@ -452,10 +452,10 @@ var data = [{
         link: '#',
         type: 'Embedded',
         status: false,
-        generation: '4th Generation Intel® Core™ i5 Processors'
+        generation: '4th Generation Intel® Core™ i3 Processors'
     },
     {
-        product: 'Intel® Core™ i5-1265UL Processor (12M Cache, up to 4.80 GHz)',
+        product: 'Intel® Core™ i3-1265UL Processor (12M Cache, up to 4.80 GHz)',
         date: "Q3' 22",
         cores: 10,
         max_turbo: '4.80 GHz',
@@ -464,10 +464,10 @@ var data = [{
         link: '#',
         type: 'RetailBox',
         status: false,
-        generation: '12th Generation Intel® Core™ i5 Processors'
+        generation: '12th Generation Intel® Core™ i3 Processors'
     },
     {
-        product: 'Intel® Core™ i5-12850HX Processor (25M Cache, up to 4.80 GHz)',
+        product: 'Intel® Core™ i3-12850HX Processor (25M Cache, up to 4.80 GHz)',
         date: "Q2' 22",
         cores: 16,
         max_turbo: '4.80 GHz',
@@ -476,10 +476,10 @@ var data = [{
         link: '#',
         type: 'Mobile',
         status: false,
-        generation: '13th Generation Intel® Core™ i5 Processors'
+        generation: '13th Generation Intel® Core™ i3 Processors'
     },
     {
-        product: 'Intel® Core™ i5-12650HX Processor (24M Cache, up to 4.70 GHz)',
+        product: 'Intel® Core™ i3-12650HX Processor (24M Cache, up to 4.70 GHz)',
         date: "Q2' 22",
         cores: 14,
         max_turbo: '4.70 GHz',
@@ -488,10 +488,10 @@ var data = [{
         link: '#',
         type: 'RetailBox',
         status: false,
-        generation: '8th Generation Intel® Core™ i5 Processors'
+        generation: '8th Generation Intel® Core™ i3 Processors'
     },
     {
-        product: 'Intel® Core™ i5-12800HX Processor (25M Cache, up to 4.80 GHz)',
+        product: 'Intel® Core™ i3-12800HX Processor (25M Cache, up to 4.80 GHz)',
         date: "Q2' 22",
         cores: 16,
         max_turbo: '4.80 GHz',
@@ -500,10 +500,10 @@ var data = [{
         link: '#',
         type: 'RetailBox',
         status: false,
-        generation: '9th Generation Intel® Core™ i5 Processors'
+        generation: '9th Generation Intel® Core™ i3 Processors'
     },
     {
-        product: 'Intel® Core™ i5-1265UE Processor (12M Cache, up to 4.70 GHz)',
+        product: 'Intel® Core™ i3-1265UE Processor (12M Cache, up to 4.70 GHz)',
         date: "Q1' 22",
         cores: 10,
         max_turbo: '',
@@ -512,10 +512,10 @@ var data = [{
         link: '#',
         type: 'RetailBox',
         status: false,
-        generation: '4th Generation Intel® Core™ i5 Processors'
+        generation: '4th Generation Intel® Core™ i3 Processors'
     },
     {
-        product: 'Intel® Core™ i5-1270PE Processor (18M Cache, up to 4.50 GHz)',
+        product: 'Intel® Core™ i3-1270PE Processor (18M Cache, up to 4.50 GHz)',
         date: "Q1' 22",
         cores: 12,
         max_turbo: '',
@@ -524,10 +524,10 @@ var data = [{
         link: '#',
         type: 'Embedded',
         status: false,
-        generation: '7th Generation Intel® Core™ i5 Processors'
+        generation: '7th Generation Intel® Core™ i3 Processors'
     },
     {
-        product: 'Intel® Core™ i5-1280P Processor (24M Cache, up to 4.80 GHz)',
+        product: 'Intel® Core™ i3-1280P Processor (24M Cache, up to 4.80 GHz)',
         date: "Q1' 22",
         cores: 14,
         max_turbo: '4.80 GHz',
@@ -536,10 +536,10 @@ var data = [{
         link: '#',
         type: 'Mobile',
         status: false,
-        generation: '8th Generation Intel® Core™ i5 Processors'
+        generation: '8th Generation Intel® Core™ i3 Processors'
     },
     {
-        product: 'Intel® Core™ i5-1260P Processor (18M Cache, up to 4.70 GHz)',
+        product: 'Intel® Core™ i3-1260P Processor (18M Cache, up to 4.70 GHz)',
         date: "Q1' 22",
         cores: 12,
         max_turbo: '4.70 GHz',
@@ -548,10 +548,10 @@ var data = [{
         link: '#',
         type: 'Embedded',
         status: false,
-        generation: '8th Generation Intel® Core™ i5 Processors'
+        generation: '8th Generation Intel® Core™ i3 Processors'
     },
     {
-        product: 'Intel® Core™ i5-1270P Processor (18M Cache, up to 4.80 GHz)',
+        product: 'Intel® Core™ i3-1270P Processor (18M Cache, up to 4.80 GHz)',
         date: "Q1' 22",
         cores: 12,
         max_turbo: '4.80 GHz',
@@ -560,10 +560,10 @@ var data = [{
         link: '#',
         type: 'Embedded',
         status: false,
-        generation: '8th Generation Intel® Core™ i5 Processors'
+        generation: '8th Generation Intel® Core™ i3 Processors'
     },
     {
-        product: 'Intel® Core™ i5-1265U Processor (12M Cache, up to 4.80 GHz)',
+        product: 'Intel® Core™ i3-1265U Processor (12M Cache, up to 4.80 GHz)',
         date: "Q1' 22",
         cores: 10,
         max_turbo: '4.80 GHz',
@@ -572,10 +572,10 @@ var data = [{
         link: '#',
         type: 'Embedded',
         status: false,
-        generation: '8th Generation Intel® Core™ i5 Processors'
+        generation: '8th Generation Intel® Core™ i3 Processors'
     },
     {
-        product: 'Intel® Core™ i5-1255U Processor (12M Cache, up to 4.70 GHz)',
+        product: 'Intel® Core™ i3-1255U Processor (12M Cache, up to 4.70 GHz)',
         date: "Q1' 22",
         cores: 10,
         max_turbo: '4.70 GHz',
@@ -584,10 +584,10 @@ var data = [{
         link: '#',
         type: 'Embedded',
         status: false,
-        generation: '8th Generation Intel® Core™ i5 Processors'
+        generation: '8th Generation Intel® Core™ i3 Processors'
     },
     {
-        product: 'Intel® Core™ i5-1250U Processor (12M Cache, up to 4.70 GHz)',
+        product: 'Intel® Core™ i3-1250U Processor (12M Cache, up to 4.70 GHz)',
         date: "Q1' 22",
         cores: 10,
         max_turbo: '4.70 GHz',
@@ -596,10 +596,10 @@ var data = [{
         link: '#',
         type: 'Embedded',
         status: false,
-        generation: '8th Generation Intel® Core™ i5 Processors'
+        generation: '8th Generation Intel® Core™ i3 Processors'
     },
     {
-        product: 'Intel® Core™ i5-1260U Processor (12M Cache, up to 4.70 GHz)',
+        product: 'Intel® Core™ i3-1260U Processor (12M Cache, up to 4.70 GHz)',
         date: "Q1' 22",
         cores: 10,
         max_turbo: '4.70 GHz',
@@ -608,10 +608,10 @@ var data = [{
         link: '#',
         type: 'Embedded',
         status: false,
-        generation: '8th Generation Intel® Core™ i5 Processors'
+        generation: '8th Generation Intel® Core™ i3 Processors'
     },
     {
-        product: 'Intel® Core™ i5-12650H Processor (24M Cache, up to 4.70 GHz)',
+        product: 'Intel® Core™ i3-12650H Processor (24M Cache, up to 4.70 GHz)',
         date: "Q1' 22",
         cores: 10,
         max_turbo: '4.70 GHz',
@@ -620,10 +620,10 @@ var data = [{
         link: '#',
         type: 'Embedded',
         status: false,
-        generation: '8th Generation Intel® Core™ i5 Processors'
+        generation: '8th Generation Intel® Core™ i3 Processors'
     },
     {
-        product: 'Intel® Core™ i5-12800HE Processor (24M Cache, up to 4.60 GHz)',
+        product: 'Intel® Core™ i3-12800HE Processor (24M Cache, up to 4.60 GHz)',
         date: "Q1' 22",
         cores: 14,
         max_turbo: '',
@@ -632,10 +632,10 @@ var data = [{
         link: '#',
         type: 'Embedded',
         status: false,
-        generation: '8th Generation Intel® Core™ i5 Processors'
+        generation: '8th Generation Intel® Core™ i3 Processors'
     },
     {
-        product: 'Intel® Core™ i5-12800H Processor (24M Cache, up to 4.80 GHz)',
+        product: 'Intel® Core™ i3-12800H Processor (24M Cache, up to 4.80 GHz)',
         date: "Q1' 22",
         cores: 14,
         max_turbo: '4.80 GHz',
@@ -644,10 +644,10 @@ var data = [{
         link: '#',
         type: 'Embedded',
         status: false,
-        generation: '8th Generation Intel® Core™ i5 Processors'
+        generation: '8th Generation Intel® Core™ i3 Processors'
     },
     {
-        product: 'Intel® Core™ i5-12700TE Processor (25M Cache, up to 4.60 GHz)',
+        product: 'Intel® Core™ i3-12700TE Processor (25M Cache, up to 4.60 GHz)',
         date: "Q1' 22",
         cores: 12,
         max_turbo: '4.60 GHz',
@@ -656,10 +656,10 @@ var data = [{
         link: '#',
         type: 'Embedded',
         status: false,
-        generation: '8th Generation Intel® Core™ i5 Processors'
+        generation: '8th Generation Intel® Core™ i3 Processors'
     },
     {
-        product: 'Intel® Core™ i5-12700E Processor (25M Cache, up to 4.80 GHz)',
+        product: 'Intel® Core™ i3-12700E Processor (25M Cache, up to 4.80 GHz)',
         date: "Q1' 22",
         cores: 12,
         max_turbo: '4.80 GHz',
@@ -668,10 +668,10 @@ var data = [{
         link: '#',
         type: 'Embedded',
         status: false,
-        generation: '8th Generation Intel® Core™ i5 Processors'
+        generation: '8th Generation Intel® Core™ i3 Processors'
     },
     {
-        product: 'Intel® Core™ i5-12700T Processor (25M Cache, up to 4.70 GHz))',
+        product: 'Intel® Core™ i3-12700T Processor (25M Cache, up to 4.70 GHz))',
         date: "Q1' 22",
         cores: 12,
         max_turbo: '4.70 GHz',
@@ -680,10 +680,10 @@ var data = [{
         link: '#',
         type: 'Embedded',
         status: false,
-        generation: '8th Generation Intel® Core™ i5 Processors'
+        generation: '8th Generation Intel® Core™ i3 Processors'
     },
     {
-        product: 'Intel® Core™ i5-12700H Processor (24M Cache, up to 4.70 GHz)',
+        product: 'Intel® Core™ i3-12700H Processor (24M Cache, up to 4.70 GHz)',
         date: "Q1' 22",
         cores: 12,
         max_turbo: '4.70 GHz',
@@ -692,10 +692,10 @@ var data = [{
         link: '#',
         type: 'Embedded',
         status: false,
-        generation: '8th Generation Intel® Core™ i5 Processors'
+        generation: '8th Generation Intel® Core™ i3 Processors'
     },
     {
-        product: 'Intel® Core™ i5-12700 Processor (25M Cache, up to 4.90 GHz)',
+        product: 'Intel® Core™ i3-12700 Processor (25M Cache, up to 4.90 GHz)',
         date: "Q1' 22",
         cores: 12,
         max_turbo: '4.90 GHz',
@@ -704,10 +704,10 @@ var data = [{
         link: '#',
         type: 'Embedded',
         status: false,
-        generation: '8th Generation Intel® Core™ i5 Processors'
+        generation: '8th Generation Intel® Core™ i3 Processors'
     },
     {
-        product: 'Intel® Core™ i5-12700F Processor (25M Cache, up to 4.90 GHz)',
+        product: 'Intel® Core™ i3-12700F Processor (25M Cache, up to 4.90 GHz)',
         date: "Q1' 22",
         cores: 12,
         max_turbo: '4.90 GHz',
@@ -716,10 +716,10 @@ var data = [{
         link: '#',
         type: 'Embedded',
         status: false,
-        generation: '8th Generation Intel® Core™ i5 Processors'
+        generation: '8th Generation Intel® Core™ i3 Processors'
     },
     {
-        product: 'Intel® Core™ i5-12700HL Processor (24M Cache, up to 4.70 GHz)',
+        product: 'Intel® Core™ i3-12700HL Processor (24M Cache, up to 4.70 GHz)',
         date: "Q3' 22",
         cores: 14,
         max_turbo: '4.70 GHz',
@@ -728,10 +728,10 @@ var data = [{
         link: '#',
         type: 'Embedded',
         status: false,
-        generation: '8th Generation Intel® Core™ i5 Processors'
+        generation: '8th Generation Intel® Core™ i3 Processors'
     },
     {
-        product: 'Intel® Core™ i5-12700HL Processor (24M Cache, up to 4.70 GHz)',
+        product: 'Intel® Core™ i3-12700HL Processor (24M Cache, up to 4.70 GHz)',
         date: "Q3' 22",
         cores: 14,
         max_turbo: '4.70 GHz',
@@ -740,10 +740,10 @@ var data = [{
         link: '#',
         type: 'Embedded',
         status: false,
-        generation: '8th Generation Intel® Core™ i5 Processors'
+        generation: '8th Generation Intel® Core™ i3 Processors'
     },
     {
-        product: 'Intel® Core™ i5-12700HL Processor (24M Cache, up to 4.70 GHz)',
+        product: 'Intel® Core™ i3-12700HL Processor (24M Cache, up to 4.70 GHz)',
         date: "Q3' 22",
         cores: 14,
         max_turbo: '4.70 GHz',
@@ -752,10 +752,10 @@ var data = [{
         link: '#',
         type: 'Embedded',
         status: false,
-        generation: '8th Generation Intel® Core™ i5 Processors'
+        generation: '8th Generation Intel® Core™ i3 Processors'
     },
     {
-        product: 'Intel® Core™ i5-12700HL Processor (24M Cache, up to 4.70 GHz)',
+        product: 'Intel® Core™ i3-12700HL Processor (24M Cache, up to 4.70 GHz)',
         date: "Q3' 22",
         cores: 14,
         max_turbo: '4.70 GHz',
@@ -764,10 +764,10 @@ var data = [{
         link: '#',
         type: 'Embedded',
         status: false,
-        generation: '8th Generation Intel® Core™ i5 Processors'
+        generation: '8th Generation Intel® Core™ i3 Processors'
     },
     {
-        product: 'Intel® Core™ i5-12700HL Processor (24M Cache, up to 4.70 GHz)',
+        product: 'Intel® Core™ i3-12700HL Processor (24M Cache, up to 4.70 GHz)',
         date: "Q3' 22",
         cores: 14,
         max_turbo: '4.70 GHz',
@@ -776,10 +776,10 @@ var data = [{
         link: '#',
         type: 'Embedded',
         status: false,
-        generation: '8th Generation Intel® Core™ i5 Processors'
+        generation: '8th Generation Intel® Core™ i3 Processors'
     },
     {
-        product: 'Intel® Core™ i5-12700HL Processor (24M Cache, up to 4.70 GHz)',
+        product: 'Intel® Core™ i3-12700HL Processor (24M Cache, up to 4.70 GHz)',
         date: "Q3' 22",
         cores: 14,
         max_turbo: '4.70 GHz',
@@ -788,10 +788,10 @@ var data = [{
         link: '#',
         type: 'Embedded',
         status: false,
-        generation: '8th Generation Intel® Core™ i5 Processors'
+        generation: '8th Generation Intel® Core™ i3 Processors'
     },
     {
-        product: 'Intel® Core™ i5-12700HL Processor (24M Cache, up to 4.70 GHz)',
+        product: 'Intel® Core™ i3-12700HL Processor (24M Cache, up to 4.70 GHz)',
         date: "Q3' 22",
         cores: 14,
         max_turbo: '4.70 GHz',
@@ -800,10 +800,10 @@ var data = [{
         link: '#',
         type: 'Embedded',
         status: false,
-        generation: '8th Generation Intel® Core™ i5 Processors'
+        generation: '8th Generation Intel® Core™ i3 Processors'
     },
     {
-        product: 'Intel® Core™ i5-12700HL Processor (24M Cache, up to 4.70 GHz)',
+        product: 'Intel® Core™ i3-12700HL Processor (24M Cache, up to 4.70 GHz)',
         date: "Q3' 22",
         cores: 14,
         max_turbo: '4.70 GHz',
@@ -812,10 +812,10 @@ var data = [{
         link: '#',
         type: 'Embedded',
         status: false,
-        generation: '8th Generation Intel® Core™ i5 Processors'
+        generation: '8th Generation Intel® Core™ i3 Processors'
     },
     {
-        product: 'Intel® Core™ i5-12700HL Processor (24M Cache, up to 4.70 GHz)',
+        product: 'Intel® Core™ i3-12700HL Processor (24M Cache, up to 4.70 GHz)',
         date: "Q3' 22",
         cores: 14,
         max_turbo: '4.70 GHz',
@@ -824,10 +824,10 @@ var data = [{
         link: '#',
         type: 'Embedded',
         status: false,
-        generation: '8th Generation Intel® Core™ i5 Processors'
+        generation: '8th Generation Intel® Core™ i3 Processors'
     },
     {
-        product: 'Intel® Core™ i5-12700HL Processor (24M Cache, up to 4.70 GHz)',
+        product: 'Intel® Core™ i3-12700HL Processor (24M Cache, up to 4.70 GHz)',
         date: "Q3' 22",
         cores: 14,
         max_turbo: '4.70 GHz',
@@ -836,10 +836,10 @@ var data = [{
         link: '#',
         type: 'Embedded',
         status: false,
-        generation: '8th Generation Intel® Core™ i5 Processors'
+        generation: '8th Generation Intel® Core™ i3 Processors'
     },
     {
-        product: 'Intel® Core™ i5-12700HL Processor (24M Cache, up to 4.70 GHz)',
+        product: 'Intel® Core™ i3-12700HL Processor (24M Cache, up to 4.70 GHz)',
         date: "Q3' 22",
         cores: 14,
         max_turbo: '4.70 GHz',
@@ -848,10 +848,10 @@ var data = [{
         link: '#',
         type: 'Embedded',
         status: false,
-        generation: '8th Generation Intel® Core™ i5 Processors'
+        generation: '8th Generation Intel® Core™ i3 Processors'
     },
     {
-        product: 'Intel® Core™ i5-12700HL Processor (24M Cache, up to 4.70 GHz)',
+        product: 'Intel® Core™ i3-12700HL Processor (24M Cache, up to 4.70 GHz)',
         date: "Q3' 22",
         cores: 14,
         max_turbo: '4.70 GHz',
@@ -860,10 +860,10 @@ var data = [{
         link: '#',
         type: 'Embedded',
         status: false,
-        generation: '8th Generation Intel® Core™ i5 Processors'
+        generation: '8th Generation Intel® Core™ i3 Processors'
     },
     {
-        product: 'Intel® Core™ i5-12700HL Processor (24M Cache, up to 4.70 GHz)',
+        product: 'Intel® Core™ i3-12700HL Processor (24M Cache, up to 4.70 GHz)',
         date: "Q3' 22",
         cores: 14,
         max_turbo: '4.70 GHz',
@@ -872,10 +872,10 @@ var data = [{
         link: '#',
         type: 'Embedded',
         status: false,
-        generation: '8th Generation Intel® Core™ i5 Processors'
+        generation: '8th Generation Intel® Core™ i3 Processors'
     },
     {
-        product: 'Intel® Core™ i5-12700HL Processor (24M Cache, up to 4.70 GHz)',
+        product: 'Intel® Core™ i3-12700HL Processor (24M Cache, up to 4.70 GHz)',
         date: "Q3' 22",
         cores: 14,
         max_turbo: '4.70 GHz',
@@ -884,10 +884,10 @@ var data = [{
         link: '#',
         type: 'Embedded',
         status: false,
-        generation: '8th Generation Intel® Core™ i5 Processors'
+        generation: '8th Generation Intel® Core™ i3 Processors'
     },
     {
-        product: 'Intel® Core™ i5-12700HL Processor (24M Cache, up to 4.70 GHz)',
+        product: 'Intel® Core™ i3-12700HL Processor (24M Cache, up to 4.70 GHz)',
         date: "Q3' 22",
         cores: 14,
         max_turbo: '4.70 GHz',
@@ -896,10 +896,10 @@ var data = [{
         link: '#',
         type: 'Embedded',
         status: false,
-        generation: '8th Generation Intel® Core™ i5 Processors'
+        generation: '8th Generation Intel® Core™ i3 Processors'
     },
     {
-        product: 'Intel® Core™ i5-12700HL Processor (24M Cache, up to 4.70 GHz)',
+        product: 'Intel® Core™ i3-12700HL Processor (24M Cache, up to 4.70 GHz)',
         date: "Q3' 22",
         cores: 14,
         max_turbo: '4.70 GHz',
@@ -908,10 +908,10 @@ var data = [{
         link: '#',
         type: 'Embedded',
         status: false,
-        generation: '8th Generation Intel® Core™ i5 Processors'
+        generation: '8th Generation Intel® Core™ i3 Processors'
     },
     {
-        product: 'Intel® Core™ i5-12700HL Processor (24M Cache, up to 4.70 GHz)',
+        product: 'Intel® Core™ i3-12700HL Processor (24M Cache, up to 4.70 GHz)',
         date: "Q3' 22",
         cores: 14,
         max_turbo: '4.70 GHz',
@@ -920,10 +920,10 @@ var data = [{
         link: '#',
         type: 'Embedded',
         status: false,
-        generation: '8th Generation Intel® Core™ i5 Processors'
+        generation: '8th Generation Intel® Core™ i3 Processors'
     },
     {
-        product: 'Intel® Core™ i5-12700HL Processor (24M Cache, up to 4.70 GHz)',
+        product: 'Intel® Core™ i3-12700HL Processor (24M Cache, up to 4.70 GHz)',
         date: "Q3' 22",
         cores: 14,
         max_turbo: '4.70 GHz',
@@ -932,10 +932,10 @@ var data = [{
         link: '#',
         type: 'Embedded',
         status: false,
-        generation: '8th Generation Intel® Core™ i5 Processors'
+        generation: '8th Generation Intel® Core™ i3 Processors'
     },
     {
-        product: 'Intel® Core™ i5-12700HL Processor (24M Cache, up to 4.70 GHz)',
+        product: 'Intel® Core™ i3-12700HL Processor (24M Cache, up to 4.70 GHz)',
         date: "Q3' 22",
         cores: 14,
         max_turbo: '4.70 GHz',
@@ -944,10 +944,10 @@ var data = [{
         link: '#',
         type: 'Embedded',
         status: false,
-        generation: '8th Generation Intel® Core™ i5 Processors'
+        generation: '8th Generation Intel® Core™ i3 Processors'
     },
     {
-        product: 'Intel® Core™ i5-12700HL Processor (24M Cache, up to 4.70 GHz)',
+        product: 'Intel® Core™ i3-12700HL Processor (24M Cache, up to 4.70 GHz)',
         date: "Q3' 22",
         cores: 14,
         max_turbo: '4.70 GHz',
@@ -956,10 +956,10 @@ var data = [{
         link: '#',
         type: 'Embedded',
         status: false,
-        generation: '8th Generation Intel® Core™ i5 Processors'
+        generation: '8th Generation Intel® Core™ i3 Processors'
     },
     {
-        product: 'Intel® Core™ i5-12700HL Processor (24M Cache, up to 4.70 GHz)',
+        product: 'Intel® Core™ i3-12700HL Processor (24M Cache, up to 4.70 GHz)',
         date: "Q3' 22",
         cores: 14,
         max_turbo: '4.70 GHz',
@@ -968,10 +968,10 @@ var data = [{
         link: '#',
         type: 'Embedded',
         status: false,
-        generation: '8th Generation Intel® Core™ i5 Processors'
+        generation: '8th Generation Intel® Core™ i3 Processors'
     },
     {
-        product: 'Intel® Core™ i5-12700HL Processor (24M Cache, up to 4.70 GHz)',
+        product: 'Intel® Core™ i3-12700HL Processor (24M Cache, up to 4.70 GHz)',
         date: "Q3' 22",
         cores: 14,
         max_turbo: '4.70 GHz',
@@ -980,10 +980,10 @@ var data = [{
         link: '#',
         type: 'Embedded',
         status: false,
-        generation: '8th Generation Intel® Core™ i5 Processors'
+        generation: '8th Generation Intel® Core™ i3 Processors'
     },
     {
-        product: 'Intel® Core™ i5-12700HL Processor (24M Cache, up to 4.70 GHz)',
+        product: 'Intel® Core™ i3-12700HL Processor (24M Cache, up to 4.70 GHz)',
         date: "Q3' 22",
         cores: 14,
         max_turbo: '4.70 GHz',
@@ -992,10 +992,10 @@ var data = [{
         link: '#',
         type: 'Embedded',
         status: false,
-        generation: '8th Generation Intel® Core™ i5 Processors'
+        generation: '8th Generation Intel® Core™ i3 Processors'
     },
     {
-        product: 'Intel® Core™ i5-12700HL Processor (24M Cache, up to 4.70 GHz)',
+        product: 'Intel® Core™ i3-12700HL Processor (24M Cache, up to 4.70 GHz)',
         date: "Q3' 22",
         cores: 14,
         max_turbo: '4.70 GHz',
@@ -1004,10 +1004,10 @@ var data = [{
         link: '#',
         type: 'Embedded',
         status: false,
-        generation: '8th Generation Intel® Core™ i5 Processors'
+        generation: '8th Generation Intel® Core™ i3 Processors'
     },
     {
-        product: 'Intel® Core™ i5-12700HL Processor (24M Cache, up to 4.70 GHz)',
+        product: 'Intel® Core™ i3-12700HL Processor (24M Cache, up to 4.70 GHz)',
         date: "Q3' 22",
         cores: 14,
         max_turbo: '4.70 GHz',
@@ -1016,10 +1016,10 @@ var data = [{
         link: '#',
         type: 'Embedded',
         status: false,
-        generation: '8th Generation Intel® Core™ i5 Processors'
+        generation: '8th Generation Intel® Core™ i3 Processors'
     },
     {
-        product: 'Intel® Core™ i5-12700HL Processor (24M Cache, up to 4.70 GHz)',
+        product: 'Intel® Core™ i3-12700HL Processor (24M Cache, up to 4.70 GHz)',
         date: "Q3' 22",
         cores: 14,
         max_turbo: '4.70 GHz',
@@ -1028,7 +1028,7 @@ var data = [{
         link: '#',
         type: 'Embedded',
         status: false,
-        generation: '8th Generation Intel® Core™ i5 Processors'
+        generation: '8th Generation Intel® Core™ i3 Processors'
     }
 ]
 
@@ -1078,12 +1078,12 @@ function load_data(x, y) {
     data_id.innerHTML = '';
     print_data.forEach(element => {
         var innerdata = `<tr class='great-parent'>
-    <td class='h-100  align-self-center'><input type='checkbox' class='b_special_checkbox mx-3 ' onclick='check_items()'></input><a href='${element.link}' class='b_special_a1 text-nowrap mx-2'>${element.product}</a></td>
-    <td><p class='px-2 mb-0'>${element.date}</p></td>
-    <td><p class='px-2 mb-0'>${element.cores}</p></td>
-    <td><p class='px-2 mb-0'>${element.max_turbo}</p></td>
-    <td><p class='px-2 mb-0'>${element.caches}</p></td>
-    <td><p class='px-2 mb-0'>${element.Graphic}</p></td>
+<td class='h-100  align-self-center'><input type='checkbox' class='b_special_checkbox mx-3 ' onclick='check_items()'></input><a href='${element.link}' class='b_special_a1 text-nowrap mx-2'>${element.product}</a></td>
+<td><p class='px-2 mb-0'>${element.date}</p></td>
+<td><p class='px-2 mb-0'>${element.cores}</p></td>
+<td><p class='px-2 mb-0'>${element.max_turbo}</p></td>
+<td><p class='px-2 mb-0'>${element.caches}</p></td>
+<td><p class='px-2 mb-0'>${element.Graphic}</p></td>
 </tr>`
         data_id.innerHTML += innerdata;
     });
@@ -1206,16 +1206,116 @@ function fiterhanddler() {
 
 
 
-var gen = ['4th Generation Intel® Core™ i5 Processors', '5th Generation Intel® Core™ i5 Processors', '6th Generation Intel® Core™ i5 Processors', '7th Generation Intel® Core™ i5 Processors', '8th Generation Intel® Core™ i5 Processors', '9th Generation Intel® Core™ i5 Processors', '10th Generation Intel® Core™ i5 Processors', '11th Generation Intel® Core™ i5 Processors', '12th Generation Intel® Core™ i5 Processors', '13th Generation Intel® Core™ i5 Processors', 'Intel® Core™ i5 Processors (14th gen)'];
+var gen = ['4th Generation Intel® Core™ i3 Processors', '5th Generation Intel® Core™ i3 Processors', '6th Generation Intel® Core™ i3 Processors', '7th Generation Intel® Core™ i3 Processors', '8th Generation Intel® Core™ i3 Processors', '9th Generation Intel® Core™ i3 Processors', '10th Generation Intel® Core™ i3 Processors', '11th Generation Intel® Core™ i3 Processors', '12th Generation Intel® Core™ i3 Processors', '13th Generation Intel® Core™ i3 Processors', 'Intel® Core™ i3 Processors (14th gen)'];
 var available = ['Windows Server 2016 family*', 'Windows Server 2012 R2 family*', 'Windows Server 2019 family*', 'Windows Server 2022 family*', 'Windows 10 Family*', 'Windows 11 Family*', 'Windows 10* (21H2)', 'Windows 10* (21H1)', 'Windows 10* (20H2)', 'Windows 10* (20H1)', 'Windows 10* (19H2)', 'Windows 10* (RS5)', 'Windows 10* (19H1)', 'Windows 7', '32-bit*', 'Windows 8.1', '64-bit*', 'Windows 10', 'Windows 10* (22H2)', 'Microsoft Windows*', 'Windows 11* (22H2)', 'Windows 11* (21H2)', 'Windows 11* (23H2)', 'Windows 11* (24H2)', 'Ubuntu 22.04 LTS*', 'All'];
 var b_data = [{
         id: "1212",
+        name: 'Intel® Graphics Driver for Windows® 7 & 8.1* [15.40 6th Gen]',
+        date: '23/12/2015',
+        os: ['Windows 7', ' 32-bit*', ' Windows 8.1', ' 64-bit*', ' Windows 10', ' 64-bit*', ' Windows 7', ' 64-bit*'],
+        download: false,
+        des: 'This download installs the Intel® Graphics Driver for 6th Gen. ',
+        version: '15.40.14.4352',
+        type: 'Drivers'
+    },
+    {
+        id: "1232",
+        name: 'Intel® 7th-10th Gen Processor Graphics - Windows*',
+        date: '19/12/2024',
+        os: ['Windows 11 Family*', ' Windows 10* (21H2)', ' Windows 10* (21H1)', ' Windows 10* (20H2)', ' Windows 10* (20H1)', ' Windows 10* (19H2)', ' Windows 10* (RS5)', ' Windows 10* (19H1)'],
+        download: true,
+        des: 'This download installs Intel® Graphics Driver 31.0.101.2134 for 7th-10th Gen Intel® Core™ Processor Graphics, and related Intel Atom®, Pentium®, and Celeron® processors. ',
+        version: '31.0.101.2134',
+        type: 'Driver'
+    },
+    {
+        id: "1213",
         name: 'Intel® Processor Diagnostic Tool',
         date: '11/1/2024',
-        os: ['Windows Server 2016 family*', ' Windows Server 2012 R2 family*', ' Windows Server 2019 family*', ' Windows Server 2022 family*', ' Windows 10 Family*', ' Windows 11 Family*'],
+        os: ['Windows Server 2016 family*', ' Windows Server 2012 R2 family*', " Windows Server 2019 family*", ' Windows Server 2022 family*', ' Windows 10 Family*', ' Windows 11 Family*'],
         download: false,
         des: 'This download record installs the Intel® Processor Diagnostic Tool release 4.1.9.41, which is compatible with multiprocessor systems. ',
         version: '4.1.9.41',
+        type: 'Software Downloads'
+    },
+    {
+        id: "1262",
+        name: 'Intel® Graphics Driver for Windows® 10 [15.40][4th Gen]',
+        date: '1/9/2015',
+        os: ['Windows 10', ' 64-bit*'],
+        download: false,
+        des: 'This download installs version 15.40.7.64.4279 of the  Intel® Graphics Driver for Windows® 10, 64-bit. ',
+        version: '15.40.7.64.4279',
+        type: 'Drivers'
+    },
+    {
+        id: "1242",
+        name: 'Intel® Arc™ & Iris® Xe Graphics - Windows*',
+        date: '26/12/2024',
+        os: ['Windows 10* (22H2)', ' Windows 11 Family*'],
+        download: true,
+        des: 'This download installs Intel® Graphics Driver 32.0.101.6332/32.0.101.101.6253 for Intel® Arc™ B-Series Graphics, Intel® Arc™ A-Series Graphics, Intel® Iris® Xe Graphics, and Intel® Core™ Ultra Processors with Intel® Arc™ Graphics. ',
+        version: '32.0.101.6332_101.6253',
+        type: 'Drivers'
+    },
+    {
+        id: "1212",
+        name: 'Intel® Graphics Driver for Windows 7*/8.1* [15.36]',
+        date: '14/4/2021',
+        os: ['Windows 7', ' 32-bit*', ' Windows 8.1', ' 32-bit*', '  Windows 7', ' 64-bit*', ' Windows 8.1', ' 64-bit*'],
+        download: true,
+        des: 'This download installs the Intel® Graphics Driver for 4th Gen. ',
+        version: '15.36.41.5180',
+        type: 'Drivers'
+    },
+    {
+        id: "1232",
+        name: 'Intel® Graphics Driver for Windows* [15.45]',
+        date: '5/2/2021',
+        os: ['Windows 7', ' 32-bit*', ' Windows 8.1', ' 64-bit*', '  Windows 7', ' 64-bit*', ' Windows 8.1', ' 64-bit*'],
+        download: true,
+        des: "This download installs the Intel® Graphics Driver for 6th Gen on Windows 7* and Windows 8.1*/10* 64-bit. ",
+        version: '15.45.34.5174',
+        type: 'Drivers'
+    },
+    {
+        id: "1262",
+        name: 'Intel® Graphics Driver for Windows* [15.40]',
+        date: '5/2/2021',
+        os: ['Windows 7', ' 32-bit*', ' Windows 8.1', ' 32-bit*', ' Windows 10', ' 32-bit*', ' Windows 8.1', ' 64-bit*', ' Windows 10', ' 64-bit*', ' Windows 7', ' 64-bit*'],
+        download: true,
+        des: 'This download installs the Intel® Graphics Driver for Braswell, 4th and 5th generations. ',
+        version: '15.40.48.5171',
+        type: 'Drivers'
+    },
+    {
+        id: "1242",
+        name: 'Intel® Computing Improvement Program',
+        date: '30/12/2024',
+        os: ['Microsoft Windows*', ' Windows 10 Family*'],
+        download: false,
+        des: 'Intel wants to empower you by providing the best computing experience. This program uses information about your computers performance to make product improvements in the future. ',
+        version: '2.4.10910',
+        type: 'Software Downloads'
+    },
+    {
+        id: "1218",
+        name: 'Intel® Extreme Tuning Utility (Intel® XTU)',
+        date: '14/10/2024',
+        os: ['Windows 11* (22H2)', ' Windows 11* (21H2)', ' Windows 10* (22H2)', ' Windows 11* (23H2)', ' Windows 11* (24H2)'],
+        download: false,
+        des: 'The Intel® Extreme Tuning Utility (Intel® XTU) is used to overclock, monitor, and stress a system. This application is supported with unlocked processors (K- and X-series) only. Refer to “This download is valid for the product(s) listed below” section for supported processors list.   WARNING: Please make sure your processor is supported before downloading the latest version of Intel® Extreme Tuning Utility (Intel® XTU). Older versions of Intel® XTU are no longer available for download. \n\nBelow are two versions of Intel® XTU, version 7.14.2.14 supports unlocked Intel® Core™ processors (14th gen) and older processors, while version 10.x supports unlocked Intel® Core™ Ultra Processors (Series 2) and newer. ',
+        version: '10.0.1.18',
+        type: 'Software Downloads'
+    },
+    {
+        id: "1219",
+        name: 'Intel® Processor Identification Utility - Windows* Version',
+        date: '7/2/2024',
+        os: ['Windows 11 Family*', ' Windows 10 Family*', ' Windows Server 2022 family*', ' Windows Server 2019 family*'],
+        download: false,
+        des: 'This download page contains Intel® Processor Identification Utility for Windows*. Version 7.1.8 that supports 12th Gen and newer processors. Support for 11th Gen and older processors (see below end of support notice) and Intel Core Ultra Processors (Series 2) will be available in the next release. ',
+        version: '7.1.8',
         type: 'Software Downloads'
     },
     {
@@ -1226,126 +1326,6 @@ var b_data = [{
         download: false,
         des: 'This release provides package updates for Ubuntu* 23.04 & 22.04 on Intel® Arc™ A-Series Graphics. ',
         version: 'Latest',
-        type: 'driver'
-    },
-    {
-        id: "1213",
-        name: 'Intel® Graphics Driver for Windows® 7 & 8.1* [15.40 6th Gen]',
-        date: '23/12/2015',
-        os: ['Windows 7', ' 32-bit*', " Windows 8.1", ' 64-bit*', ' Windows 10', ' 64-bit*', ' Windows 7', ' 64-bit*'],
-        download: false,
-        des: 'This download installs the Intel® Graphics Driver for 6th Gen. ',
-        version: '15.40.14.4352',
-        type: 'driver'
-    },
-    {
-        id: "1262",
-        name: 'Intel® Processor Identification Utility - Windows* Version',
-        date: '7/2/2024',
-        os: ['Windows 11 Family*', ' Windows 10 Family*', ' Windows Server 2022 family*', ' Windows Server 2019 family*'],
-        download: false,
-        des: 'This download page contains Intel® Processor Identification Utility for Windows*. Version 7.1.8 that supports 12th Gen and newer processors. Support for 11th Gen and older processors (see below end of support notice) and Intel Core Ultra Processors (Series 2) will be available in the next release. ',
-        version: '7.1.8',
-        type: 'Software Downloads'
-    },
-    {
-        id: "1242",
-        name: 'Intel® Graphics Driver for Windows* [15.45]',
-        date: '5/2/2021',
-        os: ['Windows 7', ' 32-bit*', ' Windows 8.1', ' 64-bit*', ' Windows 10', ' 64-bit*', ' Windows 7', '64-bit*'],
-        download: true,
-        des: 'This download installs the Intel® Graphics Driver for Braswell, 4th and 5th generations.',
-        version: '15.45.34.5174',
-        type: 'driver'
-    },
-    {
-        id: "1212",
-        name: 'Intel® Graphics Driver for Windows* [15.40]',
-        date: '5/2/2021',
-        os: ['Windows 7', ' 32-bit*', ' Windows 8.1', ' 32-bit*', ' Windows 10', ' 32-bit*', ' Windows 8.1', ' 64-bit*', ' Windows 10', ' 64-bit*', ' Windows 7', ' 64-bit*'],
-        download: true,
-        des: 'This download installs the Intel® Graphics Driver for Braswell, 4th and 5th generations. ',
-        version: '15.40.48.5171',
-        type: 'Drivers'
-    },
-    {
-        id: "1232",
-        name: 'Intel® Graphics Driver for Windows® 10 [15.40][4th Gen]',
-        date: '1/9/2015',
-        os: ['Windows 10', ' 64-bit*'],
-        download: false,
-        des: "This download installs version 15.40.7.64.4279 of the  Intel® Graphics Driver for Windows® 10, 64-bit. ",
-        version: '15.40.7.64.4279',
-        type: 'Drivers'
-    },
-    {
-        id: "1262",
-        name: 'Intel® 7th-10th Gen Processor Graphics - Windows*',
-        date: '19/12/2024',
-        os: ['Windows 11 Family*', ' Windows 10* (21H2)', ' Windows 10* (21H1)', ' Windows 10* (20H2)', ' Windows 10* (20H1)', ' Windows 10* (19H2)', ' Windows 10* (RS5)', ' Windows 10* (19H1)'],
-        download: true,
-        des: 'This download installs Intel® Graphics Driver 31.0.101.2134 for 7th-10th Gen Intel® Core™ Processor Graphics, and related Intel Atom®, Pentium®, and Celeron® processors. ',
-        version: '31.0.101.2134',
-        type: 'Drivers'
-    },
-    {
-        id: "1242",
-        name: 'Intel® Graphics Driver for Windows 7*/8.1* [15.36]',
-        date: '14/4/2021',
-        os: ['Windows 7', ' 32-bit*', ' Windows 8.1', ' 32-bit*', ' Windows 7', ' 64-bit*', ' Windows 8.1', ' 64-bit*'],
-        download: true,
-        des: 'This download installs the Intel® Graphics Driver for 4th Gen. ',
-        version: '15.36.41.5180',
-        type: 'Drivers'
-    },
-    {
-        id: "1218",
-        name: 'Intel® Arc™ & Iris® Xe Graphics - Windows*',
-        date: '26/12/2024',
-        os: ['Windows 10* (22H2)', ' Windows 11 Family*'],
-        download: true,
-        des: 'This download installs Intel® Graphics Driver 32.0.101.6332/32.0.101.101.6253 for Intel® Arc™ B-Series Graphics, Intel® Arc™ A-Series Graphics, Intel® Iris® Xe Graphics, and Intel® Core™ Ultra Processors with Intel® Arc™ Graphics. ',
-        version: '32.0.101.6332_101.6253',
-        type: 'Drivers'
-    },
-    {
-        id: "1219",
-        name: 'Intel® Computing Improvement Program',
-        date: '30/12/2024',
-        os: ['Microsoft Windows*', ' Windows 10 Family*'],
-        download: false,
-        des: 'Intel wants to empower you by providing the best computing experience. This program uses information about your computers performance to make product improvements in the future. ',
-        version: '2.4.10910',
-        type: 'Software Downloads'
-    },
-    {
-        id: "1232",
-        name: 'Intel® Extreme Tuning Utility (Intel® XTU)',
-        date: '14/10/2024',
-        os: ['Windows 11* (22H2)', ' Windows 11* (21H2)', ' Windows 10* (22H2)', ' Windows 11* (23H2)', ' Windows 11* (24H2)'],
-        download: false,
-        des: 'The Intel® Extreme Tuning Utility (Intel® XTU) is used to overclock, monitor, and stress a system. This application is supported with unlocked processors (K- and X-series) only. Refer to “This download is valid for the product(s) listed below” section for supported processors list.   WARNING: Please make sure your processor is supported before downloading the latest version of Intel® Extreme Tuning Utility (Intel® XTU). Older versions of Intel® XTU are no longer available for download. \n\nBelow are two versions of Intel® XTU, version 7.14.2.14 supports unlocked Intel® Core™ processors (14th gen) and older processors, while version 10.x supports unlocked Intel® Core™ Ultra Processors (Series 2) and newer. ',
-        version: '10.0.1.18',
-        type: 'Software Downloads'
-    },
-    {
-        id: "1232",
-        name: 'Radeon™ RX Vega M Graphics for HP* Spectre Laptops',
-        date: '22/8/2023',
-        os: ['Windows 10', ' 64-bit*'],
-        download: true,
-        des: 'This driver download is for HP* Spectre Laptops using 8th generation processors with Radeon™ RX Vega M Graphics. \nMicrosoft Version: 31.0.21001.46001\nAMD Version: 23.10.01.46 ',
-        version: '31.0.21001.46001',
-        type: 'Drivers'
-    },
-    {
-        id: "1232",
-        name: 'Radeon™ RX Vega M Graphics for Dell* XPS Laptops',
-        date: '14/10/2024',
-        os: ['Windows 10', ' 64-bit*'],
-        download: false,
-        des: 'This driver download is for Dell* XPS Laptops using 8th generation processors with Radeon™ RX Vega M Graphics. \nMicrosoft Version: 31.0.21001.46001\nAMD Version: 23.10.01.46 ',
-        version: '31.0.21001.46001',
         type: 'Drivers'
     }
 ]
@@ -1365,15 +1345,15 @@ function loadata() {
 
     // Populate generation filter dropdown
     b_gen.innerHTML = `<select class="p-2 my-3 w-100"> 
-                    <option>All generation</option> 
-                    ${gen.map(el => `<option value="${el}">${el}</option>`).join('')} 
-               </select>`;
+                <option>All generation</option> 
+                ${gen.map(el => `<option value="${el}">${el}</option>`).join('')} 
+           </select>`;
 
     // Populate availability filter dropdown
     b_available.innerHTML = `<select class="p-2 w-100"> 
-                        <option>All</option> 
-                        ${available.map(el => `<option value="${el}">${el}</option>`).join('')} 
-                     </select>`;
+                    <option>All</option> 
+                    ${available.map(el => `<option value="${el}">${el}</option>`).join('')} 
+                 </select>`;
 
     renderPage();
     renderPaginationControls();
@@ -1391,44 +1371,44 @@ function renderPage() {
     // Render items for the current page
     pageData.forEach(element => {
         const innerdata = `<div class="document-item">
-    <div class="row gx-0 accordion accordion-flush" id="accordionFlushExample">
-        <div class="col-xxl-12 p-0 accordion-item border-0">
-            <div class="row align-items-center accordion-header gx-0" id="flush-heading-${element.id}">
-                <div class="col-md-9 col-lg-6 col-12">
-                    <div class="ms-3 d-flex">
-                        <a href="#" class="accordion-button collapsed p-0 document-title d-none d-sm-flex" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse-${element.id}" aria-expanded="false" aria-controls="flush-collapse-${element.id}"></a>
-                        <p class="mt-2 ms-sm-5 text-center w-75">
-                            <a href="#" class="document-title">${element.name}</a>
-                        </p>
-                        <a href="#" class="accordion-button collapsed p-0 document-title d-flex d-sm-none" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse-${element.id}" aria-expanded="false" aria-controls="flush-collapse-${element.id}"></a>
-                    </div>
-                </div>
-                <div class="col-lg-2 col-12 ms-xl-0 d-flex d-none d-lg-block">
-                    <p class="mb-0" style="font-size: 14px;">${element.date}</p>
-                </div>
-                <div class="col-lg-2 col-12 ms-xl-0 d-none d-lg-block">
-                    <h6 class="d-block d-xl-none">Date:</h6>
-                    ${element.os.slice(0, 3).map(el => `<p class="mb-0" style="font-size: 14px;">${el}</p>`).join('')}
-                </div>
-                <div class="col-xl-1 col-md-2 ms-3 ms-lg-0">
-                    ${element.download ? '<div class="b_special_btn1 w-100"><p class="mb-0">Download</p></div>' : '<div class="b_special_btn2 w-100"><p class="mb-0">View Details</p></div>'}
+<div class="row gx-0 accordion accordion-flush" id="accordionFlushExample">
+    <div class="col-xxl-12 p-0 accordion-item border-0">
+        <div class="row align-items-center accordion-header gx-0" id="flush-heading-${element.id}">
+            <div class="col-md-9 col-lg-6 col-12">
+                <div class="ms-3 d-flex">
+                    <a href="#" class="accordion-button collapsed p-0 document-title d-none d-sm-flex" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse-${element.id}" aria-expanded="false" aria-controls="flush-collapse-${element.id}"></a>
+                    <p class="mt-2 ms-sm-5 text-center w-75">
+                        <a href="#" class="document-title">${element.name}</a>
+                    </p>
+                    <a href="#" class="accordion-button collapsed p-0 document-title d-flex d-sm-none" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse-${element.id}" aria-expanded="false" aria-controls="flush-collapse-${element.id}"></a>
                 </div>
             </div>
-        </div>
-        <div id="flush-collapse-${element.id}" class="accordion-collapse collapse" aria-labelledby="flush-heading-${element.id}" data-bs-parent="#accordionFlushExample">
-            <div class="accordion-body py-3 px-0">
-                <div class="ms-3 col-xl-8"><p>${element.des}<a href="#" class="b_special_a3">View download options.</a></p></div>
-                <div class="d-flex ms-3"><h6 class="me-2"><b>Version:</b></h6><small>${element.version}</small></div>
-                <div class="col-lg-2 col-12 ms-3 d-flex d-block d-lg-none">
-                    <h6 class="">Date:</h6>
-                    <p class="mb-0" style="font-size: 14px;">${element.date}</p>
-                </div>
-                <div class="d-flex ms-sm-3  align-self-center"><h6 class="me-2"><b>OS:</b></h6><small class="d-flex flex-wrap">
-                 ${element.os.map(el => `<p class="mb-0 m-2 px-2 b_text_bold" style="font-size: 14px; background: #e3e3e3">${el}</p>`).join('')}</small></div>
-                <div class="d-flex ms-3"><h6 class="me-2"><b>Type:</b></h6 ><small>${element.type}</small></div>
+            <div class="col-lg-2 col-12 ms-xl-0 d-flex d-none d-lg-block">
+                <p class="mb-0" style="font-size: 14px;">${element.date}</p>
+            </div>
+            <div class="col-lg-2 col-12 ms-xl-0 d-none d-lg-block">
+                <h6 class="d-block d-xl-none">Date:</h6>
+                ${element.os.slice(0, 3).map(el => `<p class="mb-0" style="font-size: 14px;">${el}</p>`).join('')}
+            </div>
+            <div class="col-xl-1 col-md-2 ms-3 ms-lg-0">
+                ${element.download ? '<div class="b_special_btn1 w-100"><p class="mb-0">Download</p></div>' : '<div class="b_special_btn2 w-100"><p class="mb-0">View Details</p></div>'}
             </div>
         </div>
     </div>
+    <div id="flush-collapse-${element.id}" class="accordion-collapse collapse" aria-labelledby="flush-heading-${element.id}" data-bs-parent="#accordionFlushExample">
+        <div class="accordion-body py-3 px-0">
+            <div class="ms-3 col-xl-8"><p>${element.des}<a href="#" class="b_special_a3">View download options.</a></p></div>
+            <div class="d-flex ms-3"><h6 class="me-2"><b>Version:</b></h6><small>${element.version}</small></div>
+            <div class="col-lg-2 col-12 ms-3 d-flex d-block d-lg-none">
+                <h6 class="">Date:</h6>
+                <p class="mb-0" style="font-size: 14px;">${element.date}</p>
+            </div>
+            <div class="d-flex ms-sm-3  align-self-center"><h6 class="me-2"><b>OS:</b></h6><small class="d-flex flex-wrap">
+             ${element.os.map(el => `<p class="mb-0 m-2 px-2 b_text_bold" style="font-size: 14px; background: #e3e3e3">${el}</p>`).join('')}</small></div>
+            <div class="d-flex ms-3"><h6 class="me-2"><b>Type:</b></h6 ><small>${element.type}</small></div>
+        </div>
+    </div>
+</div>
 </div>`;
         b_gen1.innerHTML += innerdata;
     });
@@ -3306,18 +3286,18 @@ document.addEventListener('DOMContentLoaded', function () {
         contentContainer.innerHTML = ''; // Clear existing content
         data[category][type].forEach(item => {
             contentContainer.innerHTML += `
-        <li class="list-item d-flex align-items-center justify-content-between py-2" style=" border-bottom:1px solid #e9e9e9">
-            <div >
-                <i class="fa-solid ${item.icon} text-dark pe-2" style="padding-top: 5px;"></i>
-                <span class="text-dark">${item.title}</span>
-                <p style="color: #0068b5; padding-top: 5px;">${item.description}</p>
-            </div>
-            <div>
-                <div class="text-dark" style="padding-top: 5px;">Last Reviewed</div>
-                <div style="color: black; padding-top: 5px;">${item.date}</div>
-            </div>
-        </li>
-    `;
+    <li class="list-item d-flex align-items-center justify-content-between py-2" style=" border-bottom:1px solid #e9e9e9">
+        <div >
+            <i class="fa-solid ${item.icon} text-dark pe-2" style="padding-top: 5px;"></i>
+            <span class="text-dark">${item.title}</span>
+            <p style="color: #0068b5; padding-top: 5px;">${item.description}</p>
+        </div>
+        <div>
+            <div class="text-dark" style="padding-top: 5px;">Last Reviewed</div>
+            <div style="color: black; padding-top: 5px;">${item.date}</div>
+        </div>
+    </li>
+`;
         });
     }
 
