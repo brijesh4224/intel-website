@@ -1,0 +1,1000 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signal Integrity Basics</title>
+
+    <link rel="stylesheet" href="/css/dk_PCI_express_IP_support_center.css">
+    <link rel="stylesheet" href="/css/dk_nav_header.css">
+    
+    <link rel="stylesheet" href="/css/yatri.css">
+    <!-- ***** Bootstrap *****  -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <!-- ***** Fontawesome *****  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- ***** Google Fonts *****  -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+
+    <style>
+        nav{
+            position: relative !important;
+        }
+        .mv_teaching_padd{
+            padding-inline: 4.6875rem 9rem !important;
+        }
+        @media(max-width:767px){
+            .mv_coman_btn{
+                margin-top: 1rem;
+            }
+        }
+        .VK_ai_nav_bar::-webkit-scrollbar {
+            display: none !important;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- header -->
+    <header>
+        <div id="navbar"></div>
+    </header>  
+
+<!-- --------------------------------------------------------------------- -->
+<section>
+    <nav class="mb_sub_nv">
+        <div class="mv_breadcrumb">
+            <ol class="mv_spark_breadcrumb_items">
+                <li><a href="">Altera® FPGAs and Programmable Devices</a></li>
+                <li><a href="">FPGA Product Support</a></li>
+                <li><a href="">FPGA Support Resources</a></li>
+                <li><a href="">Power Solutions Resources</a></li>
+                <li><a href="">Signal and Power Integrity Support Center</a></li>
+                <li><p class="mb-0">Signal Integrity Basics</p></li>
+            </ol>
+        </div>
+    </nav>
+</section>
+<!-- --------------------------------------------------------------------- -->
+
+    <!-------------------------------- Altera® FPGA ----------------------------------->
+    <section>
+        <div class="mv_intel_fpga_padd">
+            <h1 style="font-weight: 350; color: #fff;">Signal Integrity Basics</h1>
+        </div>
+    </section>
+    <!-- --------------------------------------------------------------------------- -->
+
+    <!------------------------------------- nav ------------------------------------>
+    <section>
+        <div class="VK_client_app_navigation VK_ai_navigation ">
+            <div class=" d-flex justify-content-center align-items-center overflow-hidden flex-nowrap w-100">
+                <ul class="VK_ai_nav_bar d-flex list-unstyled m-0 overflow-auto">
+                    <li>
+                        <a href="#dk_introduction" class="text-dark text-decoration-none py-4 d-block">
+                            Introduction						
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#dk_transmission" class="text-dark text-decoration-none py-4 d-block VK_ai_nav_link">
+                            Transmission Line Effects			
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#dk_impedance_mismatch" class="text-dark text-decoration-none py-4 d-block">
+                            Impedance Mismatch						
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#dk_signal_attenuation" class="text-dark text-decoration-none py-4 d-block VK_ai_nav_link">
+                            Signal Attenuation			
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#dk_cross_talk" class="text-dark text-decoration-none py-4 d-block">
+                            Cross-Talk						
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#dk_simultaneous_switch" class="text-dark text-decoration-none py-4 d-block VK_ai_nav_link">
+                            Simultaneous Switching Outputs			
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    <!-- ------------------------------------------------------------------------- -->
+
+    <section>
+        <div style="padding: 1rem 0rem 1rem;">
+            <div class="container">
+                <p><b>Part I</b></p>
+                <ul>
+                    <li><a class="b_special_a1" href="">Introduction</a></li>
+                    <li><a class="b_special_a1" href="">Transmission Line Effects</a></li>
+                    <li><a class="b_special_a1" href="">Impedance Mismatch</a></li>
+                </ul>
+                <p><b>Part II</b></p>
+                <ul>
+                    <li><a class="b_special_a1" href="">Signal Attenuation</a></li>
+                    <li><a class="b_special_a1" href="">Cross-Talk</a></li>
+                    <li><a class="b_special_a1" href="">Simultaneous Switching Outputs</a></li>
+                    <li><a class="b_special_a1" href="">Related Links</a></li>
+                </ul>
+                <p>&nbsp;</p>
+            </div>
+        </div>
+    </section>
+    
+    <!---------------------------------- Introduction ------------------------------>
+    <section id="dk_introduction">
+        <div class="mv_become_padd">
+            <div class="container">
+                <h2 style="font-weight: 350;">Introduction</h2>
+                <p>Traditionally, digital design was a relatively uncomplicated affair. Designers could develop circuitry operating up to 30 MHz without having to worry about issues associated with transmission line effects because, at lower frequency, the signals remained within data characterization, allowing the system to perform normally. As system performance increased, however, the designer’s challenges became more difficult—the impact of higher frequency on the system meant the designer had to consider not only the digital properties, but also the analogue effects within the system.</p>
+                <p>Some of the biggest design challenges surround the I/O signaling where transmission line effects can have a significant effect on the data being sent. At low speeds, the frequency response has little influence on the signal, unless the transmission medium is particularly long. However, as speed increases, high-frequency effects take over, and even the shortest lines can suffer from problems such as ringing, crosstalk, reflections and ground bounce, seriously hampering the response of the signal—thus damaging signal integrity. In reality, these problems can be overcome by good design technique and by following simple layout guidelines. Altera provides the information to help overcome these issues.<br>
+                </p>
+                <p>&nbsp;</p>
+            </div>
+        </div>
+    </section>
+    <!-- ------------------ Transmission Line Effects ------------------->
+
+    <section id="dk_transmission">
+        <div style="padding: 1rem 0rem 2rem;">
+            <div class="container">
+                <h3 class="mb-4" style="font-weight: 350; padding-top: 1rem;">Transmission Line Effects</h3>
+                <p>Transmission lines are connections capable of carrying a signal between a transmitter and a receiver. Traditionally, transmission lines have been considered to be telecom-based cables operating over long distances. But as digital signals are transmitted over high speed, even the shortest passive printed circuit board (PCB) track will suffer from transmission line effects.</p>
+                <p>At low frequencies, a wire or a PCB track may be an ideal circuit without resistance, capacitance or inductance. But at high frequencies, alternating (AC) circuit characteristics dominate causing impedances, inductances and capacitances to become prevalent in the wire. A circuit model can be calculated, as shown in figure 1 below, and used to determine the characteristic impedance of the wire or track. This impedance of the wire is extremely important, as any mismatch within the transmission path will result in a reduction in quality of the signal.<br>
+                </p>
+                <div class="row justify-content-center">
+                    <div class="col-8">
+                        <img class="w-100" src="/img/darshit_image/hs-si-fig1.png.rendition.intel.web.1072.603.png" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+      <!-- ------------------ Impedance Mismatch ------------------->
+
+      <section id="dk_impedance_mismatch">
+        <div style="padding: 1rem 0rem 2rem;">
+            <div class="container">
+                <h3 class="mb-4" style="font-weight: 350; padding-top: 1rem;">Impedance Mismatch</h3>
+                <p>Impedance mismatch is caused when the output impedance of the source (ZS), the impedance of the line (ZO) and the impedance of the receiver or load (ZL) are not equal. This will mean the transmitted signal is not fully absorbed within the receiver and the excess energy will be reflected back to the transmitter. This process will continue back and forth until all of the energy is absorbed. At high data rates, this has dangerous effects on the signal, causing overshoot, undershoot, ringing, and stair-step waveforms, all of which produce errors in signaling.</p>
+                <p>When the transceiver buffers are matched to the transmission media, the impedance mismatch problem is solved. In the case of a PCB, this can be achieved by careful selection of medium and by the use of the proper termination schemes.<br></p>
+                <div class="row justify-content-center">
+                    <div class="col-8">
+                        <img class="w-100" src="/img/darshit_image/hs-si-fig2.png.rendition.intel.web.1072.603.png" alt="">
+                    </div>
+                </div>
+                <p>A number of different termination methods are used to overcome this problem, depending on the application. These can include simple parallel termination on Stratix® GX devices (as shown in figure 2), and can range to more complex resistor capacitor (RC) termination, in which an RC network provides a low-pass filter to remove low frequency effects, but passes the high-frequency signal.</p>
+                <p>Although external components can often help the situation, they require PCB real estate and may also require additional track stubs, which can introduce new problems.<br></p>
+                <p>Intel® FPGA&nbsp;high-speed I/O solutions provide on-chip programmable termination to reduce the need of external components. Both Stratix and Stratix GX devices provide on-chip termination technology. This technology provides receiver- and transmitter-driver impedance matching for serial and differential I/O. The high-speed transceiver blocks on the Stratix GX devices additionally provide a programmable termination scheme within the high-speed transceiver circuitry to support most high-speed I/O standards. In addition to termination, good PCB design techniques can be used to overcome these issues.<br>
+                </p>
+            </div>
+        </div>
+    </section>
+
+          <!-- ------------------ Signal Attenuation ------------------->
+
+          <section id="dk_signal_attenuation">
+            <div style="padding: 1rem 0rem 2rem;">
+                <div class="container">
+                    <h3 class="mb-4" style="font-weight: 350; padding-top: 1rem;">Signal Attenuation</h3>
+                    <p>High-frequency signals are subject to losses along transmission lines, which interfere with the receiver’s ability to interpret the information. Table 1 lists some causes of the losses due to the transmission medium used to carry the signal.</p>
+                   <p>&nbsp;</p>
+                   <h3 class="mb-5" style="font-weight: 300;">Table 1. Causes of Losses Along Transmission Lines</h3>
+                   <table class="mv_product_table w-100 mb-4">
+                    <thead>
+                        <tr>
+                            <th class="medium-column">
+                                <p>Cause</p>
+                            </th>
+                            <th class="medium-column">
+                                <p>Description</p>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="data" data-category-id="">
+                            <td><p><b>Dielectric Absorption</b></p></td>
+                            <td><p>High-frequency signals excite molecules in the insulator causing it to absorb signal energy. This results in a reduction of the signal strength. Dielectric absorption is related to the printed circuit board (PCB) material being used, and can be improved by careful selection of material.</p></td>
+                        </tr>
+                        <tr class="data" data-category-id="">
+                            <td><p><b>Skin Effect</b></p></td>
+                            <td><p>Varying current waveforms, caused by AC and high-frequency signals, tend to travel on the surface of a conductor. This results in the self-inductance of the material producing an increased inductive reactance at high frequencies, forcing electrons to the surface of the material. The effective reduction of conductive area causes an increase of resistance and therefore attenuation of the signal. Increasing track width can reduce skin effect, but this is not always possible. Figure 3 illustrates this problem.</p></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <p style="padding: 2rem 0rem;">Careful selection of insulating material and track layout can help to overcome the issues of attenuation. Table 2 lists the circuitry in Stratix GX Transceiver FPGAs that overcomes attenuation problems.</p>
+
+                <h3 class="mb-4" style="font-weight: 300;">Table 2. Circuitry in Stratix GX Transceiver FPGAs to Overcome Attenuation Problems</h3>
+
+                <table class="mv_product_table w-100 mb-4">
+                    <thead>
+                        <tr>
+                            <th class="medium-column">
+                                <p>Cause</p>
+                            </th>
+                            <th class="medium-column">
+                                <p>Description</p>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="data" data-category-id="">
+                            <td><p><b>Pre-Emphasis</b></p></td>
+                            <td><p>High-frequency attenuation cannot be achieved by boosting the signal strength alone, as this will also amplify noise and jitter associated with the signal. Pre-emphasis boosts only the high frequency components of the signal by increasing the level of the first transmitted symbol, while leaving the next symbols untouched—if they were transmitted at the same level.</p>
+                            <p>For example, if a signal were to transmit a high level for three symbols, only the first symbol would be boosted, while the next two would be transmitted at the usual level. (See figure 3.) If a single symbol were transmitted at a high level, this would also be boosted.</p>
+                            <p>Pre-emphasis is also a key function to overcome the effects of pattern-dependant jitter, including loss of amplitude, displacement in time, and rounded signal edges.</p></td>
+                        </tr>
+                        <tr class="data" data-category-id="">
+                            <td><p><b>Receiver Equalization</b></p></td>
+                            <td><p>Dedicated receiver circuitry is used to attenuate the high frequency components of the signal as it arrives at the receiver to compensate for line losses. Stratix GX devices have programmable equalization for 20” and 40” transmission lines.</p></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="row justify-content-center">
+                    <div class="col-8">
+                        <img class="w-100" src="/img/darshit_image/hs-si-fig3.png.rendition.intel.web.1072.603.png" alt="">
+                    </div>
+                </div>
+
+                </div>
+            </div>
+        </section>
+
+         <!-- ------------------ Cross-Talk ------------------->
+
+      <section id="dk_cross_talk">
+        <div style="padding: 1rem 0rem 2rem;">
+            <div class="container">
+                <h3 class="mb-2" style="font-weight: 350; padding-top: 1rem;">Cross-Talk</h3>
+                <p>Whenever a signal is driven along a wire, a magnetic field is developed around that wire. If two wires are placed adjacent to each other, it is possible that the two magnetic fields will interact with the each other, causing a cross-coupling of energy between signals, known as cross-talk. Table 3 illustrates the types of coupling that exist which predominantly cause cross-talk.</p>
+                <p>&nbsp;</p>
+                <p class="mb-0">&nbsp;</p>
+                <h3 class="mb-5" style="font-weight: 300;">Table 3. Types of Coupling That Cause Cross-Talk</h3>
+                <table class="mv_product_table w-100 mb-4">
+                    <thead>
+                        <tr>
+                            <th class="medium-column">
+                                <p>Coupling</p>
+                            </th>
+                            <th class="medium-column">
+                                <p>Description</p>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="data" data-category-id="">
+                            <td><p><b>Mutual Inductance</b></p></td>
+                            <td><p>This is the effect of induced current from a driven wire, or aggressor, appearing on the quiet wire, or victim, by means of a magnetic field. Mutual inductance causes positive waves to appear on the near end of the victim line (closest to the transmitter) causing near-end inductance, while negative waves appear at the far end of the transmission line (nearer to the receiver), causing far-end cross-talk.</p></td>
+                        </tr>
+                        <tr class="data" data-category-id="">
+                            <td><p><b>Mutual Capacitance</b></p></td>
+                            <td><p>This is the coupling of two electric fields, where electrical current proportional to the rate of change of voltage in the driver is injected into the victim line. Mutual capacitance causes positive waves to appear at both ends of the transmission line.</p></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div style="padding: 3rem 0rem 1rem;">
+                    <p>Cross-talk can be significantly reduced by careful PCB design. The following steps describe how to reduce cross-talk in either micro-strip or strip-line layouts:</p>
+                    <ul>
+                        <li>Widen spacing between signal lines as much as routing restrictions will allow<br>
+                        </li>
+                        <li>Design the transmission line so the conductor is as close to the ground plane as possible; this will couple the transmission line tightly to the ground plane and help decouple it from adjacent signals</li>
+                        <li>Use differential routing techniques wherever possible, especially for critical PCB traces</li>
+                        <li>Route signals on different layers, orthogonal to each other if there is significant coupling</li>
+                        <li>Minimize parallel run lengths between signals; route with short parallel sections and minimize long coupled sections between nets</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+      <!-- ------------------ Simultaneous Switching Outputs ------------------->
+
+      <section id="dk_simultaneous_switch">
+        <div style="padding: 0rem 0rem 2rem;">
+            <div class="container">
+                <h3 class="mb-2" style="font-weight: 350; padding-top: 1rem;">Simultaneous Switching Outputs</h3>
+                <p>As digital circuitry increases in speed, output-switching times decrease. Faster switching times cause higher transient currents within the outputs as the load capacitors discharge. If a number of outputs were to switch simultaneously from logic-high to logic-low, the charge will be stored in the I/O load capacitances to flow into the device. This sudden flow of current exits the device through internal inductances onto the board ground, causing a voltage to develop. This results in a voltage difference between the device and the board ground, momentarily developing a low voltage signal on the I/O above the ground level. This is known as "ground bounce". The bounce effect can cause an output-low to be seen as a high by other devices on the board.</p>
+                <p>Ground bounce can be reduced by following a number of board based design rules as outlined in AN 315: Guidelines for Designing High-Speed FPGA PCBs (PDF).<br>
+                </p>
+                <p>Altera® high-speed solutions provide pin slew rate control, which allows the designer to slow down the driver and therefore reduce the bounce effect. Additionally, the devices include multiple power and ground pins, thereby allowing the designer to locate a high-speed I/O pin close to a ground pin to reduce the effects of simultaneous switching outputs (SSO).<br>
+                </p>
+                <p>The challenges of high-speed design require some additional effort to ensure signal integrity. This can be achieved by following some simple analogue design rules and by using careful PCB layout techniques. Altera high-speed programmable logic devices provide many features to help support high-speed design, programmable slew rate control, and on-chip termination technology help to make designers’ work easier.<br>
+                </p>
+                <div style="padding: 4rem 0rem;">
+                    <h3 style="font-weight: 300;">Glosssary</h3>
+                    <p><a class="b_special_a1" href="">0-9</a> <a class="b_special_a1" href="">A</a> <a class="b_special_a1" href="">B</a> <a class="b_special_a1" href="">C</a> <a class="b_special_a1" href="">D</a> <a class="b_special_a1" href="">E</a> <a class="b_special_a1" href="">F</a> <a class="b_special_a1" href="">G</a> <a class="b_special_a1" href="">H</a> <a class="b_special_a1" href="">I</a> <a class="b_special_a1" href="">J</a> K <a class="b_special_a1" href="">L</a> <a class="b_special_a1" href="">M</a> N <a class="b_special_a1" href="">O</a> <a class="b_special_a1" href="">P</a> Q <a class="b_special_a1" href="">R</a> <a class="b_special_a1" href="">S</a> <a class="b_special_a1" href="">T</a> <a class="b_special_a1" href="">U</a> <a class="b_special_a1" href="">V</a> <a class="b_special_a1" href="">W</a> <a class="b_special_a1" href="">X</a> Y Z</p>
+                </div>
+
+                <table class="mv_product_table w-100 mb-4">
+                    <thead>
+                        <tr>
+                            <th class="medium-column">
+                                <p><b>0-9</b></p>
+                            </th>
+                            <th><p><b>8b10b</b></p>
+                                <p>Method of encoding 8-bit data into a 10-bit form to ensure data is constructed of equal 1s and 0s. Used in high-speed clock data recovery (CDR) data transmissions to ensure data transition density, clock integrity, and DC balancing.</p>
+                                <p><a class="b_special_a1" href="">&nbsp;</a></p>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class=" " data-category-id="">
+                            <td colspan="" rowspan="">
+                                
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <p>&nbsp;</p>
+                <p>&nbsp;</p>
+
+                <table class="mv_product_table w-100 mb-4">
+                    <thead>
+                        <tr>
+                            <th class="medium-column">
+                                <p><b>A</b></p>
+                            </th>
+                            <th><p><b>Align Characters</b></p>
+                                <p>Special code or comma transmitted to show start of data in a serial stream. Used by the receiver to re-align the data.</p>
+                                <p><b>Attenuation</b></p>
+                                <p>Reduction of signal amplitude that is commonly caused by the length a signal is required to travel.</p>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class=" " data-category-id="">
+                            <td colspan="" rowspan="">
+                                
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <p>&nbsp;</p>
+                <p>&nbsp;</p>
+
+                
+                <table class="mv_product_table w-100 mb-4">
+                    <thead>
+                        <tr>
+                            <th class="medium-column">
+                                <p><b>B</b></p>
+                            </th>
+                            <th><p><b>Bathtub Curve</b></p>
+                                <p>Graphical representation of bit-error rate generated during bit-error rate testing. Shape often is similar to a bathtub due to the varying data edge placements used during the test.</p>
+                                <p><b>BER</b></p>
+                                <p>Bit-error rate. BER can be considered to be the number of bits of error divided by the number of bits received over a given time.</p>
+                                <p><b>BERT</b></p>
+                                <p>Bit-error rate tester. Instrument used to measure bit-error rate. Generally consists of a pattern generator and a signal analyzer.</p>
+                                <p><b>BIST</b></p>
+                                <p>Built-in self test. Circuitry built into the transceiver to allow testability without the need to connect to the outside world.</p>
+                                <p><b>BW</b></p>
+                                <p>Bandwidth. Frequency limits to which a system will perform.</p>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class=" " data-category-id="">
+                            <td colspan="" rowspan="">
+                                
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <p>&nbsp;</p>
+                <p>&nbsp;</p>
+
+                <table class="mv_product_table w-100 mb-4">
+                    <thead>
+                        <tr>
+                            <th class="medium-column">
+                                <p><b>C</b></p>
+                            </th>
+                            <th><p><b>CDR</b></p>
+                                <p>Clock data recovery. A technique for embedding clock and data into a single signal for the sake of transmission. High-speed serial data require the clocks to be embedded into the data stream to remove skew and jitter issues associated with transmitting separately.</p>
+                                <p><b>Channel Aligner</b></p>
+                                <p>Transceiver circuitry used to align transceiver channels when more than one channel is required to handle a high-speed data interface.</p>
+                                <p><b>CJTPAT</b></p>
+                                <p>Continuous jitter pattern. IEEE test pattern used in 10-Gbit Ethernet compliance testing.</p>
+                                <p><b>Code Groups</b></p>
+                                <p>Selection of commas used in a particular protocol. For example XAUI utilizes /K/, /A/, /R/ &amp; /T/ codes where /K/ indicates lane synchronization, /A/ indicates lane to lane alignment, /R/ indicates skip code, and /T/ indicates terminate.</p>
+                                <p><b>Comma</b></p>
+                                <p>Unique codes provided within 8b10b encoding for control information. Also known as K characters.</p>
+                                <p><b>Common Mode (V<sub>CM</sub>)</b></p>
+                                <p>A signal or noise of identical magnitude and phase that appears on both inputs of a differential receiver. This noise can then be removed at the input of the receiver, known as common mode rejection.</p>
+                                <p><b>Compliance Points</b></p>
+                                <p>Specific measurement points within a circuit. Used during system characterization to show that a signal conforms to specification.</p>
+                                <p><b>Cross-Talk</b></p>
+                                <p>Undesirable signal from one circuit superimposed onto a secondary circuit, caused by mutual inductance or mutual capacitance between the two circuits.</p>
+                                <p><b>CRPAT</b></p>
+                                <p>Continuous random pattern. IEEE test pattern used in 10-Gbit Ethernet compliance testing.</p>
+                                <p><b>CRU</b></p>
+                                <p>Clock recovery unit. Dedicated circuitry used to recover the clock within a CDR-based transmission scheme.</p>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class=" " data-category-id="">
+                            <td colspan="" rowspan="">
+                                
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <p>&nbsp;</p>
+                <p>&nbsp;</p>
+
+                <table class="mv_product_table w-100 mb-4">
+                    <thead>
+                        <tr>
+                            <th class="medium-column">
+                                <p><b>E</b></p>
+                            </th>
+                            <th><p><b>EMI</b></p>
+                                <p>Electromagnetic interference. Undesirable electromagnetic waves radiating from one circuit to another, causing interference or noise.<br>
+                                <b>Equalization</b></p>
+                                <p>Method of boosting the gain of a high-frequency signal to compensate for signal attenuation during transmission. Equalization circuitry is generally included within the receiver circuitry.</p>
+                                <p><b>Eye Diagram</b></p>
+                                <p>A superimposed high-speed waveform generated over a number of data cycles, depicting voltage and timing noise associated with a transmission line. The cleaner the eye within the plot, the better the signal.</p>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class=" " data-category-id="">
+                            <td colspan="" rowspan="">
+                                
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <p>&nbsp;</p>
+                <p>&nbsp;</p>
+
+                <table class="mv_product_table w-100 mb-4">
+                    <thead>
+                        <tr>
+                            <th><p><b>F</b></p>
+                            </th>
+                            <th><p><b>FFT</b></p>
+                                <p>Fast Fourier transform.</p>
+                                <p><b>FR4</b></p>
+                                <p>Standard laminate used in the construction of PCBs and backplanes.</p>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class=" " data-category-id="">
+                            <td colspan="" rowspan="">
+                                
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <p>&nbsp;</p>
+                <p>&nbsp;</p>
+
+                <table class="mv_product_table w-100 mb-4">
+                    <thead>
+                        <tr>
+                            <th><p><b>G</b></p>
+                            </th>
+                            <th><p><b>Ground Bounce</b></p>
+                                <p>Momentary noise on the device ground plane causing a 0 signal to erroneously be seen as a 1. Ground bounce is caused by simultaneously switching outputs (SSO).<br>
+                                <a class="b_special_a1" href=""></a></p>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class=" " data-category-id="">
+                            <td colspan="" rowspan="">
+                                
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <p>&nbsp;</p>
+                <p>&nbsp;</p>
+
+                <table class="mv_product_table w-100 mb-4">
+                    <thead>
+                        <tr>
+                            <th><p><b>H</b></p>
+                            </th>
+                            <th><p><b>HSPICE</b></p>
+                                <p>HP simulation program with integrated circuit emphasis. Analog circuit simulation models used to determine transceiver behavior during system simulation.<br>
+                                <a class="b_special_a1" href=""></a></p>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class=" " data-category-id="">
+                            <td colspan="" rowspan="">
+                                
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <p>&nbsp;</p>
+                <p>&nbsp;</p>
+
+                <table class="mv_product_table w-100 mb-4">
+                    <thead>
+                        <tr>
+                            <th><p><b>I</b></p>
+                            </th>
+                            <th><p><b>IBIS</b></p>
+                                <p>I/O buffer information specification. I/O buffer behavioral models used to determine transceiver behavior during system simulation. IBIS models are not suitable for high-speed simulation above 1 Gbps.</p>
+                                <p><b>Idle Characters</b></p>
+                                <p>K (comma) code data sequence transmitted when data is not present, to maintain clock data synchronization. 8b10b encoding uses K28.5 code for this function.</p>
+                                <p><b>Impedance Matching</b></p>
+                                <p>Function of ensuring that the impedance of the transmitter, the receiver, and the transmission line are identical. Mismatched impedances could result in signal reflections, ringing, overshoot, undershoot, and stairstep waveforms.</p>
+                                <p><b>ISI</b></p>
+                                <p>Inter-symbol interference. Data corruption caused by residue of a previous signal interfering with the current data. Generally caused by reflections on the line.</p>
+                                <p><b>ITU-T</b></p>
+                                <p>International Telecommunications Union Telecommunication Standardization Sector. Telecommunication standards organization.</p>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class=" " data-category-id="">
+                            <td colspan="" rowspan="">
+                                
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <p>&nbsp;</p>
+                <p>&nbsp;</p>
+
+                <table class="mv_product_table w-100 mb-4">
+                    <thead>
+                        <tr>
+                            <th><p><b>J</b></p>
+                            </th>
+                            <th><p><b>JBOD</b></p>
+                                <p>Just a bunch of drives. Storage network term for a disk drive or number of disk drives mounted within their own enclosure but without any control processor.</p>
+                                <p><b>Jitter</b></p>
+                                <p>Time delay between the expected signal transition and the actual transition.</p>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class=" " data-category-id="">
+                            <td colspan="" rowspan="">
+                                
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <p>&nbsp;</p>
+                <p>&nbsp;</p>
+
+                <table class="mv_product_table w-100 mb-4">
+                    <thead>
+                        <tr>
+                            <th><p><b>L</b></p>
+                            </th>
+                            <th><p><b>LAN</b></p>
+                                <p>Local area network.</p>
+                                <p><b>LDT</b></p>
+                                <p>Lightning data transport. Low-voltage differential logic standard used within computer-based applications. Renamed to the HyperTransport<sup>™</sup>&nbsp;standard.</p>
+                                <p><b>LVDS</b></p>
+                                <p>Low-voltage differential signaling. High-speed differential I/O interface commonly used in high-speed transceiver applications.</p>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class=" " data-category-id="">
+                            <td colspan="" rowspan="">
+                                
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <p>&nbsp;</p>
+                <p>&nbsp;</p>
+
+                <table class="mv_product_table w-100 mb-4">
+                    <thead>
+                        <tr>
+                            <th><p><b>M</b></p>
+                            </th>
+                            <th><p><b>Mitering (board layout context)</b></p>
+                                <p>PCB term describing the layout technique used to ensure that high-speed I/O channels have an equivalent track length. Appear as wiggles on a PCB.</p>
+                                <p><b>MJS</b></p>
+                                <p>Methodologies for jitter specification. Document describing the jitter specification and measurements for a particular protocol that a product must reach before it conforms to the specification.</p>
+                                <p><b>Mutual Capacitance</b></p>
+                                <p>The coupling of two conductors via an electric field that injects a current onto the quiet line (victim) proportional to the rate of change of voltage on the driven line (aggressor).</p>
+                                <p><b>Mutual Inductance</b></p>
+                                <p>The effect of inducing current from a driven line (aggressor) onto a quiet line (victim) by means of an electric field.</p>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class=" " data-category-id="">
+                            <td colspan="" rowspan="">
+                                
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <p>&nbsp;</p>
+                <p>&nbsp;</p>
+
+                <table class="mv_product_table w-100 mb-4">
+                    <thead>
+                        <tr>
+                            <th><p><b>O</b></p>
+                            </th>
+                            <th><p><b>Overshoot</b></p>
+                                <p>The percentage a waveform rises above its upper determined value before setting at the correct value.</p>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class=" " data-category-id="">
+                            <td colspan="" rowspan="">
+                                
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <p>&nbsp;</p>
+                <p>&nbsp;</p>
+
+                <table class="mv_product_table w-100 mb-4">
+                    <thead>
+                        <tr>
+                            <th><p><b>P</b></p>
+                            </th>
+                            <th><p><b>PCB<br>
+                            </b>Printed circuit board. Insulated sheet covered with a predefined pattern of conductive material, which becomes a circuit when populated with electronic components.<br>
+                           <b>PCML<br>
+                            </b>Positive emitter coupled logic. I/O standard based on emitter couple logic, used in high-speed applications due to its quick state switching properties.<br>
+                           <b>PCS<br>
+                            </b>Physical coding sub-layer. Many protocols divide the physical layer of the open system interconnection (OSI) model into two further sub-layers, PMA and PCS. The PCS sub-layer describes the digital functionality of the physical interface, including word alignment, pattern detection and data coding scheme such as 8b10b.<br>
+                           <b>Pattern Detector</b><br>
+                           Transceiver logic used to identify specific data patterns within the data stream in order to align the data. Can use 8b10b comma codes, A1A2 patterns within SONET data, or user data codes.<br>
+                           <b>PLL<br>
+                            </b>Phase-locked loop. A closed-loop frequency-control system based on the phase difference between the input signal and the output signal of a controlled oscillator. PLLs can correct large and small frequency phase discrepancies through rough and fine tuning, respectively.<br>
+                           <b>PMA<br>
+                            </b>Physical medium attachment sub-layer. Many protocols divide the physical layer of the open system interconnection (OSI) model into two further sub-layers, PMA and PCS. The PMA sub-layer describes the analogue or electrical section of the interface.<br>
+                           <b>PRBS<br>
+                            </b>Pseudo random bit sequence. A telecommunication test sequence exhibiting certain qualities of randomness and autocorrelation. While a PRBS sequence can be used to evaluate a system's performance under random data conditions, it is fully predictable and repeatable.<br>
+                           <b>Pre-Emphasis</b><br>
+                           Method of boosting a data signal to compensate for IR losses introduced by the transmission medium. Pre-emphasis boosts the initial signal when a transition occurs, but will de-emphasize a signal with a run length greater than 1 following the first unit interval.<br>
+                           <b>PWD<br>
+                            </b>Pulse width distortion (see DCD).<br>
+                           <a class="b_special_a1" href=""></a></p>
+                           </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class=" " data-category-id="">
+                            <td colspan="" rowspan="">
+                                
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <p>&nbsp;</p>
+                <p>&nbsp;</p>
+
+                <table class="mv_product_table w-100 mb-4">
+                    <thead>
+                        <tr>
+                            <th><p><b>R</b></p>
+                            </th>
+                            <th><p><b>Rate Matcher</b></p>
+                                <p>Transceiver logic used to match received data to internal logic clock. In CDR-based systems, the clock frequencies of the transmitting and receiving devices often do not match. This mismatch can cause the data to transmit at a rate slightly faster or slower than the receiving device can interpret. The rate matcher resolves the frequency differences between the recovered clock and the PLD logic array clock by inserting or deleting removable characters from the data stream, as defined by the transmission protocol, without compromising transmitted data. Also known as clock correction.</p>
+                                <p><b>Reflection</b></p>
+                                <p>The appearance of a previously transmitted signal on the transmission line causing interference with the current signal. Reflections are caused by a poorly terminated or discontinuous transmission line, where the signal energy is not fully absorbed within the receiver and is therefore transmitted back towards the transmitter.</p>
+                                <p><b>Ringing</b></p>
+                                <p>The appearance of signal overshoot and undershoot at the receiver, caused by reflections on the transmission line.</p>
+                                <p><b>RJ</b></p>
+                                <p>Random jitter. Unpredictable jitter cased by random noise present during edge transitions, originating from poorly designed components or noisy power supplies.</p>
+                                <p><b>RPAT</b></p>
+                                <p>Random pattern. IEEE test pattern used in 10-Gbit Ethernet compliance testing.</p>
+                                <p><b>Run Length</b></p>
+                                <p>Number of unit intervals (UIs) before a transition must occur in order for the clock to be recovered from the data path. Refers to CDR-based transmissions.</p>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class=" " data-category-id="">
+                            <td colspan="" rowspan="">
+                                
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <p>&nbsp;</p>
+                <p>&nbsp;</p>
+
+                <table class="mv_product_table w-100 mb-4">
+                    <thead>
+                        <tr>
+                            <th><p><b>S</b></p>
+                            </th>
+                            <th><p><b>Scrambler</b></p>
+                                <p>Pre-arranged transmission encoding scheme used to bit-disperse data in order to provide DC balancing and ensure CDR. Used in SONET/SDH applications.</p>
+                                <p><b>SERDES</b></p>
+                                <p>Serializer/ deserializer. Converts low-speed parallel data from source into high-speed serial data for transmission at the transmitter. Converts received high-speed serial data into low-speed parallel data at the receiver.</p>
+                                <p><b>Signal Integrity</b></p>
+                                <p>Design techniques used to ensure transmitted data can be successfully interpreted by the receiver within the tolerances of the protocol.</p>
+                                <p><b>SJ (Sinusoidal Jitter)</b></p>
+                                <p>Slow varying jitter, which is often tracked by a PLL. Sinusoidal jitter results from cross coupling of various signals within the system. Also known as cyclostationary noise.</p>
+                                <p><b>Skew</b></p>
+                                <p>Time delay between different bits transmitted at the same time, measured at the receiver.</p>
+                                <p><b>Skip Characters</b></p>
+                                <p>K (comma) characters used for data alignment. The receiver will remove these characters from a data stream to allow for skew issues between channels or between system clocks. Used for channel alignment and rate matching.</p>
+                                <p><b>SONET</b></p>
+                                <p>Synchronous optical network. Telecommunication network standard describing the connection of optical systems.</p>
+                                <p><b>SSO</b></p>
+                                <p>Simultaneous switching outputs. Condition where a number of outputs switch to the same level at the same time. This may result in ground bounce in a non-protected system.</p>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class=" " data-category-id="">
+                            <td colspan="" rowspan="">
+                                
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <p>&nbsp;</p>
+                <p>&nbsp;</p>
+
+                <table class="mv_product_table w-100 mb-4">
+                    <thead>
+                        <tr>
+                            <th><p><b>T</b></p>
+                            </th>
+                            <th><p><b>Termination</b></p>
+                                <p>Addition of passive components onto the transmission line to ensure impedance matching between transmitter, receiver, and transmission line.</p>
+                                <p><b>TIA</b></p>
+                                <p>Telecom Industry Association. Communication standards organization.</p>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class=" " data-category-id="">
+                            <td colspan="" rowspan="">
+                                
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <p>&nbsp;</p>
+                <p>&nbsp;</p>
+
+                <table class="mv_product_table w-100 mb-4">
+                    <thead>
+                        <tr>
+                            <th><p><b>U</b></p>
+                            </th>
+                            <th><p><b>Undershoot</b></p>
+                                <p>The percentage a waveform falls below its lowest determined value before setting at the correct value.</p>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class=" " data-category-id="">
+                            <td colspan="" rowspan="">
+                                
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <p>&nbsp;</p>
+                <p>&nbsp;</p>
+
+                <table class="mv_product_table w-100 mb-4">
+                    <thead>
+                        <tr>
+                            <th><p><b>V</b></p>
+                            </th>
+                            <th><p><b>Via (PCB context)</b></p>
+                                <p>Used as a method of interconnectivity for a multilayer PCB. Constructed using a tin plated hole connected to the tracks requiring connectivity.</p>
+                                <p><b>VOD</b>&nbsp;<b>(V<sub>OD</sub>)</b></p>
+                                <p>Voltage output differential. Describes the peak-to-peak voltage difference between an active low and active high signal voltage level.</p>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class=" " data-category-id="">
+                            <td colspan="" rowspan="">
+                                
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <p>&nbsp;</p>
+                <p>&nbsp;</p>
+
+                <table class="mv_product_table w-100 mb-4">
+                    <thead>
+                        <tr>
+                            <th><p><b>W</b></p>
+                            </th>
+                            <th><p><b>WAN</b></p>
+                                <p>Wide area network. A communications network used to connect a number of LANs together.</p>
+                                <p><b>Wander</b></p>
+                                <p>Similar to jitter. Long-term variation of a digital waveform from its original transmitted state.</p>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class=" " data-category-id="">
+                            <td colspan="" rowspan="">
+                                
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <p>&nbsp;</p>
+                <p>&nbsp;</p>
+
+                <table class="mv_product_table w-100 mb-4">
+                    <thead>
+                        <tr>
+                            <th><p><b>X</b></p>
+                            </th>
+                            <th><p><b>XAUI</b></p>
+                                <p>10-Gbit attachment unit interface. Describes optional 10-Gbps Ethernet connection between physical interface (PHY) and media access control (MAC). Can be used as an alternative to XGMII for chip-to-chip or backplane applications. XAUI provides a four-channel interface operating at 3.125 gigabits per second (Gbps).</p>
+                                <p><b>XGMII</b></p>
+                                <p>10-Gbit media independent interface. Describes 10-Gbps Ethernet interface connection between MAC and PHY. XGMII provides a 74-pin interface operating at 312 Mhz.</p>
+                                <p><b>XSBI</b></p>
+                                <p>10-Gbit sixteen-bit interface. Describes optional 10-Gbps Ethernet interface connection between MAC and PHY. Requires 16 differential lanes operating between 622 and 645 Mbps.</p>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class=" " data-category-id="">
+                            <td colspan="" rowspan="">
+                                
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <p>&nbsp;</p>
+                <p>&nbsp;</p>
+
+                <h3 class="mb-3" style="font-weight: 300;">Related Links</h3>
+                <ul>
+                    <li><a class="b_special_a1" href="">Glossary&nbsp;›</a></li>
+                    <li><a class="b_special_a1" href="">Using Pre-Emphasis and Equalization with Stratix GX White Paper&nbsp;›</a></li>
+                    <li><a class="b_special_a1" href="">Basic Principles of Signal Integrity&nbsp;›</a></li>
+                    <li><a class="b_special_a1" href="">Guidelines for Designing High-Speed FPGA PCBs&nbsp;›</a></li>
+                    <li><a class="b_special_a1" href="">High-Speed Digital Design &amp; Signal Consulting Inc.&nbsp;›</a></li>
+                    <li><a class="b_special_a1" href="">GigaTest Labs: Signal Integrity Engineering &amp; Training&nbsp;›</a></li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- footer -->
+    <footer>
+        <div id="footer"></div>
+    </footer>
+
+    <!------------------------------------ Model ----------------------------------->
+    <!-- Use the 1 -->
+    <div class="modal" id="mv_developer_usability_1" tabindex="-1">
+        <div class="modal-dialog mv_industry_dialog">
+            <div class="modal-content mv_industry_model_content dk_Cyclone_fmc">
+                <div class="modal-body mv_industry_body">
+                    <button type="button" data-bs-dismiss="modal" aria-label="Close">
+                        <span><i class="fa-solid fa-xmark"></i></span>
+                    </button>
+                    <div class="mv_enlarged-image">
+                        <img src="/img/darshit_image/diagram-opencl-sw-support.png.rendition.intel.web.1920.1080.png" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ----------------------------------------------------------------------------- -->
+
+    </body>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+    <script>
+        // navbar include
+        fetch('/y_index/y_navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar').innerHTML = data;
+            });
+        // footer include 
+        fetch('/y_index/y_footer.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('footer').innerHTML = data;
+            });
+    </script>
+
+    <!-- nav script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+        const nav = document.querySelector('.VK_client_app_navigation');
+        const navLinks = document.querySelectorAll('.VK_ai_nav_bar a');
+        const sections = document.querySelectorAll('section[id]');
+        let navOffset = nav.offsetTop;
+
+            // Add smooth scrolling to all links
+            navLinks.forEach(link => {
+                link.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+
+            // Sticky Navigation
+            window.addEventListener('scroll', () => {
+                if (window.pageYOffset >= navOffset) {
+                    nav.classList.add('VK_sticky_nav_bar');
+                } else {
+                    nav.classList.remove('VK_sticky_nav_bar');
+                }
+                // Section highlighting
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop - nav.clientHeight;
+                    const sectionHeight = section.clientHeight;
+                    if (window.pageYOffset >= sectionTop && window.pageYOffset <= sectionTop + sectionHeight) {
+                        navLinks.forEach(link => {
+                            link.classList.remove('active');
+                            if (link.getAttribute('href') === `#${section.id}`) {
+                                link.classList.add('active');
+                                
+                                // Ensure the active link is visible in the nav bar
+                                const navBar = document.querySelector('.VK_ai_nav_bar');
+                                const activeLink = document.querySelector('.VK_ai_nav_bar a.active');
+                                const linkRect = activeLink.getBoundingClientRect();
+                                const navBarRect = navBar.getBoundingClientRect();
+
+                                if (linkRect.left < navBarRect.left || linkRect.right > navBarRect.right) {
+                                    activeLink.scrollIntoView({ inline: 'center', behavior: 'smooth' });
+                                }
+                            }
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+
+</html>

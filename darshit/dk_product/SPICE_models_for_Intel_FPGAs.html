@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SPICE Models for Intel® FPGAs</title>
+
+    <link rel="stylesheet" href="/css/dk_PCI_express_IP_support_center.css">
+    <link rel="stylesheet" href="/css/dk_nav_header.css">
+    
+    <link rel="stylesheet" href="/css/yatri.css">
+    <!-- ***** Bootstrap *****  -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <!-- ***** Fontawesome *****  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- ***** Google Fonts *****  -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+
+    <style>
+        nav{
+            position: relative !important;
+        }
+        .mv_teaching_padd{
+            padding-inline: 4.6875rem 9rem !important;
+        }
+        @media(max-width:767px){
+            .mv_coman_btn{
+                margin-top: 1rem;
+            }
+        }
+        .VK_ai_nav_bar::-webkit-scrollbar {
+            display: none !important;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- header -->
+    <header>
+        <div id="navbar"></div>
+    </header>  
+
+<!-- --------------------------------------------------------------------- -->
+<section>
+    <nav class="mb_sub_nv">
+        <div class="mv_breadcrumb">
+            <ol class="mv_spark_breadcrumb_items">
+                <li><a href="">Altera® FPGAs and Programmable Devices</a></li>
+                <li><a href="">FPGA Product Support</a></li>
+                <li><a href="">FPGA Support Resources</a></li>
+                <li><a href="">Power Solutions Resources</a></li>
+                <li><p class="mb-0">SPICE Models for FPGAs</p></li>
+            </ol>
+        </div>
+    </nav>
+</section>
+<!-- --------------------------------------------------------------------- -->
+
+    <!-------------------------------- Altera® FPGA ----------------------------------->
+    <section>
+        <div class="mv_intel_fpga_padd">
+            <h1 style="font-weight: 350; color: #fff;">SPICE Models for Intel® FPGAs</h1>
+        </div>
+    </section>
+    <!-- --------------------------------------------------------------------------- -->
+
+    <!-- ------------------------------------------------------------------------- -->
+
+    <section>
+        <div style="padding: 1rem 0rem 1rem;">
+            <div class="container">
+                <p>SPICE kits enable you to perform system-level simulations for various configurations that make use of Intel FPGAs. The SPICE kits provide models that support a wide variety of I/O features across process, voltage, and temperature (PVT). Each SPICE kit contains the following information:</p>
+                <ul>
+                    <li>Encrypted transistor and logic cell library models</li>
+                    <li>Encrypted input/output buffer circuit models for single-ended and differential I/O</li>
+                    <li>Single-ended and differential sample SPICE decks</li>
+                    <li>User guide describing the model usage</li>
+                </ul>
+                <p class="mb-4">Table 1 explains the File Revision Numbering Convention used for downloadable device models on this page.</p>
+
+                <table class="mv_product_table w-100 mb-4">
+                    <thead>
+                        <tr>
+                            <th colspan="2">
+                                <h4>Table 1. Device Models File Revision Numbering Convention</h4>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="data" data-category-id="">
+                            <td><p><b>File Revision&nbsp;Numbering</b></p></td>
+                            <td><p><b>Description</b></p></td>
+                        </tr>
+                        <tr class="data" data-category-id="">
+                            <td><p>0.x silicon and file in development<br>
+                            1.x pre-silicon file data from silicon model only</p></td>
+                            <td><p>The models are designated as "Preliminary" and have not been correlated against physical device operation.</p></td>
+                        </tr>
+                        <tr class="data" data-category-id="">
+                            <td><p>2.x file correlated to actual silicon measurements</p></td>
+                            <td><p>The models are designated as "Correlated" and have been correlated against physical device operation.</p></td>
+                        </tr>
+                        <tr class="data" data-category-id="">
+                            <td><p>3.x mature product, no more changes likely</p></td>
+                            <td><p>The models are designated as "Final" and have been correlated against physical device operation. There will not be any planned changes to the models.</p></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <table class="mv_product_table w-100 mb-4">
+                    <thead>
+                        <tr>
+                            <th colspan="6">
+                                <h4>Table 2a. Device Models for General-Purpose I/Os and LVDS Pins</h4>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="data" data-category-id="">
+                            <td><p><b>Device Family</b></p></td>
+                            <td><p><b>Part Number Prefix</b></p></td>
+                            <td><p><b>Device Model Type</b></p></td>
+                            <td><p><b>Device Model</b></p></td>
+                            <td><p><b>Model Revision</b></p></td>
+                            <td><p><b>Model Last Updated</b></p></td>
+                        </tr>
+                        <tr class="data" data-category-id="">
+                            <td rowspan="2">Intel® Arria® 10</td>
+                            <td rowspan="2">EP10A</td>
+                            <td rowspan="2">I/O Synopsys HSPICE</td>
+                            <td>LVDS I/O - <a class="b_special_a1" href="">arria10_gpio_model.zip</a></td>
+                            <td style="text-align: center;">3.0</td>
+                            <td style="text-align: center;">10/2017</td>
+                        </tr>
+                        <tr class="data" data-category-id="">
+                            <td>3V I/O - <a class="b_special_a1" href="">arria10_gpio_3vio_model.zip</a></td>
+                            <td style="text-align: center;">3.0</td>
+                            <td style="text-align: center;">10/2017</td>
+                        </tr>
+                        <tr class="data" data-category-id="">
+                            <td>Arria®&nbsp;V GX/GT</td>
+                            <td><p>5AGX<br>
+                            5AGT</p></td>
+                            <td>I/O Synopsys HSPICE</td>
+                            <td><a class="b_special_a1" href="">arria5_Prelim_gpio_model.zip</a></td>
+                            <td style="text-align: center;">0.3</td>
+                            <td style="text-align: center;">05/2013</td>
+                        </tr>
+                        <tr class="data" data-category-id="">
+                            <td>Arria®&nbsp;II GZ</td>
+                            <td>EP2AGZ</td>
+                            <td>I/O Synopsys HSPICE</td>
+                            <td><a class="b_special_a1" href="">gpio_model.zip</a></td>
+                            <td style="text-align: center;">3.0</td>
+                            <td style="text-align: center;">12/2010</td>
+                        </tr>
+                        <tr class="data" data-category-id="">
+                            <td>Arria®&nbsp;II GX</td>
+                            <td>EP2AGX</td>
+                            <td>I/O Synopsys HSPICE</td>
+                            <td><a class="b_special_a1" href="">arria2gx_gpio_model.zip</a></td>
+                            <td style="text-align: center;">3.0</td>
+                            <td style="text-align: center;">12/2009</td>
+                        </tr>
+                        <tr class="data" data-category-id="">
+                            <td rowspan="2">Intel® Cyclone® 10 GX</td>
+                            <td rowspan="2">10CX</td>
+                            <td rowspan="2">I/O Synopsys HSPICE</td>
+                            <td><a class="b_special_a1" href="">LVDS I/O - cyclone10gx_gpio_model.zip</a></td>
+                            <td style="text-align: center;">3.0</td>
+                            <td style="text-align: center;">10/2017</td>
+                        </tr>
+                        <tr class="data" data-category-id="">
+                            <td><a class="b_special_a1" href="">3V I/O - cyclone10gx_gpio_3vio_model.zip</a></td>
+                            <td style="text-align: center;">3.0</td>
+                            <td style="text-align: center;">10/2017</td>
+                        </tr>
+                        <tr class="data" data-category-id="">
+                            <td>Intel® Cyclone® 10 LP</td>
+                            <td>10CL</td>
+                            <td>I/O Synopsys HSPICE</td>
+                            <td><a class="b_special_a1" href="">cyclone10lp_gpio_model.zip</a></td>
+                            <td style="text-align: center;">3.0</td>
+                            <td style="text-align: center;">10/2017</td>
+                        </tr>
+                        <tr class="data" data-category-id="">
+                            <td>Cyclone®&nbsp;V</td>
+                            <td>5C</td>
+                            <td>I/O Synopsys HSPICE</td>
+                            <td><a class="b_special_a1" href="">cyclone5_gpio_model.zip</a></td>
+                            <td style="text-align: center;">2.0</td>
+                            <td style="text-align: center;">08/2015</td>
+                        </tr>
+                        <tr class="data" data-category-id="">
+                            <td>Cyclone®&nbsp;IV</td>
+                            <td>EP4CGX</td>
+                            <td>I/O Synopsys HSPICE</td>
+                            <td><a class="b_special_a1" href="">cyclone4_gpio_model.zip</a></td>
+                            <td style="text-align: center;">1.0</td>
+                            <td style="text-align: center;">10/2010</td>
+                        </tr>
+                        <tr class="data" data-category-id="">
+                            <td>Cyclone®&nbsp;III</td>
+                            <td>EP3C</td>
+                            <td>I/O Synopsys HSPICE</td>
+                            <td><a class="b_special_a1" href="">cyclone3_gpio_model.zip</a></td>
+                            <td style="text-align: center;">1.0</td>
+                            <td style="text-align: center;">03/2008</td>
+                        </tr>
+                        <tr class="data" data-category-id="">
+                            <td>Cyclone®&nbsp;II</td>
+                            <td>EP2C</td>
+                            <td>I/O Synopsys HSPICE</td>
+                            <td><a class="b_special_a1" href="">cyclone2_gpio_model.zip</a></td>
+                            <td style="text-align: center;">3.0</td>
+                            <td style="text-align: center;">01/2006</td>
+                        </tr>
+                        <tr class="data" data-category-id="">
+                            <td>Cyclone®</td>
+                            <td>EP1C</td>
+                            <td>I/O Synopsys HSPICE</td>
+                            <td><a class="b_special_a1" href="">cyclone_gpio_model.zip</a></td>
+                            <td style="text-align: center;">1.1</td>
+                            <td style="text-align: center;">04/2003</td>
+                        </tr>
+                        <tr class="data" data-category-id="">
+                            <td rowspan="2">Intel® MAX®&nbsp;10</td>
+                            <td rowspan="2">10M</td>
+                            <td>I/O Synopsys HSPICE</td>
+                            <td><a class="b_special_a1" href="">max10-gpio-hspice-model.zip</a></td>
+                            <td style="text-align: center;">3.2</td>
+                            <td style="text-align: center;">02/2023</td>
+                        </tr>
+                        <tr class="data" data-category-id="">
+                            <td>ADC HSPICE</td>
+                            <td><a class="b_special_a1" href="">max10adc_spicemodel.zip</a></td>
+                            <td style="text-align: center;">3.0</td>
+                            <td style="text-align: center;">11/2017</td>
+                        </tr>
+                        <tr class="data" data-category-id="">
+                            <td>MAX®&nbsp;V</td>
+                            <td>5M</td>
+                            <td>I/O Synopsys HSPICE</td>
+                            <td><a class="b_special_a1" href="">max5_gpio_model.zip</a></td>
+                            <td style="text-align: center;">1.0</td>
+                            <td style="text-align: center;">12/2010</td>
+                        </tr>
+                        <tr class="data" data-category-id="">
+                            <td>MAX®&nbsp;II</td>
+                            <td>EPM</td>
+                            <td>I/O Synopsys HSPICE</td>
+                            <td><a class="b_special_a1" href="">max2_gpio_model.zip</a></td>
+                            <td style="text-align: center;">2.0</td>
+                            <td style="text-align: center;">12/2004</td>
+                        </tr>
+                        <tr class="data" data-category-id="">
+                            <td rowspan="2">Intel® Stratix®&nbsp;10</td>
+                            <td rowspan="2">GX, SX, MX and TX</td>
+                            <td style="text-align: left;" rowspan="2">I/O Synopsys HSPICE</td>
+                            <td>LVDS IO - <a class="b_special_a1" href="">stratix10-gpio-model.zip</a></td>
+                            <td style="text-align: center;">3.0</td>
+                            <td style="text-align: center;">3/2019</td>
+                        </tr>
+                        <tr class="data" data-category-id="">
+                            <td>3V IO - <a class="b_special_a1" href="">stratix10-gpio-3vio-encrypted-hspice-model.zip</a></td>
+                            <td style="text-align: center;">3.0</td>
+                            <td style="text-align: center;">3/2019</td>
+                        </tr>
+                        <tr class="data" data-category-id="">
+                            <td>Stratix® V</td>
+                            <td>5S</td>
+                            <td>I/O Synopsys HSPICE</td>
+                            <td><a class="b_special_a1" href="">model.zip</a></td>
+                            <td style="text-align: center;">1.0</td>
+                            <td style="text-align: center;">04/2013</td>
+                        </tr>
+                        <tr class="data" data-category-id="">
+                            <td>Stratix®&nbsp;IV</td>
+                            <td>EP4S</td>
+                            <td>I/O Synopsys HSPICE</td>
+                            <td><a class="b_special_a1" href="">stratix4_gpio_model.zip</a></td>
+                            <td style="text-align: center;">1.0</td>
+                            <td style="text-align: center;">12/2009</td>
+                        </tr>
+                        <tr class="data" data-category-id="">
+                            <td>Stratix®&nbsp;III</td>
+                            <td>EP3S</td>
+                            <td>I/O Synopsys HSPICE</td>
+                            <td><a class="b_special_a1" href="">stratix3_gpio_model.zip</a></td>
+                            <td style="text-align: center;">1.0</td>
+                            <td style="text-align: center;">04/2008</td>
+                        </tr>
+                        <tr class="data" data-category-id="">
+                            <td>Stratix®&nbsp;II GX</td>
+                            <td>EP2SGX</td>
+                            <td>I/O Synopsys HSPICE</td>
+                            <td><a class="b_special_a1" href="">stratix2gx_gpio_model.zip</a></td>
+                            <td style="text-align: center;">1.0</td>
+                            <td style="text-align: center;">08/2006</td>
+                        </tr>
+                        <tr class="data" data-category-id="">
+                            <td>Stratix®&nbsp;II</td>
+                            <td>EP2S</td>
+                            <td>I/O Synopsys HSPICE</td>
+                            <td><a class="b_special_a1" href="">stratix2_gpio_model.zip</a></td>
+                            <td style="text-align: center;">4.0</td>
+                            <td style="text-align: center;">12/2005</td>
+                        </tr>
+                        <tr class="data" data-category-id="">
+                            <td>Stratix®&nbsp;GX</td>
+                            <td>EP1SGX</td>
+                            <td>I/O Synopsys HSPICE</td>
+                            <td><a class="b_special_a1" href="">stratix_gpio_model.zip</a><br>
+                                (Stratix GX FPGAs have the same HSPICE model as Stratix FPGAs)</td>
+                            <td style="text-align: center;">1.2</td>
+                            <td style="text-align: center;">01/2003</td>
+                        </tr>
+                        <tr class="data" data-category-id="">
+                            <td>Stratix®</td>
+                            <td>EP1S</td>
+                            <td>I/O Synopsys HSPICE</td>
+                            <td><a class="b_special_a1" href="">stratix_gpio_model.zip</a></td>
+                            <td style="text-align: center;">1.2</td>
+                            <td style="text-align: center;">01/2003</td>
+                        </tr>
+                        </tbody>
+                </table>
+
+                <table class="mv_product_table w-100 mb-4">
+                    <thead>
+                        <tr>
+                            <th colspan="6">
+                                <h4>Table 2b. Device Models for Transceiver Pins</h4>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="data" data-category-id="">
+                            <td><p><b>Device Family</b></p></td>
+                            <td><p><b>Part Number Prefix</b></p></td>
+                            <td><p><b>Device Model Type</b></p></td>
+                            <td><p><b>Device Model</b></p></td>
+                            <td><p><b>Model Revision</b></p></td>
+                            <td><p><b>Model Last Updated</b></p></td>
+                        </tr>
+                        <tr class="data" data-category-id="">
+                            <td>Intel®&nbsp;Stratix®&nbsp;10 L-Tile</td>
+                            <td>10SL</td>
+                            <td>Transceiver IBIS-AMI</td>
+                            <td>Please contact your Intel sales representative.</td>
+                            <td>1.8</td>
+                            <td>11/2016</td>
+                        </tr>
+                        <tr class="data" data-category-id="">
+                            <td align="left" rowspan="2">Intel®&nbsp;Arria®&nbsp;10 GX/GT</td>
+                            <td rowspan="2"><p>10AX</p></td>
+                            <td>Transceiver IBIS-AMI</td>
+                            <td>Please contact your Intel sales representative.</td>
+                            <td>2.0</td>
+                            <td>10/2016</td>
+                        </tr>
+                        <tr class="data" data-category-id="">
+                            <td>Transceiver Synopsys HSPICE</td>
+                            <td>Please contact your Intel sales representative.</td>
+                            <td>1.0</td>
+                            <td>02/2015</td>
+                        </tr>
+                        <tr class="data" data-category-id="">
+                            <td align="left">Arria®&nbsp;V GX/SX/GT/ST</td>
+                            <td><p>5AGX<br>5ASX<br>5AGT<br>5AST</p></td>
+                            <td>Transceiver Synopsys HSPICE</td>
+                            <td><a class="b_special_a1" href="">arria5gxgtsxst_hssi_hspice_models.zip</a></td>
+                            <td>1.0</td>
+                            <td>05/2014</td>
+                        </tr>
+                        <tr class="data" data-category-id="">
+                            <td align="left">Arria®&nbsp;V GX/GT</td>
+                            <td><p>5AGX<br>5AGT</p></td>
+                            <td>Transceiver IBIS-AMI</td>
+                            <td><a class="b_special_a1" href="">arria5gxgt_Preliminary_hssi_ibis_ami_models.zip</a></td>
+                            <td>0.2</td>
+                            <td>12/2013</td>
+                        </tr>
+                        <tr class="data" data-category-id="">
+                            <td align="left" rowspan="2">Arria®&nbsp;V GZ</td>
+                            <td rowspan="2">5AGZ</td>
+                            <td><p>Transceiver Synopsys HSPICE</p></td>
+                            <td><a class="b_special_a1" href="">arria5gz_hssi_hspice_models.zip</a></td>
+                            <td>1.0</td>
+                            <td>09/2012</td>
+                        </tr>
+                        <tr class="data" data-category-id="">
+                            <td>Transceiver IBIS-AMI</td>
+                            <td><a class="b_special_a1" href="">arria5gz_hssi_ibis_ami_models.zip</a></td>
+                            <td>1.0</td>
+                            <td>09/2012</td>
+                        </tr>
+                        <tr class="data" data-category-id="">
+                            <td align="left" rowspan="2">Arria®&nbsp;II GX</td>
+                            <td rowspan="2">EP2AGX</td>
+                            <td>Transceiver Synopsys HSPICE</td>
+                            <td><a class="b_special_a1" href="">arria2gx_hssi_hspice_models.zip</a></td>
+                            <td>1.0</td>
+                            <td>01/2011</td>
+                        </tr>
+                        <tr class="data" data-category-id="">
+                            <td>Transceiver IBIS-AMI</td>
+                            <td><a class="b_special_a1" href="">arria2gx_hssi_ibis_ami_models.zip</a></td>
+                            <td>0.6</td>
+                            <td>05/2011</td>
+                        </tr>
+                        <tr class="data" data-category-id="">
+                            <td align="left">Arria®&nbsp;GX</td>
+                            <td>EP1AGX</td>
+                            <td>Transceiver Synopsys HSPICE</td>
+                            <td><a class="b_special_a1" href="">arriagx_hssi_hspice_models_kit.zip</a></td>
+                            <td>2</td>
+                            <td>04/2008</td>
+                        </tr>
+                        <tr class="data" data-category-id="">
+                            <td align="left">Cyclone®&nbsp;IV GX</td>
+                            <td><p>EP4CGX</p></td>
+                            <td>Transceiver Synopsys HSPICE</td>
+                            <td><a class="b_special_a1" href="">cyclone4gx_hssi_hspice_model.zip</a></td>
+                            <td>1.0</td>
+                            <td>05/2014</td>
+                        </tr>
+                        <tr class="data" data-category-id="">
+                            <td align="left">Cyclone®&nbsp;V GX/SX/GT/ST</td>
+                            <td><p>5CGX<br>5CSX<br>5CGT<br>5CST</p></td>
+                            <td>Transceiver Synopsys HSPICE</td>
+                            <td><a class="b_special_a1" href="">cyclone5gxsxgtst-hssi-hspice-model.zip</a></td>
+                            <td>1.1</td>
+                            <td>07/2017</td>
+                        </tr>
+                        <tr class="data" data-category-id="">
+                            <td align="left">Cyclone®&nbsp;V GX/GT</td>
+                            <td><p>5CGX<br>5CGT</p></td>
+                            <td>Transceiver IBIS-AMI</td>
+                            <td><a class="b_special_a1" href="">cyclone5gxgt_hssi_ibis_ami_models.zip</a></td>
+                            <td>1.3</td>
+                            <td>01/2015</td>
+                        </tr>
+                        <tr class="data" data-category-id="">
+                            <td>Intel®&nbsp;Cyclone®&nbsp;10 GX</td>
+                            <td>10CX</td>
+                            <td>Transceiver IBIS-AMI</td>
+                            <td>Please contact your Intel sales representative.</td>
+                            <td>1.0</td>
+                            <td>10/2017</td>
+                        </tr>
+                        <tr class="data" data-category-id="">
+                            <td align="left" rowspan="2">Stratix®&nbsp;V GX/GS</td>
+                            <td rowspan="2"><p>5SGX</p><p>5SGS</p></td>
+                            <td>Transceiver Synopsys HSPICE</td>
+                            <td><a class="b_special_a1" href="">stratix5gx_hssi_hspice_models.zip</a></td>
+                            <td>1.0</td>
+                            <td>05/2014</td>
+                        </tr>
+                        <tr class="data" data-category-id="">
+                            <td>Transceiver IBIS-AMI</td>
+                            <td><a class="b_special_a1" href="">stratix5gx_hssi_ibis_ami_models.zip</a></td>
+                            <td>2.7.1</td>
+                            <td>02/2015</td>
+                        </tr>
+                        <tr class="data" data-category-id="">
+                            <td align="left" rowspan="2">Stratix®&nbsp;V GT</td>
+                            <td rowspan="2">5SGT</td>
+                            <td><p>Transceiver Synopsys HSPICE</p></td>
+                            <td><a class="b_special_a1" href="">s5gt_hssi_hspice_model.zip</a></td>
+                            <td>0.1</td>
+                            <td>07/2013</td>
+                        </tr>
+                        <tr class="data" data-category-id="">
+                            <td>Transceiver IBIS-AMI</td>
+                            <td><a class="b_special_a1" href="">stratix5gt_hssi_ibis_ami_models.zip</a></td>
+                            <td>0.2</td>
+                            <td>07/2013</td>
+                        </tr>
+                        <tr class="data" data-category-id="">
+                            <td align="left" rowspan="2">Stratix®&nbsp;IV GT</td>
+                            <td rowspan="2">EP4SGT</td>
+                            <td>Transceiver Synopsys HSPICE</td>
+                            <td><a class="b_special_a1" href="">stratix4gt_hssi_hspice_models_kit.zip</a></td>
+                            <td>1.0</td>
+                            <td>12/2009</td>
+                        </tr>
+                        <tr class="data" data-category-id="">
+                            <td>Transceiver IBIS-AMI</td>
+                            <td><a class="b_special_a1" href="">stratix4gt_hssi_ibis_ami_models.zip</a></td>
+                            <td>0.5</td>
+                            <td>07/2013</td>
+                        </tr>
+                        <tr class="data" data-category-id="">
+                            <td align="left" rowspan="4">Stratix®&nbsp;IV GX</td>
+                            <td rowspan="4">EP4SGX</td>
+                            <td>Transceiver Mentor Hyperlynx</td>
+                            <td><a class="b_special_a1" href="">stratix4gx_hssi_eldo_model.zip</a></td>
+                            <td>1.0</td>
+                            <td>01/2010</td>
+                        </tr>
+                        <tr class="data" data-category-id="">
+                            <td>Transceiver Synopsys HSPICE</td>
+                            <td><a class="b_special_a1" href="">stratix4gx_hssi_hspice_models_kit.zip</a></td>
+                            <td>1.0</td>
+                            <td>12/2009</td>
+                        </tr>
+                        <tr class="data" data-category-id="">
+                            <td>Transceiver Agilent ADS</td>
+                            <td><a class="b_special_a1" href="">stratix4gx_hssi_ads_models_kit.zip</a></td>
+                            <td>1.0</td>
+                            <td>12/2009</td>
+                        </tr>
+                        <tr class="data" data-category-id="">
+                            <td>Transceiver IBIS-AMI</td>
+                            <td><a class="b_special_a1" href="">stratix4gx_hssi_ibis_ami_models.zip</a></td>
+                            <td>0.6</td>
+                            <td>07/2013</td>
+                        </tr>
+                        <tr class="data" data-category-id="">
+                            <td align="left" rowspan="4">Stratix®&nbsp;II GX</td>
+                            <td rowspan="4">EP2SGX</td>
+                            <td>Transceiver Mentor Hyperlynx</td>
+                            <td><a class="b_special_a1" href="">s2gx_mgc_kit_a1_5_for_HL77_and_HL80.zip</a></td>
+                            <td>1.5</td>
+                            <td>10/2010</td>
+                        </tr>
+                        <tr class="data" data-category-id="">
+                            <td>Transceiver Agilent ADS</td>
+                            <td><a class="b_special_a1" href="">stratix_ii_gx_user.zip</a></td>
+                            <td>1.01</td>
+                            <td>07/2008</td>
+                        </tr>
+                        <tr class="data" data-category-id="">
+                            <td>Transceiver Cadence Allegro PCB SI</td>
+                            <td><a class="b_special_a1" href="">Cadence_SIIGX_Kit_0p3.zip</a></td>
+                            <td>1.0</td>
+                            <td>01/2008</td>
+                        </tr>
+                        <tr class="data" data-category-id="">
+                            <td>Transceiver Synopsys HSPICE</td>
+                            <td><a class="b_special_a1" href="">stratix2gx_hssi_hspice_models_kit.zip</a></td>
+                            <td>0.2</td>
+                            <td>03/2007</td>
+                        </tr>
+                        <tr class="data" data-category-id="">
+                            <td align="left">Stratix®&nbsp;GX</td>
+                            <td>EP1SGX</td>
+                            <td>Transceiver</td>
+                            <td>Please contact your Intel sales representative.</td>
+                            <td>&nbsp;</td>
+                            <td>-</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- footer -->
+    <footer>
+        <div id="footer"></div>
+    </footer>
+
+    <!------------------------------------ Model ----------------------------------->
+    <!-- Use the 1 -->
+    <div class="modal" id="mv_developer_usability_1" tabindex="-1">
+        <div class="modal-dialog mv_industry_dialog">
+            <div class="modal-content mv_industry_model_content dk_Cyclone_fmc">
+                <div class="modal-body mv_industry_body">
+                    <button type="button" data-bs-dismiss="modal" aria-label="Close">
+                        <span><i class="fa-solid fa-xmark"></i></span>
+                    </button>
+                    <div class="mv_enlarged-image">
+                        <img src="/img/darshit_image/diagram-opencl-sw-support.png.rendition.intel.web.1920.1080.png" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ----------------------------------------------------------------------------- -->
+
+    </body>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+    <script>
+        // navbar include
+        fetch('/y_index/y_navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar').innerHTML = data;
+            });
+        // footer include 
+        fetch('/y_index/y_footer.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('footer').innerHTML = data;
+            });
+    </script>
+
+    <!-- nav script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+        const nav = document.querySelector('.VK_client_app_navigation');
+        const navLinks = document.querySelectorAll('.VK_ai_nav_bar a');
+        const sections = document.querySelectorAll('section[id]');
+        let navOffset = nav.offsetTop;
+
+            // Add smooth scrolling to all links
+            navLinks.forEach(link => {
+                link.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+
+            // Sticky Navigation
+            window.addEventListener('scroll', () => {
+                if (window.pageYOffset >= navOffset) {
+                    nav.classList.add('VK_sticky_nav_bar');
+                } else {
+                    nav.classList.remove('VK_sticky_nav_bar');
+                }
+                // Section highlighting
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop - nav.clientHeight;
+                    const sectionHeight = section.clientHeight;
+                    if (window.pageYOffset >= sectionTop && window.pageYOffset <= sectionTop + sectionHeight) {
+                        navLinks.forEach(link => {
+                            link.classList.remove('active');
+                            if (link.getAttribute('href') === `#${section.id}`) {
+                                link.classList.add('active');
+                                
+                                // Ensure the active link is visible in the nav bar
+                                const navBar = document.querySelector('.VK_ai_nav_bar');
+                                const activeLink = document.querySelector('.VK_ai_nav_bar a.active');
+                                const linkRect = activeLink.getBoundingClientRect();
+                                const navBarRect = navBar.getBoundingClientRect();
+
+                                if (linkRect.left < navBarRect.left || linkRect.right > navBarRect.right) {
+                                    activeLink.scrollIntoView({ inline: 'center', behavior: 'smooth' });
+                                }
+                            }
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+
+</html>
