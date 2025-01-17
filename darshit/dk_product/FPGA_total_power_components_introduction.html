@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FPGA Total Power Components Introduction</title>
+
+    <link rel="stylesheet" href="/css/dk_PCI_express_IP_support_center.css">
+    <link rel="stylesheet" href="/css/dk_nav_header.css">
+    
+    <link rel="stylesheet" href="/css/yatri.css">
+    <!-- ***** Bootstrap *****  -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <!-- ***** Fontawesome *****  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- ***** Google Fonts *****  -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+
+    <style>
+        nav{
+            position: relative !important;
+        }
+        .mv_teaching_padd{
+            padding-inline: 4.6875rem 9rem !important;
+        }
+        @media(max-width:767px){
+            .mv_coman_btn{
+                margin-top: 1rem;
+                width: 100% !important;
+                display: inline-block !important;
+            }
+        }
+        .VK_ai_nav_bar::-webkit-scrollbar {
+            display: none !important;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- header -->
+    <header>
+        <div id="navbar"></div>
+    </header>  
+
+<!-- --------------------------------------------------------------------- -->
+<section>
+    <nav class="mb_sub_nv">
+        <div class="mv_breadcrumb">
+            <ol class="mv_spark_breadcrumb_items">
+                <li><a href="">Altera® FPGAs and Programmable Devices</a></li>
+                <li><a href="">FPGA Product Support</a></li>
+                <li><a href="">FPGA Support Resources</a></li>
+                <li><a href="">Power Solutions Resources</a></li>
+                <li><p class="mb-0">FPGA Power Components</p></li>
+            </ol>
+        </div>
+    </nav>
+</section>
+<!-- --------------------------------------------------------------------- -->
+
+    <!-------------------------------- Altera® FPGA ----------------------------------->
+    <section>
+        <div class="mv_intel_fpga_padd">
+            <h1 style="font-weight: 350; color: #fff;">FPGA Total Power Components Introduction</h1>
+            <p style="color: #fff;">
+                Designers guide to understand the total power required from external voltage supplies that provide the electrical energy needed for proper device operation.
+            </p>
+        </div>
+    </section>
+    <!-- --------------------------------------------------------------------------- -->
+
+    <!------------------------------------- nav ------------------------------------>
+    <section>
+        <div class="VK_client_app_navigation VK_ai_navigation ">
+            <div class=" d-flex justify-content-center align-items-center overflow-hidden flex-nowrap w-100">
+                <ul class="VK_ai_nav_bar d-flex list-unstyled m-0 overflow-auto">
+                    <li>
+                        <a href="#dk_overview1" class="text-dark text-decoration-none py-4 d-block">
+                            Overview									
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#dk_stanboy_power" class="text-dark text-decoration-none py-4 d-block VK_ai_nav_link">
+                            Standby Power				
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#dk_dynamic_power" class="text-dark text-decoration-none py-4 d-block">
+                            Dynamic Power										
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#dk_I/0_power" class="text-dark text-decoration-none py-4 d-block VK_ai_nav_link">
+                            I/O Power				
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#dk_other_power_con" class="text-dark text-decoration-none py-4 d-block">
+                            Other Power Considerations										
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#dk_related_links" class="text-dark text-decoration-none py-4 d-block VK_ai_nav_link">
+                            Related Links				
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    <!-- ------------------------------------------------------------------------- -->
+    
+    <!---------------------------------- Overview  ------------------------------>
+    <section id="dk_overview1">
+        <div class="mv_become_padd" style="padding: 2rem 0rem 1rem;">
+            <div class="container">
+                <h2 class="mb-2" style="font-weight: 350;">Overview</h2>
+                <p>External power supplies provide the electrical energy needed for proper operation both internally and externally to an FPGA or CPLD. When implementing power supply solutions, designers need to understand the total power required from these supplies (also referred to as “rail power”). Furthermore, designers need to consider how much of that total power is actually dissipated within the device (referred to as “thermal power” or “dissipated power”) as compared to the portion of total power that is dissipated outside the device, such as in external output capacitive loads and balanced resistor termination networks.</p>
+                <p class="mb-2">The total power consumed by a device, output loading, and external termination networks (if present) is generally comprised of the following major power components:</p>
+                <ul>
+                    <li>Standby</li>
+                    <li>Dynamic</li>
+                    <li>I/O</li>
+                    <ul>
+                    <li>Standby</li>
+                    <li>Dynamic</li>
+                    <li>I/O</li>
+                </ul></ul>
+                <p class="mb-2">Standby power is from I<sub>CCINT</sub> current in the device in standby mode. Core dynamic power is from internal switching within the device (charging and discharging capacitance on internal nodes). I/O power is from external switching (charging and discharging external load capacitance connected to device pins), I/O drivers, and external termination network (if present).</p>
+                <p>The thermal power is the component of total power that is actually dissipated within the device package, with the remainder being dissipated externally. The actual thermal power dissipated within the device is what designers should consider when deciding if the device’s intrinsic heat transfer ability (referred to as thermal resistance) is sufficient to keep internal die-junction temperatures within normal operating specifications, or if additional thermal solutions, such as aluminum heat sinks, are required for even better heat transfer performance. In general, standby power, dynamic power, and a portion of I/O power will comprise the actual thermal power component of total power.</p>
+            </div>
+        </div>
+    </section>
+    <!-- ------------------ Standby Power ------------------->
+
+    <section id="dk_stanboy_power">
+        <div style="padding: 1rem 0rem 1rem;">
+            <div class="container">
+                <h2 class="mb-2" style="font-weight: 350;">Standby Power</h2>
+                <p class="mb-2">The device consumes power during standby due to leakage currents. The amount varies with die size, temperature, and process variations. Standby power can be simulated before full device characterization and can be defined in two categories: typical and maximum power.</p>
+                <p>Stratix® II devices use a 90 nm process technology optimized for power and performance. Compared to previous process technology devices, 90 nm devices dissipate more power due to leakage, becoming a significant component of overall power. Standby power exhibits a strong dependence on die-junction temperature at the 90 nm process node, more so than previous process technologies. Designers need to focus on keeping junction temperature to a minimum to lower the standby component of total power. Figure 1 shows the relationship between standby power and junction temperature.</p>
+                <p>&nbsp;</p>
+                <div class="row" style="justify-content: center;">
+                    <div class="col-6">
+                        <img class="w-100" src="/img/darshit_image/standby-power.png.rendition.intel.web.1072.603.png" alt="">
+                    </div>
+                </div>
+                <p>&nbsp;</p>
+                <p style="text-align: center;">Figure 1. Standby power &amp; junction temperature relationship.</p>
+                <p>Stratix II devices use low leakage transistor technology where possible to reduce power from standby current, thus minimizing overall power consumption at 90 nm (Read more at <a class="b_special_a1" href="" title="90 nm Silicon Power Optimization">90 nm Silicon Power Optimization</a>).</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Dynamic Power -->
+    <section id="dk_dynamic_power">
+        <div style="padding: 1rem 0rem">
+            <div class="container">
+                <h2 class="mb-2" style="font-weight: 350;">Dynamic Power</h2>
+                <p class="mb-2">Internal nodes changing logic levels consume dynamic power internal to the device, as power is needed to charge and discharge internal capacitances in the logic array and interconnect networks (e.g., from a logic 0 to logic 1). Core dynamic power includes both routing power and logic element (LE) power (or adaptive logic module (ALM) in the case of Stratix II). LE/ALM power is consumed from charging and discharging internal node capacitance, as well as from internal resistive elements. Routing power is from current required to charge and discharge the external routing capacitance driven by each LE/ALM. Core Dynamic power can also include architectural resources such as:</p>
+                <ul>
+                    <li>RAM blocks (M512, M4K, and M-RAM)</li>
+                    <li>DSP-multiplier blocks</li>
+                    <li>Phase locked loops (PLLs)</li>
+                    <li>Clock tree networks</li>
+                    <li>High-speed differential interface (HSDI) transceivers</li>
+                </ul>
+                <p class="mb-2">The total dynamic power is calculated by multiplying the VCCINT (1.2V for Stratix II) by the total sum of currents from each architectural feature listed above:</p>
+                <p class="mb-2"><b>Dynamic power = V<sub>CCINT</sub> × Σ I<sub>CCINT</sub> (LE/ALM, RAM, DSP, PLL, Clocks, HSDI, Routing)</b></p>
+                <p>Equivalent (lumped) capacitance values are used to calculate dynamic power, and are based on the sum of multiple capacitances. For example, pin, trace, and package capacitances are summed for a signal driving an input or output. This approximation is sufficient if internal switching frequencies are accurately determined. Intel utilizes approximation curves (based on characterization data) to determine internal switching frequencies, effectively estimating dynamic power for most design topologies. Estimating the total power consumed by all of a device’s resources takes into account the maximum switching frequency of the resource, estimated toggle-factors, fan-outs to downstream logic, and coefficients for each resource obtained through device characterization. These components are implemented in all aspects of Intel’s PowerPlay suite of power analysis and optimization tools for power estimation and analysis.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- I/O Power -->
+    <section id="dk_I/0_power">
+        <div style="padding: 1rem 0rem 2rem;">
+            <div class="container">
+                <h2 style="font-weight: 300;">I/O Power</h2>
+                <p>I/O power is V<sub>CCIO</sub> power, consumed due to the charging and discharging of external load capacitors connected to the device output pins, the output driver circuits operating in resistive modes, and any external termination networks (if present). Device I/O power is computed as:</p>
+                <p><b>I/O power = (number of active output drivers × power dissipation coefficient) + 0.5 × (Sum of die-pad, package trace, pin, and output load cap) × I/O standard voltage-swing × f<sub>MAX</sub> × (toggle-factor/100) × V<sub>CCIO</sub></b></p>
+                <p>The number of active output drivers includes active bidirectional outputs. In addition to the I/O power computed above, there are other contributing components to I/O power, including elements of the I/O buffer which are also powered by V<sub>CCIO</sub>. Figure 2 shows a model of the I/O buffer.</p>
+                <p>&nbsp;</p>
+                <div class="row" style="justify-content: center;">
+                    <div class="col-6">
+                        <img class="w-100" src="/img/darshit_image/power-overview.png.rendition.intel.web.1072.603.png" alt="">
+                    </div>
+                </div>
+                <p>&nbsp;</p>
+                <p style="text-align: center; padding-bottom: 2rem;">Figure 2. I/O Buffer Model.</p>
+                <p>As mentioned earlier, a portion of V<sub>CCIO</sub> power will be actually dissipated within the FPGA or CPLD, as compared to being dissipated externally via termination resistor networks and/or output capacitive loads. Designers need to consider the internal dissipated power from V<sub>CCIO</sub> when planning thermal management solutions (either intrinsic to the device or via external heat sinks). Designers should consider external dissipation components as part of the total requirement for power delivery from the V<sub>CCIO</sub> voltage regulators or converters (referred to as rail power). Intel's power analysis technology reports thermal power versus total/rail power starting with Stratix II devices. Future devices will also have this power analysis technology reporting capability.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Other Power Considerations -->
+    <section id="dk_other_power_con">
+        <div style="padding: 1rem 0rem 2rem;">
+            <div class="container">
+                <h2 style="font-weight: 300;">Other Power Considerations</h2>
+                <p class="mb-2">There are several other factors designers should consider in regards to total power when designing with FPGAs and CPLDs: inrush current, configuration power, and V<sub>CCPD</sub> (Stratix II devices only).</p>
+                <p class="mb-2"><b>Inrush Current</b></p>
+                <p class="mb-2">Inrush current is what the device requires during initial power-up stage. During the power-up stage, a minimum level of logic array current (I<sub>CCINT</sub>) must be provided to the device, for a specific duration of time. This duration depends on the amount of current available from the power supply. If more current is available, V<sub>CCINT</sub> can ramp up faster. When the voltage reaches as high as 90 percent of its nominal value, the initial high current is usually no longer required. The maximum inrush current varies inversely with the temperature of the device. As device temperature increases, the inrush current required during power-up decreases (although the standby current will increase, given its function of temperature).</p>
+                <p class="mb-2"><b>Configuration Power</b></p>
+                <p class="mb-2">In the case of a conventional FPGA, configuration power is the power required to configure the device. During configuration and initialization, the device requires power to reset registers, enable I/O pins, and enter operating mode. The I/O pins are tri-stated during the power-up stage, both before and during configuration, to reduce power and to prevent them from driving out during this time. Refer to the <a class="b_special_a1" href="" title="configuring Stratix II devices">configuring Stratix II devices</a> (PDF) chapter in Volume 2 of the <a class="b_special_a1" href="" title="Stratix II device handbook">Stratix II device handbook</a> for more information about configuration schemes in Stratix II devices, as well as the applicable configuration pins the V<sub>CCPD</sub> for the voltage.</p>
+                <p class="mb-2"><b>V<sub>CCPD</sub></b></p>
+                <p class="mb-2">V<sub>CCPD</sub> is a separate, smaller load-current power supply for output predriver circuitry, as well as configuration and Joint Test Action Group (JTAG) I/O buffers. V<sub>CCPD</sub> should be connected to 3.3 V in order to power the 3.3 V / 2.5 V buffers that drive configuration input and JTAG pins. Refer to the <a class="b_special_a1" href="" title="DC &amp; Switching characteristics">DC &amp; Switching characteristics</a> (PDF) chapter in the <a class="b_special_a1" href="" title="Stratix II device handbook">Stratix II device handbook</a> for the V<sub>CCPD</sub> specification.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="">
+        <div style="padding: 1rem 0rem 2rem;">
+            <div class="container">
+                <h2 style="font-weight: 300;">Related Links</h2>   
+                <ul>
+                    <li><a title="FPGA Power Solutions Resources" class="b_special_a1" href="">FPGA Power Solutions Resources</a></li>
+                    <li><a title="PowerPlay Power Analyzer Support Resources" class="b_special_a1" href="">PowerPlay Power Analyzer Support Resources</a></li>
+                    <li><a title="Power Distribution Network" class="b_special_a1" href="">Power Distribution Network</a></li>
+                    <li><a title="Early Power Estimators (EPE) and Power Analyzer" class="b_special_a1" href="">Early Power Estimators (EPE) and Power Analyzer</a></li>
+                    <li><a title="Power Supply Integrity" class="b_special_a1" href="">Power Supply Integrity</a></li>
+                    <li><a class="b_special_a1" href="" title="Thermal Management">Thermal Management</a></li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- footer -->
+    <footer>
+        <div id="footer"></div>
+    </footer>
+
+    <!------------------------------------ Model ----------------------------------->
+    <!-- Use the 1 -->
+    <div class="modal" id="mv_developer_usability_1" tabindex="-1">
+        <div class="modal-dialog mv_industry_dialog">
+            <div class="modal-content mv_industry_model_content dk_Cyclone_fmc">
+                <div class="modal-body mv_industry_body">
+                    <button type="button" data-bs-dismiss="modal" aria-label="Close">
+                        <span><i class="fa-solid fa-xmark"></i></span>
+                    </button>
+                    <div class="mv_enlarged-image">
+                        <img src="/img/darshit_image/diagram-opencl-sw-support.png.rendition.intel.web.1920.1080.png" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ----------------------------------------------------------------------------- -->
+
+    </body>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+    <script>
+        // navbar include
+        fetch('/y_index/y_navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar').innerHTML = data;
+            });
+        // footer include 
+        fetch('/y_index/y_footer.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('footer').innerHTML = data;
+            });
+    </script>
+
+    <!-- nav script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+        const nav = document.querySelector('.VK_client_app_navigation');
+        const navLinks = document.querySelectorAll('.VK_ai_nav_bar a');
+        const sections = document.querySelectorAll('section[id]');
+        let navOffset = nav.offsetTop;
+
+            // Add smooth scrolling to all links
+            navLinks.forEach(link => {
+                link.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+
+            // Sticky Navigation
+            window.addEventListener('scroll', () => {
+                if (window.pageYOffset >= navOffset) {
+                    nav.classList.add('VK_sticky_nav_bar');
+                } else {
+                    nav.classList.remove('VK_sticky_nav_bar');
+                }
+                // Section highlighting
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop - nav.clientHeight;
+                    const sectionHeight = section.clientHeight;
+                    if (window.pageYOffset >= sectionTop && window.pageYOffset <= sectionTop + sectionHeight) {
+                        navLinks.forEach(link => {
+                            link.classList.remove('active');
+                            if (link.getAttribute('href') === `#${section.id}`) {
+                                link.classList.add('active');
+                                
+                                // Ensure the active link is visible in the nav bar
+                                const navBar = document.querySelector('.VK_ai_nav_bar');
+                                const activeLink = document.querySelector('.VK_ai_nav_bar a.active');
+                                const linkRect = activeLink.getBoundingClientRect();
+                                const navBarRect = navBar.getBoundingClientRect();
+
+                                if (linkRect.left < navBarRect.left || linkRect.right > navBarRect.right) {
+                                    activeLink.scrollIntoView({ inline: 'center', behavior: 'smooth' });
+                                }
+                            }
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+
+</html>

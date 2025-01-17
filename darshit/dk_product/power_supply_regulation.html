@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Power Supply Regulation</title>
+
+    <link rel="stylesheet" href="/css/dk_PCI_express_IP_support_center.css">
+    <link rel="stylesheet" href="/css/dk_nav_header.css">
+    
+    <link rel="stylesheet" href="/css/yatri.css">
+    <!-- ***** Bootstrap *****  -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <!-- ***** Fontawesome *****  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- ***** Google Fonts *****  -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+
+    <style>
+        nav{
+            position: relative !important;
+        }
+        .mv_teaching_padd{
+            padding-inline: 4.6875rem 9rem !important;
+        }
+        @media(max-width:767px){
+            .mv_coman_btn{
+                margin-top: 1rem;
+                width: 100% !important;
+                display: inline-block !important;
+            }
+        }
+        .VK_ai_nav_bar::-webkit-scrollbar {
+            display: none !important;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- header -->
+    <header>
+        <div id="navbar"></div>
+    </header>  
+
+<!-- --------------------------------------------------------------------- -->
+<section>
+    <nav class="mb_sub_nv">
+        <div class="mv_breadcrumb">
+            <ol class="mv_spark_breadcrumb_items">
+                <li><a href="">Altera® FPGAs and Programmable Devices</a></li>
+                <li><a href="">FPGA Product Support</a></li>
+                <li><a href="">FPGA Support Resources</a></li>
+                <li><a href="">Power Solutions Resources</a></li>
+                <li><p class="mb-0">Power Supply Regulation</p></li>
+            </ol>
+        </div>
+    </nav>
+</section>
+<!-- --------------------------------------------------------------------- -->
+
+    <!-------------------------------- Altera® FPGA ----------------------------------->
+    <section>
+        <div class="mv_intel_fpga_padd">
+            <h1 style="font-weight: 350; color: #fff;">Power Supply Regulation</h1>
+        </div>
+    </section>
+    <!-- --------------------------------------------------------------------------- -->
+
+    <!------------------------------------- nav ------------------------------------>
+    <section>
+        <div class="VK_client_app_navigation VK_ai_navigation ">
+            <div class=" d-flex justify-content-center align-items-center overflow-hidden flex-nowrap w-100">
+                <ul class="VK_ai_nav_bar d-flex list-unstyled m-0 overflow-auto">
+                    <li>
+                        <a href="#dk_linear_reg" class="text-dark text-decoration-none py-4 d-block">
+                            Linear Regulators									
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#dk_switching_reg" class="text-dark text-decoration-none py-4 d-block VK_ai_nav_link">
+                            Switching Regulators					
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#dk_buck_con" class="text-dark text-decoration-none py-4 d-block">
+                            Buck Converter										
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#dk_syn_buck_con" class="text-dark text-decoration-none py-4 d-block VK_ai_nav_link">
+                            Synchronous Buck Converter			
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#dk_boost_con" class="text-dark text-decoration-none py-4 d-block">
+                            Boost Converter										
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#dk_buck_boost_con" class="text-dark text-decoration-none py-4 d-block VK_ai_nav_link">
+                            Buck-Boost Converter			
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    <!-- ------------------------------------------------------------------------- -->
+
+    <section>
+        <div style="padding: 2rem 0rem 1rem;">
+            <div class="container">
+                <p class="mb-2">DC-DC voltage converters are often used to provide a regulated voltage supply from an unregulated voltage source. Unregulated voltage sources can be rectified line voltages that exhibit fluctuations due to changes in magnitude. Regulated voltage supplies provide an average DC output voltage at a desired level (3.3 V, 2.5 V, etc.), despite fluctuating input voltage sources and variable output loads. Factors to consider when deciding on a regulated voltage supply solution include:</p>
+                <ul>
+                    <li>Available source input voltages</li>
+                    <li>Desired supply output voltage magnitudes</li>
+                    <li>Ability to step-down or step-up output voltages, or both</li>
+                    <li>DC-DC converter efficiency (P<sub>OUT</sub> / P<sub>IN</sub>)</li>
+                    <li>Output voltage ripple</li>
+                    <li>Output load transient response</li>
+                    <li>Solution complexity (one IC solution, # of passive components, controller and external FETs)</li>
+                    <li>Switching frequency (for switch-mode regulators)</li>
+                </ul>
+                <p>The following sections describe several different voltage regulators.</p>
+                <p>&nbsp;</p>   
+            </div>
+        </div>
+    </section>
+    
+    <!---------------------------------- Linear Regulators ------------------------------>
+    <section id="dk_linear_reg">
+        <div class="mv_become_padd" style="padding: 2rem 0rem 1rem;">
+            <div class="container">
+                <h2 class="mb-2" style="font-weight: 350;">Linear Regulators</h2>
+                <p class="mb-2">Linear voltage regulators are commonly used for step-down (output supply voltage is lower than input source voltage) applications. Linear regulators are also available with either a fixed output voltage or a variable output voltage when using external biasing resistors.</p>
+                <p>The advantage of linear regulators is simple implementation and minimal parts (just the IC in the case of fixed output) and low output ripple. The major disadvantage of linear regulators is low efficiency. Significant power is dissipated within the linear regulator IC, as the converter is constantly on and conducting current. Linear regulators should be used when the difference between input source voltage and output supply voltage is minimal, and converter efficiency is not a concern.</p>
+                <p>&nbsp;</p>
+            </div>
+        </div>
+    </section>
+    <!-- ------------------ Switching Regulators ------------------->
+
+    <section id="dk_switching_reg">
+        <div style="padding: 1rem 0rem 1rem;">
+            <div class="container">
+                <h2 class="mb-2" style="font-weight: 350;">Switching Regulators</h2>
+                <p class="mb-2">Switching voltage regulators are commonly used for both step-up and step-down applications, and differ from linear regulators by means of pulse-width modulation (PWM) implementation. Switching regulators control the output voltage by using a current switch (internal or external to the IC regulator) with a constant frequency and variable duty-cycle. Switching frequencies are generally from a few kHz to a few hundred kHz. The switch duty-cycle ratio determines how much and how quickly the output supply voltage increases or decreases, depending on the load state and input source voltage. Some switching regulators utilize both variable switching frequency and duty-cycle, but these are not commonly used for FPGA/CPLD applications.</p>
+                <p>The clear advantage of switching regulators is efficiency, as minimal power is dissipated in the power path (FET switches) when the output supply voltage is sufficient for the load state. Essentially, the power converter "shuts off" when power is not needed, due to minimal switch duty-cycle. The disadvantage of switching regulators is complexity, as several external passive components are required on board. In the case of high-current applications, external FET ICs are required as the IC-converter acts only as control logic for the external FET switch. Output voltage ripple is another disadvantage, which is generally handled with bypass capacitance near the supply and at the load.</p>
+                <p>&nbsp;</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Buck Converter -->
+    <section id="dk_buck_con">
+        <div style="padding: 1rem 0rem">
+            <div class="container">
+                <h2 class="mb-2" style="font-weight: 350;">Buck Converter</h2>
+                <p>Buck, or step-down, voltage converters produce an average output voltage lower than the input source voltage. Figure 1 shows a basic buck topology using ideal components. The inductor serves as a current source to the output load impedance. When the FET switch is on, the inductor current increases, inducing a positive voltage drop across the inductor and a lower output supply voltage in reference to the input source voltage. When the FET switch is off, the inductor current discharges, inducing a negative voltage drop across the inductor. Because one port of the inductor is tied to ground, the other port will have a higher voltage level, which is the target output supply voltage. The output capacitance acts as a low-pass filter, reducing output voltage ripple as a result of the fluctuating current through the inductor. The diode provides a current path for the inductor when the FET switch is off.</p>
+                <p>&nbsp;</p>
+                <div class="row justify-content-center">
+                    <div class="col-xxl-6 col-xl-6 col-lg-7 col-md-6">
+                        <div class="mv_silder_flex">
+                            <div class="item">
+                                <div class="mv_industry_download" data-bs-toggle="modal" data-bs-target="#mv_developer_usability_1">
+                                    <i class="fa-solid fa-up-right-and-down-left-from-center"></i>
+                                    <a href=""></a>
+                                </div>
+                                <img class="w-100" src="/img/darshit_image/powersupply-regulation-buck.png.rendition.intel.web.1072.603.png" alt="">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <p>&nbsp;</p>
+                <p style="text-align: center;">Figure 1. Buck Converter.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Synchronous Buck Converter -->
+    <section id="dk_syn_buck_con">
+        <div style="padding: 1rem 0rem 2rem;">
+            <div class="container">
+                <h2 style="font-weight: 300;">Synchronous Buck Converter</h2>
+                <p>The synchronous buck converter is essentially the same as the buck step-down converter with the substitution of the diode for another FET switch. The top FET switch behaves the same way as the buck converter in charging the inductor current. When the switch control is off, the lower FET switch turns on to provide a current path for the inductor when discharging. Although requiring more components and additional switch logic sequencing, this topology improves efficiency with faster switch turn-on time and lower FET series resistance (rdson) versus the diode.</p>
+                <p>&nbsp;</p>
+                <div class="row justify-content-center">
+                    <div class="col-xxl-6 col-xl-6 col-lg-7 col-md-6">
+                        <div class="mv_silder_flex">
+                            <div class="item">
+                                <div class="mv_industry_download" data-bs-toggle="modal" data-bs-target="#mv_developer_usability_2">
+                                    <i class="fa-solid fa-up-right-and-down-left-from-center"></i>
+                                    <a href=""></a>
+                                </div>
+                                <img class="w-100" src="/img/darshit_image/powersupply-regulation-sync.png.rendition.intel.web.1072.603.png" alt="">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <p>&nbsp;</p>
+                <p style="text-align: center;">Figure 2. Synchronous Buck Converter.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Boost Converter -->
+    <section id="dk_boost_con">
+        <div style="padding: 1rem 0rem 2rem;">
+            <div class="container">
+                <h2 style="font-weight: 300;">Boost Converter</h2>
+                <p>Boost, or step-up, converters produce an average output voltage higher than the input source voltage. Figure 3 shows a variation of the buck topology, with the diode, FET switch, and inductor swapped around. When the FET switch is on, the diode is reverse-biased, hence isolating the load from the input source voltage and charging up the inductor current. When the FET switch is off, the output load receives energy from the inductor and the input supply voltage. The inductor current begins to discharge, inducing a negative voltage drop across the inductor. Because one port of the inductor is driven by the input supply voltage, the other port will have a higher voltage level, thus the boost or step-up feature. As with the buck converter, the capacitor acts as a low-pass filter, reducing output voltage ripple as a result of the fluctuating current through the inductor.</p>
+                <p>&nbsp;</p>
+                <div class="row justify-content-center">
+                    <div class="col-xxl-6 col-xl-6 col-lg-7 col-md-6">
+                        <div class="mv_silder_flex">
+                            <div class="item">
+                                <div class="mv_industry_download" data-bs-toggle="modal" data-bs-target="#mv_developer_usability_3">
+                                    <i class="fa-solid fa-up-right-and-down-left-from-center"></i>
+                                    <a href=""></a>
+                                </div>
+                                <img class="w-100" src="/img/darshit_image/powersupply-regulation-boos.png.rendition.intel.web.1072.603.png" alt="">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <p>&nbsp;</p>
+                <p style="text-align: center;">Figure 3. Boost Converter.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Buck-Boost Converter -->
+    <section id="dk_buck_boost_con">
+        <div style="padding: 1rem 0rem 2rem;">
+            <div class="container">
+                <h2 style="font-weight: 300;">Buck-Boost Converter</h2>
+                <p>Buck-boost converters can produce a negative output supply voltage from a positive input source voltage (i.e., negative in reference to the common/ground port of the input source voltage). Similar to a buck converter, the topology above has swapped the diode and inductor. When the FET switch is on, the diode is reverse-biased, charging the inductor current due to the positive voltage drop across the inductor. When the FET switch is off, the inductor provides energy to the output load through the common/ground node, discharging the current, which induces a negative voltage drop across the inductor. Because one inductor port is tied to common/ground, the other port is at a lower voltage level compared to common/ground, hence the negative output supply voltage levels across the output load.</p>
+                <p>&nbsp;</p>
+                <div class="row justify-content-center">
+                    <div class="col-xxl-6 col-xl-6 col-lg-7 col-md-6">
+                        <div class="mv_silder_flex">
+                            <div class="item">
+                                <div class="mv_industry_download" data-bs-toggle="modal" data-bs-target="#mv_developer_usability_4">
+                                    <i class="fa-solid fa-up-right-and-down-left-from-center"></i>
+                                    <a href=""></a>
+                                </div>
+                                <img class="w-100" src="/img/darshit_image/powersupply-regulation-bb.jpg.rendition.intel.web.1072.603.jpg" alt="">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <p>&nbsp;</p>
+                <p style="text-align: center;">Figure 4. Buck-Boost Converter.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- footer -->
+    <footer>
+        <div id="footer"></div>
+    </footer>
+
+    <!------------------------------------ Model ----------------------------------->
+    <!-- Use the 1 -->
+    <div class="modal" id="mv_developer_usability_1" tabindex="-1">
+        <div class="modal-dialog mv_industry_dialog">
+            <div class="modal-content mv_industry_model_content dk_Cyclone_fmc">
+                <div class="modal-body mv_industry_body">
+                    <button type="button" data-bs-dismiss="modal" aria-label="Close">
+                        <span><i class="fa-solid fa-xmark"></i></span>
+                    </button>   
+                    <div class="mv_enlarged-image">
+                        <img src="/img/darshit_image/powersupply-regulation-buck.png.rendition.intel.web.1072.603.png" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Use the 2 -->
+    <div class="modal" id="mv_developer_usability_2" tabindex="-1">
+        <div class="modal-dialog mv_industry_dialog">
+            <div class="modal-content mv_industry_model_content dk_Cyclone_fmc">
+                <div class="modal-body mv_industry_body">
+                    <button type="button" data-bs-dismiss="modal" aria-label="Close">
+                        <span><i class="fa-solid fa-xmark"></i></span>
+                    </button>   
+                    <div class="mv_enlarged-image">
+                        <img src="/img/darshit_image/powersupply-regulation-sync.png.rendition.intel.web.1072.603.png" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Use the 3 -->
+    <div class="modal" id="mv_developer_usability_3" tabindex="-1">
+        <div class="modal-dialog mv_industry_dialog">
+            <div class="modal-content mv_industry_model_content dk_Cyclone_fmc">
+                <div class="modal-body mv_industry_body">
+                    <button type="button" data-bs-dismiss="modal" aria-label="Close">
+                        <span><i class="fa-solid fa-xmark"></i></span>
+                    </button>   
+                    <div class="mv_enlarged-image">
+                        <img src="/img/darshit_image/powersupply-regulation-boos.png.rendition.intel.web.1072.603.png" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Use the 3 -->
+    <div class="modal" id="mv_developer_usability_4" tabindex="-1">
+        <div class="modal-dialog mv_industry_dialog">
+            <div class="modal-content mv_industry_model_content dk_Cyclone_fmc">
+                <div class="modal-body mv_industry_body">
+                    <button type="button" data-bs-dismiss="modal" aria-label="Close">
+                        <span><i class="fa-solid fa-xmark"></i></span>
+                    </button>   
+                    <div class="mv_enlarged-image">
+                        <img src="/img/darshit_image/powersupply-regulation-bb.jpg.rendition.intel.web.1072.603.jpg" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ----------------------------------------------------------------------------- -->
+
+    </body>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+    <script>
+        // navbar include
+        fetch('/y_index/y_navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar').innerHTML = data;
+            });
+        // footer include 
+        fetch('/y_index/y_footer.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('footer').innerHTML = data;
+            });
+    </script>
+
+    <!-- nav script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+        const nav = document.querySelector('.VK_client_app_navigation');
+        const navLinks = document.querySelectorAll('.VK_ai_nav_bar a');
+        const sections = document.querySelectorAll('section[id]');
+        let navOffset = nav.offsetTop;
+
+            // Add smooth scrolling to all links
+            navLinks.forEach(link => {
+                link.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+
+            // Sticky Navigation
+            window.addEventListener('scroll', () => {
+                if (window.pageYOffset >= navOffset) {
+                    nav.classList.add('VK_sticky_nav_bar');
+                } else {
+                    nav.classList.remove('VK_sticky_nav_bar');
+                }
+                // Section highlighting
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop - nav.clientHeight;
+                    const sectionHeight = section.clientHeight;
+                    if (window.pageYOffset >= sectionTop && window.pageYOffset <= sectionTop + sectionHeight) {
+                        navLinks.forEach(link => {
+                            link.classList.remove('active');
+                            if (link.getAttribute('href') === `#${section.id}`) {
+                                link.classList.add('active');
+                                
+                                // Ensure the active link is visible in the nav bar
+                                const navBar = document.querySelector('.VK_ai_nav_bar');
+                                const activeLink = document.querySelector('.VK_ai_nav_bar a.active');
+                                const linkRect = activeLink.getBoundingClientRect();
+                                const navBarRect = navBar.getBoundingClientRect();
+
+                                if (linkRect.left < navBarRect.left || linkRect.right > navBarRect.right) {
+                                    activeLink.scrollIntoView({ inline: 'center', behavior: 'smooth' });
+                                }
+                            }
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+
+</html>
