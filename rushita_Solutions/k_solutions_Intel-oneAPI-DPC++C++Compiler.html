@@ -1,0 +1,1211 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Intel® oneAPI Deep Neural Network Library</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <link href=" https://fonts.cdnfonts.com/css/intel-clear " rel="stylesheet">
+    <link rel="stylesheet" href="../css/owl.carousel.min.css">
+
+    <link rel="stylesheet" href="../css/rushita.css">
+    <link rel="stylesheet" href="../css/rushita_automotive.css">
+    <link rel="stylesheet" href="../css/yatri.css">
+
+    <link rel="stylesheet" href="../css/owl.theme.default.min.css">
+    <style>
+        * {
+            font-family: 'Intel Clear', sans-serif;
+        }
+        .video-container {
+            position: relative;
+            width: 100%;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .thumbnail {
+            width: 100%;
+            height: auto;
+        }
+
+        .play-button {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 60px;
+            height: 60px;
+            cursor: pointer;
+        }
+
+        #myVideo {
+            width: 100%;
+            height: auto;
+            display: none;
+        }
+
+        .k_vlink2:hover {
+            text-decoration: underline;
+            color: white;
+        }
+        .k_framworkbg1{
+            background-image: url(../img/rushita_img/dot.png);
+            background-position: center;
+            background-size: cover;
+        }
+        .k_demo {
+            position: relative;
+            width: 100%;
+            /* max-width: 700px; */
+            margin: 0 auto 20px;
+        }
+        .k_demo img {
+            width: 100%;
+            cursor: pointer;
+        }
+        .icon {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            font-size: 24px;
+            color: white;
+            cursor: pointer;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 5px;
+            border-radius: 5px;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            padding-top: 100px;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.9);
+        }
+        .modal-content {
+            margin: auto;
+            display: block;
+            width: 80%;
+            max-width: 1300px;
+        }
+        .caption {
+            margin: auto;
+            display: block;
+            width: 80%;
+            max-width: 700px;
+            text-align: center;
+            color: #ccc;
+            padding: 10px 0;
+        }
+        .close {
+            position: absolute;
+            top: 15px;
+            right: 35px;
+            color: #f1f1f1;
+            font-size: 40px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+        .close:hover,
+        .close:focus {
+            color: #bbb;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        @media only screen and (max-width: 700px) {
+            .modal-content {
+                width: 100%;
+            }
+        }
+     
+    .k_scrollable-menu {
+        overflow-x: auto;
+        white-space: nowrap;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    </style>
+</head>
+
+<body>
+    <div id="navbar"></div>
+    <div>
+        <section class="m_ai_tdrop">
+            <div>
+                <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Developers
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item m_dropActive"
+                            href="../dhruvin_developer-tools/ds_Developer-Zone.html">Overview</a></li>
+                    <li><a class="dropdown-item m_dropActive"
+                            href="../rushita_Solutions/k_solutions_in_Viewall_SDF_Industrial-Automation_Control-flow-Enforcement_Technology.html">Topics
+                            & Technologies</a></li>
+                    <li><a class="dropdown-item m_dropActive"
+                            href="../dhruvin_developer-tools/ds_Development-Tools.html">Tools</a></li>
+                    <li><a class="dropdown-item m_dropActive"
+                            href="../rushita_Solutions/k_solutions_in_Viewall_SDF_Industrial-Automation_Hardware-Platforms.html">Hardware
+                            Platforms</a></li>
+                    <li><a class="dropdown-item m_dropActive"
+                            href="../dhruvin_developer-tools/ds_Resource-Documentation-Center.html">Resources &
+                            Documentation</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="../dhruvin_developer-tools/ds_Learn.html">Learn</a>
+                    </li>
+                    <li><a class="dropdown-item m_dropActive"
+                            href="../dhruvin_developer-tools/ds_Communities-and-Events.html">Community & Events</a></li>
+                    <li><a class="dropdown-item m_dropActive"
+                            href="../dhruvin_developer-tools/ds_Developer-Programs.html">Developer Programs</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="../dhruvin_developer-tools/ds_Get-Help.html">Get
+                            Help</a></li>
+                </ul>
+            </div>
+
+
+            <div class="m_ai_shlash">/</div>
+            <div>
+                <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Tools
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item m_dropActive" href="../Product/B20_developer_catelog.html">Software
+                            Catalog</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="../Product/B17_oneapi.html">oneAPI</a></li>
+                    <li><a class="dropdown-item m_dropActive"
+                            href="../rushita_Solutions/k_solutions_Intel-Tiber™Edge-Platform.html">Intel® Tiber™ Edge
+                            Platform</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="../Product/B10_intel_Quarts.html">FPGA</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="../VK_developers/VK_technology_sdk.html">Intel®
+                            Active Management Technology SDK</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="../VK_developers/VK_intel_adviser.html">Intel®
+                            Advisor</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Intel® AI Reference Models</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Intel® AI Reference Models</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Intel® Collaboration Suite for WebRTC SDK</a>
+                    </li>
+                    <li><a class="dropdown-item m_dropActive" href="../Product/B1_19_Intel_AICloud.html">Intel® Tiber™
+                            AI Cloud</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Intel® Distribution for Python*</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Intel® Distribution for GDB*</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Intel® DPC++ Compatibility Tool</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Intel® Dynamic Application Loader</a></li>
+                    <li><a class="dropdown-item m_dropActive"
+                            href="../rushita_Solutions/k_solutions_Topics_viewall_Cloud-Insider-Program_AI-Frameworks-and-Tools.html">Frameworks</a>
+                    </li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Intel® Embree</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="../VK_developers/VK_ai_scikit.html">Intel® Extension
+                            for Scikit-learn*</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Intel® Fortran Compiler</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Intel® Graphics Performance Analyzers</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Intel® Homomorphic Encryption Toolkit</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Intel® In-Band Manageability</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Intel® Integrated Performance Primitives</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Intel® Integrated Simulation Infrastructure with
+                            Modeling</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Instruction Set Architecture (ISA) Extensions</a>
+                    </li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Intel® Intelligent Storage Acceleration Library
+                            (Intel® ISA-L)</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Modin*</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Intel® MPI Library</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Intel® Neural Compressor</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">OpenCL™ Runtime</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Intel® Open Image Denoise</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Intel® Open Path Guiding Library (Intel® Open
+                            PGL)</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Pin</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Intel® Platform Analysis Library</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Intel Tools for OpenCL™ Software</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Intel Tools for OpenCL™ Applications</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Intel® OpenSWR</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">OpenVINO™ Toolkit</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Intel® Open Volume Kernel Library</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Intel® Optimization for XGBoost*</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Intel® OSPRay</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Intel® OSPRay for Hydra*</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Intel® OSPRay Studio</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">PyTorch* Optimizations from Intel</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">TensorFlow* Optimizations from Intel</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Intel® Rendering Toolkit</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Intel® Smart Edge Open</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Intel® Software Guard Extensions</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Intel® Secure Device Onboard</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Intel® Software Development Emulator</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Intel® Trust Domain Extensions (Intel® TDX)</a>
+                    </li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Intel® Quantum SDK</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Intel® Query Processing Library (Intel® QPL)</a>
+                    </li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Intel® Video Processing Library</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Intel® VTune™ Profiler</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Resellers</a></li>
+                </ul>
+            </div>
+            <div class="m_ai_shlash">/</div>
+            <div>
+                <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    oneAPI
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item m_dropActive" href="#">Overview</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Data Parallel C++/SYCL*</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Toolkits</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Tech Articles & How-Tos</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Components</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Code Samples</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Training</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Documentation</a></li>
+                </ul>
+            </div>
+            <div class="m_ai_shlash">/</div>
+            <div>
+                <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Components
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item m_dropActive" href="#">All Components</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Intel® Cryptography Primitives Library</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Intel® oneAPI Collective Communications
+                            Library</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Intel® oneAPI Data Analytics Library</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Intel® oneAPI Deep Neural Network Library</a>
+                    </li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Intel® oneAPI DPC++/C++ Compiler</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Intel® oneAPI DPC++ Library</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Intel® oneAPI Math Kernel Library</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Intel® oneAPI Threading Building Blocks</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">FPGA Support Package for Intel® oneAPI DPC++/C++
+                            Compiler</a></li>
+                </ul>
+            </div>
+            <div class="m_ai_shlash">/</div>
+            <div>
+                <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Intel® Cryptography Primitives Library
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item m_dropActive" href="#">Overview</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Security and Privacy</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="../rushita_Solutions/k_solutions_Intel-Cryptography-Primitives-Library_FIPS.html">FIPS</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Post-Quantum</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Download</a>
+                    </li>
+                 
+                </ul>
+            </div>
+            <div class="m_ai_shlash">/</div>
+            <div class="m_ai_httl k_plink1 k_text"><a href="#">All Components
+            </a></div>
+            <div class="m_ai_shlash">/</div>
+            <div class="m_ai_httl">Intel® oneAPI Deep Neural Network Library
+            </div>
+        </section>
+        <section class="k_framworkbg1" style="background-color: #00285A;">
+            <div class="k_container11 ">
+                <div class="row text-white text-center py-5">
+                    <div class="col-sm-12">
+                        <h1 class="fw-light">Intel® oneAPI DPC++/C++ Compiler</h1>
+                        <p>A Standards-Based, Cross-architecture Compiler</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="k_scrollable-menu">
+                        <ul class="d-flex  k_textwhite mb-0 px-0 k_listnone gap-4">
+                            <li class=" p-2 k_active "><a href="#">Overview</a></li>
+                            <li class="p-2  k_a_whiteunder"><a href="#">Download</a></li>
+                            <li class="p-2  k_a_whiteunder"><a href="#">Documentation & Resources</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section style="background-color: #004A86;">
+            <div class="k_container11">
+                <div class="row py-4 text-white">
+                    <div class="col-lg-2 col-sm-12">
+                        <img src="../img/rushita_img/SYCL.png" alt="" width="100%">
+                    </div>
+                    <div class="col-md-10 col-sm-12">
+                        <h4 class="fw-light k_a_whiteunder"><a href="#">
+                            The World's First Compiler Conformant with SYCL* 2020</a></h4>
+                            <p>Having a SYCL* 2020-conformant compiler means you can have confidence that your code is future-proof—it’s portable and reliably performant across the diversity of existing and future-emergent architectures and hardware targets, including GPUs</p>
+                            <p class="k_a_whiteunder"><a href="#">Find Out Why It's Important</a></p>
+                    </div>
+                </div>  
+            </div>
+        </section>
+        <section style="background-color: #F7F7F7;">
+            <div class="k_container11">
+                <div class="row my-5">
+                    <div class="col-md-6 col-sm-12">
+                        <h3 class="fw-light">Future-Ready Programming Model Provides Freedom of Choice</h3>
+                        <h4>What You Can Do</h4>
+                        <ul>
+                            <li>Compile ISO C, C++, and SYCL* (from the Khronos* Group)</li>
+                            <li>Reuse code across hardware targets, including CPUs, GPUs, and FPGAs.</li>
+                            <li>Avoid proprietary lock-in with a cross-industry, open, standards-based unified programming model.</li>
+                            </ul>
+                            <p class="k_plink1 k_intext1blue1"><a href="#">Learn More about SYCL</a></p>
+                            <h4>Realize All the Hardware Value</h4>
+                            <ul>
+                                <li>Get great performance from industry-leading Intel® compiler technology.</li>
+                                <li>Generate optimized binary host code and accelerator code.</li>
+                                <li>Use optimized Intel oneAPI performance and threading libraries.</li>
+                                </ul>
+                                <p class="k_plink1 k_intext1blue1"><a href="#">Learn More about Intel® Tools</a></p>
+                                <p>&nbsp;</p>
+                                <h4>Confidently Develop Performant Code Quickly and Correctly</h4>
+                                <ul>
+                                    <li>Integrate seamlessly with popular third-party compilers, development environments, and operating systems.</li>
+                                    <li>Use the latest standards including C 23, C++ 23, SYCL 2020, and OpenMP* 5.0, 5.1, and 5.2 for CPU and GPU offload, and select OpenMP 6.0.</li>
+                                    <li>Use LLVM* sanitizers to catch bugs and issues early in the development cycle, making C, C++, SYCL, OpenMP code more reliable, secure, and easier to maintain.</li>
+                                    </ul>
+                                    <h5>Develop on a Variety of GPUs</h5>
+                                    <p>Develop and run applications on Intel GPUs or use plug-ins from Codeplay* to develop on AMD* or NVIDIA* GPUs.</p>
+                                    <p class="k_plink1 k_intext1blue1"><a href="#">AMD Plug-in</a></p>
+                                    <p class="k_plink1 k_intext1blue1"><a href="#">NVIDIA Plug-in</a></p>
+                                    <p>&nbsp;</p>
+                    </div>
+                    <div class="col-md-6 col-sm-12">
+                        <div class="row">
+                            <div class="col-md-6 col-sm-12">
+                                <h5><b>Download as Part of a Toolkit or Essentials</b></h5>
+                                <p class="k_plink1 k_intext1blue1"><a href="#">Intel® oneAPI Base Toolkit</a></p>
+                                <p class="k_plink1 k_intext1blue1"><a href="#">Intel® oneAPI HPC Toolkit</a></p>
+                                <p class="k_plink1 k_intext1blue1"><a href="#">Intel® C++ Essentials</a></p>
+                                <p class="k_plink1 k_intext1blue1"><a href="#">Intel® Fortran Essentials</a></p>
+                                <p class="k_plink1 k_intext1blue1"><a href="#">Intel® Deep Learning Essentials</a></p>
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                                <h5><b>Help the Intel oneAPI DPC++/C++ Compiler Evolve</b></h5>
+                                <p>This compiler is part of the open oneAPI industry standards initiative. You are welcome to participate.</p>
+                                <p class="k_plink1 k_intext1blue1"><a href="#">Specification</a></p>
+                                <p class="k_plink1 k_intext1blue1"><a href="#">Open Source Compiler (GitHub*)</a></p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <h5><b>Download the Stand-Alone Version</b></h5>
+                                <p>You can download binaries from Intel or choose your preferred repository.</p>
+                                <p class="k_plink1 k_intext1blue1"><a href="#">Intel® oneAPI DPC++/C++ Compiler</a></p>
+                                <p class="k_plink1 k_intext1blue1"><a href="#">Runtime Version</a></p>
+                            </div>
+                        </div>
+                    </div>  
+                </div>
+            </div>
+        </section>
+        <section>
+            <div class="k_container11">
+                <div class="row">
+                    <h1 class="fw-light mb-5">Features</h1>
+                    <div class="col-md-5 col-sm-12">
+                        <div class="k_demo">
+                            <img class="myImg" src="../img/rushita_img/DPC1.jpg" alt="Sample Image1">
+                            <i class="fa-solid fa-down-left-and-up-right-to-center icon openModal" ></i>
+                            <div id="myModal" class="modal">
+                                <span class="close">&times;</span>
+                                <img class="modal-content" id="img01">
+                                <div id="caption" class="caption"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-7 col-sm-12 align-content-center">
+                        <p><b>Cross-architecture Compiling</b></p>
+                        <ul> 
+                            <li>Development Productivity: Targets CPUs and accelerators through single-source code while permitting custom tuning</li> 
+                            <li>Language Standards Support: Is built to the latest standards, including C++ 17, C++ 20, and SYCL 2020, and partial support for C++ 23, to ensure portability and support of features like generic lambda expressions and variable templates: SYCL Graph, Bindless Texture, Vulkan, and Microsoft DirectX* interoperability</li> 
+                            <li>Industry Standards Support: Supports the latest standards, including OpenMP 4.5, 5.0, 5.1, and 5.2 for CPU and GPU offload, and select new features of OpenMP 6.0</li> 
+                            <li>Trusted Technology: Uses well-proven LLVM compiler technology as well as Intel's history of compiler leadership</li> 
+                           </ul>
+                           <p class="k_plink1 k_intext1blue1"><a href="#"><b>Learn More&nbsp;about the&nbsp;Intel</b>®&nbsp;<b>oneAPI DPC++ Library</b></a></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section>
+            <div class="k_container11">
+                <div class="row my-5">
+                    <div class="col-md-5 col-sm-12">
+                        <div class="k_demo">
+                            <img class="myImg" src="../img/rushita_img/DPC2.png" alt="Sample Image1">
+                            <i class="fa-solid fa-down-left-and-up-right-to-center icon openModal" ></i>
+                           
+                        </div>
+                    </div>
+                    <div class="col-md-7 col-sm-12 align-content-center">
+                        <p><b>FPGA Emulation and Compilation</b></p>
+                        <ul> 
+                            <li>Enables experienced FPGA developers to target accelerations workloads to field-programmable platforms</li> 
+                            <li>Is included with the compiler&nbsp;</li> 
+                        </ul>
+                        <p><b>Note</b>&nbsp;&nbsp;Full FPGA programming requires the optional FPGA Support Package for the Intel® oneAPI DPC++ / C++ Compiler.</p>
+                        <p class="k_plink1 k_intext1blue1"><a href="#"><b>Learn More</b></a></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section>
+            <div class="k_container11">
+                <div class="row">
+                    <div class="col-lg-4 col-md-6 col-sm-12">
+                        <img src="../img/rushita_img/1.png" alt="" width="300px">
+                        <p class="mt-3"><b>Download</b></p>
+                        <p class="k_plink1 k_intext1blue1"><a href="#">Get Intel oneAPI DPC++/C++ Compiler Only</a></p>
+                        <p>Get the <a href="#">Intel oneAPI HPC Toolkit</a></p>
+                        <p class="k_plink1 k_intext1blue1">Get the Intel C++ Essentials, <a href="#">Intel Fortran Essentials</a>, or <a href="#">Intel Deep Learning Essentials</a></p>
+                        <p class="k_plink1 k_intext1blue1"><br> <a href="#">System Requirements</a><br> </p>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-12">
+                        <img src="../img/rushita_img/2.png" alt="" width="300px">
+                        <p class="mt-3"><b>Try It Out</b></p>
+                        <p>Get started with Intel oneAPI DPC++/C++ Compiler and use an introductory code sample to see how it works.</p>
+                        <p class="k_plink1 k_intext1blue1"><a href="#">Get Started Guide</a></p>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-12">
+                        <img src="../img/rushita_img/3.png" alt="" width="300px">
+                        <p class="mt-3"><b>Learn More</b></p>
+                           <p>Use these learning tools to help you implement and optimize application code for modern computer architectures.</p>
+                           <p class="k_plink1 k_intext1blue1"><a href="#">Essentials of SYCL</a></p>
+                           <p class="k_plink1 k_intext1blue1"><a href="#">Migrate CUDA* to C++ with SYCL</a></p>
+                           <p class="k_plink1 k_intext1blue1"><a href="#">OpenMP Offload Essentials</a></p>
+                           <p class="k_plink1 k_intext1blue1"><a href="#">Workflow to Offload and Optimize OpenMP Applications&nbsp;</a></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="k_bggrey">
+            <div class="k_container11">
+                <div class="row">
+                    <div class="my-5">
+                        <h1 class="fw-light  mb-5 text-center">Benchmarks</h1>
+                    </div>
+                    <div>
+                        <div class="k_tab-container">
+                            <ul class="d-flex k_text k_listnone gap-4 px-3 k_tab1 k_scrollable-menu" >
+                                <li class="col-md-4"><a href="#" data-tab="gaming">Part 1: Intel Compilers Boost C++ Application Performance on Linux*</a></li>
+                                <li class="col-md-4"><a href="#" data-tab="entertainment">Part 2: Intel Compilers Boost C++ Application Performance on Linux</a></li>
+                                <li class="col-md-4"><a href="#" data-tab="business">Part 3: Intel® Compilers Boost C++ Application Performance on Linux</a></li>
+                                <li class="col-md-4"><a href="#" data-tab="education">Part 1: Intel Compilers Boost C++ Application Performance on Windows* </a></li>
+                                <li class="col-md-4"><a href="#" data-tab="education1">Part 1: Intel Compilers Boost C++ Application Performance on Windows* </a></li>
+                                <li class="col-md-4"><a href="#" data-tab="education2">Intel Compilers Perform on C++ Embedded Applications </a></li>
+                            </ul>
+                            <hr class="mb-4 k_hr">
+                            <div class="">
+                                <div class="k_custom-tab-content" id="gaming">
+                                    <div class="row g-3">
+                                        <div class="col-lg-4 col-md-5 col-sm-12 align-content-center">
+                                            <h1 class="fw-light ">Part 1: Intel Compilers Boost C++ Application Performance on Linux</h1>
+                                        </div>
+                                        <div class="col-lg-8 col-md-7 col-sm-12 align-content-center">
+                                            <div class="k_demo">
+                                                <img class="myImg" src="../img/rushita_img/DPC3.png" alt="Sample Image1">
+                                                <i class="fa-solid fa-down-left-and-up-right-to-center icon openModal" ></i>
+                                               
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="k_custom-tab-content" id="entertainment">
+                                    <div class="row g-3">
+                                        <div class="col-lg-4 col-md-5 col-sm-12 align-content-center">
+                                            <h1 class="fw-light ">Part 2: Intel Compilers Boost C++ Application Performance on Linux</h1>
+                                        </div>
+                                        <div class="col-lg-8 col-md-7 col-sm-12 align-content-center">
+                                            <div class="k_demo">
+                                                <img class="myImg" src="../img/rushita_img/DPC4.png" alt="Sample Image1">
+                                                <i class="fa-solid fa-down-left-and-up-right-to-center icon openModal" ></i>
+                                               
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="k_custom-tab-content" id="business">
+                                    <div class="row g-3">
+                                        <div class="col-lg-4 col-md-5 col-sm-12 align-content-center">
+                                            <h1 class="fw-light ">Part 3: Intel Compilers Boost C++ Application Performance on Linux</h1>
+                                        </div>
+                                        <div class="col-lg-8 col-md-7 col-sm-12 align-content-center">
+                                            <div class="k_demo">
+                                                <img class="myImg" src="../img/rushita_img/DPC5.png" alt="Sample Image1">
+                                                <i class="fa-solid fa-down-left-and-up-right-to-center icon openModal" ></i>
+                                               
+                                            </div>
+                                        </div>
+                                    </div>
+    
+                                </div>
+                                <div class="k_custom-tab-content" id="education">
+                                    <div class="row g-3">
+                                        <div class="col-lg-4 col-md-5 col-sm-12 align-content-center">
+                                            <h1 class="fw-light ">Part 1: Intel Compilers Boost C++ Application Performance on Windows* Server</h1>
+                                        </div>
+                                        <div class="col-lg-8 col-md-7 col-sm-12 align-content-center">
+                                            <div class="k_demo">
+                                                <img class="myImg" src="../img/rushita_img/DPC6.png" alt="Sample Image1">
+                                                <i class="fa-solid fa-down-left-and-up-right-to-center icon openModal" ></i>
+                                               
+                                            </div>
+                                        </div>
+                                    </div>
+    
+                                </div>
+                                <div class="k_custom-tab-content" id="education1">
+                                    <div class="row g-3">
+                                        <div class="col-lg-4 col-md-5 col-sm-12 align-content-center">
+                                            <h1 class="fw-light ">Part 2: Intel Compilers Boost C++ Application Performance on Windows Server</h1>
+                                        </div>
+                                        <div class="col-lg-8 col-md-7 col-sm-12 align-content-center">
+                                            <div class="k_demo">
+                                                <img class="myImg" src="../img/rushita_img/DPC7.png" alt="Sample Image1">
+                                                <i class="fa-solid fa-down-left-and-up-right-to-center icon openModal" ></i>
+                                               
+                                            </div>
+                                        </div>
+                                    </div>
+    
+                                </div>
+                                <div class="k_custom-tab-content" id="education2">
+                                    <div class="row g-3">
+                                        <div class="col-lg-4 col-md-5 col-sm-12 align-content-center">
+                                            <h1 class="fw-light ">Intel Compilers Perform on C++ Embedded Applications</h1>
+                                        </div>
+                                        <div class="col-lg-8 col-md-7 col-sm-12 align-content-center">
+                                            <div class="k_demo">
+                                                <img class="myImg" src="../img/rushita_img/DPC8.png" alt="Sample Image1">
+                                                <i class="fa-solid fa-down-left-and-up-right-to-center icon openModal" ></i>
+                                               
+                                            </div>
+                                        </div>
+                                    </div>
+    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </section>
+        
+        <section class=" py-5">
+            <div class="k_container11">
+                <div class="row  justify-content-between g-3 my-0  py-4">
+                    <h1 class=" fw-lighter pb-3">News & Case Studies</h1>
+                    <div class="col-lg-6 col-md-6 col-sm-12 d-lg-flex d-block gap-4">
+                        <div class=" k_order1 col-md-5 col-sm-12">
+                            <a href="#">
+                                <img src="../img/rushita_img/tencent.png" alt="" width="100%"></a>
+                        </div>
+                        <div class="k_wrap  flex-wrap k_order2 col-md-7 col-sm-12">
+
+                            <p class="k_plink1 k_intext1blue1"><a href="#" >Tencent Gains Up to 85% Performance Boost for MySQL</a></p>
+                            <p>"TencentDB for MySQL is designed to provide customers with secure, reliable, high-performance, and easy-to-maintain enterprise-level cloud database services. And Intel oneAPI DPC++/C++ Compiler can bring Tencent another avenue to get better MySQL performance."</p>
+                            <p>— Ben Cheng, TencentDB</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-12 d-lg-flex d-block gap-4">
+                        <div class=" k_order1 col-md-5 col-sm-12">
+                            <a href="#">
+                                <img src="../img/rushita_img/tencent1.webp" alt="" width="100%"></a>
+                        </div>
+                        <div class="k_wrap  flex-wrap k_order2 col-md-7 col-sm-12">
+
+                            <p class="k_plink1 k_intext1blue1"><a href="#" >Alibaba Cloud* E-HPC-DP: A Winning E-HPC Cloud Collaboration</a></p>
+                            <p>E-HPC provides individual users, education and research institutions, and public institutions with a fast, elastic, and secure cloud compute platform. With the Intel toolkit, E-HPC can help customers build a high-performance, profiling computing platform on Intel® Xeon® Scalable processors.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section>
+            <div class="k_container11">
+                <div class="row">
+                    <h1 class="fw-light mb-5">Reviews & Testimonials</h1>
+                    <div class="col-lg-3 col-md-6 col-sm-12">
+                        <img src="../img/rushita_img/bristol.webp" alt="" width="100%">
+                        <p>"SYCL 2020 enables productive heterogeneous computing today, providing the necessary controls to write high-performance parallel software for the complex reality of today’s software and hardware. Intel's commitment to supporting open standards is again showcased as they become a SYCL 2020 Khronos* Adopter. Intel's conformant implementation of SYCL 2020 gives software developers the assurance they need that their code will be portable. Not only this, but Intel's support for open standards has helped build a vibrant ecosystem of tools, libraries, and support for SYCL 2020 on CPUs, GPUs, and FPGAs."</p>
+                        <p>— Dr. Tom Deakin, chair of the SYCL Working Group for Khronos, and lecturer (assistant professor) in Advanced Computer Systems, University of Bristol</p>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-12">
+                        <img src="../img/rushita_img/bristol1.webp" alt="" width="100%">
+                        <p>"Our team is highly satisfied with how one API has streamlined the porting and optimization of our data-parallel computing and simulation software for pharmaceutical research to multiple targets. Given our positive experience within the Intel ecosystem, we are eager to see SYCL gain wide acceptance in a multi-vendor context."</p>
+                        <p>– Professor Andreas Koch, Technische Universität Darmstadt</p>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-12">
+                        <img src="../img/rushita_img/bristol2.webp" alt="" width="100%">
+                        <p>"We appreciate the combination of full support of SYCL with the fact that all is built upon the LLVM software stack. Probably the most important feature for us is the fact that the compiler allows us to seamlessly switch from SYCL to OpenMP and back, so we can compare GPU offloading paradigms, techniques, and their efficiency."</p>
+                        <p>– Professor Tobias Weinzierl, Durham University</p>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-12">
+                        <img src="../img/rushita_img/bristol3.webp" alt="" width="100%">
+                        <p>"The motto of GROMACS is 'Fast, Flexible, Free'—values that align with those of the SYCL standard. Starting in 2020, GROMACS began to utilize SYCL as a performance-portability back end, leveraging select features of SYCL 2020 even before its official standardization. Compared to its predecessor, SYCL 1.2, the SYCL 2020 standard introduces several new features that are instrumental in enhancing both application performance and developer productivity. The achievement of Intel oneAPI DPC++/C++ Compiler in attaining certification as the first fully conformant SYCL 2020 toolchain marks a significant milestone for the widespread adoption of open standards in heterogeneous parallelization within high-performance computing."</p>
+                        <p>– Andrey Alekseenko, lead researcher, KTH Royal Institute of Technology</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="my-5">
+            <div class="k_container11">
+                <div class="row">
+                    <h1 class="fw-light">Specifications</h1>
+                    <h5>Intel oneAPI DPC++/C++ Compiler</h5>
+                    <div class="col-lg-3 col-md-6 col-sm-12">
+                        <p><b>Processors:</b></p>
+                        <ul>
+                            <li>Intel® Xeon® Scalable processors</li>
+                            <li>Intel Xeon processors</li>
+                            <li>Intel® Core™ Ultra processors</li>
+                            <li>Intel Core processors</li>
+                            <li>Intel Atom® processors</li>
+                        </ul>
+                        <p><b>GPUs:</b></p>
+                        <ul>
+                            <li>Intel® UHD Graphics for 11th generation Intel processors or newer</li>
+                            <li>Intel® Iris Xᵉ graphics or newer</li>
+                            <li>Intel® Arc™ graphics</li>
+                            <li>Intel® Data Center GPU Flex Series</li>
+                            <li>Intel® Data Center GPU Max Series</li>
+                            <li>NVIDIA or AMD GPUs using plug-ins from Codeplay*</li>
+                        </ul>
+                        <p class="k_plink1 k_intext1blue1">For more information, see the <a href="#">system requirements</a>.</p>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-12">
+                        <p><b>FPGAs:</b></p>
+                        <ul>
+                            <li>Intel® Programmable Acceleration Card with Intel® Arria® 10 GX FPGA</li>
+                            <li>Intel® Stratix® 10 FPGA</li>
+                            <li>Intel® Agilex™ FPGA</li>
+                        </ul>
+                        <p><b>Host and target operating systems:</b></p>
+                        <ul>
+                            <li>Windows</li>
+                            <li>Linux</li>
+                            </ul>
+                            <p><b>Languages:</b></p>
+                            <ul>
+                                <li class="k_plink1 k_intext1blue1">SYCL (<a href="#">SYCL 2020</a>)</li>
+                                <li class="k_plink1 k_intext1blue1">C++ (C++98, C++11, C++14, C++17, <a href="#">C++20</a>, <a href="#">C++23</a>)</li>
+                                <li class="k_plink1 k_intext1blue1">C (C99, C11, C17, <a href="#">C23</a>)</li>
+                                </ul>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-12">
+                        <p><b>Development environments:</b></p>
+                        <ul>
+                            <li>Microsoft Visual Studio*, Microsoft Visual Studio Code</li>
+                            <li>Eclipse* IDE</li>
+                        </ul>
+                        <p><b>Threading:</b></p>
+                        <ul>
+                            <li>Intel® oneAPI Threading Building Blocks</li>
+                            <li class="k_plink1 k_intext1blue1"><a href="#">OpenMP 4.5, 5.0, 5.1, 5.2, 6.0, and extensions</a></li>
+                            <li>Native threads</li>
+                            </ul>
+                            <p><b>Languages:</b></p>
+                            <ul>
+                                <li class="k_plink1 k_intext1blue1">SYCL (<a href="#">SYCL 2020</a>)</li>
+                                <li class="k_plink1 k_intext1blue1">C++ (C++98, C++11, C++14, C++17, <a href="#">C++20</a>, <a href="#">C++23</a>)</li>
+                                <li class="k_plink1 k_intext1blue1">C (C99, C11, C17, <a href="#">C23</a>)</li>
+                                </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="section6">
+            <div class="k_container11">
+                <div class="row my-5">
+                    <h1 class="fw-light">Get Help</h1>
+                    <p>Your success is our success. Access these support resources when you need assistance.</p>
+                    <ul> 
+                        <li class="k_plink1 k_intext1blue1"><a href="#">SYCL Forum</a></li> 
+                        <li class="k_plink1 k_intext1blue1"><a href="#">General oneAPI Support</a></li> 
+                       </ul>
+                </div>
+            </div>
+        </section>
+        <section id="section6">
+            <div class="k_container11">
+                <div class="row my-5">
+                    <h1 class="fw-light">Related Products</h1>
+                    <p class="k_plink1 k_bluehover1"><a href="#"><b>Intel® Fortran Compiler</b></a></p>
+                   <p>Build high-performance applications by generating optimized code for Intel Xeon Scalable processors, Intel Core processors, and supported GPUs and other accelerators. This allows you to:</p>
+                   <ul> 
+                    <li>Boost Single Instruction Multiple Data (SIMD) vectorization and threading capabilities (including for Intel® Advanced Vector Extensions 512 instructions) using the latest OpenMP parallel programming model</li> 
+                    <li>Take advantage of more cores and increased vector register width available in Intel Xeon processors</li> 
+                    <li>Comply with open standards such as Fortran, OpenMP, and OpenMP offload to GPU</li> 
+                    <li>Work with a familiar set of tools on your preferred platform: Windows and Linux</li> 
+                   </ul>
+                </div>
+            </div>
+        </section>
+        <section>
+            <div class="k_container-fluid">
+                <div class="row m-0 ">
+                    <div class="col-lg-6  k_bgsky align-content-center">
+                        <h1 class=" k_sec_padd fw-light">Stay In the Know on All Things CODE</h1>
+                        <p class=" k_sec_padd ">Sign up to receive the latest tech articles, tutorials, dev tools,
+                            training opportunities,
+                            product updates, and more, hand-curated to help you optimize your code, no matter where you
+                            are
+                            in your developer journey. Take a chance and subscribe. You can change your mind at any
+                            time.
+                        </p>
+                    </div>
+                    <div class="col-lg-1 k_bgsky_clip p-0 m-0 ">
+
+                    </div>
+
+
+                    <div class="col-lg-5 ps-3 py-5">
+                        <p class="mb-2">All fields are required unless marked optional.</p>
+                        <form action="">
+                            <div class="input-group input-group-lg k_input_widyh">
+                                <input type="text" class="form-control" aria-label="Sizing example input"
+                                    placeholder="Business Email Address " aria-describedby="inputGroup-sizing-lg">
+                            </div>
+                            <select class=" form-select form-select-lg mb-3 mt-3 k_input_widyh"
+                                aria-label=".form-select-lg example">
+                                <option selected>Please select a country/region</option>
+                                <option value="AF">Afghanistan</option>
+                                <option value="AL">Albania</option>
+                                <option value="DZ">Algeria</option>
+                                <option value="AS">American Samoa</option>
+                                <option value="AD">Andorra</option>
+                                <option value="AO">Angola</option>
+                                <option value="AI">Anguilla</option>
+                                <option value="AQ">Antarctica</option>
+                                <option value="AG">Antigua and Barbuda</option>
+                                <option value="AR">Argentina</option>
+                                <option value="AM">Armenia</option>
+                                <option value="AW">Aruba</option>
+                                <option value="AU">Australia</option>
+                                <option value="AT">Austria</option>
+                                <option value="AZ">Azerbaijan</option>
+                                <option value="BS">Bahamas</option>
+                                <option value="BH">Bahrain</option>
+                                <option value="BD">Bangladesh</option>
+                                <option value="BB">Barbados</option>
+                                <option value="BY">Belarus</option>
+                                <option value="BE">Belgium</option>
+                                <option value="BZ">Belize</option>
+                                <option value="BJ">Benin</option>
+                                <option value="BM">Bermuda</option>
+                                <option value="BT">Bhutan</option>
+                                <option value="BO">Bolivia</option>
+                                <option value="BA">Bosnia and Herzegovina</option>
+                                <option value="BW">Botswana</option>
+                                <option value="BV">Bouvet Island</option>
+                                <option value="BR">Brazil</option>
+                                <option value="IO">British Indian Ocean Territory</option>
+                                <option value="BN">Brunei Darussalam</option>
+                                <option value="BG">Bulgaria</option>
+                                <option value="BF">Burkina Faso</option>
+                                <option value="BI">Burundi</option>
+                                <option value="KH">Cambodia</option>
+                                <option value="CM">Cameroon</option>
+                                <option value="CA">Canada</option>
+                                <option value="CV">Cape Verde</option>
+                                <option value="KY">Cayman Islands</option>
+                                <option value="CF">Central African Republic</option>
+                                <option value="TD">Chad</option>
+                                <option value="CL">Chile</option>
+                                <option value="CN">China</option>
+                                <option value="CX">Christmas Island</option>
+                                <option value="CC">Cocos (Keeling) Islands</option>
+                                <option value="CO">Colombia</option>
+                                <option value="KM">Comoros</option>
+                                <option value="CG">Congo</option>
+                                <option value="CD">Congo, the Democratic Republic of the</option>
+                                <option value="CK">Cook Islands</option>
+                                <option value="CR">Costa Rica</option>
+                                <option value="CI">Cote D'Ivoire</option>
+                                <option value="HR">Croatia</option>
+                                <option value="CU">Cuba</option>
+                                <option value="CY">Cyprus</option>
+                                <option value="CZ">Czech Republic</option>
+                                <option value="DK">Denmark</option>
+                                <option value="DJ">Djibouti</option>
+                                <option value="DM">Dominica</option>
+                                <option value="DO">Dominican Republic</option>
+                                <option value="EC">Ecuador</option>
+                                <option value="EG">Egypt</option>
+                                <option value="SV">El Salvador</option>
+                                <option value="GQ">Equatorial Guinea</option>
+                                <option value="ER">Eritrea</option>
+                                <option value="EE">Estonia</option>
+                                <option value="ET">Ethiopia</option>
+                                <option value="FK">Falkland Islands (Malvinas)</option>
+                                <option value="FO">Faroe Islands</option>
+                                <option value="FJ">Fiji</option>
+                                <option value="FI">Finland</option>
+                                <option value="FR">France</option>
+                                <option value="GF">French Guiana</option>
+                                <option value="PF">French Polynesia</option>
+                                <option value="TF">French Southern Territories</option>
+                                <option value="GA">Gabon</option>
+                                <option value="GM">Gambia</option>
+                                <option value="GE">Georgia</option>
+                                <option value="DE">Germany</option>
+                                <option value="GH">Ghana</option>
+                                <option value="GI">Gibraltar</option>
+                                <option value="GR">Greece</option>
+                                <option value="GL">Greenland</option>
+                                <option value="GD">Grenada</option>
+                                <option value="GP">Guadeloupe</option>
+                                <option value="GU">Guam</option>
+                                <option value="GT">Guatemala</option>
+                                <option value="GN">Guinea</option>
+                                <option value="GW">Guinea-Bissau</option>
+                                <option value="GY">Guyana</option>
+                                <option value="HT">Haiti</option>
+                                <option value="HM">Heard Island and Mcdonald Islands</option>
+                                <option value="VA">Holy See (Vatican City State)</option>
+                                <option value="HN">Honduras</option>
+                                <option value="HK">Hong Kong</option>
+                                <option value="HU">Hungary</option>
+                                <option value="IS">Iceland</option>
+                                <option value="IN">India</option>
+                                <option value="ID">Indonesia</option>
+                                <option value="IR">Iran, Islamic Republic of</option>
+                                <option value="IQ">Iraq</option>
+                                <option value="IE">Ireland</option>
+                                <option value="IL">Israel</option>
+                                <option value="IT">Italy</option>
+                                <option value="JM">Jamaica</option>
+                                <option value="JP">Japan</option>
+                                <option value="JO">Jordan</option>
+                                <option value="KZ">Kazakhstan</option>
+                                <option value="KE">Kenya</option>
+                                <option value="KI">Kiribati</option>
+                                <option value="KP">Korea, Democratic People's Republic of</option>
+                                <option value="KR">Korea, Republic of</option>
+                                <option value="KW">Kuwait</option>
+                                <option value="KG">Kyrgyzstan</option>
+                                <option value="LA">Lao People's Democratic Republic</option>
+                                <option value="LV">Latvia</option>
+                                <option value="LB">Lebanon</option>
+                                <option value="LS">Lesotho</option>
+                                <option value="LR">Liberia</option>
+                                <option value="LY">Libyan Arab Jamahiriya</option>
+                                <option value="LI">Liechtenstein</option>
+                                <option value="LT">Lithuania</option>
+                                <option value="LU">Luxembourg</option>
+                                <option value="MO">Macao</option>
+                                <option value="MK">Macedonia, the Former Yugoslav Republic of</option>
+                                <option value="MG">Madagascar</option>
+                                <option value="MW">Malawi</option>
+                                <option value="MY">Malaysia</option>
+                                <option value="MV">Maldives</option>
+                                <option value="ML">Mali</option>
+                                <option value="MT">Malta</option>
+                                <option value="MH">Marshall Islands</option>
+                                <option value="MQ">Martinique</option>
+                                <option value="MR">Mauritania</option>
+                                <option value="MU">Mauritius</option>
+                                <option value="YT">Mayotte</option>
+                                <option value="MX">Mexico</option>
+                                <option value="FM">Micronesia, Federated States of</option>
+                                <option value="MD">Moldova, Republic of</option>
+                                <option value="MC">Monaco</option>
+                                <option value="MN">Mongolia</option>
+                                <option value="MS">Montserrat</option>
+                                <option value="MA">Morocco</option>
+                                <option value="MZ">Mozambique</option>
+                                <option value="MM">Myanmar</option>
+                                <option value="NA">Namibia</option>
+                                <option value="NR">Nauru</option>
+                                <option value="NP">Nepal</option>
+                                <option value="NL">Netherlands</option>
+                                <option value="AN">Netherlands Antilles</option>
+                                <option value="NC">New Caledonia</option>
+                                <option value="NZ">New Zealand</option>
+                                <option value="NI">Nicaragua</option>
+                                <option value="NE">Niger</option>
+                                <option value="NG">Nigeria</option>
+                                <option value="NU">Niue</option>
+                                <option value="NF">Norfolk Island</option>
+                                <option value="MP">Northern Mariana Islands</option>
+                                <option value="NO">Norway</option>
+                                <option value="OM">Oman</option>
+                                <option value="PK">Pakistan</option>
+                                <option value="PW">Palau</option>
+                                <option value="PS">Palestinian Territory, Occupied</option>
+                                <option value="PA">Panama</option>
+                                <option value="PG">Papua New Guinea</option>
+                                <option value="PY">Paraguay</option>
+                                <option value="PE">Peru</option>
+                                <option value="PH">Philippines</option>
+                                <option value="PN">Pitcairn</option>
+                                <option value="PL">Poland</option>
+                                <option value="PT">Portugal</option>
+                                <option value="PR">Puerto Rico</option>
+                                <option value="QA">Qatar</option>
+                                <option value="RE">Reunion</option>
+                                <option value="RO">Romania</option>
+                                <option value="RU">Russian Federation</option>
+                                <option value="RW">Rwanda</option>
+                                <option value="SH">Saint Helena</option>
+                                <option value="KN">Saint Kitts and Nevis</option>
+                                <option value="LC">Saint Lucia</option>
+                                <option value="PM">Saint Pierre and Miquelon</option>
+                                <option value="VC">Saint Vincent and the Grenadines</option>
+                                <option value="WS">Samoa</option>
+                                <option value="SM">San Marino</option>
+                                <option value="ST">Sao Tome and Principe</option>
+                                <option value="SA">Saudi Arabia</option>
+                                <option value="SN">Senegal</option>
+                                <option value="CS">Serbia and Montenegro</option>
+                                <option value="SC">Seychelles</option>
+                                <option value="SL">Sierra Leone</option>
+                                <option value="SG">Singapore</option>
+                                <option value="SK">Slovakia</option>
+                                <option value="SI">Slovenia</option>
+                                <option value="SB">Solomon Islands</option>
+                                <option value="SO">Somalia</option>
+                                <option value="ZA">South Africa</option>
+                                <option value="GS">South Georgia and the South Sandwich Islands</option>
+                                <option value="ES">Spain</option>
+                                <option value="LK">Sri Lanka</option>
+                                <option value="SD">Sudan</option>
+                                <option value="SR">Suriname</option>
+                                <option value="SJ">Svalbard and Jan Mayen</option>
+                                <option value="SZ">Swaziland</option>
+                                <option value="SE">Sweden</option>
+                                <option value="CH">Switzerland</option>
+                                <option value="SY">Syrian Arab Republic</option>
+                                <option value="TW">Taiwan, Province of China</option>
+                                <option value="TJ">Tajikistan</option>
+                                <option value="TZ">Tanzania, United Republic of</option>
+                                <option value="TH">Thailand</option>
+                                <option value="TL">Timor-Leste</option>
+                                <option value="TG">Togo</option>
+                                <option value="TK">Tokelau</option>
+                                <option value="TO">Tonga</option>
+                                <option value="TT">Trinidad and Tobago</option>
+                                <option value="TN">Tunisia</option>
+                                <option value="TR">Turkey</option>
+                                <option value="TM">Turkmenistan</option>
+                                <option value="TC">Turks and Caicos Islands</option>
+                                <option value="TV">Tuvalu</option>
+                                <option value="UG">Uganda</option>
+                                <option value="UA">Ukraine</option>
+                                <option value="AE">United Arab Emirates</option>
+                                <option value="GB">United Kingdom</option>
+                                <option value="US">United States</option>
+                                <option value="UM">United States Minor Outlying Islands</option>
+                                <option value="UY">Uruguay</option>
+                                <option value="UZ">Uzbekistan</option>
+                                <option value="VU">Vanuatu</option>
+                                <option value="VE">Venezuela</option>
+                                <option value="VN">Viet Nam</option>
+                                <option value="VG">Virgin Islands, British</option>
+                                <option value="VI">Virgin Islands, U.S.</option>
+                                <option value="WF">Wallis and Futuna</option>
+                                <option value="EH">Western Sahara</option>
+                                <option value="YE">Yemen</option>
+                                <option value="ZM">Zambia</option>
+                                <option value="ZW">Zimbabwe</option>
+                            </select>
+                            <div class="input-group input-group-lg k_input_widyh">
+                                <input type="text" class="form-control b_small_text" aria-label="Sizing example input"
+                                    placeholder="Company " aria-describedby="inputGroup-sizing-lg">
+                            </div>
+
+                            <select class="form-select  form-select-lg mb-3 mt-3 k_input_widyh  "
+                                aria-label="form-select-lg example">
+                                <option selected>Please Select a Profession</option>
+                                <option value="1">CIO (Chief Information Officer)</option>
+                                <option value="2">CTO (Chief Technology Officer)</option>
+                                <option value="3">COO (Chief Operating Officer)</option>
+                                <option value="4">CISO (Chief Information Security Officer)</option>
+                                <option value="5">Owner/Executive Management</option>
+                                <option value="6">IT Management</option>
+                                <option value="7">Data Sciences</option>
+                                <option value="8">Software/Application Development/Engineering</option>
+                                <option value="9">Hardware Development/Engineering</option>
+                                <option value="10">FPGA Engineering</option>
+                                <option value="11">Solution/System Architecture</option>
+                                <option value="12">Infrastructure/Datacenter Architecture</option>
+                                <option value="13">Network Architecture/Engineering</option>
+                                <option value="14">IT Information Security</option>
+                                <option value="15">IT Storage</option>
+                                <option value="16">IT User Devices - PCs tablets etc</option>
+                                <option value="17">IT Generalist/Other IT</option>
+                                <option value="18">Facilities/Audio Video</option>
+                                <option value="19">Line of Business or Service Head</option>
+                                <option value="20">Finance/Procurement</option>
+                                <option value="21">Sales</option>
+                                <option value="22">Marketing</option>
+                                <option value="23">Consultant</option>
+                                <option value="24">Hobbyist/Maker</option>
+                                <option value="25">Educator</option>
+                                <option value="26">Student</option>
+                                <option value="27">Scientist/Researcher</option>
+                                <option value="28">Other</option>
+                                <option value="29">Press Analyst</option>
+                                <option value="30">Operations Engineer</option>
+                            </select>
+                            <select class="form-select  form-select-lg mb-3 mt-3 k_input_widyh  "
+                                aria-label="form-select-lg example">
+                                <option selected>Developer Role</option>
+                                <option value="AI Application Developer">AI Application Developer</option>
+                                <option value="Application Developer">Application Developer</option>
+                                <option value="Data Scientist">Data Scientist</option>
+                                <option value="Embedded/IoT Developer">Embedded/IoT Developer</option>
+                            </select>
+
+                            <p class=" mb-2" style="font-size: 14px;">This site is protected by reCAPTCHA and the Google
+                                <a href="#">Privacy Policy</a> and <a href="#" style="font-size: 12px !important;">Terms
+                                    of Service</a> apply.
+                            </p>
+                            <button type="button" class="btn px-4"
+                                style="background-color: #0068B5; color: white;">Submit</button>
+                            <p class="w-75  mt-3" style="font-size: 12px;">By submitting this form, you are confirming
+                                you are age
+                                18 years or older. Intel may
+                                contact me
+                                for marketing-related communications. To learn about Intel's practices, including how to
+                                manage
+                                your preferences and settings, you can visit Intel's <a href="#">Privacy </a> and <a
+                                    href="#">Cookies</a> notices.</p>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+    <div id="footer"></div>
+    <script>
+        const playButton = document.querySelector('.play-button');
+        const video = document.getElementById('myVideo');
+        const thumbnail = document.querySelector('.thumbnail');
+
+        playButton.addEventListener('click', function() {
+            thumbnail.style.display = 'none';
+            playButton.style.display = 'none';
+            video.style.display = 'block';
+            video.play();
+        });
+
+        video.addEventListener('pause', function() {
+            if (video.currentTime === 0 || video.ended) {
+                video.style.display = 'none';
+                thumbnail.style.display = 'block';
+                playButton.style.display = 'block';
+            }
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const tabs = document.querySelectorAll('.k_custom-tab');
+            const tabContents = document.querySelectorAll('.k_custom-tab-content');
+
+            tabs.forEach(tab => {
+                tab.addEventListener('click', function () {
+                    // Remove active class from all tabs and tab contents
+                    tabs.forEach(t => t.classList.remove('active'));
+                    tabContents.forEach(content => content.classList.remove('active'));
+
+                    // Add active class to clicked tab
+                    this.classList.add('active');
+
+                    // Show corresponding tab content
+                    const targetId = this.getAttribute('data-target');
+                    const targetContent = document.getElementById(targetId);
+                    if (targetContent) {
+                        targetContent.classList.add('active');
+                    }
+                });
+            });
+        });
+    </script>
+     <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const tabLinks = document.querySelectorAll('.k_tab-container ul li a');
+            const tabContents = document.querySelectorAll('.k_custom-tab-content');
+
+            function setActiveTab(tabId) {
+                tabContents.forEach(content => {
+                    content.classList.remove('active');
+                });
+                tabLinks.forEach(link => {
+                    link.classList.remove('active');
+                });
+
+                document.getElementById(tabId).classList.add('active');
+                document.querySelector(`[data-tab="${tabId}"]`).classList.add('active');
+            }
+
+            tabLinks.forEach(link => {
+                link.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const tabId = this.getAttribute('data-tab');
+                    setActiveTab(tabId);
+                });
+            });
+
+            setActiveTab('gaming');
+        });
+    </script>
+    <script>
+        // navbar include  
+        fetch('../y_index/y_navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar').innerHTML = data;
+            });
+        // footer include 
+        fetch('../y_index/y_footer.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('footer').innerHTML = data;
+            });
+    </script>
+  <script>
+    var modal = document.getElementById("myModal");
+    var modalImg = document.getElementById("img01");
+    var captionText = document.getElementById("caption");
+    var images = document.getElementsByClassName("myImg");
+    var icons = document.getElementsByClassName("openModal");
+
+    function openModal() {
+        var img = this.previousElementSibling || this;
+        modal.style.display = "block";
+        modalImg.src = img.src;
+        captionText.innerHTML = img.alt;
+    }
+
+    for (var i = 0; i < images.length; i++) {
+        images[i].onclick = openModal;
+        icons[i].onclick = openModal;
+    }
+
+    var span = document.getElementsByClassName("close")[0];
+    span.onclick = function() {
+        modal.style.display = "none";
+    }
+
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+</script>
+    <script src="../js/jquery-3.7.1.js"></script>
+    <script src="../js/owl.carousel.min.js"></script>
+    <script src="../js/rushita.js"></script>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
