@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Get Intel® oneAPI Math Kernel Library (oneMKL)</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <link href=" https://fonts.cdnfonts.com/css/intel-clear " rel="stylesheet">
+    <link rel="stylesheet" href="../css/owl.carousel.min.css">
+
+    <link rel="stylesheet" href="../css/rushita.css">
+    <link rel="stylesheet" href="../css/rushita_automotive.css">
+    <link rel="stylesheet" href="../css/yatri.css">
+
+    <link rel="stylesheet" href="../css/owl.theme.default.min.css">
+    <style>
+        * {
+            font-family: 'Intel Clear', sans-serif;
+        }
+
+        .k_demo {
+            position: relative;
+            width: 100%;
+            /* max-width: 700px; */
+            margin: 0 auto 20px;
+        }
+
+        .k_demo img {
+            width: 100%;
+            cursor: pointer;
+        }
+
+        .icon {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            font-size: 24px;
+            color: white;
+            cursor: pointer;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 5px;
+            border-radius: 5px;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            padding-top: 100px;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+
+        .modal-content {
+            margin: auto;
+            display: block;
+            width: 80%;
+            max-width: 1300px;
+        }
+
+        .caption {
+            margin: auto;
+            display: block;
+            width: 80%;
+            max-width: 700px;
+            text-align: center;
+            color: #ccc;
+            padding: 10px 0;
+        }
+
+        .close {
+            position: absolute;
+            top: 15px;
+            right: 35px;
+            color: #f1f1f1;
+            font-size: 40px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: #bbb;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        @media only screen and (max-width: 700px) {
+            .modal-content {
+                width: 100%;
+            }
+
+            .k_heritate {
+                width: inherit;
+            }
+        }
+
+        .k_framworkbg1 {
+            background-image: url(../img/rushita_img/fortran.png);
+            background-position: center;
+        }
+
+        td,
+        th {
+            border: 1px solid #dddddd !important;
+            text-align: left;
+            padding: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="navbar"></div>
+    <div>
+        <section class="m_ai_tdrop">
+            <div>
+                <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Developers
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item m_dropActive"
+                            href="../dhruvin_developer-tools/ds_Developer-Zone.html">Overview</a></li>
+                    <li><a class="dropdown-item m_dropActive"
+                            href="../rushita_Solutions/k_solutions_in_Viewall_SDF_Industrial-Automation_Control-flow-Enforcement_Technology.html">Topics
+                            & Technologies</a></li>
+                    <li><a class="dropdown-item m_dropActive"
+                            href="../dhruvin_developer-tools/ds_Development-Tools.html">Tools</a></li>
+                    <li><a class="dropdown-item m_dropActive"
+                            href="../rushita_Solutions/k_solutions_in_Viewall_SDF_Industrial-Automation_Hardware-Platforms.html">Hardware
+                            Platforms</a></li>
+                    <li><a class="dropdown-item m_dropActive"
+                            href="../dhruvin_developer-tools/ds_Resource-Documentation-Center.html">Resources &
+                            Documentation</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="../dhruvin_developer-tools/ds_Learn.html">Learn</a>
+                    </li>
+                    <li><a class="dropdown-item m_dropActive"
+                            href="../dhruvin_developer-tools/ds_Communities-and-Events.html">Community & Events</a></li>
+                    <li><a class="dropdown-item m_dropActive"
+                            href="../dhruvin_developer-tools/ds_Developer-Programs.html">Developer Programs</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="../dhruvin_developer-tools/ds_Get-Help.html">Get
+                            Help</a></li>
+                </ul>
+            </div>
+
+
+            <div class="m_ai_shlash">/</div>
+            <div>
+                <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Tools
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item m_dropActive" href="../Product/B20_developer_catelog.html">Software
+                            Catalog</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="../Product/B17_oneapi.html">oneAPI</a></li>
+                    <li><a class="dropdown-item m_dropActive"
+                            href="../rushita_Solutions/k_solutions_Intel-Tiber™Edge-Platform.html">Intel® Tiber™ Edge
+                            Platform</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="../Product/B10_intel_Quarts.html">FPGA</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="../VK_developers/VK_technology_sdk.html">Intel®
+                            Active Management Technology SDK</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="../VK_developers/VK_intel_adviser.html">Intel®
+                            Advisor</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Intel® AI Reference Models</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Intel® AI Reference Models</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Intel® Collaboration Suite for WebRTC SDK</a>
+                    </li>
+                    <li><a class="dropdown-item m_dropActive" href="../Product/B1_19_Intel_AICloud.html">Intel® Tiber™
+                            AI Cloud</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Intel® Distribution for Python*</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Intel® Distribution for GDB*</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Intel® DPC++ Compatibility Tool</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Intel® Dynamic Application Loader</a></li>
+                    <li><a class="dropdown-item m_dropActive"
+                            href="../rushita_Solutions/k_solutions_Topics_viewall_Cloud-Insider-Program_AI-Frameworks-and-Tools.html">Frameworks</a>
+                    </li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Intel® Embree</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="../VK_developers/VK_ai_scikit.html">Intel® Extension
+                            for Scikit-learn*</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Intel® Fortran Compiler</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Intel® Graphics Performance Analyzers</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Intel® Homomorphic Encryption Toolkit</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Intel® In-Band Manageability</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Intel® Integrated Performance Primitives</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Intel® Integrated Simulation Infrastructure with
+                            Modeling</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Instruction Set Architecture (ISA) Extensions</a>
+                    </li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Intel® Intelligent Storage Acceleration Library
+                            (Intel® ISA-L)</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Modin*</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Intel® MPI Library</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Intel® Neural Compressor</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">OpenCL™ Runtime</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Intel® Open Image Denoise</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Intel® Open Path Guiding Library (Intel® Open
+                            PGL)</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Pin</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Intel® Platform Analysis Library</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Intel Tools for OpenCL™ Software</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Intel Tools for OpenCL™ Applications</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Intel® OpenSWR</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">OpenVINO™ Toolkit</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Intel® Open Volume Kernel Library</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Intel® Optimization for XGBoost*</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Intel® OSPRay</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Intel® OSPRay for Hydra*</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Intel® OSPRay Studio</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">PyTorch* Optimizations from Intel</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">TensorFlow* Optimizations from Intel</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Intel® Rendering Toolkit</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Intel® Smart Edge Open</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Intel® Software Guard Extensions</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Intel® Secure Device Onboard</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Intel® Software Development Emulator</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Intel® Trust Domain Extensions (Intel® TDX)</a>
+                    </li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Intel® Quantum SDK</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Intel® Query Processing Library (Intel® QPL)</a>
+                    </li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Intel® Video Processing Library</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Intel® VTune™ Profiler</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Resellers</a></li>
+                </ul>
+            </div>
+            <div class="m_ai_shlash">/</div>
+
+            <div>
+                <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    oneAPI
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item m_dropActive" href="#">Overview</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Data Parallel C++/SYCL*</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Toolkits</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Tech Articles & How-Tos</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Components</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Code Samples</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Training</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Documentation</a></li>
+                </ul>
+            </div>
+            <div class="m_ai_shlash">/</div>
+            <div>
+                <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Components
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item m_dropActive" href="#">All Components</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Intel® Cryptography Primitives Library</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Intel® oneAPI Collective Communications
+                            Library</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Intel® oneAPI Data Analytics Library</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Intel® oneAPI Deep Neural Network Library</a>
+                    </li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Intel® oneAPI DPC++/C++ Compiler</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Intel® oneAPI DPC++ Library</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Intel® oneAPI Math Kernel Library</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Intel® oneAPI Threading Building Blocks</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">FPGA Support Package for Intel® oneAPI DPC++/C++
+                            Compiler</a></li>
+                </ul>
+            </div>
+            <div class="m_ai_shlash">/</div>
+            <div>
+                <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Intel® oneAPI Math Kernel Library
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item m_dropActive" href="#">Download</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Documentation</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="../rushita_Solutions/k_solutions_Intel-oneAPI-Math-Kernel-Library_Link-Line-Advisor-for-oneMKL.html">Link Line Advisor</a></li>
+                </ul>
+            </div>
+            <div class="m_ai_shlash">/</div>
+            <div class="m_ai_httl">Link Line Advisor for oneMKL </div>
+        </section>
+        <section class="k_framworkbg1" style="background-color: #00285A;">
+            <div class="k_container11 ">
+                <div class="row text-white text-center py-5">
+                    <div class="col-sm-12">
+                        <h1 class="fw-light">Intel® oneAPI Math Kernel Library Link Line Advisor
+                        </h1>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="py-5">
+            <div class="k_container11">
+                <h4 class="fw-light">Introduction</h4>
+                <p>The Intel® oneAPI Math Kernel Library (oneMKL) is designed to run on multiple processors and
+                    operating systems. It is also compatible with several compilers and third-party libraries, and
+                    provides different interfaces to the functionality. To support these different environments, tools,
+                    and interfaces, oneMKL provides multiple libraries to choose from.</p>
+                <p>To see which libraries are recommended for a particular use case, specify the parameters in the
+                    drop-down lists below.</p>
+            </div>
+        </section>
+        <section>
+            <div class="k_container11">
+                <div class="row py-5">
+                    <div class="col-xxl-5 col-lg-8 col-md-12 col-sm-12">
+                        <div class="k_table-container">
+                            <tr class="">
+                                <td class="title" colspan="2">Intel® oneAPI Math Kernel Library
+                                    (oneMKL) Link Line Advisor v6.24&nbsp;&nbsp;&nbsp;<br>
+                                    <button class="mb-3 px-2" type="button" onclick="reset_all();">Reset</button>
+                                </td>
+                            </tr>
+                            <form name="linking_widget">
+                                <table id="MainTable" cellspacing="5" cellpadding="0" width="600">
+                                    <colgroup>
+                                        <col width="250">
+                                    </colgroup>
+                                    <tbody>
+                                        
+                                        <tr>
+                                            <td>Select Intel® product:</td>
+                                            <td id="firstcell"><select name="version" onchange="update();">
+                                                    <option value="0">oneMKL 2025</option>
+                                                    <option value="1">oneMKL 2024</option>
+                                                    <option value="2">oneMKL 2023</option>
+                                                    <option value="3">oneMKL 2022</option>
+                                                    <option value="4">oneMKL 2021</option>
+                                                    <option value="5">Intel(R) MKL 2020.0</option>
+                                                    <option value="6">Intel(R) MKL 2019.0</option>
+                                                    <option value="7">Intel(R) MKL 2018.0</option>
+                                                    <option value="8">Intel(R) MKL 2017.0</option>
+                                                    <option value="9">Intel(R) Parallel Studio XE 2020</option>
+                                                    <option value="10">Intel(R) Parallel Studio XE 2019</option>
+                                                    <option value="11">Intel(R) Parallel Studio XE 2018</option>
+                                                    <option value="12">Intel(R) Parallel Studio XE 2017</option>
+                                                </select></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Select OS: </td>
+                                            <td><select name="OS" onchange="update();">
+                                                    <option value="0">&lt;Select operating system&gt;</option>
+                                                    <option value="2">Windows*</option>
+                                                    <option value="3">Linux*</option>
+                                                </select></td>
+                                        </tr>
+                                        <tr id="XeonPhi" style="display: none;">
+                                            <td>Select usage model of Intel® Xeon Phi™ Coprocessor:
+                                            </td>
+                                            <td><select name="MIC" onchange="update();" disabled="">
+                                                    <option value="0">&lt;Select usage model&gt;</option>
+                                                    <option value="1">None</option>
+                                                    <option value="3">Automatic Offload</option>
+                                                    <option value="4">Compiler Assisted Offload</option>
+                                                </select></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Select programming language: </td>
+                                            <td><select name="language" onchange="update();" disabled="">
+                                                    <option value="0">&lt;Select programming language&gt;</option>
+                                                    <option value="1">C/C++</option>
+                                                    <option value="2">Fortran</option>
+                                                    <option value="3">DPC++</option>
+                                                </select></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Select compiler: </td>
+                                            <td><select name="compiler" onchange="update();" disabled="">
+                                                    <option value="0">&lt;Select compiler&gt;</option>
+                                                    <option value="3">Intel(R) oneAPI DPC++/C++</option>
+                                                    <option value="4">Intel(R) Fortran Compiler</option>
+                                                    <option value="5">GNU Fortran</option>
+                                                    <option value="6">GNU C/C++</option>
+                                                    <option value="10">MS C/C++</option>
+                                                </select></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Select architecture:</td>
+                                            <td><select name="arch" onchange="update();" disabled="">
+                                                    <option value="1">Intel(R) 64</option>
+                                                </select></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Select dynamic or static linking:</td>
+                                            <td><select name="dynstat" onchange="update();" disabled="">
+                                                    <option value="0">&lt;Select linking&gt;</option>
+                                                    <option value="1">Static</option>
+                                                    <option value="2">Dynamic</option>
+                                                    <option value="3">Single Dynamic Library</option>
+                                                </select></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Select interface layer:</td>
+                                            <td><select name="iface" onchange="update();" disabled="">
+                                                    <option value="0">&lt;Select interface&gt;</option>
+                                                    <option value="1">C API with 32-bit integer</option>
+                                                    <option value="2">C API with 64-bit integer</option>
+                                                    <option value="6">Help me</option>
+                                                </select></td>
+                                        </tr>
+                                        <tr>
+                                            <td id="fixed_length">Select threading layer:</td>
+                                            <td><select name="threading" onchange="update();" disabled="">
+                                                    <option value="0">&lt;Select threading&gt;</option>
+                                                    <option value="1">OpenMP threading</option>
+                                                    <option value="2">Sequential</option>
+                                                    <option value="3">TBB threading</option>
+                                                </select></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Select OpenMP library:</td>
+                                            <td><select name="omp" onchange="update();" disabled="">
+                                                    <option value="0">&lt;Select OpenMP&gt;</option>
+                                                    <option value="1">Intel(R) (libiomp5)</option>
+                                                </select></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Enable OpenMP offload feature to GPU:</td>
+                                            <td><input type="checkbox" name="omp_offload_checkbox" value="omp_offload"
+                                                    disabled="" onclick="update();"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Select cluster library:</td>
+                                            <td>
+                                                <input type="checkbox" name="cluster" value="cpardiso" onclick="update();">
+                                                Parallel Direct Sparse Solver for Clusters (BLACS required)<br>
+                                                <input type="checkbox" name="cluster" value="cdft" onclick="update();">
+                                                Cluster Discrete Fast Fourier Transform (BLACS required)<br>
+                                                <input type="checkbox" name="cluster" value="scalapack" onclick="update();">
+                                                ScaLAPACK (BLACS required)<br>
+                                                <input type="checkbox" name="cluster" value="blacs" onclick="update();">
+                                                BLACS<br>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Select MPI library:</td>
+                                            <td><select name="mpi" onchange="update();" disabled="">
+                                                    <option value="0">&lt;Select MPI&gt;</option>
+                                                    <option value="1">Intel(R) MPI</option>
+                                                    <option value="3">MPICH2</option>
+                                                    <option value="4">Open MPI</option>
+                                                </select></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Select the Fortran 95 interfaces: </td>
+                                            <td>
+                                                <input type="checkbox" name="fortran95" value="blas95" onclick="update();"
+                                                    disabled=""> BLAS95 <br>
+                                                <input type="checkbox" name="fortran95" value="lapack95" onclick="update();"
+                                                    disabled=""> LAPACK95 <br>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Select SYCL domain library:</td>
+                                            <td><select name="sycl_domain" onchange="update();" disabled="">
+                                                    <option value="0">&lt;Select Domain&gt;</option>
+                                                    <option value="1">All</option>
+                                                    <option value="2">BLAS</option>
+                                                    <option value="3">LAPACK</option>
+                                                    <option value="4">DFT</option>
+                                                    <option value="5">Sparse</option>
+                                                    <option value="6">VM</option>
+                                                    <option value="7">RNG</option>
+                                                    <option value="8">Stats</option>
+                                                    <option value="9">Data Fitting</option>
+                                                </select></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Link with Intel® oneMKL libraries explicitly:</td>
+                                            <td>
+                                                <input type="checkbox" name="link" value="link_MKL" onclick="update();">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Link with DPC++ debug runtime compatible libraries:</td>
+                                            <td>
+                                                <input type="checkbox" name="dpcpp_debug" value="use_dpcpp_debug"
+                                                    disabled="" onclick="update();">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2" id="outputcell"><br>
+                                                Use this link line: <textarea id="linking_line"
+                                                    readonly="yes"></textarea><br>
+                                                <br>
+                                                Compiler options: <textarea id="compiler_line" readonly="yes"></textarea>
+                                                <br>
+                                                <br>
+                                                Notes: <br>
+                                                <table width="600">
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>
+                                                                <div id="oneMKL_lnx_note" style="width: 100%;">
+                                                                    o Set INCLUDE, MKLROOT, TBBROOT, LD_LIBRARY_PATH,
+                                                                    LIBRARY_PATH, and CPATH
+                                                                    environment variables in the command shell using the
+                                                                    Intel(R) oneAPI
+                                                                    setvars script in Intel(R) oneAPI root directory.
+                                                                    Please also see the Intel(R) oneMKL Developer Guide.
+                                                                </div>
+                                                                <div id="oneMKL_win_note"
+                                                                    style="display: none; width: 100%;">
+                                                                    o Set PATH, LIB, INCLUDE, MKLROOT and TBBROOT
+                                                                    environment variables in the command shell using the
+                                                                    Intel(R) oneAPI setvars script in Intel(R) oneAPI root
+                                                                    directory.
+                                                                    Please also see the Intel(R) oneMKL Developer Guide.
+                                                                </div>
+                                                                <div id="MKLENV_lnx_103_note"
+                                                                    style="display: none; width: 100%;">
+                                                                    o Set the INCLUDE, MKLROOT, LD_LIBRARY_PATH,
+                                                                    LIBRARY_PATH, and CPATH
+                                                                    environment variables in the command shell using one of
+                                                                    mklvars script
+                                                                    files in the 'bin' subdirectory of the Intel(R) MKL
+                                                                    installation directory.
+                                                                    Please see also the Intel(R) oneMKL Developer Guide.
+                                                                </div>
+                                                                <div id="MKLENV_mic_note"
+                                                                    style="display: none; width: 100%;">
+                                                                    o Set the MIC_LD_LIBRARY_PATH environment
+                                                                    variable using one of mklvars script files in
+                                                                    the 'bin' subdirectory of the Intel(R) MKL
+                                                                    installation directory. Please see also the
+                                                                    Intel(R) oneMKL Developer Guide.
+                                                                </div>
+                                                                <div id="MKLENV_phi_note"
+                                                                    style="display: none; width: 100%;">
+                                                                    o Set the LD_LIBRARY_PATH environment
+                                                                    variable using one of mklvars script files in
+                                                                    the 'bin' subdirectory of the Intel(R) MKL
+                                                                    installation directory. Please see also the
+                                                                    Intel(R) oneMKL Developer Guide.
+                                                                </div>
+                                                                <div id="MKLENV_mic_ao_note"
+                                                                    style="display: none; width: 100%;">
+                                                                    o Set the environment variable: MKL_MIC_ENABLE=1
+                                                                </div>
+                                                                <div id="MKLENV_mic_ao_nonintel_note"
+                                                                    style="display: none; width: 100%;">
+                                                                    o Using non-Intel compiler in Automatic Offload mode is
+                                                                    possible
+                                                                    only when there are no OMP directives in application's
+                                                                    code
+                                                                </div>
+                                                                <div id="MKLENV_mac_103_note"
+                                                                    style="display: none; width: 100%;">
+                                                                    o Set the INCLUDE, MKLROOT, DYLD_LIBRARY_PATH,
+                                                                    LIBRARY_PATH, and CPATH
+                                                                    environment variables in the command shell using one of
+                                                                    mklvars script
+                                                                    files in the 'bin' subdirectory of the Intel(R) MKL
+                                                                    installation directory.
+                                                                    Please see also the Intel(R) oneMKL Developer Guide.
+                                                                </div>
+                                                                <div id="MKLENV_win_103_note"
+                                                                    style="display: none; width: 100%;">
+                                                                    o Set the PATH, LIB and INCLUDE environment variables in
+                                                                    the command shell using
+                                                                    one of mklvars script files in the 'bin' subdirectory of
+                                                                    the Intel(R) MKL
+                                                                    installation directory. Please see also the
+                                                                    Intel(R) oneMKL Developer Guide.
+                                                                </div>
+                                                                <div id="MKLENV_lnx_102_note"
+                                                                    style="display: none; width: 100%;">
+                                                                    o Set the INCLUDE, MKLROOT, LD_LIBRARY_PATH,
+                                                                    LIBRARY_PATH, and CPATH
+                                                                    environment variables in the command shell using one of
+                                                                    mklvars script
+                                                                    files in the 'tools/environment' subdirectory of the
+                                                                    Intel(R) MKL installation
+                                                                    directory. Please see also the Intel(R) oneMKL Developer
+                                                                    Guide.
+                                                                </div>
+                                                                <div id="MKLENV_mac_102_note"
+                                                                    style="display: none; width: 100%;">
+                                                                    o Set the INCLUDE, MKLROOT, DYLD_LIBRARY_PATH,
+                                                                    LIBRARY_PATH, and CPATH
+                                                                    environment variables in the command shell using one of
+                                                                    mklvars script
+                                                                    files in the 'tools/environment' subdirectory of the
+                                                                    Intel(R) MKL installation
+                                                                    directory. Please see also the Intel(R) oneMKL Developer
+                                                                    Guide.
+                                                                </div>
+                                                                <div id="MKLENV_win_102_note"
+                                                                    style="display: none; width: 100%;">
+                                                                    o Set the PATH, LIB and INCLUDE environment variables in
+                                                                    the command shell using
+                                                                    one of mklvars script files in the 'tools/environment'
+                                                                    subdirectory of the
+                                                                    Intel(R) MKL installation directory. Please see
+                                                                    also the Intel(R) oneMKL Developer Guide.
+                                                                </div>
+                                                                <div id="Solver_note" style="display: none; width: 100%;">
+                                                                    o You may remove libraries with 'solver' in the name
+                                                                    from the link line if you
+                                                                    do not use the iterative solver or GMP domain.
+                                                                </div>
+                                                                <div id="SingleDyn_note"
+                                                                    style="display: none; width: 100%;">
+                                                                    o To set the threading layer at run time, use the
+                                                                    mkl_set_threading_layer
+                                                                    function or set MKL_THREADING_LAYER variable to one of
+                                                                    the following values:INTEL, TBB,
+                                                                    SEQUENTIAL, PGI. To set interface layer at run time, use
+                                                                    the
+                                                                    mkl_set_interface_layer function or set the
+                                                                    MKL_INTERFACE_LAYER variable to LP64
+                                                                    or ILP64. Please see also the Intel(R) oneMKL Developer
+                                                                    Guide.
+                                                                </div>
+                                                                <div id="Warning_note" style="display: none; width: 100%;">
+                                                                    o Please be sure that you have used the recommended
+                                                                    compiler options for the
+                                                                    selected interface layer. Caution: linking
+                                                                    Intel(R) MKL libraries with your objects
+                                                                    compiled for different interface layer may lead
+                                                                    to run-time errors.
+                                                                </div>
+                                                                <div id="F95_note" style="display: none; width: 100%;">
+                                                                    o Set the F95ROOT variable. Fortran 95 interfaces are
+                                                                    compiler-dependent. The
+                                                                    Fortran 95 interfaces and wrappers are delivered as
+                                                                    sources, build the
+                                                                    appropriate library and modules with your
+                                                                    compiler. Please see also the Intel(R) oneMKL Developer
+                                                                    Guide.
+                                                                </div>
+                                                                <div id="MKLENV_blacs_note"
+                                                                    style="display: none; width: 100%;">
+                                                                    o If you are using a non-default MPI, assign the same
+                                                                    appropriate value to
+                                                                    MKL_BLACS_MPI on all nodes. Set MKL_BLACS_MPI variable
+                                                                    to one of the following
+                                                                    values: INTELMPI or MSMPI.
+                                                                </div>
+                                                                <div id="MKLENV_mpich1_note"
+                                                                    style="display: none; width: 100%;">
+                                                                    o Support of MPICH1 is deprecated and will be removed
+                                                                    starting from Intel(R) MKL 2017.
+                                                                </div>
+                                                                <div id="DPCPP_note" style="display: none; width: 100%;">
+                                                                    o This compiler/link line options are provided for dpcpp
+                                                                    driver.
+                                                                    You may need to add other options if you choose to use
+                                                                    another driver.
+                                                                </div>
+                                                                <div id="DPCPP_ompoffload_note"
+                                                                    style="display: none; width: 100%;">
+                                                                    o Check <a
+                                                                        href="#">release notes</a> for current openMP
+                                                                    offload feature limitations.
+                                                                    This compiler/link line options are provided for icx
+                                                                    driver.
+                                                                </div>
+                                                                <div id="LP64_API_note" style="display: none; width: 100%;">
+                                                                    o Some domains provide special 64-bit integer API with
+                                                                    _64 suffix that can be mixed with 32-bit integer API.
+                                                                    Check <a
+                                                                        href="#">Using the ILP64 Interface vs. LP64
+                                                                        Interface</a> for more details.
+                                                                </div>
+                                                                <div id="Offload_domain_note"
+                                                                    style="display: none; width: 100%;">
+                                                                    o Vector Math and Random Number Generator functions do
+                                                                    not support OpenMP Offload using Single Dynamic Library
+                                                                    linking yet.
+                                                                </div>
+                                                                <div id="OpenMP_51_note"
+                                                                    style="display: none; width: 100%;">
+                                                                    o "dispatch" construct from OpenMP API Specification 5.1
+                                                                    requires the extra option "-fopenmp-version=51".
+                                                                </div>
+                                                                <div id="PGI_deprecation_note"
+                                                                    style="display: none; width: 100%;">
+                                                                    o PGI support is deprecated and will be removed in the
+                                                                    oneMKL 2025.0 release.
+                                                                </div>
+                                                                <div id="qmkl_sycl_domain_support_note"
+                                                                    style="display: none; width: 100%;">
+                                                                    o Compiler option qmkl-sycl-impl does not support the
+                                                                    experimental Data Fitting domain. All oneMKL SYCL
+                                                                    dynamic libraries are linked instead.
+                                                                </div>
+                                                                <div id="ia32_deprecation_note"
+                                                                    style="display: none; width: 100%;">
+                                                                    o IA-32 support is deprecated and will be removed in the
+                                                                    oneMKL 2025.0 release.
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    <div id="footer"></div>
+    <script>
+        const playButton = document.querySelector('.play-button');
+        const video = document.getElementById('myVideo');
+        const thumbnail = document.querySelector('.thumbnail');
+
+        playButton.addEventListener('click', function () {
+            thumbnail.style.display = 'none';
+            playButton.style.display = 'none';
+            video.style.display = 'block';
+            video.play();
+        });
+
+        video.addEventListener('pause', function () {
+            if (video.currentTime === 0 || video.ended) {
+                video.style.display = 'none';
+                thumbnail.style.display = 'block';
+                playButton.style.display = 'block';
+            }
+        });
+    </script>
+    <script>
+        // navbar include  
+        fetch('../y_index/y_navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar').innerHTML = data;
+            });
+        // footer include 
+        fetch('../y_index/y_footer.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('footer').innerHTML = data;
+            });
+    </script>
+    <script>
+        var modal = document.getElementById("myModal");
+        var modalImg = document.getElementById("img01");
+        var captionText = document.getElementById("caption");
+        var images = document.getElementsByClassName("myImg");
+        var icons = document.getElementsByClassName("openModal");
+
+        function openModal() {
+            var img = this.previousElementSibling || this;
+            modal.style.display = "block";
+            modalImg.src = img.src;
+            captionText.innerHTML = img.alt;
+        }
+
+        for (var i = 0; i < images.length; i++) {
+            images[i].onclick = openModal;
+            icons[i].onclick = openModal;
+        }
+
+        var span = document.getElementsByClassName("close")[0];
+        span.onclick = function () {
+            modal.style.display = "none";
+        }
+
+        window.onclick = function (event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    </script>
+    <script src="../js/jquery-3.7.1.js"></script>
+    <script src="../js/owl.carousel.min.js"></script>
+    <script src="../js/rushita.js"></script>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
