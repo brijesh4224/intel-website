@@ -1,0 +1,1051 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FPGA Support Package for Intel oneAPI DCP++/C++ Compiler Release Notes</title>
+
+    <link rel="stylesheet" href="/css/dk_developer_edge_iot_&_5G_social_distancing_for_retail_settings.css">
+
+    <!-- header footer -->
+    <link rel="stylesheet" href='/css/yatri.css'>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" rel="stylesheet">
+</head>
+
+<style>
+    .dk_oneapi_deco{
+        color: #0068b5;
+        font-weight: bold;
+    }
+    .dk_oneapi_deco:hover{
+        text-decoration: underline;
+    }
+
+    /****** VMware Horizon ******/
+    .mv_vmware_bg_color{
+        background-color: #0071C5;
+    }
+    .mv_vmware_padd{
+        padding: 10px 0 5px 0;
+    }
+    .mv_vmware_heading h1{
+        font-weight: 250;
+        color: #fff;
+    }
+    .mv_vmware_download_button{
+        display: flex;
+        -webkit-box-align: baseline;
+        align-items: baseline;
+        max-height: 48px;
+        position: relative;
+        text-align: right;
+        margin-top: 9px;
+        box-sizing: border-box;
+        /* width: 60%; */
+    }
+    .mv_vmware_download_button a{
+        color: #fff;
+        border-style: solid;
+        border-width: 1px;
+        border-color: #fff;
+        border-radius: 0;
+        line-height: 1.2;
+        background: rgba(0, 0, 0, 0);
+        padding: 7.6px;
+        position: relative;
+        white-space: normal;
+        margin-bottom: 10px;
+        /* min-width: 113px; */
+        display: inline-block;
+        text-align: center;
+    }
+    .mv_vmware_download_button a:hover{
+        background-color: #fff;
+        color: #0071C5;
+    }
+    .mv_vmware_download_button i{
+        margin-left: 6px;
+    }
+    .mv_cd_page_marquee{
+        display: flex;
+        margin-bottom: 5px;
+    }
+    .mv_cd_page_marquee label{
+        display: inline-block;
+        margin-bottom: 5px;
+        font-weight: 700;
+        color: #fff;
+    }
+    .mv_cd_page_marquee p a{
+        margin-left: 1.5rem;
+        border-bottom: 1px dashed #fff;
+        display: inline-block;
+        padding-bottom: .375rem;
+        margin-bottom: .5rem;
+        color: #fff;
+    }
+    .mv_cd_page_marquee p a:hover{
+        border-bottom: 1px solid #fff;
+    }
+    .mv_cd_page_marquee_info{
+        display: flex;
+        margin-bottom: 3px;
+        -webkit-box-orient: horizontal;
+        -webkit-box-direction: normal;
+    }
+    .mv_cd_page_marquee_action{
+        margin-bottom: 3px;
+    }
+    .mv_cd_page_marquee_action_padd{
+        display: inline-block;
+        margin-right: 3.25rem;
+        margin-top: 5px;
+        color: #fff;
+    }
+    .mv_cd_page_marquee_action_padd label{
+        display: flex;
+        font-size: .875rem;
+        font-weight: 400;
+        line-height: 20px;
+        margin-bottom: 7px;
+    }
+    .mv_cd_page_marquee_action_padd span{
+        font-weight: 600;
+    }
+    /* **************************** */
+
+    .dk_code_blue{
+        color: #069 !important;
+        font-weight: 700 !important;
+    }
+    .dk_code_green{
+        color: #008200 !important;
+    }
+    .dk_code_org{
+        color: #b24501 !important;
+    }
+
+
+    @media(max-width:991px){
+        /* VMware Horizon */
+        .mv_vmware_download_button a{
+            width: 100% !important;
+        }
+        .mv_cd_page_marquee_action_padd{
+            display: block !important;
+        }
+    }
+
+    @media (max-width: 767px){
+    .dk_designed_oneapi{
+        flex-wrap: wrap-reverse !important;
+    }
+    .dk_designed_oneapi img{
+        margin-bottom: 2rem;
+        }  
+    .dk_types_of_information img{
+        width: 100% !important;
+    }     
+    }
+    .dk_overview_api{
+        word-wrap: break-word;
+        background-color: #e6e6e6;
+        padding: 20px;
+        border-left: 3px solid #fdb813;
+    }
+    .dk_overview_api p{
+        font-weight: bold;
+    }
+    .dk_overview_api_sub{
+        color: blue;
+        text-decoration: underline !important;
+        font-weight: 700;
+    }
+    .dk_overview_api_sub:hover{
+        color: blue;
+    }
+    .dk_overview_api_sub2{
+        color: blue;
+        text-decoration: underline !important;
+        font-weight: 400;
+    }
+    .dk_overview_api_sub2:hover{
+        color: blue;
+    }
+</style>
+
+<body>
+
+    <!-- header -->
+    <div id="navbar"></div>
+
+    <!-- --------------------------------------------------------------------- -->
+    <section>
+        <nav class="mb_sub_nv">
+            <div class="mv_breadcrumb">
+                <ol class="mv_spark_breadcrumb_items">
+                    <li><a href="">Developers</a></li>
+                    <li><a href="">Tools</a></li>
+                    <li><a href="">oneAPI</a></li>
+                    <li><a href="">Components</a></li>
+                    <li><a href="">FPGA Support Package for Intel® oneAPI DPC++/C++ Compiler</a></li>
+                    <li><p class="mb-0">FPGA-Support-Package</p></li>
+                </ol>
+            </div>
+        </nav>
+    </section>
+    <!-- --------------------------------------------------------------------- -->
+
+    <!------------------------- Intel® oneAPI ----------------------------------->
+    <section>
+        <div style="background-color: #41728A;" class="mv_intel_amx_bg_color">
+            <div class="container">
+                <div class="row mv_intel_amx_content">
+                    <div class="col-md-12 col-sm-12 mv_intel_amx_item">
+                        <div class="mv_intel_amx">
+                            <h1 class="mb-0" style="font-weight: 300; font-size: 1.75rem; padding: 20px; padding-left: 0px;">FPGA Support Package for the Intel® oneAPI DCP++/C++ Compiler Release Notes</h1>
+                        </div>
+                        <div class="mv_cd_page_marquee_info">
+                            <div class="mv_cd_page_marquee_action">
+                                <div class="mv_cd_page_marquee_action_padd">
+                                    <label for="">ID</label>
+                                    <span>825737</span>
+                                </div>
+                                <div class="mv_cd_page_marquee_action_padd">
+                                    <label for="">Updated</label>
+                                    <span>10/24/2024</span>
+                                </div>
+                                <div class="mv_cd_page_marquee_action_padd">
+                                    <label for="">Version</label>
+                                    <span>2025.0</span>
+                                </div>
+                                <div class="mv_cd_page_marquee_action_padd">
+                                    <label for=""></label>
+                                    <span>Public</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- --------------------------------------------------------------------- -->
+
+    <section class="container py-5">
+        <div class="row">
+            <div class="d-flex justify-content-end col-xl-10 py-3 d-md-none">
+                <i class="fa-solid fa-print fs-4 px-2 " style="color:#0068B5"></i>
+                <i class="fa-regular fa-envelope fs-4 px-2" style="color:#0068B5"></i>
+            </div>
+            <div class="col-lg-3 col-md-4">
+                <!-- nav -->
+                <div class="VK_sticky_side_bar VK_side_bar_postion_stickey">
+                    <div>
+                        <div class="VK_sidebar_dropdown">
+                            <ul class="list-unstyled ps-3 mb-0">
+                                <li>
+                                    <a href="#dk_system" class="text-decoration-none VK_a my-1">
+                                        Where To Find the FPGA Support Package
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#dk_intel" class="text-decoration-none VK_a my-1">
+                                        Supported Hardware and Operating System
+                                    </a>
+                                </li>
+                            <details>
+                                <summary>
+                                    <a href="#dk_base" class="text-decoration-none VK_a">
+                                        FPGA Support Package Release Notes
+                                    </a>
+                                </summary>
+                                <ul class="list-unstyled ps-3 mb-0">
+                                    <li>
+                                        <a href="#dk_toolkit" class="text-decoration-none VK_a my-1">
+                                            2025.0 New and Changed Features
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#dk_DPC" class="text-decoration-none VK_a my-1">
+                                            2025.0 Bugs Fixes
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#dk_library" class="text-decoration-none VK_a my-1">
+                                            2025.0 Known Issues and Limitations
+                                        </a>
+                                    </li>
+                                </ul>
+                            </details>
+                                <li>
+                                    <a href="#dk_installation" class="text-decoration-none VK_a my-1">
+                                        Intel® oneAPI DPC++/C++ Compiler Known Issues
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#dk_start" class="text-decoration-none VK_a my-1">
+                                        Code Samples
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#dk_issues" class="text-decoration-none VK_a my-1">
+                                        Previous Release Notes
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#dk_notes" class="text-decoration-none VK_a my-1">
+                                        Additional Documentation
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#dk_disclaimers" class="text-decoration-none VK_a my-1">
+                                        Notices and Disclaimers
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-9 col-md-8">
+                <div class="d-md-flex justify-content-end col-xl-10 py-3 d-none">
+                    <div class="">
+                        <i class="fa-solid fa-print fs-4 px-2 " style="color:#0068B5"></i>
+                        <i class="fa-regular fa-envelope fs-4 px-2" style="color:#0068B5"></i>
+                    </div>
+                </div>
+                <div class="col-xl-10 VK_all_sections">
+                    <section id="dk_random_number">
+                        <p class="mb-0">&nbsp;</p>
+                    </section>
+
+                    <p class="">&nbsp;</p>
+
+                    <section id="dk_system">
+                        <h4 style="font-weight: 350; margin-top: 2.5rem;">Where To Find the FPGA Support Package</h4>
+                        <p class="mb-2">The FPGA Support Package for the Intel oneAPI DPC++/C++ Compiler requires the Intel® oneAPI DPC++/C++ Compiler as provided by the Intel® oneAPI Base Toolkit (Base Kit). Visit the <a class="b_special_a1" href="">FPGA Support Package for Intel® oneAPI DPC++/C++ Compiler</a> website to download the toolkit and the FPGA support package.</p>
+                        <p class="">Both the base toolkit and the FPGA support package are required for FPGA design flows. </p>
+                    </section>
+
+                    <section id="dk_intel">
+                        <h4 style="font-weight: 350; margin-top: 2.5rem;">Supported Hardware and Operating System</h4>
+                        <p class="mb-2">See <a class="b_special_a1" href="">Intel® oneAPI DPC++/C++ Compiler System Requirements</a>.</p>
+                    </section>
+
+                    <section id="dk_oneAPI">
+                        <h4 style="font-weight: 350; margin-top: 2.5rem; margin-bottom: 11px;">FPGA Support Package Release Notes</h4>
+                        <a class="b_special_a2" href="">2025.0 Release Notes</a>
+                    </section>
+
+                    <section id="dk_base">
+                        <h4 style="font-weight: 500; margin-top: 22px; margin-bottom: 11px;">2025.0 New and Changed Features</h4>
+                        <ul>
+                            <li>Removed support for the Quartus® Prime Pro Edition versions 21.2 to&nbsp;21.4.</li>
+                            <li>Added support to the following operating systems:
+                                <ul>
+                                    <li>Quartus® Prime Standard Edition version 23.1</li>
+                                    <li>Quartus® Prime Pro Edition versions 22.3, 22.4, 23.1, 23.2, 23.3, 23.4, 24.1, and 24.2.</li>
+                                    <li>Windows* 10 and 11</li>
+                                    <li>Ubuntu* 22.04</li>
+                                    <li>RHEL* 9.1, 9, and 8.6&nbsp;</li>
+                                    <li>SUSE15 SP5</li>
+                                </ul>
+                            </li>
+                        </ul>
+                        <p>&nbsp;</p>
+                    </section>
+
+                    <section id="dk_toolkit">
+                        <h4 style="font-weight: 500; margin-top: 22px; margin-bottom: 11px;">2025.0 Bugs Fixes</h4>
+                        <ul>
+                            <li>The <span style="color: #53565a; background-color: #e6e6e6;">-Xsallow-wide-device-globals</span> compiler option is now supported in emulation.</li>
+                            <li>Fixed the issue where Microsoft* Windows* systems using the <span style="color: #53565a; background-color: #e6e6e6;">%ld</span> format specifier with the <span style="color: #53565a; background-color: #e6e6e6;">printf</span> function would&nbsp;show incorrect results.&nbsp;</li>
+                            <li>Fixed the issue where compiling using <span style="color: #53565a; background-color: #e6e6e6;">-Xsfast-compile</span> compiler option would fail&nbsp;when targeting the BSP for the Intel® FPGA SmartNIC N6000-PL Platform (formerly code-named Arrow Creek):
+                            <ul>
+                            </ul>
+                            </li>
+                            <li>Fixed the issue where the Quartus® Summary section of the FPGA Optimization Report was not getting populated when compiling a N6000-PL Platform FPGA hardware image.&nbsp;</li>
+                            <li>Fixed the issue where the host program would crash at runtime if the design used <span style="color: #53565a; background-color: #e6e6e6;">ac_int</span> variables larger than 256 bits.&nbsp;</li>
+                            <li>
+                            <p>Fixed the issue where applying the <span style="color: #53565a; background-color: #e6e6e6;">[[intel::fpga_register]]</span> attribute to a variable would cause the compiler to crash an error message.</p>
+                            </li>
+                            <li>
+                            <p>Fixed the issue where freeing a USM pointer allocated but not used as a kernel argument would result in a segmentation fault error.</p>
+                            </li>
+                            <li>
+                            <p>Fixed the issue where the compiler JIT engine&nbsp;would issue a warning message in the FPGA acceleration flow&nbsp;if you used host pipes.</p>
+                            </li>
+                            <li>
+                            <p>Fixed the issue where the compiler would issue an error even when the pipe is specified with a protocol that includes a ready signal.</p>
+                            </li>
+                            <li>
+                            <p>Fixed the issue where calling&nbsp;<span style="color: #53565a; background-color: #e6e6e6;">ext::oneapi::experimental::printf</span> with a&nbsp;float, char<strong> </strong>or short&nbsp;value would not print the correct value.&nbsp;</p>
+                            </li>
+                            <li>Fixed the issue where the programs using the <span style="color: #53565a; background-color: #e6e6e6;">fpga_datapath</span> template would crash.</li>
+                            <li>
+                            <p>Fixed the issue where a design using macros defined in <span style="color: #53565a; background-color: #e6e6e6;">#include &lt;sycl/ext/intel/prototype/interfaces.hpp&gt;</span> and having a <span style="color: #53565a; background-color: #e6e6e6;">device_global</span> variable with the <span style="color: #53565a; background-color: #e6e6e6;">[[intel::fpga_register]]</span> attribute applied&nbsp;would crash and the compiler would issue an&nbsp;error message.</p>
+                            </li>
+                            <li>
+                            <p>Fixed the issue where the compiler would issue an error message when applying memory attributes, such as the <span style="color: #53565a; background-color: #e6e6e6;">[[intel::fpga_register]]</span> attribute, to member variables of structs.</p>
+                            </li>
+                            <li>
+                            <p>Fixed the issue in the FPGA Optimization Report where designs with multiple lambda kernels would report inaccurate results unless the lambda kernels were all given unique names.</p>
+                            </li>
+                            <li>
+                            <p>Fixed the issue where you would encounter functional failures in the FPGA emulation flow when resetting a&nbsp;<span style="color: #53565a; background-color: #e6e6e6;">device_global</span>&nbsp;and loading a new&nbsp;<span style="color: #53565a; background-color: #e6e6e6;">device_image</span>&nbsp;without the&nbsp;<span style="color: #53565a; background-color: #e6e6e6;">device_image</span>&nbsp;scope property.&nbsp;</p>
+                            </li>
+                        </ul>
+                    </section>
+
+                    <section id="dk_DPC">
+                        <h4 style="font-weight: 500; margin-top: 22px; margin-bottom: 11px;"><a class="b_special_a1" href="">2025.0 Known Issues and Limitations</a></h4>
+                        <ul>
+                            <li>When multiple oneAPI versions are installed on Windows, the following assertion failure may happen when running oneAPI FPGA simulation:</li>
+                            <div style="margin-top: 10px; margin-bottom: 10px;" class="mv_code_toolbar">
+                                <div class="mv_toolbar_item mv_copy_icon">
+                                    <i class="fa-regular fa-copy"></i>
+                                </div>
+                                <div class="mv_copy_message text-end hidden">Copied</div>
+                                <div class="code-content">
+                                    <div style="padding-bottom: 0rem !important" class="d-flex mv_pre">
+                                        <div class="">
+                                            <div style="padding-left: 0rem !important;" class="mv_code text-break">
+                                                <p class="mb-0"><span class="">HAL : Getting info version: 2024.2</span></p>
+                                            </div> 
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0px !important;" class="d-flex mv_pre">
+                                        <div class="">
+                                            <div style="padding-left: 0rem !important;" class="mv_code text-break"><span>Runtime version: 20.3</span></div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0px !important;" class="d-flex mv_pre">
+                                        <div class="">
+                                            <div style="padding-left: 0rem !important;" class="mv_code text-break">
+                                                <p class="mb-0"><span class="">MMD version:     2024.2</span></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 10px !important;" class="d-flex mv_pre">
+                                        <div class="">
+                                            <div style="padding-left: 0rem !important;" class="mv_code text-break"><span>Assertion failed: 0 && "MMD version mismatch", file <path>\opencl-fpga-runtime\src\acl_hal_mmd.cpp, line 1435</span></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <p class="mb-2">As a workaround, use the oneAPI installer to uninstall all the undesired oneAPI versions from your system until only a single oneAPI installation remains with the target version.</p>
+                            <li>When simulating designs utilizing host pipes, very rarely, there might be segmentation faults with a stack trace similar to the following. As a workaround, rerun the application again.</li>
+                            <div style="margin-top: 10px; margin-bottom: 10px;" class="mv_code_toolbar">
+                                <div class="mv_toolbar_item mv_copy_icon">
+                                    <i class="fa-regular fa-copy"></i>
+                                </div>
+                                <div class="mv_copy_message text-end hidden">Copied</div>
+                                <div class="code-content">
+                                    <div style="padding-bottom: 0rem !important" class="d-flex mv_pre">
+                                        <div class="">
+                                            <div style="padding-left: 0rem !important;" class="mv_code text-break">
+                                                <p class="mb-0"><span class="">std::atomic<bool>::operator bool (this=0x5f5) at </span></p>
+                                            </div> 
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0px !important;" class="d-flex mv_pre">
+                                        <div class="">
+                                            <div style="padding-left: 0rem !important;" class="mv_code text-break"><span>/nfs/site/disks/psg_ctools_1/gcc/7.5.0/linux64/rhel8/include/c++/7.5.0/atomic:86</span></div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0px !important;" class="d-flex mv_pre">
+                                        <div class="">
+                                            <div style="padding-left: 0rem !important;" class="mv_code text-break"><span>&nbsp;</span></div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0px !important;" class="d-flex mv_pre">
+                                        <div class="">
+                                            <div style="padding-left: 0rem !important;" class="mv_code text-break">
+                                                <p class="mb-0"><span class="">0x00007ffff2976d77 in ACL_MSIM_DEVICE::do_check_for_writes (this=0x4, ch=0x7ffff29fe340 <(anonymous namespace)::s_handle_map>) at src/acl_msim_device.cpp:835</span></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0px !important;" class="d-flex mv_pre">
+                                        <div class="">
+                                            <div style="padding-left: 0rem !important;" class="mv_code text-break">
+                                                <p class="mb-0"><span class="">&nbsp;</span></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 10px !important;" class="d-flex mv_pre">
+                                        <div class="">
+                                            <div style="padding-left: 0rem !important;" class="mv_code text-break"><span>0x00007ffff2976f18 in ACL_MSIM_DEVICE::check_for_writes (arg=0x7ffee4050a00) at src/acl_msim_device.cpp:864</span></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </ul>
+                    </section>
+
+                    <section id="dk_library">
+                        <h4 style="font-weight: 500; margin-top: 22px; margin-bottom: 11px;">New Features</h4>
+                        <p class="mb-0"><b>SYCL Compiler:</b></p>
+                        <ul>
+                           <li><b>SYCL Offload Model</b>: Introduced a new SYCL offload driver mechanism with --offload-new-driver to improve infrastructure for better link times by reducing I/O and external processes.</li>
+                           <li><b>Range Rounding Control</b>: Added -fsycl-range-rounding option for managing range rounding, including forcing full rounding to reduce binary size. Additionally, the experimental -fsycl-exp-range-rounding option performs rounding across all dimensions.</li>
+                           <li><b>Double Type Emulation</b>: Added -fsycl-fp64-conv-emu option for partial emulation of double data types on Intel GPUs.</li>
+                           <li><b>Dynamic Linking</b>: Initial support added for dynamic linking, though some features like kernel_bundle API and AOT mode are not yet supported.</li>
+                        </ul>
+                        <p class="mb-0"><b>SYCL Library:</b></p>
+                        <ul>
+                            <li><b>Extensions</b>: Implemented multiple extensions, including <code style="color: #262626;">sycl_ext_oneapi_prod</code>, <code style="color: #262626;">sycl_ext_oneapi_profiling_tag</code>, <code style="color: #262626;">sycl_ext_oneapi_forward_progress</code>, <code style="color: #262626;">sycl_ext_oneapi_private_alloca</code>, <code style="color: #262626;">syclext_codeplay_enqueue_native_command</code>, and <code style="color: #262626;">sycl_ext_oneapi_enqueue_functions</code>.</li>
+                            <li><b>Group Load/Store</b>: Added support for <code style="color: #262626;">sycl_ext_oneapi_group_load_store</code>, enabling native hardware block read/write capabilities where applicable.</li>
+                            <li><b>Free Function Kernels</b>: Initial support for <code style="color: #262626;">sycl_ext_oneapi_free_function_kernels</code> extension, with known limitations around argument types and diagnostics.</li>
+                            <li><b>Fused Multiply-Add (FMA)</b>: Added experimental ESIMD function fma which results in a guaranteed fused multiply-add operation performed.</li>
+                            <li><b>Improved</b> <code style="color: #262626;">sycl_ext_oneapi_group_sortextension</code>: Updated implementation of <code style="color: #262626;">sycl_ext_oneapi_group_sort</code> extension to match revision 2 of the specification. Previous version 1 is not available anymore and some code changes may be required.</li>
+                        </ul>
+                    </section>
+
+                    <section id="dk_compatibility">
+                        <h4 style="font-weight: 500; margin-top: 22px; margin-bottom: 11px;">Improvements</h4>
+                        <p class="mb-0"><b>SYCL Compiler</b></p>
+                        <ul>
+                            <li>
+                            <p class="mb-2"><strong>Improved Compilation Flow</strong>: The process of generating integration footers has been optimized when no third-party host compiler is used, resulting in fewer temporary files and faster compilation times.</p>
+                            </li>
+                            <li>
+                            <p class="mb-2"><strong>Additional Math Function Support</strong>: New support for math functions like <code style="color: #262626;">truncf</code>, <code style="color: #262626;">sinpif</code>, <code style="color: #262626;">rsqrtf</code>, <code style="color: #262626;">exp10f</code>, <code style="color: #262626;">ceilf</code>, <code style="color: #262626;">copysignf</code>, <code style="color: #262626;">cospif</code>, <code style="color: #262626;">fmaxf</code>, and <code style="color: #262626;">fminf</code> in SYCL kernels has been added as part of the C-CXX-StandardLibrary extension. More Intel Math Functions (IMF), <code style="color: #262626;">::rand</code> and <code style="color: #262626;">::srand</code> in device code on Intel devices, have also been integrated.</p>
+                            </li>
+                            <li>
+                            <p class="mb-2"><strong>Enhanced Error Messaging</strong>: Error messages have been improved for scenarios involving implicit <code style="color: #262626;">this</code> capture in kernels and missing architecture information when multiple targets are passed into the <code style="color: #262626;">-fsycl-targets</code> flag.</p>
+                            </li>
+                            <li>
+                            <p class="mb-2"><strong>Optimized Compilation Flow</strong>: The number of commands needed for generating dependencies using the <code style="color: #262626;">-MD</code> flag has been reduced, streamlining the build process.</p>
+                            </li>
+                            <li>
+                            <p class="mb-2"><strong>Security and Debugging</strong>: Security-related compilation flags for libraries and tools have been strengthened, and the debugging experience has been improved for both Linux and Windows environments.</p>
+                            </li>
+                        </ul>
+                        <p class="mb-0"><b>SYCL Library</b></p>
+                        <ul>
+                            <li><strong>Support for ESIMD functions</strong>: Added support for <code style="color: #262626;">sqrt</code> and <code style="color: #262626;">rsqrt</code> functions for double data types in ESIMD.</li>
+                            <li><strong>Cubemap and Sampled Image Arrays Support</strong>: Updated <code style="color: #262626;">sycl_ext_oneapi_bindless_images</code> extension to support cubemap images and sampled image arrays.</li>
+                            <li><strong>Named Barrier Allocation in ESIMD</strong>: Introduced ESIMD API for dynamic allocation of named barriers.</li>
+                            <li><strong>Executable Command Graph Update</strong>: Added support for whole graph updates using <code style="color: #262626;">executable_command_graph::update</code>.</li>
+                            <li><strong>Deprecation Warning</strong>: A warning has been added for the use of the deprecated <code style="color: #262626;">&lt;CL/sycl.hpp&gt;</code> header.</li>
+                            <li><strong>Accessor Improvements</strong>: <code style="color: #262626;">local_accessor::get_pointer</code> and <code style="color: #262626;">local_accessor::get_multi_ptr</code> now throw an invalid exception if called on the host.</li>
+                            <li><strong>Queue Operations Detection</strong>: Extended detection of nested queue operations to support shortcut methods.</li>
+                            <li><strong>Simplified ESIMD API Interface</strong>: Added overloads of various ESIMD APIs (e.g., <code style="color: #262626;">atomic_update</code>, <code style="color: #262626;">block_load</code>, <code style="color: #262626;">block_store</code>) allowing omission of some template arguments.</li>
+                            <li><strong>Bfloat16 Math Functions</strong>: Updated <code style="color: #262626;">sycl_ext_oneapi_bfloat16_math_functions</code> to support vectors of <code style="color: #262626;">bfloat16</code> passed to math functions.</li>
+                            <li><strong>Optimized <code style="color: #262626;">sycl::vec::as</code></strong>: Improved the performance of <code style="color: #262626;">sycl::vec::as</code> by optimizing the implementation of <code style="color: #262626;">sycl::detail::memcpy</code>.</li>
+                            <li><strong>SYCL 2020 Exception Updates</strong>: Updated the implementation to throw SYCL 2020 exceptions instead of legacy SYCL 1.2.1 exceptions across the board.</li>
+                            <li><strong><code style="color: #262626;">sycl::vec::convert</code> Support</strong>: Added support for <code style="color: #262626;">sycl::vec::convert</code> to and from <code style="color: #262626;">vec&lt;bfloat16, N&gt;</code>.</li>
+                            <li><strong>Deprecations</strong>: <code style="color: #262626;">marray&lt;bool, n&gt;::operator++/--</code> and <code style="color: #262626;">accessor::get_multi_ptr</code> for non-device accessors have been deprecated.</li>
+                            <li><strong>ESIMD Named Barriers</strong>: Moved ESIMD named barrier APIs out of the experimental namespace.</li>
+                            <li><strong>SYCL Extensions and API Enhancements</strong>:
+                            <ul>
+                                <li>Implemented the latest revision of <code style="color: #262626;">sycl_ext_oneapi_free_function_queries</code>.</li>
+                                <li>Extended <code style="color: #262626;">sycl-ls --verbose</code> to print detailed device information, including UUIDs and architecture.</li>
+                                <li>Introduced support for compile-time properties in <code style="color: #262626;">copy_to</code> and <code style="color: #262626;">copy_from</code> ESIMD APIs.</li>
+                            </ul>
+                            </li>
+                            <li><strong>Non-Variadic <code style="color: #262626;">printf</code> Interface</strong>: Switched <code style="color: #262626;">experimental::printf</code> to a non-variadic interface to improve usability when printing float values.</li>
+                            <li><strong>Enhanced ESIMD API Validation</strong>: Improved validation for <code style="color: #262626;">rdregion</code> and <code style="color: #262626;">wrregion</code> APIs using static assertions on template arguments.</li>
+                            <li><strong>SYCL 2020 Specification Alignment</strong>: Updated mutating swizzle operators and scalar conversions for <code style="color: #262626;">vec</code> to align with the SYCL 2020 specification.</li>
+                            <li><strong>Miscellaneous ESIMD Improvements</strong>:
+                            <ul>
+                                <li>Added support for 1- and 2-byte data types to ESIMD prefetch APIs.</li>
+                                <li>Enabled <code style="color: #262626;">ext_intel_matrix</code> support for Intel GNR devices.</li>
+                                <li>Introduced new overloads of <code style="color: #262626;">load_2d</code>, <code style="color: #262626;">store_2d</code>, and <code style="color: #262626;">prefetch_2d</code> ESIMD APIs with compile-time properties.</li>
+                                <li>Added support for group shift algorithms (e.g., <code style="color: #262626;">shift_group_left</code>, <code style="color: #262626;">permute_group_by_xor</code>) for non-uniform groups.</li>
+                                <li>Lifted restrictions on the ESIMD <code style="color: #262626;">block_store</code> API and enhanced the <code style="color: #262626;">slm_atomic_update</code> API to support <code style="color: #262626;">fsub</code> and <code style="color: #262626;">fadd</code>.</li>
+                            </ul>
+                            </li>
+                            <li><strong>Graph and Semaphore Support</strong>:
+                            <ul>
+                                <li>Added support for graph update functionality and external semaphore wait/signal operations with values in the bindless images extension.</li>
+                                <li>Introduced device-to-device copying of <code style="color: #262626;">image_device_handle</code>.</li>
+                            </ul>
+                            </li>
+                            <li><strong>Unified Runtime</strong>: Removed the Plugin Interface, replacing it with the Unified Runtime, which reduces the number and size of redistributable libraries.</li>
+                            <li><strong>Performance Improvements</strong>: Reduced startup overhead of <code style="color: #262626;">libsycl.so</code> by outlining the SYCL JIT compiler into a standalone library, dynamically loaded on first use.</li>
+                        </ul>
+                    </section>
+
+                    <section id="dk_math">
+                        <h4 style="font-weight: 500; margin-top: 22px; margin-bottom: 11px;">Bug Fix</h4>
+                        <p class="mb-0"><b>SYCL Compiler</b></p>
+                        <ul>
+                            <li>Fixed a bug where using the <code style="color: #262626;">-fsycl-link-targets</code> flag would inadvertently trigger additional device code linking steps.</li>
+                            <li>Resolved an issue where AOT-compiling for Intel GPUs would pass PVC-specific flags even if the target device was not a PVC.</li>
+                            <li>Fixed a bug with incorrect file extensions being emitted in AOT compilation when using <code style="color: #262626;">--save-temps</code>.</li>
+                            <li>Fixed an issue where performing separate compilation and linking with <code style="color: #262626;">-fsycl-link</code> resulted in a "number of output files and targets should match in unbundling mode" error during the link step.</li>
+                            <li>Resolved an issue where passing pointers in the generic address space to certain built-in math functions could cause compilation failure.</li>
+                            <li>Fixed a bug where compiling kernels with different <code style="color: #262626;">reqd_work_group_size</code> attributes using <code style="color: #262626;">-fsycl-device-code-split=none</code> could result in a runtime exception about mismatching work-group sizes.</li>
+                            <li>Resolved a bug where using the <code style="color: #262626;">reqd_work_group_size</code> attribute with fewer than three arguments caused a crash.</li>
+                            <li>Addressed issues with <code style="color: #262626;">shift_group_[right|left]</code>, <code style="color: #262626;">permute_by_xor</code>, and <code style="color: #262626;">select_from_group</code> algorithms returning invalid values when used with the <code style="color: #262626;">half</code> data type.</li>
+                        </ul>
+                        <p class="mb-0"><b>SYCL Library</b></p>
+                        <ul>
+                            <li>Fixed a situation where querying <code style="color: #262626;">sycl::ext::oneapi::experimental::info::device</code> could result in an exception instead of returning an empty vector.</li>
+                            <li>Corrected the <code style="color: #262626;">esimd::atan</code> implementation under the <code style="color: #262626;">-ffast-math</code> flag.</li>
+                            <li>Fixed an issue where component devices were not correctly identified as descendants of composite devices when creating a queue.</li>
+                            <li>Addressed an issue where querying for composite devices could return duplicate entries.</li>
+                            <li>Fixed bugs in the copy-constructor of the <code style="color: #262626;">config_2d_mem_access</code> ESIMD class, which led to compilation errors.</li>
+                            <li>Resolved an issue where the use of <code style="color: #262626;">atomic_ref&lt;T*&gt;</code> was not detected as using the <code style="color: #262626;">atomic64</code> aspect, leading to errors.</li>
+                            <li>Fixed bugs with <code style="color: #262626;">ctanh</code> and <code style="color: #262626;">cexp</code> returning incorrect values in edge cases.</li>
+                            <li>Fixed an issue where values passed to the <code style="color: #262626;">-Xs</code> option via <code style="color: #262626;">build_options</code> were not passed down to the device compiler.</li>
+                            <li>Fixed a compilation error when defining kernels as named functors while using <code style="color: #262626;">-fno-sycl-unnamed-lambda</code>.</li>
+                            <li>Corrected compilation issues with the <code style="color: #262626;">-fpreview-breaking-changes</code> flag caused by conflicts with macros in <code style="color: #262626;">windows.h</code>.</li>
+                            <li>Resolved strict aliasing violations in the implementation of <code style="color: #262626;">sycl::vec&lt;sycl::half, N&gt;::operator[]</code> that caused errors.</li>
+                            <li>Fixed bugs where barriers submitted to a command queue with host tasks ignored them, and improved synchronization of host tasks with barriers.</li>
+                            <li>Fixed issues where the compiler could emit unsupported SPIR-V instructions for bit-reversal.</li>
+                            <li>Addressed a bug where default-constructed <code style="color: #262626;">local_accessor</code> arguments could cause runtime errors, especially on Windows and under <code style="color: #262626;">-O0</code> optimization on Linux.</li>
+                            <li>Resolved a hang when invalid values were passed to the <code style="color: #262626;">ONEAPI_DEVICE_SELECTOR</code>.</li>
+                            <li>Fixed issues with persistent cache functionality where certain setups would prevent necessary directories from being created.</li>
+                            <li>Corrected a bug where querying a kernel by name from a kernel bundle could crash the program.</li>
+                            <li>Fixed an error handling bug where non-blocking pipe operations would mistakenly throw exceptions.</li>
+                            <li>Addressed compilation issues when using non-uniform group built-ins with <code style="color: #262626;">marray</code> and <code style="color: #262626;">vec</code>.</li>
+                            <li>Resolved a bug where memory attributes applied to a <code style="color: #262626;">struct</code> used as a type of a <code style="color: #262626;">device_global</code> variable were ignored.</li>
+                            <li>Added missing <code style="color: #262626;">value_type</code> and <code style="color: #262626;">vector_t</code> member type aliases to swizzles.</li>
+                            <li>Fixed shutdown sequence issues when SYCL RT was used in applications or libraries with custom shutdown processes.</li>
+                            <li>Resolved a crash when calling <code style="color: #262626;">event::get_backend()</code> on a default-constructed event in environments with malformed <code style="color: #262626;">ONEAPI_DEVICE_SELECTOR</code>.</li>
+                            <li>Fixed a bug where <code style="color: #262626;">sycl-ls</code> with <code style="color: #262626;">--ignore-device-selectors</code> would not properly ignore the environment variable.</li>
+                            <li>Corrected memory order capabilities returned by the Native CPU backend.</li>
+                            <li>Fixed the variadic constructor of <code style="color: #262626;">sycl::ext::oneapi::experimental::properties</code> to match the extension specification.</li>
+                            <li>Fixed build program failures when using ESIMD functions like <code style="color: #262626;">load_2d</code>, <code style="color: #262626;">store_2d</code>, or <code style="color: #262626;">prefetch_2d</code>.</li>
+                            <li>Resolved a bug where querying free device memory on integrated Intel GPUs returned 0 instead of throwing an exception for unsupported features.</li>
+                            <li>Addressed a heap buffer overflow in the <code style="color: #262626;">sycl_ext_oneapi_kernel_compiler_opencl</code> extension implementation.</li>
+                            <li>Corrected a bug where the <code style="color: #262626;">sycl_ext_oneapi_graph</code> extension ignored the access mode of accessors, creating unnecessary graph edges.</li>
+                            <li>Fixed issues where graph submissions involving barriers could result in runtime errors or cause resource leaks.</li>
+                            <li>Addressed performance regressions when kernels without dependencies were submitted to in-order queues.</li>
+                            <li>Fixed profiling issues in <code style="color: #262626;">Level Zero</code> backend where timestamps could be zeros or incorrect for in-order queues.</li>
+                            <li>Resolved crashes when using multiple queues with immediate command list properties--<code style="color: #262626;">immediate_command_list</code>&nbsp;and&nbsp;<code style="color: #262626;">no_immediate_command_list.</code>.</li>
+                            <li>Fixed a bug where <code style="color: #262626;">info::kernel_device_specific::work_group_size</code> would return the device-specific limit, ignoring the kernel on the <code style="color: #262626;">Level Zero</code> backend.</li>
+                        </ul>
+                    </section>
+
+                    <section id="dk_GDB">
+                        <h4 style="font-weight: 500; margin-top: 22px; margin-bottom: 11px;">Misc</h4>
+                        <p class="mb-0">SYCL Compiler</p>
+                        <ul>
+                            <li>Reverted changes previously made on Windows to support a separate compilation scenario where the compilation step was performed without the <code style="color: #262626;">-fsycl</code> flag, but the link step included the <code style="color: #262626;">-fsycl</code> flag. This scenario is now considered unsupported, as the compiler does not know which version of the standard library to link during the link step.</li>
+                        </ul>
+                    </section>
+
+                    <section id="dk_profiler">
+                        <h4 style="font-weight: 500; margin-top: 22px; margin-bottom: 11px;">API/ABI Breaking Changes in 2025.0</h4>
+                        <p class="mb-0">This release is an ABI-breaking release, meaning that any applications built with older versions of the toolchain must be recompiled to run with newer versions of the SYCL runtime library.</p>
+                        <ul>
+                            <li>Bumped the major version of the SYCL runtime library to 8.</li>
+                            <li>Cleaned up the list of symbols exported from the SYCL runtime library by dropping some legacy symbols and hiding others that should not have been exported.</li>
+                            <li>Updated the ABI of several functions and methods to avoid using <code style="color: #262626;">std::string</code> and other objects in the library interface, allowing SYCL RT to be used in applications built with pre-C++11 ABI.</li>
+                            <li>Changed the <code style="color: #262626;">ext_oneapi_copy</code> API from the experimental <code style="color: #262626;">sycl_ext_oneapi_bindless_images</code> extension to accept const-qualified types for the <code style="color: #262626;">Src</code> parameter.</li>
+                        </ul>
+                        <p class="mb-0">Several API breaking changes were made, including dropping support for previously deprecated APIs and switching implementations of some classes to a preview implementation. Code modification recommendations for some of these breaking changes can be found here.</p>
+                        <ul>
+                            <li>Removed the <code style="color: #262626;">sycl::abs</code> overload taking a floating-point argument.</li>
+                            <li>Removed <code style="color: #262626;">sycl::host_ptr</code> and <code style="color: #262626;">sycl::device_ptr</code>.</li>
+                            <li>Removed <code style="color: #262626;">queue::discard_or_return</code>.</li>
+                            <li>Removed <code style="color: #262626;">sycl::make_unique_ptr</code>.</li>
+                            <li>Removed the <code style="color: #262626;">use_primary_context</code> property and methods related to the previously removed host device.</li>
+                            <li>Removed SYCL 1.2.1 exception subclasses, including <code style="color: #262626;">runtime_error</code>, <code style="color: #262626;">nd_range_error</code>, <code style="color: #262626;">invalid_parameter_error</code>, <code style="color: #262626;">device_error</code>, and <code style="color: #262626;">feature_not_supported</code>.</li>
+                            <li>Removed <code style="color: #262626;">queue::mem_advice</code> overload accepting <code style="color: #262626;">pi_mem_advice</code>.</li>
+                            <li>Removed several deprecated ESIMD APIs.</li>
+                            <li>Removed the non-standard <code style="color: #262626;">sycl::id -&gt; sycl::range</code> conversion operator.</li>
+                            <li>Removed deprecated APIs from the <code style="color: #262626;">sycl_ext_oneapi_bindless_images</code> extension implementation.</li>
+                            <li>Renamed the experimental <code style="color: #262626;">destroy_external_semaphore</code> API from the <code style="color: #262626;">sycl_ext_oneapi_bindless_images</code> extension to <code style="color: #262626;">release_external_semaphore</code>.</li>
+                            <li>Replaced the <code style="color: #262626;">image_channel_order</code> field of the <code style="color: #262626;">image_descriptor</code> struct with the number of channels in the experimental <code style="color: #262626;">sycl_ext_oneapi_bindless_images</code> extension.</li>
+                            <li>Enforced restrictions on the first argument of lambdas/functors passed to <code style="color: #262626;">parallel_for(range)</code> and <code style="color: #262626;">parallel_for(nd_range)</code>.</li>
+                            <li>Switched the <code style="color: #262626;">sycl::vec</code> implementation to its preview version, which uses a different storage type to fix several strict aliasing rule violations.</li>
+                            <li>Restricted math operations available to <code style="color: #262626;">vec&lt;std::byte, N&gt;</code> to those applicable to <code style="color: #262626;">std::byte</code>.</li>
+                            <li>Switched the <code style="color: #262626;">sycl::exception</code> implementation to its preview version.</li>
+                            <li>Switched math built-ins implementation to use their preview version.</li>
+                            <li>Switched <code style="color: #262626;">bfloat16</code> implementation to use its preview version.</li>
+                            <li>Switched <code style="color: #262626;">sycl::nd_item</code> implementation to use its preview version.</li>
+                            <li>Enforced a restriction that a buffer's element type must be device copyable.</li>
+                            <li>Restructured SYCL headers to exclude <code style="color: #262626;">&lt;cmath&gt;</code> and <code style="color: #262626;">&lt;complex&gt;</code>.</li>
+                            <li>Dropped support for the <code style="color: #262626;">SYCL_DEVICE_FILTER</code> environment variable.</li>
+                            <li>Updated the <code style="color: #262626;">accessor::get_pointer</code> interface to return <code style="color: #262626;">global_ptr&lt;value_type&gt;</code>, which can be const-qualified if the accessor data type is const-qualified or if the accessor is read-only.</li>
+                            <li>Removed deprecated APIs related to <code style="color: #262626;">sycl_ext_oneapi_free_function_queries</code>.</li>
+                            <li>Moved <code style="color: #262626;">slm_allocator</code> ESIMD APIs into the experimental namespace.</li>
+                            <li>Removed the deprecated <code style="color: #262626;">usm_system_allocator</code> aspect.</li>
+                            <li>Removed <code style="color: #262626;">get_child_group</code> API from the experimental <code style="color: #262626;">sycl_ext_oneapi_root_group</code> extension.</li>
+                            <li>Simplified template arguments related to <code style="color: #262626;">simd_view</code> of many ESIMD APIs.</li>
+                            <li>Removed <code style="color: #262626;">ESIMD atomic_op::predec</code>.</li>
+                            <li>Dropped interfaces from revision 1 of the experimental <code style="color: #262626;">sycl_ext_oneapi_group_sort</code> extension.</li>
+                            <li>Changed the return type of <code style="color: #262626;">command_graph::begin_recording</code> and <code style="color: #262626;">command_graph::end_recording</code> from <code style="color: #262626;">void</code> to <code style="color: #262626;">bool</code> in the experimental <code style="color: #262626;">sycl_ext_oneapi_graph</code> extension.</li>
+                        </ul>
+                        <p class="mb-0">Breaking changes were also made to compiler flags:</p>
+                        <ul>
+                            <li>Removed the deprecated&nbsp;<code style="color: #262626;">-fsycl-link-huge-device-code</code>, <code style="color: #262626;">-fsycl-[add|link]-targets</code>&nbsp;,&nbsp;<code style="color: #262626;">-foffload-static-lib</code>&nbsp;,&nbsp;<code style="color: #262626;">-foffload-whole-static-lib</code>&nbsp;,&nbsp;<code style="color: #262626;">-fsycl-disable-range-rounding</code>&nbsp;,&nbsp;<code style="color: #262626;">-sycl-std</code> flags.</li>
+                        </ul>
+                    </section>
+
+                    <section id="dk_advisor">
+                        <h4 style="font-weight: 500; margin-top: 22px; margin-bottom: 11px;">SYCL Known Issues</h4>
+                        <ul>
+                            <li>On Windows, the Unified Runtime's Level Zero leak check does not work correctly with the default contexts. This is due to the release of the plugin DLLs racing against the release of static global variables, such as the default context.</li>
+                            <li>The Intel Graphic Compiler's Vector Compute backend does not support certain optimization levels and often produces incorrect results or crashes. This issue directly affects ESIMD code. As a temporary workaround, optimize ESIMD code even in the affected mode.</li>
+                            <li>When using the sycl_ext_oneapi_matrix extension, it is important for some devices to use the appropriate settings corresponding to the device that will run the program, particularly for matrix operations using half data type.</li>
+                            <li>When using queue shortcut functions with in-order queues, dependencies between commands submitted to different queues may be ignored. A workaround is to explicitly call <code style="color: #262626;">.wait()</code>. This issue will be fixed in the next release. In below example,&nbsp;the seocnd kernel will start execution&nbsp;<em>before</em>&nbsp;the first completes its execution.&nbsp;</li>
+                        </ul>
+
+                        <div class="mv_code_toolbar">
+                            <div class="mv_toolbar_item mv_copy_icon">
+                                <i class="fa-regular fa-copy"></i>
+                            </div>
+                            <div class="mv_copy_message text-end hidden">Copied</div>
+                            <div class="code-content">
+                                <div style="padding-bottom: 0rem !important" class="d-flex mv_pre">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        1
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0"><span class="dk_code_green">// q1 long running task</span></p>
+                                        </div> 
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0px !important;" class="d-flex mv_pre">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        2
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">sycl<span class="dk_code_org">::</span>event e <span class="dk_code_org">=</span> q1.single_task<span style="color: #000 !important; opacity: .7;">(</span><span style="color: #000 !important; opacity: .7;">[</span><span class="dk_code_org">=</span><span style="color: #000 !important; opacity: .7;">]</span><span style="color: #000 !important; opacity: .7;">(</span> <span style="color: #000 !important; opacity: .7;">)</span><span style="color: #000 !important; opacity: .7;">{</span> <span class="dk_code_green">/* ... */</span> <span style="color: #000 !important; opacity: .7;">}</span><span style="color: #000 !important; opacity: .7;">)</span><span style="color: #000 !important; opacity: .7;">;</span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0px !important;" class="d-flex mv_pre">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        3
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0"><span class="dk_code_green">// q2 task</span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 10px !important;" class="d-flex mv_pre">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        4
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0"> <span class="">q2.single_task<span style="color: #000 !important; opacity: .7;">(</span>e<span style="color: #000 !important; opacity: .7;">, </span><span style="color: #000 !important; opacity: .7;">[</span><span class="dk_code_org">=</span><span style="color: #000 !important; opacity: .7;">]</span><span style="color: #000 !important; opacity: .7;">(</span> <span style="color: #000 !important; opacity: .7;">)</span><span style="color: #000 !important; opacity: .7;">{</span> <span class="dk_code_green">/* ... */</span> <span style="color: #000 !important; opacity: .7;">}</span><span style="color: #000 !important; opacity: .7;">)</span><span style="color: #000 !important; opacity: .7;">;</span></span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <ul>
+                            <li>C/C++ math built-ins can return incorrect results for some edge-case inputs when called from SYCL kernels.</li>
+                            <li>To enhance performance on Intel® GPUs using the Unified Runtime Level Zero Adapter, support for driver-optimized in-order lists has been introduced in version 2025.0. However, when running workloads with sycl::property::queue::enable_profiling, some performance overhead from these lists is expected. If this overhead negatively impacts performance, it can be mitigated by disabling the driver in-order lists. To do so, set UR_L0_USE_DRIVER_INORDER_LISTS=0.</li>
+                            <li>
+                            <p>To ensure compatibility with the DPC++ Compiler on Windows*, which requires OpenCL 3.0, it is essential to address potential issues caused by older versions of <code style="color: #262626;">opencl.dll</code> on your system. If an outdated <code style="color: #262626;">opencl.dll</code> is present in system directories or takes precedence in the library path, it may lead to failures, including SYCL-related issues and crashes in tools like Intel VTune™ and Advisor when specific OpenCL 3.0 features are used. The recommended solution is to replace the old <code style="color: #262626;">opencl.dll</code> with the one installed in the DPC++ package. You can do this by copying the newer <code style="color: #262626;">opencl.dll</code> from <code style="color: #262626;">$oneAPI_Install_Folder\compiler\latest\bin</code> to your system folder. Be sure to back up the original <code style="color: #262626;">opencl.dll</code> in case it's needed for other applications.</p>
+                            </li>
+                            <li><code style="color: #262626;">sycl_ext_oneapi_free_function_kernels</code>&nbsp;has&nbsp;limitations including:
+                            <ul>
+                                <li>free function kernels are only supported if defined at file scope</li>
+                                <li><code style="color: #262626;">SYCL_EXTERNAL</code>&nbsp;has to be used alongside&nbsp;<code style="color: #262626;">SYCL_EXT_ONEAPI_FUNCTION_PROPERTY</code>&nbsp;to define free function kernel</li>
+                                <li>compiler won't emit any diagnostics if some restrictions from the extension specification are violated</li>
+                                <li>arguments of a free function kernels cannot be composite data types like structs or SYCL classes like&nbsp;<code style="color: #262626;">accessor</code></li>
+                                <li>using&nbsp;<code style="color: #262626;">-fsycl-dead-args-optimization</code>&nbsp;(ON by default) can lead to failures</li>
+                                <li><code style="color: #262626;">info::kernel::num_args</code>&nbsp;won't return the right result for free function kernels</li>
+                            </ul>
+                            </li>
+                        </ul>
+                    </section>
+
+                    <section id="dk_threading">
+                        <h4 style="font-weight: 500; margin-top: 22px; margin-bottom: 11px;">New OpenMP Features</h4>
+                        <ul>
+                            <li>Support for the <code style="color: #262626;">-fopenmp-offload-mandatory</code> compiler flag to omit creation of host-fallback code and emit a runtime error if OpenMP offload to the device fails.</li>
+                            <li>Improved optimization report support for OpenMP constructs.</li>
+                            <li>Enhanced conversion scheme of nested loop constructs to consider loop trip counts.</li>
+                            <li>Updates to the <code style="color: #262626;">declare</code> variant for a dispatch construct to include GPUs with the Xe2 architecture when the match clause specifies <code style="color: #262626;">device={arch(gen)}</code>.</li>
+                            <li>Support for the <code style="color: #262626;">device_type(host|nohost|any)</code> clause for the target construct.</li>
+                            <li>Inclusion of the <code style="color: #262626;">if</code> clause for the teams construct.</li>
+                            <li>Change of the map-type property to "default," allowing map-type modifiers to be specified without a map-type. For example, <code style="color: #262626;">map(always : x)</code> is equivalent to <code style="color: #262626;">map(always, tofrom : x)</code>.</li>
+                            <li>Support for the Intel extension <code style="color: #262626;">ompx_sub_group_size</code> clause for the target construct to set the SIMD width of the kernel.</li>
+                            <li>Support for the Intel extension <code style="color: #262626;">ompx_dyn_cgroup_mem</code> clause for the target construct, allowing dynamic allocation in SLM for GPU offloading.</li>
+                            <li>Extension of environment variables <code style="color: #262626;">OMP_THREAD_LIMIT</code>, <code style="color: #262626;">OMP_TEAMS_THREAD_LIMIT</code>, and <code style="color: #262626;">OMP_NUM_THREADS</code> to support abstract names. For example, <code style="color: #262626;">OMP_THREAD_LIMIT=n_cores</code>.</li>
+                            <li>Extension of the syntax of the environment variable <code style="color: #262626;">OMP_PLACES</code> to support bound and stride for abstract names. For example, <code style="color: #262626;">OMP_PLACES=threads(4:2)</code>.</li>
+                            <li>Host runtime support for the environment variable <code style="color: #262626;">OMP_AVAILABLE_DEVICES</code>.</li>
+                            <li>Extension of the environment variable <code style="color: #262626;">OMP_DEFAULT_DEVICE</code> to support device selection by traits.</li>
+                        </ul>
+                    </section>
+
+                    <section id="dk_performance">
+                        <h4 style="font-weight: 500; margin-top: 22px; margin-bottom: 11px;">Notable OpenMP Fixes</h4>
+                        <ul>
+                            <li>Fixed a bug where the dispatch construct’s device clause was not updating OpenMP’s default-device-var ICV.</li>
+                            <li>Resolved an internal compiler error when the declare variant for a dispatch construct did not specify an <code style="color: #262626;">adjust_args</code> clause.</li>
+                            <li>Fixed an optimization bug in OpenMP <code style="color: #262626;">for</code> and <code style="color: #262626;">simd</code> loops with large trip counts.</li>
+                            <li>Corrected a regression where enclosing task constructs inside a teams construct triggered a compiler error message.</li>
+                            <li>When <code style="color: #262626;">thread_limit</code> is specified for both target and teams, the compiler now correctly chooses their minimum instead of always using the one specified for target.</li>
+                            <li>Fixed an internal compiler error related to the initialization of global variables allocated in GPU’s SLM.</li>
+                            <li>Addressed a problem in offload runtime where the reference counts of variables mapped using <code style="color: #262626;">declare mapper</code> were not decremented correctly.</li>
+                            <li>Fixed a GPU offload performance issue related to L1 cache being affected by temporary copies of reduction variables.</li>
+                            <li>Resolved a bug where user-defined reduction variables were not properly constructed or destructed.</li>
+                        </ul>
+                    </section>
+
+                    <section id="dk_cryptography">
+                        <h4 style="font-weight: 500; margin-top: 22px; margin-bottom: 11px;">OpenMP Known Issues</h4>
+                        <ul>
+                            <li>Implicit barriers at the end of <strong>parallel</strong> regions do not act as synchronization points for the tasks associated with <strong>target nowait</strong>&nbsp;and <strong>dispatch nowait</strong>&nbsp;constructs.&nbsp;This may&nbsp;result in incorrect results or crashes. A workaround is to use <strong>#pragma omp taskwait </strong>at the end of <strong>parallel</strong> region to ensure synchronization of <strong>target/dispatch nowait</strong>&nbsp;regions, where it would otherwise have happened due to the presence of a <strong>parallel</strong> region’s implicit barrier.</li>
+                        </ul>
+                    </section>
+
+                    <section id="dk_collective">
+                        <h4 style="font-weight: 500; margin-top: 22px; margin-bottom: 11px;">Other Known Issues and Limitations</h4>
+                        <ul>
+                            <li><strong>Visual Studio IDE Integration:</strong> Users will encounter an error while building the C++ project using 'Intel C++ Compiler 2025' for Win32 platform. Please note that Win32 platform is not supported with 'Intel C++ Compiler 2025' and project should be compiled for x64 platform only. If Win32 platform is selected, an error will be raised that ICX compiler not found.</li>
+                        </ul>
+                    </section>
+
+                    <section id="dk_analytics">
+                        <h4 style="font-weight: 500; margin-top: 22px; margin-bottom: 11px;">Hardware Support:</h4>
+                        <ul class="mb-0">
+                            <li>-march=lunarlake</li>
+                            <li>-march=graniterapids</li>
+                        </ul>
+                        <p>Please check <a class="b_special_a1" href="">here</a> for details about <span style="color: #53565a;     background-color: #e6e6e6;">-march</span> usage.&nbsp;</p>
+                    </section>
+
+                    <section id="dk_deep">
+                        <h4 style="font-weight: 500; margin-top: 22px; margin-bottom: 11px;">Toolchain Support to Intel Platforms</h4>
+                        <table class="mv_product_table mb-4 mv_table_td_center">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        <p class="mb-2">Granite Rapids</p>
+                                    </th>
+                                    <th>
+                                        <p class="mb-2">Granite Rapids-D</p>
+                                    </th>
+                                    <th>
+                                        <p class="mb-2">Lunar Lake</p>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>GCC13.1</td>
+                                    <td>GCC13.1</td>
+                                    <td>GCC14.1</td>
+                                </tr>
+                                <tr>
+                                    <td>Binutils 2.40</td>
+                                    <td>Binutils 2.41</td>
+                                    <td>Binutils 2.42</td>
+                                </tr>
+                                <tr>
+                                    <td>Glibc2.37</td>
+                                    <td>Glibc2.37</td>
+                                    <td>Glibc2.39</td>
+                                </tr>
+                                <tr>
+                                    <td>LLVM 16.0</td>
+                                    <td>LLVM 17.0</td>
+                                    <td>LLVM 18.0</td>
+                                </tr>
+                                <tr>
+                                    <td>ICX 2023.1</td>
+                                    <td>ICX 2023.2</td>
+                                    <td>ICX 2024.0</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </section>
+
+                    <section id="dk_notices">
+                        <h4 style="font-weight: 500; margin-top: 22px; margin-bottom: 11px;">C/C++ Standard</h4>
+                        <ul>
+                            <li>Intel® oneAPI&nbsp;DPC++/C++&nbsp;Compiler version 2025.0&nbsp;supports the C/C++ standards through the&nbsp;<a class="b_special_a1" href="">Clang 19</a>&nbsp;front end.&nbsp;</li>
+                            <li>Initiated support for C++2c, the next release of C++ after C++23, and C2y, the next release of C after C23</li>
+                            <li>Finalized the implementation of “deducing this” (C++23)</li>
+                            <li>Relaxed some constexpr restrictions (C++23)</li>
+                            <li>Implemented the [[assume]] attribute (C++23)</li>
+                            <li>Completed support for Concepts (C++20)</li>
+                            <li>Added support for char8_t (C23)</li>
+                            <li>Implemented the constexpr keyword for object declarations (C23)</li>
+                            <li>Implemented #embed for embedding binary resources in source (C23)</li>
+                        </ul>
+                    </section>
+
+                    <section id="dk_installation">
+                        <h4 style="font-weight: 350; margin-top: 2.5rem;">System Requirements</h4>
+                        <ul>
+                            <li><a class="b_special_a1" href="">Intel® oneAPI DPC++/C++ Compiler System Requirements</a></li>
+                        </ul>
+                    </section>
+
+                    <section id="dk_start">
+                        <h4 style="font-weight: 350; margin-top: 2.5rem;">Additional Documentation</h4>
+                        <p class="mb-0">Please reference:</p>
+                        <ul>
+                            <li><a class="b_special_a1" href="">Get Started with the Intel® oneAPI Toolkit for Linux*</a></li>
+                            <li><a class="b_special_a1" href="">Get Started with the Intel® oneAPI Toolkit for Windows* </a></li>
+                            <li><a class="b_special_a1" href="">OneAPI Versioning Schema</a> based on Semantic Versioning</li>
+                            <li><a class="b_special_a1" href="">Intel® oneAPI DPC++/C++ Compiler Developer Guide and Reference</a></li>
+                            <li><a class="b_special_a1" href="">Intel® oneAPI Programming Guide</a></li>
+                            <li><a class="b_special_a1" href="">SYCL* 2020 Specification Features and DPC++ Language Extensions Supported</a></li>
+                            <li><a class="b_special_a1" href="">OpenMP* Features and Extensions Supported in Intel® oneAPI DPC++/C++ Compiler</a></li>
+                        </ul>
+                    </section>
+
+                    <section id="dk_issues">
+                        <h4 style="font-weight: 350; margin-top: 2.5rem;">Previous oneAPI Releases</h4>
+                        <ul>
+                            <li><a class="b_special_a1" href="">Intel® oneAPI DPC++/C++ Compiler 2024</a></li>
+                            <li><a class="b_special_a1" href="">Intel® oneAPI DPC++/C++ Compiler 2023</a></li>
+                            <li><a class="b_special_a1" href="">Intel® oneAPI DPC++/C++ Compiler 2022</a></li>
+                            <li><a class="b_special_a1" href="">Intel® oneAPI DPC++/C++ Compiler 2021</a></li>
+                        </ul>
+                    </section>
+
+                    <section id="dk_notes">
+                        <h4 style="font-weight: 350; margin-top: 2.5rem;">Notices and Disclaimers</h4>
+                        <p>Intel optimizations, for Intel compilers or other products, may not optimize to the same degree for non-Intel products.</p>
+                        <p>Intel technologies may require enabled hardware, software, or service activation.</p>
+                        <p>No product or component can be absolutely secure.</p>
+                        <p>Your costs and results may vary.</p>
+                        <p>© Intel Corporation. Intel, the Intel logo, and other Intel marks are trademarks of Intel Corporation or its subsidiaries. Other names and brands may be claimed as the property of others.</p>
+                        <p>No license (express or implied, by estoppel or otherwise) to any intellectual property rights is granted by this document.</p>
+                        <p>The products described may contain design defects or errors known as errata which may cause the product to deviate from published specifications. Current characterized errata are available on request.</p>
+                        <p>Intel optimizations, for Intel compilers or other products, may not optimize to the same degree for non-Intel products.</p>
+                        <p>Intel disclaims all express and implied warranties, including without limitation, the implied warranties of merchantability, fitness for a particular purpose, and non-infringement, as well as any warranty arising from a course of performance, course of dealing, or usage in trade.</p>
+                    </section>
+
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!------------------- Product and Performance Information -------------------------->
+    <section style="border-top: 1px solid #d7d7d7;" class="container py-5">
+        <h4 class="h6">Product and Performance Information</h4>
+        <div class="disclaimer" style="font-size: 12px;"><sup>1</sup> Performance varies by use, configuration and other factors. Learn more at <a class="b_special_a1" href="">www.Intel.com/PerformanceIndex</a>.</div>
+    </section>
+    <!-- --------------------------------------------------------------------------- -->
+
+    <!-- footer -->
+    <div id="footer"></div>
+
+    <!-- script header and footer -->
+    <script>
+        // navbar include  
+        fetch('/y_index/y_navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar').innerHTML = data;
+            });
+        // footer include 
+        fetch('/y_index/y_footer.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('footer').innerHTML = data;
+            });
+    </script>
+
+    <!-- nav script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+        if (document.getElementsByClassName('VK_all_sections section') && document.getElementsByClassName('VK_sidebar_dropdown')) {
+            const sections = document.querySelectorAll('.VK_all_sections section');
+            const navLinks = document.querySelectorAll('.VK_sidebar_dropdown a');
+            const detailsElements = document.querySelectorAll('.VK_sidebar_dropdown details');
+
+            function removeActiveClass() {
+                navLinks.forEach(link => link.classList.remove('VK_sidebar_active_link'));
+                detailsElements.forEach(details => {
+                    details.removeAttribute('open');
+                    details.setAttribute('close', ''); // Optional: to visually indicate it's closed
+                });
+            }
+
+            function activateLinkAndDetails(targetId) {
+                navLinks.forEach(link => {
+                    if (link.getAttribute('href') === `#${targetId}`) {
+                        link.classList.add('VK_sidebar_active_link');
+                        let parentDetails = link.closest('details');
+
+                        // Open all ancestor details elements
+                        while (parentDetails) {
+                            parentDetails.setAttribute('open', '');
+                            parentDetails.removeAttribute('close'); // Optional: remove the closed indicator
+                            parentDetails = parentDetails.parentElement.closest('details');
+                        }
+                    }
+                });
+            }
+
+            function onScroll() {
+                let currentSection = '';
+                sections.forEach(section => {
+                    const sectionTop = section.getBoundingClientRect().top;
+                    const sectionBottom = section.getBoundingClientRect().bottom;
+
+                    // Check if the section is in view
+                    if (sectionTop <= 100 && sectionBottom >= 0) {
+                        currentSection = section.getAttribute('id');
+                    }
+                });
+
+                if (currentSection) {
+                    removeActiveClass();
+                    activateLinkAndDetails(currentSection);
+                } else {
+                    removeActiveClass();
+                }
+            }
+
+            window.addEventListener('scroll', onScroll);
+        } else {
+            return
+        }
+    });
+    </script>
+
+    <!-- copy script -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            document.querySelectorAll(".mv_copy_icon").forEach((icon) => {
+                icon.addEventListener("click", async function () {
+                    try {
+                        const toolbar = this.closest(".mv_code_toolbar");
+                        const codeBlock = toolbar.querySelector(".code-content");
+                        const codeContent = codeBlock.innerText;
+    
+                        // Use Clipboard API to copy text
+                        await navigator.clipboard.writeText(codeContent);
+    
+                        // Hide the copy icon and show the "Copied!" message
+                        const message = toolbar.querySelector(".mv_copy_message");
+                        this.classList.add("hidden"); // Hide the copy icon
+                        message.classList.remove("hidden"); // Show the "Copied!" message
+    
+                        // Hide the message and show the icon again after 2 seconds
+                        setTimeout(() => {
+                            message.classList.add("hidden");
+                            this.classList.remove("hidden");
+                        }, 2000); // Adjust delay as needed
+    
+                    } catch (err) {
+                        console.error('Failed to copy text: ', err);
+                    }
+                });
+            });
+        });
+    </script>
+
+</body>
+
+</html>
