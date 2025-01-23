@@ -121,16 +121,7 @@
     }
     /* **************************** */
 
-    .dk_code_blue{
-        color: #069 !important;
-        font-weight: 700 !important;
-    }
-    .dk_code_green{
-        color: #008200 !important;
-    }
-    .dk_code_org{
-        color: #b24501 !important;
-    }
+    
 
 
     @media(max-width:991px){
@@ -340,12 +331,12 @@
                         <p class="mb-2">See <a class="b_special_a1" href="">Intel® oneAPI DPC++/C++ Compiler System Requirements</a>.</p>
                     </section>
 
-                    <section id="dk_oneAPI">
+                    <section id="dk_base">
                         <h4 style="font-weight: 350; margin-top: 2.5rem; margin-bottom: 11px;">FPGA Support Package Release Notes</h4>
                         <a class="b_special_a2" href="">2025.0 Release Notes</a>
                     </section>
 
-                    <section id="dk_base">
+                    <section id="dk_toolkit">
                         <h4 style="font-weight: 500; margin-top: 22px; margin-bottom: 11px;">2025.0 New and Changed Features</h4>
                         <ul>
                             <li>Removed support for the Quartus® Prime Pro Edition versions 21.2 to&nbsp;21.4.</li>
@@ -363,7 +354,7 @@
                         <p>&nbsp;</p>
                     </section>
 
-                    <section id="dk_toolkit">
+                    <section id="dk_DPC">
                         <h4 style="font-weight: 500; margin-top: 22px; margin-bottom: 11px;">2025.0 Bugs Fixes</h4>
                         <ul>
                             <li>The <span style="color: #53565a; background-color: #e6e6e6;">-Xsallow-wide-device-globals</span> compiler option is now supported in emulation.</li>
@@ -405,7 +396,7 @@
                         </ul>
                     </section>
 
-                    <section id="dk_DPC">
+                    <section id="dk_library">
                         <h4 style="font-weight: 500; margin-top: 22px; margin-bottom: 11px;"><a class="b_special_a1" href="">2025.0 Known Issues and Limitations</a></h4>
                         <ul>
                             <li>When multiple oneAPI versions are installed on Windows, the following assertion failure may happen when running oneAPI FPGA simulation:</li>
@@ -487,424 +478,1419 @@
                                     </div>
                                 </div>
                             </div>
-                        </ul>
-                    </section>
-
-                    <section id="dk_library">
-                        <h4 style="font-weight: 500; margin-top: 22px; margin-bottom: 11px;">New Features</h4>
-                        <p class="mb-0"><b>SYCL Compiler:</b></p>
-                        <ul>
-                           <li><b>SYCL Offload Model</b>: Introduced a new SYCL offload driver mechanism with --offload-new-driver to improve infrastructure for better link times by reducing I/O and external processes.</li>
-                           <li><b>Range Rounding Control</b>: Added -fsycl-range-rounding option for managing range rounding, including forcing full rounding to reduce binary size. Additionally, the experimental -fsycl-exp-range-rounding option performs rounding across all dimensions.</li>
-                           <li><b>Double Type Emulation</b>: Added -fsycl-fp64-conv-emu option for partial emulation of double data types on Intel GPUs.</li>
-                           <li><b>Dynamic Linking</b>: Initial support added for dynamic linking, though some features like kernel_bundle API and AOT mode are not yet supported.</li>
-                        </ul>
-                        <p class="mb-0"><b>SYCL Library:</b></p>
-                        <ul>
-                            <li><b>Extensions</b>: Implemented multiple extensions, including <code style="color: #262626;">sycl_ext_oneapi_prod</code>, <code style="color: #262626;">sycl_ext_oneapi_profiling_tag</code>, <code style="color: #262626;">sycl_ext_oneapi_forward_progress</code>, <code style="color: #262626;">sycl_ext_oneapi_private_alloca</code>, <code style="color: #262626;">syclext_codeplay_enqueue_native_command</code>, and <code style="color: #262626;">sycl_ext_oneapi_enqueue_functions</code>.</li>
-                            <li><b>Group Load/Store</b>: Added support for <code style="color: #262626;">sycl_ext_oneapi_group_load_store</code>, enabling native hardware block read/write capabilities where applicable.</li>
-                            <li><b>Free Function Kernels</b>: Initial support for <code style="color: #262626;">sycl_ext_oneapi_free_function_kernels</code> extension, with known limitations around argument types and diagnostics.</li>
-                            <li><b>Fused Multiply-Add (FMA)</b>: Added experimental ESIMD function fma which results in a guaranteed fused multiply-add operation performed.</li>
-                            <li><b>Improved</b> <code style="color: #262626;">sycl_ext_oneapi_group_sortextension</code>: Updated implementation of <code style="color: #262626;">sycl_ext_oneapi_group_sort</code> extension to match revision 2 of the specification. Previous version 1 is not available anymore and some code changes may be required.</li>
-                        </ul>
-                    </section>
-
-                    <section id="dk_compatibility">
-                        <h4 style="font-weight: 500; margin-top: 22px; margin-bottom: 11px;">Improvements</h4>
-                        <p class="mb-0"><b>SYCL Compiler</b></p>
-                        <ul>
-                            <li>
-                            <p class="mb-2"><strong>Improved Compilation Flow</strong>: The process of generating integration footers has been optimized when no third-party host compiler is used, resulting in fewer temporary files and faster compilation times.</p>
-                            </li>
-                            <li>
-                            <p class="mb-2"><strong>Additional Math Function Support</strong>: New support for math functions like <code style="color: #262626;">truncf</code>, <code style="color: #262626;">sinpif</code>, <code style="color: #262626;">rsqrtf</code>, <code style="color: #262626;">exp10f</code>, <code style="color: #262626;">ceilf</code>, <code style="color: #262626;">copysignf</code>, <code style="color: #262626;">cospif</code>, <code style="color: #262626;">fmaxf</code>, and <code style="color: #262626;">fminf</code> in SYCL kernels has been added as part of the C-CXX-StandardLibrary extension. More Intel Math Functions (IMF), <code style="color: #262626;">::rand</code> and <code style="color: #262626;">::srand</code> in device code on Intel devices, have also been integrated.</p>
-                            </li>
-                            <li>
-                            <p class="mb-2"><strong>Enhanced Error Messaging</strong>: Error messages have been improved for scenarios involving implicit <code style="color: #262626;">this</code> capture in kernels and missing architecture information when multiple targets are passed into the <code style="color: #262626;">-fsycl-targets</code> flag.</p>
-                            </li>
-                            <li>
-                            <p class="mb-2"><strong>Optimized Compilation Flow</strong>: The number of commands needed for generating dependencies using the <code style="color: #262626;">-MD</code> flag has been reduced, streamlining the build process.</p>
-                            </li>
-                            <li>
-                            <p class="mb-2"><strong>Security and Debugging</strong>: Security-related compilation flags for libraries and tools have been strengthened, and the debugging experience has been improved for both Linux and Windows environments.</p>
-                            </li>
-                        </ul>
-                        <p class="mb-0"><b>SYCL Library</b></p>
-                        <ul>
-                            <li><strong>Support for ESIMD functions</strong>: Added support for <code style="color: #262626;">sqrt</code> and <code style="color: #262626;">rsqrt</code> functions for double data types in ESIMD.</li>
-                            <li><strong>Cubemap and Sampled Image Arrays Support</strong>: Updated <code style="color: #262626;">sycl_ext_oneapi_bindless_images</code> extension to support cubemap images and sampled image arrays.</li>
-                            <li><strong>Named Barrier Allocation in ESIMD</strong>: Introduced ESIMD API for dynamic allocation of named barriers.</li>
-                            <li><strong>Executable Command Graph Update</strong>: Added support for whole graph updates using <code style="color: #262626;">executable_command_graph::update</code>.</li>
-                            <li><strong>Deprecation Warning</strong>: A warning has been added for the use of the deprecated <code style="color: #262626;">&lt;CL/sycl.hpp&gt;</code> header.</li>
-                            <li><strong>Accessor Improvements</strong>: <code style="color: #262626;">local_accessor::get_pointer</code> and <code style="color: #262626;">local_accessor::get_multi_ptr</code> now throw an invalid exception if called on the host.</li>
-                            <li><strong>Queue Operations Detection</strong>: Extended detection of nested queue operations to support shortcut methods.</li>
-                            <li><strong>Simplified ESIMD API Interface</strong>: Added overloads of various ESIMD APIs (e.g., <code style="color: #262626;">atomic_update</code>, <code style="color: #262626;">block_load</code>, <code style="color: #262626;">block_store</code>) allowing omission of some template arguments.</li>
-                            <li><strong>Bfloat16 Math Functions</strong>: Updated <code style="color: #262626;">sycl_ext_oneapi_bfloat16_math_functions</code> to support vectors of <code style="color: #262626;">bfloat16</code> passed to math functions.</li>
-                            <li><strong>Optimized <code style="color: #262626;">sycl::vec::as</code></strong>: Improved the performance of <code style="color: #262626;">sycl::vec::as</code> by optimizing the implementation of <code style="color: #262626;">sycl::detail::memcpy</code>.</li>
-                            <li><strong>SYCL 2020 Exception Updates</strong>: Updated the implementation to throw SYCL 2020 exceptions instead of legacy SYCL 1.2.1 exceptions across the board.</li>
-                            <li><strong><code style="color: #262626;">sycl::vec::convert</code> Support</strong>: Added support for <code style="color: #262626;">sycl::vec::convert</code> to and from <code style="color: #262626;">vec&lt;bfloat16, N&gt;</code>.</li>
-                            <li><strong>Deprecations</strong>: <code style="color: #262626;">marray&lt;bool, n&gt;::operator++/--</code> and <code style="color: #262626;">accessor::get_multi_ptr</code> for non-device accessors have been deprecated.</li>
-                            <li><strong>ESIMD Named Barriers</strong>: Moved ESIMD named barrier APIs out of the experimental namespace.</li>
-                            <li><strong>SYCL Extensions and API Enhancements</strong>:
-                            <ul>
-                                <li>Implemented the latest revision of <code style="color: #262626;">sycl_ext_oneapi_free_function_queries</code>.</li>
-                                <li>Extended <code style="color: #262626;">sycl-ls --verbose</code> to print detailed device information, including UUIDs and architecture.</li>
-                                <li>Introduced support for compile-time properties in <code style="color: #262626;">copy_to</code> and <code style="color: #262626;">copy_from</code> ESIMD APIs.</li>
-                            </ul>
-                            </li>
-                            <li><strong>Non-Variadic <code style="color: #262626;">printf</code> Interface</strong>: Switched <code style="color: #262626;">experimental::printf</code> to a non-variadic interface to improve usability when printing float values.</li>
-                            <li><strong>Enhanced ESIMD API Validation</strong>: Improved validation for <code style="color: #262626;">rdregion</code> and <code style="color: #262626;">wrregion</code> APIs using static assertions on template arguments.</li>
-                            <li><strong>SYCL 2020 Specification Alignment</strong>: Updated mutating swizzle operators and scalar conversions for <code style="color: #262626;">vec</code> to align with the SYCL 2020 specification.</li>
-                            <li><strong>Miscellaneous ESIMD Improvements</strong>:
-                            <ul>
-                                <li>Added support for 1- and 2-byte data types to ESIMD prefetch APIs.</li>
-                                <li>Enabled <code style="color: #262626;">ext_intel_matrix</code> support for Intel GNR devices.</li>
-                                <li>Introduced new overloads of <code style="color: #262626;">load_2d</code>, <code style="color: #262626;">store_2d</code>, and <code style="color: #262626;">prefetch_2d</code> ESIMD APIs with compile-time properties.</li>
-                                <li>Added support for group shift algorithms (e.g., <code style="color: #262626;">shift_group_left</code>, <code style="color: #262626;">permute_group_by_xor</code>) for non-uniform groups.</li>
-                                <li>Lifted restrictions on the ESIMD <code style="color: #262626;">block_store</code> API and enhanced the <code style="color: #262626;">slm_atomic_update</code> API to support <code style="color: #262626;">fsub</code> and <code style="color: #262626;">fadd</code>.</li>
-                            </ul>
-                            </li>
-                            <li><strong>Graph and Semaphore Support</strong>:
-                            <ul>
-                                <li>Added support for graph update functionality and external semaphore wait/signal operations with values in the bindless images extension.</li>
-                                <li>Introduced device-to-device copying of <code style="color: #262626;">image_device_handle</code>.</li>
-                            </ul>
-                            </li>
-                            <li><strong>Unified Runtime</strong>: Removed the Plugin Interface, replacing it with the Unified Runtime, which reduces the number and size of redistributable libraries.</li>
-                            <li><strong>Performance Improvements</strong>: Reduced startup overhead of <code style="color: #262626;">libsycl.so</code> by outlining the SYCL JIT compiler into a standalone library, dynamically loaded on first use.</li>
-                        </ul>
-                    </section>
-
-                    <section id="dk_math">
-                        <h4 style="font-weight: 500; margin-top: 22px; margin-bottom: 11px;">Bug Fix</h4>
-                        <p class="mb-0"><b>SYCL Compiler</b></p>
-                        <ul>
-                            <li>Fixed a bug where using the <code style="color: #262626;">-fsycl-link-targets</code> flag would inadvertently trigger additional device code linking steps.</li>
-                            <li>Resolved an issue where AOT-compiling for Intel GPUs would pass PVC-specific flags even if the target device was not a PVC.</li>
-                            <li>Fixed a bug with incorrect file extensions being emitted in AOT compilation when using <code style="color: #262626;">--save-temps</code>.</li>
-                            <li>Fixed an issue where performing separate compilation and linking with <code style="color: #262626;">-fsycl-link</code> resulted in a "number of output files and targets should match in unbundling mode" error during the link step.</li>
-                            <li>Resolved an issue where passing pointers in the generic address space to certain built-in math functions could cause compilation failure.</li>
-                            <li>Fixed a bug where compiling kernels with different <code style="color: #262626;">reqd_work_group_size</code> attributes using <code style="color: #262626;">-fsycl-device-code-split=none</code> could result in a runtime exception about mismatching work-group sizes.</li>
-                            <li>Resolved a bug where using the <code style="color: #262626;">reqd_work_group_size</code> attribute with fewer than three arguments caused a crash.</li>
-                            <li>Addressed issues with <code style="color: #262626;">shift_group_[right|left]</code>, <code style="color: #262626;">permute_by_xor</code>, and <code style="color: #262626;">select_from_group</code> algorithms returning invalid values when used with the <code style="color: #262626;">half</code> data type.</li>
-                        </ul>
-                        <p class="mb-0"><b>SYCL Library</b></p>
-                        <ul>
-                            <li>Fixed a situation where querying <code style="color: #262626;">sycl::ext::oneapi::experimental::info::device</code> could result in an exception instead of returning an empty vector.</li>
-                            <li>Corrected the <code style="color: #262626;">esimd::atan</code> implementation under the <code style="color: #262626;">-ffast-math</code> flag.</li>
-                            <li>Fixed an issue where component devices were not correctly identified as descendants of composite devices when creating a queue.</li>
-                            <li>Addressed an issue where querying for composite devices could return duplicate entries.</li>
-                            <li>Fixed bugs in the copy-constructor of the <code style="color: #262626;">config_2d_mem_access</code> ESIMD class, which led to compilation errors.</li>
-                            <li>Resolved an issue where the use of <code style="color: #262626;">atomic_ref&lt;T*&gt;</code> was not detected as using the <code style="color: #262626;">atomic64</code> aspect, leading to errors.</li>
-                            <li>Fixed bugs with <code style="color: #262626;">ctanh</code> and <code style="color: #262626;">cexp</code> returning incorrect values in edge cases.</li>
-                            <li>Fixed an issue where values passed to the <code style="color: #262626;">-Xs</code> option via <code style="color: #262626;">build_options</code> were not passed down to the device compiler.</li>
-                            <li>Fixed a compilation error when defining kernels as named functors while using <code style="color: #262626;">-fno-sycl-unnamed-lambda</code>.</li>
-                            <li>Corrected compilation issues with the <code style="color: #262626;">-fpreview-breaking-changes</code> flag caused by conflicts with macros in <code style="color: #262626;">windows.h</code>.</li>
-                            <li>Resolved strict aliasing violations in the implementation of <code style="color: #262626;">sycl::vec&lt;sycl::half, N&gt;::operator[]</code> that caused errors.</li>
-                            <li>Fixed bugs where barriers submitted to a command queue with host tasks ignored them, and improved synchronization of host tasks with barriers.</li>
-                            <li>Fixed issues where the compiler could emit unsupported SPIR-V instructions for bit-reversal.</li>
-                            <li>Addressed a bug where default-constructed <code style="color: #262626;">local_accessor</code> arguments could cause runtime errors, especially on Windows and under <code style="color: #262626;">-O0</code> optimization on Linux.</li>
-                            <li>Resolved a hang when invalid values were passed to the <code style="color: #262626;">ONEAPI_DEVICE_SELECTOR</code>.</li>
-                            <li>Fixed issues with persistent cache functionality where certain setups would prevent necessary directories from being created.</li>
-                            <li>Corrected a bug where querying a kernel by name from a kernel bundle could crash the program.</li>
-                            <li>Fixed an error handling bug where non-blocking pipe operations would mistakenly throw exceptions.</li>
-                            <li>Addressed compilation issues when using non-uniform group built-ins with <code style="color: #262626;">marray</code> and <code style="color: #262626;">vec</code>.</li>
-                            <li>Resolved a bug where memory attributes applied to a <code style="color: #262626;">struct</code> used as a type of a <code style="color: #262626;">device_global</code> variable were ignored.</li>
-                            <li>Added missing <code style="color: #262626;">value_type</code> and <code style="color: #262626;">vector_t</code> member type aliases to swizzles.</li>
-                            <li>Fixed shutdown sequence issues when SYCL RT was used in applications or libraries with custom shutdown processes.</li>
-                            <li>Resolved a crash when calling <code style="color: #262626;">event::get_backend()</code> on a default-constructed event in environments with malformed <code style="color: #262626;">ONEAPI_DEVICE_SELECTOR</code>.</li>
-                            <li>Fixed a bug where <code style="color: #262626;">sycl-ls</code> with <code style="color: #262626;">--ignore-device-selectors</code> would not properly ignore the environment variable.</li>
-                            <li>Corrected memory order capabilities returned by the Native CPU backend.</li>
-                            <li>Fixed the variadic constructor of <code style="color: #262626;">sycl::ext::oneapi::experimental::properties</code> to match the extension specification.</li>
-                            <li>Fixed build program failures when using ESIMD functions like <code style="color: #262626;">load_2d</code>, <code style="color: #262626;">store_2d</code>, or <code style="color: #262626;">prefetch_2d</code>.</li>
-                            <li>Resolved a bug where querying free device memory on integrated Intel GPUs returned 0 instead of throwing an exception for unsupported features.</li>
-                            <li>Addressed a heap buffer overflow in the <code style="color: #262626;">sycl_ext_oneapi_kernel_compiler_opencl</code> extension implementation.</li>
-                            <li>Corrected a bug where the <code style="color: #262626;">sycl_ext_oneapi_graph</code> extension ignored the access mode of accessors, creating unnecessary graph edges.</li>
-                            <li>Fixed issues where graph submissions involving barriers could result in runtime errors or cause resource leaks.</li>
-                            <li>Addressed performance regressions when kernels without dependencies were submitted to in-order queues.</li>
-                            <li>Fixed profiling issues in <code style="color: #262626;">Level Zero</code> backend where timestamps could be zeros or incorrect for in-order queues.</li>
-                            <li>Resolved crashes when using multiple queues with immediate command list properties--<code style="color: #262626;">immediate_command_list</code>&nbsp;and&nbsp;<code style="color: #262626;">no_immediate_command_list.</code>.</li>
-                            <li>Fixed a bug where <code style="color: #262626;">info::kernel_device_specific::work_group_size</code> would return the device-specific limit, ignoring the kernel on the <code style="color: #262626;">Level Zero</code> backend.</li>
-                        </ul>
-                    </section>
-
-                    <section id="dk_GDB">
-                        <h4 style="font-weight: 500; margin-top: 22px; margin-bottom: 11px;">Misc</h4>
-                        <p class="mb-0">SYCL Compiler</p>
-                        <ul>
-                            <li>Reverted changes previously made on Windows to support a separate compilation scenario where the compilation step was performed without the <code style="color: #262626;">-fsycl</code> flag, but the link step included the <code style="color: #262626;">-fsycl</code> flag. This scenario is now considered unsupported, as the compiler does not know which version of the standard library to link during the link step.</li>
-                        </ul>
-                    </section>
-
-                    <section id="dk_profiler">
-                        <h4 style="font-weight: 500; margin-top: 22px; margin-bottom: 11px;">API/ABI Breaking Changes in 2025.0</h4>
-                        <p class="mb-0">This release is an ABI-breaking release, meaning that any applications built with older versions of the toolchain must be recompiled to run with newer versions of the SYCL runtime library.</p>
-                        <ul>
-                            <li>Bumped the major version of the SYCL runtime library to 8.</li>
-                            <li>Cleaned up the list of symbols exported from the SYCL runtime library by dropping some legacy symbols and hiding others that should not have been exported.</li>
-                            <li>Updated the ABI of several functions and methods to avoid using <code style="color: #262626;">std::string</code> and other objects in the library interface, allowing SYCL RT to be used in applications built with pre-C++11 ABI.</li>
-                            <li>Changed the <code style="color: #262626;">ext_oneapi_copy</code> API from the experimental <code style="color: #262626;">sycl_ext_oneapi_bindless_images</code> extension to accept const-qualified types for the <code style="color: #262626;">Src</code> parameter.</li>
-                        </ul>
-                        <p class="mb-0">Several API breaking changes were made, including dropping support for previously deprecated APIs and switching implementations of some classes to a preview implementation. Code modification recommendations for some of these breaking changes can be found here.</p>
-                        <ul>
-                            <li>Removed the <code style="color: #262626;">sycl::abs</code> overload taking a floating-point argument.</li>
-                            <li>Removed <code style="color: #262626;">sycl::host_ptr</code> and <code style="color: #262626;">sycl::device_ptr</code>.</li>
-                            <li>Removed <code style="color: #262626;">queue::discard_or_return</code>.</li>
-                            <li>Removed <code style="color: #262626;">sycl::make_unique_ptr</code>.</li>
-                            <li>Removed the <code style="color: #262626;">use_primary_context</code> property and methods related to the previously removed host device.</li>
-                            <li>Removed SYCL 1.2.1 exception subclasses, including <code style="color: #262626;">runtime_error</code>, <code style="color: #262626;">nd_range_error</code>, <code style="color: #262626;">invalid_parameter_error</code>, <code style="color: #262626;">device_error</code>, and <code style="color: #262626;">feature_not_supported</code>.</li>
-                            <li>Removed <code style="color: #262626;">queue::mem_advice</code> overload accepting <code style="color: #262626;">pi_mem_advice</code>.</li>
-                            <li>Removed several deprecated ESIMD APIs.</li>
-                            <li>Removed the non-standard <code style="color: #262626;">sycl::id -&gt; sycl::range</code> conversion operator.</li>
-                            <li>Removed deprecated APIs from the <code style="color: #262626;">sycl_ext_oneapi_bindless_images</code> extension implementation.</li>
-                            <li>Renamed the experimental <code style="color: #262626;">destroy_external_semaphore</code> API from the <code style="color: #262626;">sycl_ext_oneapi_bindless_images</code> extension to <code style="color: #262626;">release_external_semaphore</code>.</li>
-                            <li>Replaced the <code style="color: #262626;">image_channel_order</code> field of the <code style="color: #262626;">image_descriptor</code> struct with the number of channels in the experimental <code style="color: #262626;">sycl_ext_oneapi_bindless_images</code> extension.</li>
-                            <li>Enforced restrictions on the first argument of lambdas/functors passed to <code style="color: #262626;">parallel_for(range)</code> and <code style="color: #262626;">parallel_for(nd_range)</code>.</li>
-                            <li>Switched the <code style="color: #262626;">sycl::vec</code> implementation to its preview version, which uses a different storage type to fix several strict aliasing rule violations.</li>
-                            <li>Restricted math operations available to <code style="color: #262626;">vec&lt;std::byte, N&gt;</code> to those applicable to <code style="color: #262626;">std::byte</code>.</li>
-                            <li>Switched the <code style="color: #262626;">sycl::exception</code> implementation to its preview version.</li>
-                            <li>Switched math built-ins implementation to use their preview version.</li>
-                            <li>Switched <code style="color: #262626;">bfloat16</code> implementation to use its preview version.</li>
-                            <li>Switched <code style="color: #262626;">sycl::nd_item</code> implementation to use its preview version.</li>
-                            <li>Enforced a restriction that a buffer's element type must be device copyable.</li>
-                            <li>Restructured SYCL headers to exclude <code style="color: #262626;">&lt;cmath&gt;</code> and <code style="color: #262626;">&lt;complex&gt;</code>.</li>
-                            <li>Dropped support for the <code style="color: #262626;">SYCL_DEVICE_FILTER</code> environment variable.</li>
-                            <li>Updated the <code style="color: #262626;">accessor::get_pointer</code> interface to return <code style="color: #262626;">global_ptr&lt;value_type&gt;</code>, which can be const-qualified if the accessor data type is const-qualified or if the accessor is read-only.</li>
-                            <li>Removed deprecated APIs related to <code style="color: #262626;">sycl_ext_oneapi_free_function_queries</code>.</li>
-                            <li>Moved <code style="color: #262626;">slm_allocator</code> ESIMD APIs into the experimental namespace.</li>
-                            <li>Removed the deprecated <code style="color: #262626;">usm_system_allocator</code> aspect.</li>
-                            <li>Removed <code style="color: #262626;">get_child_group</code> API from the experimental <code style="color: #262626;">sycl_ext_oneapi_root_group</code> extension.</li>
-                            <li>Simplified template arguments related to <code style="color: #262626;">simd_view</code> of many ESIMD APIs.</li>
-                            <li>Removed <code style="color: #262626;">ESIMD atomic_op::predec</code>.</li>
-                            <li>Dropped interfaces from revision 1 of the experimental <code style="color: #262626;">sycl_ext_oneapi_group_sort</code> extension.</li>
-                            <li>Changed the return type of <code style="color: #262626;">command_graph::begin_recording</code> and <code style="color: #262626;">command_graph::end_recording</code> from <code style="color: #262626;">void</code> to <code style="color: #262626;">bool</code> in the experimental <code style="color: #262626;">sycl_ext_oneapi_graph</code> extension.</li>
-                        </ul>
-                        <p class="mb-0">Breaking changes were also made to compiler flags:</p>
-                        <ul>
-                            <li>Removed the deprecated&nbsp;<code style="color: #262626;">-fsycl-link-huge-device-code</code>, <code style="color: #262626;">-fsycl-[add|link]-targets</code>&nbsp;,&nbsp;<code style="color: #262626;">-foffload-static-lib</code>&nbsp;,&nbsp;<code style="color: #262626;">-foffload-whole-static-lib</code>&nbsp;,&nbsp;<code style="color: #262626;">-fsycl-disable-range-rounding</code>&nbsp;,&nbsp;<code style="color: #262626;">-sycl-std</code> flags.</li>
-                        </ul>
-                    </section>
-
-                    <section id="dk_advisor">
-                        <h4 style="font-weight: 500; margin-top: 22px; margin-bottom: 11px;">SYCL Known Issues</h4>
-                        <ul>
-                            <li>On Windows, the Unified Runtime's Level Zero leak check does not work correctly with the default contexts. This is due to the release of the plugin DLLs racing against the release of static global variables, such as the default context.</li>
-                            <li>The Intel Graphic Compiler's Vector Compute backend does not support certain optimization levels and often produces incorrect results or crashes. This issue directly affects ESIMD code. As a temporary workaround, optimize ESIMD code even in the affected mode.</li>
-                            <li>When using the sycl_ext_oneapi_matrix extension, it is important for some devices to use the appropriate settings corresponding to the device that will run the program, particularly for matrix operations using half data type.</li>
-                            <li>When using queue shortcut functions with in-order queues, dependencies between commands submitted to different queues may be ignored. A workaround is to explicitly call <code style="color: #262626;">.wait()</code>. This issue will be fixed in the next release. In below example,&nbsp;the seocnd kernel will start execution&nbsp;<em>before</em>&nbsp;the first completes its execution.&nbsp;</li>
-                        </ul>
-
-                        <div class="mv_code_toolbar">
-                            <div class="mv_toolbar_item mv_copy_icon">
-                                <i class="fa-regular fa-copy"></i>
-                            </div>
-                            <div class="mv_copy_message text-end hidden">Copied</div>
-                            <div class="code-content">
-                                <div style="padding-bottom: 0rem !important" class="d-flex mv_pre">
-                                    <div style="border-right: 1px solid #ccc" class="pe-3">
-                                        1
-                                    </div>
-                                    <div class="">
-                                        <div class="mv_code text-break">
-                                            <p class="mb-0"><span class="dk_code_green">// q1 long running task</span></p>
-                                        </div> 
-                                    </div>
+                            <li>The compiler produces the following generic error in many cases, for example, when you are missing device support files.</li>
+                            <p class="mb-0">Error message:</p>
+                            <div style="margin-top: 10px; margin-bottom: 10px;" class="mv_code_toolbar">
+                                <div class="mv_toolbar_item mv_copy_icon">
+                                    <i class="fa-regular fa-copy"></i>
                                 </div>
-                                <div style="padding-top: 0rem !important; padding-bottom: 0px !important;" class="d-flex mv_pre">
-                                    <div style="border-right: 1px solid #ccc" class="pe-3">
-                                        2
-                                    </div>
-                                    <div class="">
-                                        <div class="mv_code text-break">
-                                            <p class="mb-0">sycl<span class="dk_code_org">::</span>event e <span class="dk_code_org">=</span> q1.single_task<span style="color: #000 !important; opacity: .7;">(</span><span style="color: #000 !important; opacity: .7;">[</span><span class="dk_code_org">=</span><span style="color: #000 !important; opacity: .7;">]</span><span style="color: #000 !important; opacity: .7;">(</span> <span style="color: #000 !important; opacity: .7;">)</span><span style="color: #000 !important; opacity: .7;">{</span> <span class="dk_code_green">/* ... */</span> <span style="color: #000 !important; opacity: .7;">}</span><span style="color: #000 !important; opacity: .7;">)</span><span style="color: #000 !important; opacity: .7;">;</span></p>
+                                <div class="mv_copy_message text-end hidden">Copied</div>
+                                <div class="code-content">
+                                    <div style="padding-bottom: 0rem !important" class="d-flex mv_pre">
+                                        <div class="">
+                                            <div style="padding-left: 0rem !important;" class="mv_code text-break">
+                                                <p class="mb-0"><span class="">...</span></p>
+                                            </div> 
                                         </div>
                                     </div>
-                                </div>
-                                <div style="padding-top: 0rem !important; padding-bottom: 0px !important;" class="d-flex mv_pre">
-                                    <div style="border-right: 1px solid #ccc" class="pe-3">
-                                        3
-                                    </div>
-                                    <div class="">
-                                        <div class="mv_code text-break">
-                                            <p class="mb-0"><span class="dk_code_green">// q2 task</span></p>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0px !important;" class="d-flex mv_pre">
+                                        <div class="">
+                                            <div style="padding-left: 0rem !important;" class="mv_code text-break"><span>aoc: Compiling for Simulator.</span></div>
                                         </div>
                                     </div>
-                                </div>
-                                <div style="padding-top: 0rem !important; padding-bottom: 10px !important;" class="d-flex mv_pre">
-                                    <div style="border-right: 1px solid #ccc" class="pe-3">
-                                        4
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0px !important;" class="d-flex mv_pre">
+                                        <div class="">
+                                            <div style="padding-left: 0rem !important;" class="mv_code text-break"><span>Error: Simulation system generation FAILED.</span></div>
+                                        </div>
                                     </div>
-                                    <div class="">
-                                        <div class="mv_code text-break">
-                                            <p class="mb-0"> <span class="">q2.single_task<span style="color: #000 !important; opacity: .7;">(</span>e<span style="color: #000 !important; opacity: .7;">, </span><span style="color: #000 !important; opacity: .7;">[</span><span class="dk_code_org">=</span><span style="color: #000 !important; opacity: .7;">]</span><span style="color: #000 !important; opacity: .7;">(</span> <span style="color: #000 !important; opacity: .7;">)</span><span style="color: #000 !important; opacity: .7;">{</span> <span class="dk_code_green">/* ... */</span> <span style="color: #000 !important; opacity: .7;">}</span><span style="color: #000 !important; opacity: .7;">)</span><span style="color: #000 !important; opacity: .7;">;</span></span></p>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0px !important;" class="d-flex mv_pre">
+                                        <div class="">
+                                            <div style="padding-left: 0rem !important;" class="mv_code text-break">
+                                                <p class="mb-0"><span class="">Refer to <...>/logs/<ip_name>.log for details</span></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0px !important;" class="d-flex mv_pre">
+                                        <div class="">
+                                            <div style="padding-left: 0rem !important;" class="mv_code text-break">
+                                                <p class="mb-0"><span class="">llvm-foreach:</span></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 10px !important;" class="d-flex mv_pre">
+                                        <div class="">
+                                            <div style="padding-left: 0rem !important;" class="mv_code text-break"><span>icpx: error: fpga compiler failed with exit code 1 (use -v to</span></div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        
-                        <ul>
-                            <li>C/C++ math built-ins can return incorrect results for some edge-case inputs when called from SYCL kernels.</li>
-                            <li>To enhance performance on Intel® GPUs using the Unified Runtime Level Zero Adapter, support for driver-optimized in-order lists has been introduced in version 2025.0. However, when running workloads with sycl::property::queue::enable_profiling, some performance overhead from these lists is expected. If this overhead negatively impacts performance, it can be mitigated by disabling the driver in-order lists. To do so, set UR_L0_USE_DRIVER_INORDER_LISTS=0.</li>
-                            <li>
-                            <p>To ensure compatibility with the DPC++ Compiler on Windows*, which requires OpenCL 3.0, it is essential to address potential issues caused by older versions of <code style="color: #262626;">opencl.dll</code> on your system. If an outdated <code style="color: #262626;">opencl.dll</code> is present in system directories or takes precedence in the library path, it may lead to failures, including SYCL-related issues and crashes in tools like Intel VTune™ and Advisor when specific OpenCL 3.0 features are used. The recommended solution is to replace the old <code style="color: #262626;">opencl.dll</code> with the one installed in the DPC++ package. You can do this by copying the newer <code style="color: #262626;">opencl.dll</code> from <code style="color: #262626;">$oneAPI_Install_Folder\compiler\latest\bin</code> to your system folder. Be sure to back up the original <code style="color: #262626;">opencl.dll</code> in case it's needed for other applications.</p>
-                            </li>
-                            <li><code style="color: #262626;">sycl_ext_oneapi_free_function_kernels</code>&nbsp;has&nbsp;limitations including:
+                            <p class="mb-2">As a workaround for the missing device support files, install the appropriate device support files from the FPGA Software Download Center. You can determine the missing device support files by inspecting the log file mentioned in the error message for the following message:</p>
+                            <div style="margin-top: 10px; margin-bottom: 10px;" class="mv_code_toolbar">
+                                <div class="mv_toolbar_item mv_copy_icon">
+                                    <i class="fa-regular fa-copy"></i>
+                                </div>
+                                <div class="mv_copy_message text-end hidden">Copied</div>
+                                <div class="code-content">
+                                    <div style="padding-bottom: 0rem !important" class="d-flex mv_pre">
+                                        <div class="">
+                                            <div style="padding-left: 0rem !important;" class="mv_code text-break">
+                                                <p class="mb-0"><span class="">Info: qsys-generate /tmp/fpga_template-96985d-fda046/ip/mpsim/done_cfan.ip</span></p>
+                                            </div> 
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0px !important;" class="d-flex mv_pre">
+                                        <div class="">
+                                            <div style="padding-left: 0rem !important;" class="mv_code text-break"><span>--simulation=VERILOG --allow-mixed-language-simulation</span></div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0px !important;" class="d-flex mv_pre">
+                                        <div class="">
+                                            <div style="padding-left: 0rem !important;" class="mv_code text-break"><span>--output-directory=/tmp/fpga_template-96985d-fda046/ip/mpsim/done_cfan</span></div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0px !important;" class="d-flex mv_pre">
+                                        <div class="">
+                                            <div style="padding-left: 0rem !important;" class="mv_code text-break">
+                                                <p class="mb-0"><span class="">--family=Agilex --part=Unknown</span></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0px !important;" class="d-flex mv_pre">
+                                        <div class="">
+                                            <div style="padding-left: 0rem !important;" class="mv_code text-break">
+                                                <p class="mb-0"><span class="">Error: done_cfan: deviceFamily "Agilex" is out of range: "None", "Unknown"</span></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 10px !important;" class="d-flex mv_pre">
+                                        <div class="">
+                                            <div style="padding-left: 0rem !important;" class="mv_code text-break"><span>Error: qsys-generate failed with exit code 3: 1 Error, 0 Warnings</span></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <p class="mb-0">For an FPGA SYCL HLS program compiled for an Arria 10, Stratix 10, or Agilex 7 FPGA, it is possible that simulation or hardware runs may not update host memory before the kernel completes. The memory is written, but it is possible that the host program checks the memory before the data gets there.</p>
+                            <p class="mb-0"><b>Sample subroutine from a whole program showing the problem:</b></p>
+                            <p class="mb-0">It is possible for the program to print <span style="color: #53565a; background-color: #e6e6e6;">Failed: 15</span> if the read from <span style="color: #53565a; background-color: #e6e6e6;">*Result</span> is done before the write reaches the memory.</p>
+                            <div style="margin-top: 20px; margin-bottom: 20px;" class="mv_code_toolbar">
+                                <div class="mv_toolbar_item mv_copy_icon">
+                                    <i class="fa-regular fa-copy"></i>
+                                </div>
+                                <div class="mv_copy_message text-end hidden">Copied</div>
+                                <div class="code-content">
+                                    <div style="padding-bottom: 0rem !important" class="d-flex mv_pre">
+                                        <div style="border-right: 1px solid #ccc; padding-left: 9px;" class="pe-3">
+                                            1
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0"><span class="">// Sample invocation</span></p>
+                                            </div> 
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0px !important;" class="d-flex mv_pre">
+                                        <div style="border-right: 1px solid #ccc; padding-left: 9px;" class="pe-3">
+                                            2
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <!-- <p class="mb-0">sycl<span class="dk_code_org">::</span>event e <span class="dk_code_org">=</span> q1.single_task<span style="color: #000 !important; opacity: .7;">(</span><span style="color: #000 !important; opacity: .7;">[</span><span class="dk_code_org">=</span><span style="color: #000 !important; opacity: .7;">]</span><span style="color: #000 !important; opacity: .7;">(</span> <span style="color: #000 !important; opacity: .7;">)</span><span style="color: #000 !important; opacity: .7;">{</span> <span class="dk_code_green">/* ... */</span> <span style="color: #000 !important; opacity: .7;">}</span><span style="color: #000 !important; opacity: .7;">)</span><span style="color: #000 !important; opacity: .7;">;</span></p> -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0px !important;" class="d-flex mv_pre">
+                                        <div style="border-right: 1px solid #ccc; padding-left: 9px;" class="pe-3">
+                                            3
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0"><span class="">void runKernel<span style="color: #000 !important; opacity: .7;">(</span>queue <span class="dk_code_org">&</span>q<span style="color: #000 !important; opacity: .7;">)</span><span style="color: #000 !important; opacity: .7;"> {</span></span> </span></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0px !important;" class="d-flex mv_pre">
+                                        <div style="border-right: 1px solid #ccc; padding-left: 9px;" class="pe-3">
+                                            4
+                                        </div>
+                                        <div class="ps-3">
+                                            <div class="mv_code text-break">int *IntegerVar <span class="dk_code_org">=</span> malloc_shared<span class="dk_code_org"><</span>int<span class="dk_code_org">></span><span style="color: #000 !important; opacity: .7;">(</span>5,q<span style="color: #000 !important; opacity: .7;">)</span><span>;</span></div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0px !important;" class="d-flex mv_pre">
+                                        <div style="border-right: 1px solid #ccc; padding-left: 9px;" class="pe-3">
+                                            5
+                                        </div>
+                                        <div class="ps-3">
+                                            <div class="mv_code text-break"><span class="dk_code_blue">for</span> <span style="color: #000 !important; opacity: .7;">(</span>int i <span class="dk_code_org">=</span> 0<span style="color: #000 !important; opacity: .7;">;</span> i <span class="dk_code_org"><</span> 5<span style="color: #000 !important; opacity: .7;">;</span> ++i<span style="color: #000 !important; opacity: .7;">)</span></div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0px !important;" class="d-flex mv_pre">
+                                        <div style="border-right: 1px solid #ccc; padding-left: 9px;" class="pe-3">
+                                            6
+                                        </div>
+                                        <div class="ps-4">
+                                            <div class="mv_code text-break">IntegerVar<span style="color: #000 !important; opacity: .7;">[</span>i<span style="color: #000 !important; opacity: .7;">]</span> <span class="dk_code_org">=</span> i+1<span style="color: #000 !important; opacity: .7;">;</span></div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0px !important;" class="d-flex mv_pre">
+                                        <div style="border-right: 1px solid #ccc; padding-left: 9px;" class="pe-3">
+                                            7
+                                        </div>
+                                        <div class="ps-4">
+                                            <div class="mv_code text-break">&nbsp;</div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0px !important;" class="d-flex mv_pre">
+                                        <div style="border-right: 1px solid #ccc; padding-left: 9px;" class="pe-3">
+                                            8
+                                        </div>
+                                        <div class="ps-3">
+                                            <div class="mv_code text-break">int *Result <span class="dk_code_org">=</span> malloc_shared<span class="dk_code_org"><</span>int<span class="dk_code_org">></span><span style="color: #000 !important; opacity: .7;">(</span>1,q<span style="color: #000 !important; opacity: .7;"></span>)<span style="color: #000 !important; opacity: .7;">;</span></div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0px !important;" class="d-flex mv_pre">
+                                        <div style="border-right: 1px solid #ccc; padding-left: 9px;" class="pe-3">
+                                            9
+                                        </div>
+                                        <div class="ps-3">
+                                            <div class="mv_code text-break"><span style="color: #000 !important; opacity: .7;">{</span></div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0px !important;" class="d-flex mv_pre">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            10
+                                        </div>
+                                        <div class="ps-3">
+                                            <div class="mv_code text-break"> q.single_task<span class="dk_code_org"><</span>test_k1_test<span class="dk_code_org">></span><span style="color: #000 !important; opacity: .7;">([</span><span class="dk_code_org">=</span><span style="color: #000 !important; opacity: .7;">]() {</span></div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0px !important;" class="d-flex mv_pre">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            11
+                                        </div>
+                                        <div class="ps-5">
+                                            <div class="mv_code text-break">  int tmp <span class="dk_code_org">=</span> 0;</div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0px !important;" class="d-flex mv_pre">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            12
+                                        </div>
+                                        <div class="ps-5">
+                                            <div class="mv_code text-break"><span class="dk_code_blue">for</span> <span style="color: #000 !important; opacity: .7;">(</span>int i <span class="dk_code_org">=</span> 0<span style="color: #000 !important; opacity: .7;">;</span> i <span class="dk_code_org"><</span> 5<span style="color: #000 !important; opacity: .7;">;</span> ++i<span style="color: #000 !important; opacity: .7;">)</span> <span style="color: #000 !important; opacity: .7;">{</span></div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0px !important;" class="d-flex mv_pre">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            13
+                                        </div>
+                                        <div style="padding-left: 60px;">
+                                            <div class="mv_code text-break">tmp +<span class="dk_code_org">=</span> IntegerVar<span style="color: #000 !important; opacity: .7;">[</span>i<span style="color: #000 !important; opacity: .7;">]</span><span style="color: #000 !important; opacity: .7;">;  </span></div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0px !important;" class="d-flex mv_pre">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            14
+                                        </div>
+                                        <div class="ps-5">
+                                            <div class="mv_code text-break"><span style="color: #000 !important; opacity: .7;">}</span></div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0px !important;" class="d-flex mv_pre">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            15
+                                        </div>
+                                        <div class="ps-5">
+                                            <div class="mv_code text-break">*Result <span class="dk_code_org">=</span> tmp<span style="color: #000 !important; opacity: .7;">;</span></div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0px !important;" class="d-flex mv_pre">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            16
+                                        </div>
+                                        <div class="ps-4">
+                                            <div class="mv_code text-break"><span style="color: #000 !important; opacity: .7;">})</span>.wait_and_throw<span style="color: #000 !important; opacity: .7;">();</span></div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0px !important;" class="d-flex mv_pre">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            17
+                                        </div>
+                                        <div class="ps-2">
+                                            <div class="mv_code text-break"><span style="color: #000 !important; opacity: .7;">}</span></div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0px !important;" class="d-flex mv_pre">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            18
+                                        </div>
+                                        <div class="ps-2">
+                                            <div class="mv_code text-break"><span class="dk_code_blue">if</span> (*Result <span class="dk_code_org">!=</span> 15<span style="color: #000 !important; opacity: .7;">) {</span></div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0px !important;" class="d-flex mv_pre">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            19
+                                        </div>
+                                        <div class="ps-3">
+                                            <div class="mv_code text-break">std::cout <span class="dk_code_org"><<</span> <span style="color: blue !important;">"Failed: "</span> <span class="dk_code_org"><<</span> *Result <span class="dk_code_org"><<</span> std::endl;</div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0px !important;" class="d-flex mv_pre">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            20
+                                        </div>
+                                        <div class="ps-2">
+                                            <div class="mv_code text-break"><span style="color: #000 !important; opacity: .7;">}</span></div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 10px !important;" class="d-flex mv_pre">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            21
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break"><span style="color: #000 !important; opacity: .7;">}</span></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <p class="mb-0">As a workaround, do one of the following:</p>
                             <ul>
-                                <li>free function kernels are only supported if defined at file scope</li>
-                                <li><code style="color: #262626;">SYCL_EXTERNAL</code>&nbsp;has to be used alongside&nbsp;<code style="color: #262626;">SYCL_EXT_ONEAPI_FUNCTION_PROPERTY</code>&nbsp;to define free function kernel</li>
-                                <li>compiler won't emit any diagnostics if some restrictions from the extension specification are violated</li>
-                                <li>arguments of a free function kernels cannot be composite data types like structs or SYCL classes like&nbsp;<code style="color: #262626;">accessor</code></li>
-                                <li>using&nbsp;<code style="color: #262626;">-fsycl-dead-args-optimization</code>&nbsp;(ON by default) can lead to failures</li>
-                                <li><code style="color: #262626;">info::kernel::num_args</code>&nbsp;won't return the right result for free function kernels</li>
+                                <li>
+                                <p>On Arria 10 boards, add a&nbsp;<span style="color: #53565a; background-color: #e6e6e6;">sleep(5);</span><strong>&nbsp;</strong>&nbsp;after the call to&nbsp;<span style="color: #53565a; background-color: #e6e6e6;">wait_and_throw();</span>.<span style="color: #53565a; background-color: #e6e6e6;">&nbsp;</span>The number of seconds to sleep can be less than 5.</p>
+                                </li>
+                                <li>
+                                <p>On Stratix 10&nbsp;or Agilex 7 FPGA boards,&nbsp;add the <span style="color: #53565a; background-color: #e6e6e6;">-Xshyper-optimized-handshaking=off</span>&nbsp;option to the <span style="color: #53565a; background-color: #e6e6e6;">icpx</span> command line&nbsp;or add a&nbsp;<span style="color: #53565a; background-color: #e6e6e6;">sleep(5);</span><strong>&nbsp; </strong>function&nbsp;after the call to&nbsp;<span style="color: #53565a; background-color: #e6e6e6;">wait_and_throw();</span>.<span style="color: #53565a; background-color: #e6e6e6;">&nbsp;</span>The number of seconds to sleep can be less than 5.</p>
+                                </li>
                             </ul>
+                            <li>If a target FPGA SYCL HLS and your code contains a task sequence that has an infinite loop in it and no host or I/O pipes are present in the design, the compiler issues the following error. As a workaround, add a dummy host pipe.</li>
+                            <div style="margin-top: 20px; margin-bottom: 20px;" class="mv_code_toolbar">
+                                <div class="mv_toolbar_item mv_copy_icon">
+                                    <i class="fa-regular fa-copy"></i>
+                                </div>
+                                <div class="mv_copy_message text-end hidden">Copied</div>
+                                <div class="code-content">
+                                    <div style="padding-bottom: 10px !important" class="d-flex mv_pre">
+                                        <div style="border-right: 1px solid #ccc; padding-left: 9px;" class="pe-3">
+                                            1
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0">Compiler Error<span style="color: #000; opacity: .7;">:</span> Board <span style="color: blue !important;">'custom_ipa'</span> does <span class="dk_code_org">not</span> contain host pipes so pipe <span style="color: blue !important;">'return.xxxx'</span> must be accessed from both endpoints<span style="color: #000; opacity: .7;">,</span> it is currently only read by <span class="dk_code_blue">Kernel</span> <span style="color: blue !important;">'xxxx'</span></p>
+                                            </div> 
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <li>On Red Hat Linux Enterprise Linux systems, you must install the libnsl library before you run the compiler. To install the libnsl library, run the <span style="color: #53565a; background-color: #e6e6e6;">sudo yum install libnsl</span> command.</li>
+                            <li>
+                                <p>When targeting the BSP for the Intel® FPGA SmartNIC N6000-PL Platform (formerly code-named Arrow Creek), the compiler does not automatically detect and warn about timing violations occurring when compiling with BSPs or custom platforms based on the Open FPGA Stack. &nbsp;If you target one of these platforms, &nbsp;validate that your timing passed before executing the compiled design on hardware. When targetting the N6000 PL Platform BSP, you can validate your timing by reviewing the clock report in <span style="color: #53565a; background-color: #e6e6e6;">fim_platform/build/syn/board/n6001/syn_top/output_files/timing_report</span> subdirectory inside of your compiler output directory (that is, your <span style="color: #53565a; background-color: #e6e6e6;">.prj</span> folder).</p>
                             </li>
-                        </ul>
-                    </section>
-
-                    <section id="dk_threading">
-                        <h4 style="font-weight: 500; margin-top: 22px; margin-bottom: 11px;">New OpenMP Features</h4>
-                        <ul>
-                            <li>Support for the <code style="color: #262626;">-fopenmp-offload-mandatory</code> compiler flag to omit creation of host-fallback code and emit a runtime error if OpenMP offload to the device fails.</li>
-                            <li>Improved optimization report support for OpenMP constructs.</li>
-                            <li>Enhanced conversion scheme of nested loop constructs to consider loop trip counts.</li>
-                            <li>Updates to the <code style="color: #262626;">declare</code> variant for a dispatch construct to include GPUs with the Xe2 architecture when the match clause specifies <code style="color: #262626;">device={arch(gen)}</code>.</li>
-                            <li>Support for the <code style="color: #262626;">device_type(host|nohost|any)</code> clause for the target construct.</li>
-                            <li>Inclusion of the <code style="color: #262626;">if</code> clause for the teams construct.</li>
-                            <li>Change of the map-type property to "default," allowing map-type modifiers to be specified without a map-type. For example, <code style="color: #262626;">map(always : x)</code> is equivalent to <code style="color: #262626;">map(always, tofrom : x)</code>.</li>
-                            <li>Support for the Intel extension <code style="color: #262626;">ompx_sub_group_size</code> clause for the target construct to set the SIMD width of the kernel.</li>
-                            <li>Support for the Intel extension <code style="color: #262626;">ompx_dyn_cgroup_mem</code> clause for the target construct, allowing dynamic allocation in SLM for GPU offloading.</li>
-                            <li>Extension of environment variables <code style="color: #262626;">OMP_THREAD_LIMIT</code>, <code style="color: #262626;">OMP_TEAMS_THREAD_LIMIT</code>, and <code style="color: #262626;">OMP_NUM_THREADS</code> to support abstract names. For example, <code style="color: #262626;">OMP_THREAD_LIMIT=n_cores</code>.</li>
-                            <li>Extension of the syntax of the environment variable <code style="color: #262626;">OMP_PLACES</code> to support bound and stride for abstract names. For example, <code style="color: #262626;">OMP_PLACES=threads(4:2)</code>.</li>
-                            <li>Host runtime support for the environment variable <code style="color: #262626;">OMP_AVAILABLE_DEVICES</code>.</li>
-                            <li>Extension of the environment variable <code style="color: #262626;">OMP_DEFAULT_DEVICE</code> to support device selection by traits.</li>
-                        </ul>
-                    </section>
-
-                    <section id="dk_performance">
-                        <h4 style="font-weight: 500; margin-top: 22px; margin-bottom: 11px;">Notable OpenMP Fixes</h4>
-                        <ul>
-                            <li>Fixed a bug where the dispatch construct’s device clause was not updating OpenMP’s default-device-var ICV.</li>
-                            <li>Resolved an internal compiler error when the declare variant for a dispatch construct did not specify an <code style="color: #262626;">adjust_args</code> clause.</li>
-                            <li>Fixed an optimization bug in OpenMP <code style="color: #262626;">for</code> and <code style="color: #262626;">simd</code> loops with large trip counts.</li>
-                            <li>Corrected a regression where enclosing task constructs inside a teams construct triggered a compiler error message.</li>
-                            <li>When <code style="color: #262626;">thread_limit</code> is specified for both target and teams, the compiler now correctly chooses their minimum instead of always using the one specified for target.</li>
-                            <li>Fixed an internal compiler error related to the initialization of global variables allocated in GPU’s SLM.</li>
-                            <li>Addressed a problem in offload runtime where the reference counts of variables mapped using <code style="color: #262626;">declare mapper</code> were not decremented correctly.</li>
-                            <li>Fixed a GPU offload performance issue related to L1 cache being affected by temporary copies of reduction variables.</li>
-                            <li>Resolved a bug where user-defined reduction variables were not properly constructed or destructed.</li>
-                        </ul>
-                    </section>
-
-                    <section id="dk_cryptography">
-                        <h4 style="font-weight: 500; margin-top: 22px; margin-bottom: 11px;">OpenMP Known Issues</h4>
-                        <ul>
-                            <li>Implicit barriers at the end of <strong>parallel</strong> regions do not act as synchronization points for the tasks associated with <strong>target nowait</strong>&nbsp;and <strong>dispatch nowait</strong>&nbsp;constructs.&nbsp;This may&nbsp;result in incorrect results or crashes. A workaround is to use <strong>#pragma omp taskwait </strong>at the end of <strong>parallel</strong> region to ensure synchronization of <strong>target/dispatch nowait</strong>&nbsp;regions, where it would otherwise have happened due to the presence of a <strong>parallel</strong> region’s implicit barrier.</li>
-                        </ul>
-                    </section>
-
-                    <section id="dk_collective">
-                        <h4 style="font-weight: 500; margin-top: 22px; margin-bottom: 11px;">Other Known Issues and Limitations</h4>
-                        <ul>
-                            <li><strong>Visual Studio IDE Integration:</strong> Users will encounter an error while building the C++ project using 'Intel C++ Compiler 2025' for Win32 platform. Please note that Win32 platform is not supported with 'Intel C++ Compiler 2025' and project should be compiled for x64 platform only. If Win32 platform is selected, an error will be raised that ICX compiler not found.</li>
-                        </ul>
-                    </section>
-
-                    <section id="dk_analytics">
-                        <h4 style="font-weight: 500; margin-top: 22px; margin-bottom: 11px;">Hardware Support:</h4>
-                        <ul class="mb-0">
-                            <li>-march=lunarlake</li>
-                            <li>-march=graniterapids</li>
-                        </ul>
-                        <p>Please check <a class="b_special_a1" href="">here</a> for details about <span style="color: #53565a;     background-color: #e6e6e6;">-march</span> usage.&nbsp;</p>
-                    </section>
-
-                    <section id="dk_deep">
-                        <h4 style="font-weight: 500; margin-top: 22px; margin-bottom: 11px;">Toolchain Support to Intel Platforms</h4>
-                        <table class="mv_product_table mb-4 mv_table_td_center">
-                            <thead>
-                                <tr>
-                                    <th>
-                                        <p class="mb-2">Granite Rapids</p>
-                                    </th>
-                                    <th>
-                                        <p class="mb-2">Granite Rapids-D</p>
-                                    </th>
-                                    <th>
-                                        <p class="mb-2">Lunar Lake</p>
-                                    </th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>GCC13.1</td>
-                                    <td>GCC13.1</td>
-                                    <td>GCC14.1</td>
-                                </tr>
-                                <tr>
-                                    <td>Binutils 2.40</td>
-                                    <td>Binutils 2.41</td>
-                                    <td>Binutils 2.42</td>
-                                </tr>
-                                <tr>
-                                    <td>Glibc2.37</td>
-                                    <td>Glibc2.37</td>
-                                    <td>Glibc2.39</td>
-                                </tr>
-                                <tr>
-                                    <td>LLVM 16.0</td>
-                                    <td>LLVM 17.0</td>
-                                    <td>LLVM 18.0</td>
-                                </tr>
-                                <tr>
-                                    <td>ICX 2023.1</td>
-                                    <td>ICX 2023.2</td>
-                                    <td>ICX 2024.0</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </section>
-
-                    <section id="dk_notices">
-                        <h4 style="font-weight: 500; margin-top: 22px; margin-bottom: 11px;">C/C++ Standard</h4>
-                        <ul>
-                            <li>Intel® oneAPI&nbsp;DPC++/C++&nbsp;Compiler version 2025.0&nbsp;supports the C/C++ standards through the&nbsp;<a class="b_special_a1" href="">Clang 19</a>&nbsp;front end.&nbsp;</li>
-                            <li>Initiated support for C++2c, the next release of C++ after C++23, and C2y, the next release of C after C23</li>
-                            <li>Finalized the implementation of “deducing this” (C++23)</li>
-                            <li>Relaxed some constexpr restrictions (C++23)</li>
-                            <li>Implemented the [[assume]] attribute (C++23)</li>
-                            <li>Completed support for Concepts (C++20)</li>
-                            <li>Added support for char8_t (C23)</li>
-                            <li>Implemented the constexpr keyword for object declarations (C23)</li>
-                            <li>Implemented #embed for embedding binary resources in source (C23)</li>
+                            <li>An FPGA hardware compilation that targets the default Stratix® 10 device <span style="color: #53565a; background-color: #e6e6e6;">(-Xstarget=Stratix10)</span> might fail with the following error message:</li>
+                            <div style="margin-top: 10px; margin-bottom: 10px;" class="mv_code_toolbar">
+                                <div class="mv_toolbar_item mv_copy_icon">
+                                    <i class="fa-regular fa-copy"></i>
+                                </div>
+                                <div class="mv_copy_message text-end hidden">Copied</div>
+                                <div class="code-content">
+                                    <div style="padding-bottom: 0rem !important" class="d-flex mv_pre">
+                                        <div class="">
+                                            <div style="padding-left: 0rem !important;" class="mv_code text-break">
+                                                <p class="mb-0"><span class="">Error (22730): RAM Primitive</span></p>
+                                            </div> 
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 10px !important;" class="d-flex mv_pre">
+                                        <div class="">
+                                            <div style="padding-left: 0rem !important;" class="mv_code text-break"><span>"foo_di_inst|DotProductIP_std_ic_inst|DotProductIP_inst_0|kernel|theDotProductIP_function|thebb_DotProductIP_B1|<other names>|ram_block2a63" parameter operation_mode value QUAD_PORT is no longer supported for the target device. File: <filename>/altera_syncram_impl_klrp.tdf Line: 37</span></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <p class="mb-0">You can use one of the following workarounds for this issue:</p>
+                            <ul>
+                                <li>Specify a specific Stratix* 10 OPN with the <span style="color: #53565a; background-color: #e6e6e6;">-Xsdevice=</span> compiler command option. Do not use the 1SG280LU3F50I2VG OPN.</li>
+                                <li>If you must use the 1SG280LU3F50I2VG Stratix® 10 OPN, run the following commands when compiling:</li>
+                                <div style="margin-top: 40px; margin-bottom: 40px;" class="mv_code_toolbar">
+                                    <div class="mv_toolbar_item mv_copy_icon">
+                                        <i class="fa-regular fa-copy"></i>
+                                    </div>
+                                    <div class="mv_copy_message text-end hidden">Copied</div>
+                                    <div class="code-content">
+                                        <div style="padding-bottom: 0px !important" class="d-flex mv_pre">
+                                            <div style="border-right: 1px solid #ccc; padding-left: 9px;" class="pe-3">
+                                                1
+                                            </div>
+                                            <div class="">
+                                                <div class="mv_code text-break">
+                                                    <p class="mb-0"><span class="dk_code_blue">echo</span> <span style="color: blue !important;">"skip_nd_sqp_power_temp_check=on"</span> <span class="dk_code_org">></span> /tmp/file.ini</p>
+                                                </div> 
+                                            </div>
+                                        </div>
+                                        <div style="padding-top: 0rem !important; padding-bottom: 10px !important;" class="d-flex mv_pre">
+                                            <div style="border-right: 1px solid #ccc; padding-left: 9px;" class="pe-3">
+                                                2
+                                            </div>
+                                            <div class="">
+                                                <div class="mv_code text-break">
+                                                    <p class="mb-0">icpx -Xsadd-ini<span class="dk_code_org">=</span>/tmp/file.ini <span class="dk_code_org"><</span>other compiler command options<span class="dk_code_org">></span></p>
+                                                </div> 
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <li>Use the Quartus Prime Pro Edition version 24.3 or later.</li>
+                            </ul>
+                            <li>Writing an argument to a CRA interface one cycle after the start signal is sent incorrectly causes the arguments after the start signal to be used.</li>
+                            <li>
+                                <p>If your code contains an assert macro that contains error message text, you might experience a compiler crash that includes an <span style="color: #53565a; background-color: #e6e6e6;">Error: Optimizer FAILED</span> message as part of the crash message. As a workaround, avoid using text strings in your assert macros.</p>
+                            </li>
+                            <li>
+                                <p>If your code reads a host-access <span style="color: #53565a; background-color: #e6e6e6;">device_global</span> variable but never uses the result, your program will crash with an <span style="color: #53565a; background-color: #e6e6e6;">Error: Verilog generator FAILED error</span> message as part of the crash message. To prevent this error, ensure that your code uses the result of the host-access <span style="color: #53565a; background-color: #e6e6e6;">device_global</span> variable read elsewhere in the program.</p>
+                            </li>
+                            <li>
+                                <p>The IO pipe classes <span style="color: #53565a; background-color: #e6e6e6;">sycl::ext::intel::kernel_readable_io_pipe</span> and <span style="color: #53565a; background-color: #e6e6e6;">sycl::ext::intel::kernel_writable_io_pipe</span> are not compatible with the pipe properties defined in the <span style="color: #53565a; background-color: #e6e6e6;">sycl::ext::intel::experimental</span> namespace. This is planned to be addressed in a future release.</p>
+                            </li>
+                            <li>The SYCL* <span style="color: #53565a; background-color: #e6e6e6;">ext::oneapi::experimental::printf</span> class is subject to the following limitations:</li>
+                            <ul>
+                                <li>
+                                    <p class="mb-0">Output might be reordered in the Windows emulator. If you see a different order of output when printing to the console and redirecting output to a file, recompile your program with the <span style="color: #53565a; background-color: #e6e6e6;">-O0</span> compiler option.</p>
+                                    <p class="mb-0">For example, the following code generates different output order:</p>
+                                </li>
+                            </ul>
+                            <div style="margin-top: 20px; margin-bottom: 20px; margin-left: 30px;" class="mv_code_toolbar">
+                                <div class="mv_toolbar_item mv_copy_icon">
+                                    <i class="fa-regular fa-copy"></i>
+                                </div>
+                                <div class="mv_copy_message text-end hidden">Copied</div>
+                                <div class="code-content">
+                                    <div style="padding-bottom: 0rem !important" class="d-flex mv_pre">
+                                        <div style="border-right: 1px solid #ccc; padding-left: 9px;" class="pe-3">
+                                            1
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0"><span class="dk_code_blue">#include</span> <span style="color: blue !important;">&lt;sycl/sycl.hpp&gt;</span></p>
+                                            </div> 
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0px !important;" class="d-flex mv_pre">
+                                        <div style="border-right: 1px solid #ccc; padding-left: 9px;" class="pe-3">
+                                            2
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break"><span class="dk_code_blue">#include</span> <span style="color: blue !important;">&lt;sycl/ext/intel/fpga_extensions.hpp&gt;</span></div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0px !important;" class="d-flex mv_pre">
+                                        <div style="border-right: 1px solid #ccc; padding-left: 9px;" class="pe-3">
+                                            3
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">&nbsp;</div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0px !important;" class="d-flex mv_pre">
+                                        <div style="border-right: 1px solid #ccc; padding-left: 9px;" class="pe-3">
+                                            4
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break"><span class="dk_code_blue">#ifdef __SYCL_DEVICE_ONLY__</span></div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0px !important;" class="d-flex mv_pre">
+                                        <div style="border-right: 1px solid #ccc; padding-left: 9px;" class="pe-3">
+                                            5
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break"><span class="dk_code_blue">#define CL_CONSTANT __attribute__((opencl_constant))</span></div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0px !important;" class="d-flex mv_pre">
+                                        <div style="border-right: 1px solid #ccc; padding-left: 9px;" class="pe-3">
+                                            6
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break"><span class="dk_code_blue">#else</span></div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0px !important;" class="d-flex mv_pre">
+                                        <div style="border-right: 1px solid #ccc; padding-left: 9px;" class="pe-3">
+                                            7
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break"><span class="dk_code_blue">#define CL_CONSTANT</span></div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0px !important;" class="d-flex mv_pre">
+                                        <div style="border-right: 1px solid #ccc; padding-left: 9px;" class="pe-3">
+                                            8
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break"><span class="dk_code_blue">#endif</span></div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0px !important;" class="d-flex mv_pre">
+                                        <div style="border-right: 1px solid #ccc; padding-left: 9px;" class="pe-3">
+                                            9
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">&nbsp;</div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0px !important;" class="d-flex mv_pre">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            10
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break"><span class="dk_code_blue">using namespace</span> sycl<span style="color: #000; opacity: .7;">;</span></div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0px !important;" class="d-flex mv_pre">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            11
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break"><span class="dk_code_blue">#define PRINTF(format, ...)                          \</span></div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0px !important;" class="d-flex mv_pre">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            12
+                                        </div>
+                                        <div class="ps-3">
+                                            <div class="mv_code text-break"><span class="dk_code_blue">{                                                  \</span></div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0px !important;" class="d-flex mv_pre">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            13
+                                        </div>
+                                        <div style="padding-left: 60px;">
+                                            <div class="mv_code text-break"><span class="dk_code_blue">static const CL_CONSTANT char _format[] = format; \</span></div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0px !important;" class="d-flex mv_pre">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            14
+                                        </div>
+                                        <div class="ps-3">
+                                            <div class="mv_code text-break"><span class="dk_code_blue">ext::oneapi::experimental::printf(_format,##__VA_ARGS__); \</span></div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0px !important;" class="d-flex mv_pre">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            15
+                                        </div>
+                                        <div class="ps-3">
+                                            <div class="mv_code text-break"><span class="dk_code_blue">}</span></div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0px !important;" class="d-flex mv_pre">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            16
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">&nbsp;</div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0px !important;" class="d-flex mv_pre">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            17
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break"><span class="dk_code_blue">class</span> BasicKernel<span style="color: #000; opacity: .7;">;</span></div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0px !important;" class="d-flex mv_pre">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            18
+                                        </div>
+                                        <div class="ps-2">
+                                            <div class="mv_code text-break">&nbsp;</div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0px !important;" class="d-flex mv_pre">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            19
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break"><span class="dk_code_blue">int</span> main<span style="color: #000; opacity: .7;">(</span><span class="dk_code_blue">int</span> argc<span style="color: #000; opacity: .7;">,</span> <span class="dk_code_blue">char</span><span class="dk_code_org">*</span> argv<span style="color: #000; opacity: .7;">[ ] )  {</span></div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0px !important;" class="d-flex mv_pre">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            20
+                                        </div>
+                                        <div class="ps-2">
+                                            <div class="mv_code text-break">queue q<span style="color: #000; opacity: .7;">;</span></div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0px !important;" class="d-flex mv_pre">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            21
+                                        </div>
+                                        <div class="ps-3">
+                                            <div class="mv_code text-break">q.submit<span style="color: #000; opacity: .7;">([</span><span class="dk_code_org">&</span><span style="color: #000; opacity: .7;">](</span>handler<span class="dk_code_org">&</span> h<span style="color: #000; opacity: .7;">) {</span></div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0px !important;" class="d-flex mv_pre">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            22
+                                        </div>
+                                        <div class="ps-5">
+                                            <div class="mv_code text-break"> h.single_task<BasicKernel><span style="color: #000; opacity: .7;">( [</span><span class="dk_code_org">=</span><span style="color: #000; opacity: .7;">] ( )  {</span></div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0px !important;" class="d-flex mv_pre">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            23
+                                        </div>
+                                        <div style="padding-left: 65px;">
+                                            <div class="mv_code text-break">PRINTF<span style="color: #000; opacity: .7;">(</span><span style="color: blue !important;">"Result1: Hello, World!\n"</span><span style="color: #000; opacity: .7;">);</span></div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0px !important;" class="d-flex mv_pre">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            24
+                                        </div>
+                                        <div style="padding-left: 65px;">
+                                            <div class="mv_code text-break">PRINTF<span style="color: #000; opacity: .7;">(</span><span style="color: blue !important;">"Result2: %%\n"</span><span style="color: #000; opacity: .7;">);</span></div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom:0px !important;" class="d-flex mv_pre">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            25
+                                        </div>
+                                        <div class="ps-5">
+                                            <div class="mv_code text-break"><span style="color: #000; opacity: .7;">} );</span></div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom:0px !important;" class="d-flex mv_pre">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            26
+                                        </div>
+                                        <div class="ps-3">
+                                            <div class="mv_code text-break"><span style="color: #000; opacity: .7;">} )</span>.wait<span style="color: #000; opacity: .7;">( );</span></div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom:0px !important;" class="d-flex mv_pre">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            27
+                                        </div>
+                                        <div class="ps-3">
+                                            <div class="mv_code text-break"><span class="dk_code_blue">return 0</span> <span style="color: #000; opacity: .7;">;</span></div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom:10px !important;" class="d-flex mv_pre">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            28
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break"><span style="color: #000; opacity: .7;">}</span></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <p style="margin-left: 30px;">On Windows, this program prints the following output to the console:</p>
+                            <div style="margin-top: 10px; margin-bottom: 10px; margin-left: 30px;" class="mv_code_toolbar">
+                                <div class="mv_toolbar_item mv_copy_icon">
+                                    <i class="fa-regular fa-copy"></i>
+                                </div>
+                                <div class="mv_copy_message text-end hidden">Copied</div>
+                                <div class="code-content">
+                                    <div style="padding-bottom: 0rem !important" class="d-flex mv_pre">
+                                        <div class="">
+                                            <div style="padding-left: 0rem !important;" class="mv_code text-break">
+                                                <p class="mb-0"><span class="">Hello, World!</span></p>
+                                            </div> 
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 10px !important;" class="d-flex mv_pre">
+                                        <div class="">
+                                            <div style="padding-left: 0rem !important;" class="mv_code text-break"><span>Result2: %</span></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <p style="margin-left: 30px;">If you redirect the output to a file, the program creates the following results:</p>
+                            <div style="margin-top: 10px; margin-bottom: 10px; margin-left: 30px;" class="mv_code_toolbar">
+                                <div class="mv_toolbar_item mv_copy_icon">
+                                    <i class="fa-regular fa-copy"></i>
+                                </div>
+                                <div class="mv_copy_message text-end hidden">Copied</div>
+                                <div class="code-content">
+                                    <div style="padding-bottom: 0rem !important" class="d-flex mv_pre">
+                                        <div class="">
+                                            <div style="padding-left: 0rem !important;" class="mv_code text-break">
+                                                <p class="mb-0"><span class="">Result2: %</span></p>
+                                            </div> 
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 10px !important;" class="d-flex mv_pre">
+                                        <div class="">
+                                            <div style="padding-left: 0rem !important;" class="mv_code text-break"><span>Hello, World!</span></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <li>The FPGA runtime can hang when multiple invocations of the same kernels are enqueued with explicit event dependences between them. As a workaround, remove the explicit event dependences. This workaround is safe for FPGA devices, but generally is not safe for CPU/GPU compiler targets.</li>
+                            <li>On Windows, if you link a static library (.a file) containing your main function produced via the -fsycl-link=image flag you might see linker errors such as the following errors:</li>
+                            <div style="margin-top: 10px; margin-bottom: 10px;" class="mv_code_toolbar">
+                                <div class="mv_toolbar_item mv_copy_icon">
+                                    <i class="fa-regular fa-copy"></i>
+                                </div>
+                                <div class="mv_copy_message text-end hidden">Copied</div>
+                                <div class="code-content">
+                                    <div style="padding-bottom: 0rem !important" class="d-flex mv_pre">
+                                        <div class="">
+                                            <div style="padding-left: 0rem !important;" class="mv_code text-break">
+                                                <p class="mb-0"><span class="">error LNK2001: unresolved external symbol __start_omp_offloading_entries</span></p>
+                                            </div> 
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 10px !important;" class="d-flex mv_pre">
+                                        <div class="">
+                                            <div style="padding-left: 0rem !important;" class="mv_code text-break"><span>error LNK2001: unresolved external symbol __stop_omp_offloading_entries</span></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div style="margin-top: 10px; margin-bottom: 10px;" class="mv_code_toolbar">
+                                <div class="mv_toolbar_item mv_copy_icon">
+                                    <i class="fa-regular fa-copy"></i>
+                                </div>
+                                <div class="mv_copy_message text-end hidden">Copied</div>
+                                <div class="code-content">
+                                    <div style="padding-bottom: 0rem !important; padding-bottom: 10px !important;" class="d-flex mv_pre">
+                                        <div class="">
+                                            <div style="padding-left: 0rem !important;" class="mv_code text-break">
+                                                <p class="mb-0"><span class="">error LNK1561: entry point must be defined</span></p>
+                                            </div> 
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <p>As a workaround split your source code across multiple files so that the translation unit you compile with -fsycl-link=image does not contain your main function.</p>
+                            <li>
+                                <p class="mb-0">Designs that access internal memory in a series of nested loops might experience inefficient memory accesses (that is, stallable loads and stores) regardless of the memory attributes specified to set the memory bank configuration. A potential workaround for this is to transpose the memory system so that the lowest dimension is accessed in parallel.</p>
+                                <p>The following example experience inefficient memory accesses:</p>
+                            </li>
+                            <div style="margin-top: 40px; margin-bottom: 40px;" class="mv_code_toolbar">
+                                <div class="mv_toolbar_item mv_copy_icon">
+                                    <i class="fa-regular fa-copy"></i>
+                                </div>
+                                <div class="mv_copy_message text-end hidden">Copied</div>
+                                <div class="code-content">
+                                    <div style="padding-bottom: 0rem !important" class="d-flex mv_pre">
+                                        <div style="border-right: 1px solid #ccc; padding-left: 9px;" class="pe-3">
+                                            1
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0"><span style="color: #000; opacity: .7;">[[</span>intel <span class="dk_code_org">::</span> fpga_memory<span style="color: #000; opacity: .7;">(</span>"BLOCK_RAM"<span style="color: #000; opacity: .7;">)]]</span>  <span class="dk_code_green"></span></p>
+                                            </div> 
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0px !important;" class="d-flex mv_pre">
+                                        <div style="border-right: 1px solid #ccc; padding-left: 9px;" class="pe-3">
+                                            2
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break"><span class="dk_code_blue">unsigned int</span> line_buffer<span style="color: #000; opacity: .7;">[</span>8<span style="color: #000; opacity: .7;">][</span>COLS<span style="color: #000; opacity: .7;">];</span></div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0px !important;" class="d-flex mv_pre">
+                                        <div style="border-right: 1px solid #ccc; padding-left: 9px;" class="pe-3">
+                                            3
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">...</div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0px !important;" class="d-flex mv_pre">
+                                        <div style="border-right: 1px solid #ccc; padding-left: 9px;" class="pe-3">
+                                            4
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break"><span class="dk_code_blue">for</span> <span style="color: #000; opacity: .7;">(</span><span class="dk_code_blue">int</span> num_col <span class="dk_code_org">=</span> <span class="dk_code_blue">0</span>; num_col <span class="dk_code_org"><</span> COLS <span style="color: #000; opacity: .7;">;</span> num_col<span class="dk_code_org">++</span><span style="color: #000; opacity: .7;">)</span> <span style="color: #000; opacity: .7;">{</span></div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0px !important;" class="d-flex mv_pre">
+                                        <div style="border-right: 1px solid #ccc; padding-left: 9px;" class="pe-3">
+                                            5
+                                        </div>
+                                        <div class="ps-4">
+                                            <div class="mv_code text-break">fpga_tools<span class="dk_code_org">::</span>UnrolledLoop<span class="dk_code_org"><</span><span class="dk_code_blue">0</span>, <span class="dk_code_blue">4</span><span class="dk_code_org">></span><span style="color: #000; opacity: .7;">([</span><span class="dk_code_org">&</span><span style="color: #000; opacity: .7;">])</span><span class="dk_code_blue">auto</span> l<span style="color: #000; opacity: .7;">) {</span>  <span class="dk_code_green">// loop</span></div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0px !important;" class="d-flex mv_pre">
+                                        <div style="border-right: 1px solid #ccc; padding-left: 9px;" class="pe-3">
+                                            6
+                                        </div>
+                                        <div class="ps-5">
+                                            <div class="mv_code text-break">line_buffer<span style="color: #000; opacity: .7;">[</span>l<span style="color: #000; opacity: .7;">]</span><span style="color: #000; opacity: .7;">[</span>num_col<span style="color: #000; opacity: .7;">]</span> <span class="dk_code_org">=</span> line_buffer<span style="color: #000; opacity: .7;">[</span>l <span class="dk_code_org">+</span> <span class="dk_code_blue">1</span><span style="color: #000; opacity: .7;">]</span><span style="color: #000; opacity: .7;">[</span>num_col<span style="color: #000; opacity: .7;">];</span></div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0px !important;" class="d-flex mv_pre">
+                                        <div style="border-right: 1px solid #ccc; padding-left: 9px;" class="pe-3">
+                                            7
+                                        </div>
+                                        <div class="ps-4">
+                                            <div class="mv_code text-break"><span style="color: #000; opacity: .7;">});</span></div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0px !important;" class="d-flex mv_pre">
+                                        <div style="border-right: 1px solid #ccc; padding-left: 9px;" class="pe-3">
+                                            8
+                                        </div>
+                                        <div class="ps-4">
+                                            <div class="mv_code text-break">line_buffer<span style="color: #000; opacity: .7;">[</span><span class="dk_code_blue">4</span><span style="color: #000; opacity: .7;">]</span><span style="color: #000; opacity: .7;">[</span>num_col<span style="color: #000; opacity: .7;">]</span> <span class="dk_code_org">=</span> pixel_a_traiter;</div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0px !important;" class="d-flex mv_pre">
+                                        <div style="border-right: 1px solid #ccc; padding-left: 9px;" class="pe-3">
+                                            9
+                                        </div>
+                                        <div class="ps-4">
+                                            <div class="mv_code text-break">fpga_tools::UnrolledLoop<span class="dk_code_org"><</span><span class="dk_code_blue">0</span>, <span class="dk_code_blue">5</span><span class="dk_code_org">></span><span style="color: #000; opacity: .7;">([</span<span class="dk_code_org">&</span><span style="color: #000; opacity: .7;">](</span><span class="dk_code_blue">auto</span> li<span style="color: #000; opacity: .7;"></span><span style="color: #000; opacity: .7;">) {</span></div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0px !important;" class="d-flex mv_pre">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            10
+                                        </div>
+                                        <div class="ps-5">
+                                            <div class="mv_code text-break">fpga_tools::UnrolledLoop<span class="dk_code_org"><</span><span class="dk_code_blue">0</span>, <span class="dk_code_blue">4</span><span class="dk_code_org">></span><span style="color: #000; opacity: .7;">([</span><span class="dk_code_org">&</span><span style="color: #000; opacity: .7;">])</span><span class="dk_code_blue">auto</span> co<span style="color: #000; opacity: .7;">) {</span>  <span class="dk_code_green">// loop</span></div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0px !important;" class="d-flex mv_pre">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            11
+                                        </div>
+                                        <div style="padding-left: 60px;">
+                                            <div class="mv_code text-break">fenetre<span style="color: #000; opacity: .7;">[</span>li<span style="color: #000; opacity: .7;">][</span><span class="dk_code_blue">4</span><span style="color: #000; opacity: .7;">]</span> <span class="dk_code_org">=</span> line_buffer<span style="color: #000; opacity: .7;">[</span>li<span style="color: #000; opacity: .7;">][</span>num_col<span style="color: #000; opacity: .7;">]</span>;</div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0px !important;" class="d-flex mv_pre">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            12
+                                        </div>
+                                        <div class="ps-5">
+                                            <div class="mv_code text-break"><span style="color: #000; opacity: .7;">});</span></div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0px !important;" class="d-flex mv_pre">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            13
+                                        </div>
+                                        <div class="ps-4">
+                                            <div class="mv_code text-break"><span style="color: #000; opacity: .7;">});</span></div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 10px !important;" class="d-flex mv_pre">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            14
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break"><span style="color: #000; opacity: .7;">}</span></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <p>Implement the workaround changes the code into the following example:</p>
+                            <div style="margin-top: 40px; margin-bottom: 40px;" class="mv_code_toolbar">
+                                <div class="mv_toolbar_item mv_copy_icon">
+                                    <i class="fa-regular fa-copy"></i>
+                                </div>
+                                <div class="mv_copy_message text-end hidden">Copied</div>
+                                <div class="code-content">
+                                    <div style="padding-bottom: 0rem !important" class="d-flex mv_pre">
+                                        <div style="border-right: 1px solid #ccc; padding-left: 9px;" class="pe-3">
+                                            1
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0"><span style="color: #000; opacity: .7;">[[</span>intel <span class="dk_code_org">::</span> fpga_memory<span style="color: #000; opacity: .7;">(</span>"BLOCK_RAM"<span style="color: #000; opacity: .7;">)]]</span>  <span class="dk_code_green"></span></p>
+                                            </div> 
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0px !important;" class="d-flex mv_pre">
+                                        <div style="border-right: 1px solid #ccc; padding-left: 9px;" class="pe-3">
+                                            2
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break"><span class="dk_code_blue">unsigned int</span> line_buffer<span style="color: #000; opacity: .7;">[</span>8<span style="color: #000; opacity: .7;">][</span>COLS<span style="color: #000; opacity: .7;">];</span></div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0px !important;" class="d-flex mv_pre">
+                                        <div style="border-right: 1px solid #ccc; padding-left: 9px;" class="pe-3">
+                                            3
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">...</div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0px !important;" class="d-flex mv_pre">
+                                        <div style="border-right: 1px solid #ccc; padding-left: 9px;" class="pe-3">
+                                            4
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break"><span class="dk_code_blue">for</span> <span style="color: #000; opacity: .7;">(</span><span class="dk_code_blue">int</span> num_col <span class="dk_code_org">=</span> <span class="dk_code_blue">0</span>; num_col <span class="dk_code_org"><</span> COLS <span style="color: #000; opacity: .7;">;</span> num_col<span class="dk_code_org">++</span><span style="color: #000; opacity: .7;">)</span> <span style="color: #000; opacity: .7;">{</span></div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0px !important;" class="d-flex mv_pre">
+                                        <div style="border-right: 1px solid #ccc; padding-left: 9px;" class="pe-3">
+                                            5
+                                        </div>
+                                        <div class="ps-4">
+                                            <div class="mv_code text-break">fpga_tools<span class="dk_code_org">::</span>UnrolledLoop<span class="dk_code_org"><</span><span class="dk_code_blue">0</span>, <span class="dk_code_blue">4</span><span class="dk_code_org">></span><span style="color: #000; opacity: .7;">([</span><span class="dk_code_org">&</span><span style="color: #000; opacity: .7;">])</span><span class="dk_code_blue">auto</span> l<span style="color: #000; opacity: .7;">) {</span>  <span class="dk_code_green">// loop</span></div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0px !important;" class="d-flex mv_pre">
+                                        <div style="border-right: 1px solid #ccc; padding-left: 9px;" class="pe-3">
+                                            6
+                                        </div>
+                                        <div class="ps-5">
+                                            <div class="mv_code text-break">line_buffer<span style="color: #000; opacity: .7;">[</span>num_col<span style="color: #000; opacity: .7;">]</span><span style="color: #000; opacity: .7;">[</span><span class="dk_code_blue">1</span><span style="color: #000; opacity: .7;">]</span> <span class="dk_code_org">=</span> line_buffer<span style="color: #000; opacity: .7;">[</span>l <span class="dk_code_org">+</span> <span class="dk_code_blue">1</span><span style="color: #000; opacity: .7;">]</span><span style="color: #000; opacity: .7;">[</span>num_col<span style="color: #000; opacity: .7;">];</span></div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0px !important;" class="d-flex mv_pre">
+                                        <div style="border-right: 1px solid #ccc; padding-left: 9px;" class="pe-3">
+                                            7
+                                        </div>
+                                        <div class="ps-4">
+                                            <div class="mv_code text-break"><span style="color: #000; opacity: .7;">});</span></div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0px !important;" class="d-flex mv_pre">
+                                        <div style="border-right: 1px solid #ccc; padding-left: 9px;" class="pe-3">
+                                            8
+                                        </div>
+                                        <div class="ps-4">
+                                            <div class="mv_code text-break">line_buffer<span style="color: #000; opacity: .7;">[</span><span class="dk_code_blue">4</span><span style="color: #000; opacity: .7;">]</span><span style="color: #000; opacity: .7;">[</span>num_col<span style="color: #000; opacity: .7;">]</span> <span class="dk_code_org">=</span> pixel_a_traiter;</div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0px !important;" class="d-flex mv_pre">
+                                        <div style="border-right: 1px solid #ccc; padding-left: 9px;" class="pe-3">
+                                            9
+                                        </div>
+                                        <div class="ps-4">
+                                            <div class="mv_code text-break">fpga_tools::UnrolledLoop<span class="dk_code_org"><</span><span class="dk_code_blue">0</span>, <span class="dk_code_blue">5</span><span class="dk_code_org">></span><span style="color: #000; opacity: .7;">([</span<span class="dk_code_org">&</span><span style="color: #000; opacity: .7;">](</span><span class="dk_code_blue">auto</span> li<span style="color: #000; opacity: .7;"></span><span style="color: #000; opacity: .7;">) {</span></div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0px !important;" class="d-flex mv_pre">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            10
+                                        </div>
+                                        <div class="ps-5">
+                                            <div class="mv_code text-break">fpga_tools::UnrolledLoop<span class="dk_code_org"><</span><span class="dk_code_blue">0</span>, <span class="dk_code_blue">4</span><span class="dk_code_org">></span><span style="color: #000; opacity: .7;">([</span><span class="dk_code_org">&</span><span style="color: #000; opacity: .7;">])</span><span class="dk_code_blue">auto</span> co<span style="color: #000; opacity: .7;">) {</span>  <span class="dk_code_green">// loop</span></div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0px !important;" class="d-flex mv_pre">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            11
+                                        </div>
+                                        <div style="padding-left: 60px;">
+                                            <div class="mv_code text-break">fenetre<span style="color: #000; opacity: .7;">[</span>li<span style="color: #000; opacity: .7;">][</span><span class="dk_code_blue">4</span><span style="color: #000; opacity: .7;">]</span> <span class="dk_code_org">=</span> line_buffer<span style="color: #000; opacity: .7;">[</span>li<span style="color: #000; opacity: .7;">][</span>num_col<span style="color: #000; opacity: .7;">]</span>;</div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0px !important;" class="d-flex mv_pre">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            12
+                                        </div>
+                                        <div class="ps-5">
+                                            <div class="mv_code text-break"><span style="color: #000; opacity: .7;">});</span></div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0px !important;" class="d-flex mv_pre">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            13
+                                        </div>
+                                        <div class="ps-4">
+                                            <div class="mv_code text-break"><span style="color: #000; opacity: .7;">});</span></div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 10px !important;" class="d-flex mv_pre">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            14
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break"><span style="color: #000; opacity: .7;">}</span></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <li>
+                                <p>For FPGA devices, you might run into performance issues when using <span style="color: #53565a; background-color: #e6e6e6;">switch</span> statements instead of <span style="color: #53565a; background-color: #e6e6e6;">if</span> statements. If the cases of the <span style="color: #53565a; background-color: #e6e6e6;">switch</span> statement access external memories at different <span style="color: #53565a; background-color: #e6e6e6;">buffer_locations</span> then the compiler might not be able to resolve the address space to the loads and stores, which results in the creation of extra loads and stores to dynamically resolve the address space at run time.&nbsp;If you encounter these issues, use <span style="color: #53565a; background-color: #e6e6e6;">if</span> statements instead of <span style="color: #53565a; background-color: #e6e6e6;">switch</span> statements.</p>
+                            </li>
+                            <li>
+                                <p>The <span style="color: #53565a; background-color: #e6e6e6;">atomic_ref</span> class is not supported for FPGA devices.</p>
+                            </li>
+                            <li>
+                                <p>In the FPGA SYCL* HLS flow, the compiler might generate a wider than requested address bus for the Avalon MM Host interfaces when the ring interconnect is used to connect the LSUs. You can ignore the extra MSBs on the bus by leaving them unconnected.</p>
+                            </li>
+                            <li>Designs with host pipe reads and writes in an unrolled loop cause a compiler error message that contains text similar to the following text:</li>
+                            <div style="margin-top: 20px; margin-bottom: 20px;" class="mv_code_toolbar">
+                                <div class="mv_toolbar_item mv_copy_icon">
+                                    <i class="fa-regular fa-copy"></i>
+                                </div>
+                                <div class="mv_copy_message text-end hidden">Copied</div>
+                                <div class="code-content">
+                                    <div style="padding-bottom: 0px !important; padding-bottom: 10px !important;" class="d-flex mv_pre">
+                                        <div style="border-right: 1px solid #ccc; padding-left: 9px;" class="pe-3">
+                                            1
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0">...pipe <span style="color: blue !important;">'acl_c_MyID_pipe_channel'</span>  must <span class="dk_code_blue">be </span> accessed from both endpoints…</p>
+                                            </div> 
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <p class="mb-0">If you receive this error message, unroll the loop manually to resolve this error. </p>
+                            <p class="mb-0">When compiling for emulation, you might not receive an error message for this issue.</p>
+                            <li>
+                                <p>When you use the <span style="color: #53565a; background-color: #e6e6e6;">-fsycl-device-code-split=per_kernel</span> compiler command option for a design that launches and collects multiple kernels, the first kernel that is returned provides correct results. However, subsequent kernels may intermittently return incorrect results.&nbsp;</p>
+                            </li>
+                            <li>
+                                <p>For FPGA pipelined kernels in simulation, the reported II may not reflect the lowest II achievable by the hardware because the runtime cannot feed data to the simulator fast enough. One possible workaround, which allows lower II to be achieved, is to use pipelined kernels with streaming arguments only. If wall clock time is not a restriction, using the <span style="color: #53565a; background-color: #e6e6e6;">‑Xsghdl=0</span> compiler command option should slow down the simulator sufficiently for the runtime to feed it data at the lowest achievable II.</p>
+                            </li>
+                            <li>
+                                <p>Converting an <span style="color: #53565a; background-color: #e6e6e6;">ap_float</span> number to an <span style="color: #53565a; background-color: #e6e6e6;">ac_fixed</span> data type in SYCL device code in the form of <span style="color: #53565a; background-color: #e6e6e6;">ApFloatT x = (AcFixedT) y;</span> may produce incorrect results in the FPGA emulation flow. This type of conversion works correctly in FPGA simulation and hardware compilation flows. A DPC++ program that runs kernels on one or more FPGA devices does not support multithreaded execution. This lack of support can be particularly problematic when you create host code to test a streaming kernel (that is, a kernel that continually reads input from a pipe, does some computation, and writes output to another pipe).
+                                The typical way to express such a testbench for such a streaming kernel is to use one thread to write to the kernel input pipe while another thread reads from the kernel output pipe. However, such multithreaded execution of the host program is not supported. If you use the same thread to write to the kernel input pipe and read the kernel output pipe, your SYCL program might hang if the capacity of the pipes is exceeded (for example, if you write more data to the kernel input pipe than the pipe capacity). You can avoid such a hang without needing to increase pipe capacity by applying the following idiom:</p>
+                            </li>
+                            <div style="margin-top: 40px; margin-bottom: 40px;" class="mv_code_toolbar">
+                                <div class="mv_toolbar_item mv_copy_icon">
+                                    <i class="fa-regular fa-copy"></i>
+                                </div>
+                                <div class="mv_copy_message text-end hidden">Copied</div>
+                                <div class="code-content">
+                                    <div style="padding-bottom: 0rem !important" class="d-flex mv_pre">
+                                        <div style="border-right: 1px solid #ccc; padding-left: 9px;" class="pe-3">
+                                            1
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0"><span class="dk_code_blue">struct</span> my_kernel <span style="color: #000; opacity: .7;">{</span></p>
+                                            </div> 
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0px !important;" class="d-flex mv_pre">
+                                        <div style="border-right: 1px solid #ccc; padding-left: 9px;" class="pe-3">
+                                            2
+                                        </div>
+                                        <div class="ps-3">
+                                            <div class="mv_code text-break"><span class="dk_code_blue">void operator </span><span style="color: #000; opacity: .7;">( ) ( )</span> <span class="dk_code_blue">const</span> <span>{</span></div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0px !important;" class="d-flex mv_pre">
+                                        <div style="border-right: 1px solid #ccc; padding-left: 9px;" class="pe-3">
+                                            3
+                                        </div>
+                                        <div class="ps-4">
+                                            <div class="mv_code text-break"><span class="dk_code_blue">while</span>(<span class="dk_code_blue">1</span>) <span style="color: #000; opacity: .7;">{</span></div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0px !important;" class="d-flex mv_pre">
+                                        <div style="border-right: 1px solid #ccc; padding-left: 9px;" class="pe-3">
+                                            4
+                                        </div>
+                                        <div class="ps-5">
+                                            <div class="mv_code text-break"><span class="dk_code_blue">auto</span> in <span class="dk_code_org">=</span> in_pipe<span class="dk_code_org">::</span>read<span style="color: #000; opacity: .7;"> ( ) ;</span></div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0px !important;" class="d-flex mv_pre">
+                                        <div style="border-right: 1px solid #ccc; padding-left: 9px;" class="pe-3">
+                                            5
+                                        </div>
+                                        <div class="ps-4">
+                                            <div class="mv_code text-break">&nbsp;</div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0px !important;" class="d-flex mv_pre">
+                                        <div style="border-right: 1px solid #ccc; padding-left: 9px;" class="pe-3">
+                                            6
+                                        </div>
+                                        <div class="ps-5">
+                                            <div class="mv_code text-break">out_pipe<span class="dk_code_org">::</span>write<span style="color: #000; opacity: .7;">( ... ) ;</span></div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0px !important;" class="d-flex mv_pre">
+                                        <div style="border-right: 1px solid #ccc; padding-left: 9px;" class="pe-3">
+                                            7
+                                        </div>
+                                        <div class="ps-4">
+                                            <div class="mv_code text-break"><span style="color: #000; opacity: .7;">}</span></div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0px !important;" class="d-flex mv_pre">
+                                        <div style="border-right: 1px solid #ccc; padding-left: 9px;" class="pe-3">
+                                            8
+                                        </div>
+                                        <div class="ps-3">
+                                            <div class="mv_code text-break"><span style="color: #000; opacity: .7;">}</span></div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0px !important;" class="d-flex mv_pre">
+                                        <div style="border-right: 1px solid #ccc; padding-left: 9px;" class="pe-3">
+                                            9
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break"><span style="color: #000; opacity: .7;">};</span></div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0px !important;" class="d-flex mv_pre">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            10
+                                        </div>
+                                        <div class="ps-5">
+                                            <div class="mv_code text-break">&nbsp;</div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0px !important;" class="d-flex mv_pre">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            11
+                                        </div>
+                                        <div class="ps-3">
+                                            <div class="mv_code text-break"><span class="dk_code_green">// Host code</span></div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0px !important;" class="d-flex mv_pre">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            12
+                                        </div>
+                                        <div class="ps-3">
+                                            <div class="mv_code text-break"><span class="dk_code_blue">int</span> in_count<span class="dk_code_org">=</span> <span class="dk_code_blue">0</span><span style="color: #000; opacity: .7;"></span>;</div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0px !important;" class="d-flex mv_pre">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            13
+                                        </div>
+                                        <div class="ps-3">
+                                            <div class="mv_code text-break"><span class="dk_code_blue">int</span> out_count <span class="dk_code_org">=</span> <span class="dk_code_blue">0</span<span style="color: #000; opacity: .7;">;</span></div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0px !important;" class="d-flex mv_pre">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            14
+                                        </div>
+                                        <div class="ps-3">
+                                            <div class="mv_code text-break">q.single_task<span style="color: #000; opacity: .7;">(</span>my_kernel<span style="color: #000; opacity: .7;">{ } );</span></div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0px !important;" class="d-flex mv_pre">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            15
+                                        </div>
+                                        <div class="ps-3">
+                                            <div class="mv_code text-break"><span class="dk_code_blue">while</span> (out_count <span class="dk_code_org"><</span> N) <span style="color: #000; opacity: .7;">{</span></div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0px !important;" class="d-flex mv_pre">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            16
+                                        </div>
+                                        <div class="ps-4">
+                                            <div class="mv_code text-break"><span class="dk_code_blue">bool</span> success<span style="color: #000; opacity: .7;">;</span></div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0px !important;" class="d-flex mv_pre">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            17
+                                        </div>
+                                        <div class="ps-4">
+                                            <div class="mv_code text-break"><span class="dk_code_blue">if</span> <span style="color: #000; opacity: .7;">(</span>in_count <span class="dk_code_org"><</span> N<span style="color: #000; opacity: .7;">)</span> <span style="color: #000; opacity: .7;">{</span></div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0px !important;" class="d-flex mv_pre">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            18
+                                        </div>
+                                        <div class="ps-5">
+                                            <div class="mv_code text-break">in_pipe::write<span style="color: #000; opacity: .7;">(</span>q<span style="color: #000; opacity: .7;">,</span> <span class="dk_code_blue">1</span><span style="color: #000; opacity: .7;">,</span> success<span style="color: #000; opacity: .7;">) ;</span></div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0px !important;" class="d-flex mv_pre">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            19
+                                        </div>
+                                        <div class="ps-5">
+                                            <div class="mv_code text-break">in_count <span class="dk_code_org">+=</span> success<span style="color: #000; opacity: .7;">;</span></div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0px !important;" class="d-flex mv_pre">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            20
+                                        </div>
+                                        <div class="ps-4">
+                                            <div class="mv_code text-break"><span>}</span></div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0px !important;" class="d-flex mv_pre">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            21
+                                        </div>
+                                        <div class="ps-4">
+                                            <div class="mv_code text-break">out_pipe<span class="dk_code_org">::</span>read<span style="color: #000; opacity: .7;"> (</span>q, success<span style="color: #000; opacity: .7;">) ;</span></div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0px !important;" class="d-flex mv_pre">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            22
+                                        </div>
+                                        <div class="ps-4">
+                                            <div class="mv_code text-break">out_count <span class="dk_code_org">+=</span> success<span style="color: #000; opacity: .7;">;</span></div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 10px !important;" class="d-flex mv_pre">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            23
+                                        </div>
+                                        <div class="ps-3">
+                                            <div class="mv_code text-break"><span style="color: #000; opacity: .7;">}</span></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <li>For Stratix® 10 FPGA reference boards, a rare failure can occur when initializing internal memory where the memory is initialized into an unknown state that can cause unexpected behavior. As a workaround, compile your design with the <span style="color: #53565a; background-color: #e6e6e6;">-Xsbsp-flow=flat</span> compiler option to avoid this issue.</li>
+                            <li>
+                                <p>For large FPGA simulations, such as those that target Agilex™ 7 boards, you might receive a linker error that contains a PC-relative offset overflow message.&nbsp;If you receive this message, compile your simulation with the <span style="color: #53565a; background-color: #e6e6e6;">-fsycl-link-huge-device-code</span> compiler command option.&nbsp;For lambda kernels generated in a loop, use templated classes to give the kernels procedurally generated names.</p>
+                            </li>
+                            <li>
+                                <p>For <span style="color: #53565a; background-color: #e6e6e6;">ap_float</span> data types, the <span style="color: #53565a; background-color: #e6e6e6;">‑fp-model=fast</span> compiler command option does not enable dot product inference. There is currently no workaround for this issue.</p>
+                            </li>
+                            <li>For FPGA, counting the leading zeros of an unsigned native integer type using a loop like in the following example can lead to a compiler error such as <span style="color: #53565a; background-color: #e6e6e6;">Compiler Error: undefined reference to 'llvm.ctlz.iN'</span></li>
+                            <div style="margin-top: 40px; margin-bottom: 40px;" class="mv_code_toolbar">
+                                <div class="mv_toolbar_item mv_copy_icon">
+                                    <i class="fa-regular fa-copy"></i>
+                                </div>
+                                <div class="mv_copy_message text-end hidden">Copied</div>
+                                <div class="code-content">
+                                    <div style="padding-bottom: 0rem !important" class="d-flex mv_pre">
+                                        <div style="border-right: 1px solid #ccc; padding-left: 9px;" class="pe-3">
+                                            1
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0"><span class="dk_code_blue">unsigned int</span> leading_zeros <span class="dk_code_org">=</span> <span class="dk_code_blue">0</span> <span style="color: #000; opacity: .7;">;</span></p>
+                                            </div> 
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0px !important;" class="d-flex mv_pre">
+                                        <div style="border-right: 1px solid #ccc; padding-left: 9px;" class="pe-3">
+                                            2
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">while <span style="color: #000; opacity: .7;">(</span>number<span style="color: #000; opacity: .7;">)</span> <span style="color: #000; opacity: .7;">{</span></div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0px !important;" class="d-flex mv_pre">
+                                        <div style="border-right: 1px solid #ccc; padding-left: 9px;" class="pe-3">
+                                            3
+                                        </div>
+                                        <div class="ps-3">
+                                            <div class="mv_code text-break">leading_zeros <span class="dk_code_org">+=</span> <span class="dk_code_blue">1</span><span style="color: #000; opacity: .7;">;</span></div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0px !important;" class="d-flex mv_pre">
+                                        <div style="border-right: 1px solid #ccc; padding-left: 9px;" class="pe-3">
+                                            4
+                                        </div>
+                                        <div class="ps-3">
+                                            <div class="mv_code text-break">number <span class="dk_code_org">>>=</span> <span class="dk_code_blue">1</span><span style="color: #000; opacity: .7;">;</span></div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 10px !important;" class="d-flex mv_pre">
+                                        <div style="border-right: 1px solid #ccc; padding-left: 9px;" class="pe-3">
+                                            5
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break"><span style="color: #000; opacity: .7;">}</span></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <p>You can workaround this issue by using the built-in function to count the leading zeros: <span style="color: #53565a;     background-color: #e6e6e6;">__builtin_clz(unsigned)</span> or <span style="color: #53565a; background-color: #e6e6e6;">__builtin_clzll(unsigned long long)</span>. When counting the leading zeros of unsigned char or unsigned short using the built-in functions, deduct the number of bits extended during type conversion from the return.</p>
+                            <li>On Windows, compiling FPGA designs in a directory with a long path name might fail, and you might see the following error: </li>
+                            <div style="margin-top: 40px; margin-bottom: 40px;" class="mv_code_toolbar">
+                                <div class="mv_toolbar_item mv_copy_icon">
+                                    <i class="fa-regular fa-copy"></i>
+                                </div>
+                                <div class="mv_copy_message text-end hidden">Copied</div>
+                                <div class="code-content">
+                                    <div style="padding-bottom: 0rem !important" class="d-flex mv_pre">
+                                        <div style="border-right: 1px solid #ccc; padding-left: 9px;" class="pe-3">
+                                            1
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0">dpcpp<span style="color: #000; opacity: .7;">:</span> error<span style="color: #000; opacity: .7;">:</span> fpga <span class="dk_code_blue">compiler</span> command failed with <span class="dk_code_blue">exit</span> code <span class="dk_code_blue">1</span> <span style="color: #000; opacity: .7;">(</span>use -v <span class="dk_code_blue">to</span> see invocation<span style="color: #000; opacity: .7;">)</span></p>
+                                            </div> 
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 10px !important;" class="d-flex mv_pre">
+                                        <div style="border-right: 1px solid #ccc; padding-left: 9px;" class="pe-3">
+                                            2
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">NMAKE <span style="color: #000; opacity: .7;">:</span> fatal error U1077<span style="color: #000; opacity: .7;">:</span> ‘…\oneAPI\<span class="dk_code_blue">compiler</span>\latest\windows\<span style="color: blue !important;">bin</span>\dpcpp.EXE<span style="color: blue !important;">' : return code '</span><span class="dk_code_blue">0x1</span>'</span></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <p>As a workaround, either compile the design in a directory with a short path name or reset TMP and TEMP environment variables to point to a shorter path (for example, <span style="color: #53565a; background-color: #e6e6e6;">C:\temp</span>).</p>
+                            <li>When compiling for FPGA, the compiler might pack structs differently on Windows than on Linux. This difference can result in structs with members that might not be well-aligned for optimal memory accesses. As a result, some designs that compile with an II=1 on Linux might have, for example, II=10 on Windows. As a workaround, force an alignment on the misaligned structs, as shown in the following example: </li>
+                            <div style="margin-top: 40px; margin-bottom: 40px;" class="mv_code_toolbar">
+                                <div class="mv_toolbar_item mv_copy_icon">
+                                    <i class="fa-regular fa-copy"></i>
+                                </div>
+                                <div class="mv_copy_message text-end hidden">Copied</div>
+                                <div class="code-content">
+                                    <div style="padding-bottom: 0rem !important" class="d-flex mv_pre">
+                                        <div style="border-right: 1px solid #ccc; padding-left: 9px;" class="pe-3">
+                                            1
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0"><span class="dk_code_green">//Code with misaligned struct</span></p>
+                                            </div> 
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0px !important;" class="d-flex mv_pre">
+                                        <div style="border-right: 1px solid #ccc; padding-left: 9px;" class="pe-3">
+                                            2
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break"><span class="dk_code_blue">struct</span> Item <span style="color: #000; opacity: .7;">{</span></div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0px !important;" class="d-flex mv_pre">
+                                        <div style="border-right: 1px solid #ccc; padding-left: 9px;" class="pe-3">
+                                            3
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break"><span class="dk_code_blue">bool</span> valid<span style="color: #000; opacity: .7;">;</span></div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0px !important;" class="d-flex mv_pre">
+                                        <div style="border-right: 1px solid #ccc; padding-left: 9px;" class="pe-3">
+                                            4
+                                        </div>
+                                        <div class="ps-3">
+                                            <div class="mv_code text-break"><span class="dk_code_blue">int</span> value1<span style="color: #000; opacity: .7;">;</span></div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0px !important;" class="d-flex mv_pre">
+                                        <div style="border-right: 1px solid #ccc; padding-left: 9px;" class="pe-3">
+                                            5
+                                        </div>
+                                        <div class="ps-3">
+                                            <div class="mv_code text-break"><span class="dk_code_blue">unsigned char</span> value2<span style="color: #000; opacity: .7;">;</span></div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0px !important;" class="d-flex mv_pre">
+                                        <div style="border-right: 1px solid #ccc; padding-left: 9px;" class="pe-3">
+                                            6
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">};</div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0px !important;" class="d-flex mv_pre">
+                                        <div style="border-right: 1px solid #ccc; padding-left: 9px;" class="pe-3">
+                                            7
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">&nbsp;</div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0px !important;" class="d-flex mv_pre">
+                                        <div style="border-right: 1px solid #ccc; padding-left: 9px;" class="pe-3">
+                                            8
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break"><span class="dk_code_green">//Forced alignment of struct</span></div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0px !important;" class="d-flex mv_pre">
+                                        <div style="border-right: 1px solid #ccc; padding-left: 9px;" class="pe-3">
+                                            9
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break"><span class="dk_code_blue">struct</span> Item <span style="color: #000; opacity: .7;">{</span></div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0px !important;" class="d-flex mv_pre">
+                                        <div style="border-right: 1px solid #ccc;" class="pe-3">
+                                            10
+                                        </div>
+                                        <div class="ps-3">
+                                            <div class="mv_code text-break"><span class="dk_code_blue">boll</span> valid<span style="color: #000; opacity: .7;">;</span></div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0px !important;" class="d-flex mv_pre">
+                                        <div style="border-right: 1px solid #ccc;" class="pe-3">
+                                            11
+                                        </div>
+                                        <div class="ps-3">
+                                            <div class="mv_code text-break"><span class="dk_code_blue">bool</span> __empty__<span style="color: #000; opacity: .7;">[</span><span class="dk_code_blue">3</span><span style="color: #000; opacity: .7;">];</span></div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0px !important;" class="d-flex mv_pre">
+                                        <div style="border-right: 1px solid #ccc;" class="pe-3">
+                                            12
+                                        </div>
+                                        <div class="ps-3">
+                                            <div class="mv_code text-break"><span class="dk_code_blue">int</span> value1<span style="color: #000; opacity: .7;">;</span></div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0px !important;" class="d-flex mv_pre">
+                                        <div style="border-right: 1px solid #ccc;" class="pe-3">
+                                            13
+                                        </div>
+                                        <div class="ps-3">
+                                            <div class="mv_code text-break"><span class="dk_code_blue">unsigned char</span> value2<span style="color: #000; opacity: .7;">;</span></div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0px !important;" class="d-flex mv_pre">
+                                        <div style="border-right: 1px solid #ccc;" class="pe-3">
+                                            14
+                                        </div>
+                                        <div class="ps-3">
+                                            <div class="mv_code text-break"><span class="dk_code_blue">unsigned char</span> __empty2__<span style="color: #000; opacity: .7;">[</span><span class="dk_code_blue">3</span><span style="color: #000; opacity: .7;">];</span></div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 10px !important;" class="d-flex mv_pre">
+                                        <div style="border-right: 1px solid #ccc;" class="pe-3">
+                                            15
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break"><span style="color: #000; opacity: .7;">}</span></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <li>Due to a known issue pertaining to HTML files within the Jupyter Notebook, you cannot launch the FPGA Optimization Report in a Jupyter Notebook. As a workaround for this issue, copy the FPGA optimization reports directory to a local file system and launch it using a supported browser. </li>
                         </ul>
                     </section>
 
                     <section id="dk_installation">
-                        <h4 style="font-weight: 350; margin-top: 2.5rem;">System Requirements</h4>
-                        <ul>
-                            <li><a class="b_special_a1" href="">Intel® oneAPI DPC++/C++ Compiler System Requirements</a></li>
-                        </ul>
+                        <h4 style="font-weight: 350; margin-top: 2.5rem;">Intel® oneAPI DPC++/C++ Compiler Known Issues</h4>
+                        <p>For Intel® oneAPI DPC++/C++ Compiler related issues, refer to <a class="b_special_a1" href="">Intel® oneAPI DPC++/C++ Compiler Release Notes</a>.</p>
                     </section>
 
                     <section id="dk_start">
-                        <h4 style="font-weight: 350; margin-top: 2.5rem;">Additional Documentation</h4>
-                        <p class="mb-0">Please reference:</p>
-                        <ul>
-                            <li><a class="b_special_a1" href="">Get Started with the Intel® oneAPI Toolkit for Linux*</a></li>
-                            <li><a class="b_special_a1" href="">Get Started with the Intel® oneAPI Toolkit for Windows* </a></li>
-                            <li><a class="b_special_a1" href="">OneAPI Versioning Schema</a> based on Semantic Versioning</li>
-                            <li><a class="b_special_a1" href="">Intel® oneAPI DPC++/C++ Compiler Developer Guide and Reference</a></li>
-                            <li><a class="b_special_a1" href="">Intel® oneAPI Programming Guide</a></li>
-                            <li><a class="b_special_a1" href="">SYCL* 2020 Specification Features and DPC++ Language Extensions Supported</a></li>
-                            <li><a class="b_special_a1" href="">OpenMP* Features and Extensions Supported in Intel® oneAPI DPC++/C++ Compiler</a></li>
-                        </ul>
+                        <h4 style="font-weight: 350; margin-top: 2.5rem;">Code Samples</h4>
+                        <p>Download the oneAPI samples for FPGAs available on GitHub at <a class="b_special_a1" href="">oneAPI Samples for FPGA</a> .</p>
                     </section>
 
                     <section id="dk_issues">
-                        <h4 style="font-weight: 350; margin-top: 2.5rem;">Previous oneAPI Releases</h4>
+                        <h4 style="font-weight: 350; margin-top: 2.5rem;">Previous Release Notes</h4>
                         <ul>
-                            <li><a class="b_special_a1" href="">Intel® oneAPI DPC++/C++ Compiler 2024</a></li>
+                            <li><a class="b_special_a1" href="">FPGA Support Package for Intel® oneAPI DCP++/C++ Compiler 2024</a></li>
                             <li><a class="b_special_a1" href="">Intel® oneAPI DPC++/C++ Compiler 2023</a></li>
                             <li><a class="b_special_a1" href="">Intel® oneAPI DPC++/C++ Compiler 2022</a></li>
                             <li><a class="b_special_a1" href="">Intel® oneAPI DPC++/C++ Compiler 2021</a></li>
@@ -912,18 +1898,35 @@
                     </section>
 
                     <section id="dk_notes">
+                        <h4 style="font-weight: 350; margin-top: 2.5rem;">Additional Documentation</h4>
+                        <p class="mb-0">Refer to the following guides for additional information:</p>
+                        <ul>
+                            <li><a class="b_special_a1" href="">Intel oneAPI DPC++/C++ Compiler Handbook for Altera FPGAs</a></li>
+                            <li><a class="b_special_a1" href="">oneAPI Samples for FPGA</a></li>
+                            <li><a class="b_special_a1" href="">Quartus® Prime Software User Guides </a></li>
+                            <li><a class="b_special_a1" href="">FPGA Support Package for Intel® oneAPI DCP++/C++ Compiler Documentation</a></li>
+                            <li><a class="b_special_a1" href="">Intel® oneAPI Toolkits Installation Guide for Linux* OS</a></li>
+                            <li><a class="b_special_a1" href="">Intel® oneAPI Toolkits Installation Guide for Windows* OS</a></li>
+                            <li><a class="b_special_a1" href="">Get Started with the Intel® oneAPI Base Toolkit for Linux*</a></li>
+                            <li><a class="b_special_a1" href="">Get Started with the Intel® oneAPI Base Toolkit for Windows*</a></li>
+                            <li><a class="b_special_a1" href="">Get Started with Intel® Distribution for GDB* for Linux* OS Host</a></li>
+                            <li><a class="b_special_a1" href="">Intel® oneAPI Toolkit and Component Versioning Schema</a></li>
+                            <li><a class="b_special_a1" href="">Intel® VTune™ Profiler User Guide</a></li>
+                            <li><a class="b_special_a1" href="">Analyzing CPU and FPGA (Intel® Arria® 10 GX) Interaction</a></li>
+                            <li><a class="b_special_a1" href="">Profiling an FPGA-driven DPC++ Application</a></li>
+                        </ul>
+                    </section>
+
+                    <section id="dk_disclaimers">
                         <h4 style="font-weight: 350; margin-top: 2.5rem;">Notices and Disclaimers</h4>
-                        <p>Intel optimizations, for Intel compilers or other products, may not optimize to the same degree for non-Intel products.</p>
-                        <p>Intel technologies may require enabled hardware, software, or service activation.</p>
+                        <p>Intel® technologies may require enabled hardware, software, or service activation.</p>
                         <p>No product or component can be absolutely secure.</p>
                         <p>Your costs and results may vary.</p>
                         <p>© Intel Corporation. Intel, the Intel logo, and other Intel marks are trademarks of Intel Corporation or its subsidiaries. Other names and brands may be claimed as the property of others.</p>
                         <p>No license (express or implied, by estoppel or otherwise) to any intellectual property rights is granted by this document.</p>
-                        <p>The products described may contain design defects or errors known as errata which may cause the product to deviate from published specifications. Current characterized errata are available on request.</p>
-                        <p>Intel optimizations, for Intel compilers or other products, may not optimize to the same degree for non-Intel products.</p>
+                        <p>The products described may contain design defects or errors known as errata, which may cause the product to deviate from published specifications. Currently, characterized errata are available on request.</p>
                         <p>Intel disclaims all express and implied warranties, including without limitation, the implied warranties of merchantability, fitness for a particular purpose, and non-infringement, as well as any warranty arising from a course of performance, course of dealing, or usage in trade.</p>
                     </section>
-
                 </div>
             </div>
         </div>
