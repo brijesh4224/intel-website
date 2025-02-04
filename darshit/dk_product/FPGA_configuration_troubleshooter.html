@@ -1,0 +1,1198 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FPGA Configuration Troubleshooter</title>
+    <link rel="stylesheet" href="/css/dk_FPGA_configuration_troubleshooter.css">
+    <link rel="stylesheet" href="/css/dk_nav_header.css">
+
+    <!-- header footer -->
+    <link rel="stylesheet" href='/css/yatri.css'>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" rel="stylesheet">
+</head>
+
+<style>
+    nav{
+        position: relative;
+    }
+</style>
+
+<body>
+
+    <!-- header -->
+    <div id="navbar"></div>
+
+   <!-- --------------------------------------------------------------------- -->
+   <section>
+    <nav class="mb_sub_nv">
+        <div class="mv_breadcrumb">
+            <ol class="mv_spark_breadcrumb_items">
+                <li><a href="">Altera® FPGAs and Programmable Devices</a></li>
+                <li><a href="">FPGA Product Support</a></li>
+                <li><a href="">FPGA Support Resources</a></li>
+                <li><a href="">Device Configuration Support Center</a></li>
+                <li><p class="mb-0">FPGA Configuration Troubleshooter</p></li>
+            </ol>
+        </div>
+    </nav>
+    </section>
+    <!-- --------------------------------------------------------------------- -->
+
+    <!-- ----------------- FPGA Configuration Troubleshooter -------------------->
+
+    <section>
+        <div class="dk_FPGA_configuration">
+            <div class="container">
+                <h1>FPGA Configuration Troubleshooter</h1>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="dk_FPGA_config_sub">
+            <div class="container">
+                <p>You can use this troubleshooter to help your FPGA configuration attempt. While this troubleshooter does not cover every possible case, it does identify a majority of problems encountered during configuration. This troubleshooter can be supplemented with&nbsp;Intel® FPGA's&nbsp;<a class="b_special_a1" href="">Knowledge Database</a> to help you identify and fix your configuration problem.</p>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="dk_why_is_your_config">
+            <div class="container">
+                <h3>What is your configuration issue?</h3>
+                <div class="accordion accordion-flush mv_fre_accordion_flush" id="accordionFlushExample">
+                    <div class="accordion-item mv_fre_accordion_item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed mv_fre_accordion_button" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                                Fail to initiate the EPCS or flash programming in Quartus II software
+                            </button>
+                        </h2>
+                        <div id="flush-collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+                            <div class="accordion-body">
+                                <p class="mb-0"><b>Checklist</b></p>
+                                <p class="mb-0">Before you proceed to further debug your issue, you are advised to use this checklist to verify that you have followed the recommended configuration setup in your design.</p>
+                                <ul>
+                                    <p class="mb-0">The dedicated JTAG pins (TCK, TMS, TDO, TDI) are connected according to the recommended setup in the device handbook. If pull-up/pull-down resistors are required, ensure the resistor values are correct.</p>
+                                    <p class="mb-0">The power supplies are ramped up to the appropriate voltage level according to the device datasheet and are stable throughout the operation.</p>
+                                </ul>
+                                <p class="mb-0"><b>Debug Strategies</b></p>
+                                <p class="mb-0">The following table lists some recommended debug strategies to narrow down the root-cause of your issue. You are advised to go through each strategy and perform the verification accordingly.</p>
+                                <table class="dk_Fail_to_initiate" width="90%" border="1" cellspacing="0" cellpadding="3">
+                                    <thead>
+                                        <tr>
+                                            <th>Strategy</th>
+                                            <th>Implications</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>For direct EPCS programming through AS programming cable, check the power supply of the programming cable and the interface to the EPCS device.</td>
+                                           <td>The Quartus® II programmer will not be able to read/write any information from/to the EPCS device if the power supply or the interface is not stable.</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <p class="mb-0">If your issue still persists, you may contact our technical support via mySupport for further assistance. After you have submitted a service request to mySupport, please provide the following information:</p>
+                                <ol>
+                                    <p class="mb-0">The version of the Quartus II software that you were using when this issue was encountered</p>
+                                    <p class="mb-0">The EPCS density (e.g. EPCS64 or EPCS128) that you were using when this issue was encountered</p>
+                                    <p class="mb-0">A description of when the failure started to happen and the failure symptoms. For example, the EPCS programming started to fail at the beginning/at the end of the programming cycle.</p>
+                                    <p class="mb-0">A screen shot of nCS, DCLK and ASDO signals probed at the FPGA end</p>
+                                    <p class="mb-0">Specify your observations after performing the recommended debug strategies</p>
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item mv_fre_accordion_item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed mv_fre_accordion_button" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+                                The device does not enter user mode although the CONF_DONE pin is released high at the end of the configuration cycle
+                            </button>
+                        </h2>
+                        <div id="flush-collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+                            <div class="accordion-body">
+                                <p class="mb-0"><b>Checklist</b></p>
+                                <p class="mb-0">Before you proceed to further debug your issue, you are advised to use this checklist to verify that you have followed the recommended configuration setup in your design.</p>
+                                <ul>
+                                    <p class="mb-0">The MSEL pins are tied to the correct MSEL setting according to the device handbook</p>
+                                    <p class="mb-0">The nCE, nCONFIG, nSTATUS and CONF_DONE pins are connected according to the recommended setup in the device handbook. If pull-up/pull-down resistors are required, ensure the resistor values are correct</p>
+                                    <p class="mb-0">The power supplies are ramped up to the appropriate voltage level according to the device datasheet and are stable throughout the operation</p>
+                                    <p class="mb-0">All the timing specifications are met</p>
+                                    <p class="mb-0">The supported flash device is used</p>
+                                </ul>
+                                <p><b>Debug Strategies</b></p>
+                                <p>The following table lists some recommended debug strategies to narrow down the root-cause of your issue. You are advised to go through each strategy and perform the verification accordingly.</p>
+                                <table class="dk_Fail_to_initiate" width="90%" border="1" cellspacing="0" cellpadding="3">
+                                    <thead>
+                                        <tr>
+                                            <th>Strategy</th>
+                                            <th>Implications</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Download the latest version of the Quartus® II software. Regenerate the programming file and reconfigure the FPGA or reprogram and verify the flash using the new programming file</td>
+                                            <td>The latest Quartus II software might have the bug fix</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Check the signal integrity of the DCLK and DATA line/bus signals</td>
+                                            <td>Noise at the lines/buses will interrupt the configuration process and cause data corruption. If data is corrupted during configuration, the FPGA detects configuration error and pulls the nSTATUS pin low</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Enable the INIT_DONE option in the Quartus II software and check on the INIT_DONE pin to ensure the device exits the initialization stage</td>
+                                            <td>If INIT_DONE remains low after the CONF_DONE pin is released high, the device fails to exit the initialization stage. If the CLKUSR option is enabled, ensure sufficient clock cycles have been provided through the CLKUSR pin as stated in the device handbook, otherwise the device will fail to exit initialization stage. If INIT_DONE goes high after the CONF_DONE pin is released high, the device has successfully entered user mode.</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <p class="mb-0">If your issue still persists, you may contact our technical support via mySupport for further assistance. After you have submitted a service request to mySupport, please provide the following information:</p>
+                                <ol>
+                                    <p class="mb-0">The version of the Quartus II software that you were using when this issue was encountered</p>
+                                    <p class="mb-0">The FPGA part number that you were using when this issue was encountered</p>
+                                    <p class="mb-0">A screen shot of nCONFIG, nSTATUS, DCLK and DATA line/bus signals probed at the FPGA end</p>
+                                    <p class="mb-0">Specify if you are performing single-device or multi-device configuration. For multi-device configuration, please list the devices connected in the chain</p>
+                                    <p class="mb-0">Specify your observations after performing the recommended debug strategies</p>
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item mv_fre_accordion_item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed mv_fre_accordion_button" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapsethree" aria-expanded="false" aria-controls="flush-collapsethree">
+                                The Quartus II programmer fails to recognize the device ID
+                            </button>
+                        </h2>
+                        <div id="flush-collapsethree" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+                            <div class="accordion-body">
+                                <p class="mb-0">Before you proceed to further debug your issue, you are advised to use this checklist to verify that you have followed the recommended configuration setup in your design.</p>
+                                <ul>
+                                    <p class="mb-0">MSEL pins are tied to VCC or ground. Do not leave the MSEL pins floating.</p>
+                                    <p class="mb-0">The nCE, nCONFIG, nSTATUS CONF_DONE and dedicated JTAG pins (TCK, TMS, TDO, TDI) are connected according to the recommended setup in the device handbook. If pull-up/pull-down resistors are required, ensure the resistor values are correct.</p>
+                                    <p class="mb-0">The power supplies are ramped up to the appropriate voltage level according to the device datasheet and are stable throughout the operation</p>
+                                </ul>
+                                <p class="mb-0"><b>Debug Strategies</b></p>
+                                <p class="mb-0">The following table lists some recommended debug strategies to narrow down the root-cause of your issue. You are advised to go through each strategy and perform the verification accordingly.</p>
+                                <table class="dk_Fail_to_initiate" width="90%" border="1" cellspacing="0" cellpadding="3">
+                                    <thead>
+                                        <tr>
+                                            <th>Strategy</th>
+                                            <th>Implications</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Download the latest version of the Quartus® II software. Regenerate the programming file and reconfigure the FPGA using the new programming file.</td>
+                                            <td>The latest Quartus II software might have the bug fix</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Check the signal integrity of the dedicated JTAG signals</td>
+                                            <td>Noise in the lines/bus will interrupt the configuration process and cause data corruption. If data is corrupted during configuration, the FPGA detects a configuration error and pulls the nSTATUS pin low.</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Ensure the nCONFIG and nSTATUS pins have been released high before the auto-detect or program instruction is executed in the Quartus II programmer</td>
+                                            <td>If the nCONFIG and nSTATUS pins are not released high, the device is still in reset state or the device is not powered up properly. Therefore the device is not ready to receive any JTAG instruction including the silicon ID check instruction</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Check the contact of the programming cable to the target device</td>
+                                            <td>If the connection in between the programming cable and the target device is not stable, the signal/data corruption in between both devices will cause the FPGA fail to receive the valid JTAG instruction from the host</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <p class="mb-0">If your issue still persists, you may contact our technical support via mySupport for further assistance. After you have submitted a service request to mySupport, please provide the following information:</p>
+                                <ol>
+                                    <p class="mb-0">The version of the Quartus II software that you were using and the error message appeared in the message window when this issue was encountered</p>
+                                    <p class="mb-0">The FPGA part number that you were using when this issue was encountered</p>
+                                    <p class="mb-0">Specify if you are performing single-device or multi-device configuration. For multi-device configuration, please list the devices connected in the chain</p>
+                                    <p class="mb-0">Specify your observations after performing the recommended debug strategies</p>
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item mv_fre_accordion_item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed mv_fre_accordion_button" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapsefour" aria-expanded="false" aria-controls="flush-collapsefour">
+                                The Quartus II programmer reports successful configuration but the device/devices are not configured
+                            </button>
+                        </h2>
+                        <div id="flush-collapsefour" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+                            <div class="accordion-body">
+                                <p class="mb-0"><b>Which configuration scheme that you are using?</b></p>
+                                <p class="mb-0"><b>Passive Serial (PS)</b></p>
+                                <ul>
+                                    <p class="mb-0"><b>Checklist</b></p>
+                                    <p class="mb-0">Before you proceed to further debug your issue, you are advised to use this checklist to verify that you have followed the recommended configuration setup in your design.</p>
+                                    <p class="mb-0">The MSEL pins are tied to the correct PS setting according to the device handbook</p>
+                                    <p class="mb-0">The nCE, nCONFIG, nSTATUS and CONF_DONE pins are connected according to the recommended setup in the device handbook. If pull-up/pull-down resistors are required, ensure the resistor values are correct.</p>
+                                    <p class="mb-0">The power supplies are ramped up to the appropriate voltage level according to the device datasheet and are stable throughout the operation</p>
+                                    <p class="mb-0">Ensure all the timing specification are met</p>
+                                    <p class="mb-0"><b>Debug Strategies</b></p>
+                                    <p class="mb-0">The following table lists some recommended debug strategies to narrow down the root-cause of your issue. You are advised to go through each strategy and perform the verification accordingly.</p>
+                                    <p class="mb-0">Strategy Implications Enable the INIT_DONE option in the Quartus® II software, and check on the INIT_DONE pin to ensure the device exits the initialization stage If INIT_DONE remains low after the CONF_DONE pin is released high, the device fails to exit the initialization stage. If the CLRUSR option is enabled, ensure sufficient clock cycles have been provided through the CLKUSR pin as stated in the device handbook, otherwise the device will fail to exit initialization stage. If INIT_DONE goes high after the CONF_DONE pin is released high, the device has successfully entered user mode. If CONF_DONE doesn't go high, probe at the DCLK and DATA signals. Observe both signals after the start button is clicked on the Quartus II programmer If both signals remain low, then the program instruction has not been issued to the FPGA properly.</p>
+                                    <p class="mb-0">If your issue still persists, you may contact our technical support via mySupport for further assistance. After you have submitted a service request to mySupport, please provide the following information:</p>
+                                    <p class="mb-0">The version of the Quartus II software that you were using when this issue was encountered</p>
+                                    <p class="mb-0">The FPGA part number that you were using when this issue was encountered</p>
+                                    <p class="mb-0">A screen shot of nCONFIG, nSTATUS, DCLK and DATA signals probed at the FPGA end</p>
+                                    <p class="mb-0">Specify if you are performing single-device or multi-device configuration. For multi-device configuration, please list the devices connected in the chain</p>
+                                    <p class="mb-0">Specify your observations after performing the recommended debug strategies</p>
+                                </ul>
+                                <p class="mb-0"><b>JTAG</b></p>
+                                <ul>
+                                    <li><b>Checklist</b></li>
+                                    <li>Before you proceed to further debug your issue, you are advised to use this checklist to verify that you have followed the recommended configuration setup in your design.</li>
+                                    <p class="mb-0">MSEL pins are tied to VCC or ground. Do not leave the MSEL pins floating.</p>
+                                    <p class="mb-0">The nCE, nCONFIG, nSTATUS, CONF_DONE and dedicated JTAG pins (TCK, TMS, TDO, TDI) are tied to pull-up/pull-down resistors according to the recommended setup in the device handbook</p>
+                                    <p class="mb-0">The nCE, nCONFIG, nSTATUS, CONF_DONE and dedicated JTAG pins (TCK, TMS, TDO, TDI) are connected according to the recommended setup in the device handbook. If pull-up/pull-down resistors are required, ensure the resistor values are correct.</p>
+                                    <p class="mb-0">The power supplies are ramped up to the appropriate voltage level according to the device datasheet and are stable throughout the operation</p>
+                                    <p class="mb-0">Ensure all the timing specification are met</p>
+                                    <li><b>Debug Strategies</b></li>
+                                    <li>The following table lists some recommended debug strategies to narrow down the root-cause of your issue. You are advised to go through each strategy and perform the verification accordingly.</li>
+                                    <li>Strategy Implications Enable the INIT_DONE option in the Quartus® II software and check on the INIT_DONE pin to ensure the device exits the initialization stage If INIT_DONE remains low after the CONF_DONE pin is released high, the device fails to exit the initialization stage. If the CLRUSR option is enabled, ensure sufficient clock cycles have been provided through the CLKUSR pin as stated in the device handbook, otherwise the device will fail to exit initialization stage. If INIT_DONE goes high after the CONF_DONE pin is released high, the device has successfully entered user mode. If CONF_DONE doesn't go high, probe at the TDO, TDI and TCK signals If the TDI signal remains low while the TDO signal is toggling during the configuration, it means the configuration data is not going through the JTAG scan chain register to configure the CRAM bits correctly. This could be due to the JTAG program instruction is not being issued to the FPGA properly.</li>
+                                    <li>If your issue still persists, you may contact our technical support via mySupport for further assistance. After you have submitted a service request to mySupport, please provide the following information:</li>
+                                    <p class="mb-0">The version of the Quartus II software that you were using and the error message appeared in the message window when this issue was encountered</p>
+                                    <p class="mb-0">The FPGA part number that you were using when this issue was encountered</p>
+                                    <p class="mb-0">A screen shot of nCONFIG, nSTATUS, TDO, TDI and TCK signals probed at the FPGA end</p>
+                                    <p class="mb-0">Specify if you are performing single-device or multi-device configuration. For multi-device configuration, please list the devices connected in the chain</p>
+                                    <p class="mb-0">Specify your observations after performing the recommended debug strategies</p>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item mv_fre_accordion_item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed mv_fre_accordion_button" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapsefive" aria-expanded="false" aria-controls="flush-collapsefive">
+                                The nSTATUS pin is pulled low or is toggling at the beginning of the configuration cycle
+                            </button>
+                        </h2>
+                        <div id="flush-collapsefive" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+                            <div class="accordion-body">
+                                <p class="mb-0"><b>JTAG</b></p>
+                                <p class="mb-0" style="margin-left: 40.0px;"><b>Checklist</b></p>
+                                <p class="mb-0" style="margin-left: 40.0px;">Before you proceed to further debug your issue, you are advised to use this checklist to verify that you have followed the recommended configuration setup in your design.</p>
+                                <ul>
+                                    <p class="mb-0" style="margin-left: 80.0px;">MSEL pins are tied to VCC or ground. Do not leave the MSEL pins floating.</p>
+                                    <p class="mb-0" style="margin-left: 80.0px;">The nCE, nCONFIG, nSTATUS CONF_DONE and dedicated JTAG pins (TCK, TMS, TDO, TDI) are connected according to the recommended setup in the device handbook. If pull-up/pull-down resistors are required, ensure the resistor values are correct.</p>
+                                    <p class="mb-0" style="margin-left: 80.0px;">The power supplies are ramped up to the appropriate voltage level according to the device datasheet and are stable throughout the operation</p>
+                                    <p class="mb-0" style="margin-left: 80.0px;">Ensure all the timing specification are met</p>
+                                </ul>
+                                <p class="mb-0" style="margin-left: 40.0px;"><b>Debug Strategies</b></p>
+                                <p class="mb-0" style="margin-left: 40.0px;">The following table lists some recommended debug strategies to narrow down the root-cause of your issue. You are advised to go through each strategy and perform the verification accordingly.</p>
+                                <table class="dk_Fail_to_initiate" width="90%" border="1" cellspacing="0" cellpadding="3">
+                                    <thead>
+                                        <tr>
+                                            <th>Strategy</th>
+                                            <th>Implications</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Download the latest version of the Quartus® II software. Regenerate the programming file and reconfigure the FPGA using the new programming file.</td>
+                                            <td>The latest Quartus II software might have the bug fix.</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Check the signal integrity of the dedicated JTAG signals</td>
+                                            <td>Noise in the lines/bus will interrupt the configuration process and cause data corruption. If data is corrupted during configuration, the FPGA detects a configuration error and pulls the nSTATUS pin low.</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Ensure there is no external device driving the nSTATUS pin</td>
+                                            <td>Driving the nSTATUS pin with an external device will drive the pin to low unexpectedly and this will interrupt the configuration process</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <p class="mb-0" style="margin-left: 40.0px;">If your issue still persists, you may contact our technical support via mySupport for further assistance. After you have submitted a service request to mySupport, please provide the following information:</p>
+                                <ol>
+                                    <p class="mb-0" style="margin-left: 80.0px;">The version of the Quartus II software that you were using and the error message appeared in the message window when this issue was encountered</p>
+                                    <p class="mb-0" style="margin-left: 80.0px;">The FPGA part number that you were using when this issue was encountered</p>
+                                    <p class="mb-0" style="margin-left: 80.0px;">A screen shot of nCONFIG, nSTATUS, TDO, TDI and TCK signals probed at the FPGA end</p>
+                                    <p class="mb-0" style="margin-left: 80.0px;">Specify if you are performing single-device or multi-device configuration. For multi-device configuration, please list the devices connected in the chain</p>
+                                    <p class="mb-0" style="margin-left: 80.0px;">Specify your observations after performing the recommended debug strategies</p>
+                                </ol>
+                                <p class="mb-0"><b>Active Serial (AS), Active Parallel (AP), Passive Serial (PS), Fast Passive Parallel (FPP)</b></p>
+                                <p class="mb-0" style="margin-left: 40.0px;"><b>Checklist</b></p>
+                                <p class="mb-0" style="margin-left: 40.0px;">Before you proceed to further debug your issue, you are advised to use this checklist to verify that you have followed the recommended configuration setup in your design.</p>
+                                <p class="mb-0" style="margin-left: 40.0px;"><b>Debug Strategies</b></p>
+                                <p class="mb-0" style="margin-left: 40.0px;">The following table lists some recommended debug strategies to narrow down the root-cause of your issue. You are advised to go through each strategy and perform the verification accordingly.</p>
+                                <p class="mb-0" style="margin-left: 40.0px;">&nbsp;</p>
+                                <p class="mb-0" style="margin-left: 40.0px;">Strategy</p>
+                                <p class="mb-0" style="margin-left: 40.0px;">Implications</p>
+                                <p class="mb-0" style="margin-left: 40.0px;">Download the latest version of the Quartus® II software. Regenerate the programming file and reprogram and verify the configuration device or flash using the new programming file.</p>
+                                <p class="mb-0" style="margin-left: 40.0px;">The latest Quartus II software might have the bug fix.</p>
+                                <p class="mb-0" style="margin-left: 40.0px;">Check the signal integrity of the DCLK and DATA line/bus signals</p>
+                                <p class="mb-0" style="margin-left: 40.0px;">Noise in the lines/bus will interrupt the configuration process and cause data corruption. If data is corrupted during configuration, the FPGA detects a configuration error and pulls the nSTATUS pin low.</p>
+                                <p class="mb-0" style="margin-left: 40.0px;">Ensure there is no external device driving the nSTATUS pin</p>
+                                <p class="mb-0" style="margin-left: 40.0px;">Driving the nSTATUS pin with an external device will drive the pin to low unexpectedly and this will interrupt the configuration process</p>
+                                <ol>
+                                    <p class="mb-0" style="margin-left: 80.0px;">The MSEL pins are tied to the correct MSEL setting according to the device handbook</p>
+                                    <p class="mb-0" style="margin-left: 80.0px;">The nCE, nCONFIG, nSTATUS and CONF_DONE pins are connected according to the recommended setup in the device handbook. If pull-up/pull-down resistors are required, ensure the resistor values are correct.</p>
+                                    <p class="mb-0" style="margin-left: 80.0px;">The power supplies are ramped up to the appropriate voltage level according to the device datasheet and are stable throughout the operation</p>
+                                    <p class="mb-0" style="margin-left: 40.0px;">Ensure all the timing specification are met</p>
+                                    <p class="mb-0" style="margin-left: 80.0px;">Ensure the supported flash device is used</p>
+                                    <p class="mb-0">If your issue still persists, you may contact our technical support via mySupport for further assistance. After you have submitted a service request to mySupport, please provide the following information:</p>
+                                    <p class="mb-0">1. The version of the Quartus II software that you were using when this issue was encountered</p>
+                                    <p class="mb-0">2. The FPGA part number that you were using when this issue was encountered</p>
+                                    <p class="mb-0">3. A screen shot of nCONFIG, nSTATUS, DCLK and DATA line/bus signals probed at the FPGA end</p>
+                                    <p class="mb-0">4. Specify if you are performing single-device or multi-device configuration. For multi-device configuration, please list the devices connected in the chain</p>
+                                    <p class="mb-0">5. Specify your observations after performing the recommended debug strategies</p>
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item mv_fre_accordion_item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed mv_fre_accordion_button" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapsesix" aria-expanded="false" aria-controls="flush-collapsesix">
+                                The nSTATUS pin is pulled low or is toggling at the end or at different point of the configuration cycle
+                            </button>
+                        </h2>
+                        <div id="flush-collapsesix" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+                            <div class="accordion-body">
+                                <p><b>Active Parallel (AP)</b></p>
+                                <p class="mb-0" style="margin-left: 40.0px;"><b>Checklist</b></p>
+                                <p class="mb-0" style="margin-left: 40.0px;">Before you proceed to further debug your issue, you are advised to use this checklist to verify that you have followed the recommended configuration setup in your design.</p>
+                                <ul>
+                                    <p class="mb-0" style="margin-left: 80.0px;">The MSEL pins are tied to the correct AP setting according to the device handbook</p>
+                                    <p class="mb-0" style="margin-left: 80.0px;">The nCE, nCONFIG, nSTATUS and CONF_DONE pins are connected according to the recommended setup in the device handbook. If pull-up/pull-down resistors are required, ensure the resistor values are correct.</p>
+                                    <p class="mb-0" style="margin-left: 80.0px;">The power supplies are ramped up to the appropriate voltage level according to the device datasheet and are stable throughout the operation</p>
+                                    <p class="mb-0" style="margin-left: 80.0px;">Ensure the supported flash device is used/li&gt;</p>
+                                </ul>
+                                <p class="mb-0" style="margin-left: 40.0px;"><b>Debug Strategies</b></p>
+                                <p class="mb-0" style="margin-left: 40.0px;">The following table lists some recommended debug strategies to narrow down the root-cause of your issue. You are advised to go through each strategy and perform the verification accordingly.</p>
+                                <table class="dk_Fail_to_initiate" width="90%" border="1" cellspacing="0" cellpadding="3">
+                                    <thead>
+                                        <tr>
+                                            <th>Strategy</th>
+                                            <th>Implications</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Download the latest version of the Quartus® II software. Regenerate the programming file and reprogram and verify the flash using the new programming file.</td>
+                                            <td>	
+                                                The latest Quartus II software might have the bug fix.</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Check the signal integrity of the DCLK, DATA bus and flash control signals</td>
+                                            <td>	
+                                                Noise in the lines/bus will interrupt the configuration process and cause data corruption. If data is corrupted during configuration, the FPGA detects a configuration error and pulls the nSTATUS pin low.</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Ensure the byte address of the configuration data is set to 0x020000 during the programming file generation. The default configuration boot address is 0x010000 in 16-bit word addressing, equivalent to 0x020000 8-bit byte addressing in the supported flash memory device</td>
+                                            <td>The incorrect address setting in the programming file causes the FPGA to read the wrong/invalid data from the parallel flash</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Ensure there is no external device driving the nSTATUS pin</td>
+                                            <td>	
+                                                Driving the nSTATUS pin with an external device will drive the pin to low unexpectedly and this will interrupt the configuration process</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <p class="mb-0" style="margin-left: 40.0px;">If your issue still persists, you may contact our technical support via mySupport for further assistance. After you have submitted a service request to mySupport, please provide the following information:</p>
+                                <ol>
+                                    <p class="mb-0" style="margin-left: 80.0px;">The version of the Quartus II software that you were using when this issue was encountered</p>
+                                    <p class="mb-0" style="margin-left: 80.0px;">The FPGA and the flash device part number that you were using when this issue was encountered</p>
+                                    <p class="mb-0" style="margin-left: 80.0px;">A screen shot of nCONFIG, nSTATUS, DCLK and DATA bus signals probed at the FPGA end</p>
+                                    <p class="mb-0" style="margin-left: 80.0px;">Specify if you are performing single-device or multi-device configuration. For multi-device configuration, please list the devices connected in the chain</p>
+                                    <p class="mb-0" style="margin-left: 80.0px;">Specify your observations after performing the recommended debug strategies</p>
+                                </ol>
+                                <p class="mb-0"><b>Active Serial (AS)</b></p>
+                                <p class="mb-0" style="margin-left: 40.0px;"><b>Checklist</b></p>
+                                <p class="mb-0" style="margin-left: 40.0px;">Before you proceed to further debug your issue, you are advised to use this checklist to verify that you have followed the recommended configuration setup in your design.</p>
+                                <ul>
+                                    <p class="mb-0" style="margin-left: 80.0px;">The MSEL pins are tied to the correct AS setting according to the device handbook</p>
+                                    <p class="mb-0" style="margin-left: 80.0px;">The nCE, nCONFIG, nSTATUS and CONF_DONE pins are connected according to the recommended setup in the device handbook. If pull-up/pull-down resistors are required, ensure the resistor values are correct.</p>
+                                    <p class="mb-0" style="margin-left: 80.0px;">The power supplies are ramped up to the appropriate voltage level according to the device datasheet and are stable throughout the operation</p>
+                                </ul>
+                                <p class="mb-0" style="margin-left: 40.0px;"><b>Debug Strategies</b></p>
+                                <p class="mb-0" style="margin-left: 40.0px;">The following table lists some recommended debug strategies to narrow down the root-cause of your issue. You are advised to go through each strategy and perform the verification accordingly.</p>
+                                <table class="dk_Fail_to_initiate" width="90%" border="1" cellspacing="0" cellpadding="3">
+                                    <thead>
+                                        <tr>
+                                            <th>Strategy</th>
+                                            <th>Implications</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Download the latest version of the Quartus® II software. Regenerate the programming file and reprogram and verify the configuration device using the new programming file.</td>
+                                            <td>	
+                                                The latest Quartus II software might have the bug fix.</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Check the signal integrity of the nCS, DCLK and DATA signals</td>
+                                            <td>	
+                                                Noise in the lines/bus will interrupt the configuration process and cause data corruption. If data is corrupted during configuration, the FPGA detects a configuration error and pulls the nSTATUS pin low.</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Ensure there is no external device driving the nSTATUS pin</td>
+                                            <td>Driving the nSTATUS pin with an external device will drive the pin to low unexpectedly and this will interrupt the configuration process</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <p class="mb-0" style="margin-left: 40.0px;">If your issue still persists, you may contact our technical support via mySupport for further assistance. After you have submitted a service request to mySupport, please provide the following information:</p>
+                                <ol>
+                                    <p class="mb-0" style="margin-left: 80.0px;">The version of the Quartus II software that you were using when this issue was encountered</p>
+                                    <p class="mb-0" style="margin-left: 80.0px;">The FPGA and the configuration device part number that you were using when this issue was encountered</p>
+                                    <p class="mb-0" style="margin-left: 80.0px;">A screen shot of nCONFIG, nSTATUS, DCLK and DATA signals probed at the FPGA end</p>
+                                    <p class="mb-0" style="margin-left: 80.0px;">Specify if you are performing single-device or multi-device configuration. For multi-device configuration, please list the devices connected in the chain</p>
+                                    <p class="mb-0" style="margin-left: 80.0px;">Specify your observations after performing the recommended debug strategies</p>
+                                </ol>
+                                <p class="mb-0"><b>JTAG</b></p>
+                                <p class="mb-0" style="margin-left: 40.0px;"><b>Checklist</b></p>
+                                <p class="mb-0" style="margin-left: 40.0px;">Before you proceed to further debug your issue, you are advised to use this checklist to verify that you have followed the recommended configuration setup in your design.</p>
+                                <ul>
+                                    <p class="mb-0" style="margin-left: 80.0px;">MSEL pins are tied to VCC or ground. Do not leave the MSEL pins floating.</p>
+                                    <p class="mb-0" style="margin-left: 80.0px;">The nCE, nCONFIG, nSTATUS, CONF_DONE and dedicated JTAG pins (TCK, TMS, TDO, TDI) pins are connected according to the recommended setup in the device handbook. If pull-up/pull-down resistors are required, ensure the resistor values are correct.</p>
+                                    <p class="mb-0" style="margin-left: 80.0px;">The power supplies are ramped up to the appropriate voltage level according to the device datasheet and are stable throughout the operation</p>
+                                    <p class="mb-0" style="margin-left: 80.0px;">Ensure all the timing specifications are met</p>
+                                </ul>
+                                <p class="mb-0" style="margin-left: 40.0px;"><b>Debug Strategies</b></p>
+                                <p class="mb-0" style="margin-left: 80.0px;">The following table lists some recommended debug strategies to narrow down the root-cause of your issue. You are advised to go through each strategy and perform the verification accordingly.</p>
+                                <table class="dk_Fail_to_initiate" width="90%" border="1" cellspacing="0" cellpadding="3">
+                                    <thead>
+                                        <tr>
+                                            <th>Strategy</th>
+                                            <th>Implications</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Download the latest version of Quartus® II software. Regenerate the programming file and reconfigure the FPGA using the new programming file.</td>
+                                            <td>	
+                                                The latest Quartus II software might have the bug fix.</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Check the signal integrity of the dedicated JTAG signals</td>
+                                            <td>	
+                                                Noise in the lines/bus will interrupt the configuration process and cause data corruption. If data is corrupted during configuration, the FPGA detects a configuration error and pulls the nSTATUS pin low.</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Ensure there is no external device driving the nSTATUS pin</td>
+                                            <td>Driving the nSTATUS pin with an external device will drive the pin to low unexpectedly and this will interrupt the configuration process</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <p class="mb-0" style="margin-left: 80.0px;">If your issue still persists, you may contact our technical support via mySupport for further assistance. After you have submitted a service request to mySupport, please provide the following information:</p>
+                                <ol>
+                                    <p class="mb-0" style="margin-left: 160.0px;">The version of the Quartus II software that you were using and the error message appears in the message window when this issue was encountered</p>
+                                    <p class="mb-0" style="margin-left: 160.0px;">The FPGA part number that you were using when this issue was encountered</p>
+                                    <p class="mb-0" style="margin-left: 160.0px;">A screen shot of nCONFIG, nSTATUS, TDO, TDI and TCK signals probed at the FPGA end</p>
+                                    <p class="mb-0" style="margin-left: 160.0px;">Specify if you are performing single-device or multi-device configuration. For multi-device configuration, please list the devices connected in the chain</p>
+                                    <p class="mb-0" style="margin-left: 160.0px;">Specify your observations after performing the recommended debug strategies</p>
+                                </ol>
+                                <p class="mb-0"><b>Passive Serial (PS), Fast Passive Parallel (FPP)</b></p>
+                                <p class="mb-0" style="margin-left: 40.0px;"><b>Checklist</b></p>
+                                <p class="mb-0" style="margin-left: 40.0px;">Before you proceed to further debug your issue, you are advised to use this checklist to verify that you have followed the recommended configuration setup in your design.</p>
+                                <ul>
+                                    <p class="mb-0" style="margin-left: 80.0px;">The MSEL pins are tied to the correct PS/FPP setting according to the device handbook</p>
+                                    <p class="mb-0" style="margin-left: 80.0px;">The nCE, nCONFIG, nSTATUS and CONF_DONE pins are connected according to the recommended setup in the device handbook. If pull-up/pull-down resistors are required, ensure the resistor values are correct.</p>
+                                    <p class="mb-0" style="margin-left: 80.0px;">The power supplies are ramped up to the appropriate voltage level according to the device datasheet and are stable throughout the operation</p>
+                                    <p class="mb-0" style="margin-left: 80.0px;">Ensure all the timing specification are met</p>
+                                    <p class="mb-0" style="margin-left: 80.0px;">Ensure the supported flash device is used</p>
+                                </ul>
+                                <p class="mb-0" style="margin-left: 40.0px;"><b>Debug Strategies</b></p>
+                                <p class="mb-0" style="margin-left: 40.0px;">The following table lists some recommended debug strategies to narrow down the root-cause of your issue. You are advised to go through each strategy and perform the verification accordingly.</p>
+                                <table class="dk_Fail_to_initiate" width="90%" border="1" cellspacing="0" cellpadding="3">
+                                    <thead>
+                                        <tr>
+                                            <th>Strategy</th>
+                                            <th>Implications</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Download the latest version of the Quartus® II software. Regenerate the programming file and reprogram and verify the flash using the new programming file.</td>
+                                            <td>	
+                                            The latest Quartus II software might have the bug fix.</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Check the signal integrity of the DCLK, DATA line/bus and flash control signals</td>
+                                            <td>	
+                                                Noise in the lines/bus will interrupt the configuration process and cause data corruption. If data is corrupted during configuration, the FPGA detects a configuration error and pulls the nSTATUS pin low.</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Ensure there is no external device driving the nSTATUS pin</td>
+                                            <td>Driving the nSTATUS pin with an external device will drive the pin to low unexpectedly and this will interrupt the configuration process</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <p class="mb-0" style="margin-left: 40.0px;">If your issue still persists, you may contact our technical support via mySupport for further assistance. After you have submitted a service request to mySupport, please provide the following information:</p>
+                                <ol>
+                                    <p class="mb-0" style="margin-left: 80.0px;">The version of the Quartus II software that you were using when this issue was encountered</p>
+                                    <p class="mb-0" style="margin-left: 80.0px;">The FPGA and the flash device part number that you were using when this issue was encountered</p>
+                                    <p class="mb-0" style="margin-left: 80.0px;">A screen shot of nCONFIG, nSTATUS, DCLK and DATA line/bus signals probed at the FPGA end</p>
+                                    <p class="mb-0" style="margin-left: 80.0px;">Specify if you are performing single-device or multi-device configuration. For multi-device configuration, please list the devices connected in the chain</p>
+                                    <p class="mb-0" style="margin-left: 80.0px;">Specify your observations after performing the recommended debug strategies</p>
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item mv_fre_accordion_item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed mv_fre_accordion_button" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseseven" aria-expanded="false" aria-controls="flush-collapseseven">
+                                The nCONFIG and nSTATUS pins are released high, but the CONF_DONE pin does not go high at the end of the configuration cycle
+                            </button>
+                        </h2>
+                        <div id="flush-collapseseven" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+                            <div class="accordion-body">
+                                <p class="mb-0"><b>Active Serial (AS)</b></p>
+                                <p class="mb-0" style="margin-left: 40.0px;"><b>Checklist</b></p>
+                                <p class="mb-0" style="margin-left: 40.0px;">Before you proceed to further debug your issue, you are advised to use this checklist to verify that you have followed the recommended configuration setup in your design.</p>
+                                <ul>
+                                    <p class="mb-0" style="margin-left: 80.0px;">The MSEL pins are tied to the correct AS setting according to the device handbook</p>
+                                    <p class="mb-0" style="margin-left: 80.0px;">The nCE, nCONFIG, nSTATUS and CONF_DONE pins are connected according to the recommended setup in the device handbook. If pull-up/pull-down resistors are required, ensure the resistor values are correct.</p>
+                                    <p class="mb-0" style="margin-left: 80.0px;">The power supplies are ramped up to the appropriate voltage level according to the device datasheet and are stable throughout the operation</p>
+                                </ul>
+                                <p class="mb-0" style="margin-left: 40.0px;"><b>Debug Strategies</b></p>
+                                <p class="mb-0" style="margin-left: 40.0px;">The following table lists some recommended debug strategies to narrow down the root-cause of your issue. You are advised to go through each strategy and perform the verification accordingly.</p>
+                                <table class="dk_Fail_to_initiate" width="90%" border="1" cellspacing="0" cellpadding="3">
+                                    <thead>
+                                        <tr>
+                                            <th>Strategy</th>
+                                            <th>Implications</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Download the latest version of the Quartus® II software. Regenerate the programming file and reprogram and verify the configuration device using the new programming file.</td>
+                                            <td>	
+                                                The latest Quartus II software might have the bug fix.</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Check the signal integrity of the nCS, DCLK and DATA signals, ensure there is activity on these signals in between the FPGA and the configuration device</td>
+                                            <td>	
+                                                Noise in the lines/bus will interrupt the configuration process and cause data corruption. If data is corrupted during configuration, the FPGA detects a configuration error and pulls the nSTATUS pin low.</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Ensure there is no capacitance load or external device that could cause the delay on the CONF_DONE pin</td>
+                                            <td>	
+                                                Delaying or loading the CONF_DONE pin would cause the CONF_DONE fail to raise high within the valid timing window</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <p class="mb-0" style="margin-left: 40.0px;">If your issue still persists, you may contact our technical support via mySupport for further assistance. After you have submitted a service request to mySupport, please provide the following information:</p>
+                                <ol>
+                                    <p class="mb-0" style="margin-left: 80.0px;">The version of the Quartus II software that you were using when this issue was encountered</p>
+                                    <p class="mb-0" style="margin-left: 80.0px;">The FPGA and the configuration device part number that you were using when this issue was encountered</p>
+                                    <p class="mb-0" style="margin-left: 80.0px;">A screen shot of nCONFIG, nSTATUS, DCLK and DATA signals probed at the FPGA end</p>
+                                    <p class="mb-0" style="margin-left: 80.0px;">Specify if you are performing single-device or multi-device configuration. For multi-device configuration, please list the devices connected in the chain</p>
+                                    <p class="mb-0" style="margin-left: 80.0px;">Specify your observations after performing the recommended debug strategies</p>
+                                </ol>
+                                <p class="mb-0"><b>JTAG</b></p>
+                                <p class="mb-0" style="margin-left: 40.0px;"><b>Checklist</b></p>
+                                <p class="mb-0" style="margin-left: 40.0px;">Before you proceed to further debug your issue, you are advised to use this checklist to verify that you have followed the recommended configuration setup in your design.</p>
+                                <ul>
+                                    <p class="mb-0" style="margin-left: 80.0px;">MSEL pins are tied to VCC or ground. Do not leave the MSEL pins floating.</p>
+                                    <p class="mb-0" style="margin-left: 80.0px;">The nCE, nCONFIG, nSTATUS, CONF_DONE and dedicated JTAG pins (TCK, TMS, TDO, TDI) are connected according to the recommended setup in the device handbook. If pull-up/pull-down resistors are required, ensure the resistor values are correct.</p>
+                                    <p class="mb-0" style="margin-left: 80.0px;">The power supplies are ramped up to the appropriate voltage level according to the device datasheet and are stable throughout the operation</p>
+                                    <p class="mb-0" style="margin-left: 80.0px;">Ensure all the timing specification are met</p>
+                                </ul>
+                                <p class="mb-0" style="margin-left: 40.0px;"><b>Debug Strategies</b></p>
+                                <p class="mb-0" style="margin-left: 40.0px;">The following table lists some recommended debug strategies to narrow down the root-cause of your issue. You are advised to go through each strategy and perform the verification accordingly.</p>
+                                <table class="dk_Fail_to_initiate" width="90%" border="1" cellspacing="0" cellpadding="3">
+                                    <thead>
+                                        <tr>
+                                            <th>Strategy</th>
+                                            <th>Implications</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Download the latest version of the Quartus® II software. Regenerate the programming file and reconfigure the FPGA using the new programming file.</td>
+                                            <td>	
+                                                The latest Quartus II software might have the bug fix.</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Check the signal integrity of the dedicated JTAG signals</td>
+                                            <td>	
+                                                Noise in the lines/bus will interrupt the configuration process and cause data corruption. If data is corrupted during configuration, the FPGA detects a configuration error and pulls the nSTATUS pin low.</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Ensure there is no capacitance load or external device that could cause the delay on the CONF_DONE pin</td>
+                                            <td>	
+                                                Delaying or loading the CONF_DONE pin would cause the CONF_DONE to fail to raise high within the valid timing window</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <p class="mb-0" style="margin-left: 40.0px;">If your issue still persists, you may contact our technical support via mySupport for further assistance. After you have submitted a service request to mySupport, please provide the following information:</p>
+                                <ol>
+                                    <p class="mb-0" style="margin-left: 80.0px;">The version of the Quartus II software that you were using and the error message appeared in the message window when this issue was encountered</p>
+                                    <p class="mb-0" style="margin-left: 80.0px;">The FPGA part number that you were using when this issue was encountered</p>
+                                    <p class="mb-0" style="margin-left: 80.0px;">A screen shot of nCONFIG, nSTATUS, TDO, TDI and TCK signals probed at the FPGA end</p>
+                                    <p class="mb-0" style="margin-left: 80.0px;">Specify if you are performing single-device or multi-device configuration. For multi-device configuration, please list the devices connected in the chain</p>
+                                    <p class="mb-0" style="margin-left: 80.0px;">Specify your observations after performing the recommended debug strategies</p>
+                                </ol>
+                                <p class="mb-0"><b>Passive Serial (PS), Fast Passive Parallel (FPP)</b></p>
+                                <p class="mb-0"><b>Checklist</b></p>
+                                <p class="mb-0" style="margin-left: 40.0px;">Before you proceed to further debug your issue, you are advised to use this checklist to verify that you have followed the recommended configuration setup in your design.</p>
+                                <ul>
+                                    <p class="mb-0" style="margin-left: 80.0px;">The MSEL pins are tied to the correct AP/PS/FPP setting according to the device handbook</p>
+                                    <p class="mb-0" style="margin-left: 80.0px;">The nCE, nCONFIG, nSTATUS and CONF_DONE pins are connected according to the recommended setup in the device handbook. If pull-up/pull-down resistors are required, ensure the resistor values are correct.</p>
+                                    <p class="mb-0" style="margin-left: 80.0px;">The power supplies are ramped up to the appropriate voltage level according to the device datasheet and are stable throughout the operation</p>
+                                    <p class="mb-0" style="margin-left: 80.0px;">Ensure all the timing specification are met</p>
+                                    <p class="mb-0" style="margin-left: 80.0px;">Ensure the supported flash device is used</p>
+                                </ul>
+                                <p class="mb-0" style="margin-left: 40.0px;"><b>Debug Strategies</b></p>
+                                <p class="mb-0" style="margin-left: 40.0px;">The following table lists some recommended debug strategies to narrow down the root-cause of your issue. You are advised to go through each strategy and perform the verification accordingly.</p>
+                                <table class="dk_Fail_to_initiate" width="90%" border="1" cellspacing="0" cellpadding="3">
+                                    <thead>
+                                        <tr>
+                                            <th>Strategy</th>
+                                            <th>Implications</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Download the latest version of the Quartus® II software. Regenerate the programming file and reprogram and verify the flash using the new programming file.</td>
+                                            <td>	
+                                                The latest Quartus II software might have the bug fix.</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Check the signal integrity of the DCLK, DATA line/bus and flash control signals</td>
+                                            <td>	
+                                                Noise in the lines/bus will interrupt the configuration process and cause data corruption. If data is corrupted during configuration, the FPGA detects a configuration error and pulls the nSTATUS pin low.</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Ensure there is no capacitance load or external device that could cause the delay on the CONF_DONE pin</td>
+                                            <td>	
+                                                Delaying or loading the CONF_DONE pin would cause the CONF_DONE fail to raise high within the valid timing window</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <p class="mb-0" style="margin-left: 40.0px;">If your issue still persists, you may contact our technical support via mySupport for further assistance. After you have submitted a service request to mySupport, please provide the following information:</p>
+                                <ol>
+                                    <p class="mb-0" style="margin-left: 80.0px;">The version of the Quartus II software that you were using when this issue was encountered</p>
+                                    <p class="mb-0" style="margin-left: 80.0px;">The FPGA and the flash device part number that you were using when this issue was encountered</p>
+                                    <p class="mb-0" style="margin-left: 80.0px;">A screen shot of nCONFIG, nSTATUS, DCLK and DATA line/bus signals probed at the FPGA end</p>
+                                    <p class="mb-0" style="margin-left: 80.0px;">Specify if you are performing single-device or multi-device configuration. For multi-device configuration, please list the devices connected in the chain</p>
+                                    <p class="mb-0" style="margin-left: 80.0px;">Specify your observations after performing the recommended debug strategies</p>
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item mv_fre_accordion_item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed mv_fre_accordion_button" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseeight" aria-expanded="false" aria-controls="flush-collapseeight">
+                                The nCONFIG and/or nSTATUS pins do not release high after the device is powered up
+                            </button>
+                        </h2>
+                        <div id="flush-collapseeight" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+                            <div class="accordion-body">
+                                <p class="mb-0"><b>Checklist</b></p>
+                                <p class="mb-0">Before you proceed to further debug your issue, you are advised to use this checklist to verify that you have followed the recommended configuration setup in your design.</p>
+                                <ul>
+                                    <p class="mb-0">The nCE, nCONFIG and nSTATUS pins are connected according to the recommended setup in the device handbook. If pull-up/pull-down resistors are required, ensure the resistor values are correct.</p>
+                                    <p class="mb-0">The power supplies are ramped up to the appropriate voltage level according to the device datasheet and are stable throughout the operation</p>
+                                </ul>
+                                <p class="mb-0"><b>Debug Strategies</b></p>
+                                <p class="mb-0">The following table lists some recommended debug strategies to narrow down the root-cause of your issue. You are advised to go through each strategy and perform the verification accordingly.</p>
+                                <table class="dk_Fail_to_initiate" width="90%" border="1" cellspacing="0" cellpadding="3">
+                                    <thead>
+                                        <tr>
+                                            <th>Strategy</th>
+                                            <th>Implications</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Check the soldering contact in between the FPGA and the board surface</td>
+                                            <td>	
+                                                The nCONFIG and nSTATUS pins will not be released if the FPGA is not properly powered up or the FPGA does not exit POR successfully</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <p class="mb-0">If your issue still persists, you may contact our technical support via mySupport for further assistance. After you have submitted a service request to mySupport, please provide the following information:</p>
+                                <ol>
+                                    <p class="mb-0">The FPGA part number that you were using when this issue was encountered</p>
+                                    <p class="mb-0">A screen shot of the voltages (e.g. core voltage, configuration voltage) ramp up from the power-up stage</p>
+                                    <p class="mb-0">Specify if you are performing single-device or multi-device configuration. For multi-device configuration, please list the devices connected in the chain</p>
+                                    <p class="mb-0">Specify your observations after performing the recommended debug strategies</p>
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item mv_fre_accordion_item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed mv_fre_accordion_button" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapsenine" aria-expanded="false" aria-controls="flush-collapsenine">
+                                Fail to program the EPCS device through Serial Flash Loader (SFL)
+                            </button>
+                        </h2>
+                        <div id="flush-collapsenine" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+                            <div class="accordion-body">
+                                <p class="mb-0"><b>Checklist</b></p>
+                                <p class="mb-0">Before you proceed to further debug your issue, you are advised to use this checklist to verify that you have followed the recommended configuration setup in your design.</p>
+                                <ul>
+                                    <p class="mb-0">The MSEL pins are tied to the AS configuration setting according to the device handbook</p>
+                                    <p class="mb-0">The dedicated JTAG pins (TCK, TMS, TDO, TDI) are connected according to the recommended setup in the device handbook. If pull-up/pull-down resistors are required, ensure the resistor values are correct</p>
+                                    <p class="mb-0">The power supplies are ramped up to the appropriate voltage level according to the device datasheet and are stable throughout the operation</p>
+                                </ul>
+                                <p class="mb-0"><b>Debug Strategies</b></p>
+                                <p class="mb-0">The following table lists some recommended debug strategies to narrow down the root-cause of your issue. You are advised to go through each strategy and perform the verification accordingly.</p>
+                                <table class="dk_Fail_to_initiate" width="90%" border="1" cellspacing="0" cellpadding="3">
+                                    <thead>
+                                        <tr>
+                                            <th>Strategy</th>
+                                            <th>Implications</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Ensure the programming cable is powered up and interfaced to the FPGA correctly</td>
+                                            <td>	
+                                                The Quartus® II programmer will not be able to read/write any information from/to the EPCS device if the power supply or the interface is not stable.</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Check if the EPCS device can be programmed through an AS programming cable.</td>
+                                            <td>This is to ensure the functionality of the EPCS device. Skip this step if you are not able to test with an AS programming cable due to the restriction on your hardware.</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Ensure the SFL image exists in the FPGA before the EPCS device is programmed</td>
+                                            <td>If the SFL bridge does not exist in the FPGA, then the Quartus II programmer will not able to access the ASMI interface in the FPGA to program the EPCS device</td>
+                                        </tr>
+                                        <tr>
+                                            <td>After the SFL image is configured to the FPGA, without power cycling the device try to perform auto-detect in the Quartus II programmer	</td>
+                                            <td>If only the FPGA is detected, it signifies that the Quartus II programmer is unable to access the ASMI interface of the FPGA through the SFL bridge, or the Quartus II programmer is not able to detect the interface in between EPCS and the FPGA through the ASMI. Check the power supply and the interface of both devices, or use the SFL from the latest Quartus II software version If both FPGA and EPCS are detected, this is most likely a signal integrity issue. Check the signal integrity of the DATA0, DCLK, nCS and the ASDO pins. Noise at these signal locations will interrupt the EPCS programming process</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <p class="mb-0">If your issue still persists, you may contact our technical support via mySupport for further assistance. After you have submitted a service request to mySupport, please provide the following information:</p>
+                                <ol>
+                                    <p class="mb-0">The version of the Quartus II software that you were using when this issue was encountered</p>
+                                    <p class="mb-0">A screen shot of the error message shown in the Quartus II message window</p>
+                                    <p class="mb-0">The EPCS density (e.g. EPCS64 or EPCS128) that you were using when this issue was encountered</p>
+                                    <p class="mb-0">Specify your observations after performing the recommended debug strategies</p>
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item mv_fre_accordion_item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed mv_fre_accordion_button" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseten" aria-expanded="false" aria-controls="flush-collapseten">
+                                Fail to program the parallel flash through Parallel Flash Loader (PFL)
+                            </button>
+                        </h2>
+                        <div id="flush-collapseten" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+                            <div class="accordion-body">
+                                <p class="mb-0"><b>Checklist</b></p>
+                                <p class="mb-0">Before you proceed to further debug your issue, you are advised to use this checklist to verify that you have followed the recommended configuration setup in your design.</p>
+                                <ul>
+                                    <p class="mb-0">The nCE, nCONFIG, nSTATUS and CONF_DONE pins are connected according to the recommended setup in the device handbook. If pull-up/pull-down resistors are required, ensure the resistor values are correct.</p>
+                                    <p class="mb-0">The power supplies are ramped up to the appropriate voltage level according to the device datasheet and are stable throughout the operation</p>
+                                    <p class="mb-0">Ensure the supported flash device is used</p>
+                                </ul>
+                                <p class="mb-0"><b>Debug Strategies</b></p>
+                                <p class="mb-0">The following table lists some recommended debug strategies to narrow down the root-cause of your issue. You are advised to go through each strategy and perform the verification accordingly.</p>
+                                <table class="dk_Fail_to_initiate" width="90%" border="1" cellspacing="0" cellpadding="3">
+                                    <thead>
+                                        <tr>
+                                            <th>Strategy</th>
+                                            <th>Implications</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Ensure the programming cable is powered up and interfaced to the FPGA correctly	</td>
+                                            <td>	
+                                                The Quartus® II programmer will not be able to read/write any information from/to the flash device if the power supply or the interface is not stable.</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Ensure the PFL image exists in the MAX II CPLD or the FPGA before the flash device is programmed</td>
+                                            <td>If PFL bridge does not exist in the MAX II CPLD or the FPGA, the Quartus II software is not able to access to the flash device
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>After the PFL image is configured to the FPGA, without power cycling the device try to perform auto-detect in the Quartus II programmer	</td>
+                                            <td>If only FPGA is detected, it signifies that the Quartus II programmer is unable to access the flash device through the PFL bridge. Check the power supply and the interface in between the MAX II CPLD or FPGA and the flash devices, or use the PFL from the latest Quartus II software version. If both FPGA and EPCS are detected, this is most likely a signal integrity issue. Check the signal integrity of the DATA line/bus, DCLK, the control signal pins. Noise at these signal locations will interrupt the flash programming process
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <p class="mb-0">If your issue still persists, you may contact our technical support via mySupport for further assistance. After you have submitted a service request to mySupport, please provide the following information:</p>
+                                    <ol>
+                                        <p class="mb-0">The version of the Quartus II software that you were using when this issue was encountered</p>
+                                        <p class="mb-0">A screen shot of the error message shown in the Quartus II message window</p>
+                                        <p class="mb-0">The flash device (e.g. Numonyx 512MB, Spansion 128MB etc.) that you were using when this issue was encountered</p>
+                                        <p class="mb-0">Specify your observations after performing the recommended debug strategies</p>
+                                    </ol>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item mv_fre_accordion_item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed mv_fre_accordion_button" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseelevan" aria-expanded="false" aria-controls="flush-collapseelevan">
+                                Decompression: Uncompressed file works but compressed file doesn't work or vice versa
+                            </button>
+                        </h2>
+                        <div id="flush-collapseelevan" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+                            <div class="accordion-body">
+                                <p class="mb-0"><b>Checklist</b></p>
+                                <p class="mb-0">Before you proceed to further debug your issue, you are advised to use this checklist to verify that you have followed the recommended configuration setup in your design.</p>
+                                <ul>
+                                    <p class="mb-0">The MSEL pins are tied to the correct MSEL setting according to the device handbook</p>
+                                    <p class="mb-0">The nCE, nCONFIG, nSTATUS and CONF_DONE pins are connected according to the recommended setup in the device handbook. If pull-up/pull-down resistors are required, ensure the resistor values are correct.</p>
+                                    <p class="mb-0">The power supplies are ramped up to the appropriate voltage level according to the device datasheet and are stable throughout the operation</p>
+                                </ul>
+                                <p class="mb-0"><b>Debug Strategies</b></p>
+                                <p class="mb-0">The following table lists some recommended debug strategies to narrow down the root-cause of your issue. You are advised to go through each strategy and perform the verification accordingly.</p>
+                                <table class="dk_Fail_to_initiate" width="90%" border="1" cellspacing="0" cellpadding="3">
+                                    <thead>
+                                        <tr>
+                                            <th>Strategy</th>
+                                            <th>Implications</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>The Quartus® II bitstream generation could be contributing to the issue. Download the latest version of the Quartus II software. Regenerate the programming file and reconfigure the FPGA or reprogram and verify the flash using the new programming file</td>
+                                            <td>	
+                                                The latest Quartus II software might have the bug fix
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Ensure the CONF_DONE pin is not being delayed.<ul>
+                                                <p class="mb-0">Ensure there is no extra capacitance load on the CONF_DONE trace</p>
+                                                <p class="mb-0">Use advance option bit setting to add the post-device bitstream pad bytes</p>
+                                                <p class="mb-0">For AS configuration, use advance option bit setting to disable the CONF_DONE error check or change the program length count</p>
+                                                </ul>
+                                            </td>
+                                            <td>Delaying the CONF_DONE causes the device to miss the CONF_DONE detect window and configuration error occurs Note: If the CONF_DONE error check is disabled, the FPGA will not check if the CONF_DONE rises correctly within the valid timing window.</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <p class="mb-0">If your issue still persists, you may contact our technical support via mySupport for further assistance. After you have submitted a service request to mySupport, please provide the following information:</p>
+                                <ol>
+                                    <p class="mb-0">The version of the Quartus II software that you were using when this issue was encountered</p>
+                                    <p class="mb-0">The FPGA part number that you were using when this issue was encountered</p>
+                                    <p class="mb-0">Attach the uncompressed and compressed programming files</p>
+                                    <p class="mb-0">A description of when the failure started to happen and the failure symptoms. For example, the configuration started to fail at the beginning/at the end of the programming cycle.</p>
+                                    <p class="mb-0">A screen shot of nCONFIG, nSTATUS, DCLK and DATA line/bus signals probed at the FPGA end</p>
+                                    <p class="mb-0">Specify if you are performing single-device or multi-device configuration. For multi-device configuration, please list the devices connected in the chain</p>
+                                    <p class="mb-0">Specify your observations after performing the recommended debug strategies</p>
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item mv_fre_accordion_item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed mv_fre_accordion_button" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapsetweil" aria-expanded="false" aria-controls="flush-collapsetweil">
+                                Design Security: Unencrypted file works but encrypted file doesn't work or vice versa
+                            </button>
+                        </h2>
+                        <div id="flush-collapsetweil" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+                            <div class="accordion-body">
+                                <p class="mb-0"><b>Checklist</b></p>
+                                <p class="mb-0">Before you proceed to further debug your issue, you are advised to use this checklist to verify that you have followed the recommended configuration setup in your design.</p>
+                                <ul>
+                                    <p class="mb-0">The MSEL pins are tied to the correct MSEL setting according to the device handbook</p>
+                                    <p class="mb-0">The nCE, nCONFIG, nSTATUS and CONF_DONE pins are connected according to the recommended setup in the device handbook. If pull-up/pull-down resistors are required, ensure the resistor values are correct.</p>
+                                    <p class="mb-0">The power supplies are ramped up to the appropriate voltage level according to the device datasheet and are stable throughout the operation</p>
+                                </ul>
+                                <p class="mb-0"><b>Debug Strategies</b></p>
+                                <p class="mb-0">The following table lists some recommended debug strategies to narrow down the root-cause of your issue. You are advised to go through each strategy and perform the verification accordingly.</p>
+                                <table class="dk_Fail_to_initiate" width="90%" border="1" cellspacing="0" cellpadding="3">
+                                    <thead>
+                                        <tr>
+                                            <th>Strategy</th>
+                                            <th>Implications</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>The Quartus® II bitstream generation could be contributing to this issue. Download the latest version of the Quartus II software. Regenerate the programming file and reconfigure the FPGA or reprogram and verify the flash using the new programming file	</td>
+                                            <td>	
+                                                The latest Quartus II software might have the bug fix
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Ensure the CONF_DONE pin is not being delayed.<ul>
+                                                <p class="mb-0">Ensure there is no extra capacitance load on the CONF_DONE trace</p>
+                                                <p class="mb-0">Use advance option bit setting to add the post-device bitstream pad bytes</p>
+                                                <p class="mb-0">For AS configuration, use advance option bit setting to disable the CONF_DONE error check or change the program length count</p>
+                                                </ul>
+                                            </td>
+                                            <td>Delaying the CONF_DONE causes the device to miss the CONF_DONE detect window and configuration error occurs Note: If the CONF_DONE error check is disabled, the FPGA will not check if the CONF_DONE rises correctly within the valid timing window.</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Ensure the device is successfully key programmed before you perform the configuration with the encrypted file</td>
+                                            <td>If the key is not present in the device then the device is unable to decrypt the encrypted file</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Ensure the same key is used to do the file encryption and to program the device	</td>
+                                            <td>If the key is not compatible then the device is unable to decrypt the encrypted file
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item mv_fre_accordion_item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed mv_fre_accordion_button" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapsetherteen" aria-expanded="false" aria-controls="flush-collapsetherteen">
+                                Design Security: Volatile key programming failure
+                            </button>
+                        </h2>
+                        <div id="flush-collapsetherteen" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+                            <div class="accordion-body">
+                                <p class="mb-0"><b>Checklist</b></p>
+                                <p class="mb-0">Before you proceed to further debug your issue, you are advised to use this checklist to verify that you have followed the recommended configuration setup in your design.</p>
+                                <ul>
+                                    <p class="mb-0">The nCE, nCONFIG, nSTATUS CONF_DONE and dedicated JTAG pins (TCK, TMS, TDO, TDI) are connected according to the recommended setup in the device handbook. If pull-up/pull-down resistors are required, ensure the resistor values are correct.</p>
+                                    <p class="mb-0">The power supplies are ramped up to the appropriate voltage level according to the device datasheet and are stable throughout the operation</p>
+                                </ul>
+                                <p class="mb-0"><b>Debug Strategies</b></p>
+                                <p class="mb-0">The following table lists some recommended debug strategies to narrow down the root-cause of your issue. You are advised to go through each strategy and perform the verification accordingly.</p>
+                                <table class="dk_Fail_to_initiate" width="90%" border="1" cellspacing="0" cellpadding="3">
+                                    <thead>
+                                        <tr>
+                                            <th>Strategy</th>
+                                            <th>Implications</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Download the latest version of the Quartus® II software. Regenerate the programming file and reconfigure the FPGA using the new programming file	</td>
+                                            <td>	
+                                                The latest Quartus II software might have the bug fix
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Ensure the device is not programmed with the non-volatile key before you perform the volatile key programming</td>
+                                            <td>Once a non-volatile key (one time programmable) has been programmed into the device you will not be able to program a volatile key</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Ensure the VCCBAT is powered up properly</td>
+                                            <td>The VCCBAT is a dedicated power supply for volatile key storage. The volatile register will not be powered up if there is no VCCCBAT supply.</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Ensure the same setup (same board, download cable and the Quartus II software version) is able to perform JTAG programming before you perform the volatile key programming</td>
+                                            <td>If JTAG programming fails, then it is not a specific volatile key programming failure. 
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <p class="mb-0">If your issue still persists, you may contact our technical support via mySupport for further assistance. After you have submitted a service request to mySupport, please provide the following information:</p>
+                                <ol>
+                                    <p class="mb-0">The version of the Quartus II software that you were using when this issue was encountered</p>
+                                    <p class="mb-0">The FPGA part number that you were using when this issue was encountered</p>
+                                    <p class="mb-0">A screen shot of the error message shown in the Quartus II message window</p>
+                                    <p class="mb-0">Specify your observations after performing the recommended debug strategies</p>
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item mv_fre_accordion_item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed mv_fre_accordion_button" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseforteen" aria-expanded="false" aria-controls="flush-collapseforteen">
+                                Design Security: Non-volatile key programming failure
+                            </button>
+                        </h2>
+                        <div id="flush-collapseforteen" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+                            <div class="accordion-body">
+                                <p class="mb-0"><b>Checklist</b></p>
+                                <p class="mb-0">Before you proceed to further debug your issue, you are advised to use this checklist to verify that you have followed the recommended configuration setup in your design.</p>
+                                <ul>
+                                    <p class="mb-0">The nCE, nCONFIG, nSTATUS CONF_DONE and dedicated JTAG pins (TCK, TMS, TDO, TDI) are connected according to the recommended setup in the device handbook. If pull-up/pull-down resistors are required, ensure the resistor values are correct.</p>
+                                    <p class="mb-0">The power supplies are ramped up to the appropriate voltage level according to the device datasheet and are stable throughout the operation</p>
+                                </ul>
+                                <p class="mb-0"><b>Debug Strategies</b></p>
+                                <p class="mb-0">The following table lists some recommended debug strategies to narrow down the root-cause of your issue. You are advised to go through each strategy and perform the verification accordingly.</p>
+                                <table class="dk_Fail_to_initiate" width="90%" border="1" cellspacing="0" cellpadding="3">
+                                    <thead>
+                                        <tr>
+                                            <th>Strategy</th>
+                                            <th>Implications</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Download the latest version of the Quartus® II software. Regenerate the programming file and reconfigure the FPGA using the new programming file</td>
+                                            <td>	
+                                                The latest Quartus II software might have the bug fix
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Ensure the device is not programmed with the non-volatile key before you perform the volatile key programming</td>
+                                            <td>Once a non-volatile key (one time programmable) has been programmed into the device you will not be able to program a volatile key</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Ensure the non-volatile key programming frequency (JTAG TCK frequency) is set according to the specifications</td>
+                                            <td>Unregulated JTAG TCK frequency would interrupt the poly-fuse programming.</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Ensure the proper download cable (for example Ethernet Blaster or JTAG technologies) is used for the non-volatile key programming.</td>
+                                            <td>An unsupported download cable will not enable the programming of the non-volatile key
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Ensure the same setup (same board, download cable and the Quartus II software version) is able to perform JTAG programming before you perform the volatile key programming</td>
+                                            <td>If JTAG programming fails, then it is not a specific volatile key programming failure. Note:Please return to the <a class="b_special_a2" href="">Configuration Troubleshooter</a>  initial page to select JTAG related failures.</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <p class="mb-0">If your issue still persists, you may contact our technical support via mySupport for further assistance. After you have submitted a service request to mySupport, please provide the following information:</p>
+                                <ol>
+                                    <p class="mb-0">The version of the Quartus II software that you were using when this issue was encountered</p>
+                                    <p class="mb-0">The FPGA part number that you were using when this issue was encountered</p>
+                                    <p class="mb-0">A screen shot of the error message shown in the Quartus II message window</p>
+                                    <p class="mb-0">Specify your observations after performing the recommended debug strategies</p>
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item mv_fre_accordion_item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed mv_fre_accordion_button" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapsefifteen" aria-expanded="false" aria-controls="flush-collapsefifteen">
+                                Remote System Upgrade: The FPGA is not able to switch from factory page to application page
+                            </button>
+                        </h2>
+                        <div id="flush-collapsefifteen" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+                            <div class="accordion-body">
+                                <p class="mb-0"><b>Checklist</b></p>
+                                <p class="mb-0">Before you proceed to further debug your issue, you are advised to use this checklist to verify that you have followed the recommended configuration setup in your design.</p>
+                                <ul>
+                                    <p class="mb-0">The power supplies are ramped up to the appropriate voltage level according to the device datasheet and are stable throughout the operation</p>
+                                </ul>
+                                <p class="mb-0"><b>Debug Strategies</b></p>
+                                <p class="mb-0">The following table lists some recommended debug strategies to narrow down the root-cause of your issue. You are advised to go through each strategy and perform the verification accordingly.</p>
+                                <table class="dk_Fail_to_initiate" width="90%" border="1" cellspacing="0" cellpadding="3">
+                                    <thead>
+                                        <tr>
+                                            <th>Strategy</th>
+                                            <th>Implications</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Ensure that you have enabled the remote update block in your design</td>
+                                            <td>	
+                                                If the remote update block is not enabled, you will not be able to use the remote update feature
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Ensure that your user logic is according to the outline specified in the altremote_update megafunction user guide (Refer to the device handbook on how to enable the remote update block in your design)</td>
+                                            <td>Some of the interface might not work properly when you switch to other application images</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Ensure that you assigned the right starting address for your application page. Refer to handbook and related application notes for more information on how to assign the right start address.</td>
+                                            <td>The device will not be able to load the appropriate image if the start address of the application is assigned incorrectly
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Ensure that the start address of your application page is written properly to the remote update circuitry. Use the right param[2..0], assert write_param for one clock cycle and make sure the data on the data_in input bus is stable before write_param is asserted.</td>
+                                            <td>The device will not be able to load the appropriate application image if the start address of the application image is written incorrectly
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Ensure that you trigger the reconfiguration input of altremote_update for at least one clock cycle. Refer to the handbook or user guide for related specification (if any) on reconfiguration input port of altremote_update megafunction</td>
+                                            <td>This ensures the device is able to detect the nCONFIG positive edge to initiate reconfiguration
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <p class="mb-0">If your issue still persists, you may contact our technical support via mySupport for further assistance. After you have submitted a service request to mySupport, please provide the following information:</p>
+                                <ol>
+                                    <p class="mb-0">The version of the Quartus II software that you were using when this issue was encountered</p>
+                                    <p class="mb-0">The FPGA part number that you were using when this issue was encountered</p>
+                                    <p class="mb-0">A screenshot of SignalTap II at the start address writing operation of the application image</p>
+                                    <p class="mb-0">Clock frequency supplied to the altremote_update megafunction</p>
+                                    <p class="mb-0">Specify your observations after performing the recommended debug strategies</p>
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="dk_comfig_info">
+            <div class="container">
+                <p class="mb-2">If you have questions, you can find the available support options at&nbsp;<a class="b_special_a1" href="">Intel® Customer Support</a>.&nbsp;&nbsp;Intel customers with&nbsp;Intel® Premier Support can&nbsp;find training and help topics at&nbsp;<a class="b_special_a1" href="">Intel® Premier Support</a>.</p>
+                <p class="mb-0">You can also search the&nbsp;<a class="b_special_a1" href="">Intel® Community</a>&nbsp;to ask and answer questions about the FPGAs and Programmable Solutions family of products.</p>
+            </div>
+        </div> 
+    </section>
+
+    <!-- --------------------------------------------------------------------- -->
+
+    <!-- footer -->
+    <div id="footer"></div>
+
+    <!-- script header and footer -->
+    <script>
+        // navbar include  
+        fetch('/y_index/y_navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar').innerHTML = data;
+            });
+        // footer include 
+        fetch('/y_index/y_footer.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('footer').innerHTML = data;
+            });
+    </script>
+
+    <!-- nav script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const nav = document.querySelector('.VK_client_app_navigation');
+            const navLinks = document.querySelectorAll('.VK_ai_nav_bar a');
+            const sections = document.querySelectorAll('section[id]');
+            let navOffset = nav.offsetTop;
+
+            // Add smooth scrolling to all links
+            navLinks.forEach(link => {
+                link.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+
+            // Sticky Navigation
+            window.addEventListener('scroll', () => {
+                if (window.pageYOffset >= navOffset) {
+                    nav.classList.add('VK_sticky_nav_bar');
+                } else {
+                    nav.classList.remove('VK_sticky_nav_bar');
+                }
+                // Section highlighting
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop - nav.clientHeight;
+                    const sectionHeight = section.clientHeight;
+                    console.log(sectionTop);
+                    console.log(sectionHeight);
+                    if (window.pageYOffset >= sectionTop && window.pageYOffset <= sectionTop + sectionHeight) {
+                        navLinks.forEach(link => {
+                            link.classList.remove('active');
+                            if (link.getAttribute('href') === `#${section.id}`) {
+                                link.classList.add('active');
+
+                                // Ensure the active link is visible in the nav bar
+                                const navBar = document.querySelector('.VK_ai_nav_bar');
+                                const activeLink = document.querySelector('.VK_ai_nav_bar a.active');
+                                const linkRect = activeLink.getBoundingClientRect();
+                                const navBarRect = navBar.getBoundingClientRect();
+
+                                if (linkRect.left < navBarRect.left || linkRect.right > navBarRect.right) {
+                                    activeLink.scrollIntoView({ inline: 'center', behavior: 'smooth' });
+                                }
+                            }
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+
+</body>
+
+</html>
