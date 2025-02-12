@@ -1,0 +1,931 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PyTorch* Optimizations from Intel</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <link href=" https://fonts.cdnfonts.com/css/intel-clear " rel="stylesheet">
+    <link rel="stylesheet" href="../css/owl.carousel.min.css">
+
+    <link rel="stylesheet" href="../css/rushita.css">
+    <link rel="stylesheet" href="../css/rushita_automotive.css">
+    <link rel="stylesheet" href="../css/yatri.css">
+
+    <link rel="stylesheet" href="../css/owl.theme.default.min.css">
+    <style>
+        * {
+            font-family: 'Intel Clear', sans-serif;
+        }
+        .k_framworkbg1 {
+            background-image: url(../img/rushita_img/dot.png);
+            background-position: center;
+            background-size: cover;
+        }
+       .k_hoverblue a:hover{
+        color: #00aeef !important;
+       }
+       .k_demo {
+            position: relative;
+            width: 100%;
+            max-width: 700px;
+            margin: 0 auto 20px;
+        }
+        .k_demo img {
+            width: 100%;
+            cursor: pointer;
+        }
+        .icon {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            font-size: 24px;
+            color: white;
+            cursor: pointer;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 5px;
+            border-radius: 5px;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            padding-top: 100px;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.9);
+        }
+        .modal-content {
+            margin: auto;
+            display: block;
+            width: 80%;
+            max-width: 1300px;
+        }
+        .caption {
+            margin: auto;
+            display: block;
+            width: 80%;
+            max-width: 700px;
+            text-align: center;
+            color: #ccc;
+            padding: 10px 0;
+        }
+        .close {
+            position: absolute;
+            top: 15px;
+            right: 35px;
+            color: #f1f1f1;
+            font-size: 40px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+        .close:hover,
+        .close:focus {
+            color: #bbb;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        @media only screen and (max-width: 700px) {
+            .modal-content {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div id="navbar"></div>
+    <div>
+        <section class="m_ai_tdrop">
+            <div>
+                <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Developers
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item m_dropActive"
+                            href="../dhruvin_developer-tools/ds_Developer-Zone.html">Overview</a></li>
+                    <li><a class="dropdown-item m_dropActive"
+                            href="../rushita_Solutions/k_solutions_in_Viewall_SDF_Industrial-Automation_Control-flow-Enforcement_Technology.html">Topics
+                            & Technologies</a></li>
+                    <li><a class="dropdown-item m_dropActive"
+                            href="../dhruvin_developer-tools/ds_Development-Tools.html">Tools</a></li>
+                    <li><a class="dropdown-item m_dropActive"
+                            href="../rushita_Solutions/k_solutions_in_Viewall_SDF_Industrial-Automation_Hardware-Platforms.html">Hardware
+                            Platforms</a></li>
+                    <li><a class="dropdown-item m_dropActive"
+                            href="../dhruvin_developer-tools/ds_Resource-Documentation-Center.html">Resources &
+                            Documentation</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="../dhruvin_developer-tools/ds_Learn.html">Learn</a>
+                    </li>
+                    <li><a class="dropdown-item m_dropActive"
+                            href="../dhruvin_developer-tools/ds_Communities-and-Events.html">Community & Events</a></li>
+                    <li><a class="dropdown-item m_dropActive"
+                            href="../dhruvin_developer-tools/ds_Developer-Programs.html">Developer Programs</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="../dhruvin_developer-tools/ds_Get-Help.html">Get
+                            Help</a></li>
+                </ul>
+            </div>
+
+
+            <div class="m_ai_shlash">/</div>
+            <div>
+                <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Tools
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item m_dropActive" href="../Product/B20_developer_catelog.html">Software
+                            Catalog</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="../Product/B17_oneapi.html">oneAPI</a></li>
+                    <li><a class="dropdown-item m_dropActive"
+                            href="../rushita_Solutions/k_solutions_Intel-Tiber™Edge-Platform.html">Intel® Tiber™ Edge
+                            Platform</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="../Product/B10_intel_Quarts.html">FPGA</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="../VK_developers/VK_technology_sdk.html">Intel®
+                            Active Management Technology SDK</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="../VK_developers/VK_intel_adviser.html">Intel®
+                            Advisor</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Intel® AI Reference Models</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="../rushita_Solutions/k_solutions_Intel-Collaboration-Suite-for-WebRTC.html">Intel® Collaboration Suite for WebRTC SDK</a>
+                    </li>
+                    <li><a class="dropdown-item m_dropActive" href="../Product/B1_19_Intel_AICloud.html">Intel® Tiber™
+                            AI Cloud</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="../rushita_Solutions/k_solutions_Intel-Distribution-for-Python.html">Intel® Distribution for Python*</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="../rushita_Solutions/k_solutions_Intel-Distribution-for-GDB.html">Intel® Distribution for GDB*</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Intel® DPC++ Compatibility Tool</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Intel® Dynamic Application Loader</a></li>
+                    <li><a class="dropdown-item m_dropActive"
+                            href="../rushita_Solutions/k_solutions_Topics_viewall_Cloud-Insider-Program_AI-Frameworks-and-Tools.html">Frameworks</a>
+                    </li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Intel® Embree</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="../VK_developers/VK_ai_scikit.html">Intel® Extension
+                            for Scikit-learn*</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="../rushita_Solutions/k_solutions_Intel-Fortran-Compiler.html">Intel® Fortran Compiler</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Intel® Graphics Performance Analyzers</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="../rushita_Solutions/k_solutions_Intel-HE-Toolkit.html">Intel® Homomorphic Encryption Toolkit</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="../rushita_Solutions/k_solutions_Intel-In-Band-Manageability.html">Intel® In-Band Manageability</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="../rushita_Solutions/k_solutions_Intel-Cryptography-Primitives-Library.html">Intel® Integrated Performance Primitives</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="../rushita_Solutions/">Intel® Integrated Simulation Infrastructure with
+                            Modeling</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="../rushita_Solutions/k_solutions_Instruction-Set-Architecture(ISA)Extensions.html">Instruction Set Architecture (ISA) Extensions</a>
+                    </li>
+                    <li><a class="dropdown-item m_dropActive" href="../rushita_Solutions/k_solutions_Intel-Intelligent-Storage-Acceleration-Library.html">Intel® Intelligent Storage Acceleration Library
+                            (Intel® ISA-L)</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="../VK_developers/VK_ai_modin.html">Modin*</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Intel® MPI Library</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Intel® Neural Compressor</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">OpenCL™ Runtime</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Intel® Open Image Denoise</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Intel® Open Path Guiding Library (Intel® Open
+                            PGL)</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Pin</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Intel® Platform Analysis Library</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Intel Tools for OpenCL™ Software</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Intel Tools for OpenCL™ Applications</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Intel® OpenSWR</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">OpenVINO™ Toolkit</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Intel® Open Volume Kernel Library</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Intel® Optimization for XGBoost*</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Intel® OSPRay</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Intel® OSPRay for Hydra*</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Intel® OSPRay Studio</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">PyTorch* Optimizations from Intel</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">TensorFlow* Optimizations from Intel</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Intel® Rendering Toolkit</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Intel® Smart Edge Open</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Intel® Software Guard Extensions</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Intel® Secure Device Onboard</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Intel® Software Development Emulator</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Intel® Trust Domain Extensions (Intel® TDX)</a>
+                    </li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Intel® Quantum SDK</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Intel® Query Processing Library (Intel® QPL)</a>
+                    </li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Intel® Video Processing Library</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Intel® VTune™ Profiler</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Resellers</a></li>
+                </ul>
+            </div>
+            <div class="m_ai_shlash">/</div>
+            <div>
+                <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Intel® Intelligent Storage Acceleration Library (Intel® ISA-L)
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item m_dropActive" href="#">Intel® ISA-L on GitHub*</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Intel® ISA-L for Cryptography on GitHub*</a></li>
+                </ul>
+            </div>
+            <div class="m_ai_shlash">/</div>
+            <div class="m_ai_httl">PyTorch* Optimizations from Intel
+            </div>
+        </section>
+    
+        <section class="k_framworkbg1" style="background-color: #00285A;">
+            <div class="k_container11 ">
+                <div class="row text-white text-center py-5">
+                    <div class="col-sm-12">
+                        <h1 class="fw-light">PyTorch* Optimizations from Intel
+                        </h1>
+                        <p>Speed Up AI from Research to Production Deployment</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="k_scrollable-menu">
+                        <ul class="d-flex  k_textwhite mb-0 px-0 k_listnone gap-4">
+                            <li class=" p-2 k_active "><a href="#">Overview</a></li>
+                            <li class="p-2  k_a_whiteunder"><a href="#">Download</a></li>
+                            <li class="p-2  k_a_whiteunder"><a href="#">Documentation & Resources</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+       <section>
+            <div class="k_container11">
+                <div class="row my-5">
+                    <h2 class="fw-light">Maximize PyTorch Performance on Intel® Hardware</h2>
+                    <div class="col-sm-12 col-md-6">
+                        <p>PyTorch* is an AI and machine learning framework popular for both research and production usage. This open source library is often used for deep learning applications whose compute-intensive training and inference test the limits of available hardware resources.</p>
+                        <p>Intel releases its newest optimizations and features in Intel® Extension for PyTorch* before upstreaming them into open source PyTorch.<br>
+                            <br>
+                            With a few lines of code, you can use Intel Extension for PyTorch to:<br>
+                            </p>
+                            <ul>
+                                <li>Take advantage of the most up-to-date Intel software and hardware optimizations for PyTorch.</li>
+                                <li>Automatically mix different precision data types to reduce the model size and computational workload for inference.</li>
+                                <li>Add your own performance customizations using APIs.</li>
+                                </ul>
+                                <p>Intel also works closely with the open source PyTorch project to optimize the PyTorch framework for Intel hardware. These optimizations for PyTorch, along with the extension, are part of the end-to-end suite of Intel® AI and machine learning <a href="#">development tools and resources</a>.</p>
+                    </div>
+                    <div class="col-sm-12 col-md-6">
+                        <div class="row" >
+                            <div class="col-sm-12 col-md-6">
+                                <h5 class="fw-bolder">
+                                    Download the Stand-Alone Versions
+                                   </h5>
+                                   <p>Stand-alone versions of PyTorch and Intel Extension for PyTorch are available. You can install them using a package manager or build from the source.</p>
+                                   <p class="k_plink1 k_intext1blue1"><a href="#">PyTorch</a> | <a href="#">Intel Extension for PyTorch</a></p>
+                            </div>
+                            <div class="col-sm-12 col-md-6">
+                                <h5 class="fw-bolder">
+                                    Help Intel® Extension for PyTorch* Evolve
+                                   </h5>
+                                   <p>This open source component has an active developer community. We welcome you to participate.</p>
+    
+                                   <p class="k_plink1 k_intext1blue1"><a href="#">Open Source Version (GitHub*)</a></p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <h5 class="fw-bolder">Download the AI Tools</h5>
+                            <p>PyTorch and Intel Extension for PyTorch are available in the AI Tools Selector, which provides accelerated machine learning and data analytics pipelines with optimized deep learning frameworks and high-performing Python* libraries.</p>
+                            <p class="text-center k_btnlearn py-2 mt-5 k_text m-auto k_under k_btn100" style="float: inline-start; width: 250px;">
+                                <a href="#">Get the Tools Now </a>
+                               </p>
+                        </div>
+                    </div>
+                   
+                </div>
+            </div>
+       </section>
+       <section>
+        <div class="k_container11">
+
+            <div class="row">
+                <h1 class="fw-light">Features</h1>
+                <div class="col-12">
+                    <div class="k_demo">
+                     <img class="myImg" src="../img/rushita_img/MPI3.avif" alt="">
+                
+                     <i class="fa-solid fa-down-left-and-up-right-to-center icon openModal" ></i>
+                     <div id="myModal" class="modal">
+                         <span class="close">&times;</span>
+                         <img class="modal-content" id="img01">
+                         <div id="caption" class="caption"></div>
+                     </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="my-5">
+        <div class="k_container11">
+            <div class="row">
+                <div class="col-sm-12 col-md-6 col-lg-4">
+                    <p><b>Open Source PyTorch Powered by Optimizations from Intel</b></p>
+                    <ul> 
+                        <li>Get the best PyTorch training and inference performance on Intel CPU or GPU hardware through open source contributions from Intel.</li> 
+                        <li>PyTorch 2.5 introduces prototype support for Intel GPUs.</li> 
+                        <li>Take advantage of Intel® Deep Learning Boost, Intel® Advanced Vector Extensions (Intel® AVX-512), and Intel® Advanced Matrix Extensions (Intel® AMX) instruction set features to parallelize and accelerate PyTorch workloads.</li> 
+                        <li>Perform distributed training with oneAPI Collective Communications Library (oneCCL) bindings for PyTorch.</li> 
+                       </ul>
+                </div>
+                <div class="col-sm-12 col-md-6 col-lg-4">
+                    <p><b>Intel Extension for PyTorch Optimizations and Features</b></p>
+                    <ul> 
+                        <li>Apply the newest performance optimizations not yet in PyTorch with minimal code changes.</li> 
+                        <li>Run PyTorch on Intel CPUs or GPUs.</li> 
+                        <li>Automatically mix operator datatype precision between float32 and bfloat16 to reduce computational workload and model size.</li> 
+                        <li>Control aspects of the thread runtime such as multistream inference and asynchronous task spawning.</li> 
+                       </ul>
+                </div>
+                <div class="col-sm-12 col-md-6 col-lg-4">
+                    <p><b>Optimized Deployment with OpenVINO™ Toolkit</b></p>
+                    <ul> 
+                        <li class="k_plink1 k_intext1blue1">Import your PyTorch model into <a href="#">OpenVINO Runtime</a> to compress model size and increase inference speed.</li> 
+                        <li>Instantly target Intel CPUs, GPUs (integrated or discrete), NPUs, or FPGAs.</li> 
+                        <li>Deploy with OpenVINO model server for optimized inference in microservice applications, container-based, or cloud environments. Scale using the same architecture API as KServe for inference execution and inference service provided in gRPC* or REST.</li> 
+                    </ul>
+                </div>
+            </div>
+            <div class="row mt-5">
+                <p class="k_plink1 k_intext1blue1">Access the latest AI benchmark performance data for PyTorch and OpenVINO toolkit when running on data center products from Intel. <a href="#">Performance Data</a>.</p>
+            </div>
+        </div>
+    </section>
+   
+
+    <section class="my-5">
+        <div class="k_container11">
+            <div class="row">
+                <h1 class="fw-light">Documentation & Code Samples</h1>
+                <div class="col-sm-12 col-md-6">
+                    <p><b>Documentation</b></p>
+                    <ul> 
+                        <li class="k_plink1 k_intext1blue1"><a href="#">PyTorch Documentation</a></li> 
+                        <li class="k_plink1 k_intext1blue1"><a href="#">PyTorch Prerequisites for Intel GPUs</a></li> 
+                        <li class="k_plink1 k_intext1blue1"><a href="#">Get Started with PyTorch on Intel GPUs</a></li> 
+                        <li class="k_plink1 k_intext1blue1"><a href="#">PyTorch Performance Tuning Guide</a></li> 
+                        <li>Intel Extension for PyTorch
+                         <ul> 
+                          <li class="k_plink1 k_intext1blue1"><a href="#">Documentation &amp; Tutorials</a></li> 
+                          <li class="k_plink1 k_intext1blue1"><a href="#">Installation Guide (All Operating Systems)</a></li> 
+                          <li class="k_plink1 k_intext1blue1"><a href="#">Performance Tuning Guide</a></li> 
+                          <li class="k_plink1 k_intext1blue1"><a href="#">Release Notes</a></li> 
+                          <li class="k_plink1 k_intext1blue1"><a href="#">System Requirements</a></li> 
+                         </ul> </li> 
+                        <li class="k_plink1 k_intext1blue1"><a href="#">TorchServe with Intel Extension for PyTorch</a></li> 
+                        <li class="k_plink1 k_intext1blue1"><a href="#">oneCCL Bindings for PyTorch</a></li> 
+                       </ul>
+                       <p class="k_plink1 k_intext1blue1"><a href="#">View All Documentation</a></p>
+                </div>
+                <div class="col-sm-12 col-md-6">
+                    <p><b>Intel Extension for PyTorch Code Samples</b></p>
+                    <ul> 
+                        <li class="k_plink1 k_intext1blue1"><a href="#">Single-Instance Training</a></li> 
+                        <li class="k_plink1 k_intext1blue1"><a href="#">bfloat16 Inference—Imperative Mode</a></li> 
+                        <li class="k_plink1 k_intext1blue1"><a href="#">bfloat16 Inference—TorchScript Mode</a></li> 
+                        <li class="k_plink1 k_intext1blue1"><a href="#">int8 Deployment—Graph Mode</a></li> 
+                        <li class="k_plink1 k_intext1blue1"><a href="#">C++ Dynamic Library</a></li> 
+                        <li class="k_plink1 k_intext1blue1"><a href="#">GPU Single-Instance Training</a></li> 
+                        <li class="k_plink1 k_intext1blue1"><a href="#">GPU Inference</a></li> 
+                       </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section>
+        <div class="k_container11">
+            <div class="row">
+                <h1 class="fw-light">Training & Tutorials</h1>
+               <p class="k_plink1 k_intext1blue1"><a href="#">Accelerate PyTorch Training and Inference Performance Using Intel AMX</a></p>
+               <p class="k_plink1 k_intext1blue1"><a href="#">Llama 2 Inference with PyTorch on Intel® Arc™ A-series GPUs</a></p>
+               <p class="k_plink1 k_intext1blue1"><a href="#">Build an Interactive Chat-Generation Model Using DialoGPT and PyTorch</a></p>
+               <p class="k_plink1 k_intext1blue1"><a href="#">Stable Diffusion* with Intel Arc GPUs</a></p>
+               <p class="k_plink1 k_intext1blue1"><a href="#">Accelerated Image Segmentation Using PyTorch</a></p>
+               <p class="k_plink1 k_intext1blue1"><a href="#">Get Faster PyTorch Programs with TorchDynamo</a></p>
+               <p class="k_plink1 k_intext1blue1"><a href="#">How to Improve TorchServe Inference Performance with Intel Extension for PyTorch</a></p>
+            </div>
+        </div>
+    </section>
+    <section class="k_space">
+        <div class="k_container11">
+            <div class="row">
+                <h1 class="fw-light">Demonstrations</h1>
+                <div class="col-md-6 col-sm-12">
+                    <p><b>Optimize Text and Image Generation Using PyTorch</b></p>
+                    <p>Learn how to speed up generative AI that runs on CPUs by setting key environment variables, by using <b>ipex.llm.optimize()</b> for a Llama 2 model and <b>ipex.optimize()</b> for a Stable Diffusion model.</p>
+                    <p class="k_plink1 k_intext1blue1"><a href="#">Read</a></p>
+                </div>
+                <div class="col-md-6 col-sm-12">
+                    <p><b>Predict Forest Fires Using Transfer Learning on a CPU</b></p>
+                    <p>This application classifies aerial photos according to the fire danger they convey. It uses the MODIS fire dataset to adapt a pretrained ResNet-18 model.</p>
+                    <p class="k_plink1 k_intext1blue1"><a href="#">Read</a></p>
+                </div>
+                <div class="col-md-6 col-sm-12">
+                    <p><b>Build an End-to-End Language Identification with PyTorch</b></p>
+                    <p>Follow along with a code sample that performs language identification from audio samples using the Hugging Face SpeechBrain* toolkit. Learn how to optimize the model for inference on CPU or GPU using Intel Extension for PyTorch.</p>
+                    <p class="k_plink1 k_intext1blue1"><a href="#">Read</a></p>
+                </div>
+                <div class="col-md-6 col-sm-12">
+                    <p><b>Use PyTorch for Monocular Depth Estimation</b></p>
+                    <p>Learn how to use a model based on Hugging Face Transformers to produce a clipped image with background clutter removed, ultimately creating a depth estimate from a single image.</p>
+                    <p class="k_plink1 k_intext1blue1"><a href="#">Watch</a></p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="k_space">
+        <div class="k_container11">
+            <div class="row">
+                <h1 class="fw-light">Case Studies</h1>
+                <div class="col-md-6 col-sm-12">
+                    <p><b>Intel and Microsoft Azure* Accelerate PadChest and fMRI Models</b></p>
+                    <p>Using Intel Extension for PyTorch with the OpenVINO toolkit, this project optimized for deployment to Intel CPUs a chest X-ray image classification dataset and a brain functional magnetic resonance imaging (fMRI) resting-state classification model.</p>
+                    <p class="k_plink1 k_intext1blue1"><a href="#">Learn More</a></p>
+                </div>
+                <div class="col-md-6 col-sm-12">
+                    <p><b>Hugging Face* Accelerates Stable Diffusion* on CPUs</b></p>
+                    <p>Automatic mixed precision in Intel Extension for PyTorch helped this application take advantage of Intel AMX to speed up inference latency by 2x.</p>
+                    <p class="k_plink1 k_intext1blue1"><a href="#">Learn More</a></p>
+                </div>
+                <div class="col-md-6 col-sm-12">
+                    <p><b>L&T Technology Services Enhances Chest Radiology Outcomes</b></p>
+                    <p>Chest-rAI* is a deep learning algorithm developed by L&T Technology Services (LTTS) to detect and isolate abnormalities in chest X-ray imagery. LTTS adopted the AI Tools and OpenVINO toolkit, reducing inference time by 46% and reducing their product development time from eight weeks to two weeks.</p>
+                    <p class="k_plink1 k_intext1blue1"><a href="#">Learn More</a></p>
+                </div>
+                <div class="col-md-6 col-sm-12">
+                    <p><b>HippoScreen Improves AI Performance by 2.4x</b></p>
+                    <p>The Taiwan-based neurotechnology startup used tools and frameworks in the Intel® oneAPI Base Toolkit and AI Tools to improve the efficiency and training times of deep learning models used in its Brain Waves AI system.</p>
+                    <p class="k_plink1 k_intext1blue1"><a href="#">Learn More</a></p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section>
+        <div class="k_container11">
+            <div class="row k_space">
+                <h1 class="fw-light">News</h1>
+                <div class="col-sm-12 col-md-4">
+                    <p><b>Intel Boosts AI Development with Contributions to PyTorch 2.5</b></p>
+                    <p>New features enhance the programming experience for AI developers across data center and client hardware, expanding support for Intel GPUs.</p>
+                  <p><a href="#">Learn More</a></p>
+                </div>
+                <div class="col-sm-12 col-md-4">
+                    <p><b>Intel Joins the PyTorch Foundation</b></p>
+                <p>Intel is now a Premier member of the PyTorch Foundation, with four full-time PyTorch maintainers for CPU performance, and a seat on the PyTorch Foundation Governing Board.</p>
+                <p><a href="#">Learn More</a></p>
+        
+                </div>
+                <div class="col-sm-12 col-md-4">
+                    <p><b>Intel and Microsoft Collaborate to Extend DirectML GPU Support</b></p>
+                  <p>Intel has extended support for PyTorch with the DirectML back end to all Intel® Arc™ Graphics and Intel® Iris® Xe Graphics GPUs.</p>
+                  <p><a href="#">Learn More</a></p>
+                </div>
+            </div>
+        </div>
+   </section>
+   <section>
+        <div class="k_container11">
+            <div class="row k_space">
+                <h1 class="fw-light">Specifications</h1>
+                <div class="col-sm-12 col-md-4">
+                    <p><b>Processors:</b></p>
+                    <ul> 
+                        <li>Intel® Xeon® processors and CPUs with compatible Intel® 64 architecture</li> 
+                        <li>Intel® Data Center GPU Max Series</li> 
+                       </ul>
+                       <p>&nbsp;</p>
+                       <p><b>Development environments:</b></p>
+                       <ul> 
+                        <li>Windows: Microsoft Visual Studio*</li> 
+                        <li>Linux: Eclipse* and Eclipse C/C++ Development Tooling (CDT)*</li> 
+                       </ul>
+                </div>
+                <div class="col-sm-12 col-md-4">
+                    <p><b>Operating systems:</b></p>
+                    <ul> 
+                        <li>Windows</li> 
+                        <li>Linux</li> 
+                       </ul>
+                </div>
+                <div class="col-sm-12 col-md-4">
+                    <p><b>Languages:</b></p>
+                    <ul>
+                        <li>Python</li>
+                        <li>C++</li>
+                        </ul>
+                </div>
+                <p class="k_plink1 k_intext1blue1"><br>
+                    Deploy PyTorch models to a variety of devices and operating systems with&nbsp;<a href="#">Intel Distribution of OpenVINO Toolkit</a>.</p>
+            </div>
+        </div>
+   </section>
+   <section class="k_space">
+        <div class="k_container11">
+            <div class="row">
+                <h1 class="fw-light">Get Help</h1>
+                <p>Your success is our success. Access these support resources when you need assistance.</p>
+                <ul> 
+                    <li class="k_plink1 k_intext1blue1"><a href="#">AI Tools Support Forum<br> </li> 
+                    <li class="k_plink1 k_intext1blue1"><a href="#">Intel® Optimized AI Frameworks Support Forum</li> 
+                    <li class="k_plink1 k_intext1blue1"><a href="#">Intel Extension for PyTorch: GitHub Issue Tickets</li> 
+                </ul>
+            </div>
+        </div>
+   </section>
+   <section>
+    <div class="k_container-fluid">
+        <div class="row m-0 " >
+            <div class="col-lg-6  k_bgsky align-content-center" >
+                <h1 class=" k_sec_padd fw-light">Stay In the Know on All Things CODE</h1>
+                <p class=" k_sec_padd ">Sign up to receive the latest tech articles, tutorials, dev tools, training opportunities,
+                    product updates, and more, hand-curated to help you optimize your code, no matter where you are
+                    in your developer journey. Take a chance and subscribe. You can change your mind at any time.
+                </p>
+            </div>
+            <div class="col-lg-1 k_bgsky_clip p-0 m-0 ">
+
+            </div>
+
+
+            <div class="col-lg-5 ps-3 py-5">
+                <p class="mb-2">All fields are required unless marked optional.</p>
+                <form action="">
+                    <div class="input-group input-group-lg k_input_widyh" >
+                        <input type="text" class="form-control" aria-label="Sizing example input"
+                            placeholder="Business Email Address " aria-describedby="inputGroup-sizing-lg">
+                    </div>
+                    <select class=" form-select form-select-lg mb-3 mt-3 k_input_widyh"
+                        aria-label=".form-select-lg example">
+                        <option selected>Please select a country/region</option>
+                        <option value="AF">Afghanistan</option>
+                        <option value="AL">Albania</option>
+                        <option value="DZ">Algeria</option>
+                        <option value="AS">American Samoa</option>
+                        <option value="AD">Andorra</option>
+                        <option value="AO">Angola</option>
+                        <option value="AI">Anguilla</option>
+                        <option value="AQ">Antarctica</option>
+                        <option value="AG">Antigua and Barbuda</option>
+                        <option value="AR">Argentina</option>
+                        <option value="AM">Armenia</option>
+                        <option value="AW">Aruba</option>
+                        <option value="AU">Australia</option>
+                        <option value="AT">Austria</option>
+                        <option value="AZ">Azerbaijan</option>
+                        <option value="BS">Bahamas</option>
+                        <option value="BH">Bahrain</option>
+                        <option value="BD">Bangladesh</option>
+                        <option value="BB">Barbados</option>
+                        <option value="BY">Belarus</option>
+                        <option value="BE">Belgium</option>
+                        <option value="BZ">Belize</option>
+                        <option value="BJ">Benin</option>
+                        <option value="BM">Bermuda</option>
+                        <option value="BT">Bhutan</option>
+                        <option value="BO">Bolivia</option>
+                        <option value="BA">Bosnia and Herzegovina</option>
+                        <option value="BW">Botswana</option>
+                        <option value="BV">Bouvet Island</option>
+                        <option value="BR">Brazil</option>
+                        <option value="IO">British Indian Ocean Territory</option>
+                        <option value="BN">Brunei Darussalam</option>
+                        <option value="BG">Bulgaria</option>
+                        <option value="BF">Burkina Faso</option>
+                        <option value="BI">Burundi</option>
+                        <option value="KH">Cambodia</option>
+                        <option value="CM">Cameroon</option>
+                        <option value="CA">Canada</option>
+                        <option value="CV">Cape Verde</option>
+                        <option value="KY">Cayman Islands</option>
+                        <option value="CF">Central African Republic</option>
+                        <option value="TD">Chad</option>
+                        <option value="CL">Chile</option>
+                        <option value="CN">China</option>
+                        <option value="CX">Christmas Island</option>
+                        <option value="CC">Cocos (Keeling) Islands</option>
+                        <option value="CO">Colombia</option>
+                        <option value="KM">Comoros</option>
+                        <option value="CG">Congo</option>
+                        <option value="CD">Congo, the Democratic Republic of the</option>
+                        <option value="CK">Cook Islands</option>
+                        <option value="CR">Costa Rica</option>
+                        <option value="CI">Cote D'Ivoire</option>
+                        <option value="HR">Croatia</option>
+                        <option value="CU">Cuba</option>
+                        <option value="CY">Cyprus</option>
+                        <option value="CZ">Czech Republic</option>
+                        <option value="DK">Denmark</option>
+                        <option value="DJ">Djibouti</option>
+                        <option value="DM">Dominica</option>
+                        <option value="DO">Dominican Republic</option>
+                        <option value="EC">Ecuador</option>
+                        <option value="EG">Egypt</option>
+                        <option value="SV">El Salvador</option>
+                        <option value="GQ">Equatorial Guinea</option>
+                        <option value="ER">Eritrea</option>
+                        <option value="EE">Estonia</option>
+                        <option value="ET">Ethiopia</option>
+                        <option value="FK">Falkland Islands (Malvinas)</option>
+                        <option value="FO">Faroe Islands</option>
+                        <option value="FJ">Fiji</option>
+                        <option value="FI">Finland</option>
+                        <option value="FR">France</option>
+                        <option value="GF">French Guiana</option>
+                        <option value="PF">French Polynesia</option>
+                        <option value="TF">French Southern Territories</option>
+                        <option value="GA">Gabon</option>
+                        <option value="GM">Gambia</option>
+                        <option value="GE">Georgia</option>
+                        <option value="DE">Germany</option>
+                        <option value="GH">Ghana</option>
+                        <option value="GI">Gibraltar</option>
+                        <option value="GR">Greece</option>
+                        <option value="GL">Greenland</option>
+                        <option value="GD">Grenada</option>
+                        <option value="GP">Guadeloupe</option>
+                        <option value="GU">Guam</option>
+                        <option value="GT">Guatemala</option>
+                        <option value="GN">Guinea</option>
+                        <option value="GW">Guinea-Bissau</option>
+                        <option value="GY">Guyana</option>
+                        <option value="HT">Haiti</option>
+                        <option value="HM">Heard Island and Mcdonald Islands</option>
+                        <option value="VA">Holy See (Vatican City State)</option>
+                        <option value="HN">Honduras</option>
+                        <option value="HK">Hong Kong</option>
+                        <option value="HU">Hungary</option>
+                        <option value="IS">Iceland</option>
+                        <option value="IN">India</option>
+                        <option value="ID">Indonesia</option>
+                        <option value="IR">Iran, Islamic Republic of</option>
+                        <option value="IQ">Iraq</option>
+                        <option value="IE">Ireland</option>
+                        <option value="IL">Israel</option>
+                        <option value="IT">Italy</option>
+                        <option value="JM">Jamaica</option>
+                        <option value="JP">Japan</option>
+                        <option value="JO">Jordan</option>
+                        <option value="KZ">Kazakhstan</option>
+                        <option value="KE">Kenya</option>
+                        <option value="KI">Kiribati</option>
+                        <option value="KP">Korea, Democratic People's Republic of</option>
+                        <option value="KR">Korea, Republic of</option>
+                        <option value="KW">Kuwait</option>
+                        <option value="KG">Kyrgyzstan</option>
+                        <option value="LA">Lao People's Democratic Republic</option>
+                        <option value="LV">Latvia</option>
+                        <option value="LB">Lebanon</option>
+                        <option value="LS">Lesotho</option>
+                        <option value="LR">Liberia</option>
+                        <option value="LY">Libyan Arab Jamahiriya</option>
+                        <option value="LI">Liechtenstein</option>
+                        <option value="LT">Lithuania</option>
+                        <option value="LU">Luxembourg</option>
+                        <option value="MO">Macao</option>
+                        <option value="MK">Macedonia, the Former Yugoslav Republic of</option>
+                        <option value="MG">Madagascar</option>
+                        <option value="MW">Malawi</option>
+                        <option value="MY">Malaysia</option>
+                        <option value="MV">Maldives</option>
+                        <option value="ML">Mali</option>
+                        <option value="MT">Malta</option>
+                        <option value="MH">Marshall Islands</option>
+                        <option value="MQ">Martinique</option>
+                        <option value="MR">Mauritania</option>
+                        <option value="MU">Mauritius</option>
+                        <option value="YT">Mayotte</option>
+                        <option value="MX">Mexico</option>
+                        <option value="FM">Micronesia, Federated States of</option>
+                        <option value="MD">Moldova, Republic of</option>
+                        <option value="MC">Monaco</option>
+                        <option value="MN">Mongolia</option>
+                        <option value="MS">Montserrat</option>
+                        <option value="MA">Morocco</option>
+                        <option value="MZ">Mozambique</option>
+                        <option value="MM">Myanmar</option>
+                        <option value="NA">Namibia</option>
+                        <option value="NR">Nauru</option>
+                        <option value="NP">Nepal</option>
+                        <option value="NL">Netherlands</option>
+                        <option value="AN">Netherlands Antilles</option>
+                        <option value="NC">New Caledonia</option>
+                        <option value="NZ">New Zealand</option>
+                        <option value="NI">Nicaragua</option>
+                        <option value="NE">Niger</option>
+                        <option value="NG">Nigeria</option>
+                        <option value="NU">Niue</option>
+                        <option value="NF">Norfolk Island</option>
+                        <option value="MP">Northern Mariana Islands</option>
+                        <option value="NO">Norway</option>
+                        <option value="OM">Oman</option>
+                        <option value="PK">Pakistan</option>
+                        <option value="PW">Palau</option>
+                        <option value="PS">Palestinian Territory, Occupied</option>
+                        <option value="PA">Panama</option>
+                        <option value="PG">Papua New Guinea</option>
+                        <option value="PY">Paraguay</option>
+                        <option value="PE">Peru</option>
+                        <option value="PH">Philippines</option>
+                        <option value="PN">Pitcairn</option>
+                        <option value="PL">Poland</option>
+                        <option value="PT">Portugal</option>
+                        <option value="PR">Puerto Rico</option>
+                        <option value="QA">Qatar</option>
+                        <option value="RE">Reunion</option>
+                        <option value="RO">Romania</option>
+                        <option value="RU">Russian Federation</option>
+                        <option value="RW">Rwanda</option>
+                        <option value="SH">Saint Helena</option>
+                        <option value="KN">Saint Kitts and Nevis</option>
+                        <option value="LC">Saint Lucia</option>
+                        <option value="PM">Saint Pierre and Miquelon</option>
+                        <option value="VC">Saint Vincent and the Grenadines</option>
+                        <option value="WS">Samoa</option>
+                        <option value="SM">San Marino</option>
+                        <option value="ST">Sao Tome and Principe</option>
+                        <option value="SA">Saudi Arabia</option>
+                        <option value="SN">Senegal</option>
+                        <option value="CS">Serbia and Montenegro</option>
+                        <option value="SC">Seychelles</option>
+                        <option value="SL">Sierra Leone</option>
+                        <option value="SG">Singapore</option>
+                        <option value="SK">Slovakia</option>
+                        <option value="SI">Slovenia</option>
+                        <option value="SB">Solomon Islands</option>
+                        <option value="SO">Somalia</option>
+                        <option value="ZA">South Africa</option>
+                        <option value="GS">South Georgia and the South Sandwich Islands</option>
+                        <option value="ES">Spain</option>
+                        <option value="LK">Sri Lanka</option>
+                        <option value="SD">Sudan</option>
+                        <option value="SR">Suriname</option>
+                        <option value="SJ">Svalbard and Jan Mayen</option>
+                        <option value="SZ">Swaziland</option>
+                        <option value="SE">Sweden</option>
+                        <option value="CH">Switzerland</option>
+                        <option value="SY">Syrian Arab Republic</option>
+                        <option value="TW">Taiwan, Province of China</option>
+                        <option value="TJ">Tajikistan</option>
+                        <option value="TZ">Tanzania, United Republic of</option>
+                        <option value="TH">Thailand</option>
+                        <option value="TL">Timor-Leste</option>
+                        <option value="TG">Togo</option>
+                        <option value="TK">Tokelau</option>
+                        <option value="TO">Tonga</option>
+                        <option value="TT">Trinidad and Tobago</option>
+                        <option value="TN">Tunisia</option>
+                        <option value="TR">Turkey</option>
+                        <option value="TM">Turkmenistan</option>
+                        <option value="TC">Turks and Caicos Islands</option>
+                        <option value="TV">Tuvalu</option>
+                        <option value="UG">Uganda</option>
+                        <option value="UA">Ukraine</option>
+                        <option value="AE">United Arab Emirates</option>
+                        <option value="GB">United Kingdom</option>
+                        <option value="US">United States</option>
+                        <option value="UM">United States Minor Outlying Islands</option>
+                        <option value="UY">Uruguay</option>
+                        <option value="UZ">Uzbekistan</option>
+                        <option value="VU">Vanuatu</option>
+                        <option value="VE">Venezuela</option>
+                        <option value="VN">Viet Nam</option>
+                        <option value="VG">Virgin Islands, British</option>
+                        <option value="VI">Virgin Islands, U.S.</option>
+                        <option value="WF">Wallis and Futuna</option>
+                        <option value="EH">Western Sahara</option>
+                        <option value="YE">Yemen</option>
+                        <option value="ZM">Zambia</option>
+                        <option value="ZW">Zimbabwe</option>
+                    </select>
+                    <div class="input-group input-group-lg k_input_widyh" >
+                        <input type="text" class="form-control b_small_text" aria-label="Sizing example input"
+                            placeholder="Company " aria-describedby="inputGroup-sizing-lg">
+                    </div>
+               
+                    <select class="form-select  form-select-lg mb-3 mt-3 k_input_widyh  "
+                        aria-label="form-select-lg example">
+                        <option selected>Please Select a Profession</option>
+                        <option value="1">CIO (Chief Information Officer)</option>
+                        <option value="2">CTO (Chief Technology Officer)</option>
+                        <option value="3">COO (Chief Operating Officer)</option>
+                        <option value="4">CISO (Chief Information Security Officer)</option>
+                        <option value="5">Owner/Executive Management</option>
+                        <option value="6">IT Management</option>
+                        <option value="7">Data Sciences</option>
+                        <option value="8">Software/Application Development/Engineering</option>
+                        <option value="9">Hardware Development/Engineering</option>
+                        <option value="10">FPGA Engineering</option>
+                        <option value="11">Solution/System Architecture</option>
+                        <option value="12">Infrastructure/Datacenter Architecture</option>
+                        <option value="13">Network Architecture/Engineering</option>
+                        <option value="14">IT Information Security</option>
+                        <option value="15">IT Storage</option>
+                        <option value="16">IT User Devices - PCs tablets etc</option>
+                        <option value="17">IT Generalist/Other IT</option>
+                        <option value="18">Facilities/Audio Video</option>
+                        <option value="19">Line of Business or Service Head</option>
+                        <option value="20">Finance/Procurement</option>
+                        <option value="21">Sales</option>
+                        <option value="22">Marketing</option>
+                        <option value="23">Consultant</option>
+                        <option value="24">Hobbyist/Maker</option>
+                        <option value="25">Educator</option>
+                        <option value="26">Student</option>
+                        <option value="27">Scientist/Researcher</option>
+                        <option value="28">Other</option>
+                        <option value="29">Press Analyst</option>
+                        <option value="30">Operations Engineer</option>
+                    </select>
+                    <select class="form-select  form-select-lg mb-3 mt-3 k_input_widyh  "
+                    aria-label="form-select-lg example">
+                    <option selected>Developer Role</option>
+                            <option value="AI Application Developer">AI Application Developer</option>
+                            <option value="Application Developer">Application Developer</option>
+                            <option value="Data Scientist">Data Scientist</option>
+                            <option value="Embedded/IoT Developer">Embedded/IoT Developer</option>
+                </select>
+                    
+                    <p class=" mb-2" style="font-size: 14px;">This site is protected by reCAPTCHA and the Google <a
+                            href="#">Privacy Policy</a> and <a href="#" style="font-size: 12px !important;">Terms of Service</a> apply.</p>
+                    <button type="button" class="btn px-4"
+                        style="background-color: #0068B5; color: white;">Submit</button>
+                    <p class="w-75  mt-3" style="font-size: 12px;">By submitting this form, you are confirming you are age
+                        18 years or older. Intel may
+                        contact me
+                        for marketing-related communications. To learn about Intel's practices, including how to manage
+                        your preferences and settings, you can visit Intel's <a href="#">Privacy </a> and <a
+                            href="#">Cookies</a> notices.</p>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+    </div>
+    <div id="footer"></div>
+    
+    <script>
+        // navbar include  
+        fetch('../y_index/y_navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar').innerHTML = data;
+            });
+        // footer include 
+        fetch('../y_index/y_footer.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('footer').innerHTML = data;
+            });
+    </script>
+  <script>
+        // navbar include  
+        fetch('../y_index/y_navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar').innerHTML = data;
+            });
+        // footer include 
+        fetch('../y_index/y_footer.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('footer').innerHTML = data;
+            });
+    </script>
+   <script>
+    var modal = document.getElementById("myModal");
+    var modalImg = document.getElementById("img01");
+    var captionText = document.getElementById("caption");
+    var images = document.getElementsByClassName("myImg");
+    var icons = document.getElementsByClassName("openModal");
+
+    function openModal() {
+        var img = this.previousElementSibling || this;
+        modal.style.display = "block";
+        modalImg.src = img.src;
+        captionText.innerHTML = img.alt;
+    }
+
+    for (var i = 0; i < images.length; i++) {
+        images[i].onclick = openModal;
+        icons[i].onclick = openModal;
+    }
+
+    var span = document.getElementsByClassName("close")[0];
+    span.onclick = function() {
+        modal.style.display = "none";
+    }
+
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+</script>
+    <script src="../js/jquery-3.7.1.js"></script>
+    <script src="../js/owl.carousel.min.js"></script>
+    <script src="../js/rushita.js"></script>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+    
+</body>
+
+</html>
