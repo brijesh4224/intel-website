@@ -1,17 +1,17 @@
 var b_data = [
     {
         id: 0, img: '/img/brijesh/image557.webp', title: '800 Series Network Adapters (Up to 100GbE)', des: 'Supports speeds up to 100GbE, available in PCI Express (PCIe) and Open Compute Project (OCP) form factors.',
-        version: [{ id: '01', title: '800 Series Network Adapters (Up to 100GbE)', href: '#' }, { id: '02', title: 'Intel® Ethernet E810 Network Adapters', href: '#' }]
+        version: [{ id: '01', title: '800 Series Network Adapters (Up to 100GbE)', href:'/darshit/dk_product/800_series_network_adapters_up_to_100GbE.html' }, { id: '02', title: 'Intel® Ethernet E810 Network Adapters', href: '#' }]
     },
     {
         id: 1, img: '/img/brijesh/image558.png', title: ' 800 Series Controllers (Up to 100GbE)', des: 'Supports speeds up to 100GbE.',
-        version: [{ id: '11', title: '800 Series Controllers (Up to 100GbE)', href: '#' },
+        version: [{ id: '11', title: '800 Series Controllers (Up to 100GbE)', href: '/Product/B1_22_Ethernet_Products.html' },
         { id: '12', title: '800 Series Controllers (Up to 100GbE)', href: '#' },
         ]
     },
     {
         id: 2, img: '/img/brijesh/image559.png', title: ' 700 Series Network Adapters (Up to 40GbE)', des: 'Supports speeds up to 40GbE, available in PCI Express (PCIe) and Open Compute Project (OCP) form factors.',
-        version: [{ id: '21', title: '700 Series Network Adapters (Up to 40GbE)', href: '#' },
+        version: [{ id: '21', title: '700 Series Network Adapters (Up to 40GbE)', href: '/darshit/dk_product/700_series_network_adapters_up_to_40GbE.html' },
         { id: '22', title: 'Intel® Ethernet Network Adapter XXV710', href: '#' },
         { id: '23', title: 'Intel® Ethernet Server Adapter XL710', href: '#' },
         { id: '24', title: 'Intel® Ethernet Network Adapter X710', href: '#' },
@@ -29,14 +29,14 @@ var b_data = [
     {
         id: 4, img: '', title: ' 500 Series Network Adapters (Up to 10GbE)', des: ' Backward compatible 10GBASE-T network adapter available in PCI Express (PCIe) form factor.',
         version: [
-            { id: '32', title: '500 Series Network Adapters (Up to 10GbE)', href: '#' },
+            { id: '32', title: '500 Series Network Adapters (Up to 10GbE)', href: '/darshit/dk_product/500_series_network_adapters_up_to_10GbE.html' },
             { id: '33', title: 'Intel® Ethernet Converged Network Adapter X550', href: '#' },
         ]
     },
     {
         id: 5, img: '/img/brijesh/image564.png', title: ' 500 Series Controllers (Up to 10GbE)', des: 'Supports speeds up to 10GbE.',
         version: [
-            { id: '01', title: '500 Series Controllers (Up to 10GbE)', href: '#' },
+            { id: '01', title: '500 Series Controllers (Up to 10GbE)', href: '/darshit/dk_product/intel_ethernet_500_series_controllers_up_to_10GbE.html' },
             { id: '01', title: 'Intel® Ethernet Connection X557', href: '#' },
             { id: '01', title: 'Intel® Ethernet Controller X550', href: '#' },
             { id: '01', title: 'Intel® 82599 10 Gigabit Ethernet Controller', href: '#' },
@@ -44,7 +44,7 @@ var b_data = [
     },
     {
         id: 6, img: '/img/brijesh/image560.png', title: '  Gigabit Ethernet Adapters (Up to 2.5GbE)', des: 'View Intel-based Gigabit Ethernet Adapters (up to 2.5GbE) and find product specs, technical docs, downloads & Intel support.',
-        version: [{ id: '01', title: 'Gigabit Ethernet Adapters (Up to 2.5GbE)', href: '#' },
+        version: [{ id: '01', title: 'Gigabit Ethernet Adapters (Up to 2.5GbE)', href: '/darshit/dk_product/gigabit_ethernet_adapters_up_to_2.5GbE.html' },
         { id: '01', title: 'Intel® Ethernet Server Adapter I350 Series', href: '#' },
         { id: '01', title: 'Intel® Ethernet Network Adapter I226 Series', href: '#' },
         { id: '01', title: 'Intel® Ethernet Network Adapter I225 Series', href: '#' },
@@ -52,7 +52,7 @@ var b_data = [
     },
     {
         id: 7, img: '/img/brijesh/image561.png', title: 'Gigabit Ethernet Controllers (Up to 2.5GbE) ', des: 'Supports speeds up to 2.5GbE.',
-        version: [{ id: '01', title: 'Gigabit Ethernet Controllers (Up to 2.5GbE)', href: '#' },
+        version: [{ id: '01', title: 'Gigabit Ethernet Controllers (Up to 2.5GbE)', href: '/darshit/dk_product/gigabit_ethernet_controllers_up_to_2.5GbE.html' },
         { id: '01', title: 'Intel® Ethernet Controller I226 Series', href: '#' },
         { id: '01', title: 'Intel® Ethernet Network Connection I347 Series', href: '#' },
         { id: '01', title: 'Intel® Ethernet Controller I350 Series', href: '#' },
@@ -119,7 +119,7 @@ function loaddata() {
                                          ${item.version.map(function (version, index) {
             return `
                                             <div class="col-md-4 col-sm-6 col-12">
-                                                <a href="#" class="text-decoration-none b_special_a2 ">
+                                                <a href="${version.href}" class="text-decoration-none b_special_a2 ">
                                                     <h6 class="b_padding_remove ${index == 0 ? 'fw-bolder' : ''}">
                                                         ${version.title}
                                                     </h6>
