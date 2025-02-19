@@ -65,13 +65,13 @@ var b_data = [
     },
     {
         id: 8, img: '/img/brijesh/image562.png', title: '  Ethernet Connections (Up to 100GbE)', des: 'View Intel-based Ethernet Connections (up to 100GbE) and find product specs, technical docs, downloads and Intel support.',
-        version: [{ id: '01', title: 'Ethernet Connections (Up to 100GbE)', href: '#' },
+        version: [{ id: '01', title: 'Ethernet Connections (Up to 100GbE)', href: '/darshit/dk_product/intel_ethernet_connections_and_multi_host_Controllers_up_to_100GbE.html' },
         { id: '01', title: 'Intel® Ethernet Connection C827 Series', href: '#' },
         ]
     },
     {
         id: 9, img: '/img/brijesh/image563.png', title: 'Optics', des: ' Intel® Ethernet Optics are proven reliable solutions for high-density Ethernet connections.',
-        version: [{ id: '01', title: 'Optics', href: '#' },
+        version: [{ id: '01', title: 'Optics', href: '/darshit/dk_product/ethernet_optics.html' },
         { id: '01', title: 'Intel® Ethernet QSFP28 Optics', href: '#' },
         { id: '01', title: 'Intel® Ethernet QSFP+ Optics', href: '#' },
         { id: '01', title: 'Intel® Ethernet SFP28 Optics', href: '#' },
