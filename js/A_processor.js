@@ -27,7 +27,7 @@ var b_data = [{
     },
     {
         id: 1,
-        img: '/img/Akshay image/V_intel2.webp',
+        img: '../img/darshit_image/core-ultra-processor-badge_1080-1080.webp',
         title: ' Intel® Core™ Ultra Processors',
         des: 'Featuring new AI experiences, immersive graphics, and an optimal balance of battery life and performance.',
         version: [{
