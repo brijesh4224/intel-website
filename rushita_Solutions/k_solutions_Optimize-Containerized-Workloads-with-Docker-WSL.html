@@ -124,6 +124,10 @@
             margin-left: .313rem !important;
             margin-bottom: .313rem !important;
         }
+        code {
+    color: #000 !important;
+    background-color: #E6E6E6;
+}
     </style>
 </head>
 
@@ -359,9 +363,19 @@
                     <div class=" k_smpaddnone k_smpaddnone1 pt-5">
                     <p>In my last blog, I spent some time talking about why being efficient as a developer matters to me. The proliferation of container technology can significantly help us achieve that goal.</p>
                         <h2 class="fw-light mt-5">What is a container?</h2>
-                        <p>First though, let’s quickly go through what a container is for those who don’t know. Docker is the most common containerization solution, so I’ll take the definition of a container from their&nbsp;<a href="https://www.docker.com/resources/what-container" rel="noopener ugc nofollow">website</a>:</p>
-                        <!--  -->
-                        <p>Containers can run on Windows or Linux systems, are relatively easy to set up and deploy, and are easy to share or distribute to others (via services like&nbsp;<a href="https://hub.docker.com/" rel="noopener ugc nofollow">Docker Hub</a>).</p>
+                        <p class="k_plink1 k_intext1blue1">First though, let’s quickly go through what a container is for those who don’t know. Docker is the most common containerization solution, so I’ll take the definition of a container from their&nbsp;<a href="#">website</a>:</p>
+                        <div class="col-xs-12 m-3">
+                            <div class="d-flex">
+                                <div>
+                                    <i><i class="fa-solid fa-quote-left k_lefticon"
+                                            style="font-size: 100px !important;"></i></i>
+                                </div>
+                                <div class="mx-3">
+                                    <p><em>A container is a standard unit of software that packages up code and all its dependencies so the application runs quickly and reliably from one computing environment to another. A Docker container image is a lightweight, standalone, executable package of software that includes everything needed to run an application: code, runtime, system tools, system libraries and settings.</em></p>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="k_plink1 k_intext1blue1">Containers can run on Windows or Linux systems, are relatively easy to set up and deploy, and are easy to share or distribute to others (via services like&nbsp;<a href="#">Docker Hub</a>).</p>
                         <p>Of course, there are some limitations to using containers as well. You have to set up a container runtime on every system where you want to run your containers, containers can get quite large, which may be an issue if you are having to upload and download them often, and they don’t provide hard separation of resources on the underlying system like a virtual machine (VM) would. Despite these limitations, for many use cases containers are an awesome way to go, so let’s talk about how it helps us as developers.</p>
 
                         <h2 class="fw-light mt-5">What does this mean to a developer?</h2>
@@ -372,49 +386,122 @@
                         
                         <h2 class="fw-light mt-5">Using the oneAPI Development Containers</h2>
                         <p>To leverage the oneAPI development containers to provide the aforementioned, stable development environment, we first need to set up Docker on our development system. In general, you can just go to Docker’s website and follow their installation instructions. You may remember from my previous blog that I’m using the WSL environment for my development, so it was slightly trickier.</p>
-                        <p>I was going to do a simple write-up on this, but fortunately many people before me have done it. I found&nbsp;<a href="https://medium.com/u/7e615a7b3b1" rel="noopener">ferarias</a>’&nbsp;<a href="https://medium.com/@ferarias/docker-in-windows-11-using-wsl2-8e30faddc32c" rel="noopener">story</a>&nbsp;to be the simplest to understand if you want to follow this approach.</p>
+                        <p class="k_plink1 k_intext1blue1">I was going to do a simple write-up on this, but fortunately many people before me have done it. I found&nbsp;<a href="#">ferarias</a>’&nbsp;<a href="#">story</a>&nbsp;to be the simplest to understand if you want to follow this approach.</p>
                         <p>Once Docker is set up, you can grab the latest and greatest oneAPI development containers from Docker Hub.</p>
                         <p>There are oneAPI development containers for developing oneAPI code on CentOS8, Ubuntu 18.04, or Ubuntu 20.04. For this example, I’m going to build and package some simple SYCL code, so I’m going to pull the oneAPI Base Toolkit, Ubuntu 20.04 image. Using the Docker command line, I just run:</p>
-                        <!--  -->
+                        <div class="p-3" style="border: 1px solid #CCCCCC;">
+                            <div class="float-end p-3">
+                                <i class="fa-solid fa-copy fs-4" style="color: #0068B5;"></i>
+                            </div>
+                            <p><div class="toolbar"><div class="toolbar-item"><i class="fa fa-docs"></i></div></div>> docker pull intel/oneapi-basekit:devel-ubuntu20.04<br>
+                               </p>
+                        </div>
                         <p>This downloads the container to my local system. To get into the development environment you can run the container using the following command:</p>
-                        <!--  -->
-                        <p>The&nbsp;<span class="code-simple"><code>-ti</code></span>&nbsp;flag tells Docker to provide me with an interactive terminal in the container once it is up and running. The name flag gives our running container the name ubuntu-dev-20.04.</p>
+                        <div class="p-3" style="border: 1px solid #CCCCCC;">
+                            <div class="float-end p-3">
+                                <i class="fa-solid fa-copy fs-4" style="color: #0068B5;"></i>
+                            </div>
+                            <p><div class="toolbar"><div class="toolbar-item"><i class="fa fa-docs"></i></div></div>> docker run -ti --name=ubuntu-dev-20.04 intel/oneapi-basekit:devel-ubuntu20.04<br>
+                               </p>
+                        </div>
+                        <p>The&nbsp;<span class="code-simple"><code style="background-color: #E6E6E6;">-ti</code></span>&nbsp;flag tells Docker to provide me with an interactive terminal in the container once it is up and running. The name flag gives our running container the name ubuntu-dev-20.04.</p>
 
                         <h2 class="fw-light mt-5">Building some code</h2>
                         <p>To make things a bit simpler, I will be leveraging the oneAPI samples. I went to the oneAPI samples Github:</p>
-                        <!--  -->
-                        <p>…and cloned the repo in my development container. I’ll be using the&nbsp;<span class="code-simple"><code>Nbody</code></span>&nbsp;sample located in the&nbsp;<span class="code-simple"><code>DirectProgramming-&gt;DPC++-&gt;N-BodyMethods-&gt;Nbody</code></span>&nbsp;folder.</p>
+                        <div style="border: 1px solid #CCCCCC;">
+                            <img src="../img/rushita_img/oneapi1.jpg" alt="" width="100%">
+                            <div class="p-3">
+                                <p class="fs-5"><b><a href="#" style="color: black; text-decoration: none;">oneapi-src/oneAPI-samples: Samples for Intel® oneAPI Toolkits</a></b></p>
+                                <p>Samples for Intel® oneAPI Toolkits. Contribute to oneapi-src/oneAPI-samples development by creating an account on GitHub.</p>
+                                <div class="d-flex justify-content-between">
+                                    <div>
+                                        <i class="fa-brands fa-github"></i><span class="twt px-2" style="color: grey;">GitHub</span>
+                                    </div>
+                                    <div>
+                                        <i class="fa-solid fa-circle-exclamation" style="color: grey;"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <p>…and cloned the repo in my development container. I’ll be using the&nbsp;<span class="code-simple" style="background-color: #E6E6E6;"><code>Nbody</code></span>&nbsp;sample located in the&nbsp;<span class="code-simple"><code>DirectProgramming-&gt;DPC++-&gt;N-BodyMethods-&gt;Nbody</code></span>&nbsp;folder.</p>
                         <p>The nice thing about using the development container is I do NOT have to run:</p>
-                        <!--  -->
+                        <div class="p-3" style="border: 1px solid #CCCCCC;">
+                            <div class="float-end p-3">
+                                <i class="fa-solid fa-copy fs-4" style="color: #0068B5;"></i>
+                            </div>
+                            <p><div class="toolbar"><i class="fa fa-docs"></i></div>> mkdir build<br>
+                               </p>
+                               <p><i class="fa fa-docs"></i>> cd build<br>
+                               </p>
+                               <p><i class="fa fa-docs"></i>> cmake ..<br>
+                               </p>
+                               <p><i class="fa fa-docs"></i>> make<br>
+                               </p>
+                               <p><i class="fa fa-docs"></i>> make run<br>
+                               </p>
+                        </div>
                         <p>As I did in my last example because the oneAPI development container was built having already run this command. I simply can go to the&nbsp;<code>Nbody</code>&nbsp;folder and follow the instructions to build and run the&nbsp;<code>Nbody</code>&nbsp;example:</p>
-                        <!--  -->
+                 
                         <p>Here’s the output on my Intel i9 Alder Lake Alienware R13 system:</p>
-                        <div class="my-5">
+                        <div class="my-5 col-sm-12 col-md-8 m-auto">
                             <img src="../img/rushita_img/docker.png" alt="" width="100%">
                         </div>
 
                         <h2 class="fw-light mt-5">Creating a Production Container</h2>
                         <p>Now that we know our code builds in the development container, let’s see how we can ship it in a container to a customer to run on their system.</p>
-                        <p>Docker will build a new container using the&nbsp;<a href="https://docs.docker.com/engine/reference/builder/" rel="noopener ugc nofollow">Dockerfile</a>&nbsp;format. For those of you who are not familiar with how to use a Dockerfile, check out Docker’s&nbsp;<a href="https://docs.docker.com/compose/gettingstarted/" rel="noopener ugc nofollow">Getting Started</a>&nbsp;guide.</p>
-                        <p>I’m going to leverage the Docker&nbsp;<a href="https://docs.docker.com/develop/develop-images/multistage-build/" rel="noopener ugc nofollow">multi-stage build</a>&nbsp;capability to tell the docker build process to build my code in one container and then copy it to another container. This allows me to have the entire build and package workflow in a single place, while still allowing me to ship a container without all the development tools. Here’s my production container Dockerfile:</p>
-                        <!--  -->
+                        <p class="k_plink1 k_intext1blue1">Docker will build a new container using the&nbsp;<a href="#">Dockerfile</a>&nbsp;format. For those of you who are not familiar with how to use a Dockerfile, check out Docker’s&nbsp;<a href="#">Getting Started</a>&nbsp;guide.</p>
+                        <p class="k_plink1 k_intext1blue1">I’m going to leverage the Docker&nbsp;<a href="#">multi-stage build</a>&nbsp;capability to tell the docker build process to build my code in one container and then copy it to another container. This allows me to have the entire build and package workflow in a single place, while still allowing me to ship a container without all the development tools. Here’s my production container Dockerfile:</p>
+                        <div class="p-3" style="border: 1px solid #CCCCCC;">
+                            <div class="float-end p-3">
+                                <i class="fa-solid fa-copy fs-4" style="color: #0068B5;"></i>
+                            </div>
+                            <p><div class="toolbar"><i class="fa fa-docs"></i></div># run the development container and name it mybuild<br>
+                                FROM intel/oneapi-basekit:devel-ubuntu20.04 as mybuild
+                               </p>
+                               <p><i class="fa fa-docs"></i># get oneAPI sample code<br>
+                                RUN git clone https://github.com/oneapi-src/oneAPI-samples
+                               </p>
+                               <p><i class="fa fa-docs"></i># build the Nbody sample to root directory<br>
+                                RUN cmake /oneAPI-samples/DirectProgramming/DPC++/N-BodyMethods/Nbody
+                                RUN make
+                               </p>
+                               <p><i class="fa fa-docs"></i># use oneapi-runtime container as my production container<br>
+                                FROM intel/oneapi-runtime:latest
+                               </p>
+                               <p><i class="fa fa-docs"></i># copy file from mybuild to the production container<br>
+                                COPY - from=mybuild src/nbody /
+                                CMD ["/nbody"]
+                               </p>
+                        </div>
                         <p>You’ll see that for the production container I’m using the&nbsp;<code>intel/oneapi-runtime:latest</code>&nbsp;container as a base because it provides all the runtimes required to run any oneAPI-based workload.</p>
                         <p>The next step is to take this Dockerfile, which I named&nbsp;<code>Dockerfile.runtime</code>, and run the docker build command to create my new container.</p>
-                        <!--  -->
+                        <div class="p-3" style="border: 1px solid #CCCCCC;">
+                            <div class="float-end p-3">
+                                <i class="fa-solid fa-copy fs-4" style="color: #0068B5;"></i>
+                            </div>
+                            <p><div class="toolbar"><div class="toolbar-item"><i class="fa fa-docs"></i></div></div>> docker build . -f Dockerfile.runtime -t tonymintel/nbody:runtime<br>
+                               </p>
+                        </div>
                         <p>This command tells Docker to build using the current path, my&nbsp;<code>Dockerfile.runtime</code>&nbsp;file and tagging the image as&nbsp;<code>tonym/nbody:runtime</code>.</p>
-                        <div class="my-5">
+                        <div class="my-5 col-sm-12 col-md-8 m-auto">
                             <img src="../img/rushita_img/docker1.png" alt="" width="100%">
                         </div>
                         <p class="utility-text-1" style="text-align:center"><em>A successful docker build! Yay!</em></p>
                         <p>A quick run of the container shows that our build was completed successfully and is running out of code as we want.</p>
-                        <div class="my-5">
+                        <div class="my-5 col-sm-12 col-md-8 m-auto">
                             <img src="../img/rushita_img/docker2.png" alt="" width="100%">
                         </div>
                         <p>Now I just need to package up my container and ship it to my customer. I can push it up to Docker Hub or use the docker save command to save the image on my local system and send the file.</p>
                         <p>In my case, I’m just pushing it up to Docker Hub:</p>
-                        <!--  -->
+                        <div class="p-3" style="border: 1px solid #CCCCCC;">
+                            <div class="float-end p-3">
+                                <i class="fa-solid fa-copy fs-4" style="color: #0068B5;"></i>
+                            </div>
+                            <p><div class="toolbar"><div class="toolbar-item"><i class="fa fa-docs"></i></div></div>> docker push tonymintel/nbody:runtime<br>
+                               </p>
+                        </div>
                         <p>This pushes the image to my&nbsp;<code>tonymintel</code>&nbsp;Docker Hub account and saves it to the&nbsp;<code>nbody</code>&nbsp;repository with the tag runtime. Now anyone with access to the&nbsp;<code>tonymintel/nbody</code>&nbsp;Docker Hub repository can pull and run the code via regular Docker commands.</p>
-                        <div class="my-5">
+                        <div class="my-5 col-sm-12 col-md-8 m-auto">
                             <img src="../img/rushita_img/docker3.png" alt="" width="100%">
                         </div>
                         <p class="utility-text-1" style="text-align: center;"><em>Tagged nbody repo on Docker Hub</em></p>
@@ -423,22 +510,91 @@
                         <p>Just as being efficient as a developer is important to me, having an efficient solution is important to users of our applications. As my colleague James Reinders says, we need to make sure we bring them “Joy Out of the Box.”</p>
                         <p>From my screenshot, you can see the container I’ve uploaded is 1.32GB. That’s a pretty big Docker container for my customer to download.</p>
                         <p>My production container is based on the intel/oneapi-runtime container, which provides all the runtimes for all toolkits that build oneAPI code. This isn’t necessarily a bad thing. oneAPI provides a variety of libraries that I may want to integrate with my code, so having a runtime package that I know will run my code is great. However, since I’m the developer and I know what libraries I used, let’s see if we can optimize our production container to make it smaller.</p>
-                        <div class="my-5">
+                        <div class="my-5 col-sm-12 col-md-8 m-auto">
                             <img src="../img/rushita_img/docker3.png" alt="" width="100%">
                         </div>
-                        <p class="utility-text-1" style="text-align: center;"><em>The intel/oneapi-runtime:latest Docker Hub file as of June 2022</em></p>
+                        <p  style="text-align: center;"><em>The intel/oneapi-runtime:latest Docker Hub file as of June 2022</em></p>
                         <p>After some inspection, I created a new Dockerfile.prod that looks like this:</p>
-                        <!--  -->
+                        <div class="p-3" style="border: 1px solid #CCCCCC;">
+                            <div class="float-end p-3">
+                                <i class="fa-solid fa-copy fs-4" style="color: #0068B5;"></i>
+                            </div>
+                            <p><div class="toolbar"><i class="fa fa-docs"></i></div># run the development container and name it mybuild<br>
+                                FROM intel/oneapi-basekit:devel-ubuntu20.04 as mybuild
+                               </p>
+                               <p><i class="fa fa-docs"></i># get oneAPI sample code<br>
+                                RUN git clone https://github.com/oneapi-src/oneAPI-samples
+                               </p>
+                               <p><i class="fa fa-docs"></i># build the Nbody sample to root directory<br>
+                                RUN cmake /oneAPI-samples/DirectProgramming/DPC++/N-BodyMethods/Nbody
+                                RUN make
+                               </p>
+                               <p><i class="fa fa-docs"></i># build the production containerbr
+                                FROM ubuntu:20.04
+                                RUN apt-get update && \
+                                DEBIAN_FRONTEND=noninteractive apt-get install -y - no-install-recommends \
+                                curl ca-certificates gpg-agent software-properties-common
+                               </p>
+                               <p><i class="fa fa-docs"></i># repository to install Intel(R) oneAPI Libraries<br>
+                                RUN curl -fsSL https://apt.repos.intel.com/intel-gpg-keys/GPG-PUB-KEY-INTEL-SW-PRODUCTS-2023.PUB | apt-key add -
+                                RUN echo "deb [trusted=yes] https://apt.repos.intel.com/oneapi all main " > /etc/apt/sources.list.d/oneAPI.list
+                               </p>
+                               <p><i class="fa fa-docs"></i># repository to install Intel(R) GPU drivers<br>
+                                RUN curl -fsSL https://repositories.intel.com/graphics/intel-graphics.key | apt-key add -
+                                RUN echo "deb [trusted=yes arch=amd64] https://repositories.intel.com/graphics/ubuntu focal main" > 
+                                /etc/apt/sources.list.d/intel-graphics.list
+                               </p>
+                               <p><i class="fa fa-docs"></i># pull required Intel runtime packages needed<br>
+                                RUN apt-get update && \
+                                DEBIAN_FRONTEND=noninteractive apt-get install -y - no-install-recommends \
+                                intel-oneapi-runtime-dpcpp-cpp
+                                ENV LANG=C.UTF-8
+                                ENV LD_LIBRARY_PATH=/opt/intel/oneapi/lib
+                               </p>
+                               <p><i class="fa fa-docs"></i># copy file from build container to our production container<br>
+                                COPY - from=build src/nbody /
+                                CMD ["/nbody"]
+                               </p>
+                        </div>
                         <p>There’s a lot of text here, so let me try to explain what is going on:</p>
                         <ol> 
                             <li id="781c">Lines 1–9 and 32–34 are the same in both Dockerfiles. They build our binary and run it when the container starts</li> 
                            </ol>
                            <p>Lines 11–30 are mostly boilerplate code that sets up Intel’s apt repositories and then installs some Intel packages via APT. These lines are pulled from the&nbsp;<code>oneapi-runtime</code>&nbsp;Dockerfile, which can be found here:</p>
-                           <!--  -->
-                           <p>The key line in my&nbsp;<code>Dockerfile.prod</code>&nbsp;is line 28. If you go look at the original&nbsp;<code>intel/oneapi-runtime</code>&nbsp;Dockerfile (<a href="https://hub.docker.com/r/intel/oneapi-runtime/tags" rel="noopener ugc nofollow">click here</a>&nbsp;and click on a digest SHA and find the biggest image layer), it does an apt-get for all the possible runtime packages. In my case, I know I only used DPC++, so my&nbsp;<code>Dockerfile.prod</code>&nbsp;only includes that&nbsp;<code>intel-oneapi-runtime-dpcpp-cpp</code>&nbsp;package.</p>
+                           <div style="border: 1px solid #E6E6E6;">
+                                <div class="d-flex gap-3">
+                                    <div>
+                                        <img src="../img/rushita_img/cat.jpg" alt="" height="150px">
+                                    </div>
+                                    <div>
+                                        <div class="p-3">
+                                            <p class="fs-5"><b><a href="#" style="color: black; text-decoration: none;">intel/oneapi-containers</a></b></p>
+                                            <p>Contribute to intel/oneapi-containers development by creating an account on GitHub.</p>
+                                            <div class="d-flex justify-content-between">
+                                                <div>
+                                                    <i class="fa-brands fa-github"></i><span class="twt px-2" style="color: grey;">GitHub</span>
+                                                </div>
+                                                <div>
+                                                    <i class="fa-solid fa-circle-exclamation" style="color: grey;"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                           </div>
+                           <p class="k_plink1 k_intext1blue1">The key line in my&nbsp;<code>Dockerfile.prod</code>&nbsp;is line 28. If you go look at the original&nbsp;<code>intel/oneapi-runtime</code>&nbsp;Dockerfile (<a href="#">click here</a>&nbsp;and click on a digest SHA and find the biggest image layer), it does an apt-get for all the possible runtime packages. In my case, I know I only used DPC++, so my&nbsp;<code>Dockerfile.prod</code>&nbsp;only includes that&nbsp;<code>intel-oneapi-runtime-dpcpp-cpp</code>&nbsp;package.</p>
                            <p>Now I just build my new Dockerfile, verify it works as before, and push it to the cloud.</p>
+                           <div class="p-3" style="border: 1px solid #CCCCCC;">
+                            <div class="float-end p-3">
+                                <i class="fa-solid fa-copy fs-4" style="color: #0068B5;"></i>
+                            </div>
+                            <p><div class="toolbar"><div class="toolbar-item"><i class="fa fa-docs"></i></div></div>> docker build . -f Dockerfile.prod -t tonymintel/nbody:production<br>
+                                > docker run -it tonymintel/nbody:production <br>
+                                > docker push tonymintel/nbody:production
+                               </p>
+                        </div>
                            <p>Now I see ~4x improvement in download size for my customer…a little more Joy Out of the Box hopefully.</p>
-                           <div class="my-5">
+                           <div class="my-5 col-sm-12 col-md-8 m-auto">
                             <img src="../img/rushita_img/docker3.png" alt="" width="100%">
                         </div>
                         <p>You might ask, can I do better even? To avoid suspense, the answer is yes, but it involved going in and pulling individual files to omit various unused runtime components. It’s a little bit cumbersome, but it is possible. If you’re curious, it ended up making the package about 250MB for a ~5x improvement.</p>
@@ -448,31 +604,31 @@
                         <p>Containers are a useful technology to help us as developers build and test our code. Depending on our customer (aka will they use a container), it also can really help us ship more reliable code to our customer.</p>
                         <p>There’s definitely some work that goes into learning all the technology, but it is definitely worth it in many cases. I hope this helped you learn a little about how to leverage containers and how to optimize those containers for your customer.</p>
                         <p>Until next time!</p>
-                        <p class="greyHighlight"><strong>Want to Connect? </strong>If you want to see what random tech news I’m reading, you can <a href="https://twitter.com/tonymongkolsmai">follow me</a> on Twitter.<br> Tony is a Software Architect and Technical Evangelist at Intel. He has worked on several software developer tools and most recently led the software engineering team that built the data center platform which enabled Habana’s scalable MLPerf solution.</p>
+                        <p class="greyHighlight k_plink1 k_intext1blue1 p-2" style="background-color: #E6E6E6;"><strong>Want to Connect? </strong>If you want to see what random tech news I’m reading, you can <a href="#">follow me</a> on Twitter.<br> Tony is a Software Architect and Technical Evangelist at Intel. He has worked on several software developer tools and most recently led the software engineering team that built the data center platform which enabled Habana’s scalable MLPerf solution.</p>
 
                         <h2 class="fw-light mt-5">See Related Content</h2>
-                        <h3>Podcasts<a class="inpage-nav-anchor" id="inpage-nav-7-undefined"></a></h3>
+                        <h3>Podcasts</h3>
                         <ul>
-                            <li class="tab-pane-content"><a href="/content/www/us/en/developer/articles/technical/collaborating-to-build-a-heterogeneous-future.html">How Open Source Collaboration is Building a Heterogeneous Future</a></li>
+                            <li class="tab-pane-content k_plink1 k_intext1blue1"><a href="#">How Open Source Collaboration is Building a Heterogeneous Future</a></li>
                         </ul>
                         <h3>Technical Articles<a class="inpage-nav-anchor" id="inpage-nav-7-1"></a></h3>
                         <div class="tab-pane-content">
                             <ul>
-                                <li class="tab-pane-content"><a href="/content/www/us/en/developer/articles/technical/free-software-from-vendor-lock-in-with-sycl-oneapi.html">Free Your Software from Vendor Lock-in using SYCL and oneAPI</a></li>
-                                <li class="tab-pane-content"><a href="/content/www/us/en/developer/articles/news/accelerating-open-development-through-oneapi-coe.html">Accelerating Open Development through oneAPI Centers of Excellence</a></li>
-                                <li class="tab-pane-content"><a href="/content/www/us/en/developer/articles/technical/build-open-standards-heterogeneous-parallelism.html">Building a Standards-Based Ecosystem for Heterogeneous Parallelism</a></li>
-                                <li class="tab-pane-content"><a href="/content/www/us/en/developer/articles/technical/syclomatic-new-cuda-to-sycl-code-migration-tool.html">SYCLomatic: A New CUDA-to-SYCL Code Migration Tool</a></li>
+                                <li class="k_plink1 k_intext1blue1"><a href="#">Free Your Software from Vendor Lock-in using SYCL and oneAPI</a></li>
+                                <li class="k_plink1 k_intext1blue1"><a href="#">Accelerating Open Development through oneAPI Centers of Excellence</a></li>
+                                <li class="k_plink1 k_intext1blue1"><a href="#">Building a Standards-Based Ecosystem for Heterogeneous Parallelism</a></li>
+                                <li class="k_plink1 k_intext1blue1"><a href="#">SYCLomatic: A New CUDA-to-SYCL Code Migration Tool</a></li>
                             </ul>
                             
                             <h3>Get the Software<a class="inpage-nav-anchor" id="inpage-nav-7-2"></a></h3>
                             
-                            <div class="tab-pane-content"><strong><a href="/content/www/us/en/developer/tools/oneapi/base-toolkit.html">Intel® oneAPI Base Toolkit</a></strong><br>
+                            <div class="tab-pane-content k_plink1 k_intext1blue1"><strong><a href="#">Intel® oneAPI Base Toolkit</a></strong><br>
                             Get started with this core set of tools and libraries for developing high-performance, data-centric applications across diverse architectures.</div>
                             
-                            <div class="tab-pane-content"><br>
-                            <strong><a href="/content/www/us/en/developer/tools/oneapi/base-toolkit-download.html">Get It Now</a></strong><br>
+                            <div class="tab-pane-content k_plink1 k_intext1blue1"><br>
+                            <strong class="k_plink1 k_intext1blue1"><a href="#">Get It Now</a></strong><br>
                             <br>
-                            <a href="/content/www/us/en/developer/tools/oneapi/toolkits.html">See All Tools</a></div>
+                            <a href="#">See All Tools</a></div>
                             </div>
                     </div>
                 </div>
