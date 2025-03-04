@@ -137,6 +137,10 @@
         .code-simple {
             background-color: #E6E6E6;
         }
+
+        pre {
+            white-space: pre-line !important;
+        }
     </style>
 </head>
 
@@ -369,253 +373,364 @@
                         </div>
                     </div>
                     <div class=" k_smpaddnone k_smpaddnone1 pt-5">
-                            <h2 class="fw-light mt-5">Summary/Story at a Glance</h2>
-                            <p>The SynxFlow hydrodynamic modeling code was re-engineered using oneAPI, Intel’s implementation of SYCL, a cross-vendor heterogeneous programming model. This transformation aimed to address limitations in GPU compatibility and enhance scalability for next-generation Exa-Scale High-Performance Computing (HPC) systems. The new implementation delivers improved performance, interoperability, and scalability across diverse hardware platforms, enabling ground-breaking large-scale probabilistic forecasting with high spatial and temporal resolutions.&nbsp;&nbsp;</p>
-                            <p>The SYCL implementation and Performance tests used components of the Intel® oneAPI Base Toolkit and <a href="https://www.hpc.cam.ac.uk/d-w-n">Dawn</a>, one of the UK’s newest and fastest artificial intelligence (AI) supercomputers.<sup>[1]</sup>&nbsp;</p>
+                        <h2 class="fw-light mt-5">Summary/Story at a Glance</h2>
+                        <p>The SynxFlow hydrodynamic modeling code was re-engineered using oneAPI, Intel’s
+                            implementation of SYCL, a cross-vendor heterogeneous programming model. This transformation
+                            aimed to address limitations in GPU compatibility and enhance scalability for
+                            next-generation Exa-Scale High-Performance Computing (HPC) systems. The new implementation
+                            delivers improved performance, interoperability, and scalability across diverse hardware
+                            platforms, enabling ground-breaking large-scale probabilistic forecasting with high spatial
+                            and temporal resolutions.&nbsp;&nbsp;</p>
+                        <p class="k_plink1 k_intext1blue1">The SYCL implementation and Performance tests used components
+                            of the Intel® oneAPI Base Toolkit and <a href="#">Dawn</a>, one of the UK’s newest and
+                            fastest artificial intelligence (AI) supercomputers.<sup>[1]</sup>&nbsp;</p>
 
-                            <h2 class="fw-light mt-5">Introduction</h2>
-                            <p><a href="https://synxflow.readthedocs.io/en/latest/about.html">SynxFlow</a><sup>[2]</sup> is an open-source GPU-based hydrodynamic flood modeling software developed by Dr. Xilin Xia (University of Birmingham) and his colleagues in CUDA*, C++, and Python*. The CUDA part runs the simulations, while the Python code is used for data pre-processing and visualisation. As a model that runs on multiple GPUs, SynxFlow can run flood simulations faster than real-time with hundreds of millions of computational cells and metre-level resolution. As open-source software with a user-friendly Python interface, it can be easily integrated into data science workflows for risk assessments of disastrous circumstances. Therefore, the model has been widely used for research and industry, for example, to support flood early warning systems and generate flood maps for (re)insurance companies. &nbsp;</p>
-                            <p>The SynxFlow software is capable of simulating flooding scenarios and related hazards, including landslide runout and debris flow. Such simulations are vital in advance planning and management of emergency services. A detailed prediction of natural hazards can help mitigate their adverse social and economic impacts. Apart from risk assessment and disaster preparedness, hazard simulation with SynxFlow can also assist in urban planning, environmental protection, climate change adaption, insurance and financial planning, infrastructure design and engineering, public awareness, and education.&nbsp;</p>
-                            <p>In a collaborative project supported by the Natural Environment Research Council between the <a href="https://www.birmingham.ac.uk/schools/engineering" rel="noreferrer noopener">University of Birmingham</a> and the <a href="https://www.ceh.ac.uk/our-science/science-departments/hydro-climate-risks" rel="noreferrer noopener">UK Centre for Ecology and Hydrology</a>, Dr Xia and his colleagues are developing a new generation of probabilistic flood forecasting systems. &nbsp;</p>
-                            <p>In the study, the team aims to develop a system capable of simulating river flow and generating probabilistic high-resolution flood maps. This system will be created by the SynxFlow model coupled with UKCEH’s G2G hydrological model. These probabilistic flood maps are created by deriving likelihoods of flooding from a series of high-resolution flood maps (Figure 1). They provide critical insights into the likelihood and severity of potential flooding events, helping decision-makers and emergency responders better prepare for and mitigate risks. &nbsp;</p>
-                            <p>This poses a significant computational challenge due to the demand for creating an ensemble of high-resolution flood simulations much faster than real-time. To implement such a system, the team turned their eyes to the UK’s latest supercomputer – <a href="https://www.hpc.cam.ac.uk/d-w-n">DAWN</a><sup>[1]</sup>, with over 1000 Intel® Data Center GPU Max 1550.&nbsp;</p>
-                            <!--  -->
-                            <p style="text-align:center"><strong>Figure 1</strong>: An example of high-resolution flood map created by SynxFlow for a city</p>
+                        <h2 class="fw-light mt-5">Introduction</h2>
+                        <p class="k_plink1 k_intext1blue1"><a href="#">SynxFlow</a><sup>[2]</sup> is an open-source
+                            GPU-based hydrodynamic flood modeling software developed by Dr. Xilin Xia (University of
+                            Birmingham) and his colleagues in CUDA*, C++, and Python*. The CUDA part runs the
+                            simulations, while the Python code is used for data pre-processing and visualisation. As a
+                            model that runs on multiple GPUs, SynxFlow can run flood simulations faster than real-time
+                            with hundreds of millions of computational cells and metre-level resolution. As open-source
+                            software with a user-friendly Python interface, it can be easily integrated into data
+                            science workflows for risk assessments of disastrous circumstances. Therefore, the model has
+                            been widely used for research and industry, for example, to support flood early warning
+                            systems and generate flood maps for (re)insurance companies. &nbsp;</p>
+                        <p>The SynxFlow software is capable of simulating flooding scenarios and related hazards,
+                            including landslide runout and debris flow. Such simulations are vital in advance planning
+                            and management of emergency services. A detailed prediction of natural hazards can help
+                            mitigate their adverse social and economic impacts. Apart from risk assessment and disaster
+                            preparedness, hazard simulation with SynxFlow can also assist in urban planning,
+                            environmental protection, climate change adaption, insurance and financial planning,
+                            infrastructure design and engineering, public awareness, and education.&nbsp;</p>
+                        <p class="k_plink1 k_intext1blue1">In a collaborative project supported by the Natural
+                            Environment Research Council between the <a href="#">University of Birmingham</a> and the <a
+                                href="#">UK Centre for Ecology and Hydrology</a>, Dr Xia and his colleagues are
+                            developing a new generation of probabilistic flood forecasting systems. &nbsp;</p>
+                        <p>In the study, the team aims to develop a system capable of simulating river flow and
+                            generating probabilistic high-resolution flood maps. This system will be created by the
+                            SynxFlow model coupled with UKCEH’s G2G hydrological model. These probabilistic flood maps
+                            are created by deriving likelihoods of flooding from a series of high-resolution flood maps
+                            (Figure 1). They provide critical insights into the likelihood and severity of potential
+                            flooding events, helping decision-makers and emergency responders better prepare for and
+                            mitigate risks. &nbsp;</p>
+                        <p class="k_plink1 k_intext1blue1">This poses a significant computational challenge due to the
+                            demand for creating an ensemble of high-resolution flood simulations much faster than
+                            real-time. To implement such a system, the team turned their eyes to the UK’s latest
+                            supercomputer – <a href="#">DAWN</a><sup>[1]</sup>, with over 1000 Intel® Data Center GPU
+                            Max 1550.&nbsp;</p>
+                        <div class="my-4">
+                            <img src="../img/rushita_img/synxflow1.png" alt="" width="100%">
+                        </div>
+                        <p style="text-align:center"><strong>Figure 1</strong>: An example of high-resolution flood map
+                            created by SynxFlow for a city</p>
 
-                            <h2 class="fw-light mt-5">Challenge/Objective</h2>
-                            <p>The primary challenge was overcoming the hardware limitations imposed by the CUDA programming model used by SynxFlow, which only supports NVIDIA* GPUs. Therefore, the first step in building the new flood forecasting system is to port the original CUDA code to a new language that supports the Intel® Data Center GPU Max Series on DAWN. The team also hoped that the ported code would support GPUs from other vendors or even CPUs. After weighing various options, the SynxFlow development team decided to leverage the Intel oneAPI Base Toolkit - an implementation of the oneAPI specification backed by the Unified Acceleration (UXL) Foundation. It is all based on multiarchitecture, multi-vendor supported SYCL framework. &nbsp;With support for Intel, NVIDIA, and AMD* GPUs, it comes with the Intel® DPC++ Compatibility Tool for easy and automated code migration from CUDA to SYCL. After about 6 weeks of effort, the team has successfully made the SynxFlow model run on DAWN, utilising as many as 64 GPUs simultaneously while still being able to run it on an NVIDIA GPU Supercomputer with similar performance.&nbsp;</p>
+                        <h2 class="fw-light mt-5">Challenge/Objective</h2>
+                        <p>The primary challenge was overcoming the hardware limitations imposed by the CUDA programming
+                            model used by SynxFlow, which only supports NVIDIA* GPUs. Therefore, the first step in
+                            building the new flood forecasting system is to port the original CUDA code to a new
+                            language that supports the Intel® Data Center GPU Max Series on DAWN. The team also hoped
+                            that the ported code would support GPUs from other vendors or even CPUs. After weighing
+                            various options, the SynxFlow development team decided to leverage the Intel oneAPI Base
+                            Toolkit - an implementation of the oneAPI specification backed by the Unified Acceleration
+                            (UXL) Foundation. It is all based on multiarchitecture, multi-vendor supported SYCL
+                            framework. &nbsp;With support for Intel, NVIDIA, and AMD* GPUs, it comes with the Intel®
+                            DPC++ Compatibility Tool for easy and automated code migration from CUDA to SYCL. After
+                            about 6 weeks of effort, the team has successfully made the SynxFlow model run on DAWN,
+                            utilising as many as 64 GPUs simultaneously while still being able to run it on an NVIDIA
+                            GPU Supercomputer with similar performance.&nbsp;</p>
 
-                            <h2 class="fw-light mt-5">Performance Results & Benefits</h2>
-                            <p>To test the performance, Dr Xia had initially chosen a case study of the West Midlands region, which includes the city of Birmingham. The total area is 1050 km2, and the simulation resolution is 2 m, which resulted in a total simulation size of 262.5 million cells.&nbsp;&nbsp;</p>
-                            
-                            <h2 class="fw-light mt-5">Summary/Story at a Glance</h2>
-                            <h2 class="fw-light mt-5">Summary/Story at a Glance</h2>
-                            <h2 class="fw-light mt-5">Summary/Story at a Glance</h2>
-                            <h2 class="fw-light mt-5">Summary/Story at a Glance</h2>
-                            <h2 class="fw-light mt-5">Summary/Story at a Glance</h2>
-                        <p> (for open accelerators) is a parallel programming standard that enables offloading workloads
-                            to GPUs from NVIDIA*, AMD* and accelerators from a few other vendors. It is extensively used
-                            for Fortran* applications but also supports C and C++ programming languages. It is a
-                            light-weight framework focussing on GPU and accelerator offload parallelism
-                            only.&nbsp;&nbsp;</p>
-                        <p class="k_plink1 k_intext1blue1">A broader, more flexible, and feature-rich framework for
-                            adding parallelism to C/C++ and Fortran workloads is <a href="#">OpenMP*</a> introduced in
-                            1997. As it originated as an open multi-architecture standard for efficient parallel
-                            programming across CPUs, it is not limited to GPU offload only. Thus, a major advantage for
-                            developers provided by OpenMP but not by OpenACC is that they can harness the potential of
-                            the latest Intel® hardware including CPUs, GPUs and other accelerators. Since its version
-                            4.0 was released in 2013, OpenMP has progressively added more and more GPU and other
-                            accelerator offload capabilities. It continues to evolve quickly.&nbsp;&nbsp;</p>
-                        <p class="note p-3 k_plink1 k_intext1blue1"
-                            style="background-color: #E6E6E6; border-left: 4px solid #FDB813;">→ Check out this
-                            article&nbsp;on the latest OpenMP 5.2 and 6.0 specification device offload support with the
-                            Intel® oneAPi DPC++/C++ Compiler an Intel® Fortran Compiler:&nbsp;<a href="#">Advanced
-                                OpenMP* Device Offload with Intel® Compilers</a></p>
-                        <p>OpenMP may be a slightly heavier-weight paradigm than OpenACC, but this is considerably
-                            outweighed by its open, standard-based, feature rich and highly flexible code
-                            parallelization framework. It is widely adopted across the entire high performance computing
-                            developer ecosystem, letting you take advantage of Intel’s latest built-in accelerators,
-                            architectural advances&nbsp; as well as its range of GPUs.&nbsp;&nbsp;</p>
-                        <p class="k_plink1 k_intext1blue1">In this article, we will discuss three code samples that
-                            illustrate how to migrate your C/C++ code based on OpenACC directives to OpenMP using <a
-                                href="#">Intel® oneAPI Base Toolkit</a> and <a href="#">Intel® Application Migration
-                                Tool for OpenACC to OpenMP API</a> so that you can fully avail yourselves of the
-                            parallel programming capabilities of OpenMP. &nbsp;</p>
+                        <h2 class="fw-light mt-5">Performance Results & Benefits</h2>
+                        <p>To test the performance, Dr Xia had initially chosen a case study of the West Midlands
+                            region, which includes the city of Birmingham. The total area is 1050 km2, and the
+                            simulation resolution is 2 m, which resulted in a total simulation size of 262.5 million
+                            cells.&nbsp;&nbsp;</p>
+                        <p>Two different supercomputers were used to test the model:&nbsp;</p>
+                        <ul role="list">
+                            <li aria-setsize="-1" role="listitem">
+                                <p>EPSRC Tier-2 Baskerville Supercomputer: 228 NVIDIA* A100 GPUs&nbsp;</p>
+                            </li>
+                        </ul>
+                        <ul role="list">
+                            <li aria-setsize="-1" role="listitem">
+                                <p>DAWN Supercomputer: 1024 Intel Data Center GPU Max 1550&nbsp;</p>
+                            </li>
+                        </ul>
+                        <p>Three different scaling settings were used: 16 GPUs across 4 nodes, 32 GPUs across 8 nodes,
+                            and 64 GPUs across 16 nodes. For a 3-hour long simulation, the running times are shown in
+                            Figure 2. As the results show, the performances of the original CUDA code and the new SYCL
+                            code are comparable. &nbsp;</p>
                         <p>&nbsp;</p>
-                        <h2 class="mt-5"><strong>Intel® Application Migration Tool for OpenACC* to OpenMP*: An
-                                Overview</strong></h2>
-                        <p class="k_plink1 k_intext1blue1">The <a href="#">Intel Application Migration Tool</a>
-                            automatically migrates OpenACC constructs in C/C++ and Fortran code to appropriate OpenMP
-                            constructs. It is a Python* 3 based tool that uses offloading mechanisms for code migration.
-                            The tool is part of an actively evolving project, reflecting the ever-changing differences
-                            between the latest OpenACC and OpenMP specifications. It thrives to be independent of any
-                            specific compilers’ infrastructure. Hence, it may not achieve the best performance on a
-                            given hardware, but it ensures semantically correct equivalent translation of OpenACC
-                            constructs to OpenMP. You may want to analyze the ported output code using performance
-                            analysis/debugging tools such as <a href="#">Intel® VTune Profiler</a> and manually tweak
-                            the output for improving and optimizing the application performance and efficiency for the
-                            exact hardware platform you are targeting.&nbsp;</p>
-                        <p>This is however a small price to pay for having a universally applicable utility like the
-                            Intel Application Migration Tool for OpenACC to OpenMP.&nbsp;</p>
-                        <p class="note p-3 k_plink1 k_intext1blue1"
-                            style="background-color: #E6E6E6; border-left: 4px solid #FDB813;">→&nbsp;For more
-                            information on the functionality and how-to instructions, refer to the <a href="#">GitHub
-                                repo</a> of the Intel Application Migration Tool project.&nbsp;</p>
+                        <p class="note p-3" style="background-color: #E6E6E6; border: 3px solid #FDB813;"><strong>The
+                                SYCL code is even faster than the original CUDA code on the same NVIDIA-based
+                                supercomputer.</strong></p>
                         <p>&nbsp;</p>
-                        <h2><strong>About The Code Samples</strong></h2>
-                        <p class="k_plink1 k_intext1blue1">Each of the <a href="#">three code samples</a> we will
-                            discuss in this article illustrates how to utilize the Intel Application Migration Tool for
-                            porting OpenACC constructs in C/C++ code to OpenMP. For a given input file in each of the
-                            samples, the migration tool generates two output files:&nbsp;</p>
+                        <p>As seen in Figure 2, the same SYCL code's performance on different platforms is also
+                            comparable.&nbsp;</p>
+                        <div class="my-5">
+                            <img src="../img/rushita_img/synxflow.png" alt="" width="100%">
+                        </div>
+                        <p style="text-align:center"><strong>Figure 2</strong>: Running time for a 3-hour simulation on
+                            various supercomputers with different numbers of GPUs</p>
+                        <p>The scaling efficiency is also encouraging, as is shown in Figure 3, both the SYCL and CUDA
+                            code have achieved satisfactory strong scaling efficiency, with the efficiency of SYCL code
+                            higher than CUDA code. &nbsp;</p>
+                        <p>The efficiency of the SYCL code for 64 GPUs&nbsp;is 89%, which can be considered very high.
+                            Due to the limits of simulation size and the maximum number of GPUs per job, we could not
+                            run the simulation on a smaller or larger number of GPUs. For the CUDA code, the team could
+                            only run the simulation with as many as 32 GPUs, the largest number of GPUs that could be
+                            used per job.&nbsp;</p>
+                        <p>&nbsp;</p>
+                        <div>
+                            <img src="../img/rushita_img/synxflow2.png" alt="" width="100%">
+                        </div>
+                        <p style="text-align:center"><strong>Figure 3</strong>: Strong scaling efficiencies of the CUDA
+                            and SYCL code</p>
+                        <p style="text-align:center">&nbsp;</p>
+                        <p>After the new code has been proven to be performant on both CUDA and SYCL platforms, the team
+                            is currently developing the new probabilistic flood forecasting system by coupling the
+                            SynxFlow model with <a href="#">UKCEH’s G2G hydrological model</a><sup>[3]</sup>. The effort
+                            of developing the new SYCL-based SynxFlow code has also been shortlisted for the prestigious
+                            <a href="#">HPCWire Readers’ Choice Award in 2024</a>.&nbsp;</p>
+
+                        <h2 class="fw-light mt-5">The Path to a Performant SYCL Solution</h2>
+                        <p>When porting the code to SYCL, the team has followed the following steps:<br>
+                            &nbsp;</p>
                         <ol>
-                            <li>a <span class="code-simple">.translated</span> file with the OpenACC directives migrated
-                                to OpenMP ones.&nbsp;</li>
-                            <li>a <span class="code-simple">.report</span> file that explains&nbsp;</li>
+                            <li><strong>Using the Intel DPC++ Compatibility Tool to Translate CUDA Kernels into
+                                    SYCL:&nbsp;</strong><br>
+                                <br>
+                                The original SynxFlow code is organised using CMake. Although the Intel DPC++
+                                Compatibility Tool supports the migration of CMake build environments in its latest
+                                version, the decision was made to port these makefiles manually to provide a higher
+                                level of control during migration on a Windows* machine. which the compatibility tool
+                                does not support. To enable the tool to run, a new project was set up using Microsoft*
+                                Visual Studio, which allowed running the porting tool successfully. Most kernels and API
+                                calls were automatically translated into SYCL (see Figure 3 for an example). When
+                                compiling the code, there were some errors, but they were easy to fix by following the
+                                error message from the compiler. In this step, the NCCL library calls were not
+                                translated, so only the single-GPU code was successfully compiled.&nbsp;
+                            </li>
                         </ol>
-                        <ul>
-                            <li>which OpenACC clauses were translated to which OpenMP clauses,</li>
-                            <li>which OpenACC constructs could not be migrated and the location of each of the
-                                migrated/unmigrated constructs in the code.&nbsp;<br>
-                                For the unmigrated constructs, it also suggests similar OpenMP constructs that you can
-                                manually implement.&nbsp;</li>
-                        </ul>
-                        <p class="k_plink1 k_intext1blue1">The OpenMP runtime library is distributed as a part of the <a
-                                href="#">Intel® Fortran Compiler</a> and <a href="#">Intel® oneAPI DPC++/C++
-                                Compiler</a>. Since the three code samples discussed here are based on C language, they
-                            leverage the Intel oneAPI DPC++/C++ compiler available in the <a href="#">Intel® oneAPI Base
-                                Toolkit</a>. Intel® Core™ Processors with integrated Intel® Graphics and Intel® Data
-                            Center GPU Max Series are the hardware used for GPU-offload and parallel execution of the
-                            code samples. However, you can also migrate these and other workloads to other Intel®
-                            architectures of your choice.&nbsp;</p>
-                        <p>Let us dig into the three code samples one-by-one.</p>
-                        <p>&nbsp;</p>
-                        <h3><strong>Atomic Sample</strong></h3>
-                        <p>Atomic operations supported by OpenMP enable multiple threads to update a shared numerical
-                            variable. Each atomic operation is only applicable to the single assignment statement
-                            following it and is hence thread-safe preventing simultaneous read/write operations by
-                            multiple threads on the same variable without resulting in indeterminate value. Atomic
-                            operations thus help in achieving fine-grained synchronization.&nbsp;</p>
-                        <p class="k_plink1 k_intext1blue1">The <a href="#">Atomic Sample</a> demonstrates how to migrate
-                            the <span class="code-simple">parallel loop</span>, <span class="code-simple">read</span>,
-                            <span class="code-simple">write</span>, <span class="code-simple">update</span> and <span
-                                class="code-simple">capture</span> atomic clauses from OpenACC to OpenMP for offloading
-                            the source code to Intel GPUs. You will learn how to install the Intel Application Migration
-                            Tool and invoke it for migrating the OpenACC directives to OpenMP. &nbsp;</p>
-                        <p>For example, the tool translates<span class="code-simple">​​​</span></p>
-                        <div style="border: 1px solid #CCCCCC;" class="p-2 mt-5">
-                            <p class="float-end"><i class="fa-solid fa-copy"></i></p>
-                            <p>#pragma acc atomic read</p>
+                        <div class="p-2" style="border: 1px solid #CCCCCC;">
+                            <p class="float-end fs-3"><i class="fa-solid fa-copy"></i></p>
+                            <p class="col-12">
+                            <div class="toolbar">
+                                <div class="toolbar-item"><i class="fa fa-docs"></i></div>
+                            </div>
+                            <pre>
+                                            __global__ void cuCalDepthDurationKernel(Scalar* h_old, Scalar* h, Scalar* t_hGTx, Scalar x, Scalar dt, unsigned int phi_size){ 
+
+                                                unsigned int index = blockDim.x * blockIdx.x + threadIdx.x; 
+                                            
+                                                while(index &lt; phi_size){ 
+                                            
+                                                  Scalar t = t_hGTx[index]; 
+                                            
+                                                  if(h_old[index] &gt; x &amp;&amp;  h[index] &gt; x){ 
+                                            
+                                                    t += dt; 
+                                            
+                                                  }else{ 
+                                            
+                                                    t = 0.0; 
+                                            
+                                                  } 
+                                            
+                                                  t_hGTx[index] = t; 
+                                            
+                                                  index += blockDim.x * gridDim.x; 
+                                            
+                                                } 
+                                            
+                                              }
+                                        </pre>
+                            </p>
                         </div>
-                        <p class="mt-3">to</p>
-                        <div style="border:1px solid  #CCCCCC;" class="p-2 mb-5">
-                            <p class="float-end"><i class="fa-solid fa-copy"></i></p>
-                            <p>#pragma omp atomic read</p>
+                        <p class="mt-3">(a) Original CUDA kernel</p>
+                        <div class="p-2" style="border: 1px solid #CCCCCC;">
+                            <p class="float-end fs-3"><i class="fa-solid fa-copy"></i></p>
+                            <p class="col-12">
+                            <div class="toolbar">
+                                <div class="toolbar-item"><i class="fa fa-docs"></i></div>
+                            </div>
+                            <pre><div class="toolbar"><div class="toolbar-item"><i class="fa fa-docs"></i></div></div>
+                                void cuCalDepthDurationKernel(Scalar* h_old, Scalar* h, Scalar* t_hGTx, Scalar x, Scalar dt, unsigned int phi_size, const sycl::nd_item&lt;3&gt; &amp;item_ct1){  
+
+                                unsigned int index = item_ct1.get_local_range(2) * item_ct1.get_group(2) + 
+                            
+                                                     item_ct1.get_local_id(2); 
+                            
+                                while(index &lt; phi_size){ 
+                            
+                                  Scalar t = t_hGTx[index]; 
+                            
+                                  if(h_old[index] &gt; x &amp;&amp;  h[index] &gt; x){ 
+                            
+                                    t += dt; 
+                            
+                                  }else{ 
+                            
+                                    t = 0.0; 
+                            
+                                  } 
+                            
+                                  t_hGTx[index] = t; 
+                            
+                                  index += item_ct1.get_local_range(2) * item_ct1.get_group_range(2); 
+                            
+                                } 
+                            
+                              }</pre>
+                            </p>
                         </div>
-                        <p class="note p-3 k_plink1 k_intext1blue1"
-                            style="background-color: #E6E6E6; border-left: 4px solid #FDB813;">→ For hardware-software
-                            specifications and key implementation details, refer to the code sample on <a
-                                href="#">GitHub</a>.&nbsp;</p>
-                        <p>&nbsp;</p>
-                        <h3><strong>Monte Carlo GPU Sample</strong><a class="inpage-nav-anchor" id="inpage-nav-1-1"></a>
-                        </h3>
-                        <p>Monte Carlo simulation method is a statistical technique that helps predict possible outcomes
-                            of an uncertain event using random sampling in complex mathematical and physical systems. It
-                            models a system or problem under consideration and then runs multiple simulations on it to
-                            estimate the range of possible outcomes. This method is widely used for risk predictions and
-                            mitigations in applications such as cost estimation, investment planning, project
-                            management, risk assessment, emergency response planning, and portfolio management.&nbsp;
-                        </p>
-                        <p class="k_plink1 k_intext1blue1">The <a href="#">Monte Carlo GPU Sample</a> uses the Monte
-                            Carlo method for estimating the price of a European call option and the confidence interval
-                            around the predicted value. A confidence interval refers to the range of values in which one
-                            can confidently predict the occurrence of the estimated value based on multiple simulation
-                            runs. The code sample demonstrates how to parallelize the simulations by offloading the code
-                            to GPUs using OpenMP directives.</p>
-                        <p>&nbsp;Using the Intel Application Migration Tool, most of the OpenACC directives in the
-                            sample are migrated to OpenMP. However, some calls remain unmigrated and hence require
-                            manual adjustment to select the best translation for the use case. The .report output file
-                            shows the untranslated OpenACC API calls and the corresponding closest OpenMP calls.&nbsp;
-                        </p>
-                        <p class="note p-3 k_plink1 k_intext1blue1"
-                            style="background-color: #E6E6E6; border-left: 4px solid #FDB813;">→&nbsp;Detailed
-                            information on the code sample is available on <a href="#">GitHub</a>.</p>
-                        <p>&nbsp;</p>
-                        <h3><strong>Bilateral Filter Sample</strong><a class="inpage-nav-anchor"
-                                id="inpage-nav-1-2"></a></h3>
-                        <p>Bilateral filtering is a non-linear, noise-reducing, edges-preserving technique used for
-                            smoothening images. It eliminates most texture, noise, and fine details yet preserves large
-                            sharp edges without blurring the image. It does so by replacing the intensity of each pixel
-                            with a weighted average of intensity values from nearby pixels.&nbsp;&nbsp;</p>
-                        <p>The result of bilateral filtering depends on the following three parameters:&nbsp;</p>
-                        <ul>
-                            <li>Gaussian delta i.e. a function that gives more weight to pixels that are spatially close
-                                and similar in intensity – Larger gaussian delta blurs the fine texture.&nbsp;</li>
-                            <li>Euclidean delta i.e. Euclidean distance between the spatial locations of two pixels –
-                                Larger Euclidean delta filters away the fine texture yet keeps the contours as crisp as
-                                in the original image.&nbsp;</li>
-                            <li>Iterations – Having multiple iterations flattens the colors significantly without
-                                blurring the edges.</li>
-                        </ul>
-                        <p class="k_plink1 k_intext1blue1">The <a href="#">Bilateral Filter sample</a> demonstrates how
-                            to migrate OpenACC based source code for implementing bilateral filter on Intel
-                            architectures to OpenMP. For example, the following directive having OpenACC loop
-                            construct&nbsp;</p>
-                        <!--  -->
-                        <p>is translated to</p>
-                        <p>As there is no direct translation of the OpenACC kernels construct to OpenMP, the migration
-                            tool converts it to OpenMP target construct. All such details are included in the <span
-                                class="code-simple">.report</span> output file generated by the migration tool.&nbsp;
-                        </p>
-                        <!--  -->
-                        <p class="note p-3 k_plink1 k_intext1blue1"
-                            style="background-color: #E6E6E6; border-left: 4px solid #FDB813;">→&nbsp;Check out the code
-                            sample on <a href="#">GitHub</a> for stepwise set up and implementation details.</p>
-                        <p>&nbsp;</p>
-                        <h2><strong>What’s Next?</strong></h2>
-                        <p class="k_plink1 k_intext1blue1">Dive deeper into the <a href="#">OpenACC to OpenMP code
-                                samples</a> and learn how to migrate your OpenACC code to OpenMP with minimal code
-                            changes using the <a href="#">Intel Application Migration Tool</a>. Get started with the <a
-                                href="#">Intel oneAPI DPC++/C++ Compiler</a> and the <a href="#">Intel Fortran
-                                Compiler</a> – efficiently compile your code and achieve high-performance parallelism
-                            across Intel CPUs and GPUs.&nbsp;</p>
-                        <p class="k_plink1 k_intext1blue1">We also encourage you to check out other <a href="#">HPC</a>
-                            and <a href="#">AI</a> tools included in Intel’s oneAPI-powered software portfolio for
-                            multiarchitecture, cross-vendor, accelerated parallel computing.&nbsp;&nbsp;</p>
-                        <p>&nbsp;</p>
-                        <h2><strong>Get The Software</strong></h2>
-                        <p class="k_plink1 k_intext1blue1">Install <a href="#">Intel oneAPI Base Toolkit</a> which
-                            includes Intel oneAPI DPC++/C++ Compiler and hence the OpenMP library. Fortran developers
-                            can leverage the OpenMP library that comes along with the Intel Fortran Compiler available
-                            as a part of the <a href="#">Intel® oneAPI HPC Toolkit</a>.&nbsp;</p>
-                        <p>You can also download standalone versions of the compilers:</p>
-                        <ul>
+                        <p>(b) Migrated SYCL kernel</p>
+                        <p style="text-align:center"><strong>Figure 4</strong>:&nbsp;Comparison between the original
+                            CUDA kernel (a) and translated SYCL kernel (b)&nbsp;</p>
+                        <p style="text-align:center">&nbsp;</p>
+                        <p style="text-align:center">&nbsp;</p>
+                        <ol start="2">
                             <li aria-setsize="-1" role="listitem">
-                                <p class="k_plink1 k_intext1blue1"><a href="#">Intel oneAPI DPC++/C++ Compiler</a>&nbsp;
+                                <p><strong>Performance Profiling:</strong><br>
+                                    <br>
+                                    Once the code was successfully compiled, the next step was to evaluate its
+                                    performance. To make the code run on NVIDIA GPUs, we used the Codeplay’s oneAPI for
+                                    NVIDIA® GPUs plugin. Initial testing on a small test case revealed a noticeable
+                                    performance loss. To investigate the issue, performance profiling tools were
+                                    employed. The profiling results indicated that the function ‘cuEventCreate’ was
+                                    being invoked after each kernel run, which raised concerns about its impact on
+                                    overall efficiency. However, further analysis revealed minimal performance impact
+                                    for larger test cases. Therefore, no further optimization had been done, and later,
+                                    it was found that the ‘cuEventCreate’ is part of the features of Intel’s SYCL
+                                    implementation.&nbsp;
                                 </p>
                             </li>
                             <li aria-setsize="-1" role="listitem">
-                                <p class="k_plink1 k_intext1blue1"><a href="#">Intel Fortran Compiler</a>&nbsp;</p>
+                                <p><strong>Implementing Inter-Node Communication using GPU-enabled MPI:</strong><br>
+                                    <br>
+                                    The final challenge involved enabling inter-node communication, critical for scaling
+                                    the application across multiple GPUs. Our initial attempt involved using the Intel®
+                                    oneAPI Collective Communications Library (oneCCL), Intel’s equivalent to the NVIDIA*
+                                    Collective Communications Library (NCCL). However, the resulting code of this
+                                    approach was not backward-compatible with NVIDIA-based HPC systems. As an
+                                    alternative, the team replaced NCCL-based inter-GPU communication with
+                                    GPU-direct-enabled MPI. On the CUDA platform, this was OpenMPI, and on the Intel
+                                    platform, this was the Intel® MPI Library implementation. &nbsp;<br>
+                                    <br>
+                                    This adjustment proved effective, allowing the application to scale successfully on
+                                    both Baskerville and DAWN. During large-scale runs, &nbsp;they observed minor
+                                    discrepancies in results between CUDA and SYCL platforms. After investigating, they
+                                    &nbsp;discovered that the Intel compiler’s default settings utilised speed optimised
+                                    mathematical operations instead of the high precision model we prefer. &nbsp;They
+                                    resolved the discrepancies by adjusting the compiler settings to prioritise math
+                                    precision using ‘-fp-model=precise’, ensuring consistent results across both
+                                    platforms. &nbsp;
+                                </p>
                             </li>
-                        </ul>
-                        <p>&nbsp;</p>
-                        <h2><strong>Additional Resources</strong>&nbsp;<a class="inpage-nav-anchor"
-                                id="inpage-nav-4"></a></h2>
+                            <li aria-setsize="-1" role="listitem">
+                                <p><strong>Configurations/Solution Ingredients:&nbsp;</strong><br>
+                                    <br>
+                                    <strong>For porting code from CUDA to SYCL:&nbsp;</strong><br>
+                                    •&nbsp;Windows 10 Enterprise&nbsp;<br>
+                                    • Microsoft Visual Studio 2019&nbsp;<br>
+                                    •&nbsp;Intel® DPC++ Compatibility Tool as part of oneAPI 2024.0.1&nbsp;<br>
+                                    <br>
+                                    <strong>For testing on HPC hardware:&nbsp;</strong><br>
+                                    <br>
+                                    • On NVIDIA machine&nbsp;(Baskerville HPC)): 16 or 32 NVIDIA A100 GPUs, Intel® Xeon®
+                                    Platinum 8360Y CPUs (2 CPUs per GPU during the job), CUDA Toolkit v11.1, OpenMPI
+                                    4.1.1, Intel oneAPI Base Toolkit v2024.0.1, Codeplay’s oneAPI for NVIDIA*&nbsp;GPUs
+                                    plugin, Red Hat Enterprise Linux 8.10<br>
+                                    <br>
+                                    • On Intel machine (DAWN HPC): 16, 32, or 64 Intel Data Center GPU Max 1550,
+                                    Intel®&nbsp;Xeon®&nbsp;Platinum 8468 CPUs (2 CPUs per GPU during the job), Intel
+                                    oneAPI Base Toolkit v2024.2.0 Rocky Linux 8&nbsp;
+                                </p>
+                            </li>
+                        </ol>
+
+                        <h2 class="fw-light mt-5">What’s Next? </h2>
+                        <p class="k_plink1 k_intext1blue1">Get started with Intel DPC++ Compatibility Tool and its
+                            open-source counterpart  <a href="#">SYCLomatic</a> to easily achieve automated, efficient
+                            code portability from CUDA to SYCL for accelerated heterogenous computing across hardware
+                            from diverse vendors.&nbsp;</p>
+                        <p class="k_plink1 k_intext1blue1">We encourage you to check out practical application examples
+                            of code migration available in the <a href="#">CUDA to SYCL catalogue</a>. Also explore <a
+                                href="#">AI</a> and <a href="#">HPC</a>  tools in Intel’s <a href="#">oneAPI</a>-powered
+                            software portfolio.&nbsp;</p>
+
+                        <h2 class="fw-light mt-5">Get the Software</h2>
+                        <p class="k_plink1 k_intext1blue1">Download the standalone version of Intel DPC++ Compatibility
+                            Tool. The migration tool is available as a part of the <a href="#">Intel oneAPI Base
+                                Toolkit</a>.   &nbsp;</p>
+
+                        <h2 class="fw-light mt-5">oneAPI and SYCL Resources </h2>
                         <ul role="list">
                             <li aria-setsize="-1" role="listitem">
-                                <p class="k_plink1 k_intext1blue1"><a href="#">oneAPI Programming Framework</a>&nbsp;
+                                <p class="k_plink1 k_intext1blue1"><a href="#">Intel oneAPI programming model</a>&nbsp;
                                 </p>
                             </li>
                         </ul>
                         <ul role="list">
                             <li aria-setsize="-1" role="listitem">
-                                <p class="k_plink1 k_intext1blue1"><a href="#">oneAPI Code Samples</a>&nbsp;</p>
-                            </li>
-                            <li aria-setsize="-1" role="listitem">
-                                <p class="k_plink1 k_intext1blue1"><a href="#">Advanced OpenMP Device Offload with Intel
-                                        Compilers</a></p>
+                                <p class="k_plink1 k_intext1blue1"><a href="#">Intel DPC++ Compatibility Tool
+                                        documentation</a>&nbsp;</p>
                             </li>
                         </ul>
                         <ul role="list">
                             <li aria-setsize="-1" role="listitem">
-                                <p class="k_plink1 k_intext1blue1"><a href="#">C/C++ or Fortran with OpenMP Offload
-                                        Programming Model</a>&nbsp;</p>
+                                <p class="k_plink1 k_intext1blue1"><a href="#">SYCLomatic documentation</a>&nbsp;</p>
                             </li>
                         </ul>
                         <ul role="list">
                             <li aria-setsize="-1" role="listitem">
-                                <p class="k_plink1 k_intext1blue1"><a href="#">OpenMP Support by Intel oneAPI DPC++/C++
-                                        Compiler</a>&nbsp;</p>
+                                <p class="k_plink1 k_intext1blue1"><a href="#">Migrate from CUDA to C++ with SYCL
+                                        portal</a>&nbsp;</p>
                             </li>
                         </ul>
                         <ul role="list">
                             <li aria-setsize="-1" role="listitem">
-                                <p class="k_plink1 k_intext1blue1"><a href="#">OpenMP Support by Intel Fortran
-                                        Compiler</a>&nbsp;</p>
+                                <p class="k_plink1 k_intext1blue1"><a href="#">Codeplay’s oneAPI plugins for NVIDIA
+                                        GPUs</a>&nbsp;</p>
                             </li>
                         </ul>
+                        <p>&nbsp;</p>
+
+                        <h2 class="fw-light mt-5">Resources About The Research </h2>
+                        <ul role="list">
+                            <li aria-setsize="-1" role="listitem">
+                                <p class="k_plink1 k_intext1blue1"><a href="#">University of Birmingham</a> – <a
+                                        href="#">School of Engineering</a>&nbsp;</p>
+                            </li>
+                        </ul>
+                        <ul role="list">
+                            <li aria-setsize="-1" role="listitem">
+                                <p class="k_plink1 k_intext1blue1"><a href="#">Natural Environment Research
+                                        Council</a>&nbsp;&nbsp;</p>
+                            </li>
+                        </ul>
+                        <ul role="list">
+                            <li aria-setsize="-1" role="listitem">
+                                <p class="k_plink1 k_intext1blue1"><a href="#">UK Centre for Ecology and
+                                        Hydrology</a>&nbsp;</p>
+                            </li>
+                        </ul>
+                        <ul role="list">
+                            <li aria-setsize="-1" role="listitem">
+                                <p class="k_plink1 k_intext1blue1"><a href="#">Synxflow</a>&nbsp;</p>
+                            </li>
+                        </ul>
+                        <p>&nbsp;</p>
+                        <p class="k_plink1 k_intext1blue1"><sup>[1]</sup> <a
+                                href="#">https://www.hpc.cam.ac.uk/d-w-n</a>&nbsp;</p>
+                        <p class="k_plink1 k_intext1blue1"><sup>[2]</sup> <a
+                                href="#">https://synxflow.readthedocs.io/en/latest/about.html</a>&nbsp;&nbsp;</p>
+                        <p class="k_plink1 k_intext1blue1"><sup>[3]</sup> <a
+                                href="#">https://catalogue.ceh.ac.uk/documents/2269c155-2f7d-4c4e-830a-851b2c2dc1fd</a>&nbsp;
+                        </p>
+
                     </div>
                 </div>
-            </div>
     </section>
     <section class="my-4" style="font-size: 13px;">
         <div class="k_container11">
