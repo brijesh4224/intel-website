@@ -364,13 +364,15 @@
                         </div>
                     </div>
                     <div>
-                        <p><b>
-                                Get the Latest on All Things CODE</b></p>
-                        <p class="text-center k_btnget py-2 k_under k_btn100 my-2 kcokbtn1024" style="width: 80px;">
-                            <a href="#" class="text-white">Sign Up</a>
-                        </p>
+                        <div class="p-3" style="background-color: #F7F7F7;">
+                            <p><b>
+                                    Get the Latest on All Things CODE</b></p>
+                            <p class="text-center k_btnget py-2 k_under k_btn100 my-2 kcokbtn1024" style="width: 80px;">
+                                <a href="#" class="text-white">Sign Up</a>
+                            </p>
+                        </div>
                         <div class="">
-                            <p id="singleauthorname" class="authorname">Julien Simon</p>
+                            <p id="singleauthorname" class="authorname mt-2">Julien Simon</p>
                             <p id="singleauthorbio" class="authorbio"><p><i>Chief Evangelist<br>
                             </i>Hugging Face</p>
                             </p>
@@ -399,40 +401,56 @@
                         <h2 class="fw-light mt-5">Quantizing LLMs</h2>
                         <p class="k_plink1 k_intext1blue1">Recent studies&nbsp;<a href="#"><sup>[1]</sup></a><a href="#"><sup>[2]</sup></a>&nbsp;show that current quantization techniques don’t work well with LLMs. In particular, LLMs exhibit large-magnitude outliers in specific activation channels across all layers and tokens.</p>
                         <p>Here’s an example with the OPT-13B model. You can see that one of the activation channels has much larger values than all others across all tokens. This phenomenon is visible in all the Transformer layers of the model.</p>
-                        <!--  -->
+                        <div class="my-5 col-sm-12 col-md-6 m-auto">
+                            <img src="../img/rushita_img/Q8llm1.png" alt="" width="100%">
+                        </div>
                         <p class="utility-text-1" style="text-align:center"><strong>Source: SmoothQuant</strong></p>
                         <p>The best quantization techniques to date quantize activations token-wise, causing either truncated outliers or underflowing low-magnitude activations. Both solutions hurt model quality significantly. Moreover, quantization-aware training requires additional model training; this is not practical in most cases due to lack of compute resources and data.</p>
-                        <p><strong>SmoothQuant*</strong>&nbsp;<a href="#"><sup>[3]</sup></a><a href="#"><sup>[4]</sup></a>&nbsp;<strong>is a new quantization technique that solves this problem</strong>. It applies a joint mathematical transformation to weights and activations which reduces the ratio between outlier and non-outlier values for activations at the cost of increasing the ratio for weights. This transformation makes the layers of the Transformer "quantization-friendly" and enables 8-bit quantization without hurting model quality. As a consequence, SmoothQuant produces smaller, faster models that run well on Intel CPU platforms.</p>
-                        <!--  -->
+                        <p class="k_plink1 k_intext1blue1"><strong>SmoothQuant*</strong>&nbsp;<a href="#"><sup>[3]</sup></a><a href="#"><sup>[4]</sup></a>&nbsp;<strong>is a new quantization technique that solves this problem</strong>. It applies a joint mathematical transformation to weights and activations which reduces the ratio between outlier and non-outlier values for activations at the cost of increasing the ratio for weights. This transformation makes the layers of the Transformer "quantization-friendly" and enables 8-bit quantization without hurting model quality. As a consequence, SmoothQuant produces smaller, faster models that run well on Intel CPU platforms.</p>
+                        <div class="my-5 col-sm-12 col-md-8 m-auto">
+                            <img src="../img/rushita_img/Q8llm2.png" alt="" width="100%">
+                        </div>
                         <p>Now, let’s see how SmoothQuant works when applied to popular LLMs.</p>
-
                         <h2 class="fw-light mt-5">Quantizing LLMs with SmoothQuant*</h2>
-                        <p>Our friends at Intel have quantized several LLMs with SmoothQuant-O3: OPT&nbsp;<a href="https://huggingface.co/facebook/opt-2.7b">2.7B</a>&nbsp;and&nbsp;<a href="https://huggingface.co/facebook/opt-6.7b">6.7B</a>&nbsp;<a href="https://arxiv.org/pdf/2205.01068.pdf"><sup>[5]</sup></a>, LLaMA&nbsp;7B&nbsp;<a href="https://ai.meta.com/blog/large-language-model-llama-meta-ai/"><sup>[6]</sup></a>, Alpaca&nbsp;<a href="https://huggingface.co/tatsu-lab/alpaca-7b-wdiff">7B</a>&nbsp;<a href="https://crfm.stanford.edu/2023/03/13/alpaca.html"><sup>[7]</sup></a>, Vicuna&nbsp;<a href="https://huggingface.co/lmsys/vicuna-7b-delta-v1.1">7B</a>&nbsp;<a href="https://vicuna.lmsys.org/"><sup>[8]</sup></a>, BloomZ&nbsp;<a href="https://huggingface.co/bigscience/bloomz-7b1">7.1B</a>&nbsp;<a href="https://huggingface.co/bigscience/bloomz"><sup>[9]</sup></a>, and MPT-7B-chat&nbsp;<a href="https://www.databricks.com/blog/mpt-7b"><sup>[10]</sup></a>. They also evaluated the accuracy of the quantized models, using&nbsp;<a href="https://github.com/EleutherAI/lm-evaluation-harness">Language Model Evaluation Harness</a>.</p>
+                        <p class="k_plink1 k_intext1blue1">Our friends at Intel have quantized several LLMs with SmoothQuant-O3: OPT&nbsp;<a href="#">2.7B</a>&nbsp;and&nbsp;<a href="#">6.7B</a>&nbsp;<a href="#"><sup>[5]</sup></a>, LLaMA&nbsp;7B&nbsp;<a href="#"><sup>[6]</sup></a>, Alpaca&nbsp;<a href="#">7B</a>&nbsp;<a href="#"><sup>[7]</sup></a>, Vicuna&nbsp;<a href="#">7B</a>&nbsp;<a href="#"><sup>[8]</sup></a>, BloomZ&nbsp;<a href="#">7.1B</a>&nbsp;<a href="#"><sup>[9]</sup></a>, and MPT-7B-chat&nbsp;<a href="#"><sup>[10]</sup></a>. They also evaluated the accuracy of the quantized models, using&nbsp;<a href="#">Language Model Evaluation Harness</a>.</p>
                         <p>The table below presents a summary of their findings. The second column shows the ratio of benchmarks that have improved post-quantization. The third column contains the mean average degradation (*<em>a negative value indicates that the benchmark has improved</em>). You can find the detailed results at the end of this post.</p>
-                        <!--  -->
-                        <h2 class="fw-light mt-5">Overview</h2>
-                        <h2 class="fw-light mt-5">Overview</h2>
-                        <h2 class="fw-light mt-5">Overview</h2>
-                        <h2 class="fw-light mt-5">Overview</h2>
-                        <h2 class="fw-light mt-5">Overview</h2>
-                        <h2 class="fw-light mt-5">Overview</h2>
-                        <h2 class="fw-light mt-5">Overview</h2>
-                        <h2 class="fw-light mt-5">Overview</h2>
-                        <p>The convolution separable is a process in which a single convolution can be divided into two or more convolutions to produce the same output.&nbsp;The original CUDA* source code is migrated to SYCL for portability across GPUs from multiple vendors.</p>
-                  
-                        <h2 class="fw-light mt-5">Key Implementation Details</h2>
-                        <p>This sample implements a separable convolution filter of a 2D image with an arbitrary kernel. There are two functions in the code named convolutionRowsGPU and convolutionColumnsGPU in which the kernel functions (convolutionRowsKernel &amp; convolutionColumnsKernel) are called where the loading of the input data and computations are performed. We validate the results with reference CPU separable convolution implementation by calculating the relative L2 norm.</p>
-                        <p>For more information on the convolutionSeparable SYCL migrated sample and build details on CPU and GPU, refer <a href="#" style="color:#0563c1; text-decoration:underline">here</a>.&nbsp;</p>
-                        <p>Original CUDA source files: <a href="#" style="color:#0563c1; text-decoration:underline">convolutionSeparable</a>.</p>
-                        <p>Migrated SYCL source files including step by step instructions:<strong> </strong><a href="#" style="color:#0563c1; text-decoration:underline">guided_convolutionSeparable_SYCLmigration</a>.</p>
-                        <p>&nbsp;</p>
-                        <h2 class="fw-light mt-5">References</h2>
-                        <ul>
-                            <li><a href="#" style="color:#0563c1; text-decoration:underline">Data Parallel C++, by James Reinders et al</a>&nbsp;</li>
-                            <li><a href="#" style="color:#0563c1; text-decoration:underline">oneAPI GPU Optimization Guide</a>&nbsp;</li>
-                            <li><a href="#" style="color:#0563c1; text-decoration:underline">CUDA Toolkit documentation</a>&nbsp;</li>
-                            <li><a href="#" style="color:#0563c1; text-decoration:underline">Install oneAPI for NVIDIA GPUs</a></li>
-                        </ul>
+                       <div class="my-5 col-sm-12 col-md-8 m-auto">
+                            <img src="../img/rushita_img/Q8llm3.png" alt="" width="100%">
+                       </div>
+                        <p>As you can see, OPT models are great candidates for SmoothQuant quantization. Models are ~2x smaller compared to pretrained 16-bit models. Most of the metrics improve, and those that don’t are only marginally penalized.</p>
+                        <p>The picture is a little more contrasted for LLaMA 7B and BloomZ 7.1B. Models are compressed by a factor of ~2x, with about half the task seeing metric improvements. The other half is only marginally impacted, with a single task seeing more than 3% relative degradation.</p>
+                        <p class="k_plink1 k_intext1blue1">The obvious benefit of working with smaller models is a significant reduction in inference latency. Here’s a&nbsp;<a href="#">video</a>&nbsp;demonstrating real-time text generation with the MPT-7B-chat model on a single-socket Intel Sapphire Rapids CPU with 32 cores and a batch size of 1.</p>
+                        <p>In this example, we ask the model: “What is the role of Hugging Face in democratizing NLP?”. This sends the following prompt to the model: "<em>A chat between a curious user and an artificial intelligence assistant. The assistant gives helpful, detailed, and polite answers to the user's questions. USER: What is the role of Hugging Face in democratizing NLP? ASSISTANT:</em>"</p>
+                        <p>The example shows the additional benefits you can get from 8bit quantization coupled with 4th Gen Intel® Xeon® processors, resulting in very low generation time for each token. This level of performance definitely makes it possible to run LLMs on CPU platforms, giving customers more IT flexibility and better cost-performance than ever before.</p>
+
+                        <h2 class="fw-light mt-5">Chat Experience on Intel Xeon Processors</h2>
+                        <p>Recently, Clement, the CEO of Hugging Face, recently said, “More companies would be better served focusing on smaller, specific models that are cheaper to train and run.”</p>
+                        <p>The emergence of relatively smaller models like Alpaca, BloomZ, and Vicuna open a new opportunity for enterprises to lower the cost of fine-tuning and inference in production. As demonstrated above, high-quality quantization brings high-quality chat experiences to Intel CPU platforms without the need of running mammoth LLMs and complex AI accelerators.</p>
+                        <p>Together with Intel, we're hosting a new, exciting demo in Spaces called&nbsp;Q8-Chat&nbsp;(pronounced "Cute chat"). Q8-Chat offers you a ChatGPT-like chat experience while only running on a single socket Intel Sapphire Rapids CPU with 32 cores and a batch size of 1.</p>
+
+                        <h2 class="fw-light mt-5">Next Steps</h2>
+                        <p class="k_plink1 k_intext1blue1">We’re currently working on integrating these new quantization techniques into the Hugging Face&nbsp;<a href="#">Optimum Intel</a>&nbsp;library through&nbsp;<a href="#">Intel® Neural Compressor</a>. Once we’re done, you’ll be able to replicate these demos with just a few lines of code.</p>
+                        <p>Stay tuned. The future is 8-bit!</p>
+                        <p><em>This post is guaranteed 100% ChatGBT-free.</em></p>
+                        <h3>Acknowledgement</h3>
+                        <p>This blog was made in conjunction with Ofir Zafrir, Igor Margulis, Guy Boudoukh and Moshe Wasserblat from Intel Labs. Special thanks to them for their great comments and collaboration.</p>
+                        <h3>Appendix: Detailed Results</h3>
+                        <p>A negative value indicates that the benchmark has improved.</p>
+                        <div class="my-2 col-sm-12 col-md-8 m-auto">
+                            <img src="../img/rushita_img/Q8llm4.png" alt="" width="100%">
+                        </div>
+                        <div class="my-2 col-sm-12 col-md-8 m-auto">
+                            <img src="../img/rushita_img/Q8llm5.png" alt="" width="100%">
+                        </div>
+                        <div class="my-2 col-sm-12 col-md-8 m-auto">
+                            <img src="../img/rushita_img/Q8llm6.png" alt="" width="100%">
+                        </div>
+                        <div class="my-2 col-sm-12 col-md-8 m-auto">
+                            <img src="../img/rushita_img/Q8llm7.png" alt="" width="100%">
+                        </div>
+                        <p class="mt-4">Learn More:</p>
+                        <p class="k_plink1 k_intext1blue1"><a href="../rushita_Solutions/k_solutions_Developer-Resources-from-Intel-Hugging-Face.html">Intel AIML Ecosystem- HuggingFace</a></p>
+                        <p class="k_plink1 k_intext1blue1"><a href="#">Hugging Intel website</a></p>
                     </div>
                 </div>
     </section>

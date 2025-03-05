@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SYCLomatic: A New CUDA-to-SYCL Code Migration Tool</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <link href=" https://fonts.cdnfonts.com/css/intel-clear " rel="stylesheet">
+    <link rel="stylesheet" href="../css/owl.carousel.min.css">
+    <link rel="stylesheet" href="../css/yatri.css">
+    <link rel="stylesheet" href="../css/rushita.css">
+    <link rel="stylesheet" href="../css/rushita_automotive.css">
+
+    <link rel="stylesheet" href="../css/owl.theme.default.min.css">
+    <style>
+        * {
+            font-family: 'Intel Clear', sans-serif;
+        }
+
+        .dk_new_options_table {
+            border: none !important;
+            justify-content: center !important;
+            text-align: center !important;
+        }
+
+        .dk_new_options_table thead tr td {
+            margin-left: 0;
+            max-width: fit-content;
+            white-space: normal;
+            overflow: auto;
+            background: #fff;
+            padding: 1rem;
+            text-align: left;
+            border-left: .125rem solid #e2e2e2;
+            font-weight: 700 !important;
+        }
+
+        .dk_new_options_table thead tr:nth-child(even) td {
+            background-color: #f7f7f7;
+        }
+
+        .mv_intel_amx h2 {
+            font-weight: 300;
+        }
+
+        .mv_intel_amx {
+            font-size: 1.25rem;
+        }
+
+        .mv_intel_amx_bg_color {
+            background-color: #0068B5;
+        }
+
+        .mv_intel_amx_content {
+            padding-right: 200px;
+        }
+
+        .mv_intel_amx_item {
+            align-content: center;
+        }
+
+        .mv_intel_amx {
+            color: #fff;
+            padding: 1rem;
+        }
+
+        .mv_intel_amx h3 {
+            font-weight: 300;
+        }
+
+        .mv_intel_amx p {
+            margin-top: 1.5rem;
+            margin-bottom: 0rem;
+        }
+
+        .mv_intel_amx_image {
+            padding: 1rem;
+        }
+
+        .mv_intel_amx_image img {
+            width: 100%;
+            /* height: 199px; */
+        }
+
+        .mv_intel_amx_heading_text {
+            font-size: 1.2rem;
+            line-height: 1.15;
+        }
+
+        .VK_sidebar_active_link {
+            color: #262626;
+            font-weight: 700;
+        }
+
+        .VK_sidebar_active_link:hover {
+            color: #262626;
+        }
+
+        .VK_print_email_font span {
+            font-size: 1.375rem;
+        }
+
+        .VK_side_bar_postion_stickey {
+            position: sticky;
+            top: 0px;
+            z-index: 3;
+            background-color: #fff;
+        }
+
+        .VK_side_heading {
+            font-size: 26px;
+            font-weight: 400;
+        }
+
+        .VK_sidebar_dropdown P {
+            margin-left: .313rem !important;
+            margin-bottom: .313rem !important;
+        }
+
+        .VK_sidebar_dropdown details {
+            margin-left: .313rem !important;
+            margin-bottom: .313rem !important;
+        }
+
+       
+
+        .k_btn {
+            height: 80px;
+        }
+
+        .code-simple {
+            background-color: #E6E6E6;
+        }
+
+        pre {
+            white-space: pre-line !important;
+        }
+        .rwd .token.atrule, .rwd .token.attr-value, .rwd .token.keyword {
+    color: #069 !important;
+    font-weight: 700 !important;
+}
+    </style>
+</head>
+
+<body>
+    <div id="navbar"></div>
+
+    <section class="m_ai_tdrop">
+        <div>
+            <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Developers
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item m_dropActive"
+                        href="../dhruvin_developer-tools/ds_Developer-Zone.html">Overview</a></li>
+                <li><a class="dropdown-item m_dropActive"
+                        href="../rushita_Solutions/k_solutions_in_Viewall_SDF_Industrial-Automation_Control-flow-Enforcement_Technology.html">Topics
+                        & Technologies</a></li>
+                <li><a class="dropdown-item m_dropActive"
+                        href="../dhruvin_developer-tools/ds_Development-Tools.html">Tools</a></li>
+                <li><a class="dropdown-item m_dropActive"
+                        href="../rushita_Solutions/k_solutions_in_Viewall_SDF_Industrial-Automation_Hardware-Platforms.html">Hardware
+                        Platforms</a></li>
+                <li><a class="dropdown-item m_dropActive"
+                        href="../dhruvin_developer-tools/ds_Resource-Documentation-Center.html">Resources &
+                        Documentation</a></li>
+                <li><a class="dropdown-item m_dropActive" href="../dhruvin_developer-tools/ds_Learn.html">Learn</a>
+                </li>
+                <li><a class="dropdown-item m_dropActive"
+                        href="../dhruvin_developer-tools/ds_Communities-and-Events.html">Community & Events</a></li>
+                <li><a class="dropdown-item m_dropActive"
+                        href="../dhruvin_developer-tools/ds_Developer-Programs.html">Developer Programs</a></li>
+                <li><a class="dropdown-item m_dropActive" href="../dhruvin_developer-tools/ds_Get-Help.html">Get
+                        Help</a></li>
+            </ul>
+        </div>
+
+
+        <div class="m_ai_shlash">/</div>
+        <div>
+            <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Tools
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item m_dropActive" href="../Product/B20_developer_catelog.html">Software
+                        Catalog</a></li>
+                <li><a class="dropdown-item m_dropActive" href="../Product/B17_oneapi.html">oneAPI</a></li>
+                <li><a class="dropdown-item m_dropActive"
+                        href="../rushita_Solutions/k_solutions_Intel-Tiber™Edge-Platform.html">Intel® Tiber™ Edge
+                        Platform</a></li>
+                <li><a class="dropdown-item m_dropActive" href="../Product/B10_intel_Quarts.html">FPGA</a></li>
+                <li><a class="dropdown-item m_dropActive" href="../VK_developers/VK_technology_sdk.html">Intel®
+                        Active Management Technology SDK</a></li>
+                <li><a class="dropdown-item m_dropActive" href="../VK_developers/VK_intel_adviser.html">Intel®
+                        Advisor</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® AI Reference Models</a></li>
+                <li><a class="dropdown-item m_dropActive"
+                        href="../rushita_Solutions/k_solutions_Intel-Collaboration-Suite-for-WebRTC.html">Intel®
+                        Collaboration Suite for WebRTC SDK</a>
+                </li>
+                <li><a class="dropdown-item m_dropActive" href="../Product/B1_19_Intel_AICloud.html">Intel® Tiber™
+                        AI Cloud</a></li>
+                <li><a class="dropdown-item m_dropActive"
+                        href="../rushita_Solutions/k_solutions_Intel-Distribution-for-Python.html">Intel® Distribution
+                        for Python*</a></li>
+                <li><a class="dropdown-item m_dropActive"
+                        href="../rushita_Solutions/k_solutions_Intel-Distribution-for-GDB.html">Intel® Distribution for
+                        GDB*</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® DPC++ Compatibility Tool</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Dynamic Application Loader</a></li>
+                <li><a class="dropdown-item m_dropActive"
+                        href="../rushita_Solutions/k_solutions_Topics_viewall_Cloud-Insider-Program_AI-Frameworks-and-Tools.html">Frameworks</a>
+                </li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Embree</a></li>
+                <li><a class="dropdown-item m_dropActive" href="../VK_developers/VK_ai_scikit.html">Intel® Extension
+                        for Scikit-learn*</a></li>
+                <li><a class="dropdown-item m_dropActive"
+                        href="../rushita_Solutions/k_solutions_Intel-Fortran-Compiler.html">Intel® Fortran Compiler</a>
+                </li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Graphics Performance Analyzers</a></li>
+                <li><a class="dropdown-item m_dropActive"
+                        href="../rushita_Solutions/k_solutions_Intel-HE-Toolkit.html">Intel® Homomorphic Encryption
+                        Toolkit</a></li>
+                <li><a class="dropdown-item m_dropActive"
+                        href="../rushita_Solutions/k_solutions_Intel-In-Band-Manageability.html">Intel® In-Band
+                        Manageability</a></li>
+                <li><a class="dropdown-item m_dropActive"
+                        href="../rushita_Solutions/k_solutions_Intel-Cryptography-Primitives-Library.html">Intel®
+                        Integrated Performance Primitives</a></li>
+                <li><a class="dropdown-item m_dropActive" href="../rushita_Solutions/">Intel® Integrated Simulation
+                        Infrastructure with
+                        Modeling</a></li>
+                <li><a class="dropdown-item m_dropActive"
+                        href="../rushita_Solutions/k_solutions_Instruction-Set-Architecture(ISA)Extensions.html">Instruction
+                        Set Architecture (ISA) Extensions</a>
+                </li>
+                <li><a class="dropdown-item m_dropActive"
+                        href="../rushita_Solutions/k_solutions_Intel-Intelligent-Storage-Acceleration-Library.html">Intel®
+                        Intelligent Storage Acceleration Library
+                        (Intel® ISA-L)</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Modin*</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® MPI Library</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Neural Compressor</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">OpenCL™ Runtime</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Open Image Denoise</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Open Path Guiding Library (Intel® Open
+                        PGL)</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Pin</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Platform Analysis Library</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel Tools for OpenCL™ Software</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel Tools for OpenCL™ Applications</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® OpenSWR</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">OpenVINO™ Toolkit</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Open Volume Kernel Library</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Optimization for XGBoost*</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® OSPRay</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® OSPRay for Hydra*</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® OSPRay Studio</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">PyTorch* Optimizations from Intel</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">TensorFlow* Optimizations from Intel</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Rendering Toolkit</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Smart Edge Open</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Software Guard Extensions</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Secure Device Onboard</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Software Development Emulator</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Trust Domain Extensions (Intel® TDX)</a>
+                </li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Quantum SDK</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Query Processing Library (Intel® QPL)</a>
+                </li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Video Processing Library</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® VTune™ Profiler</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Resellers</a></li>
+            </ul>
+        </div>
+        <div class="m_ai_shlash">/</div>
+        <div>
+            <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                oneAPI
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item m_dropActive" href="#">Overview</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Data Parallel C++/SYCL*</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Toolkits</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Tech Articles & How-Tos</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Components</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Code Samples</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Training</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Documentation</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Support</a></li>
+            </ul>
+        </div>
+        <div class="m_ai_shlash">/</div>
+        <div>
+            <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Tech Articles & How-Tos
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item m_dropActive" href="#">Library</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">News Updates</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Webinars</a></li>
+
+            </ul>
+        </div>
+
+        <div class="m_ai_shlash">/</div>
+        <div class="m_ai_httl">SYCLomatic: A New CUDA-to-SYCL Code Migration Tool
+        </div>
+    </section>
+    <section class="k_bgblue py-5">
+        <div class="k_container11">
+
+            <div class="row  g-4">
+                <div class="col-md-10 col-sm-12 mx-0 text-white align-content-center k_tstartauto k_text2 px-0 mx-0">
+                    <h2 class="fw-lighter   mb-2 k_marketsmall">SYCLomatic: A New CUDA*-to-SYCL* Code Migration Tool
+                    </h2>
+                    <p>Contributions To This Open-Source Project Wanted!</p>
+                </div>
+            </div>
+    </section>
+    <section class="k_space k_spacenone">
+        <div class="k_container11">
+            <div class="row  g-3">
+                <div class="float-end k_bignone" style="padding-left:70%;">
+                    <div>
+                        <a href="#" class="fs-4"><i class="fa-solid fa-print mx-3 k_icon0"></i></a>
+                        <a href="#" class="fs-4"> <i class="fa-regular fa-envelope k_icon0"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-12">
+                    <div class="VK_sticky_side_bar VK_side_bar_postion_stickey">
+                        <div>
+                            <div class="VK_sidebar_dropdown">
+                                <ul class="k_listnone k_menu ">
+                                    <li class="k_text"><a href="#">SYCLomatic Open-Source Project</a></li>
+                                    <li class="k_text"><a href="#">How the SYCLomatic Tool Works</a></li>
+                                    <li class="k_text"><a href="#">Successful Code Migrations</a></li>
+                                    <li class="k_text"><a href="#">Example: Migrating CUDA Vector Addition to SYCL</a>
+                                    </li>
+                                    <li class="k_text"><a href="#">Conclusion</a></li>
+                                    <li class="k_text"><a href="#">Resources for Developers</a></li>
+                                    <li class="k_text"><a href="#">SYCLomatic Open-Source Project</a></li>
+                                    <li class="k_text"><a href="#" class="k_submenu-toggle">See Related Content</a>
+                                        <ul class="k_listnone k_submenu">
+                                            <li class="k_text"><a href="#"></a>Articles</a></li>
+                                            <li class="k_text"><a href="#"></a>On-Demand Webinars</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="p-3" style="background-color: #F7F7F7;">
+                            <p><b>
+                                    Get the Latest on All Things CODE</b></p>
+                            <p class="text-center k_btnget py-2 k_under k_btn100 my-2 kcokbtn1024" style="width: 80px;">
+                                <a href="#" class="text-white">Sign Up</a>
+                            </p>
+                        </div>
+                        <div class="mt-3">
+                            <div class="">
+                                <p id="singleauthorname" class="authorname">Kent Moffat</p>
+                                <p id="singleauthorbio" class="authorbio">
+                                <p><i>Senior Product Manager, Intel Corporation</i></p>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-8 col-md-7 col-sm-12  k_16smpx k_width75">
+                    <div class="float-end mx-3 k_smnone">
+                        <div>
+                            <a href="#" class="fs-4"><i class="fa-solid fa-print mx-3 k_icon0"></i></a>
+                            <a href="#" class="fs-4"> <i class="fa-regular fa-envelope k_icon0"></i></a>
+                        </div>
+                    </div>
+                    <div class=" k_smpaddnone k_smpaddnone1 pt-5">
+                        <p>To achieve high performance and efficient developer productivity across CPU, GPU, FPGA, and
+                            other architectures, developers need a unified programming model that enables them to select
+                            the optimal hardware for the task at hand. They need a high-level, open standard,
+                            heterogeneous programming language that’s both built on standards and extensible. It must
+                            boost developer productivity while providing consistent performance across architectures.
+                            SYCL*, a C++-based Khronos Group standard, addresses these challenges by extending C++
+                            capabilities to support multiarchitecture and disjoint memory configurations.</p>
+                        <p class="k_plink1 k_intext1blue1">To make it easier to adopt SYCL, developers may want to
+                            migrate their existing CUDA* GPU code so they don’t have to start their SYCL development
+                            from a blank page. We’ve previously published <a href="../rushita_Solutions/k_solutions_Parallel-Universe-Magazine-Issue-43.html">articles</a> on using the Intel®
+                            DPC++ Compatibility Tool to migrate CUDA to SYCL. This tool is included in the Intel® oneAPI
+                            Base Toolkit and supported by Intel technical consulting engineers.</p>
+                        <h2 class="fw-light mt-5">SYCLomatic Open-Source Project</h2>
+                        <p>In response to developer requests, the compatibility tool has now been released as an
+                            open-source project under the name “SYCLomatic.” Many organizations have successfully used
+                            the tool, and some also wanted to enhance and customize its capabilities to tune it to their
+                            needs. One of those organizations was Argonne National Laboratory.</p>
+
+                        <div class="col-xs-12 m-3">
+                            <div class="d-flex">
+                                <div>
+                                    <i><i class="fa-solid fa-quote-left k_lefticon"
+                                            style="font-size: 100px !important;"></i></i>
+                                </div>
+                                <div class="mx-3">
+                                    <p><em>CRK-HACC is an N-body cosmological simulation code actively under
+                                            development. To prepare for Aurora, the Intel DPC++ Compatibility Tool
+                                            allowed us to quickly migrate over 20 [CUDA] kernels to SYCL. Since the
+                                            current version of the code migration tool does not support migration to
+                                            functors, we wrote a simple Clang tool to refactor the resulting SYCL source
+                                            code to meet our needs. With the open-source SYCLomatic project, we plan to
+                                            integrate our previous work for a more robust solution and contribute to
+                                            making functors part of the available migration options,” said Steve
+                                            (Esteban) Rangel of HACC (Hardware/Hybrid Accelerated Cosmology Code),
+                                            Cosmological Physics & Advanced Computing (anl.gov).</em></p>
+                                </div>
+                            </div>
+                        </div>
+                        <p>Utilizing the Apache* 2.0 license with LLVM exception, the SYCLomatic project hosted on
+                            GitHub offers a community for developers to contribute and provide feedback to further open
+                            heterogeneous development across CPUs, GPUs and FPGAs. The GitHub portal includes a
+                            “contributing.md” guide describing the steps for technical contributions to the project.
+                            Developers are encouraged to use the tool and provide feedback and contributions to advance
+                            the tool’s evolution. This open-source project enables community collaboration to advance
+                            adoption of the SYCL standard, a key step in freeing developers from a single-vendor
+                            proprietary ecosystem. Improvements made to SYCLomatic will also be incorporated in the
+                            Intel DPC++ Compatibility Tool product.</p>
+
+                        <h2 class="fw-light mt-5">How the SYCLomatic Tool Works</h2>
+                        <p>SYCLomatic assists developers in porting CUDA code to SYCL, typically migrating 90-95% of
+                            CUDA code automatically to SYCL code.<sup>1</sup> To finish the process, developers complete
+                            the rest of the coding manually and then tune to the desired level of performance for the
+                            target architecture (<strong>Figure 1</strong>).</p>
+                        <div class="my-5">
+                            <img src="../img/rushita_img/CUDA.png" alt="" width="100%">
+                        </div>
+                        <p class="utility-text-1" style="text-align:center"><strong>Figure 1. The SYCLomatic
+                                workflow.</strong></p>
+
+                        <h2 class="fw-light mt-5">Successful Code Migrations</h2>
+                        <p class="k_plink1 k_intext1blue1">Research organizations and Intel customers have successfully
+                            used the Intel DPC++ Compatibility Tool, which has the same technologies as
+                            SYCLomatic,<strong> </strong>to migrate CUDA code to SYCL (or Data Parallel C++, oneAPI’s
+                            implementation of SYCL) on multiple vendors’ architectures. Examples include the University
+                            of Stockholm with <a href="#">GROMACS 2022</a>, <a href="#">Zuse Institute Berlin</a> (ZIB)
+                            with easyWave, <a href="#">Samsung Medison</a> and <a href="#">Bittware</a> (view <a
+                                href="#">oneAPI DevSummit content</a> for more examples). Multiple customers are also
+                            testing code on current and upcoming Intel® Iris® X<sup>e</sup> architecture-based GPUs,
+                            including the <a href="#">Argonne National Laboratory Aurora supercomputer</a>, <a
+                                href="#">Leibniz Supercomputing Centre</a> (LRZ), <a href="#">GE Healthcare*</a>, and
+                            others.</p>
+
+                        <h2 class="fw-light mt-5">Example: Migrating CUDA Vector Addition to SYCL</h2>
+                        <p class="k_plink1 k_intext1blue1">To provide a practical overview of the migration process,
+                            this article uses a simple implementation of vector addition in CUDA*. We take a closer look
+                            at the code that SYCLomatic generates. Mainly, we focus on the code sections where CUDA and
+                            SYCL differ the most. We’ll be using SYCLomatic and the Intel® oneAPI DPC++/C++ Compiler
+                            from the Intel® oneAPI Base Toolkit for the task at hand. To install the toolkit, follow
+                            the&nbsp;<a href="#">Intel® oneAPI installation guide</a>. Use the following workflow to
+                            migrate your existing CUDA* application to SYCL*:</p>
+                        <ol>
+                            <li>Use the <em>intercept-build</em> utility to intercept commands issued by the
+                                <em>Makefile </em>and save them in a JSON-format compilation database file. This step is
+                                optional for single-source projects.
+                            </li>
+                            <li>Migrate your CUDA code to SYCL using SYCLomatic.</li>
+                            <li class="k_plink1 k_intext1blue1">Verify the generated code for correctness and complete
+                                the migration manually if warning messages indicate this explicitly. Check the <a
+                                    href="#">Intel DPC++ Compatibility Tool Developer Guide and Reference</a> to fix the
+                                warnings.</li>
+                            <li>Compile the code using the Intel oneAPI DPC++/C++ Compiler, run the program, then check
+                                the output.</li>
+                        </ol>
+                        <p>You can then use Intel’s oneAPI analysis and debug tools, including Intel® VTune™ Profiler,
+                            to optimize your code further.</p>
+                        <p class="my-5">Let’s take vector addition as an example. Vector addition involves adding the elements from
+                            vectors A and B into vector C. A CUDA* kernel computes this as follows:</p>
+                        <div class="p-3" style="border: 1px solid #CCCCCC;">
+                            <P class="float-end fs-4"><i class="fa-solid fa-copy"></i></P>
+                            <div class="code-toolbar component" data-component="wa_skip_track" data-component-id="1">
+                                <pre
+                                    class=" language-cpp line-numbers"><div class="toolbar" style="float: right;"><div class="toolbar-item"><i class="fa-docs"></i></div></div><code class=" language-cpp">   __global__ <span class="token keyword keyword-void">void</span> <span class="token function">vector_sum</span><span class="token punctuation">(</span><span class="token keyword keyword-const">const</span> <span class="token keyword keyword-float">float</span> <span class="token operator">*</span>A<span class="token punctuation">,</span>
+                                <span class="token keyword keyword-const">const</span> <span class="token keyword keyword-float">float</span> <span class="token operator">*</span>B<span class="token punctuation">,</span>
+                                <span class="token keyword keyword-float">float</span> <span class="token operator">*</span>C<span class="token punctuation">,</span>
+                                <span class="token keyword keyword-const">const</span> <span class="token keyword keyword-int">int</span> num_elements<span class="token punctuation">)</span>
+                                <span class="token punctuation">{</span>
+                                    <span class="token keyword keyword-int">int</span> idx <span class="token operator">=</span> blockDim<span class="token punctuation">.</span>x <span class="token operator">*</span> blockIdx<span class="token punctuation">.</span>x <span class="token operator">+</span> threadIdx<span class="token punctuation">.</span>x<span class="token punctuation">;</span>
+                                    <span class="token keyword keyword-if">if</span> <span class="token punctuation">(</span>idx <span class="token operator">&lt;</span> num_elements<span class="token punctuation">)</span> C<span class="token punctuation">[</span>idx<span class="token punctuation">]</span> <span class="token operator">=</span> A<span class="token punctuation">[</span>idx<span class="token punctuation">]</span> <span class="token operator">+</span> B<span class="token punctuation">[</span>idx<span class="token punctuation">]</span><span class="token punctuation">;</span>
+                                <span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span style="height: 22.5px;"></span><span style="height: 22.5px;"></span><span style="height: 22.5px;"></span><span style="height: 22.5px;"></span><span style="height: 22.5px;"></span><span style="height: 22.5px;"></span><span style="height: 22.5px;"></span><span style="height: 22.5px;"></span></span><span class="line-numbers-sizer" style="display: none;"></span></code></pre>
+                            </div>
+
+                        </div>
+                        <p class="my-5">In CUDA, a group of threads is a thread block equivalent to a workgroup in SYCL; however, we
+                            compute thread indexing differently. In CUDA, we use built-in variables to identify a thread
+                            (See how we calculated the <em>idx</em><em> </em>variable in the code above). Once migrated
+                            to SYCL, the same kernel looks like this:</p>
+                            <div class="p-3" style="border: 1px solid #CCCCCC;">
+                                <P class="float-end fs-4"><i class="fa-solid fa-copy"></i></P>
+                                <div class="code-toolbar component" data-component="wa_skip_track" data-component-id="1"><pre class=" language-cpp line-numbers"><div class="toolbar" style="float: right;"><div class="toolbar-item"><i class="fa-docs"></i></div></div><code class=" language-cpp">   <span class="token keyword keyword-void">void</span> <span class="token function">vector_sum</span><span class="token punctuation">(</span><span class="token keyword keyword-const">const</span> <span class="token keyword keyword-float">float</span> <span class="token operator">*</span>A<span class="token punctuation">,</span>
+                                    <span class="token keyword keyword-const">const</span> <span class="token keyword keyword-float">float</span> <span class="token operator">*</span>B<span class="token punctuation">,</span>
+                                    <span class="token keyword keyword-float">float</span> <span class="token operator">*</span>C<span class="token punctuation">,</span>
+                                    <span class="token keyword keyword-const">const</span> <span class="token keyword keyword-int">int</span> num_elements<span class="token punctuation">,</span>
+                                    sycl<span class="token operator">::</span>nd_item<span class="token operator">&lt;</span><span class="token number">3</span><span class="token operator">&gt;</span> item_ct1<span class="token punctuation">)</span>
+                    <span class="token punctuation">{</span>
+                        <span class="token keyword keyword-int">int</span> idx <span class="token operator">=</span> item_ct1<span class="token punctuation">.</span><span class="token function">get_local_range</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span> <span class="token operator">*</span>
+                                  item_ct1<span class="token punctuation">.</span><span class="token function">get_group</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span> <span class="token operator">+</span>
+                                  item_ct1<span class="token punctuation">.</span><span class="token function">get_local_id</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                        <span class="token keyword keyword-if">if</span> <span class="token punctuation">(</span>idx <span class="token operator">&lt;</span> num_elements<span class="token punctuation">)</span> C<span class="token punctuation">[</span>idx<span class="token punctuation">]</span> <span class="token operator">=</span> A<span class="token punctuation">[</span>idx<span class="token punctuation">]</span> <span class="token operator">+</span> B<span class="token punctuation">[</span>idx<span class="token punctuation">]</span><span class="token punctuation">;</span>
+                 <span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span style="height: 22.5px;"></span><span style="height: 22.5px;"></span><span style="height: 22.5px;"></span><span style="height: 22.5px;"></span><span style="height: 22.5px;"></span><span style="height: 22.5px;"></span><span style="height: 22.5px;"></span><span style="height: 22.5px;"></span><span style="height: 22.5px;"></span><span style="height: 22.5px;"></span><span style="height: 22.5px;"></span></span><span class="line-numbers-sizer" style="display: none;"></span></code></pre></div>
+                 </div>
+                        <p class="my-5">Like a CUDA thread, a work item in SYCL has a global identifier in a global space or a local
+                            identifier within a workgroup. We can get these identifiers from the <em>nd_item</em><em>
+                            </em>variable. So, we no longer need to compute the global identifier explicitly. However,
+                            this demonstration shows how we do it in SYCL, so we see the similarities to CUDA’s built-in
+                            variables. Notice that <em>nd_items</em><em> </em>are three-dimensional because of the
+                            <em>dim3 </em>type in CUDA. In this context, we can make <em>nd_items</em> one-dimensional.
+                            This action maps a work item to each element in the vector. To run a CUDA kernel, we must
+                            set the block size and how many blocks we need. In SYCL, we must define the execution range.
+                            As the code below shows, we do this with an <em>nd_range</em><em> </em>variable that
+                            combines the global range and local range. The global range represents the total number of
+                            work items, while the local range is the size of a workgroup.
+                        </p>
+                        <div class="p-3" style="border: 1px solid #CCCCCC;">
+                            <P class="float-end fs-4"><i class="fa-solid fa-copy"></i></P>
+                            <div class="code-toolbar component" data-component="wa_skip_track" data-component-id="1"><pre class=" language-cpp line-numbers"><div class="toolbar" style="float: right;"><div class="toolbar-item"><i class="fa-docs"></i></div></div><code class=" language-cpp"><span class="token keyword keyword-const">const</span> <span class="token keyword keyword-int">int</span> num_elements <span class="token operator">=</span> <span class="token number">512</span><span class="token punctuation">;</span>
+                                dpct<span class="token operator">::</span>device_info prop<span class="token punctuation">;</span>
+                                dpct<span class="token operator">::</span>dev_mgr<span class="token operator">::</span><span class="token function">instance</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">get_device</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">get_device_info</span><span class="token punctuation">(</span>prop<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                                <span class="token keyword keyword-const">const</span> size_t max_block_size <span class="token operator">=</span> prop<span class="token punctuation">.</span><span class="token function">get_max_work_group_size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                                <span class="token keyword keyword-const">const</span> size_t block_size <span class="token operator">=</span> std<span class="token operator">::</span>min<span class="token operator">&lt;</span>size_t<span class="token operator">&gt;</span><span class="token punctuation">(</span>max_block_size<span class="token punctuation">,</span> num_elements<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                                
+                                range<span class="token operator">&lt;</span><span class="token number">1</span><span class="token operator">&gt;</span> <span class="token function">global_rng</span><span class="token punctuation">(</span>num_elements<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                                range<span class="token operator">&lt;</span><span class="token number">1</span><span class="token operator">&gt;</span> <span class="token function">local_rng</span><span class="token punctuation">(</span>block_size<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                                nd_range<span class="token operator">&lt;</span><span class="token number">1</span><span class="token operator">&gt;</span> <span class="token function">kernel_rng</span><span class="token punctuation">(</span>global_rng<span class="token punctuation">,</span> local_rng<span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span style="height: 22.5px;"></span><span style="height: 22.5px;"></span><span style="height: 22.5px;"></span><span style="height: 22.5px;"></span><span style="height: 22.5px;"></span><span style="height: 22.5px;"></span><span style="height: 22.5px;"></span><span style="height: 22.5px;"></span><span style="height: 22.5px;"></span></span><span class="line-numbers-sizer" style="display: none;"></span></code></pre></div>
+                                </div>
+                        <p class="my-5">To invoke our SYCL kernel, we use a <em>parallel_for</em> and the execution range to submit
+                            the kernel to a queue. Each work item invokes the kernel once. We have the same number of
+                            work items for each vector element in this context. Let’s see how this looks:</p>
+                            <div class="p-3 mb-4" style="border: 1px solid #CCCCCC;">
+                                <P class="float-end fs-4"><i class="fa-solid fa-copy"></i></P>
+                                <div class="code-toolbar component" data-component="wa_skip_track" data-component-id="1"><pre class=" language-cpp line-numbers"><div class="toolbar" style="float: right;"><div class="toolbar-item"><i class="fa-docs"></i></div></div><code class=" language-cpp">dpct<span class="token operator">::</span><span class="token function">get_default_queue</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">parallel_for</span><span class="token punctuation">(</span>kernel_rng<span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token operator">=</span><span class="token punctuation">]</span><span class="token punctuation">(</span>nd_item<span class="token operator">&lt;</span><span class="token number">1</span><span class="token operator">&gt;</span> item_ct1<span class="token punctuation">)</span>
+                                    <span class="token punctuation">{</span>
+                                        <span class="token function">vector_sum</span><span class="token punctuation">(</span>d_A<span class="token punctuation">,</span> d_B<span class="token punctuation">,</span> d_C<span class="token punctuation">,</span> num_elements<span class="token punctuation">,</span> item_ct1<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                                    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span style="height: 22.5px;"></span><span style="height: 22.5px;"></span><span style="height: 22.5px;"></span><span style="height: 22.5px;"></span></span><span class="line-numbers-sizer" style="display: none;"></span></code></pre></div>
+                                    </div>
+                        <p>So far, we’ve explored how to implement and run a kernel. However, before running the kernel,
+                            we need to think about memory allocation and copy the data to the device.</p>
+                        <ol>
+                            <li>First, we allocate memory for the operand vectors in the host and initialize them.</li>
+                            <li>Then, we do the same on the device. CUDA uses the <em>cudaMalloc</em><em> </em>routine.
+                                By default, the DPCT migrates this routine to <em>malloc_device</em>, which uses unified
+                                shared memory (USM).</li>
+                            <li>Now, we use the <em>memcpy</em> command to copy the vectors from the host memory to the
+                                device.</li>
+                        </ol>
+                        <p>After these steps, we run our kernel. Once the execution completes, we copy the result back
+                            to the host. We then check the result for correctness. Finally, we free the memory in the
+                            host and device by calling <em>free</em><em> </em>and <em>sycl::free</em>, respectively.</p>
+
+                        <h2 class="fw-light mt-5">Conclusion</h2>
+                        <p>The Khronos SYCL C++ standard is the open path for developing heterogeneous code that runs
+                            across multiple architectures. SYCLomatic, the new open-source project, provides the same
+                            CUDA to SYCL code migration benefits as the Intel DPC++ Compatibility Tool that came before
+                            it. And now, anyone can contribute to help improve and/or tune the tool to their needs. Give
+                            it a try today.</p>
+
+                        <h2 class="fw-light mt-5">Resources for Developers</h2>
+                        <ul>
+                            <li class="k_plink1 k_intext1blue1"><a href="#">Migrate from CUDA* to SYCL*</a></li>
+                            <li class="k_plink1 k_intext1blue1"><a href="#">CUDA* to SYCL* Application Catalog</a></li>
+                            <li class="k_plink1 k_intext1blue1"><a href="#">Data Parallel C++: Programming Accelerated
+                                    Systems Using C++ and SYCL</a></li>
+                            <li class="k_plink1 k_intext1blue1"><a href="#">SYCLomatic project on GitHub</a> | <a
+                                    href="#">Contributing.md guide</a></li>
+                        </ul>
+                        <p>&nbsp;</p>
+                        <ul>
+                            <li class="k_plink1 k_intext1blue1"><a href="#">Comparing programming models: CUDA and
+                                    SYCL</a></li>
+                            <li class="k_plink1 k_intext1blue1"><a href="#">Learn about SYCL</a></li>
+                            <li class="k_plink1 k_intext1blue1"><a href="#">oneAPI specification</a></li>
+                            <li class="k_plink1 k_intext1blue1"><a href="#">Intel oneAPI Toolkits</a></li>
+                            <li>
+                                <p class="k_plink1 k_intext1blue1"><a href="#">Intel® Developer Cloud</a>: Accelerate AI
+                                    development using Intel®-optimized software on the latest Intel® Xeon® processors
+                                    and GPU compute.</p>
+                            </li>
+                        </ul>
+
+                        <h2 class="fw-light mt-5">See Related Content</h2>
+                        <h3>Articles</h3>
+                        <ul>
+                            <li class="k_plink1 k_intext1blue1">Migrate CUDA to DPC++ Using Intel® DPC++ Compatibility
+                                Tool<br>
+                                <a href="#"><strong>Read</strong></a>
+                            </li>
+                            <li class="k_plink1 k_intext1blue1">CUDA, SYCL, Codeplay, and oneAPI: A Functional Test
+                                Walkthrough<br>
+                                <a href="#"><strong>Read</strong></a>
+                            </li>
+                            <li class="k_plink1 k_intext1blue1">Migrating the Jacobi Iterative Method from CUDA to
+                                SYCL<br>
+                                <a href="#"><strong>Read</strong></a>
+                            </li>
+                            <li class="k_plink1 k_intext1blue1">Free Your Software from Vendor Lock-in using SYCL and
+                                oneAPI&nbsp;<br>
+                                <strong><a href="#">Read</a></strong>
+                            </li>
+                        </ul>
+                        <h3>On-Demand Webinars<a class="inpage-nav-anchor" id="inpage-nav-6-1"></a></h3>
+                        <ul>
+                            <li class="k_plink1 k_intext1blue1">Migrate Your Existing CUDA Code to Data Parallel C++<br>
+                                <a href="#"><strong>Watch</strong></a>
+                            </li>
+                            <li class="k_plink1 k_intext1blue1">Optimize Edge Compute Performance by Migrating CUDA to
+                                DPC++<br>
+                                <a href="#"><strong>Watch</strong></a>
+                            </li>
+                            <li class="k_plink1 k_intext1blue1">SYCL* Essentials: Introduction to oneAPI Heterogeneous
+                                Computing<br>
+                                <a href="#"><strong>Watch</strong></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+    </section>
+    <section class="my-4" style="font-size: 13px;">
+        <div class="k_container11">
+            <div class="row">
+                <div>
+                    <hr class="mb-5">
+                    <p>Product and Performance Information </p>
+                    <div><sup>1</sup>Intel estimates as of September 2021. Based on measurements on a set of 70 HPC
+                        benchmarks and samples, with examples like Rodinia, SHOC, PENNANT. Results may vary.</div>
+                    <div class="k_plink1 k_intext1blue1"><sup>2</sup>Performance varies by use, configuration and other
+                        factors. Learn more at &nbsp;<a href="#">www.Intel.com/PerformanceIndex.</a>.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div id="footer"></div>
+    <script>
+        // navbar include  
+        fetch('../y_index/y_navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar').innerHTML = data;
+            });
+        // footer include 
+        fetch('../y_index/y_footer.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('footer').innerHTML = data;
+            });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
+    <script src="../js/jquery-3.7.1.js"></script>
+
+    <script src="../js/owl.carousel.min.js"></script>
+    <script src="../js/rushita.js"></script>
+</body>
+
+</html>
