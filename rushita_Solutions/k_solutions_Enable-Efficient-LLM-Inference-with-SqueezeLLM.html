@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enable Efficient LLM Inference with SqueezeLLM</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <link href=" https://fonts.cdnfonts.com/css/intel-clear " rel="stylesheet">
+    <link rel="stylesheet" href="../css/owl.carousel.min.css">
+    <link rel="stylesheet" href="../css/yatri.css">
+    <link rel="stylesheet" href="../css/rushita.css">
+    <link rel="stylesheet" href="../css/rushita_automotive.css">
+
+    <link rel="stylesheet" href="../css/owl.theme.default.min.css">
+    <style>
+        * {
+            font-family: 'Intel Clear', sans-serif;
+        }
+
+        .dk_new_options_table {
+            border: none !important;
+            justify-content: center !important;
+            text-align: center !important;
+        }
+
+        .dk_new_options_table thead tr td {
+            margin-left: 0;
+            max-width: fit-content;
+            white-space: normal;
+            overflow: auto;
+            background: #fff;
+            padding: 1rem;
+            text-align: left;
+            border-left: .125rem solid #e2e2e2;
+            font-weight: 700 !important;
+        }
+
+        .dk_new_options_table thead tr:nth-child(even) td {
+            background-color: #f7f7f7;
+        }
+
+        .mv_intel_amx h2 {
+            font-weight: 300;
+        }
+
+        .mv_intel_amx {
+            font-size: 1.25rem;
+        }
+
+        .mv_intel_amx_bg_color {
+            background-color: #0068B5;
+        }
+
+        .mv_intel_amx_content {
+            padding-right: 200px;
+        }
+
+        .mv_intel_amx_item {
+            align-content: center;
+        }
+
+        .mv_intel_amx {
+            color: #fff;
+            padding: 1rem;
+        }
+
+        .mv_intel_amx h3 {
+            font-weight: 300;
+        }
+
+        .mv_intel_amx p {
+            margin-top: 1.5rem;
+            margin-bottom: 0rem;
+        }
+
+        .mv_intel_amx_image {
+            padding: 1rem;
+        }
+
+        .mv_intel_amx_image img {
+            width: 100%;
+            /* height: 199px; */
+        }
+
+        .mv_intel_amx_heading_text {
+            font-size: 1.2rem;
+            line-height: 1.15;
+        }
+
+        .VK_sidebar_active_link {
+            color: #262626;
+            font-weight: 700;
+        }
+
+        .VK_sidebar_active_link:hover {
+            color: #262626;
+        }
+
+        .VK_print_email_font span {
+            font-size: 1.375rem;
+        }
+
+        .VK_side_bar_postion_stickey {
+            position: sticky;
+            top: 0px;
+            z-index: 3;
+            background-color: #fff;
+        }
+
+        .VK_side_heading {
+            font-size: 26px;
+            font-weight: 400;
+        }
+
+        .VK_sidebar_dropdown P {
+            margin-left: .313rem !important;
+            margin-bottom: .313rem !important;
+        }
+
+        .VK_sidebar_dropdown details {
+            margin-left: .313rem !important;
+            margin-bottom: .313rem !important;
+        }
+
+    
+
+        .k_btn {
+            height: 80px;
+        }
+
+        .code-simple {
+            background-color: #E6E6E6;
+        }
+
+        pre {
+            white-space: pre-line !important;
+        }
+        .rwd .token.selector, .rwd .token.attr-name, .rwd .token.string, .rwd .token.char, .rwd .token.builtin, .rwd .token.inserted {
+    color: blue !important;
+}
+    </style>
+</head>
+
+<body>
+    <div id="navbar"></div>
+
+    <section class="m_ai_tdrop">
+        <div>
+            <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Developers
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item m_dropActive"
+                        href="../dhruvin_developer-tools/ds_Developer-Zone.html">Overview</a></li>
+                <li><a class="dropdown-item m_dropActive"
+                        href="../rushita_Solutions/k_solutions_in_Viewall_SDF_Industrial-Automation_Control-flow-Enforcement_Technology.html">Topics
+                        & Technologies</a></li>
+                <li><a class="dropdown-item m_dropActive"
+                        href="../dhruvin_developer-tools/ds_Development-Tools.html">Tools</a></li>
+                <li><a class="dropdown-item m_dropActive"
+                        href="../rushita_Solutions/k_solutions_in_Viewall_SDF_Industrial-Automation_Hardware-Platforms.html">Hardware
+                        Platforms</a></li>
+                <li><a class="dropdown-item m_dropActive"
+                        href="../dhruvin_developer-tools/ds_Resource-Documentation-Center.html">Resources &
+                        Documentation</a></li>
+                <li><a class="dropdown-item m_dropActive" href="../dhruvin_developer-tools/ds_Learn.html">Learn</a>
+                </li>
+                <li><a class="dropdown-item m_dropActive"
+                        href="../dhruvin_developer-tools/ds_Communities-and-Events.html">Community & Events</a></li>
+                <li><a class="dropdown-item m_dropActive"
+                        href="../dhruvin_developer-tools/ds_Developer-Programs.html">Developer Programs</a></li>
+                <li><a class="dropdown-item m_dropActive" href="../dhruvin_developer-tools/ds_Get-Help.html">Get
+                        Help</a></li>
+            </ul>
+        </div>
+
+
+        <div class="m_ai_shlash">/</div>
+        <div>
+            <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Tools
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item m_dropActive" href="../Product/B20_developer_catelog.html">Software
+                        Catalog</a></li>
+                <li><a class="dropdown-item m_dropActive" href="../Product/B17_oneapi.html">oneAPI</a></li>
+                <li><a class="dropdown-item m_dropActive"
+                        href="../rushita_Solutions/k_solutions_Intel-Tiber™Edge-Platform.html">Intel® Tiber™ Edge
+                        Platform</a></li>
+                <li><a class="dropdown-item m_dropActive" href="../Product/B10_intel_Quarts.html">FPGA</a></li>
+                <li><a class="dropdown-item m_dropActive" href="../VK_developers/VK_technology_sdk.html">Intel®
+                        Active Management Technology SDK</a></li>
+                <li><a class="dropdown-item m_dropActive" href="../VK_developers/VK_intel_adviser.html">Intel®
+                        Advisor</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® AI Reference Models</a></li>
+                <li><a class="dropdown-item m_dropActive"
+                        href="../rushita_Solutions/k_solutions_Intel-Collaboration-Suite-for-WebRTC.html">Intel®
+                        Collaboration Suite for WebRTC SDK</a>
+                </li>
+                <li><a class="dropdown-item m_dropActive" href="../Product/B1_19_Intel_AICloud.html">Intel® Tiber™
+                        AI Cloud</a></li>
+                <li><a class="dropdown-item m_dropActive"
+                        href="../rushita_Solutions/k_solutions_Intel-Distribution-for-Python.html">Intel® Distribution
+                        for Python*</a></li>
+                <li><a class="dropdown-item m_dropActive"
+                        href="../rushita_Solutions/k_solutions_Intel-Distribution-for-GDB.html">Intel® Distribution for
+                        GDB*</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® DPC++ Compatibility Tool</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Dynamic Application Loader</a></li>
+                <li><a class="dropdown-item m_dropActive"
+                        href="../rushita_Solutions/k_solutions_Topics_viewall_Cloud-Insider-Program_AI-Frameworks-and-Tools.html">Frameworks</a>
+                </li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Embree</a></li>
+                <li><a class="dropdown-item m_dropActive" href="../VK_developers/VK_ai_scikit.html">Intel® Extension
+                        for Scikit-learn*</a></li>
+                <li><a class="dropdown-item m_dropActive"
+                        href="../rushita_Solutions/k_solutions_Intel-Fortran-Compiler.html">Intel® Fortran Compiler</a>
+                </li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Graphics Performance Analyzers</a></li>
+                <li><a class="dropdown-item m_dropActive"
+                        href="../rushita_Solutions/k_solutions_Intel-HE-Toolkit.html">Intel® Homomorphic Encryption
+                        Toolkit</a></li>
+                <li><a class="dropdown-item m_dropActive"
+                        href="../rushita_Solutions/k_solutions_Intel-In-Band-Manageability.html">Intel® In-Band
+                        Manageability</a></li>
+                <li><a class="dropdown-item m_dropActive"
+                        href="../rushita_Solutions/k_solutions_Intel-Cryptography-Primitives-Library.html">Intel®
+                        Integrated Performance Primitives</a></li>
+                <li><a class="dropdown-item m_dropActive" href="../rushita_Solutions/">Intel® Integrated Simulation
+                        Infrastructure with
+                        Modeling</a></li>
+                <li><a class="dropdown-item m_dropActive"
+                        href="../rushita_Solutions/k_solutions_Instruction-Set-Architecture(ISA)Extensions.html">Instruction
+                        Set Architecture (ISA) Extensions</a>
+                </li>
+                <li><a class="dropdown-item m_dropActive"
+                        href="../rushita_Solutions/k_solutions_Intel-Intelligent-Storage-Acceleration-Library.html">Intel®
+                        Intelligent Storage Acceleration Library
+                        (Intel® ISA-L)</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Modin*</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® MPI Library</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Neural Compressor</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">OpenCL™ Runtime</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Open Image Denoise</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Open Path Guiding Library (Intel® Open
+                        PGL)</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Pin</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Platform Analysis Library</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel Tools for OpenCL™ Software</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel Tools for OpenCL™ Applications</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® OpenSWR</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">OpenVINO™ Toolkit</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Open Volume Kernel Library</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Optimization for XGBoost*</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® OSPRay</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® OSPRay for Hydra*</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® OSPRay Studio</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">PyTorch* Optimizations from Intel</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">TensorFlow* Optimizations from Intel</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Rendering Toolkit</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Smart Edge Open</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Software Guard Extensions</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Secure Device Onboard</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Software Development Emulator</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Trust Domain Extensions (Intel® TDX)</a>
+                </li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Quantum SDK</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Query Processing Library (Intel® QPL)</a>
+                </li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Video Processing Library</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® VTune™ Profiler</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Resellers</a></li>
+            </ul>
+        </div>
+        <div class="m_ai_shlash">/</div>
+        <div>
+            <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                oneAPI
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item m_dropActive" href="#">Overview</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Data Parallel C++/SYCL*</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Toolkits</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Tech Articles & How-Tos</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Components</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Code Samples</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Training</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Documentation</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Support</a></li>
+            </ul>
+        </div>
+        <div class="m_ai_shlash">/</div>
+        <div>
+            <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Tech Articles & How-Tos
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item m_dropActive" href="#">Library</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">News Updates</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Webinars</a></li>
+                
+            </ul>
+        </div>
+       
+        <div class="m_ai_shlash">/</div>
+        <div class="m_ai_httl">Enable Efficient LLM Inference with SqueezeLLM
+        </div>
+    </section>
+    <section class="k_bgblue py-5">
+        <div class="k_container11">
+          
+            <div class="row  g-4">
+                <div class="col-md-10 col-sm-12 mx-0 text-white align-content-center k_tstartauto k_text2 px-0 mx-0">
+                    <h2 class="fw-lighter   mb-2 k_marketsmall">Enable Efficient LLM Inference with SqueezeLLM on Intel® Data Center GPU Max Series Using SYCLomatic for CUDA*-to-SYCL* Conversion
+                    </h2>
+            </div>
+        </div>
+    </section>
+    <section class="k_space k_spacenone">
+        <div class="k_container11">
+            <div class="row  g-3">
+                <div class="float-end k_bignone" style="padding-left:70%;">
+                    <div>
+                        <a href="#" class="fs-4"><i class="fa-solid fa-print mx-3 k_icon0"></i></a>
+                        <a href="#" class="fs-4"> <i class="fa-regular fa-envelope k_icon0"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-12">
+                    <div class="VK_sticky_side_bar VK_side_bar_postion_stickey">
+                        <div>
+                            <div class="VK_sidebar_dropdown">
+                                <ul class="k_listnone k_menu ">
+                                    <li class="k_text"><a href="#">Summary</a></li>
+                                    <li class="k_text"><a href="#">SqueezeLLM: Accurate and Efficient Low-Precision</a></li>
+                                    <li class="k_text"><a href="#">Quantization to Enable Efficient LLM Inference</a></li>
+                                    <li class="k_text"><a href="#">Challenge: Providing Cross-Platform Support for</a></li>
+                                    <li class="k_text"><a href="#">Low-Precision LLM Quantization</a></li>
+                                    <li class="k_text"><a href="#" class="k_submenu-toggle">Solution: A CUDA-to-SYCL Migration That Uses SYCLomatic to Enable Deploying Quantized LLMs on Different Platforms</a>
+                                        <ul class="k_listnone k_submenu">
+                                            <li class="k_text"><a href="#" ></a>Initial Conversion</a></li>
+                                            <li class="k_text"><a href="#" ></a>Example: Kernel Definition</a></li>
+                                            <li class="k_text"><a href="#" ></a>Example: Kernel Invocation</a></li>
+                                            <li class="k_text"><a href="#" ></a>Example: Migrated Kernel Definition</a></li>
+                                            <li class="k_text"><a href="#" ></a>Example: Migrated Kernel Invocation</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="k_text"><a href="#" class="k_submenu-toggle">Convert Python* Bindings to Enable Calling Custom Kernels</a>
+                                        <ul class="k_listnone k_submenu">
+                                            <li class="k_text"><a href="#" ></a>Original CUDA Kernel Installation in the Setup Script to Install Bindings</a></li>
+                                            <li class="k_text"><a href="#" ></a>Migrated Kernel Installation in the Setup Script to Install Bindings</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="k_text"><a href="#">Performance Analysis for Converted Kernels</a></li>
+                                    <li class="k_text"><a href="#">Conclusion</a></li>
+                                    <li class="k_text"><a href="#">More Information</a></li>
+                                    <li class="k_text"><a href="#">Acknowledgements</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                      
+                        <div class="mt-3">
+                            <p id="singleauthorbio" class="authorbio"><p><b>Coleman Hooper<br>
+                            </b>Graduate student, University of California Berkeley</p>
+                            <p><b>Kurt Keutzer<br>
+                            </b>Professor, University of California Berkeley</p>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-8 col-md-7 col-sm-12  k_16smpx k_width75">
+                    <div class="float-end mx-3 k_smnone">
+                        <div>
+                            <a href="#" class="fs-4"><i class="fa-solid fa-print mx-3 k_icon0"></i></a>
+                            <a href="#" class="fs-4"> <i class="fa-regular fa-envelope k_icon0"></i></a>
+                        </div>
+                    </div>
+                    <div class=" k_smpaddnone k_smpaddnone1 pt-5">
+                        <h2 class="fw-light mt-5">Summary</h2>
+                        <p>SqueezeLLM is a novel quantization method developed by University of California (UC) Berkeley researchers to enable efficient and accurate generative LLM inference. However, it requires custom kernel implementations and, therefore, additional implementation effort to provide cross-platform support. By taking advantage of CUDA*-to-SYCL* migration using the SYCLomatic tool from the Intel® oneAPI Base Toolkit, we quickly attained a 2.0x speedup on Intel® Data Center GPUs with 4-bit quantization without any manual tuning. This allows for cross-platform support with minimal additional engineering work required for porting the kernel implementations to different hardware back ends.</p>
+                        <h2 class="fw-light mt-5">SqueezeLLM: Accurate and Efficient Low-Precision Quantization to Enable Efficient LLM Inference</h2>
+                        <p>LLM inference is becoming a predominant workload as it enables a wide range of applications. However, LLM inference is extremely resource intensive, requiring high-end computers for serving. Additionally, while prior machine learning workloads have been primarily compute-bound, generative LLM inference is predominantly memory-bandwidth bound, as it suffers from low data reuse since output tokens must be generated sequentially. One solution to reduce memory consumption and latency is low-precision quantization, but quantizing LLMs to low precision (for example, less than 4 bits) without unacceptable accuracy loss is challenging.</p>
+                        <p class="k_plink1 k_intext1blue1">Researchers at UC Berkeley have developed <a href="#">SqueezeLLM</a> as a solution to enable efficient and accurate low-precision quantization. SqueezeLLM incorporates two crucial innovations to address challenges with prior methods. It uses sensitivity-weighted non-uniform quantization, which addresses the inefficient representation of the underlying parameter distribution due to the constraints of uniform quantization by using sensitivity to determine the best allocation for quantization codebook values, thereby preserving model accuracy. Additionally, SqueezeLLM introduces dense-and-sparse quantization, where very large outliers in LLM parameters are addressed by keeping outlier values in a compact sparse format, which enables quantization of the remaining parameters to low precision.</p>
+                        <div class="my-5 col-sm-12 col-md-6 m-auto">
+                            <img src="../img/rushita_img/Enable.png" alt="" width="100%">
+                        </div>
+                        <p>Figure 1. SqueezeLLM employs non-uniform quantization to represent the LLM weights in reduced precision optimally. The non-uniform quantization scheme accounts for the sensitivity of parameters to error and not just the magnitude of values when deriving the non-uniform codebooks, thereby providing high accuracy for low-precision quantization.</p>
+                        <div class="my-5">
+                            <img src="../img/rushita_img/Enable1.png" alt="" width="100%">
+                        </div>
+                        <p>Figure 2. SqueezeLLM uses dense-and-sparse quantization, where a small percentage of outlier values are stored separately in higher precision. This reduces the required range that needs to be represented by the remaining dense component, thereby facilitating accurate low-precision quantization for the dense matrix.</p>
+
+                        <h2 class="fw-light mt-5">Challenge: Providing Cross-Platform Support for Low-Precision LLM Quantization</h2>
+                        <p>The approach in SqueezeLLM facilitates efficient and accurate low-precision LLM quantization to reduce memory consumption during LLM inference, and also allows for significant latency reduction relative to baseline FP16 inference. Our aim was to provide cross-platform support in order to enable widespread availability of these techniques for optimizing LLM inference on platforms such as Intel Data Center GPUs. However, SqueezeLLM relies on manual custom kernel implementations to use non-uniform quantization to provide accurate representation with very few bits per parameter and to use dense-and-sparse quantization to address the outlier issue with LLM inference. Although these kernel implementations are relatively straightforward, porting and optimizing them manually for different target hardware architectures is still undesirable. We initially designed the SqueezeLLM kernels using CUDA, and given that it took weeks to implement, profile, and optimize these kernels, we anticipated a significant overhead when porting our kernels to run on Intel Data Center GPUs.</p>
+                        <p>We, therefore, wanted a solution to be able to quickly and easily port our custom CUDA kernels to SYCL in order to target Intel Data Center GPUs. This requires both being able to convert the kernels with minimal manual effort and more easily adapting the Python*-level code to call the custom kernels to avoid disrupting the rest of the inference flow. Additionally, we wanted the ported kernels to be performant so that Intel customers can fully enjoy the efficiency benefits of SqueezeLLM.</p>
+                        <p>Fortunately, SYCLomatic provides a solution to allow for cross-platform support without adding additional engineering effort. Using the CUDA-to-SYCL code migration with SYCLomatic, the efficient kernel methods can be decoupled from the target deployment platform, thereby enabling inference on different target architectures with minimal additional engineering effort. As demonstrated with our performance analysis, the kernels ported using SYCLomatic provide efficiency benefits immediately without any manual tuning, achieving 2.0x speedup on Intel Data Center GPUs when running the Llama 7B model.</p>
+
+                        <h2 class="fw-light mt-5">Solution: A CUDA-to-SYCL Migration That Uses SYCLomatic to Enable Deploying Quantized LLMs on Different Platforms</h2>
+                        <h3>Initial Conversion<a class="inpage-nav-anchor" id="inpage-nav-3-undefined"></a></h3>
+                        <p class="k_plink1 k_intext1blue1">A development environment containing the <a href="../VK_developers/VK_Intel_oneAPI_base_toolkit.html">Intel® oneAPI Base Toolkit</a> was used to run SYCLomatic conversion. The kernel was migrated to SYCL using the SYCLomatic conversion command, dpct quant_cuda_kernel.cu. We are pleased to report that the conversion script automatically generated correct kernel definitions and modified the kernel implementations wherever necessary. The following examples show how the kernel implementation and invocations were modified to SYCL-compatible code without manual intervention.</p>
+                        <h3>Example: Kernel Definition</h3>
+                        <div class="p-3" style="border: 1px solid #CCCCCC;">
+                            <P class="float-end fs-4"><i class="fa-solid fa-copy"></i></P>
+                            <div class="code-toolbar component mt-4" data-component="wa_skip_track" data-component-id="1"><pre class=" language-bash line-numbers"><div class="toolbar" style="float: right;"><div class="toolbar-item"><i class="fa-docs"></i></div></div><code class=" language-bash">VecQuant4MatMulKernelNUQPerChannel<span class="token punctuation">(</span>
+                                const float* __restrict__ vec,
+                                const int* __restrict__ mat,
+                                float* __restrict__ mul,
+                                const float* __restrict__ lookup_table,
+                                int height,
+                                int width<span class="token punctuation">)</span>
+                                <span class="token punctuation">{</span>
+                                
+                                int row <span class="token operator">=</span> BLOCKHEIGHT4 * blockIdx.x<span class="token punctuation">;</span>
+                                int col <span class="token operator">=</span> BLOCKWIDTH * blockIdx.y + threadIdx.x<span class="token punctuation">;</span>
+                                
+                                __shared__ float blockvec<span class="token punctuation">[</span>BLOCKWIDTH<span class="token punctuation">]</span><span class="token punctuation">;</span>
+                                blockvec<span class="token punctuation">[</span>threadIdx.x<span class="token punctuation">]</span> <span class="token operator">=</span> vec<span class="token punctuation">[</span><span class="token punctuation">(</span>row / BLOCKHEIGHT4<span class="token punctuation">)</span> * BLOCKWIDTH + threadIdx.x<span class="token punctuation">]</span><span class="token punctuation">;</span>
+                                <span class="token punctuation">..</span>.
+                                <span class="token punctuation">}</span> <span aria-hidden="true" class="line-numbers-rows"><span style="height: 22.5px;"></span><span style="height: 22.5px;"></span><span style="height: 22.5px;"></span><span style="height: 22.5px;"></span><span style="height: 22.5px;"></span><span style="height: 22.5px;"></span><span style="height: 22.5px;"></span><span style="height: 22.5px;"></span><span style="height: 22.5px;"></span><span style="height: 22.5px;"></span><span style="height: 22.5px;"></span><span style="height: 22.5px;"></span><span style="height: 22.5px;"></span><span style="height: 22.5px;"></span><span style="height: 22.5px;"></span><span style="height: 22.5px;"></span></span><span class="line-numbers-sizer" style="display: none;"></span></code></pre></div>
+                        </div>
+                        <h3 class="my-4">Example: Kernel Invocation<a class="inpage-nav-anchor" id="inpage-nav-3-2"></a></h3>
+                        <div class="p-3" style="border: 1px solid #CCCCCC;">
+                            <P class="float-end fs-4"><i class="fa-solid fa-copy"></i></P>
+                            <div class="code-toolbar component" data-component="wa_skip_track" data-component-id="1"><pre class=" language-bash line-numbers"><div class="toolbar" style="float: right;"><div class="toolbar-item"><i class="fa-docs"></i></div></div><code class=" language-bash"><span class="token punctuation">..</span>. dim3 blocks<span class="token punctuation">(</span>
+                                <span class="token punctuation">(</span>height + BLOCKHEIGHT4 - 1<span class="token punctuation">)</span> / BLOCKHEIGHT4,
+                                <span class="token punctuation">(</span>width + BLOCKWIDTH - 1<span class="token punctuation">)</span> / BLOCKWIDTH
+                                <span class="token punctuation">)</span><span class="token punctuation">;</span>
+                                dim3 threads<span class="token punctuation">(</span>BLOCKWIDTH<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                                
+                                VecQuant4MatMulKernelNUQPerChannel<span class="token operator">&lt;&lt;&lt;</span>blocks, threads<span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span><span class="token punctuation">(</span>
+                                vec.data_ptr<span class="token operator">&lt;</span>float<span class="token operator">&gt;</span><span class="token punctuation">(</span><span class="token punctuation">)</span>,
+                                mat.data_ptr<span class="token operator">&lt;</span>int<span class="token operator">&gt;</span><span class="token punctuation">(</span><span class="token punctuation">)</span>,
+                                mul.data_ptr<span class="token operator">&lt;</span>float<span class="token operator">&gt;</span><span class="token punctuation">(</span><span class="token punctuation">)</span>,
+                                lookup_table.data_ptr<span class="token operator">&lt;</span>float<span class="token operator">&gt;</span><span class="token punctuation">(</span><span class="token punctuation">)</span>,
+                                height, width
+                                <span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token punctuation">..</span>.<span aria-hidden="true" class="line-numbers-rows"><span style="height: 22.5px;"></span><span style="height: 22.5px;"></span><span style="height: 22.5px;"></span><span style="height: 22.5px;"></span><span style="height: 22.5px;"></span><span style="height: 22.5px;"></span><span style="height: 22.5px;"></span><span style="height: 22.5px;"></span><span style="height: 22.5px;"></span><span style="height: 22.5px;"></span><span style="height: 22.5px;"></span><span style="height: 22.5px;"></span><span style="height: 22.5px;"></span></span><span class="line-numbers-sizer" style="display: none;"></span></code></pre></div>
+
+                        </div>
+                        <h2 class="fw-light my-4">Example: Migrated Kernel Definition</h2>
+                        <div class="p-3" style="border: 1px solid #CCCCCC;">
+                            <P class="float-end fs-4"><i class="fa-solid fa-copy"></i></P>
+                            <div class="code-toolbar component" data-component="wa_skip_track" data-component-id="1"><pre class=" language-bash line-numbers"><div class="toolbar" style="float: right;"><div class="toolbar-item"><i class="fa-docs"></i></div></div><code class=" language-bash"> void VecQuant4MatMulKernelNUQPerChannel<span class="token punctuation">(</span> const float* __restrict__ vec, const int* __restrict__ mat,
+                                float* __restrict__ mul,
+                                const float* __restrict__ lookup_table,
+                                int height,
+                                int width,
+                                const sycl::nd_item<span class="token operator">&lt;</span>3<span class="token operator">&gt;</span> <span class="token operator">&amp;</span>item_ct1,
+                                float *blockvec,
+                                sycl::local_accessor<span class="token operator">&lt;</span>float, 2<span class="token operator">&gt;</span> deq2<span class="token punctuation">)</span>
+                                <span class="token punctuation">{</span>
+                                
+                                int row <span class="token operator">=</span> BLOCKHEIGHT4 * item_ct1.get_group<span class="token punctuation">(</span>2<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                                int col <span class="token operator">=</span> BLOCKWIDTH * item_ct1.get_group<span class="token punctuation">(</span>1<span class="token punctuation">)</span> + item_ct1.get_local_id<span class="token punctuation">(</span>2<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                                
+                                blockvec<span class="token punctuation">[</span>item_ct1.get_local_id<span class="token punctuation">(</span>2<span class="token punctuation">)</span><span class="token punctuation">]</span> <span class="token operator">=</span> vec<span class="token punctuation">[</span><span class="token punctuation">(</span>row / BLOCKHEIGHT4<span class="token punctuation">)</span> * BLOCKWIDTH + item_ct1.get_local_id<span class="token punctuation">(</span>2<span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+                                
+                                <span class="token punctuation">..</span>.
+                                <span class="token punctuation">}</span> <span aria-hidden="true" class="line-numbers-rows"><span style="height: 22.5px;"></span><span style="height: 22.5px;"></span><span style="height: 22.5px;"></span><span style="height: 22.5px;"></span><span style="height: 22.5px;"></span><span style="height: 22.5px;"></span><span style="height: 22.5px;"></span><span style="height: 22.5px;"></span><span style="height: 22.5px;"></span><span style="height: 22.5px;"></span><span style="height: 22.5px;"></span><span style="height: 22.5px;"></span><span style="height: 22.5px;"></span><span style="height: 22.5px;"></span><span style="height: 22.5px;"></span><span style="height: 22.5px;"></span><span style="height: 22.5px;"></span></span><span class="line-numbers-sizer" style="display: none;"></span></code></pre></div>
+                        </div>
+                        <h2 class="fw-light my-4">Example: Migrated Kernel Invocation</h2>
+                        <div class="p-3" style="border: 1px solid #CCCCCC;">
+                            <P class="float-end fs-4"><i class="fa-solid fa-copy"></i></P>
+                            <div class="code-toolbar component" data-component="wa_skip_track" data-component-id="1"><pre class=" language-bash line-numbers"><div class="toolbar" style="float: right;"><div class="toolbar-item"><i class="fa-docs"></i></div></div><code class=" language-bash"> <span class="token punctuation">..</span>. sycl::range<span class="token operator">&lt;</span>3<span class="token operator">&gt;</span> blocks4<span class="token punctuation">(</span>1, <span class="token punctuation">(</span>width4 + BLOCKWIDTH - 1<span class="token punctuation">)</span> / BLOCKWIDTH,
+                                <span class="token punctuation">(</span>height4 + BLOCKHEIGHT4 - 1<span class="token punctuation">)</span> / BLOCKHEIGHT4<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                                sycl::range<span class="token operator">&lt;</span>3<span class="token operator">&gt;</span> threads4<span class="token punctuation">(</span>1, 1, BLOCKWIDTH<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                                 q_ct1.submit<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token operator">&amp;</span><span class="token punctuation">]</span><span class="token punctuation">(</span>sycl::handler <span class="token operator">&amp;</span>cgh<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                                sycl::local_accessor<span class="token operator">&lt;</span>float, 1<span class="token operator">&gt;</span> blockvec_acc_ct1<span class="token punctuation">(</span>
+                                sycl::range<span class="token operator">&lt;</span>1<span class="token operator">&gt;</span><span class="token punctuation">(</span>128 /*BLOCKWIDTH*/<span class="token punctuation">)</span>, cgh
+                                <span class="token punctuation">)</span><span class="token punctuation">;</span>
+                                sycl::local_accessor<span class="token operator">&lt;</span>float, 2<span class="token operator">&gt;</span> deq2_acc_ct1<span class="token punctuation">(</span>
+                                sycl::range<span class="token operator">&lt;</span>2<span class="token operator">&gt;</span><span class="token punctuation">(</span>16, 128 /*BLOCKWIDTH*/<span class="token punctuation">)</span>, cgh
+                                <span class="token punctuation">)</span><span class="token punctuation">;</span>
+                                
+                                auto vec_data_ptr_float_ct0 <span class="token operator">=</span> vec.data_ptr<span class="token operator">&lt;</span>float<span class="token operator">&gt;</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                                auto mat4_data_ptr_int_ct1 <span class="token operator">=</span> mat4.data_ptr<span class="token operator">&lt;</span>int<span class="token operator">&gt;</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                                auto mul_data_ptr_float_ct2 <span class="token operator">=</span> mul.data_ptr<span class="token operator">&lt;</span>float<span class="token operator">&gt;</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                                auto lookup_table_data_ptr_float_ct3 <span class="token operator">=</span> lookup_table.data_ptr<span class="token operator">&lt;</span>float<span class="token operator">&gt;</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  cgh.parallel_for<span class="token punctuation">(</span> sycl::nd_range<span class="token operator">&lt;</span>3<span class="token operator">&gt;</span><span class="token punctuation">(</span>blocks * threads, threads<span class="token punctuation">)</span>,
+                                <span class="token punctuation">[</span><span class="token operator">=</span><span class="token punctuation">]</span><span class="token punctuation">(</span>sycl::nd_item<span class="token operator">&lt;</span>3<span class="token operator">&gt;</span> item_ct1<span class="token punctuation">)</span> <span class="token punctuation">{</span> VecQuant4MatMulKernelNUQPerChannel<span class="token punctuation">(</span>
+                                vec_data_ptr_float_ct0,
+                                mat_data_ptr_int_ct1,
+                                mul_data_ptr_float_ct2,
+                                lookup_table_data_ptr_float_ct3,
+                                height,
+                                width,
+                                item_ct1,
+                                blockvec_acc_ct1.get_pointer<span class="token punctuation">(</span><span class="token punctuation">)</span>,
+                                deq2_acc_ct1
+                                <span class="token punctuation">)</span><span class="token punctuation">;</span>
+                                <span class="token punctuation">}</span>
+                                <span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token punctuation">..</span>.<span aria-hidden="true" class="line-numbers-rows"><span style="height: 22.5px;"></span><span style="height: 22.5px;"></span><span style="height: 22.5px;"></span><span style="height: 22.5px;"></span><span style="height: 22.5px;"></span><span style="height: 22.5px;"></span><span style="height: 22.5px;"></span><span style="height: 22.5px;"></span><span style="height: 22.5px;"></span><span style="height: 22.5px;"></span><span style="height: 22.5px;"></span><span style="height: 22.5px;"></span><span style="height: 22.5px;"></span><span style="height: 22.5px;"></span><span style="height: 45px;"></span><span style="height: 22.5px;"></span><span style="height: 22.5px;"></span><span style="height: 22.5px;"></span><span style="height: 22.5px;"></span><span style="height: 22.5px;"></span><span style="height: 22.5px;"></span><span style="height: 22.5px;"></span><span style="height: 22.5px;"></span><span style="height: 22.5px;"></span><span style="height: 22.5px;"></span><span style="height: 22.5px;"></span><span style="height: 22.5px;"></span><span style="height: 22.5px;"></span></span><span class="line-numbers-sizer" style="display: none;"></span></code></pre></div>
+                        </div>
+                        <p>Without any manual effort, the baseline converted kernels were ready to go.</p>
+
+                        <h2 class="fw-light mt-5">Convert Python* Bindings to Enable Calling Custom Kernels</h2>
+                        <p>To call the kernel from the Python code, the bindings were adapted to use the PyTorch* XPU CPP extension (DPCPPExtension), which allowed the migrated kernels to be installed into the deployment environment by using a setup.py script:</p>
+                        <h3 class="my-4">Original CUDA Kernel Installation in the Setup Script to Install Bindings<a class="inpage-nav-anchor" id="inpage-nav-4-undefined"></a></h3>
+                        <div class="p-3" style="border: 1px solid #CCCCCC;">
+                            <P class="float-end fs-4"><i class="fa-solid fa-copy"></i></P>
+                            <div class="code-toolbar component" data-component="wa_skip_track" data-component-id="1"><pre class=" language-bash line-numbers"><div class="toolbar" style="float: right;"><div class="toolbar-item"><i class="fa-docs"></i></div></div><code class=" language-bash">setup<span class="token punctuation">(</span> name<span class="token operator">=</span><span class="token string">"quant_cuda"</span>,
+                                ext_modules<span class="token operator">=</span><span class="token punctuation">[</span>
+                                cpp_extension.CUDAExtension<span class="token punctuation">(</span>
+                                <span class="token string">"quant_cuda"</span>,
+                                <span class="token punctuation">[</span><span class="token string">"quant_cuda.cpp"</span>, <span class="token string">"quant_cuda_kernel.cu"</span><span class="token punctuation">]</span>
+                                <span class="token punctuation">)</span>
+                                <span class="token punctuation">]</span>,
+                                cmdclass<span class="token operator">=</span><span class="token punctuation">{</span><span class="token string">"build_ext"</span><span class="token keyword keyword-:">:</span> cpp_extension.BuildExtension<span class="token punctuation">}</span>,
+                                <span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span style="height: 22.5px;"></span><span style="height: 22.5px;"></span><span style="height: 22.5px;"></span><span style="height: 22.5px;"></span><span style="height: 22.5px;"></span><span style="height: 22.5px;"></span><span style="height: 22.5px;"></span><span style="height: 22.5px;"></span><span style="height: 22.5px;"></span></span><span class="line-numbers-sizer" style="display: none;"></span></code></pre></div>
+                        </div>
+                        <h3 class="my-4">Migrated Kernel Installation in the Setup Script to Install Bindings<a class="inpage-nav-anchor" id="inpage-nav-4-1"></a></h3>
+                        <div class="p-3" style="border: 1px solid #CCCCCC;">
+                            <P class="float-end fs-4"><i class="fa-solid fa-copy"></i></P>
+                            <div class="code-toolbar component" data-component="wa_skip_track" data-component-id="1"><pre class=" language-bash line-numbers"><div class="toolbar" style="float: right;"><div class="toolbar-item"><i class="fa-docs"></i></div></div><code class=" language-bash">setup<span class="token punctuation">(</span>
+                                name<span class="token operator">=</span><span class="token string">'quant_sycl'</span>,
+                                ext_modules<span class="token operator">=</span><span class="token punctuation">[</span>
+                                DPCPPExtension<span class="token punctuation">(</span>
+                                <span class="token string">'quant_sycl'</span>,
+                                <span class="token punctuation">[</span><span class="token string">'quant_cuda.cpp'</span>, <span class="token string">'quant_cuda_kernel.dp.cpp'</span>,<span class="token punctuation">]</span>
+                                <span class="token punctuation">)</span>
+                                <span class="token punctuation">]</span>,
+                                cmdclass<span class="token operator">=</span><span class="token punctuation">{</span>
+                                <span class="token string">'build_ext'</span><span class="token keyword keyword-:">:</span> DpcppBuildExtension
+                                <span class="token punctuation">}</span>
+                                <span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span style="height: 22.5px;"></span><span style="height: 22.5px;"></span><span style="height: 22.5px;"></span><span style="height: 22.5px;"></span><span style="height: 22.5px;"></span><span style="height: 22.5px;"></span><span style="height: 22.5px;"></span><span style="height: 22.5px;"></span><span style="height: 22.5px;"></span><span style="height: 22.5px;"></span><span style="height: 22.5px;"></span><span style="height: 22.5px;"></span></span><span class="line-numbers-sizer" style="display: none;"></span></code></pre></div>
+                        </div>
+                        <p>After installing the kernel bindings, the converted SYCL kernels could be called from PyTorch code, thereby enabling running end-to-end inference using the converted kernels. This allowed the existing SqueezeLLM Python code to be adapted more easily to support the SYCL code, with only minor modifications to call the migrated kernel bindings.</p>
+                        <h2 class="fw-light mt-5">Performance Analysis for Converted Kernels</h2>
+                        <p class="k_plink1 k_intext1blue1">The SqueezeLLM team used Intel Data Center GPUs made available through the <a href="../vaidikhtml/Start_Using_Intel_GPUs_on_Intel_Tiber_Developer_Cloud.html">Intel® Tiber™ Developer Cloud</a> to test and benchmark the ported kernel implementations. As previously mentioned, the inference kernels were converted using SYCLomatic and then adjusted to allow calling the SYCL code from the SqueezeLLM Python code. The 4-bit kernels were benchmarked on Intel Data Center GPU Max Series to assess performance improvements from low-precision quantization. This assessed whether the conversion process could produce efficient inference kernels, thereby truly enabling efficient inference for different platforms.</p>
+                        <p>Table 1. Average latency and speedup for matrix-vector multiplications when generating 128 tokens using the Llama 7B model. These results demonstrate that we can attain significant speedups with the ported kernels without any manual tuning.</p>
+                        <div class="k_table-container mb-3">
+                            <table class="k_tebal col-lg-6  col-md-6 col-sm-12  k_tspace">
+                                <thead class="k_tebal text-center">
+                                    <tr class="k_e2bg  k_tpadding1 ">
+                                        <th class=" k_cell-padding1 k_rightborder1 col-lg-4 col-md-4 col-sm-12"><b>Kernel</b>
+                                        </th>
+                                        <th class="col-lg-3 col-md-3 col-sm-12"><b>Latency (in seconds)</b>
+                                       </th>
+                                   
+                                    </tr>
+                                </thead>
+                                <tbody class="k_tebal k_14px">
+                                    <tr class="  k_rightborder1 k_tpadding1 ">
+                                        <td>
+                                            Baseline: fp16 Matrix-Vector Multiplication
+                                           </td>
+                                           <td>
+                                            2.584
+                                           </td>
+                                    </tr>
+                                    <tr class="k_tgrey k_rightborder1 k_tpadding1 ">
+                                        <td>
+                                            SqueezeLLM: 4-bit (0% sparsity)
+                                        </td>
+                                        <td>
+                                            1.296
+                                        </td>
+                                    </tr>
+                                    <tr class="  k_rightborder1 k_tpadding1 ">
+                                        <td>
+                                            <strong>Speedup</strong>
+                                           </td>
+                                           <td>
+                                            <strong>2.0x</strong>
+                                           </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            
+                        </div>
+                        <p>The 4-bit kernels were benchmarked on the Intel Data Center GPU to assess the latency benefits of low-precision quantization that are attainable across different hardware back ends without modifications to the SYCL code. As shown in Table 1, SqueezeLLM can attain a 2.0x speedup on Intel Data Center GPUs relative to baseline FP16 inference when running the Llama 7B model without any manual tuning. Comparing this speedup with the results obtained on the NVIDIA* A100 hardware platform for 4-bit inference, which attained speedups of 1.7x relative to baseline FP16 inference, the ported kernels perform comparably with the handwritten CUDA kernels that were targeted for NVIDIA GPU platforms. These results highlight that CUDA-to-SYCL migration using SYCLomatic enables comparable speedups on different architectures without inducing any overheads in terms of additional engineering effort or manual tuning required once the kernels have been converted.</p>
+                        <h2 class="fw-light mt-5">Conclusion</h2>
+                        <p>LLM inference is a core workload for emerging applications, and low-precision quantization is a key solution to improve inference efficiency. SqueezeLLM enables efficient and accurate generative LLM inference with low-precision quantization. However, it requires custom kernel implementations, making cross-platform deployment more challenging. Using the SYCLomatic migration tool enables the kernel implementation to be ported to different hardware architectures with minimal overhead. For example, 4-bit SqueezeLLM kernels that were migrated using SYCLomatic demonstrate 2.0x speedup on Intel Data Center GPUs without any manual tuning. SYCL conversion, therefore, allows for supporting different hardware platforms without significant engineering overhead and helps to democratize efficient LLM deployment.</p>
+
+                        <h2 class="fw-light mt-5">More Information</h2>
+                        <p>Make your LLM inference pipeline more efficient with SqueezeLLM as your solution for accurate low-precision quantization:</p>
+                        <ul>
+                            <li class="k_plink1 k_intext1blue1"><a href="#">Preprint</a></li>
+                            <li class="k_plink1 k_intext1blue1"><a href="#">Code</a></li>
+                        </ul>
+                        <p>Explore CUDA-to-SYCL conversion using SYCLomatic to enable efficient cross-platform deployment with custom kernel implementations:</p>
+                        <ul>
+                            <li class="k_plink1 k_intext1blue1"><a href="#">Tutorial</a></li>
+                        </ul>
+
+                        <h2 class="fw-light mt-5">Acknowledgements</h2>
+                        <p>The authors would like to acknowledge the SqueezeLLM team (Sehoon Kim, Amir Gholami, Zhen Dong, Xiuyu Li, Sheng Shen, and Michael W. Mahoney) for their contributions to developing this methodology for accurate low-precision LLM quantization. The SqueezeLLM team would like to acknowledge the gracious support from the oneAPI Center of Excellence in sponsoring our work. In particular, we would like to acknowledge Anoop Madhusoodhanan, Alexandra Yu, and Xiao Zhu for help with accessing and setting up Intel Data Center GPUs in the Intel Tiber Developer Cloud and with providing technical support to aid with porting our kernel implementations using SYCLomatic in order to provide cross-hardware platform support. Additionally, we would like to acknowledge Nikita Sanjay Shiledarbaxi for providing feedback on the draft for this story. We would also like to acknowledge gracious support from Google Cloud Platform* service, Google TPU Research Cloud team, and specifically Jonathan Caton, Jing Li, Jiayu Ye, and Professor David Patterson. Professor Keutzer's lab is sponsored by Intel Corporation and the Intel vLab team, as well as other Berkeley Artificial Intelligence Research Lab (BAIR) sponsors. Our conclusions do not necessarily reflect the position or the policy of our sponsors, and no official endorsement should be inferred.</p>
+                        
+                    </div>
+                </div>
+    </section>
+    <section class="my-4" style="font-size: 13px;">
+        <div class="k_container11">
+            <div class="row">
+                <div>
+                    <hr class="mb-5">
+                    <p>Product and Performance Information </p>
+                    <div class="k_plink1 k_intext1blue1"><sup>1</sup>Performance varies by use, configuration and other
+                        factors. Learn more at &nbsp;<a href="#">www.Intel.com/PerformanceIndex.</a>.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div id="footer"></div>
+    <script>
+        // navbar include  
+        fetch('../y_index/y_navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar').innerHTML = data;
+            });
+        // footer include 
+        fetch('../y_index/y_footer.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('footer').innerHTML = data;
+            });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
+    <script src="../js/jquery-3.7.1.js"></script>
+
+    <script src="../js/owl.carousel.min.js"></script>
+    <script src="../js/rushita.js"></script>
+</body>
+
+</html>
