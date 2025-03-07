@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Migrate Existing CUDA Code to Data Parallel C++</title>
+    <title>Intel® Tools for OpenCL™ Software Overview</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
@@ -21,44 +21,91 @@
             font-family: 'Intel Clear', sans-serif;
         }
 
-
-        .video-container {
+        .k_demo {
             position: relative;
             width: 100%;
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-        .thumbnail {
-            width: 100%;
-            height: auto;
-        }
-        .play-button {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 60px;
-            height: 60px;
-            cursor: pointer;
-        }
-        #myVideo {
-            width: 100%;
-            height: auto;
-            display: none;
+            /* max-width: 700px; */
+            margin: 0 auto 20px;
         }
 
-        .k_vlink2:hover {
-            text-decoration: underline;
+        .k_demo img {
+            width: 100%;
+            cursor: pointer;
+        }
+
+        .icon {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            font-size: 24px;
             color: white;
+            cursor: pointer;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 5px;
+            border-radius: 5px;
         }
-        .k_resoursebtn{
-            height: 80px;
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            padding-top: 100px;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.8);
         }
-        .k_framworkbg1{
-            background-image: url(../img/rushita_img/CUDABG.svg);
+
+        .modal-content {
+            margin: auto;
+            display: block;
+            width: 80%;
+            max-width: 1300px;
+        }
+
+        .caption {
+            margin: auto;
+            display: block;
+            width: 80%;
+            max-width: 700px;
+            text-align: center;
+            color: #ccc;
+            padding: 10px 0;
+        }
+
+        .close {
+            position: absolute;
+            top: 15px;
+            right: 35px;
+            color: #f1f1f1;
+            font-size: 40px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: #bbb;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        @media only screen and (max-width: 700px) {
+            .modal-content {
+                width: 100%;
+            }
+        }
+
+        .k_framworkbg1 {
+            background-image: url(../img/rushita_img/opencl.png);
             background-position: center;
             background-size: cover;
         }
+        pre[class*="language-cpp"], :not(pre) > code[class*="language-cpp"] {
+    background-color: #282A36 !important;
+}
     </style>
 </head>
 
@@ -178,67 +225,51 @@
             <div class="m_ai_shlash">/</div>
             <div>
                 <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    oneAPI
+                    Intel Tools for OpenCL™ Software
                 </button>
                 <ul class="dropdown-menu">
-                    <li><a class="dropdown-item m_dropActive" href="#">Overview</a></li>
-                    <li><a class="dropdown-item m_dropActive" href="#">Data Parallel C++/SYCL*</a></li>
-                    <li><a class="dropdown-item m_dropActive" href="#">Toolkits</a></li>
-                    <li><a class="dropdown-item m_dropActive" href="#">Tech Articles & How-Tos</a></li>
-                    <li><a class="dropdown-item m_dropActive" href="#">Components</a></li>
-                    <li><a class="dropdown-item m_dropActive" href="#">Code Samples</a></li>
-                    <li><a class="dropdown-item m_dropActive" href="#">Training</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Features</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Build</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Run</a></li>
                     <li><a class="dropdown-item m_dropActive" href="#">Documentation</a></li>
                 </ul>
             </div>
             <div class="m_ai_shlash">/</div>
-            <div>
-                <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    Tech Articles & How-Tos
-                </button>
-                <ul class="dropdown-menu">
-                    <li><a class="dropdown-item m_dropActive" href="#">Library</a></li>
-                    <li><a class="dropdown-item m_dropActive" href="#">News Updates</a></li>
-                    <li><a class="dropdown-item m_dropActive" href="#">Webinars</a></li>
-    
-                </ul>
-            </div>
-    
-            <div class="m_ai_shlash">/</div>
-            <div class="m_ai_httl">Data Parallel C++ for Cross-Architecture</div>
+            <div class="m_ai_httl">Overview</div>
         </section>
-        <section class="k_framworkbg1" style="background-color: #262626;">
+        <section class="k_framworkbg1" >
             <div class="k_container11 ">
                 <div class="row text-white text-center py-5">
                     <div class="col-sm-12">
-                        <h1 class="fw-light">Data Parallel C++: An Open Alternative for Cross-Architecture Development</h1>
+                        <h1 class="fw-light">Intel® Tools for OpenCL™ Software</h1>
+                        <h1 class="fw-light">Create, Optimize, and Deploy OpenCL Applications</h2>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="k_scrollable-menu">
+                        <ul class="d-flex  k_textwhite mb-0 px-0 k_listnone gap-4">
+                            <li class="k_active p-2 "><a href="#">Overview</a></li>
+                            <li class="p-2 k_a_whiteunder"><a href="#">Features</a></li>
+                            <li class="p-2 k_a_whiteunder"><a href="#">Build</a></li>
+                            <li class="p-2 k_a_whiteunder"><a href="#">Run</a></li>
+                            <li class="p-2 k_a_whiteunder"><a href="#">Documentation</a></li>
+                        </ul>
                     </div>
                 </div>
             </div>
         </section>
-        <section  style="background-color: #F7F7F7;">
+        <section class="my-5">
             <div class="k_container11">
-                <div class="row py-5">
-                    <div class="col-sm-12 col-md-8 align-content-center ">
-                        <div class="video-container">
-                            <img src="../img/rushita_img/CUDA9.jpg" alt="Thumbnail" class="thumbnail" width="100%">
-                            <svg class="play-button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-                                <path fill="white" d="M464 256A208 208 0 1 0 48 256a208 208 0 1 0 416 0zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256zM188.3 147.1c7.6-4.2 16.8-4.1 24.3 .5l144 88c7.1 4.4 11.5 12.1 11.5 20.5s-4.4 16.1-11.5 20.5l-144 88c-7.4 4.5-16.7 4.7-24.3 .5s-12.3-12.2-12.3-20.9l0-176c0-8.7 4.7-16.7 12.3-20.9z"></path>
-                            </svg>
-                            <video id="myVideo" controls>
-                                <source src="../img/rushita_img/video.mp4" type="video/mp4">
-                            </video>
-                    </div>     
+                <div class="row g-4">
+                    <div class="col-sm-12 col-md-6">
+                        <h2 class="fw-light mb-5">Accelerate Your Workload Across CPU, GPU, and Accelerators with OpenCL Software</h2>
+                        <p>The OpenCL API provides an open source standard for writing software programs that run across diverse multiarchitecture platforms. Using it enables the programs to benefit from parallelism and using GPU and accelerator offload. The strong support for the OpenCL software platform by the software developer ecosystem allows for application deployment scaling across a variety of configurations and use cases.</p>
+                        <p>The OpenCL API provides an open source standard for writing software programs that run across diverse multiarchitecture platforms. Using it enables the programs to benefit from parallelism and using GPU and accelerator offload. The strong support for the OpenCL software platform by the software developer ecosystem allows for application deployment scaling across a variety of configurations and use cases.</p>
+                        <p>The OpenCL standard is commonly used in industries like science, data analytics, health sciences as well as for processes such as machine learning, predictive AI, training, and inference.</p>
+                        <p>At Intel, we have actively contributed to the OpenCL software community and have continued to implement support for OpenCL software in our runtime libraries and development tools since the beginning of the OpenCL standard 15 years ago. We continue to drive toward supporting software developers who are using OpenCL software with Intel® hardware platforms staying aligned with the latest OpenCL standards discussions and specifications.</p>
                     </div>
-                    <div class="col-sm-12 col-md-4 align-content-center">
-                        <p class="k_text1"><a href="#">@IntelDevTools</a></p>
-                        
-                        <p><b>Subscribe Now</b></p>
-                        <p>Stay in the know on all things CODE. Updates are delivered to your inbox.</p>
-                        <p class="text-center k_btnlearn py-1 k_text m-auto k_under k_btn100"
-                        style="float: inline-start; width: 120px; background-color: #0068B5;">
-                        <a href="#" class="text-white">Sign Up</a>
-                        </p>
+                    <div class="col-sm-12 col-md-6 p-5" style="background-color: #00285A;">
+                        <span data-src="/content/dam/www/central-libraries/us/en/images/2022-07/isv-partner-opencl-arc-ws.png.rendition.intel.web.1920.1080.png" data-media="(min-width: 1650px)"><img alt="" src="undefined" width="100%" height="647" loading="lazy" class=""></span>
                     </div>
                 </div>
             </div>
@@ -246,78 +277,92 @@
         <section style="background-color: #F7F7F7;">
             <div class="k_container11">
                 <div class="row py-5">
-                    <div class="col-sm-12 col-md-9 ">
-                        <h1 class="fw-light">Overview</h1>
-                        <p>Data Parallelism—also known as data parallel compute—is no longer a new thing. It is the programming model for most compute-intense applications and solutions running on multicore systems, including those that promote AI, machine learning, and video processing.</p>
-                        <p>And according to Intel senior fellow Geoff Lowney, it will likely remain the dominant compute pattern for the next ten years.</p>
-                        <p>The challenge, then, is helping developers express parallelism more easily across the expanse of hardware architectures—CPUs for sure, but also GPUs, FPGAs, VPUs, IPUs, and more. You get the picture. To do this, a new language is needed.</p>
-                        <p>That language is Data Parallel C++ (DPC++), a key part of the oneAPI initiative by Intel and an extension of familiar C++ that enables new ways to express parallelism for cross-architecture development.</p>
-                        <p>In this 12-minute video, Geoff discusses DPC++ and what you need to know, including:</p>
-                        <ul>
-                            <li>Does DPC++ require separate host and kernel code?</li>
-                            <li>Why use DPC++ for heterogeneous parallelism versus adopting OpenCL™ code or CUDA*?</li>
-                            <li>Do my legacy C++ programs need updating to take advantage of DPC++? If so, how much?</li>
-                            <li>Can I combine DPC++, Threading Building Block, Parallel STL, and OpenMP* in the same program?</li>
-                            <li>Will DPC++ features eventually become part of the C++ standard?</li>
-                            </ul>
-                            <p>Watch.</p>
-                
-                        <h1 class="fw-light">Get the Software</h1>
-                        <ul>
-                            <li class="k_plink1 k_intext1blue1">Explore this initiative led by Intel, including DPC++, the download of free software toolkits, a cloud-based development sandbox, training, industry partners, and more. <a href="../Product/B17_oneapi.html">Learn More</a></li>
-                            <li class="k_plink1 k_intext1blue1">Sign up for an <a href="../y_index/y_login.html">Intel® Developer Cloud</a> account—a free development sandbox with access to the latest Intel® hardware and oneAPI software. No downloads. No configuration steps. No installations.</li>
-                            </ul>
-                            <p>&nbsp;</p>
-                            <p><b>Geoff Lowney</b><br>
-                                Intel senior fellow and chief technology officer for Compute Performance and Developer Products at Intel Corporation</p>
-                                <p>As a CTO, P. Geoffrey Lowney directs the development of compilers, runtime systems, and programming tools for Intel® platforms. Before joining Intel in 2001, Geoff was a fellow in microprocessor engineering and design at Compaq Computer Corporation, including serving as the company’s director of compiler and architecture advance development. Additionally, his career includes being a member of the Alpha microprocessor group at Digital Equipment Corporation (DEC), a consulting engineer at HP, leader of the compiler team at Miltiflow Computer, and assistant professor at the Courant Institute of Mathematical Sciences at New York University.</p>
-                                <p>Lowney earned his bachelor degree in mathematics from Yale University and his master degree and PhD in computer science, also from Yale. He has been granted nearly 20 patents in computer architecture and compiler technology, with additional patents pending.</p>
-                                <p><b>Henry Gabb</b><br>
-                                    PhD, senior principal engineer, Intel Corporation</p>
-                                    <p>Henry is part of the Intel Software and Services Group, Developer Products Division, and is the editor of The Parallel Universe, the quarterly magazine for software innovation from Intel. He first joined Intel in 2000 to help drive parallel computing inside and outside the company. He transferred to Intel Labs in 2010 to become the program manager for various research programs in academia, including the Universal Parallel Computing Research Centers at the University of California at Berkeley and the University of Illinois at Urbana-Champaign. Before joining Intel, Henry was director of scientific computing at the U.S. Army Engineer Research and Development Center MSRC, a Department of Defense high-performance computing (HPC) facility. Henry holds a bachelor of science degree in biochemistry from Louisiana State University, a master of science degree in medical informatics from the Northwestern Feinberg School of Medicine, and a PhD in molecular genetics from the University of Alabama at Birmingham School of Medicine. He has published extensively in computational life science and HPC. Henry recently rejoined Intel after spending four years working on a second PhD in information science at the University of Illinois at Urbana-Champaign, where he established an expertise in applied informatics and machine learning for problems in healthcare and chemical exposure.</p>
-
-                        
+                    <h1 class="fw-light">OpenCL Software Support at Intel</h1>
+                    <p>Intel actively enables its platforms and software stacks to support OpenCL software for both application developers and OpenCL Runtime users.</p>
+                    <p>OpenCL software is the open standard for general-purpose parallel programming of heterogeneous systems. It provides a uniform programming environment that is used to write portable code for client PCs, high-performance computing (HPC) servers, edge devices, and embedded systems that use a diverse mix of:</p>
+                    <ul>
+                        <li>Multicore CPUs</li>
+                        <li>GPUs</li>
+                        <li>FPGAs</li>
+                        <li>Other parallel processors and coprocessors</li>
+                        </ul>
+                        <p class="m-0 k_plink1 k_intext1blue1">The <a href="#">OpenCL Working Group</a> (led by the Khronos Group*) defines this standard.<br>
+                            &nbsp;</p>
+                            <p class="text-center k_btnlearn py-2 k_text k_under k_btn100"
+                            style="float: inline-start; width: 350px; background-color: #0068B5;">
+                            <a href="#" class="text-white">How Intel Supports the OpenCL Standard  <i class="fa-solid fa-arrow-right"></i></a>
+                        </p>
+                </div>
+            </div>
+        </section>
+        <section>
+            <div class="k_container11">
+                <div class="row my-5">
+                    <h1 class="fw-light">Download OpenCL Runtime</h1>
+                    <p>Supporting Linux* and Windows*</p>
+                    <div class="col-sm-12 col-md-6">
+                        <h3 class="fw-light">For Intel CPUs</h3>
+                        <p>Intel® CPU Runtime for OpenCL™ Applications</p>
+                        <p class="m-0 k_plink1 k_intext1blue1">The <a href="#">OpenCL Working Group</a> (led by the Khronos Group*) defines this standard.<br>
+                            &nbsp;</p>
+                            <p class="text-center k_btnlearn py-2 k_text k_under k_btn100"
+                            style="float: inline-start; width: 200px; background-color: #0068B5;">
+                            <a href="#" class="text-white">Get CPU Runtime <i class="fa-solid fa-arrow-right"></i></a>
+                        </p>
                     </div>
-                    <div class="col-sm-12 col-md-3">
-                        <div class="p-4" style="background-color: #FFFFFF;">
-                            <p><b>Jump to:</b></p>
-                            <p class="k_plink1 k_intext1blue1"><a href="#">You May Also Like</a><br>
-                                &nbsp;</p>
+                    <div class="col-sm-12 col-md-6">
+                        <h3 class="fw-light">For Intel GPUs</h3>
+                        <div>
+                            <button class="text-white p-2 px-3" style="background-color: #0068B5; border: none;">Get CPU Runtime <i class="fa-solid fa-arrow-right"></i></button>
                         </div>
-                        <div class="p-4 mt-4" style="background-color: #FFFFFF;">
-                           <img src="../img/rushita_img/CUDA8.webp" alt="" width="100%">
-                           <h5 class="h5 margin-btm-1x k_plink1 k_intext1blue1">  </h5>
-                            <a href="../VK_developers/VK_Intel_oneAPI_base_toolkit.html" title="">
-                                Intel® oneAPI Base Toolkit
-                            </a>
-                            <p>Develop high-performance, data-centric applications for CPUs, GPUs, and FPGAs with this core set of tools, libraries, and frameworks including LLVM*-based compilers.</p>
-                            <p>&nbsp;</p>
-                            <p class="text-center k_btnlearn py-1 k_text m-auto k_under k_btn100"
-                            style="float: inline-start; width: 120px; background-color: #0068B5;">
-                            <a href="../VK_developers/VK_Intel_oneAPI_base_toolkit_download.html" class="text-white">Get It Now</a>
-                            </p>
-                            <p class="k_plink1 k_intext1blue1 mt-5 pt-5"><a href="../darshit/dk_product/products_oneaoi_unified_runtime_celebrate_the_5th_Anniversary_of_oneAPI_with_the_2025_release_of_intel.html">See All Tools</a></p>
-                         
+                        <div>
+                            <button class="text-white p-2 px-3 mt-3" style="background-color: #0068B5; border: none;">GitHub* Source <i class="fa-solid fa-arrow-right"></i></button>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
-        <section class="mt-5">
+        <section style="background-color: #F7F7F7;">
             <div class="k_container11">
-                <div class="row">
-                    <div>
-                        <h2 class="fw-light">You May Also Like</h2>
-                        <p class=""><b>Related Videos</b></p>
-                    </div>
-                    <div class="row  ">
-                        <div class="col-sm-12 col-md-6 col-lg-4 mb-4  k_text k_gutter k_laptop">
-                            <div class="k_btn k_resoursebtn k_xeonbtn p-4 k_btngrey">
-                                <a href="#">
-                                    oneAPI: The Path to Streamlined Cross-Architecture Development
-                                </a>
+                <div class="row py-5">
+                    <div class="">
+                        <h1 class="fw-light">Your Goals with OpenCL Software</h1>
+                        <p>Do you write and implement an application that takes advantage of OpenCL APIs to add parallelism and the ability to offload to accelerators?</p>
+                        <p>Do you have an OpenCL application ready to go and need an Intel runtime to successfully deploy it on your platform?</p>
+                        <div class="row">
+                            <div class="col-sm-12 col-md-6 col-lg-3">
+                                <button class="text-white p-2 px-3 mt-3" style="background-color: #0068B5; border: none;">GitHub* Source <i class="fa-solid fa-arrow-right"></i></button>
+                            </div>
+                            <div class="col-sm-12 col-md-6 col-lg-3">
+                                <button class="text-white p-2 px-3 mt-3" style="background-color: #0068B5; border: none;">GitHub* Source <i class="fa-solid fa-arrow-right"></i></button>
                             </div>
                         </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section>
+            <div class="k_container11">
+                <div class="row my-5">
+                    <h2 class="fw-light">Additional Information</h2>
+                    <p>Find tutorials, case studies, documentation, specifications for OpenCL standard, and information on advanced topics.</p>
+                    <p class="text-center k_btnlearn py-2 k_text k_under k_btn100"
+                    style="float: inline-start; width: 200px; background-color: #0068B5;">
+                    <a href="#" class="text-white">Documentation <i class="fa-solid fa-arrow-right"></i></a>
+                </p>
+                </div>
+            </div>
+        </section>
+        <section style="background-color: #F7F7F7;">
+            <div class="k_container11">
+                <div class="row py-5">
+                    <div class="">
+                        <h1 class="fw-light">Get Help</h1>
+                        <p>Find support in these forums:</p>
+                        <ul>
+                            <li class="k_plink1 k_intext1blue1"><a href="#">OpenCL Software for CPU Questions</a></li>
+                            <li class="k_plink1 k_intext1blue1"><a href="#">OpenCL Software for GPU Questions</a></li>
+                            </ul>                        
                     </div>
                 </div>
             </div>
@@ -345,31 +390,6 @@
         });
     </script>
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const tabs = document.querySelectorAll('.k_custom-tab');
-            const tabContents = document.querySelectorAll('.k_custom-tab-content');
-
-            tabs.forEach(tab => {
-                tab.addEventListener('click', function () {
-                    // Remove active class from all tabs and tab contents
-                    tabs.forEach(t => t.classList.remove('active'));
-                    tabContents.forEach(content => content.classList.remove('active'));
-
-                    // Add active class to clicked tab
-                    this.classList.add('active');
-
-                    // Show corresponding tab content
-                    const targetId = this.getAttribute('data-target');
-                    const targetContent = document.getElementById(targetId);
-                    if (targetContent) {
-                        targetContent.classList.add('active');
-                    }
-                });
-            });
-        });
-    </script>
-    
-    <script>
         // navbar include  
         fetch('../y_index/y_navbar.html')
             .then(response => response.text())
@@ -383,7 +403,36 @@
                 document.getElementById('footer').innerHTML = data;
             });
     </script>
+    <script>
+        var modal = document.getElementById("myModal");
+        var modalImg = document.getElementById("img01");
+        var captionText = document.getElementById("caption");
+        var images = document.getElementsByClassName("myImg");
+        var icons = document.getElementsByClassName("openModal");
 
+        function openModal() {
+            var img = this.previousElementSibling || this;
+            modal.style.display = "block";
+            modalImg.src = img.src;
+            captionText.innerHTML = img.alt;
+        }
+
+        for (var i = 0; i < images.length; i++) {
+            images[i].onclick = openModal;
+            icons[i].onclick = openModal;
+        }
+
+        var span = document.getElementsByClassName("close")[0];
+        span.onclick = function () {
+            modal.style.display = "none";
+        }
+
+        window.onclick = function (event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    </script>
     <script src="../js/jquery-3.7.1.js"></script>
     <script src="../js/owl.carousel.min.js"></script>
     <script src="../js/rushita.js"></script>

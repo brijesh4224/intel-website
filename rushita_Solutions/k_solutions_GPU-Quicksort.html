@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Port CUDA to DPC++</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <link href=" https://fonts.cdnfonts.com/css/intel-clear " rel="stylesheet">
+    <link rel="stylesheet" href="../css/owl.carousel.min.css">
+    <link rel="stylesheet" href="../css/yatri.css">
+    <link rel="stylesheet" href="../css/rushita.css">
+    <link rel="stylesheet" href="../css/rushita_automotive.css">
+
+    <link rel="stylesheet" href="../css/owl.theme.default.min.css">
+    <style>
+        * {
+            font-family: 'Intel Clear', sans-serif;
+        }
+
+        .dk_new_options_table {
+            border: none !important;
+            justify-content: center !important;
+            text-align: center !important;
+        }
+
+        .dk_new_options_table thead tr td {
+            margin-left: 0;
+            max-width: fit-content;
+            white-space: normal;
+            overflow: auto;
+            background: #fff;
+            padding: 1rem;
+            text-align: left;
+            border-left: .125rem solid #e2e2e2;
+            font-weight: 700 !important;
+        }
+
+        .dk_new_options_table thead tr:nth-child(even) td {
+            background-color: #f7f7f7;
+        }
+
+        .mv_intel_amx h2 {
+            font-weight: 300;
+        }
+
+        .mv_intel_amx {
+            font-size: 1.25rem;
+        }
+
+        .mv_intel_amx_bg_color {
+            background-color: #0068B5;
+        }
+
+        .mv_intel_amx_content {
+            padding-right: 200px;
+        }
+
+        .mv_intel_amx_item {
+            align-content: center;
+        }
+
+        .mv_intel_amx {
+            color: #fff;
+            padding: 1rem;
+        }
+
+        .mv_intel_amx h3 {
+            font-weight: 300;
+        }
+
+        .mv_intel_amx p {
+            margin-top: 1.5rem;
+            margin-bottom: 0rem;
+        }
+
+        .mv_intel_amx_image {
+            padding: 1rem;
+        }
+
+        .mv_intel_amx_image img {
+            width: 100%;
+            /* height: 199px; */
+        }
+
+        .mv_intel_amx_heading_text {
+            font-size: 1.2rem;
+            line-height: 1.15;
+        }
+
+        .VK_sidebar_active_link {
+            color: #262626;
+            font-weight: 700;
+        }
+
+        .VK_sidebar_active_link:hover {
+            color: #262626;
+        }
+
+        .VK_print_email_font span {
+            font-size: 1.375rem;
+        }
+
+        .VK_side_bar_postion_stickey {
+            position: sticky;
+            top: 0px;
+            z-index: 3;
+            background-color: #fff;
+        }
+
+        .VK_side_heading {
+            font-size: 26px;
+            font-weight: 400;
+        }
+
+        .VK_sidebar_dropdown P {
+            margin-left: .313rem !important;
+            margin-bottom: .313rem !important;
+        }
+
+        .VK_sidebar_dropdown details {
+            margin-left: .313rem !important;
+            margin-bottom: .313rem !important;
+        }
+
+
+
+        .k_btn {
+            height: 80px;
+        }
+
+        .code-simple {
+            background-color: #E6E6E6;
+        }
+
+        pre {
+            white-space: pre-line !important;
+        }
+
+        .rwd .token.atrule,
+        .rwd .token.attr-value,
+        .rwd .token.keyword {
+            color: #069 !important;
+            font-weight: 700 !important;
+        }
+
+        .k_tab-container ul li a.active {
+            border-bottom: none !important;
+            background-color: #FFFFFF !important;
+            border: 2px solid #CCCCCC;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- <div id="navbar"></div> -->
+
+    <section class="m_ai_tdrop">
+        <div>
+            <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Developers
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item m_dropActive"
+                        href="../dhruvin_developer-tools/ds_Developer-Zone.html">Overview</a></li>
+                <li><a class="dropdown-item m_dropActive"
+                        href="../rushita_Solutions/k_solutions_in_Viewall_SDF_Industrial-Automation_Control-flow-Enforcement_Technology.html">Topics
+                        & Technologies</a></li>
+                <li><a class="dropdown-item m_dropActive"
+                        href="../dhruvin_developer-tools/ds_Development-Tools.html">Tools</a></li>
+                <li><a class="dropdown-item m_dropActive"
+                        href="../rushita_Solutions/k_solutions_in_Viewall_SDF_Industrial-Automation_Hardware-Platforms.html">Hardware
+                        Platforms</a></li>
+                <li><a class="dropdown-item m_dropActive"
+                        href="../dhruvin_developer-tools/ds_Resource-Documentation-Center.html">Resources &
+                        Documentation</a></li>
+                <li><a class="dropdown-item m_dropActive" href="../dhruvin_developer-tools/ds_Learn.html">Learn</a>
+                </li>
+                <li><a class="dropdown-item m_dropActive"
+                        href="../dhruvin_developer-tools/ds_Communities-and-Events.html">Community & Events</a></li>
+                <li><a class="dropdown-item m_dropActive"
+                        href="../dhruvin_developer-tools/ds_Developer-Programs.html">Developer Programs</a></li>
+                <li><a class="dropdown-item m_dropActive" href="../dhruvin_developer-tools/ds_Get-Help.html">Get
+                        Help</a></li>
+            </ul>
+        </div>
+
+
+        <div class="m_ai_shlash">/</div>
+        <div>
+            <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Tools
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item m_dropActive" href="../Product/B20_developer_catelog.html">Software
+                        Catalog</a></li>
+                <li><a class="dropdown-item m_dropActive" href="../Product/B17_oneapi.html">oneAPI</a></li>
+                <li><a class="dropdown-item m_dropActive"
+                        href="../rushita_Solutions/k_solutions_Intel-Tiber™Edge-Platform.html">Intel® Tiber™ Edge
+                        Platform</a></li>
+                <li><a class="dropdown-item m_dropActive" href="../Product/B10_intel_Quarts.html">FPGA</a></li>
+                <li><a class="dropdown-item m_dropActive" href="../VK_developers/VK_technology_sdk.html">Intel®
+                        Active Management Technology SDK</a></li>
+                <li><a class="dropdown-item m_dropActive" href="../VK_developers/VK_intel_adviser.html">Intel®
+                        Advisor</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® AI Reference Models</a></li>
+                <li><a class="dropdown-item m_dropActive"
+                        href="../rushita_Solutions/k_solutions_Intel-Collaboration-Suite-for-WebRTC.html">Intel®
+                        Collaboration Suite for WebRTC SDK</a>
+                </li>
+                <li><a class="dropdown-item m_dropActive" href="../Product/B1_19_Intel_AICloud.html">Intel® Tiber™
+                        AI Cloud</a></li>
+                <li><a class="dropdown-item m_dropActive"
+                        href="../rushita_Solutions/k_solutions_Intel-Distribution-for-Python.html">Intel® Distribution
+                        for Python*</a></li>
+                <li><a class="dropdown-item m_dropActive"
+                        href="../rushita_Solutions/k_solutions_Intel-Distribution-for-GDB.html">Intel® Distribution for
+                        GDB*</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® DPC++ Compatibility Tool</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Dynamic Application Loader</a></li>
+                <li><a class="dropdown-item m_dropActive"
+                        href="../rushita_Solutions/k_solutions_Topics_viewall_Cloud-Insider-Program_AI-Frameworks-and-Tools.html">Frameworks</a>
+                </li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Embree</a></li>
+                <li><a class="dropdown-item m_dropActive" href="../VK_developers/VK_ai_scikit.html">Intel® Extension
+                        for Scikit-learn*</a></li>
+                <li><a class="dropdown-item m_dropActive"
+                        href="../rushita_Solutions/k_solutions_Intel-Fortran-Compiler.html">Intel® Fortran Compiler</a>
+                </li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Graphics Performance Analyzers</a></li>
+                <li><a class="dropdown-item m_dropActive"
+                        href="../rushita_Solutions/k_solutions_Intel-HE-Toolkit.html">Intel® Homomorphic Encryption
+                        Toolkit</a></li>
+                <li><a class="dropdown-item m_dropActive"
+                        href="../rushita_Solutions/k_solutions_Intel-In-Band-Manageability.html">Intel® In-Band
+                        Manageability</a></li>
+                <li><a class="dropdown-item m_dropActive"
+                        href="../rushita_Solutions/k_solutions_Intel-Cryptography-Primitives-Library.html">Intel®
+                        Integrated Performance Primitives</a></li>
+                <li><a class="dropdown-item m_dropActive" href="../rushita_Solutions/">Intel® Integrated Simulation
+                        Infrastructure with
+                        Modeling</a></li>
+                <li><a class="dropdown-item m_dropActive"
+                        href="../rushita_Solutions/k_solutions_Instruction-Set-Architecture(ISA)Extensions.html">Instruction
+                        Set Architecture (ISA) Extensions</a>
+                </li>
+                <li><a class="dropdown-item m_dropActive"
+                        href="../rushita_Solutions/k_solutions_Intel-Intelligent-Storage-Acceleration-Library.html">Intel®
+                        Intelligent Storage Acceleration Library
+                        (Intel® ISA-L)</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Modin*</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® MPI Library</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Neural Compressor</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">OpenCL™ Runtime</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Open Image Denoise</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Open Path Guiding Library (Intel® Open
+                        PGL)</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Pin</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Platform Analysis Library</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel Tools for OpenCL™ Software</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel Tools for OpenCL™ Applications</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® OpenSWR</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">OpenVINO™ Toolkit</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Open Volume Kernel Library</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Optimization for XGBoost*</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® OSPRay</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® OSPRay for Hydra*</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® OSPRay Studio</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">PyTorch* Optimizations from Intel</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">TensorFlow* Optimizations from Intel</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Rendering Toolkit</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Smart Edge Open</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Software Guard Extensions</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Secure Device Onboard</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Software Development Emulator</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Trust Domain Extensions (Intel® TDX)</a>
+                </li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Quantum SDK</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Query Processing Library (Intel® QPL)</a>
+                </li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Video Processing Library</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® VTune™ Profiler</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Resellers</a></li>
+            </ul>
+        </div>
+        <div class="m_ai_shlash">/</div>
+        <div>
+            <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                oneAPI
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item m_dropActive" href="#">Overview</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Data Parallel C++/SYCL*</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Toolkits</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Tech Articles & How-Tos</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Components</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Code Samples</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Training</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Documentation</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Support</a></li>
+            </ul>
+        </div>
+        <div class="m_ai_shlash">/</div>
+        <div class=" k_text "><a href="#">Data Parallel C++/SYCL*</a>
+        </div>
+        <div class="m_ai_shlash">/</div>
+        <div class="m_ai_httl">GPU-Quicksort
+        </div>
+    </section>
+    <section class="k_bgblue py-3">
+        <div class="k_container11">
+
+            <div class="row ">
+                <div class="col-md-10 col-sm-12 mx-0 text-white align-content-center k_tstartauto k_text2 px-0 mx-0">
+                    <h3 class="fw-lighter   k_marketsmall">
+                        GPU-Quicksort
+                    </h3>
+                    <div id="hiddenContent">
+
+                        <div class="d-lg-flex gap-5 mt-3 k_dwrap">
+                            <div class="k_mdflex ">
+                                <p>ID</p>
+                                <p>672524</p>
+
+                            </div>
+
+                            <div class="k_mdflex ">
+                                <p>Updated</p>
+                                <p style="justify-content: end;">5/4/2020</p>
+                            </div>
+                            <div class="k_mdflex ">
+                                <p>Version</p>
+                                <p style="justify-content: end;">Latest</p>
+                            </div>
+                            <div class="k_mdflex ">
+                                <p>&nbsp;</p>
+                                <p style="justify-content: end;">Public</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+    </section>
+    <section class="k_space k_spacenone">
+        <div class="k_container11">
+            <div class="row  g-3">
+                <div class="float-end k_bignone" style="padding-left:70%;">
+                    <div>
+                        <a href="#" class="fs-4"><i class="fa-solid fa-print mx-3 k_icon0"></i></a>
+                        <a href="#" class="fs-4"> <i class="fa-regular fa-envelope k_icon0"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-12">
+                    <div class="VK_sticky_side_bar VK_side_bar_postion_stickey">
+                        <div>
+                            <div class="VK_sidebar_dropdown">
+                                <ul class="k_listnone k_menu ">
+                                    <li class="k_text"><a href="#">What is GPU-Quicksort?</a></li>
+                                    <li class="k_text"><a href="#">What is OpenCL™ Standard?</a></li>
+                                    <li class="k_text"><a href="#">What’s Data Parallel C++?</a></li>
+                                    <li class="k_text"><a href="#">The Starting Point: Windows* Applications from 2014</a>
+                                    </li>
+                                    <li class="k_text"><a href="#">Data Parallel C++ and OpenCL Standard</a></li>
+                                    <li class="k_text"><a href="#">Interoperability: Platform Initialization</a></li>
+                                    <li class="k_text"><a href="#">Data Parallel C++: How to Select an Intel® GPU</a></li>
+                                    <li class="k_text"><a href="#">Data Parallel C++: How to Set Kernel Arguments and Launch Kernels</a></li>
+                                    <li class="k_text"><a href="#">Data Parallel C++: How to Create Buffers and Set the Access Mode</a></li>
+                                    <li class="k_text"><a href="#">Data Parallel C++: How to Query Platform and Device Properties</a></li>
+                                    <li class="k_text"><a href="#">Port OpenCL Kernels to Data Parallel C++, Part 1: gqsort_kernel</a></li>
+                                    <li class="k_text"><a href="#">Porting OpenCL Kernels to Data Parallel C++, Part 2: lqsort_kernel</a></li>
+                                    <li class="k_text"><a href="#">The Power of Data Parallel C++: Templates and Their Caveats</a></li>
+                                    <li class="k_text"><a href="#">Back to Windows and RHEL*</a></li>
+                                    <li class="k_text"><a href="#">Conclusion</a></li>
+                                    <li class="k_text"><a href="#">Resources</a></li>
+                                    <li class="k_text"><a href="#">______</a></li>
+                                    <li class="k_text"><a href="#">You May Also Like</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-8 col-md-7 col-sm-12  k_16smpx k_width75">
+                    <div class="float-end mx-3 k_smnone">
+                        <div>
+                            <a href="#" class="fs-4"><i class="fa-solid fa-print mx-3 k_icon0"></i></a>
+                            <a href="#" class="fs-4"> <i class="fa-regular fa-envelope k_icon0"></i></a>
+                        </div>
+                    </div>
+                    <div class=" k_smpaddnone k_smpaddnone1 pt-5">
+                        <h3>How to Move from OpenCL™ Application to Data Parallel C++</h3>
+                        <div class="row">
+                            <div class="col-sm-12 col-md-6">
+                                <p>Robert Ioffe, senior exascale performance software engineer, Intel Corporation</p>
+                                <p class="k_plink1 k_intext1blue1"><a href="#">@IntelDevTools</a></p>
+                            </div>
+                            <div class="col-sm-12 col-md-6">
+                                <p><b>Get the Latest on All Things CODE</b></p>
+                                <p class="text-center k_btnlearn py-1 k_text m-auto k_under k_btn100"
+                                    style="float: inline-start; width: 120px; background-color: #0068B5;">
+                                    <a href="#" class="text-white">Sign Up</a>
+                                </p>
+                            </div>
+                        </div>
+                        <hr>
+                        <p>Data Parallel C++ (DPC++) is a heterogeneous, portable programming language based on the Khronos SYCL* standard. This single-source programming language can target an array of platforms: CPUs, integrated and discrete GPUs, FPGAs, and other accelerators. To give you an idea of what DPC++ can do, we port a non-trivial OpenCL™ application, GPU-Quicksort, to DPC++ and document the experience. The goal is to exceed the capabilities of the initial application. OpenCL C makes it hard to write generic algorithms, and it becomes clear that it’s a serious shortcoming when you try to implement algorithms—like sorting—that need to work for different data types. The original GPU-Quicksort for OpenCL was written to sort unsigned integers. This article demonstrates how to use templates with DPC++ and implement GPU-Quicksort for multiple data types. Finally, we port GPU-Quicksort to Windows* and Ubuntu* 18.04 to show DPC++ portability.</p>
+
+                        <p class="k_plink1 k_intext1blue1">It is becoming apparent that future computing systems will be heterogeneous. The <a href="#">Matrix Algebra on GPU and Multicore Architectures (MAGMA)</a> project at the University of Tennessee is developing a dense linear algebra library similar to the Linear Algebra Package (LAPACK), but for heterogeneous architectures, like current CPU and GPU systems. MAGMA stands out as an obvious candidate when you look for a sparse solver code sample that gives good performance across different architectures. This article describes the use of the Intel® DPC++ Compatibility Tool to migrate MAGMA for CUDA* code to Data Parallel C++ (DPC++).</p>
+                        <h2 class="fw-light mt-5">What is GPU-Quicksort?</h2>
+                        <p>GPU-Quicksort is a high-performance sorting algorithm designed specifically for highly parallel, multicore graphics processors. It was invented in 2009 by Daniel Cederman and Phillippas Tsigas, a student and professor respectively from the Chalmers University of Technology in Sweden. GPU-Quicksort was originally implemented in CUDA*. In 2014, Robert Ioffe reimplemented it in OpenCL 1.2 and OpenCL 2.0 to demonstrate high performance on Intel® Processor Graphics and to showcase nested parallelism and work-group scan functions in OpenCL 2.0. It was fully implemented in OpenCL drivers. Learn how to port an OpenCL 1.2 implementation of the GPU-Quicksort to DPC++ and make the implementation generic so that it can sort not just unsigned integers, but also floats and doubles.</p>
+
+                        <h2 class="fw-light mt-5">What is OpenCL™ Standard?</h2>
+                        <p>We’ll start with the OpenCL 1.2 implementation. Intel fully supports OpenCL standard, a Khronos standard for programming heterogeneous parallel systems, on various operating systems and platforms. OpenCL standard consists of:</p>
+                        <ul> 
+                            <li>The runtime</li> 
+                            <li>The host API</li> 
+                            <li>The device C-based programming language OpenCL C</li> 
+                           </ul>
+                           <p>Here lie both its power and its limitations. The power is the ability to write high-performance, portable, heterogeneous parallel applications. Its main limitation is the necessity to write and debug two separate codes—the host side and the device side. There is also lack of templates and other C++ features that the modern programmers are accustomed to, which makes writing generic libraries in OpenCL standard difficult.</p>
+
+                        <h2 class="fw-light mt-5">What’s Data Parallel C++?</h2>
+                        <p>DPC++ is an Intel implementation of Khronos SYCL* with extensions. The SYCL standard is designed to address the limitations of the OpenCL standard. DPC++ provides:</p>
+                        <ul> 
+                            <li>A single-source programming model, which consists of a single code base for both host and device programming</li> 
+                            <li>The full use of C++ templates and template metaprogramming on the device with minimal impact on performance without compromising portability</li> 
+                           </ul>
+                           <p class="k_plink1 k_intext1blue1">DPC++ lets a programmer target the CPUs, GPUs, and FPGAs while permitting accelerator-specific tuning—a definite improvement over OpenCL standard. It is also supported by Intel® Software Development Tools like <a href="../VK_developers/VK_vtune_profiler.html">Intel® VTune™ Profiler</a> and <a href="../VK_developers/VK_intel_adviser.html">Intel® Advisor</a>, as well as by GDB*. This article makes full use of DPC++, especially its template features.</p>
+
+                        <h2 class="fw-light mt-5">The Starting Point: Windows* Applications from 2014</h2>
+                        <p class="k_plink1 k_intext1blue1">We start with GPU-Quicksort for OpenCL 1.2 implementation (as described in the article <a href="#">GPU-Quicksort in OpenCL™ 2.0: Nested Parallelism and Work-Group Scan Functions</a>). The original application was written for Windows, so we port it to Ubuntu 18.04 by adding the cross-platform code to measure time and use aligned_alloc/free for aligned memory allocation/deallocation, as opposed to _alligned_malloc/_aligned_free on Windows.</p>
+                        <p>Let’s get a brief overview of GPU-Quicksort architecture. It consists of two kernels:</p>
+                        <ol> 
+                            <li>gqsort_kernel</li> 
+                            <li>lqsort_kernel</li> 
+                           </ol>
+                           <p>Written in OpenCL 1.2, these kernels are glued together by a dispatcher code, which iteratively calls gqsort_kernel until the input is split into small enough chunks, which can be fully sorted by lqsort_kernel. The application allows the user to select the following features:</p>
+                           <ul> 
+                            <li>The number of times to run sort for measurement purposes</li> 
+                            <li>The vendor and device on which to run the kernels</li> 
+                            <li>The size of the input</li> 
+                            <li>The permission to show the device details</li> 
+                           </ul>
+                           <p>The application follows a typical OpenCL architecture of supporting utilities to initialize OpenCL platforms and devices and building code for them. A separate file—with the OpenCL kernels and their supporting functions, and the main application that accepts user arguments—initializes the platform and device, builds the kernels, properly allocates memory, and creates buffers from it. The file, then binds them to the kernel arguments and launches the dispatcher function.</p>
+
+                        <h2 class="fw-light mt-5">Data Parallel C++ and OpenCL Standard Interoperability: Platform Initialization</h2>
+                        <p class="k_plink1 k_intext1blue1">First, install the <a href="#">Intel® oneAPI Base Toolkit</a>, which includes the <a href="#">Intel® oneAPI DPC++ Compiler</a>. To port to DPC++, include CL/sycl.hpp header and use the namespace cl::sycl clause (to spare the verbosity of DPC++).</p>
+                        <div class="my-5">
+                            <img src="../img/rushita_img/quickshort.jpg" alt="" width="100%">
+                        </div>
+                        <p>Now, instead of initializing a platform, a device, a context, and a queue in the OpenCL standard way, we do it in the concise DPC++ way.</p>
+                        <div class="my-5">
+                            <img src="../img/rushita_img/quickshort1.jpg" alt="" width="100%">
+                        </div>
+                        <p>We also need to retrieve the underlying OpenCL context, device, and queue, since the rest of the application is OpenCL based.</p>
+                        <div class="my-5">
+                            <img src="../img/rushita_img/quickshort2.jpg" alt="" width="100%">
+                        </div>
+                        <p>That’s our first iteration: configure and compile it with the Intel DPC++ Compiler and run it.</p>
+
+                        <h2 class="fw-light mt-5">Data Parallel C++: How to Select an Intel® GPU</h2>
+                        <p>The shortcoming of the first iteration is that it always selects the default device, which may or may not be an Intel® GPU. To specify an Intel GPU, we need to write a custom device selector.</p>
+                        <div class="my-5">
+                            <img src="../img/rushita_img/quickshort3.jpg" alt="" width="100%">
+                        </div>
+                        <p>We use intel_gpu_selector to select an Intel GPU when the user asks for it.</p>
+                        <div class="my-5">
+                            <img src="../img/rushita_img/quickshort4.jpg" alt="" width="100%">
+                        </div>
+
+                        <h2 class="fw-light mt-5">Data Parallel C++: How to Set Kernel Arguments and Launch Kernels</h2>
+                        <p>The third iteration of our code uses DPC++ to set kernel arguments and launch kernels. The program is still built, and the kernels are obtained, in the OpenCL way. We use cl::sycl::kernel objects to wrap original OpenCL kernels.</p>
+                        <div class="my-5">
+                            <img src="../img/rushita_img/quickshort5.jpg" alt="" width="100%">
+                        </div>
+                        <p>For example, we replace several clSetKernelArg methods with set_arg DPC++ methods and clEnqueueNDRange calls with parallel_for calls. The example below shows gqsort_kernel, but a lqsort_kernel upgrade is similar.</p>
+                        <div class="my-5">
+                            <img src="../img/rushita_img/quickshort6.jpg" alt="" width="100%">
+                        </div>
+                        <p>Here’s a less verbose style to set all the arguments of the kernel with one set_args call.</p>
+                        <div class="my-5">
+                            <img src="../img/rushita_img/quickshort7.jpg" alt="" width="100%">
+                        </div>
+                        <p>We can also use a less verbose version of the parallel_for.</p>
+                        <div class="my-5">
+                            <img src="../img/rushita_img/quickshort8.jpg" alt="" width="100%">
+                        </div>
+
+                        <h2 class="fw-light mt-5">Data Parallel C++: How to Create Buffers and Set the Access Mode</h2>
+                        <p>We convert OpenCL buffers to DPC++ buffers. The first two are wrapping the memory that was alignallocated and passed into the function by reference. The other three are created from an STL vector. We use the template keyword in front of the get_access member function for buffers that we pass by reference. Note the different access modes for various buffers, depending on whether we need read or write access, or both. We do not directly pass buffers as kernel arguments; we pass the accessors to them.</p>
+                        <div class="my-5">
+                            <img src="../img/rushita_img/quickshort9.jpg" alt="" width="100%">
+                        </div>
+                        <h2 class="fw-light mt-5">Data Parallel C++: How to Query Platform and Device Properties</h2>
+                        <p>In OpenCL, we used the methods clGetPlatformInfo and clGetDeviceInfo to query various platform and device properties. Now, we can use get_info&lt;&gt; methods to query the same information. For example:</p>
+                        <div class="my-5">
+                            <img src="../img/rushita_img/quickshort10.jpg" alt="" width="100%">
+                        </div>
+                        <p>or query properties with a more complex structure.</p>
+                        <div class="my-5">
+                            <img src="../img/rushita_img/quickshort11.jpg" alt="" width="100%">
+                        </div>
+                        <h2 class="fw-light mt-5">Port OpenCL Kernels to Data Parallel C++, Part 1: gqsort_kernel</h2>
+                        <p>So far, we’ve initialized the platform and the device, created the buffers and their accessors and bound them to the kernels, and launched those kernels on the device in a DPC++ way. But, we still need to create the kernels in an OpenCL way. We use OpenCL C and clBuildProgram and clCreateKernel APIs to build the program and create kernels. The OpenCL C kernels are stored in a separate file that is loaded into the program at runtime before being built. We’ll change that, starting with the gqsort_kernel, the simpler of the two kernels.</p>
+                        <p>The DPC++ way of creating kernels is via lambdas or functors. The use of lambdas for kernel creation is typically reserved for smaller kernels. When you have a more complex kernel that uses supporting functions, it’s a good idea to create a functor class. We’re going to create a gqsort_kernel_class functor and make it templated right from the start so that we can sort more than one datatype in the future.</p>
+                        <div class="my-5">
+                            <img src="../img/rushita_img/quickshort12.jpg" alt="" width="100%">
+                        </div>
+                        <p>A typical functor class has a void operator() that takes as a parameter an iteration id (in this case, a one-dimensional nd_item&lt;1&gt; id). The body of the kernel resides in the void operator(). The functor will also have a constructor that takes global and local accessors, the equivalent of global and local memory pointers, for an OpenCL kernel. The typical DPC++ functor will have a preamble, with using clauses defining various global and local accessor types. The gqsort_kernel looks as shown in the following example.</p>
+                        <div class="my-5">
+                            <img src="../img/rushita_img/quickshort13.jpg" alt="" width="100%">
+                        </div>
+                        <p>The private section of the functor contains all the global and local accessors used within the body of the void operator(). In this case, it will look as shown in the following example, with the first five accessors to global buffers and the rest to the local buffers.</p>
+                        <div class="my-5">
+                            <img src="../img/rushita_img/quickshort14.jpg" alt="" width="100%">
+                        </div>
+                        <p>gqsort_kernel is a complex kernel that uses supporting structs and two supporting functions: plus_prescan and median, which, in turn, use specialized OpenCL functions and extensively use local memory arrays and variables, local and global barriers, and atomics. All these elements must be translated into DPC++.</p>
+                        <p>Let’s start with the functions. We omit structs, since they’re trivially templatized. The plus_prescan function that is used to calculate scan sums is relatively simple. So, to bring it to DPC++, the only change needed is to make it a template function and make this sort generic.</p>
+                        <div class="my-5">
+                            <img src="../img/rushita_img/quickshort15.jpg" alt="" width="100%">
+                        </div>
+                        <p>The next function is the median function. Make it a template function and replace the OpenCL C select function with the DPC++ cl::sycl::select function. Rename the DPC++ function as median_select to differentiate it from a similar host function.</p>
+                        <div class="my-5">
+                            <img src="../img/rushita_img/quickshort16.jpg" alt="" width="100%">
+                        </div>
+                        <p>In OpenCL C, it’s possible to both create local memory variables and arrays inside the body of the kernel and pass them as kernel parameters. But in DPC++, when using functors, we pass local buffer accessors when constructing the functor. In this case, all local memory variables and arrays will hold unsigned integers, so we will create a special local_read_write_accessor type.</p>
+                        <div class="my-5">
+                            <img src="../img/rushita_img/quickshort17.jpg" alt="" width="100%">
+                        </div>
+                        <p>We declare all the local memory variables.</p>
+                        <div class="my-5">
+                            <img src="../img/rushita_img/quickshort18.jpg" alt="" width="100%">
+                        </div>
+                        <p>We then pass them as parameters, along with global buffer accessors, to the functor constructor. The resulting object is passed to the parallel_for function.</p>
+                        <div class="my-5">
+                            <img src="../img/rushita_img/quickshort19.jpg" alt="" width="100%">
+                        </div>
+                        <p>Here, DPC++ lacks simplicity compared to OpenCL C. Next, the get_group_id and get_local_id functions are changed as sown in the following example.</p>
+                        <div class="my-5">
+                            <img src="../img/rushita_img/quickshort20.jpg" alt="" width="100%">
+                        </div>
+                        <p>Local barriers go from:</p>
+                        <div class="my-5">
+                            <img src="../img/rushita_img/quickshort21.jpg" alt="" width="100%">
+                        </div>
+                        <p>to:</p>
+                        <div class="my-5">
+                            <img src="../img/rushita_img/quickshort22.jpg" alt="" width="100%">
+                        </div>
+                        <p>Global and local barriers go from:</p>
+
+                        <div class="my-5">
+                            <img src="../img/rushita_img/quickshort23.jpg" alt="" width="100%">
+                        </div>
+                        <p>to:</p>
+                        <div class="my-5">
+                            <img src="../img/rushita_img/quickshort24.jpg" alt="" width="100%">
+                        </div>
+                        <p>For atomic operations, DPC++ is not as elegant as OpenCL C. So, what was concise:</p>
+                        <div class="my-5">
+                            <img src="../img/rushita_img/quickshort25.jpg" alt="" width="100%">
+                        </div>
+                        <p>becomes unwieldy:</p>
+                        <div class="my-5">
+                            <img src="../img/rushita_img/quickshort25.jpg" alt="" width="100%">
+                        </div>
+                        <div class="p-3" style="background-color: #E6E6E6; border-left: 3px solid #FDB813;">
+                            <p class="m-0"><strong>Note</strong> the creation of cl::sycl::atomic&lt;&gt; variables prior to the use of DPC++ atomic operations, which cannot operate on the global or local memory pointers directly. So far, we have translated and templatized supporting structs and functions, converting specialized OpenCL C functions to DPC++. We’ve also created a template functor class with local accessors and translated barriers and atomics.</p>
+                        </div>
+                        <h2 class="fw-light mt-5">Porting OpenCL Kernels to Data Parallel C++, Part 2: <b> lqsort_kernel</b></h2>
+                        <p>Translation of lqsort_kernel follows the familiar patterns outlined by the translation of gqsort_kernel: create a lqsort_kernel_class functor and then translate local memory arrays and variables and barriers (no atomics here). lqsort_kernel also uses supporting functions and structs. In addition to plus_prescan and median_select used by gqsort_kernel, we have bitonic_sort and sort_threshold functions, which are considerably more complex and specific to lqsort_kernel. After translation, they become the member functions of the lqsort_kernel_class. Their signatures change due to barrier use which, in the case of DPC++, requires the iteration objects. They work on local and global memory pointers, which require special handling so the OpenCL C signature:</p>
+                        <div class="my-5">
+                            <img src="../img/rushita_img/quickshort26.jpg" alt="" width="100%">
+                        </div>
+                        <p>becomes:</p>
+                        <div class="my-5">
+                            <img src="../img/rushita_img/quickshort27.jpg" alt="" width="100%">
+                        </div>
+                        <p>and,</p>
+                        <div class="my-5">
+                            <img src="../img/rushita_img/quickshort28.jpg" alt="" width="100%">
+                        </div>
+                        <p>becomes:</p>
+                        <div class="my-5">
+                            <img src="../img/rushita_img/quickshort29.jpg" alt="" width="100%">
+                        </div>
+                        <p>These functions are translated similarly to gqsort_kernel, with the UINT_MAX macro being replaced with std::numeric_limits::max() to handle various data types in the future. When translating the lqsort_kernel, pointers to local memory (for example, local uint* sn;) are replaced with local_ptr&lt;&gt; objects (for example, local_ptr sn;). To retrieve the local pointer from the local accessor, we call the get_pointer member function of the accessor.</p>
+                        <div class="my-5">
+                            <img src="../img/rushita_img/quickshort30.jpg" alt="" width="100%">
+                        </div>
+                        <p>local_ptr&lt;&gt; and global_ptr&lt;&gt; objects work with pointer arithmetic, so what previously was d + d_offset, where d was a global pointer, becomes:</p>
+                        <div class="my-5">
+                            <img src="../img/rushita_img/quickshort31.jpg" alt="" width="100%">
+                        </div>
+                        <p>We translate local memory variables as accessors of size 1, meaning array accesses at index 0 (for example, gtsum[0]). When we complete the lqsort_kernel translation, we fully transition to DPC++, but still sort unsigned integers. We did all the prework of templatizing supporting structs and functions and the functor classes of the two main kernels—and will enjoy the benefits.</p>
+
+                        <h2 class="fw-light mt-5">The Power of Data Parallel C++: Templates and Their Caveats</h2>
+                        <p>The real power of DPC++ is the ability to use C++ templates, which enable writing generic code. We want the GPU-Quicksort to be generic and to be able to sort not only unsigned integers, but also other basic data types (for example, floats and doubles). In addition to the UINT_MAX to std::numeric_limits::max() change mentioned above, we need additional modification of the median_select function. cl::sycl::select takes a different type of the third argument, depending on the size of the type of the first two arguments, so we introduce the select_type_selector type traits class.</p>
+                        <div class="my-5">
+                            <img src="../img/rushita_img/quickshort32.jpg" alt="" width="100%">
+                        </div>
+                        <p>It allows us to convert a Boolean comparison to an appropriate type required by cl::sycl::select; median_select becomes:</p>
+                        <div class="my-5">
+                            <img src="../img/rushita_img/quickshort33.jpg" alt="" width="100%">
+                        </div>
+                        <p>To handle additional types, we need more specializations of select_type_selector. Now GPUQSort can sort floats and doubles on the GPU.</p>
+                        <p>&nbsp;</p>
+                        <h2 class="fw-light mt-5">Back to Windows and RHEL*</h2>
+                        <p>To demonstrate DPC++ portability, we port the code to Windows and RHEL*. The RHEL port is minimal. We add the Intel imf math library at link time. Windows porting is slightly more complex. Add the following definitions when compiling.</p>
+                        <div class="my-5">
+                            <img src="../img/rushita_img/quickshort34.jpg" alt="" width="100%">
+                        </div>
+                        <p>Accounting for the fact that cl::sycl::select for doubles requires unsigned long long type as the third parameter (as opposed to unsigned long on Linux*), select_type_selector for doubles becomes:</p>
+                        <div class="my-5">
+                            <img src="../img/rushita_img/quickshort35.jpg" alt="" width="100%">
+                        </div>
+                        <p>On Windows, we undefine maximum and minimum to prevent the macro definitions from colliding with std::min and std::max. That’s all there is to it. We can sort unsigned integers, floats, and doubles using Intel GPUs on Windows and two Linux flavors.</p>
+                        <p>&nbsp;</p>
+                        <h2 class="fw-light mt-5">Conclusion</h2>
+                        <p>We gradually translated GPU-Quicksort from its original OpenCL 1.2 into DPC++. At every step along the way, we had a working application. So, when you’re considering bringing DPC++ to your workflow, start small and either add on, or fully transition to DPC++ as time allows. Easily mix OpenCL and DPC++ in your code base and enjoy the benefits of both. Use legacy OpenCL kernels in their original form and enjoy the full power of C++ templates, classes, and lambdas when you’re developing new code in DPC++. Easily port code between Windows and various Linux flavors and choose which platform to develop on. You also have the full power of Intel tools to help you debug, profile, and analyze your DPC++ program.</p>
+                        <p>&nbsp;</p>
+
+                        <h2 class="fw-light mt-5">Resources</h2>
+                        <ul> 
+                            <li class="k_plink1 k_intext1blue1"><a href="#">Khronos OpenCL™</a>, the open standard for parallel programming of heterogeneous systems</li> 
+                            <li class="k_plink1 k_intext1blue1"><a href="#">Khronos SYCL</a>, C++ single-source heterogeneous programming for OpenCL™</li> 
+                            <li class="k_plink1 k_intext1blue1"><a href="#">GPU-Quicksort: A Practical Quicksort Algorithm for Graphics Processors</a> by Daniel Cederman and Philippas Tsigas</li> 
+                            <li class="k_plink1 k_intext1blue1"><a href="#">GPU-Quicksort in OpenCL™ 2.0: Nested Parallelism and Work Group Scan Functions</a> by Robert Ioffe</li> 
+                            <li class="k_plink1 k_intext1blue1"><a href="#">Intel® oneAPI Toolkits</a></li> 
+                            <li class="k_plink1 k_intext1blue1"><a href="#">Accompanying Code for This Article</a></li> 
+                           </ul>
+                           <p>&nbsp;</p>
+                           <h3 class="fw-light">______</h3>
+                           <div class="row">
+                               <div class="mt-5">
+                                   <h1 class="fw-light">You May Also Like</h1>
+                               </div>
+                               <div>
+                                   <div class="k_tab-container">
+                                       <ul class="d-flex k_text k_listnone gap-4 px-3 k_tab1 k_scrollable-menu">
+                                           <li><a href="#" data-tab="gaming">Related Videos</a></li>
+                                           <li><a href="#" data-tab="entertainment">Related Webinars
+                                        </a></li>
+                                           <li><a href="#" data-tab="entertainment1">Get the Software</a></li>
+                                       </ul>
+                                       <hr class="mb-2 k_hr">
+                                       <div class="">
+                                           <div class="k_custom-tab-content" id="gaming">
+                                               <div class="row g-3">
+                                                   <div class="col-lg-4 col-md-6 col-sm-12">
+                                                        <p>Data Parallel C++: An Open Alternative for Cross-architecture Development</p>
+                                                        <p class="k_plink1 k_intext1blue1"><a href="#">Watch</a></p>
+                                                   </div>
+                                                   <div class="col-lg-4 col-md-6 col-sm-12">
+                                                        <p>Developer-to-Developer: DPC++ Key Insights</p>
+                                                        <p class="k_plink1 k_intext1blue1"><a href="#">Watch</a></p>
+                                                    </div>
+                                                    <div class="col-lg-4 col-md-6 col-sm-12">
+                                                        <p>Overview of oneAPI DPC++ Programming</p>
+                                                        <p class="k_plink1 k_intext1blue1"><a href="#">Watch</a></p>
+                                                    </div>
+                                                    <div class="col-lg-4 col-md-6 col-sm-12">
+                                                        <p>Simplify Coding across Architectures with DPC++</p>
+                                                        <p class="k_plink1 k_intext1blue1"><a href="#">Watch</a></p>
+                                                    </div>
+                                               </div>
+                                           </div>
+                                           <div class="k_custom-tab-content" id="entertainment">
+                                            <div class="row g-3">
+                                                <div class="col-lg-4 col-md-6 col-sm-12">
+                                                     <p>DPC++ Part 1: An Introduction to the New Programming Model</p>
+                                                     <p class="k_plink1 k_intext1blue1"><a href="#">Watch</a></p>
+                                                </div>
+                                                <div class="col-lg-4 col-md-6 col-sm-12">
+                                                     <p>DPC++ Part 2: Programming Best Practices</p>
+                                                     <p class="k_plink1 k_intext1blue1"><a href="#">Watch</a></p>
+                                                 </div>
+                                                
+                                            </div>
+                                           </div>
+                                           <div class="k_custom-tab-content" id="entertainment1">
+                                            <div class="row ">
+                                                <p class="k_plink1 k_intext1blue1"><br> <strong><a href="#">Intel® oneAPI Base Toolkit</a></strong><br> Get started with this core set of tools and libraries for developing high-performance, data-centric applications across diverse architectures.</p>
+                                                <p class="text-center k_btnlearn py-1 k_text k_under k_btn100"
+                                                style="float: inline-start; width: 120px; background-color: #0068B5;">
+                                                <a href="#" class="text-white">Sign Up</a>
+                                            </p>
+                                                <p class="k_plink1 k_intext1blue1 mt-3"><a href="#">See All Tools</a></p>
+                                            </div>
+                                           </div>
+                                       </div>
+                                   </div>
+                                
+                               </div>
+                           </div>
+                        
+                    </div>
+                </div>
+
+    </section>
+    <section class="my-4" style="font-size: 13px;">
+        <div class="k_container11">
+            <div class="row">
+                <div>
+                    <hr class="mb-5">
+                    <p>Product and Performance Information </p>
+                   
+                    <div class="k_plink1 k_intext1blue1"><sup>1</sup>Performance varies by use, configuration and other
+                        factors. Learn more at &nbsp;<a href="#">www.Intel.com/PerformanceIndex.</a>.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div id="footer"></div>
+    <script>
+        // navbar include  
+        fetch('../y_index/y_navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar').innerHTML = data;
+            });
+        // footer include 
+        fetch('../y_index/y_footer.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('footer').innerHTML = data;
+            });
+    </script>
+     <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const tabLinks = document.querySelectorAll('.k_tab-container ul li a');
+            const tabContents = document.querySelectorAll('.k_custom-tab-content');
+
+            function setActiveTab(tabId) {
+                tabContents.forEach(content => {
+                    content.classList.remove('active');
+                });
+                tabLinks.forEach(link => {
+                    link.classList.remove('active');
+                });
+
+                document.getElementById(tabId).classList.add('active');
+                document.querySelector(`[data-tab="${tabId}"]`).classList.add('active');
+            }
+
+            tabLinks.forEach(link => {
+                link.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const tabId = this.getAttribute('data-tab');
+                    setActiveTab(tabId);
+                });
+            });
+
+            setActiveTab('gaming');
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const tabLinks = document.querySelectorAll('.k_tab-container ul li a');
+            const tabContents = document.querySelectorAll('.k_custom-tab-content');
+
+            function setActiveTab(tabId) {
+                tabContents.forEach(content => {
+                    content.classList.remove('active');
+                });
+                tabLinks.forEach(link => {
+                    link.classList.remove('active');
+                });
+
+                document.getElementById(tabId).classList.add('active');
+                document.querySelector(`[data-tab="${tabId}"]`).classList.add('active');
+            }
+
+            tabLinks.forEach(link => {
+                link.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const tabId = this.getAttribute('data-tab');
+                    setActiveTab(tabId);
+                });
+            });
+
+            setActiveTab('gaming');
+        });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
+    <script src="../js/jquery-3.7.1.js"></script>
+
+    <script src="../js/owl.carousel.min.js"></script>
+    <script src="../js/rushita.js"></script>
+</body>
+
+</html>
