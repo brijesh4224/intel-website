@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scale C++ Apps with oneTBB Concurrent Containers</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <link href=" https://fonts.cdnfonts.com/css/intel-clear " rel="stylesheet">
+    <link rel="stylesheet" href="../css/owl.carousel.min.css">
+
+    <link rel="stylesheet" href="../css/rushita.css">
+    <link rel="stylesheet" href="../css/rushita_automotive.css">
+    <link rel="stylesheet" href="../css/yatri.css">
+
+    <link rel="stylesheet" href="../css/owl.theme.default.min.css">
+    <style>
+        * {
+            font-family: 'Intel Clear', sans-serif;
+        }
+
+
+        .video-container {
+            position: relative;
+            width: 100%;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        .thumbnail {
+            width: 100%;
+            height: auto;
+        }
+        .play-button {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 60px;
+            height: 60px;
+            cursor: pointer;
+        }
+        #myVideo {
+            width: 100%;
+            height: auto;
+            display: none;
+        }
+
+        .k_vlink2:hover {
+            text-decoration: underline;
+            color: white;
+        }
+        .k_resoursebtn{
+            height: 80px;
+        }
+        .k_framworkbg1{
+            background-image: url(../img/rushita_img/CUDABG.svg);
+            background-position: center;
+            background-size: cover;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="navbar"></div>
+    <div>
+        <section class="m_ai_tdrop">
+            <div>
+                <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Developers
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item m_dropActive"
+                            href="../dhruvin_developer-tools/ds_Developer-Zone.html">Overview</a></li>
+                    <li><a class="dropdown-item m_dropActive"
+                            href="../rushita_Solutions/k_solutions_in_Viewall_SDF_Industrial-Automation_Control-flow-Enforcement_Technology.html">Topics
+                            & Technologies</a></li>
+                    <li><a class="dropdown-item m_dropActive"
+                            href="../dhruvin_developer-tools/ds_Development-Tools.html">Tools</a></li>
+                    <li><a class="dropdown-item m_dropActive"
+                            href="../rushita_Solutions/k_solutions_in_Viewall_SDF_Industrial-Automation_Hardware-Platforms.html">Hardware
+                            Platforms</a></li>
+                    <li><a class="dropdown-item m_dropActive"
+                            href="../dhruvin_developer-tools/ds_Resource-Documentation-Center.html">Resources &
+                            Documentation</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="../dhruvin_developer-tools/ds_Learn.html">Learn</a>
+                    </li>
+                    <li><a class="dropdown-item m_dropActive"
+                            href="../dhruvin_developer-tools/ds_Communities-and-Events.html">Community & Events</a></li>
+                    <li><a class="dropdown-item m_dropActive"
+                            href="../dhruvin_developer-tools/ds_Developer-Programs.html">Developer Programs</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="../dhruvin_developer-tools/ds_Get-Help.html">Get
+                            Help</a></li>
+                </ul>
+            </div>
+
+
+            <div class="m_ai_shlash">/</div>
+            <div>
+                <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Tools
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item m_dropActive" href="../Product/B20_developer_catelog.html">Software
+                            Catalog</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="../Product/B17_oneapi.html">oneAPI</a></li>
+                    <li><a class="dropdown-item m_dropActive"
+                            href="../rushita_Solutions/k_solutions_Intel-Tiber™Edge-Platform.html">Intel® Tiber™ Edge
+                            Platform</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="../Product/B10_intel_Quarts.html">FPGA</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="../VK_developers/VK_technology_sdk.html">Intel®
+                            Active Management Technology SDK</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="../VK_developers/VK_intel_adviser.html">Intel®
+                            Advisor</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Intel® AI Reference Models</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Intel® AI Reference Models</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Intel® Collaboration Suite for WebRTC SDK</a>
+                    </li>
+                    <li><a class="dropdown-item m_dropActive" href="../Product/B1_19_Intel_AICloud.html">Intel® Tiber™
+                            AI Cloud</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Intel® Distribution for Python*</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Intel® Distribution for GDB*</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Intel® DPC++ Compatibility Tool</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Intel® Dynamic Application Loader</a></li>
+                    <li><a class="dropdown-item m_dropActive"
+                            href="../rushita_Solutions/k_solutions_Topics_viewall_Cloud-Insider-Program_AI-Frameworks-and-Tools.html">Frameworks</a>
+                    </li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Intel® Embree</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="../VK_developers/VK_ai_scikit.html">Intel® Extension
+                            for Scikit-learn*</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Intel® Fortran Compiler</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Intel® Graphics Performance Analyzers</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Intel® Homomorphic Encryption Toolkit</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Intel® In-Band Manageability</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Intel® Integrated Performance Primitives</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Intel® Integrated Simulation Infrastructure with
+                            Modeling</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Instruction Set Architecture (ISA) Extensions</a>
+                    </li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Intel® Intelligent Storage Acceleration Library
+                            (Intel® ISA-L)</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Modin*</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Intel® MPI Library</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Intel® Neural Compressor</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">OpenCL™ Runtime</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Intel® Open Image Denoise</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Intel® Open Path Guiding Library (Intel® Open
+                            PGL)</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Pin</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Intel® Platform Analysis Library</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Intel Tools for OpenCL™ Software</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Intel Tools for OpenCL™ Applications</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Intel® OpenSWR</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">OpenVINO™ Toolkit</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Intel® Open Volume Kernel Library</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Intel® Optimization for XGBoost*</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Intel® OSPRay</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Intel® OSPRay for Hydra*</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Intel® OSPRay Studio</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">PyTorch* Optimizations from Intel</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">TensorFlow* Optimizations from Intel</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Intel® Rendering Toolkit</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Intel® Smart Edge Open</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Intel® Software Guard Extensions</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Intel® Secure Device Onboard</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Intel® Software Development Emulator</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Intel® Trust Domain Extensions (Intel® TDX)</a>
+                    </li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Intel® Quantum SDK</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Intel® Query Processing Library (Intel® QPL)</a>
+                    </li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Intel® Video Processing Library</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Intel® VTune™ Profiler</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Resellers</a></li>
+                </ul>
+            </div>
+            <div class="m_ai_shlash">/</div>
+            <div>
+                <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    oneAPI
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item m_dropActive" href="#">Overview</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Data Parallel C++/SYCL*</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Toolkits</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Tech Articles & How-Tos</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Components</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Code Samples</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Training</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Documentation</a></li>
+                </ul>
+            </div>
+            <div class="m_ai_shlash">/</div>
+            <div>
+                <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Toolkits
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item m_dropActive" href="#">Intel® oneAPI Base Toolkit</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Intel® oneAPI HPC Toolkit</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Intel® System Bring-up Toolkit</a></li>
+    
+                </ul>
+            </div>
+    
+            <div class="m_ai_shlash">/</div>
+            <div class="m_ai_httl">Scale C++ Apps with oneTBB Concurrent Containers</div>
+        </section>
+        <section class="k_framworkbg1" style="background-color: #262626;">
+            <div class="k_container11 ">
+                <div class="row text-white text-center py-5">
+                    <div class="col-sm-12">
+                        <h1 class="fw-light">Scale Your C++ Applications Efficiently with Intel® oneAPI Threading Building Blocks Concurrent Container Classes</h1>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section  style="background-color: #F7F7F7;">
+            <div class="k_container11">
+                <div class="row py-5">
+                    <div class="col-sm-12 col-md-8 align-content-center ">
+                        <div class="video-container">
+                            <img src="../img/rushita_img/TBB.jpg" alt="Thumbnail" class="thumbnail" width="100%">
+                            <svg class="play-button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                <path fill="white" d="M464 256A208 208 0 1 0 48 256a208 208 0 1 0 416 0zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256zM188.3 147.1c7.6-4.2 16.8-4.1 24.3 .5l144 88c7.1 4.4 11.5 12.1 11.5 20.5s-4.4 16.1-11.5 20.5l-144 88c-7.4 4.5-16.7 4.7-24.3 .5s-12.3-12.2-12.3-20.9l0-176c0-8.7 4.7-16.7 12.3-20.9z"></path>
+                            </svg>
+                            <video id="myVideo" controls>
+                                <source src="../img/rushita_img/video.mp4" type="video/mp4">
+                            </video>
+                    </div>     
+                    </div>
+                    <div class="col-sm-12 col-md-4 align-content-center">
+                        <p class="k_text1"><a href="#" style="color: #0068B5;">@IntelDevTools</a></p>
+                        
+                        <p><b>Subscribe Now</b></p>
+                        <p>Stay in the know on all things CODE. Updates are delivered to your inbox.</p>
+                        <p class="text-center k_btnlearn py-1 k_text m-auto k_under k_btn100"
+                        style="float: inline-start; width: 120px; background-color: #0068B5;">
+                        <a href="#" class="text-white">Sign Up</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section style="background-color: #F7F7F7;">
+            <div class="k_container11">
+                <div class="row py-5">
+                    <div class="col-sm-12 col-md-9 ">
+                        <h1 class="fw-light">Overview</h1>
+                        <p>Have you ever wondered how to scale your C++ application most effectively? Or how two threads can compete for limited resourcing in a concurrent environment?</p>
+                        <p>Providing concurrent access to container classes is not trivial and can burn a large portion of scalable application time. In this webinar, software development engineer Aleksei Fedotov discusses:</p>
+                        <ul>
+                            <li>Why exclusive access to the Standard Template Library (STL) containers such as vector or map does not guarantee scalability</li>
+                            <li>How the situation could be improved to support a concurrent environment properly</li>
+                            <li class="k_plink1 k_intext1blue1">An overview of the highly concurrent container classes available in the <a href="../rushita_Solutions/k_solutions_cs_creaters_intel_oneAPI Threading Building Blocks.html">Intel® oneAPI Threading Building Blocks (oneTBB)</a> library and how they can be used</li>
+                            </ul>
+                            <h1 class="fw-light">Get the Software</h1>
+                            <ul>
+                                <li class="k_plink1 k_intext1blue1"><a href="../rushita_Solutions/k_solutions_cs_creaters_intel_oneAPI Threading Building Blocks.html">oneTBB</a>—One of five free Intel® Performance Libraries. Download them all for free.</li>
+                                <li class="k_plink1 k_intext1blue1"><a href="#">Download from GitHub*</a></li>
+                            </ul>
+                            <h1 class="fw-light">Get the Software</h1>
+                            <div data-component="atomText" data-component-id="" id="" class="a-text ">
+                                <ul>
+                        <li class="k_plink1 k_intext1blue1"><a href="#">oneTBB Documentation</a></li>
+                        </ul>
+                        <p>&nbsp;</p>
+                        <p><b>Aleksei Fedotov</b><br>
+                        Software development engineer, Intel Corporation</p>
+                        <p>Aleksei Fedotov is responsible for the oneTBB library, including key features such as Flow Graph Analyzer, parallel algorithms, and concurrent containers. His expertise includes parallel processing, machine learning, and hardware architectures. Before joining Intel, Aleksei worked on a parallel framework for cache-efficient image processing, and implemented mathematical and statistical algorithms for serial, parallel, and distributed computing.</p>
+                        <p>Aleksei holds a master of applied mathematics and informatics from N. I. Lobachevsky State University in Nizhny Novgorod.</p>
+                        
+                            </div>
+
+                    </div>
+                    <div class="col-sm-12 col-md-3">
+                        <div class="p-4" style="background-color: #FFFFFF;">
+                            <p><b>Jump to:</b></p>
+                            <p class="k_plink1 k_intext1blue1"><a href="#">You May Also Like</a><br>
+                                &nbsp;</p>
+                        </div>
+                        <div class="p-4 mt-4" style="background-color: #FFFFFF;">
+                            <img src="../img/rushita_img/CUDA8.webp" alt="" width="100%">
+                            <h5 class="h5 margin-btm-1x k_plink1 k_intext1blue1"></h5>
+                             <a href="../VK_developers/VK_Intel_oneAPI_base_toolkit.html" title="">
+                                 Intel® oneAPI Base Toolkit
+                             </a>
+                             <p>Develop high-performance, data-centric applications for CPUs, GPUs, and FPGAs with this core set of tools, libraries, and frameworks including LLVM*-based compilers.</p>
+                             <p>&nbsp;</p>
+                             <p class="text-center k_btnlearn py-1 k_text m-auto k_under k_btn100"
+                             style="float: inline-start; width: 120px; background-color: #0068B5;">
+                             <a href="../VK_developers/VK_Intel_oneAPI_base_toolkit_download.html" class="text-white">Get It Now</a>
+                             </p>
+                             <p class="k_plink1 k_intext1blue1 mt-5 pt-5"><a href="../darshit/dk_product/products_oneaoi_unified_runtime_celebrate_the_5th_Anniversary_of_oneAPI_with_the_2025_release_of_intel.html">See All Tools</a></p>
+                            
+                         </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="mt-5">
+            <div class="k_container11">
+                <div class="row">
+                    <div>
+                        <h2 class="fw-light">You May Also Like</h2>
+                        <p class=""><b>Related Webinars</b></p>
+                    </div>
+                    <div class="row  ">
+                        <div class="col-sm-12 col-md-6 col-lg-4 mb-4  k_text k_gutter k_laptop">
+                            <div class="k_btn k_resoursebtn k_xeonbtn p-4 k_btngrey">
+                                <a href="#">
+                                    Threading Building Blocks (TBB): the Foundation & the Future
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-6 col-lg-4 mb-4  k_text k_gutter k_laptop">
+                            <div class="k_btn k_resoursebtn k_xeonbtn p-4 k_btngrey">
+                                <a href="#">
+                                    Optimize oneTBB for Non-Uniform Memory Access (NUMA) Architectures
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-6 col-lg-4 mb-4  k_text k_gutter k_laptop">
+                            <div class="k_btn k_resoursebtn k_xeonbtn p-4 k_btngrey">
+                                <a href="#">
+                                    Optimize Task-Based Programming in a Cross-Architecture World
+                                </a>
+                            </div>
+                        </div>
+                      
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="mt-5">
+            <div class="k_container11">
+                <div class="row">
+                    <div>
+                        <p class=""><b>Related Article</b></p>
+                    </div>
+                    <div class="row  ">
+                        <div class="col-sm-12 col-md-6 col-lg-4 mb-4  k_text k_gutter k_laptop">
+                            <div class="k_btn k_resoursebtn k_xeonbtn p-4 k_btngrey">
+                                <a href="#">
+                                    Measure the Impact of NUMA Migrations on Performance
+                                </a>
+                            </div>
+                        </div>
+                       
+                      
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    <div id="footer"></div>
+    <script>
+        const playButton = document.querySelector('.play-button');
+        const video = document.getElementById('myVideo');
+        const thumbnail = document.querySelector('.thumbnail');
+
+        playButton.addEventListener('click', function () {
+            thumbnail.style.display = 'none';
+            playButton.style.display = 'none';
+            video.style.display = 'block';
+            video.play();
+        });
+
+        video.addEventListener('pause', function () {
+            if (video.currentTime === 0 || video.ended) {
+                video.style.display = 'none';
+                thumbnail.style.display = 'block';
+                playButton.style.display = 'block';
+            }
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const tabs = document.querySelectorAll('.k_custom-tab');
+            const tabContents = document.querySelectorAll('.k_custom-tab-content');
+
+            tabs.forEach(tab => {
+                tab.addEventListener('click', function () {
+                    // Remove active class from all tabs and tab contents
+                    tabs.forEach(t => t.classList.remove('active'));
+                    tabContents.forEach(content => content.classList.remove('active'));
+
+                    // Add active class to clicked tab
+                    this.classList.add('active');
+
+                    // Show corresponding tab content
+                    const targetId = this.getAttribute('data-target');
+                    const targetContent = document.getElementById(targetId);
+                    if (targetContent) {
+                        targetContent.classList.add('active');
+                    }
+                });
+            });
+        });
+    </script>
+    <script>
+        // navbar include  
+        fetch('../y_index/y_navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar').innerHTML = data;
+            });
+        // footer include 
+        fetch('../y_index/y_footer.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('footer').innerHTML = data;
+            });
+    </script>
+    <script src="../js/jquery-3.7.1.js"></script>
+    <script src="../js/owl.carousel.min.js"></script>
+    <script src="../js/rushita.js"></script>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

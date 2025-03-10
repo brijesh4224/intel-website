@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Build oneAPI Applications using VS Code and WSL2</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <link href=" https://fonts.cdnfonts.com/css/intel-clear " rel="stylesheet">
+    <link rel="stylesheet" href="../css/owl.carousel.min.css">
+    <link rel="stylesheet" href="../css/yatri.css">
+    <link rel="stylesheet" href="../css/rushita.css">
+    <link rel="stylesheet" href="../css/rushita_automotive.css">
+
+    <link rel="stylesheet" href="../css/owl.theme.default.min.css">
+    <style>
+        * {
+            font-family: 'Intel Clear', sans-serif;
+        }
+
+        .dk_new_options_table {
+            border: none !important;
+            justify-content: center !important;
+            text-align: center !important;
+        }
+
+        .dk_new_options_table thead tr td {
+            margin-left: 0;
+            max-width: fit-content;
+            white-space: normal;
+            overflow: auto;
+            background: #fff;
+            padding: 1rem;
+            text-align: left;
+            border-left: .125rem solid #e2e2e2;
+            font-weight: 700 !important;
+        }
+
+        .dk_new_options_table thead tr:nth-child(even) td {
+            background-color: #f7f7f7;
+        }
+
+        .mv_intel_amx h2 {
+            font-weight: 300;
+        }
+
+        .mv_intel_amx {
+            font-size: 1.25rem;
+        }
+
+        .mv_intel_amx_bg_color {
+            background-color: #0068B5;
+        }
+
+        .mv_intel_amx_content {
+            padding-right: 200px;
+        }
+
+        .mv_intel_amx_item {
+            align-content: center;
+        }
+
+        .mv_intel_amx {
+            color: #fff;
+            padding: 1rem;
+        }
+
+        .mv_intel_amx h3 {
+            font-weight: 300;
+        }
+
+        .mv_intel_amx p {
+            margin-top: 1.5rem;
+            margin-bottom: 0rem;
+        }
+
+        .mv_intel_amx_image {
+            padding: 1rem;
+        }
+
+        .mv_intel_amx_image img {
+            width: 100%;
+            /* height: 199px; */
+        }
+
+        .mv_intel_amx_heading_text {
+            font-size: 1.2rem;
+            line-height: 1.15;
+        }
+
+        .VK_sidebar_active_link {
+            color: #262626;
+            font-weight: 700;
+        }
+
+        .VK_sidebar_active_link:hover {
+            color: #262626;
+        }
+
+        .VK_print_email_font span {
+            font-size: 1.375rem;
+        }
+
+        .VK_side_bar_postion_stickey {
+            position: sticky;
+            top: 0px;
+            z-index: 3;
+            background-color: #fff;
+        }
+
+        .VK_side_heading {
+            font-size: 26px;
+            font-weight: 400;
+        }
+
+        .VK_sidebar_dropdown P {
+            margin-left: .313rem !important;
+            margin-bottom: .313rem !important;
+        }
+
+        .VK_sidebar_dropdown details {
+            margin-left: .313rem !important;
+            margin-bottom: .313rem !important;
+        }
+
+        code {
+            color: #000 !important;
+            background-color: #E6E6E6;
+        }
+
+        pre {
+            white-space: pre-line !important;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="navbar"></div>
+
+    <section class="m_ai_tdrop">
+        <div>
+            <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Developers
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item m_dropActive"
+                        href="../dhruvin_developer-tools/ds_Developer-Zone.html">Overview</a></li>
+                <li><a class="dropdown-item m_dropActive"
+                        href="../rushita_Solutions/k_solutions_in_Viewall_SDF_Industrial-Automation_Control-flow-Enforcement_Technology.html">Topics
+                        & Technologies</a></li>
+                <li><a class="dropdown-item m_dropActive"
+                        href="../dhruvin_developer-tools/ds_Development-Tools.html">Tools</a></li>
+                <li><a class="dropdown-item m_dropActive"
+                        href="../rushita_Solutions/k_solutions_in_Viewall_SDF_Industrial-Automation_Hardware-Platforms.html">Hardware
+                        Platforms</a></li>
+                <li><a class="dropdown-item m_dropActive"
+                        href="../dhruvin_developer-tools/ds_Resource-Documentation-Center.html">Resources &
+                        Documentation</a></li>
+                <li><a class="dropdown-item m_dropActive" href="../dhruvin_developer-tools/ds_Learn.html">Learn</a>
+                </li>
+                <li><a class="dropdown-item m_dropActive"
+                        href="../dhruvin_developer-tools/ds_Communities-and-Events.html">Community & Events</a></li>
+                <li><a class="dropdown-item m_dropActive"
+                        href="../dhruvin_developer-tools/ds_Developer-Programs.html">Developer Programs</a></li>
+                <li><a class="dropdown-item m_dropActive" href="../dhruvin_developer-tools/ds_Get-Help.html">Get
+                        Help</a></li>
+            </ul>
+        </div>
+
+
+        <div class="m_ai_shlash">/</div>
+        <div>
+            <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Tools
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item m_dropActive" href="../Product/B20_developer_catelog.html">Software
+                        Catalog</a></li>
+                <li><a class="dropdown-item m_dropActive" href="../Product/B17_oneapi.html">oneAPI</a></li>
+                <li><a class="dropdown-item m_dropActive"
+                        href="../rushita_Solutions/k_solutions_Intel-Tiber™Edge-Platform.html">Intel® Tiber™ Edge
+                        Platform</a></li>
+                <li><a class="dropdown-item m_dropActive" href="../Product/B10_intel_Quarts.html">FPGA</a></li>
+                <li><a class="dropdown-item m_dropActive" href="../VK_developers/VK_technology_sdk.html">Intel®
+                        Active Management Technology SDK</a></li>
+                <li><a class="dropdown-item m_dropActive" href="../VK_developers/VK_intel_adviser.html">Intel®
+                        Advisor</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® AI Reference Models</a></li>
+                <li><a class="dropdown-item m_dropActive"
+                        href="../rushita_Solutions/k_solutions_Intel-Collaboration-Suite-for-WebRTC.html">Intel®
+                        Collaboration Suite for WebRTC SDK</a>
+                </li>
+                <li><a class="dropdown-item m_dropActive" href="../Product/B1_19_Intel_AICloud.html">Intel® Tiber™
+                        AI Cloud</a></li>
+                <li><a class="dropdown-item m_dropActive"
+                        href="../rushita_Solutions/k_solutions_Intel-Distribution-for-Python.html">Intel® Distribution
+                        for Python*</a></li>
+                <li><a class="dropdown-item m_dropActive"
+                        href="../rushita_Solutions/k_solutions_Intel-Distribution-for-GDB.html">Intel® Distribution for
+                        GDB*</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® DPC++ Compatibility Tool</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Dynamic Application Loader</a></li>
+                <li><a class="dropdown-item m_dropActive"
+                        href="../rushita_Solutions/k_solutions_Topics_viewall_Cloud-Insider-Program_AI-Frameworks-and-Tools.html">Frameworks</a>
+                </li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Embree</a></li>
+                <li><a class="dropdown-item m_dropActive" href="../VK_developers/VK_ai_scikit.html">Intel® Extension
+                        for Scikit-learn*</a></li>
+                <li><a class="dropdown-item m_dropActive"
+                        href="../rushita_Solutions/k_solutions_Intel-Fortran-Compiler.html">Intel® Fortran Compiler</a>
+                </li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Graphics Performance Analyzers</a></li>
+                <li><a class="dropdown-item m_dropActive"
+                        href="../rushita_Solutions/k_solutions_Intel-HE-Toolkit.html">Intel® Homomorphic Encryption
+                        Toolkit</a></li>
+                <li><a class="dropdown-item m_dropActive"
+                        href="../rushita_Solutions/k_solutions_Intel-In-Band-Manageability.html">Intel® In-Band
+                        Manageability</a></li>
+                <li><a class="dropdown-item m_dropActive"
+                        href="../rushita_Solutions/k_solutions_Intel-Cryptography-Primitives-Library.html">Intel®
+                        Integrated Performance Primitives</a></li>
+                <li><a class="dropdown-item m_dropActive" href="../rushita_Solutions/">Intel® Integrated Simulation
+                        Infrastructure with
+                        Modeling</a></li>
+                <li><a class="dropdown-item m_dropActive"
+                        href="../rushita_Solutions/k_solutions_Instruction-Set-Architecture(ISA)Extensions.html">Instruction
+                        Set Architecture (ISA) Extensions</a>
+                </li>
+                <li><a class="dropdown-item m_dropActive"
+                        href="../rushita_Solutions/k_solutions_Intel-Intelligent-Storage-Acceleration-Library.html">Intel®
+                        Intelligent Storage Acceleration Library
+                        (Intel® ISA-L)</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Modin*</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® MPI Library</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Neural Compressor</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">OpenCL™ Runtime</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Open Image Denoise</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Open Path Guiding Library (Intel® Open
+                        PGL)</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Pin</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Platform Analysis Library</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel Tools for OpenCL™ Software</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel Tools for OpenCL™ Applications</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® OpenSWR</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">OpenVINO™ Toolkit</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Open Volume Kernel Library</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Optimization for XGBoost*</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® OSPRay</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® OSPRay for Hydra*</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® OSPRay Studio</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">PyTorch* Optimizations from Intel</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">TensorFlow* Optimizations from Intel</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Rendering Toolkit</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Smart Edge Open</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Software Guard Extensions</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Secure Device Onboard</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Software Development Emulator</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Trust Domain Extensions (Intel® TDX)</a>
+                </li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Quantum SDK</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Query Processing Library (Intel® QPL)</a>
+                </li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Video Processing Library</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® VTune™ Profiler</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Resellers</a></li>
+            </ul>
+        </div>
+        <div class="m_ai_shlash">/</div>
+        <div>
+            <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                oneAPI
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item m_dropActive" href="#">Overview</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Data Parallel C++/SYCL*</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Toolkits</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Tech Articles & How-Tos</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Components</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Code Samples</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Training</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Documentation</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Support</a></li>
+            </ul>
+        </div>
+        <div class="m_ai_shlash">/</div>
+        <div>
+            <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Tech Articles & How-Tos
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item m_dropActive" href="#">Library</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">News Updates</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Webinars</a></li>
+            </ul>
+        </div>
+        <div class="m_ai_shlash">/</div>
+        <div class="m_ai_httl">Build oneAPI Applications using VS Code and WSL2
+        </div>
+    </section>
+    <section class="k_bgblue">
+        <div class="k_container11">
+            <div class="row text-white py-4">
+                <h3 class="fw-light">Leveraging Tools for Cross-Platform Software Development</h3>
+                <p>How to Build oneAPI for Linux* and Windows* using Windows Subsystem for Linux 2* and Visual Studio Code*</p>
+            </div>
+        </div>
+    </section>
+    <section class="k_space k_spacenone">
+        <div class="k_container11">
+            <div class="row  g-3">
+                <div class="float-end k_bignone" style="padding-left:70%;">
+                    <div>
+                        <a href="#" class="fs-4"><i class="fa-solid fa-print mx-3 k_icon0"></i></a>
+                        <a href="#" class="fs-4"> <i class="fa-regular fa-envelope k_icon0"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-12">
+                    <div class="VK_sticky_side_bar VK_side_bar_postion_stickey">
+                        <div>
+                            <div class="VK_sidebar_dropdown">
+                                <ul class="k_listnone k_menu ">
+                                    <li class="k_text"><a href="#section1">Narrowing the Scope</a></li>
+                                    <li class="k_text"><a href="#section2">Setting up WSL and VSCode*</a>
+                                    </li>
+                                    <li class="k_text"><a href="#section3">Installing the Intel® oneAPI Toolkits</a></li>
+                                    <li class="k_text"><a href="#section4">Running Some Code</a></li>
+                                    <li class="k_text"><a href="#section5">But Wait, There’s More!</a></li>
+                                    <li class="k_text"><a href="#section6">The End (For Now)</a></li>
+                                    <li class="k_text"><a href="#section7" class="k_submenu-toggle">See Related Content</a>
+                                        <ul class="k_listnone k_submenu">
+                                            <li class="k_text"><a href="#section8"></a>Related Articles</a></li>
+                                            <li class="k_text"><a href="#section9"></a>Related On-Demand Videos</a></li>
+                                            <li class="k_text"><a href="#section10"></a>Get the Software
+                                            </a></li>
+                                        </ul>
+                                    </li>
+
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+
+                        <div class="p-3" style="background-color: #F7F7F7;">
+                            
+                                    Get the Latest on All Things CODE</b></p>
+                            <p class="text-center k_btnget py-2 k_under k_btn100 my-2 kcokbtn1024" style="width: 80px;">
+                                <a href="#" class="text-white">Sign Up</a>
+                            </p>
+                        </div>
+                        <div class="d-flex gap-4 mt-4">
+                            <div>
+                                <img src="../img/rushita_img/tony.jpg" alt="" width="100px"
+                                    style="border-radius: 100%;">
+                            </div>
+                            <div>
+                                <p><b>Tony Mongkolsmai</b></p>
+                                <p>Technology Evangelist, Intel Corporation</p>
+                                <p class="k_plink1"><a href="#">Twitter*</a></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-8 col-md-7 col-sm-12  k_16smpx k_width75">
+                    <div class="float-end mx-3 k_smnone">
+                        <div>
+                            <a href="#" class="fs-4"><i class="fa-solid fa-print mx-3 k_icon0"></i></a>
+                            <a href="#" class="fs-4"> <i class="fa-regular fa-envelope k_icon0"></i></a>
+                        </div>
+                    </div>
+                    <div class=" k_smpaddnone k_smpaddnone1 pt-5">
+                        <p>Hello, world! As a 19-year software engineer and software architect at Intel in performance and parallelization tools and AI system platforms, I am very lucky and excited to share some of my experiences with you and get your thoughts about software, technology, and Intel. My first focus is trying to tackle the dilemmas of the modern software developer.</p>
+                        <p>Why tackle this first? For as long as I can remember, I have always loved programming and solving problems. I started programming using BASIC when I was in first grade in 1985, when it was still slightly less common. I’ve been fortunate enough (or unfortunate enough?) to have learned a few dozen programming languages, programmed in several IDEs and developed software in both Windows* and Linux* environments. I’ve also had to develop in rapidly evolving areas like web/UI frameworks, cloud development, deep learning, etc.</p>
+                        <p>One constant over this time is that engineers are always fighting their tools to be more productive. As a developer, I want to be efficient as possible to get more work done or to free up my time to do something else in my life. So, this means a lot to me personally.</p>
+                        <h2 class="fw-light mt-5">Narrowing the Scope</h2>
+                        <p>Unfortunately for us, there is no one modern software developer. When I write Go* code for microservices or Kubernetes*, I use a quite different toolchain than I do when I’m writing React/Angular/Vue/Javascript* code. There are also a lot of times I need cross-platform support between Windows/Linux/Mac*.</p>
+                        <p>Fortunately, there have been lots of advancements in cross platform IDEs and support. I am a long-time Vi user (no offense, Emacs users; I know Emacs is more powerful), but I like modern IDEs. As an engineer, I love normalizing my workflow across platforms because it makes me more efficient. Luckily for me, the languages I typically use (C/C++/Python*/Javascript/Go) all work reasonably well within Microsoft’s Visual Studio Code* (VSCode*), and recent updates to Microsoft’s Window Subsystem for Linux* (WSL) also work well for cross-platform development.</p>
+                        <p>Given that backdrop, I thought I’d try to see how well I can get some cross platform oneAPI samples running on my Intel® Core™ i9 processor-based Alienware* R13 system (not purchased by Intel).</p>
+                        <h2 class="fw-light mt-5">Setting up WSL and VSCode*</h2>
+                        <p>Setting up WSL was painless, I simply opened a Windows command prompt and ran:</p>
+                        <div class="p-2" style="border: 1px solid #CCCCCC; background-color: #F8F8F8;">
+                            <div class="float-end ">
+                                <i class="fa-solid fa-copy fs-4" style="color: #0068B5;"></i>
+                            </div>
+                            <p class="m-0">
+                                <pre><div class="toolbar"><div class="toolbar-item"><i class="fa fa-docs"></i></div></div>&gt;  wsl --install</pre>
+                            </p>
+                        </div>
+                        <p>This installed the Ubuntu* 20.04 distro for WSL after a quick, required reboot.</p>
+                        <p class="k_plink1 k_intext1blue1">For me the process was painless, but some of my colleagues mentioned that if you do run into issues, Microsoft has provided a handy&nbsp;<a href="#">troubleshooting guide&nbsp;</a>that will guide you through the prerequisite steps to make your system WSL ready.</p>
+                        <p class="k_plink1 k_intext1blue1">The next step was setting up my VSCode. I initially tried to setup my VSCode in WSL using a Linux installation workflow, but it turns out that wasn’t the proper way to do it. Following the instructions from Microsoft, I simply had to enable the Remote WSL extension in VSCode following the <a href="#">instructions</a>.</p>
+                        <p>After enabling the extension, it was as easy as asking for a new WSL Window (<strong>Figure 1</strong>), which popped up as a VSCode WSL-connected Window.</p>
+                        <div class="my-5">
+                            <img src="../img/rushita_img/build.png" alt="" width="100%">
+                        </div>
+                        <p class="utility-text-1" style="text-align:center"><strong>Figure 1. Opening a new WSL window.</strong></p>
+
+                        <h2 class="fw-light mt-5">Installing the Intel® oneAPI Toolkits</h2>
+                        <p class="k_plink1 k_intext1blue1">Because I wanted to see if I could run both Linux and Windows oneAPI-based code on my system, I went to the <a href="../VK_developers/VK_client_toolkit.html">Intel® oneAPI Toolkits release page</a> (<strong>Figure 2</strong>), selected the toolkits that I wanted, and followed the instructions to install them on my system (<strong>Figure 3</strong>). I used an apt installation in a WSL terminal and the online installer for Windows.</p>
+                        <div class="my-5">
+                            <img src="../img/rushita_img/build2.png" alt="" width="100%">
+                        </div>
+                        <p class="utility-text-1" style="text-align:center"><strong>Figure 2. Selecting the desired Intel® oneAPI toolkits.</strong></p>
+                        <div class="my-5">
+                            <img src="../img/rushita_img/build3.png" alt="" width="100%">
+                        </div>
+                        <p class="utility-text-1" style="text-align:center"><strong>Figure 3. Installing the Intel® oneAPI toolkits.</strong></p>
+
+                        <h2 class="fw-light mt-5">Running Some Code</h2>
+                        <p class="k_plink1 k_intext1blue1">Now that I theoretically had a working development environment, I cloned the oneAPI-samples repository from <a href="#">GitHub</a>.</p>
+                        <p>This code is designed to be both Windows and Linux compatible, so I loaded up the Libraries &gt; oneMKL &gt; matrix_mul_mkl directory in my WSL VSCode window and opened a bash terminal. I set up the oneAPI environment and built the sample code:</p>
+                        <div class="p-2" style="border: 1px solid #CCCCCC; background-color: #F8F8F8;">
+                            <div class="float-end ">
+                                <i class="fa-solid fa-copy fs-4" style="color: #0068B5;"></i>
+                            </div>
+                            <p class="m-0">
+                                <pre><div class="toolbar"><div class="toolbar-item"><i class="fa fa-docs"></i></div></div>&gt; source /opt/intel/oneapi/setvars.sh
+                                    &gt; make</pre>
+                            </p>
+                        </div>
+                        <p>This successfully built and ran the matrix multiplication example (<strong>Figure 4</strong>).</p>
+                        <div class="my-5">
+                            <img src="../img/rushita_img/build4.png" alt="" width="100%">
+                        </div>
+                        <strong class="text-center my-4" style="text-align: center;">Figure 4. Building and running the example code</strong>
+                        <p>Creating and running the sample using a Windows binary ended up being a little more work, as this was a new system. I had to install the Microsoft Visual Studio* 2022 Community Edition and GNU Make. After that, it again was as simple as loading up VSCode and running:</p>
+                        <div class="p-2" style="border: 1px solid #CCCCCC; background-color: #F8F8F8;">
+                            <div class="float-end ">
+                                <i class="fa-solid fa-copy fs-4" style="color: #0068B5;"></i>
+                            </div>
+                            <p class="m-0">
+                                <pre><div class="toolbar"><div class="toolbar-item"><i class="fa fa-docs"></i></div></div>&gt; C:\Program Files (x86)\Intel\oneAPI\setvars.bat
+                                    &gt; make</pre>
+                            </p>
+                        </div>
+
+                        <h2 class="fw-light mt-5">But Wait, There’s More!</h2>
+                        <p>I’m sure many of you know this, but this next thing was an amazing discovery for me: I was playing with VSCode (Windows, not WSL-based) and saw I could select a WSL prompt for my split terminal(<strong>Figure 5</strong>)! Doing that allowed me to build and run the sample for both Windows and Linux in the same VSCode instance. Cross-platform development on a single system in a single IDE! I cannot express the endorphin high from the magic of this having spent years dealing with pain of cross-platform development.</p>
+                        <div class="my-5">
+                            <img src="../img/rushita_img/build5.png" alt="" width="100%">
+                        </div>
+                        <p class="utility-text-1" style="text-align:center"><strong>Figure 5. Running Windows* and Linux* in the same VSCode* instance</strong></p>
+
+                        <h2 class="fw-light mt-5">The End (For Now)</h2>
+                        <p>The nice thing about all of this is I was able to set all of this up on a new system in just a couple of hours. I’ll be writing more on how well this flow works for Intel® Arc™&nbsp;GPUs, discussing other developer workflows (like Jupyter Notebooks*), diving into software topics like cloud computing and AI system platform development, and sharing my experiences as a software engineer in the technology industry.&nbsp;Thanks for reading!</p>
+                        <hr class="mt-5">
+
+                        <h2 class="fw-light mt-5">See Related Content</h2>
+                        <h3>Related Articles<a class="inpage-nav-anchor" id="inpage-nav-6-undefined"></a></h3>
+                        <ul>
+                            <li class="tab-pane-content k_plink1 k_intext1blue1"><a href="../darshit/dk_product/products_oneapi_whats_new.html">Introducing Intel® oneAPI 2022</a></li>
+                        </ul>
+                        <h3>Related On-Demand Videos<a class="inpage-nav-anchor" id="inpage-nav-6-1"></a></h3>
+                        <div class="tab-pane-content">
+                            <ul>
+                                <li class="tab-pane-content k_plink1 k_intext1blue1"><a href="../rushita_Solutions/k_solutions_oneAPI-The-Path-Cross-Architecture-Development.html">oneAPI: The Path to Streamlined Cross-Architecture Development</a></li>
+                                <li class="tab-pane-content k_plink1 k_intext1blue1"><a href="../rushita_Solutions/k_solutions_Latest-Technical-Content.html">Tips to Improve Heterogeneous Application Performance</a></li>
+                            </ul>
+                            
+                            <h3>Get the Software<a class="inpage-nav-anchor" id="inpage-nav-6-2"></a></h3>
+                            
+                            <div class="tab-pane-content k_plink1 k_intext1blue1"><strong><a href="../VK_developers/VK_Intel_oneAPI_base_toolkit.html">Intel® oneAPI Base Toolkit</a></strong><br>
+                            Get started with this core set of tools and libraries for developing high-performance, data-centric applications across diverse architectures.</div>
+                            
+                            <div class="tab-pane-content"><br>
+                            <strong class="k_plink1 k_intext1blue1"><a href="../VK_developers/VK_client_toolkit.html">Get It Now</a></strong><br>
+                            <br>
+                            <a href="../VK_developers/VK_client_toolkit.html">See All Tools</a></div>
+                            </div>
+                    </div>
+                </div>
+            </div>
+    </section>
+    <section class="my-4" style="font-size: 13px;">
+        <div class="k_container11">
+            <div class="row">
+                <div>
+                    <hr class="mb-5">
+                    <p>Product and Performance Information </p>
+                    <div class="k_plink1 k_intext1blue1"><sup>1</sup>Performance varies by use, configuration and other
+                        factors. Learn more at &nbsp;<a href="#">www.Intel.com/PerformanceIndex.</a>.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div id="footer"></div>
+    <script>
+        // navbar include  
+        fetch('../y_index/y_navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar').innerHTML = data;
+            });
+        // footer include 
+        fetch('../y_index/y_footer.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('footer').innerHTML = data;
+            });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
+    <script src="../js/jquery-3.7.1.js"></script>
+
+    <script src="../js/owl.carousel.min.js"></script>
+    <script src="../js/rushita.js"></script>
+</body>
+
+</html>
