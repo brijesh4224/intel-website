@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>How to determine how many FPGA boards the system includes?</title>
+    <title>How to close timing on competing hold and setup violations in Intel® Arria® 10 FPGAs?</title>
 
     <link rel="stylesheet" href="/css/dk_developer_edge_iot_&_5G_optimize_fine_tuning_and_deployment_of_LLMs_on_an_ai_pc.css">
     <link rel="stylesheet" href="/css/dk_nav_header.css">
@@ -62,7 +62,7 @@
         </div>
 
         <div class="m_ai_shlash">/</div>
-        <div class="m_ai_httl">How to determine how many FPGA boards the system i</div>
+        <div class="m_ai_httl">How to close timing on competing hold and setup vi</div>
     </section>
     <!-- --------------------------------------------------------------------- -->
 
@@ -87,13 +87,13 @@
                     <div class="col-md-12 col-sm-12 mv_intel_amx_item">
                         <div class="mv_intel_amx">
                             <div class="article-data">    
-                                <span class="article-id">Article ID: 000086391 |</span>
-                                <span class="content-type">Content Type: Product Information & Documentation |</span>
+                                <span class="article-id">Article ID:  000080153 |</span>
+                                <span class="content-type">Content Type:  Product Information & Documentation |</span>
                                 <span class="last-reviewed">
-                                    Last Reviewed: 10/25/2018</span>
+                                    Last Reviewed: 04/18/2023</span>
                             </div>
                             <h4 class="mt-4" style="font-weight: 500;">
-                                How to determine how many FPGA boards the system includes?</h4>
+                                How to close timing on competing hold and setup violations in Intel® Arria® 10 FPGAs?</h4>
                             <p></p>
                         </div>
                     </div>
@@ -129,13 +129,10 @@
                 <div class="dk_things_code_main">
                     <div class="dk_things_code">
                         <h5><b>Environment</b></h5>
-                        <label class="label-space mb-4"><b>Bug ID:</b> <span class="labelValue">FB: 602799;</span></label>
+                        <label class="label-space mb-4"><b>Bug ID:</b> <span class="labelValue">-</span></label>
                         <p class="mb-2"><b>Quartus Edition</b></p>
-                        <p class="mb-2">Intel® Quartus® Prime Pro Edition</p>
-                        <p class="mb-2"><b>Version Found:</b> 17.1.1</p>
-                        <p><b>Version Fixed:</b> 18.1</p>
-                        <p><b>Quartus Add-ons</b></p>
-                        <p>Intel® FPGA SDK for OpenCL™ Pro Edition</p>
+                        <p class="mb-2">Quartus® II Subscription Edition</p>
+                        <p class="mb-2"><b>Version Found:</b> 14.0a10</p>
                     </div>
                 </div>
             </div>
@@ -148,16 +145,17 @@
                     <section id="dk_description51">
                         <h5 class="mb-0"><b>Description</b></h5>
                         <div style="font-size: 1.25rem;">
-                            <p>When you use "aocl diagnose -probe" command to determine how many FPGAs the system includes, you might get following failure.</p>
-                            <p><b>-probe is not a valid device name.&nbsp;&nbsp;</b></p>
-                            <p>The command suggested in OpenCL on Intel® Programmable Acceleration Card with Intel® Arria® 10 GX FPGA Quick Start User Guide(ug-qs-ias-opencl-a10-v1-0.pdf) is wrong<br></p>
+                            <p>In Intel®&nbsp;Arria® 10 devices, the Quartus® II software fitter automatically packs registers into an Adaptive Logic Module (ALM) to optimize area. If a hold-critical register gets packed in the same ALM as its driving LUT, the router will add wire in front of the LUT&nbsp;to avoid hold time violations. This can negatively affect a critical path setup going through the same LUT, making it difficult to fix both setup and hold time violations around this structure.</p>
                         </div>
                     </section>
 
                     <section id="dk_resolution51">
                         <h5 class="mb-0"><b>Resolution</b></h5>
                         <div style="font-size: 1.25rem;">
-                            <p>Use "aocl diagnose" or "aocl list-devices" with no options to list all of the devices.&nbsp;</p>
+                            <p>A&nbsp;new Quartus Settings File (.QSF) assignment is available&nbsp;that prevents the automatic packing of the register and its driving LUT into the same ALM. This allows the router to add the necessary hold-fixing wire directly in front of the register and does not negatively affect the critical path setup through the LUT itself.</p>
+                            <p>To prevent register/LUT packing, use the following assignment:</p>
+                            <p><span style="font-family: Courier New,Courier,monospace;">set_instance_assignment -name QII_AUTO_PACKED_REGISTERS OFF -to &lt;inst_name&gt;</span></p>
+                            <p>This&nbsp;assignment&nbsp;is available in&nbsp;the Quartus II software version&nbsp;14.0 Intel Arria 10 FPGA Edition and later. Future releases of the Quartus II software&nbsp;are scheduled to&nbsp;handle this automatically.</p>
                         </div>
                     </section>
                 </div>
@@ -166,14 +164,16 @@
             <p>&nbsp;</p>
             <div style="background-color: #f7f7f7; padding: 1rem;">
                 <h4 style="font-weight: 300;">Related Products</h4>
-                <p class="mb-2">This article applies to 2 products</p>
+                <p class="mb-2">This article applies to 3 products</p>
                 <div class="row">
-                    <div class="col-md-3">
-                        <p class="mb-0">Intel® Arria® 10 FPGAs and SoC FPGAs</p>
+                    <div class="col-md-3 col-md-6 col-lg-4">
+                        <p class="mb-0">Intel® Arria® 10 GT FPGA</p>
                     </div>
-                    <div class="col-md-3">
-                        <p class="mb-0">Intel® Stratix® 10 FPGAs and SoC FPGAs
-                        </p>
+                    <div class="col-md-3 col-md-6 col-lg-4">
+                        <p class="mb-0">Intel® Arria® 10 GX FPGA</p>
+                    </div>
+                    <div class="col-md-3 col-md-6 col-lg-4">
+                        <p class="mb-0">Intel® Arria® 10 SX SoC FPGA</p>
                     </div>
                 </div>
             </div>
