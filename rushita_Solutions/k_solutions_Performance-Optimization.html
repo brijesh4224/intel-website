@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reduction Operations in DPC++</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <link href=" https://fonts.cdnfonts.com/css/intel-clear " rel="stylesheet">
+    <link rel="stylesheet" href="../css/owl.carousel.min.css">
+    <link rel="stylesheet" href="../css/yatri.css">
+    <link rel="stylesheet" href="../css/rushita.css">
+    <link rel="stylesheet" href="../css/rushita_automotive.css">
+
+    <link rel="stylesheet" href="../css/owl.theme.default.min.css">
+    <style>
+        * {
+            font-family: 'Intel Clear', sans-serif;
+        }
+
+        .keyword {
+            color: #006699 !important;
+            font-weight: bold;
+        }
+
+        .string {
+            color: #002BFE;
+            font-weight: bold;
+        }
+
+        .operator {
+            color: #B24558;
+        }
+
+        .property {
+            color: #006699;
+
+            font-weight: bold;
+        }
+
+        .punctuation {
+            color: #A7A7A7;
+        }
+
+        .icon_k {
+            color: #0068B5 !important;
+        }
+
+        .k_btn {
+            height: 80px;
+        }
+
+        .code-simple {
+            background-color: #E6E6E6;
+        }
+
+        pre {
+            white-space: pre-line !important;
+        }
+
+        .rwd .token.atrule,
+        .rwd .token.attr-value,
+        .rwd .token.keyword {
+            color: #069 !important;
+            font-weight: 700 !important;
+        }
+
+        .k_tab-container ul li a.active {
+            border-bottom: none !important;
+            background-color: #FFFFFF !important;
+            border: 2px solid #CCCCCC;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="navbar"></div>
+
+    <section class="m_ai_tdrop">
+        <div>
+            <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Developers
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item m_dropActive"
+                        href="../dhruvin_developer-tools/ds_Developer-Zone.html">Overview</a></li>
+                <li><a class="dropdown-item m_dropActive"
+                        href="../rushita_Solutions/k_solutions_in_Viewall_SDF_Industrial-Automation_Control-flow-Enforcement_Technology.html">Topics
+                        & Technologies</a></li>
+                <li><a class="dropdown-item m_dropActive"
+                        href="../dhruvin_developer-tools/ds_Development-Tools.html">Tools</a></li>
+                <li><a class="dropdown-item m_dropActive"
+                        href="../rushita_Solutions/k_solutions_in_Viewall_SDF_Industrial-Automation_Hardware-Platforms.html">Hardware
+                        Platforms</a></li>
+                <li><a class="dropdown-item m_dropActive"
+                        href="../dhruvin_developer-tools/ds_Resource-Documentation-Center.html">Resources &
+                        Documentation</a></li>
+                <li><a class="dropdown-item m_dropActive" href="../dhruvin_developer-tools/ds_Learn.html">Learn</a>
+                </li>
+                <li><a class="dropdown-item m_dropActive"
+                        href="../dhruvin_developer-tools/ds_Communities-and-Events.html">Community & Events</a></li>
+                <li><a class="dropdown-item m_dropActive"
+                        href="../dhruvin_developer-tools/ds_Developer-Programs.html">Developer Programs</a></li>
+                <li><a class="dropdown-item m_dropActive" href="../dhruvin_developer-tools/ds_Get-Help.html">Get
+                        Help</a></li>
+            </ul>
+        </div>
+
+
+        <div class="m_ai_shlash">/</div>
+        <div>
+            <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Tools
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item m_dropActive" href="../Product/B20_developer_catelog.html">Software
+                        Catalog</a></li>
+                <li><a class="dropdown-item m_dropActive" href="../Product/B17_oneapi.html">oneAPI</a></li>
+                <li><a class="dropdown-item m_dropActive"
+                        href="../rushita_Solutions/k_solutions_Intel-Tiber™Edge-Platform.html">Intel® Tiber™ Edge
+                        Platform</a></li>
+                <li><a class="dropdown-item m_dropActive" href="../Product/B10_intel_Quarts.html">FPGA</a></li>
+                <li><a class="dropdown-item m_dropActive" href="../VK_developers/VK_technology_sdk.html">Intel®
+                        Active Management Technology SDK</a></li>
+                <li><a class="dropdown-item m_dropActive" href="../VK_developers/VK_intel_adviser.html">Intel®
+                        Advisor</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® AI Reference Models</a></li>
+                <li><a class="dropdown-item m_dropActive"
+                        href="../rushita_Solutions/k_solutions_Intel-Collaboration-Suite-for-WebRTC.html">Intel®
+                        Collaboration Suite for WebRTC SDK</a>
+                </li>
+                <li><a class="dropdown-item m_dropActive" href="../Product/B1_19_Intel_AICloud.html">Intel® Tiber™
+                        AI Cloud</a></li>
+                <li><a class="dropdown-item m_dropActive"
+                        href="../rushita_Solutions/k_solutions_Intel-Distribution-for-Python.html">Intel® Distribution
+                        for Python*</a></li>
+                <li><a class="dropdown-item m_dropActive"
+                        href="../rushita_Solutions/k_solutions_Intel-Distribution-for-GDB.html">Intel® Distribution for
+                        GDB*</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® DPC++ Compatibility Tool</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Dynamic Application Loader</a></li>
+                <li><a class="dropdown-item m_dropActive"
+                        href="../rushita_Solutions/k_solutions_Topics_viewall_Cloud-Insider-Program_AI-Frameworks-and-Tools.html">Frameworks</a>
+                </li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Embree</a></li>
+                <li><a class="dropdown-item m_dropActive" href="../VK_developers/VK_ai_scikit.html">Intel® Extension
+                        for Scikit-learn*</a></li>
+                <li><a class="dropdown-item m_dropActive"
+                        href="../rushita_Solutions/k_solutions_Intel-Fortran-Compiler.html">Intel® Fortran Compiler</a>
+                </li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Graphics Performance Analyzers</a></li>
+                <li><a class="dropdown-item m_dropActive"
+                        href="../rushita_Solutions/k_solutions_Intel-HE-Toolkit.html">Intel® Homomorphic Encryption
+                        Toolkit</a></li>
+                <li><a class="dropdown-item m_dropActive"
+                        href="../rushita_Solutions/k_solutions_Intel-In-Band-Manageability.html">Intel® In-Band
+                        Manageability</a></li>
+                <li><a class="dropdown-item m_dropActive"
+                        href="../rushita_Solutions/k_solutions_Intel-Cryptography-Primitives-Library.html">Intel®
+                        Integrated Performance Primitives</a></li>
+                <li><a class="dropdown-item m_dropActive" href="../rushita_Solutions/">Intel® Integrated Simulation
+                        Infrastructure with
+                        Modeling</a></li>
+                <li><a class="dropdown-item m_dropActive"
+                        href="../rushita_Solutions/k_solutions_Instruction-Set-Architecture(ISA)Extensions.html">Instruction
+                        Set Architecture (ISA) Extensions</a>
+                </li>
+                <li><a class="dropdown-item m_dropActive"
+                        href="../rushita_Solutions/k_solutions_Intel-Intelligent-Storage-Acceleration-Library.html">Intel®
+                        Intelligent Storage Acceleration Library
+                        (Intel® ISA-L)</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Modin*</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® MPI Library</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Neural Compressor</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">OpenCL™ Runtime</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Open Image Denoise</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Open Path Guiding Library (Intel® Open
+                        PGL)</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Pin</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Platform Analysis Library</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel Tools for OpenCL™ Software</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel Tools for OpenCL™ Applications</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® OpenSWR</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">OpenVINO™ Toolkit</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Open Volume Kernel Library</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Optimization for XGBoost*</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® OSPRay</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® OSPRay for Hydra*</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® OSPRay Studio</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">PyTorch* Optimizations from Intel</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">TensorFlow* Optimizations from Intel</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Rendering Toolkit</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Smart Edge Open</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Software Guard Extensions</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Secure Device Onboard</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Software Development Emulator</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Trust Domain Extensions (Intel® TDX)</a>
+                </li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Quantum SDK</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Query Processing Library (Intel® QPL)</a>
+                </li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Video Processing Library</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® VTune™ Profiler</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Resellers</a></li>
+            </ul>
+        </div>
+        <div class="m_ai_shlash">/</div>
+        <div>
+            <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                oneAPI
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item m_dropActive" href="#">Overview</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Data Parallel C++/SYCL*</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Toolkits</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Tech Articles & How-Tos</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Components</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Code Samples</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Training</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Documentation</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Support</a></li>
+            </ul>
+        </div>
+        <div class="m_ai_shlash">/</div>
+        <div>
+            <div class="m_ai_httl k_text">Overview
+            </div>
+        </div>
+
+        <div class="m_ai_shlash">/</div>
+        <div class="m_ai_httl">Performance Optimization
+        </div>
+    </section>
+    <section class="k_bgblue py-4">
+        <div class="k_container11">
+
+            <div class="row  g-4">
+                <div class="col-md-10 col-sm-12 mx-0 text-white align-content-center k_tstartauto k_text2 px-0 mx-0">
+                    <h3 class="fw-lighter   mb-2 k_marketsmall">
+                        Optimize the Performance of oneAPI Applications
+                    </h3>
+                    <div id="hiddenContent">
+
+                        <div class="d-lg-flex gap-5 mt-4 k_dwrap">
+                            <div class="k_mdflex ">
+                                <p>ID</p>
+                                <p>767760</p>
+
+                            </div>
+
+                            <div class="k_mdflex ">
+                                <p>Updated</p>
+                                <p style="justify-content: end;">5/4/2020</p>
+                            </div>
+                            <div class="k_mdflex ">
+                                <p>Version</p>
+                                <p style="justify-content: end;">Latest</p>
+                            </div>
+                            <div class="k_mdflex ">
+                                <p>&nbsp;</p>
+                                <p style="justify-content: end;">Public</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+    </section>
+    <section class="k_space k_spacenone">
+        <div class="k_container11">
+            <div class="row  g-3">
+                <div class="float-end k_bignone" style="padding-left:70%;">
+                    <div>
+                        <a href="#" class="fs-4"><i class="fa-solid fa-print mx-3 k_icon0"></i></a>
+                        <a href="#" class="fs-4"> <i class="fa-regular fa-envelope k_icon0"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-12">
+                    <div class="VK_sticky_side_bar VK_side_bar_postion_stickey">
+                        <div>
+                            <div class="VK_sidebar_dropdown">
+                                <ul class="k_listnone k_menu ">
+                                    <li class="k_text"><a href="#" class="k_submenu-toggle">Performance Analysis Tools</a>
+                                        <ul class="k_listnone k_submenu">
+                                            <li class="k_text"><a href="#"></a>Intel® oneAPI Base Toolkit</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class="k_text"><a href="#" class="k_submenu-toggle">Case Study: Use Software Tools to Optimize oneAPI</a>
+                                        <ul class="k_listnone k_submenu">
+                                            <li class="k_text"><a href="#"></a>Intel® oneAPI Base Toolkit</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class="k_text"><a href="#">Applications</a></li>
+                                    <li class="k_text"><a href="#">Conclusion</a></li>
+                                    <li class="k_text"><a href="#">
+                                        Learn More</a></li>
+                                 
+                                    <li class="k_text"><a href="#">______</a></li>
+                                    <li class="k_text"><a href="#">You May Also Like</a></li>
+                                   
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-8 col-md-7 col-sm-12  k_16smpx k_width75">
+                    <div class="float-end mx-3 k_smnone">
+                        <div>
+                            <a href="#" class="fs-4"><i class="fa-solid fa-print mx-3 k_icon0"></i></a>
+                            <a href="#" class="fs-4"> <i class="fa-regular fa-envelope k_icon0"></i></a>
+                        </div>
+                    </div>
+                    <div class=" k_smpaddnone k_smpaddnone1 pt-5">
+                        <p class="fw-light">Get the Most from This Unified, Standards-Based Programming Model</p>
+                        <div class="d-md-flex gap-4">
+                            <div>
+                                <p>Kevin O’Leary, software technical consulting engineer, Intel Corporation</p>
+                                <p class="k_plink1 k_intext1blue1"><a href="#"
+                                        style="cursor:default;">@IntelDevTools</a></p>
+                            </div>
+                            <div>
+                                <p><strong>Get the Latest on All Things CODE</strong></p>
+                                <div>
+                                    <p class="text-center k_btnlearn py-1 k_text m-auto k_under k_btn100"
+                                    style="float: inline-start; width: 130px; background-color: #0068B5;">
+                                    <a href="../rushita_Solutions/k_solutions_Stay-in-the-Know-on-All-Things-CODE.html" class="text-white">Sign Up</a>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
+                        <p>Modern workloads are incredibly diverse—and so are processor architectures. No single architecture is best for every workload. Maximizing performance takes a mix of scalar, vector, matrix, and spatial (SVMS) architectures deployed in CPU, GPU, FPGA, and future accelerators. Intel® oneAPI products deliver what you need to deploy your applications across SVMS architectures. This set of complementary toolkits—a base kit and specialty add-ins—simplifies programming and helps you improve efficiency and innovation.</p>
+                        <p class="k_plink1 k_intext1blue1">The <a href="#">Intel® oneAPI Base Toolkit (Base Kit)</a> includes advanced analysis and debug tools for profiling, design advice, and debugging:</p>
+                        <ul> 
+                            <li class="k_plink1 k_intext1blue1"><a href="#">Intel® VTune™ Profiler</a> finds performance bottlenecks in CPU, GPU, and FPGA systems.</li> 
+                            <li class="k_plink1 k_intext1blue1"><a href="#">Intel® Advisor</a> provides vectorization, threading, and accelerator offload advice.</li> 
+                            <li class="k_plink1 k_intext1blue1"><a href="#">Intel® Distribution for GDB*</a> helps efficiently debug code.<br> &nbsp;</li> 
+                           </ul>
+
+                        <h2 class="fw-light mt-5">Performance Analysis Tools</h2>
+                        <p>This article focuses on Intel Advisor and Intel VTune Profiler and the new features they provide as part of the Base Kit.<br> &nbsp;</p>
+                        <h3>Intel® Advisor</h3>
+                        <p class="k_plink1 k_intext1blue1">Use this tool for code modernization, programming guidance, and performance estimation that supports the <a href="#">Data Parallel C++ (DPC++) language</a> on CPUs and GPUs. It provides codesign, performance modeling, analysis, and characterization features for C, C++, Fortran, and mixed Python* applications.</p>
+                        <p>Intel Advisor includes:</p>
+                        <ul> 
+                            <li>Offload Advisor to help you identify high-impact opportunities to offload to the GPU and areas that aren’t useful to offload. You can also project performance speedup on accelerators, estimate offload overhead, and pinpoint accelerator performance bottlenecks.</li> 
+                            <li>Vectorization Advisor to help you identify high-impact, under-optimized loops and see what's blocking vectorization and where it’s safe to force vectorization.</li> 
+                            <li>Threading Advisor to help you analyze, design, tune, and check threading design options without disrupting your normal development.</li> 
+                            <li>Roofline Analysis to help you visualize performance on both your CPU and GPU and see how close you are to the maximum possible performance.</li> 
+                            <li class="k_plink1 k_intext1blue1"><a href="#">Intel® FPGA Add-on for oneAPI Base Toolkit</a> (optional) to help you program these reconfigurable hardware accelerators to speed specialized, data-centric workloads. (Requires installation of the Base Kit.)</li> 
+                           </ul>
+                           <p>Use the Offload Advisor command-line feature to design code for efficient offloading to accelerators—even before you have hardware. Estimate code performance and compare it with data transfer costs. No recompilation is required.</p>
+                           <p>The GPU performance evaluation from Intel Advisor (Figure 1) produces upper-bound speedup estimates using a bounds and bottlenecks performance model. It takes measured x86 CPU metrics and application characterization as input and applies an analytical model to estimate execution time and characteristics on a target GPU.</p>
+                           <div class="my-4">
+                                <img src="../img/rushita_img/cross1.jpg" alt="" width="100%">
+                           </div>
+                           <p style="text-align:center"><strong>Figure 1. GPU performance evaluation in Intel Advisor</strong></p>
+                           <p>The Roofline Analysis feature helps you optimize your CPU or GPU code for compute and memory. Locate bottlenecks and determine performance headroom for each loop or kernel to prioritize which optimizations deliver the highest performance payoff.</p>
+                           <div class="p-3" style="background-color: #E6E6E6; border-left: 3px solid #FDB813;">
+                               <p class="note m-0"><strong>Note </strong>GPU Roofline Analysis is in technical preview.</p>
+                           </div>
+                           <h3><br> Intel® VTune™ Profiler</h3>
+                           <p>Use this performance analysis tool for serial and multithreaded applications. It helps you analyze algorithm choices and identify where and how your application can benefit from available hardware resources. Use it to locate or determine:</p>
+                           <ul> 
+                            <li>The most time-consuming (hot) functions in your application and in the whole system</li> 
+                            <li>Sections of code that don’t effectively use available processor resources</li> 
+                            <li>The best sections of code to optimize for both sequential and threaded performance</li> 
+                            <li>Synchronization objects that affect the application performance</li> 
+                            <li>Whether, where, and why your application spends time on input and output operations</li> 
+                            <li>Whether your application is CPU- or GPU-bound and how effectively it offloads code to the GPU</li> 
+                            <li>The performance impact of different synchronization methods, different numbers of threads, or different algorithms</li> 
+                            <li>Thread activity and transitions</li> 
+                            <li>Hardware-related issues in your code such as data sharing, cache misses, branch misprediction, and others</li> 
+                           </ul>
+                           <p>The tool also has new features to support GPU analysis:</p>
+                           <ul> 
+                            <li>GPU Offload Analysis in Intel VTune Profiler (technical preview)</li> 
+                            <li>GPU Compute and Media Java Hot Spot Performance Engines Analysis (technical preview)<br> &nbsp;</li> 
+                           </ul>
+                           <h3>GPU Offload Analysis (Preview)</h3>
+                           <p>Use this tool to analyze how code runs on the CPU and GPU cores of your platform, correlate CPU and GPU activity, and identify whether your application is GPU- or CPU-bound. The tool infrastructure automatically aligns clocks across all cores in the system so you can analyze some CPU-based workloads together with GPU-based workloads within a unified time domain. This analysis lets you:</p>
+                           <ul> 
+                            <li>Identify how effectively your application uses DPC++ or OpenCL™ kernels.</li> 
+                            <li>Analyze the running of Intel® Media SDK tasks over time (for Linux* targets only).</li> 
+                            <li>Explore GPU use and analyze a software queue for GPU engines at each moment of time.<br> &nbsp;</li> 
+                           </ul>
+                           <h3>GPU Compute &amp; Media Hot Spots Analysis (Preview)</h3>
+                           <p>Use this tool to analyze the most time-consuming GPU kernels, characterize GPU usage based on GPU hardware metrics, identify performance issues caused by memory latency or inefficient kernel algorithms, and analyze GPU instruction frequency for certain instruction types. The GPU Compute and Media Hot Spots analysis allows you to:</p>
+                           <ul> 
+                            <li>Explore GPU kernels with high GPU use, estimate the use efficiency, and identify possible reasons for stalls or low occupancy.</li> 
+                            <li>Explore your application performance per selected GPU metrics over time.</li> 
+                            <li>Analyze the hottest DPC++ or OpenCL kernels for inefficient kernel code algorithms or incorrect work item configuration.<br> &nbsp;</li> 
+                           </ul>
+
+                        <h2 class="fw-light mt-5">Case Study: Use Software Tools to Optimize oneAPI Applications</h2>
+                        <p>Now that you know some of the tools and features available in the Base Kit, let's work through an example. This case study looks at using Intel VTune Profiler and Intel Advisor to optimize an application. It looks at several Intel Advisor features (including Roofline Analysis and Offload Advisor) to determine the bottlenecks in an application and the regions to offload to an accelerator.</p>
+                        <p>Matrix multiplication is a common operation in many applications. Here’s a sample matrix multiplication kernel:</p>
+                        <div class="my-4">
+                            <img src="../img/rushita_img/cross2.jpg" alt="" width="100%">
+                       </div>
+                        <p>&nbsp;</p>
+                        <p>The algorithm is a triply nested loop with a multiplication and addition in each iteration. Code like this is computationally intensive with many memory accesses. Intel Advisor is ideal for helping you analyze it.<br> &nbsp;</p>
+                        <h3>Using Intel Advisor to Help Port to GPU</h3>
+                        <p>A feature in Intel Advisor lets you see the portions of the code that can profitably be offloaded to a GPU. It also can predict the code performance when run on the GPU and lets you experiment based on several criteria. Analyzing DPC++ code with Intel Advisor requires a two-stage analysis:</p>
+                        <div class="my-4">
+                            <img src="../img/rushita_img/cross3.jpg" alt="" width="100%">
+                       </div>
+                        <p>&nbsp;</p>
+                        <p>The screenshot in Figure 2 shows the CPU runtime and the predicted time when run on the accelerator (in this case, a GPU). It shows how many regions were offloaded and the net speedup. You can also see what are bounding the offloads. In our case, we are 99% bounded by the last-level cache (LLC) bandwidth.</p>
+                        <div class="my-4">
+                            <img src="../img/rushita_img/cross4.jpg" alt="" width="100%">
+                       </div>
+                        <p style="text-align:center"><strong>Figure 2. CPU runtime and predicted GPU runtime</strong><br> &nbsp;</p>
+                        <p>In the <strong>Summary </strong>section of the report, you can see:</p>
+                        <ul> 
+                            <li>The original CPU runtime, the predicted runtime on the GPU accelerator, the number of offloaded regions, and the speedup in the <strong>Program metrics</strong> pane.</li> 
+                            <li>What the offloads are bounded by. In our case, the offloads are 99% bounded by the LLC bandwidth.</li> 
+                            <li>Exact source lines of the top offloaded code regions that benefit from offloading to the GPU. In our case, only one code region is recommended for offload.</li> 
+                            <li>Exact source lines of the <strong>Top nonoffloaded</strong> code regions that aren’t recommended for offload for various reasons. In our case, the time spent in the loops is too small to be modeled accurately and one of the loops is outside the code region marked for offloading.</li> 
+                           </ul>
+                           <p>Use this information to rewrite the matrix multiplication kernel in DPC++, which is explained in the next section.<br> &nbsp;</p>
+                           <h3>Rewrite the Matrix Multiplication Kernel in DPC++</h3>
+                           <p>Intel Advisor provides the exact source line of the offloaded region, as shown in Figure 3. The tool also recommends loops that don’t need to be offloaded because their compute time is too small to be modeled accurately or they're outside of a marked region (Figure 4).</p>
+                           <div class="my-4">
+                            <img src="../img/rushita_img/cross5.jpg" alt="" width="100%">
+                       </div>
+                           <p style="text-align:center"><strong>Figure 3. Top offloaded region</strong></p>
+                           <p style="text-align:center">&nbsp;</p>
+                           <div class="my-4">
+                            <img src="../img/rushita_img/cross6.jpg" alt="" width="100%">
+                       </div>
+                           <p style="text-align:center"><strong>Figure 4. Top nonoffloaded region</strong></p>
+                           <p>&nbsp;</p>
+                           <p>To rewrite the matrix multiplication kernel in DPC++ as shown in the following code sample:</p>
+                           <ol> 
+                            <li>Select an offload device.</li> 
+                            <li>Declare a device queue.</li> 
+                            <li>Declare some buffers to hold the matrix.</li> 
+                            <li>Submit work to the device queue.</li> 
+                            <li>Run the matrix multiplication in parallel.</li> 
+                           </ol>
+                           <div class="my-4">
+                            <img src="../img/rushita_img/cross7.jpg" alt="" width="100%">
+                       </div>
+                           <h3><br> Optimize GPU Use with Intel VTune Profiler</h3>
+                           <p>Offload Advisor helped port the CPU kernel to a GPU, yet the initial implementation is far from optimal. To see how effectively you're using the GPU, use the GPU offload features of Intel VTune Profiler (Figure 5). GPU offload shows that the application has an elapsed time of 2.017 seconds and GPU utilization is 100%. Matrix multiplication is our hot spot.</p>
+                           <div class="my-4">
+                            <img src="../img/rushita_img/cross8.jpg" alt="" width="100%">
+                       </div>
+                           <p style="text-align:center"><strong>Figure 5. GPU offload report</strong></p>
+                           <p style="text-align:center">&nbsp;</p>
+                           <p>Select the <strong>Graphics </strong>and <strong>Platform </strong>tabs to display more details. Intel VTune Profiler shows a synchronized timeline between the CPU and GPU. GPU offload does indicate that our GPU execution units are stalling, as indicated by the dark red bar in the timeline (Figure 6).</p>
+                           <p>Next, to identify the source of our low GPU utilization and stalls, run the GPU Hot Spots report in Intel VTune Profiler. Select the <strong>Graphics </strong>tab in <strong>GPU Hot Spots</strong>. A high-level diagram of the architecture appears (Figure 7). Notice that:</p>
+                           <ul> 
+                            <li>The shared local memory (SLM) cache is unused.</li> 
+                            <li>A total of 159.02 GB/s is moved around.</li> 
+                           </ul>
+                           <p>Let's try two optimization techniques:</p>
+                           <ul> 
+                            <li>Cache-block the matrix</li> 
+                            <li>Use local memory</li> 
+                           </ul>
+                           <div class="my-4">
+                            <img src="../img/rushita_img/cross9.jpg" alt="" width="100%">
+                       </div>
+                           <p style="text-align:center"><img alt="" height="473" src="#" width="800"></p>
+                           <p style="text-align:center"><strong>Figure 6. The running GPU units are stalling.</strong></p>
+                           <p style="text-align:center">&nbsp;</p>
+                           <div class="my-4">
+                            <img src="../img/rushita_img/cross10.jpg" alt="" width="100%">
+                       </div>
+                           <p style="text-align:center"><strong>Figure 7. Diagram of the architecture before memory optimization</strong></p>
+                           <p style="text-align:center">&nbsp;</p>
+                           <p>To implement these techniques, break the matrix into tiles and work on them separately in the SLM cache:</p>
+                           <div class="my-4">
+                            <img src="../img/rushita_img/cross11.jpg" alt="" width="100%">
+                       </div>
+                           <p>The new architecture diagram shows that this is much more efficient (Figure 8). It uses the SLM: 136.35 GB/s for read and 45.45 GB/s for write.</p>
+                           <div class="my-4">
+                            <img src="../img/rushita_img/cross12.jpg" alt="" width="100%">
+                       </div>
+                           <p style="text-align:center"><strong>Figure 8. Diagram of the architecture after memory optimization</strong></p>
+                           <p style="text-align:center">&nbsp;</p>
+                           <p>To see more metrics, select the <strong>Platform</strong> tab (Figure 9). You can see that the matrix is stored in 1024×1024 global memory, but uses local memory in a 16×16 tile. The elapsed time for our new matrix is 1.22s, a 1.64x improvement.</p>
+                           <div class="my-4">
+                            <img src="../img/rushita_img/cross13.jpg" alt="" width="100%">
+                       </div>
+                           <p style="text-align:center"><strong>Figure 9. Platform tab</strong><br> &nbsp;</p>
+                           <h3>GPU Roofline in Intel Advisor</h3>
+                           <p>To see if the GPU version of the matrix multiplication kernel gets the maximum performance from the hardware, use the new GPU Roofline feature. Intel Advisor can generate a Roofline Model for kernels running on Intel® GPUs. The Roofline Model offers an efficient way to characterize your kernels and visualize how far you are from ideal performance.</p>
+                           <p>The Roofline Model on GPU is a tech preview feature that's not available by default. Here’s a five-step process to enable it:</p>
+                           <ul> 
+                            <li>First, ensure that you have a DPC++ code that correctly runs on the GPU. You can check which hardware you are running on by doing something like this: 
+                                <div class="my-4">
+                                    <img src="../img/rushita_img/cross14.jpg" alt="" width="100%">
+                               </div>
+                            </li> 
+                            <li>Since this is a technical preview, enable GPU profiling by setting the following environment variable: <strong>export ADVIXE_EXPERIMENTAL=gpu-profiling</strong>.</li> 
+                            <li>Next, run the survey with the <strong>–enable-gpu-profiling</strong> option: <strong>advixe-cl -collect survey–enable-gpu-profiling –project-dir –search-dir src:r= — ./myapp param1 param2</strong></li> 
+                            <li>Run the tripcount analysis with the <strong>–enable-gpu-profiling</strong> option: <strong>advixe-cl -collect tripcounts –stacks –flop –enable-gpu-profiling –project-dir –search-dir src:r= — ./myapp param1 param2</strong></li> 
+                            <li>Generate the Roofline Model:<strong> advixe-cl –report=roofline –gpu –project-dir –report-output=roofline.html</strong></li> 
+                           </ul>
+                           <p>After the last step runs, the file roofline.html generates. Open it in any browser (Figure 10).</p>
+                           <div class="my-4">
+                            <img src="../img/rushita_img/cross15.jpg" alt="" width="100%">
+                       </div>
+                           <p style="text-align:center"><strong>Figure 10. Roofline report</strong></p>
+                           <p>&nbsp;</p>
+                           <p>It’s also possible to display different dots based on which memory subsystem is used for the arithmetic intensity computation (Figure 11).</p>
+                           <div class="my-4">
+                            <img src="../img/rushita_img/cross16.jpg" alt="" width="100%">
+                       </div>
+                           <p>&nbsp;</p>
+                           <p>As you can see from the roofline chart in Figure 12, our <strong>L3 </strong>dot is close to the L3 maximum bandwidth. To get more floating point operations per second (FLOPS), we need to further optimize our cache use. A cache-blocking optimization strategy can make better use of memory and increase performance. The graphics technology interface (GTI—traffic between our GPU, GPU uncore [LLC], and main memory) is far from the GTI roofline, so transfer costs between CPU and GPU do not seem to be an issue.<br> &nbsp;</p>
+
+                        <h2 class="fw-light mt-5">Conclusion</h2>
+                        <p>Intel oneAPI products provide a standard, simplified programming model that can run seamlessly on the scalar, vector, matrix, and spatial architectures deployed in CPUs and accelerators. It gives users the freedom to focus on their code instead of the underlying mechanism that generates the best possible machine instructions.<br> &nbsp;</p>
+
+                        <h2 class="fw-light mt-5">Learn More</h2>
+                        <ul> 
+                            <li class="k_plink1 k_intext1blue1"><a href="#">oneAPI Initiative</a></li> 
+                            <li class="k_plink1 k_intext1blue1"><a href="#">Intel® oneAPI Toolkits</a></li> 
+                            <li class="k_plink1 k_intext1blue1"><a href="#">Intel Advisor</a></li> 
+                            <li class="k_plink1 k_intext1blue1"><a href="#">Intel VTune Profiler</a></li> 
+                           </ul>
+
+                        
+                        <h3 class="fw-light">______</h3>
+                        <div class="row">
+                            <div class="mt-5">
+                                <h2 class="fw-light">You May Also Like</h2>
+                            </div>
+                            <div>
+                                <div class="k_tab-container">
+                                    <ul class="d-flex k_text k_listnone gap-4 px-3 k_tab1 k_scrollable-menu">
+                                        <li><a href="#" data-tab="gaming">Related Videos</a></li>
+                                        <li><a href="#" data-tab="entertainment">Related Article</a></li>
+                                        <li><a href="#" data-tab="entertainment">Get the Software</a></li>
+                                    </ul>
+                                    <hr class="mb-2 k_hr">
+                                    <div class="">
+                                        <div class="k_custom-tab-content" id="gaming">
+                                            <div class="row ">
+                                             
+                                                <div class="col-lg-12 col-md-12 col-sm-12 align-content-center">
+                                                    <div class="row g-3">
+                                                        <div class="col-sm-12 col-md-6 col-lg-4">
+                                                            <p>oneAPI: The Path to Streamlined Cross-architecture Development</p>
+                                                            <p class="k_plink1 k_intext1blue1"><a href="#">Watch</a></p>
+                                                        </div>
+                                                        <div class="col-sm-12 col-md-6 col-lg-4">
+                                                            <p>oneAPI for All: A New Initiative for Industry-wide Innovation</p>
+                                                            <p class="k_plink1 k_intext1blue1"><a href="#">Watch</a></p>
+                                                        </div>
+                                                        <div class="col-sm-12 col-md-6 col-lg-4">
+                                                            <p>Introducing oneAPI: A Unified, Cross-Architecture Performance Programming Model
+                                                            </p>
+                                                            <p class="k_plink1 k_intext1blue1"><a href="#">Watch</a></p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="k_custom-tab-content" id="entertainment">
+                                            <div class="row g-3">
+                                                <div class="col-sm-12 col-md-6 col-lg-4">
+                                                    <p>Heterogeneous Programming Using oneAPI
+                                                    </p>
+                                                    <p class="k_plink1 k_intext1blue1"><a href="#">Watch</a></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="k_custom-tab-content" id="gaming">
+                                            <div class="row ">
+                                             
+                                                <div class="col-lg-12 col-md-12 col-sm-12 align-content-center">
+                                               
+                                                    <p class="k_plink1 k_intext1blue1"><strong><a href="../VK_developers/VK_Intel_oneAPI_base_toolkit.html">Intel® oneAPI Base Toolkit</a></strong></p>
+                                                    <p>Get started with this core set of tools and libraries for developing high-performance, data-centric
+                                                        applications across diverse architectures.</p>
+                                                    <p>Get started with this core set of tools and libraries for developing high-performance, data-centric applications across diverse architectures.</p>
+                                                    <p class="text-center k_btnlearn py-1 k_text m-auto k_under k_btn100"
+                                                    style="float: inline-start; width: 130px; background-color: #0068B5;">
+                                                    <a href="#" class="text-white">Get It Now</a>
+                                                    </p>
+                                                    <p class="k_plink1 k_intext1blue1"><a href="../VK_developers/VK_client_toolkit.html">See All Tools</a></p>
+                                                    
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                             
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+    </section>
+    <section class="my-4" style="font-size: 13px;">
+        <div class="k_container11">
+            <div class="row">
+                <div>
+                    <hr class="mb-5">
+                    <p>Product and Performance Information </p>
+
+                    <div class="k_plink1 k_intext1blue1"><sup>1</sup>Performance varies by use, configuration and other
+                        factors. Learn more at &nbsp;<a
+                            href="../Product/B1_1_5xeon6_performance_Index.html">www.Intel.com/PerformanceIndex.</a>.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div id="footer"></div>
+    <script>
+        // navbar include  
+        fetch('../y_index/y_navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar').innerHTML = data;
+            });
+        // footer include 
+        fetch('../y_index/y_footer.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('footer').innerHTML = data;
+            });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const tabLinks = document.querySelectorAll('.k_tab-container ul li a');
+            const tabContents = document.querySelectorAll('.k_custom-tab-content');
+
+            function setActiveTab(tabId) {
+                tabContents.forEach(content => {
+                    content.classList.remove('active');
+                });
+                tabLinks.forEach(link => {
+                    link.classList.remove('active');
+                });
+
+                document.getElementById(tabId).classList.add('active');
+                document.querySelector(`[data-tab="${tabId}"]`).classList.add('active');
+            }
+
+            tabLinks.forEach(link => {
+                link.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const tabId = this.getAttribute('data-tab');
+                    setActiveTab(tabId);
+                });
+            });
+
+            setActiveTab('gaming');
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const tabLinks = document.querySelectorAll('.k_tab-container ul li a');
+            const tabContents = document.querySelectorAll('.k_custom-tab-content');
+
+            function setActiveTab(tabId) {
+                tabContents.forEach(content => {
+                    content.classList.remove('active');
+                });
+                tabLinks.forEach(link => {
+                    link.classList.remove('active');
+                });
+
+                document.getElementById(tabId).classList.add('active');
+                document.querySelector(`[data-tab="${tabId}"]`).classList.add('active');
+            }
+
+            tabLinks.forEach(link => {
+                link.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const tabId = this.getAttribute('data-tab');
+                    setActiveTab(tabId);
+                });
+            });
+
+            setActiveTab('gaming');
+        });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
+    <script src="../js/jquery-3.7.1.js"></script>
+
+    <script src="../js/owl.carousel.min.js"></script>
+    <script src="../js/rushita.js"></script>
+</body>
+
+</html>
