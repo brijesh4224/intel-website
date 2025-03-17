@@ -1,0 +1,900 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quartus® II Tcl Example: Arbitrary Paths Timing Reporting</title>
+
+    <link rel="stylesheet" href="/css/dk_ipus_improve_network_latency_in_microservices_based_applications.css">
+    <link rel="stylesheet" href="/css/rushita_automotive.css">
+
+    <!-- header footer -->
+    <link rel="stylesheet" href='/css/yatri.css'>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" rel="stylesheet">
+</head>
+<style>
+    nav{
+        position: relative !important;
+    }
+    .mv_pre {
+        padding-left: 0rem !important;
+    }
+    .mv_pre {
+    padding-top: 0.5625rem !important;
+    }
+</style> 
+
+<body>
+
+    <!-- header -->
+    <div id="navbar"></div>
+
+<!-- --------------------------------------------------------------------- -->
+    <!-- <section>
+        <nav class="mb_sub_nv">
+            <div class="mv_breadcrumb">
+                <ol class="mv_spark_breadcrumb_items">
+                    <li><a href="">Altera® FPGAs and Programmable Devices</a></li>
+                    <li><a href="">FPGA Product Support</a></li>
+                    <li><a href="">FPGA Design Examples</a></li>
+                    <li><a href="">FPGA Design Examples</a></li>
+                </ol>
+            </div>
+        </nav>
+    </section> -->
+
+    <section class="m_ai_tdrop">
+        <div>
+            <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Altera® FPGAs and Programmable Devices
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item m_dropActive" href="#">FPGA Products</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/Product/B8_FPGA_CPLD.html">FPGA Devices</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/vaidikhtml/mv_product/quartus_development_software_tools_quartus_prime_design_software_overview.html">FPGA Software</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/Product/B11_intel_intellectual.html">FPGA IP</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/Product/B12_intel_fpga_develop.html">FPGA DEVKITs</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/vaidikhtml/mv_developer_learn/developer_get_help_FPGA_support.html">FPGA Product Support</a></li>
+            </ul>
+        </div>
+
+
+        <div class="m_ai_shlash">/</div>
+        <div>
+            <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                FPGA Product Support
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item m_dropActive" href="/vaidikhtml/mv_developer_learn/developer_get_help_FPGA_support_FPGA_developer_center.html">FPGA Developer Center</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">FPGA Documentation</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/darshit/dk_product/device_and_product_support_collections.html">Devices and Product collections</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/vaidikhtml/mv_product/FPGAs_programmable_devices_support_training.html">FPGA Technical Training</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/vaidikhtml/mv_product/design_examples.html">FPGA Design Examples</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/vaidikhtml/mv_product/quartus_development_software_tools_licensing.html">FPGA Licensing Center</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">FPGA Downloads</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">FPGA Knowledge Base</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/vaidikhtml/mv_developer_learn/developer_get_help_FPGA_support.html">FPGA Support Resources</a></li>
+            </ul>
+        </div>
+
+        <div class="m_ai_shlash">/</div>
+
+        <div>
+            <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                FPGA Design Examples
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item m_dropActive" href="">FPGA Design Store</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">FPGA Design Examples</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">RocketBoards.org</a></li>
+            </ul>
+        </div>
+
+        <div class="m_ai_shlash">/</div>
+
+        <div>
+            <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                FPGA Design Examples
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item m_dropActive" href="/darshit/dk_product/Video_and_Image_Processing.html">Video and Image Processing</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Drive-on-a-Chip Multi-Axis Motor Control</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">FPGA Design Security Solution</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Timing Analyzer Clock Analysis</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Quartus II Tcl Example: Elaborate Timegroups Nodes</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Quartus® II Tcl Example: Ver. No. VHDL Reg. Bank</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Quartus® II Tcl Example: Automatic Version Number</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Quartus® II Tcl Version Number in Verilog Register Bank</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Quartus® II Tcl Get Subversion Revision Number</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Top-Level Instance Names Matching Wildcard Pattern</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Quartus II Tcl Example: Increment Ver. No. in File</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Quartus® II Tcl Example: Date Time Stamp</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Quartus® II Tcl Design Examples</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Quartus® II Tcl Export Report Data to CSV File</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Quartus® II Tcl - Arbitrary Paths Timing Reporting</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Platform Designer (Formerly Qsys) Design Examples</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Quartus® II Tcl Example: Opening Projects</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Quartus® II Tcl Example: Non-Default Global Assign</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Quartus® II Tcl Example: Find a Timing Node</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Timing Analyzer Example: Multicycle Exceptions</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Simplify Design Reuse with Dynamic SDC Constraints</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Timing Analyzer Report Multi Operating Conditions</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">MicroC/OS-II RTOS with the Nios® II Processor</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Timing Analyzer: Constraining Generated Clocks</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Timing Analyzer: Failing Clocks Summary Report</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Timing Analyzer Instance and Entity in Scripts</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Constrain Edge-Aligned Source-Synchronous Output</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Constrain Edge-Aligned Source-Synchronous Input</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Get Clocks Feeding a Pin</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Timing Analyzer Clock Multiplexer Examples</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Constrain Center-Aligned Source-Synchronous Output</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Constraining a Center-Aligned Source-Synchronous Input</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Platform Designer Tutorial Design Example</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Quartus® II Tcl Example: Report Levels of Logic</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">BFM Simulation HPS AXI* Bridge Interface</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Demo AXI Memory Design Example</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Alternative Nios® II Boot Methods</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Report Levels of Logic</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Quartus® II Tcl Example: Date and Time Formatting</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Quartus® II Tcl Example: Custom Report Panels</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Quartus® II Tcl Automatically Archiving Projects</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Quartus® II Tcl Example: Make All Pins Virtual</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">VHDL: Tri-State Buses</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Video Downscaling Design Example</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">VHDL: Creating a Hierarchical Design</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">VHDL: Converting a Hexadecimal Value</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">VHDL: Unsigned Multiply-Adder</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">VHDL: Unsigned Multiplier with Registered I/O</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">VHDL: True Dual-Port RAM with a Single Clock</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">VHDL Templates for State Machines</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">VHDL: Single-Port ROM</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">VHDL: Single-Port RAM</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">VHDL: Single Clock Synchronous RAM</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">VHDL: Signed Multiplier-Accumulator</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">VHDL: Signed Multiplier</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">VHDL Implementing Functions</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">VHDL Template for Inferring DSP Blocks</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">VHDL: Gray Counter</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">VHDL: Dual-Port ROM</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">VHDL: Dual Clock Synchronous RAM</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">VHDL: Counter with Synchronous Reset</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">VHDL: Binary Adder Tree</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">VHDL: Adder/Subtractor</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">VHDL: 8 x 64 Shift Register with Taps</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">VHDL: 1x64 Shift Register</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Verilog HDL: Unsigned Multiplier-Accumulator</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Verilog HDL: Unsigned Multiplier</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Verilog HDL True Dual-Port RAM with Single Clock</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Verilog HDL: Tri-State Instantiation</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Verilog HDL: Ternary Adder Tree</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Verilog HDL Templates for State Machines</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Verilog HDL: Synchronous State Machine</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Verilog HDL: Single-Port RAM</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Verilog HDL: Single Clock Synchronous RAM</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Verilog HDL: Signed Multiplier-Adder</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Verilog HDL: Signed Multiplier with Registered I/O</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Verilog HDL Parameter RAM with Separate Input & Output Ports</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Verilog Design Examples</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Verilog HDL High-Speed Differential I/O Capability</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Verilog HDL: Creating a Hierarchical Design</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">VHDL Template for Inferring DSP Blocks</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Verilog HDL: Gray Counter</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Verilog: FFT with 32K-Point Transform Length</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">POS-PHY Level 4 (SPI-4.2) External PLL Sharing</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Verilog HDL: Dual Clock Synchronous RAM</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Verilog HDL: Counter with Asynchronous Reset</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Verilog HDL: Parameterized Counter</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Verilog HDL: Binary Adder Tree</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Verilog HDL: Bidirectional Pin</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Verilog HDL: Behavioral Counter</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Verilog HDL: Adder/Subtractor</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Verilog HDL: 8x64 Shift Register with Taps</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Verilog HDL: Customized 4-Port Crosspoint Switch</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Verilog HDL: 1x64 Shift Register</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Verilog HDL: 16x16 Crosspoint Switch</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">OpenCL™ Vector Addition Design Example</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">VHDL: Counter</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">VHDL: Bidirectional Bus</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Time-Domain Finite Impulse Response (FIR) Filter</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Sobel Filter Design Example</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Sobel Filter Design Example</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">SignalTap* II State-Based Triggering Flow</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Shared Memory Partition Design Example</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Single-Port Triple-Speed Ethernet On-Board PHY Chip Reference Design</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">PCI* Express Avalon®-MM High-Performance DMA</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">10-Gbps Ethernet Hardware Demonstration</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Optical Flow Design Example</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">OPRA FAST Parser Design Example</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">On-Chip Debugging Design Examples</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">MAX® II Design Examples</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Multithread Vector Operation Design Example</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Multifunction Printer Error Diffusion</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Matrix Multiplication Design Example</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">OpenCL™ Library</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">JPEG Decoder for OpenCL™</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">DSP Design Examples</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Hello World Design Example</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Gzip Compression OpenCL™ Design Example</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">FPGA-to-HPS Bridges Design Example</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">OpenCL™ Mandelbrot Fractal Algorithm</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">OpenCL™ Host Pipe Design Example</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">OpenCL™ 2D Fast Fourier Transform Design Example</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">OpenCL™ Fast Fourier Transform FFT (1D) Off-Chip</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">OpenCL™ Fast Fourier Transform FFT (1D)</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Finite Difference Computation (3D) Design Example</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Using NicheStack TCP/IP Stack – Nios® II Edition</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Triple Speed Ethernet Design Example</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Constrain RGMII Interface of Triple Speed Ethernet</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Nios® II Processor with Tightly Coupled Memory</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">SPI Agent to Avalon® Host Bridge</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Nios® II Ethernet Standard Design Example</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Nios® II Processor with Memory Management Unit</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Web Server Design Example</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">MicroC/OS-II Mutex Example</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">MAX® II and MAX CPLD Design Examples</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Serial Design Examples</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Ethernet Design Examples</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Embedded Processors Design Examples</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">TSE: Instantiate TSE with External ALTGX / ALTLVDS</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Map HPS IP Peripheral Signals to FPGA Interface</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">HiSPi Imager Connectivity Design Example</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Network Time Protocol Client Design Example</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Fast Nios® II Hardware Design Example</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Nios® II Ethernet Acceleration Design Example</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Designing Digital down Conversion Systems Using CIC and FIR Filters</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Application Selector Example</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Debugging with System Console Over TCP/IP</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Avalon® Component Interfaces Supported in the Component Editor Version 7.2 and Later</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Examples of Changes to Typical Avalon® Interfaces for the Component Editor Version 7.2 and Later</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Document Filtering Design Example</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Channelizer Design Example</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">OpenCL™ Implement Asian Options Pricing Algorithm</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Design Entry Tool Examples</a></li>
+            </ul>
+        </div>
+
+        <div class="m_ai_shlash">/</div>
+        <div class="m_ai_httl">Quartus® II Tcl - Arbitrary Paths Timing Reporting</div>
+
+    </section>
+<!-- --------------------------------------------------------------------- -->
+
+    <!-- Optimize Fine-Tuning and Deployment of LLMs on an AI PC -->
+    <section>
+        <div class="mv_intel_amx_bg_color" style="padding: 3rem 0rem; background-color: #548FAD;">
+            <div class="container">
+                <div class="row mv_intel_amx_content">
+                    <div class="col-md-9 mv_intel_amx_item">
+                        <div class="mv_intel_amx">
+                            <h3 style="font-weight: 300;">Quartus® II Tcl Example: Arbitrary Paths Timing Reporting</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="container py-5">
+        <div class="row">
+            <div class="d-flex justify-content-end col-xl-10 py-3 d-md-none">
+                <i class="fa-solid fa-print fs-4 px-2 " style="color:#0068B5"></i>
+                <i class="fa-regular fa-envelope fs-4 px-2" style="color:#0068B5"></i>
+            </div>
+            <div class="col-lg-3 col-md-4">
+                <!-- nav -->
+                <!-- <div class="VK_client_app_navigation VK_ai_navigation">
+                    <div class="justify-content-center align-items-center overflow-hidden flex-nowrap mb-4">
+                        <ul class="VK_ai_nav_bar list-unstyled m-0">
+                            <li>
+                                <a href="#dk_locate_number" class="text-dark text-decoration-none d-block">
+                                    Locate the Number
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#dk_increment_number" class="text-dark text-decoration-none d-block VK_ai_nav_link">
+                                    Increment the Number
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#dk_rewrite_file" class="text-dark text-decoration-none d-block VK_ai_nav_link">
+                                    Rewrite the File
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div> -->
+                <div class="dk_things_code_main">
+                    <div class="dk_things_code" style="padding: 1.25rem 1rem .5rem 1rem !important;">
+                        
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-9 col-md-8">
+                <div class="d-md-flex justify-content-end col-xl-10 py-3 d-none">
+                    <!-- <i class="fa-regular fa-file-lines fs-4 px-2" style="color:#0068B5"></i> -->
+                    <i class="fa-solid fa-print fs-4 px-2 " style="color:#0068B5"></i>
+                    <i class="fa-regular fa-envelope fs-4 px-2" style="color:#0068B5"></i>
+                </div>
+                <div class="col-xl-10">
+                    <p>&nbsp;</p>
+                    <div style="font-size: 1.25rem;">
+                        <p>The&nbsp;<strong>list_path</strong>&nbsp;and&nbsp;<strong>report_timing</strong>&nbsp;Tcl commands are very powerful, but they have some limitations. Path endpoints must be clocks, pins, or registers. Also, those commands do not report every combinational path between the endpoints. This advanced script example supports reporting timing on arbitrary paths in your design (including combinational endpoints), and reports all combinational paths between endpoints. The script uses an iterative search algorithm to find paths. The algorithm stops at pins and registers to prevent excessive run times.</p>
+                        <p>You can specify node names, wildcards, or timegroup names for the source and destination. Timegroup exclusions are not supported by this script; a warning is displayed if you specify a timegroup that contains exclusions for the endpoints, and the exclusions are ignored.</p>
+                        <p>You can direct the output of the script to a Comma Separated Value (<strong>.csv</strong>) file. The default file name is&nbsp;<strong>p2p_timing.csv</strong>. In addition, you can direct the output of the script to a panel in your project's timing report. The default panel name is&nbsp;<strong>Point-to-point Timing</strong>.</p>
+                        <p>quartus_tan -t p2p_timing.tcl -project &lt;project name&gt; -from &lt;node name|wildcard|timegroup name&gt; -to &lt;node name|wildcard|timegroup name&gt; [-write_file] [-file &lt;output file name&gt;] [-write_panel] [-panel &lt;report panel name&gt;]</p>
+                        <p>If you want to direct the output to a file different than the default file name, you must specify both the -write_file and -file &lt;output file name&gt; options. If you want to direct the output to a report panel different than the default report panel name, you must specify both the -write_panel and -panel &lt;report panel name&gt; options.</p>
+                        <p>Copy the following Tcl commands to a file and name it&nbsp;<strong>p2p_timing.tcl</strong>.</p>
+                    </div>
+
+                    <section>
+                        <div class="mv_code_toolbar" style="margin: 3rem 0rem;">
+                            <div class="mv_toolbar_item mv_copy_icon">
+                                <i class="fa-regular fa-copy"></i>
+                            </div>
+                            <div class="mv_copy_message text-end hidden">Copied</div>
+                            <div class="code-content">
+                                <div style="padding-bottom: 0rem !important" class="d-flex mv_pre">
+                                    <div class="mv_code text-break">
+                                        <pre><div class="toolbar"><div class="toolbar-item"><i class="fa fa-docs"></i></div></div>package require cmdline 
+                                            load_package advanced_timing 
+                                            load_package report 
+                                            
+                                            global quartus 
+                                            variable ::argv0 $::quartus(args) 
+                                            
+                                            set options { \ 
+                                               &nbsp; &nbsp;{ "from.arg" "" "Source node name" } \ 
+                                               &nbsp; &nbsp;{ "to.arg" "" "Destination node name" } \ 
+                                               &nbsp; &nbsp;{ "project.arg" "" "Project name" } \ 
+                                               &nbsp; &nbsp;{ "file.arg" "p2p_timing.csv" "Output csv file name" } \ 
+                                               &nbsp; &nbsp;{ "write_file" "" "Write the output to a file" } \ 
+                                               &nbsp; &nbsp;{ "panel.arg" "Point-to-point Timing" "Report panel name" } \ 
+                                               &nbsp; &nbsp;{ "write_panel" "" "Write the output to a report panel" } \ 
+                                            } 
+                                            
+                                            array set opts [::cmdline::getoptions ::argv0 $options "Bad option"] 
+                                            ############################################################## 
+                                            # 
+                                            # Returns a list that of node names and corresponding node IDs 
+                                            # for design names that match the pattern argument. 
+                                            # Any pattern that doesn't match names in the design has an 
+                                            # empty list returned 
+                                            # Example: Pass in "reset" and get { reset 3 } back 
+                                            # 
+                                            ############################################################## 
+                                            proc get_node_ids { pattern } { 
+                                                &nbsp; &nbsp;array set name_to_node [list] 
+                                            
+                                                &nbsp; &nbsp;if { [string equal "" $pattern] } { 
+                                                    &nbsp; &nbsp; &nbsp; return [list] 
+                                               }
+                                            
+                                               &nbsp; &nbsp;# Is the pattern actually the name of a timegroup? 
+                                               &nbsp; &nbsp;# If it is, then the script recursively gets the members of 
+                                               &nbsp; &nbsp;# the timegroup. 
+                                               &nbsp; &nbsp;set members [get_all_global_assignments -name TIMEGROUP_MEMBER -section_id $pattern] 
+                                            
+                                               &nbsp; &nbsp;# If there are any members of the collection, 
+                                               &nbsp; &nbsp;# the pattern is a timegroup 
+                                               &nbsp; &nbsp;if { 0 &lt; [get_collection_size $members]} { 
+                                                  &nbsp; &nbsp; &nbsp; # Warn if there are exclusions, because the script 
+                                                  &nbsp; &nbsp; &nbsp; # skips exclusions 
+                                                  &nbsp; &nbsp; &nbsp; if {0 &lt; [get_collection_size [get_all_global_assignments -name TIMEGROUP_EXCLUSION -section_id $pattern]] } 
+                                                  { 
+                                                    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;post_message -type warning "Skipping exclusions in timegroup $pattern" 
+                                                  &nbsp; &nbsp; &nbsp; } 
+                                            
+                                                  &nbsp; &nbsp; &nbsp; # Go through each item in the timegroup. 
+                                                  &nbsp; &nbsp; &nbsp; foreach_in_collection assignment $members { 
+                                                     &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; # Each item in the collection is a list like this: 
+                                                     &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; # {$pattern} {TIMEGROUP_MEMBER} {node/real pattern} 
+                                                     &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; array set sub_collection_names [get_node_ids [lindex $assignment 2]] 
+                                            
+                                                     &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; foreach node_name [array names sub_collection_names] { 
+                                                        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; set name_to_node($node_name) $sub_collection_names($node_name) 
+                                                     &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; } 
+                                                     &nbsp; &nbsp; &nbsp; } 
+                                            &nbsp; &nbsp;} else { 
+                                                  &nbsp; &nbsp; &nbsp; # It is not a timegroup 
+                                                  &nbsp; &nbsp; &nbsp; # Iterate through all timing nodes in the design, 
+                                                  &nbsp; &nbsp; &nbsp; # checking whether the name matches the pattern specified 
+                                                  &nbsp; &nbsp; &nbsp; foreach_in_collection node_id [get_timing_nodes -type all] { 
+                                                     &nbsp; &nbsp; &nbsp; &nbsp; set node_name [get_timing_node_info -info name $node_id] 
+                                                     &nbsp; &nbsp; &nbsp; &nbsp; if { [string match [escape_brackets $pattern] $node_name] } { 
+                                                        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;set name_to_node($node_name) $node_id 
+                                                     &nbsp; &nbsp; &nbsp; &nbsp; } 
+                                                     &nbsp; &nbsp; &nbsp; } 
+                                                     &nbsp; &nbsp; } 
+                                               &nbsp; &nbsp; return [array get name_to_node]
+                                            } 
+                                            
+                                            ############################################################## 
+                                            # 
+                                            # This procedure finds combinational paths between a source 
+                                            # node and a list of destination nodes. It returns a list of 
+                                            # paths between the nodes. Each path is made up of a triplet 
+                                            # of node ID, and interconnect delay and cell delay from the 
+                                            # previous node. 
+                                            # The procedure stops traversing the netlist at a register 
+                                            # or pin, so it does not find paths that go through registers. 
+                                            #
+                                            ############################################################## 
+                                            proc find_combinational_paths_between {queue dest_nodes} { 
+                                               &nbsp; &nbsp;set num_iterations 0 
+                                               &nbsp; &nbsp;set paths [list] 
+                                               
+                                               &nbsp; &nbsp;while {0 &lt; [llength $queue]} { 
+                                                  &nbsp; &nbsp; &nbsp; # Report on the progress of the loop every thousand 
+                                                  &nbsp; &nbsp; &nbsp; # iterations incr num_iterations 
+                                                  &nbsp; &nbsp; &nbsp; if { 1000 == $num_iterations } { 
+                                                     &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;set num_iterations 0 
+                                                     &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;post_message "Checking [llength $queue] paths." 
+                                                  &nbsp; &nbsp; &nbsp; } 
+                                                  
+                                                  &nbsp; &nbsp; &nbsp; # Pop the first path from the queue. 
+                                                  &nbsp; &nbsp; &nbsp; # The first time the procedure is called, the queue 
+                                                  &nbsp; &nbsp; &nbsp; # is just one number, the source node. 
+                                                  &nbsp; &nbsp; &nbsp; set path [lindex $queue 0] 
+                                                  &nbsp; &nbsp; &nbsp; set queue [lrange $queue 1 end] 
+                                                  
+                                                  &nbsp; &nbsp; &nbsp; # Get the last node in the path, then in the foreach loop 
+                                                  &nbsp; &nbsp; &nbsp; # get fanout from that node 
+                                                  &nbsp; &nbsp; &nbsp; set last_triplet_in_path [lindex $path end] 
+                                                  &nbsp; &nbsp; &nbsp; set last_node_in_path [lindex $last_triplet_in_path 0] 
+                                             
+                                                  &nbsp; &nbsp; &nbsp; # Extract just the node IDs in the current path. 
+                                                  &nbsp; &nbsp; &nbsp; # This is used later to ensure loops are not traversed. 
+                                                  &nbsp; &nbsp; &nbsp; set nodes_in_path [collapse_triplets_to_node_list $path] 
+                                            
+                                                  &nbsp; &nbsp; &nbsp; # Get all fanouts of the last node in this path and make 
+                                                  &nbsp; &nbsp; &nbsp; # new paths with them to push on the queue. 
+                                                  &nbsp; &nbsp; &nbsp; foreach n [get_timing_node_fanout $last_node_in_path] { 
+                                                     &nbsp; &nbsp; &nbsp; &nbsp; foreach { node_id ic_delay cell_delay } $n { 
+                                                        &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;break 
+                                                     &nbsp; &nbsp; &nbsp; &nbsp; }
+                                             
+                                                     &nbsp; &nbsp; &nbsp; &nbsp; if { -1 != [lsearch $dest_nodes $node_id] } { 
+                                                        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;# If this node in the path is in the list of 
+                                                        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;# destination nodes, there is a path. 
+                                                        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;# Add it to the list of paths between the nodes 
+                                                        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;set new_path $path lappend 
+                                                        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;new_path $n 
+                                                        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;lappend paths $new_path 
+                                                     &nbsp; &nbsp; &nbsp; &nbsp; } 
+                                            
+                                                     &nbsp; &nbsp; &nbsp; &nbsp; if { -1 == [lsearch $nodes_in_path $node_id] } { 
+                                                        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;# If this node in the path is not in the path 
+                                                        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;# already, this is not a loop. Push it on the 
+                                                        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;# queue if it is a combinational or clock node. 
+                                                        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;# The path is not pushed on if this node is a 
+                                                        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;# register or pin. 
+                                                        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;# Pushing a new path on the queue like this, 
+                                                        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;# even though this node in the path might match 
+                                                        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;# an end node, ensures the longest possible 
+                                                        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;# paths are found. 
+                                                        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;set node_type [get_timing_node_info -info type $node_id] 
+                                                        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;switch -exact -- $node_type { 
+                                                           &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; comb - 
+                                                           &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; clk { 
+                                                              &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; set next_path $path 
+                                                              &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; lappend next_path $n 
+                                                              &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; lappend queue $next_path 
+                                                           &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; } 
+                                                           &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; default { 
+                                                           &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; } 
+                                                        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;} 
+                                                     &nbsp; &nbsp; &nbsp; &nbsp; } 
+                                                     &nbsp; &nbsp; &nbsp;}
+                                               &nbsp; }
+                                               &nbsp; return $paths 
+                                            } 
+                                            
+                                            ############################################################## 
+                                            # 
+                                            # Adds two delay numbers and returns the result. 
+                                            # Delay numbers are in the form "value units" where units 
+                                            # may be nanoseconds (ns) or picoseconds (ps), and value may 
+                                            # be x{1,3} if the units are picoseconds, or x+.y{1,3} if the 
+                                            # units are nanoseconds. This procedure normalizes delays to 
+                                            # nanoseconds and adds the values. 
+                                            # Example: add_delays "1.234 ns" "56 ps" # 
+                                            ############################################################## 
+                                            proc add_delays { a b } { 
+                                               &nbsp; &nbsp;if { ![regexp {^([\d\.]+)\s+([np]s)$} $a match a_value a_unit] } { 
+                                                  &nbsp; &nbsp; &nbsp; post_message -type error "Couldn't determine parts of time: $a" 
+                                               &nbsp; &nbsp;} 
+                                            
+                                               &nbsp; &nbsp;if { ![regexp {^([\d\.]+)\s+([np]s)$} $b match b_value b_unit] } { 
+                                                  &nbsp; &nbsp; &nbsp; post_message -type error "Couldn't determine parts of time: $b" 
+                                               &nbsp; &nbsp;} 
+                                              
+                                               &nbsp; &nbsp;# Convert everything to nanoseconds if required 
+                                               &nbsp; &nbsp;if { [string equal -nocase ps $a_unit] } { 
+                                                  &nbsp; &nbsp; &nbsp; set a_value_ps [format "%.3f" $a_value] 
+                                                  &nbsp; &nbsp; &nbsp; set a_value [format "%.3f" [expr { $a_value_ps / 1000 }]] 
+                                               &nbsp; &nbsp;} 
+                                            
+                                               &nbsp; &nbsp;if { [string equal -nocase ps $b_unit] } { 
+                                                  &nbsp; &nbsp; &nbsp; set b_value_ps [format "%.3f" $b_value] 
+                                                  &nbsp; &nbsp; &nbsp; set b_value [format "%.3f" [expr { $b_value_ps / 1000 }]] 
+                                               &nbsp; &nbsp;} 
+                                            
+                                               &nbsp; &nbsp;# Now the units are equal, and nanoseconds. 
+                                               &nbsp; &nbsp;# Just add the numbers together. 
+                                               &nbsp; &nbsp;set sum_value [format "%.3f" [expr { $a_value + $b_value }]] 
+                                              
+                                               &nbsp; &nbsp;return "$sum_value ns" 
+                                            } 
+                                            
+                                            ############################################################## 
+                                            # 
+                                            # Formats and prints the node names in the path with the  
+                                            # delays between the nodes. 
+                                            # 
+                                            ############################################################## 
+                                            proc print_path_delays { path {iteration first}} { 
+                                               &nbsp; &nbsp;set source_triplet [lindex $path 0] 
+                                               &nbsp; &nbsp;set source_node [lindex $source_triplet 0] 
+                                               &nbsp; &nbsp;set source_node_name [get_timing_node_info -info name $source_node] 
+                                               &nbsp; &nbsp;set source_node_loc [get_timing_node_info -info location $source_node] 
+                                               
+                                               &nbsp; &nbsp;# Print the delays first 
+                                               &nbsp; &nbsp;if { [string equal "first" $iteration] } { 
+                                                  &nbsp; &nbsp; &nbsp; accumulate_data [list "IC(0.000 ns)" "CELL(0.000 ns)"] 
+                                               &nbsp; &nbsp;} else { 
+                                                  &nbsp; &nbsp; &nbsp; set ic_delay [lindex $source_triplet 1] 
+                                                  &nbsp; &nbsp; &nbsp; set cell_delay [lindex $source_triplet 2] 
+                                                  &nbsp; &nbsp; &nbsp; accumulate_data [list "IC($ic_delay)" "CELL($cell_delay)"] 
+                                               &nbsp; &nbsp;} 
+                                               &nbsp; &nbsp;accumulate_data [list $source_node_loc $source_node_name] 
+                                               &nbsp; &nbsp;print_accumulated_data 
+                                            
+                                               &nbsp; &nbsp;# Recurse on the rest of the path 
+                                               &nbsp; &nbsp;if { 1 &lt; [llength $path] } { 
+                                                  &nbsp; &nbsp; &nbsp; print_path_delays [lrange $path 1 end] other 
+                                               &nbsp; &nbsp;} 
+                                            } 
+                                            
+                                            ############################################################## 
+                                            # 
+                                            # Sums the IC and cell delays on the specified path and 
+                                            # returns a list with total interconnect delay and total cell 
+                                            # delay. 
+                                            # 
+                                            ############################################################## 
+                                            proc end_to_end_delay { path } { 
+                                               &nbsp; &nbsp;set ic_total "0.000 ns" 
+                                               &nbsp; &nbsp;set cell_total "0.000 ns" 
+                                               
+                                               &nbsp; &nbsp;# This goes through nodes 1 to end in the path because the 
+                                               &nbsp; &nbsp;# first node in the path is the source and each node in the 
+                                               &nbsp; &nbsp;# path contains the delays from the node preceding it. The 
+                                               &nbsp; &nbsp;# source has no node preceding it, so it has no delays. 
+                                               &nbsp; &nbsp;foreach n [lrange $path 1 end] { 
+                                                  &nbsp; &nbsp; &nbsp; foreach { node_id ic_delay cell_delay } $n { 
+                                                    &nbsp; &nbsp; &nbsp; &nbsp; break 
+                                                  &nbsp; &nbsp; &nbsp; } 
+                                                  &nbsp; &nbsp; &nbsp; set ic_total [add_delays $ic_total $ic_delay] 
+                                                  &nbsp; &nbsp; &nbsp; set cell_total [add_delays $cell_total $cell_delay] 
+                                               &nbsp; &nbsp;} 
+                                            
+                                               &nbsp; &nbsp;return [list $ic_total $cell_total] 
+                                            } 
+                                            
+                                            ##############################################################
+                                            # 
+                                            # Ensures the specified source and destinations exist in the 
+                                            # design, finds the combinational paths between them, and 
+                                            # prints the paths. 
+                                            # 
+                                            ############################################################## 
+                                            proc find_paths_and_display { source dest } { 
+                                               &nbsp; &nbsp;array set sources [get_node_ids $source] 
+                                               &nbsp; &nbsp;array set dests [get_node_ids $dest] 
+                                            
+                                               &nbsp; &nbsp;set nodes_exist 1 
+                                            
+                                               &nbsp; &nbsp;# Ensure the named nodes exist 
+                                               &nbsp; &nbsp;if { 0 == [llength [array get sources]] } { 
+                                                  &nbsp; &nbsp; &nbsp; set nodes_exist 0 
+                                                  &nbsp; &nbsp; &nbsp; post_message -type error "No nodes matching $source were found in your design." 
+                                               &nbsp; &nbsp;} 
+                                               &nbsp; &nbsp;if { 0 == [llength [array get dests]] } { 
+                                                  &nbsp; &nbsp; &nbsp; set nodes_exist 0 
+                                                  &nbsp; &nbsp; &nbsp; post_message -type error "No nodes matching $dest were found in your design." 
+                                               &nbsp; &nbsp;} 
+                                            
+                                               &nbsp; &nbsp;# If they do, find paths. 
+                                               &nbsp; &nbsp;if { $nodes_exist } { 
+                                                  &nbsp; &nbsp; &nbsp; # Get the list of destination node ids 
+                                                  &nbsp; &nbsp; &nbsp; set dest_node_ids [list] 
+                                                  &nbsp; &nbsp; &nbsp; foreach d [array names dests] { 
+                                                     &nbsp; &nbsp; &nbsp; &nbsp; lappend dest_node_ids $dests($d) 
+                                                  &nbsp; &nbsp; &nbsp; } 
+                                            
+                                                  &nbsp; &nbsp; &nbsp; # Walk through all the from nodes 
+                                                  &nbsp; &nbsp; &nbsp; foreach s [array names sources] { 
+                                                     &nbsp; &nbsp; &nbsp; &nbsp; set paths [find_combinational_paths_between $sources($s) $dest_node_ids] 
+                                                     &nbsp; &nbsp; &nbsp; &nbsp; if { 0 == [llength $paths] } {  
+                                                        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; post_message "No combinational path exists from $s to $dest" 
+                                                     &nbsp; &nbsp; &nbsp; &nbsp; } else { 
+                                                        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; foreach path $paths { 
+                                                           &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; # Print out the path 
+                                                           &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; print_path_delays $path 
+                                            
+                                                           &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; # Sum the interconnect and cell delays and 
+                                                           &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; # print them out under the path. 
+                                                           &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; foreach {total_ic_delay total_cell_delay } [end_to_end_delay $path] { 
+                                                            &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; break 
+                                                           &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; } 
+                                                           &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; accumulate_data [list $total_ic_delay $total_cell_delay] 
+                                                           &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; accumulate_data [list [add_delays $total_ic_delay $total_cell_delay]] 
+                                            
+                                                           &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; # There are two calls to print_accumulated_data 
+                                                           &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; # here, one to print the sums of the interconnect 
+                                                           &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; # and cell delays, and one to generate a blank 
+                                                           &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; # line in the output. 
+                                                           &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; print_accumulated_data print_accumulated_data 
+                                                           &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;} 
+                                                           &nbsp; &nbsp; &nbsp; &nbsp;} 
+                                                        &nbsp; &nbsp; &nbsp;}
+                                               &nbsp; &nbsp;} 
+                                            &nbsp;} 
+                                            
+                                            ############################################################## 
+                                            # 
+                                            # A path is made up of triplets of information - node id, 
+                                            # interconnect delay, and cell delay. This procedure extracts 
+                                            # the node id from each triplet in order and returns a list 
+                                            # of the node ids 
+                                            # 
+                                            ############################################################## 
+                                            proc collapse_triplets_to_node_list { l } { 
+                                               &nbsp; &nbsp;set to_return [list] 
+                                               &nbsp; &nbsp;foreach triplet $l { 
+                                                &nbsp; &nbsp; &nbsp; lappend to_return [lindex $triplet 0] 
+                                               &nbsp; &nbsp;} 
+                                               &nbsp; &nbsp;return $to_return 
+                                            } 
+                                            
+                                            ############################################################## 
+                                            # 
+                                            # Concatenates information to a global variable in preparation 
+                                            # for it being printed out. 
+                                            # 
+                                            ############################################################## 
+                                            proc accumulate_data { data } { 
+                                               &nbsp; &nbsp;global accum set accum [concat $accum $data] 
+                                            }
+                                             
+                                            ############################################################## 
+                                            # 
+                                            # Print out the accumulated data. 
+                                            # It is printed to standard out and optionally to a file in 
+                                            # CSV format if the file handle exists, and optionally to a 
+                                            # report panel if the report panel exists (not a value of -1) 
+                                            # 
+                                            ############################################################## 
+                                            proc print_accumulated_data {} { 
+                                               &nbsp; &nbsp;global accum fh panel_id 
+                                               &nbsp; &nbsp;puts [join $accum ","] 
+                                            
+                                               &nbsp; &nbsp;# Write it out to a file? 
+                                               &nbsp; &nbsp;if { [info exists fh] } { 
+                                                  &nbsp; &nbsp; &nbsp; puts $fh [join $accum ","] 
+                                               &nbsp; &nbsp;} 
+                                            
+                                               &nbsp; &nbsp;# Add it to the report panel? 
+                                               &nbsp; &nbsp;if { -1 != $panel_id } { 
+                                                  &nbsp; &nbsp; &nbsp; # If the report panel row doesn't have 4 items 
+                                                  &nbsp; &nbsp; &nbsp; # in it, pad it to 4. 
+                                                  &nbsp; &nbsp; &nbsp; while { 4 &gt; [llength $accum] } { 
+                                                    &nbsp; &nbsp; &nbsp; &nbsp; lappend accum [list] 
+                                                  &nbsp; &nbsp; &nbsp; } 
+                                                  &nbsp; &nbsp; &nbsp; add_row_to_table -id $panel_id $accum 
+                                               &nbsp; &nbsp;} 
+                                               &nbsp; &nbsp;# Clear the information in the global variable. 
+                                               &nbsp; &nbsp;set accum [list] 
+                                            }
+                                            
+                                            ############################################################## 
+                                            ############################################################## 
+                                            # 
+                                            # End of procedures, beginning of script 
+                                            # 
+                                            ############################################################## 
+                                            ##############################################################
+                                            # 
+                                            # Global variables to hold data for printing, and the panel 
+                                            # ID for an optional report panel 
+                                            
+                                            set accum [list] 
+                                            set panel_id -1 
+                                            
+                                            if { [string equal "" $opts(project)] } { 
+                                               &nbsp; &nbsp;# Print usage options if the script is called without 
+                                               &nbsp; &nbsp;# arguments 
+                                               &nbsp; &nbsp;puts [::cmdline::usage $options] 
+                                            } elseif { [string equal "" $opts(project)] } { 
+                                               &nbsp; &nbsp;post_message -type error "Specify a project with the -project option." 
+                                            } elseif { ! [project_exists $opts(project)] } { 
+                                               &nbsp; &nbsp;post_message -type error "The project $opts(project) does not exist in this directory." 
+                                            } elseif { [string equal "" $opts(from)] } { 
+                                               &nbsp; &nbsp;post_message -type error "Specify a name or wildcard pattern with the -from option." 
+                                            } elseif { [string equal "" $opts(to)] } { 
+                                               &nbsp; &nbsp;post_message -type error "Specify a name or wildcard pattern with the -to option." 
+                                            } else { 
+                                               &nbsp; &nbsp;set cur_revision [get_current_revision $opts(project)] 
+                                               &nbsp; &nbsp;project_open $opts(project) -revision $cur_revision 
+                                            
+                                               &nbsp; &nbsp;# Try to create the timing netlist. This command would fail 
+                                               &nbsp; &nbsp;# if quartus_fit has not yet been run, for example. 
+                                               &nbsp; &nbsp;if { [catch { create_timing_netlist } msg ] } { 
+                                                  &nbsp; &nbsp; &nbsp; post_message -type error $msg 
+                                               &nbsp; &nbsp;} else { 
+                                            
+                                                  &nbsp; &nbsp; &nbsp; # Prepare to write the output to a file if required 
+                                                  &nbsp; &nbsp; &nbsp; if { 1 == $opts(write_file) } { 
+                                                     &nbsp; &nbsp; &nbsp; &nbsp; if { [catch {open $opts(file) w} fh] } { 
+                                                        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; post_message -type error "Couldn't open $opts(write_file): $fh" unset fh 
+                                                     &nbsp; &nbsp; &nbsp; &nbsp; } else { 
+                                                        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; post_message "Writing output to $opts(file)" 
+                                                        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; # Add some introductory information to the output file 
+                                                        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; puts $fh "Report of paths from $opts(from) to $opts(to)" 
+                                                        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; puts $fh "Generated on [clock format [clock seconds]]" 
+                                                        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; puts $fh "" puts $fh "IC delay,Cell delay,Node location,Node name" 
+                                                     &nbsp; &nbsp; &nbsp; &nbsp; } 
+                                                  &nbsp; &nbsp; &nbsp; } 
+                                            
+                                                  &nbsp; &nbsp; &nbsp; # Prepare to write the output to a report panel if required 
+                                                  &nbsp; &nbsp; &nbsp; if { 1 == $opts(write_panel) } { 
+                                                     &nbsp; &nbsp; &nbsp; &nbsp; # Load the report, delete the panel if it exists already, 
+                                                     &nbsp; &nbsp; &nbsp; &nbsp; # create a new panel, and add the heading row. 
+                                                     &nbsp; &nbsp; &nbsp; &nbsp; load_report 
+                                                     &nbsp; &nbsp; &nbsp; &nbsp; set panel_id [get_report_panel_id "Timing Analyzer||$opts(panel)"] 
+                                                     &nbsp; &nbsp; &nbsp; &nbsp; if { -1 != $panel_id } { 
+                                                        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; delete_report_panel -id $panel_id 
+                                                     &nbsp; &nbsp; &nbsp; &nbsp; } 
+                                                    &nbsp; &nbsp; &nbsp; &nbsp;     set panel_id [create_report_panel -table "Timing Analyzer||$opts(panel)"] 
+                                                    &nbsp; &nbsp; &nbsp; &nbsp;     add_row_to_table -id $panel_id [list "IC delay" "Cell delay" "Node location" "Node name"] 
+                                                  &nbsp; &nbsp; &nbsp; } 
+                                                  &nbsp; &nbsp; &nbsp; find_paths_and_display $opts(from) $opts(to) 
+                                            
+                                                  &nbsp; &nbsp; &nbsp; # close the output file if necessary 
+                                                  &nbsp; &nbsp; &nbsp; if { [info exists fh] } { close $fh } 
+                                            
+                                                  &nbsp; &nbsp; &nbsp; # Save the report panel if necessary 
+                                                  &nbsp; &nbsp; &nbsp; if { -1 != $panel_id } { 
+                                                     &nbsp; &nbsp; &nbsp; &nbsp; save_report_database 
+                                                     &nbsp; &nbsp; &nbsp; &nbsp; unload_report 
+                                                  &nbsp; &nbsp; &nbsp; } 
+                                               &nbsp; &nbsp;} 
+                                               &nbsp; &nbsp;project_close 
+                                            }</pre>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ------------------------------------------------------------------------- -->
+
+    <!-- footer -->
+    <div id="footer"></div>
+
+    <!-- script header and footer -->
+    <script>
+        // navbar include  
+        fetch('/y_index/y_navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar').innerHTML = data;
+            });
+        // footer include 
+        fetch('/y_index/y_footer.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('footer').innerHTML = data;
+            });
+    </script>
+
+    <!-- nav script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const nav = document.querySelector('.VK_client_app_navigation');
+            const navLinks = document.querySelectorAll('.VK_ai_nav_bar a');
+            const sections = document.querySelectorAll('section[id]');
+            let navOffset = nav.offsetTop;
+
+            // Add smooth scrolling to all links
+            navLinks.forEach(link => {
+                link.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+
+            // Sticky Navigation
+            window.addEventListener('scroll', () => {
+                if (window.pageYOffset >= navOffset) {
+                    nav.classList.add('VK_sticky_nav_bar');
+                } else {
+                    nav.classList.remove('VK_sticky_nav_bar');
+                }
+                // Section highlighting
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop - nav.clientHeight;
+                    const sectionHeight = section.clientHeight;
+                    console.log(sectionTop);
+                    console.log(sectionHeight);
+                    if (window.pageYOffset >= sectionTop && window.pageYOffset <= sectionTop + sectionHeight) {
+                        navLinks.forEach(link => {
+                            link.classList.remove('active');
+                            if (link.getAttribute('href') === `#${section.id}`) {
+                                link.classList.add('active');
+
+                                // Ensure the active link is visible in the nav bar
+                                const navBar = document.querySelector('.VK_ai_nav_bar');
+                                const activeLink = document.querySelector('.VK_ai_nav_bar a.active');
+                                const linkRect = activeLink.getBoundingClientRect();
+                                const navBarRect = navBar.getBoundingClientRect();
+
+                                if (linkRect.left < navBarRect.left || linkRect.right > navBarRect.right) {
+                                    activeLink.scrollIntoView({ inline: 'center', behavior: 'smooth' });
+                                }
+                            }
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+
+    <!-- copy script -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            document.querySelectorAll(".mv_copy_icon").forEach((icon) => {
+                icon.addEventListener("click", async function () {
+                    try {
+                        const toolbar = this.closest(".mv_code_toolbar");
+                        const codeBlock = toolbar.querySelector(".code-content");
+                        const codeContent = codeBlock.innerText;
+
+                        // Use Clipboard API to copy text
+                        await navigator.clipboard.writeText(codeContent);
+
+                        // Hide the copy icon and show the "Copied!" message
+                        const message = toolbar.querySelector(".mv_copy_message");
+                        this.classList.add("hidden"); // Hide the copy icon
+                        message.classList.remove("hidden"); // Show the "Copied!" message
+
+                        // Hide the message and show the icon again after 2 seconds
+                        setTimeout(() => {
+                            message.classList.add("hidden");
+                            this.classList.remove("hidden");
+                        }, 2000); // Adjust delay as needed
+
+                    } catch (err) {
+                        console.error('Failed to copy text: ', err);
+                    }
+                });
+            });
+        });
+    </script>
+
+</body>
+
+</html>
