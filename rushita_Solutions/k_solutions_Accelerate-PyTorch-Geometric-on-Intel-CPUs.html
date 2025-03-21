@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accelerate PyTorch* Geometric on Intel® CPUs</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <link href=" https://fonts.cdnfonts.com/css/intel-clear " rel="stylesheet">
+    <link rel="stylesheet" href="../css/owl.carousel.min.css">
+    <link rel="stylesheet" href="../css/yatri.css">
+    <link rel="stylesheet" href="../css/rushita.css">
+    <link rel="stylesheet" href="../css/rushita_automotive.css">
+
+    <link rel="stylesheet" href="../css/owl.theme.default.min.css">
+    <style>
+        * {
+            font-family: 'Intel Clear', sans-serif;
+        }
+
+        .footnote {
+            color: #bbb !important;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="navbar"></div>
+    <section class="m_ai_tdrop">
+        <div>
+            <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Developers
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item m_dropActive"
+                        href="../dhruvin_developer-tools/ds_Developer-Zone.html">Overview</a></li>
+                <li><a class="dropdown-item m_dropActive"
+                        href="../rushita_Solutions/k_solutions_in_Viewall_SDF_Industrial-Automation_Control-flow-Enforcement_Technology.html">Topics
+                        & Technologies</a></li>
+                <li><a class="dropdown-item m_dropActive"
+                        href="../dhruvin_developer-tools/ds_Development-Tools.html">Tools</a></li>
+                <li><a class="dropdown-item m_dropActive"
+                        href="../rushita_Solutions/k_solutions_in_Viewall_SDF_Industrial-Automation_Hardware-Platforms.html">Hardware
+                        Platforms</a></li>
+                <li><a class="dropdown-item m_dropActive"
+                        href="../dhruvin_developer-tools/ds_Resource-Documentation-Center.html">Resources &
+                        Documentation</a></li>
+                <li><a class="dropdown-item m_dropActive" href="../dhruvin_developer-tools/ds_Learn.html">Learn</a>
+                </li>
+                <li><a class="dropdown-item m_dropActive"
+                        href="../dhruvin_developer-tools/ds_Communities-and-Events.html">Community & Events</a></li>
+                <li><a class="dropdown-item m_dropActive"
+                        href="../dhruvin_developer-tools/ds_Developer-Programs.html">Developer Programs</a></li>
+                <li><a class="dropdown-item m_dropActive" href="../dhruvin_developer-tools/ds_Get-Help.html">Get
+                        Help</a></li>
+            </ul>
+        </div>
+
+
+        <div class="m_ai_shlash">/</div>
+        <div>
+            <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Topics & Technologies
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item m_dropActive"
+                        href="../dhruvin_developer-tools/Developer-Programs/ds_Ai-Development.html">Artificial
+                        Intelligence</a></li>
+                <li><a class="dropdown-item m_dropActive" href="../VK_developers/VK_ai_pc_development.html">AI PC
+                        Development</a></li>
+                <li><a class="dropdown-item m_dropActive" href="../VK_developers/VK_developer_client_app.html">Client
+                        Applications</a></li>
+                <li><a class="dropdown-item m_dropActive" href="../dhruvin_developer-tools/ds_Cloud.html">Cloud</a></li>
+                <li><a class="dropdown-item m_dropActive" href="../VK_developers/VK_GPU_Research_Publications.html">GPU
+                        Research</a></li>
+                <li><a class="dropdown-item m_dropActive" href="../dhruvin_developer-tools/ds_Edge-Computing.html">Edge
+                        Computing</a></li>
+                <li><a class="dropdown-item m_dropActive"
+                        href="..VK_developers/VK_developer_game_development.html">GameDev</a></li>
+                <li><a class="dropdown-item m_dropActive"
+                        href="../dhruvin_developer-tools/ds_HPC-Development.html">HPC</a></li>
+                <li><a class="dropdown-item m_dropActive"
+                        href="..rushita_Solutions/k_solutions_in_Viewall_SDF_Industrial-Automation_Data-Center-Solutions.html">Data
+                        Center</a></li>
+                <li><a class="dropdown-item m_dropActive"
+                        href="../rushita_Solutions/k_solutions_in_Viewall_SDF_Industrial-Automation_Firmware.html">Firmware</a>
+                </li>
+                <li><a class="dropdown-item m_dropActive"
+                        href="../vaidikhtml/ai_accelerator_intel_network_engines_find_network_developer_resources.html">Networking</a>
+                </li>
+                <li><a class="dropdown-item m_dropActive" href="../Product/B19_opensourceproject.html">Open
+                        Ecosystem</a></li>
+                <li><a class="dropdown-item m_dropActive"
+                        href="../rushita_Solutions/k_solutions_in_Viewall_SDF_Industrial-Automation_Persistent-Memory.html">Persistent
+                        Memory</a></li>
+                <li><a class="dropdown-item m_dropActive"
+                        href="../rushita_Solutions/k_solutions_in_Viewall_SDF_Industrial-Automation_Intel-PAT.html">Intel®
+                        Platform Analysis Technology</a></li>
+                <li><a class="dropdown-item m_dropActive"
+                        href="../rushita_Solutions/k_solutions_in_Viewall_SDF_Industrial-Automation_Runtime-Languages.html">Runtime
+                        Languages</a></li>
+                <li><a class="dropdown-item m_dropActive" href="../M_Solutions/s_Edge_Developer_Community.html">Software
+                        Security Guidance</a></li>
+                <li><a class="dropdown-item m_dropActive"
+                        href="../rushita_Solutions/k_solutions_in_Viewall_SDF_Industrial-Automation_Storage.html">Storage</a>
+                </li>
+
+            </ul>
+        </div>
+        <div class="m_ai_shlash">/</div>
+        <div>
+            <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Tech Articles & How-Tos
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item m_dropActive" href="#">Library</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">News Updates</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Webinars</a></li>
+            </ul>
+        </div>
+        <div class="m_ai_shlash">/</div>
+        <div class="m_ai_httl">Accelerate PyTorch* Geometric on Intel® CPUs</div>
+    </section>
+    <section class="k_bgblue py-4">
+        <div class="k_container11">
+
+            <div class="row  g-4">
+                <div class="col-md-10 col-sm-12 mx-0 text-white align-content-center k_tstartauto k_text2 px-0 mx-0">
+                    <h2 class="fw-lighter fs-3   mb-2 k_marketsmall">
+                        How to Accelerate PyTorch* Geometric on Intel® CPUs
+                    </h2>
+                </div>
+            </div>
+    </section>
+    <section class="k_space k_spacenone">
+        <div class="k_container11">
+            <div class="row  g-3">
+                <div class="float-end k_bignone" style="padding-left:70%;">
+                    <div>
+                        <a href="#" class="fs-4"><i class="fa-solid fa-print mx-3 k_icon0"></i></a>
+                        <a href="#" class="fs-4"> <i class="fa-regular fa-envelope k_icon0"></i></a>
+
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-12">
+                    <div class="VK_sticky_side_bar VK_side_bar_postion_stickey">
+                        <div>
+                            <div class="VK_sidebar_dropdown">
+                                <ul class="k_listnone k_menu ">
+                                    <li class="k_text"><a href="#section1">Overview</a></li>
+                                    <li class="k_text"><a href="#section2">Message Passing Paradigm</a></li>
+                                    <li class="k_text"><a href="#section3">Scatter-Reduce</a></li>
+                                    <li class="k_text"><a href="#section4">SpMM-Reduce</a></li>
+                                    <li class="k_text"><a href="#section5">Performance Gains: Up to 4.1x Speedup</a>
+                                    </li>
+                                    <li class="k_text"><a href="#section6">torch.compile for PyG</a></li>
+                                    <li class="k_text"><a href="#section7" class="k_submenu-toggle">Conclusion & Future
+                                            Work</a>
+                                        <ul class="k_listnone k_submenu">
+                                            <li class="k_text"><a href="#section8"><b>Acknowledgement</b></a></li>
+                                            <li class="k_text"><a href="#section9"><b>References</b></a></li>
+                                        </ul>
+                                    </li>
+
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <p><b>Get the Latest on All Things Code</b></p>
+                        <p class="text-center k_btnget py-2 k_under k_btn100 my-2 kcokbtn1024" style="width: 80px;">
+                            <a href="#" class="text-white">Sign Up</a>
+                        </p>
+                        <div class=" mt-4">
+                            <p id="singleauthorbio" class="authorbio">
+                            <p><b>Mingfei Ma, </b><i>AI Frameworks Engineer</i></p>
+                            <p><b>Yanbing Jiang, </b><i>AI Frameworks Engineer</i></p>
+                            <p>Intel Corporation</p>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-8 col-md-7 col-sm-12  k_16smpx k_width75">
+                    <div class="float-end mx-3 k_smnone">
+                        <div>
+                            <a href="#" class="fs-4"><i class="fa-solid fa-print mx-3 k_icon0"></i></a>
+                            <a href="#" class="fs-4"> <i class="fa-regular fa-envelope k_icon0"></i></a>
+                        </div>
+                    </div>
+                    <div class=" k_smpaddnone k_smpaddnone1 pt-5">
+                        <h2 class="fw-light">Overview</h2>
+                        <p class="k_plink1 k_intext1blue1">The Intel PyTorch* team has been collaborating with the
+                            PyTorch Geometric (PyG) community to provide CPU performance optimizations for Graph Neural
+                            Network (GNN) and PyG workloads. In the PyTorch 2.0 release, several critical optimizations
+                            were introduced to improve GNN training and inference performance on CPU. Developers and
+                            researchers can now take advantage of <a href="#">Intel’s AI/ML Framework optimizations</a>
+                            for significantly faster model training and inference, which unlocks the ability for GNN
+                            workflows directly using PyG.</p>
+                        <p>In this blog, we will perform a deep dive on how to optimize PyG performance for both
+                            training and inference while using the PyTorch 2.0 flagship torch.compile feature to speed
+                            up PyG models.</p>
+                        <h2 class="fw-light mt-5">Message Passing Paradigm</h2>
+                        <p>Message passing refers to the process of nodes exchanging information with their respective
+                            neighbors by sending messages to one another. In PyG, the process of message passing can be
+                            generalized into three steps:</p>
+                        <ol>
+                            <li><strong>Gather</strong>: Collect edge-level information of adjacent nodes and edges.
+                            </li>
+                            <li><strong>Apply: </strong>Update the collected information with user-defined functions
+                                (UDFs).</li>
+                            <li><strong>Scatter: </strong>Aggregate to node-level information, e.g., via a particular
+                                reduce function such as sum, mean, or max.</li>
+                        </ol>
+                        <div class="col-sm-12 col-md-6 m-auto">
+                            <img src="../img/rushita_img/geom1.png" alt="" width="100%">
+                        </div>
+                        <p class="utility-text-1 k_plink1 k_intext1blue1" style="text-align:center"><strong>Figure 1.
+                                The message passing paradigm </strong>(Source: <a href="#">Matthias Fey</a>)</p>
+                        <p>Message passing performance is highly related to the storage format of the adjacency matrix
+                            of the graph, which records how pairs of nodes are connected. Two methods for the storage
+                            format are:</p>
+                        <ul>
+                            <li><strong>Adjacency matrix in COO (Coordinate Format):</strong>&nbsp;The graph data is
+                                physically stored in a two-dimensional tensor shape of&nbsp;<strong>[2,
+                                    num_edges]</strong>, which maps each connection of source and destination nodes. The
+                                performance hotspot is scatter-reduce.</li>
+                            <li><strong>Adjacency matrix in CSR (Compressed Sparse Row):</strong>&nbsp;Similar format to
+                                COO, but compressed on the row indices. This format allows for more efficient row access
+                                and faster sparse matrix-matrix multiplication (SpMM). The performance hotspot is sparse
+                                matrix related reduction ops.</li>
+                        </ul>
+                        <h2 class="fw-light mt-5">Scatter-Reduce</h2>
+                        <p>The pattern of scatter-reduce is parallel in nature, which updates values of
+                            a&nbsp;<strong>self</strong>&nbsp;tensor using values from
+                            a&nbsp;<strong>src</strong>&nbsp;tensor at the entries specified
+                            by&nbsp;<strong>index</strong>. Ideally, parallelizing on the outer dimension would be most
+                            performant. However, direct parallelization leads to write conflicts, as different threads
+                            might try to update the same entry simultaneously.</p>
+                        <div class="col-sm-12 col-md-8 m-auto">
+                            <img src="../img/rushita_img/geom2.png" alt="" width="100%">
+                        </div>
+                        <p class="utility-text-1" style="text-align:center"><strong>Figure 2. Scatter-reduce and its
+                                optimization scheme</strong> (Source: Mingfei Ma)</p>
+                        <p>To optimize this kernel, we use sorting followed by a reduction:</p>
+                        <ul>
+                            <li><strong>Sorting:&nbsp;</strong>Sort the&nbsp;<strong>index</strong>&nbsp;tensor in
+                                ascending order with parallel radix sort, such that indices pointing to the same entry
+                                in the&nbsp;<strong>self</strong>&nbsp;tensor are managed in the same thread.</li>
+                            <li><strong>Reduction:</strong>&nbsp;Paralleled on the outer dimension
+                                of&nbsp;<strong>self</strong>, and do vectorized reduction for each
+                                indexed&nbsp;<strong>src</strong>&nbsp;entry.</li>
+                        </ul>
+                        <p>For its backward path during the training process&nbsp;(i.e.,&nbsp;gather), sorting is not
+                            needed because its memory access pattern will not lead to any write conflicts.</p>
+                        <h2 class="fw-light mt-5">SpMM-Reduce</h2>
+                        <p>Sparse matrix-matrix reduction is a fundamental operator in GNNs,
+                            where&nbsp;<strong>A</strong>&nbsp;is sparse adjacency matrix in CSR format
+                            and&nbsp;<strong>B</strong>&nbsp;is a dense feature matrix where the reduction type could
+                            be&nbsp;<em>sum</em>,&nbsp;<em>mean</em>&nbsp;or&nbsp;<em>max</em>.</p>
+                        <div class="col-sm-12 col-md-6 m-auto">
+                            <img src="../img/rushita_img/geom3.png" alt="" width="100%">
+                        </div>
+                        <p class="utility-text-1" style="text-align:center"><strong>Figure 3. SpMM optimization
+                                scheme</strong> (Source: Mingfei Ma)</p>
+                        <p>The biggest challenge when optimizing this kernel is how to balance thread payload when
+                            parallelizing along rows of the sparse matrix&nbsp;<strong>A</strong>. Each row
+                            in&nbsp;<strong>A</strong>&nbsp;corresponds to a node, and its number of connections may
+                            vary vastly from one to another; this results in thread payload imbalance. One technique to
+                            address such issues is to do payload scanning before thread partition. Aside from that,
+                            other techniques are also introduced to further exploit CPU performance such as
+                            vectorization and unrolling and blocking.</p>
+                        <p>These optimizations are done via <strong>torch.sparse.mm</strong> using the reduce flags of
+                            <em>amax</em>, <em>amin</em>, <em>mean</em>, <em>sum</em>.</p>
+                        <h2 class="fw-light mt-5">Performance Gains: Up to 4.1x Speedup</h2>
+                        <p class="k_plink1 k_intext1blue1">We collected benchmark performance for both inference and training in <a
+                                href="#">pytorch_geometric/benchmark</a> and in the <a href="#">Open Graph Benchmark
+                                (OGB)</a> to demonstrate the performance improvement from the above-mentioned methods on
+                            Intel® Xeon® Platinum 8380 Processor.</p>
+                        <div class="k_table-container">
+                            <table class="k_tebal col-lg-7  col-md-7 col-sm-3  k_tspace">
+                                <thead class="k_tebal text-center">
+                                    <tr class="k_e2bg  k_tpadding1 k_tsmall">
+                                        <th class=" k_cell-padding1 k_rightborder1 col-lg-3 col-md-3 col-1">
+                                            <p><b>Model – Dataset</b></p>
+                                        </th>
+                                        <th class="col-lg-2 col-md-2 col-1">
+                                            <p><b>Option</b></p>
+                                        </th>
+                                        <th class="col-lg-2 col-md-2 col-1">
+                                            <p><b>Speedup ratio</b></p>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody class="k_tebal k_14px">
+                                    <tr class="  k_rightborder1 k_tpadding1 k_tsmall">
+                                        <td rowspan="4">
+                                            <p class="k_plink1 k_intext1blue1">GCN-Reddit (inference)</p>
+                                        </td>
+                                        <td>
+                                            <p>512-2-64-dense</p>
+                                        </td>
+                                        <td>
+                                            <p>1.22x</p>
+                                        </td>
+                                    </tr>
+                                    <tr class="k_tgrey k_rightborder1 k_tpadding1 k_tsmall">
+                                        <td>
+                                            <p>1024-3-128-dense</p>
+                                        </td>
+                                        <td>
+                                            <p>1.25x</p>
+                                        </td>
+
+                                    </tr>
+                                    <tr class="  k_rightborder1 k_tpadding1 k_tsmall">
+                                        <td>
+                                            <p>512-2-64-sparse</p>
+                                        </td>
+                                        <td>
+                                            <p>1.31x</p>
+                                        </td>
+                                    </tr>
+                                    <tr class="k_tgrey  k_rightborder1 k_tpadding1 k_tsmall">
+                                        <td>
+                                            <p>1024-3-128-sparse</p>
+                                        </td>
+                                        <td>
+                                            <p>1.68x</p>
+                                        </td>
+                                    </tr>
+                                    <tr class="  k_rightborder1 k_tpadding1 k_tsmall">
+                                        <td rowspan="4">
+                                            <p>&nbsp;</p>
+                                            <p>GraphSage-ogbn-products (inference)</p>
+                                        </td>
+                                        <td>
+                                            <p>1024-3-128-dense</p>
+                                        </td>
+                                        <td>
+                                            <p>1.15x</p>
+                                        </td>
+
+                                    </tr>
+                                    <tr class="k_tgrey  k_rightborder1 k_tpadding1 k_tsmall">
+                                        <td>
+                                            <p>512-2-64-sparse</p>
+                                        </td>
+                                        <td>
+                                            <p>1.20x</p>
+                                            </td>
+                                    </tr>
+                                    <tr class="  k_rightborder1 k_tpadding1 k_tsmall">
+                                        <td>
+                                            <p>1024-3-128-sparse</p>
+                                            </td>
+                                            <td>
+                                                <p>1.33x</p>
+                                                </td>
+                                    </tr>
+                                    <tr class="k_tgrey  k_rightborder1 k_tpadding1 k_tsmall">
+                                        <td>
+                                            <p>full-batch-sparse</p>
+                                            </td>
+                                            <td>
+                                                <p>4.07x</p>
+                                                </td>
+                                    </tr>
+                                    <tr class="  k_rightborder1 k_tpadding1 k_tsmall">
+                                        <td>
+                                            <p>GCN-PROTEINS (training)</p>
+                                            </td>
+                                            <td>
+                                                <p>3-32</p>
+                                                </td>
+                                                <td>
+                                                    <p>1.67x</p>
+                                                    </td>
+                                    </tr>
+                                    <tr class="k_tgrey  k_rightborder1 k_tpadding1 k_tsmall">
+                                        <td>
+                                            <p>GCN-REDDIT-BINARY (training)</p>
+                                            </td>
+                                            <td>
+                                                <p>3-32</p>
+                                                </td>
+                                                <td>
+                                                    <p>1.67x</p>
+                                                    </td>
+                                    </tr>
+                                    <tr class="  k_rightborder1 k_tpadding1 k_tsmall">
+                                        <td rowspan="2">
+                                            <p>GCN-Reddit (training)</p>
+                                            </td>
+                                            <td>
+                                                <p>512-2-64-dense</p>
+                                                </td>
+                                                <td>
+                                                    <p>1.20x</p>
+                                                    </td>
+                                    </tr>
+                                   
+                                </tbody>
+                            </table>
+                        </div>
+                        <p class="utility-text-1" style="text-align: center;"><strong>Table 1. Performance Speedup on
+                                PyG Benchmark</strong><sup>1</sup></p>
+                        <p>From the benchmark results, we can see that our optimizations in PyTorch and PyG achieved
+                            <strong>1.1x-4.1x speed-up</strong> for inference and training.</p>
+                        <h2 class="fw-light mt-5">torch.compile for PyG</h2>
+                        <p class="k_plink1 k_intext1blue1">The PyTorch2.0 flagship feature torch.compile is fully compatible with PyG 2.3 release,
+                            bringing additional speed-up in PyG model inference/training over imperative mode, thanks to
+                            TorchInductor C++/OpenMP backend for CPUs. In particular, <strong>a 3.0x – 5.4x performance
+                                speed-up</strong> is measured on <a href="#">basic GNN models</a> with Intel Xeon
+                            Platinum 8380 Processor on model training<sup>2</sup>.</p>
+                            <div class="col-sm-12 col-md-6 m-auto">
+                                <img src="../img/rushita_img/geom4.png" alt="" width="100%">
+                            </div>
+                        <p class="utility-text-1" style="text-align:center"><strong>Figure 4. Performance Speedup with
+                                Torch Compile</strong></p>
+                        <p class="k_plink1 k_intext1blue1">Torch.compile can fuse the multiple stages of message passing into a single kernel, which
+                            provides significant speedup due to the saved memory bandwidth. Refer to this <a
+                                href="#">pytorch geometric tutorial</a> for additional support.</p>
+                        <p class="note p-3" style="background-color: #E6E6E6; border-left: 3px solid #FDB813;">
+                            <strong>Please note</strong> that torch.compile within PyG is in beta mode and under active
+                            development. Currently, some features do not yet work together seamlessly such as
+                            torch.compile(model, dynamic=True), but fixes are on the way from Intel.</p>
+                        <h2 class="fw-light mt-5">Conclusion & Future Work</h2>
+                        <p>In this blog, we introduced the GNN performance optimizations included in PyTorch 2.0 on CPU.
+                            We are closely collaborating with the PyG community for future optimization work, which will
+                            focus on in-depth optimizations from torch.compile, sparse optimization, and distributed
+                            training.</p>
+                        <h3>Acknowledgement<a class="inpage-nav-anchor" id="inpage-nav-6-undefined"></a></h3>
+                        <p class="k_plink1 k_intext1blue1">The results presented in this blog is a joint effort of Intel PyTorch team and Kumo. Special
+                            thanks to <a href="#">Matthias Fey</a> (Kumo), <a href="#">Pearu Peterson</a> (Quansight)
+                            and <a href="#">Christian Puhrsch</a> (Meta) who spent precious time and gave substantial
+                            assistance! Together, we made one more step forward on the path of improving the PyTorch CPU
+                            ecosystem.</p>
+                        <h3>References</h3>
+                        <ul>
+                            <li class="k_plink1 k_intext1blue1"><a href="#">Accelerating PyG on Intel CPUs</a></li>
+                            <li class="k_plink1 k_intext1blue1"><a href="#">PyG 2.3.0</a>: PyTorch 2.0 support, native sparse tensor support,
+                                explainability and accelerations</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+    </section>
+    <section class="my-4">
+        <div class="k_container11">
+            <div class="row">
+                <div>
+                    <hr class="mb-5">
+                    <p>Product and Performance Information
+                    <p>
+                        <div class="disclaimer k_plink1 k_intext1blue1"><sup>1</sup>Platinum 8380: 1-node, 2x Intel Xeon Platinum 8380 processor with 256GB (16 slots/ 16GB/3200) total DDR4 memory, uCode 0xd000389, HT on, Turbo on, Ubuntu 20.04.5 LTS,&nbsp; 5.4.0-146-generic, INTEL SSDPE2KE016T8 1.5T; <a href="#">GCN + Reddit FP32 inference</a>, <a href="#">GCN+Reddit FP32 training</a>, <a href="#">GraphSAGE + ogbn-products FP32 inference</a>, <a href="#">GCN-PROTAIN, GCN-REDDIT-BINARY FP32 training</a>; Software: PyTorch 2.1.0.dev20230302+cpu, pytorch_geometric 2.3.0, torch-scatter 2.1.0, torch-sparse 0.6.16, test by Intel on 3/02/2023.</div>
+                        <div class="disclaimer k_plink1 k_intext1blue1"><sup>2</sup>Platinum 8380: 1-node, 2x Intel Xeon Platinum 8380 processor with 256GB (16 slots/ 16GB/3200) total DDR4 memory, uCode 0xd000389, HT on, Turbo on, Ubuntu 20.04.5 LTS,&nbsp; 5.4.0-146-generic, INTEL SSDPE2KE016T8 1.5T; <a href="#">GCN, GraphSAGE, GIN and EdgeCNN, FP32</a>; Software: PyTorch 2.1.0.dev20230411+cpu, pytorch_geometric 2.4.0, torch-scatter 2.1.1+pt20cpu, torch-sparse 0.6.17+pt20cpu, test by Intel on 4/11/2023.</div>
+                    <div class="k_plink1 k_intext1blue1"><sup>1</sup>Performance varies by use, configuration and other
+                        factors. Learn more at &nbsp;<a href="#">www.Intel.com/PerformanceIndex.</a>.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div id="footer"></div>
+    <script>
+        // navbar include  
+        fetch('../y_index/y_navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar').innerHTML = data;
+            });
+        // footer include 
+        fetch('../y_index/y_footer.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('footer').innerHTML = data;
+            });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
+    <script src="../js/jquery-3.7.1.js"></script>
+
+    <script src="../js/owl.carousel.min.js"></script>
+    <script src="../js/rushita.js"></script>
+</body>
+
+</html>
