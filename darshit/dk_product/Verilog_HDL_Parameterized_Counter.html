@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verilog HDL: Parameterized Counter</title>
+
+    <link rel="stylesheet" href="/css/dk_ipus_improve_network_latency_in_microservices_based_applications.css">
+    <link rel="stylesheet" href="/css/rushita_automotive.css">
+
+    <!-- header footer -->
+    <link rel="stylesheet" href='/css/yatri.css'>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" rel="stylesheet">
+</head>
+<style>
+    nav{
+        position: relative !important;
+    }
+    .mv_pre {
+        padding-left: 0rem !important;
+    }
+    .mv_pre {
+    padding-top: 0.5625rem !important;
+    }
+</style> 
+
+<body>
+
+    <!-- header -->
+    <div id="navbar"></div>
+
+<!-- --------------------------------------------------------------------- -->
+    <!-- <section>
+        <nav class="mb_sub_nv">
+            <div class="mv_breadcrumb">
+                <ol class="mv_spark_breadcrumb_items">
+                    <li><a href="">Altera® FPGAs and Programmable Devices</a></li>
+                    <li><a href="">FPGA Product Support</a></li>
+                    <li><a href="">FPGA Design Examples</a></li>
+                    <li><a href="">FPGA Design Examples</a></li>
+                </ol>
+            </div>
+        </nav>
+    </section> -->
+
+    <section class="m_ai_tdrop">
+        <div>
+            <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Altera® FPGAs and Programmable Devices
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item m_dropActive" href="#">FPGA Products</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/Product/B8_FPGA_CPLD.html">FPGA Devices</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/vaidikhtml/mv_product/quartus_development_software_tools_quartus_prime_design_software_overview.html">FPGA Software</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/Product/B11_intel_intellectual.html">FPGA IP</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/Product/B12_intel_fpga_develop.html">FPGA DEVKITs</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/vaidikhtml/mv_developer_learn/developer_get_help_FPGA_support.html">FPGA Product Support</a></li>
+            </ul>
+        </div>
+
+
+        <div class="m_ai_shlash">/</div>
+        <div>
+            <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                FPGA Product Support
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item m_dropActive" href="/vaidikhtml/mv_developer_learn/developer_get_help_FPGA_support_FPGA_developer_center.html">FPGA Developer Center</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">FPGA Documentation</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/darshit/dk_product/device_and_product_support_collections.html">Devices and Product collections</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/vaidikhtml/mv_product/FPGAs_programmable_devices_support_training.html">FPGA Technical Training</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/vaidikhtml/mv_product/design_examples.html">FPGA Design Examples</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/vaidikhtml/mv_product/quartus_development_software_tools_licensing.html">FPGA Licensing Center</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">FPGA Downloads</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">FPGA Knowledge Base</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/vaidikhtml/mv_developer_learn/developer_get_help_FPGA_support.html">FPGA Support Resources</a></li>
+            </ul>
+        </div>
+
+        <div class="m_ai_shlash">/</div>
+
+        <div>
+            <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                FPGA Design Examples
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item m_dropActive" href="">FPGA Design Store</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">FPGA Design Examples</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">RocketBoards.org</a></li>
+            </ul>
+        </div>
+
+        <div class="m_ai_shlash">/</div>
+
+        <div>
+            <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                FPGA Design Examples
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item m_dropActive" href="/darshit/dk_product/Video_and_Image_Processing.html">Video and Image Processing</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Drive-on-a-Chip Multi-Axis Motor Control</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">FPGA Design Security Solution</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Timing Analyzer Clock Analysis</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Quartus II Tcl Example: Elaborate Timegroups Nodes</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Quartus® II Tcl Example: Ver. No. VHDL Reg. Bank</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Quartus® II Tcl Example: Automatic Version Number</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Quartus® II Tcl Version Number in Verilog Register Bank</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Quartus® II Tcl Get Subversion Revision Number</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Top-Level Instance Names Matching Wildcard Pattern</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Quartus II Tcl Example: Increment Ver. No. in File</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Quartus® II Tcl Example: Date Time Stamp</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Quartus® II Tcl Design Examples</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Quartus® II Tcl Export Report Data to CSV File</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Quartus® II Tcl - Arbitrary Paths Timing Reporting</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Platform Designer (Formerly Qsys) Design Examples</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Quartus® II Tcl Example: Opening Projects</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Quartus® II Tcl Example: Non-Default Global Assign</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Quartus® II Tcl Example: Find a Timing Node</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Timing Analyzer Example: Multicycle Exceptions</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Simplify Design Reuse with Dynamic SDC Constraints</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Timing Analyzer Report Multi Operating Conditions</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">MicroC/OS-II RTOS with the Nios® II Processor</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Timing Analyzer: Constraining Generated Clocks</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Timing Analyzer: Failing Clocks Summary Report</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Timing Analyzer Instance and Entity in Scripts</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Constrain Edge-Aligned Source-Synchronous Output</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Constrain Edge-Aligned Source-Synchronous Input</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Get Clocks Feeding a Pin</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Timing Analyzer Clock Multiplexer Examples</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Constrain Center-Aligned Source-Synchronous Output</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Constraining a Center-Aligned Source-Synchronous Input</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Platform Designer Tutorial Design Example</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Quartus® II Tcl Example: Report Levels of Logic</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">BFM Simulation HPS AXI* Bridge Interface</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Demo AXI Memory Design Example</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Alternative Nios® II Boot Methods</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Report Levels of Logic</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Quartus® II Tcl Example: Date and Time Formatting</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Quartus® II Tcl Example: Custom Report Panels</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Quartus® II Tcl Automatically Archiving Projects</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Quartus® II Tcl Example: Make All Pins Virtual</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">VHDL: Tri-State Buses</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Video Downscaling Design Example</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">VHDL: Creating a Hierarchical Design</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">VHDL: Converting a Hexadecimal Value</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">VHDL: Unsigned Multiply-Adder</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">VHDL: Unsigned Multiplier with Registered I/O</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">VHDL: True Dual-Port RAM with a Single Clock</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">VHDL Templates for State Machines</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">VHDL: Single-Port ROM</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">VHDL: Single-Port RAM</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">VHDL: Single Clock Synchronous RAM</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">VHDL: Signed Multiplier-Accumulator</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">VHDL: Signed Multiplier</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">VHDL Implementing Functions</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">VHDL Template for Inferring DSP Blocks</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">VHDL: Gray Counter</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">VHDL: Dual-Port ROM</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">VHDL: Dual Clock Synchronous RAM</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">VHDL: Counter with Synchronous Reset</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">VHDL: Binary Adder Tree</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">VHDL: Adder/Subtractor</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">VHDL: 8 x 64 Shift Register with Taps</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">VHDL: 1x64 Shift Register</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Verilog HDL: Unsigned Multiplier-Accumulator</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Verilog HDL: Unsigned Multiplier</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Verilog HDL True Dual-Port RAM with Single Clock</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Verilog HDL: Tri-State Instantiation</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Verilog HDL: Ternary Adder Tree</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Verilog HDL Templates for State Machines</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Verilog HDL: Synchronous State Machine</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Verilog HDL: Single-Port RAM</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Verilog HDL: Single Clock Synchronous RAM</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Verilog HDL: Signed Multiplier-Adder</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Verilog HDL: Signed Multiplier with Registered I/O</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Verilog HDL Parameter RAM with Separate Input & Output Ports</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Verilog Design Examples</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Verilog HDL High-Speed Differential I/O Capability</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Verilog HDL: Creating a Hierarchical Design</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">VHDL Template for Inferring DSP Blocks</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Verilog HDL: Gray Counter</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Verilog: FFT with 32K-Point Transform Length</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">POS-PHY Level 4 (SPI-4.2) External PLL Sharing</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Verilog HDL: Dual Clock Synchronous RAM</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Verilog HDL: Counter with Asynchronous Reset</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Verilog HDL: Parameterized Counter</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Verilog HDL: Binary Adder Tree</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Verilog HDL: Bidirectional Pin</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Verilog HDL: Behavioral Counter</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Verilog HDL: Adder/Subtractor</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Verilog HDL: 8x64 Shift Register with Taps</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Verilog HDL: Customized 4-Port Crosspoint Switch</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Verilog HDL: 1x64 Shift Register</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Verilog HDL: 16x16 Crosspoint Switch</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">OpenCL™ Vector Addition Design Example</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">VHDL: Counter</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">VHDL: Bidirectional Bus</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Time-Domain Finite Impulse Response (FIR) Filter</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Sobel Filter Design Example</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Sobel Filter Design Example</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">SignalTap* II State-Based Triggering Flow</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Shared Memory Partition Design Example</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Single-Port Triple-Speed Ethernet On-Board PHY Chip Reference Design</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">PCI* Express Avalon®-MM High-Performance DMA</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">10-Gbps Ethernet Hardware Demonstration</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Optical Flow Design Example</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">OPRA FAST Parser Design Example</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">On-Chip Debugging Design Examples</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">MAX® II Design Examples</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Multithread Vector Operation Design Example</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Multifunction Printer Error Diffusion</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Matrix Multiplication Design Example</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">OpenCL™ Library</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">JPEG Decoder for OpenCL™</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">DSP Design Examples</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Hello World Design Example</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Gzip Compression OpenCL™ Design Example</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">FPGA-to-HPS Bridges Design Example</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">OpenCL™ Mandelbrot Fractal Algorithm</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">OpenCL™ Host Pipe Design Example</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">OpenCL™ 2D Fast Fourier Transform Design Example</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">OpenCL™ Fast Fourier Transform FFT (1D) Off-Chip</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">OpenCL™ Fast Fourier Transform FFT (1D)</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Finite Difference Computation (3D) Design Example</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Using NicheStack TCP/IP Stack – Nios® II Edition</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Triple Speed Ethernet Design Example</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Constrain RGMII Interface of Triple Speed Ethernet</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Nios® II Processor with Tightly Coupled Memory</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">SPI Agent to Avalon® Host Bridge</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Nios® II Ethernet Standard Design Example</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Nios® II Processor with Memory Management Unit</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Web Server Design Example</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">MicroC/OS-II Mutex Example</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">MAX® II and MAX CPLD Design Examples</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Serial Design Examples</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Ethernet Design Examples</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Embedded Processors Design Examples</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">TSE: Instantiate TSE with External ALTGX / ALTLVDS</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Map HPS IP Peripheral Signals to FPGA Interface</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">HiSPi Imager Connectivity Design Example</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Network Time Protocol Client Design Example</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Fast Nios® II Hardware Design Example</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Nios® II Ethernet Acceleration Design Example</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Designing Digital down Conversion Systems Using CIC and FIR Filters</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Application Selector Example</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Debugging with System Console Over TCP/IP</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Avalon® Component Interfaces Supported in the Component Editor Version 7.2 and Later</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Examples of Changes to Typical Avalon® Interfaces for the Component Editor Version 7.2 and Later</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Document Filtering Design Example</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Channelizer Design Example</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">OpenCL™ Implement Asian Options Pricing Algorithm</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Design Entry Tool Examples</a></li>
+            </ul>
+        </div>
+
+        <div class="m_ai_shlash">/</div>
+        <div class="m_ai_httl">Verilog HDL: Parameterized Counter</div>
+
+    </section>
+<!-- --------------------------------------------------------------------- -->
+
+    <!-- Optimize Fine-Tuning and Deployment of LLMs on an AI PC -->
+    <section>
+        <div class="mv_intel_amx_bg_color" style="padding: 3rem 0rem; background-color: #548FAD;">
+            <div class="container">
+                <div class="row mv_intel_amx_content">
+                    <div class="col-md-9 mv_intel_amx_item">
+                        <div class="mv_intel_amx">
+                            <h3 style="font-weight: 300;">Verilog HDL: Parameterized Counter</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="container py-5">
+        <div class="row">
+            <div class="d-flex justify-content-end col-xl-10 py-3 d-md-none">
+                <i class="fa-solid fa-print fs-4 px-2 " style="color:#0068B5"></i>
+                <i class="fa-regular fa-envelope fs-4 px-2" style="color:#0068B5"></i>
+            </div>
+            <div class="col-lg-3 col-md-4">
+                <!-- nav -->
+                <!-- <div class="VK_client_app_navigation VK_ai_navigation">
+                    <div class="justify-content-center align-items-center overflow-hidden flex-nowrap mb-4">
+                        <ul class="VK_ai_nav_bar list-unstyled m-0">
+                            <li>
+                                <a href="#dk_improving_code" class="text-dark text-decoration-none d-block">
+                                    Improving the Sample Code
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#dk_simple_checking" class="text-dark text-decoration-none d-block VK_ai_nav_link">
+                                    Simple Error Checking
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div> -->
+                <div class="dk_things_code_main">
+                    <div class="dk_things_code" style="padding: 1.25rem 1rem .5rem 1rem !important;">
+                        
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-9 col-md-8">
+                <div class="d-md-flex justify-content-end col-xl-10 py-3 d-none">
+                    <!-- <i class="fa-regular fa-file-lines fs-4 px-2" style="color:#0068B5"></i> -->
+                    <i class="fa-solid fa-print fs-4 px-2 " style="color:#0068B5"></i>
+                    <i class="fa-regular fa-envelope fs-4 px-2" style="color:#0068B5"></i>
+                </div>
+                <div class="col-xl-10">
+                    <p>&nbsp;</p>
+                    <div style="font-size: 1.25rem;">
+                        <p>This example shows how to instantiate an LPM function in Verilog HDL. In this case, an LPM_COUNTER is instantiated using the <span class="code-simple">aclr, clock,</span> and <span class="code-simple">q</span> ports. The parameter values are set with the keyword defparam, as shown in red text. Both the port mapping and the parameter names are referred to by the period (.) operator after the variable name. In this case, the variable is u1.</p>
+                        <p class="mb-0">For more information on using this example in your project, go to:</p>
+                        <ul>
+                            <li><a class="b_special_a1" href="">How to use Verilog&nbsp;HDL examples</a></li>
+                        </ul>
+                    </div>
+                    <p class="mb-0">&nbsp;</p>
+                    <p style="font-size: 1.25rem;"><strong>check_lpm.v</strong></p>
+                    <div class="mv_code_toolbar" style="margin: 1.5rem 0rem 0rem;">
+                        <div class="mv_toolbar_item mv_copy_icon">
+                            <i class="fa-regular fa-copy"></i>
+                        </div>
+                        <div class="mv_copy_message text-end hidden">Copied</div>
+                        <div class="code-content">
+                            <div style="padding-bottom: 0rem !important" class="d-flex mv_pre">
+                                <div class="mv_code text-break">
+                                    <pre><div class="toolbar"><div class="toolbar-item"><i class="fa fa-docs"></i></div></div>module check_lpm ( clk, reset, q);
+                                        // Port Declaration
+                                        
+                                        input   clk;
+                                        input   reset;
+                                        output  [7:0] q;
+                                        
+                                        lpm_counter u1 (.aclr(reset), .clock(clk), .q(q));
+                                        defparam u1.lpm_width= 8;
+                                        defparam u1.lpm_direction= "UP"
+                                        
+                                        endmodule</pre>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ------------------------------------------------------------------------- -->
+
+    <!-- footer -->
+    <div id="footer"></div>
+
+    <!-- script header and footer -->
+    <script>
+        // navbar include  
+        fetch('/y_index/y_navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar').innerHTML = data;
+            });
+        // footer include 
+        fetch('/y_index/y_footer.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('footer').innerHTML = data;
+            });
+    </script>
+
+    <!-- nav script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const nav = document.querySelector('.VK_client_app_navigation');
+            const navLinks = document.querySelectorAll('.VK_ai_nav_bar a');
+            const sections = document.querySelectorAll('section[id]');
+            let navOffset = nav.offsetTop;
+
+            // Add smooth scrolling to all links
+            navLinks.forEach(link => {
+                link.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+
+            // Sticky Navigation
+            window.addEventListener('scroll', () => {
+                if (window.pageYOffset >= navOffset) {
+                    nav.classList.add('VK_sticky_nav_bar');
+                } else {
+                    nav.classList.remove('VK_sticky_nav_bar');
+                }
+                // Section highlighting
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop - nav.clientHeight;
+                    const sectionHeight = section.clientHeight;
+                    console.log(sectionTop);
+                    console.log(sectionHeight);
+                    if (window.pageYOffset >= sectionTop && window.pageYOffset <= sectionTop + sectionHeight) {
+                        navLinks.forEach(link => {
+                            link.classList.remove('active');
+                            if (link.getAttribute('href') === `#${section.id}`) {
+                                link.classList.add('active');
+
+                                // Ensure the active link is visible in the nav bar
+                                const navBar = document.querySelector('.VK_ai_nav_bar');
+                                const activeLink = document.querySelector('.VK_ai_nav_bar a.active');
+                                const linkRect = activeLink.getBoundingClientRect();
+                                const navBarRect = navBar.getBoundingClientRect();
+
+                                if (linkRect.left < navBarRect.left || linkRect.right > navBarRect.right) {
+                                    activeLink.scrollIntoView({ inline: 'center', behavior: 'smooth' });
+                                }
+                            }
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+
+    <!-- copy script -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            document.querySelectorAll(".mv_copy_icon").forEach((icon) => {
+                icon.addEventListener("click", async function () {
+                    try {
+                        const toolbar = this.closest(".mv_code_toolbar");
+                        const codeBlock = toolbar.querySelector(".code-content");
+                        const codeContent = codeBlock.innerText;
+
+                        // Use Clipboard API to copy text
+                        await navigator.clipboard.writeText(codeContent);
+
+                        // Hide the copy icon and show the "Copied!" message
+                        const message = toolbar.querySelector(".mv_copy_message");
+                        this.classList.add("hidden"); // Hide the copy icon
+                        message.classList.remove("hidden"); // Show the "Copied!" message
+
+                        // Hide the message and show the icon again after 2 seconds
+                        setTimeout(() => {
+                            message.classList.add("hidden");
+                            this.classList.remove("hidden");
+                        }, 2000); // Adjust delay as needed
+
+                    } catch (err) {
+                        console.error('Failed to copy text: ', err);
+                    }
+                });
+            });
+        });
+    </script>
+
+</body>
+
+</html>
