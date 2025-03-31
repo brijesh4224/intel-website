@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Constraint RGMII Interface of Triple Speed Ethernet with the External PHY Delay Feature</title>
+    <link rel="stylesheet"href="/css/dk_developer_edge_iot_&_5G_optimize_fine_tuning_and_deployment_of_LLMs_on_an_ai_pc.css">
+    <link rel="stylesheet" href="/css/rushita_automotive.css">
+    <!-- header footer -->
+    <link rel="stylesheet" href='/css/yatri.css'>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" rel="stylesheet">
+</head>
+
+<style>
+    .dk_main_heading{
+        padding: 2rem 0rem;
+        background-color: #548FAD;
+        color: #fff;
+    }
+    .dk_caption{
+        background: rgba(0, 0, 0, 0.7);
+        color: #fff;
+        text-align: left;
+        font-size: .875rem;
+        padding: 20px 15px;
+    }
+    .mv_pre {
+        padding-left: 0rem !important;
+    }
+    @media(max-width:768px){
+        .dk_main_heading{
+            padding: 1rem 0rem !important;
+        } 
+        .mv_intel_amx_content {
+            padding-right: 0px !important; 
+        } 
+    }
+</style>
+
+<body>
+
+    <!-- header -->
+    <div id="navbar"></div>
+
+    <section class="m_ai_tdrop">
+        <div>
+            <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Altera® FPGAs and Programmable Devices
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item m_dropActive" href="#">FPGA Products</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/Product/B8_FPGA_CPLD.html">FPGA Devices</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/vaidikhtml/mv_product/quartus_development_software_tools_quartus_prime_design_software_overview.html">FPGA Software</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/Product/B11_intel_intellectual.html">FPGA IP</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/Product/B12_intel_fpga_develop.html">FPGA DEVKITs</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/vaidikhtml/mv_developer_learn/developer_get_help_FPGA_support.html">FPGA Product Support</a></li>
+            </ul>
+        </div>
+
+
+        <div class="m_ai_shlash">/</div>
+        <div>
+            <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                FPGA Product Support
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item m_dropActive" href="/vaidikhtml/mv_developer_learn/developer_get_help_FPGA_support_FPGA_developer_center.html">FPGA Developer Center</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">FPGA Documentation</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/darshit/dk_product/device_and_product_support_collections.html">Devices and Product collections</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/vaidikhtml/mv_product/FPGAs_programmable_devices_support_training.html">FPGA Technical Training</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/vaidikhtml/mv_product/design_examples.html">FPGA Design Examples</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/vaidikhtml/mv_product/quartus_development_software_tools_licensing.html">FPGA Licensing Center</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">FPGA Downloads</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">FPGA Knowledge Base</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/vaidikhtml/mv_developer_learn/developer_get_help_FPGA_support.html">FPGA Support Resources</a></li>
+            </ul>
+        </div>
+
+        <div class="m_ai_shlash">/</div>
+
+        <div>
+            <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                FPGA Design Examples
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item m_dropActive" href="">FPGA Design Store</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">FPGA Design Examples</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">RocketBoards.org</a></li>
+            </ul>
+        </div>
+
+        <div class="m_ai_shlash">/</div>
+
+        <div>
+            <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                FPGA Design Examples
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item m_dropActive" href="">Video and Image Processing</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Drive-on-a-Chip Multi-Axis Motor Control</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">FPGA Design Security Solution</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Timing Analyzer Clock Analysis</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Quartus II Tcl Example: Elaborate Timegroups Nodes</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Quartus® II Tcl Example: Ver. No. VHDL Reg. Bank</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Quartus® II Tcl Example: Automatic Version Number</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Quartus® II Tcl Version Number in Verilog Register Bank</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Quartus® II Tcl Get Subversion Revision Number</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Top-Level Instance Names Matching Wildcard Pattern</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Quartus II Tcl Example: Increment Ver. No. in File</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Quartus® II Tcl Example: Date Time Stamp</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Quartus® II Tcl Design Examples</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Quartus® II Tcl Export Report Data to CSV File</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Quartus® II Tcl - Arbitrary Paths Timing Reporting</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Platform Designer (Formerly Qsys) Design Examples</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Quartus® II Tcl Example: Opening Projects</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Quartus® II Tcl Example: Non-Default Global Assign</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Quartus® II Tcl Example: Find a Timing Node</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Timing Analyzer Example: Multicycle Exceptions</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Simplify Design Reuse with Dynamic SDC Constraints</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Timing Analyzer Report Multi Operating Conditions</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">MicroC/OS-II RTOS with the Nios® II Processor</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Timing Analyzer: Constraining Generated Clocks</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Timing Analyzer: Failing Clocks Summary Report</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Timing Analyzer Instance and Entity in Scripts</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Constrain Edge-Aligned Source-Synchronous Output</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Constrain Edge-Aligned Source-Synchronous Input</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Get Clocks Feeding a Pin</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Timing Analyzer Clock Multiplexer Examples</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Constrain Center-Aligned Source-Synchronous Output</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Constraining a Center-Aligned Source-Synchronous Input</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Platform Designer Tutorial Design Example</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Quartus® II Tcl Example: Report Levels of Logic</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">BFM Simulation HPS AXI* Bridge Interface</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Demo AXI Memory Design Example</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Alternative Nios® II Boot Methods</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Report Levels of Logic</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Quartus® II Tcl Example: Date and Time Formatting</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Quartus® II Tcl Example: Custom Report Panels</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Quartus® II Tcl Automatically Archiving Projects</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Quartus® II Tcl Example: Make All Pins Virtual</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">VHDL: Tri-State Buses</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Video Downscaling Design Example</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">VHDL: Creating a Hierarchical Design</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">VHDL: Converting a Hexadecimal Value</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">VHDL: Unsigned Multiply-Adder</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">VHDL: Unsigned Multiplier with Registered I/O</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">VHDL: True Dual-Port RAM with a Single Clock</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">VHDL Templates for State Machines</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">VHDL: Single-Port ROM</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">VHDL: Single-Port RAM</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">VHDL: Single Clock Synchronous RAM</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">VHDL: Signed Multiplier-Accumulator</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">VHDL: Signed Multiplier</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">VHDL Implementing Functions</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">VHDL Template for Inferring DSP Blocks</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">VHDL: Gray Counter</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">VHDL: Dual-Port ROM</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">VHDL: Dual Clock Synchronous RAM</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">VHDL: Counter with Synchronous Reset</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">VHDL: Binary Adder Tree</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">VHDL: Adder/Subtractor</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">VHDL: 8 x 64 Shift Register with Taps</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">VHDL: 1x64 Shift Register</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Verilog HDL: Unsigned Multiplier-Accumulator</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Verilog HDL: Unsigned Multiplier</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Verilog HDL True Dual-Port RAM with Single Clock</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Verilog HDL: Tri-State Instantiation</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Verilog HDL: Ternary Adder Tree</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Verilog HDL Templates for State Machines</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Verilog HDL: Synchronous State Machine</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Verilog HDL: Single-Port RAM</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Verilog HDL: Single Clock Synchronous RAM</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Verilog HDL: Signed Multiplier-Adder</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Verilog HDL: Signed Multiplier with Registered I/O</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Verilog HDL Parameter RAM with Separate Input & Output Ports</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Verilog Design Examples</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Verilog HDL High-Speed Differential I/O Capability</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Verilog HDL: Creating a Hierarchical Design</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">VHDL Template for Inferring DSP Blocks</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Verilog HDL: Gray Counter</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Verilog: FFT with 32K-Point Transform Length</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">POS-PHY Level 4 (SPI-4.2) External PLL Sharing</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Verilog HDL: Dual Clock Synchronous RAM</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Verilog HDL: Counter with Asynchronous Reset</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Verilog HDL: Parameterized Counter</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Verilog HDL: Binary Adder Tree</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Verilog HDL: Bidirectional Pin</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Verilog HDL: Behavioral Counter</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Verilog HDL: Adder/Subtractor</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Verilog HDL: 8x64 Shift Register with Taps</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Verilog HDL: Customized 4-Port Crosspoint Switch</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Verilog HDL: 1x64 Shift Register</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Verilog HDL: 16x16 Crosspoint Switch</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">OpenCL™ Vector Addition Design Example</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">VHDL: Counter</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">VHDL: Bidirectional Bus</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Time-Domain Finite Impulse Response (FIR) Filter</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Sobel Filter Design Example</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">SignalTap* II State-Based Triggering Flow</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Shared Memory Partition Design Example</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Single-Port Triple-Speed Ethernet On-Board PHY Chip Reference Design</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">PCI* Express Avalon®-MM High-Performance DMA</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">10-Gbps Ethernet Hardware Demonstration</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Optical Flow Design Example</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">OPRA FAST Parser Design Example</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">On-Chip Debugging Design Examples</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">MAX® II Design Examples</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Multithread Vector Operation Design Example</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Multifunction Printer Error Diffusion</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Matrix Multiplication Design Example</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">OpenCL™ Library</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">JPEG Decoder for OpenCL™</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">DSP Design Examples</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Hello World Design Example</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Gzip Compression OpenCL™ Design Example</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">FPGA-to-HPS Bridges Design Example</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">OpenCL™ Mandelbrot Fractal Algorithm</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">OpenCL™ Host Pipe Design Example</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">OpenCL™ 2D Fast Fourier Transform Design Example</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">OpenCL™ Fast Fourier Transform FFT (1D) Off-Chip</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">OpenCL™ Fast Fourier Transform FFT (1D)</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Finite Difference Computation (3D) Design Example</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Using NicheStack TCP/IP Stack – Nios® II Edition</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Triple Speed Ethernet Design Example</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Constrain RGMII Interface of Triple Speed Ethernet</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Nios® II Processor with Tightly Coupled Memory</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">SPI Agent to Avalon® Host Bridge</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Nios® II Ethernet Standard Design Example</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Nios® II Processor with Memory Management Unit</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Web Server Design Example</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">MicroC/OS-II Mutex Example</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">MAX® II and MAX CPLD Design Examples</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Serial Design Examples</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Ethernet Design Examples</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Embedded Processors Design Examples</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">TSE: Instantiate TSE with External ALTGX / ALTLVDS</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Map HPS IP Peripheral Signals to FPGA Interface</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">HiSPi Imager Connectivity Design Example</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Network Time Protocol Client Design Example</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Fast Nios® II Hardware Design Example</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Nios® II Ethernet Acceleration Design Example</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Designing Digital down Conversion Systems Using CIC and FIR Filters</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Application Selector Example</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Debugging with System Console Over TCP/IP</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Avalon® Component Interfaces Supported in the Component Editor Version 7.2 and Later</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Examples of Changes to Typical Avalon® Interfaces for the Component Editor Version 7.2 and Later</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Document Filtering Design Example</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Channelizer Design Example</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">OpenCL™ Implement Asian Options Pricing Algorithm</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Design Entry Tool Examples</a></li>
+            </ul>
+        </div>
+
+        <div class="m_ai_shlash">/</div>
+        <div class="m_ai_httl">Constrain RGMII Interface of Triple Speed Ethernet</div>
+
+    </section>
+
+    <!-- Optimize Fine-Tuning and Deployment of LLMs on an AI PC -->
+    <section>
+        <div class="dk_main_heading">
+            <div class="container">
+                <div class="row mv_intel_amx_content">
+                    <div class="col-md-12 col-sm-12 mv_intel_amx_item">
+                        <div class="mv_intel_amx">
+                            <h3>Constraint RGMII Interface of Triple Speed Ethernet with the External PHY Delay Feature</h3>
+                            <p></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="container py-5">
+        <div class="row">
+            <div class="d-flex justify-content-end col-xl-10 py-3 d-md-none">
+                <i class="fa-solid fa-print fs-4 px-2 " style="color:#0068B5"></i>
+                <i class="fa-regular fa-envelope fs-4 px-2" style="color:#0068B5"></i>
+            </div>
+            <div class="col-lg-3 col-md-4">
+                <!-- nav -->
+                <div class="VK_client_app_navigation VK_ai_navigation">
+                    <div class="justify-content-center align-items-center overflow-hidden flex-nowrap mb-4">
+                        <ul class="VK_ai_nav_bar list-unstyled m-0">
+                            <li>
+                                <a href="#dk_constraint" class="text-dark text-decoration-none d-block">
+                                    How to Constraint
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#dk_tx" class="text-dark text-decoration-none d-block">
+                                    TX
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#dk_how_verify" class="text-dark text-decoration-none d-block">
+                                    How to Verify
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#dk_notes" class="text-dark text-decoration-none d-block">
+                                    Notes
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#dk_related_links" class="text-dark text-decoration-none d-block">
+                                    Related Links
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="dk_things_code_main">
+
+                </div>
+            </div>
+            <div class="col-lg-9 col-md-8">
+                <div class="d-md-flex justify-content-end col-xl-10 py-3 d-none">
+                    <i class="fa-solid fa-print fs-4 px-2 " style="color:#0068B5"></i>
+                    <i class="fa-regular fa-envelope fs-4 px-2" style="color:#0068B5"></i>
+                </div>
+                <div class="col-xl-10">
+                    <p>&nbsp;</p>
+                    <div style="font-size: 1.25rem;">
+                        <div style="padding: 3rem 0rem;">
+                            <img class="w-100" src="/img/darshit_image/rgmii-diagram1_1920-1080.avif" alt="">
+                        </div>
+                        <p>The objective of this design example is to showcase the way to constraint the TSE_RGMII. This design example is only applicable when the delay feature (90 degree shift) of TX_CLK and RX_CLK of external PHY are turned on. It can run on 3 different speeds which are 10 MHz, 100 MHz, and 1000 MHz.</p>
+                        <p>Assumption is made that the user is familiar with the Triple Speed Ethernet intellectual property (IP) Core, ALTDDIO, ALTPLL, TimeQuest and Static Timing Analysis, and double data rate (DDR) source synchronous concept.</p>
+                    </div>
+                    <section id="dk_constraint">
+                        <div style="padding-bottom: 16px;">
+                            <p>&nbsp;</p>
+                            <h3 style="font-weight: 350;">How to Constraint</h3>
+                            <div style="font-size: 1.25rem;">
+                                <ol>
+                                    <li>Select the method of interface constraint: system centric method or Intel® FPGA centric method.
+                                    <ul>
+                                        <li>Different method requires different formula to calculate the delay value in the set_input_delay and set_output_delay command</li>
+                                        <li>This design example use system centric method</li>
+                                    </ul>
+                                    </li>
+                                    <li>Decide whether to turn on or turn off the delay feature (±90 degree shift) of external PHY as it will determine the type of alignment between the clock and data.
+                                    <ul>
+                                        <li>90 degree shift -&gt; center aligned</li>
+                                        <li>No shift -&gt; edge aligned</li>
+                                        <li>This design example is applicable to delay feature of TX and RX of external PHY are turned on (90 degree shift) only</li>
+                                    </ul>
+                                    </li>
+                                    <li>Determine the desired launch and latch relationship.
+                                    <ul>
+                                        <li>There are 4 types of launch and latch relationship. They are Rise-Rise (RR), Rise-Fall (RF), Fall-Rise (FR) and Fall-Fall (FF) relationship</li>
+                                        <li>RGMII specification state that the LSB of data [3:0] will be sending out at the rising edge first and MSB of data [7:4] is sent out followed by the falling edge</li>
+                                        <li>The design of TSE with RGMII interface will capture the data at the rising edge first then followed by falling edge. It implies that the clock needs to be shifted +90 degree instead of -90 degree</li>
+                                        <li>Desired setup launch and latch relationship (Arrow in red): RR and FF</li>
+                                        <li>Desired hold launch and latch relationship (Arrow in blue): FR and RF</li>
+                                    </ul>
+                                    </li>
+                                    <li>Constraint the RGMII Interface. The Synopsys Design Constraints (SDC) is based on the design and application. However, there are some main SDC needed for RGMII interface.</li>
+                                </ol>
+                            </div>
+                            <div style="padding: 3rem 0rem;">
+                                <img class="w-100" src="/img/darshit_image/rgmii-diagram2_1920-1080.webp" alt="">
+                                <div class="dk_caption"> <p class="mb-0">Figure 2. Launch Clock and Latch Clock Relationship</p></div>
+                            </div>
+                        </div>
+                    </section>
+                    <section id="dk_tx">
+                        <p>&nbsp;</p>
+                        <div style="padding-bottom: 16px;">
+                            <h3 style="font-weight: 350;">TX</h3>
+                            <div style="font-size: 1.25rem;">
+                                <ul>
+                                    <li>create_clock
+                                        <ul>
+                                            <li>the clock that latch the data inside the Intel® FPGA prior to transmit to external PHY</li>
+                                        </ul>
+                                    </li>
+                                    <li>create_generated_clock:
+                                        <ul>
+                                            <li>the clock with 90 degree phase shift that latch the data at the external PHY</li>
+                                        </ul>
+                                    </li>
+                                    <li>set_false_path:
+                                        <ul>
+                                            <li>It is unwanted relationship not to be analyzed in timing analysis. In this design example, unwanted relationship for the setup is RF and FR while unwanted relationship for the hold is RR and FF</li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                                
+                                <div class="mv_code_toolbar" style="margin: 1.5rem 0rem 0rem;">
+                                    <div class="mv_toolbar_item mv_copy_icon">
+                                        <i class="fa-regular fa-copy"></i>
+                                    </div>
+                                    <div class="mv_copy_message text-end hidden">Copied</div>
+                                    <div class="code-content">
+                                        <div style="padding-bottom: 0rem !important" class="d-flex mv_pre">
+                                            <div class="mv_code text-break">
+                                                <pre><div class="toolbar"><div class="toolbar-item"><i class="fa fa-docs"></i></div></div>set_false_path -fall_from [data_clock] -rise_to [output_clock] -setup
+                                                    set_false_path -rise_from [data_clock] -fall_to [output_clock] -setup
+                                                    set_false_path -rise_from [data_clock] -rise_to [output_clock] -hold
+                                                    set_false_path -fall_from [data_clock] -fall_to [output_clock] -hold</pre>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <p>&nbsp;</p>
+
+                                <ul>
+                                    <li>set_output_delay</li>
+                                </ul>
+
+                                <div class="mv_code_toolbar" style="margin: 1.5rem 0rem 0rem;">
+                                    <div class="mv_toolbar_item mv_copy_icon">
+                                        <i class="fa-regular fa-copy"></i>
+                                    </div>
+                                    <div class="mv_copy_message text-end hidden">Copied</div>
+                                    <div class="code-content">
+                                        <div style="padding-bottom: 0rem !important" class="d-flex mv_pre">
+                                            <div class="mv_code text-break">
+                                                <pre><div class="toolbar"><div class="toolbar-item"><i class="fa fa-docs"></i></div></div>set_output_delay -clock output_clock\
+                                                    -max [expr $data_delay_max + $tsu - $clk_delay_min] \
+                                                    [get_ports data_out] \
+                                                    -add_delay
+                                                    
+                                                    set_output_delay -clock output_clock\
+                                                    -max [expr $data_delay_max + $tsu - $clk_delay_min] \
+                                                    [get_ports data_out] \
+                                                    -clock_fall \
+                                                    -add_delay
+                                                    
+                                                    set_output_delay -clock output_clock \
+                                                    -min [expr $data_delay_min - $th - $clk_delay_max] \
+                                                    [get_ports data_out ] \
+                                                    -add_delay
+                                                    
+                                                    set_output_delay -clock output_clock \
+                                                    -min [expr $data_delay_min - $th - $clk_delay_max] \
+                                                    [get_ports data_out ] \
+                                                    -clock_fall \
+                                                    -add_delay</pre>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                             <p>&nbsp;</p>
+                             <div style="font-size: 1.25rem;">
+                                <p>TSE_RGMII RX</p>
+                             <ul>
+                                <li>create_clock:
+                                <ul>
+                                    <li>a virtual clock that latch the data inside the external PHY prior to transmit to the Intel® FPGA</li>
+                                </ul>
+                                </li>
+                                <li>create _clock:
+                                <ul>
+                                    <li>the clock with 90 degree phase shift that latch the data inside the Intel® FPGA</li>
+                                </ul>
+                                </li>
+                                <li>set_false_path:
+                                <ul>
+                                    <li>It is unwanted relationship not to be analyzed in timing analysis. In this design example, unwanted relationship for the setup is RF and FR while unwanted relationship for the hold is RR and FF</li>
+                                </ul>
+                                </li>
+                            </ul>
+                            </div>
+                            <div class="mv_code_toolbar" style="margin: 1.5rem 0rem 0rem;">
+                                <div class="mv_toolbar_item mv_copy_icon">
+                                    <i class="fa-regular fa-copy"></i>
+                                </div>
+                                <div class="mv_copy_message text-end hidden">Copied</div>
+                                <div class="code-content">
+                                    <div style="padding-bottom: 0rem !important" class="d-flex mv_pre">
+                                        <div class="mv_code text-break">
+                                            <pre><div class="toolbar"><div class="toolbar-item"><i class="fa fa-docs"></i></div></div>set_false_path -fall_from [data_clock] -rise_to [output_clock] -setup
+                                                set_false_path -rise_from [data_clock] -fall_to [output_clock] -setup
+                                                set_false_path -rise_from [data_clock] -rise_to [output_clock] -hold
+                                                set_false_path -fall_from [data_clock] -fall_to [output_clock] -hold</pre>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <p>&nbsp;</p>
+                        </div>
+                    </section>
+                    <section id="dk_how_verify">
+                        <p>&nbsp;</p>
+                        <div style="padding-bottom: 16px;">
+                            <h3 style="font-weight: 350;">How to Verify</h3>
+                            <div style="font-size: 1.25rem;">
+                                <p class="mb-0">There are a few reports to checked in order to verify the source synchronous constraint is constrained properly.</p>
+                                <ol>
+                                    <li>Clock Report
+                                    <ul>
+                                        <li>Check on the 3 clock frequency (125 MHz , 25 MHz, and 2.5 MHz) and its phase</li>
+                                        <li>Core TX clock (Intel® FPGA): 125 MHz, 25 MHz, and 2.5 MHz</li>
+                                        <li>RGMII_TX_Clock (external PHY): 125 MHz +90º, 25 MHz +90º, and 2.5 MHz +90º</li>
+                                        <li>RGMII_RX_Clock (Intel® FPGA): 125 MHz +90º, 25 MHz +90º, and 2.5 MHz +90º</li>
+                                        <li>RGMII_RX_Virtual_Clock (external PHY) : 125 MHz, 25 MHz, and 2.5 MHz</li>
+                                    </ul>
+                                    </li>
+                                    <li>Clock Transfer Report
+                                    <ul>
+                                        <li>Check all the relationship on the setup and hold launch-latch relationship of RGMII interface for clock transfer</li>
+                                        <li>Desired Setup: RR and FF</li>
+                                        <li>Desired Hold: FR and RF</li>
+                                    </ul>
+                                    </li>
+                                    <li>All I/O Timing Report
+                                    <ul>
+                                        <li>Check if there is any failing path and launch-latch relationship according to the desired setup and hold launch-latch relationship
+                                        <ul>
+                                            <li>Input to register for setup and hold</li>
+                                            <li>Register to output for setup and hold</li>
+                                        </ul>
+                                        </li>
+                                    </ul>
+                                    </li>
+                                </ol>
+                            </div>
+                        </div>
+                    </section>
+                    <section id="dk_notes">
+                        <p>&nbsp;</p>
+                        <div style="padding-bottom: 16px;">
+                            <h3 style="font-weight: 350;">Notes:</h3>
+                            <div style="font-size: 1.25rem;">
+                                <p class="mb-0">There are a few reports to checked in order to verify the source synchronous constraint is constrained properly.</p>
+                                <ol>
+                                    <li>TSE_10_1_RGMII_SDC is the SDC file generated by Megafunction. It does not cover the RGMII SDC constraint. The RGMII SDC constraint is included in the RGMII SDC.</li>
+                                    <li>Modification in TSE_10_1_RGMII_SDC.sdc file:
+                                    <ul>
+                                        <li>Comment the derived_pll_clock (line 246) as it will prevent you from using create_gererated_clock command for the pll in RGMII.sdc</li>
+                                        <li>Change the name of FF_TX_CLK and FF_RX_CLK in line 59 and line 60 according to the design</li>
+                                    </ul>
+                                    </li>
+                                    <li>There are warnings which can be ignored during timing analysis. Please refer to the readme.txt found in TSE_RGMII_With_SDC.qar for details.</li>
+                                    <li>Download the file used in this example: TSE_RGMII_With_SDC.qar</li>
+                                </ol>
+                                <p>The use of this design is governed by, and subject to, the terms and conditions of the Intel® Design Example License Agreement.</p>
+                            </div>
+                        </div>
+                    </section>
+                    <section id="dk_related_links">
+                        <p>&nbsp;</p>
+                        <div style="padding-bottom: 16px;">
+                            <h3 style="font-weight: 350;">Related Links</h3>
+                            <div style="font-size: 1.25rem;">
+                                <ul>
+                                    <li><a class="b_special_a1" href="">Triple Speed Ethernet IP Core Resource Center</a></li>
+                                    <li><a class="b_special_a1" href="">Triple-Speed Ethernet MegaCore Function User Guide</a></li>
+                                    <li><a class="b_special_a1" href="">ALTDDIO Megafunction User Guide</a></li>
+                                    <li><a class="b_special_a1" href="">ALTPLL (Phase-Locked Loop) IP Core User Guide (PDF)</a></li>
+                                    <li><a class="b_special_a1" href="">AN 433: Constraining and Analyzing Source-Synchronous&nbsp;Interfaces (PDF)</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- footer -->
+    <div id="footer"></div>
+
+    <!-- script header and footer -->
+    <script>
+        // navbar include  
+        fetch('/y_index/y_navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar').innerHTML = data;
+            });
+        // footer include 
+        fetch('/y_index/y_footer.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('footer').innerHTML = data;
+            });
+    </script>
+
+    <!-- nav script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const nav = document.querySelector('.VK_client_app_navigation');
+            const navLinks = document.querySelectorAll('.VK_ai_nav_bar a');
+            const sections = document.querySelectorAll('section[id]');
+            let navOffset = nav.offsetTop;
+
+            // Add smooth scrolling to all links
+            navLinks.forEach(link => {
+                link.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+
+            // Sticky Navigation
+            window.addEventListener('scroll', () => {
+                if (window.pageYOffset >= navOffset) {
+                    nav.classList.add('VK_sticky_nav_bar');
+                } else {
+                    nav.classList.remove('VK_sticky_nav_bar');
+                }
+                // Section highlighting
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop - nav.clientHeight;
+                    const sectionHeight = section.clientHeight;
+                    console.log(sectionTop);
+                    console.log(sectionHeight);
+                    if (window.pageYOffset >= sectionTop && window.pageYOffset <= sectionTop + sectionHeight) {
+                        navLinks.forEach(link => {
+                            link.classList.remove('active');
+                            if (link.getAttribute('href') === `#${section.id}`) {
+                                link.classList.add('active');
+
+                                // Ensure the active link is visible in the nav bar
+                                const navBar = document.querySelector('.VK_ai_nav_bar');
+                                const activeLink = document.querySelector('.VK_ai_nav_bar a.active');
+                                const linkRect = activeLink.getBoundingClientRect();
+                                const navBarRect = navBar.getBoundingClientRect();
+
+                                if (linkRect.left < navBarRect.left || linkRect.right > navBarRect.right) {
+                                    activeLink.scrollIntoView({ inline: 'center', behavior: 'smooth' });
+                                }
+                            }
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+
+    <!-- copy script -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            document.querySelectorAll(".mv_copy_icon").forEach((icon) => {
+                icon.addEventListener("click", async function () {
+                    try {
+                        const toolbar = this.closest(".mv_code_toolbar");
+                        const codeBlock = toolbar.querySelector(".code-content");
+                        const codeContent = codeBlock.innerText;
+
+                        // Use Clipboard API to copy text
+                        await navigator.clipboard.writeText(codeContent);
+
+                        // Hide the copy icon and show the "Copied!" message
+                        const message = toolbar.querySelector(".mv_copy_message");
+                        this.classList.add("hidden"); // Hide the copy icon
+                        message.classList.remove("hidden"); // Show the "Copied!" message
+
+                        // Hide the message and show the icon again after 2 seconds
+                        setTimeout(() => {
+                            message.classList.add("hidden");
+                            this.classList.remove("hidden");
+                        }, 2000); // Adjust delay as needed
+
+                    } catch (err) {
+                        console.error('Failed to copy text: ', err);
+                    }
+                });
+            });
+        });
+    </script>
+
+</body>
+
+</html>
