@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MAX® II and MAX CPLD Design Examples</title>
+    <link rel="stylesheet"href="/css/dk_developer_edge_iot_&_5G_optimize_fine_tuning_and_deployment_of_LLMs_on_an_ai_pc.css">
+    <link rel="stylesheet" href="/css/rushita_automotive.css">
+    <!-- header footer -->
+    <link rel="stylesheet" href='/css/yatri.css'>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" rel="stylesheet">
+</head>
+
+<style>
+    .dk_main_heading{
+        padding: 2rem 0rem;
+        background-color: #548FAD;
+        color: #fff;
+    }
+    .dk_caption{
+        background: rgba(0, 0, 0, 0.7);
+        color: #fff;
+        text-align: left;
+        font-size: .875rem;
+        padding: 20px 15px;
+    }
+    @media(max-width:768px){
+        .dk_main_heading{
+            padding: 1rem 0rem !important;
+        } 
+        .mv_intel_amx_content {
+            padding-right: 0px !important; 
+        } 
+    }
+</style>
+
+<body>
+
+    <!-- header -->
+    <div id="navbar"></div>
+
+    <section class="m_ai_tdrop">
+        <div>
+            <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Altera® FPGAs and Programmable Devices
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item m_dropActive" href="#">FPGA Products</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/Product/B8_FPGA_CPLD.html">FPGA Devices</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/vaidikhtml/mv_product/quartus_development_software_tools_quartus_prime_design_software_overview.html">FPGA Software</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/Product/B11_intel_intellectual.html">FPGA IP</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/Product/B12_intel_fpga_develop.html">FPGA DEVKITs</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/vaidikhtml/mv_developer_learn/developer_get_help_FPGA_support.html">FPGA Product Support</a></li>
+            </ul>
+        </div>
+
+
+        <div class="m_ai_shlash">/</div>
+        <div>
+            <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                FPGA Product Support
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item m_dropActive" href="/vaidikhtml/mv_developer_learn/developer_get_help_FPGA_support_FPGA_developer_center.html">FPGA Developer Center</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">FPGA Documentation</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/darshit/dk_product/device_and_product_support_collections.html">Devices and Product collections</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/vaidikhtml/mv_product/FPGAs_programmable_devices_support_training.html">FPGA Technical Training</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/vaidikhtml/mv_product/design_examples.html">FPGA Design Examples</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/vaidikhtml/mv_product/quartus_development_software_tools_licensing.html">FPGA Licensing Center</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">FPGA Downloads</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">FPGA Knowledge Base</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/vaidikhtml/mv_developer_learn/developer_get_help_FPGA_support.html">FPGA Support Resources</a></li>
+            </ul>
+        </div>
+
+        <div class="m_ai_shlash">/</div>
+
+        <div>
+            <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                FPGA Design Examples
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item m_dropActive" href="">FPGA Design Store</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">FPGA Design Examples</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">RocketBoards.org</a></li>
+            </ul>
+        </div>
+
+        <div class="m_ai_shlash">/</div>
+
+        <div>
+            <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                FPGA Design Examples
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item m_dropActive" href="">Video and Image Processing</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Drive-on-a-Chip Multi-Axis Motor Control</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">FPGA Design Security Solution</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Timing Analyzer Clock Analysis</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Quartus II Tcl Example: Elaborate Timegroups Nodes</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Quartus® II Tcl Example: Ver. No. VHDL Reg. Bank</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Quartus® II Tcl Example: Automatic Version Number</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Quartus® II Tcl Version Number in Verilog Register Bank</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Quartus® II Tcl Get Subversion Revision Number</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Top-Level Instance Names Matching Wildcard Pattern</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Quartus II Tcl Example: Increment Ver. No. in File</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Quartus® II Tcl Example: Date Time Stamp</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Quartus® II Tcl Design Examples</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Quartus® II Tcl Export Report Data to CSV File</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Quartus® II Tcl - Arbitrary Paths Timing Reporting</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Platform Designer (Formerly Qsys) Design Examples</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Quartus® II Tcl Example: Opening Projects</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Quartus® II Tcl Example: Non-Default Global Assign</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Quartus® II Tcl Example: Find a Timing Node</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Timing Analyzer Example: Multicycle Exceptions</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Simplify Design Reuse with Dynamic SDC Constraints</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Timing Analyzer Report Multi Operating Conditions</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">MicroC/OS-II RTOS with the Nios® II Processor</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Timing Analyzer: Constraining Generated Clocks</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Timing Analyzer: Failing Clocks Summary Report</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Timing Analyzer Instance and Entity in Scripts</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Constrain Edge-Aligned Source-Synchronous Output</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Constrain Edge-Aligned Source-Synchronous Input</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Get Clocks Feeding a Pin</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Timing Analyzer Clock Multiplexer Examples</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Constrain Center-Aligned Source-Synchronous Output</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Constraining a Center-Aligned Source-Synchronous Input</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Platform Designer Tutorial Design Example</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Quartus® II Tcl Example: Report Levels of Logic</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">BFM Simulation HPS AXI* Bridge Interface</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Demo AXI Memory Design Example</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Alternative Nios® II Boot Methods</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Report Levels of Logic</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Quartus® II Tcl Example: Date and Time Formatting</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Quartus® II Tcl Example: Custom Report Panels</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Quartus® II Tcl Automatically Archiving Projects</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Quartus® II Tcl Example: Make All Pins Virtual</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">VHDL: Tri-State Buses</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Video Downscaling Design Example</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">VHDL: Creating a Hierarchical Design</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">VHDL: Converting a Hexadecimal Value</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">VHDL: Unsigned Multiply-Adder</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">VHDL: Unsigned Multiplier with Registered I/O</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">VHDL: True Dual-Port RAM with a Single Clock</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">VHDL Templates for State Machines</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">VHDL: Single-Port ROM</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">VHDL: Single-Port RAM</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">VHDL: Single Clock Synchronous RAM</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">VHDL: Signed Multiplier-Accumulator</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">VHDL: Signed Multiplier</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">VHDL Implementing Functions</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">VHDL Template for Inferring DSP Blocks</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">VHDL: Gray Counter</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">VHDL: Dual-Port ROM</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">VHDL: Dual Clock Synchronous RAM</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">VHDL: Counter with Synchronous Reset</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">VHDL: Binary Adder Tree</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">VHDL: Adder/Subtractor</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">VHDL: 8 x 64 Shift Register with Taps</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">VHDL: 1x64 Shift Register</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Verilog HDL: Unsigned Multiplier-Accumulator</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Verilog HDL: Unsigned Multiplier</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Verilog HDL True Dual-Port RAM with Single Clock</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Verilog HDL: Tri-State Instantiation</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Verilog HDL: Ternary Adder Tree</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Verilog HDL Templates for State Machines</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Verilog HDL: Synchronous State Machine</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Verilog HDL: Single-Port RAM</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Verilog HDL: Single Clock Synchronous RAM</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Verilog HDL: Signed Multiplier-Adder</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Verilog HDL: Signed Multiplier with Registered I/O</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Verilog HDL Parameter RAM with Separate Input & Output Ports</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Verilog Design Examples</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Verilog HDL High-Speed Differential I/O Capability</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Verilog HDL: Creating a Hierarchical Design</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">VHDL Template for Inferring DSP Blocks</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Verilog HDL: Gray Counter</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Verilog: FFT with 32K-Point Transform Length</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">POS-PHY Level 4 (SPI-4.2) External PLL Sharing</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Verilog HDL: Dual Clock Synchronous RAM</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Verilog HDL: Counter with Asynchronous Reset</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Verilog HDL: Parameterized Counter</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Verilog HDL: Binary Adder Tree</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Verilog HDL: Bidirectional Pin</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Verilog HDL: Behavioral Counter</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Verilog HDL: Adder/Subtractor</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Verilog HDL: 8x64 Shift Register with Taps</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Verilog HDL: Customized 4-Port Crosspoint Switch</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Verilog HDL: 1x64 Shift Register</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Verilog HDL: 16x16 Crosspoint Switch</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">OpenCL™ Vector Addition Design Example</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">VHDL: Counter</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">VHDL: Bidirectional Bus</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Time-Domain Finite Impulse Response (FIR) Filter</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Sobel Filter Design Example</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">SignalTap* II State-Based Triggering Flow</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Shared Memory Partition Design Example</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Single-Port Triple-Speed Ethernet On-Board PHY Chip Reference Design</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">PCI* Express Avalon®-MM High-Performance DMA</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">10-Gbps Ethernet Hardware Demonstration</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Optical Flow Design Example</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">OPRA FAST Parser Design Example</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">On-Chip Debugging Design Examples</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">MAX® II Design Examples</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Multithread Vector Operation Design Example</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Multifunction Printer Error Diffusion</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Matrix Multiplication Design Example</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">OpenCL™ Library</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">JPEG Decoder for OpenCL™</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">DSP Design Examples</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Hello World Design Example</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Gzip Compression OpenCL™ Design Example</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">FPGA-to-HPS Bridges Design Example</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">OpenCL™ Mandelbrot Fractal Algorithm</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">OpenCL™ Host Pipe Design Example</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">OpenCL™ 2D Fast Fourier Transform Design Example</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">OpenCL™ Fast Fourier Transform FFT (1D) Off-Chip</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">OpenCL™ Fast Fourier Transform FFT (1D)</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Finite Difference Computation (3D) Design Example</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Using NicheStack TCP/IP Stack – Nios® II Edition</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Triple Speed Ethernet Design Example</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Constrain RGMII Interface of Triple Speed Ethernet</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Nios® II Processor with Tightly Coupled Memory</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">SPI Agent to Avalon® Host Bridge</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Nios® II Ethernet Standard Design Example</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Nios® II Processor with Memory Management Unit</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Web Server Design Example</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">MicroC/OS-II Mutex Example</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">MAX® II and MAX CPLD Design Examples</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Serial Design Examples</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Ethernet Design Examples</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Embedded Processors Design Examples</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">TSE: Instantiate TSE with External ALTGX / ALTLVDS</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Map HPS IP Peripheral Signals to FPGA Interface</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">HiSPi Imager Connectivity Design Example</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Network Time Protocol Client Design Example</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Fast Nios® II Hardware Design Example</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Nios® II Ethernet Acceleration Design Example</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Designing Digital down Conversion Systems Using CIC and FIR Filters</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Application Selector Example</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Debugging with System Console Over TCP/IP</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Avalon® Component Interfaces Supported in the Component Editor Version 7.2 and Later</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Examples of Changes to Typical Avalon® Interfaces for the Component Editor Version 7.2 and Later</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Document Filtering Design Example</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Channelizer Design Example</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">OpenCL™ Implement Asian Options Pricing Algorithm</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Design Entry Tool Examples</a></li>
+            </ul>
+        </div>
+
+        <div class="m_ai_shlash">/</div>
+        <div class="m_ai_httl">MAX® II and MAX CPLD Design Examples</div>
+
+    </section>
+
+    <!-- Optimize Fine-Tuning and Deployment of LLMs on an AI PC -->
+    <section>
+        <div class="dk_main_heading">
+            <div class="container">
+                <div class="row mv_intel_amx_content">
+                    <div class="col-md-12 col-sm-12 mv_intel_amx_item">
+                        <div class="mv_intel_amx">
+                            <h3>MAX® II and MAX CPLD Design Examples</h3>
+                            <p></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="container py-5">
+        <div class="row">
+            <div class="d-flex justify-content-end col-xl-10 py-3 d-md-none">
+                <i class="fa-solid fa-print fs-4 px-2 " style="color:#0068B5"></i>
+                <i class="fa-regular fa-envelope fs-4 px-2" style="color:#0068B5"></i>
+            </div>
+            <div class="col-lg-3 col-md-4">
+                <!-- nav -->
+                <div class="VK_client_app_navigation VK_ai_navigation">
+                    <div class="justify-content-center align-items-center overflow-hidden flex-nowrap mb-4">
+                        <ul class="VK_ai_nav_bar list-unstyled m-0">
+                            <li>
+                                <a href="#dk_pin_port" class="text-dark text-decoration-none d-block">
+                                    Pin/Port Expansion or Bridging
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#dk_interface_control" class="text-dark text-decoration-none d-block">
+                                    Interface or Control
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#dk_power_managent" class="text-dark text-decoration-none d-block">
+                                    Power Management and Miscellaneous Logic
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#dk_other_max_II" class="text-dark text-decoration-none d-block">
+                                    Other MAX II CPLD Design Examples 
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#dk_max_II_cpld" class="text-dark text-decoration-none d-block">
+                                    MAX II and MAX CPLD Design Examples
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="dk_things_code_main">
+                
+                </div>
+            </div>
+            <div class="col-lg-9 col-md-8">
+                <div class="d-md-flex justify-content-end col-xl-10 py-3 d-none">
+                    <i class="fa-solid fa-print fs-4 px-2 " style="color:#0068B5"></i>
+                    <i class="fa-regular fa-envelope fs-4 px-2" style="color:#0068B5"></i>
+                </div>
+                <div class="col-xl-10">
+                    <p>&nbsp;</p>
+                    <div style="font-size: 1.25rem;">
+                        <p>The examples shown in Tables 1 through 5 demonstrate various features of the MAX II and MAX low-power CPLD families using Quartus® II or MAX+PLUS® II software. For more information about the different design entry methods, refer to the help files in Quartus II or MAX+PLUS II software.</p>
+                        <p>These design examples are intended only for Intel® FPGA devices. The examples are provided on an "as-is" basis and come with no warranties.</p>
+                        <p class="mb-0">&nbsp;</p>
+                        <p class="mb-0">Each design example in Tables 1 through 3 includes the following:</p>
+                        <ul>
+                            <li>Source code in Verilog</li>
+                            <li>Testbench in Verilog</li>
+                            <li>Quartus II Web Edition software version version 6.0 project files and program files for the <a class="b_special_a1" href="">MDN B2</a> or <a class="b_special_a1" href="">MDN B3</a> demonstration board (the logic element (LE) and I/O resources shown in Tables 1 through 3 are derived from design compilations using Quartus II software version 7.2)</li>
+                            <li>ModelSim* 6.1d Web Edition software project file with testbench, wave image files
+                            <ul>
+                                <li>Simulation file not included for large simulations</li>
+                            </ul>
+                            </li>
+                            <li>Documentation</li>
+                        </ul>
+                        <p class="mb-4">Additional examples are available on the <a class="b_special_a1" href="">Intel® FPGA Design Examples</a>&nbsp;page.</p>
+                    </div>
+                    <section id="dk_pin_port">
+                        <div style="padding-bottom: 16px;">
+                            <h3 style="font-weight: 350; margin-bottom: 2rem;">Table 1. MAX II, MAX® IIG, and MAX® IIZ Pin/Port Expansion and <br> Bridging Design Examples</h3>
+                            <table class="mv_product_table w-100 mb-4">
+                                <thead>
+                                    <tr>
+                                        <th class="medium-column">Design Name<br></th>
+                                        <th class="medium-column">Description</th>
+                                        <th class="medium-column">Design Files</th>
+                                    </tr>   
+                                </thead>
+                                <tbody>
+                                    <tr class="data" data-category-id="">
+                                        <td height="38" width="374" class="medium-column"><a class="b_special_a1" href="">AN 494: GPIO Pin Expansion Using I<sup>2</sup>C Bus Interface in MAX II CPLDs (PDF)</a></td>
+                                        <td width="347" class="medium-column">General-purpose I/O expansion using I<sup>2</sup>C interface (Resource utilization: 18 I/Os and ~61 LEs)</td>
+                                        <td width="163" class="medium-column"><a class="b_special_a1" href="">Download (ZIP)</a></td>
+                                    </tr>
+                                    <tr class="data" data-category-id="">
+                                        <td height="38" width="374" class="medium-column"><a class="b_special_a1" href="">AN 484: SMBus for GPIO Pin Expansion in MAX II CPLDs (PDF)</a></td>
+                                        <td width="347" class="medium-column">General-purpose I/O expansion using SMBus interface (Resource utilization: 18 I/Os and ~87 LEs)</td>
+                                        <td width="163" class="medium-column"><a class="b_special_a1" href="">Download (ZIP)</a></td>
+                                    </tr>
+                                    <tr class="data" data-category-id="">
+                                        <td height="38" width="374" class="medium-column"><a class="b_special_a1" href="">AN 487: SPI to I<sup>2</sup>S Using MAX II CPLDs (PDF)</a></td>
+                                        <td width="347" class="medium-column">Bridge between devices that have SPI interface and I<sup>2</sup>S bus (Resource utilization: 8 I/Os and ~286 LEs)</td>
+                                        <td width="163" class="medium-column"><a class="b_special_a1" href="">Download (ZIP)</a></td>
+                                    </tr>
+                                    <tr class="data" data-category-id="">
+                                        <td height="78" width="374" class="medium-column"><a class="b_special_a1" href="">AN 486: SPI to I<sup>2</sup>C Using MAX II CPLDs (PDF)</a></td>
+                                        <td width="347" class="medium-column"><p>Controls data flow to audio devices on&nbsp;<a class="b_special_a1" href="">MAX II Reference Designsan</a> I<sup>2</sup>C bus through SPI interface</p>
+                                        <p>(Resource utilization: 6 I/Os and ~102 LEs)</p></td>
+                                        <td width="163" class="medium-column"><a class="b_special_a1" href="">Download (ZIP)</a><br></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </section>
+
+                    <section id="dk_interface_control">
+                        <h3 style="font-weight: 350; margin-bottom: 2rem;">Table 2. MAX II, MAX IIG, and MAX IIZ Interface or Control Design <br> Examples</h3>
+                        <div style="font-size: 1.25rem;">
+                            <table class="mv_product_table w-100 mb-4">
+                                <thead>
+                                    <tr>
+                                        <th class="medium-column"><p>Design Name</p></th>
+                                        <th class="medium-column">Description</th>
+                                        <th class="medium-column">Design Files</th>
+                                    </tr>   
+                                </thead>
+                                <tbody>
+                                    <tr class="data" data-category-id="">
+                                        <td height="43" width="424" class="medium-column"><a class="b_special_a1" href="">AN 509: Multiplexing SDIO Devices using MAX II CPLDs (PDF)</a></td>
+                                        <td width="412" class="medium-column">Implementing an SDIO multiplexer through the I<sup>2</sup>C interface (Resource utilization: 9 I/Os &amp; ~34 LEs)</td>
+                                        <td width="221" class="medium-column"><a class="b_special_a1" href="">Download (ZIP)</a></td>
+                                    </tr>
+                                    <tr class="data" data-category-id="">
+                                        <td height="38" width="424" class="medium-column"><a class="b_special_a1" href="">AN 492: CF+ Interface MAX II CPLDs (PDF)</a></td>
+                                        <td width="412" class="medium-column">Implements a compact flash interface (Resource utilization: 45 I/Os and ~119 LEs)</td>
+                                        <td width="221" class="medium-column"><a class="b_special_a1" href="">Download (ZIP)</a></td>
+                                    </tr>
+                                    <tr class="data" data-category-id="">
+                                        <td height="38" width="424" class="medium-column"><a class="b_special_a1" href="">AN 495: IDE/ATA Controller Using MAX II CPLDs (PDF)</a></td>
+                                        <td width="412" class="medium-column">Implements an IDE controller (Resource utilization: 89 I/Os and ~134 LEs)</td>
+                                        <td width="221" class="medium-column"><a class="b_special_a1" href="">Download (ZIP)</a></td>
+                                    </tr>
+                                    <tr class="data" data-category-id="">
+                                        <td height="55" width="424" class="medium-column"><a class="b_special_a1" href="">AN 497: LCD Controller Using MAX II CPLDs (PDF)</a></td>
+                                        <td width="412" class="medium-column">Implements an LCD controller (example is Optrex 16 x 2 dot matrix LCD module, and can be extended to other LCD modules) (Resource utilization: 46 I/Os and ~211 LEs)</td>
+                                        <td width="221" class="medium-column"><a class="b_special_a1" href="">Download (ZIP)</a></td>
+                                    </tr>
+                                    <tr class="data" data-category-id="">
+                                        <td height="38" width="424" class="medium-column"><a class="b_special_a1" href="">AN 499: Mobile SDRAM Interface Using MAX II CPLDs (PDF)</a></td>
+                                        <td width="412" class="medium-column">Implements interface to mobile DRAM devices (Resource utilization: 85 I/Os and ~138 LEs)</td>
+                                        <td width="221" class="medium-column"><a class="b_special_a1" href="">Download (ZIP)</a></td>
+                                    </tr>
+                                    <tr class="data" data-category-id="">
+                                        <td height="38" width="424" class="medium-column"><a class="b_special_a1" href="">AN 500: NAND Flash Memory Interface with MAX II CPLDs (PDF)</a></td>
+                                        <td width="412" class="medium-column">Implements interface to NAND flash devices (Resource utilization: 13 I/Os and ~11 LEs)</td>
+                                        <td width="221" class="medium-column"><a class="b_special_a1" href="">Download (ZIP)</a></td>
+                                    </tr>
+                                    <tr class="data" data-category-id="">
+                                        <td height="38" width="424" class="medium-column"><a class="b_special_a1" href="">AN 502: Implementing an SMBus Controller MAX II CPLDs (PDF)</a></td>
+                                        <td width="412" class="medium-column">Implements an SMBus controller (Resource utilization: 24 I/Os and ~896 LEs)</td>
+                                        <td width="221" class="medium-column"><a class="b_special_a1" href="">Download (ZIP)</a></td>
+                                    </tr>
+                                    <tr class="data" data-category-id="">
+                                        <td height="38" width="424" class="medium-column"><a class="b_special_a1" href="">AN 485: Serial Peripheral Interface (SPI) Host in MAX II CPLDs (PDF)</a></td>
+                                        <td width="412" class="medium-column">Implements SPI host (Resource utilization: 25 I/Os and ~68 LEs)</td>
+                                        <td width="221" class="medium-column"><a class="b_special_a1" href="">Download (ZIP)</a></td>
+                                    </tr>
+                                    <tr class="data" data-category-id="">
+                                        <td height="38" width="424" class="medium-column"><a class="b_special_a1" href="">AN 488: Stepper Motor Controller Using MAX II CPLDs (PDF)</a></td>
+                                        <td width="412" class="medium-column">Implements a stepper motor controller (Resource utilization: 8 I/Os and ~59 LEs)</td>
+                                        <td width="221" class="medium-column"><a class="b_special_a1" href="">Download (ZIP)</a></td>
+                                    </tr>
+                                    <tr class="data" data-category-id="">
+                                        <td height="44" width="424" class="medium-column"><a class="b_special_a1" href="">AN 489: Using the UFM in MAX II Devices (PDF)</a></td>
+                                        <td width="412" class="medium-column">Accesses MAX II user flash memory through an I<sup>2</sup>C interface (Resource utilization: 4 I/Os and ~124 LEs)</td>
+                                        <td width="221" class="medium-column"><a class="b_special_a1" href="">Download (ZIP)</a></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </section>
+                    
+                    <section id="dk_power_managent">
+                        <h3 style="font-weight: 350; margin-bottom: 2rem;">Table 3. MAX II, MAX IIG, and MAX IIZ Power Management and <br> Miscellaneous Logic Design Examples</h3>
+                        <div style="font-size: 1.25rem;">
+                            <table class="mv_product_table w-100 mb-4">
+                                <thead>
+                                    <tr>
+                                        <th class="medium-column">Design Name<br></th>
+                                        <th class="medium-column">Description</th>
+                                        <th class="medium-column">Design Files</th>
+                                    </tr>   
+                                </thead>
+                                <tbody>
+                                    <tr class="data" data-category-id="">
+                                        <td height="43" width="226" class="medium-column"><a class="b_special_a1" href="">AN 491: Auto Start Using MAX II CPLDs (PDF)</a></td>
+                                        <td width="257" class="medium-column">Saves power by automatically starting and stopping the MAX II dynamic operation (Resource utilization: 8 I/Os and ~45 LEs)</td>
+                                        <td width="302" class="medium-column"><a class="b_special_a1" href="">Download (ZIP)</a></td>
+                                    </tr>
+                                    <tr class="data" data-category-id="">
+                                        <td height="43" width="226" class="medium-column"><a class="b_special_a1" href="">AN 493: I<sup>2</sup>C Battery Gauge Interface Using MAX II CPLDs (PDF)</a></td>
+                                        <td width="257" class="medium-column">Remotely monitors the status of a battery gauge using I<sup>2</sup>C interface (Resource utilization: 34 I/Os and ~107 LEs)</td>
+                                        <td width="302" class="medium-column"><a class="b_special_a1" href="">Download (ZIP)</a></td>
+                                    </tr>
+                                    <tr class="data" data-category-id="">
+                                        <td height="43" width="226" class="medium-column"><a class="b_special_a1" href="">AN 496: Using the Internal Oscillator in MAX II CPLDs (PDF)</a></td>
+                                        <td width="257" class="medium-column">Uses the oscillator in the MAX II user flash memory block as a clock source (Resource utilization: 17 I/Os and ~41 LEs)</td>
+                                        <td width="302" class="medium-column"><a class="b_special_a1" href="">Download (ZIP)</a></td>
+                                    </tr>
+                                    <tr class="data" data-category-id="">
+                                        <td height="58" width="226" class="medium-column"><a class="b_special_a1" href="">AN 498: LED Blink Using Auto Stop and Auto Start in MAX II CPLDs (PDF)</a></td>
+                                        <td width="257" class="medium-column">Blink LEDs using auto start and auto stop functions (Resource utilization: 3 I/Os and ~20 LEs)</td>
+                                        <td width="302" class="medium-column"><a class="b_special_a1" href="">Download (ZIP)</a></td>
+                                    </tr>
+                                    <tr class="data" data-category-id="">
+                                        <td height="43" width="226" class="medium-column"><a class="b_special_a1" href="">AN 501: Pulse Width Modulator Using MAX II CPLDs (PDF)</a></td>
+                                        <td width="257" class="medium-column">Implements pulse-width modulation using the MAX II user flash memory block oscillator (Resource utilization: 8 I/Os and ~52 LEs)</td>
+                                        <td width="302" class="medium-column"><a class="b_special_a1" href="">Download (ZIP)</a></td>
+                                    </tr>
+                                    <tr class="data" data-category-id="">
+                                        <td height="44" width="226" class="medium-column"><a class="b_special_a1" href="">AN 490: MAX II CPLDs as Voltage Level Shifters (PDF)</a></td>
+                                        <td width="257" class="medium-column">Implements the voltage level shifting required in a mixed-voltage environment (Resource utilization: 16 I/Os and 0 LEs)</td>
+                                        <td width="302" class="medium-column"><a class="b_special_a1" href="">Download (ZIP)</a><br></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </section>
+                    
+                    <section id="dk_other_max_II">
+                        <h3 style="font-weight: 350; margin-bottom: 2rem;">Table 4. Other MAX II CPLD Design Examples</h3>
+                        <div style="font-size: 1.25rem;">
+                            <table class="mv_product_table w-100 mb-4">
+                                <thead>
+                                    <thead>
+                                        <tr>
+                                            <th class="medium-column">Design Name</th>
+                                            <th class="medium-column">Description</th>
+                                            <th class="medium-column">Documents</th>
+                                        </tr>   
+                                    </thead>  
+                                </thead>
+                                <tbody>
+                                    <tr class="data" data-category-id="">
+                                        <td height="39" width="286" class="medium-column">Programming CFI Flash and Configuring FPGAs</td>
+                                        <td width="313" class="medium-column">Uses the MAX II parallel flash loader to program CFI flash devices or configure FPGAs</td>
+                                        <td width="347" class="medium-column"><a class="b_special_a1" href="">AN 386: Using the Parallel Flash Loader with the Quartus II Software&nbsp;(PDF)</a></td>
+                                    </tr>
+                                    <tr class="data" data-category-id="">
+                                        <td height="39" width="286" class="medium-column">LED Driver</td>
+                                        <td width="313" class="medium-column">Implements LED drivers in MAX II CPLDs</td>
+                                        <td width="347" class="medium-column"><a class="b_special_a1" href="">AN 286: Implementing LED Drivers in MAX &amp; MAX II Devices&nbsp;(PDF)</a></td>
+                                    </tr>
+                                    <tr class="data" data-category-id="">
+                                        <td height="39" width="286" class="medium-column">Power Management Controller</td>
+                                        <td width="313" class="medium-column">Uses a MAX II CPLD for power management in portable applications</td>
+                                        <td width="347" class="medium-column"><a class="b_special_a1" href="">AN 422: Power Management in Portable Systems Using MAX II CPLDs&nbsp;(PDF)</a><br></td>
+                                    </tr>
+                                    </tbody>
+                            </table>
+                        </div>
+                    </section>
+
+                    <section id="dk_max_II_cpld">
+                        <h3 style="font-weight: 350; margin-bottom: 1rem;">Table 5. MAX II and MAX CPLD Design Examples</h3>
+                        <p style="font-size: 1.25rem;">The MAX II and MAX CPLD design examples in Table 5 are grouped by functionality. Click the design entry method to see the design example.</p>
+                        <p>&nbsp;</p>
+                        <div style="font-size: 1.25rem;">
+                            <table class="mv_product_table w-100 mb-4">
+                                <thead>
+                                    <tr>
+                                        <th class="medium-column"><p><b>Buses and I/O Functions</b></p></th>
+                                        <th class="medium-column"><p><b>Design Entry Method</b></p></th>
+                                    </tr>   
+                                </thead>
+                                <tbody>
+                                    <tr class="data" data-category-id="">
+                                        <td width="352" class="medium-column"><p>Analog Keyboard Encoder</p></td>
+                                        <td width="275" class="medium-column"><p>Graphic Editor</p></td>
+                                    </tr>
+                                    <tr class="data" data-category-id="">
+                                        <td width="352" class="medium-column"><p>Microcontroller I/O Expander</p></td>
+                                        <td width="275" class="medium-column"><p><a class="b_special_a1" href="">Verilog HDL</a></p></td>
+                                    </tr>
+                                    <tr class="data" data-category-id="">
+                                        <td width="352" class="medium-column"><p>16 x 16 Crosspoint Switch</p></td>
+                                        <td width="275" class="medium-column"><p><a class="b_special_a1" href="">Verilog HDL</a></p></td>
+                                    </tr>
+                                    <tr class="data" data-category-id="">
+                                        <td width="352" class="medium-column"><p>Customized 4-Port Crosspoint Switch</p></td>
+                                        <td width="275" class="medium-column"><p><a class="b_special_a1" href="">Verilog HDL</a></p></td>
+                                    </tr>
+                                    <tr class="data" data-category-id="">
+                                        <td width="352" class="medium-column"><p>Parameterized Tri-State Bus (lpm_bustri)</p></td>
+                                        <td width="275" class="medium-column"><p>AHDL<br>
+                                        Graphic Editor</p></td>
+                                    </tr>
+                                    <tr class="data" data-category-id="">
+                                        <td width="352" class="medium-column"><p>Tri-State Buses Connected to a Bidirectional Bus</p></td>
+                                        <td width="275" class="medium-column"><p>AHDL<br>
+                                        Graphic Editor</p></td>
+                                    </tr>
+                                    <tr class="data" data-category-id="">
+                                        <td width="352" class="medium-column"><p>Tri-State Buses Converted to a Multiplexer</p></td>
+                                        <td width="275" class="medium-column"><p>AHDL<br>
+                                        Graphic Editor</p></td>
+                                    </tr>
+                                    <tr class="data" data-category-id="">
+                                        <td width="352" class="medium-column"><p>Tri-State Buses in Intel FPGA Devices</p></td>
+                                        <td width="275" class="medium-column"><p>Graphic Editor<br>
+                                        <a class="b_special_a1" href="">VHDL</a></p></td>
+                                    </tr>
+                                    <tr class="data" data-category-id="">
+                                        <td width="352" class="medium-column"><p>Tri-State Instantiation</p></td>
+                                        <td width="275" class="medium-column"><p><a class="b_special_a1" href="">Verilog HDL</a></p></td>
+                                    </tr>
+                                    <tr class="data" data-category-id="">
+                                        <td width="352" class="medium-column"><p>Bidirectional Bus</p></td>
+                                        <td width="275" class="medium-column"><p><a class="b_special_a1" href="">VHDL</a></p></td>
+                                    </tr>
+                                    <tr class="data" data-category-id="">
+                                        <td width="352" class="medium-column"><p>Bidirectional Pin</p></td>
+                                        <td width="275" class="medium-column"><p><a class="b_special_a1" href="">Verilog HDL</a></p></td>
+                                    </tr>
+                                    <tr class="data" data-category-id="">
+                                        <td width="352" class="medium-column" style="text-align: center;"><b><b>Logic</b></b></td>
+                                        <td width="275" class="medium-column" style="text-align: center;"><b><b>Design Entry Method</b></b></td>
+                                    </tr>
+                                    <tr class="data" data-category-id="">
+                                        <td width="352" class="medium-column"><p>Parameterized Multiplexer (lpm_mux)</p></td>
+                                        <td width="275" class="medium-column"><p>AHDL<br>
+                                        Graphic Editor</p></td>
+                                    </tr>
+                                    <tr class="data" data-category-id="">
+                                        <td width="352" class="medium-column"><p>Instantiating a DFFE</p></td>
+                                        <td width="275" class="medium-column"><p><a class="b_special_a1" href="">Verilog HDL</a><br>
+                                        <a class="b_special_a1" href="">VHDL</a></p></td>
+                                    </tr>
+                                    <tr class="data" data-category-id="">
+                                        <td width="352" class="medium-column"><p>Instantiating a DFF using (lpm_dff)</p></td>
+                                        <td width="275" class="medium-column"><p><a class="b_special_a1" href="">VHDL</a></p></td>
+                                    </tr>
+                                    <tr class="data" data-category-id="">
+                                        <td width="352" class="medium-column"><p>Linear Feedback Shift Register</p></td>
+                                        <td width="275" class="medium-column"><p>Graphic Editor</p></td>
+                                    </tr>
+                                    <tr class="data" data-category-id="">
+                                        <td width="352" class="medium-column"><p>Synchronous State Machine</p></td>
+                                        <td width="275" class="medium-column"><p><a class="b_special_a1" href="">Verilog HDL</a></p></td>
+                                    </tr>
+                                    <tr class="data" data-category-id="">
+                                        <td width="352" class="medium-column" style="text-align: center;"><b><b>Arithmetic Functions</b></b></td>
+                                        <td width="275" class="medium-column" style="text-align: center;"><b><b>Design Entry Method</b></b></td>
+                                    </tr>
+                                    <tr class="data" data-category-id="">
+                                        <td width="352" class="medium-column"><p>Parameterized Counter (lpm_counter)</p></td>
+                                        <td width="275" class="medium-column"><p>AHDL<br>
+                                        <a class="b_special_a1" href="">Verilog HDL</a></p></td>
+                                    </tr>
+                                    <tr class="data" data-category-id="">
+                                        <td width="352" class="medium-column"><p>Behavioral Counter</p></td>
+                                        <td width="275" class="medium-column"><p><a class="b_special_a1" href="">Verilog HDL</a></p></td>
+                                    </tr>
+                                    <tr class="data" data-category-id="">
+                                        <td width="352" class="medium-column"><p>Carry Look-Ahead Adder</p></td>
+                                        <td width="275" class="medium-column"><p><a class="b_special_a1" href="">VHDL</a></p></td>
+                                    </tr>
+                                    <tr class="data" data-category-id="">
+                                        <td width="352" class="medium-column"><p>Ripple-Carry Adder</p></td>
+                                        <td width="275" class="medium-column"><p><a class="b_special_a1" href="">VHDL</a></p></td>
+                                    </tr>
+                                    <tr class="data" data-category-id="">
+                                        <td width="352" class="medium-column"><p>Down Counter</p></td>
+                                        <td width="275" class="medium-column"><p><a class="b_special_a1" href="">VHDL</a></p></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </section>
+                    
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- footer -->
+    <div id="footer"></div>
+
+    <!-- script header and footer -->
+    <script>
+        // navbar include  
+        fetch('/y_index/y_navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar').innerHTML = data;
+            });
+        // footer include 
+        fetch('/y_index/y_footer.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('footer').innerHTML = data;
+            });
+    </script>
+
+    <!-- nav script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const nav = document.querySelector('.VK_client_app_navigation');
+            const navLinks = document.querySelectorAll('.VK_ai_nav_bar a');
+            const sections = document.querySelectorAll('section[id]');
+            let navOffset = nav.offsetTop;
+
+            // Add smooth scrolling to all links
+            navLinks.forEach(link => {
+                link.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+
+            // Sticky Navigation
+            window.addEventListener('scroll', () => {
+                if (window.pageYOffset >= navOffset) {
+                    nav.classList.add('VK_sticky_nav_bar');
+                } else {
+                    nav.classList.remove('VK_sticky_nav_bar');
+                }
+                // Section highlighting
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop - nav.clientHeight;
+                    const sectionHeight = section.clientHeight;
+                    console.log(sectionTop);
+                    console.log(sectionHeight);
+                    if (window.pageYOffset >= sectionTop && window.pageYOffset <= sectionTop + sectionHeight) {
+                        navLinks.forEach(link => {
+                            link.classList.remove('active');
+                            if (link.getAttribute('href') === `#${section.id}`) {
+                                link.classList.add('active');
+
+                                // Ensure the active link is visible in the nav bar
+                                const navBar = document.querySelector('.VK_ai_nav_bar');
+                                const activeLink = document.querySelector('.VK_ai_nav_bar a.active');
+                                const linkRect = activeLink.getBoundingClientRect();
+                                const navBarRect = navBar.getBoundingClientRect();
+
+                                if (linkRect.left < navBarRect.left || linkRect.right > navBarRect.right) {
+                                    activeLink.scrollIntoView({ inline: 'center', behavior: 'smooth' });
+                                }
+                            }
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+
+    <!-- copy script -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            document.querySelectorAll(".mv_copy_icon").forEach((icon) => {
+                icon.addEventListener("click", async function () {
+                    try {
+                        const toolbar = this.closest(".mv_code_toolbar");
+                        const codeBlock = toolbar.querySelector(".code-content");
+                        const codeContent = codeBlock.innerText;
+
+                        // Use Clipboard API to copy text
+                        await navigator.clipboard.writeText(codeContent);
+
+                        // Hide the copy icon and show the "Copied!" message
+                        const message = toolbar.querySelector(".mv_copy_message");
+                        this.classList.add("hidden"); // Hide the copy icon
+                        message.classList.remove("hidden"); // Show the "Copied!" message
+
+                        // Hide the message and show the icon again after 2 seconds
+                        setTimeout(() => {
+                            message.classList.add("hidden");
+                            this.classList.remove("hidden");
+                        }, 2000); // Adjust delay as needed
+
+                    } catch (err) {
+                        console.error('Failed to copy text: ', err);
+                    }
+                });
+            });
+        });
+    </script>
+
+</body>
+
+</html>
