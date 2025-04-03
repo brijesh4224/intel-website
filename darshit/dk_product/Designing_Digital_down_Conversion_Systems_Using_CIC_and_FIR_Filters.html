@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fast Nios® II Hardware Design Example</title>
+    <title>Designing Digital down Conversion Systems Using CIC and FIR Filters</title>
     <link rel="stylesheet"href="/css/dk_developer_edge_iot_&_5G_optimize_fine_tuning_and_deployment_of_LLMs_on_an_ai_pc.css">
     <link rel="stylesheet" href="/css/rushita_automotive.css">
     <!-- header footer -->
@@ -241,9 +241,9 @@
                 <li><a class="dropdown-item m_dropActive" href="">Map HPS IP Peripheral Signals to FPGA Interface</a></li>
                 <li><a class="dropdown-item m_dropActive" href="">HiSPi Imager Connectivity Design Example</a></li>
                 <li><a class="dropdown-item m_dropActive" href="">Network Time Protocol Client Design Example</a></li>
-                <li><a class="dropdown-item m_dropActive" href="#">Fast Nios® II Hardware Design Example</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Fast Nios® II Hardware Design Example</a></li>
                 <li><a class="dropdown-item m_dropActive" href="">Nios® II Ethernet Acceleration Design Example</a></li>
-                <li><a class="dropdown-item m_dropActive" href="">Designing Digital down Conversion Systems Using CIC and FIR Filters</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Designing Digital down Conversion Systems Using CIC and FIR Filters</a></li>
                 <li><a class="dropdown-item m_dropActive" href="">Application Selector Example</a></li>
                 <li><a class="dropdown-item m_dropActive" href="">Debugging with System Console Over TCP/IP</a></li>
                 <li><a class="dropdown-item m_dropActive" href="">Avalon® Component Interfaces Supported in the Component Editor Version 7.2 and Later</a></li>
@@ -256,7 +256,7 @@
         </div>
 
         <div class="m_ai_shlash">/</div>
-        <div class="m_ai_httl">Fast Nios® II Hardware Design Example</div>
+        <div class="m_ai_httl">Designing Digital down Conversion Systems Using CIC and FIR Filters</div>
 
     </section>
 
@@ -267,7 +267,7 @@
                 <div class="row mv_intel_amx_content">
                     <div class="col-md-12 col-sm-12 mv_intel_amx_item">
                         <div class="mv_intel_amx">
-                            <h3>Fast Nios® II Hardware Design Example</h3>
+                            <h3>Designing Digital down Conversion Systems Using CIC and FIR Filters</h3>
                             <p></p>
                         </div>
                     </div>
@@ -288,13 +288,23 @@
                     <div class="justify-content-center align-items-center overflow-hidden flex-nowrap mb-4">
                         <ul class="VK_ai_nav_bar list-unstyled m-0">
                             <li>
-                                <a href="#dk_using_example" class="text-dark text-decoration-none d-block">
-                                    Using This Design Example
+                                <a href="#dk_model" class="text-dark text-decoration-none d-block">
+                                    Model
                                 </a>
                             </li>
                             <li>
-                                <a href="#dk_design_specifications" class="text-dark text-decoration-none d-block">
-                                    Design Specifications
+                                <a href="#dk_features" class="text-dark text-decoration-none d-block">
+                                    Features
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#dk_files" class="text-dark text-decoration-none d-block">
+                                    Files
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#dk_cic_compensation" class="text-dark text-decoration-none d-block">
+                                    CIC and Compensation FIR Design Example in DSP Builder for Intel® FPGAs
                                 </a>
                             </li>
                             <li>
@@ -308,9 +318,8 @@
                 <div class="dk_things_code_main">
                     <p class="mb-0" style="padding-top: .25rem; padding-bottom: .625rem; font-weight: 700;">Recommended for:</p>
                     <ul style="padding-left: 1rem;">
-                        <li><p class="mb-0">Device: Stratix® II</p></li>
-                        <li><p class="mb-0">Device: Cyclone® II</p></li>
-                        <li><p class="mb-0">Quartus®: Unknown</p></li>
+                        <li><p class="mb-0">Device: Unknown</p></li>
+                        <li><p class="mb-0">Quartus®: v6.1 - v7.1</p></li>
                     </ul>
                 </div>
             </div>
@@ -322,43 +331,247 @@
                 <div class="col-xl-10">
                     <p>&nbsp;</p>
                     <div style="font-size: 1.25rem;">
-                        <p>This design example highlights the Dhrystone millions of instructions per second (MIPS) performance of the Nios&nbsp;II processor. It includes the Fast hardware design and the Dhrystone benchmark software application. The system achieves over 200 Dhrystone MIPS in the Nios II /f core running on a Stratix® II FPGA. You can use this design with the Nios II development kit, Stratix II Edition, and the Cyclone® III FPGA development kit.</p>
+                        <p>The Designing Digital Down Conversion Systems design example, featuring cascaded-integrator-comb (CIC) and finite impulse response (FIR) Compiler functions, demonstrates a multichannel, multirate digital system using digital signal processing (DSP) intellectual property (IP).</p>
+                        <p>Sample rate conversion has a wide range of applications in modern digital systems, especially wireless communications systems such as WCDMA and WiMAX systems. Efficient implementation of decimation and interpolation can be accomplished by concatenating CIC and FIR filters.</p>
+                        <p>This example demonstrates a data rate down conversion system that can be commonly seen in time division multiplexing (TDM) WiMAX receivers. The overall system diagram is shown in Figure 1.</p>
                     </div>
-                    <section id="dk_using_example">
+                    <div style="padding: 3rem 0rem;">
+                        <img class="w-100" src="/img/darshit_image/dsp-tdm-digital-down-conver_1920-1080.webp" alt="">
+                        <div class="dk_caption"> <p class="mb-0">Figure 1. TDM digital down conversion system block diagram.</p></div>
+                    </div>
+                    <section id="dk_model">
                         <div style="padding-bottom: 16px;">
                             <p>&nbsp;</p>
-                            <h3 style="font-weight: 350;">Using This Design Example</h3>
+                            <h3 style="font-weight: 350;">Model</h3>
                             <div style="font-size: 1.25rem;">
-                                <p><a class="b_special_a1" href="">Download</a> this example. Refer to the <strong>readme.txt</strong> file for more details.</p>
-                                <p>The use of this design is governed by, and subject to, the terms and conditions of the <a class="b_special_a1" href="">Intel® Design Example License Agreement</a>.</p>
+                                <p>The input to the design example is from two independent data sources, such as the in-phase (I) and quadrature (Q) components of a digital communications system. The in-phase signal is a sine wave with a center frequency of 4.57 MHz. The quadrature signal is a cosine wave also centered at 4.57 MHz. The combined, time multiplexed input data stream is sampled at 182.784 MHz, so the corresponding data rate for the in-phase and quadrature signals is 91.392 MHz. Part of the input signal is corrupted by high-frequency additive noise.</p>
+                                <p>The CIC and FIR filters convert in-phase and quadrature signals sample rate to 11.484 MHz while maintaining the input signals spectrum information. The decimation filters also reject out-of-band noise. Therefore, the output of this rate conversion system should be noiseless down sampled sinusoidal waves of frequency 4.57 MHz. For well defined rate change systems, the narrow band information signal should maintain its spectrum from input to output, as demonstrated in this design example.</p>
                             </div>
                         </div>
                     </section>
 
-                    <section id="dk_design_specifications">
+                    <section id="dk_features">
                         <p>&nbsp;</p>
-                        <h3 style="font-weight: 350;">Design Specifications</h3>
+                        <h3 style="font-weight: 350;">Features</h3>
                         <div style="font-size: 1.25rem;">
+                            <p class="mb-0">The hardware design used in this example targets the Stratix IV GX FPGA Development Kit. Key peripherals in this design include the following:</p>
                             <ul>
-                                <li>Board support: Nios II development kit, Stratix II Edition, and Cyclone III FPGA development kit</li>
-                                <li>Nios II core: Nios II /f, 4 Kbytes i-cache, 2 Kbytes d-cache</li>
-                                <li>JTAG debug module: Yes</li>
-                                <li>On-chip RAM: 64 Kbytes</li>
-                                <li>JTAG UART: 1</li>
-                                <li>Timer: 1</li>
+                                <li>Decimation or interpolation is implemented efficiently using the CIC Compiler IP.</li>
+                                <li>FIR Compiler is configured to have an inverse sinc frequency response to compensate CIC filter droop.</li>
+                                <li>A MATLAB* script designing CIC compensating filter is provided for your reference. The script uses the frequency sampling method to design a FIR filter that has an inverse sinc frequency response. The overall system response is plotted for you to verify key system specifications such as the pass-band ripple and stop-band attenuation.</li>
+                                <li>Multiple input data sources are supported. For wireless and wireline applications, input data can be viewed as time division multiplexed. For other applications, data sources can be viewed as interleaved.</li>
+                                <li>Packet Format Converter is included to properly de-interleave multiple data sources for display.</li>
+                                <li>Avalon® Streaming (Avalon-ST) Interface transfers packet data from multiple data sources between cores. For more information about Avalon-ST, please refer to the <a class="b_special_a1" href="">Avalon® Interface Specifications (PDF)</a>.</li>
                             </ul>
                         </div>
+                    </section>
+
+                    <section id="dk_files">
+                        <p>&nbsp;</p>
+                        <div style="padding-bottom: 16px;">
+                            <h3 style="font-weight: 350;">Files</h3>
+                            <div style="font-size: 1.25rem;">
+                                <p>Download the files used in this example:</p>
+                                <ul>
+                                    <li><a class="b_special_a1" href="">Download DDC Example Design File (Version 71)</a></li>
+                                    <li><a class="b_special_a1" href="">Download DDC Example README File (Version 71)</a></li>
+                                    <li><a class="b_special_a1" href="">Download DDC Example Design File (Version 61)</a></li>
+                                    <li><a class="b_special_a1" href="">Download DDC Example README File (Version 61)</a></li>
+                                </ul>
+                                <p>The use of this design is governed by, and subject to, the terms and conditions of the <a class="b_special_a1" href="">Hardware Reference Design License Agreement</a>.</p>
+                                <p class="mb-0">Files in the zip download include:</p>
+                                <ul>
+                                    <li><strong>TDMDDC.mdl</strong> - DSP Builder design file</li>
+                                    <li><strong>ciccomp.m</strong> - MATLAB script for designing an inverse sinc CIC compensation filter</li>
+                                    <li><strong>cic.vhd</strong> - wrapper file to generate the CIC Compiler IP core</li>
+                                    <li><strong>fir.vhd</strong> - wrapper file to generate the FIR Compiler IP core</li>
+                                    <li><strong>fdcoeffR4N8M1L110.txt</strong> - pre-generated compensating FIR filter coefficients</li>
+                                </ul>
+                                <h4>Parameters</h4>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section id="dk_cic_compensation">
+                        <p>&nbsp;</p>
+                        <div style="padding-bottom: 16px;">
+                            <h3 style="font-weight: 350;">CIC and Compensation FIR Design Example in DSP Builder for Intel® FPGAs</h3>
+                            <div style="padding: 3rem 0rem;">
+                                <img class="w-100" src="/img/darshit_image/dsp-cic-fir-example-popup_1920-1080.webp" alt="">
+                            </div>
+                        </div>
+                        <div style="font-size: 1.25rem;">
+                            <p>Table 1 shows the overall frequency response specifications. Select parameters for CIC and FIR filters (see Tables 2 and 3) based on the frequency response requirement.</p>
+                        </div>
+                        <p>&nbsp;</p>
+                        <h3 style="font-weight: 350;">Table 1. WiMAX DDC Example Total Spectrum Requirement</h4>
+                        <div style="padding: 2rem 0rem;">
+                            <table class="mv_product_table w-100 mb-4">
+                                <thead>
+                                    <tr>
+                                        <th><b>Parameters</b></th>
+                                        <th><b>Value</b></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="data" data-category-id="">
+                                        <td height="19" width="337"><b>Input Sampling Frequency</b></td>
+                                        <td width="298" style="text-align: center;">91.392 MHz</td>
+                                    </tr>
+                                    <tr class="data" data-category-id="">
+                                        <td height="19" width="337"><b>Output Sampling Frequency</b></td>
+                                        <td width="298" style="text-align: center;">11.424 MHz</td>
+                                    </tr>
+                                    <tr class="data" data-category-id="">
+                                        <td height="19" width="337"><b>Pass-Band Edge</b></td>
+                                        <td width="298" style="text-align: center;">4.75 MHz</td>
+                                    </tr>
+                                    <tr class="data" data-category-id="">
+                                        <td height="19" width="337"><b>Pass-Band Ripple</b></td>
+                                        <td width="298" style="text-align: center;">&lt; 0.05 dB</td>
+                                    </tr>
+                                    <tr class="data" data-category-id="">
+                                        <td height="20" width="337"><b>Stop-Band Attenuation</b></td>
+                                        <td width="298" style="text-align: center;">&gt; 90 dB</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        
+                        <h3 style="font-weight: 350;">Table 2. Parameters for CIC Filter</h3>
+
+                        <div style="padding: 2rem 0rem;">
+                            <table class="mv_product_table w-100 mb-4">
+                                <thead>
+                                    <tr>
+                                        <th><b>CIC Parameters</b></th>
+                                        <th><b>Value</b></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="data" data-category-id="">
+                                        <td height="19" width="337"><b>Filter Type</b></td>
+                                        <td width="298" style="text-align: center;">Decimation</td>
+                                    </tr>
+                                    <tr class="data" data-category-id="">
+                                        <td height="19" width="337"><b>Number of Stages</b></td>
+                                        <td width="298" style="text-align: center;">8</td>
+                                    </tr>
+                                    <tr class="data" data-category-id="">
+                                        <td height="19" width="337"><b>Rate Change Factor</b></td>
+                                        <td width="298" style="text-align: center;">4</td>
+                                    </tr>
+                                    <tr class="data" data-category-id="">
+                                        <td height="19" width="337"><b>Differential Delay</b></td>
+                                        <td width="298" style="text-align: center;">1</td>
+                                    </tr>
+                                    <tr class="data" data-category-id="">
+                                        <td height="19" width="337"><b>Number of Interfaces</b></td>
+                                        <td width="298" style="text-align: center;">1</td>
+                                    </tr>
+                                    <tr class="data collapsed" data-category-id="">
+                                        <td height="19" width="337"><b>Number of Channels Per Interface</b></td>
+                                        <td width="298" style="text-align: center;">2</td>
+                                    </tr>
+                                    <tr class="data collapsed" data-category-id="">
+                                        <td height="19" width="337"><b>Input Data Width</b></td>
+                                        <td width="298" style="text-align: center;">8</td>
+                                    </tr>
+                                    <tr class="data collapsed" data-category-id="">
+                                        <td height="19" width="337"><b>Output Data Width</b></td>
+                                        <td width="298" style="text-align: center;">16</td>
+                                    </tr>
+                                    <tr class="data collapsed" data-category-id="">
+                                        <td height="19" width="337"><b>Hogenauer Pruning</b></td>
+                                        <td width="298" style="text-align: center;">On</td>
+                                    </tr>
+                                    <tr class="data collapsed" data-category-id="">
+                                        <td height="20" width="337"><b>Output Rounding</b></td>
+                                        <td width="298" style="text-align: center;">Convergent</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <h3 style="font-weight: 350;">Table 3. Parameters for FIR Filter</h3>
+
+                        <div style="padding: 2rem 0rem;">
+                            <table class="mv_product_table w-100 mb-4">
+                                <thead>
+                                    <tr>
+                                        <th><b>FIR Parameters</b></th>
+                                        <th><b>Value</b></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="data" data-category-id="">
+                                        <td height="19" width="337"><b>Rate Specification</b></td>
+                                        <td width="298" style="text-align: center;">Decimation by 2</td>
+                                    </tr>
+                                    <tr class="data" data-category-id="">
+                                        <td height="19" width="337"><b>Input Channels</b></td>
+                                        <td width="298" style="text-align: center;">2</td>
+                                    </tr>
+                                    <tr class="data" data-category-id="">
+                                        <td height="19" width="337"><b>Input Bitwidth</b></td>
+                                        <td width="298" style="text-align: center;">Signed binary 16</td>
+                                    </tr>
+                                    <tr class="data" data-category-id="">
+                                        <td height="19" width="337"><b>Output Bitwidth</b></td>
+                                        <td width="298" style="text-align: center;">Full resolution</td>
+                                    </tr>
+                                    <tr class="data" data-category-id="">
+                                        <td height="19" width="337"><b>Coefficient Scaling</b></td>
+                                        <td width="298" style="text-align: center;">None</td>
+                                    </tr>
+                                    <tr class="data collapsed" data-category-id="">
+                                        <td height="19" width="337"><b>Device Family</b></td>
+                                        <td width="298" style="text-align: center;">Stratix®&nbsp;II</td>
+                                    </tr>
+                                    <tr class="data collapsed" data-category-id="">
+                                        <td height="19" width="337"><b>Structure</b></td>
+                                        <td width="298" style="text-align: center;">MCV</td>
+                                    </tr>
+                                    <tr class="data collapsed" data-category-id="">
+                                        <td height="19" width="337"><b>Pipeline Level</b></td>
+                                        <td width="298" style="text-align: center;">2</td>
+                                    </tr>
+                                    <tr class="data collapsed" data-category-id="">
+                                        <td height="19" width="337"><b>Clocks per Output Data</b></td>
+                                        <td width="298" style="text-align: center;">2</td>
+                                    </tr>
+                                    <tr class="data collapsed" data-category-id="">
+                                        <td height="19" width="337"><b>Data Storage</b></td>
+                                        <td width="298" style="text-align: center;">M4K</td>
+                                    </tr>
+                                    <tr class="data collapsed" data-category-id="">
+                                        <td height="19" width="337"><b>Coefficient Storage</b></td>
+                                        <td width="298" style="text-align: center;">M512</td>
+                                    </tr>
+                                    <tr class="data collapsed" data-category-id="">
+                                        <td height="19" width="337"><b>Multiplier</b></td>
+                                        <td width="298" style="text-align: center;">DSP blocks</td>
+                                    </tr>
+                                    <tr class="data collapsed" data-category-id="">
+                                        <td height="20" width="337"><b>Coefficients Input</b></td>
+                                        <td width="298" style="text-align: center;">From file</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
                     </section>
 
                     <section id="dk_related_links">
                         <p>&nbsp;</p>
                         <div style="padding-bottom: 16px;">
                             <h3 style="font-weight: 350;">Related Links</h3>
-                            <div style="font-size: 1.25rem;">
+                            <div style="font-size: 1.25rem;"> 
                                 <ul>
-                                    <li><a class="b_special_a1" href="">Nios II literature ›</a></li>
-                                    <li><a class="b_special_a1" href="">Nios II integrated development environment (IDE) tutorial ›</a></li>
-                                </ul>
+                                    <li><a class="b_special_a1" href="">DSP Builder for Intel FPGAs&nbsp;›</a></li>
+                                    <li><a class="b_special_a1" href="">CIC Compiler user guide (PDF)&nbsp;›</a></li>
+                                    <li><a class="b_special_a1" href="">FIR Compiler user guide (PDF)&nbsp;›</a></li>
+                                </ul>                            
                             </div>
                         </div>
                     </section>
