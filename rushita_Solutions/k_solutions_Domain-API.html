@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>
-        Open Trace Capture
+        Domain API
     </title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
@@ -65,6 +66,22 @@
 
         td {
             align-content: baseline;
+        }
+
+        pre {
+            white-space: pre-line !important;
+        }
+        .property{
+            color: #0066A5;
+            font-weight: 600;
+        }
+        .string{
+            color: #0000FF;
+            font-weight: 600;
+        }
+        .operator{
+            color: #B24501;
+            
         }
     </style>
 </head>
@@ -208,7 +225,7 @@
         </div>
         <div class="m_ai_shlash">/</div>
         <div class="m_ai_httl">
-            Open Trace Capture
+            Domain API
         </div>
     </section>
     <section class="k_bgblue py-4">
@@ -279,7 +296,6 @@
     <section class="py-5 k_spacenone" style="background-color: #F3F3F3;">
         <div class="k_container11">
             <div class="row  ">
-
                 <div class="col-lg-3 col-md-12 col-sm-12">
                     <div class="VK_sidebar_dropdown">
                         <div>
@@ -553,117 +569,76 @@
                 </div>
                 <div class="col-lg-8 col-md-12 col-sm-12  k_16smpx k_width75">
                     <div class=" k_smpaddnone k_smpaddnone1 p-3" style="background-color: #FFFFFF;">
-                        <h2 class="fw-light my-3">Open Trace Capture</h2>
-                        <p>Use the <strong>Open Trace Capture</strong> window to select and open your trace file.</p>
-                        <p>To access the <strong>Open Trace Capture</strong> window, in the Intel® GPA context menu, select <strong>Graphics Trace Analyzer</strong>. On Windows* OS, if you opted to enable context menu entries during installation, you can also open trace files using the Windows context menu.</p>
-                        <div class="my-3 col-sm-12 col-md-8">
-                            <img src="../img/rushita_img/trace10.png" alt="" width="100%">
-                        </div>
-                        <div class="k_table-container">
-                            <table class="k_tebal col-lg-12  col-md-12 col-sm-12  k_tspace">
-                                <tbody class="k_tebal k_14px">
-                                    <tr class="  k_rightborder1 k_tpadding1 ">
-                                        <td class="col-sm-12 col-md-6" width="30.0%">
-                                            <p><img src="../img/rushita_img/one.png" width="25" alt="image1"></p>
-                                           </td>
-                                           <td class="col-sm-12 col-md-6" width="50.0%">
-                                            <p><strong>Trace Capture Thumbnails</strong> pane</p>
-                                            <p>Select the trace capture you want to debug. By default, this field lists all trace captures located in your Intel GPA home directory: <samp class="codeph">%USERPROFILE%\Documents\GPA</samp> (Windows* OS). You can sort the trace captures by name or date with the <strong>Sort by</strong> button. If there are no trace captures on your system, these toggle buttons are hidden. The currently selected trace capture is highlighted with blue borders and appears in the trace preview pane.</p>
-                                            <p>Trace file thumbnails are marked with the <img src="../img/rushita_img/trace11.png" width="25" alt="image2"> icon. If the captured trace data is invalid, the thumbnail is marked with the <img height="30" src="../img/rushita_img/noicon.png" width="25" alt="image3"> icon.</p>
-                                            <p>To delete captured traces, hover the mouse pointer over a trace thumbnail and click the <strong>Close</strong> button in the top right-hand corner of the thumbnail. Confirm your choice by clicking <strong>Yes</strong> on the thumbnail.</p>
-                                           </td>
-                                    </tr>
-                                    <tr class="k_tgrey k_rightborder1 k_tpadding1 ">
-                                        <td>
-                                            <p><img src="../img/rushita_img/two.png" width="25" alt="image1"></p>
-
+                        <h2 class="fw-light my-3">Domain API</h2>
+                        <p>A <samp class="codeph">domain</samp> enables tagging trace data for different modules or
+                            libraries in a program. Domains are specified by unique character strings, for example <samp
+                                class="codeph">TBB.Internal.Control</samp>.</p>
+                        <p>Each domain is represented by an opaque <samp class="codeph">__itt_domain</samp> structure,
+                            which you can use to tag each of the ITT API calls in your code.</p>
+                        <p>You can selectively enable or disable specific domains in your application, in order to
+                            filter the subsets of instrumentation that are collected into the output trace capture file.
+                            Upon the first start, the application registers its domains in a configuration file of the
+                            Intel® GPA Graphics Monitor. By default, upon the first start of the application all the
+                            domains are enabled. To enable or disable domains for subsequent starts of the application,
+                            do the following before the start:</p>
+                        <ol>
+                            <li>
+                                <p>Open the Graphics Monitor Launcher Screen.</p>
+                            </li>
+                            <li>
+                                <p>Click the <strong>Options</strong> button.</p>
+                            </li>
+                            <li>
+                                <p>Click the <strong>Tracing</strong> tab.</p>
+                            </li>
+                            <li>
+                                <p>Turn on or off the <strong>User Domains</strong> toggle buttons.</p>
+                            </li>
+                        </ol>
+                        <p>The overhead of a disabled domain is a single if check.</p>
+                        <p><strong>To create a domain, use the following primitives:</strong></p>
+                        <p><samp class="codeph">__itt_domain *ITTAPI__itt_domain_createA ( const char *name)</samp></p>
+                        <p><samp class="codeph">__itt_domain *ITTAPI __itt_domain_createW ( const wchar_t *name)</samp>
+                        </p>
+                        <p>Or use the macro in the following way:</p>
+                        <p><samp class="codeph">__itt_domain *ITTAPI __itt_domain_create
+                                (__TEXT("TBB.Internal.Control"))</samp></p>
+                        <p>For a domain name, the URI naming style is recommended, for example,
+                            com.my_company.my_application. The set of domains is expected to be static over the
+                            application’s execution time, therefore, there is no mechanism to destroy a domain.</p>
+                        <p>Any domain can be accessed by any thread in the process, regardless of which thread created
+                            the domain. This call is thread-safe.</p>
+                        <p><strong>Parameters of the primitives:</strong></p>
+                        <div class="responsive-table-component selectable col-sm-12 col-md-5">
+                            <table cellpadding="4" summary="" id="GUID-8CF6E0EB-1E54-414E-AB75-8218D057AA8A"
+                                frame="border" border="1" cellspacing="0" rules="all" class="table-responsive">
+                                <tbody>
+                                    <tr>
+                                        <td class="cellrowborder" valign="top" width="33.33333333333333%">
+                                            <p><samp class="codeph">[in]</samp></p>
                                         </td>
-                                        <td>
-                                            <p><strong>Preview</strong> pane</p>
-                                            <dl> 
-                                                <dt class="dlterm">
-                                                  Preview the selected trace captures. This field shows the buffer image and the following trace capture properties: 
-                                                </dt> 
-                                                <dd> 
-                                                 <ul> 
-                                                  <li><p>File name</p> </li> 
-                                                  <li><p>API used</p> </li> 
-                                                  <li><p>Name of the device on which the trace was captured</p> </li> 
-                                                 </ul> 
-                                                </dd> 
-                                               </dl>
-                                               <p>To rename the selected trace capture, you can click its filename and enter a new value. Click Open, to open the selected trace in the <strong>Platform View</strong>. Click the <img src="../img/rushita_img/file.png" width="25" alt="image5"><strong>Show in Folder</strong> button to open the storage directory of the selected trace.</p>
+                                        <td class="cellrowborder" valign="top" width="33.33333333333333%">
+                                            <p><em>name</em></p>
                                         </td>
-                                    </tr>
-                                    <tr class="k_rightborder1 k_tpadding1 ">
-                                        <td>
-                                            <p><img src="../img/rushita_img/two3.png" width="25" alt="image1"></p>
-
-                                        </td>
-                                        <td>
-                                            <p><strong>Message</strong> pane</p>
-                                            <p>View the Intel GPA messages or notifications.</p>
-                                        </td>
-                                    </tr>
-                                    
-                                </tbody>
-                            </table>
-                        </div>
-                        <div class="k_table-container mt-4">
-                            <table class="k_tebal col-lg-12  col-md-12 col-sm-12  k_tspace">
-                                <tbody class="k_tebal k_14px">
-                                    
-                                    <tr class="  k_rightborder1 k_tpadding1 " >
-                                        <td class="col-sm-12 col-md-6" width="30.0%">
-                                            <p><strong>Type filter expression</strong> field</p>
-                                           </td>
-                                           <td class="col-sm-12 col-md-6" width="50.0%">
-                                            <p>Filter the displayed trace capture files by typing in a part of the trace file name.</p>
-                                           </td>
-                                    </tr>
-                                    <tr class="k_tgrey k_rightborder1 k_tpadding1 ">
-                                        <td>
-                                            <p><img src="../img/rushita_img/bluerun.png" width="25" alt="image7"><strong>Run Graphics Monitor</strong> button</p>
-                                        </td>
-                                        <td>
-                                            <p>Click to capture new traces with Graphics Monitor.</p>
-                                        </td>
-                                    </tr>
-                                    <tr class="k_rightborder1 k_tpadding1 ">
-                                        <td>
-                                            <p><img src="../img/rushita_img/setting.png" width="25" alt="image8"><strong>Settings</strong> button</p>
-                                        </td>
-                                        <td>
-                                            <p>Manage Graphics Trace Analyzer settings: <img src="../img/rushita_img/trace12.png" width="" alt="image9"></p>
-                                            <p>If a newer version of the product is available, the <strong>Settings</strong> button is marked with the exclamation mark. To download the update, click the <strong>Settings</strong> button and select the available version from the context menu.</p>
-                                            <ul > 
-                                                <li><p>Use the <strong>General Settings</strong> toggle button to enable/disable checking for the newest available version of Graphics Trace Analyzer.</p> </li> 
-                                               </ul>
-                                               <div class="p-3 mb-4" style="background-color: #E2E7Eb;"> 
-                                                <b>NOTE:</b>
-                                                 During this check, Graphics Trace Analyzer collects information about your host system. No personally identifiable information is collected. 
-                                               </div>
-                                               <ul> 
-                                                <li><p>Use the <strong>Color scheme</strong> setting to change the palette of the Graphics Trace Analyzer interface from Light (default) to Dark.</p> </li> 
-                                                <li><p>Use the <strong>UI Scale</strong> setting to change the size of the Graphics Trace Analyzer screen and the screen elements. Large size is default.</p> </li> 
-                                               </ul>
-
-                                        </td>
-                                    </tr>
-                                       <tr class="k_tgrey k_rightborder1 k_tpadding1 ">
-                                        <td>
-                                            <p><img src="../img/rushita_img/helpb.png" width="25" alt="image10"><strong>Help</strong> button</p>
-                                        </td>
-                                        <td>
-                                            <p>Open Intel GPA online documentation.</p>
+                                        <td class="cellrowborder" valign="top" width="33.33333333333333%">
+                                            <p>Name of domain</p>
                                         </td>
                                     </tr>
                                 </tbody>
                             </table>
                         </div>
-                        
-                        <h2 class="fw-light my-3">See Also</h2>
-                        <p class="k_plink1 k_bluehover1"><a href="#">Identify Issues in Graphics Application Execution with Trace Analyzer</a></p>
+                        <h2 class="fw-light my-5">Usage Example</h2>
+                        <div class="pb-1">
+                            <p class="float-end fs-4"><i class="fa-solid fa-copy"></i></p>
+                        </div>
+
+                        <div class="p-2 mt-5" style="border: 1px solid #CCCCCC; border-radius: 6px; background-color: #F8F8F8;">
+                            <p class="col-12">
+                           
+                            <pre class=" language-cpp line-numbers"><code class=" language-cpp"><span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">"ittnotify.h"</span></span>
+                                __itt_domain<span class="token operator">*</span> pD <span class="token operator">=</span> <span class="token function">__itt_domain_create</span><span class="token punctuation">(</span><span class="token function">__TEXT</span><span class="token punctuation">(</span><span class="token string">"My Domain"</span><span class="token punctuation">)</span> <span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span style="height: 22.5px;"></span><span style="height: 22.5px;"></span></span><span class="line-numbers-sizer" style="display: none;"></span></code></pre>
+                            </p>
+                        </div>
                     </div>
                     <div class="d-md-flex justify-content-between">
                         <div>

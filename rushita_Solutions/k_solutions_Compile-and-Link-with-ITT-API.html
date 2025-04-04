@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>
-        Open Trace Capture
+        Compile and Link with ITT API
     </title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
@@ -65,6 +66,24 @@
 
         td {
             align-content: baseline;
+        }
+
+        pre {
+            white-space: pre-line !important;
+        }
+        .keyword-char ,
+        .keyword-wchar_t,
+        .keyword-const{
+            color: #0066A5;
+            font-weight: 600;
+        }
+        .string{
+            color: #0000FF;
+            font-weight: 600;
+        }
+        .operator{
+            color: #B24501;
+            
         }
     </style>
 </head>
@@ -208,7 +227,7 @@
         </div>
         <div class="m_ai_shlash">/</div>
         <div class="m_ai_httl">
-            Open Trace Capture
+            Compile and Link with ITT API
         </div>
     </section>
     <section class="k_bgblue py-4">
@@ -279,7 +298,6 @@
     <section class="py-5 k_spacenone" style="background-color: #F3F3F3;">
         <div class="k_container11">
             <div class="row  ">
-
                 <div class="col-lg-3 col-md-12 col-sm-12">
                     <div class="VK_sidebar_dropdown">
                         <div>
@@ -551,127 +569,84 @@
                         </ul>
                     </div>
                 </div>
-                <div class="col-lg-8 col-md-12 col-sm-12  k_16smpx k_width75">
+                <div class="col-lg-9 col-md-12 col-sm-12  k_16smpx ">
                     <div class=" k_smpaddnone k_smpaddnone1 p-3" style="background-color: #FFFFFF;">
-                        <h2 class="fw-light my-3">Open Trace Capture</h2>
-                        <p>Use the <strong>Open Trace Capture</strong> window to select and open your trace file.</p>
-                        <p>To access the <strong>Open Trace Capture</strong> window, in the Intel® GPA context menu, select <strong>Graphics Trace Analyzer</strong>. On Windows* OS, if you opted to enable context menu entries during installation, you can also open trace files using the Windows context menu.</p>
-                        <div class="my-3 col-sm-12 col-md-8">
-                            <img src="../img/rushita_img/trace10.png" alt="" width="100%">
+                        <h2 class="fw-light my-3">Compile and Link with ITT API</h2>
+                        <p>Before instrumenting your application, configure your build system to be able to reach the API headers and libraries:</p>
+                        <ul id="GUID-C0116D58-58FC-40CD-9B05-50EE8B3F2B63"> 
+                            <li><p>Add <samp class="codeph">&lt;gpa_install_dir&gt;\sdk\include</samp> to your <samp class="codeph">INCLUDE</samp> path</p> </li> 
+                            <li><p>Add <samp class="codeph">&lt;gpa_install_dir&gt;\sdk\lib\x86</samp> to your 32-bit <samp class="codeph">LIBRARIES</samp> path</p> </li> 
+                            <li><p>Add <samp class="codeph">&lt;gpa_install_dir&gt;\sdk\lib\x64</samp> to your 64-bit <samp class="codeph">LIBRARIES</samp> path</p> </li> 
+                           </ul>
+                           <p>The default installation directory on Windows* OS is <samp class="codeph">C:\Program Files\IntelSWTools\GPA</samp>.</p>
+                           <div class="my-4">
+                                <h2 class="fw-light">Include the ITT API Header in Your Application</h2>
+                           </div>
+                           <p>Add the following <samp class="codeph">#include</samp> statements to every source file that you want to instrument:</p>
+                           <div class="pb-1">
+                            <p class="float-end fs-4"><i class="fa-solid fa-copy"></i></p>
                         </div>
-                        <div class="k_table-container">
-                            <table class="k_tebal col-lg-12  col-md-12 col-sm-12  k_tspace">
-                                <tbody class="k_tebal k_14px">
-                                    <tr class="  k_rightborder1 k_tpadding1 ">
-                                        <td class="col-sm-12 col-md-6" width="30.0%">
-                                            <p><img src="../img/rushita_img/one.png" width="25" alt="image1"></p>
-                                           </td>
-                                           <td class="col-sm-12 col-md-6" width="50.0%">
-                                            <p><strong>Trace Capture Thumbnails</strong> pane</p>
-                                            <p>Select the trace capture you want to debug. By default, this field lists all trace captures located in your Intel GPA home directory: <samp class="codeph">%USERPROFILE%\Documents\GPA</samp> (Windows* OS). You can sort the trace captures by name or date with the <strong>Sort by</strong> button. If there are no trace captures on your system, these toggle buttons are hidden. The currently selected trace capture is highlighted with blue borders and appears in the trace preview pane.</p>
-                                            <p>Trace file thumbnails are marked with the <img src="../img/rushita_img/trace11.png" width="25" alt="image2"> icon. If the captured trace data is invalid, the thumbnail is marked with the <img height="30" src="../img/rushita_img/noicon.png" width="25" alt="image3"> icon.</p>
-                                            <p>To delete captured traces, hover the mouse pointer over a trace thumbnail and click the <strong>Close</strong> button in the top right-hand corner of the thumbnail. Confirm your choice by clicking <strong>Yes</strong> on the thumbnail.</p>
-                                           </td>
-                                    </tr>
-                                    <tr class="k_tgrey k_rightborder1 k_tpadding1 ">
-                                        <td>
-                                            <p><img src="../img/rushita_img/two.png" width="25" alt="image1"></p>
 
-                                        </td>
-                                        <td>
-                                            <p><strong>Preview</strong> pane</p>
-                                            <dl> 
-                                                <dt class="dlterm">
-                                                  Preview the selected trace captures. This field shows the buffer image and the following trace capture properties: 
-                                                </dt> 
-                                                <dd> 
-                                                 <ul> 
-                                                  <li><p>File name</p> </li> 
-                                                  <li><p>API used</p> </li> 
-                                                  <li><p>Name of the device on which the trace was captured</p> </li> 
-                                                 </ul> 
-                                                </dd> 
-                                               </dl>
-                                               <p>To rename the selected trace capture, you can click its filename and enter a new value. Click Open, to open the selected trace in the <strong>Platform View</strong>. Click the <img src="../img/rushita_img/file.png" width="25" alt="image5"><strong>Show in Folder</strong> button to open the storage directory of the selected trace.</p>
-                                        </td>
-                                    </tr>
-                                    <tr class="k_rightborder1 k_tpadding1 ">
-                                        <td>
-                                            <p><img src="../img/rushita_img/two3.png" width="25" alt="image1"></p>
-
-                                        </td>
-                                        <td>
-                                            <p><strong>Message</strong> pane</p>
-                                            <p>View the Intel GPA messages or notifications.</p>
-                                        </td>
-                                    </tr>
-                                    
-                                </tbody>
-                            </table>
+                        <div class="p-2 mt-5" style="border: 1px solid #CCCCCC; border-radius: 6px; background-color: #F8F8F8;">
+                            <p class="col-12">
+                                <pre class=" language-cpp line-numbers"><code class=" language-cpp"><span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;ittnotify.h&gt;</span></span><span aria-hidden="true" class="line-numbers-rows"><span style="height: 22.5px;"></span></span><span class="line-numbers-sizer" style="display: none;"></span></code></pre>
+                            </p>
                         </div>
-                        <div class="k_table-container mt-4">
-                            <table class="k_tebal col-lg-12  col-md-12 col-sm-12  k_tspace">
-                                <tbody class="k_tebal k_14px">
-                                    
-                                    <tr class="  k_rightborder1 k_tpadding1 " >
-                                        <td class="col-sm-12 col-md-6" width="30.0%">
-                                            <p><strong>Type filter expression</strong> field</p>
-                                           </td>
-                                           <td class="col-sm-12 col-md-6" width="50.0%">
-                                            <p>Filter the displayed trace capture files by typing in a part of the trace file name.</p>
-                                           </td>
-                                    </tr>
-                                    <tr class="k_tgrey k_rightborder1 k_tpadding1 ">
-                                        <td>
-                                            <p><img src="../img/rushita_img/bluerun.png" width="25" alt="image7"><strong>Run Graphics Monitor</strong> button</p>
-                                        </td>
-                                        <td>
-                                            <p>Click to capture new traces with Graphics Monitor.</p>
-                                        </td>
-                                    </tr>
-                                    <tr class="k_rightborder1 k_tpadding1 ">
-                                        <td>
-                                            <p><img src="../img/rushita_img/setting.png" width="25" alt="image8"><strong>Settings</strong> button</p>
-                                        </td>
-                                        <td>
-                                            <p>Manage Graphics Trace Analyzer settings: <img src="../img/rushita_img/trace12.png" width="" alt="image9"></p>
-                                            <p>If a newer version of the product is available, the <strong>Settings</strong> button is marked with the exclamation mark. To download the update, click the <strong>Settings</strong> button and select the available version from the context menu.</p>
-                                            <ul > 
-                                                <li><p>Use the <strong>General Settings</strong> toggle button to enable/disable checking for the newest available version of Graphics Trace Analyzer.</p> </li> 
-                                               </ul>
-                                               <div class="p-3 mb-4" style="background-color: #E2E7Eb;"> 
-                                                <b>NOTE:</b>
-                                                 During this check, Graphics Trace Analyzer collects information about your host system. No personally identifiable information is collected. 
-                                               </div>
-                                               <ul> 
-                                                <li><p>Use the <strong>Color scheme</strong> setting to change the palette of the Graphics Trace Analyzer interface from Light (default) to Dark.</p> </li> 
-                                                <li><p>Use the <strong>UI Scale</strong> setting to change the size of the Graphics Trace Analyzer screen and the screen elements. Large size is default.</p> </li> 
-                                               </ul>
-
-                                        </td>
-                                    </tr>
-                                       <tr class="k_tgrey k_rightborder1 k_tpadding1 ">
-                                        <td>
-                                            <p><img src="../img/rushita_img/helpb.png" width="25" alt="image10"><strong>Help</strong> button</p>
-                                        </td>
-                                        <td>
-                                            <p>Open Intel GPA online documentation.</p>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                           <p>The <samp class="codeph">ittnotify.h</samp> header contains definitions of ITT API routines and important macros which provide the correct logic of API invocation from a user application.</p>
+                           <div class="p-3 mb-4" style="background-color: #E2E7Eb;"> 
+                            <b>NOTE:</b>
+                             The<samp class="codeph">ittnotify.h</samp> header defines many functions that are not covered in this document. However, Intel® GPA supports only the functions that are documented herein. 
+                           </div>
+                           <p>The ITT API is designed to incur almost zero overhead when tracing is disabled. But if you need fully zero overhead, you can compile out all ITT API calls from your application by defining the INTEL_NO_ITTNOTIFY_API macro in your project at compile time, either on the compiler command line, or in your source file, prior to including the <samp class="codeph">ittnotify.h</samp>file.</p>
+                           <h2 class="fw-light">Link the libittnotify.lib Static Library to Your Application</h2>
+                           <p>You need to link the static library, <samp class="codeph">libittnotify.lib</samp>, to your application. If tracing is enabled, this static library loads the ITT API data collector and forwards ITT API instrumentation data to Intel GPA.If tracing is disabled, the static library ignores ITT API calls, providing nearly zero instrumentation overhead.</p>
+                           <div class="p-3 mb-4" style="background-color: #E2E7Eb;"> 
+                            <b>NOTE:</b>
+                             If you are running Intel® GPA on a system with a legacy version of Microsoft* Visual Studio*, you must have the corresponding security updates installed to link against the dynamic version of the <samp class="codeph">libittnotify.lib</samp> static library: 
+                            <div class="tablenoborder"> 
+                             <div class="responsive-table-component selectable col-sm-12 col-md-5"> 
+                              <table cellpadding="4" summary="" id="GUID-739F8FB4-C75F-4336-AF69-D67617297C47" frame="border" border="1" cellspacing="0" rules="all" class="table-responsive"> 
+                               <thead align="left"> 
+                                <tr style="background-color: #E9E9E9;"> 
+                                 <th class="cellrowborder" valign="top" width="50.0%" id="d3800e127"><p>Microsoft* Visual Studio* Version</p> </th> 
+                                 <th class="cellrowborder" valign="top" width="50.0%" id="d3800e130"><p>Security Update</p> </th> 
+                                </tr> 
+                               </thead> 
+                               <tbody style="background-color: #F7F7F7;"> 
+                                <tr> 
+                                 <td class="cellrowborder" valign="top" width="50.0%" headers="d3800e127 "><p>Microsoft Visual Studio 2005</p> </td> 
+                                 <td class="cellrowborder" valign="top" width="50.0%" headers="d3800e130 "><p>KB2538218</p> </td> 
+                                </tr> 
+                                <tr> 
+                                 <td class="cellrowborder" valign="top" width="50.0%" headers="d3800e127 "><p>Microsoft Visual Studio 2008</p> </td> 
+                                 <td class="cellrowborder" valign="top" width="50.0%" headers="d3800e130 "><p>KB2538241</p> </td> 
+                                </tr> 
+                               </tbody> 
+                              </table> 
+                             </div> 
+                            </div> 
+                           </div>
+                           <p>If you do not want to update your version of Visual Studio, you must link the <samp class="codeph">libittnotify.lib</samp> static library to your application.</p>
+                           <h2 class="fw-light my-4">UNICODE Support</h2>
+                           <p>All ITT API functions with string arguments follow the Windows OS UNICODE convention, the actual function names are suffixed with A for the ASCII API and W for the UNICODE API. For example:</p>
+                           <div class="p-2 mt-5" style="border: 1px solid #CCCCCC; border-radius: 6px; background-color: #F8F8F8;">
+                            <p class="col-12">
+                                <pre class=" language-cpp line-numbers"><code class=" language-cpp"><span class="token function">__itt_domain_createA</span><span class="token punctuation">(</span> <span class="token keyword keyword-const">const</span> <span class="token keyword keyword-char">char</span><span class="token operator">*</span> <span class="token punctuation">)</span><span class="token punctuation">;</span>
+                                    <span class="token function">__itt_domain_createW</span><span class="token punctuation">(</span> <span class="token keyword keyword-const">const</span> <span class="token keyword keyword-wchar_t">wchar_t</span><span class="token operator">*</span> <span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span style="height: 22.5px;"></span><span style="height: 22.5px;"></span></span><span class="line-numbers-sizer" style="display: none;"></span></code></pre>
+                            </p>
                         </div>
-                        
-                        <h2 class="fw-light my-3">See Also</h2>
-                        <p class="k_plink1 k_bluehover1"><a href="#">Identify Issues in Graphics Application Execution with Trace Analyzer</a></p>
+                           <p>To facilitate cross-platform code development, the ITT API features the C macro <samp class="codeph">__itt_domain_create</samp>. If a UNICODE macro is defined when compiling on a Windows OS, the C macro resolves into <samp class="codeph">__itt_domain_createW</samp>, otherwise it resolves into <samp class="codeph">__itt_domain_createA</samp>.</p>
+                           <h2 class="fw-light my-4">Conditional Compilation</h2>
+                           <p>For best performance in the release version of your code, use conditional compilation to turn off annotations. Define the macro INTEL_NO_ITTNOTIFY_API before you include <samp class="codeph">ittnotify.h</samp> during compilation to eliminate all <samp class="codeph">__itt_*</samp> functions from your code.</p>
+                           <p>You can also remove the static library from the linking stage by defining this macro.</p>
                     </div>
                     <div class="d-md-flex justify-content-between">
                         <div>
                             <p class="k_plink1 text-end pt-2"><a href="#"> <i class="fa-solid fa-arrow-left"></i>
-                                    Profiling View</a></p>
+                                Instrumentation and Tracing Technology API Support</a></p>
                         </div>
                         <div>
-                            <p class="k_plink1 text-end pt-2"><a href="#"> Bar Chart<i
+                            <p class="k_plink1 text-end pt-2"><a href="#"> <span class="copy"> Instrument Your Application</span><i
                                         class="fa-solid fa-arrow-right"></i> </a></p>
                         </div>
                     </div>
