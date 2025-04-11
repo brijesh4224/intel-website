@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>
-        Optimize Shaders</title>
+        Analyze Textures</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
@@ -196,7 +196,7 @@ td, th {
         </div>
         <div class="m_ai_shlash">/</div>
         <div class="m_ai_httl">
-            Optimize Shaders</div>
+            Analyze Textures</div>
     </section>
     <section class="k_bgblue py-4">
         <div class="k_container11">
@@ -442,143 +442,122 @@ td, th {
                 </div>
                 <div class="col-lg-8 col-md-12 col-sm-12  k_16smpx k_width75">
                     <div class=" k_smpaddnone k_smpaddnone1 p-3" style="background-color: #FFFFFF;">
-                        <h2 class="fw-light my-3">Optimize Shaders</h2>
-                        <p>Review shader source code and assembly code with Graphics Frame Analyzer to identify inefficiencies in shader execution. Change the shader code inside Graphics Frame Analyzer and check the performance effect without recompiling your code.</p>
-                        <ol> 
-                            <li class="k_plink1 k_bluehover1"><a href="#">Check for shader bottlenecks</a> </li> 
-                            <li class="k_plink1 k_bluehover1"><a href="#">Profile shader source code</a> </li> 
-                            <li class="k_plink1 k_bluehover1"><a href="#">Analyze shader resources</a> </li> 
-                            <li class="k_plink1 k_bluehover1"><a href="#">Profile shader assembly code</a> </li> 
-                            <li class="k_plink1 k_bluehover1"><a href="#">Experiment with shader code</a> </li> 
-                            <li class="k_plink1 k_bluehover1"><a href="#">Evaluate performance</a> </li> 
-                            <li class="k_plink1 k_bluehover1"><a href="#">Evaluate final picture</a> </li> 
-                           </ol>
-                        <h2 class="fw-light my-3">Check for Shader Bottlenecks</h2>
-                        <p class="k_plink1 k_bluehover1">Select a group of draw calls for analysis either using <img src="../img/rushita_img/blackfire.png" width="22" alt="image1"> <a href="#">Advanced Profiling mode</a> or choosing the calls that take more time on the GPU ( <img src="../img/rushita_img/A.png" width="25" alt="image2"> ).</p>
-                           <div class="my-4 col-sm-12 col-md-8">
-                                <img src="../img/rushita_img/shaders.png" alt="" width="100%">
-                           </div>
-                            <p>To determine whether shaders cause a performance bottleneck for the selected draw calls, refer to the <strong>Bottlenecks</strong> tab of the <strong>Metrics</strong> pane ( <img src="../img/rushita_img/B.png" width="25" alt="image3"> ). Shader algorithms may cause performance issues in various cases, but the main ones are the following:</p>
-                            <ul> 
-                                <li><p><img src="../img/rushita_img/fireb.png" width="25" alt="image4"><strong>Shader Execution</strong> bottleneck is caused by shaders that perform complex computations and are executed many times. In most cases, the bottleneck is caused by pixel and compute shaders.</p> <p>In this case, EU Thread Occupancy and EU Active metrics are close to 100%.</p> <p>To optimize the shader execution bottleneck, you can simplify a shader: reduce unnecessary computations in a shader code and avoid using complicated arithmetic functions.</p> </li> 
-                                <li><p><img src="../img/rushita_img/fireb.png" width="25" alt="image5"><strong>Sampler</strong> bottleneck appears when the sampler is not able to generate output data with the requested speed.</p> <p>In this case, there’s a huge difference between Input Available and Sampler Output Ready metrics.</p> <p>To optimize the sampler bottleneck, you can: identify which sampling instructions take more time, optimize inefficient functions by changing resource parameters (format, size, filter parameters), or reduce the amount of sampling.</p> </li> 
-                                <li><p><img src="../img/rushita_img/fireb.png" width="25" alt="image6"><strong>L3</strong> bottleneck appears when graphics cache (L3) is not able read or write data with the requested speed.</p> <p>To optimize L3 bottleneck, you can reduce memory traffic or improve memory access patterns to Shared Local Memory (SLM), Unordered Access Views (UAV), textures, and constants.</p> </li> 
-                               </ul>
-                               <p class="k_plink1 k_bluehover1">This topic covers basic steps for shader profiling with Graphics Frame Analyzer. To get detailed solutions for bottlenecks, refer to Cookbook recipes <a href="#">Optimize Shader Execution</a> and <a href="#">Optimize Sampler.</a></p>
-
-                        <h2 class="fw-light my-3">Profile Shader Source Code</h2>
-                        <ol> 
-                            <li class="k_plink1 k_bluehover1"><p>Once you selected draw calls for analysis, choose the shader used in these draw calls from the <a href="#">Resource List</a> ( <img src="../img/rushita_img/A.png" width="25" alt="image7"> ). 
-                                <img src="/content/dam/docs/us/en/user-guide/2025-1/D46FB1F5-FF43-4C6B-BEFB-964B432B96B4-low.png" width="700" alt="image8">
-                            <div class="col-sm-12 col-md-7">
-                                <img src="../img/rushita_img/shaders1.png" alt="" width="100%">
-                            </div>
-
-                            </p> <p>Graphics Frame Analyzer displays the shader source code in the <strong>Shader Editor</strong> ( <img src="../img/rushita_img/B.png" width="25" alt="image9"> ).</p> </li> 
-                            <li><p>From the <strong>Shader Type</strong> drop-down list on the top right ( 
-                                <img src="../img/rushita_img/A.png" width="25" alt="image10">
-                                 ), choose one of the available shader types for profiling. Available shader types include pixel, vertex, geometry, hull, domain, mesh, amplification, compute, and DXIL library.</p> <p>In most cases, the pixel shader is causing the bottleneck, but you can compare <em>Shader Invocations</em> ( <img src="../img/rushita_img/B.png" width="25" alt="image11"> ) metrics to understand which shader was executed more times and needs optimization.</p> 
-                                 <div class="col-sm-12 col-md-7">
-                                    <img src="../img/rushita_img/shaders2.png" alt="" width="100%">
-                                </div>
-
-                                 <p>The shader code opens in the Shader Editor. For easier reading, you can click the <img src="../img/rushita_img/sd.png" width="25" alt="image12"> button to indent the code, and the <img src="../img/rushita_img/#.png" width="25" alt="image13"> button to preprocess the selected shader and hide the code paths that do not get executed.</p> </li> 
-                            <li class="k_plink1 k_bluehover1"><p>Click the <img src="../img/rushita_img/blackfire.png" width="22" alt="image14"><strong>Shader Profiler</strong> button to view performance data per shader code line. (If Shader Profiling is disabled, the <strong>Shader Profiler</strong> button is greyed out. You can enable Shader Profiling from the <a href="#">Frame Analyzer Window</a><strong>Settings</strong>.)</p> <p>The shader viewer displays all generated versions of Gen ISA code in the drop-down menu on the top left ( <img src="../img/rushita_img/A.png" width="25" alt="image15"> ), and the profiling data column on the left of the shader editor ( <img src="../img/rushita_img/B.png" width="25" alt="image16"> ).</p> 
-                                <div class="col-sm-12 col-md-7">
-                                    <img src="../img/rushita_img/shaders2.png" alt="" width="100%">
-                                </div>
-                                <p>You can choose either duration or execution count to analyze the efficiency of your shaders ( <img src="../img/rushita_img/C.png" width="25" alt="image17"> ).</p> 
-                             <ul> 
-                              <li><p><strong>Duration:</strong> shows the estimated portion of time a line of code took in percent, relative to the execution time of all shader stages.</p> </li> 
-                              <li><p><strong>Execution Count:</strong> shows the total number of times the exact line of code was executed.</p> </li> 
-                             </ul> <p>At this step, you need to understand which parts of code take more time. Stalls may occur, for example, due to inefficient use of resources or redundant calculations.</p> <p>As a next step, you can:</p> 
-                             <ul> 
-                              <li class="k_plink1 k_bluehover1"><p><a href="#">Analyze shader resources</a></p> </li> 
-                              <li class="k_plink1 k_bluehover1"><p><a href="#">Profile shader assembly code</a></p> </li> 
-                              <li class="k_plink1 k_bluehover1"><p>If you already have assumptions about bottleneck root cause and possible improvements, <a href="#">experiment with shader code</a> and <a href="#">evaluate the impact on performance</a>.</p> </li> 
-                             </ul> </li> 
-                           </ol>
-                        <h2 class="fw-light my-3">Analyze Shader Resources</h2>
-                        <p>To inspect resources bound to the shader, open the <strong>Shader Resource List</strong> by clicking the <img src="../img/rushita_img/fx.png" width="25" alt="image18"> button.</p>
-                        <p>In the <strong>Shader Resource List</strong>, resources used in the shaders are grouped by type:</p>
+                        <h2 class="fw-light my-3">Analyze Textures</h2>
+                        <p>Review all textures for the selected events with Graphics Frame Analyzer to determine whether you can optimize texture usage and rendering algorithms.</p>
+                        <p>Using high-resolution textures or multiple textures within a draw can negatively impact your application performance.</p>
+                        <p>To speed up the rendering, you can:</p>
                         <ul> 
-                            <li><p>Render Target View (RTV)</p> </li> 
-                            <li><p>Sampler</p> </li> 
-                            <li><p>DirectX resources:</p> 
-                             <ul> 
-                              <li><p>Shader Resource View (SRV)</p> </li> 
-                              <li><p>Constant Buffer View (CBV)</p> </li> 
-                              <li><p>Unordered Access View (UAV)</p> </li> 
-                             </ul> </li> 
-                            <li><p>Vulkan resources:</p> 
-                             <ul> 
-                              <li><p>Access View (UAV)</p> </li> 
-                              <li><p>Storage Buffer Object (SBO)</p> </li> 
-                              <li><p>Storage Texture</p> </li> 
-                              <li><p>Texture</p> </li> 
-                              <li><p>Uniform Buffer Object (UBO)</p> </li> 
-                              <li><p>Vertex Buffer View (VBV)</p> </li> 
-                             </ul> </li> 
+                            <li><p>Reduce the physical size of textures</p> </li> 
+                            <li><p>Reduce the number of textures used in the scene, for example, use one texture for a set of objects</p> </li> 
+                            <li><p>Change the texture filtering setting</p> </li> 
+                            <li class="k_plink1 k_bluehover1"><p>Reduce the number of texture fetches in the <a href="#">shaders</a></p> </li> 
                            </ul>
-                           <p>Graphics Frame Analyzer displays resource parameters, the shader type using the resource, and shader registers each resource is bound to. Resources are listed in the following format: &lt;resource name&gt; &lt;register ID&gt; &lt;resource type&gt;:&lt;resource ID&gt; (&lt;view type&gt;&lt;view ID&gt;) &lt;resource debug name&gt;. For example, <em>cbPerObject b0 B:43 (CBV 1).</em></p>
-                           <p>To open a resource, click the desired resource name from the <strong>Binding</strong> column.</p>
+                           <p class="k_plink1 k_bluehover1">Graphics Frame Analyzer enables you to <a href="#">experiment with textures</a> and see how your changes impact performance and the final picture.</p>
+                           <p class="k_plink1 k_bluehover1">Experiments help to define whether the selected texture bottlenecks the sampler module. If a sampler block is highlighted red or yellow in the <a href="#">Advanced Profiling</a> mode, there are issues with texture sampling.</p>
 
-
-                        <h2 class="fw-light my-3">Profile Shader Assembly Code</h2>
-                        <p>When optimization of shader algorithms reached its limits, you can step down to a low-level optimization and examine ISA shader code to use GPU resources more efficiently.</p>
-                        <p>To view ISA instructions, select <em>ISA</em> from the drop-down menu on the top left. To view source-assembly mapping:</p>
+                        <h2 class="fw-light my-3">Select Textures for Analysis</h2>
                         <ol> 
-                            <li><p>Click the <img src="../img/rushita_img/blackfire.png" width="22" alt="image19"><strong>Shader Profiler</strong> button to view performance data per shader code line.</p> </li> 
-                            <li><p>Click the <img src="../img/rushita_img/show.png" width="25" alt="image20"><strong>Show source-assembly mapping</strong> button to view the source code and the assembly code side-by-side, and to map individual source or assembly lines to their counterparts. <img src="../img/rushita_img/shaders4.png" width="100%" alt="image21"></p> </li> 
+                            <li><p>Click the draw call or the group of draw calls you are interested in ( <img src="../img/rushita_img/A.png" width="25" alt="image1"> ).</p> <p>The list of resources associated with the selected region appears. Texture names are shown in the following format: <em>T:&lt;texture ID&gt; (&lt;view type&gt;&lt;view ID&gt;),</em> for example, <em>T:325 (SRV 0).</em> Textures have four types of views:</p> 
+                             <ul> 
+                              <li><p>Shader resource view (SRV)</p> </li> 
+                              <li><p>Render target view (RTV)</p> </li> 
+                              <li><p>Unordered access view (UAV)</p> </li> 
+                              <li><p>Depth stencil view (DSV)</p> </li> 
+                             </ul> </li> 
+                            <li><p>(Optional) Filter the list of resources ( <img src="../img/rushita_img/B.png" width="25" alt="image2"> ):</p> 
+                             <ul> 
+                              <li><p>Use the <img src="../img/rushita_img/useb.png" width="25" alt="image3"> button to select only textures.</p> </li> 
+                              <li><p>Turn off 
+                                <img src="../img/rushita_img/exesmallgray.png" width="25" alt="image4">
+                                <strong>Execution</strong> resources, as textures are only used as <img src="../img/rushita_img/insmall.png" width="25" alt="image5"><strong>Input</strong> or <img src="../img/rushita_img/outsmall.png" width="25" alt="image6"><strong>Output</strong>.</p> </li> 
+                             </ul> </li> 
+                            <li><p>Click the texture you are interested in ( <img src="../img/rushita_img/C.png" width="25" alt="image7"> ).
+                                <div class="col-sm-12 col-md-8">
+                                    <img src="../img/rushita_img/texture.png" alt="" width="100%">
+                                </div> 
+                            </p> </li> 
+                            <li><p>(Optional) Prepare a texture for analysis:</p> 
+                             <ul> 
+                              <li><p><strong>Open a texture in a new window</strong> by clicking the <img src="../img/rushita_img/sunsmall.png" width="25" alt="image9"> button.</p> <p>For example, you can view the RTV texture on a separate display and continuously track changes after optimization activities. The texture in a separate window is updated dynamically.</p> </li> 
+                              <li><p><strong>Flip the texture image</strong> by clicking the <img src="../img/rushita_img/timer.png" width="25" alt="image10"> button.</p> <p>This is useful if your texture is stored in memory in the reverse order and appears upside down (OpenGL, DirectX).</p> </li> 
+                              <li><p><strong>Select MIP level or the image layer</strong> for 3D textures and texture arrays.</p> </li> 
+                             </ul> </li> 
                            </ol>
-                           <p>Source-assembly mapping is available for shaders compiled with debugging information. To enable source-assembly mapping, you can:</p>
-                           <ul> 
-                            <li><p>Compile a shader with debugging information in your application.</p> </li> 
-                            <li><p>For DirectX frames, apply any modification to a shader in Graphics Frame Analyzer and click the <img src="../img/rushita_img/tik.png" width="25" alt="image22"> button. Your shader recompiles with debugging information directly in Graphics Frame Analyzer.</p> </li> 
-                           </ul>
-                           <p class="k_plink1 k_bluehover1">If you are new to Gen assembly profiling, refer to <a href="#">Introduction to GEN Assembly</a> to learn how to interpret ISA code and understand register region syntax and semantics. To get detailed descriptions of Gen ISA instructions, refer to <a href="#">Intel® Iris® Xe Graphics Open Source Programmer’s Reference Manual.</a></p>
 
-                        <h2 class="fw-light my-3">Experiment with Shader Code</h2>
-                        <p>You can experiment with the HLSL code for DirectX*, and HLSL and GLSL for Vulkan*, if they are available for your shader. Edit the shader directly in Graphics Frame Analyzer and evaluate the impact on visuals and performance in real time:</p>
+                        <h2 class="fw-light my-3">Experiment with Textures</h2>
+                        <p>You can apply the following experiments to shader resource view (SRV) textures, which are used as input:</p>
+                        <p><strong>Texture 2x2</strong></p>
+                        <p>This experiment replaces the texture with a simple 2x2 pixel texture for the selected events.</p>
+                        <p>Use to identify which texture is causing the issue when you have multiple textures within a call.</p>
+                        <p>To apply the experiment:</p>
                         <ol> 
-                            <li><p>Select HLSL or GLSL from the respective drop-down menu and edit the code in the Shader Editor.</p> <p>The shader recompiles on the fly. If you introduced any errors, you can see the corresponding message in the Notification pane below the Shader Editor.</p> </li> 
-                            <li class="k_plink1 k_bluehover1"><p>Click the <img src="../img/rushita_img/tik.png" width="25" alt="image23"> button to save the changes.</p> <p>Graphics Frame Analyzer recalculates all metrics and displays new data in the Metrics pane and in the <a href="#">Bar Chart</a>.</p> 
-                             <div class="p-3 mb-4" style="background-color: #E2E7Eb;"> 
-                                <b>NOTE:</b> 
-                               When you click the 
-                              <img src="../img/rushita_img/tik.png" width="25" alt="image24"> button, Graphics Frame Analyzer saves all the shaders. This enables you to write your own code and replace the whole shader to experiment. 
-                             </div> </li> 
-                            <li><p>If you want to undo your edits, click the <img src="../img/rushita_img/reverte.png" width="25" alt="image25"> button.</p> <p>The original shaders are restored.</p> </li> 
+                            <li><p>Navigate to the texture of interest.</p> </li> 
+                            <li><p>Click the <img src="../img/rushita_img/bcheks.png" width="25" alt="image11"> button on the top of the <strong>Resources</strong> pane.
+                                <div class="col-sm-12 col-md-6">
+                                    <img src="../img/rushita_img/timer1.png" alt="image12" width="100%">
+                                </div>
+                            </p>
+                                
+                                <p>The experiment replaces the texture with a new one of the same type and with the same name, denoted as [modified].     <div class="col-sm-12 col-md-6">
+                                    <img src="../img/rushita_img/timer2.png" alt="image12" width="100%">
+                                </div></p> </li> 
                            </ol>
+                           <p><strong>Clamp to Selected MIP Level</strong></p>
+                           <p>This experiment disables all texture mipmaps that are greater than the selected mipmap level.</p>
+                           <p>Use to check whether your mipmap algorithm works as expected. Find out whether performance is better when you use less detailed textures and how it impacts the render target.</p>
+                           <p>To apply the experiment:</p>
+                           <ol> 
+                            <li><p>Navigate to the texture of interest.</p> </li> 
+                            <li><p>Select the MIP level on the right of the <strong>Resources</strong> pane.</p> </li> 
+                            <li><p>Click the <img src="../img/rushita_img/wifismall.png" width="25" alt="image14"> button on the top left of the <strong>Resources</strong> pane. <div class="col-sm-12 col-md-6">
+                                <img src="../img/rushita_img/timer3.png" alt="image12" width="100%">
+                            </div></p> <p>The experiment replaces the texture with a new one of the same type and with the same name, denoted as [modified].</p> </li> 
+                           </ol>
+                           <p><strong>Texture Format</strong></p>
+                           <p>This experiment changes the texture format (DirectX 11 only).</p>
+                           <p>Use to understand how the texture format influences performance.</p>
+                           <p>To apply the experiment:</p>
+                           <ol> 
+                            <li><p>Navigate to the texture of interest.</p> </li> 
+                            <li><p>Select the format in the drop-down menu on the top of the <strong>Resource Viewer</strong> pane. 
+                                <div class="col-sm-12 col-md-6">
+                                <img src="../img/rushita_img/timer4.png" alt="image12" width="100%">
+                            </div> </li> 
+                           </ol>
+
                         <h2 class="fw-light my-3">Evaluate Performance</h2>
-                        <p>After you apply changes, metrics change automatically.</p>
+                        <p>After you apply experiments, metrics change automatically.</p>
                         <p>See how time spent on selected draw calls changes on the top left of the <strong>Profiling View</strong> window. The difference between current and original states is shown in braces.</p>
-                        <div class="col-sm-12 col-md-7">
-                            <img src="../img/rushita_img/shaders5.png" alt="" width="100%">
-                        </div>
+                        <div class="col-sm-12 col-md-6">
+                            <img src="../img/rushita_img/timer5.png" alt="image12" width="100%">
+                        </div> 
+
                         <h2 class="fw-light my-3">Evaluate Final Picture</h2>
                         <p>To see how the render target changes, open the render target view (RTV) resource from the resource list.</p>
-                        <div class="col-sm-12 col-md-5">
-                            <img src="../img/rushita_img/shaders6.png" alt="" width="100%">
-                        </div>
+                        <div class="col-sm-12 col-md-6">
+                            <img src="../img/rushita_img/timer6.png" alt="image12" width="100%">
+                        </div> 
                         <p>To compare a new render target version and the original one, choose one of the modes from the <strong>Output Texture Visualization Mode</strong> drop-down list:</p>
-                       
-                        <div class="p-3 mb-4" style="background: #E2E7Eb;"> 
-                              <b>NOTE:</b> 
-                             <li>For DirectX* 11 shaders without debug information, DXBC-ISA mapping is available instead of HLSL-ISA mapping.</li> 
-                             <li>Source-assembly mapping is not supported for Shader Model 5 shaders on DirectX* 12 applications. To enable it, recompile the shaders for Shared Model 6. </li> 
-                             <li>Shader Profiler requires Intel® Graphics Driver version 26.20.100.7755 or higher. </li> 
-                             <li>The Overdraw feature for RTV is supported on 9th Generation (formerly codenames Skylake, Coffee Lake, Kaby Lake) and 11th Generation (formerly codename Ice Lake) Intel® Graphics hardware. The feature is not supported on 12th Generation hardware or later. </li> 
-                            </ul> 
-                           </div>
+                        <h2 class="fw-light my-3">Save Results</h2>
+                        <p><strong>Export</strong> changed textures by clicking the <img src="../img/rushita_img/eup.png" alt="image21"> button or pressing <strong>Ctrl+S.</strong> Depending on the texture format, you can choose between PNG, DirectDraw Surface (DDS), or Khronos Texture (KTX) formats.</p>
+                        <p>Use exported images as key points to save your optimization results, compare, and choose the best version.</p>
+                        <p>Optimize your code based on experiment results.</p>
+                        <h2 class="fw-light my-3">See Also</h2>
+                        <p class="k_plink1 k_bluehover1"><a href="#">Analyze GPU-bound Applications with Graphics Frame Analyzer</a></p>
+                        <p class="k_plink1 k_bluehover1"><a href="#">Optimize Shaders</a></p>
+                        <p class="k_plink1 k_bluehover1"><a href="#">Visualize Color Distribution</a></p>
+                        <p class="k_plink1 k_bluehover1"><a href="#">Resource Viewer: Texture</a></p>
+
+
+                        
                         </div>
                         <div class="d-md-flex justify-content-between">
                             <div>
-                                <p class="k_plink1 text-end pt-2"><a href="../rushita_Solutions/k_solutions_Optimize-Specific-Domains.html"> <i class="fa-solid fa-arrow-left"></i> Optimize Specific Domains
+                                <p class="k_plink1 text-end pt-2"><a href="../rushita_Solutions/k_solutions_Optimize-Shaders.html"> <i class="fa-solid fa-arrow-left"></i>  Optimize Shaders
                                 </a></p>
                             </div>
                             <div>
-                                <p class="k_plink1 text-end pt-2"><a href="#">  Analyze Textures<i class="fa-solid fa-arrow-right"></i> </a></p>
+                                <p class="k_plink1 text-end pt-2"><a href="#">  Minimize Overdraw<i class="fa-solid fa-arrow-right"></i> </a></p>
                             </div>
                         </div> 
                     </div>
