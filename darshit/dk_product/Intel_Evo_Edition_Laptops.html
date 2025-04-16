@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>10-Gbps Ethernet Hardware Demonstration</title>
+
+    <link rel="stylesheet"href="/css/dk_developer_edge_iot_&_5G_optimize_fine_tuning_and_deployment_of_LLMs_on_an_ai_pc.css">
+    <link rel="stylesheet" href="/css/dk_nav_header.css">
+    <link rel="stylesheet" href="/css/dk_agilex_5_FPGA_and_SoC_FPGA_E_Series.css">
+    <!-- header footer -->
+    <link rel="stylesheet" href='/css/yatri.css'>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" rel="stylesheet">
+</head>
+
+<style>
+    .dk_main_heading{
+        padding: 2rem 0rem;
+        background-color: #548FAD;
+        color: #fff;
+    }
+    .dk_caption{
+        background: rgba(0, 0, 0, 0.7);
+        color: #fff;
+        text-align: left;
+        font-size: .875rem;
+        padding: 20px 15px;
+    }
+    @media(max-width:768px){
+        .dk_main_heading{
+            padding: 1rem 0rem !important;
+        } 
+        .mv_intel_amx_content {
+            padding-right: 0px !important; 
+        } 
+    }
+</style>
+
+<body>
+
+    <!-- header -->
+    <div id="navbar"></div>
+
+   <!-- --------------------------------------------------------------------- -->
+   <section>
+        <nav class="mb_sub_nv">
+            <div class="mv_breadcrumb">
+                <ol class="mv_spark_breadcrumb_items">
+                    <li><a href="">Computer Systems and Devices Powered by Intel</a></li>
+                    <li><a href="/Aksh_product/A_Laptop.html">Laptops</a></li>
+                    <li><p class="mb-0">Intel® Evo™ Laptops</p></li>
+                </ol>
+            </div>
+        </nav>
+    </section>
+<!-- --------------------------------------------------------------------- -->
+
+<section>
+    <div class="mv_intel_data_bg_color">
+        <div class="container">
+            <div class="row">
+                <div class="mv_intel_data_content col-lg-9 col-md-12">
+                    <h1>Intel® Evo™ Edition Laptops</h1>
+                    <div class=" mv_intel_data_respomsive_image">
+                        <img src="/img/darshit_image/evo-edition-core-ultra-badge-1x1_1920-1080.webp" alt="">
+                    </div>
+                    <p>Intel® Evo™ Edition laptops<sup>1</sup> are powered by the Intel® Core™ Ultra processors, delivering an accelerated AI experience<sup>2</sup> with powerful performance and battery life in a thin laptop design.</p>
+                    <p>&nbsp;</p>
+                </div>
+                <div class="mv_intel_data_image col-lg-3 col-md-12">
+                    <img src="/img/darshit_image/evo-edition-core-ultra-badge-1x1_1920-1080.webp" alt="">
+                </div>
+            </div>
+        </div>  
+    </div>
+</section>
+
+<!-- --------------------------------------------------------------------- -->
+
+    <!-- footer -->
+    <div id="footer"></div>
+
+    <!-- script header and footer -->
+    <script>
+        // navbar include  
+        fetch('/y_index/y_navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar').innerHTML = data;
+            });
+        // footer include 
+        fetch('/y_index/y_footer.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('footer').innerHTML = data;
+            });
+    </script>
+
+    <!-- nav script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const nav = document.querySelector('.VK_client_app_navigation');
+            const navLinks = document.querySelectorAll('.VK_ai_nav_bar a');
+            const sections = document.querySelectorAll('section[id]');
+            let navOffset = nav.offsetTop;
+
+            // Add smooth scrolling to all links
+            navLinks.forEach(link => {
+                link.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+
+            // Sticky Navigation
+            window.addEventListener('scroll', () => {
+                if (window.pageYOffset >= navOffset) {
+                    nav.classList.add('VK_sticky_nav_bar');
+                } else {
+                    nav.classList.remove('VK_sticky_nav_bar');
+                }
+                // Section highlighting
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop - nav.clientHeight;
+                    const sectionHeight = section.clientHeight;
+                    console.log(sectionTop);
+                    console.log(sectionHeight);
+                    if (window.pageYOffset >= sectionTop && window.pageYOffset <= sectionTop + sectionHeight) {
+                        navLinks.forEach(link => {
+                            link.classList.remove('active');
+                            if (link.getAttribute('href') === `#${section.id}`) {
+                                link.classList.add('active');
+
+                                // Ensure the active link is visible in the nav bar
+                                const navBar = document.querySelector('.VK_ai_nav_bar');
+                                const activeLink = document.querySelector('.VK_ai_nav_bar a.active');
+                                const linkRect = activeLink.getBoundingClientRect();
+                                const navBarRect = navBar.getBoundingClientRect();
+
+                                if (linkRect.left < navBarRect.left || linkRect.right > navBarRect.right) {
+                                    activeLink.scrollIntoView({ inline: 'center', behavior: 'smooth' });
+                                }
+                            }
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+
+</body>
+
+</html>
+
+
