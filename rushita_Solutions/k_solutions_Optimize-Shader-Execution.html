@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>
-        Instrumentation and Tracing Technology API Support
+        Optimize Shader Execution
     </title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
@@ -234,7 +234,7 @@
         </div>
         <div class="m_ai_shlash">/</div>
         <div class="m_ai_httl">
-            Instrumentation and Tracing Technology API Support  
+            Optimize Shader Execution 
         </div>
     </section>
     <section class="k_bgblue py-4">
@@ -578,45 +578,183 @@
                 </div>
                 <div class="col-lg-9 col-md-12 col-sm-12  k_16smpx ">
                     <div class=" k_smpaddnone k_smpaddnone1 p-3" style="background-color: #FFFFFF;">
-                        <h2 class="fw-light my-4">Instrumentation and Tracing Technology API Support</h2>
+                        <h2 class="fw-light my-4">Optimize Shader Execution</h2>
+                        <p>Shader is a program, which handles programmable graphics pipeline stages or performs general-purpose computations on a GPU. Shaders are executed on execution units (EUs) of the GEN architecture. In each EU, the primary computation units are a pair of SIMD (Single Instruction, Multiple Data) floating-point units (FPUs). FPU0 processes floating point and integers operations, FPU1 can perform floating point operations and extended math instructions so it is also referred as Extended Math (EM) unit.</p>
+                        <p>To detect that Shader Execution is a bottleneck, the Intel® GPAGraphics Frame Analyzer checks if an FPU pipes load is more than 90 percent. Usually, the Shader Execution bottleneck is caused by Pixel and Compute shaders that perform complex computations and are executed many times.</p>
+                        <!--  -->
                         <div class="p-3 mb-4 k_plink1 k_bluehover1" style="background-color: #E2E7Eb;"> 
+                             <b> NOTE: </b>
+                             Families of Intel® X<sup>e</sup> graphics products starting with Intel® Arc™ Alchemist (formerly DG2) and newer generations feature GPU architecture terminology that shifts from legacy terms. For more information on the terminology changes and to understand their mapping with legacy content, see <a href="#">GPU Architecture Terminology for Intel® Xe Graphics</a>. 
+                           </div>
+                           <p>When EU Array / Pipes: EU FPU0 Pipe Active or EU Array / Pipes: EU FPU1 Pipe Active are above 90 percent, it can indicate that the primary hotspot is due to the number of instructions per clock (IPC). If so, adjust shader algorithms to reduce unnecessary instructions or implement using more efficient instructions to improve IPC. For IPC-limited pixel shaders, ensure maximum throughput by limiting shader temporary registers to ≤ 16.</p>
+                           <div class="k_plink1 k_bluehover1"> 
                               <b>NOTE:</b> 
-                             The Instrumentation and Tracing Technology API (ITT API) and the Just-in-Time Profiling API (JIT API) are open source components. Visit the <a href="#">GitHub* repository</a> to access source code and contribute. 
-                        </div>
-                        <p>The Instrumentation and Tracing Technology API (ITT API) provided by the Intel GPA enables your application to generate and control the collection of trace data during its execution.</p>
-                        <p>ITT API has the following features:</p>
+                             The recipe describes how to optimize the Shader Execution bottleneck on a particular sample. Some of these optimizations can be applied to real-world graphics applications. 
+                           </div>
+
+                        <h2 class="fw-light my-4">Ingredients</h2>
+                        <p>To optimize the Shader Execution bottleneck, you need the following:</p>
                         <ul> 
-                            <li><p>Controls application performance overhead based on the amount of traces that you collect.</p> </li> 
-                            <li><p>Enables trace collection without recompiling your application.</p> </li> 
-                            <li><p>Supports applications in C/C++ environments.</p> </li> 
-                            <li><p>Automatically traces data from Microsoft DirectX* applications.</p> </li> 
-                            <li><p>Automatically traces data from OpenGL* ES v1, v2, and v3 APIs on Android* OS applications.</p> </li> 
-                            <li><p>Supports instrumentation for tracing application code.</p> </li> 
+                            <li class="k_plink1 k_bluehover1"><p><strong>Application</strong>: Microsoft D3D12Multithreading sample: <a href="#">https://github.com/microsoft/DirectX-Graphics-Samples/tree/master/Samples/Desktop/D3D12Multithreading</a></p> </li> 
+                            <li><p><strong>Tool</strong>: Intel® GPAGraphics Frame Analyzer</p> 
+                             <div class="p-3 mb-4 k_plink1 k_bluehover1" style="background-color: #E2E7Eb;"> 
+                                <b>NOTE:</b> 
+                               To download a free copy of the Intel® Graphics Performance Analyzers toolkit, visit the <a href="#">Intel® GPA product page</a>. 
+                             </div> </li> 
+                            <li><p><strong>Operating System</strong>: Windows* 10</p> </li> 
+                            <li><p><strong>GPU</strong>: Intel® Processor Graphics Gen9 and higher</p> </li> 
+                            <li><p><strong>API</strong>: DirectX* 11/12</p> </li> 
                            </ul>
-                           <p>This chapter describes how to add basic instrumentation to your application, and also includes examples of several advanced instrumentation topics.</p>
-                           <p>User applications/modules linked to the static ITT API library do not have a runtime dependency on a dynamic library. Therefore, they can be executed without Intel GPA or other Intel tools.</p>
-                           <p>ITT API enables you to manually instrument your application for further application performance analysis.</p>
-                           <p>You can use the Intel GPA Trace Analyzer to view ITT trace data. The Intel GPA Trace Analyzer obtains this data from your application through the Intel GPA Monitor.</p>
+
+                        <h2 class="fw-light my-4">Define Code Portions to Optimize</h2>
+                        <p>To find potential hotspots in the shader, do the following:</p>
+                        <ol> 
+                            <li class="k_plink1 k_bluehover1"><p>Open the event with the <a href="#">discovered Shader Execution bottleneck</a> in the Graphics Frame Analyzer Resource Viewer by selecting this event on the <strong>Bar Chart</strong>.</p> 
+                                <img src="/content/dam/docs/us/en/cookbook/2025-1/7688BEA1-1420-498C-A247-AFADE15AB14D-low.png" alt="">
+                            <div class="col-12">
+                                <img src="../img/rushita_img/shader.png" alt="" width="100%">
+                            </div>
+                            </li> 
+                            <li><p>Select <strong>Shader</strong> in the <strong>Resource List</strong> to open the shader source.</p> </li> 
+                            <li><p>Analyze the shader source to understand the algorithm and find potential places for optimization.</p> <p>Pixel shader invokes <samp class="codeph">CalcLightingColor</samp> for each light (<samp class="codeph">NUM_LIGHTS=3</samp>), the first light also computes shadow by the <samp class="codeph">CalcUnshadowedAmountPCF2x2</samp> function. <samp class="codeph">CalcLightingColor</samp> function is called three times, other functions are called only once per shader invocation. So <samp class="codeph">CalcLightingColor</samp> is potentially the primary place for optimization.</p> <div class="code-toolbar component" data-component="wa_skip_track" data-component-id="1"><div class="toolbar show" style="float: right;"><div class="toolbar-item"><i class="fa-docs"></i></div></div><pre class=" language-cpp line-numbers"><code class=" language-cpp">float4 <span class="token function">CalcLightingColor</span><span class="token punctuation">(</span>float3 vLightPos<span class="token punctuation">,</span> float3 vLightDir<span class="token punctuation">,</span> float4 vLightColor<span class="token punctuation">,</span> float4 vFalloffs<span class="token punctuation">,</span> float3 vPosWorld<span class="token punctuation">,</span> float3 vPerPixelNormal<span class="token punctuation">)</span>
+                        <span class="token punctuation">{</span>
+                            float3 vLightToPixelUnNormalized <span class="token operator">=</span> vPosWorld <span class="token operator">-</span> vLightPos<span class="token punctuation">;</span>
+                            <span class="token comment">// Dist falloff = 0 at vFalloffs.x, 1 at vFalloffs.x - vFalloffs.y</span>
+                            <span class="token keyword keyword-float">float</span> fDist <span class="token operator">=</span> <span class="token function">length</span><span class="token punctuation">(</span>vLightToPixelUnNormalized<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                            <span class="token keyword keyword-float">float</span> fDistFalloff <span class="token operator">=</span> <span class="token function">saturate</span><span class="token punctuation">(</span><span class="token punctuation">(</span>vFalloffs<span class="token punctuation">.</span>x <span class="token operator">-</span> fDist<span class="token punctuation">)</span> <span class="token operator">/</span> vFalloffs<span class="token punctuation">.</span>y<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                            <span class="token comment">// Normalize from here on.</span>
+                            float3 vLightToPixelNormalized <span class="token operator">=</span> vLightToPixelUnNormalized <span class="token operator">/</span> fDist<span class="token punctuation">;</span>
+                            <span class="token comment">// Angle falloff = 0 at vFalloffs.z, 1 at vFalloffs.z - vFalloffs.w</span>
+                            <span class="token keyword keyword-float">float</span> fCosAngle <span class="token operator">=</span> <span class="token function">dot</span><span class="token punctuation">(</span>vLightToPixelNormalized<span class="token punctuation">,</span> vLightDir <span class="token operator">/</span> <span class="token function">length</span><span class="token punctuation">(</span>vLightDir<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                            <span class="token keyword keyword-float">float</span> fAngleFalloff <span class="token operator">=</span> <span class="token function">saturate</span><span class="token punctuation">(</span><span class="token punctuation">(</span>fCosAngle <span class="token operator">-</span> vFalloffs<span class="token punctuation">.</span>z<span class="token punctuation">)</span> <span class="token operator">/</span> vFalloffs<span class="token punctuation">.</span>w<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                            <span class="token comment">// Diffuse contribution.</span>
+                            <span class="token keyword keyword-float">float</span> fNDotL <span class="token operator">=</span> <span class="token function">saturate</span><span class="token punctuation">(</span><span class="token operator">-</span><span class="token function">dot</span><span class="token punctuation">(</span>vLightToPixelNormalized<span class="token punctuation">,</span> vPerPixelNormal<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                            <span class="token keyword keyword-return">return</span> vLightColor <span class="token operator">*</span> fNDotL <span class="token operator">*</span> fDistFalloff <span class="token operator">*</span> fAngleFalloff<span class="token punctuation">;</span>
+                        <span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span style="height: 45px;"></span><span style="height: 22.5px;"></span><span style="height: 22.5px;"></span><span style="height: 22.5px;"></span><span style="height: 22.5px;"></span><span style="height: 22.5px;"></span><span style="height: 22.5px;"></span><span style="height: 22.5px;"></span><span style="height: 22.5px;"></span><span style="height: 22.5px;"></span><span style="height: 22.5px;"></span><span style="height: 22.5px;"></span><span style="height: 22.5px;"></span><span style="height: 22.5px;"></span><span style="height: 22.5px;"></span></span><span class="line-numbers-sizer" style="display: none;"></span></code></pre></div><div class="code-toolbar component" data-component="wa_skip_track" data-component-id="1"><div class="toolbar show" style="float: right;"><div class="toolbar-item"><i class="fa-docs"></i></div></div><pre class=" language-cpp line-numbers"><code class=" language-cpp">float4 <span class="token function">CalcUnshadowedAmountPCF2x2</span><span class="token punctuation">(</span><span class="token keyword keyword-int">int</span> lightIndex<span class="token punctuation">,</span> float4 vPosWorld<span class="token punctuation">)</span>
+                        <span class="token punctuation">{</span>
+                            <span class="token comment">// Compute pixel position in light space.</span>
+                            float4 vLightSpacePos <span class="token operator">=</span> vPosWorld<span class="token punctuation">;</span>
+                            vLightSpacePos <span class="token operator">=</span> <span class="token function">mul</span><span class="token punctuation">(</span>vLightSpacePos<span class="token punctuation">,</span> lights<span class="token punctuation">[</span>lightIndex<span class="token punctuation">]</span><span class="token punctuation">.</span>view<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                            vLightSpacePos <span class="token operator">=</span> <span class="token function">mul</span><span class="token punctuation">(</span>vLightSpacePos<span class="token punctuation">,</span> lights<span class="token punctuation">[</span>lightIndex<span class="token punctuation">]</span><span class="token punctuation">.</span>projection<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                            vLightSpacePos<span class="token punctuation">.</span>xyz <span class="token operator">/=</span> vLightSpacePos<span class="token punctuation">.</span>w<span class="token punctuation">;</span>
+                            <span class="token comment">// Translate from homogeneous coords to texture coords.</span>
+                            float2 vShadowTexCoord <span class="token operator">=</span> <span class="token number">0.5f</span> <span class="token operator">*</span> vLightSpacePos<span class="token punctuation">.</span>xy <span class="token operator">+</span> <span class="token number">0.5f</span><span class="token punctuation">;</span>
+                            vShadowTexCoord<span class="token punctuation">.</span>y <span class="token operator">=</span> <span class="token number">1.0f</span> <span class="token operator">-</span> vShadowTexCoord<span class="token punctuation">.</span>y<span class="token punctuation">;</span>
+                            <span class="token comment">// Depth bias to avoid pixel self-shadowing.</span>
+                            <span class="token keyword keyword-float">float</span> vLightSpaceDepth <span class="token operator">=</span> vLightSpacePos<span class="token punctuation">.</span>z <span class="token operator">-</span> SHADOW_DEPTH_BIAS<span class="token punctuation">;</span>
+                            <span class="token comment">// Find sub-pixel weights.</span>
+                            float2 vShadowMapDims <span class="token operator">=</span> <span class="token function">float2</span><span class="token punctuation">(</span><span class="token number">1280.0f</span><span class="token punctuation">,</span> <span class="token number">720.0f</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// need to keep in sync with .cpp file</span>
+                            float4 vSubPixelCoords <span class="token operator">=</span> <span class="token function">float4</span><span class="token punctuation">(</span><span class="token number">1.0f</span><span class="token punctuation">,</span> <span class="token number">1.0f</span><span class="token punctuation">,</span> <span class="token number">1.0f</span><span class="token punctuation">,</span> <span class="token number">1.0f</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                            vSubPixelCoords<span class="token punctuation">.</span>xy <span class="token operator">=</span> <span class="token function">frac</span><span class="token punctuation">(</span>vShadowMapDims <span class="token operator">*</span> vShadowTexCoord<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                            vSubPixelCoords<span class="token punctuation">.</span>zw <span class="token operator">=</span> <span class="token number">1.0f</span> <span class="token operator">-</span> vSubPixelCoords<span class="token punctuation">.</span>xy<span class="token punctuation">;</span>
+                            float4 vBilinearWeights <span class="token operator">=</span> vSubPixelCoords<span class="token punctuation">.</span>zxzx <span class="token operator">*</span> vSubPixelCoords<span class="token punctuation">.</span>wwyy<span class="token punctuation">;</span>
+                            <span class="token comment">// 2x2 percentage closer filtering.</span>
+                            float2 vTexelUnits <span class="token operator">=</span> <span class="token number">1.0f</span> <span class="token operator">/</span> vShadowMapDims<span class="token punctuation">;</span>
+                            float4 vShadowDepths<span class="token punctuation">;</span>
+                            vShadowDepths<span class="token punctuation">.</span>x <span class="token operator">=</span> shadowMap<span class="token punctuation">.</span><span class="token function">Sample</span><span class="token punctuation">(</span>sampleClamp<span class="token punctuation">,</span> vShadowTexCoord<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                            vShadowDepths<span class="token punctuation">.</span>y <span class="token operator">=</span> shadowMap<span class="token punctuation">.</span><span class="token function">Sample</span><span class="token punctuation">(</span>sampleClamp<span class="token punctuation">,</span> vShadowTexCoord <span class="token operator">+</span> <span class="token function">float2</span><span class="token punctuation">(</span>vTexelUnits<span class="token punctuation">.</span>x<span class="token punctuation">,</span> <span class="token number">0.0f</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                            vShadowDepths<span class="token punctuation">.</span>z <span class="token operator">=</span> shadowMap<span class="token punctuation">.</span><span class="token function">Sample</span><span class="token punctuation">(</span>sampleClamp<span class="token punctuation">,</span> vShadowTexCoord <span class="token operator">+</span> <span class="token function">float2</span><span class="token punctuation">(</span><span class="token number">0.0f</span><span class="token punctuation">,</span> vTexelUnits<span class="token punctuation">.</span>y<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                            vShadowDepths<span class="token punctuation">.</span>w <span class="token operator">=</span> shadowMap<span class="token punctuation">.</span><span class="token function">Sample</span><span class="token punctuation">(</span>sampleClamp<span class="token punctuation">,</span> vShadowTexCoord <span class="token operator">+</span> vTexelUnits<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                            <span class="token comment">// What weighted fraction of the 4 samples are nearer to the light than this pixel?</span>
+                            float4 vShadowTests <span class="token operator">=</span> <span class="token punctuation">(</span>vShadowDepths <span class="token operator">&gt;=</span> vLightSpaceDepth<span class="token punctuation">)</span> <span class="token operator">?</span> <span class="token number">1.0f</span> <span class="token operator">:</span> <span class="token number">0.0f</span><span class="token punctuation">;</span>
+                            <span class="token keyword keyword-return">return</span> <span class="token function">dot</span><span class="token punctuation">(</span>vBilinearWeights<span class="token punctuation">,</span> vShadowTests<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                        <span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span style="height: 22.5px;"></span><span style="height: 22.5px;"></span><span style="height: 22.5px;"></span><span style="height: 22.5px;"></span><span style="height: 22.5px;"></span><span style="height: 22.5px;"></span><span style="height: 22.5px;"></span><span style="height: 22.5px;"></span><span style="height: 22.5px;"></span><span style="height: 22.5px;"></span><span style="height: 22.5px;"></span><span style="height: 22.5px;"></span><span style="height: 22.5px;"></span><span style="height: 22.5px;"></span><span style="height: 22.5px;"></span><span style="height: 22.5px;"></span><span style="height: 22.5px;"></span><span style="height: 22.5px;"></span><span style="height: 22.5px;"></span><span style="height: 22.5px;"></span><span style="height: 22.5px;"></span><span style="height: 22.5px;"></span><span style="height: 22.5px;"></span><span style="height: 22.5px;"></span><span style="height: 22.5px;"></span><span style="height: 22.5px;"></span><span style="height: 22.5px;"></span><span style="height: 22.5px;"></span><span style="height: 22.5px;"></span></span><span class="line-numbers-sizer" style="display: none;"></span></code></pre></div><div class="code-toolbar component" data-component="wa_skip_track" data-component-id="1"><div class="toolbar show" style="float: right;"><div class="toolbar-item"><i class="fa-docs"></i></div></div><pre class=" language-cpp line-numbers"><code class=" language-cpp">float4 <span class="token function">PSMain</span><span class="token punctuation">(</span>PSInput input<span class="token punctuation">)</span> <span class="token operator">:</span> SV_TARGET
+                        <span class="token punctuation">{</span>
+                            float4 diffuseColor <span class="token operator">=</span> diffuseMap<span class="token punctuation">.</span><span class="token function">Sample</span><span class="token punctuation">(</span>sampleWrap<span class="token punctuation">,</span> input<span class="token punctuation">.</span>uv<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                            float3 pixelNormal <span class="token operator">=</span> <span class="token function">CalcPerPixelNormal</span><span class="token punctuation">(</span>input<span class="token punctuation">.</span>uv<span class="token punctuation">,</span> input<span class="token punctuation">.</span>normal<span class="token punctuation">,</span> input<span class="token punctuation">.</span>tangent<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                            float4 totalLight <span class="token operator">=</span> ambientColor<span class="token punctuation">;</span>
+                            <span class="token keyword keyword-for">for</span> <span class="token punctuation">(</span><span class="token keyword keyword-int">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> NUM_LIGHTS<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span>
+                            <span class="token punctuation">{</span>
+                                float4 lightPass <span class="token operator">=</span> <span class="token function">CalcLightingColor</span><span class="token punctuation">(</span>lights<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>position<span class="token punctuation">,</span> lights<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>direction<span class="token punctuation">,</span> lights<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>color<span class="token punctuation">,</span> lights<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>falloff<span class="token punctuation">,</span> input<span class="token punctuation">.</span>worldpos<span class="token punctuation">.</span>xyz<span class="token punctuation">,</span> pixelNormal<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                                <span class="token keyword keyword-if">if</span> <span class="token punctuation">(</span>sampleShadowMap <span class="token operator">&amp;&amp;</span> i <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span>
+                                <span class="token punctuation">{</span>
+                                    lightPass <span class="token operator">*=</span> <span class="token function">CalcUnshadowedAmountPCF2x2</span><span class="token punctuation">(</span>i<span class="token punctuation">,</span> input<span class="token punctuation">.</span>worldpos<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                                <span class="token punctuation">}</span>
+                                totalLight <span class="token operator">+=</span> lightPass<span class="token punctuation">;</span>
+                            <span class="token punctuation">}</span>
+                            <span class="token keyword keyword-return">return</span> diffuseColor <span class="token operator">*</span> <span class="token function">saturate</span><span class="token punctuation">(</span>totalLight<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                        <span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span style="height: 22.5px;"></span><span style="height: 22.5px;"></span><span style="height: 22.5px;"></span><span style="height: 22.5px;"></span><span style="height: 22.5px;"></span><span style="height: 22.5px;"></span><span style="height: 22.5px;"></span><span style="height: 45px;"></span><span style="height: 22.5px;"></span><span style="height: 22.5px;"></span><span style="height: 22.5px;"></span><span style="height: 22.5px;"></span><span style="height: 22.5px;"></span><span style="height: 22.5px;"></span><span style="height: 22.5px;"></span><span style="height: 22.5px;"></span></span><span class="line-numbers-sizer" style="display: none;"></span></code></pre></div></li> 
+                            <li><p>Select the ISA type in the Shader Code drop-down list to analyze the GEN Assembly.</p> </li> 
+                           </ol>
+
+                           <div class="col-12">
+                                <img src="../img/rushita_img/shader1.png" alt="" width="100%">
+                            </div>
+                           <p>In the GEN Assembly, you can find the instructions, which are generated by Intel® Graphics Compiler. The example also contains a lot of complex math operations, such as &nbsp;square roots, inverse square roots and inversions:</p>
+                           <ul id="GUID-022FC98D-929D-4D81-8D4F-0925B82EE2F6"> 
+                            <li><p>math.sqt – 3 instructions</p> </li> 
+                            <li><p>math.rsqt – 9 instructions</p> </li> 
+                            <li><p>math.inv -– 7 instructions</p> </li> 
+                           </ul>
+                           <p>There is also a lot of arithmetic operations: 83 multiplications and 80 fused multiply/add instructions. &nbsp;To optimize the Shader Execution bottleneck, you can try to reduce unnecessary &nbsp;computations in a shader code or simplify a shader.</p>
                            <div class="p-3 mb-4" style="background-color: #E2E7Eb;"> 
                               <b>NOTE:</b> 
-                            The ITT API is a set of pure C/C++ functions. There are no Java* or .NET* APIs. If you need runtime environment support, you can use a JNI, or C/C++ function call from the managed code. If the collector causes significant overhead or data storage, you can pause the analysis to reduce the overhead. 
+                             If a shader has loops or branches, the number of executed instructions may not correspond to the execution count in the assembly code. 
                            </div>
-                           <h2 class="fw-light">See Also</h2>
-                           <ul> 
-                            <li class="k_plink1 k_bluehover1"><a href="../rushita_Solutions/k_solutions_Compile-and-Link-with-ITT-API.html">Compile and Link with ITT API</a></li> 
-                            <li class="k_plink1 k_bluehover1"><a href="#">Instrument Your Application</a></li> 
-                            <li class="k_plink1 k_bluehover1"><a href="#">Minimize ITT API Overhead</a></li> 
-                            <li class="k_plink1 k_bluehover1"><a href="#">Clock Domain API</a></li> 
-                            <li class="k_plink1 k_bluehover1"><a href="#">Counter API</a></li> 
-                            <li class="k_plink1 k_bluehover1"><a href="#">Domain API</a></li> 
-                            <li class="k_plink1 k_bluehover1"><a href="#">Marker API</a></li> 
-                            <li class="k_plink1 k_bluehover1"><a href="#">Metadata API</a></li> 
-                            <li class="k_plink1 k_bluehover1"><a href="#">Relation API</a></li> 
-                            <li class="k_plink1 k_bluehover1"><a href="#">String Handle API</a></li> 
-                            <li class="k_plink1 k_bluehover1"><a href="#">Thread Naming API</a></li> 
-                            <li class="k_plink1 k_bluehover1"><a href="#">Task API</a></li> 
-                           </ul>
+
+                        <h2 class="fw-light my-4">Perform Optimization</h2>
+                        <p>Once you determined the areas for optimization, try the following corresponding &nbsp;changes to fix the Shader Execution bottleneck:</p>
+                        <ol> 
+                            <li><p>Eliminate the constant condition to remove the flow control.</p> <p>Consider the following condition inside the loop:</p> <div class="code-toolbar component" data-component="wa_skip_track" data-component-id="1"><div class="toolbar show" style="float: right;"><div class="toolbar-item"><i class="fa-docs"></i></div></div><pre class=" language-cpp line-numbers"><code class=" language-cpp"><span class="token number">166</span> <span class="token keyword keyword-if">if</span> <span class="token punctuation">(</span>sampleShadowMap <span class="token operator">&amp;&amp;</span> i <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span>
+                        <span class="token number">167</span> <span class="token punctuation">{</span>
+                        <span class="token number">168</span> lightPass <span class="token operator">*=</span> <span class="token function">CalcUnshadowedAmountPCF2x2</span><span class="token punctuation">(</span>i<span class="token punctuation">,</span> input<span class="token punctuation">.</span>worldpos<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                        <span class="token number">169</span> <span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span style="height: 22.5px;"></span><span style="height: 22.5px;"></span><span style="height: 22.5px;"></span><span style="height: 22.5px;"></span></span><span class="line-numbers-sizer" style="display: none;"></span></code></pre></div><p><samp class="codeph">sampleShadowMap</samp> is a constant from SceneConstantBuffer. To view the constant buffer content, open the Shader Resource list by clicking the 
+                            
+                                <img src="../img/rushita_img/fx.png" alt="" width="25">
+                      
+                            
+                            button.</p>  
+                             <div class="col-12">
+                                <img src="../img/rushita_img/shader2.png" alt="" width="100%">
+                            </div></li> 
+                            <li><p>Click the resource binding description to open the buffer in the Resource Viewer.</p> 
+                             <div class="col-12 col-md-8">
+                                <img src="../img/rushita_img/shader3.png" alt="" width="100%">
+                            </div>
+                            <div class="col-12 col-md-8">
+                                <img src="../img/rushita_img/shader4.png" alt="" width="100%">
+                            </div>
+                            <p>Since <samp class="codeph">sampleShadowMap</samp> equals to 1, the condition <samp class="codeph">sampleShadowMap &amp;&amp; i == 0</samp> equals to <samp class="codeph">i==0</samp>. The modification makes shader linear without &nbsp;flow control instructions, the number of assembly lines reduces from 280 &nbsp;to 263. The only basic block - linear sequence of instructions - contains &nbsp;262 instructions. It affects the performance insignificantly, but simplifies &nbsp;the further shader analysis.</p> </li> 
+                            <li><p>Reduce the number of complex math and floating point instructions.</p> <p>Though there are no explicit square roots in the shader source, these instructions are produced by the <samp class="codeph">normalize()</samp> and <samp class="codeph">length()</samp> HLSL intrinsics:</p> <div class="code-toolbar component" data-component="wa_skip_track" data-component-id="1"><div class="toolbar show" style="float: right;"><div class="toolbar-item"><i class="fa-docs"></i></div></div><pre class=" language-cpp line-numbers"><code class=" language-cpp"><span class="token number">58</span>  vVertNormal <span class="token operator">=</span> <span class="token function">normalize</span><span class="token punctuation">(</span>vVertNormal<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                        <span class="token number">59</span>  vVertTangent <span class="token operator">=</span> <span class="token function">normalize</span><span class="token punctuation">(</span>vVertTangent<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                        <span class="token number">61</span>  float3 vVertBinormal <span class="token operator">=</span> <span class="token function">normalize</span><span class="token punctuation">(</span><span class="token function">cross</span><span class="token punctuation">(</span>vVertTangent<span class="token punctuation">,</span> vVertNormal<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                        <span class="token number">87</span> <span class="token keyword keyword-float">float</span> fCosAngle <span class="token operator">=</span> <span class="token function">dot</span><span class="token punctuation">(</span>vLightToPixelNormalized<span class="token punctuation">,</span>  vLightDir <span class="token operator">/</span> <span class="token function">length</span><span class="token punctuation">(</span>vLightDir<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span style="height: 22.5px;"></span><span style="height: 22.5px;"></span><span style="height: 22.5px;"></span><span style="height: 22.5px;"></span></span><span class="line-numbers-sizer" style="display: none;"></span></code></pre></div><p>You can find a vertex buffer in the Graphics Frame Analyzer in the same way as the constant buffer content using the <strong>Shader Resource</strong> panel. If you look at the vertex buffer content, you can see that Normal and Tangent vertex attributes are normalized on the CPU and therefore can be removed from the shader code.</p>   
+                        <div class="col-12 col-md-8">
+                            <img src="../img/rushita_img/shader4.png" alt="" width="100%">
+                        </div>
+                        <p>You can also remove divisions by <samp class="codeph">vFalloffs.y</samp> and <samp class="codeph">vFalloffs.w</samp>:</p> <div class="code-toolbar component" data-component="wa_skip_track" data-component-id="1"><div class="toolbar show" style="float: right;"><div class="toolbar-item"><i class="fa-docs"></i></div></div><pre class=" language-cpp line-numbers"><code class=" language-cpp"><span class="token number">81</span>  <span class="token keyword keyword-float">float</span> fDistFalloff <span class="token operator">=</span> <span class="token function">saturate</span><span class="token punctuation">(</span><span class="token punctuation">(</span>vFalloffs<span class="token punctuation">.</span>x <span class="token operator">-</span> fDist<span class="token punctuation">)</span> <span class="token operator">/</span> vFalloffs<span class="token punctuation">.</span>y<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                        <span class="token number">88</span> <span class="token keyword keyword-float">float</span> fAngleFalloff <span class="token operator">=</span> <span class="token function">saturate</span><span class="token punctuation">(</span><span class="token punctuation">(</span>fCosAngle  <span class="token operator">-</span> vFalloffs<span class="token punctuation">.</span>z<span class="token punctuation">)</span> <span class="token operator">/</span> vFalloffs<span class="token punctuation">.</span>w<span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span style="height: 22.5px;"></span><span style="height: 22.5px;"></span></span><span class="line-numbers-sizer" style="display: none;"></span></code></pre></div><p>These divisions are redundant, because their divisors are equal to 1. &nbsp;Generally, such divisions can be replaced &nbsp;with multiplication by the inverse parameter.</p> <p>Light intensity depends on the distance passed from a light position to a pixel. Light attenuation starts from distance 800, the vFalloffs.x parameter. The bounding box size in the sample shader is much smaller than the distance that causes light attenuation.</p> <p>
+                            <div class="col-12 col-md-12">
+                                <img src="../img/rushita_img/shader5.png" alt="" width="100%">
+                            </div>
                         
+                        </p> <p>You can remove the distance attenuation without rendering impact, because the <samp class="codeph">saturate(vFalloffs.x - fDist)</samp> &nbsp;expression always equals 1. Upon the distance attenuation removal, the &nbsp;shader contains only one inverse instruction and three inverse square &nbsp;root instructions.</p> <p>Shader performs two subsequent vector-matrix multiplications:</p> <div class="code-toolbar component" data-component="wa_skip_track" data-component-id="1"><div class="toolbar show" style="float: right;"><div class="toolbar-item"><i class="fa-docs"></i></div></div><pre class=" language-cpp line-numbers"><code class=" language-cpp"><span class="token number">103</span>  vLightSpacePos <span class="token operator">=</span> <span class="token function">mul</span><span class="token punctuation">(</span>vLightSpacePos<span class="token punctuation">,</span> lights<span class="token punctuation">[</span>lightIndex<span class="token punctuation">]</span><span class="token punctuation">.</span>view<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                        <span class="token number">104</span>  vLightSpacePos <span class="token operator">=</span> <span class="token function">mul</span><span class="token punctuation">(</span>vLightSpacePos<span class="token punctuation">,</span> lights<span class="token punctuation">[</span>lightIndex<span class="token punctuation">]</span><span class="token punctuation">.</span>projection<span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span style="height: 22.5px;"></span><span style="height: 22.5px;"></span></span><span class="line-numbers-sizer" style="display: none;"></span></code></pre></div><p>Instead of these subsequent multiplications &nbsp;by view and projection matrices, you can precompute the view-projection &nbsp;matrix on the CPU.</p> <p>As a result, the total number of instructions reduces&nbsp;from 262 to 189.</p> </li> 
+                            <li><p>Remove redundant function calls.</p>
+                                 <p>Lights 0 and lights 2 in <samp class="codeph">SceneConstantBuffer</samp> have the same parameters, &nbsp;that is the shader performs the same operations twice.</p> 
+                                 <div class="col-12 col-md-12">
+                                    <img src="../img/rushita_img/shader6.png" alt="" width="100%">
+                                </div>
+                                
+                                <p>Deleting one extra ComputeLightIntensity &nbsp;function call, reduces the number of instructions from 189 to 166.</p> <p>The performed optimizations reduce the number of instructions by 1.6 &nbsp;times compared to the original shader.</p> </li> 
+                           </ol>
+
+                        <h2 class="fw-light my-4">Verify Optimizations</h2>
+                        <p>To check that shader optimizations do not affect rendering, compare &nbsp;the original and modified render targets using the Diff Visualization mode in the Graphics Frame Analyzer:</p>
+                        <div class="col-12 col-md-12">
+                            <img src="../img/rushita_img/shader7.png" alt="" width="100%">
+                        </div>
+                        <p>There are no visual changes, a small difference becomes visible on the Color Histogram scaling, as the operations order in the code slightly changed.</p>
+                        <p>The performed optimizations reduce the draw call duration from 549 to &nbsp;367 us, which gives a 1.5x performance gain. The primary bottleneck in the sample frame moves to the L3 cache:</p>
+                        <div class="col-12 col-md-12">
+                            <img src="../img/rushita_img/shader8.png" alt="" width="100%">
+                        </div>
+
+                        <h2 class="fw-light my-4">See Also</h2>
+                        <p class="k_plink1 k_bluehover1"><a href="#">How &nbsp;to find a bottleneck with Graphics Frame Analyzer</a></p>
+                        <p class="k_plink1 k_bluehover1"><a href="#">Intel® &nbsp;Processor Graphics developer guides</a></p>
+                        <p class="k_plink1 k_bluehover1"><a href="#">Gen9 &nbsp;Compute Architecture</a></p>
+                        <p class="k_plink1 k_bluehover1"><a href="#">Introduction &nbsp;to GEN Assembly</a></p>
                     </div>
                     <div class="d-md-flex justify-content-between">
                         <div>
