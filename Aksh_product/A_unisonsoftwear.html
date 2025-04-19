@@ -6,6 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Intel® Unison™ Application</title>
     <link rel="stylesheet" href="../css/A_unisonsoft.css">
+    <link rel="stylesheet" href="/css/dk_nav_header.css">
+    <!-- header footer -->
+    <link rel="stylesheet" href='/css/yatri.css'>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
@@ -13,7 +16,28 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
+<style>
+    nav{
+        position: relative !important;
+    }
+</style>
+
 <body>
+
+    <!-- header -->
+    <div id="navbar"></div>
+
+    <!-- --------------------------------------------------------------------- -->
+    <section>
+        <nav class="mb_sub_nv">
+            <div class="mv_breadcrumb">
+                <ol class="mv_spark_breadcrumb_items">
+                    <li><p class="mb-0">Intel® Unison™ Application</p></li>
+                </ol>
+            </div>
+        </nav>
+    </section>
+    <!-- ----------------------------------------------------------------------->  
     <!-- //////////////////////////// main section ///////////////////////////////// -->
     <div class="v_mainsec">
         <div class="v_bluebox">
@@ -532,6 +556,79 @@
                 </div>
             </div>
         </div>
+
+        <!-- footer -->
+    <div id="footer"></div>
+
+    <!-- script header and footer -->
+    <script>
+        // navbar include  
+        fetch('/y_index/y_navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar').innerHTML = data;
+            });
+        // footer include 
+        fetch('/y_index/y_footer.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('footer').innerHTML = data;
+            });
+    </script>
+
+    <!-- nav script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const nav = document.querySelector('.VK_client_app_navigation');
+            const navLinks = document.querySelectorAll('.VK_ai_nav_bar a');
+            const sections = document.querySelectorAll('section[id]');
+            let navOffset = nav.offsetTop;
+
+            // Add smooth scrolling to all links
+            navLinks.forEach(link => {
+                link.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+
+            // Sticky Navigation
+            window.addEventListener('scroll', () => {
+                if (window.pageYOffset >= navOffset) {
+                    nav.classList.add('VK_sticky_nav_bar');
+                } else {
+                    nav.classList.remove('VK_sticky_nav_bar');
+                }
+                // Section highlighting
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop - nav.clientHeight;
+                    const sectionHeight = section.clientHeight;
+                    console.log(sectionTop);
+                    console.log(sectionHeight);
+                    if (window.pageYOffset >= sectionTop && window.pageYOffset <= sectionTop + sectionHeight) {
+                        navLinks.forEach(link => {
+                            link.classList.remove('active');
+                            if (link.getAttribute('href') === `#${section.id}`) {
+                                link.classList.add('active');
+
+                                // Ensure the active link is visible in the nav bar
+                                const navBar = document.querySelector('.VK_ai_nav_bar');
+                                const activeLink = document.querySelector('.VK_ai_nav_bar a.active');
+                                const linkRect = activeLink.getBoundingClientRect();
+                                const navBarRect = navBar.getBoundingClientRect();
+
+                                if (linkRect.left < navBarRect.left || linkRect.right > navBarRect.right) {
+                                    activeLink.scrollIntoView({ inline: 'center', behavior: 'smooth' });
+                                }
+                            }
+                        });
+                    }
+                });
+            });
+        });
+    </script>
 
 
         <script src="../js/A_unison.js"></script>
