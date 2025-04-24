@@ -3,7 +3,8 @@ const processorData = [
     {
         imgSrc: '../img/Akshay image/idl-a1160579-white-blue-background.png.rendition.intel.web.64.64.png',
         title: 'Intel® Killer™ Wi-Fi Products',
-        description: 'Find out how Intel® Killer™ Wi-Fi products deliver next-level online gaming experiences.'
+        description: 'Find out how Intel® Killer™ Wi-Fi products deliver next-level online gaming experiences.',
+        herf:'/rushita_Solutions/k_solutions_in_Viewall_Higher-Education_Versatile-Connectivity_Intel_Killer-Wi-Fi-Product.html'
     },
     {
         imgSrc: '../img/Akshay image/wifi-7-badge.png.rendition.intel.web.64.64.png',
@@ -13,7 +14,8 @@ const processorData = [
     {
         imgSrc: '../img/Akshay image/wifi-6e-gig-badge.png.rendition.intel.web.64.64.png',
         title: 'Intel® Wi-Fi 6E Products',
-        description: 'Use Intel® Wi-Fi 6E to maximize the benefits of Intel® Wi-Fi 6 free from the interference of legacy Wi-Fi devices.'
+        description: 'Use Intel® Wi-Fi 6E to maximize the benefits of Intel® Wi-Fi 6 free from the interference of lega0cy Wi-Fi devices.',
+        herf:'/rushita_Solutions/k_solutions_in_Viewall_H-E_Versatile-Connectivity_Intel_Wi-Fi%206E-(Gig)Products.html'
     },
     {
         imgSrc: '../img/Akshay image/wifi-6-gig-badge.png.rendition.intel.web.64.64.png',
@@ -41,7 +43,7 @@ function generateProcessorHTML(data) {
                 <div class="col-md-4 d-flex align-items-center">
                     ${imageHtml}
                     <div>
-                        <a href="#" class="v_text_1 v_text_11">
+                        <a href=${data.herf} class="v_text_1 v_text_11">
                             <div>${data.title}</div>
                         </a>
                     </div>
