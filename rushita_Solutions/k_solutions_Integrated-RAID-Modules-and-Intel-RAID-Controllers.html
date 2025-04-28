@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unable to Install My OS or Boot to a Partition Larger than 2 TB with Intel® Integrated RAID Modules and Intel® RAID Controllers</title>
+    <link rel="stylesheet" href="../css/db_style.css">
+    <link href="https://fonts.cdnfonts.com/css/intel-clear" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+        integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" /> -->
+    <link href="../css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/yatri.css">
+    <link rel="stylesheet" href="../css/yatri1.css">
+    <link rel="stylesheet" href="../css/rushita_automotive.css">
+    <link rel="stylesheet" href="../css/rushita.css">
+    <script src="../js/all.min.js"></script>
+    <style>
+        * {
+            font-family: 'Intel Clear', sans-serif;
+        }
+
+        .custom_p {
+            font-size: 20px;
+        }
+
+        .custom_a {
+            font-size: 20px;
+            border-bottom: 1px dashed #0068b5;
+            color: #0068b5;
+            text-decoration: none;
+        }
+
+        .custom_a:hover {
+            border-bottom: 2px solid #085ea0;
+        }
+
+        .y_grey_box {
+            background-color: #efefef;
+            display: flex;
+            padding: 10px;
+            align-items: center;
+        }
+
+        .y_caulition_box {
+            border: 1px solid black;
+        }
+
+        .y_border_left {
+            border-left: 1px solid black;
+        }
+
+        .y_newBack {
+            background-image: url(/img/denisha_img/newBack.png) !important;
+        }
+
+        .hide-part {
+            display: none;
+        }
+
+        .show-part {
+            display: block;
+        }
+
+        .video-container {
+            position: relative;
+            width: 100%;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .thumbnail {
+            width: 100%;
+            height: auto;
+        }
+
+        .play-button {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 60px;
+            height: 60px;
+            cursor: pointer;
+        }
+
+        #myVideo {
+            width: 100%;
+            height: auto;
+            display: none;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        td,
+        th {
+            border: 1px solid #dddddd !important;
+            text-align: left;
+            padding: 8px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="navbar" class="pb-4"></div>
+    <main class="db_graphics_main pt-5 ">
+
+        <div class="s_product d-flex">
+            <div class="dropdown">
+                <p class="m-0 k_plink1"><a href="#">Product Support</a></p>
+            </div>
+            &nbsp;<span style="color: #dad7d7;">/</span>&nbsp;
+            <!-- <p class="fw-bold text-dark">Intel® Support</p> -->
+            <div class="dropdown">
+                <p class="m-0 k_plink1"><a href="#">Server Products</a></p>
+
+            </div>
+        </div>
+
+        <!-- support banner section  -->
+        <section class="db_contact_banner y_newBack ">
+            <div class="db_container">
+                <div class="row py-4">
+                    <div class="col-12 my-4">
+                        <h3 class="text-capitalize fw-light text-center">Support Knowledge Base</h3>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 1st section  -->
+        <!-- navbar  -->
+        <section>
+            <div class="db_container">
+                <div class="row">
+                    <div class="col-lg-6 my-5">
+                        <h2 class="fw-light">Basic Troubleshooting Guide for Intel® RAID Controller–Related Issues
+                        </h2>
+                        <p>Content Type: Install & Setup   |   Article ID: 000007722   |   Last Reviewed: 02/27/2025
+                        </p>
+
+
+                        <div class="mt-5">
+                            <p>The RAID Option ROM may report either <em>No volumes handled by BIOS</em>&nbsp;or <em>Zero Virtual Drives handled by BIOS</em>&nbsp;when a capacity volume greater than 2 TB is created.</p>
+                            <p><b>Why am I seeing it?</b><br>This may be due to the Legacy BIOS being set to use the MBR for boot.&nbsp; With large-capacity disk drives,<b><sup>1</sup></b> you can reach the 2 TB boundary for physical drives and for bootable RAID volumes. The legacy BIOS master boot record (MBR) cannot handle physical drives larger than 2 TB or boot to a RAID volume greater than 2 TB.</p>
+                            <p>An MBR has a partition table describing the partitions of a storage device. The maximum size of an MBR partition cannot exceed 2 TB (2.19 TB). MBRs are constrained by supporting only four main partitions and a volume size of less than 2 TB. These constraints inhibit their use in larger volume sizes.</p>
+                            <p><b>How to fix it</b><br>For large-capacity physical drives, you can use the RAID BIOS console to configure them, but they may not display during POST when the RAID option ROM scan drives.</p>
+                            <p>You must enable UEFI optimized boot in the system BIOS and use a GUID Disk Partition Table (GPT) on a hardware&nbsp;Intel®&nbsp;RAID array under an UEFI environment to boot from them.</p>
+                            <p>A GUID Partition Table (GPT) is a layout of the partition table that enables a disk partition to exceed the MBR maximum of 2.19 TB.<br>&nbsp;</p>
+                            <p class="k_plink1 k_intext1blue1"><b><sup>1</sup></b> If you are using 4Kn drives,&nbsp;<a href="../rushita_Solutions/k_solutions_Advanced-Format-with-Intel-RAID-and-Intel.html">refer to the TA-1085-4: 4Kn and 512e Advanced Format with Intel® RAID and Intel® Server Boards</a>&nbsp;article.</p>
+
+                        </div>
+                    </div>
+                    <div class="row">
+                        <p><b>
+                                Related Information</b></p>
+                        <div>
+                            <p class="k_plink1 k_bluehover1"><a href="#">Using GPT (GUID Partition Table) with Intel® RAID Controllers</a>: This paper describes how to install an operating system (OS) using GPT on a&nbsp;hardware Intel RAID array under an UEFI environment.</p>
+                        </div>
+                    </div>
+                   
+        </section>
+        <div class="y_needHelpSec py-5 d-flex justify-content-center align-items-center">
+            <div class="d-flex align-items-center y_gp_3">
+                <h4 class="fw-light">Need more help?</h4>
+                <a href="#" class="text-decoration-none y_needBtn">Contact Support</a>
+            </div>
+        </div>
+    </main>
+    <div id="footer"></div>
+    <script src="/js/y_subnav.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+    <script>
+        $(document).ready(function () {
+            $(".one").click(function () {
+                $(this).addClass("db_active").siblings().removeClass("db_active");
+            });
+        });
+
+    </script>
+    <script>
+        const showMoreBtn = document.getElementById("showMoreBtn");
+        const showLessBtn = document.getElementById("showLessBtn");
+        const hiddenContent = document.getElementById("hiddenContent");
+        const showMoreContainer = document.getElementById("showMoreContainer");
+
+        showMoreBtn.addEventListener("click", function (e) {
+            e.preventDefault();
+            hiddenContent.classList.remove("hidden"); // Show content
+            showMoreContainer.classList.add("hidden"); // Hide "Show more"
+        });
+
+        showLessBtn.addEventListener("click", function (e) {
+            e.preventDefault();
+            hiddenContent.classList.add("hidden"); // Hide content
+            showMoreContainer.classList.remove("hidden"); // Show "Show more"
+        });
+    </script>
+    <script>
+        // navbar include
+        fetch('../y_index/y_navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar').innerHTML = data;
+            });
+        // footer include 
+        fetch('/y_index/y_footer.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('footer').innerHTML = data;
+            });
+    </script>
+    <script>
+        const playButton = document.querySelector('.play-button');
+        const video = document.getElementById('myVideo');
+        const thumbnail = document.querySelector('.thumbnail');
+
+        playButton.addEventListener('click', function () {
+            thumbnail.style.display = 'none';
+            playButton.style.display = 'none';
+            video.style.display = 'block';
+            video.play();
+        });
+
+        video.addEventListener('pause', function () {
+            if (video.currentTime === 0 || video.ended) {
+                video.style.display = 'none';
+                thumbnail.style.display = 'block';
+                playButton.style.display = 'block';
+            }
+        });
+    </script>
+</body>
+
+</html>
