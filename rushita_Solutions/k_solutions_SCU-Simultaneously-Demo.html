@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Demo for Intel® RAID Products and Technologies</title>
+    <title>Configure Intel® Embedded Server RAID Technology II Using BIOS Console Demo for Server Products</title>
     <link rel="stylesheet" href="../css/db_style.css">
     <link href="https://fonts.cdnfonts.com/css/intel-clear" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -138,40 +138,86 @@
             <div class="db_container">
                 <div class="row">
                     <div class="col-lg-6 my-5">
-                        <h2 class="fw-light">Demo for Intel® RAID Products and Technologies
+                        <h2 class="fw-light">Configuring Intel® Embedded Server RAID Technology 2 Using AHCI and SCU
+                            Simultaneously Demo
                         </h2>
-                        <p>Content Type: Install & Setup | Article ID: 000007762 | Last Reviewed: 02/06/2020
+                        <p>Content Type: Install & Setup | Article ID: 000006197 | Last Reviewed: 02/27/2025
                         </p>
                         <div class="mt-5">
-                            <p>This workshop is designed to provide the student with:</p>
+                            <p>Complete the steps to configure Intel® Embedded Server RAID Technology 2 for AHCI and SCU
+                                simultaneously.</p>
+                            <p>Configure Intel® Embedded Server RAID Technology II Using BIOS Console Demo for Server
+                                Products Using Intel® Server Board S2600CO2 as an example, the board has the following:
+                            </p>
                             <ul>
-                                <li>An understanding of the correct methods of measuring RAID performance</li>
-                                <li>An understanding of the performance impact of RAID cache settings</li>
+                                <li>
+                                    <p>Two white ports of 6 GBPS (SATA 0 and SATA 1) from the AHCI controller. The white
+                                        ports are SATA by default, and cannot be changed to SAS.</p>
+                                </li>
+                                <li>
+                                    <p class="k_plink1 k_intext1blue1">Eight blue ports (SATA/SAS_0 to SATA/SAS_7) from SCU controller. But, you can
+                                        change the blue SATA ports (default), to SAS by connecting a RAID upgrade Key.
+                                        See the <i>How to Configure Intel® Embedded Server RAID Technology 2 Using AHCI
+                                            and SCU Simultaneously</i>&nbsp;section in the&nbsp;<a
+                                            href="#">Technical
+                                            Product Specification</a>.</p>
+                                </li>
+                                <li>
+                                    <p>Four hard drives. Two hard drives each of 6 Gb/s and 3 Gb/s, and No Upgrade Key.
+                                        There are 4 blue ports that are active: SATA/SAS_0, SATA/SAS_1, SATA/SAS_2, and
+                                        SATA/SAS_3.</p>
+                                </li>
                             </ul>
-                            <p>This workshop contains the following labs:</p>
-                            <ul>
-                                <li>Lab 1: Correct Methods of Measuring RAID Performance</li>
-                                <li>Lab 2: Impact of Cache Settings on RAID Performance</li>
-                            </ul>
-                            <p class="k_plink1 k_intext1blue1">The workshop package includes the <a
-                                    href="#">Intel®
-                                    Server RAID Q1 2009 boot camp training lab workbook</a> material to demonstrate the
-                                lab progress. The estimated time to complete this workshop is 1 hour.</p>
-                            <p>Please print out the lab workbook material and follow the online video to understand the
-                                background of the labs and practice the virtual lab online.</p>
-                            <div class="scrollable-table-container p-3" style="background-color: #F2F2F2;">
-                              <strong>Notes</strong>
-                                                <ol>
-                                                    <li>To avoid any unexpected issue or misuse, the file ClearVD.bat
-                                                        and the file iometer.icf used in the boot camp training are not
-                                                        available for download.</li>
-                                                    <li>Although there is a quiz at the end of the video, no information
-                                                        will be saved locally, or reported back to Intel.</li>
-                                                </ol>
-                                           
+                            <p>Steps:</p>
+                            <ol>
+                                <li>Connect two hard drives of 6 Gb/s in the White ports, SATA 0 and SATA 1.</li>
+                                <li>Connect two hard drives of 3 Gb/s in the blue ports, SATA/SAS_0 and SATA/SAS_1.</li>
+                                <li>Power on the Server. When prompted, press F2 to enter BIOS.</li>
+                                <li>Disable <b>Quiet boot</b> from the Main Option.</li>
+                                <li>Navigate to <b>Advanced &gt; Mass Storage Controller Configuration</b>.</li>
+                                <li>Change AHCI controller configuration to <b>RAID</b>.</li>
+                                <li>Change AHCI capable SATA controller to <b>LSI ESRT</b>.</li>
+                                <li>Change SAS/SATA controller Configuration to <b>LSI ESRT</b>.</li>
+                                <li>Press <b>F10</b> to Save the settings and restart the server.</li>
+                                <li>When the system restarts, you are prompted to press <b>CTRL+E</b> option to Enter
+                                    Embedded Server RAID Technology. This option is for the hard drives that are
+                                    connected to the AHCI controller.</li>
+                                <li>When you see the Management Options, click <b>Configure</b>.</li>
+                                <li>Go to <b>New Configuration</b>. When asked if you want to Proceed, select <b>Yes</b>
+                                    and select the hard drives which have Status Ready with your mouse. Press the
+                                    <b>Space bar</b> on the selected hard drives. This action changes the status to
+                                    Online.</li>
+                                <li>Press <b>F10</b>, press <b>space bar</b> to get SPAN-01. Press <b>F10</b>. Select
+                                    the RAID level. Click <b>Accept</b>. Press <b>space bar</b>.</li>
+                                <li>Press <b>ESC</b> once, to get Save Configuration, click <b>Yes</b>.</li>
+                                <li>Press <b>ESC</b> until you get Management Options again.</li>
+                                <li>Click <b>Initialize</b>. Press <b>space bar</b> to select the Virtual Drive.</li>
+                                <li>Press <b>F10</b> to start the initialization process.</li>
+                                <li>When completed, press <b>ESC</b> to Exit and click <b>Yes</b>. Press
+                                    <b>CTRL+ALT+DEL</b> to start.</li>
+                                <li>After restarting, you see CTRL+E prompt. Skip this, and you are prompted to press
+                                    CTRL+E again for the AHCI Controller.</li>
+                                <li>Follow the same steps used for the AHCI controller (steps 10-18), to configure RAID
+                                    in ESRT-2 for ACHI Controller.</li>
+                            </ol>
+                            <p>This completes the guide on how to configure RAID on both the onboard SATA controller.
+                            </p>
+
+
+                            <div class="scrollable-table-container p-3" style="background-color: #F2F2F2; border: 2px solid #dad7d7;">
+                                <b>Note</b>
+                                            These instructions might also be applicable to Intel® Server Boards that
+                                                utilizes the following Intel® Chipsets: C600, C222, C224, and C226.
                             </div>
                         </div>
 
+                    </div>
+                    <div class="row">
+                        <p><b>Related Information</b></p>
+                        <p class="k_plink1 k_intext1blue1"><a href="#">
+                            Configure Intel® Embedded Server RAID Technology II Using BIOS Console Demo for Server Products
+                            </a></p>
+                        
                     </div>
                     <div class="row">
                         <h5 class="fw-bold">Related Products</h5>
