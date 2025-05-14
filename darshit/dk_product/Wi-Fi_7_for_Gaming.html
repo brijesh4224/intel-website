@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Using NicheStack TCP/IP Stack – Nios® II Edition</title>
+    <link rel="stylesheet"href="/css/dk_developer_edge_iot_&_5G_optimize_fine_tuning_and_deployment_of_LLMs_on_an_ai_pc.css">
+    <link rel="stylesheet" href="/css/rushita_automotive.css">
+    <!-- header footer -->
+    <link rel="stylesheet" href='/css/yatri.css'>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" rel="stylesheet">
+</head>
+
+<style>
+    .dk_main_heading{
+        background-color: #262626;
+        color: #fff;
+    }
+    .dk_caption{
+        background: rgba(0, 0, 0, 0.7);
+        color: #fff;
+        text-align: left;
+        font-size: .875rem;
+        padding: 20px 15px;
+    }
+    .mv_intel_wifi7_amx_content {
+        padding-right: 0px;
+        margin-right: calc(var(--bs-gutter-x) * 0) !important;
+        margin-left: calc(var(--bs-gutter-x) * 0) !important;
+    }
+    .dk_intel_wifi7_col{
+        padding-right: calc(var(--bs-gutter-x) * 0) !important;
+        padding-left: calc(var(--bs-gutter-x) * 0) !important;
+    }
+    .m_scon {
+            align-items: center;
+            padding: 15px 0;
+            display: flex;
+        }
+
+        .m_stxt {
+            color: #545454;
+            font-size: 16px;
+            margin: 0 10px;
+            text-align: center;
+        }
+
+        .m_sline {
+            height: 1px;
+            flex: 1;
+            background-color: #d7d7d7;
+        }
+
+        .m_color {
+            color: #0068b5 !important;
+        }
+
+        nav {
+            position: relative !important;
+        }
+
+        .dk_new_options_table {
+            border: none !important;
+            justify-content: center !important;
+            text-align: center !important;
+        }
+
+        .dk_new_options_table thead tr td {
+            margin-left: 0;
+            max-width: fit-content;
+            white-space: normal;
+            overflow: auto;
+            background: #fff;
+            padding: 1rem;
+            text-align: left;
+            border-left: .125rem solid #e2e2e2;
+            font-weight: 700 !important;
+        }
+
+        .dk_new_options_table thead tr:nth-child(even) td {
+            background-color: #f7f7f7;
+        }
+
+        .mv_intel_amx h2 {
+            font-weight: 300;
+        }
+
+        .mv_intel_amx {
+            font-size: 1.25rem;
+        }
+
+        .mv_intel_amx_bg_color {
+            background-color: #0068B5;
+        }
+
+        .mv_intel_amx_content {
+            padding-right: 200px;
+        }
+
+        .mv_intel_amx_item {
+            align-content: center;
+        }
+
+        .mv_intel_amx {
+            color: #fff;
+            padding: 1rem;
+        }
+
+        .mv_intel_amx h3 {
+            font-weight: 300;
+        }
+
+        .mv_intel_amx p {
+            margin-top: 1.5rem;
+            margin-bottom: 0rem;
+        }
+
+        .mv_intel_amx_image {
+            padding: 1rem;
+        }
+
+        .mv_intel_amx_image img {
+            width: 100%;
+            /* height: 199px; */
+        }
+
+        .mv_intel_amx_heading_text {
+            font-size: 1.2rem;
+            line-height: 1.15;
+        }
+
+        .VK_sidebar_active_link {
+            color: #262626;
+            font-weight: 700;
+        }
+
+        .VK_sidebar_active_link:hover {
+            color: #262626;
+        }
+
+        .VK_print_email_font span {
+            font-size: 1.375rem;
+        }
+
+        .VK_side_bar_postion_stickey {
+            position: sticky;
+            top: 0px;
+            z-index: 3;
+            background-color: #fff;
+        }
+
+        .VK_side_heading {
+            font-size: 26px;
+            font-weight: 400;
+        }
+
+        .VK_sidebar_dropdown P {
+            margin-left: .313rem !important;
+            margin-bottom: .313rem !important;
+        }
+
+        .VK_sidebar_dropdown details {
+            margin-left: .313rem !important;
+            margin-bottom: .313rem !important;
+        }
+        .m_scon {
+            align-items: center;
+            padding: 15px 0;
+            display: flex;
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .dk_Explore_Trends{
+            background-color: #000f8a;
+            color: #fff;
+            padding: 80px 0px;
+            text-align: center;
+        }
+        .dk_Explore_Trends_sub{
+            justify-content: center;
+        }
+    @media(max-width:768px){
+        .dk_main_heading{
+            padding: 1rem 0rem !important;
+        } 
+        .mv_intel_wifi7_amx_content {
+            padding-right: 0px !important;
+        } 
+    }
+</style>
+
+<body>
+
+    <!-- header -->
+    <div id="navbar"></div>
+
+    <section class="m_ai_tdrop">
+        <div>
+            <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Gaming
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item m_dropActive" href="#">Gaming Home</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Gaming Laptops</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Gaming Desktops</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Tips & Mods</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Overclocking</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Esports</a></li>
+            </ul>
+        </div>
+
+        <div class="m_ai_shlash">/</div>
+        <div class="m_ai_httl">Wi-Fi 7 for Gaming</div>
+
+    </section>
+
+    <!-- Optimize Fine-Tuning and Deployment of LLMs on an AI PC -->
+    <section>
+        <div class="dk_main_heading">
+                <div class="row mv_intel_wifi7_amx_content">
+                    <div class="col-md-6 dk_intel_wifi7_col">
+                        <img class="w-100" src="/img/darshit_image/wifi-7-article-header_1920-1080.avif" alt="">
+                    </div>
+                    <div class="col-md-6 align-content-center" style="padding: 3rem;">
+                        <h3 class="mb-3">Wi-Fi 7 for Gaming</h3>
+                        <h5>With a significant speed boost, Wi-Fi 7 can help you play your favorite games without lag and load multiplayer levels fast, even in multidevice homes.</h5>
+                    </div>
+                </div>
+        </div>
+    </section>
+
+    <section class="container py-5">
+        <div class="row">
+            <div class="d-flex justify-content-end col-xl-10 py-3 d-md-none">
+                <i class="fa-solid fa-print fs-4 px-2 " style="color:#0068B5"></i>
+                <i class="fa-regular fa-envelope fs-4 px-2" style="color:#0068B5"></i>
+            </div>
+            <div class="col-lg-3 col-md-4">
+                <!-- nav -->
+                <div class="VK_client_app_navigation VK_ai_navigation">
+                    <div class="justify-content-center align-items-center overflow-hidden flex-nowrap mb-4">
+                        <ul class="VK_ai_nav_bar list-unstyled m-0">
+                            <li>
+                                <a href="#dk_what_wi_fi" class="text-dark text-decoration-none d-block">
+                                    What Is Wi-Fi 7?
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#dk_benefits_wf7" class="text-dark text-decoration-none d-block">
+                                    The Benefits of Wi-Fi 7 for Gaming
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#dk_wi_fi6_wi_fi7" class="text-dark text-decoration-none d-block VK_ai_nav_link">
+                                    Wi-Fi 6 vs. Wi-Fi 7
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#dk_how_enable" class="text-dark text-decoration-none d-block">
+                                    How to Enable Wi-Fi 7 for Gaming
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#dk_wi_fi7_ethernet" class="text-dark text-decoration-none d-block">
+                                    Is Wi-Fi 7 Faster than Ethernet?
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#dk_consideration" class="text-dark text-decoration-none d-block">
+                                    Considerations for Not Adopting Wi-Fi 7
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#dk_get_started" class="text-dark text-decoration-none d-block">
+                                    Get Started
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="dk_things_code_main">
+                    <p><b>Key Takeaways</b></p>
+                    <ul style="padding-left: 1rem;">       
+                        <li><p>Wi-Fi 7 is the latest wireless connectivity standard, offering typical speeds of approximately 5.8 Gbps.<sup>1</sup></p></li>
+                        <li><p>You can download larger game files faster and maintain a low ping in your favorite games even with a busy network.</p></li>
+                        <li><p>You can get gigabit speeds in more areas of your home with access to the 6 GHz band.</p></li>
+                        <li><p>Compared to the previous-generation Wi-Fi 6, Wi-Fi 7 delivers more speed, less gaming latency, and better reliability.</p></li>
+                        <li><p>Wi-Fi 7 surpasses typical wired Ethernet speeds and can help you make the most of high-bandwidth ISP plans.</p></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-9 col-md-8">
+                <div class="d-md-flex justify-content-end col-xl-10 py-3 d-none">
+                    <i class="fa-solid fa-print fs-4 px-2 " style="color:#0068B5"></i>
+                    <i class="fa-regular fa-envelope fs-4 px-2" style="color:#0068B5"></i>
+                </div>
+                <div class="col-xl-10">
+                    <p>&nbsp;</p>
+                    <div style="font-size: 1.5rem; margin-bottom: 3rem;">
+                        <p style="font-weight: 350;">Get wired-like speed and low latency for fast gaming performance with Wi-Fi 7, the latest wireless connectivity standard. This generation doubles typical speeds and has advanced capabilities for prioritizing your signal strength with more devices on your network.</p>
+                    </div>
+                    <section id="dk_what_wi_fi">
+                        <div style="padding-bottom: 16px;">
+                            <p>&nbsp;</p>
+                            <h3><strong>What Is Wi-Fi 7?</strong></h3>
+                            <div style="font-size: 1.25rem;">
+                                <p>Wi-Fi 7, also referred to as 802.11be, is the latest in wireless networking protocols that are established and maintained by the Wi-Fi Alliance. Wi-Fi 7 offers a theoretical maximum speed of 46 Gbps; however, most gamers will experience speeds of approximately 5.8 Gbps.<sup>1</sup></p>
+                                <p>It’s important to note that numerous factors influence your actual wireless speed, including the bandwidth allocated by your internet service provider (ISP) plan, usage of the proper Wi-Fi equipment, network congestion from other devices, and physical interference from walls in your home or gaming space.</p>
+                            </div>
+                        </div>
+                    </section>
+                    <section id="dk_benefits_wf7">
+                        <p>&nbsp;</p>
+                        <div style="padding-bottom: 16px;">
+                            <h3><strong>The Benefits of Wi-Fi 7 for Gaming</strong></h3>
+                            <div style="font-size: 1.25rem;">
+                                <p>Wi-Fi 7 is built to handle larger game files and downloads and more wireless devices connected to your home network. With Wi-Fi 7, you can stream, chat, cast, play, look up guides, and watch video on demand simultaneously while minimizing lag and maintaining fast, stable, and high-performance gaming.<br>
+                                    By upgrading to Wi-Fi 7, you can benefit from:</p>
+                                <p class="mb-0">&nbsp;</p>
+                                <ul>
+                                    <li><strong>Advanced performance</strong>: In addition to delivering powerful connections greater than 5 Gbps (based on environment, equipment, and other conditions), Wi-Fi 7provides access to new high-speed channels in both 6 GHz and 5 GHz bands.<sup>2</sup></li>
+                                    <li><strong>Multichannel reliability</strong>: With simultaneous multi-link operation, Wi-Fi 7 can continuously optimize your connection to multiple channels at the same timeor by switching to noncongested channels dynamically.</li>
+                                    <li><strong>Robust security</strong>: Wi-Fi 7 integrates the latest WPA3 security protocols, which provide stronger encryption (256-bit AES vs. 128-bit AES with WPA2) and amore secure authentication method, to help keep your data and devices safe from unauthorized access.</li>
+                                </ul>
+                                <p><br>
+                                    In practical terms, Wi-Fi 7 delivers wired-like responsiveness while also enabling greater range for gigabit speeds throughout your home. You’ll be able to transmit large files in seconds instead of minutes, support 8K video streaming, and have multiple people connect, watch, or play on your network simultaneously without a huge hit to your gaming latency.</p>
+                            </div>
+                        </div>
+                    </section>
+                    <section id="dk_wi_fi6_wi_fi7">
+                        <p>&nbsp;</p>
+                        <div style="padding-bottom: 16px;">
+                            <h3><strong>Wi-Fi 6 vs. Wi-Fi 7</strong></h3>
+                            <div style="font-size: 1.25rem;">
+                                <p>Wi-Fi 7 delivers a dramatic leap in performance from the previous generation <a class="b_special_a1" href="">Wi-Fi 6 (802.11ax) standard</a>. With Wi-Fi 7, you can achieve approximate wireless speeds of 5.8 Gbps, compared to just 2.4 Gbps with Wi-Fi 6. Wi-Fi 7 can also deliver approximately 60 percent lower latencies compared to Wi-Fi 6.<sup>3</sup> Whereas Wi-Fi 6 brought wireless connections closer to parity with wired connections, Wi-Fi 7 can exceed the performance of wired Ethernet speeds.</p>
+                                <p>The reason Wi-Fi 7 is faster is because it delivers access to the wider 320 MHz bandwidth channel in the 6 GHz band, while Wi-Fi 6 is limited to just the 5 GHz band. While Wi-Fi 6E introduced access to 6 GHz in 2021, it can only access the 160 MHz channel within that band.</p>
+                                <p>Wi-Fi 7 also carries forward many of the same great features available in Wi-Fi 6, such as WPA3 security and beamforming, in which a Wi-Fi router transmits data directionally toward a connected device rather than broadcasting a signal in all directions.</p>
+                            </div>
+                        </div>
+                    </section>
+                    <section id="dk_how_enable">
+                        <p>&nbsp;</p>
+                        <div style="padding-bottom: 16px;">
+                            <h3><strong>How to Enable Wi-Fi 7 for Gaming</strong></h3>
+                            <div style="font-size: 1.25rem;">
+                                <p>Looking to upgrade to Wi-Fi 7? There are a few essentials you’ll need to consider:</p>
+                                <p class="mb-0">&nbsp;</p>
+                                <ul>
+                                    <li><strong>Router</strong>: The most important upgrade you’ll need is a Wi-Fi 7‒enabled router. This ensures the ISP signal coming into your home can broadcast at Wi-Fi 7 speeds in the 6 GHz band.</li>
+                                    <li><strong>Devices</strong>: Wi-Fi 7 is backward compatible with prior generations, so your smartphone, smart TV, and gaming consoles can connect to your Wi-Fi 7‒enabled router without a problem. For future purchases, look for Wi-Fi 7 compatibility so you’re getting the most from your wireless connection.</li>
+                                    <li><strong><a class="b_special_a1" href="">Gaming Desktop</a>&nbsp;or <a class="b_special_a1" href="">Gaming Laptop</a></strong>: Make sure your gaming computer has the latest processor that supports Wi-Fi 7 along with a compatible motherboard. This will help ensure that many of the components you need are already included. If your processor or motherboard doesn’t have Wi-Fi 7 built in, you can install a Wi-Fi 7 add-in card in either the M.2 or PCIe expansion slot of your motherboard.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </section>
+                    <section id="dk_wi_fi7_ethernet">
+                        <p>&nbsp;</p>
+                        <div style="padding-bottom: 16px;">
+                            <h3><strong>Is Wi-Fi 7 Faster than Ethernet?</strong></h3>
+                            <div style="font-size: 1.25rem;">
+                                <p>Yes, Wi-Fi 7 can be faster than Ethernet. Wired Ethernet in your home typically uses cables that max out at speeds of 1 Gbps. However, your home Ethernet speed will also be determined by your ISP plan. In the US, cable-based ISPs usually offer performance of 1 to 2 Gbps, while fiber-based ISPs can offer performance up to 8 Gbps. An Ethernet cable can potentially bottleneck a faster ISP connection.</p>
+                                <p>Because Wi-Fi 7 can support approximate speeds of 5.8 Gbps, it is generally faster than wired Ethernet in your home. However, factors such as network congestion and physical obstructions can lessen your signal strength. Wi-Fi 7 can help ensure you’re getting the fastest connectivity from your ISP plan.</p>
+                            </div>
+                        </div>
+                    </section>
+                    <section id="dk_consideration">
+                        <p>&nbsp;</p>
+                        <div style="padding-bottom: 16px;">
+                            <h3><strong>Considerations for Not Adopting Wi-Fi 7
+                            </strong></h3>
+                            <div style="font-size: 1.25rem;">
+                                <p>Wi-Fi 7 is a viable upgrade path if you’re looking to maintain fast internet speeds and low gaming latency when playing your favorite online games. Wi-Fi 7 can also help keep your ping low and your connection stable when other devices on your network are doing internet-heavy tasks such as streaming 4K movies. Or you may just want to future-proof your gaming configuration as newer technology releases.</p>
+                                <p>Adopting Wi-Fi 7 earlier can have advantages too. Because most devices still use Wi-Fi 5 and 6, newer Wi-Fi 7‒enabled PCs and devices will enjoy near-exclusive access to the 6 GHz band for best-in-class connectivity.</p>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="dk_get_started">
+        <div style="padding: 2.5rem 0rem;">
+            <div class="container">
+                <h2 class="mb-4">Get Started</h2>
+                <div class="row">
+                    <div class="col-xl-3 col-sm-6">
+                        <h4><a class="b_special_a2" href="">How to Choose: Gaming Laptop vs. Desktop PC</a></h4>
+                        <p>Should you get a laptop or a desktop PC? We’ll cover the advantages of both so you can decide the best fit for you.</p>
+                    </div>
+                    <div class="col-xl-3 col-sm-6">
+                        <h4><a class="b_special_a2" href="">How to Fix Packet Loss</a></h4>
+                        <p>Find out what the “packet loss” indicator in multiplayer games really means, and how you can find potential solutions.</p>
+                    </div>
+                    <div class="col-xl-3 col-sm-6">
+                        <h4><a class="b_special_a2" href="">How to Choose a Gaming CPU</a></h4>
+                        <p>We’ll help you narrow down the list of candidates so you can find the gaming CPU perfect for you.</p>
+                    </div>
+                    <div class="col-xl-3 col-sm-6">
+                        <h4><a class="b_special_a2" href="">Get to the Core of Gaming</a></h4>
+                        <p>Get advice from international gaming pros and Intel gaming tech experts. Everything about your game can become a lot better.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="k_container11 mb-3">
+            <div class="px-md-5">
+                <div class="m_scon">
+                    <div class="m_sline"></div>
+                    <h2 class="m_stxt">Learn More About Business PC Topics</h2>
+                    <div class="m_sline"></div>
+                </div>
+                <div class=" d-flex align-items-center justify-content-center flex-wrap">
+                    <p class="px-3 py-2 m_color k_plink1 "><a href="/Aksh_product/A_intel_gaming.html">Gaming Home</a>
+                    </p>
+                    <p class="px-3 py-2 m_color k_plink1"><a
+                            href="/rushita_Solutions/k_solutions_Industries_What-Is-a-GPU_B-Series-Graphics-for-Desktops_Gaming-Desktop-PC.html">Gaming
+                            Desktops</a></p>
+                    <p class="px-3 py-2 m_color k_plink1"><a href="#">Gaming Laptops</a></p>
+                    <p class="px-3 py-2 m_color k_plink1"><a href="#">Tips & Mods</a></p>
+                    <p class="px-3 py-2 m_color k_plink1"><a
+                            href="/rushita_Solutions/k_solutions_Industries_What-Is-a-GPU_B-Series-Graphics-for-Desktops_Intel-in-Esports.html">Intel
+                            in Esports</a></p>
+                </div>
+                <div class="m_sline"></div>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="k_container11" style="border-top: 1px solid #d7d7d7; margin-top: 2.5rem;">
+            <div class="row m-0">
+                <div class="col-12 py-5">
+                    <p class="mb-2">Product and Performance Information</p>
+                    <p class="mb-2" style="font-size: 12px;"><sup>1</sup> Based on IEEE wireless standard specifications and the maximum theoretical data rates for two-stream devices.</p>
+                    <p class="mb-2" style="font-size: 12px;"> <sup>2</sup> Wi-Fi 7 products can access 320 MHz channels in 6 GHz and new 160 MHz channel combinations in 5 GHz with new Multi-Resource Unit Puncturing capabilities.</p>
+                    <p class="mb-2" style="font-size: 12px;"><sup>3</sup> Intel engineering simulations of congested network environments indicate major latency reduction is possible with new Wi-Fi 7 Multi-Link Operation capabilities. While Wi-Fi 7 is backward compatible with previous generations, new Wi-Fi 7 features require PCs configured with Intel® Wi-Fi 7 solutions, PC OEM enabling, operating system support, and use with appropriate Wi-Fi 7 routers/APs/gateways. 6 GHz Wi-Fi 7 may not be available in all regions. Performance varies by use, configuration, and other factors. For details on performance claims, learn more at <a class="b_special_a1" href=""> intel.com/performance-wireless.</a> Your results may vary.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- footer -->
+    <div id="footer"></div>
+
+    <!-- script header and footer -->
+    <script>
+        // navbar include  
+        fetch('/y_index/y_navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar').innerHTML = data;
+            });
+        // footer include 
+        fetch('/y_index/y_footer.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('footer').innerHTML = data;
+            });
+    </script>
+
+    <!-- nav script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const nav = document.querySelector('.VK_client_app_navigation');
+            const navLinks = document.querySelectorAll('.VK_ai_nav_bar a');
+            const sections = document.querySelectorAll('section[id]');
+            let navOffset = nav.offsetTop;
+
+            // Add smooth scrolling to all links
+            navLinks.forEach(link => {
+                link.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+
+            // Sticky Navigation
+            window.addEventListener('scroll', () => {
+                if (window.pageYOffset >= navOffset) {
+                    nav.classList.add('VK_sticky_nav_bar');
+                } else {
+                    nav.classList.remove('VK_sticky_nav_bar');
+                }
+                // Section highlighting
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop - nav.clientHeight;
+                    const sectionHeight = section.clientHeight;
+                    console.log(sectionTop);
+                    console.log(sectionHeight);
+                    if (window.pageYOffset >= sectionTop && window.pageYOffset <= sectionTop + sectionHeight) {
+                        navLinks.forEach(link => {
+                            link.classList.remove('active');
+                            if (link.getAttribute('href') === `#${section.id}`) {
+                                link.classList.add('active');
+
+                                // Ensure the active link is visible in the nav bar
+                                const navBar = document.querySelector('.VK_ai_nav_bar');
+                                const activeLink = document.querySelector('.VK_ai_nav_bar a.active');
+                                const linkRect = activeLink.getBoundingClientRect();
+                                const navBarRect = navBar.getBoundingClientRect();
+
+                                if (linkRect.left < navBarRect.left || linkRect.right > navBarRect.right) {
+                                    activeLink.scrollIntoView({ inline: 'center', behavior: 'smooth' });
+                                }
+                            }
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+
+    <!-- copy script -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            document.querySelectorAll(".mv_copy_icon").forEach((icon) => {
+                icon.addEventListener("click", async function () {
+                    try {
+                        const toolbar = this.closest(".mv_code_toolbar");
+                        const codeBlock = toolbar.querySelector(".code-content");
+                        const codeContent = codeBlock.innerText;
+
+                        // Use Clipboard API to copy text
+                        await navigator.clipboard.writeText(codeContent);
+
+                        // Hide the copy icon and show the "Copied!" message
+                        const message = toolbar.querySelector(".mv_copy_message");
+                        this.classList.add("hidden"); // Hide the copy icon
+                        message.classList.remove("hidden"); // Show the "Copied!" message
+
+                        // Hide the message and show the icon again after 2 seconds
+                        setTimeout(() => {
+                            message.classList.add("hidden");
+                            this.classList.remove("hidden");
+                        }, 2000); // Adjust delay as needed
+
+                    } catch (err) {
+                        console.error('Failed to copy text: ', err);
+                    }
+                });
+            });
+        });
+    </script>
+
+</body>
+
+</html>
+
+
