@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>8 Ways to Analyze, Tune, and Maximize Your Application Performance With Intel® VTune™ Profiler</title>
+
+    <link rel="stylesheet" href="/css/dk_developer_edge_iot_&_5G_social_distancing_for_retail_settings.css">
+    <link rel="stylesheet" href="/css/rushita_automotive.css">
+    <!-- header footer -->
+    <link rel="stylesheet" href='/css/yatri.css'>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" rel="stylesheet">
+</head>
+
+<style>
+    @media(max-width:768px){
+        .mv_intel_amx_content{
+            padding-right: 0px !important;
+        }
+        .dk_high_quality{
+            text-align: center;
+        }
+    }
+    @media(max-width:575px){
+        .dk_button{
+            width: 100% !important;
+        }
+    }
+</style>
+
+<body>
+
+    <!-- header -->
+    <div id="navbar"></div>
+
+    <!-- ------------------------------------------------------------------------------->
+     <section class="m_ai_tdrop">
+        <div>
+            <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Developers
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item m_dropActive" href="#">Overview</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Topics & Technologies</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Tools</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Resources & Documentation</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Learn</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Community & Events</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Developer Programs</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Get Help</a></li>
+            </ul>
+        </div>
+    
+        <div class="m_ai_shlash">/</div>
+        <div>
+            <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Tools
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item m_dropActive" href="#">Software Catalog</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">oneAPI</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Open Edge Platform</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">FPGA</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Active Management Technology SDK</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Advisor</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® AI Reference Models</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Collaboration Suite for WebRTC SDK</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Tiber™ AI Cloud</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Distribution for Python*</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Distribution for GDB*</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® DPC++ Compatibility Tool</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Dynamic Application Loader</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Frameworks</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Embree</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Extension for Scikit-learn*</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Fortran Compiler</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Graphics Performance Analyzers</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Homomorphic Encryption Toolkit</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® In-Band Manageability</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Integrated Performance Primitives</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Integrated Simulation Infrastructure with Modeling</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Instruction Set Architecture (ISA) Extensions</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Intelligent Storage Acceleration Library (Intel® ISA-L)</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Modin*</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® MPI Library</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Neural Compressor</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">OpenCL™ Runtime</a></li>   
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Open Image Denoise</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Open Path Guiding Library (Intel® Open PGL)</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Pin</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Platform Analysis Library</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel Tools for OpenCL™ Software</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel Tools for OpenCL™ Applications</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® OpenSWR</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">OpenVINO™ Toolkit</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Open Volume Kernel Library</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Optimization for XGBoost*</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® OSPRay</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® OSPRay for Hydra*</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® OSPRay Studio</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">PyTorch* Optimizations from Intel</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">TensorFlow* Optimizations from Intel</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Rendering Toolkit</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Smart Edge Open</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Software Guard Extensions</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Secure Device Onboard</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Software Development Emulator</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Quantum SDK</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Query Processing Library (Intel® QPL)</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Video Processing Library</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® VTune™ Profiler</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Resellers</a></li>
+            </ul>
+        </div>
+
+        <div class="m_ai_shlash">/</div>
+        <div>
+            <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                oneAPI
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item m_dropActive" href="#">Overview</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Data Parallel C++/SYCL*</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Toolkits</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Tech Articles & How-Tos</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Components</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Code Samples</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Training</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Documentation</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Support</a></li>
+            </ul>
+        </div>
+
+        <div class="m_ai_shlash">/</div>
+        <div>
+            <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Tech Articles & How-Tos
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item m_dropActive" href="#">Library</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">News Updates</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Webinars</a></li>
+            </ul>
+        </div>
+
+        <div class="m_ai_shlash">/</div>
+        <div class="m_ai_httl">Maximize Performance With Intel® VTune™ Profiler</div>
+    </section>  
+    <!--------------------------------------------------------------------------------->
+
+    <!-- Social Distancing for Retail Settings -->
+    <section>
+        <div class="mv_intel_amx_bg_color">
+            <div class="container">
+                <div class="row mv_intel_amx_content">
+                    <div class="col-md-12 col-sm-12 mv_intel_amx_item">
+                        <div class="mv_intel_amx">
+                            <h2 class="mb-0">8 Ways to Analyze, Tune, and Maximize Your Application Performance With Intel® VTune™ Profiler</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="container py-5">
+        <div class="row">
+            <div class="d-flex justify-content-end col-xl-10 py-3 d-md-none">
+                <i class="fa-solid fa-print fs-4 px-2 " style="color:#0068B5"></i>
+                <i class="fa-regular fa-envelope fs-4 px-2" style="color:#0068B5"></i>
+            </div>
+            <div class="col-lg-3 col-md-4">
+                <!-- nav -->
+                <div class="VK_sticky_side_bar VK_side_bar_postion_stickey">
+                    <div>
+                        <div class="VK_sidebar_dropdown">
+                            <p class="m-0">
+                                <a href="#dk_advantages" class="text-decoration-none VK_a">
+                                    Advantages of Intel® VTune™ Profiler  
+                                </a>
+                            </p>
+                            <p class="m-0">
+                                <a href="#dk_1" class="text-decoration-none VK_a">
+                                    1. Hotspot Analysis for CPU Utilization Issues  
+                                </a>
+                            </p>
+                            <p class="m-0">
+                                <a href="#dk_2" class="text-decoration-none VK_a">
+                                    2. Anomaly Detection
+                                </a>
+                            </p>
+                            <p class="m-0">
+                                <a href="#dk_3" class="text-decoration-none VK_a">
+                                    3. Memory Consumptions and Allocations Analysis  
+                                </a>
+                            </p>
+                            <p class="m-0">
+                                <a href="#dk_5" class="text-decoration-none VK_a">
+                                    5. Analyze Threading Efficiency and HPC Performance for Parallel Computations 
+                                </a>
+                            </p>
+                            <p class="m-0">
+                                <a href="#dk_6" class="text-decoration-none VK_a">
+                                    6. I/O Performance Analysis  
+                                </a>
+                            </p>
+                            <p class="m-0">
+                                <a href="#dk_7" class="text-decoration-none VK_a">
+                                    7. GPU Offload Analysis  
+                                </a>
+                            </p>
+                            <p class="m-0">
+                                <a href="#dk_8" class="text-decoration-none VK_a">
+                                    8. Python Performance Analysis  
+                                </a>
+                            </p>                    
+                            <details>
+                                <summary>
+                                    <a href="#dk_what_next" class="text-decoration-none VK_a">
+                                        What’s Next?
+                                    </a>
+                                </summary>
+                                <ul class="list-unstyled ps-3 mb-0">
+                                    <li>
+                                        <a href="#dk_useful_res"
+                                            class="text-decoration-none VK_a my-1">
+                                            Useful Resources
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#dk_get_the_software"
+                                            class="text-decoration-none VK_a my-1">
+                                            Get The Software
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#dk_acknowledgement"
+                                            class="text-decoration-none VK_a my-1">
+                                            Acknowledgement
+                                        </a>
+                                    </li>
+                                </ul>
+                            </details>
+
+                        </div>
+                    </div>
+                </div>
+                <!-- thinkcode -->
+                <div class="dk_things_code_main">
+                    <div class="dk_things_code">
+                        <h2 class="text-left headline-font-one-bold">Get the Latest on All Things CODE</h2>
+                        <div class="dk_high_quality" style="padding-top: 1rem;">
+                            <a class="dk_button" href="">Sign Up</a>
+                        </div>
+                    </div> 
+                    <div class="mt-3">
+                        <a class="b_special_a2" href=""><b>Nikita Sanjay Shiledarbaxi</b></a>
+                        <p class="mb-2">AI/ML Software Marketing Engineer</p>
+                        <a class="b_special_a2" href=""><b>Robert Mueller-Albrecht</b></a>
+                        <p class="mb-2">Software Developer Tools Technical Marketing Manager</p>
+                        <p>Intel Corporation</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-9 col-md-8">
+                <div class="d-md-flex justify-content-end col-xl-10 py-3 d-none">
+                    <i class="fa-solid fa-print fs-4 px-2 " style="color:#0068B5"></i>
+                    <i class="fa-regular fa-envelope fs-4 px-2" style="color:#0068B5"></i>
+                </div>
+                <div class="col-xl-10 VK_all_sections">
+                    <p>&nbsp;</p>
+                    <p>A present-day developer has a wide range of hardware and software tools options available when building and maintaining an application. At the software level, they can choose programming languages such as C, C++, SYCL*, C#, Java<sup>*</sup>, Python<sup>*</sup>, Fortran, Assembly, and Google Go<sup>*</sup>; the .NET framework and other software options; or a combination. At the hardware level, there are several accelerated architectures available for application deployment such as CPUs, GPUs, and FPGAs.</p>
+                    <p>With diverse tools and platforms employed for running an application, different factors such as memory usage, energy consumption, and latency decide the quality of application performance.</p>
+                    <p><strong>For developers looking to maximize their application performance, <a class="b_special_a1" href="">Intel® oneAPI</a> tools</strong><strong> have a one-stop solution called <a class="b_special_a1" href="">Intel® VTune™ Profiler</a> for scrutinizing and fixing application performance bottlenecks so that you can effortlessly handle performance issues across several software and hardware tool combinations. </strong></p>
+                    <p>Not only does VTune Profiler pinpoint which code may be holding back your workload performance, it also:</p>
+                    <ul>
+                        <li>provides information on the nature of the issues it identifies and provides recommendations on improvements and resolutions and;</li>
+                        <li>helps you analyze several aspects affecting application performance, be it a source code issue or an architectural bottleneck, covering both hardware- and software-level performance problems and;</li>
+                        <li>allows you to fine-tune all the portions of the application, regardless of which parts are accelerated by specialized hardware.</li>
+                    </ul>
+                    <p>This blog introduces the major types of application performance analyses that you can conduct using VTune Profiler. (Note: Some advanced resources to do a deeper dive into the tool are awaiting you towards the end of the blog.)</p>
+                    <section id="dk_advantages">
+                        <p class="mb-0">&nbsp;</p>
+                        <h4 style="font-weight: 350;">Advantages of Intel® VTune™ Profiler</h4>
+                        <p>In a nutshell, it delivers insights into the program execution of your application, serving as a program that measures the behavior of another program, hence called a “<strong>profiler</strong>”. It is available for Windows* and Linux* hosts but can profile code executed on a variety of additional platforms such as Android<sup>*</sup>, QNX<sup>*</sup> and FreeBSD<sup>*</sup> across diverse architectures such as CPUs, GPUs, and FPGAs.</p>
+                        <p class="mb-0">It helps you in several aspects such as:</p>
+                        <ul>
+                            <li>Assess parallel performance of your program</li>
+                            <li>Analyze hotspots</li>
+                            <li>Detect anomalies</li>
+                            <li>Find cache misses</li>
+                            <li>Determine memory consumption</li>
+                            <li>Detect performance bottlenecks in I/O-intensive applications and much more</li>
+                        </ul>
+                        <p>Let’s dive into the <strong>eight crucial types</strong> of application performance analysis that you can perform.&nbsp;</p>
+                    </section>
+                    <section id="dk_1">
+                        <p class="mb-0">&nbsp;</p>
+                        <h3 style="font-weight: 350;">1. Hotspot Analysis for CPU Utilization Issues</h3>
+                        <p>One of the most important performance-affecting aspects that VTune Profiler helps you locate and analyze is that of hotspots: Those sections of your program that consume the maximum execution time.</p>
+                        <p>Hotspot analysis acts as an initial point to understand an application flow for algorithm analysis. VTune Profiler lets you analyze various aspects of the application such as the top hotspots, CPU time, and utilization for the whole application as well as per hotspot function, frame rate, memory bandwidth, and parent and child functions of a particular function, along with its performance metrics.</p>
+                        <div style="background-color: #e6e6e6; padding: 20px;">
+                            <strong>Note:</strong>
+                            <br>
+                            <br>
+                            <p>Hotspot Analysis is available with or without taking advantage of the processor’s Performance Monitoring Unit’s (PMU) event counter. Thus, it can be used with OS timer-based sampling even if the developer does not have access to administrator or root permissions on the test system. Hardware and System Architecture Events-based sampling requires the ability to install a collection driver on the platform under test. For most users, this requires no input and is handled automatically by the Intel VTune Profiler installer.</p>
+                            <br>
+                            <p>For source code-level analysis, the availability of application symbol information with the binary as well as the file system location of the source files is required.</p>
+                            <strong>→ <a class="b_special_a1" href="">Configure data collector with VTune Profiler</a> [5:49]</strong>
+                        </div>
+                        <p>&nbsp;</p>
+                        <p>The performance results available in the Hotspots viewpoint are then interpreted following a systematic <a class="b_special_a1" href="">sequence of steps</a>:</p>
+                        <ol>
+                            <li>Define the elapsed time (start-to-termination time of the application) as a baseline to compare the application’s performance before and after its optimization</li>
+                            <li>Identify the top hotspots – functions taking the maximum execution time</li>
+                            <li>Identify issues with calling sequences of functions in an algorithm</li>
+                            <li>Analyze source code incorporating a hotspot function</li>
+                        </ol>
+                        <p>&nbsp; &nbsp;<strong>→ Explore in detail about <a class="b_special_a1" href="">hotspot analysis with VTune Profiler</a>.</strong></p>
+                    </section>
+                    <section id="dk_2">
+                        <p class="mb-0">&nbsp;</p>
+                        <h3 style="font-weight: 350;">2.  Anomaly Detection</h3>
+                        <p>Apart from hotspots, there exist some short-term, non-deterministic issues in frequently recurring code sections such as loop iterations. Such anomalies can cause unrecoverable issues and hence require timely detection.</p>
+                        <p>VTune Profiler allows you to identify performance anomalies through <a class="b_special_a1" href="">Intel® Processor Trace technology</a> and <a class="b_special_a1" href="">Instrumentation and Tracing Technology (ITT) API</a>.</p>
+                        <p>​​​​​​​&nbsp; &nbsp;<strong>→ </strong><strong><a class="b_special_a1" href="">Dive deeper into anomaly detection analysis</a>.</strong></p>
+                        <p><strong>Note: </strong>Anomaly detection analysis is a <strong>preview feature </strong>which is not guaranteed to be available in future versions of VTune Profiler.</p>
+                    </section>
+                    <section id="dk_3">
+                        <p class="mb-0">&nbsp;</p>
+                        <h3 style="font-weight: 350;">3.  Memory Consumptions and Allocations Analysis</h3>
+                        <p>In addition to identifying the code sections that can cause potential performance issues, analyzing memory usage by various parts of the application can help further in performance optimization.</p>
+                        <p>VTune Profiler allows you to identify functions that are consuming the maximum amount of memory as well as flag continuous memory allocation increase leading to potential code stability issues. You can also extract information about the memory allocation stack and the source module of each such function.</p>
+                        <p>​​​​​​​​​​​​​​&nbsp; &nbsp;<strong>→ </strong><strong><a class="b_special_a1" href="">Memory consumption and allocations view</a>.</strong></p>
+                        <p>4.&nbsp; Triage Hardware Concerns and Memory Issues<br>
+                            VTune Profiler shows you the top-down microarchitecture analysis so that you can focus your optimization efforts on specific parts of the microarchitecture causing hardware inefficiencies. Once you are done with analyzing the time-consuming code portions, the Microarchitecture Exploration Analysis allows you to detect hardware-level performance issues in your application by understanding how your code is passing through the core pipeline.</p>
+                        <p>VTune Profiler also helps you analyzing memory-related bottlenecks such as cache misses, high memory bandwidth usage, and non-uniform memory access (NUMA) issues through various metrics that give you information on memory loads/stores, last level cache (LLC) misses, memory requests to remote DRAM and much more! (See the complete list <a class="b_special_a1" href="">here</a>)</p>
+                        <p>​​​​​​​​​​​​​​&nbsp; &nbsp;<strong>→ Know more about how you can analyze <a class="b_special_a1" href="">hardware problems</a>, <a class="b_special_a1" href="">cache misses and bandwidth issues</a> using VTune Profiler.</strong></p>
+                    </section>
+                    <section id="dk_5">
+                        <p>&nbsp;</p>
+                        <h3 style="font-weight: 350;">5.  Analyze Threading Efficiency and HPC Performance for Parallel Computations</h3>
+                        <p>Parallelism is at the heart of compute-intensive applications. And the efficiency of parallelism depends largely on how effectively the application utilizes hardware resources to achieve it. VTune Profiler helps you estimate the efficiency through threading and HPC performance analyses.</p>
+                        <p>Threading analysis lets you identify the root causes of poor utilization of the available processor cores such as inefficient use of threading runtimes and thread contention issues during synchronization. In doing so it assists in improving workload balancing across the processor cores and hyper-threads.</p>
+                        <p>It also highlights opportunities for better management of execution core affinity for threads and tasks. You can analyze aspects such as application thread count, thread wait time on I/O or synchronization objects, spin time, and overhead time to determine how effective is the cores’ utilization. This can be very useful to validate the efficiency of your threading allocation proposed by a tool such as the <a class="b_special_a1" href="">Intel® Advisor</a>.</p>
+                        <p>​​​​​​​​​​​​​​&nbsp; &nbsp;<strong>→ </strong><strong><a class="b_special_a1" href="">Threading analysis with Intel VTune Profiler</a>. </strong></p>
+                        <p>For compute-intensive and data throughput-focused applications, VTune Profiler allows you to estimate how effectively the CPU, memory, and floating-point operation hardware resources are being used. The VTune Profiler data collector gathers all the performance data of a specific application for you. However, it can also collect limited performance details for the entire system if required.</p>
+                        <p>​​​​​​​​​​​​​​&nbsp; &nbsp;<strong>→ Get detailed information on <a class="b_special_a1" href="">threading analysis</a> and <a class="b_special_a1" href="">HPC performance characterization analysis</a>.&nbsp; </strong></p>
+                    </section>
+                    <section id="dk_6">
+                        <p class="mb-0">&nbsp;</p>
+                        <h4 style="font-weight: 350;">6.  I/O Performance Analysis</h4>
+                        <p>VTune Profiler lets you analyze hardware and software bottlenecks in I/O-intensive applications. You can have a well-bifurcated analysis through the following main types of performance metrics:</p>
+                        <ul>
+                            <li>Platform-level metrics category measures hardware-level, event-based metrics analyzing platform I/O, Intel® Ultra Path Interconnect (UPI), persistent memory (PMEM), and Dynamic RAM (DRAM).</li>
+                            <li>Platform I/O includes Intel® Data Direct I/O Technology (Intel® DDIO) utilization efficiency and Memory-Mapped I/O traffic, covering data flow between the CPU and PCIe devices, memory-mapped devices, and integrated accelerators.</li>
+                            <li>OS- and API-level metrics category allows you to analyze Linux Kernel I/O, <a class="b_special_a1" href="">Storage Performance Development Kit (SPDK)</a>, and <a class="b_special_a1" href="">Data Plane Development Kit (DPDK)</a> applications.</li>
+                        </ul>
+                        <p><strong>NOTE:</strong> The complete range of I/O analysis metrics is available on <a class="b_special_a1" href="">Intel® Xeon® processors</a> only.</p>
+                        <p>​​​​​​​​​​​​​​&nbsp; &nbsp;<strong>→ Learn more about analyzing <a class="b_special_a1" href="">platform performance</a>, <a class="b_special_a1" href="">DPDK applications</a>,</strong><strong> and <a class="b_special_a1" href="">SPDK applications</a> to improve I/O performance.</strong></p>
+                    </section>
+                    <section id="dk_7">
+                        <p class="mb-0">&nbsp;</p>
+                        <h3 style="font-weight: 350;">7.  GPU Offload Analysis</h3>
+                        <p>If your application has diverse workloads across various CPU and GPU cores, GPU offload analysis with VTune Profiler allows you to analyze all the workloads within a unified time domain. It:</p>
+                        <ul>
+                            <li>Enables knowing how effectively your application uses Intel® Media SDK, SYCL<sup>*</sup> and OpenCL™.</li>
+                            <li>Helps you examine the code execution on both CPU and GPU and determine whether the application is CPU or GPU bound.</li>
+                            <li>Estimate GPU usage time for your application, energy consumed by the GPU, and data transfer efficiency between host CPU and GPU device.</li>
+                            <li>Lets you analyze the software queued up for GPU engines at any specific point of time.</li>
+                        </ul>
+                        <p>​​​​​​​​​​​​​​&nbsp; &nbsp;<strong>→ </strong><strong><a class="b_special_a1" href="">Learn about GPU ofload analysis with VTune Profiler</a>. </strong></p>
+                    </section>
+                    <section id="dk_8">
+                        <p class="mb-0">&nbsp;</p>
+                        <h3 style="font-weight: 350;">8.  Python Performance Analysis</h3>
+                        <p>With VTune Profiler, you can optimize your Python* applications by identifying time-consuming code sequences and critical call paths. It lets you know whether your application uses the CPU resources effectively. For instance, you can check if more time is spent on native extension execution instead of glue code interpretation.</p>
+                        <p>Through Hotspots, Memory Consumption, and Threading Analysis, you can fix performance bottlenecks in your workload and make efficient use of the available hardware.</p>
+                        <p><strong>Note:</strong> Similar principles for data collection and VTune Profiler usage also apply to other interpreted languages mentioned at the beginning of this blog such as Java*.</p>
+                    </section>
+                    <section id="dk_what_next">
+                        <p class="mb-0">&nbsp;</p>
+                        <h3 style="font-weight: 350;">What’s Next?</h3>
+                        <p>This blog outlined some of the major features facilitated by VTune Profiler in brief. However, you can also leverage VTune Profiler for other features such as source code analysis, energy analysis, power and thermal throttling analysis, and data views and result files management.</p>
+                        <p><strong><a class="b_special_a1" href="">Get started with VTune Profiler</a> today! </strong></p>
+                        <p>Explore a wide range of its amazing <a class="b_special_a1" href="">features for application performance analysis.</a> For practical demonstrations on fixing various application performance bottlenecks, don’t forget to go through our comprehensive <a class="b_special_a1" href="">VTune Profiler Training Video Series</a>!</p>
+                    </section>
+                    <section id="dk_useful_res">
+                        <p class="mb-0">&nbsp;</p>
+                        <h3>Useful Resources</h3>
+                        <p class="mb-0">Here are the links to find out more about VTune Profiler and get started with profiling and tuning your workload:</p>
+                        <ul>
+                            <li><a href="" style="color:#0563c1; text-decoration:underline !important">Intel VTune Profiler Landing Page</a></li>
+                            <li><a href="" style="color:#0563c1; text-decoration:underline !important">Intel VTune Profiler User Guide</a></li>
+                            <li><a href="" style="color:#0563c1; text-decoration:underline !important">Intel VTune Profiler Performance Analysis Cookbook</a></li>
+                            <li><a href="" style="color:#0563c1; text-decoration:underline !important">Intel VTune Profiler Training Video Series on YouTube</a></li>
+                        </ul>
+                    </section>
+                    <section id="dk_useful_res">
+                        <p class="mb-0">&nbsp;</p>
+                        <h3>Get The Software</h3>
+                        <p>You can install VTune Profiler as a part of the <a href="" style="color:#0563c1; text-decoration:underline !important">Intel® oneAPI Base Toolkit</a> or download its <a href="" style="color:#0563c1; text-decoration:underline !important">stand-alone version</a> for free! We also encourage you to check out other <a href="" style="color:#0563c1; text-decoration:underline !important">AI</a>, <a href="" style="color:#0563c1; text-decoration:underline !important">HPC</a>, and <a href="" style="color:#0563c1; text-decoration:underline !important">Rendering</a> tools in Intel’s <a href="" style="color:#0563c1; text-decoration:underline !important">oneAPI</a>-powered software portfolio.</p>
+                    </section>
+                    <section id="dk_useful_res">
+                        <p class="mb-0">&nbsp;</p>
+                        <h3>Acknowledgement</h3>
+                        <p>We would like to thank Chandan Damannagari for his contribution to this blog.</p>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+  
+    
+
+     <section style="border-top: 1px solid #d7d7d7;" class="container py-5">
+        <h4 class="h6">Product and Performance Information</h4>
+        <div class="disclaimer" style="font-size: 12px;"><sup>1</sup> Performance varies by use, configuration and other factors. Learn more at <a class="b_special_a1" href="">www.Intel.com/PerformanceIndex</a>.</div>
+        </div>
+    </section>
+
+    <!-- footer -->
+    <div id="footer"></div>
+
+    <!-- script header and footer -->
+    <script>
+        // navbar include  
+        fetch('/y_index/y_navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar').innerHTML = data;
+            });
+        // footer include 
+        fetch('/y_index/y_footer.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('footer').innerHTML = data;
+            });
+    </script>
+
+    <!-- nav script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+        if (document.getElementsByClassName('VK_all_sections section') && document.getElementsByClassName('VK_sidebar_dropdown')) {
+            const sections = document.querySelectorAll('.VK_all_sections section');
+            const navLinks = document.querySelectorAll('.VK_sidebar_dropdown a');
+            const detailsElements = document.querySelectorAll('.VK_sidebar_dropdown details');
+
+            function removeActiveClass() {
+                navLinks.forEach(link => link.classList.remove('VK_sidebar_active_link'));
+                detailsElements.forEach(details => {
+                    details.removeAttribute('open');
+                    details.setAttribute('close', ''); // Optional: to visually indicate it's closed
+                });
+            }
+
+            function activateLinkAndDetails(targetId) {
+                navLinks.forEach(link => {
+                    if (link.getAttribute('href') === `#${targetId}`) {
+                        link.classList.add('VK_sidebar_active_link');
+                        let parentDetails = link.closest('details');
+
+                        // Open all ancestor details elements
+                        while (parentDetails) {
+                            parentDetails.setAttribute('open', '');
+                            parentDetails.removeAttribute('close'); // Optional: remove the closed indicator
+                            parentDetails = parentDetails.parentElement.closest('details');
+                        }
+                    }
+                });
+            }
+
+            function onScroll() {
+                let currentSection = '';
+                sections.forEach(section => {
+                    const sectionTop = section.getBoundingClientRect().top;
+                    const sectionBottom = section.getBoundingClientRect().bottom;
+
+                    // Check if the section is in view
+                    if (sectionTop <= 100 && sectionBottom >= 0) {
+                        currentSection = section.getAttribute('id');
+                    }
+                });
+
+                if (currentSection) {
+                    removeActiveClass();
+                    activateLinkAndDetails(currentSection);
+                } else {
+                    removeActiveClass();
+                }
+            }
+
+            window.addEventListener('scroll', onScroll);
+        } else {
+            return
+        }
+    });
+    </script>
+
+    <!-- copy script -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            document.querySelectorAll(".mv_copy_icon").forEach((icon) => {
+                icon.addEventListener("click", async function () {
+                    try {
+                        const toolbar = this.closest(".mv_code_toolbar");
+                        const codeBlock = toolbar.querySelector(".code-content");
+                        const codeContent = codeBlock.innerText;
+    
+                        // Use Clipboard API to copy text
+                        await navigator.clipboard.writeText(codeContent);
+    
+                        // Hide the copy icon and show the "Copied!" message
+                        const message = toolbar.querySelector(".mv_copy_message");
+                        this.classList.add("hidden"); // Hide the copy icon
+                        message.classList.remove("hidden"); // Show the "Copied!" message
+    
+                        // Hide the message and show the icon again after 2 seconds
+                        setTimeout(() => {
+                            message.classList.add("hidden");
+                            this.classList.remove("hidden");
+                        }, 2000); // Adjust delay as needed
+    
+                    } catch (err) {
+                        console.error('Failed to copy text: ', err);
+                    }
+                });
+            });
+        });
+    </script>
+
+</body>
+
+</html>
+
