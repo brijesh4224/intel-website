@@ -371,7 +371,7 @@
                                             </ul>
                                             <ul class="list-unstyled ps-3 mb-0">
                                                 <li>
-                                                    <a href="#dk_run_vtune_collect" class="text-decoration-none VK_a my-1">
+                                                    <a href="#dk_run_vtune_collect2" class="text-decoration-none VK_a my-1">
                                                         c) Run VTune to Collect Hotspots and Generate Report
                                                     </a>
                                                 </li>
@@ -446,7 +446,7 @@
                                             </ul>
                                             <ul class="list-unstyled ps-3 mb-0">
                                                 <li>
-                                                    <a href="#dk_vtune_collecting" class="text-decoration-none VK_a my-1">
+                                                    <a href="#dk_vtune_collecting3" class="text-decoration-none VK_a my-1">
                                                         b) VTune Command Line for Collecting and Reporting
                                                     </a>
                                                 </li>
@@ -700,36 +700,7 @@
                                 </div>
                             </div>
                             <p>After writing to <em>run_iso3dfd.sh</em> is complete, we will run the script:</p>
-                        </section>
 
-                        <section id="dk_tensorflow">
-                            <p>&nbsp;</p>
-                            <h4 style="font-weight: 350;">TensorFlow Runtime Options Affecting Performance</h4>
-                            <p>These runtime options heavily affect TensorFlow performance. Understanding them helps you get the best performance out of Intel optimizations. BKMs differ for MxT and RTI. The runtime options are: <strong>{intra|inter}_op_parallelism_threads</strong> and data layout.</p>
-                        </section>
-
-                        <section id="dk_intra_op">
-                            <p class="mb-0">&nbsp;</p>
-                            <h4>{intra|inter}_op_parallelism_threads</h4>
-                            <ul> 
-                                <li>Recommended settings (MxT): <strong>intra_op_parallelism = #physical cores</strong></li> 
-                                <li>Recommended settings (RTI): <strong>intra_op_parallelism = #physical cores</strong></li> 
-                                <li>Recommended settings for <strong>inter_op_parallelism</strong>: <strong>2</strong></li> 
-                                <li>Use (shell):<br> <strong>python script.py ––num_intra_threads=cores ––num_inter_threads=2 ––mkl=True</strong></li> 
-                            </ul>
-                            <p><strong>intra_op_parallelism_threads</strong> and <strong>inter_op_parallelism_threads</strong> are environment variables defined in <strong>tensorflow.ConfigProto</strong>. The <strong>ConfigProto </strong>is used for configuration when creating a session. These two environment variables control number of cores to use.</p>
-                            <p>The <strong>intra_op_parallelism_threads</strong> environment variable controls parallelism inside an operation. For instance, if matrix multiplication or reduction is intended to run in several threads, set this environment variable. TensorFlow schedules tasks in a thread pool that contains <strong>intra_op_parallelism_threads</strong>. OpenMP* threads are bound to thread context as closely as possible on different cores. Setting this environment variable to the number of available physical cores is recommended.</p>
-                            <p>The <strong>inter_op_parallelism_threads</strong> environment variable controls parallelism among independent operations. Since these operations are not relevant to each other, TensorFlow attempts to run them concurrently in the thread pool that contains <strong>inter_op_parallelism_threads</strong>. To minimize effects that are brought to <strong>intra_op_parallelsim_threads</strong>, this environment variable is recommended to be set to the number of sockets where you want the code to run. For the Intel Optimization of TensorFlow, it's recommended to keep the entire execution on a single socket.</p>
-                            <p>&nbsp;</p>
-                            <p>&nbsp;</p>
-                        </section>
-
-                        <section id="dk_data_layout">
-                            <h4 style="font-weight: 350;">Data Layout</h4>
-                            <ul> 
-                                <li>Recommended settings: <strong>Data_format = NCHW</strong></li> 
-                                <li>Use (shell):</li> 
-                            </ul>
                             <!-- code toolbar 3 -->
                             <div class="mv_code_toolbar">
                                 <div class="mv_toolbar_item mv_copy_icon">
@@ -737,66 +708,25 @@
                                 </div>
                                 <div class="mv_copy_message text-end hidden">Copied</div>
                                 <div class="code-content">
-                                    <div style="padding-bottom: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre">
+                                    <div style="padding-bottom: 0rem !important; padding-bottom: 1rem !important;" class="d-flex mv_pre">
                                         <div style="border-right: 1px solid #ccc" class="pe-3">
                                             1
                                         </div>
                                         <div class="">
                                             <div class="mv_code text-break">
-                                                <p class="mb-0"><span class="token function">python</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
-                                        <div style="border-right: 1px solid #ccc" class="pe-3">
-                                            2
-                                        </div>
-                                        <div class="">
-                                            <div class="mv_code text-break">
-                                                <p class="mb-0">script.py ––num_intra_threads <a class="dk_color2" href="">=</a> cores ––num_inter_threads <a class="dk_color2" href="">=</a> <a class="dk_color1" href="">2</a> ––mkl <a class="dk_color2" href="">=</a> <a class="dk_color1" href="">True</a></p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div style="padding-top: 0rem !important; padding-bottom: 1rem !important;" class="d-flex mv_pre pb-0">
-                                        <div style="border-right: 1px solid #ccc" class="pe-3">
-                                            3
-                                        </div>
-                                        <div class="">
-                                            <div class="mv_code text-break">
-                                                <p class="mb-0">data_format <a class="dk_color2" href="">=</a> NCHW</p>
+                                                <p class="mb-0"><span class="token function"> <a class="dk_color2" href="">!</a> chmod 755 q; chmod 755 run_iso3dfd.sh; <a class="dk_color1" href="">if</a> [ -x "<a class="dk_color2" href=""> $ ( command -v qsub ) </a>" ]; <a class="dk_color1" href="">then</a> ./ q run_iso3dfd.sh ; <a class="dk_color1" href="">else</a> ./ run_iso3dfd.sh ; <a class="dk_color1" href="">fi</a></p>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <p>&nbsp;</p>
-                            <p>In modern Intel architectures, efficient use of cache and memory greatly impacts overall performance. A good memory access pattern minimizes the performance cost of accessing data in memory. To achieve this, it's important to consider how data is stored and accessed. This is usually referred to as <em>data layout</em>. It describes how multidimensional arrays are stored linearly in the memory address space.</p>
-                            <p class="mb-0">Usually, data layout is represented by four letters for a two-dimensional image.</p>
-                            <ul> 
-                                <li>N: Batch size, indicating number of images in a batch</li> 
-                                <li>C: Channel, indicating number of channels in an image</li> 
-                                <li>W: Width, indicating number of pixels in horizontal dimension of an image</li> 
-                                <li>H: Height, indicating number of pixels in vertical dimension of an image</li> 
-                            </ul>
-                            <p>&nbsp;</p>
-                            <p style="text-align:center"><img class="w-100" src="/img/darshit_image/effectively-train-execute-ml-dl-projects-on-cpus-fig04.jpg" width="750"></p>
-                            <p style="text-align:center">&nbsp;</p>
                         </section>
 
-                        <section id="dk_that_affect_per">
-                            <p>&nbsp;</p>
-                            <h3 style="font-weight: 350;">That Affect Performance</h3>
-                            <p>The order of these four letters indicates how pixel data is stored in 1D memory space. For instance, NCHW indicates pixel data is stored in this order: width-wise, height-wise, channel-wise, and batch-wise (Figure 4). The data is then accessed from left to right with channels-first indexing. NCHW is the recommended data layout for Intel MKL-DNN because this is an efficient layout for the CPU. TensorFlow uses NHWC as the default data layout, but it also supports NCHW.</p>
-                        </section>
-
-                        <section id="dk_numa_controls">
-                            <p>&nbsp;</p>
+                        <section id="dk_vtune_profiler">
                             <p class="mb-0">&nbsp;</p>
-                            <h3 style="font-weight: 350;">NUMA Controls</h3>
-                            <ul> 
-                                <li>Recommended settings: <strong>––cpunodebind=0 ––membind=0</strong></li> 
-                                <li>Usage (shell):</li> 
-                            </ul>
+                            <h4 style="opacity: 1;">VTune Profiler Command Line for Collecting and Reporting</h4>
+                            <p><strong>Second</strong>, we will use VTune Profiler to determine whether the application is suitable for offloading to GPU, providing an assessment of offload improvement opportunities.</p>
+                            <p>We will write the VTune command line to collect microarchitecture analysis and generate the summary report to a file named vtune_collect.sh:</p>
                             <!-- code toolbar 3 -->
                             <div class="mv_code_toolbar">
                                 <div class="mv_toolbar_item mv_copy_icon">
@@ -810,7 +740,7 @@
                                         </div>
                                         <div class="">
                                             <div class="mv_code text-break">
-                                                <p class="mb-0"><span class="token function">numactl ––cpunodebind= <a class="dk_color1" href="">0</a> ––membind= <a class="dk_color1" href="">0</a> python</p>
+                                                <p class="mb-0"><span class="token function">%%writefile vtune_collect.sh</p>
                                             </div>
                                         </div>
                                     </div>
@@ -820,136 +750,7 @@
                                         </div>
                                         <div class="">
                                             <div class="mv_code text-break">
-                                                <p class="mb-0">script.py ––num_intra_threads <a class="dk_color2" href="">=</a> cores ––num_inter_threads <a class="dk_color2" href="">=</a> <a class="dk_color1" href="">2</a> ––mkl <a class="dk_color2" href="">=</a> <a class="dk_color1" href="">True</a> </p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div style="padding-top: 0rem !important; padding-bottom: 1rem !important;" class="d-flex mv_pre pb-0">
-                                        <div style="border-right: 1px solid #ccc" class="pe-3">
-                                            3
-                                        </div>
-                                        <div class="">
-                                            <div class="mv_code text-break">
-                                                <p class="mb-0">data_format <a class="dk_color2" href="">=</a> NCHW</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <p class="mb-0">&nbsp;</p>
-                            <p>Running on a non-uniform memory access (NUMA) enabled machine brings with it special considerations. NUMA is a memory layout design used in data center machines that take advantage of locality of memory in multisocket machines with multiple memory controllers and blocks. The Intel Optimization for TensorFlow runs best when confining both running and memory use to a single NUMA node.</p>
-                            <p>&nbsp;</p>
-                        </section>
-
-                        <section id="dk_intel_mkn">
-                            <h3 style="font-weight: 350;">Intel MKL-DNN Technical Performance Considerations</h3>
-                            <p>The library takes advantage of single instruction multiple data (SIMD) instructions through vectorization, and multiple cores through multithreading. Vectorization effectively uses cache and the latest instruction sets. On modern Intel® processors, a single core can perform up to two fused multiply and add (FMA) operations on 16 single-precision or 64 Int8 numbers per cycle. Also, the technique of multithreading helps in performing multiple independent operations simultaneously. Since deep-learning tasks are often independent, getting available cores working in parallel is an obvious choice to boost performance.</p>
-                            <p>To achieve the best possible CPU use, Intel MKL-DNN may use hardware-specific buffer layouts for compute-intensive operations, including convolution and inner product. All the other operations run on the buffers in hardware-specific layouts or common layouts used by frameworks.</p>
-                            <p>Intel MKL-DNN uses OpenMP to express parallelism. OpenMP is controlled by various environment variables: <strong>KMP_AFFINITY</strong>, <strong>KMP_BLOCKTIME</strong>, <strong>OMP_NUM_THREADS</strong>, and <strong>KMP_SETTINGS</strong>. These environment variables are described in the following sections. Changing the values of these environment variables affects performance of the framework, so we highly recommend that users tune them for their specific neural network model and platform.</p>
-                            <p>&nbsp;</p>
-                        </section>
-
-                        <section id="dk_kmp_affinity">
-                            <h4>KMP_AFFINITY</h4>
-                            <ul> 
-                                <li>Recommended settings:<br> <strong>KMP_AFFINITY=granularity=fine,verbose,compact,1,0</strong></li> 
-                                <li>Usage (shell):</li> 
-                            </ul>
-                            <!-- code toolbar 3 -->
-                            <div class="mv_code_toolbar">
-                                <div class="mv_toolbar_item mv_copy_icon">
-                                    <i class="fa-regular fa-copy"></i>
-                                </div>
-                                <div class="mv_copy_message text-end hidden">Copied</div>
-                                <div class="code-content">
-                                    <div style="padding-bottom: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre">
-                                        <div style="border-right: 1px solid #ccc" class="pe-3">
-                                            1
-                                        </div>
-                                        <div class="">
-                                            <div class="mv_code text-break">
-                                                <p class="mb-0"><span class="token function">numactl ––cpunodebind <a class="dk_color2" href="">=</a>  <a class="dk_color1" href="">0</a> ––membind <a class="dk_color2" href="">=</a> <a class="dk_color1" href="">0</a> python</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
-                                        <div style="border-right: 1px solid #ccc" class="pe-3">
-                                            2
-                                        </div>
-                                        <div class="">
-                                            <div class="mv_code text-break">
-                                                <p class="mb-0">script.py ––num_intra_ threads<a class="dk_color2" href="">=</a>cores ––num_inter_threads<a class="dk_color2" href="">=</a> <a class="dk_color1" href="">2</a> ––mkl<a class="dk_color2" href="">=</a> <a class="dk_color1" href="">True</a> </p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div style="padding-top: 0rem !important; padding-bottom: 1rem !important;" class="d-flex mv_pre pb-0">
-                                        <div style="border-right: 1px solid #ccc" class="pe-3">
-                                            3
-                                        </div>
-                                        <div class="">
-                                            <div class="mv_code text-break">
-                                                <p class="mb-0">data_format<a class="dk_color2" href="">=</a>NCHW ––kmp_affinity=granularity<a class="dk_color2" href="">=</a>fine,verbose,compact,1,0</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <p>&nbsp;</p>
-                            <p><strong>KMP_AFFINITY </strong>is used to restrict running certain threads to a subset of the physical processing units in a multiprocessor computer. Set this environment variable as follows:</p>
-                            <p class="mb-0"><strong>KMP_AFFINITY=[&lt;modifier&gt;,...]&lt;type&gt;[,&lt;permute&gt;][,&lt;offset&gt;]</strong></p>
-                            <ul> 
-                                <li><strong>Modifier </strong>is a string consisting of a keyword and specifier.</li> 
-                                <li><strong>Type </strong>is a string indicating the thread affinity to use.</li> 
-                                <li><strong>Permute </strong>is a positive integer value that controls which levels are most significant when sorting the machine topology map. The value forces the mappings to make the specified number of most significant levels of the sort the least significant, and then inverts the order of significance. The root node of the tree is not considered a separate level for the sort operations.</li> 
-                                <li>Offset is a positive integer value that indicates the starting position for thread assignment.</li> 
-                            </ul>
-                            <p>As an example to explain basic content of this environment variable, use the recommended setting of <strong>KMP_AFFINITY</strong>:</p>
-                            <p><strong>KMP_AFFINITY=granularity=fine,verbose,compact,1,0</strong></p>
-                            <p class="mb-0">The modifier is <strong>granularity=fine,verbose</strong>. The word <strong>fine </strong>causes each OpenMP thread to be bound to a single-thread context, and verbose prints messages concerning the supported affinity, for example:</p>
-                            <ul> 
-                                <li>The number of packages</li> 
-                                <li>The number of cores in each package</li> 
-                                <li>The number of thread contexts for each core</li> 
-                                <li>OpenMP thread bindings to physical thread contexts</li> 
-                            </ul>
-                            <p>The word <strong>compact</strong> is the value of type, assigning the OpenMP thread <strong>&lt;n&gt;+1</strong> to a free thread context as close as possible to the thread context where the<strong> &lt;n&gt;</strong> OpenMP thread was placed.</p>
-                            <p>Figure 5 shows the machine topology map when <strong>KMP_AFFINITY </strong>is set to these values. The OpenMP thread <strong>&lt;n&gt;+1</strong> is bound to a thread context as closely as possible to the OpenMP thread <strong>&lt;n&gt;</strong>, but on a different core. Once each core has been assigned an OpenMP thread, the subsequent OpenMP threads are assigned to the available cores in the same order, but they are assigned on different thread contexts.</p>
-                            <p style="text-align:center"><img class="w-100" src="/img/darshit_image/effectively-train-execute-ml-dl-projects-on-cpus-fig05.jpg" width="750"></p>
-                            <p style="text-align:center">Figure 5. Machine topology map with the setting <strong>KMP_AFFINITY=granularity=fine,compact,1,0</strong></p>
-                            <p>The advantage of this setting is that consecutive threads are bound close together so that communication overhead, cache line invalidation overhead, and page thrashing are minimized. It's desirable to avoid binding multiple threads to the same core and leaving other cores unused. For more detailed description of <strong>KMP_AFFINITY</strong>, see the <a class="b_special_a1" href="">Intel® C++ Compiler Developer Guide and Reference</a>.</p>
-                        </section>
-                        <section id="dk_kmp_blocktime">
-                            <p>&nbsp;</p>
-                            <h4>KMP_BLOCKTIME</h4>
-                            <ul> 
-                                <li>Recommended settings for CNN: <strong>KMP_BLOCKTIME=0</strong></li> 
-                                <li>Recommended settings for non-CNN: <strong>KMP_BLOCKTIME=1 </strong>(user verifies empirically)</li> 
-                                <li>Usage (shell):</li> 
-                            </ul>
-                            <!-- code toolbar 3 -->
-                            <div class="mv_code_toolbar">
-                                <div class="mv_toolbar_item mv_copy_icon">
-                                    <i class="fa-regular fa-copy"></i>
-                                </div>
-                                <div class="mv_copy_message text-end hidden">Copied</div>
-                                <div class="code-content">
-                                    <div style="padding-bottom: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre">
-                                        <div style="border-right: 1px solid #ccc" class="pe-3">
-                                            1
-                                        </div>
-                                        <div class="">
-                                            <div class="mv_code text-break">
-                                                <p class="mb-0"><span class="token function">numactl ––cpunodebind <a class="dk_color2" href="">=</a>  <a class="dk_color1" href="">0</a> ––membind <a class="dk_color2" href="">=</a> <a class="dk_color1" href="">0</a> python</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
-                                        <div style="border-right: 1px solid #ccc" class="pe-3">
-                                            2
-                                        </div>
-                                        <div class="">
-                                            <div class="mv_code text-break">
-                                                <p class="mb-0">script.py ––num_intra_threads=cores ––num_inter_threads= <a class="dk_color1" href="">2</a> ––mkl=<a class="dk_color1" href="">True</a></p>
+                                                <p class="mb-0"><span style="color: #008200 !important;">#!/bin/bash</span></p>
                                             </div>
                                         </div>
                                     </div>
@@ -959,158 +760,1288 @@
                                         </div>
                                         <div class="">
                                             <div class="mv_code text-break">
-                                                <p class="mb-0">data_format<a class="dk_color2" href="">=</a>NCHW ––kmp_affinity<a class="dk_color2" href="">=</a>granularity<a class="dk_color2" href="">=</a>fine,verbose,compact,<a class="dk_color1" href="">1</a>,<a class="dk_color1" href="">0</a></p>
+                                                <p class="mb-0">source /opt/intel/inteloneapi/setvars.sh</p>
                                             </div>
                                         </div>
                                     </div>
-                                    <div style="padding-top: 0rem !important; padding-bottom: 1rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
                                         <div style="border-right: 1px solid #ccc" class="pe-3">
                                             4
                                         </div>
                                         <div class="">
                                             <div class="mv_code text-break">
-                                                <p class="mb-0">––kmp_blocktime <a class="dk_color2" href="">=</a> <a class="dk_color1" href="">0</a>( <a class="dk_color1" href="">or</a> <a class="dk_color1" href="">1</a>)</p>
+                                                <p class="mb-0">type <a class="dk_color2" href="">=</a> uarch-exploration</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            5
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0"><a class="dk_color1" href="">echo</a> "<a style="color: blue;" href="">Vtune Collect</a> <a class="dk_color2" href="">$type</a>"</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            6
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0"></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            7
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0">vtune -collect uarch-exploration -knob collect-memory-bandwidth=true -search-dir=guided_iso3dfd_code_sample -source-search-dir=guided_iso3dfd_code_sample/build/src -result-dir vtune_data_CPU_uarch --  ./guided_iso3dfd_code_sample/build/src/1_CPU_only 256 256 256 100</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            8
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0"></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            9
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0"><a class="dk_color1" href="">echo</a> <a style="color: blue;" href="">"Vtune Summary Report"</a></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            10
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0"></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 1rem !important;" class="d-flex mv_pre pb-0">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            11
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0">vtune -report summary -result-dir vtune_data_CPU_uarch -format html -report-output <a class="dk_color2" href="">$(pwd)</a> /vtune_data_cpu_uarch.html</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+
+                        <section id="dk_run_vtune">
+                            <p class="mb-0">&nbsp;</p>
+                            <h4>Run VTune to Collect GPU-offload Analysis and Generate Report</h4>
+                            <p><strong>Third,</strong> after writing to the file is complete, we run the script:</p>
+                            <!-- code toolbar 3 -->
+                            <div class="mv_code_toolbar">
+                                <div class="mv_toolbar_item mv_copy_icon">
+                                    <i class="fa-regular fa-copy"></i>
+                                </div>
+                                <div class="mv_copy_message text-end hidden">Copied</div>
+                                <div class="code-content">
+                                    <div style="padding-bottom: 0rem !important; padding-bottom: 1rem !important;" class="d-flex mv_pre">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            1
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0"><a class="dk_color2" href="">!</a> chmod 755 vtune_collect.sh; <a class="dk_color1" href="">if</a> [ -x "<a class="dk_color2" href="">$(command -v qsub)</a>" ]; <a class="dk_color1" href="">then</a> ./q vtune_collect.sh; <a class="dk_color1" href="">else</a> ./vtune_collect.sh; <a class="dk_color1" href="">fi</a></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <p>Here are the snapshots of the Microarchitecture Exploration Analysis of the serialized CPP implementation on CPU: &nbsp;</p>
+                            <p style="text-align:center"><img class="w-100" alt="" src="/img/darshit_image/f2-micro-pipe-diagram-of-intel-vtune-microarchitecture.png" width="1513"><p style="text-align:center"><img class="w-100" alt="" height="" src="/img/darshit_image/f2-micro-pipe-diagram-of-intel-vtune-microarchitecture.png" width="1513"></p></p>
+                            <p class="utility-text-1" style="text-align:center"><em>Figure-</em><em>2</em><em>: Micro-</em><em>p</em><em>ipe </em><em>d</em><em>iagram of &nbsp;Intel </em>VTune Microarchitecture Exploration</p>
+                            <p>&nbsp;</p>
+                            <p style="text-align:center"><img class="w-100" alt="" height="693" src="/img/darshit_image/f3-effective-physical-core-utilization-histogram-of-intel-vtune-microarchitecture.png" width="1523"></p>
+                            <p class="utility-text-1" style="text-align:center"><em>Figure-3: Effective physical core utilization histogram of Intel VTune Microarchitecture Exploration</em></p>
+                            <p>&nbsp;</p>
+                            <p>The diagram in <strong>Figure-2</strong> represents inefficiencies in CPU usage. It can be treated as a pipe with an output flow equal to “pipe-efficiency.” The gray region in this diagram is memory-bound, the green one is the retired instructions, and the red area is core-bound.</p>
+                            <p><strong>Figure-3</strong> displays a histogram of the wall time the specific number of CPUs are running. As can be seen, the Effective CPU Utilization is quite low because the application is serialized.</p>
+                            <p class="mb-0"><strong>Observations and Recommendations</strong></p>
+                            <ul> 
+                                <li>The application is core-bound (bottlenecks are non-memory)</li> 
+                                <li>Low effective physical core utilization</li> 
+                                <li>Requires multi-threaded parallel execution</li> 
+                                <li>Requires more execution units</li> 
+                            </ul>
+                            <p class="mb-0">&nbsp;</p>
+                        </section>
+
+                        <section id="dk_step3_run_offload">
+                            <h4><strong>Step 3: Run and Sample Application Using GPU Offload</strong><a class="inpage-nav-anchor" id="inpage-nav-1-1"></a></h3>
+                            <p>Now let us move our SYCL implementation of iso3dfd to be executed on a GPU. It will be run on the GPU without any specific optimization.</p>
+                            <p class="mb-0">Again, we follow the 3 steps of:</p>
+                            <ol style="list-style-type:lower-alpha"> 
+                                <li>Setting up the command line for the application itself.</li> 
+                                <li>Collecting and reporting on performance data.</li> 
+                                <li>Generating the comprehensive performance report.</li> 
+                            </ol>
+                            <p class="mb-0">Changes made in code:</p>
+                            <ul> 
+                                <li>Added SYCL buffers and accessors to code.</li> 
+                                <li>Added Queue to offload kernels to GPU.</li> 
+                                <li>Introduced SYCL kernel to compute the cells.</li> 
+                            </ul>
+                        </section>
+                        <section id="dk_command_line">
+                            <h4>a) Command Line for Running the Basic SYCL Implementation on GPU<a class="inpage-nav-anchor" id="inpage-nav-1-1-undefined"></a></h4>
+                            <!-- code toolbar 3 -->
+                            <div class="mv_code_toolbar">
+                                <div class="mv_toolbar_item mv_copy_icon">
+                                    <i class="fa-regular fa-copy"></i>
+                                </div>
+                                <div class="mv_copy_message text-end hidden">Copied</div>
+                                <div class="code-content">
+                                    <div style="padding-bottom: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            1
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0"><span class="token function">%%writefile run_iso3dfd.sh</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            2
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0"><span style="color: #008200 !important;">#!/bin/bash</span></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            3
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0">source /opt/intel/inteloneapi/setvars.sh <span class="dk_color2">></span> /dev/null 2 <span class="dk_color2">>&</span>1</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            4
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0">chmod -R 777 guided_iso3dfd_code_sample/build/src/2_GPU_basic</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 1rem !important;" class="d-flex mv_pre pb-0">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            5
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0">./guided_iso3dfd_code_sample/build/src/2_GPU_basic 256 256 256 100</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <p><em><em>Overwriting run_iso3dfd.sh complete</em></em></p>
+                            <!-- code toolbar 3 -->
+                            <div class="mv_code_toolbar">
+                                <div class="mv_toolbar_item mv_copy_icon">
+                                    <i class="fa-regular fa-copy"></i>
+                                </div>
+                                <div class="mv_copy_message text-end hidden">Copied</div>
+                                <div class="code-content">
+                                    <div style="padding-bottom: 0rem !important; padding-bottom: 1rem !important;" class="d-flex mv_pre">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            1
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0"><a class="dk_color2" href="">!</a> chmod 755 q; chmod 755 run_iso3dfd.sh; <a class="dk_color1" href="">if</a> [ -x "<a class="dk_color2" href="">$(command -v qsub)</a>" ]; <a class="dk_color1" href="">then</a> ./q run_iso3dfd.sh; <a class="dk_color1" href="">else</a> ./run_iso3dfd.sh; <a class="dk_color1" href="">fi</a></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                        
+                        <section id="dk_vtune_command">
+                            <h4>b) VTune Command Line for Collecting and Reporting</h4>
+                            <p>Run VTune on the basic SYCL implementation on GPU, identify the bottlenecks and opportunities for improvement on GPU.</p>
+                            <!-- code toolbar 3 -->
+                            <div class="mv_code_toolbar">
+                                <div class="mv_toolbar_item mv_copy_icon">
+                                    <i class="fa-regular fa-copy"></i>
+                                </div>
+                                <div class="mv_copy_message text-end hidden">Copied</div>
+                                <div class="code-content">
+                                    <div style="padding-bottom: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            1
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0"><span class="token function">%%writefile vtune_collect.sh</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            2
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0"><span style="color: #008200 !important;">#!/bin/bash</span></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            3
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0">source /opt/intel/inteloneapi/setvars.sh</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            4
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0">type=gpu-offload</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            5
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0"><span class="dk_color1" href="">echo</span> " <span style="color: blue;">Vtune Collect</span>  <span class="dk_color2" href="">$type</span>"</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            6
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0"></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            7
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0">vtune -collect gpu-offload -knob collect-programming-api=true -search-dir=guided_iso3dfd_code_sample -source-search-dir=guided_iso3dfd_code_sample/build/src -result-dir vtune_data_2_offload -- ./guided_iso3dfd_code_sample/build/src/2_GPU_basic 256 256 256 100</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            8
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0"></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            9
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0">type=gpu-hotspots</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            10
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0"><span class="dk_color1" href="">echo</span> " <span style="color: blue;">Vtune Collect</span>  <span class="dk_color2" href="">$type</span>"</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            11
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0">vtune -collect gpu-hotspots -search-dir=guided_iso3dfd_code_sample -source-search-dir=guided_iso3dfd_code_sample/build/src -result-dir vtune_data_2_GPU_hotspots -- ./guided_iso3dfd_code_sample/build/src/2_GPU_basic 256 256 256 100</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            12
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0"><span class="dk_color1">echo</span> <span style="color: blue;">"Vtune Summary Report"</span></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            13
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0"></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 1rem !important;" class="d-flex mv_pre pb-0">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            14
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0">vtune -report summary -result-dir vtune_data_2_offload -format html -report-output <span class="dk_color2">$(pwd)</span> /vtune_data_2_offload.html</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+
+                        <section id="dk_run_vtune_collect">
+                            <p>&nbsp;</p>
+                            <h4>c) Run VTune to Collect GPU-Offload Analysis and Generate Report</h4>
+                            <!-- code toolbar 3 -->
+                            <div class="mv_code_toolbar">
+                                <div class="mv_toolbar_item mv_copy_icon">
+                                    <i class="fa-regular fa-copy"></i>
+                                </div>
+                                <div class="mv_copy_message text-end hidden">Copied</div>
+                                <div class="code-content">
+                                    <div style="padding-bottom: 0rem !important; padding-bottom: 1rem !important;" class="d-flex mv_pre">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            1
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0"><a class="dk_color2" href="">!</a> chmod 755 vtune_collect.sh; <a class="dk_color1" href="">if</a> [ -x "<a class="dk_color2" href="">$(command -v qsub)</a>" ]; <a class="dk_color1" href="">then</a> ./q vtune_collect.sh; <a class="dk_color1" href="">else</a> ./vtune_collect.sh; <a class="dk_color1" href="">fi</a></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <p>Here is a snapshot of GPU Oflload analysis of basic SYCL implementation run on GPU:</p>
+                            <p style="text-align:center"><img class="w-100" alt="" src="/img/darshit_image/f4-graphics-view-of-gpu-offload-analysis.png" width="1523"></p>
+                            <p class="utility-text-1" style="text-align:center"><em>Figure-4: Graphics view of GPU Offload Analysis</em></p>
+                            <p class="utility-text-1">We also ran the GPU Compute/Media Hotspots analysis of basic SYCL implementation on GPU:</p>
+                            <p style="text-align:center"><img class="w-100" src="/img/darshit_image/f5a-bandwidth-utilization-histogram-of-gpu-compute.png" width="1549"></p>
+                            <p class="utility-text-1" style="text-align:center"><em>Figure-5a: Bandwidth Utilization Histogram of GPU Compute/ Media Hotspots Summary View</em></p>
+                            <p class="utility-text-1" style="text-align:center">&nbsp;</p>
+                            <p style="text-align:center"><img class="w-100" src="/img/darshit_image/f5b-summary-view-of-gpu-compute-media-hotspots.png" width="1543"></p>
+                            <p class="utility-text-1" style="text-align:center"><em>Figure-5b: Summary View of GPU Compute/ Media Hotspots</em></p>
+                            <p><strong>Figure-4</strong> shows the breakdown of total time taken by each GPU compute task/host call stack.</p>
+                            <p><strong>Figure-5a</strong> shows the Bandwidth utilization histogram that displays the wall time the bandwidth was used by a certain value.</p>
+                            <p><strong>Figure-5b</strong> shows the Wall Time (Elapsed time) from the beginning to end of VTune collection.It also shows the time the application spent on GPU.</p>
+                            <p class="mb-0"><strong>Observations and Recommendations</strong></p>
+                            <ul> 
+                                <li>Improvement in execution time</li> 
+                                <li>Insignificant data transfer overhead</li> 
+                                <li>Low Memory Bandwidth Utilization</li> 
+                                <li>Reduce number of arithmetic operations</li> 
+                                <li>Improve the memory bandwidth utilization</li> 
+                            </ul>
+                        </section>
+
+                        <section id="dk_step4_gpu">
+                            <p>&nbsp;</p>
+                            <h3><strong>Step 4: GPU Optimization-1 (Linear Indexing)</strong></h3>
+                            <p>Now let us apply the learnings from the GPU performance analysis and optimize execution on the GPU.</p>
+                            <p>Based on the data we collected with our basic offload implementation, we improve indexing and convert it from 3-dimensional to 1-dimensional. This allows us to reduce the number of integer operations.</p>
+                            <p class="mb-0">Code changes:</p>
+                            <ul> 
+                                <li>Flatten the SYCL buffers</li> 
+                                <li>Change the index calculation method</li> 
+                                <li>Modify how neighbor cells are accessed</li> 
+                            </ul>
+                            <p class="mb-0">&nbsp;</p>
+                        </section>
+
+                        <section id="dk_command_implemen">
+                            <h4>a) Command Line for Running the Linear Indexed SYCL Implementation on GPU</h4>
+                            <!-- code toolbar 3 -->
+                            <div class="mv_code_toolbar">
+                                <div class="mv_toolbar_item mv_copy_icon">
+                                    <i class="fa-regular fa-copy"></i>
+                                </div>
+                                <div class="mv_copy_message text-end hidden">Copied</div>
+                                <div class="code-content">
+                                    <div style="padding-bottom: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            1
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0"><span class="token function">%%writefile run_iso3dfd.sh</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            2
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0"><span style="color: #008200 !important;">#!/bin/bash</span></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            3
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0">source /opt/intel/inteloneapi/setvars.sh <span class="dk_color2">></span> /dev/null 2 <span class="dk_color2">>&</span>1</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            4
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0">chmod -R 777 guided_iso3dfd_code_sample/build/src/3_GPU_linear</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 1rem !important;" class="d-flex mv_pre pb-0">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            5
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0">./guided_iso3dfd_code_sample/build/src/3_GPU_linear 256 256 256 100</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <p><em><em>Overwriting run_iso3dfd.sh complete</em></em></p>
+                            <!-- code toolbar 3 -->
+                            <div class="mv_code_toolbar">
+                                <div class="mv_toolbar_item mv_copy_icon">
+                                    <i class="fa-regular fa-copy"></i>
+                                </div>
+                                <div class="mv_copy_message text-end hidden">Copied</div>
+                                <div class="code-content">
+                                    <div style="padding-bottom: 0rem !important; padding-bottom: 1rem !important;" class="d-flex mv_pre">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            1
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0"><a class="dk_color2" href="">!</a> chmod 755 q; chmod 755 run_iso3dfd.sh; <a class="dk_color1" href="">if</a> [ -x "<a class="dk_color2" href="">$(command -v qsub)</a>" ]; <a class="dk_color1" href="">then</a> ./q run_iso3dfd.sh; <a class="dk_color1" href="">else</a> ./run_iso3dfd.sh; <a class="dk_color1" href="">fi</a></p>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <p>&nbsp;</p>
-                            <p>This environment variable sets the time, in milliseconds, that a thread waits after completing running a parallel region before going to sleep. The default value is 200 ms.</p>
-                            <p>After completing running a parallel region, threads wait for new parallel work to become available. After a certain period of time has elapsed, they become inactive. Sleeping allows the threads to be used until more parallel work becomes available, by threaded code that isn't OpenMP and may run between parallel regions, or by other applications. A small <strong>KMP_BLOCKTIME </strong>value may offer better overall performance if the application contains threaded code that isn't OpenMP that runs between parallel regions. A larger <strong>KMP_BLOCKTIME </strong>value may be more appropriate if threads are to be reserved solely for running OpenMP, but may penalize other concurrently-running OpenMP or threaded applications. The suggested setting is <strong>0</strong> for CNN-based models.</p>
                         </section>
 
-                        <section id="dk_omp_num">
+                        <section id="dk_vtune_collecting">
+                            <h4>b) VTune Command Line for Collecting and Reporting</h4>
+                            <!-- code toolbar 3 -->
+                            <div class="mv_code_toolbar">
+                                <div class="mv_toolbar_item mv_copy_icon">
+                                    <i class="fa-regular fa-copy"></i>
+                                </div>
+                                <div class="mv_copy_message text-end hidden">Copied</div>
+                                <div class="code-content">
+                                    <div style="padding-bottom: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            1
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0">%%writefile vtune_collect.sh</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            2
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0"><span style="color: #008200 !important;">#!/bin/bash</span></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            3
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0">source /opt/intel/inteloneapi/setvars.sh</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            4
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0">type <span class="dk_color2">=</span> gpu-hotspots</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            5
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0"><span class="dk_color1">echo</span> " <span style="color: blue;">Vtune Collect</span> <span class="dk_color2">$type</span>"</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            6
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0"></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 1rem !important;" class="d-flex mv_pre pb-0">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            7
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0">vtune -collect gpu-hotspots -search-dir=guided_iso3dfd_code_sample -source-search-dir=guided_iso3dfd_code_sample/build/src -result-dir vtune_data_3_GPU_hotspots -- ./guided_iso3dfd_code_sample/build/src/3_GPU_linear 256 256 256 100</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                             <p>&nbsp;</p>
-                            <h4>OMP_NUM_THREADS</h4>
+                        </section>
+                        <section id="dk_run_vtune_collect2">
+                            <h4>c) Run VTune to Collect Hotspots and Generate Report</h4>
+                            <!-- code toolbar 3 -->
+                            <div class="mv_code_toolbar">
+                                <div class="mv_toolbar_item mv_copy_icon">
+                                    <i class="fa-regular fa-copy"></i>
+                                </div>
+                                <div class="mv_copy_message text-end hidden">Copied</div>
+                                <div class="code-content">
+                                    <div style="padding-bottom: 0rem !important; padding-bottom: 1rem !important;" class="d-flex mv_pre">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            1
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0"><a class="dk_color2" href="">!</a> chmod 755 vtune_collect.sh; <a class="dk_color1" href="">if</a> [ -x "<a class="dk_color2" href="">$(command -v qsub)</a>" ]; <a class="dk_color1" href="">then</a> ./q vtune_collect.sh; <a class="dk_color1" href="">else</a> ./vtune_collect.sh; <a class="dk_color1" href="">fi</a></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <p>Here is a snapshot of GPU Compute/Media Hotspots analysis of SYCL linear indexing implementation on GPU:</p>
+                            <p style="text-align:center"><img class="w-100" src="/img/darshit_image/f6-summary-view-of-gpu-compute-media-hotspots.png" width="1537"></p>
+                            <p class="utility-text-1" style="text-align: center;"><em>Figure-6: Summary view of GPU Compute/ Media Hotspots</em></p>
+                            <p><strong>Figure-6</strong> shows high Execution Unit (EU) Stalled/Idle time. The typical reason for this inefficiency is that performance of the code on the GPU is bounded by GPU L3 bandwidth.</p>
+                            <p class="mb-0"><strong>Observations and Recommendations</strong></p>
                             <ul> 
-                                <li>Recommended settings for CNN: <strong>OMP_NUM_THREADS = # </strong>physical cores</li> 
-                                <li>Usage (shell): Export <strong>OMP_NUM_THREADS= #</strong> physical cores</li> 
+                                <li>3x Improvement in elapsed time and 4x improvement in GPU time</li> 
+                                <li>Moderate Memory Bandwidth Utilization</li> 
+                                <li>High stall in Execution Unit (EU) arrays</li> 
+                                <li>GPU L3 cache bandwidth-bound</li> 
+                                <li>Break large structures into smaller arrays so that they can fit into registers</li> 
                             </ul>
-                            <p>This environment variable sets the maximum number of threads to use in OpenMP parallel regions if no other value is specified in the application. The value can be a single integer, in which case each integer specifies the number of threads for a parallel region at each nesting level. The first position in the list represents the outermost parallel nesting level. The default value is the number of logical processors visible to the operating system on which the program is executed. The recommended value equals the number of physical cores.</p>
-                            <p>&nbsp;</p>
+                            <p class="mb-0">&nbsp;</p>
                         </section>
 
-                        <section id="dk_kmp_settings">
-                            <h4>KMP_SETTINGS</h4>
+                        <section id="dk_step5_private">
+                            <h4><strong>Step 5: Optimization-2_i (GPU Private Memory)</strong><a class="inpage-nav-anchor" id="inpage-nav-1-3"></a></h3>
+                            <p>Continuing our optimization journey, we now introduce private arrays to the SYCL kernel to improve cache utilization.</p>
+                            <p class="mb-0">Important code changes:</p>
                             <ul> 
-                                <li>Use (shell):<strong> Export KMP_SETTINGS=TRUE</strong></li> 
+                                <li>Kernel range converted from 3d to 2d.</li> 
+                                <li>Change in index calculation</li> 
+                                <li>Add private arrays to contain coefficients</li> 
+                                <li>Add loops to shift stencil data</li> 
                             </ul>
-                            <p>This environment variable enables (TRUE) or disables (FALSE) the printing of OpenMP runtime library environment settings when the program runs.</p>
+                        </section>
+
+                        <section id="dk_command_sycl">
+                            <h4>a) Command Line for Running the SYCL Private Memory Implementation on GPU</h4>
+                            <!-- code toolbar 3 -->
+                            <div class="mv_code_toolbar">
+                                <div class="mv_toolbar_item mv_copy_icon">
+                                    <i class="fa-regular fa-copy"></i>
+                                </div>
+                                <div class="mv_copy_message text-end hidden">Copied</div>
+                                <div class="code-content">
+                                    <div style="padding-bottom: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            1
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0"><span class="token function">%%writefile run_iso3dfd.sh</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            2
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0"><span style="color: #008200 !important;">#!/bin/bash</span></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            3
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0">source /opt/intel/inteloneapi/setvars.sh <span class="dk_color2">></span> /dev/null 2 <span class="dk_color2">>&</span>1</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            4
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0">chmod -R 777 guided_iso3dfd_code_sample/build/src/4_GPU_private_memory_I</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 1rem !important;" class="d-flex mv_pre pb-0">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            5
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0">./guided_iso3dfd_code_sample/build/src/4_GPU_private_memory_I 256 256 256 10</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <p><em><em>Overwriting run_iso3dfd.sh complete</em></em></p>
+                            <!-- code toolbar 3 -->
+                            <div class="mv_code_toolbar">
+                                <div class="mv_toolbar_item mv_copy_icon">
+                                    <i class="fa-regular fa-copy"></i>
+                                </div>
+                                <div class="mv_copy_message text-end hidden">Copied</div>
+                                <div class="code-content">
+                                    <div style="padding-bottom: 0rem !important; padding-bottom: 1rem !important;" class="d-flex mv_pre">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            1
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0"><a class="dk_color2" href="">!</a> chmod 755 q; chmod 755 run_iso3dfd.sh; <a class="dk_color1" href="">if</a> [ -x "<a class="dk_color2" href="">$(command -v qsub)</a>" ]; <a class="dk_color1" href="">then</a> ./q run_iso3dfd.sh; <a class="dk_color1" href="">else</a> ./run_iso3dfd.sh; <a class="dk_color1" href="">fi</a></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <p class="mb-0">&nbsp;</p>
+                        </section>
+
+                        <section id="dk_vtune_reporting">
+                            <h4>b) VTune Command Line for Collecting and Reporting</h4>
+                            <p>This is the command line for running gpu-hotspots on SYCL Private Memory implementation for GPU:</p>
+                            <!-- code toolbar 3 -->
+                            <div class="mv_code_toolbar">
+                                <div class="mv_toolbar_item mv_copy_icon">
+                                    <i class="fa-regular fa-copy"></i>
+                                </div>
+                                <div class="mv_copy_message text-end hidden">Copied</div>
+                                <div class="code-content">
+                                    <div style="padding-bottom: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            1
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0"><span class="token function">%%writefile vtune_collect.sh</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            2
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0"><span style="color: #008200 !important;">#!/bin/bash</span></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            3
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0">source /opt/intel/inteloneapi/setvars.sh</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            4
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0">type<span class="dk_color2">=</span>gpu-hotspots</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            5
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0"><span class="dk_color1">echo</span> " <span style="color: blue;">Vtune Collect</span> <span class="dk_color2">$type</span>"</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            6
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0"></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 1rem !important;" class="d-flex mv_pre pb-0">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            7
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0">vtune -collect gpu-hotspots -search-dir=guided_iso3dfd_code_sample -source-search-dir=guided_iso3dfd_code_sample/build/src -result-dir vtune_data_4_hotspots -- ./guided_iso3dfd_code_sample/build/src/4_GPU_private_memory_I 256 256 256 100</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <p class="mb-0">&nbsp;</p>
+                        </section>
+
+                        <section id="dk_run_vtune_report">
+                            <h4>c) Run VTune to Collect Hotspots and Generate Report</h4>
+                            <!-- code toolbar 3 -->
+                            <div class="mv_code_toolbar">
+                                <div class="mv_toolbar_item mv_copy_icon">
+                                    <i class="fa-regular fa-copy"></i>
+                                </div>
+                                <div class="mv_copy_message text-end hidden">Copied</div>
+                                <div class="code-content">
+                                    <div style="padding-bottom: 0rem !important; padding-bottom: 1rem !important;" class="d-flex mv_pre">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            1
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0"><a class="dk_color2" href="">!</a> chmod 755 vtune_collect.sh; <a class="dk_color1" href="">if</a> [ -x "<a class="dk_color2" href=""> $(command -v qsub)</a>" ]; <a class="dk_color1" href="">then </a> ./q vtune_collect.sh; <a class="dk_color1" href=""> else </a> ./vtune_collect.sh; <a class="dk_color1" href=""> fi</a></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <p>Here is the GPU Compute/Media Hotspots analysis of SYCL implementation <strong>before adding private memory on GPU</strong>:</p>
+                            <p style="text-align:center"><img class="w-100" src="/img/darshit_image/f7-graphics-view-of-gpu-compute-media-hotspots.png" width="1897"></p>
+                            <p class="utility-text-1" style="text-align:center"><em>Figure-7: Graphics view of GPU Compute/Media Hotspots Analysis before adding Private Memory</em></p>
+                            <p>And here is the GPU Compute/Media Hotspots analysis of SYCL implementation <strong>after adding private memory on GPU</strong>:</p>
+                            <p style="text-align:center"><img class="w-100" src="/img/darshit_image/f8a-graphics-view-of-gpu-compute-media-hotspots.png" width="1867"></p>
+                            <p class="utility-text-1" style="text-align:center"><em>Figure-8a: Graphics view of GPU Compute/Media Hotspots Analysis after adding Private Memory</em></p>
+                            <p style="text-align:center"><img class="w-100" src="/img/darshit_image/f8b-summary-view-of-gpu-compute-media-hotspots.png" width="1541"></p>
+                            <p class="utility-text-1" style="text-align:center"><em>Figure-8b: Summary view of GPU Compute/Media Hotspots Analysis after adding Private Memory</em></p>
+                            <p class="mb-0">If we compare <strong>Figure-7 </strong>,<strong>Figure-8a</strong> and <strong>Figure-8b</strong> we can see:</p>
+                            <ol> 
+                                <li>Significant difference in the total time of the top source computing task.</li> 
+                                <li>Better ratio of &nbsp;EU Array Active time and Stalled time.</li> 
+                                <li>Improvement in Read and Write bandwidth.</li> 
+                            </ol>
+                            <p class="mb-0"><strong>Observations and Recommendations:</strong></p>
+                            <ul> 
+                                <li>Reduced execution time</li> 
+                                <li>Reduced EU stall time</li> 
+                                <li>Higher EU active time</li> 
+                                <li>Higher Read bandwidth in the kernel</li> 
+                                <li>Still bounded by GPU L3 cache bandwidth</li> 
+                                <li>Read each memory cell once and re-use the data</li> 
+                            </ul>
                             <p>&nbsp;</p>
                         </section>
 
-                        <section id="dk_learn_more">
-                            <h3 style="font-weight: 350;">Learn More</h3>
-                            <p>Start using Intel-optimized frameworks to accelerate your deep-learning workloads on the CPU today. Access resources on <a class="b_special_a1" href="">www.intel.ai</a> and get support from the <a class="b_special_a1" href="">Intel® AI Developer Forum</a>. Also, visit the <a class="b_special_a1" href="">AI Model Zoo</a> for solution-oriented resources for your accelerated TensorFlow projects. These resources help you use CPU resources to their fullest capability.</p>
-                            <p>&nbsp;</p>
+                        <section id="dk_step6_memory">
+                            <h4><strong>Step 6: Optimization-2_k (GPU Private Memory)</strong><a class="inpage-nav-anchor" id="inpage-nav-1-4"></a></h3>
+                            <p>This optimization step is similar to the Optimization-2_i.</p>
+                            <p>Here, we have created private arrays for the 3rd dimension, instead of first dimension.</p>
                         </section>
 
-                        <section id="dk_references">
-                            <h3 style="font-weight: 350;">References</h3>
-                            <p><sup>1</sup> Inference using FP32 batch size Caffe for GoogleNet* v1 128, AlexNet v 256.</p>
-                            <p>Configurations for inference throughput: Tested by Intel as of 6/7/2018. Platform: two-socket Intel® Xeon® Platinum processor, 8180 CPU at 2.50 GHz and 28 cores, HyperThreading ON, turbo ON. Total Memory: 376.28 GB (12 slots, 32 GB, 2666 MHz), four instances of the framework, CentOS* Linux*: 7.3.1611 core, SSD, sda RS3WC080, HDD 744.1 GB, sdb RS3WC080, HDD 1.5 TB, sdc RS3WC080, HDD 5.5 TB, deep-learning framework Caffe version: a3d5b022fe026e9092fc7abc7654b1162ab9940d. Topology: GoogleNet v1, BIOS: SE5C620.86B.00.01.0004.071220170215, Intel MKL DNN version: 464c268e544bae26f9b85a2acb9122c766a4c396, NoDataLayer. Measured: 1449 images per second vs. tested by Intel as of 06/15/2018. Platform: 2S Intel® Xeon® E5-2699 processor v3 at 2.30 GHz (18 cores), HyperThreading enabled, turbo disabled, scaling governor set to “performance” via the <strong>intel_pstate </strong>driver, 64 GB DDR4-2133 ECC RAM. BIOS: SE5C610.86B.01.01.0024.021320181901, CentOS Linux 7.5.1804 (core) kernel 3.10.0-862.3.2.el7.x86_64, SSD sdb INTEL SSDSC2BW24 SSD 223.6GB. Framework BVLC Caffe: <a class="b_special_a1" href="">GitHub*</a>, Inference and training measured with <strong>caffe time</strong> command. For <strong>ConvNet</strong> topologies, a dummy dataset was used. For other topologies, data was stored on local storage and cached in memory before training. <a class="b_special_a1" href="">BVLC Caffe</a>, revision 2a1c552b66f026c7508d390b526f2495ed3be594.</p>
-                            <p>Configuration for training throughput: Tested by Intel as of 05/29/2018 Platform: two-socket Intel Xeon Platinum 8180 processor at 2.50 GHz, 28 cores, HyperThreading ON, turbo ON, total memory 376.28 GB (12 slots, 32 GB, 2666 MHz), four instances of the framework, CentOS Linux 7.3.1611 core, SSD, sda RS3WC080, HDD 744.1 GB, sdb RS3WC080, HDD 1.5TB, sdc RS3WC080, HDD 5.5TB, deep learning framework Caffe version: a3d5b022fe026e9092fc7abc765b1162ab9940d Topology: AlexNet BIOS: SE5C620.86B.00.01.0004.071220170215, Intel MKL DNN version: 464c268e544bae26f9b85a2acb9122c766a4c396 <strong>NoDataLayer</strong>. Measured: 1257 imgages per sec vs. tested by Intel as of 06/15/2018. Platform: 2S Intel Xeon E5-2699 processor v3 at 2.30 GHz (18 cores), HyperThreading enabled, turbo disabled, scaling governor set to <strong>performance</strong> via the <strong>intel_pstate</strong> driver, 64 GB, DDR4-2133 ECC RAM. BIOS: SE5C610.86B.01.01.0024.021320181901, CentOS Linux 7.5.1804 (core) kernel 3.10.0-862.3.2.el7.x86_64, SSD, sdb INTEL SSDSC2BW24, SSD 223.6 GB. Framework: <a class="b_special_a1" href="">BVLC Caffe</a>. Inference and training measured with <strong>caffe time</strong> command. For <strong>ConvNet</strong> topologies, dummy dataset was used. For other topologies, data was stored on local storage and cached in memory before training. <a class="b_special_a1" href="">BVLC Caffe</a>, revision 2a1c552b66f026c7508d390b526f2495ed3be594</p>
-                            <p><sup>2</sup> System configuration: CPU threads per core: two cores per socket: 28 sockets, two NUMA nodes, two CPU family: 6 model, 85 model name: Intel Xeon Platinum 8180 processor at 2.50 GHz, HyperThreading: ON turbo: ON, memory 376 GB (12x32 GB), 24 slots, 12 occupied, 2666 MHz disks Intel RS3WC080 x 3 (800 GB, 1.6 TB, 6 TB) BIOS: SE5C620.86B.00.01.0004. 070920180847 (microcode version 0x200004d), Centos Linux 7.4.1708 (core) kernel 3.10.0-693.11.6.el7.x86_64, <a class="b_special_a1" href="">TensorFlow Source</a>, commit: 6a0b536a779f485edc25f6a11335b5e640acc8ab, Intel MKL DNN version: 4e333787e0d66a1dca1218e99a891d493dbc8ef1, <a class="b_special_a1" href="">TensorFlow benchmarks </a></p>
-                            <h2 style="opacity: 0.5;">______<a class="inpage-nav-anchor" id="inpage-nav-12"></a></h2>
-                        </section>
-
-                        <section id="dk_you_may">
-                            <p>&nbsp;</p>
-                            <h3 style="font-weight: 350;">You May Also Like</h3>
-                            <div class="mv_deploy_nav_tab">
-                                <ul class="nav nav-pills mv_deploy_nav_pills pt-3" id="pills-tab" role="tablist">
-                                        <li class="nav-item" role="presentation">
-                                            <button class="nav-link active mv_deploy_nav_link" id="pills-home-tab" data-bs-toggle="pill"
-                                                data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home"
-                                                aria-selected="true">Related Webinars</button>
-                                        </li>
-                                        <li class="nav-item" role="presentation">
-                                            <button class="nav-link mv_deploy_nav_link" id="pills-profile-tab" data-bs-toggle="pill"
-                                                data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile"
-                                                aria-selected="false">Related Articles</button>
-                                        </li>
-                                        <li class="nav-item" role="presentation">
-                                            <button class="nav-link mv_deploy_nav_link" id="pills-video-tab" data-bs-toggle="pill"
-                                                data-bs-target="#pills-video" type="button" role="tab" aria-controls="pills-video"
-                                                aria-selected="false">Related Video</button>
-                                        </li>
-                                        <li class="nav-item" role="presentation">
-                                            <button class="nav-link mv_deploy_nav_link" id="pills-design-tab" data-bs-toggle="pill"
-                                                data-bs-target="#pills-design" type="button" role="tab" aria-controls="pills-design"
-                                                aria-selected="false">Related Podcast</button>
-                                        </li>
-                                        <li class="nav-item" role="presentation">
-                                            <button class="nav-link mv_deploy_nav_link" id="pills-simulation-tab" data-bs-toggle="pill"
-                                                data-bs-target="#pills-simulation" type="button" role="tab" aria-controls="pills-simulation"
-                                                aria-selected="false">Get the Software</button>
-                                        </li>
-                                </ul>
-                                <div class="tab-content" id="pills-tabContent">
-                                        <!-- 1. Device Information -->
-                                        <div class="tab-pane fade show active" id="pills-home" role="tabpanel"
-                                            aria-labelledby="pills-home-tab" tabindex="0">
-                                            <div class="mv_coman_padd" style=" border-bottom: 1px solid #ddd; display: flex; padding-bottom: 1rem;">
-                                                <div class="">
-                                                    <p>Enhance Deep-Learning Workloads on 3rd Generation Intel® Xeon® Scalable Processors</p>
-                                                    <a class="b_special_a1" href="">Watch</a>
-                                                </div>
-                                                <div class="">
-                                                    <p>Advanced Code Optimization for 3rd Generation Intel Xeon Scalable Processors</p>
-                                                    <a class="b_special_a1" href="">Watch</a>
-                                                </div>
-                                            </div>
-                                            <!-- User Guides -->
-                                            
+                        <section id="dk_command_private">
+                            <h4>a) Command Line for Running the SYCL Private Memory Implementation on GPU</h4>
+                            <!-- code toolbar 3 -->
+                            <div class="mv_code_toolbar">
+                                <div class="mv_toolbar_item mv_copy_icon">
+                                    <i class="fa-regular fa-copy"></i>
+                                </div>
+                                <div class="mv_copy_message text-end hidden">Copied</div>
+                                <div class="code-content">
+                                    <div style="padding-bottom: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            1
                                         </div>
-                                        <!-- 2. Interface Protocol -->
-                                        <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab"
-                                            tabindex="0">
-                                            <div class="mv_coman_padd" style=" border-bottom: 1px solid #ddd; display: flex; padding-bottom: 1rem;">
-                                                <div class="">
-                                                    <p>Use Deep Learning Optimizations from Intel in TensorFlow*</p>
-                                                    <a class="b_special_a1" href="">Read</a>
-                                                </div>
-                                                <div class="">
-                                                    <p>One-Line Code Changes to Boost pandas, scikit-learn*, and TensorFlow Performance </p>
-                                                    <a class="b_special_a1" href="">Read</a>
-                                                </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0"><span class="token function">%%writefile run_iso3dfd.sh</p>
                                             </div>
-                                            <!-- User Guides -->
                                         </div>
-                                        <!-- 3. Design Planning -->
-                                        <div class="tab-pane fade" id="pills-video" role="tabpanel" aria-labelledby="pills-video-tab"
-                                            tabindex="0">
-                                            <div class="mv_coman_padd" style="padding-bottom: 1rem;">
-                                                <p>Optimize End-to-End Data Science and Machine Learning Acceleration</p>
-                                                <a class="b_special_a1" href="">Watch</a>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            2
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0"><span style="color: #008200 !important;">#!/bin/bash</span></p>
                                             </div>
-                                            <!-- User Guides / Device Overview / Device Datasheet / Application Notes-->
                                         </div>
-                                        <!-- 4. Design Entry -->
-                                        <div class="tab-pane fade" id="pills-design" role="tabpanel" aria-labelledby="pills-design-tab"
-                                            tabindex="0">
-                                            <div class="mv_coman_padd" style="padding-bottom: 1rem;">
-                                                <p>Ignite the Next Generation of Deep Learning </p>
-                                                <a class="b_special_a1" href="">Listen</a>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            3
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0">source /opt/intel/inteloneapi/setvars.sh <span class="dk_color2">></span> /dev/null 2 <span class="dk_color2">>&</span>1</p>
                                             </div>
-                                            <!-- User Guides / Device Overview / Device Datasheet / White Paper -->
-                                            
                                         </div>
-                                        <!-- 5. Simulation and Verification -->
-                                        <div class="tab-pane fade" id="pills-simulation" role="tabpanel" aria-labelledby="pills-simulation-tab"
-                                            tabindex="0">
-                                            <div class="mv_coman_padd" style="padding-bottom: 1rem;">
-                                                <a class="b_special_a1" href=""><b>Intel® oneAPI Math Kernel Library</b></a>
-                                                <p>Accelerate math processing routines, including matrix algebra, fast Fourier transforms (FFT), and vector math. Part of the Intel® oneAPI Base Toolkit.</p>
-                                                <p><a class="mv_coman_btn" href="">Get It Now</a></p>
-                                                <p><a class="b_special_a1" href="">See All Tools</a></p>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            4
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0">chmod -R 777 guided_iso3dfd_code_sample/build/src/3_GPU_linear</p>
                                             </div>
-                                            <!-- User Guides / Device Overview / Device Datasheet / Application Notes -->
                                         </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 1rem !important;" class="d-flex mv_pre pb-0">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            5
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0">./guided_iso3dfd_code_sample/build/src/3_GPU_linear 256 256 256 100</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <p><em>Overwriting run_iso3dfd.sh</em></p>
+                            <!-- code toolbar 3 -->
+                            <div class="mv_code_toolbar">
+                                <div class="mv_toolbar_item mv_copy_icon">
+                                    <i class="fa-regular fa-copy"></i>
+                                </div>
+                                <div class="mv_copy_message text-end hidden">Copied</div>
+                                <div class="code-content">
+                                    <div style="padding-bottom: 0rem !important; padding-bottom: 1rem !important;" class="d-flex mv_pre">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            1
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0"><a class="dk_color2" href="">!</a> chmod 755 q; chmod 755 run_iso3dfd.sh; <a class="dk_color1" href="">if</a> [ -x "<a class="dk_color2" href="">$(command -v qsub)</a>" ]; <a class="dk_color1" href="">then</a> /q run_iso3dfd.sh; <a class="dk_color1" href="">else</a> ./run_iso3dfd.sh;  <a class="dk_color1" href="">fi</a></p>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </section>
+
+                        <section id="dk_step7_memory">
+                            <h4><strong>Step 7: Optimization-3 (Shared Local Memory)</strong><a class="inpage-nav-anchor" id="inpage-nav-1-5"></a></h3>
+                            <p>In this step, we will introduce Shared Local Memory and nd_range kernel to overcome the memory constraint issue.</p>
+                            <p class="mb-0">Code changes:</p>
+                            <ul> 
+                                <li>Change back the kernel_range to 3d</li> 
+                                <li>Introduction of the local index corresponding to the position in SLM</li> 
+                                <li>Add barriers to ensure synchronization</li> 
+                                <li>Tweak work group size</li> 
+                            </ul>
+                        </section>
+
+                        <section id="dk_command_shared">
+                            <h4>a) Command Line for Running the SYCL Shared Local Memory Implementation on GPU</h4>
+                            <!-- code toolbar 3 -->
+                            <div class="mv_code_toolbar">
+                                <div class="mv_toolbar_item mv_copy_icon">
+                                    <i class="fa-regular fa-copy"></i>
+                                </div>
+                                <div class="mv_copy_message text-end hidden">Copied</div>
+                                <div class="code-content">
+                                    <div style="padding-bottom: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            1
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0"><span class="token function">%%writefile run_iso3dfd.sh</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            2
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0"><span style="color: #008200 !important;">#!/bin/bash</span></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            3
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0">source /opt/intel/inteloneapi/setvars.sh <span class="dk_color2">></span> /dev/null 2 <span class="dk_color2">>&</span>1</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            4
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0"></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            5
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0">chmod -R 777 guided_iso3dfd_code_sample/build/src/5_GPU_optimized</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 1rem !important;" class="d-flex mv_pre pb-0">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            6
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0">./guided_iso3dfd_code_sample/build/src/5_GPU_optimized 256 256 256 100 16 8 16</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <p><em><em>Overwriting run_iso3dfd.sh complete</em></em></p>
+                            <!-- code toolbar 3 -->
+                            <div class="mv_code_toolbar">
+                                <div class="mv_toolbar_item mv_copy_icon">
+                                    <i class="fa-regular fa-copy"></i>
+                                </div>
+                                <div class="mv_copy_message text-end hidden">Copied</div>
+                                <div class="code-content">
+                                    <div style="padding-bottom: 0rem !important; padding-bottom: 1rem !important;" class="d-flex mv_pre">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            1
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0"><a class="dk_color2" href="">!</a> chmod 755 q; chmod 755 run_iso3dfd.sh; <a class="dk_color1" href="">if</a> [ -x "<a class="dk_color2" href="">$(command -v qsub)</a>" ]; <a class="dk_color1" href="">then</a> ./q run_iso3dfd.sh; <a class="dk_color1" href="">else</a> ./run_iso3dfd.sh;  <a class="dk_color1" href="">fi</a></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+
+                        <section id="dk_vtune_collecting3">
+                            <h4>b) VTune Command Line for Collecting and Reporting</h4>
+                            <p>This is the command line for running gpu-hotspots on SYCL Shared Local Memory implementation for GPU:</p>
+                            <!-- code toolbar 3 -->
+                            <div class="mv_code_toolbar">
+                                <div class="mv_toolbar_item mv_copy_icon">
+                                    <i class="fa-regular fa-copy"></i>
+                                </div>
+                                <div class="mv_copy_message text-end hidden">Copied</div>
+                                <div class="code-content">
+                                    <div style="padding-bottom: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            1
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0"><span class="token function">%%writefile vtune_collect.sh</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            2
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0"><span style="color: #008200 !important;">#!/bin/bash</span></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            3
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0">source /opt/intel/inteloneapi/setvars.sh</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            4
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0">type <span class="dk_color2">=</span> gpu-hotspots</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            5
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0"><span class="dk_color1">echo</span> "<span style="color: blue;">Vtune Collect</span> <span class="dk_color2">$type</span>"</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            6
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0"></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 1rem !important;" class="d-flex mv_pre pb-0">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            7
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0">vtune -collect gpu-hotspots -search-dir=guided_iso3dfd_code_sample -source-search-dir=guided_iso3dfd_code_sample/build/src -result-dir vtune_data_5_hotspots_tuned -- ./guided_iso3dfd_code_sample/build/src/5_GPU_optimized 256 256 256 100 16 8 16</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+
+                        <section id="dk_run_hotspots">
+                            <h4>c) Run VTune to Collect Hotspots and Generate Report</h4>
+                            <!-- code toolbar 3 -->
+                            <div class="mv_code_toolbar">
+                                <div class="mv_toolbar_item mv_copy_icon">
+                                    <i class="fa-regular fa-copy"></i>
+                                </div>
+                                <div class="mv_copy_message text-end hidden">Copied</div>
+                                <div class="code-content">
+                                    <div style="padding-bottom: 0rem !important; padding-bottom: 1rem !important;" class="d-flex mv_pre">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            1
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0"><a class="dk_color2" href="">!</a> chmod 755 vtune_collect.sh; <a class="dk_color1" href="">if</a> [ -x "<a class="dk_color2" href="">$(command -v qsub)</a>" ]; <a class="dk_color1" href="">then</a> ./q vtune_collect.sh; <a class="dk_color1" href="">else</a> ./vtune_collect.sh;  <a class="dk_color1" href="">fi</a></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <p>Here is a snapshot of the GPU Compute/Media Hotpots analysis after adding Shared Local Memory:</p>
+                            <p style="text-align:center"><img class="w-100" src="/img/darshit_image/f9-summary-view-of-gpu-compute-media-hotspots-analysis.png" width="1545"></p>
+                            <p class="utility-text-1" style="text-align:center"><em>Figure-9: Summary view of GPU Compute/Media Hotspots Analysis</em></p>
+                            <p>From <strong>Figure-9</strong> we can see the improved EU Array Stalled/Idle time. It also shows significant improvement in total GPU time and reduced time spent in the hottest GPU computing task. &nbsp;&nbsp;</p>
+                            <p class="mb-0"><strong>Observations and Recommendations:</strong></p>
+                            <ul> 
+                                <li>Improvement in execution time</li> 
+                                <li>Better utilization of EU arrays</li> 
+                                <li>Increase in the memory read and write bandwidth</li> 
+                            </ul>
+                            <p>&nbsp;</p>
+                        </section>
+
+                        <section id="dk_summary">
+                            <h3><strong>Summary</strong><a class="inpage-nav-anchor" id="inpage-nav-2"></a></h2>
+                            <p>Intel VTune Profiler is a very powerful tool for in-depth analysis of a real-world application to locate performance bottlenecks on CPU as well as GPU.&nbsp; Our overall improvements of the SYCL implementations on GPU throughout the journey are summarized in Table 1 below.</p>
+                            <table style="padding-bottom: 22px;" class="mv_product_table w-100">
+                            <thead>
+                                <tr>
+                                    <th scope="col">
+                                    <p>&nbsp;</p>
+                                    </th>
+                                    <th scope="col">
+                                    <p>Step 3</p>
+                                    </th>
+                                    <th scope="col">
+                                    <p>Step 4</p>
+                                    </th>
+                                    <th scope="col">
+                                    <p>Step 5 &amp; 6</p>
+                                    </th>
+                                    <th scope="col">
+                                    <p>Step-7</p>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                    <p>GPU Optimization Type</p>
+                                    </td>
+                                    <td>
+                                    <p>Basic GPU Offload</p>
+                                    </td>
+                                    <td>
+                                    <p>GPU Optimization-1 (Linear Indexing)</p>
+                                    </td>
+                                    <td>
+                                    <p>Optimization 2_i: GPU Private Memory – 1<sup>st</sup> Dimension<br>
+                                    Optimization 2_k: GPU Private Memory – 3<sup>rd</sup> Dimension</p>
+                                    </td>
+                                    <td>
+                                    <p>Optimization 3: Shared Local Memory</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                    <p>Wall Time(s)</p>
+                                    </td>
+                                    <td>
+                                    <p>21.873</p>
+                                    </td>
+                                    <td>
+                                    <p>7.265</p>
+                                    </td>
+                                    <td>
+                                    <p>6.409</p>
+                                    </td>
+                                    <td>
+                                    <p>5.491</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                    <p>GPU Time (s)</p>
+                                    </td>
+                                    <td>
+                                    <p>17.167</p>
+                                    </td>
+                                    <td>
+                                    <p>4.131</p>
+                                    </td>
+                                    <td>
+                                    <p>2.542</p>
+                                    </td>
+                                    <td>
+                                    <p>1.934</p>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <p class="mb-0">&nbsp;</p>
+                        <p>Our CPU- and GPU-optimization journey showcased the tremendous performance improvements that can be achieved by translating the advice of the Intel VTune™ Profiler into action.</p>
+                        <p class="mb-0">&nbsp;</p>
+                        </section>
+
+                        <section id="dk_learn_more">
+                            <h2 style="font-weight: bolder;">Learn More</h2>
+                            <ul>
+                                <li>Check out the <strong>Intel® Innovation 2022</strong> session recap for additional background: Code Design and Optimization for Next Generation CPUs and Compute Accelerators with oneAPI Analysis Tools</li>
+                                <li><a class="b_special_a1" href="" style="color:#0070c0; font-style:normal">Intel® oneAPI Components</a> - Putting the Needs of Developers First</li>
+                                <li><a class="b_special_a1" href="" style="color:#0070c0; font-style:normal">Intel® Advisor</a> - Design Code for Efficient Vectorization, Threading, Memory Usage, and Accelerator Offloading</li>
+                            </ul>
+                            <p>&nbsp;</p>
+                        </section>
+
+                        <section id="dk_get_software"> 
+                            <h2><strong>Get the Software</strong><a class="inpage-nav-anchor" id="inpage-nav-4"></a></h2>
+                            <p>Download Intel VTune Profiler <a class="b_special_a1" href="" style="color:#0070c0; font-style:normal">standalone</a> or as part of the <a class="b_special_a1" href="" style="color:#0070c0; font-style:normal">Intel® oneAPI Base Toolkit</a>, a core set of tools and libraries for developing performant, data-centric applications across CPUs, GPUs, FPGAs, and other accelerators.</p>
+                        </section>
+
                 </div>
             </div>
         </div>
@@ -1235,5 +2166,3 @@
 </body>
 
 </html>
-
-
