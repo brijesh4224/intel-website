@@ -919,16 +919,10 @@
                             <p>&nbsp;</p>
                         </section>
 
-                        <section id="dk_intel_optimization_caffe">
+                        <section id="dk_enable_pass">
+                            <h4>Enable the Loop Vectorization Optimization Pass</h4>
                             <p class="mb-0">&nbsp;</p>
-                            <h4>Intel® Optimization for Caffe*</h4>
-                            <p>Intel has a tutorial showing how to use the following:</p>
-                            <ul> 
-                                <li>Build Caffe optimized for Intel architecture</li> 
-                                <li>Train deep-network models using one or more compute nodes</li> 
-                                <li>Deploy networks</li> 
-                            </ul>
-                            <p><a class="b_special_a1" href="" rel="">Tutorial</a></p>
+                            <p>First, the required loop-optimize passes need to be added to passmanager. The following is a known-good list of passes.</p>
 
                             <!-- code toolbar 3 -->
                             <div class="mv_code_toolbar">
@@ -943,8 +937,7 @@
                                         </div>
                                         <div class="">
                                             <div class="mv_code text-break">
-                                                <p class="mb-0">( Ubuntu <a class="dk_color1" href="">16.04</a> )
-                                                </p>
+                                                <p class="mb-0">std <span class="dk_color2">: :</span> unique_ptr <span class="dk_color2">< </span>llvm <span class="dk_color2">: :</span> legacy <span class="dk_color2">: :</span> PassManager<span class="dk_color2"> ></span> pass_manager( <span class="dk_color1">new</span> llvm <span class="dk_color2">: :</span> legacy <span class="dk_color2">: :</span> PassManager ( ) ) ;</p>
                                             </div>
                                         </div>
                                     </div>
@@ -955,7 +948,7 @@
                                         </div>
                                         <div class="">
                                             <div class="mv_code text-break">
-                                                <p class="mb-0">git clone <a class="dk_color1" href="">https</a> : <a class="dk_color2" href="">/</a><a class="dk_color2" href="">/ </a>github.com<a class="dk_color2" href="">/</a> intel<a class="dk_color2" href="">/</a> caffe.git </p>
+                                                <p class="mb-0">pass_manager <span class="dk_color2">-></span> add ( llvm <span class="dk_color2">: :</span> createFunctionInliningPass ( ) ) ;</p>
                                             </div>
                                         </div>
                                     </div>
@@ -966,7 +959,7 @@
                                         </div>
                                         <div class="">
                                             <div class="mv_code text-break">
-                                                <p class="mb-0">Open a Terminal <a class="dk_color1" href="">window</a></p>
+                                                <p class="mb-0">pass_manager <span class="dk_color2">-></span> add ( llvm <span class="dk_color2">: :</span> createLoopRotatePass ( ) ) ;</p>
                                             </div>
                                         </div>
                                     </div>
@@ -977,7 +970,7 @@
                                         </div>
                                         <div class="">
                                             <div class="mv_code text-break">
-                                                <p class="mb-0">sudo apt-get update</p>
+                                                <p class="mb-0">pass_manager <span class="dk_color2">-></span> add ( llvm <span class="dk_color2">: :</span> createLICMPass ( ) );</p>
                                             </div>
                                         </div>
                                     </div>
@@ -988,7 +981,7 @@
                                         </div>
                                         <div class="">
                                             <div class="mv_code text-break">
-                                                <p class="mb-0"> <span>sudo apt-get install build-essential cmake git pkg-config </span></p>
+                                                <p class="mb-0">pass_manager <span class="dk_color2">-></span> add ( llvm <span class="dk_color2">: :</span> createInstructionCombiningPass ( ) ) ;</p>
                                             </div>
                                         </div>
                                     </div>
@@ -999,7 +992,7 @@
                                         </div>
                                         <div class="">
                                             <div class="mv_code text-break">
-                                                <p class="mb-0"> <span>sudo apt-get install libprotobuf-dev libleveldb-dev libsnappy-dev  </span></p>
+                                                <p class="mb-0">pass_manager <span class="dk_color2">-></span> add ( llvm <span class="dk_color2">: :</span> createPromoteMemoryToRegisterPass ( ) ) ;</p>
                                             </div>
                                         </div>
                                     </div>
@@ -1010,7 +1003,7 @@
                                         </div>
                                         <div class="">
                                             <div class="mv_code text-break">
-                                                <p class="mb-0"> <span>libhdf5-serial-dev protobuf-compiler </span></p>
+                                                <p class="mb-0">pass_manager <span class="dk_color2">-></span> add ( llvm <span class="dk_color2">: :</span> createGVNPass ( ) ) ;</p>
                                             </div>
                                         </div>
                                     </div>
@@ -1021,7 +1014,7 @@
                                         </div>
                                         <div class="">
                                             <div class="mv_code text-break">
-                                                <p class="mb-0"> <span>sudo apt-get install libatlas-base-dev </span></p>
+                                                <p class="mb-0">pass_manager <span class="dk_color2">-></span> add ( llvm <span class="dk_color2">: :</span> createCFGSimplificationPass ( ) ) ;</p>
                                             </div>
                                         </div>
                                     </div>
@@ -1032,7 +1025,7 @@
                                         </div>
                                         <div class="">
                                             <div class="mv_code text-break">
-                                                <p class="mb-0"> <span>sudo apt-get install –– <a class="dk_color1" href="">no</a>-install-recommends libboost-all-dev  </span></p>
+                                                <p class="mb-0">pass_manager <span class="dk_color2">-></span> add ( llvm <span class="dk_color2">: :</span> createLoopVectorizePass ( ) ) ;</p>
                                             </div>
                                         </div>
                                     </div>
@@ -1043,7 +1036,193 @@
                                         </div>
                                         <div class="">
                                             <div class="mv_code text-break">
-                                                <p class="mb-0"> <span>sudo apt-get install libgflags-dev libgoogle-glog-dev liblmdb-dev</span></p>
+                                                <p class="mb-0">pass_manager <span class="dk_color2">-></span> add ( llvm <span class="dk_color2">: :</span> createSLPVectorizerPass ( ) ) ;</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 1rem !important;"
+                                        class="d-flex mv_pre pb-0">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            11
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0">pass_manager <span class="dk_color2">-></span> add ( llvm <span class="dk_color2">: :</span> createGlobalOptimizerPass ( ) ) ;</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <p>The order of the passes matters. The FunctionInliningPass should be called before vectorization passes to help generate a function that’s friendlier to the loop-vectorize pass.</p>
+                        </section>
+
+                        <section id="dk_set_engine">
+                            <p>&nbsp;</p>
+                            <h4>Set Up CPU Information for the Engine</h4>
+                            <p>Now, we specify the loop vectorize width. The loop vectorize width indicates how much data can be processed by the SIMD instructions at one time. Usually, it should align with the CPU architecture (for example, for Intel SSE, it is 128 bits; for Intel AVX-512, it is 512 bits). It’s recommended to use the EngineBuilder’s setMCPU() method as shown in the following code block because it automatically adapts to different generations of Intel® processors.</p>
+
+                            <!-- code toolbar 3 -->
+                            <div class="mv_code_toolbar">
+                                <div class="mv_toolbar_item mv_copy_icon">
+                                    <i class="fa-regular fa-copy"></i>
+                                </div>
+                                <div class="mv_copy_message text-end hidden">Copied</div>
+                                <div class="code-content">
+                                    <div style="padding-bottom: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            1
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0">std <span class="dk_color2">: :</span> string cpuName <span class="dk_color2">=</span> llvm <span class="dk_color2">: :</span> sys <span class="dk_color2">: :</span> getHostCPUName ( ) .str ( ) ;</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 1rem !important;" class="d-flex mv_pre pb-0">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            2
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0">mEngineBuilder <span class="dk_color2">-></span> setMCPU ( cpuName ) ;</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+
+                        <section id="dk_set_option">
+                            <p>&nbsp;</p>
+                            <h4>Set the Clang Optimization Option</h4>
+                            <p>Compiler auto-vectorization requires explicitly specified compile options. For Clang, the minimal compile option is -O2; for GCC, it is -O3. In this case, we set Clang options to enable optimization flags in the lib building step. For LLVM versions greater than 5.0, the -O1/2/3 option should be specified to avoid the optnone flag being added to the precompiled libs.</p>
+                            <p>After applying all the measures above, we build and run samplejit.cpp. We see that the output is res: 3148, which indicates successful JIT compiling and running of the plus() function. We dump the machine code after optimization and see the Intel AVX-512 instructions in place.</p>
+                            <p>&nbsp;</p>
+                            <p class="mb-0">&nbsp;</p>
+                        </section>
+
+                        <section id="dk_data_prog">
+                            <h3 style="font-weight: 350;">Data-Oriented Programming</h4>
+                            <p>Simply applying the above configurations to the test code couldn’t make it vectorize successfully. That’s because the real-world program isn’t as simple as the example code. Many loops cannot be vectorized due to complicated control flow or unvectorizable types or calls. So, the prototype IR code also needs to be written in a way that’s friendly to the vectorizer. There are many papers and presentations that talk about how to write hardware-friendly code that enables the compiler to generate machine code that best uses CPU features. For this case, we used the direct pointer reference and the pointer noalias techniques. The following example code demonstrates the real-world use cases and how to apply the advanced techniques to make sure that the loops are vectorized by Intel AVX and Intel AVX-512.</p>
+                        </section>
+
+                        <section id="dk_example">
+                            <p>&nbsp;</p>
+                            <h4>Example: Simulating a Real Programming Structure</h4>
+                            <p>The following is a sample code for a real-world programming structure.</p>
+                            <!-- code toolbar 3 -->
+                            <div class="mv_code_toolbar">
+                                <div class="mv_toolbar_item mv_copy_icon">
+                                    <i class="fa-regular fa-copy"></i>
+                                </div>
+                                <div class="mv_copy_message text-end hidden">Copied</div>
+                                <div class="code-content">
+                                    <div style="padding-bottom: 0rem !important" class="d-flex mv_pre">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            1
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0"><span class="dk_color1">#define LENARRAY 10240</span></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;"
+                                        class="d-flex mv_pre pb-0">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            2
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0"><span class="dk_color1">typedef unsigned char</span>  nullval_t;</p>
+                                            </div> 
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;"
+                                        class="d-flex mv_pre pb-0">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            3
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0"><span class="dk_color1">class </span> lvdt</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;"
+                                        class="d-flex mv_pre pb-0">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            4
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0">{</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;"
+                                        class="d-flex mv_pre pb-0">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            5
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0"><span class="dk_color1">public</span> <span class="dk_color2">:</span></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;"
+                                        class="d-flex mv_pre pb-0">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            6
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0">&nbsp; &nbsp; &nbsp; &nbsp; lvdt ( <span class="dk_color1">unsigned int</span> capacity ) </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;"
+                                        class="d-flex mv_pre pb-0">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            7
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0">&nbsp; &nbsp; &nbsp; &nbsp; {</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;"
+                                        class="d-flex mv_pre pb-0">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            8
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; mNullVal <span class="dk_color2">=</span> <span class="dk_color1">new</span> nullval_t [ capacity ];</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;"
+                                        class="d-flex mv_pre pb-0">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            9
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="dk_color1">for</span> ( <span class="dk_color1">int</span> i <span class="dk_color2">=</span> <span class="dk_color1">0</span> ; i <span class="dk_color2"><</span> capacity ; i <span class="dk_color2">++</span> )</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;"
+                                        class="d-flex mv_pre pb-0">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            10
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; {</p>
                                             </div>
                                         </div>
                                     </div>
@@ -1054,7 +1233,7 @@
                                         </div>
                                         <div class="">
                                             <div class="mv_code text-break">
-                                                <p class="mb-0"> <span>sudo apt-get install libopencv-dev </span></p>
+                                                <p class="mb-0">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; mNullVal[i] <span class="dk_color2">=</span> rand() <span class="dk_color2">%</span><span class="dk_color1">2</span>;</p>
                                             </div>
                                         </div>
                                     </div>
@@ -1065,7 +1244,7 @@
                                         </div>
                                         <div class="">
                                             <div class="mv_code text-break">
-                                                <p class="mb-0"> <span>Go to Caffe root directory. </span></p>
+                                               <p class="mb-0">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }</p>
                                             </div>
                                         </div>
                                     </div>
@@ -1076,7 +1255,7 @@
                                         </div>
                                         <div class="">
                                             <div class="mv_code text-break">
-                                                <p class="mb-0"> <span>cp Makefile.config.example Makefile.config  </span></p>
+                                                <p class="mb-0">&nbsp; &nbsp; &nbsp; &nbsp; }</p>
                                             </div>
                                         </div>
                                     </div>
@@ -1087,7 +1266,7 @@
                                         </div>
                                         <div class="">
                                             <div class="mv_code text-break">
-                                                <p class="mb-0"> <span>vi Makefile.config (add the red part) </span></p>
+                                                <p class="mb-0"><span class="dk_color1">public</span> <span class="dk_color2">:</span></p>
                                             </div>
                                         </div>
                                     </div>
@@ -1098,7 +1277,7 @@
                                         </div>
                                         <div class="">
                                             <div class="mv_code text-break">
-                                                <p class="mb-0"> <a class="dk_color1" href="">INCLUDE DIRS</a> :<a class="dk_color2" href="">=</a> $( <a class="dk_color1" href="">PYTHON INCLUDE</a> ) <a class="dk_color2" href="">/</a> usr<a class="dk_color2" href="">/</a> local<a class="dk_color2" href="">/</a> include <a class="dk_color2" href="">/</a> usr<a class="dk_color2" href="">/</a> include<a class="dk_color2" href="">/</a> hdf5<a class="dk_color2" href="">/</a> serial</p>
+                                                <p class="mb-0">&nbsp; &nbsp; &nbsp; &nbsp; nullval_t <span class="dk_color2">*</span> mNullVal; </p>
                                             </div>
                                         </div>
                                     </div>
@@ -1109,7 +1288,7 @@
                                         </div>
                                         <div class="">
                                             <div class="mv_code text-break">
-                                                <p class="mb-0"><a class="dk_color1" href="">LIBRARY DIRS</a> : <a class="dk_color2" href="">=</a> $( <a class="dk_color1" href="">PYTHON LIB</a> ) <a class="dk_color2" href="">/</a> usr<a class="dk_color2" href="">/</a> local<a class="dk_color2" href="">/</a> lib <a class="dk_color2" href="">/</a> usr<a class="dk_color2" href="">/</a> lib <a class="dk_color2" href="">/</a> usr<a class="dk_color2" href="">/</a> lib<a class="dk_color2" href="">/</a> x86_64-</p>
+                                                <p class="mb-0">};</p>
                                             </div>
                                         </div>
                                     </div>
@@ -1120,7 +1299,7 @@
                                         </div>
                                         <div class="">
                                             <div class="mv_code text-break">
-                                                <p class="mb-0"> <span>linux-gnu <a class="dk_color2" href="">/</a> usr<a class="dk_color2" href="">/</a> lib<a class="dk_color2" href="">/</a> x86_64-linux-gnu<a class="dk_color2" href="">/</a> hdf5<a class="dk_color2" href="">/</a> serial</span></p>
+                                                <p class="mb-0"></p>
                                             </div>
                                         </div>
                                     </div>
@@ -1131,21 +1310,157 @@
                                         </div>
                                         <div class="">
                                             <div class="mv_code text-break">
-                                                <p class="mb-0"> <span>make all -j4</span></p>
+                                                <p class="mb-0"><span class="dk_color1">int</span> main( )</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;"
+                                        class="d-flex mv_pre pb-0">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            19
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0">{</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;"
+                                        class="d-flex mv_pre pb-0">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            20
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0">&nbsp; &nbsp; &nbsp; &nbsp; <span class="dk_color1">int</span> loopcount <span class="dk_color2">=</span> <span class="dk_color1">10240</span>;</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;"
+                                        class="d-flex mv_pre pb-0">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            21
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0">&nbsp; &nbsp; &nbsp; &nbsp; srand ( time( <span class="dk_color1">0</span> ) ) ;</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;"
+                                        class="d-flex mv_pre pb-0">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            22
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0">&nbsp; &nbsp; &nbsp; &nbsp; lvdt<span class="dk_color2">*</span>  lvdt1 <span class="dk_color2">=</span> <span class="dk_color1">new</span> lvdt ( LENARRAY ) ;</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;"
+                                        class="d-flex mv_pre pb-0">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            23
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0">&nbsp; &nbsp; &nbsp; &nbsp; lvdt<span class="dk_color2">*</span>  lvdtout <span class="dk_color2">=</span> <span class="dk_color1">new</span> lvdt ( LENNARAY ) ;</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;"
+                                        class="d-flex mv_pre pb-0">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            24
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0"></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;"
+                                        class="d-flex mv_pre pb-0">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            25
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0">&nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #008200;">// the loop</span></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;"
+                                        class="d-flex mv_pre pb-0">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            26
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0">&nbsp; &nbsp; &nbsp; &nbsp; <span class="dk_color1">for</span> ( <span class="dk_color1">int</span> i<span class="dk_color2">=</span><span class="dk_color1">0</span> ; i <span class="dk_color2"><</span> loopcount ; i<span class="dk_color2">++</span> )  {</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;"
+                                        class="d-flex mv_pre pb-0">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            27
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="dk_color2">*</span> ( lvdtout<span class="dk_color2">-></span>mNullVal<span class="dk_color2">+</span>i ) <span class="dk_color2">=</span> <span class="dk_color2">*</span> ( lvdt1<span class="dk_color2">-></span>mNullVal<span class="dk_color2">+</span>i ) ;</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;"
+                                        class="d-flex mv_pre pb-0">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            28
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0">&nbsp; &nbsp; &nbsp; &nbsp; }</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;"
+                                        class="d-flex mv_pre pb-0">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            29
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0">&nbsp; &nbsp; &nbsp; &nbsp; . . .</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;"
+                                        class="d-flex mv_pre pb-0">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            30
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0">&nbsp; &nbsp; &nbsp; &nbsp; <span class="dk_color1">return 0</span> ;</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 1rem !important;"
+                                        class="d-flex mv_pre pb-0">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            31
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0"> <span>}</span></p>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-
-                        </section>
-
-                        <section id="dk_intel_optimized">
                             <p>&nbsp;</p>
-                            <h4>Intel® Optimized Apache MXNet*</h4>
-                            <p>For more details on this library, see:</p>
-                            <p><a class="b_special_a1" href="">Get Started</a></p>
-                            <p><a class="b_special_a1" href="">Intel® Optimized Apache MXNet*</a></p>
+                            <p>Build it with this command (note that the loop is not vectorized).</p>
                             <!-- code toolbar 3 -->
                             <div class="mv_code_toolbar">
                                 <div class="mv_toolbar_item mv_copy_icon">
@@ -1153,23 +1468,351 @@
                                 </div>
                                 <div class="mv_copy_message text-end hidden">Copied</div>
                                 <div class="code-content">
-                                    <div style="padding-bottom: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre">
+                                    <div style="padding-bottom: 0rem !important; padding-bottom: 1rem !important;" class="d-flex mv_pre">
                                         <div style="border-right: 1px solid #ccc" class="pe-3">
                                             1
                                         </div>
                                         <div class="">
                                             <div class="mv_code text-break">
-                                                <p class="mb-0"><span class="token function">git clone – –recursive https : // github.com / apache / incubator-mxnet.git</p>
+                                                <p class="mb-0">clang <span class="dk_color2">/</span>loopvect.cpp <span class="dk_color2">-</span>fno<span class="dk_color2">-</span>use<span class="dk_color2">-</span>cxa<span class="dk_color2">-</span>atexit <span class="dk_color2">-</span>emit<span class="dk_color2">-</span>llvm <span class="dk_color2">-</span>S <span class="dk_color2">-</span>O2 <span class="dk_color2">-</span>mavx512f <span class="dk_color2">-</span>c <span class="dk_color2">-</span>Rpass<span class="dk_color2">=</span>loop<span class="dk_color2">-</span>vectorize <span class="dk_color2">-</span>Rpass<span class="dk_color2">-</span>analysis<span class="dk_color2">=</span>loop-vectorize</p>
                                             </div>
                                         </div>
                                     </div>
-                                    <div style="padding-top: 0rem !important; padding-bottom: 1rem !important;" class="d-flex mv_pre pb-0">
+                                </div>
+                            </div>
+                            <p>&nbsp;</p>
+                            <p>The debug output shows “loop not vectorized: cannot identify array bounds.” This means the optimizer can’t verify that the pointers in the loop are not aliasing.</p>
+                            <p>To understand pointer aliasing, let’s look at simpler code. To prove it's safe to vectorize the following loop, array A must show that it’s not an alias of array B. However, the bounds of array A can’t be identified.</p>
+                            <!-- code toolbar 3 -->
+                            <div class="mv_code_toolbar">
+                                <div class="mv_toolbar_item mv_copy_icon">
+                                    <i class="fa-regular fa-copy"></i>
+                                </div>
+                                <div class="mv_copy_message text-end hidden">Copied</div>
+                                <div class="code-content">
+                                    <div style="padding-bottom: 0rem !important" class="d-flex mv_pre">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            1
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0"><span class="dk_color1">void</span> test ( <span class="dk_color1">int</span> <span class="dk_color2">*</span>A, <span class="dk_color1">int</span> <span class="dk_color2">*</span>B <span class="dk_color1">int</span> Length ) {</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;"
+                                        class="d-flex mv_pre pb-0">
                                         <div style="border-right: 1px solid #ccc" class="pe-3">
                                             2
                                         </div>
                                         <div class="">
                                             <div class="mv_code text-break">
-                                                <p class="mb-0">cd mxnet && make -j $(nproc) USE_OPENCV=1 USE_BLAS=mk1 USE MKLDNN=1 </p>
+                                                <p class="mb-0">&nbsp; &nbsp; &nbsp; &nbsp; <span class="dk_color1">for</span> ( <span class="dk_color1">int</span> i <span class="dk_color2">=</span><span class="dk_color1">0</span>; i <span class="dk_color2"><</span> Length; i<span class="dk_color2">++</span> )</p>
+                                            </div> 
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;"
+                                        class="d-flex mv_pre pb-0">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            3
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; A [ B [ i ] ] <span class="dk_color2">++</span> ;</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;"
+                                        class="d-flex mv_pre pb-0">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            4
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0">}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;"
+                                        class="d-flex mv_pre pb-0">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            5
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0"></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;"
+                                        class="d-flex mv_pre pb-0">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            6
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0">clang <span class="dk_color2">-</span>O3 <span class="dk_color2">-</span>Rpass<span class="dk_color2">-</span>analysis<span class="dk_color2">=</span> loop<span class="dk_color2">-</span>vectorize <span class="dk_color2">-</span>S test.c <span class="dk_color2">-</span>o <span class="dk_color2">/</span>dev<span class="dk_color2">/</span>null</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;"
+                                        class="d-flex mv_pre pb-0">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            7
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0"></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;"
+                                        class="d-flex mv_pre pb-0">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            8
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0">test.c <span class="dk_color2">:</span> <span class="dk_color1">3</span> <span class="dk_color2">:</span> <span class="dk_color1">5</span> <span class="dk_color2">:</span> remark ;</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;"
+                                        class="d-flex mv_pre pb-0">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            9
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0">&nbsp; &nbsp; &nbsp; loop  <span class="dk_color2">not</span> vectorized <span class="dk_color2">:</span> cannot identify array bounds</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 1rem !important;"
+                                        class="d-flex mv_pre pb-0">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            10
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="dk_color1">for</span> ( <span class="dk_color1">int</span> i <span class="dk_color2">=</span><span class="dk_color1">0</span>; i <span class="dk_color2"><</span> Length; i<span class="dk_color2">++</span> )</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <p>&nbsp;</p>
+                            <p>There are techniques to address the pointer aliasing problem. If it’s certain that A and B point to nonoverlapping memory ranges, we can inform the compiler by explicitly using the #pragma Clang loop directive prior to the loop, such as:</p>
+                            <!-- code toolbar 3 -->
+                            <div class="mv_code_toolbar">
+                                <div class="mv_toolbar_item mv_copy_icon">
+                                    <i class="fa-regular fa-copy"></i>
+                                </div>
+                                <div class="mv_copy_message text-end hidden">Copied</div>
+                                <div class="code-content">
+                                    <div style="padding-bottom: 0rem !important; padding-bottom: 1rem !important;" class="d-flex mv_pre">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            1
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0"><span class="dk_color1">#programa clang loop vectorize(enable)</span></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <p>&nbsp;</p>
+                            <p>Another method that has the same effect is to add the restrict qualifier to the function parameters in the C/C++ code:</p>
+                            <!-- code toolbar 3 -->
+                            <div class="mv_code_toolbar">
+                                <div class="mv_toolbar_item mv_copy_icon">
+                                    <i class="fa-regular fa-copy"></i>
+                                </div>
+                                <div class="mv_copy_message text-end hidden">Copied</div>
+                                <div class="code-content">
+                                    <div style="padding-bottom: 0rem !important; padding-bottom: 1rem !important;" class="d-flex mv_pre">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            1
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0"><span class="dk_color1">void</span> test ( <span class="dk_color1">int</span><span class="dk_color2">*</span> restrict A, <span class="dk_color1">int</span class="dk_color2">*<span></span> restrict B, <span class="dk_color1">int</span> Length )</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <p>Now we have a question. Since the prototype module in the code generation scenario is written in IR using IRBuilder, neither the pragma nor the restrict keyword is applicable. How do we make it work in LLVM IR? The answer is that in LLVM, the noalias attribute is equivalent to the C restrict qualifier in function parameters.</p>
+                            <p>In the test code, the situation is a bit complex because it used indirect pointers in the loop. That makes the LLVM’s optimizer harder to vectorize the loop. To address this, get the direct pointers to the buffers outside the loop and use them in the loop. The idea is shown in the following real-world example code.</p>
+                            <!-- code toolbar 3 -->
+                            <div class="mv_code_toolbar">
+                                <div class="mv_toolbar_item mv_copy_icon">
+                                    <i class="fa-regular fa-copy"></i>
+                                </div>
+                                <div class="mv_copy_message text-end hidden">Copied</div>
+                                <div class="code-content">
+                                    <div style="padding-bottom: 0rem !important" class="d-flex mv_pre">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            1
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0"><span class="dk_color1">int</span> main( )</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;"
+                                        class="d-flex mv_pre pb-0">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            2
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0">{</p>
+                                            </div> 
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;"
+                                        class="d-flex mv_pre pb-0">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            3
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0">&nbsp; &nbsp; &nbsp; &nbsp; <span class="dk_color1">int</span> loopcount <span class="dk_color2">=</span> <span class="dk_color1">10240</span>;</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;"
+                                        class="d-flex mv_pre pb-0">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            4
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0">&nbsp; &nbsp; &nbsp; &nbsp; srand ( time ( <span class="dk_color1">0</span> ) <span class="dk_color1">0</span> ;</p>
+                                            </div> 
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;"
+                                        class="d-flex mv_pre pb-0">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            5
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0">&nbsp; &nbsp; &nbsp; &nbsp; lvdt<span class="dk_color2">*</span>  lvdt1 <span class="dk_color2">-</span>  <span class="dk_color1">new</span> lvdt( LENARRAY ) ;</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;"
+                                        class="d-flex mv_pre pb-0">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            6
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0">&nbsp; &nbsp; &nbsp; &nbsp; lvdt<span class="dk_color2">*</span>  lvdtout <span class="dk_color2">-</span>  <span class="dk_color1">new</span> lvdt( LENARRAY ) ;</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;"
+                                        class="d-flex mv_pre pb-0">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            7
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0">&nbsp; &nbsp; &nbsp; &nbsp; nullval_t <span class="dk_color2">*</span>p1 <span class="dk_color2">=</span> lvdt1<span class="dk_color2">-></span>mNullVal;</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;"
+                                        class="d-flex mv_pre pb-0">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            8
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0">&nbsp; &nbsp; &nbsp; &nbsp; nullval_t <span class="dk_color2">*</span> pout <span class="dk_color2">=</span> lvdtouts <span class="dk_color2">-></span> mNullval;</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;"
+                                        class="d-flex mv_pre pb-0">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            9
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0">&nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #008200;">// updated loop which can be vectorized</span></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;"
+                                        class="d-flex mv_pre pb-0">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            10
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0">&nbsp; &nbsp; &nbsp; &nbsp; <span class="dk_color1">for</span> ( <span class="dk_color1">int</span> i <span class="dk_color2">=</span> <span class="dk_color1">0</span> ; i <span class="dk_color2"><</span>loopcount ; i<span class="dk_color2">++</span> ) {</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;"
+                                        class="d-flex mv_pre pb-0">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            11
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="dk_color2">*</span> ( pout <span class="dk_color2">+</span> i ) <span class="dk_color2">=</span> <span class="dk_color2">*</span> ( p1 <span class="dk_color2">+</span> i );</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;"
+                                        class="d-flex mv_pre pb-0">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            12
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;"
+                                        class="d-flex mv_pre pb-0">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            13
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; . . .</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;"
+                                        class="d-flex mv_pre pb-0">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            14
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="dk_color1">return 0</span>; </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 1rem !important;"
+                                        class="d-flex mv_pre pb-0">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            15
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0">}</p>
                                             </div>
                                         </div>
                                     </div>
@@ -1178,332 +1821,33 @@
                         </section>
 
                         <section id="dk_performance">
-                            <p>&nbsp;</p>
-                            <h4 style="font-weight: 350;">Performance Considerations and Runtime Settings</h4>
-                            <p>Now let's consider TensorFlow runtime settings for best performance―specifically, convolutional neural network (CNN) inference. The concepts can be applied to other frameworks accelerated with Intel MKL-DNN and other use cases. However, some empirical testing is required. Where necessary, different recommendations are given for real-time inference (RTI) with a batch size of 1 and maximum throughput (MxT) with a tunable batch size.</p>
-                            <p>&nbsp;</p>
-                        </section>
-
-                        <section id="dk_maximum">
-                            <h4 style="font-weight: 350;">Maximum Throughput versus Real-Time Inference</h4>
-                            <p class="mb-0">Deep-learning inference is usually done with two different strategies, each with different performance measurements and recommendations:</p>
-                            <ul> 
-                                <li>MxT processes many images per second, passing in batches of size that's greater than 1. You can achieve the best performance by exercising all the physical cores on a socket. This solution is intuitive: Load up the CPU with as much work as possible, and process as many images as possible in a parallel and vectorized fashion.</li> 
-                                <li>RTI is a different scenario where a single image needs to be processed as quickly as possible. The goal is to avoid penalties from excessive thread launching and orchestration between concurrent processes. The strategy is to confine and run them quickly.</li> 
-                            </ul>
-                            <p>Let's discuss some best-known methods (BKMs) for maximizing MxT and RTI performance.</p>
-                        </section>
-
-                        <section id="dk_tensorflow">
-                            <p>&nbsp;</p>
-                            <h4 style="font-weight: 350;">TensorFlow Runtime Options Affecting Performance</h4>
-                            <p>These runtime options heavily affect TensorFlow performance. Understanding them helps you get the best performance out of Intel optimizations. BKMs differ for MxT and RTI. The runtime options are: <strong>{intra|inter}_op_parallelism_threads</strong> and data layout.</p>
-                        </section>
-
-                        <section id="dk_intra_op">
                             <p class="mb-0">&nbsp;</p>
-                            <h4>{intra|inter}_op_parallelism_threads</h4>
-                            <ul> 
-                                <li>Recommended settings (MxT): <strong>intra_op_parallelism = #physical cores</strong></li> 
-                                <li>Recommended settings (RTI): <strong>intra_op_parallelism = #physical cores</strong></li> 
-                                <li>Recommended settings for <strong>inter_op_parallelism</strong>: <strong>2</strong></li> 
-                                <li>Use (shell):<br> <strong>python script.py ––num_intra_threads=cores ––num_inter_threads=2 ––mkl=True</strong></li> 
-                            </ul>
-                            <p><strong>intra_op_parallelism_threads</strong> and <strong>inter_op_parallelism_threads</strong> are environment variables defined in <strong>tensorflow.ConfigProto</strong>. The <strong>ConfigProto </strong>is used for configuration when creating a session. These two environment variables control number of cores to use.</p>
-                            <p>The <strong>intra_op_parallelism_threads</strong> environment variable controls parallelism inside an operation. For instance, if matrix multiplication or reduction is intended to run in several threads, set this environment variable. TensorFlow schedules tasks in a thread pool that contains <strong>intra_op_parallelism_threads</strong>. OpenMP* threads are bound to thread context as closely as possible on different cores. Setting this environment variable to the number of available physical cores is recommended.</p>
-                            <p>The <strong>inter_op_parallelism_threads</strong> environment variable controls parallelism among independent operations. Since these operations are not relevant to each other, TensorFlow attempts to run them concurrently in the thread pool that contains <strong>inter_op_parallelism_threads</strong>. To minimize effects that are brought to <strong>intra_op_parallelsim_threads</strong>, this environment variable is recommended to be set to the number of sockets where you want the code to run. For the Intel Optimization of TensorFlow, it's recommended to keep the entire execution on a single socket.</p>
+                            <h4>Performance Results</h4>
+                            <p>After applying these techniques to the baseline test code, we successfully generated vectorized expression evaluation functions for all the test cases. We measured the performance improvement of the test cases on a server (Figure 3).</p>
+                            <p style="text-align:center"><img class="w-100" src="/img/darshit_image/optimize-llvm-code-data-analytics-vectorization-fig3.jpg"></p>
+                            <p style="text-align:center"><strong>Figure 3. Performance improvement of the test cases</strong></p>
+                            <p style="text-align:center">&nbsp;</p>
+                            <p>Server configuration: Intel® Xeon® Gold 6252 processor at 2.10G Hz, 512 GB memory, Fedora 29 operating system (Server Edition), LLVM: Clang version 7.0.1.</p>
+                            <p>For the expression l_extendedprice * (1 – l_discount) * (1 + l_tax), the result is shown, and the vectorization acceleration is at most 7.5x with Intel AVX-512 instructions. The data types are double-precision float point. We controlled the vectorize width to get the runtime for Intel SSE, Intel AVX2, and Intel AVX-512, respectively. For the test cases with other simpler expression (for example, single operator), the improvement is even higher (greater than 10x).</p>
+                            <p>Running the microarchitecture exploration again, we see the core-bound percentage is reduced and memory bound is appearing. This is reasonable, since Intel AVX-512 instructions increase the demand for data 8x over the original scalar version (Figure 4).</p>
+                            <p style="text-align:center"><img class="w-100" alt="" src="/img/darshit_image/optimize-llvm-code-data-analytics-vectorization-fig4.jpg" width="633"></p>
+                            <p style="text-align:center"><strong>Figure 4. AVX-512 instructions increase the demand for data 8x over the original scalar.</strong></p>
                             <p>&nbsp;</p>
                             <p>&nbsp;</p>
                         </section>
 
-                        <section id="dk_data_layout">
-                            <h4 style="font-weight: 350;">Data Layout</h4>
-                            <ul> 
-                                <li>Recommended settings: <strong>Data_format = NCHW</strong></li> 
-                                <li>Use (shell):</li> 
-                            </ul>
-                            <!-- code toolbar 3 -->
-                            <div class="mv_code_toolbar">
-                                <div class="mv_toolbar_item mv_copy_icon">
-                                    <i class="fa-regular fa-copy"></i>
-                                </div>
-                                <div class="mv_copy_message text-end hidden">Copied</div>
-                                <div class="code-content">
-                                    <div style="padding-bottom: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre">
-                                        <div style="border-right: 1px solid #ccc" class="pe-3">
-                                            1
-                                        </div>
-                                        <div class="">
-                                            <div class="mv_code text-break">
-                                                <p class="mb-0"><span class="token function">python</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
-                                        <div style="border-right: 1px solid #ccc" class="pe-3">
-                                            2
-                                        </div>
-                                        <div class="">
-                                            <div class="mv_code text-break">
-                                                <p class="mb-0">script.py ––num_intra_threads <a class="dk_color2" href="">=</a> cores ––num_inter_threads <a class="dk_color2" href="">=</a> <a class="dk_color1" href="">2</a> ––mkl <a class="dk_color2" href="">=</a> <a class="dk_color1" href="">True</a></p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div style="padding-top: 0rem !important; padding-bottom: 1rem !important;" class="d-flex mv_pre pb-0">
-                                        <div style="border-right: 1px solid #ccc" class="pe-3">
-                                            3
-                                        </div>
-                                        <div class="">
-                                            <div class="mv_code text-break">
-                                                <p class="mb-0">data_format <a class="dk_color2" href="">=</a> NCHW</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <p>&nbsp;</p>
-                            <p>In modern Intel architectures, efficient use of cache and memory greatly impacts overall performance. A good memory access pattern minimizes the performance cost of accessing data in memory. To achieve this, it's important to consider how data is stored and accessed. This is usually referred to as <em>data layout</em>. It describes how multidimensional arrays are stored linearly in the memory address space.</p>
-                            <p class="mb-0">Usually, data layout is represented by four letters for a two-dimensional image.</p>
-                            <ul> 
-                                <li>N: Batch size, indicating number of images in a batch</li> 
-                                <li>C: Channel, indicating number of channels in an image</li> 
-                                <li>W: Width, indicating number of pixels in horizontal dimension of an image</li> 
-                                <li>H: Height, indicating number of pixels in vertical dimension of an image</li> 
-                            </ul>
-                            <p>&nbsp;</p>
-                            <p style="text-align:center"><img class="w-100" src="/img/darshit_image/effectively-train-execute-ml-dl-projects-on-cpus-fig04.jpg" width="750"></p>
+                        <section id="dk_conclusion">
+                            <h3 style="font-weight: 350;">Conclusion</h4>
+                            <p>In this article, we introduced the theory of LLVM runtime code generation and its implementation in data analytics engines. We also described our work analyzing and autovectorizing the codegen in a practical case. The results demonstrate significant performance improvement using the Intel AVX-512 instructions on test code provided by a customer of Intel.</p>
+                            <p>LLVM code generation optimization is a large area for query acceleration in data analytics. The techniques we introduced in this article are only a small portion. There are also other methods, such as whole-stage code generation and columnar data layout, that are worth further investigation.</p>
+                            <p>We hope our learnings from this case can be helpful for similar optimizations in the data analytics world.</p>
                             <p style="text-align:center">&nbsp;</p>
                         </section>
 
-                        <section id="dk_that_affect_per">
+                        <section id="dk_other_res">
+                            <h3 style="font-weight: 350;">Other Resources</h3>
+                            <p><a class="b_special_a1" href="">Intel® VTune™ Profiler</a> helps you locate performance bottlenecks faster. Advanced sampling and profiling techniques quickly analyze your code, isolate issues, and deliver insights for optimizing performance on modern processors. Download it for free or get it as part of the <a class="b_special_a1" href="">Intel® Parallel Studio XE</a> tool suite.</p>
                             <p>&nbsp;</p>
-                            <h3 style="font-weight: 350;">That Affect Performance</h3>
-                            <p>The order of these four letters indicates how pixel data is stored in 1D memory space. For instance, NCHW indicates pixel data is stored in this order: width-wise, height-wise, channel-wise, and batch-wise (Figure 4). The data is then accessed from left to right with channels-first indexing. NCHW is the recommended data layout for Intel MKL-DNN because this is an efficient layout for the CPU. TensorFlow uses NHWC as the default data layout, but it also supports NCHW.</p>
-                        </section>
-
-                        <section id="dk_numa_controls">
-                            <p>&nbsp;</p>
-                            <p class="mb-0">&nbsp;</p>
-                            <h3 style="font-weight: 350;">NUMA Controls</h3>
-                            <ul> 
-                                <li>Recommended settings: <strong>––cpunodebind=0 ––membind=0</strong></li> 
-                                <li>Usage (shell):</li> 
-                            </ul>
-                            <!-- code toolbar 3 -->
-                            <div class="mv_code_toolbar">
-                                <div class="mv_toolbar_item mv_copy_icon">
-                                    <i class="fa-regular fa-copy"></i>
-                                </div>
-                                <div class="mv_copy_message text-end hidden">Copied</div>
-                                <div class="code-content">
-                                    <div style="padding-bottom: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre">
-                                        <div style="border-right: 1px solid #ccc" class="pe-3">
-                                            1
-                                        </div>
-                                        <div class="">
-                                            <div class="mv_code text-break">
-                                                <p class="mb-0"><span class="token function">numactl ––cpunodebind= <a class="dk_color1" href="">0</a> ––membind= <a class="dk_color1" href="">0</a> python</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
-                                        <div style="border-right: 1px solid #ccc" class="pe-3">
-                                            2
-                                        </div>
-                                        <div class="">
-                                            <div class="mv_code text-break">
-                                                <p class="mb-0">script.py ––num_intra_threads <a class="dk_color2" href="">=</a> cores ––num_inter_threads <a class="dk_color2" href="">=</a> <a class="dk_color1" href="">2</a> ––mkl <a class="dk_color2" href="">=</a> <a class="dk_color1" href="">True</a> </p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div style="padding-top: 0rem !important; padding-bottom: 1rem !important;" class="d-flex mv_pre pb-0">
-                                        <div style="border-right: 1px solid #ccc" class="pe-3">
-                                            3
-                                        </div>
-                                        <div class="">
-                                            <div class="mv_code text-break">
-                                                <p class="mb-0">data_format <a class="dk_color2" href="">=</a> NCHW</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <p class="mb-0">&nbsp;</p>
-                            <p>Running on a non-uniform memory access (NUMA) enabled machine brings with it special considerations. NUMA is a memory layout design used in data center machines that take advantage of locality of memory in multisocket machines with multiple memory controllers and blocks. The Intel Optimization for TensorFlow runs best when confining both running and memory use to a single NUMA node.</p>
-                            <p>&nbsp;</p>
-                        </section>
-
-                        <section id="dk_intel_mkn">
-                            <h3 style="font-weight: 350;">Intel MKL-DNN Technical Performance Considerations</h3>
-                            <p>The library takes advantage of single instruction multiple data (SIMD) instructions through vectorization, and multiple cores through multithreading. Vectorization effectively uses cache and the latest instruction sets. On modern Intel® processors, a single core can perform up to two fused multiply and add (FMA) operations on 16 single-precision or 64 Int8 numbers per cycle. Also, the technique of multithreading helps in performing multiple independent operations simultaneously. Since deep-learning tasks are often independent, getting available cores working in parallel is an obvious choice to boost performance.</p>
-                            <p>To achieve the best possible CPU use, Intel MKL-DNN may use hardware-specific buffer layouts for compute-intensive operations, including convolution and inner product. All the other operations run on the buffers in hardware-specific layouts or common layouts used by frameworks.</p>
-                            <p>Intel MKL-DNN uses OpenMP to express parallelism. OpenMP is controlled by various environment variables: <strong>KMP_AFFINITY</strong>, <strong>KMP_BLOCKTIME</strong>, <strong>OMP_NUM_THREADS</strong>, and <strong>KMP_SETTINGS</strong>. These environment variables are described in the following sections. Changing the values of these environment variables affects performance of the framework, so we highly recommend that users tune them for their specific neural network model and platform.</p>
-                            <p>&nbsp;</p>
-                        </section>
-
-                        <section id="dk_kmp_affinity">
-                            <h4>KMP_AFFINITY</h4>
-                            <ul> 
-                                <li>Recommended settings:<br> <strong>KMP_AFFINITY=granularity=fine,verbose,compact,1,0</strong></li> 
-                                <li>Usage (shell):</li> 
-                            </ul>
-                            <!-- code toolbar 3 -->
-                            <div class="mv_code_toolbar">
-                                <div class="mv_toolbar_item mv_copy_icon">
-                                    <i class="fa-regular fa-copy"></i>
-                                </div>
-                                <div class="mv_copy_message text-end hidden">Copied</div>
-                                <div class="code-content">
-                                    <div style="padding-bottom: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre">
-                                        <div style="border-right: 1px solid #ccc" class="pe-3">
-                                            1
-                                        </div>
-                                        <div class="">
-                                            <div class="mv_code text-break">
-                                                <p class="mb-0"><span class="token function">numactl ––cpunodebind <a class="dk_color2" href="">=</a>  <a class="dk_color1" href="">0</a> ––membind <a class="dk_color2" href="">=</a> <a class="dk_color1" href="">0</a> python</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
-                                        <div style="border-right: 1px solid #ccc" class="pe-3">
-                                            2
-                                        </div>
-                                        <div class="">
-                                            <div class="mv_code text-break">
-                                                <p class="mb-0">script.py ––num_intra_ threads<a class="dk_color2" href="">=</a>cores ––num_inter_threads<a class="dk_color2" href="">=</a> <a class="dk_color1" href="">2</a> ––mkl<a class="dk_color2" href="">=</a> <a class="dk_color1" href="">True</a> </p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div style="padding-top: 0rem !important; padding-bottom: 1rem !important;" class="d-flex mv_pre pb-0">
-                                        <div style="border-right: 1px solid #ccc" class="pe-3">
-                                            3
-                                        </div>
-                                        <div class="">
-                                            <div class="mv_code text-break">
-                                                <p class="mb-0">data_format<a class="dk_color2" href="">=</a>NCHW ––kmp_affinity=granularity<a class="dk_color2" href="">=</a>fine,verbose,compact,1,0</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <p>&nbsp;</p>
-                            <p><strong>KMP_AFFINITY </strong>is used to restrict running certain threads to a subset of the physical processing units in a multiprocessor computer. Set this environment variable as follows:</p>
-                            <p class="mb-0"><strong>KMP_AFFINITY=[&lt;modifier&gt;,...]&lt;type&gt;[,&lt;permute&gt;][,&lt;offset&gt;]</strong></p>
-                            <ul> 
-                                <li><strong>Modifier </strong>is a string consisting of a keyword and specifier.</li> 
-                                <li><strong>Type </strong>is a string indicating the thread affinity to use.</li> 
-                                <li><strong>Permute </strong>is a positive integer value that controls which levels are most significant when sorting the machine topology map. The value forces the mappings to make the specified number of most significant levels of the sort the least significant, and then inverts the order of significance. The root node of the tree is not considered a separate level for the sort operations.</li> 
-                                <li>Offset is a positive integer value that indicates the starting position for thread assignment.</li> 
-                            </ul>
-                            <p>As an example to explain basic content of this environment variable, use the recommended setting of <strong>KMP_AFFINITY</strong>:</p>
-                            <p><strong>KMP_AFFINITY=granularity=fine,verbose,compact,1,0</strong></p>
-                            <p class="mb-0">The modifier is <strong>granularity=fine,verbose</strong>. The word <strong>fine </strong>causes each OpenMP thread to be bound to a single-thread context, and verbose prints messages concerning the supported affinity, for example:</p>
-                            <ul> 
-                                <li>The number of packages</li> 
-                                <li>The number of cores in each package</li> 
-                                <li>The number of thread contexts for each core</li> 
-                                <li>OpenMP thread bindings to physical thread contexts</li> 
-                            </ul>
-                            <p>The word <strong>compact</strong> is the value of type, assigning the OpenMP thread <strong>&lt;n&gt;+1</strong> to a free thread context as close as possible to the thread context where the<strong> &lt;n&gt;</strong> OpenMP thread was placed.</p>
-                            <p>Figure 5 shows the machine topology map when <strong>KMP_AFFINITY </strong>is set to these values. The OpenMP thread <strong>&lt;n&gt;+1</strong> is bound to a thread context as closely as possible to the OpenMP thread <strong>&lt;n&gt;</strong>, but on a different core. Once each core has been assigned an OpenMP thread, the subsequent OpenMP threads are assigned to the available cores in the same order, but they are assigned on different thread contexts.</p>
-                            <p style="text-align:center"><img class="w-100" src="/img/darshit_image/effectively-train-execute-ml-dl-projects-on-cpus-fig05.jpg" width="750"></p>
-                            <p style="text-align:center">Figure 5. Machine topology map with the setting <strong>KMP_AFFINITY=granularity=fine,compact,1,0</strong></p>
-                            <p>The advantage of this setting is that consecutive threads are bound close together so that communication overhead, cache line invalidation overhead, and page thrashing are minimized. It's desirable to avoid binding multiple threads to the same core and leaving other cores unused. For more detailed description of <strong>KMP_AFFINITY</strong>, see the <a class="b_special_a1" href="">Intel® C++ Compiler Developer Guide and Reference</a>.</p>
-                        </section>
-                        <section id="dk_kmp_blocktime">
-                            <p>&nbsp;</p>
-                            <h4>KMP_BLOCKTIME</h4>
-                            <ul> 
-                                <li>Recommended settings for CNN: <strong>KMP_BLOCKTIME=0</strong></li> 
-                                <li>Recommended settings for non-CNN: <strong>KMP_BLOCKTIME=1 </strong>(user verifies empirically)</li> 
-                                <li>Usage (shell):</li> 
-                            </ul>
-                            <!-- code toolbar 3 -->
-                            <div class="mv_code_toolbar">
-                                <div class="mv_toolbar_item mv_copy_icon">
-                                    <i class="fa-regular fa-copy"></i>
-                                </div>
-                                <div class="mv_copy_message text-end hidden">Copied</div>
-                                <div class="code-content">
-                                    <div style="padding-bottom: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre">
-                                        <div style="border-right: 1px solid #ccc" class="pe-3">
-                                            1
-                                        </div>
-                                        <div class="">
-                                            <div class="mv_code text-break">
-                                                <p class="mb-0"><span class="token function">numactl ––cpunodebind <a class="dk_color2" href="">=</a>  <a class="dk_color1" href="">0</a> ––membind <a class="dk_color2" href="">=</a> <a class="dk_color1" href="">0</a> python</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
-                                        <div style="border-right: 1px solid #ccc" class="pe-3">
-                                            2
-                                        </div>
-                                        <div class="">
-                                            <div class="mv_code text-break">
-                                                <p class="mb-0">script.py ––num_intra_threads=cores ––num_inter_threads= <a class="dk_color1" href="">2</a> ––mkl=<a class="dk_color1" href="">True</a></p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
-                                        <div style="border-right: 1px solid #ccc" class="pe-3">
-                                            3
-                                        </div>
-                                        <div class="">
-                                            <div class="mv_code text-break">
-                                                <p class="mb-0">data_format<a class="dk_color2" href="">=</a>NCHW ––kmp_affinity<a class="dk_color2" href="">=</a>granularity<a class="dk_color2" href="">=</a>fine,verbose,compact,<a class="dk_color1" href="">1</a>,<a class="dk_color1" href="">0</a></p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div style="padding-top: 0rem !important; padding-bottom: 1rem !important;" class="d-flex mv_pre pb-0">
-                                        <div style="border-right: 1px solid #ccc" class="pe-3">
-                                            4
-                                        </div>
-                                        <div class="">
-                                            <div class="mv_code text-break">
-                                                <p class="mb-0">––kmp_blocktime <a class="dk_color2" href="">=</a> <a class="dk_color1" href="">0</a>( <a class="dk_color1" href="">or</a> <a class="dk_color1" href="">1</a>)</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <p>&nbsp;</p>
-                            <p>This environment variable sets the time, in milliseconds, that a thread waits after completing running a parallel region before going to sleep. The default value is 200 ms.</p>
-                            <p>After completing running a parallel region, threads wait for new parallel work to become available. After a certain period of time has elapsed, they become inactive. Sleeping allows the threads to be used until more parallel work becomes available, by threaded code that isn't OpenMP and may run between parallel regions, or by other applications. A small <strong>KMP_BLOCKTIME </strong>value may offer better overall performance if the application contains threaded code that isn't OpenMP that runs between parallel regions. A larger <strong>KMP_BLOCKTIME </strong>value may be more appropriate if threads are to be reserved solely for running OpenMP, but may penalize other concurrently-running OpenMP or threaded applications. The suggested setting is <strong>0</strong> for CNN-based models.</p>
-                        </section>
-
-                        <section id="dk_omp_num">
-                            <p>&nbsp;</p>
-                            <h4>OMP_NUM_THREADS</h4>
-                            <ul> 
-                                <li>Recommended settings for CNN: <strong>OMP_NUM_THREADS = # </strong>physical cores</li> 
-                                <li>Usage (shell): Export <strong>OMP_NUM_THREADS= #</strong> physical cores</li> 
-                            </ul>
-                            <p>This environment variable sets the maximum number of threads to use in OpenMP parallel regions if no other value is specified in the application. The value can be a single integer, in which case each integer specifies the number of threads for a parallel region at each nesting level. The first position in the list represents the outermost parallel nesting level. The default value is the number of logical processors visible to the operating system on which the program is executed. The recommended value equals the number of physical cores.</p>
-                            <p>&nbsp;</p>
-                        </section>
-
-                        <section id="dk_kmp_settings">
-                            <h4>KMP_SETTINGS</h4>
-                            <ul> 
-                                <li>Use (shell):<strong> Export KMP_SETTINGS=TRUE</strong></li> 
-                            </ul>
-                            <p>This environment variable enables (TRUE) or disables (FALSE) the printing of OpenMP runtime library environment settings when the program runs.</p>
-                            <p>&nbsp;</p>
-                        </section>
-
-                        <section id="dk_learn_more">
-                            <h3 style="font-weight: 350;">Learn More</h3>
-                            <p>Start using Intel-optimized frameworks to accelerate your deep-learning workloads on the CPU today. Access resources on <a class="b_special_a1" href="">www.intel.ai</a> and get support from the <a class="b_special_a1" href="">Intel® AI Developer Forum</a>. Also, visit the <a class="b_special_a1" href="">AI Model Zoo</a> for solution-oriented resources for your accelerated TensorFlow projects. These resources help you use CPU resources to their fullest capability.</p>
-                            <p>&nbsp;</p>
-                        </section>
-
-                        <section id="dk_references">
-                            <h3 style="font-weight: 350;">References</h3>
-                            <p><sup>1</sup> Inference using FP32 batch size Caffe for GoogleNet* v1 128, AlexNet v 256.</p>
-                            <p>Configurations for inference throughput: Tested by Intel as of 6/7/2018. Platform: two-socket Intel® Xeon® Platinum processor, 8180 CPU at 2.50 GHz and 28 cores, HyperThreading ON, turbo ON. Total Memory: 376.28 GB (12 slots, 32 GB, 2666 MHz), four instances of the framework, CentOS* Linux*: 7.3.1611 core, SSD, sda RS3WC080, HDD 744.1 GB, sdb RS3WC080, HDD 1.5 TB, sdc RS3WC080, HDD 5.5 TB, deep-learning framework Caffe version: a3d5b022fe026e9092fc7abc7654b1162ab9940d. Topology: GoogleNet v1, BIOS: SE5C620.86B.00.01.0004.071220170215, Intel MKL DNN version: 464c268e544bae26f9b85a2acb9122c766a4c396, NoDataLayer. Measured: 1449 images per second vs. tested by Intel as of 06/15/2018. Platform: 2S Intel® Xeon® E5-2699 processor v3 at 2.30 GHz (18 cores), HyperThreading enabled, turbo disabled, scaling governor set to “performance” via the <strong>intel_pstate </strong>driver, 64 GB DDR4-2133 ECC RAM. BIOS: SE5C610.86B.01.01.0024.021320181901, CentOS Linux 7.5.1804 (core) kernel 3.10.0-862.3.2.el7.x86_64, SSD sdb INTEL SSDSC2BW24 SSD 223.6GB. Framework BVLC Caffe: <a class="b_special_a1" href="">GitHub*</a>, Inference and training measured with <strong>caffe time</strong> command. For <strong>ConvNet</strong> topologies, a dummy dataset was used. For other topologies, data was stored on local storage and cached in memory before training. <a class="b_special_a1" href="">BVLC Caffe</a>, revision 2a1c552b66f026c7508d390b526f2495ed3be594.</p>
-                            <p>Configuration for training throughput: Tested by Intel as of 05/29/2018 Platform: two-socket Intel Xeon Platinum 8180 processor at 2.50 GHz, 28 cores, HyperThreading ON, turbo ON, total memory 376.28 GB (12 slots, 32 GB, 2666 MHz), four instances of the framework, CentOS Linux 7.3.1611 core, SSD, sda RS3WC080, HDD 744.1 GB, sdb RS3WC080, HDD 1.5TB, sdc RS3WC080, HDD 5.5TB, deep learning framework Caffe version: a3d5b022fe026e9092fc7abc765b1162ab9940d Topology: AlexNet BIOS: SE5C620.86B.00.01.0004.071220170215, Intel MKL DNN version: 464c268e544bae26f9b85a2acb9122c766a4c396 <strong>NoDataLayer</strong>. Measured: 1257 imgages per sec vs. tested by Intel as of 06/15/2018. Platform: 2S Intel Xeon E5-2699 processor v3 at 2.30 GHz (18 cores), HyperThreading enabled, turbo disabled, scaling governor set to <strong>performance</strong> via the <strong>intel_pstate</strong> driver, 64 GB, DDR4-2133 ECC RAM. BIOS: SE5C610.86B.01.01.0024.021320181901, CentOS Linux 7.5.1804 (core) kernel 3.10.0-862.3.2.el7.x86_64, SSD, sdb INTEL SSDSC2BW24, SSD 223.6 GB. Framework: <a class="b_special_a1" href="">BVLC Caffe</a>. Inference and training measured with <strong>caffe time</strong> command. For <strong>ConvNet</strong> topologies, dummy dataset was used. For other topologies, data was stored on local storage and cached in memory before training. <a class="b_special_a1" href="">BVLC Caffe</a>, revision 2a1c552b66f026c7508d390b526f2495ed3be594</p>
-                            <p><sup>2</sup> System configuration: CPU threads per core: two cores per socket: 28 sockets, two NUMA nodes, two CPU family: 6 model, 85 model name: Intel Xeon Platinum 8180 processor at 2.50 GHz, HyperThreading: ON turbo: ON, memory 376 GB (12x32 GB), 24 slots, 12 occupied, 2666 MHz disks Intel RS3WC080 x 3 (800 GB, 1.6 TB, 6 TB) BIOS: SE5C620.86B.00.01.0004. 070920180847 (microcode version 0x200004d), Centos Linux 7.4.1708 (core) kernel 3.10.0-693.11.6.el7.x86_64, <a class="b_special_a1" href="">TensorFlow Source</a>, commit: 6a0b536a779f485edc25f6a11335b5e640acc8ab, Intel MKL DNN version: 4e333787e0d66a1dca1218e99a891d493dbc8ef1, <a class="b_special_a1" href="">TensorFlow benchmarks </a></p>
                             <h2 style="opacity: 0.5;">______<a class="inpage-nav-anchor" id="inpage-nav-12"></a></h2>
                         </section>
 
@@ -1512,31 +1856,16 @@
                             <h3 style="font-weight: 350;">You May Also Like</h3>
                             <div class="mv_deploy_nav_tab">
                                 <ul class="nav nav-pills mv_deploy_nav_pills pt-3" id="pills-tab" role="tablist">
-                                        <li class="nav-item" role="presentation">
-                                            <button class="nav-link active mv_deploy_nav_link" id="pills-home-tab" data-bs-toggle="pill"
-                                                data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home"
-                                                aria-selected="true">Related Webinars</button>
-                                        </li>
-                                        <li class="nav-item" role="presentation">
-                                            <button class="nav-link mv_deploy_nav_link" id="pills-profile-tab" data-bs-toggle="pill"
-                                                data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile"
-                                                aria-selected="false">Related Articles</button>
-                                        </li>
-                                        <li class="nav-item" role="presentation">
-                                            <button class="nav-link mv_deploy_nav_link" id="pills-video-tab" data-bs-toggle="pill"
-                                                data-bs-target="#pills-video" type="button" role="tab" aria-controls="pills-video"
-                                                aria-selected="false">Related Video</button>
-                                        </li>
-                                        <li class="nav-item" role="presentation">
-                                            <button class="nav-link mv_deploy_nav_link" id="pills-design-tab" data-bs-toggle="pill"
-                                                data-bs-target="#pills-design" type="button" role="tab" aria-controls="pills-design"
-                                                aria-selected="false">Related Podcast</button>
-                                        </li>
-                                        <li class="nav-item" role="presentation">
-                                            <button class="nav-link mv_deploy_nav_link" id="pills-simulation-tab" data-bs-toggle="pill"
-                                                data-bs-target="#pills-simulation" type="button" role="tab" aria-controls="pills-simulation"
-                                                aria-selected="false">Get the Software</button>
-                                        </li>
+                                    <li class="nav-item" role="presentation">
+                                        <button class="nav-link active mv_deploy_nav_link" id="pills-home-tab" data-bs-toggle="pill"
+                                            data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home"
+                                            aria-selected="true">Related Webinars</button>
+                                    </li>
+                                    <li class="nav-item" role="presentation">
+                                        <button class="nav-link mv_deploy_nav_link" id="pills-profile-tab" data-bs-toggle="pill"
+                                            data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile"
+                                            aria-selected="false">Get the Software</button>
+                                    </li>
                                 </ul>
                                 <div class="tab-content" id="pills-tabContent">
                                         <!-- 1. Device Information -->
@@ -1544,12 +1873,11 @@
                                             aria-labelledby="pills-home-tab" tabindex="0">
                                             <div class="mv_coman_padd" style=" border-bottom: 1px solid #ddd; display: flex; padding-bottom: 1rem;">
                                                 <div class="">
-                                                    <p>Enhance Deep-Learning Workloads on 3rd Generation Intel® Xeon® Scalable Processors</p>
+                                                    <p class="mb-0">Co-Design for Accelerating Analytics with Today’s CPU &amp; Tomorrow’s<br> Heterogeneous Compute Landscape<br></p>
                                                     <a class="b_special_a1" href="">Watch</a>
                                                 </div>
                                                 <div class="">
-                                                    <p>Advanced Code Optimization for 3rd Generation Intel Xeon Scalable Processors</p>
-                                                    <a class="b_special_a1" href="">Watch</a>
+                                                    
                                                 </div>
                                             </div>
                                             <!-- User Guides -->
@@ -1560,45 +1888,13 @@
                                             tabindex="0">
                                             <div class="mv_coman_padd" style=" border-bottom: 1px solid #ddd; display: flex; padding-bottom: 1rem;">
                                                 <div class="">
-                                                    <p>Use Deep Learning Optimizations from Intel in TensorFlow*</p>
-                                                    <a class="b_special_a1" href="">Read</a>
+                                                    <p><strong><a class="b_special_a1" href="">Intel® VTune™ Profiler</a></strong><br> Find and optimize performance bottlenecks across CPU, GPU,<br> and FPGA systems. Part of the Intel® oneAPI Base Toolkit.<br> <br> <a class="mv_coman_btn" href="">Download the Base Toolkit</a><br> <br> <a class="b_special_a1 " href="">See All Tools</a></p>
                                                 </div>
                                                 <div class="">
-                                                    <p>One-Line Code Changes to Boost pandas, scikit-learn*, and TensorFlow Performance </p>
-                                                    <a class="b_special_a1" href="">Read</a>
+                                                    
                                                 </div>
                                             </div>
                                             <!-- User Guides -->
-                                        </div>
-                                        <!-- 3. Design Planning -->
-                                        <div class="tab-pane fade" id="pills-video" role="tabpanel" aria-labelledby="pills-video-tab"
-                                            tabindex="0">
-                                            <div class="mv_coman_padd" style="padding-bottom: 1rem;">
-                                                <p>Optimize End-to-End Data Science and Machine Learning Acceleration</p>
-                                                <a class="b_special_a1" href="">Watch</a>
-                                            </div>
-                                            <!-- User Guides / Device Overview / Device Datasheet / Application Notes-->
-                                        </div>
-                                        <!-- 4. Design Entry -->
-                                        <div class="tab-pane fade" id="pills-design" role="tabpanel" aria-labelledby="pills-design-tab"
-                                            tabindex="0">
-                                            <div class="mv_coman_padd" style="padding-bottom: 1rem;">
-                                                <p>Ignite the Next Generation of Deep Learning </p>
-                                                <a class="b_special_a1" href="">Listen</a>
-                                            </div>
-                                            <!-- User Guides / Device Overview / Device Datasheet / White Paper -->
-                                            
-                                        </div>
-                                        <!-- 5. Simulation and Verification -->
-                                        <div class="tab-pane fade" id="pills-simulation" role="tabpanel" aria-labelledby="pills-simulation-tab"
-                                            tabindex="0">
-                                            <div class="mv_coman_padd" style="padding-bottom: 1rem;">
-                                                <a class="b_special_a1" href=""><b>Intel® oneAPI Math Kernel Library</b></a>
-                                                <p>Accelerate math processing routines, including matrix algebra, fast Fourier transforms (FFT), and vector math. Part of the Intel® oneAPI Base Toolkit.</p>
-                                                <p><a class="mv_coman_btn" href="">Get It Now</a></p>
-                                                <p><a class="b_special_a1" href="">See All Tools</a></p>
-                                            </div>
-                                            <!-- User Guides / Device Overview / Device Datasheet / Application Notes -->
                                         </div>
                                 </div>
                             </div>

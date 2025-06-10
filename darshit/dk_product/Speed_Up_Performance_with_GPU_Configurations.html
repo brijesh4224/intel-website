@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Speed Up Performance by Exploring GPU Configurations</title>
+
+    <!-- font family -->
+    <link href="https://fonts.cdnfonts.com/css/intel-clear" rel="stylesheet">
+    <link rel="stylesheet" href="/css/dk_arria_10_FPGA_developer_center.css">
+    <link rel="stylesheet"href="/css/dk_developer_edge_iot_5G_industrial_automation_see_all_Intelligent_connection_management_for_automated_handover.css">
+    <link rel="stylesheet"href="/css/dk_developer_edge_iot_&_5G_optimize_fine_tuning_and_deployment_of_LLMs_on_an_ai_pc.css">
+    <link rel="stylesheet" href="/css/rushita_automotive.css">
+    <!-- header footer -->
+    <link rel="stylesheet" href='/css/yatri.css'>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" rel="stylesheet">
+
+</head>
+
+<style>
+    .dk_color1{
+        color: #069 !important;
+        font-weight: 700 !important;
+    }
+    .dk_color2{
+        color: #b24501;
+    }
+    /****** Device Information ******/
+        .mv_deploy_nav_tab{
+            background-color: #fff;
+        }
+        .mv_deploy_nav_pills{
+            border-bottom: 1px solid #E6E6E6;
+            flex-wrap: nowrap !important;
+            overflow-x: auto !important;
+            width: 100% !important;
+        }
+        .mv_deploy_nav_link {
+            color: #0068b5 !important;
+        }
+        .mv_deploy_nav_pills .mv_deploy_nav_link{
+            background-color: #fff !important;
+            text-wrap: nowrap !important;
+        }
+        .mv_deploy_nav_pills .mv_deploy_nav_link.active{
+            border-radius: 0rem !important;
+            color: #0068b5 !important;
+            border-bottom: 4px solid #00aeef;
+            background-color: #F2F2F2 !important;
+        }
+        .mv_deploy_nav_pills .mv_deploy_nav_link:hover{
+            border-radius: 0rem;
+            background-color: #F2F2F2 !important;
+        }
+        .mv_gpu_flex_padd{
+            padding: 3rem 0rem;
+        }
+        .mv_gpu_flex{
+            align-content: center;
+        }
+        .mv_gpu_flex h1{
+            font-weight: 350;
+        }
+        .mv_gpu_flex p{
+            margin-bottom: .5rem;
+        }
+        .mv_gpu_flex p a{
+            color: #0068b5;
+            border-bottom: 1px dashed #0068b5;
+        }
+        .mv_gpu_flex p a:hover{
+            border-bottom: 1px solid #0068b5;
+        }
+        .mv_gpu_flex_img img{
+            width: 100%;
+        }
+        .mv_enable_boundless_padd{
+            padding: 3rem 0rem;
+        }
+        .mv_enable_img img{
+            width: 100%;
+            margin-bottom: 10px;
+        }
+        .mv_coman_btn {
+        padding: 0.250rem 1.5rem !important;
+        }
+    @media(max-width:768px){
+        .mv_product_table{
+            width: 100% !important;
+        }
+    }
+</style>
+
+<body>
+    <!-- header -->
+    <div id="navbar"></div>
+
+    <!-------------------------------------------------------------------------->
+    <section class="m_ai_tdrop" style="border-bottom: 1px solid rgb(226, 221, 221);">
+        <div>
+            <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Developers
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item m_dropActive" href="#">Overview</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Topics & Technologies</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Tools</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Resources & Documentation</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Learn</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Community & Events</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Developer Programs</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Get Help</a></li>
+            </ul>
+        </div>
+    
+        <div class="m_ai_shlash">/</div>
+        <div>
+            <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Tools
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item m_dropActive" href="#">Software Catalog</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">oneAPI</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Open Edge Platform</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">FPGA</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Active Management Technology SDK</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Advisor</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® AI Reference Models</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Collaboration Suite for WebRTC SDK</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Tiber™ AI Cloud</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Distribution for Python*</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Distribution for GDB*</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® DPC++ Compatibility Tool</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Dynamic Application Loader</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Frameworks</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Embree</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Extension for Scikit-learn*</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Fortran Compiler</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Graphics Performance Analyzers</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Homomorphic Encryption Toolkit</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® In-Band Manageability</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Integrated Performance Primitives</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Integrated Simulation Infrastructure with Modeling</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Instruction Set Architecture (ISA) Extensions</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Intelligent Storage Acceleration Library (Intel® ISA-L)</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Modin*</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® MPI Library</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Neural Compressor</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">OpenCL™ Runtime</a></li>   
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Open Image Denoise</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Open Path Guiding Library (Intel® Open PGL)</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Pin</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Platform Analysis Library</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel Tools for OpenCL™ Software</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel Tools for OpenCL™ Applications</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® OpenSWR</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">OpenVINO™ Toolkit</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Open Volume Kernel Library</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Optimization for XGBoost*</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® OSPRay</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® OSPRay for Hydra*</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® OSPRay Studio</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">PyTorch* Optimizations from Intel</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">TensorFlow* Optimizations from Intel</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Rendering Toolkit</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Smart Edge Open</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Software Guard Extensions</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Secure Device Onboard</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Software Development Emulator</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Quantum SDK</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Query Processing Library (Intel® QPL)</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Video Processing Library</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® VTune™ Profiler</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Resellers</a></li>
+            </ul>
+        </div>
+
+        <div class="m_ai_shlash">/</div>
+        <div>
+            <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                oneAPI
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item m_dropActive" href="#">Overview</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Data Parallel C++/SYCL*</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Toolkits</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Tech Articles & How-Tos</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Components</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Code Samples</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Training</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Documentation</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Support</a></li>
+            </ul>
+        </div>
+
+        <div class="m_ai_shlash">/</div>
+        <div>
+            <a style="color: #0068b5; font-size: .875em;" href="">Overview</a>
+        </div>
+
+        <div class="m_ai_shlash">/</div>
+        <div class="m_ai_httl">Speed Up Performance with GPU Configurations</div>
+    </section>
+    <!-------------------------------------------------------------------------------------------------------->
+
+    <!-- VMware Horizon -->
+    <section>
+        <div class="mv_vmware_bg_color">
+            <div class="container">
+                <div class="mv_vmware_padd">
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12">
+                            <div class="mv_vmware_heading">
+                                <h3>How to Speed Up Performance by Exploring GPU Configurations</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mv_cd_page_marquee_info">
+                        <div class="mv_cd_page_marquee_action">
+                            <div class="mv_cd_page_marquee_action_padd">
+                                <label for="">ID</label>
+                                <span>767761</span>
+                            </div>
+                            <div class="mv_cd_page_marquee_action_padd">
+                                <label for="">Updated</label>
+                                <span>10/30/2020</span>
+                            </div>
+                            <div class="mv_cd_page_marquee_action_padd">
+                                <label for="">Version</label>
+                                <span>Latest</span>
+                            </div>
+                            <div class="mv_cd_page_marquee_action_padd">
+                                <label for=""></label>
+                                <span>Public</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="container py-5">
+        <div class="row">
+            <div class="d-flex justify-content-end col-xl-10 py-3 d-md-none">
+                <i class="fa-solid fa-print fs-4 px-2 " style="color:#0068B5"></i>
+                <i class="fa-regular fa-envelope fs-4 px-2" style="color:#0068B5"></i>
+            </div>
+            <div class="col-lg-3 col-md-4">
+                <!-- nav -->
+                <div class="VK_sticky_side_bar VK_side_bar_postion_stickey">
+                    <div>
+                        <div class="VK_sidebar_dropdown">
+                            <p class="m-0">
+                                <a href="#dk_background" class="text-decoration-none VK_a">
+                                  Background
+                                </a>
+                            </p>
+                            <p class="m-0">
+                                <a href="#dk_methodology" class="text-decoration-none VK_a">
+                                    Methodology
+                                </a>
+                            </p>
+                            <p class="m-0">
+                                <a href="#dk_results" class="text-decoration-none VK_a">
+                                    Results
+                                </a>
+                            </p>
+                            <p class="m-0">
+                                <a href="#dk_conclusion" class="text-decoration-none VK_a">
+                                   Conclusion
+                                </a>
+                            </p>
+                            <p class="m-0">
+                                <a href="#dk_line" class="text-decoration-none VK_a">
+                                    -------
+                                </a>
+                            </p>
+                            <p class="m-0">
+                                <a href="#dk_you_may" class="text-decoration-none VK_a">
+                                    You May Also Like
+                                </a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <!-- thinkcode -->
+                <!-- <div class="dk_things_code_main">
+                    <div class="dk_things_code">
+                        <h2 class="text-left headline-font-one-bold">Loss Prevention Retail Reference Implementation provides:</h2>
+                        <div class="dk_high_quality">
+                            <ul>
+                                <li>High-quality testable ingredients needed to create a solution to prevent thefts at stores.</li>
+                                <li>Building blocks needed to enable the use case with solid performance numbers.</li>
+                                <li>Hardware requirements to support the workloads and scale the solution.</li>
+                            </ul>
+                        </div>
+                    <div class="dk_get_code">
+                        <button class="dk_button">Get Started on GitHub<sup>*</sup></button>
+                    </div>
+                    </div> 
+                </div> -->
+            </div>
+            <div class="col-lg-9 col-md-8">
+                <div class="d-md-flex justify-content-end col-xl-10 py-3 d-none">
+                    <i class="fa-solid fa-print fs-4 px-2 " style="color:#0068B5"></i>
+                    <i class="fa-regular fa-envelope fs-4 px-2" style="color:#0068B5"></i>
+                </div>
+                <div class="col-xl-10 VK_all_sections">
+                    <div style="padding-bottom: 16px;">
+                        <p>&nbsp;</p>
+                        <p>&nbsp;</p>
+                        <h4>Performance Analysis with the Offload Advisor Feature of Intel® Advisor</h4>
+                        <p>Kevin O’Leary, lead technical consulting engineer, and<br>
+                            Md Khaledur Rahman, graduate technical intern, Intel Corporation<br>
+                            <a class="b_special_a1" href="">@IntelDevTools</a></p>
+                        <h4>Get the Latest on All Things CODE<a class="inpage-nav-anchor" id="-undefined-undefined"></a></h4>
+                        <a class="mv_coman_btn" href="">Sign Up</a>
+                        <p>&nbsp;</p>
+                        <p><a class="b_special_a1" href="">Intel® oneAPI Toolkits</a> provide a unified, standards-based programming model for delivering uncompromised performance for diverse workloads across multiple architectures. One recent addition is the Offload Advisor feature in <a class="b_special_a1" href="">Intel® Advisor</a>, which you can use for interactive performance modeling. In this study, we explore Offload Advisor and see how it helps you see future performance headroom, or what hardware parameters are the most sensitive for a given application. This type of what-if study lets you explore how your application performs if some computations are offloaded to different GPUs. To conduct the analysis, we use the popular, high-performance Rodinia computational fluid dynamics (CFD) application.</p>
+                        <p>&nbsp;</p>
+                    </div>
+                    <section id="dk_background">
+                        <h3 style="font-weight: 350; margin-bottom: 1.5rem;">Background</h3>
+                        <p>Heterogeneous parallelism was originally implemented in CUDA* for CFD. Basically, it computes a three-dimensional Euler’s equation for fluid dynamics. This application has intensive computation that makes it a compute-bound problem.</p>
+                        <p>For this experiment, we migrated the CUDA application to <a class="b_special_a1" href="">Data Parallel C++ (DPC++)</a> using the oneAPI compatibility tool, which is called the Intel® DPC++ Compatibility Tool. To learn more, see <a class="b_special_a1" href="">Heterogeneous Programming Using oneAPI</a> from <a class="b_special_a1" href="">issue 39</a> of The Parallel Universe.</p>
+                        <p>&nbsp;</p>
+                        <p>&nbsp;</p>
+                    </section>
+                    <section id="dk_methodology">
+                        <h3 style="font-weight: 350;">Methodology</h3>
+                        <p class="mb-0">In general, we used the following methodology:</p>
+                        <ol>
+                            <li>Run an analysis using Offload Advisor.</li>
+                            <li>From the report, see the main bottlenecks for the application. For example, is the workload bound by compute, memory, or some other factor?</li>
+                            <li>Based on the bottleneck, do a what-if analysis with various GPU configurations to see if this removes the bottleneck. For example, if the workload is compute-bound, try increasing the number of execution units (E-units).</li>
+                        </ol>
+                        <p>The Rodinia application has high computational intensity and the offloaded regions are mostly compute-bound. When we examine the Offload Advisor report for the baseline version, we see that 92 percent of the offloads are compute-bound (Figure 1). This means, increasing computational units may help the application run faster. We can also see that the invocation tax is zero percent, which gives in an optimistic estimation for the offload regions. Other parameters are negligible for the current settings.</p>
+                        <p>From the offload bounding parameters, we get an idea of which configuration we need to change to boost performance on the target. For example, if offloads are bounded by compute, we may want to increase E-units. On the other hand, if the offloads are bounded by memory bandwidth, we may want to increase the dynamic random-access memory (DRAM) bandwidth for the target to estimate speedup for GPU acceleration. Offload Advisor offers an interactive interface to tune the estimated performance on the target device (Figure 2). Notice there are several options to consider. For example, we can increase or decrease the E-units by moving the slider left or right. We can do the same for other parameters, and then download the configuration by clicking on the icon, which we can use for future analysis.</p>
+                        <p style="text-align:center"><strong><img class="w-100" src="/img/darshit_image/speed-up-performance-exploring-gpu-configurations-fig1.jpg" width="770"><br>
+                        Figure 1. Breakdown of offload bounding parameters</strong></p>
+                        <p>&nbsp;</p>
+                        <p style="text-align:center"><strong><img class="w-100" src="/img/darshit_image/speed-up-performance-exploring-gpu-configurations-fig2.jpg" width="644"><br>
+                        Figure 2. Estimate performance by changing the configuration of the target device.</strong></p>
+                        <p style="text-align:center">&nbsp;</p>
+                    </section> 
+                        <section id="dk_results">
+                            <h3 style="font-weight: 350;">Results</h4>
+                            <p>For all the experiments, we use the <strong>fvcorr.domn.097K</strong> dataset. We disable the invocation tax in our experiments using the option—jit. We run the baseline version, collect results, and analyze using Offload Advisor. We collected results as follows:</p>
+                            <p style="text-align:center"><strong><img class="w-100" src="/img/darshit_image/speed-up-performance-exploring-gpu-configurations-img1.jpg" width="1170"></strong><br>&nbsp;</p>
+                            <p>To analyze the results, we use the following command:</p>
+                            <p style="text-align:center"><strong><img class="w-100" src="/img/darshit_image/speed-up-performance-exploring-gpu-configurations-img2.jpg" width="1176"></strong><br>&nbsp;</p>
+                            <p class="mb-0">&nbsp;</p>
+                            <p>The report file is written to the perf_models/m0000 folder. Click on the report .html file and see the results in your web browser. Every time we rerun the analysis, it creates a folder with prefix m**** inside the perf_models folder. There are several windows in the report file, but we focus on the results summary (Figure 3).</p>
+                            <p style="text-align:center"><strong><img class="w-100" src="/img/darshit_image/speed-up-performance-exploring-gpu-configurations-fig3.jpg" width="1135"><br>
+                            Figure 3. Summary of Offload Advisor feature from Intel Advisor</strong></p>
+                            <p style="text-align:center">&nbsp;</p>
+                            <p>We observe in Figure 3 that the baseline version spends 44 percent of the time on the target device and achieves around a 3.3x speedup for the accelerated code. We also see that the offloads are mostly compute-bound.</p>
+                            <p>Increasing E-units may also improve speedup. We can use sliders on the configuration window to adjust the value based on the expectation. To perform this experiment, we create and download a configuration file, named scalers.toml, multiplying the E-unit's counter by two. We generate this from the report.html file by changing options on the right side under the Gen9 GT2 configuration and clicking to download. Make sure that there is a line EU_count_multiplier=2 in the toml file. All other options remain the same. Then, we rerun the analysis.</p>
+                            <p style="text-align:center"><strong><img class="w-100" src="/img/darshit_image/speed-up-performance-exploring-gpu-configurations-img3.jpg" width="1169"></strong></p>
+                            <p>&nbsp;</p>
+                            <p>We observe that the E-units are now 48 and the speedup also increases for the accelerated code. The offload regions remain compute-bound (Figure 4).</p>
+                            <p style="text-align:center"><strong><img class="w-100" src="/img/darshit_image/speed-up-performance-exploring-gpu-configurations-fig4.jpg" width="1107"><br>
+                            Figure 4. Summary of Offload Advisor for 2x more E-units than baseline</strong></p>
+                            <p style="text-align:center">&nbsp;</p>
+                            <p>Since the offloaded regions are compute-bound, we further increase the E-units by setting EU_count_multiplier=4 in the toml file. It uses 96 E-units. We rerun the analysis as follows:</p>
+                            <p style="text-align:center"><strong><img class="w-100" src="/img/darshit_image/speed-up-performance-exploring-gpu-configurations-img4.jpg" width="1175"></strong></p>
+                            <p><br>We observe that the speedup increases. However, the offloaded regions are now L3 bandwidth-bound (Figure 5).</p>
+                            <p style="text-align:center"><strong><img class="w-100" src="/img/darshit_image/speed-up-performance-exploring-gpu-configurations-fig5.jpg" width="1010"><br>
+                            Figure 5. Summary of Offload Advisor for 4x more E-units than baseline</strong></p>
+                            <p style="text-align:center">&nbsp;</p>
+                            <p>We want to increase the speedup by setting EU_count_multiplier=6. Because the offloaded regions are now L3 bandwidth-bound, increasing the number of E-units doesn’t help (Figure 6). The speedup of accelerated code remains the same. We rerun the analysis, which creates a folder named m0003 in the perf_models folder.</p>
+                            <p style="text-align:center"><strong><img class="w-100" src="/img/darshit_image/speed-up-performance-exploring-gpu-configurations-fig6.jpg" width="983"><br>
+                            Figure 6. Summary of Offload Advisor for 6x more implementation units than baseline</strong></p>
+                            <p style="text-align:center">&nbsp;</p>
+                            <p>&nbsp;</p>
+                            <p>Next, we focus on increasing L3 bandwidth in the scalers.toml file. We can do this by setting L3_bandwidth_multiplier=2. We keep the other parameters the same and rerun the analysis.</p>
+                            <p style="text-align:center"><strong><img class="w-100" src="/img/darshit_image/speed-up-performance-exploring-gpu-configurations-img5.jpg" width="1163"></strong></p>
+                            <p>&nbsp;</p>
+                            <p>In the reports.html file, we can see that L3 bandwidth jumps from 220.8 Gbps to 441.6 Gbps, and speedup also increases. However, the offloaded regions remain L3 bandwidth-bound (Figure 7).</p>
+                            <p style="text-align:center"><strong><img class="w-100" src="/img/darshit_image/speed-up-performance-exploring-gpu-configurations-fig7.jpg" width="984"><br>
+                            Figure 7. Summary of Offload Advisor for 6x more E-units and 2x higher L3 bandwidth</strong></p>
+                            <p>&nbsp;</p>
+                            <p>Since the offloaded regions are still L3 bandwidth-bound, we increase L3 bandwidth to see the effect and rerun the analysis phase as before. This didn’t change the speedup. Interestingly, it makes the offloaded regions compute-bound again. This is shown in Figure 8, where we see that the L3 bandwidth is now 1.1 Tbps but there is no change in the speedup.</p>
+                            <p style="text-align:center"><strong><img class="w-100" src="/img/darshit_image/speed-up-performance-exploring-gpu-configurations-fig8.jpg" width="970"><br>
+                            Figure 8. Summary of Offload Advisor for 6x more E-units and 5x higher L3 bandwidth</strong></p>
+                            <p style="text-align:center">&nbsp;</p>
+                            <p>Again, we increase E-units by setting EU_count_multiplier=8 and rerun the experiment. This shows a speedup, but the offloaded regions are now mostly memory-bound (Figure 9).</p>
+                            <p style="text-align:center"><strong><img class="w-100" src="/img/darshit_image/speed-up-performance-exploring-gpu-configurations-fig9.jpg" width="983"><br>
+                            Figure 9. Summary of Offload Advisor for 8x E-units units and 5x L3 bandwidth</strong></p>
+                            <p style="text-align:center">&nbsp;</p>
+                            <p>Finally, we increase the memory bandwidth by setting Memory_bandwidth=360000000000 in the toml file and rerun the experiment keeping other parameters the same. As shown in Figure 10, this setting increases the speedup of accelerated code a little. Notably, the offloaded regions are now compute-bound again.</p>
+                            <p style="text-align:center"><strong><img class="w-100" src="/img/darshit_image/speed-up-performance-exploring-gpu-configurations-fig10.jpg" width="1009"><br>
+                            Figure 10. Summary of Offload Advisor for 8x E-units units, 5x L3 bandwidth, and 15x memory bandwidth</strong></p>
+                            <p style="text-align:center">&nbsp;</p>
+                            <p style="text-align:center">&nbsp;</p>
+                        </section>
+
+                        <section id="dk_conclusion">
+                            <h3 style="font-weight: 350;">Conclusion</h4>
+                           <p>The Offload Advisor feature of Intel Advisor can help you speed-up the performance of your application on target devices, both present and future, with many options to explore different GPU configurations.</p>
+                        </section>
+                        
+                        <section id="dk_line">
+                            <h2>______<a class="inpage-nav-anchor" id="inpage-nav-4"></a></h2>
+                            <p>&nbsp;</p>  
+                        </section>
+
+                        <section id="dk_you_may">
+                            <h3 style="font-weight: 350; margin-bottom: 1.5rem;">You May Also Like</h4>
+                                <table border="0" cellpadding="10" cellspacing="10" style="width: 100%;">
+                                    <tbody>
+                                        <tr>
+                                            <td style="border-left: .125rem solid #e2e2e2; padding: 1rem;"><a class="b_special_a1" href="">Intel® Advisor</a><br>
+                                            Design code for efficient vectorization, threading, memory usage, and GPU offloading. Intel Advisor is included as part of the Intel® oneAPI <br> Base Toolkit. <a class="mv_coman_btn" href="">Get It Now</a> <a class="b_special_a1" href="">See All Tools</a></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                        </section>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section style="border-top: 1px solid #d7d7d7;" class="container py-5">
+        <h4 class="h6">Product and Performance Information</h4>
+        <div class="disclaimer" style="font-size: 12px;"><sup>1</sup> Performance varies by use, configuration and other
+            factors. Learn more at <a class="b_special_a1" href="">www.Intel.com/PerformanceIndex.</a></div>
+        </div>
+    </section>
+
+    <!-- footer -->
+    <div id="footer"></div>
+
+    <!-- nav script -->
+    <script>
+        // navbar include  
+        fetch('/y_index/y_navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar').innerHTML = data;
+            });
+        // footer include 
+        fetch('/y_index/y_footer.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('footer').innerHTML = data;
+            });
+    </script>
+    <!-- nav script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            if (document.getElementsByClassName('VK_all_sections section') && document.getElementsByClassName('VK_sidebar_dropdown')) {
+                const sections = document.querySelectorAll('.VK_all_sections section');
+                const navLinks = document.querySelectorAll('.VK_sidebar_dropdown a');
+                const detailsElements = document.querySelectorAll('.VK_sidebar_dropdown details');
+
+                function removeActiveClass() {
+                    navLinks.forEach(link => link.classList.remove('VK_sidebar_active_link'));
+                    detailsElements.forEach(details => {
+                        details.removeAttribute('open');
+                        details.setAttribute('close', ''); // Optional: to visually indicate it's closed
+                    });
+                }
+
+                function activateLinkAndDetails(targetId) {
+                    navLinks.forEach(link => {
+                        if (link.getAttribute('href') === `#${targetId}`) {
+                            link.classList.add('VK_sidebar_active_link');
+                            let parentDetails = link.closest('details');
+
+                            // Open all ancestor details elements
+                            while (parentDetails) {
+                                parentDetails.setAttribute('open', '');
+                                parentDetails.removeAttribute('close'); // Optional: remove the closed indicator
+                                parentDetails = parentDetails.parentElement.closest('details');
+                            }
+                        }
+                    });
+                }
+
+                function onScroll() {
+                    let currentSection = '';
+                    sections.forEach(section => {
+                        const sectionTop = section.getBoundingClientRect().top;
+                        const sectionBottom = section.getBoundingClientRect().bottom;
+
+                        // Check if the section is in view
+                        if (sectionTop <= 100 && sectionBottom >= 0) {
+                            currentSection = section.getAttribute('id');
+                        }
+                    });
+
+                    if (currentSection) {
+                        removeActiveClass();
+                        activateLinkAndDetails(currentSection);
+                    } else {
+                        removeActiveClass();
+                    }
+                }
+
+                window.addEventListener('scroll', onScroll);
+            } else {
+                return
+            }
+        });
+    </script>
+
+    <!-- copy script -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            document.querySelectorAll(".mv_copy_icon").forEach((icon) => {
+                icon.addEventListener("click", async function () {
+                    try {
+                        const toolbar = this.closest(".mv_code_toolbar");
+                        const codeBlock = toolbar.querySelector(".code-content");
+                        const codeContent = codeBlock.innerText;
+
+                        // Use Clipboard API to copy text
+                        await navigator.clipboard.writeText(codeContent);
+
+                        // Hide the copy icon and show the "Copied!" message
+                        const message = toolbar.querySelector(".mv_copy_message");
+                        this.classList.add("hidden"); // Hide the copy icon
+                        message.classList.remove("hidden"); // Show the "Copied!" message
+
+                        // Hide the message and show the icon again after 2 seconds
+                        setTimeout(() => {
+                            message.classList.add("hidden");
+                            this.classList.remove("hidden");
+                        }, 2000); // Adjust delay as needed
+
+                    } catch (err) {
+                        console.error('Failed to copy text: ', err);
+                    }
+                });
+            });
+        });
+    </script>
+
+</body>
+
+</html>
+
