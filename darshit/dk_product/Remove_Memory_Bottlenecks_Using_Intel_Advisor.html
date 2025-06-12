@@ -1,0 +1,1546 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Remove Memory Bottlenecks Using Intel® Advisor</title>
+
+    <!-- font family -->
+    <link href="https://fonts.cdnfonts.com/css/intel-clear" rel="stylesheet">
+    <link rel="stylesheet" href="/css/dk_arria_10_FPGA_developer_center.css">
+    <link rel="stylesheet"href="/css/dk_developer_edge_iot_5G_industrial_automation_see_all_Intelligent_connection_management_for_automated_handover.css">
+    <link rel="stylesheet"href="/css/dk_developer_edge_iot_&_5G_optimize_fine_tuning_and_deployment_of_LLMs_on_an_ai_pc.css">
+    <link rel="stylesheet" href="/css/rushita_automotive.css">
+    <!-- header footer -->
+    <link rel="stylesheet" href='/css/yatri.css'>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" rel="stylesheet">
+
+</head>
+
+<style>
+    .dk_color1{
+        color: #069 !important;
+        font-weight: 700 !important;
+    }
+    .dk_color2{
+        color: #b24501;
+    }
+    /****** Device Information ******/
+        .mv_deploy_nav_tab{
+            background-color: #fff;
+        }
+        .mv_deploy_nav_pills{
+            border-bottom: 1px solid #E6E6E6;
+            flex-wrap: nowrap !important;
+            overflow-x: auto !important;
+            width: 100% !important;
+        }
+        .mv_deploy_nav_link {
+            color: #0068b5 !important;
+        }
+        .mv_deploy_nav_pills .mv_deploy_nav_link{
+            background-color: #fff !important;
+            text-wrap: nowrap !important;
+        }
+        .mv_deploy_nav_pills .mv_deploy_nav_link.active{
+            border-radius: 0rem !important;
+            color: #0068b5 !important;
+            border-bottom: 4px solid #00aeef;
+            background-color: #F2F2F2 !important;
+        }
+        .mv_deploy_nav_pills .mv_deploy_nav_link:hover{
+            border-radius: 0rem;
+            background-color: #F2F2F2 !important;
+        }
+        .mv_gpu_flex_padd{
+            padding: 3rem 0rem;
+        }
+        .mv_gpu_flex{
+            align-content: center;
+        }
+        .mv_gpu_flex h1{
+            font-weight: 350;
+        }
+        .mv_gpu_flex p{
+            margin-bottom: .5rem;
+        }
+        .mv_gpu_flex p a{
+            color: #0068b5;
+            border-bottom: 1px dashed #0068b5;
+        }
+        .mv_gpu_flex p a:hover{
+            border-bottom: 1px solid #0068b5;
+        }
+        .mv_gpu_flex_img img{
+            width: 100%;
+        }
+        .mv_enable_boundless_padd{
+            padding: 3rem 0rem;
+        }
+        .mv_enable_img img{
+            width: 100%;
+            margin-bottom: 10px;
+        }
+        @media(max-width:768px){
+            .mv_product_table{
+                width: 100% !important;
+            }
+        }
+        @media(max-width:1440px){
+            .great_per_img{
+                width: 100% !important;
+            }
+        }
+</style>
+
+<body>
+    <!-- header -->
+    <div id="navbar"></div>
+
+    <!-------------------------------------------------------------------------->
+    <section class="m_ai_tdrop" style="border-bottom: 1px solid rgb(226, 221, 221);">
+        <div>
+            <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Developers
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item m_dropActive" href="#">Overview</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Topics & Technologies</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Tools</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Resources & Documentation</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Learn</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Community & Events</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Developer Programs</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Get Help</a></li>
+            </ul>
+        </div>
+    
+        <div class="m_ai_shlash">/</div>
+        <div>
+            <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Tools
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item m_dropActive" href="#">Software Catalog</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">oneAPI</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Open Edge Platform</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">FPGA</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Active Management Technology SDK</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Advisor</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® AI Reference Models</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Collaboration Suite for WebRTC SDK</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Tiber™ AI Cloud</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Distribution for Python*</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Distribution for GDB*</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® DPC++ Compatibility Tool</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Dynamic Application Loader</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Frameworks</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Embree</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Extension for Scikit-learn*</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Fortran Compiler</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Graphics Performance Analyzers</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Homomorphic Encryption Toolkit</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® In-Band Manageability</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Integrated Performance Primitives</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Integrated Simulation Infrastructure with Modeling</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Instruction Set Architecture (ISA) Extensions</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Intelligent Storage Acceleration Library (Intel® ISA-L)</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Modin*</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® MPI Library</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Neural Compressor</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">OpenCL™ Runtime</a></li>   
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Open Image Denoise</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Open Path Guiding Library (Intel® Open PGL)</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Pin</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Platform Analysis Library</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel Tools for OpenCL™ Software</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel Tools for OpenCL™ Applications</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® OpenSWR</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">OpenVINO™ Toolkit</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Open Volume Kernel Library</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Optimization for XGBoost*</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® OSPRay</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® OSPRay for Hydra*</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® OSPRay Studio</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">PyTorch* Optimizations from Intel</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">TensorFlow* Optimizations from Intel</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Rendering Toolkit</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Smart Edge Open</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Software Guard Extensions</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Secure Device Onboard</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Software Development Emulator</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Quantum SDK</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Query Processing Library (Intel® QPL)</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Video Processing Library</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® VTune™ Profiler</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Resellers</a></li>
+            </ul>
+        </div>
+
+        <div class="m_ai_shlash">/</div>
+        <div>
+            <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                oneAPI
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item m_dropActive" href="#">Overview</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Data Parallel C++/SYCL*</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Toolkits</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Tech Articles & How-Tos</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Components</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Code Samples</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Training</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Documentation</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Support</a></li>
+            </ul>
+        </div>
+
+        <div class="m_ai_shlash">/</div>
+        <div>
+            <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Tech Articles & How-Tos
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item m_dropActive" href="#">Library</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">News Updates</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Webinars</a></li>
+            </ul>
+        </div>
+
+        <div class="m_ai_shlash">/</div>
+        <div class="m_ai_httl">Remove Memory Bottlenecks Using Intel® Advisor</div>
+    </section>
+    <!-------------------------------------------------------------------------------------------------------->
+
+    <!-- VMware Horizon -->
+    <section>
+        <div class="mv_vmware_bg_color">
+            <div class="container">
+                <div class="mv_vmware_padd">
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12">
+                            <div class="mv_vmware_heading">
+                                <h3>Remove Memory Bottlenecks Using Intel® Advisor</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mv_cd_page_marquee_info">
+                        <div class="mv_cd_page_marquee_action">
+                            <div class="mv_cd_page_marquee_action_padd">
+                                <label for="">ID</label>
+                                <span>784642</span>
+                            </div>
+                            <div class="mv_cd_page_marquee_action_padd">
+                                <label for="">Updated</label>
+                                <span>5/6/2019</span>
+                            </div>
+                            <div class="mv_cd_page_marquee_action_padd">
+                                <label for="">Version</label>
+                                <span>Latest</span>
+                            </div>
+                            <div class="mv_cd_page_marquee_action_padd">
+                                <label for=""></label>
+                                <span>Public</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="container py-5">
+        <div class="row">
+            <div class="d-flex justify-content-end col-xl-10 py-3 d-md-none">
+                <i class="fa-solid fa-print fs-4 px-2 " style="color:#0068B5"></i>
+                <i class="fa-regular fa-envelope fs-4 px-2" style="color:#0068B5"></i>
+            </div>
+            <div class="col-lg-3 col-md-4">
+                <!-- nav -->
+                <div class="VK_sticky_side_bar VK_side_bar_postion_stickey">
+                    <div>
+                        <div class="VK_sidebar_dropdown">
+                            <p class="m-0">
+                                <a href="#dk_gt_performance" class="text-decoration-none VK_a">
+                                    Get Great Performance
+                                </a>
+                            </p>
+                            <details>
+                                <summary>
+                                    <a href="#dk_performance_pro" class="text-decoration-none VK_a">
+                                        Performance Problems
+                                    </a>
+                                </summary>
+                                <ul class="list-unstyled ps-3 mb-0">
+                                    <li>
+                                        <a href="#dk_bad_access" class="text-decoration-none VK_a my-1">
+                                            Bad Access Pattern
+                                        </a>
+                                    </li>
+                                </ul>
+                                <ul class="list-unstyled ps-3 mb-0">
+                                    <li>
+                                        <a href="#dk_memory_subsystem" class="text-decoration-none VK_a my-1">
+                                            Memory Subsystem Latency and Throughput
+                                        </a>
+                                    </li>
+                                </ul>
+                                <ul class="list-unstyled ps-3 mb-0">
+                                    <li>
+                                        <a href="#dk_branchy_code" class="text-decoration-none VK_a my-1">
+                                            Branchy Code
+                                        </a>
+                                    </li>
+                                </ul>
+                            </details>
+                                <p class="m-0">
+                                    <a href="#dk_are_bound" class="text-decoration-none VK_a">
+                                        Are You Bound by a CPU, VPU, or Memory?
+                                    </a>
+                                </p>
+                            <details>
+                                    <summary>
+                                        <a href="#dk_helpful_feat" class="text-decoration-none VK_a">
+                                            Helpful Optimization Features
+                                        </a>
+                                    </summary>
+                                    <ul class="list-unstyled ps-3 mb-0">
+                                        <li>
+                                            <details>
+                                                <summary>
+                                                    <a href="#dk_roofline" class="text-decoration-none VK_a">
+                                                        Roofline Analysis
+                                                    </a>
+                                                </summary>
+                                                <ul class="list-unstyled ps-3 mb-0">
+                                                    <li>
+                                                        <a href="#dk_integrated" class="text-decoration-none VK_a my-1">
+                                                            Integrated Roofline
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </details>
+                                        </li>
+                                    </ul>
+                                    <ul class="list-unstyled ps-3 mb-0">
+                                        <li>
+                                            <a href="#memory_access" class="text-decoration-none VK_a my-1">
+                                                Memory Access Pattern (MAP) Analysis
+                                            </a>
+                                        </li>
+                                    </ul>
+                                    <ul class="list-unstyled ps-3 mb-0">
+                                        <li>
+                                            <a href="#dk_unit_uniform" class="text-decoration-none VK_a my-1">
+                                                Unit and Uniform Stride Types
+                                            </a>
+                                        </li>
+                                    </ul>
+                                    <ul class="list-unstyled ps-3 mb-0">
+                                        <li>
+                                            <a href="#dk_variable_stride" class="text-decoration-none VK_a my-1">
+                                                Variable Stride Types
+                                            </a>
+                                        </li>
+                                    </ul>
+                                    <ul class="list-unstyled ps-3 mb-0">
+                                        <li>
+                                            <a href="#dk_memory_footprint" class="text-decoration-none VK_a my-1">
+                                                Memory Footprint Analysis
+                                            </a>
+                                        </li>
+                                    </ul>
+                            </details>
+                            <details>
+                                    <summary>
+                                        <a href="#dk_real_word" class="text-decoration-none VK_a">
+                                            A Real-World Example
+                                        </a>
+                                    </summary>
+                                    <ul class="list-unstyled ps-3 mb-0">
+                                        <li>
+                                            <details>
+                                                <summary>
+                                                    <a href="#dk_create_baseline" class="text-decoration-none VK_a">
+                                                       Create a Baseline
+                                                    </a>
+                                                </summary>
+                                                <ul class="list-unstyled ps-3 mb-0">
+                                                    <li>
+                                                        <a href="#dk_step1" class="text-decoration-none VK_a my-1">
+                                                            Step 1
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                                <ul class="list-unstyled ps-3 mb-0">
+                                                    <li>
+                                                        <a href="#dk_step2" class="text-decoration-none VK_a my-1">
+                                                            Step 2
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </details>
+                                        </li>
+                                    </ul>
+                                    <ul class="list-unstyled ps-3 mb-0">
+                                        <li>
+                                            <a href="#dk_intra_op" class="text-decoration-none VK_a my-1">
+                                                Optimize Memory Accesses
+                                            </a>
+                                        </li>
+                                    </ul>
+                                    <ul class="list-unstyled ps-3 mb-0">
+                                        <li>
+                                            <a href="#dk_intra_op" class="text-decoration-none VK_a my-1">
+                                                Related Resources
+                                            </a>
+                                        </li>
+                                    </ul>
+                            </details>
+                            <p class="m-0">
+                                <a href="#dk_line" class="text-decoration-none VK_a">
+                                    -------
+                                </a>
+                            </p>
+                            <p class="m-0">
+                                <a href="#dk_you_may" class="text-decoration-none VK_a">
+                                    You May Also Like
+                                </a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <!-- thinkcode -->
+                <!-- <div class="dk_things_code_main">
+                    <div class="dk_things_code">
+                        <h2 class="text-left headline-font-one-bold">Loss Prevention Retail Reference Implementation provides:</h2>
+                        <div class="dk_high_quality">
+                            <ul>
+                                <li>High-quality testable ingredients needed to create a solution to prevent thefts at stores.</li>
+                                <li>Building blocks needed to enable the use case with solid performance numbers.</li>
+                                <li>Hardware requirements to support the workloads and scale the solution.</li>
+                            </ul>
+                        </div>
+                    <div class="dk_get_code">
+                        <button class="dk_button">Get Started on GitHub<sup>*</sup></button>
+                    </div>
+                    </div> 
+                </div> -->
+            </div>
+            <div class="col-lg-9 col-md-8">
+                <div class="d-md-flex justify-content-end col-xl-10 py-3 d-none">
+                    <i class="fa-solid fa-print fs-4 px-2 " style="color:#0068B5"></i>
+                    <i class="fa-regular fa-envelope fs-4 px-2" style="color:#0068B5"></i>
+                </div>
+                <div class="col-xl-10 VK_all_sections">
+                    <div style="padding-bottom: 16px;">
+                        <p>&nbsp;</p>
+                        <p>&nbsp;</p>
+                        <h4>Understanding How Your Program Is Accessing Memory Helps You Get More from Your Hardware</h4>
+                        <p class="mb-4">Kevin O’Leary and Alex Shinsel, technical consulting engineers, Intel Corporation<br> <a class="b_special_a1" href="" rel="noopener noreferrer">@IntelDevTools</a></p>
+                        <hr>
+                        <p class="mb-0">How your application accesses memory dramatically impacts performance. It's not enough to parallelize your application by adding threads and vectorization. Effective use of memory bandwidth is just as important. But often, software developers just don’t understand it. Tools that help minimize memory latency and increase bandwidth can help pinpoint performance bottlenecks and diagnose their causes. One such tool is <a class="b_special_a1" href="">Intel® Advisor</a>, which has features to help optimize memory access and eliminate memory bottlenecks:</p>
+                        <ul>
+                            <li>Roofline analysis with the new <strong>Integrated Roofline</strong> feature</li>
+                            <li>Memory Access Pattern (MAP) analysis</li>
+                            <li>Memory footprint analysis</li>
+                        </ul>
+                        <p class="mb-0">&nbsp;</p>
+                    </div>
+                    <section id="dk_gt_performance">
+                        <h3 style="font-weight: 350;">Get Great Performance</h3>
+                        <p>To get top performance out of your application, you need to know how well you're using all system resources. You can see some useful metrics on your overall program in the Summary view (Figure 1) in Intel Advisor, which gives you an indication of how well the application is vectorized.</p>
+                        <p style="text-align:center"><img class="great_per_img" src="/img/darshit_image/memory-bottlenecks-fig1.jpg" width="760"><br>
+                        Figure 1. <strong>Summary </strong>view<br>
+                        <p>You also need to systematically investigate the loops in your program that are taking the most time. A key metric for this is Vectorization Efficiency (Figure 2). In this example, Intel Advisor is showing a vectorization gain of 2.19x. But this only gives us a vectorization efficiency score of 55%. Where did 45% of the efficiency get lost? There are many factors that can cause inefficient vectorization.</p>
+                        <p style="text-align:center"><img class="great_per_img" src="/img/darshit_image/memory-bottlenecks-fig2.jpg" width="517"><br>
+                        Figure 2.<strong> Vectorization Efficiency </strong>view<br>
+                        &nbsp;</p>
+                        <p class="mb-0">&nbsp;</p>
+                    </section>
+                    <section id="dk_performance_pro">
+                        <h3 style="font-weight: 350;">Performance Problems</h3>
+                        <p class="mb-0">&nbsp;</p>
+                    </section> 
+                        <section id="dk_bad_access">
+                            <h4>Bad Access Pattern</h4>
+                            <p>Indirect memory access is a common cause of slowdowns. Notice in the following code snippet that <strong>A</strong> can't be decoded without first decoding <strong>B[i]</strong>:</p>
+                            <!-- code toolbar 3 -->
+                            <div class="mv_code_toolbar">
+                                <div class="mv_toolbar_item mv_copy_icon">
+                                    <i class="fa-regular fa-copy"></i>
+                                </div>
+                                <div class="mv_copy_message text-end hidden">Copied</div>
+                                <div class="code-content">
+                                    <div style="padding-bottom: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            1
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0"><span class="token function"><span class="dk_color1">for</span> ( i <span class="dk_color2">=</span> 0 ; i <span class="dk_color2"><</span> N ; i++ )</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            2
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0"></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 1rem !important;" class="d-flex mv_pre pb-0">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            3
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0">&nbsp; &nbsp; &nbsp; A [ B [ i ] ] <span class="dk_color2">=</span> C [ i ] * D [ i ] ;</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <p>This gives an irregular access pattern. The compiler can often vectorize this by using a technique called <em>gather/scatter, </em>which is great because it allows that loop to vectorize, but bad because these gather/scatter instructions aren’t as fast as sequential access. For fast code, it's important to arrange your data structures so that data is accessed in unit stride. (This article later presents how Intel Advisor can show you this information.)</p>
+                        </section>
+
+                        <section id="dk_memory_subsystem">
+                            <h4>Memory Subsystem Latency and Throughput</h4>
+                            <p>Getting your code to fit into the various memory caches and making optimal use of data reuse are crucial to getting the best performance out of your system. The following example indexes by <strong>i</strong> over a large piece of data. This data is too big to fit in cache, which is bad, and is made doubly so by <strong>A</strong> being a multidimensional array:</p>
+                            <!-- code toolbar 3 -->
+                            <div class="mv_code_toolbar">
+                                <div class="mv_toolbar_item mv_copy_icon">
+                                    <i class="fa-regular fa-copy"></i>
+                                </div>
+                                <div class="mv_copy_message text-end hidden">Copied</div>
+                                <div class="code-content">
+                                    <div style="padding-bottom: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            1
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0"><span class="token function"><span class="dk_color1">for</span> ( i <span class="dk_color2">=</span> 0 ; i <span class="dk_color2"><</span> VERY_BIG ; i++ )</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            2
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0"></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 1rem !important;" class="d-flex mv_pre pb-0">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            3
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0">&nbsp; &nbsp; &nbsp; c [ i ] <span class="dk_color2">=</span> z * A [ i ] [ j ] ]0;</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <p>References to <strong>A[i][j]</strong> and <strong>A[i+1][j]</strong> are not located next to each other in memory. So, to get each new reference, you need to bring in a new cache line―and potentially evict a cache line. This “cache thrashing” has a negative impact on performance. Techniques such as cache blocking (where you add a new inner loop that indexes over a much smaller range that is designed to fit in cache) can help optimize these types of applications.</p>
+                        </section>
+
+                        <section id="dk_branchy_code">
+                            <p class="mb-0">&nbsp;</p>
+                            <h4>Branchy Code</h4>
+                            <p>Applications with a lot of branches (for example, the following loop with <strong>if(cond(i)</strong>) can be vectorized using mask registers to block the single instruction multiple data (SIMD) lanes where the condition is not true. In these iterations, a SIMD lane does not do useful work. Intel Advisor uses the mask use metric (Figure 3). Three elements are being suppressed, giving a mask use of 5/8 = 62.5%.</p>
+
+                            <!-- code toolbar 3 -->
+                            <div class="mv_code_toolbar">
+                                <div class="mv_toolbar_item mv_copy_icon">
+                                    <i class="fa-regular fa-copy"></i>
+                                </div>
+                                <div class="mv_copy_message text-end hidden">Copied</div>
+                                <div class="code-content">
+                                    <div style="padding-bottom: 0rem !important" class="d-flex mv_pre">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            1
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0"><a href=""></a><span class="dk_color1">for</span> ( i <span class="dk_color2">=</span> 0 ; i <span class="dk_color2"><</span> MAX ; i++ )</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;"
+                                        class="d-flex mv_pre pb-0">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            2
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0"></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;"
+                                        class="d-flex mv_pre pb-0">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            3
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0">&nbsp; &nbsp; &nbsp;<span class="dk_color1">if</span> ( cond ( i ) )</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;"
+                                        class="d-flex mv_pre pb-0">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            4
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0"></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;"
+                                        class="d-flex mv_pre pb-0">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            5
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; C [ i ] <span class="dk_color2">=</span> A [ i ] + B [ i ] ;</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <p style="text-align:center"><img class="great_per_img" src="/img/darshit_image/memory-bottlenecks-fig3.jpg" width="900"><br>
+                            Figure 3. Mask use metric<br>
+                            &nbsp;</p>
+                            <p>You could access your data in a unit stride fashion and have excellent vector efficiency, but still not get the performance you need because of low mask use (Figure 4). Table 1 shows memory access types.</p>
+                            <p style="text-align:center"><img class="great_per_img" src="/img/darshit_image/memory-bottlenecks-fig4.jpg" width="1048"><br>
+                            Figure 4. Mask use versus efficiency<br>
+                            &nbsp;</p>
+                            <p>Table 1. Memory access types</p>
+                            <table style="padding-bottom: 22px;" class="mv_product_table w-100">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Access Pattern</th>
+                                        <th scope="col">Small Memory Footprint</th>
+                                        <th scope="col">Large Memory Footprint</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Unit Stride</td>
+                                        <td>
+                                        <ul>
+                                            <li>Effective SIMD</li>
+                                            <li>No latency or bandwidth bottlenecks</li>
+                                        </ul>
+                                        </td>
+                                        <td>
+                                        <ul>
+                                            <li>Effective SIMD</li>
+                                            <li>Bandwidth bottleneck</li>
+                                        </ul>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Constant Stride</td>
+                                        <td>
+                                        <ul>
+                                            <li>Medium SIMD</li>
+                                            <li>Latency bottlenecks are possible</li>
+                                        </ul>
+                                        </td>
+                                        <td>
+                                        <ul>
+                                            <li>Medium SIMD</li>
+                                            <li>Latency and bottlenecks are possible</li>
+                                        </ul>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Irregular Access,<br>
+                                        Gather/Scatter</td>
+                                        <td>
+                                        <ul>
+                                            <li>Bad SIMD</li>
+                                            <li>Latency bottlenecks are possible</li>
+                                        </ul>
+                                        </td>
+                                        <td>
+                                        <ul>
+                                            <li>Bad SIMD</li>
+                                            <li>Latency bottlenecks</li>
+                                        </ul>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </section>
+
+                        <section id="dk_are_bound">
+                            <p>&nbsp;</p>
+                            <h3 style="font-weight: 350;">Are You Bound by a CPU, VPU, or Memory?</h3>
+                            <p>If your application is memory bound, there are several features in Intel Advisor that can help you optimize it. But first, you need to determine if you're memory bound, or CPU or VPU bound. A quick way to determine this is by looking at your instructions. The <strong>Code Analytics</strong> windows (Figure 5) in Intel Advisor can give you a basic way to see the mix of instructions that your code is running.</p>
+                            <p style="text-align:center"><img class="great_per_img" src="/img/darshit_image/memory-bottlenecks-fig5.jpg" width="1000"><br>
+                            Figure 5. <strong>Code Analytics </strong>windows<br>
+                            &nbsp;</p>
+                            <p>A guideline is that applications that are running a lot of memory instructions tend to be memory bound, while those that are running a lot of compute instructions tend to be compute bound. Notice the breakdown in Figure 5. The ratio of scalar to vector instructions is particularly important. Try to have as many vector instructions as possible.</p>
+                            <p>Another slightly more complicated technique is to use the <strong>Traits </strong>column in the <strong>Survey </strong>view (Figure 6) in Intel Advisor.</p>
+                            <p style="text-align:center"><img class="great_per_img" src="/img/darshit_image/memory-bottlenecks-fig6.jpg" width="900"><br>
+                            Figure 6. <strong>Traits</strong> column in the <strong>Survey </strong>view<br>
+                            &nbsp;</p>
+                            <p>Think of <strong>Traits </strong>as what the compiler needed to do to vectorize your loop. In the latest vector instructions sets, such as <a class="b_special_a1" href="">Intel® Advanced Vector Extensions 512 (Intel® AVX-512)</a>, there are many new instructions and idioms the compiler can use to vectorize your code. Techniques like register masking and compress instructions, shown in Figure 6, do allow applications to vectorize when this was not previously possible—but sometimes at a cost. Anything the compiler needed to do to get your data structures to fit in a vector (such as memory manipulation) often appears in the <strong>Traits </strong>column. These traits often indicate a problem that you can explore with a Memory Access Pattern analysis.</p>
+                        </section>
+
+                        <section id="dk_helpful_feat">
+                            <p>&nbsp;</p>
+                            <h3 style="font-weight: 350;">Helpful Optimization Features</h3>
+                        </section>
+
+                        <section id="dk_roofline">
+                            <p class="mb-0">&nbsp;</p>
+                            <h4>Roofline Analysis</h4>
+                            <p>A Roofline chart is a visual representation of application performance in relation to hardware limitations, including memory bandwidth and computational peaks. It was first proposed by researchers at the University of California at Berkeley in the 2008 paper, <a class="b_special_a1" href="">Roofline: An Insightful Visual Performance Model for Multicore Architectures</a>. In 2014, this model was extended by researchers at the Technical University of Lisbon in a paper called <a class="b_special_a1" href="">Cache-Aware Roofline Model: Upgrading the Loft</a>. Traditionally, Roofline charts are calculated and plotted manually, but Intel Advisor now automatically builds Roofline plots.</p>
+                            <p class="mb-0">The Roofline provides insight into:</p>
+                            <ul>
+                                <li>Location of your performance bottlenecks</li>
+                                <li>How much performance is left on the table because of bottlenecks</li>
+                                <li>Which bottlenecks are possible to address and which ones are worth addressing</li>
+                                <li>Why these bottlenecks are most likely occurring</li>
+                                <li>Your next steps</li>
+                            </ul>
+                            <p style="text-align:center"><img class="great_per_img" src="/img/darshit_image/memory-bottlenecks-fig7.jpg" width="1000"><br>
+                            Figure 7. Roofline analysis<br>
+                            &nbsp;</p>
+                            <p>The horizontal lines in Figure 7 represent the number of floating-point or integer computations of a given type that your hardware can perform in a given span of time. The diagonal lines represent how many bytes of data a given memory subsystem can deliver per second. Each dot is a loop or function in your program, with its position indicating its performance, which is affected by its optimization and its arithmetic intensity (AI).</p>
+                            <p class="mb-0">&nbsp;</p>
+                        </section>
+
+                        <section id="dk_integrated">
+                            <h4>Integrated Roofline</h4>
+                            <p>The Integrated Roofline model offers a more detailed analysis, showing directly where the bottleneck comes from. Intel Advisor collects data for all memory types using cache simulation (Figure 8).</p>
+                            <p style="text-align:center"><img class="great_per_img" src="/img/darshit_image/memory-bottlenecks-fig8.jpg" width="1000"><br>
+                            Figure 8. Cache simulation in Intel Advisor<br>
+                            &nbsp;</p>
+                            <p>With this data, Intel Advisor counts the number of data transfers for a given cache level and computes the specific AI for each loop and each memory level. By observing the changes in this traffic from one level to another, and then comparing them to respective roofs representing the best possible bandwidths for these levels, it's possible to pinpoint the memory hierarchy bottleneck for the kernel and determine optimization steps (Figure 9).</p>
+                            <p style="text-align:center"><img class="great_per_img" src="/img/darshit_image/memory-bottlenecks-fig9.jpg" width="1000"><br>
+                            Figure 9. Pinpointing the memory hierarchy bottleneck<br>
+                            &nbsp;</p>
+                        </section>
+
+                        <section id="memory_access">
+                            <p>&nbsp;</p>
+                            <h4>Memory Access Pattern (MAP) Analysis</h4>
+                            <p>MAP analysis in Intel Advisor gives the deepest insight into how you're accessing memory. Your memory access pattern affects the efficiency of vectorization and how much memory bandwidth you can ultimately achieve. The MAP collection observes data accesses while running and spots the instructions that contain the memory accesses. The data collected and analyzed appears in the <strong>Memory Access Patterns Report</strong> tab of the <strong>Refinement Reports</strong> window.</p>
+                            <p>To run a MAP analysis from the GUI (Figure 10), you need to select loops using the checkboxes in the Survey report and run a MAP collection.</p>
+                            <p style="text-align:center"><img class="great_per_img" src="/img/darshit_image/memory-bottlenecks-fig10.jpg" width="1000"><br>
+                            Figure 10. Memory Access Patterns report<br>
+                            &nbsp;</p>
+                            <p>You can also run a MAP collection from the command line. Use the <strong>-mark-up-list</strong> option to select loops to be analyzed.</p>
+                            <!-- code toolbar 3 -->
+                            <div class="mv_code_toolbar">
+                                <div class="mv_toolbar_item mv_copy_icon">
+                                    <i class="fa-regular fa-copy"></i>
+                                </div>
+                                <div class="mv_copy_message text-end hidden">Copied</div>
+                                <div class="code-content">
+                                    <div style="padding-bottom: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            1
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0"><span class="token function">&nbsp; &nbsp; advixe-cl -collect map -mark-up-</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            2
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0"></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            3
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0">&nbsp; &nbsp; list<a class="dk_color2" href="">=</a>Multiply.c:78,Multiply.c:71,Multiply.c:50,Multiply.c:6</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            4
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0"></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 1rem !important;" class="d-flex mv_pre pb-0">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            5
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0">1 -project-dir C:/my_advisor_project -- my_application.exe</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <p>The Memory Access Patterns report provides information about the types of strides observed in the memory access operations while the loop runs. The tool reports both unit, uniform, and constant strides (Figure 11).</p>
+                        </section>
+
+                        <section id="dk_unit_uniform">
+                            <p class="mb-0">&nbsp;</p>
+                            <h4>Unit and Uniform Stride Types</h4>
+                            <ul>
+                                <li>Unit stride (stride 1) instruction accesses memory that consistently changes by one element from iteration to iteration.</li>
+                                <li>Uniform (stride 0) instruction accesses the same memory from iteration to iteration.</li>
+                                <li>Constant stride (stride N) instruction accesses memory that consistently changes by N elements (N&gt;1) from iteration to iteration.</li>
+                            </ul>
+                            <p class="mb-0">&nbsp;</p>
+                        </section>
+
+                        <section id="dk_variable_stride">
+                            <h4>Variable Stride Types</h4>
+                            <ul>
+                                <li>Irregular stride instruction accesses memory addresses that change by an unpredictable number of elements from iteration to iteration.</li>
+                                <li>Gather (irregular) stride is detected for <strong>v(p)gather* </strong>instructions on the Intel® Advanced Vector Extensions 2 (Intel® AVX2) instruction set architecture.</li>
+                            </ul>
+                            <p style="text-align:center"><img class="great_per_img" src="/img/darshit_image/memory-bottlenecks-fig11.jpg" width="1000"><br>
+                            Figure 11. Stride types<br>
+                            &nbsp;</p>
+                            <p>Double-click any line in the <strong>Memory Access Patterns Report</strong> tab to see the selected operation's source code (Figure 12).</p>
+                            <p>The <strong>Source </strong>and <strong>Details </strong>views (Figure 13) give you insights into another key Intel Advisor memory feature, Memory Footprint.</p>
+                            <p class="mb-0">&nbsp;</p>
+                        </section>
+
+                        <section id="dk_memory_footprint">
+                            <h4>Memory Footprint Analysis</h4>
+                            <p>Memory Footprint is basically the range of memory for given loop accesses. This footprint can be a key indicator of your memory bandwidth. If the range is large, you might not be able to fit it in a cache. Optimization strategies such as cache blocking can make a big difference in these cases. Intel Advisor has three different memory footprint metrics (Figure 14).</p>
+                            <p style="text-align:center"><img class="great_per_img" src="/img/darshit_image/memory-bottlenecks-fig12.jpg" width="900"><br>
+                            Figure 12. The selected operation's source code<br>
+                            &nbsp;</p>
+                            <p style="text-align:center"><img class="great_per_img" src="/img/darshit_image/memory-bottlenecks-fig13.jpg" width="659"><br>
+                            Figure 13. <strong>Details </strong>view<br>
+                            &nbsp;</p>
+                            <p style="text-align:center"><img class="great_per_img" src="/img/darshit_image/memory-bottlenecks-fig14.jpg" width="1000"><br>
+                            Figure 14. Memory footprint metrics<br>
+                            &nbsp;</p>
+                            <p class="mb-0">Two basic footprint metrics represent just some aspects of your memory footprint. These metrics are collected by default in Memory Access Pattern (MAP) analysis:</p>
+                            <ul>
+                                <li><strong>Max Per-Instruction Address Range</strong> represents the maximum distance between minimum and maximum memory address values accessed by instructions in this loop. For each memory access instruction, the minimum and maximum address of its access is recorded and the maximum range of this address for all loop instructions is reported. It covers more than one loop instance, with some filtering, which is why sometimes Intel Advisor conveys uncertainty in this metric and reports it in gray.</li>
+                                <li><strong>First Instance Site Footprint</strong> is a more accurate memory footprint, since it detects overlaps in address ranges in the loop iterations and gaps between address ranges accessed by the loop, but is calculated only for the first instance (call) of this loop.</li>
+                            </ul>
+                            <p class="mb-0">There's a more advanced footprint calculated based on cache simulation, called the Simulated Memory Footprint. This metric shows the summarized and overlap-aware picture across all loop instances, but limited to one thread. It is calculated as the number of unique cache lines accessed during cache simulation multiplied by cache line size. To enable it in the GUI:</p>
+                            <ol>
+                                <li>In <strong>Project Properties</strong>,<strong> </strong>under <strong>Analysis Target</strong>,<strong> </strong>select <strong>Memory Access Patterns Analysis. </strong></li>
+                                <li>Select the <strong>Enable CPU cache simulation </strong>checkbox.</li>
+                                <li>Select the <strong>Model cache misses</strong> <strong>and loop footprint</strong> simulation mode in the dropdown list (Figure 15).</li>
+                                <li>Select the loops of interest with the checkboxes in the <strong>Survey </strong>view and run a MAP analysis.</li>
+                            </ol>
+                            <p style="text-align:center"><img class="great_per_img" src="/img/darshit_image/memory-bottlenecks-fig15.jpg" width="900"><br>
+                            Figure 15. Simulated memory footprint<br>
+                            &nbsp;</p>
+                            <p>To enable the cache simulation in the command line, use the MAP command, as previously specified, with these options: <strong>-enable-cache-simulation and -cachesim-mode=footprint</strong>.</p>
+                            <!-- code toolbar 3 -->
+                            <div class="mv_code_toolbar">
+                                <div class="mv_toolbar_item mv_copy_icon">
+                                    <i class="fa-regular fa-copy"></i>
+                                </div>
+                                <div class="mv_copy_message text-end hidden">Copied</div>
+                                <div class="code-content">
+                                    <div style="padding-bottom: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            1
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0">advixe-cl -collect map -mark-up-</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            2
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0"></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            3
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0">list<span class="dk_color2">=</span>tiling_inter.cpp:56,output.c:1073 -enable-cache-</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            4
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0"></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            5
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0">simulation -cachesim-mode=footprint -project-dir</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            6
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0"></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 1rem !important;" class="d-flex mv_pre pb-0">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            7
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0">C:\my_advisor_project -- my_application.exe</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <p>You can see the results of the analysis in the Intel Advisor GUI <strong>Refinement Reports</strong> view (Figure 16). The more detailed cache-related metrics―like the total number of memory loads, stores, cache misses, and cache-simulated memory footprint―allow a more detailed study of loop behavior concerning memory. Table 2 shows Intel Advisor footprint metrics on applicability, limitations, and relevance for analyzing different types of codes.</p>
+                            <p style="text-align:center"><img class="great_per_img" src="/img/darshit_image/memory-bottlenecks-fig16.jpg" width="1000"><br>
+                            Figure 16. <strong>Refinement Reports </strong>view<br>
+                            &nbsp;</p>
+                            <p>Table 2. Intel Advisor footprint metrics</p>
+                            <table style="padding-bottom: 22px;" class="mv_product_table w-100">
+                                <thead>
+                                    <tr>
+                                        <th scope="row">&nbsp;</th>
+                                        <th scope="col">Max Per-<br>
+                                        Instruction<br>
+                                        Address Range</th>
+                                        <th scope="col">First Instance Site<br>
+                                        Footprint</th>
+                                        <th scope="col">Simulated<br>
+                                        Memory<br>
+                                        Footprint</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th scope="row">Threads analyzed for the loop or site</th>
+                                        <td>1</td>
+                                        <td>1</td>
+                                        <td>1</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Loop instances analyzed</th>
+                                        <td>All instances but with some shortcuts</td>
+                                        <td>1, only the first<br>
+                                        instance</td>
+                                        <td>Depends on the<br>
+                                        loop-call-count<br>
+                                        limit option</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Aware of address range overlap?</th>
+                                        <td>No</td>
+                                        <td>Yes</td>
+                                        <td>Yes</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Suitable for codes with random<br>
+                                        memory access</th>
+                                        <td>No</td>
+                                        <td>No</td>
+                                        <td>Yes</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </section>
+
+                        <section id="dk_real_word">
+                            <p>&nbsp;</p>
+                            <p class="mb-0">&nbsp;</p>
+                            <h3 style="font-weight: 350;">A Real-World Example</h3>
+                            <p>Some of the most common problems in computational science require matrix multiplication. The list of domains that use matrices is almost endless, but AI, simulation, and modeling are just a few examples. The following sample algorithm is a triply nested loop that performs a multiply and an add for each iteration. Besides being computationally intensive, it also accesses a lot of memory. Let's use Intel Advisor to see how much.</p>
+                            <!-- code toolbar 3 -->
+                            <div class="mv_code_toolbar">
+                                <div class="mv_toolbar_item mv_copy_icon">
+                                    <i class="fa-regular fa-copy"></i>
+                                </div>
+                                <div class="mv_copy_message text-end hidden">Copied</div>
+                                <div class="code-content">
+                                    <div style="padding-bottom: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            1
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0">&nbsp; &nbsp; <span class="token function">for( i<span class="dk_color2">=</span>0; i<span class="dk_color2"><</span> msize; i++ ) {</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            2
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0"></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            3
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0">&nbsp; &nbsp; &nbsp; &nbsp; for( j <span class="dk_color2">=</span> 0; j <span class="dk_color2"><</span> msize; j++ ) {</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            4
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0"></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            5
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; for( k <span class="dk_color2">=</span> 0; k <span class="dk_color2"><</span> msize; k++ ) {</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            6
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0"></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            7
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; c [ i ] [ j ] <span class="dk_color2">=</span> c [ i ] [ j ] + a [ i ] [ k ] * b [ k ] [ j ] ;</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            8
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0"></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            9
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            10
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0"></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            11
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0">&nbsp; &nbsp; &nbsp; &nbsp; }</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            12
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0"></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 1rem !important;" class="d-flex mv_pre pb-0">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            13
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0">&nbsp; &nbsp; }</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <p>&nbsp;</p>
+                        </section>
+
+                        <section id="dk_intel_mkn">
+                            <h3 style="font-weight: 350;">Intel MKL-DNN Technical Performance Considerations</h3>
+                            <p>The library takes advantage of single instruction multiple data (SIMD) instructions through vectorization, and multiple cores through multithreading. Vectorization effectively uses cache and the latest instruction sets. On modern Intel® processors, a single core can perform up to two fused multiply and add (FMA) operations on 16 single-precision or 64 Int8 numbers per cycle. Also, the technique of multithreading helps in performing multiple independent operations simultaneously. Since deep-learning tasks are often independent, getting available cores working in parallel is an obvious choice to boost performance.</p>
+                            <p>To achieve the best possible CPU use, Intel MKL-DNN may use hardware-specific buffer layouts for compute-intensive operations, including convolution and inner product. All the other operations run on the buffers in hardware-specific layouts or common layouts used by frameworks.</p>
+                            <p>Intel MKL-DNN uses OpenMP to express parallelism. OpenMP is controlled by various environment variables: <strong>KMP_AFFINITY</strong>, <strong>KMP_BLOCKTIME</strong>, <strong>OMP_NUM_THREADS</strong>, and <strong>KMP_SETTINGS</strong>. These environment variables are described in the following sections. Changing the values of these environment variables affects performance of the framework, so we highly recommend that users tune them for their specific neural network model and platform.</p>
+                            <p>&nbsp;</p>
+                        </section>
+
+                        <section id="dk_kmp_affinity">
+                            <h4>KMP_AFFINITY</h4>
+                            <ul> 
+                                <li>Recommended settings:<br> <strong>KMP_AFFINITY=granularity=fine,verbose,compact,1,0</strong></li> 
+                                <li>Usage (shell):</li> 
+                            </ul>
+                            <!-- code toolbar 3 -->
+                            <div class="mv_code_toolbar">
+                                <div class="mv_toolbar_item mv_copy_icon">
+                                    <i class="fa-regular fa-copy"></i>
+                                </div>
+                                <div class="mv_copy_message text-end hidden">Copied</div>
+                                <div class="code-content">
+                                    <div style="padding-bottom: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            1
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0"><span class="token function">numactl ––cpunodebind <a class="dk_color2" href="">=</a>  <a class="dk_color1" href="">0</a> ––membind <a class="dk_color2" href="">=</a> <a class="dk_color1" href="">0</a> python</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            2
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0">script.py ––num_intra_ threads<a class="dk_color2" href="">=</a>cores ––num_inter_threads<a class="dk_color2" href="">=</a> <a class="dk_color1" href="">2</a> ––mkl<a class="dk_color2" href="">=</a> <a class="dk_color1" href="">True</a> </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 1rem !important;" class="d-flex mv_pre pb-0">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            3
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0">data_format<a class="dk_color2" href="">=</a>NCHW ––kmp_affinity=granularity<a class="dk_color2" href="">=</a>fine,verbose,compact,1,0</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <p>&nbsp;</p>
+                            <p><strong>KMP_AFFINITY </strong>is used to restrict running certain threads to a subset of the physical processing units in a multiprocessor computer. Set this environment variable as follows:</p>
+                            <p class="mb-0"><strong>KMP_AFFINITY=[&lt;modifier&gt;,...]&lt;type&gt;[,&lt;permute&gt;][,&lt;offset&gt;]</strong></p>
+                            <ul> 
+                                <li><strong>Modifier </strong>is a string consisting of a keyword and specifier.</li> 
+                                <li><strong>Type </strong>is a string indicating the thread affinity to use.</li> 
+                                <li><strong>Permute </strong>is a positive integer value that controls which levels are most significant when sorting the machine topology map. The value forces the mappings to make the specified number of most significant levels of the sort the least significant, and then inverts the order of significance. The root node of the tree is not considered a separate level for the sort operations.</li> 
+                                <li>Offset is a positive integer value that indicates the starting position for thread assignment.</li> 
+                            </ul>
+                            <p>As an example to explain basic content of this environment variable, use the recommended setting of <strong>KMP_AFFINITY</strong>:</p>
+                            <p><strong>KMP_AFFINITY=granularity=fine,verbose,compact,1,0</strong></p>
+                            <p class="mb-0">The modifier is <strong>granularity=fine,verbose</strong>. The word <strong>fine </strong>causes each OpenMP thread to be bound to a single-thread context, and verbose prints messages concerning the supported affinity, for example:</p>
+                            <ul> 
+                                <li>The number of packages</li> 
+                                <li>The number of cores in each package</li> 
+                                <li>The number of thread contexts for each core</li> 
+                                <li>OpenMP thread bindings to physical thread contexts</li> 
+                            </ul>
+                            <p>The word <strong>compact</strong> is the value of type, assigning the OpenMP thread <strong>&lt;n&gt;+1</strong> to a free thread context as close as possible to the thread context where the<strong> &lt;n&gt;</strong> OpenMP thread was placed.</p>
+                            <p>Figure 5 shows the machine topology map when <strong>KMP_AFFINITY </strong>is set to these values. The OpenMP thread <strong>&lt;n&gt;+1</strong> is bound to a thread context as closely as possible to the OpenMP thread <strong>&lt;n&gt;</strong>, but on a different core. Once each core has been assigned an OpenMP thread, the subsequent OpenMP threads are assigned to the available cores in the same order, but they are assigned on different thread contexts.</p>
+                            <p style="text-align:center"><img class="w-100" src="/img/darshit_image/effectively-train-execute-ml-dl-projects-on-cpus-fig05.jpg" width="750"></p>
+                            <p style="text-align:center">Figure 5. Machine topology map with the setting <strong>KMP_AFFINITY=granularity=fine,compact,1,0</strong></p>
+                            <p>The advantage of this setting is that consecutive threads are bound close together so that communication overhead, cache line invalidation overhead, and page thrashing are minimized. It's desirable to avoid binding multiple threads to the same core and leaving other cores unused. For more detailed description of <strong>KMP_AFFINITY</strong>, see the <a class="b_special_a1" href="">Intel® C++ Compiler Developer Guide and Reference</a>.</p>
+                        </section>
+                        <section id="dk_kmp_blocktime">
+                            <p>&nbsp;</p>
+                            <h4>KMP_BLOCKTIME</h4>
+                            <ul> 
+                                <li>Recommended settings for CNN: <strong>KMP_BLOCKTIME=0</strong></li> 
+                                <li>Recommended settings for non-CNN: <strong>KMP_BLOCKTIME=1 </strong>(user verifies empirically)</li> 
+                                <li>Usage (shell):</li> 
+                            </ul>
+                            <!-- code toolbar 3 -->
+                            <div class="mv_code_toolbar">
+                                <div class="mv_toolbar_item mv_copy_icon">
+                                    <i class="fa-regular fa-copy"></i>
+                                </div>
+                                <div class="mv_copy_message text-end hidden">Copied</div>
+                                <div class="code-content">
+                                    <div style="padding-bottom: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            1
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0"><span class="token function">numactl ––cpunodebind <a class="dk_color2" href="">=</a>  <a class="dk_color1" href="">0</a> ––membind <a class="dk_color2" href="">=</a> <a class="dk_color1" href="">0</a> python</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            2
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0">script.py ––num_intra_threads=cores ––num_inter_threads= <a class="dk_color1" href="">2</a> ––mkl=<a class="dk_color1" href="">True</a></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            3
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0">data_format<a class="dk_color2" href="">=</a>NCHW ––kmp_affinity<a class="dk_color2" href="">=</a>granularity<a class="dk_color2" href="">=</a>fine,verbose,compact,<a class="dk_color1" href="">1</a>,<a class="dk_color1" href="">0</a></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 1rem !important;" class="d-flex mv_pre pb-0">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            4
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0">––kmp_blocktime <a class="dk_color2" href="">=</a> <a class="dk_color1" href="">0</a>( <a class="dk_color1" href="">or</a> <a class="dk_color1" href="">1</a>)</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <p>&nbsp;</p>
+                            <p>This environment variable sets the time, in milliseconds, that a thread waits after completing running a parallel region before going to sleep. The default value is 200 ms.</p>
+                            <p>After completing running a parallel region, threads wait for new parallel work to become available. After a certain period of time has elapsed, they become inactive. Sleeping allows the threads to be used until more parallel work becomes available, by threaded code that isn't OpenMP and may run between parallel regions, or by other applications. A small <strong>KMP_BLOCKTIME </strong>value may offer better overall performance if the application contains threaded code that isn't OpenMP that runs between parallel regions. A larger <strong>KMP_BLOCKTIME </strong>value may be more appropriate if threads are to be reserved solely for running OpenMP, but may penalize other concurrently-running OpenMP or threaded applications. The suggested setting is <strong>0</strong> for CNN-based models.</p>
+                        </section>
+
+                        <section id="dk_omp_num">
+                            <p>&nbsp;</p>
+                            <h4>OMP_NUM_THREADS</h4>
+                            <ul> 
+                                <li>Recommended settings for CNN: <strong>OMP_NUM_THREADS = # </strong>physical cores</li> 
+                                <li>Usage (shell): Export <strong>OMP_NUM_THREADS= #</strong> physical cores</li> 
+                            </ul>
+                            <p>This environment variable sets the maximum number of threads to use in OpenMP parallel regions if no other value is specified in the application. The value can be a single integer, in which case each integer specifies the number of threads for a parallel region at each nesting level. The first position in the list represents the outermost parallel nesting level. The default value is the number of logical processors visible to the operating system on which the program is executed. The recommended value equals the number of physical cores.</p>
+                            <p>&nbsp;</p>
+                        </section>
+
+                        <section id="dk_kmp_settings">
+                            <h4>KMP_SETTINGS</h4>
+                            <ul> 
+                                <li>Use (shell):<strong> Export KMP_SETTINGS=TRUE</strong></li> 
+                            </ul>
+                            <p>This environment variable enables (TRUE) or disables (FALSE) the printing of OpenMP runtime library environment settings when the program runs.</p>
+                            <p>&nbsp;</p>
+                        </section>
+
+                        <section id="dk_learn_more">
+                            <h3 style="font-weight: 350;">Learn More</h3>
+                            <p>Start using Intel-optimized frameworks to accelerate your deep-learning workloads on the CPU today. Access resources on <a class="b_special_a1" href="">www.intel.ai</a> and get support from the <a class="b_special_a1" href="">Intel® AI Developer Forum</a>. Also, visit the <a class="b_special_a1" href="">AI Model Zoo</a> for solution-oriented resources for your accelerated TensorFlow projects. These resources help you use CPU resources to their fullest capability.</p>
+                            <p>&nbsp;</p>
+                        </section>
+
+                        <section id="dk_references">
+                            <h3 style="font-weight: 350;">References</h3>
+                            <p><sup>1</sup> Inference using FP32 batch size Caffe for GoogleNet* v1 128, AlexNet v 256.</p>
+                            <p>Configurations for inference throughput: Tested by Intel as of 6/7/2018. Platform: two-socket Intel® Xeon® Platinum processor, 8180 CPU at 2.50 GHz and 28 cores, HyperThreading ON, turbo ON. Total Memory: 376.28 GB (12 slots, 32 GB, 2666 MHz), four instances of the framework, CentOS* Linux*: 7.3.1611 core, SSD, sda RS3WC080, HDD 744.1 GB, sdb RS3WC080, HDD 1.5 TB, sdc RS3WC080, HDD 5.5 TB, deep-learning framework Caffe version: a3d5b022fe026e9092fc7abc7654b1162ab9940d. Topology: GoogleNet v1, BIOS: SE5C620.86B.00.01.0004.071220170215, Intel MKL DNN version: 464c268e544bae26f9b85a2acb9122c766a4c396, NoDataLayer. Measured: 1449 images per second vs. tested by Intel as of 06/15/2018. Platform: 2S Intel® Xeon® E5-2699 processor v3 at 2.30 GHz (18 cores), HyperThreading enabled, turbo disabled, scaling governor set to “performance” via the <strong>intel_pstate </strong>driver, 64 GB DDR4-2133 ECC RAM. BIOS: SE5C610.86B.01.01.0024.021320181901, CentOS Linux 7.5.1804 (core) kernel 3.10.0-862.3.2.el7.x86_64, SSD sdb INTEL SSDSC2BW24 SSD 223.6GB. Framework BVLC Caffe: <a class="b_special_a1" href="">GitHub*</a>, Inference and training measured with <strong>caffe time</strong> command. For <strong>ConvNet</strong> topologies, a dummy dataset was used. For other topologies, data was stored on local storage and cached in memory before training. <a class="b_special_a1" href="">BVLC Caffe</a>, revision 2a1c552b66f026c7508d390b526f2495ed3be594.</p>
+                            <p>Configuration for training throughput: Tested by Intel as of 05/29/2018 Platform: two-socket Intel Xeon Platinum 8180 processor at 2.50 GHz, 28 cores, HyperThreading ON, turbo ON, total memory 376.28 GB (12 slots, 32 GB, 2666 MHz), four instances of the framework, CentOS Linux 7.3.1611 core, SSD, sda RS3WC080, HDD 744.1 GB, sdb RS3WC080, HDD 1.5TB, sdc RS3WC080, HDD 5.5TB, deep learning framework Caffe version: a3d5b022fe026e9092fc7abc765b1162ab9940d Topology: AlexNet BIOS: SE5C620.86B.00.01.0004.071220170215, Intel MKL DNN version: 464c268e544bae26f9b85a2acb9122c766a4c396 <strong>NoDataLayer</strong>. Measured: 1257 imgages per sec vs. tested by Intel as of 06/15/2018. Platform: 2S Intel Xeon E5-2699 processor v3 at 2.30 GHz (18 cores), HyperThreading enabled, turbo disabled, scaling governor set to <strong>performance</strong> via the <strong>intel_pstate</strong> driver, 64 GB, DDR4-2133 ECC RAM. BIOS: SE5C610.86B.01.01.0024.021320181901, CentOS Linux 7.5.1804 (core) kernel 3.10.0-862.3.2.el7.x86_64, SSD, sdb INTEL SSDSC2BW24, SSD 223.6 GB. Framework: <a class="b_special_a1" href="">BVLC Caffe</a>. Inference and training measured with <strong>caffe time</strong> command. For <strong>ConvNet</strong> topologies, dummy dataset was used. For other topologies, data was stored on local storage and cached in memory before training. <a class="b_special_a1" href="">BVLC Caffe</a>, revision 2a1c552b66f026c7508d390b526f2495ed3be594</p>
+                            <p><sup>2</sup> System configuration: CPU threads per core: two cores per socket: 28 sockets, two NUMA nodes, two CPU family: 6 model, 85 model name: Intel Xeon Platinum 8180 processor at 2.50 GHz, HyperThreading: ON turbo: ON, memory 376 GB (12x32 GB), 24 slots, 12 occupied, 2666 MHz disks Intel RS3WC080 x 3 (800 GB, 1.6 TB, 6 TB) BIOS: SE5C620.86B.00.01.0004. 070920180847 (microcode version 0x200004d), Centos Linux 7.4.1708 (core) kernel 3.10.0-693.11.6.el7.x86_64, <a class="b_special_a1" href="">TensorFlow Source</a>, commit: 6a0b536a779f485edc25f6a11335b5e640acc8ab, Intel MKL DNN version: 4e333787e0d66a1dca1218e99a891d493dbc8ef1, <a class="b_special_a1" href="">TensorFlow benchmarks </a></p>
+                            <h2 style="opacity: 0.5;">______<a class="inpage-nav-anchor" id="inpage-nav-12"></a></h2>
+                        </section>
+
+                        <section id="dk_you_may">
+                            <p>&nbsp;</p>
+                            <h3 style="font-weight: 350;">You May Also Like</h3>
+                            <div class="mv_deploy_nav_tab">
+                                <ul class="nav nav-pills mv_deploy_nav_pills pt-3" id="pills-tab" role="tablist">
+                                        <li class="nav-item" role="presentation">
+                                            <button class="nav-link active mv_deploy_nav_link" id="pills-home-tab" data-bs-toggle="pill"
+                                                data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home"
+                                                aria-selected="true">Related Webinars</button>
+                                        </li>
+                                        <li class="nav-item" role="presentation">
+                                            <button class="nav-link mv_deploy_nav_link" id="pills-profile-tab" data-bs-toggle="pill"
+                                                data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile"
+                                                aria-selected="false">Related Articles</button>
+                                        </li>
+                                        <li class="nav-item" role="presentation">
+                                            <button class="nav-link mv_deploy_nav_link" id="pills-video-tab" data-bs-toggle="pill"
+                                                data-bs-target="#pills-video" type="button" role="tab" aria-controls="pills-video"
+                                                aria-selected="false">Related Video</button>
+                                        </li>
+                                        <li class="nav-item" role="presentation">
+                                            <button class="nav-link mv_deploy_nav_link" id="pills-design-tab" data-bs-toggle="pill"
+                                                data-bs-target="#pills-design" type="button" role="tab" aria-controls="pills-design"
+                                                aria-selected="false">Related Podcast</button>
+                                        </li>
+                                        <li class="nav-item" role="presentation">
+                                            <button class="nav-link mv_deploy_nav_link" id="pills-simulation-tab" data-bs-toggle="pill"
+                                                data-bs-target="#pills-simulation" type="button" role="tab" aria-controls="pills-simulation"
+                                                aria-selected="false">Get the Software</button>
+                                        </li>
+                                </ul>
+                                <div class="tab-content" id="pills-tabContent">
+                                        <!-- 1. Device Information -->
+                                        <div class="tab-pane fade show active" id="pills-home" role="tabpanel"
+                                            aria-labelledby="pills-home-tab" tabindex="0">
+                                            <div class="mv_coman_padd" style=" border-bottom: 1px solid #ddd; display: flex; padding-bottom: 1rem;">
+                                                <div class="">
+                                                    <p>Enhance Deep-Learning Workloads on 3rd Generation Intel® Xeon® Scalable Processors</p>
+                                                    <a class="b_special_a1" href="">Watch</a>
+                                                </div>
+                                                <div class="">
+                                                    <p>Advanced Code Optimization for 3rd Generation Intel Xeon Scalable Processors</p>
+                                                    <a class="b_special_a1" href="">Watch</a>
+                                                </div>
+                                            </div>
+                                            <!-- User Guides -->
+                                            
+                                        </div>
+                                        <!-- 2. Interface Protocol -->
+                                        <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab"
+                                            tabindex="0">
+                                            <div class="mv_coman_padd" style=" border-bottom: 1px solid #ddd; display: flex; padding-bottom: 1rem;">
+                                                <div class="">
+                                                    <p>Use Deep Learning Optimizations from Intel in TensorFlow*</p>
+                                                    <a class="b_special_a1" href="">Read</a>
+                                                </div>
+                                                <div class="">
+                                                    <p>One-Line Code Changes to Boost pandas, scikit-learn*, and TensorFlow Performance </p>
+                                                    <a class="b_special_a1" href="">Read</a>
+                                                </div>
+                                            </div>
+                                            <!-- User Guides -->
+                                        </div>
+                                        <!-- 3. Design Planning -->
+                                        <div class="tab-pane fade" id="pills-video" role="tabpanel" aria-labelledby="pills-video-tab"
+                                            tabindex="0">
+                                            <div class="mv_coman_padd" style="padding-bottom: 1rem;">
+                                                <p>Optimize End-to-End Data Science and Machine Learning Acceleration</p>
+                                                <a class="b_special_a1" href="">Watch</a>
+                                            </div>
+                                            <!-- User Guides / Device Overview / Device Datasheet / Application Notes-->
+                                        </div>
+                                        <!-- 4. Design Entry -->
+                                        <div class="tab-pane fade" id="pills-design" role="tabpanel" aria-labelledby="pills-design-tab"
+                                            tabindex="0">
+                                            <div class="mv_coman_padd" style="padding-bottom: 1rem;">
+                                                <p>Ignite the Next Generation of Deep Learning </p>
+                                                <a class="b_special_a1" href="">Listen</a>
+                                            </div>
+                                            <!-- User Guides / Device Overview / Device Datasheet / White Paper -->
+                                            
+                                        </div>
+                                        <!-- 5. Simulation and Verification -->
+                                        <div class="tab-pane fade" id="pills-simulation" role="tabpanel" aria-labelledby="pills-simulation-tab"
+                                            tabindex="0">
+                                            <div class="mv_coman_padd" style="padding-bottom: 1rem;">
+                                                <a class="b_special_a1" href=""><b>Intel® oneAPI Math Kernel Library</b></a>
+                                                <p>Accelerate math processing routines, including matrix algebra, fast Fourier transforms (FFT), and vector math. Part of the Intel® oneAPI Base Toolkit.</p>
+                                                <p><a class="mv_coman_btn" href="">Get It Now</a></p>
+                                                <p><a class="b_special_a1" href="">See All Tools</a></p>
+                                            </div>
+                                            <!-- User Guides / Device Overview / Device Datasheet / Application Notes -->
+                                        </div>
+                                </div>
+                            </div>
+                        </section>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section style="border-top: 1px solid #d7d7d7;" class="container py-5">
+        <h4 class="h6">Product and Performance Information</h4>
+        <div class="disclaimer" style="font-size: 12px;"><sup>1</sup> Performance varies by use, configuration and other
+            factors. Learn more at <a class="b_special_a1" href="">www.Intel.com/PerformanceIndex.</a></div>
+        </div>
+    </section>
+
+    <!-- footer -->
+    <div id="footer"></div>
+
+    <!-- nav script -->
+    <script>
+        // navbar include  
+        fetch('/y_index/y_navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar').innerHTML = data;
+            });
+        // footer include 
+        fetch('/y_index/y_footer.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('footer').innerHTML = data;
+            });
+    </script>
+    <!-- nav script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            if (document.getElementsByClassName('VK_all_sections section') && document.getElementsByClassName('VK_sidebar_dropdown')) {
+                const sections = document.querySelectorAll('.VK_all_sections section');
+                const navLinks = document.querySelectorAll('.VK_sidebar_dropdown a');
+                const detailsElements = document.querySelectorAll('.VK_sidebar_dropdown details');
+
+                function removeActiveClass() {
+                    navLinks.forEach(link => link.classList.remove('VK_sidebar_active_link'));
+                    detailsElements.forEach(details => {
+                        details.removeAttribute('open');
+                        details.setAttribute('close', ''); // Optional: to visually indicate it's closed
+                    });
+                }
+
+                function activateLinkAndDetails(targetId) {
+                    navLinks.forEach(link => {
+                        if (link.getAttribute('href') === `#${targetId}`) {
+                            link.classList.add('VK_sidebar_active_link');
+                            let parentDetails = link.closest('details');
+
+                            // Open all ancestor details elements
+                            while (parentDetails) {
+                                parentDetails.setAttribute('open', '');
+                                parentDetails.removeAttribute('close'); // Optional: remove the closed indicator
+                                parentDetails = parentDetails.parentElement.closest('details');
+                            }
+                        }
+                    });
+                }
+
+                function onScroll() {
+                    let currentSection = '';
+                    sections.forEach(section => {
+                        const sectionTop = section.getBoundingClientRect().top;
+                        const sectionBottom = section.getBoundingClientRect().bottom;
+
+                        // Check if the section is in view
+                        if (sectionTop <= 100 && sectionBottom >= 0) {
+                            currentSection = section.getAttribute('id');
+                        }
+                    });
+
+                    if (currentSection) {
+                        removeActiveClass();
+                        activateLinkAndDetails(currentSection);
+                    } else {
+                        removeActiveClass();
+                    }
+                }
+
+                window.addEventListener('scroll', onScroll);
+            } else {
+                return
+            }
+        });
+    </script>
+
+    <!-- copy script -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            document.querySelectorAll(".mv_copy_icon").forEach((icon) => {
+                icon.addEventListener("click", async function () {
+                    try {
+                        const toolbar = this.closest(".mv_code_toolbar");
+                        const codeBlock = toolbar.querySelector(".code-content");
+                        const codeContent = codeBlock.innerText;
+
+                        // Use Clipboard API to copy text
+                        await navigator.clipboard.writeText(codeContent);
+
+                        // Hide the copy icon and show the "Copied!" message
+                        const message = toolbar.querySelector(".mv_copy_message");
+                        this.classList.add("hidden"); // Hide the copy icon
+                        message.classList.remove("hidden"); // Show the "Copied!" message
+
+                        // Hide the message and show the icon again after 2 seconds
+                        setTimeout(() => {
+                            message.classList.add("hidden");
+                            this.classList.remove("hidden");
+                        }, 2000); // Adjust delay as needed
+
+                    } catch (err) {
+                        console.error('Failed to copy text: ', err);
+                    }
+                });
+            });
+        });
+    </script>
+
+</body>
+
+</html>
+
+
+

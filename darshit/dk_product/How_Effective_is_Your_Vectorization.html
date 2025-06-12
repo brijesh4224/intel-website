@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Speed Up Performance by Exploring GPU Configurations</title>
+
+    <!-- font family -->
+    <link href="https://fonts.cdnfonts.com/css/intel-clear" rel="stylesheet">
+    <link rel="stylesheet" href="/css/dk_arria_10_FPGA_developer_center.css">
+    <link rel="stylesheet"href="/css/dk_developer_edge_iot_5G_industrial_automation_see_all_Intelligent_connection_management_for_automated_handover.css">
+    <link rel="stylesheet"href="/css/dk_developer_edge_iot_&_5G_optimize_fine_tuning_and_deployment_of_LLMs_on_an_ai_pc.css">
+    <link rel="stylesheet" href="/css/rushita_automotive.css">
+    <!-- header footer -->
+    <link rel="stylesheet" href='/css/yatri.css'>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" rel="stylesheet">
+
+</head>
+
+<style>
+    .dk_color1{
+        color: #069 !important;
+        font-weight: 700 !important;
+    }
+    .dk_color2{
+        color: #b24501;
+    }
+    /****** Device Information ******/
+        .mv_deploy_nav_tab{
+            background-color: #fff;
+        }
+        .mv_deploy_nav_pills{
+            border-bottom: 1px solid #E6E6E6;
+            flex-wrap: nowrap !important;
+            overflow-x: auto !important;
+            width: 100% !important;
+        }
+        .mv_deploy_nav_link {
+            color: #0068b5 !important;
+        }
+        .mv_deploy_nav_pills .mv_deploy_nav_link{
+            background-color: #fff !important;
+            text-wrap: nowrap !important;
+        }
+        .mv_deploy_nav_pills .mv_deploy_nav_link.active{
+            border-radius: 0rem !important;
+            color: #0068b5 !important;
+            border-bottom: 4px solid #00aeef;
+            background-color: #F2F2F2 !important;
+        }
+        .mv_deploy_nav_pills .mv_deploy_nav_link:hover{
+            border-radius: 0rem;
+            background-color: #F2F2F2 !important;
+        }
+        .mv_gpu_flex_padd{
+            padding: 3rem 0rem;
+        }
+        .mv_gpu_flex{
+            align-content: center;
+        }
+        .mv_gpu_flex h1{
+            font-weight: 350;
+        }
+        .mv_gpu_flex p{
+            margin-bottom: .5rem;
+        }
+        .mv_gpu_flex p a{
+            color: #0068b5;
+            border-bottom: 1px dashed #0068b5;
+        }
+        .mv_gpu_flex p a:hover{
+            border-bottom: 1px solid #0068b5;
+        }
+        .mv_gpu_flex_img img{
+            width: 100%;
+        }
+        .mv_enable_boundless_padd{
+            padding: 3rem 0rem;
+        }
+        .mv_enable_img img{
+            width: 100%;
+            margin-bottom: 10px;
+        }
+        .mv_coman_btn {
+        padding: 0.250rem 1.5rem !important;
+        }
+    @media(max-width:768px){
+        .mv_product_table{
+            width: 100% !important;
+        }
+    }
+    @media(max-width:1440px){
+        .great_per_img{
+            width: 100% !important;
+        }
+    }
+</style>
+
+<body>
+    <!-- header -->
+    <div id="navbar"></div>
+
+    <!-------------------------------------------------------------------------->
+    <section class="m_ai_tdrop" style="border-bottom: 1px solid rgb(226, 221, 221);">
+        <div>
+            <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Developers
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item m_dropActive" href="#">Overview</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Topics & Technologies</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Tools</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Resources & Documentation</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Learn</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Community & Events</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Developer Programs</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Get Help</a></li>
+            </ul>
+        </div>
+    
+        <div class="m_ai_shlash">/</div>
+        <div>
+            <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Tools
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item m_dropActive" href="#">Software Catalog</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">oneAPI</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Open Edge Platform</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">FPGA</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Active Management Technology SDK</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Advisor</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® AI Reference Models</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Collaboration Suite for WebRTC SDK</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Tiber™ AI Cloud</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Distribution for Python*</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Distribution for GDB*</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® DPC++ Compatibility Tool</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Dynamic Application Loader</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Frameworks</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Embree</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Extension for Scikit-learn*</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Fortran Compiler</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Graphics Performance Analyzers</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Homomorphic Encryption Toolkit</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® In-Band Manageability</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Integrated Performance Primitives</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Integrated Simulation Infrastructure with Modeling</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Instruction Set Architecture (ISA) Extensions</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Intelligent Storage Acceleration Library (Intel® ISA-L)</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Modin*</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® MPI Library</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Neural Compressor</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">OpenCL™ Runtime</a></li>   
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Open Image Denoise</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Open Path Guiding Library (Intel® Open PGL)</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Pin</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Platform Analysis Library</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel Tools for OpenCL™ Software</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel Tools for OpenCL™ Applications</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® OpenSWR</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">OpenVINO™ Toolkit</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Open Volume Kernel Library</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Optimization for XGBoost*</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® OSPRay</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® OSPRay for Hydra*</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® OSPRay Studio</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">PyTorch* Optimizations from Intel</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">TensorFlow* Optimizations from Intel</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Rendering Toolkit</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Smart Edge Open</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Software Guard Extensions</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Secure Device Onboard</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Software Development Emulator</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Quantum SDK</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Query Processing Library (Intel® QPL)</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Video Processing Library</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® VTune™ Profiler</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Resellers</a></li>
+            </ul>
+        </div>
+
+        <div class="m_ai_shlash">/</div>
+        <div>
+            <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                oneAPI
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item m_dropActive" href="#">Overview</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Data Parallel C++/SYCL*</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Toolkits</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Tech Articles & How-Tos</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Components</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Code Samples</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Training</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Documentation</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Support</a></li>
+            </ul>
+        </div>
+
+        <div class="m_ai_shlash">/</div>
+        <div>
+            <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Tech Articles & How-Tos
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item m_dropActive" href="#">Library</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">News Updates</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Webinars</a></li>
+            </ul>
+        </div>
+
+        <div class="m_ai_shlash">/</div>
+        <div class="m_ai_httl">How Effective is Your Vectorization?</div>
+    </section>
+    <!-------------------------------------------------------------------------------------------------------->
+
+    <!-- VMware Horizon -->
+    <section>
+        <div class="mv_vmware_bg_color">
+            <div class="container">
+                <div class="mv_vmware_padd">
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12">
+                            <div class="mv_vmware_heading">
+                                <h3>How Effective is Your Vectorization?</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mv_cd_page_marquee_info">
+                        <div class="mv_cd_page_marquee_action">
+                            <div class="mv_cd_page_marquee_action_padd">
+                                <label for="">ID</label>
+                                <span>721757</span>
+                            </div>
+                            <div class="mv_cd_page_marquee_action_padd">
+                                <label for="">Updated</label>
+                                <span>5/22/2019</span>
+                            </div>
+                            <div class="mv_cd_page_marquee_action_padd">
+                                <label for="">Version</label>
+                                <span>Latest</span>
+                            </div>
+                            <div class="mv_cd_page_marquee_action_padd">
+                                <label for=""></label>
+                                <span>Public</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="container py-5">
+        <div class="row">
+            <div class="d-flex justify-content-end col-xl-10 py-3 d-md-none">
+                <i class="fa-solid fa-print fs-4 px-2 " style="color:#0068B5"></i>
+                <i class="fa-regular fa-envelope fs-4 px-2" style="color:#0068B5"></i>
+            </div>
+            <div class="col-lg-3 col-md-4">
+                <!-- nav -->
+                <div class="VK_sticky_side_bar VK_side_bar_postion_stickey">
+                    <div>
+                        <div class="VK_sidebar_dropdown">
+                            <p class="m-0">
+                                <a href="#dk_great_performance" class="text-decoration-none VK_a">
+                                  Get Great Performance
+                                </a>
+                            </p>
+                            <p class="m-0">
+                                <a href="#dk_access_more" class="text-decoration-none VK_a">
+                                   Access More Details
+                                </a>
+                            </p>
+                            <p class="m-0">
+                                <a href="#dk_set_analysis" class="text-decoration-none VK_a">
+                                    Instruction Set Analysis
+                                </a>
+                            </p>
+                            <p class="m-0">
+                                <a href="#dk_using_gui" class="text-decoration-none VK_a">
+                                   Using the Middle Part of the Intel Advisor GUI
+                                </a>
+                            </p>
+                            <p class="m-0">
+                                <a href="#dk_code_analytics" class="text-decoration-none VK_a">
+                                  Code Analytics
+                                </a>
+                            </p>
+                            <p class="m-0">
+                                <a href="#dk_statistics" class="text-decoration-none VK_a">
+                                    Statistics for All Operations
+                                </a>
+                            </p>
+                            <p class="m-0">
+                                <a href="#dk_how_running" class="text-decoration-none VK_a">
+                                    How Many Operations Are You Running?
+                                </a>
+                            </p>
+                            <p class="m-0">
+                                <a href="#dk_optimize_vec" class="text-decoration-none VK_a">
+                                   Optimize Vectorization
+                                </a>
+                            </p>
+                            <p class="m-0">
+                                <a href="#dk_line" class="text-decoration-none VK_a">
+                                    -------
+                                </a>
+                            </p>
+                            <p class="m-0">
+                                <a href="#dk_you_may" class="text-decoration-none VK_a">
+                                    You May Also Like
+                                </a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <!-- thinkcode -->
+                <!-- <div class="dk_things_code_main">
+                    <div class="dk_things_code">
+                        <h2 class="text-left headline-font-one-bold">Loss Prevention Retail Reference Implementation provides:</h2>
+                        <div class="dk_high_quality">
+                            <ul>
+                                <li>High-quality testable ingredients needed to create a solution to prevent thefts at stores.</li>
+                                <li>Building blocks needed to enable the use case with solid performance numbers.</li>
+                                <li>Hardware requirements to support the workloads and scale the solution.</li>
+                            </ul>
+                        </div>
+                    <div class="dk_get_code">
+                        <button class="dk_button">Get Started on GitHub<sup>*</sup></button>
+                    </div>
+                    </div> 
+                </div> -->
+            </div>
+            <div class="col-lg-9 col-md-8">
+                <div class="d-md-flex justify-content-end col-xl-10 py-3 d-none">
+                    <i class="fa-solid fa-print fs-4 px-2 " style="color:#0068B5"></i>
+                    <i class="fa-regular fa-envelope fs-4 px-2" style="color:#0068B5"></i>
+                </div>
+                <div class="col-xl-10 VK_all_sections">
+                    <div style="padding-bottom: 16px;">
+                        <p>&nbsp;</p>
+                        <p>&nbsp;</p>
+                        <h4>Gain Insights into How Well Your Application Is Vectorized Using Intel® Advisor</h4>
+                        <div class="row">
+                            <div class="col-6">
+                                <p>Kevin O’Leary, technical consulting engineer, Intel Corporation<br>
+                                    <a class="b_special_a1" href="">@IntelDevTools</a></p>
+                            </div>
+                            <div class="col-6">
+                                <p><strong>Get the Latest on All Things CODE</strong><br> <a class="mv_coman_btn" href="">Sign Up</a></p>
+                            </div>
+                        </div>
+                        <p class="mb-0">Determining how well your application is vectorized is crucial to getting the best performance on your system. In this article, you'll:</p>
+                        <ul> 
+                            <li>Learn to pinpoint vectorization issues.</li> 
+                            <li>See how well you’re using hardware.</li> 
+                            <li>Optimize performance using <a class="b_special_a1" href="">Intel® Advisor</a>, which is available in a <a class="b_special_a1" href="">free, stand-alone version</a> and as part of the <a class="b_special_a1" href="">Intel® oneAPI Base Toolkit</a>.</li> 
+                        </ul>
+                        <p class="mb-0">Intel Advisor helps you to see:</p>
+                        <ul> 
+                            <li>Which loops are vectorized</li> 
+                            <li>Data types, vector widths, and instruction sets such as Intel® Advanced Vector Extensions 512 (Intel® AVX-512) and Intel® Advanced Vector Extensions 2</li> 
+                            <li>How many floating-point and integer operations are running</li> 
+                            <li>Number of instructions devoted to computation and how many to memory operations</li> 
+                            <li>Your register use</li> 
+                            <li>Ways to improve your vectorization</li> 
+                            <li>And much more</li> 
+                        </ul>
+                        <p class="mb-0">&nbsp;</p>
+                    </div>
+                    <section id="dk_great_performance">
+                        <h3 style="font-weight: 350;">Get Great Performance</h3>
+                        <p>To get top performance out of an application, you need information on how well you’re using all of the system resources. The improved summary view in Intel Advisor (Figure 1) indicates how well the application is performing as a whole.</p>
+                        <p style="text-align:center"><img class="great_per_img" src="/img/darshit_image/how-effective-is-your-vectorization-fig01.jpg" width="818"></p>
+                        <p style="text-align:center">Figure 1. Intel Advisor summary view</p>
+                        <p>&nbsp;</p>
+                        <p>You can see the vectorization instruction sets used and some useful performance metrics. This view includes a program characteristics section that compares relative performance to the peak performance obtainable on your system. In Figure 1, notice that the application is using several different instruction sets―something to investigate. The program is also getting vectorization efficiency of just 42%. Where was 58% of the efficiency lost? You can get more details to investigate.</p>
+                        <p class="mb-0">&nbsp;</p>
+                    </section>
+                    <section id="dk_access_more">
+                        <h3 style="font-weight: 350;">Access More Details</h3>
+                        <p>Get more detail in the <strong>Survey &amp; Roofline</strong> tab (Figure 2). The survey view gives details on a loop-by-loop basis. Focus on the loops where you’re spending the most time, and try to get these loops to vectorize as efficiently as possible. Intel Advisor highlights whether the loop is vectorized and its efficiency. If the compiler wasn’t able to vectorize the loop, Intel Advisor can tell you why. The <strong>Performance Issues</strong> column can give you clues as to why efficiency is poor.</p>
+                        <p style="text-align:center"><img class="great_per_img" src="/img/darshit_image/how-effective-is-your-vectorization-fig02.jpg" width="913"></p>
+                        <p style="text-align:center">Figure 2. <strong>Survey &amp; Rooftop</strong> tab</p>
+                        <p style="text-align:center">&nbsp;</p>
+                    </section> 
+                        <section id="dk_set_analysis">
+                            <h3 style="font-weight: 350;">Instruction Set Analysis</h4>
+                            <p class="mb-0">Instruction set analysis (Figure 3) provides more information for what the compiler did to vectorize your code. It shows the:</p>
+                            <ul> 
+                                <li>Vectorization instruction set used</li> 
+                                <li>Vector widths</li> 
+                                <li>Data type being operated on</li> 
+                            </ul>
+                            <p>The <strong>Traits </strong>column generally indicates the memory manipulation the compiler had to do to fit the data structure into a vector. These memory manipulations can be indicators of poor efficiency.</p>
+                            <p style="text-align:center"><img class="great_per_img" src="/img/darshit_image/how-effective-is-your-vectorization-fig03.jpg" width="902"></p>
+                            <p style="text-align:center">Figure 3. Instruction set analysis</p>
+                            <p style="text-align:center">&nbsp;</p>
+                            <p>In the example application, the main loop is using <a class="b_special_a1" href="">Intel® AVX-512</a>, but the vector widths are only 128 and 256. Also, Intel Advisor gives a warning message if your application seems to be underperforming and offers tuning advice (Figure 4).</p>
+                            <p style="text-align:center"><img alt="Warning message" src="/content/dam/developer/articles/technical/how-effective-is-your-vectorization/how-effective-is-your-vectorization-fig04.jpg" width="713"></p>
+                            <p style="text-align:center">Figure 4. Warning message</p>
+                            <p>Recompiling to enable the ZMM registers yields the instruction set analysis in Figure 5. Most of our loops now use the complete 512 bytes of the vector registers. In our example, using the ZMM registers improved performance. However, this isn’t always the case. It’s application-specific.</p>
+                            <p style="text-align:center"><img class="great_per_img" src="/img/darshit_image/how-effective-is-your-vectorization-fig05.jpg" width="842"></p>
+                            <p style="text-align:center">Figure 5. Instruction set analysis</p>
+                            <p class="mb-2">&nbsp;</p>
+                        </section>
+
+                        <section id="dk_using_gui">
+                            <h3 style="font-weight: 350;">Using the Middle Part of the Intel Advisor GUI</h4>
+                           <p>The tabs in the middle of the Intel Advisor GUI contain a wealth of program information (Figure 6).</p>
+                           <p style="text-align:center"><img class="great_per_img" src="/img/darshit_image/how-effective-is-your-vectorization-fig06.jpg"></p>
+                           <p style="text-align:center">Figure 6. Intel Advisor GUI tabs</p>
+                           <p style="text-align:center">&nbsp;</p>
+                           <p>The <strong>Recommendations </strong>tab provides tips to improve performance (Figure 7). For instance, if a loop didn’t vectorize, the <strong>Vectorization </strong>tab provides information for why this happened, along with providing code examples showing how to fix the issue.</p>
+                           <p style="text-align:center"><img class="great_per_img" src="/img/darshit_image/how-effective-is-your-vectorization-fig07.jpg" width="883"></p>
+                           <p style="text-align:center">Figure 7. Intel Advisor<strong> Recommendations </strong>tab</p>
+                           <p style="text-align:center">&nbsp;</p>
+                        </section>
+
+                        <section id="dk_code_analytics">
+                            <h3 style="font-weight: 350;">Code Analytics</h3>
+                            <p>The <strong>Code Analytics</strong> tab (Figure 8) gives details about what’s happening in a loop. You can see the performance at a high level or get statistics for all operations and an instruction mix summary.</p>
+                            <p style="text-align:center"><img class="great_per_img" src="/img/darshit_image/how-effective-is-your-vectorization-fig07.jpg" width="883"></p>
+                            <p style="text-align:center">Figure 8. Intel Advisor<strong> Code Analytics </strong>tab</p>
+                            <p>&nbsp;</p>
+                        </section>
+
+                        <section id="dk_statistics">
+                            <h3 style="font-weight: 350;">Statistics for All Operations</h3>
+                            <p>This section includes floating-point operations per second (FLOPS), integer operations (INTOP), or mixed (INT+FLOAT) operations (Figure 9). This gives you a detailed view of some key performance metrics, showing how many instructions are running per second. This view also gives metrics on how well you’re using the memory hierarchy in this loop.</p>
+                            <p style="text-align:center"><img class="great_per_img" src="/img/darshit_image/how-effective-is-your-vectorization-fig09.jpg" width="395"></p>
+                            <p style="text-align:center">Figure 9. <strong>Statistics for All Operations</strong> section</p>
+                            <p style="text-align:center">&nbsp;</p>
+                        </section>
+
+                        <section id="dk_how_running">
+                            <h3 style="font-weight: 350;">How Many Operations Are You Running?</h3>
+                            <p>What are the types of instructions in your loop? Are they compute or memory based? Intel Advisor can answer these questions, and give the static and dynamic instruction count with the static instruction mix summary (Figure 10). Get the percentage of each running instruction to see if the newest instructions are used where they should be.</p>
+                            <p style="text-align:center"><img class="great_per_img" src="/img/darshit_image/how-effective-is-your-vectorization-fig10.jpg" width="629"></p>
+                            <p style="text-align:center">Figure 10. Static instruction mix summary</p>
+                            <p style="text-align:center">&nbsp;</p>
+                        </section>
+
+                        <section id="dk_optimize_vec">
+                            <h3 style="font-weight: 350;">Optimize Vectorization</h3>
+                            <p>It’s crucial to optimize the vectorization of your program. Understanding how well your program is vectorized by using a tool like Intel Advisor can help ensure you’re getting the most out of your hardware.</p>
+                        </section>
+                        
+                        <section id="dk_line">
+                            <h2>______<a class="inpage-nav-anchor" id="inpage-nav-4"></a></h2>
+                            <p>&nbsp;</p>  
+                        </section>
+
+                        <section id="dk_you_may">
+                            <h3 style="font-weight: 350; margin-bottom: 1.5rem;">You May Also Like</h4>
+                            <div class="mv_deploy_nav_tab">
+                                <ul class="nav nav-pills mv_deploy_nav_pills pt-3" id="pills-tab" role="tablist">
+                                        <li class="nav-item" role="presentation">
+                                            <button class="nav-link active mv_deploy_nav_link" id="pills-home-tab" data-bs-toggle="pill"
+                                                data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home"
+                                                aria-selected="true">Related Webinars</button>
+                                        </li>
+                                        <li class="nav-item" role="presentation">
+                                            <button class="nav-link mv_deploy_nav_link" id="pills-profile-tab" data-bs-toggle="pill"
+                                                data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile"
+                                                aria-selected="false">Related Articles</button>
+                                        </li>
+                                        <li class="nav-item" role="presentation">
+                                            <button class="nav-link mv_deploy_nav_link" id="pills-video-tab" data-bs-toggle="pill"
+                                                data-bs-target="#pills-video" type="button" role="tab" aria-controls="pills-video"
+                                                aria-selected="false">Related Podcast</button>
+                                        </li>
+                                        <li class="nav-item" role="presentation">
+                                            <button class="nav-link mv_deploy_nav_link" id="pills-design-tab" data-bs-toggle="pill"
+                                                data-bs-target="#pills-design" type="button" role="tab" aria-controls="pills-design"
+                                                aria-selected="false">Get the Software</button>
+                                        </li>
+                                </ul>
+                                <div class="tab-content" id="pills-tabContent">
+                                        <!-- 1. Device Information -->
+                                        <div class="tab-pane fade show active" id="pills-home" role="tabpanel"
+                                            aria-labelledby="pills-home-tab" tabindex="0">
+                                            <div class="row">
+                                                <div class="col-sm-4">
+                                                    <p class="collapse_list_element threeUpCss"><br> Find CPU &amp; GPU Performance Headroom using Roofline Analysis<br> <a class="b_special_a1" href="">Watch</a></p>
+                                                </div>
+                                                <div class="col-sm-4">
+                                                    <p class="collapse_list_element threeUpCss"><br> Roofline Analysis Part 2 – Fast Insights to<br> Optimized Vectorization &amp; Memory<br> <a class="b_special_a1" href="">Watch</a></p>
+                                                </div>
+                                                <div class="col-sm-4">
+                                                   <p class="collapse_list_element threeUpCss"><br> Hitting the Roofline: Should You Optimize for Compute, Memory, or Both?<br> <a class="b_special_a1" href="">Watch</a></p>
+                                                </div>
+                                            </div>
+                                            <!-- User Guides -->
+                                            
+                                        </div>
+                                        <!-- 2. Interface Protocol -->
+                                        <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab"
+                                            tabindex="0">
+                                            <div class="row">
+                                                <div class="col-sm-3">
+                                                    <p class="collapse_list_element fourUpCss"><br> Optimization of Scan Operations<br> Using Explicit Vectorization<br> <a class="b_special_a1" href="">Read</a></p>
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    <p class="collapse_list_element fourUpCss"><br> Delve into the Mysteries of OpenMP Vectorization Support<br> <a class="b_special_a1" href="">Read</a></p>
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    <p class="collapse_list_element fourUpCss"><br> Optimize LLVM Code Generation for Data Analytics Using Vectorization<br> <a class="b_special_a1" href="">Read</a></p>
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    <p class="mb-0">&nbsp;</p>
+                                                    <p class="collapse_list_element fourUpCss">Improve Performance by Vectorizing Particle-in-Cell Codes<br> <a class="b_special_a1" href="">Read</a></p>
+                                                </div>
+                                            </div>
+                                            <!-- User Guides -->
+                                        </div>
+                                        <!-- 3. Design Planning -->
+                                        <div class="tab-pane fade" id="pills-video" role="tabpanel" aria-labelledby="pills-video-tab"
+                                            tabindex="0">
+                                            <div class="">
+                                                <p><br> Extending the Roofline Model<br> <a class="b_special_a1" href="">Listen</a></p>
+                                            </div>
+                                            <!-- User Guides / Device Overview / Device Datasheet / Application Notes-->
+                                        </div>
+                                        <!-- 4. Design Entry -->
+                                        <div class="tab-pane fade" id="pills-design" role="tabpanel" aria-labelledby="pills-design-tab"
+                                            tabindex="0">
+                                            <div class="">
+                                                <p><br> <a class="b_special_a1" href=""><strong>Intel® Advisor</strong></a><br> Design code for efficient vectorization, threading, memory usage, and GPU offloading.<br> Intel Advisor is included as part of the Intel® oneAPI Base Toolkit.</p>
+                                                <p><a class="mv_coman_btn" href="">Get It Now</a></p>
+                                                <p><a class="b_special_a1" href="">See All Tools</a></p>
+                                            </div>
+                                            <!-- User Guides / Device Overview / Device Datasheet / White Paper -->
+                                            
+                                        </div>
+                                </div>
+                            </div>
+                        </section>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section style="border-top: 1px solid #d7d7d7;" class="container py-5">
+        <h4 class="h6">Product and Performance Information</h4>
+        <div class="disclaimer" style="font-size: 12px;"><sup>1</sup> Performance varies by use, configuration and other
+            factors. Learn more at <a class="b_special_a1" href="">www.Intel.com/PerformanceIndex.</a></div>
+        </div>
+    </section>
+
+    <!-- footer -->
+    <div id="footer"></div>
+
+    <!-- nav script -->
+    <script>
+        // navbar include  
+        fetch('/y_index/y_navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar').innerHTML = data;
+            });
+        // footer include 
+        fetch('/y_index/y_footer.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('footer').innerHTML = data;
+            });
+    </script>
+    <!-- nav script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            if (document.getElementsByClassName('VK_all_sections section') && document.getElementsByClassName('VK_sidebar_dropdown')) {
+                const sections = document.querySelectorAll('.VK_all_sections section');
+                const navLinks = document.querySelectorAll('.VK_sidebar_dropdown a');
+                const detailsElements = document.querySelectorAll('.VK_sidebar_dropdown details');
+
+                function removeActiveClass() {
+                    navLinks.forEach(link => link.classList.remove('VK_sidebar_active_link'));
+                    detailsElements.forEach(details => {
+                        details.removeAttribute('open');
+                        details.setAttribute('close', ''); // Optional: to visually indicate it's closed
+                    });
+                }
+
+                function activateLinkAndDetails(targetId) {
+                    navLinks.forEach(link => {
+                        if (link.getAttribute('href') === `#${targetId}`) {
+                            link.classList.add('VK_sidebar_active_link');
+                            let parentDetails = link.closest('details');
+
+                            // Open all ancestor details elements
+                            while (parentDetails) {
+                                parentDetails.setAttribute('open', '');
+                                parentDetails.removeAttribute('close'); // Optional: remove the closed indicator
+                                parentDetails = parentDetails.parentElement.closest('details');
+                            }
+                        }
+                    });
+                }
+
+                function onScroll() {
+                    let currentSection = '';
+                    sections.forEach(section => {
+                        const sectionTop = section.getBoundingClientRect().top;
+                        const sectionBottom = section.getBoundingClientRect().bottom;
+
+                        // Check if the section is in view
+                        if (sectionTop <= 100 && sectionBottom >= 0) {
+                            currentSection = section.getAttribute('id');
+                        }
+                    });
+
+                    if (currentSection) {
+                        removeActiveClass();
+                        activateLinkAndDetails(currentSection);
+                    } else {
+                        removeActiveClass();
+                    }
+                }
+
+                window.addEventListener('scroll', onScroll);
+            } else {
+                return
+            }
+        });
+    </script>
+
+    <!-- copy script -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            document.querySelectorAll(".mv_copy_icon").forEach((icon) => {
+                icon.addEventListener("click", async function () {
+                    try {
+                        const toolbar = this.closest(".mv_code_toolbar");
+                        const codeBlock = toolbar.querySelector(".code-content");
+                        const codeContent = codeBlock.innerText;
+
+                        // Use Clipboard API to copy text
+                        await navigator.clipboard.writeText(codeContent);
+
+                        // Hide the copy icon and show the "Copied!" message
+                        const message = toolbar.querySelector(".mv_copy_message");
+                        this.classList.add("hidden"); // Hide the copy icon
+                        message.classList.remove("hidden"); // Show the "Copied!" message
+
+                        // Hide the message and show the icon again after 2 seconds
+                        setTimeout(() => {
+                            message.classList.add("hidden");
+                            this.classList.remove("hidden");
+                        }, 2000); // Adjust delay as needed
+
+                    } catch (err) {
+                        console.error('Failed to copy text: ', err);
+                    }
+                });
+            });
+        });
+    </script>
+
+</body>
+
+</html>
+
