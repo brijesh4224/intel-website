@@ -390,14 +390,14 @@
                                     </ul>
                                     <ul class="list-unstyled ps-3 mb-0">
                                         <li>
-                                            <a href="#dk_intra_op" class="text-decoration-none VK_a my-1">
+                                            <a href="#dk_optimize_accesses" class="text-decoration-none VK_a my-1">
                                                 Optimize Memory Accesses
                                             </a>
                                         </li>
                                     </ul>
                                     <ul class="list-unstyled ps-3 mb-0">
                                         <li>
-                                            <a href="#dk_intra_op" class="text-decoration-none VK_a my-1">
+                                            <a href="#dk_related_res" class="text-decoration-none VK_a my-1">
                                                 Related Resources
                                             </a>
                                         </li>
@@ -1144,23 +1144,38 @@
                                     </div>
                                 </div>
                             </div>
+                            <p class="mb-0">&nbsp;</p>
+                        </section>
+
+                        <section id="dk_create_baseline">
+                            <h4>Create a Baseline</h4>
+                            <p>The elapsed time was 53.94 seconds for our initial run. Figure 17 is a cache-aware Roofline chart. The red dot is the main computational loop. It's far below even DRAM bandwidth, and even farther below L1 bandwidth, which is the maximum bandwidth we're trying to achieve. You can see the precise bandwidth it achieves at each level of the memory hierarchy using the <strong>Code Analytics</strong> tab for the loop (Figure 18).</p>
+                            <p>Why is the performance so poor? How can it be improved? These are questions Intel Advisor was designed to answer. First, examine the <strong>Survey </strong>view (Figure 19) to see what's going on and whether Intel Advisor has any recommendations. Intel Advisor has noted an inefficient memory access pattern, and also that the loop has not been vectorized because of an assumed dependency. To examine the memory access pattern, we can run a memory access pattern (MAP) analysis (Figure 20).</p>
+                            <p style="text-align:center"><img class="great_per_img" src="/img/darshit_image/memory-bottlenecks-fig17.jpg" width="1000"><br>
+                                Figure 17. Cache-aware Roofline chart<br>
+                                &nbsp;</p>
+                            <p style="text-align:center"><img class="great_per_img" src="/img/darshit_image/memory-bottlenecks-fig18.jpg" width="616"><br>
+                                Figure 18. Data transfers and bandwidth<br>
+                                &nbsp;</p>
+                            <p style="text-align:center"><img class="great_per_img" src="/img/darshit_image/memory-bottlenecks-fig19.jpg" width="1000"><br>
+                                Figure 19. Survey view<br>
+                                &nbsp;</p>
+                            <p style="text-align:center"><img class="great_per_img" src="/img/darshit_image/memory-bottlenecks-fig20.jpg" width="1000"><br>
+                                Figure 20. MAP analysis<br>
+                                &nbsp;</p>
+                            <p>Intel Advisor has detected a constant stride on the read access and a uniform stride of 0 for the write. The range of memory that's accessed is 32 MB, far bigger than any of the cache sizes (Figure 21). You can also see how well the caches are performing using the MAP report (Figure 22). Over 2,300 cache lines are missing, so it's no wonder performance is bad. But there are several ways to fix this.</p>
+                            <p style="text-align:center"><img class="great_per_img" src="/img/darshit_image/memory-bottlenecks-fig21.jpg" width="1000"><br>
+                                Figure 21. Strides distribution<br>
+                                &nbsp;</p>
+                            <p style="text-align:center"><img class="great_per_img" src="/img/darshit_image/memory-bottlenecks-fig22.jpg" width="436"><br>
+                                    Figure 22. MAP report<br>
+                                    &nbsp;</p>
                             <p>&nbsp;</p>
                         </section>
 
-                        <section id="dk_intel_mkn">
-                            <h3 style="font-weight: 350;">Intel MKL-DNN Technical Performance Considerations</h3>
-                            <p>The library takes advantage of single instruction multiple data (SIMD) instructions through vectorization, and multiple cores through multithreading. Vectorization effectively uses cache and the latest instruction sets. On modern Intel® processors, a single core can perform up to two fused multiply and add (FMA) operations on 16 single-precision or 64 Int8 numbers per cycle. Also, the technique of multithreading helps in performing multiple independent operations simultaneously. Since deep-learning tasks are often independent, getting available cores working in parallel is an obvious choice to boost performance.</p>
-                            <p>To achieve the best possible CPU use, Intel MKL-DNN may use hardware-specific buffer layouts for compute-intensive operations, including convolution and inner product. All the other operations run on the buffers in hardware-specific layouts or common layouts used by frameworks.</p>
-                            <p>Intel MKL-DNN uses OpenMP to express parallelism. OpenMP is controlled by various environment variables: <strong>KMP_AFFINITY</strong>, <strong>KMP_BLOCKTIME</strong>, <strong>OMP_NUM_THREADS</strong>, and <strong>KMP_SETTINGS</strong>. These environment variables are described in the following sections. Changing the values of these environment variables affects performance of the framework, so we highly recommend that users tune them for their specific neural network model and platform.</p>
-                            <p>&nbsp;</p>
-                        </section>
-
-                        <section id="dk_kmp_affinity">
-                            <h4>KMP_AFFINITY</h4>
-                            <ul> 
-                                <li>Recommended settings:<br> <strong>KMP_AFFINITY=granularity=fine,verbose,compact,1,0</strong></li> 
-                                <li>Usage (shell):</li> 
-                            </ul>
+                        <section id="dk_step1">
+                            <h4>Step 1</h4>
+                            <p>Do a loop interchange so that you don’t need a constant stride and also don’t need to access memory over such a wide range. You can also vectorize the loop by including a pragma <strong>ivdep </strong>that informs the compiler that you don’t have a dependency that prevents vectorization.</p>
                             <!-- code toolbar 3 -->
                             <div class="mv_code_toolbar">
                                 <div class="mv_toolbar_item mv_copy_icon">
@@ -1174,7 +1189,7 @@
                                         </div>
                                         <div class="">
                                             <div class="mv_code text-break">
-                                                <p class="mb-0"><span class="token function">numactl ––cpunodebind <a class="dk_color2" href="">=</a>  <a class="dk_color1" href="">0</a> ––membind <a class="dk_color2" href="">=</a> <a class="dk_color1" href="">0</a> python</p>
+                                                <p class="mb-0">&nbsp; &nbsp; for ( i <span class="dk_color2">=</span> tidx ; i <span class="dk_color2"><</span> msize ; i <span class="dk_color2">=</span> i + numt ) { </p>
                                             </div>
                                         </div>
                                     </div>
@@ -1184,78 +1199,7 @@
                                         </div>
                                         <div class="">
                                             <div class="mv_code text-break">
-                                                <p class="mb-0">script.py ––num_intra_ threads<a class="dk_color2" href="">=</a>cores ––num_inter_threads<a class="dk_color2" href="">=</a> <a class="dk_color1" href="">2</a> ––mkl<a class="dk_color2" href="">=</a> <a class="dk_color1" href="">True</a> </p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div style="padding-top: 0rem !important; padding-bottom: 1rem !important;" class="d-flex mv_pre pb-0">
-                                        <div style="border-right: 1px solid #ccc" class="pe-3">
-                                            3
-                                        </div>
-                                        <div class="">
-                                            <div class="mv_code text-break">
-                                                <p class="mb-0">data_format<a class="dk_color2" href="">=</a>NCHW ––kmp_affinity=granularity<a class="dk_color2" href="">=</a>fine,verbose,compact,1,0</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <p>&nbsp;</p>
-                            <p><strong>KMP_AFFINITY </strong>is used to restrict running certain threads to a subset of the physical processing units in a multiprocessor computer. Set this environment variable as follows:</p>
-                            <p class="mb-0"><strong>KMP_AFFINITY=[&lt;modifier&gt;,...]&lt;type&gt;[,&lt;permute&gt;][,&lt;offset&gt;]</strong></p>
-                            <ul> 
-                                <li><strong>Modifier </strong>is a string consisting of a keyword and specifier.</li> 
-                                <li><strong>Type </strong>is a string indicating the thread affinity to use.</li> 
-                                <li><strong>Permute </strong>is a positive integer value that controls which levels are most significant when sorting the machine topology map. The value forces the mappings to make the specified number of most significant levels of the sort the least significant, and then inverts the order of significance. The root node of the tree is not considered a separate level for the sort operations.</li> 
-                                <li>Offset is a positive integer value that indicates the starting position for thread assignment.</li> 
-                            </ul>
-                            <p>As an example to explain basic content of this environment variable, use the recommended setting of <strong>KMP_AFFINITY</strong>:</p>
-                            <p><strong>KMP_AFFINITY=granularity=fine,verbose,compact,1,0</strong></p>
-                            <p class="mb-0">The modifier is <strong>granularity=fine,verbose</strong>. The word <strong>fine </strong>causes each OpenMP thread to be bound to a single-thread context, and verbose prints messages concerning the supported affinity, for example:</p>
-                            <ul> 
-                                <li>The number of packages</li> 
-                                <li>The number of cores in each package</li> 
-                                <li>The number of thread contexts for each core</li> 
-                                <li>OpenMP thread bindings to physical thread contexts</li> 
-                            </ul>
-                            <p>The word <strong>compact</strong> is the value of type, assigning the OpenMP thread <strong>&lt;n&gt;+1</strong> to a free thread context as close as possible to the thread context where the<strong> &lt;n&gt;</strong> OpenMP thread was placed.</p>
-                            <p>Figure 5 shows the machine topology map when <strong>KMP_AFFINITY </strong>is set to these values. The OpenMP thread <strong>&lt;n&gt;+1</strong> is bound to a thread context as closely as possible to the OpenMP thread <strong>&lt;n&gt;</strong>, but on a different core. Once each core has been assigned an OpenMP thread, the subsequent OpenMP threads are assigned to the available cores in the same order, but they are assigned on different thread contexts.</p>
-                            <p style="text-align:center"><img class="w-100" src="/img/darshit_image/effectively-train-execute-ml-dl-projects-on-cpus-fig05.jpg" width="750"></p>
-                            <p style="text-align:center">Figure 5. Machine topology map with the setting <strong>KMP_AFFINITY=granularity=fine,compact,1,0</strong></p>
-                            <p>The advantage of this setting is that consecutive threads are bound close together so that communication overhead, cache line invalidation overhead, and page thrashing are minimized. It's desirable to avoid binding multiple threads to the same core and leaving other cores unused. For more detailed description of <strong>KMP_AFFINITY</strong>, see the <a class="b_special_a1" href="">Intel® C++ Compiler Developer Guide and Reference</a>.</p>
-                        </section>
-                        <section id="dk_kmp_blocktime">
-                            <p>&nbsp;</p>
-                            <h4>KMP_BLOCKTIME</h4>
-                            <ul> 
-                                <li>Recommended settings for CNN: <strong>KMP_BLOCKTIME=0</strong></li> 
-                                <li>Recommended settings for non-CNN: <strong>KMP_BLOCKTIME=1 </strong>(user verifies empirically)</li> 
-                                <li>Usage (shell):</li> 
-                            </ul>
-                            <!-- code toolbar 3 -->
-                            <div class="mv_code_toolbar">
-                                <div class="mv_toolbar_item mv_copy_icon">
-                                    <i class="fa-regular fa-copy"></i>
-                                </div>
-                                <div class="mv_copy_message text-end hidden">Copied</div>
-                                <div class="code-content">
-                                    <div style="padding-bottom: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre">
-                                        <div style="border-right: 1px solid #ccc" class="pe-3">
-                                            1
-                                        </div>
-                                        <div class="">
-                                            <div class="mv_code text-break">
-                                                <p class="mb-0"><span class="token function">numactl ––cpunodebind <a class="dk_color2" href="">=</a>  <a class="dk_color1" href="">0</a> ––membind <a class="dk_color2" href="">=</a> <a class="dk_color1" href="">0</a> python</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
-                                        <div style="border-right: 1px solid #ccc" class="pe-3">
-                                            2
-                                        </div>
-                                        <div class="">
-                                            <div class="mv_code text-break">
-                                                <p class="mb-0">script.py ––num_intra_threads=cores ––num_inter_threads= <a class="dk_color1" href="">2</a> ––mkl=<a class="dk_color1" href="">True</a></p>
+                                                <p class="mb-0"></p>
                                             </div>
                                         </div>
                                     </div>
@@ -1265,59 +1209,582 @@
                                         </div>
                                         <div class="">
                                             <div class="mv_code text-break">
-                                                <p class="mb-0">data_format<a class="dk_color2" href="">=</a>NCHW ––kmp_affinity<a class="dk_color2" href="">=</a>granularity<a class="dk_color2" href="">=</a>fine,verbose,compact,<a class="dk_color1" href="">1</a>,<a class="dk_color1" href="">0</a></p>
+                                                <p class="mb-0">&nbsp; &nbsp; &nbsp; &nbsp; for ( k <span class="dk_color2">=</span> 0 ; k <span class="dk_color2"><</span> msize ; k++ ) {</p>
                                             </div>
                                         </div>
                                     </div>
-                                    <div style="padding-top: 0rem !important; padding-bottom: 1rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
                                         <div style="border-right: 1px solid #ccc" class="pe-3">
                                             4
                                         </div>
                                         <div class="">
                                             <div class="mv_code text-break">
-                                                <p class="mb-0">––kmp_blocktime <a class="dk_color2" href="">=</a> <a class="dk_color1" href="">0</a>( <a class="dk_color1" href="">or</a> <a class="dk_color1" href="">1</a>)</p>
+                                                <p class="mb-0"></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            5
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0">&nbsp; &nbsp; <span style="color: green;">#pragma ivdep</span></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            6
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0"></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            7
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;for ( j <span class="dk_color2">=</span> 0 ; j <span class="dk_color2"><</span> msize ; j++ ) {</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            8
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0"></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            9
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;c [ i ] [ j ] = c [ i ] [ j ] + a [ i ] [ k ] * b [ k ] [ j ] ;</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            10
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0"></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            11
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            12
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0"></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            13
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0">&nbsp; &nbsp; &nbsp; &nbsp; }</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            14
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0"></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 1rem !important;" class="d-flex mv_pre pb-0">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            15
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0">&nbsp; &nbsp; }</p>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+                            <p>The elapsed time for the new run is 4.12 seconds, an improvement of more than 12x. Why is the new performance so much better? First, let's look at the Integrated Roofline chart (Figure 23). Each of the red circles represents the bandwidth of the corresponding memory hierarchy: L1, L2, L3, and DRAM. It shows the computational loop's L1 memory bandwidth, represented by the leftmost red circle, is now 95 GB per second. You can also use the <strong>Survey </strong>view (Figure 24) to see that you're also now vectorized at 100% efficiency using Intel AVX2 instructions.</p>
+                            <p style="text-align:center"><img class="great_per_img" src="/img/darshit_image/memory-bottlenecks-fig23.jpg" width="1000"><br>
+                                Figure 23. Integrated Roofline chart<br>
+                                &nbsp;</p>
+                            <p style="text-align:center"><img class="great_per_img" src="/img/darshit_image/memory-bottlenecks-fig24.jpg" width="1000"><br>
+                                Figure 24. Survey view<br>
+                                &nbsp;</p>
+                            <p>The MAP report (Figure 25) informs that all accesses are now unit stride and the maximum address range is 16 KB, well within the range of the cache size. The cache is also performing much better (Figure 26). It dropped to 512 cache misses, down from 2,302. So it's getting better performance, but still isn't near the peak.</p>
+                            <p style="text-align:center"><img class="great_per_img" src="/img/darshit_image/memory-bottlenecks-fig25.jpg" width="1000"><br>
+                                Figure 25. Map report<br>
+                                &nbsp;</p>
+                            <p style="text-align:center"><img class="great_per_img" src="/img/darshit_image/memory-bottlenecks-fig26.jpg" width="436"><br>
+                                Figure 26. Cache performance<br>
+                                &nbsp;</p>
+                        </section>
+                        <section id="dk_step2">
                             <p>&nbsp;</p>
-                            <p>This environment variable sets the time, in milliseconds, that a thread waits after completing running a parallel region before going to sleep. The default value is 200 ms.</p>
-                            <p>After completing running a parallel region, threads wait for new parallel work to become available. After a certain period of time has elapsed, they become inactive. Sleeping allows the threads to be used until more parallel work becomes available, by threaded code that isn't OpenMP and may run between parallel regions, or by other applications. A small <strong>KMP_BLOCKTIME </strong>value may offer better overall performance if the application contains threaded code that isn't OpenMP that runs between parallel regions. A larger <strong>KMP_BLOCKTIME </strong>value may be more appropriate if threads are to be reserved solely for running OpenMP, but may penalize other concurrently-running OpenMP or threaded applications. The suggested setting is <strong>0</strong> for CNN-based models.</p>
+                            <h4>Step 2</h4>
+                            <p>Implement cache blocking so that your computations are over a smaller range of memory:</p>
+                            <!-- code toolbar 3 -->
+                            <div class="mv_code_toolbar">
+                                <div class="mv_toolbar_item mv_copy_icon">
+                                    <i class="fa-regular fa-copy"></i>
+                                </div>
+                                <div class="mv_copy_message text-end hidden">Copied</div>
+                                <div class="code-content">
+                                    <div style="padding-bottom: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            1
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0">&nbsp; &nbsp; <span class="dk_color1">for</span> ( i0 <span class="dk_color2">=</span> ibeg ; i0 <span class="dk_color2"><</span> ibound ; i0 +<span class="dk_color2">=</span>mblock ) {</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            2
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0"></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            3
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0">&nbsp; &nbsp; &nbsp; &nbsp; <span class="dk_color1">for</span> ( k0 <span class="dk_color2">=</span> 0 ; k0 <span class="dk_color2"><</span> msize ; k0 +<span class="dk_color2">=</span> mblock ) { </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            4
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0"></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            5
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="dk_color1">for</span> ( j0 <span class="dk_color2">=</span>0 ; j0 <span class="dk_color2"><</span> msize ; j0 +<span class="dk_color2">=</span> mblock ) { </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            6
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0"></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            7
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="dk_color1">for</span> ( i <span class="dk_color2">=</span> i0 ; i <span class="dk_color2"><</span> i0 + mblock ; i++ ) { </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            8
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0"></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            9
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="dk_color1">for</span> ( k <span class="dk_color2">=</span> k0 ; k <span class="dk_color2"><</span> k0 + mblock ; k++ ) { </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            10
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0"></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            11
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0">&nbsp; &nbsp; <span style="color: green;">#pragma ivdep </span></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            12
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0"></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            13
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0">&nbsp; &nbsp; <span style="color: green;">#ifdef ALIGNED </span></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            14
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0"></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            15
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0">&nbsp; &nbsp; &nbsp; &nbsp; <span style="color: green;">#pragma vector aligned </span></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            16
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0"></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            17
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0">&nbsp; &nbsp; <span style="color: green;">#endif //ALIGNED</span></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            18
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0"></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            19
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<span style="color: green;">#pragma nounroll </span></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            20
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0"></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            21
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<span class="dk_color1">for</span> ( j <span class="dk_color2">=</span> j0 ; j <span class="dk_color2"><</span> 10 + mblock; j++ ) { </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            22
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0"></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            23
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;c [ i ] [ j ] = c [ i ] [ j ] + a [ i ] [ k ] * b [ k ] [ j ] ; </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            24
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0"></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            25
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            26
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0"></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            27
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            28
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0"></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            29
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            30
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0"></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            31
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            32
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0"></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            33
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0">&nbsp; &nbsp; &nbsp; &nbsp; }</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            34
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0"></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                        <div style="border-right: 1px solid #ccc" class="pe-3">
+                                            35
+                                        </div>
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0">&nbsp; &nbsp; }</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <p>In the previous code, three additional nested loops were added so that computations are done in sections (or blocks). After one block is done, the computation moves to the next block. The elapsed time of our cache-blocked case is 2.60 seconds, a 1.58x improvement from the previous run (Figure 27). The loop's L1 memory bandwidth is now 182 GB per second, much closer to the L1 roof. Our vectorization and striding have not changed, but we now have only 15 cache misses for our inner loop, and our address range has been reduced to 480 bytes (Table 3).</p>
+                            <p style="text-align:center"><img class="great_per_img" src="/img/darshit_image/memory-bottlenecks-fig27.jpg" width="1000"><br>
+                                Figure 27. Performance improvements</p>
+                            <p>Table 3. Summary of results</p>
+                            <table style="padding-bottom: 22px;" class="mv_product_table w-100">
+                                <thead>
+                                    <tr>
+                                        <th scope="row">Run</th>
+                                        <th scope="col">Time<br>
+                                        Elapsed,<br>
+                                        Seconds</th>
+                                        <th scope="col">Total GFLOPS</th>
+                                        <th scope="col">Memory<br>
+                                        Address<br>
+                                        Range</th>
+                                        <th scope="col">Cache<br>
+                                        Misses</th>
+                                        <th scope="col">Improvement<br>
+                                        (Time)</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th scope="row">Baseline</th>
+                                        <td>53.94</td>
+                                        <td>0.32</td>
+                                        <td>32 MB</td>
+                                        <td>2,302</td>
+                                        <td>N/A<br>
+                                        (baseline)</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Loop<br>
+                                        Interchange</th>
+                                        <td>4.19</td>
+                                        <td>4.17</td>
+                                        <td>16 KB</td>
+                                        <td>511</td>
+                                        <td>12.87x</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Blocked</th>
+                                        <td>2.6</td>
+                                        <td>6.61</td>
+                                        <td>480 B</td>
+                                        <td>15</td>
+                                        <td>20.74</td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </section>
 
-                        <section id="dk_omp_num">
+                        <section id="dk_optimize_accesses">
                             <p>&nbsp;</p>
-                            <h4>OMP_NUM_THREADS</h4>
-                            <ul> 
-                                <li>Recommended settings for CNN: <strong>OMP_NUM_THREADS = # </strong>physical cores</li> 
-                                <li>Usage (shell): Export <strong>OMP_NUM_THREADS= #</strong> physical cores</li> 
+                            <h4>Optimize Memory Accesses</h4>
+                            <p>It's crucial to optimize the memory accesses of your program. Understanding how your program is accessing memory by using a tool like Intel Advisor can help you get the most out of your hardware. With the Roofline and new Integrated Roofline features of Intel Advisor, you can visualize memory bottlenecks. You can get even greater memory insight when you combine Roofline features with MAP analysis.</p>
+                            <p class="mb-0">&nbsp;</p>
+                        </section>
+
+                        <section id="dk_related_res">
+                            <h4>Related Resources</h4>
+                            <ul>
+                                <li><a class="b_special_a1" href="">Roofline</a></li>
+                                <li><a class="b_special_a1" href="">Integer Roofline</a></li>
+                                <li><a class="b_special_a1" href="">Integrated Roofline</a></li>
                             </ul>
-                            <p>This environment variable sets the maximum number of threads to use in OpenMP parallel regions if no other value is specified in the application. The value can be a single integer, in which case each integer specifies the number of threads for a parallel region at each nesting level. The first position in the list represents the outermost parallel nesting level. The default value is the number of logical processors visible to the operating system on which the program is executed. The recommended value equals the number of physical cores.</p>
+                            <p class="mb-0">&nbsp;</p>
+                            <p>This article is from The Parallel Universe, Intel's quarterly magazine that helps take your software development into the future with the latest tools, tips, and training to expand your expertise. <a class="b_special_a1" href="">Read More</a></p>
                             <p>&nbsp;</p>
                         </section>
 
-                        <section id="dk_kmp_settings">
-                            <h4>KMP_SETTINGS</h4>
-                            <ul> 
-                                <li>Use (shell):<strong> Export KMP_SETTINGS=TRUE</strong></li> 
-                            </ul>
-                            <p>This environment variable enables (TRUE) or disables (FALSE) the printing of OpenMP runtime library environment settings when the program runs.</p>
-                            <p>&nbsp;</p>
-                        </section>
-
-                        <section id="dk_learn_more">
-                            <h3 style="font-weight: 350;">Learn More</h3>
-                            <p>Start using Intel-optimized frameworks to accelerate your deep-learning workloads on the CPU today. Access resources on <a class="b_special_a1" href="">www.intel.ai</a> and get support from the <a class="b_special_a1" href="">Intel® AI Developer Forum</a>. Also, visit the <a class="b_special_a1" href="">AI Model Zoo</a> for solution-oriented resources for your accelerated TensorFlow projects. These resources help you use CPU resources to their fullest capability.</p>
-                            <p>&nbsp;</p>
-                        </section>
-
-                        <section id="dk_references">
-                            <h3 style="font-weight: 350;">References</h3>
-                            <p><sup>1</sup> Inference using FP32 batch size Caffe for GoogleNet* v1 128, AlexNet v 256.</p>
-                            <p>Configurations for inference throughput: Tested by Intel as of 6/7/2018. Platform: two-socket Intel® Xeon® Platinum processor, 8180 CPU at 2.50 GHz and 28 cores, HyperThreading ON, turbo ON. Total Memory: 376.28 GB (12 slots, 32 GB, 2666 MHz), four instances of the framework, CentOS* Linux*: 7.3.1611 core, SSD, sda RS3WC080, HDD 744.1 GB, sdb RS3WC080, HDD 1.5 TB, sdc RS3WC080, HDD 5.5 TB, deep-learning framework Caffe version: a3d5b022fe026e9092fc7abc7654b1162ab9940d. Topology: GoogleNet v1, BIOS: SE5C620.86B.00.01.0004.071220170215, Intel MKL DNN version: 464c268e544bae26f9b85a2acb9122c766a4c396, NoDataLayer. Measured: 1449 images per second vs. tested by Intel as of 06/15/2018. Platform: 2S Intel® Xeon® E5-2699 processor v3 at 2.30 GHz (18 cores), HyperThreading enabled, turbo disabled, scaling governor set to “performance” via the <strong>intel_pstate </strong>driver, 64 GB DDR4-2133 ECC RAM. BIOS: SE5C610.86B.01.01.0024.021320181901, CentOS Linux 7.5.1804 (core) kernel 3.10.0-862.3.2.el7.x86_64, SSD sdb INTEL SSDSC2BW24 SSD 223.6GB. Framework BVLC Caffe: <a class="b_special_a1" href="">GitHub*</a>, Inference and training measured with <strong>caffe time</strong> command. For <strong>ConvNet</strong> topologies, a dummy dataset was used. For other topologies, data was stored on local storage and cached in memory before training. <a class="b_special_a1" href="">BVLC Caffe</a>, revision 2a1c552b66f026c7508d390b526f2495ed3be594.</p>
-                            <p>Configuration for training throughput: Tested by Intel as of 05/29/2018 Platform: two-socket Intel Xeon Platinum 8180 processor at 2.50 GHz, 28 cores, HyperThreading ON, turbo ON, total memory 376.28 GB (12 slots, 32 GB, 2666 MHz), four instances of the framework, CentOS Linux 7.3.1611 core, SSD, sda RS3WC080, HDD 744.1 GB, sdb RS3WC080, HDD 1.5TB, sdc RS3WC080, HDD 5.5TB, deep learning framework Caffe version: a3d5b022fe026e9092fc7abc765b1162ab9940d Topology: AlexNet BIOS: SE5C620.86B.00.01.0004.071220170215, Intel MKL DNN version: 464c268e544bae26f9b85a2acb9122c766a4c396 <strong>NoDataLayer</strong>. Measured: 1257 imgages per sec vs. tested by Intel as of 06/15/2018. Platform: 2S Intel Xeon E5-2699 processor v3 at 2.30 GHz (18 cores), HyperThreading enabled, turbo disabled, scaling governor set to <strong>performance</strong> via the <strong>intel_pstate</strong> driver, 64 GB, DDR4-2133 ECC RAM. BIOS: SE5C610.86B.01.01.0024.021320181901, CentOS Linux 7.5.1804 (core) kernel 3.10.0-862.3.2.el7.x86_64, SSD, sdb INTEL SSDSC2BW24, SSD 223.6 GB. Framework: <a class="b_special_a1" href="">BVLC Caffe</a>. Inference and training measured with <strong>caffe time</strong> command. For <strong>ConvNet</strong> topologies, dummy dataset was used. For other topologies, data was stored on local storage and cached in memory before training. <a class="b_special_a1" href="">BVLC Caffe</a>, revision 2a1c552b66f026c7508d390b526f2495ed3be594</p>
-                            <p><sup>2</sup> System configuration: CPU threads per core: two cores per socket: 28 sockets, two NUMA nodes, two CPU family: 6 model, 85 model name: Intel Xeon Platinum 8180 processor at 2.50 GHz, HyperThreading: ON turbo: ON, memory 376 GB (12x32 GB), 24 slots, 12 occupied, 2666 MHz disks Intel RS3WC080 x 3 (800 GB, 1.6 TB, 6 TB) BIOS: SE5C620.86B.00.01.0004. 070920180847 (microcode version 0x200004d), Centos Linux 7.4.1708 (core) kernel 3.10.0-693.11.6.el7.x86_64, <a class="b_special_a1" href="">TensorFlow Source</a>, commit: 6a0b536a779f485edc25f6a11335b5e640acc8ab, Intel MKL DNN version: 4e333787e0d66a1dca1218e99a891d493dbc8ef1, <a class="b_special_a1" href="">TensorFlow benchmarks </a></p>
+                        <section id="dk_line">
                             <h2 style="opacity: 0.5;">______<a class="inpage-nav-anchor" id="inpage-nav-12"></a></h2>
                         </section>
 
@@ -1334,21 +1801,11 @@
                                         <li class="nav-item" role="presentation">
                                             <button class="nav-link mv_deploy_nav_link" id="pills-profile-tab" data-bs-toggle="pill"
                                                 data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile"
-                                                aria-selected="false">Related Articles</button>
+                                                aria-selected="false">Related Podcast</button>
                                         </li>
                                         <li class="nav-item" role="presentation">
                                             <button class="nav-link mv_deploy_nav_link" id="pills-video-tab" data-bs-toggle="pill"
                                                 data-bs-target="#pills-video" type="button" role="tab" aria-controls="pills-video"
-                                                aria-selected="false">Related Video</button>
-                                        </li>
-                                        <li class="nav-item" role="presentation">
-                                            <button class="nav-link mv_deploy_nav_link" id="pills-design-tab" data-bs-toggle="pill"
-                                                data-bs-target="#pills-design" type="button" role="tab" aria-controls="pills-design"
-                                                aria-selected="false">Related Podcast</button>
-                                        </li>
-                                        <li class="nav-item" role="presentation">
-                                            <button class="nav-link mv_deploy_nav_link" id="pills-simulation-tab" data-bs-toggle="pill"
-                                                data-bs-target="#pills-simulation" type="button" role="tab" aria-controls="pills-simulation"
                                                 aria-selected="false">Get the Software</button>
                                         </li>
                                 </ul>
@@ -1356,63 +1813,38 @@
                                         <!-- 1. Device Information -->
                                         <div class="tab-pane fade show active" id="pills-home" role="tabpanel"
                                             aria-labelledby="pills-home-tab" tabindex="0">
-                                            <div class="mv_coman_padd" style=" border-bottom: 1px solid #ddd; display: flex; padding-bottom: 1rem;">
-                                                <div class="">
-                                                    <p>Enhance Deep-Learning Workloads on 3rd Generation Intel® Xeon® Scalable Processors</p>
-                                                    <a class="b_special_a1" href="">Watch</a>
+                                            <div class="row">
+                                                <div class="col-4">
+                                                    <p class="mb-2">&nbsp;</p>
+                                                    <p>Find CPU & GPU Performance Headroom Using Roofline Analysis <br> 
+                                                    <a class="b_special_a1" href="">Watch</a></p>
                                                 </div>
-                                                <div class="">
-                                                    <p>Advanced Code Optimization for 3rd Generation Intel Xeon Scalable Processors</p>
-                                                    <a class="b_special_a1" href="">Watch</a>
+                                                <div class="col-4">
+                                                    <p class="mb-2">&nbsp;</p>
+                                                    <p>Find and Debug threading and Memory Errors at the source<br> 
+                                                    <a class="b_special_a1" href="">Watch</a></p>
                                                 </div>
                                             </div>
-                                            <!-- User Guides -->
-                                            
                                         </div>
                                         <!-- 2. Interface Protocol -->
                                         <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab"
                                             tabindex="0">
-                                            <div class="mv_coman_padd" style=" border-bottom: 1px solid #ddd; display: flex; padding-bottom: 1rem;">
-                                                <div class="">
-                                                    <p>Use Deep Learning Optimizations from Intel in TensorFlow*</p>
-                                                    <a class="b_special_a1" href="">Read</a>
-                                                </div>
-                                                <div class="">
-                                                    <p>One-Line Code Changes to Boost pandas, scikit-learn*, and TensorFlow Performance </p>
-                                                    <a class="b_special_a1" href="">Read</a>
-                                                </div>
-                                            </div>
-                                            <!-- User Guides -->
+                                           <div class="">
+                                            <p class="mb-2">&nbsp;</p>
+                                            <p>Extend the Roofline Model<br> 
+                                                <a class="b_special_a1" href="">Listen</a></p>
+                                           </div>
                                         </div>
                                         <!-- 3. Design Planning -->
                                         <div class="tab-pane fade" id="pills-video" role="tabpanel" aria-labelledby="pills-video-tab"
                                             tabindex="0">
-                                            <div class="mv_coman_padd" style="padding-bottom: 1rem;">
-                                                <p>Optimize End-to-End Data Science and Machine Learning Acceleration</p>
-                                                <a class="b_special_a1" href="">Watch</a>
-                                            </div>
-                                            <!-- User Guides / Device Overview / Device Datasheet / Application Notes-->
-                                        </div>
-                                        <!-- 4. Design Entry -->
-                                        <div class="tab-pane fade" id="pills-design" role="tabpanel" aria-labelledby="pills-design-tab"
-                                            tabindex="0">
-                                            <div class="mv_coman_padd" style="padding-bottom: 1rem;">
-                                                <p>Ignite the Next Generation of Deep Learning </p>
-                                                <a class="b_special_a1" href="">Listen</a>
-                                            </div>
-                                            <!-- User Guides / Device Overview / Device Datasheet / White Paper -->
-                                            
-                                        </div>
-                                        <!-- 5. Simulation and Verification -->
-                                        <div class="tab-pane fade" id="pills-simulation" role="tabpanel" aria-labelledby="pills-simulation-tab"
-                                            tabindex="0">
-                                            <div class="mv_coman_padd" style="padding-bottom: 1rem;">
-                                                <a class="b_special_a1" href=""><b>Intel® oneAPI Math Kernel Library</b></a>
-                                                <p>Accelerate math processing routines, including matrix algebra, fast Fourier transforms (FFT), and vector math. Part of the Intel® oneAPI Base Toolkit.</p>
-                                                <p><a class="mv_coman_btn" href="">Get It Now</a></p>
+                                            <div class="">
+                                                <p class="mb-2">&nbsp;</p>
+                                                <p><a class="b_special_a1" href=""><b>Intel® Advisor</b></a></p>
+                                                <p>Design code for efficient vectorization, threading, memory usage, and GPU offloading. Intel Advisor is included as part of the Intel® oneAPI Base Toolkit.</p>
+                                                <p><a class="mv_coman_btn" href="">Get It Now</a> </p>
                                                 <p><a class="b_special_a1" href="">See All Tools</a></p>
                                             </div>
-                                            <!-- User Guides / Device Overview / Device Datasheet / Application Notes -->
                                         </div>
                                 </div>
                             </div>
