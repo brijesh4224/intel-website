@@ -1,0 +1,959 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>L1 Terminal Fault / CVE-2018-3615 , CVE-2018-3620,CVE-2018-3646 / INTEL-SA-00161</title>
+
+    <!-- font family -->
+    <link href="https://fonts.cdnfonts.com/css/intel-clear" rel="stylesheet">
+
+    <link rel="stylesheet" href="/css/dk_developer_edge_iot_5G_industrial_automation_see_all_wireless_network_ready_printed_circuit_board_(PCB)_defect_detection.css">
+    <link rel="stylesheet" href="/css/mv_product/ECC.css">
+    <link rel="stylesheet" href="/css/rushita_automotive.css">
+
+    <!-- header footer -->
+    <link rel="stylesheet" href='/css/yatri.css'>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" rel="stylesheet">
+
+</head>
+
+<style>
+    .dk_color1 {
+        color: #069 !important;
+    }
+
+    .dk_color2 {
+        color: #008200 !important;
+    }
+
+    .dk_color3 {
+        color: #b24501;
+    }
+
+    .dk_note{
+        font-size: 1rem;
+        line-height: 1.25;
+        word-wrap: break-word;
+        background-color: #e6e6e6;
+        padding: 20px;
+        border-left: 3px solid #fdb813;
+    }
+    .dk_code_simple{
+        background-color: #e6e6e6;
+        color: #53565a;
+        border-radius: 0;
+    }
+
+    @media(max-width:1200px) {
+        .dk_risk_app_img {
+            width: 100% !important;
+        }
+        .mv_product_table{
+            width: 100% !important;
+        }
+    }
+</style>
+
+<body>
+    <!-- header -->
+    <div id="navbar"></div>
+
+    <!------------------------------------------------------------------------------->
+    <section class="m_ai_tdrop">
+        <div>
+            <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Developers
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item m_dropActive" href="#">Overview</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Topics & Technologies</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Artificial Intelligence</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Overview</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Frameworks & Tools</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Download</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Documentation</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">AI PC</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Overview</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Get Started</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Documentation</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Get Started</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Technical Library</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Support</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Client Applications</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Business</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Cloud</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Overview</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Tools</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Library</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Performance Benchmarks</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Community</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">GPU Research</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Researchers</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Publications</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Samples</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Edge Computing</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Overview</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Tools</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">FlexRAN™ Reference Architecture</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Documentation</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Kiosk Peripheral Management Utility</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Device Management Toolkit</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Learn</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Go to Market with the OpenVINO™ Toolkit</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Optimized Inference at the Edge</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Self-Paced Training for the OpenVINO™ Toolkit</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Hardware</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">All Hardware</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">AIxboard Developer Kit</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Developer Kits with Intel® Core™ Ultra Processors</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Developer Kits with Intel Atom® x7000E Processors</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Developer Kits with 14th Generation Intel® Core™ Processors</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Developer Kits with 13th Generation Intel® Core™ Processors</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Developer Kits Based on 12th Generation Intel® Core™ Processors</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Developer Kits Based on 11th Generation Intel® Core™ Processors</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Developer Kits Based on 10th Generation Intel® Core™ Processors</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Hinj* IoT Sensor Hub Development Kit</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Cyclone® 10 LP FPGA0</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® IoT RFP Ready Kits</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Movidius™ VPU</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel vPro® Platform for Retail</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Kits with Intel® Xeon® D-2100 Processors</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Developer Kits with 4th Gen Intel® Xeon® Processors</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">NetSec SD-WAN Developer Kit</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Nezha Developer Kit</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Snō + SnōMākr Development Kit</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Terasic DE10-Nano Kit</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">XLR8* Development Board</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Edge AI Reference Kits</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Smart Meter Scanning</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intelligent Queue Management</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Technical Library</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">GameDev</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Tools</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Technical Library</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Partners</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">XᵉSS2</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">HPC</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Overview</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Technical Library</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Data Center</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Tools & Libraries</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Firmware</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">coreboot*</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Intelligent Test System</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Unified Extensible Firmware Interface (UEFI)</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">SMI Transfer Monitor</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Networking</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Data Plane Development Kit</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Learn</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Open Ecosystem</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Projects</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">ACPI Component Architecture (ACPICA)</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Assistive Context-Aware Toolkit (ACAT)</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Celadon</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">C for Metal SDK</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">pm-graph</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Features</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Resources</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Kernel Guard Technology</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Linux* Kernel Performance</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Key Management Reference Application</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Multi-Rail Power Sequencer and Monitor</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Open Data Center Diagnostic Project 🡭</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">OP-TEE* for Intel® Architecture</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Linux* Stacks for Intel® Software Guard Extensions</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® x86 Architecture Distribution of Trusty* OS</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Open Source Media Framework</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Resources</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">NumaTOP</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® QuickAssist Technology</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Resources</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Graphics Numerical Hardware</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Guides & Tutorials</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Blog</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">About</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Podcast</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Persistent Memory</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Library</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Platform Analysis Technology</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Runtime Languages</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Software Security Guidance</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Advisory Guidance</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Best Practices</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Resources</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Disclosure Documentation</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Feature Documentation</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">More Information</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Storage</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Tools</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Software Catalog</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">About</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">oneAPI</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Overview</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Data Parallel C++/SYCL*</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Toolkits</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® oneAPI Base Toolkit</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Overview</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Download</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Documentation</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® oneAPI HPC Toolkit</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Overview</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Download</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Documentation</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® System Bring-up Toolkit</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Documentation</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Tech Articles & How-Tos</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Library</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">News Updates</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Webinars</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Components</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">All Components</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Cryptography Primitives Library</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Download</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Documentation</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® oneAPI Collective Communications Library</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Download</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Documentation</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® oneAPI Data Analytics Library</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Download</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Documentation</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® oneAPI Deep Neural Network Library</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Overview</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Download</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Documentation</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® oneAPI DPC++/C++ Compiler</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Download</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Documentation</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Legacy Intel® C++ Compiler Documentation</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® oneAPI DPC++ Library</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Download</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Documentation</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® oneAPI Math Kernel Library</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Download</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Documentation</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Link Line Advisor</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® oneAPI Threading Building Blocks</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Download</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Documentation</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">FPGA Support Package for Intel® oneAPI DPC++/C++ Compiler</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Download</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Documentation</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Code Samples</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Training</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Overview</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Catalog</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Developer Summit</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Essentials of SYCL*</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">FPGA Development Flow Using Intel® oneAPI Base Toolkit</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Heterogeneous Programming Using Numba-Data Parallel Python*</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">AI Tools Samples Workflow</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® oneAPI Math Kernel Library (oneMKL) Essentials</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Machine Learning using oneAPI</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Migrate from CUDA* to C++ with SYCL*</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">OpenMP* Offload Basics</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Optimize GPU Apps with the Intel® oneAPI Base Toolkit</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® OSPRay Essentials</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Performance, Portability & Productivity</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Workflow for a CUDA* to SYCL* Migration</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Documentation</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">oneAPI Programming Guide</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Installation Guides</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Supported Hardware</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Support</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Priority Support for Intel® oneAPI Base Toolkit</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Priority Support for Intel® oneAPI Base & HPC Toolkit</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Priority Support for Intel® oneAPI Base & IoT Toolkit</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Open Edge Platform</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Platform Overview</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Geti™</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Model Builder Overview</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Resources</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Scenescape</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">FPGA</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Active Management Technology SDK</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Features</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Advisor</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Download</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Documentation</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® AI Reference Models</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Collaboration Suite for WebRTC SDK</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Download</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Tiber™ AI Cloud</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Overview</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Training Portal (Beta)</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Distribution for Python*</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Download</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Documentation</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Distribution for GDB*</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Download</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Documentation</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® DPC++ Compatibility Tool</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Download</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Documentation</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Dynamic Application Loader</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Technology Details</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">SDK</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Get Started</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Frameworks</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Embree</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Extension for Scikit-learn*</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Fortran Compiler</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Download</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Documentation</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Graphics Performance Analyzers</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Graphics Frame Analyzer</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Graphics Trace Analyzer</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">System Analyzer</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Download</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Get Started</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Training</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Forum</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Homomorphic Encryption Toolkit</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® In-Band Manageability</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Use Cases</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Documentation</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Integrated Performance Primitives</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Download</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Documentation</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Integrated Simulation Infrastructure with Modeling</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Instruction Set Architecture (ISA) Extensions</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Intelligent Storage Acceleration Library (Intel® ISA-L)</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® ISA-L on GitHub*</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® ISA-L for Cryptography on GitHub*</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Modin*</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Documentation</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® MPI Library</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Download</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Documentation</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Pinning Simulator</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Neural Compressor</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">OpenCL™ Runtime</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Open Image Denoise</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Open Path Guiding Library (Intel® Open PGL)</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Pin</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Platform Analysis Library</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel Tools for OpenCL™ Software</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Features</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Build</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Run</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Documentation</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel Tools for OpenCL™ Applications</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Runtimes (GPU, CPU)</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® OpenSWR</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">OpenVINO™ Toolkit</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">What's New</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Get Started</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">AI PC</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Download</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Documentation</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Knowledge Base</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Certification</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Open Volume Kernel Library</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Optimization for XGBoost*</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Documentation</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Tutorials</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Code Samples</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® OSPRay</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® OSPRay for Hydra*</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® OSPRay Studio</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">PyTorch* Optimizations from Intel</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Overview</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Documentation for Intel® Extension for PyTorch*</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">All Documentation</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Developer Guide</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Installation Guide</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Get Started Cheat Sheet</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Release Notes</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">System Requirements</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">TensorFlow* Optimizations from Intel</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Download from TensorFlow*</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Download the Intel® Extension for TensorFlow*</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Rendering Toolkit</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Overview</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Download</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Documentation</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Smart Edge Open</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Documentation</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Software Guard Extensions</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Download</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Attestation & Provisioning Services</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Get Started</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Training</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Documentation</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® SGX SDK for Linux OS*</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Commercial License Request</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Forum</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Secure Device Onboard</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Software Development Emulator</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Trust Domain Extensions (Intel® TDX)</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Overview</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Documentation</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Quantum SDK</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Query Processing Library (Intel® QPL)</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Video Processing Library</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Documentation</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® VTune™ Profiler</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Overview</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Download</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Documentation</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">All Documentation</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">User Guide</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Get Started Guide</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Installation Guide</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Cookbook</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Release Notes</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">System Requirements</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Resellers</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Hardware Platforms</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Overview</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Gaudi® Software</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Overview</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Setup</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Develop</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Overview</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Inference</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Fine-Tune</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Pretrain</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Learn</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Overview</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Blog</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Models</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Overview</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Catalog</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Performance</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Inference Data for Intel® Gaudi® 3 AI Accelerators</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Training Data for Intel® Gaudi® 3 AI Accelerators</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Inference Data for Intel® Gaudi® 2 AI Accelerators</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Training Data for Intel® Gaudi® 2 AI Accelerators</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Hugging Face*</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Optimization & Debugging</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Model Reference</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Documentation</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Forum</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Core™ Ultra Processors</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Xeon Processors</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Data Center GPU Flex Series</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Resources & Documentation</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Tuning Guides</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Installation Guides</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Programming Guides</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Learn</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Community & Events</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Events</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">DevCon On Demand</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Kubecon</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Open Source Summit Europe</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Parallel Universe Magazine</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Student Ambassadors</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Software Innovators</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Developer Programs</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Altera® University Program</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Membership</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Boards</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Materials</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">SD Card Images</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Tutorials</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Workshops</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Research</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Support</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Get Help</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Product Support</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Software Product Forums</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Hardware Product Forums</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Priority Support</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">FPGA Support</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Frequently Asked Questions</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Licensing</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Priority Support</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Purchasing, Renewing, and Upgrading</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Downloading</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Installation</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Registration</a></li>                                                                
+            </ul>
+        </div>
+        <div class="m_ai_shlash">/</div>
+        <div>
+            <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Topics & Technologies
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item m_dropActive" href="#">Artificial Intelligence</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Client Applications</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Cloud</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">GPU Research</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Edge Computing</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">GameDev</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">HPC</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Data Center</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Firmware</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Networking</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Open Ecosystem</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Persistent Memory</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Platform Analysis Technology</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Runtime Languages</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Software Security Guidance</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Storage</a></li>
+            </ul>
+        </div>
+        <div class="m_ai_shlash">/</div>
+        <div>
+            <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Software Security Guidance
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item m_dropActive" href="#">Advisory Guidance</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Best Practices</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Resources</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Disclosure Documentation</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Feature Documentation</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">More Information</a></li>
+            </ul>
+        </div>
+        <div class="m_ai_shlash">/</div>
+        <div>
+            <button class="btn dropdown-toggle" aria-expanded="false">
+                Advisory Guidance
+            </button>
+        </div>
+        <div class="m_ai_shlash">/</div>
+        <div class="m_ai_httl">Fix Vulnerability</div>
+
+    </section>
+    <!------------------------------------------------------------------------------->
+
+    <!-- VMware Horizon -->
+    <section>
+        <div class="mv_vmware_bg_color">
+            <div class="container">
+                <div class="mv_vmware_padd">
+                    <div class="row">
+                        <div class="col-md-8 col-sm-12">
+                            <div class="mv_vmware_heading">
+                                <h3>L1 Terminal Fault / CVE-2018-3615 , CVE-2018-3620,CVE-2018-3646 / INTEL-SA-00161</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mv_cd_page_marquee_info">
+                        <div class="mv_cd_page_marquee_action">
+                            <div class="mv_cd_page_marquee_action_padd">
+                                <label for="">ID</label>
+                                <span>660219</span>
+                            </div>
+                            <div class="mv_cd_page_marquee_action_padd">
+                                <label for="">Updated</label>
+                                <span>8/14/2018</span>
+                            </div>
+                            <div class="mv_cd_page_marquee_action_padd">
+                                <label for="">Version</label>
+                                <span>Latest</span>
+                            </div>
+                            <div class="mv_cd_page_marquee_action_padd">
+                                <label for=""></label>
+                                <span>Public</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="container py-5">
+        <div class="row">
+            <div class="d-flex justify-content-end col-xl-10 py-3 d-md-none">
+                <i class="fa-solid fa-print fs-4 px-2 " style="color:#0068B5"></i>
+                <i class="fa-regular fa-envelope fs-4 px-2" style="color:#0068B5"></i>
+            </div>
+            <div class="col-lg-3 col-md-4">
+                <!-- nav -->
+                <div class="VK_sticky_side_bar VK_side_bar_postion_stickey">
+                    <div>
+                        <div class="VK_sidebar_dropdown">
+                            <p class="m-0">
+                                <a href="#dk_severity_score" class="text-decoration-none VK_a">
+                                    Severity and Score
+                                </a>
+                            </p>
+                            <p class="m-0">
+                                <a href="#dk_aliases" class="text-decoration-none VK_a">
+                                    Aliases
+                                </a>
+                            </p>
+                            <p class="m-0">
+                                <a href="#dk_related_content" class="text-decoration-none VK_a">
+                                    Related Content
+                                </a>
+                            </p>
+                            <p class="m-0">
+                                <a href="#dk_overview" class="text-decoration-none VK_a">
+                                    Overview
+                                </a>
+                            </p>
+                            <p class="m-0">
+                                <a href="#dk_impact_summary" class="text-decoration-none VK_a">
+                                    Impact Summary
+                                </a>
+                            </p>
+                            <details>
+                                <summary>
+                                    <a href="#dk_mitigation" class="text-decoration-none VK_a">
+                                        Mitigation
+                                    </a>
+                                </summary>
+                                <ul class="list-unstyled ps-3 mb-0">
+                                    <li>
+                                        <a href="#dk_os_and_driver" class="text-decoration-none VK_a my-1">
+                                            OS and driver developers
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#dk_virtual_dev" class="text-decoration-none VK_a my-1">
+                                            Virtual machine monitor developers
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#dk_developers_enclave" class="text-decoration-none VK_a my-1">
+                                            Developers of software running in an enclave
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#dk_system_admini" class="text-decoration-none VK_a my-1">
+                                            System Administrators
+                                        </a>
+                                    </li>
+                                </ul>
+                            </details>
+                            <p class="m-0">
+                                <a href="#dk_references" class="text-decoration-none VK_a">
+                                    References
+                                </a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <!-- thinkcode -->
+                <!-- <div class="dk_things_code_main">
+                    <div class="dk_things_code">
+                        <h2 class="text-left headline-font-one-bold">Loss Prevention Retail Reference Implementation provides:</h2>
+                        <div class="dk_high_quality">
+                            <ul>
+                                <li>High-quality testable ingredients needed to create a solution to prevent thefts at stores.</li>
+                                <li>Building blocks needed to enable the use case with solid performance numbers.</li>
+                                <li>Hardware requirements to support the workloads and scale the solution.</li>
+                            </ul>
+                        </div>
+                    <div class="dk_get_code">
+                        <button class="dk_button">Get Started on GitHub<sup>*</sup></button>
+                    </div>
+                    </div> 
+                </div> -->
+            </div>
+            <div class="col-lg-9 col-md-8">
+                <div class="d-md-flex justify-content-end col-xl-10 py-3 d-none">
+                    <i class="fa-solid fa-print fs-4 px-2 " style="color:#0068B5"></i>
+                    <i class="fa-regular fa-envelope fs-4 px-2" style="color:#0068B5"></i>
+                </div>
+                <div class="col-xl-10 VK_all_sections">
+                    <p>&nbsp;</p>
+                    <table class="mv_product_table w-100 mb-4">
+                        <tbody>
+                            <tr>
+                                <td>
+                                <p><strong>Disclosure date:</strong><br>
+                                2018-08-14</p>
+                    
+                                <p><strong>Published date:</strong><br>
+                                2018-08-14</p>
+                                </td>
+                                <td>
+                                    <p><img alt="" class="one-quarter-float-left" src="/img/darshit_image/shield-icon-orange.png" width="100"><strong>Severity rating:</strong><br>
+                                        7.3 High</p>
+                                </td>
+                                <td>
+                                <p>Industry-wide severity ratings can be found in the&nbsp;<a class="b_special_a1" href="">National Vulnerability Database</a></p>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table> 
+
+                    <section id="dk_severity_score">
+                        <p class="mb-0">&nbsp;</p>
+                        <h3 style="font-weight: 350; padding-bottom: 0.8rem;">Severity and Score</h3>
+                        <table class="mv_product_table w-70 mb-4">
+                            <thead>
+                                <tr>
+                                    <th>CVE</th>
+                                    <th>Name</th>
+                                    <th>Severity</th>
+                                    <th>Score</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>CVE-2018-3615</td>
+                                    <td>L1 Terminal Fault-SGX</td>
+                                    <td>High</td>
+                                    <td>7.3</td>
+                                </tr>
+                                <tr>
+                                    <td>CVE-2018-3620</td>
+                                    <td>L1 Terminal Fault-OS/SMM</td>
+                                    <td>Medium</td>
+                                    <td>6.5</td>
+                                </tr>
+                                <tr>
+                                    <td>CVE-2018-3646</td>
+                                    <td>L1 Terminal Fault-VMM</td>
+                                    <td>Medium</td>
+                                    <td>6.5</td>
+                                </tr>
+                            </tbody>
+                        </table> 
+                    </section>
+
+                    <section id="dk_aliases">
+                        <p class="mb-0">&nbsp;</p>
+                        <h3 style="font-weight: 350; padding-bottom: 0.8rem;">Aliases</h3>
+                        <ul>
+                            <li>Foreshadow</li>
+                        </ul>
+                    </section>
+
+                    <section id="dk_related_content">
+                        <p class="mb-0">&nbsp;</p>
+                        <h3 style="font-weight: 350; padding-bottom: 0.8rem;">Related Content</h3>
+                        <p><a class="b_special_a1" href="">INTEL-SA-00161</a></p>
+                        <p><a class="b_special_a1" href="">Additional&nbsp;resources and response to L1 Terminal Fault</a></p>
+                        <p><a class="b_special_a1" href="">Microcode revision guidance</a></p>
+                        <p><a class="b_special_a1" href="">List of processors potentially affected by L1 Terminal Fault</a></p>
+                        <p><a class="b_special_a1" href="">Details on Intel's microcode update process</a></p>
+                    </section>
+
+                    <section id="dk_overview">
+                        <p>&nbsp;</p>
+                        <p>When a program attempts to access data in memory, the logical memory address is translated to a physical address by the hardware. Accessing a logical or linear address that is not mapped to a physical location on the hardware will result in a terminal fault. Once the fault is triggered, there is a gap before resolution where the processor will use&nbsp;<a class="b_special_a1" href="">speculative execution</a>&nbsp;to try to load data. During this time, the processor could speculatively access the&nbsp;level 1 data cache&nbsp;(L1D), potentially allowing side-channel methods to infer&nbsp;information that would otherwise be protected. &nbsp;</p>
+                        <p class="mb-0">This side-channel method can be exploited in three different environments:&nbsp;</p>
+                        <ul>
+                            <li><strong>L1 Terminal Fault-SGX (CVE-2018-3615)</strong>—Systems with microprocessors utilizing&nbsp;speculative execution&nbsp;and Intel® Software Guard Extensions (Intel® SGX) may allow unauthorized disclosure of information residing in the L1 data cache from an enclave to an attacker with local user access via side-channel analysis.</li>
+                            <li><strong>L1 Terminal Fault-OS/SMM (CVE-2018-3620)</strong>—Systems with microprocessors utilizing&nbsp;speculative execution&nbsp;and address translations may allow unauthorized disclosure of information residing in the L1 data cache to an attacker with local user access via a terminal page fault and side-channel analysis.</li>
+                            <li><strong>L1 Terminal Fault-VMM (CVE-2018-3646)</strong>—Systems with microprocessors utilizing&nbsp;speculative execution&nbsp;and address translations may allow unauthorized disclosure of information residing in the L1 data cache to an attacker with local user access with guest OS privilege via a terminal page fault and side-channel analysis.</li>
+                        </ul>
+                    </section>
+
+                    <section id="dk_impact_summary">
+                        <p>&nbsp;</p>
+                        <h3 style="font-weight: 350; padding-bottom: 0.8rem;">Impact Summary</h3>
+                        <ul>
+                            <li>Malicious applications may be able to infer the values of data in the operating system memory, or data from other applications.</li>
+                            <li>A malicious guest&nbsp;virtual machine&nbsp;(VM) may be able to infer the values of data in the VMM’s memory, or values of data in the memory of other guest VMs.</li>
+                            <li>Malicious software running outside of SMM may be able to infer values of data in SMM memory.</li>
+                            <li>Malicious software running outside of an Intel® SGX enclave or within an enclave may be able to infer data from within another Intel SGX enclave.<br>
+                            &nbsp;</li>
+                        </ul>
+                    </section>
+
+                    <section id="dk_mitigation">
+                        <p>&nbsp;</p>
+                        <h3 style="font-weight: 300; padding-bottom: 0.8rem;">Mitigation</h3>
+                        <p>Check which capabilities your processor supports&nbsp;prior to applying mitigations. Details can be found in<a class="b_special_a1" href=""> CPUID Enumeration and Architectural MSRs</a>.</p>
+                        <p>Intel has released new microcode for many processors affected by L1TF. This modifies some operations to implicitly remove data from the L1D during certain privilege transitions. It also provides a method by which software can explicitly flush the L1D by writing 1 to bit 0 of a new model specific register,&nbsp;<span class="dk_code_simple">IA32_FLUSH_CMD</span>&nbsp;(MSR 0x10B). System manufacturers and system software vendors provide these microcode changes via BIOS updates.</p>
+                        <p>While these microcode updates provide important mitigation during enclave entry and exit, updated microcode by itself is not sufficient to protect against L1TF. Deploying OS and VMM updates is also required to mitigate L1TF.</p>
+                    </section>
+
+                    <section id="dk_os_and_driver">
+                        <h4>OS and driver developers*</h4>
+                        <p>Whether the operating system (OS) is running on bare-metal or as a virtual machine, the OS is responsible for mitigating against exploitation of paging structure entries (PTEs) by malicious applications. To do this, the OS can ensure vulnerable PTEs refer only to specifically-selected physical addresses, such as those addresses outside of available cached memory or addresses that do not contain secrets.</p>
+                        <p class="mb-0">There are four typical cases that need mitigation in an OS:</p>
+                        <ol>
+                            <li>
+                            <p>Pages with no valid mappings.</p>
+                            </li>
+                            <li>
+                            <p>Pages written to other storage (swapped out), such as when the OS is short of memory.</p>
+                            </li>
+                            <li>
+                            <p>Pages where the application has requested the OS disable access.</p>
+                            </li>
+                            <li>
+                            <p>Pages in transitional states where the operating system needs to temporarily block access.</p>
+                            </li>
+                        </ol>
+                        <p>For full details on these, go to&nbsp;<a class="b_special_a1" href="">Intel Analysis of L1 Terminal Fault</a>.&nbsp;</p>
+                        <p>If you are an OS developer working with System Management Mode (SMM), review the SMM section in <a class="b_special_a1" href="">Intel Analysis of L1 Terminal Fault</a>&nbsp;for guidance on whether further assessment of your SMM is suggested. <a class="b_special_a1" href="">CPUID Enumeration and Architectural MSRs&nbsp;</a>provides further insight.<br>
+                            &nbsp;</p>
+                    </section>
+
+                    <section id="dk_virtual_dev">
+                        <h4>Virtual machine monitor developers</h4>
+                        <p>VMMs require some similar mitigations as OSes, but there are additional challenges relating to the guest view of&nbsp;<span class="dk_code_simple">MAXPHYADDR</span>&nbsp;and interactions between logical processors on hyperthreading-enabled systems.</p>
+                        <p>When guests are trusted or belong to the same security domain, no mitigation is needed. However, VMMs generally allow untrusted guests to place arbitrary translations in the guest paging structure entries because VMMs assume any entries will be translated with VMM-controlled EPT. But EPT translation is not performed in the case of an L1 terminal fault.</p>
+                        <p>This means a malicious guest OS may be able to set up values in its paging structure entries that attack arbitrary host addresses, theoretically enabling an exploit to access any data present in the L1D on the same physical core as the malicious guest. For this reason, VMM mitigations are focused on ensuring secret data is not present in the L1D when executing guests. For full details on these, go to&nbsp;<a class="b_special_a1" href="">Intel Analysis of L1 Terminal Fault</a>.</p>
+                        <p>​Both the VMM and the guest OS may have mitigations for L1TF, so they should avoid actions that interfere with each others’ mitigations. The VMM should not trust the guest is performing any particular mitigation, but should follow the conventions described in the VMM Assistance for Guest OS Mitigations section of&nbsp;<a class="b_special_a1" href="">Intel Analysis of L1 Terminal Fault</a>&nbsp;to avoid interfering with any guest mitigations.</p>
+                        <p>Mitigations in nested VMM environments require the first level VMM to check the MSRs of the nested VMMs and vice versa. Refer to the Nested VMM Environments section in&nbsp;<a class="b_special_a1" href="">Intel Analysis of L1 Terminal Fault</a>&nbsp;for further details.</p>
+                    </section>
+
+                    <section id="dk_developers_enclave">
+                        <h4>Developers of software running in an enclave</h4>
+                        <p>For background on how L1TF can affect software running in an enclave, go to&nbsp;<a class="b_special_a1" href="">Intel Analysis of L1 Terminal Fault</a>.&nbsp;</p>
+                        <p>For Intel SGX mitigation, users should apply the latest microcode update through BIOS updates and confirm&nbsp;they have the latest version of Intel SGX software installed.</p>
+                        <p>The L1TF and its subvariant enclave-to-enclave (E2E) attacks may be able to reveal code or data within an enclave. Processors that load the latest microcode update from a platform manufacturer BIOS update can prevent malicious users from applying L1TF or E2E to infer values of an enclave on the same logical processor.&nbsp;Intel will be invoking the Intel SGX Trusted Computing Base recovery process to assist with the mitigation of L1TF and E2E for Intel SGX. The microcode update changes the Security Version Number (SVN) associated with the Intel SGX implementation and provides enclaves on the platform with new sealing and attestation keys.&nbsp;</p>
+                        <p>With the microcode update, the Intel SGX attestation will indicate whether hyperthreading has been enabled by the BIOS. When hyperthreading is disabled or not supported, the microcode update fully mitigates L1TF and E2E for Intel SGX. Intel SGX does not require changes to OS paging structures or VMM behavior to achieve this protection.</p>
+                        <p>When hyperthreading is enabled, the possibility of L1TF or E2E attacks from the sibling logical processor still exists before the enclave secret in L1 data cache is flushed or cleared. The entity verifying the attestation might reject attestations from a hyperthreading-enabled system if it deems the risk of potential L1TF or E2E attacks from the sibling logical processor as not acceptable.&nbsp;</p>
+                        <p>Note: Intel SGX enclave secrets encrypted with enclave keys when hyperthreading has been disabled cannot be decrypted when hyperthreading is enabled.</p>
+                    </section>
+
+                    <section id="dk_system_admini">
+                        <h4>System Administrators</h4>
+                        <p>Always keep your systems up to date with the latest security updates and guidance from your OS and VMM vendors.</p>
+                    </section>
+
+                    <section id="dk_references">
+                        <p>&nbsp;</p>
+                        <h3 style="font-weight: 350;">References</h3>
+                        <ul>
+                            <li><a class="b_special_a1" href="">Introduction to Speculative Execution Side Channel Methods</a></li>
+                            <li><a class="b_special_a1" href="">Intel Analysis of Speculative Side Channels</a></li>
+                            <li><a class="b_special_a1" href="">Speculative Execution Side Channel Mitigations</a></li>
+                            <li><a class="b_special_a1" href="">Intel Analysis of L1 Terminal Fault</a></li>
+                            <li><a class="b_special_a1" href="">List of processors affected by L1 Terminal Fault</a></li>
+                            <li><a class="b_special_a1" href="">Microsoft* response</a></li>
+                            <li><a class="b_special_a1" href="">Linux* kernel documentation</a></li>
+                        </ul>
+                        <p>&nbsp;</p>
+                        <h5 style="text-align:center; font-weight: 500;"><a class="b_special_a1" href="">Software Security Guidance Home</a> | <a class="b_special_a1" href="">Advisory Guidance</a> | <a class="b_special_a1" href="">Technical Documentation</a> | <a class="b_special_a1" href="">Best Practices</a> | <a class="b_special_a1" href="">Resources</a></h5>
+                    </section>
+
+                </div>
+            </section>
+        </div>
+    </div>
+    </div>
+    </section>
+
+    <section style="border-top: 1px solid #d7d7d7;" class="container py-5">
+        <h4 class="h6">Product and Performance Information</h4>
+        <div class="disclaimer" style="font-size: 12px;"><sup>1</sup> Performance varies by use, configuration and other
+            factors. Learn more at <a class="b_special_a1" href="">www.Intel.com/PerformanceIndex.</a></div>
+        </div>
+    </section>
+
+    <!-- footer -->
+    <div id="footer"></div>
+
+    <!-- nav script -->
+    <script>
+        // navbar include  
+        fetch('/y_index/y_navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar').innerHTML = data;
+            });
+        // footer include 
+        fetch('/y_index/y_footer.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('footer').innerHTML = data;
+            });
+    </script>
+    <!-- nav script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            if (document.getElementsByClassName('VK_all_sections section') && document.getElementsByClassName('VK_sidebar_dropdown')) {
+                const sections = document.querySelectorAll('.VK_all_sections section');
+                const navLinks = document.querySelectorAll('.VK_sidebar_dropdown a');
+                const detailsElements = document.querySelectorAll('.VK_sidebar_dropdown details');
+
+                function removeActiveClass() {
+                    navLinks.forEach(link => link.classList.remove('VK_sidebar_active_link'));
+                    detailsElements.forEach(details => {
+                        details.removeAttribute('open');
+                        details.setAttribute('close', ''); // Optional: to visually indicate it's closed
+                    });
+                }
+
+                function activateLinkAndDetails(targetId) {
+                    navLinks.forEach(link => {
+                        if (link.getAttribute('href') === `#${targetId}`) {
+                            link.classList.add('VK_sidebar_active_link');
+                            let parentDetails = link.closest('details');
+
+                            // Open all ancestor details elements
+                            while (parentDetails) {
+                                parentDetails.setAttribute('open', '');
+                                parentDetails.removeAttribute('close'); // Optional: remove the closed indicator
+                                parentDetails = parentDetails.parentElement.closest('details');
+                            }
+                        }
+                    });
+                }
+
+                function onScroll() {
+                    let currentSection = '';
+                    sections.forEach(section => {
+                        const sectionTop = section.getBoundingClientRect().top;
+                        const sectionBottom = section.getBoundingClientRect().bottom;
+
+                        // Check if the section is in view
+                        if (sectionTop <= 100 && sectionBottom >= 0) {
+                            currentSection = section.getAttribute('id');
+                        }
+                    });
+
+                    if (currentSection) {
+                        removeActiveClass();
+                        activateLinkAndDetails(currentSection);
+                    } else {
+                        removeActiveClass();
+                    }
+                }
+
+                window.addEventListener('scroll', onScroll);
+            } else {
+                return
+            }
+        });
+    </script>
+
+    <!-- copy script -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            document.querySelectorAll(".mv_copy_icon").forEach((icon) => {
+                icon.addEventListener("click", async function () {
+                    try {
+                        const toolbar = this.closest(".mv_code_toolbar");
+                        const codeBlock = toolbar.querySelector(".code-content");
+                        const codeContent = codeBlock.innerText;
+
+                        // Use Clipboard API to copy text
+                        await navigator.clipboard.writeText(codeContent);
+
+                        // Hide the copy icon and show the "Copied!" message
+                        const message = toolbar.querySelector(".mv_copy_message");
+                        this.classList.add("hidden"); // Hide the copy icon
+                        message.classList.remove("hidden"); // Show the "Copied!" message
+
+                        // Hide the message and show the icon again after 2 seconds
+                        setTimeout(() => {
+                            message.classList.add("hidden");
+                            this.classList.remove("hidden");
+                        }, 2000); // Adjust delay as needed
+
+                    } catch (err) {
+                        console.error('Failed to copy text: ', err);
+                    }
+                });
+            });
+        });
+    </script>
+
+</body>
+
+</html>
+

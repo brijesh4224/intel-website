@@ -1,0 +1,1696 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guidance for System Administrators to Mitigate Transient Execution Side Channel Issues</title>
+
+    <!-- font family -->
+    <link href="https://fonts.cdnfonts.com/css/intel-clear" rel="stylesheet">
+
+    <link rel="stylesheet" href="/css/dk_developer_edge_iot_5G_industrial_automation_see_all_wireless_network_ready_printed_circuit_board_(PCB)_defect_detection.css">
+    <link rel="stylesheet" href="/css/mv_product/ECC.css">
+    <link rel="stylesheet" href="/css/rushita_automotive.css">
+
+    <!-- header footer -->
+    <link rel="stylesheet" href='/css/yatri.css'>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" rel="stylesheet">
+
+</head>
+
+<style>
+    .dk_color1 {
+        color: #069 !important;
+    }
+
+    .dk_color2 {
+        color: #008200 !important;
+    }
+
+    .dk_color3 {
+        color: #b24501;
+    }
+
+    .dk_note{
+        font-size: 1rem;
+        line-height: 1.25;
+        word-wrap: break-word;
+        background-color: #e6e6e6;
+        padding: 20px;
+        border-left: 3px solid #fdb813;
+    }
+    .dk_code_simple{
+        background-color: #e6e6e6;
+        color: #53565a;
+        border-radius: 0;
+    }
+
+    @media(max-width:1200px) {
+        .dk_risk_app_img {
+            width: 100% !important;
+        }
+    }
+</style>
+
+<body>
+    <!-- header -->
+    <div id="navbar"></div>
+
+    <!------------------------------------------------------------------------------->
+    <section class="m_ai_tdrop">
+        <div>
+            <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Developers
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item m_dropActive" href="#">Overview</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Topics & Technologies</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Artificial Intelligence</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Overview</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Frameworks & Tools</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Download</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Documentation</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">AI PC</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Overview</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Get Started</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Documentation</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Get Started</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Technical Library</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Support</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Client Applications</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Business</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Cloud</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Overview</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Tools</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Library</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Performance Benchmarks</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Community</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">GPU Research</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Researchers</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Publications</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Samples</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Edge Computing</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Overview</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Tools</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">FlexRAN™ Reference Architecture</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Documentation</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Kiosk Peripheral Management Utility</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Device Management Toolkit</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Learn</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Go to Market with the OpenVINO™ Toolkit</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Optimized Inference at the Edge</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Self-Paced Training for the OpenVINO™ Toolkit</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Hardware</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">All Hardware</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">AIxboard Developer Kit</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Developer Kits with Intel® Core™ Ultra Processors</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Developer Kits with Intel Atom® x7000E Processors</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Developer Kits with 14th Generation Intel® Core™ Processors</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Developer Kits with 13th Generation Intel® Core™ Processors</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Developer Kits Based on 12th Generation Intel® Core™ Processors</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Developer Kits Based on 11th Generation Intel® Core™ Processors</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Developer Kits Based on 10th Generation Intel® Core™ Processors</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Hinj* IoT Sensor Hub Development Kit</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Cyclone® 10 LP FPGA0</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® IoT RFP Ready Kits</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Movidius™ VPU</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel vPro® Platform for Retail</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Kits with Intel® Xeon® D-2100 Processors</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Developer Kits with 4th Gen Intel® Xeon® Processors</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">NetSec SD-WAN Developer Kit</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Nezha Developer Kit</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Snō + SnōMākr Development Kit</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Terasic DE10-Nano Kit</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">XLR8* Development Board</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Edge AI Reference Kits</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Smart Meter Scanning</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intelligent Queue Management</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Technical Library</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">GameDev</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Tools</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Technical Library</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Partners</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">XᵉSS2</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">HPC</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Overview</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Technical Library</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Data Center</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Tools & Libraries</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Firmware</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">coreboot*</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Intelligent Test System</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Unified Extensible Firmware Interface (UEFI)</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">SMI Transfer Monitor</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Networking</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Data Plane Development Kit</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Learn</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Open Ecosystem</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Projects</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">ACPI Component Architecture (ACPICA)</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Assistive Context-Aware Toolkit (ACAT)</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Celadon</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">C for Metal SDK</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">pm-graph</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Features</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Resources</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Kernel Guard Technology</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Linux* Kernel Performance</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Key Management Reference Application</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Multi-Rail Power Sequencer and Monitor</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Open Data Center Diagnostic Project 🡭</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">OP-TEE* for Intel® Architecture</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Linux* Stacks for Intel® Software Guard Extensions</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® x86 Architecture Distribution of Trusty* OS</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Open Source Media Framework</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Resources</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">NumaTOP</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® QuickAssist Technology</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Resources</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Graphics Numerical Hardware</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Guides & Tutorials</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Blog</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">About</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Podcast</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Persistent Memory</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Library</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Platform Analysis Technology</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Runtime Languages</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Software Security Guidance</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Advisory Guidance</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Best Practices</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Resources</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Disclosure Documentation</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Feature Documentation</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">More Information</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Storage</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Tools</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Software Catalog</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">About</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">oneAPI</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Overview</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Data Parallel C++/SYCL*</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Toolkits</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® oneAPI Base Toolkit</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Overview</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Download</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Documentation</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® oneAPI HPC Toolkit</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Overview</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Download</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Documentation</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® System Bring-up Toolkit</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Documentation</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Tech Articles & How-Tos</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Library</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">News Updates</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Webinars</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Components</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">All Components</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Cryptography Primitives Library</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Download</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Documentation</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® oneAPI Collective Communications Library</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Download</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Documentation</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® oneAPI Data Analytics Library</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Download</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Documentation</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® oneAPI Deep Neural Network Library</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Overview</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Download</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Documentation</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® oneAPI DPC++/C++ Compiler</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Download</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Documentation</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Legacy Intel® C++ Compiler Documentation</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® oneAPI DPC++ Library</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Download</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Documentation</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® oneAPI Math Kernel Library</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Download</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Documentation</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Link Line Advisor</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® oneAPI Threading Building Blocks</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Download</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Documentation</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">FPGA Support Package for Intel® oneAPI DPC++/C++ Compiler</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Download</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Documentation</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Code Samples</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Training</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Overview</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Catalog</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Developer Summit</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Essentials of SYCL*</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">FPGA Development Flow Using Intel® oneAPI Base Toolkit</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Heterogeneous Programming Using Numba-Data Parallel Python*</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">AI Tools Samples Workflow</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® oneAPI Math Kernel Library (oneMKL) Essentials</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Machine Learning using oneAPI</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Migrate from CUDA* to C++ with SYCL*</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">OpenMP* Offload Basics</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Optimize GPU Apps with the Intel® oneAPI Base Toolkit</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® OSPRay Essentials</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Performance, Portability & Productivity</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Workflow for a CUDA* to SYCL* Migration</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Documentation</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">oneAPI Programming Guide</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Installation Guides</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Supported Hardware</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Support</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Priority Support for Intel® oneAPI Base Toolkit</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Priority Support for Intel® oneAPI Base & HPC Toolkit</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Priority Support for Intel® oneAPI Base & IoT Toolkit</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Open Edge Platform</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Platform Overview</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Geti™</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Model Builder Overview</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Resources</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Scenescape</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">FPGA</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Active Management Technology SDK</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Features</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Advisor</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Download</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Documentation</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® AI Reference Models</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Collaboration Suite for WebRTC SDK</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Download</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Tiber™ AI Cloud</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Overview</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Training Portal (Beta)</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Distribution for Python*</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Download</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Documentation</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Distribution for GDB*</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Download</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Documentation</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® DPC++ Compatibility Tool</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Download</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Documentation</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Dynamic Application Loader</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Technology Details</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">SDK</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Get Started</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Frameworks</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Embree</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Extension for Scikit-learn*</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Fortran Compiler</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Download</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Documentation</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Graphics Performance Analyzers</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Graphics Frame Analyzer</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Graphics Trace Analyzer</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">System Analyzer</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Download</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Get Started</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Training</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Forum</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Homomorphic Encryption Toolkit</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® In-Band Manageability</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Use Cases</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Documentation</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Integrated Performance Primitives</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Download</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Documentation</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Integrated Simulation Infrastructure with Modeling</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Instruction Set Architecture (ISA) Extensions</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Intelligent Storage Acceleration Library (Intel® ISA-L)</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® ISA-L on GitHub*</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® ISA-L for Cryptography on GitHub*</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Modin*</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Documentation</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® MPI Library</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Download</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Documentation</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Pinning Simulator</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Neural Compressor</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">OpenCL™ Runtime</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Open Image Denoise</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Open Path Guiding Library (Intel® Open PGL)</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Pin</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Platform Analysis Library</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel Tools for OpenCL™ Software</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Features</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Build</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Run</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Documentation</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel Tools for OpenCL™ Applications</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Runtimes (GPU, CPU)</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® OpenSWR</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">OpenVINO™ Toolkit</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">What's New</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Get Started</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">AI PC</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Download</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Documentation</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Knowledge Base</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Certification</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Open Volume Kernel Library</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Optimization for XGBoost*</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Documentation</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Tutorials</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Code Samples</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® OSPRay</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® OSPRay for Hydra*</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® OSPRay Studio</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">PyTorch* Optimizations from Intel</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Overview</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Documentation for Intel® Extension for PyTorch*</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">All Documentation</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Developer Guide</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Installation Guide</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Get Started Cheat Sheet</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Release Notes</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">System Requirements</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">TensorFlow* Optimizations from Intel</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Download from TensorFlow*</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Download the Intel® Extension for TensorFlow*</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Rendering Toolkit</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Overview</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Download</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Documentation</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Smart Edge Open</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Documentation</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Software Guard Extensions</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Download</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Attestation & Provisioning Services</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Get Started</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Training</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Documentation</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® SGX SDK for Linux OS*</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Commercial License Request</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Forum</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Secure Device Onboard</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Software Development Emulator</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Trust Domain Extensions (Intel® TDX)</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Overview</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Documentation</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Quantum SDK</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Query Processing Library (Intel® QPL)</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Video Processing Library</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Documentation</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® VTune™ Profiler</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Overview</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Download</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Documentation</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">All Documentation</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">User Guide</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Get Started Guide</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Installation Guide</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Cookbook</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Release Notes</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">System Requirements</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Resellers</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Hardware Platforms</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Overview</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Gaudi® Software</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Overview</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Setup</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Develop</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Overview</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Inference</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Fine-Tune</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Pretrain</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Learn</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Overview</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Blog</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Models</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Overview</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Catalog</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Performance</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Inference Data for Intel® Gaudi® 3 AI Accelerators</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Training Data for Intel® Gaudi® 3 AI Accelerators</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Inference Data for Intel® Gaudi® 2 AI Accelerators</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Training Data for Intel® Gaudi® 2 AI Accelerators</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Hugging Face*</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Optimization & Debugging</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Model Reference</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Documentation</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Forum</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Core™ Ultra Processors</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Xeon Processors</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Data Center GPU Flex Series</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Resources & Documentation</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Tuning Guides</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Installation Guides</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Programming Guides</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Learn</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Community & Events</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Events</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">DevCon On Demand</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Kubecon</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Open Source Summit Europe</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Parallel Universe Magazine</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Student Ambassadors</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Software Innovators</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Developer Programs</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Altera® University Program</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Membership</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Boards</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Materials</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">SD Card Images</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Tutorials</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Workshops</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Research</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Support</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Get Help</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Product Support</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Software Product Forums</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Hardware Product Forums</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Priority Support</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">FPGA Support</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Frequently Asked Questions</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Licensing</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Priority Support</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Purchasing, Renewing, and Upgrading</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Downloading</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Installation</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Registration</a></li>                                                                
+            </ul>
+        </div>
+        <div class="m_ai_shlash">/</div>
+        <div>
+            <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Topics & Technologies
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item m_dropActive" href="#">Artificial Intelligence</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Client Applications</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Cloud</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">GPU Research</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Edge Computing</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">GameDev</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">HPC</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Data Center</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Firmware</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Networking</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Open Ecosystem</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Persistent Memory</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Platform Analysis Technology</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Runtime Languages</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Software Security Guidance</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Storage</a></li>
+            </ul>
+        </div>
+        <div class="m_ai_shlash">/</div>
+        <div>
+            <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Software Security Guidance
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item m_dropActive" href="#">Advisory Guidance</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Best Practices</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Resources</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Disclosure Documentation</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Feature Documentation</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">More Information</a></li>
+            </ul>
+        </div>
+        <div class="m_ai_shlash">/</div>
+        <div>
+            <button class="btn dropdown-toggle" aria-expanded="false">
+                Best Practices
+            </button>
+        </div>
+        <div class="m_ai_shlash">/</div>
+        <div class="m_ai_httl">Administrator Guide to Mitigate Side-Channel Issues</div>
+
+    </section>
+    <!------------------------------------------------------------------------------->
+
+    <!-- VMware Horizon -->
+    <section>
+        <div class="mv_vmware_bg_color">
+            <div class="container">
+                <div class="mv_vmware_padd">
+                    <div class="row">
+                        <div class="col-md-8 col-sm-12">
+                            <div class="mv_vmware_heading">
+                                <h3>Guidance for System Administrators to Mitigate Transient Execution Side Channel Issues</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mv_cd_page_marquee_info">
+                        <div class="mv_cd_page_marquee_action">
+                            <div class="mv_cd_page_marquee_action_padd">
+                                <label for="">ID</label>
+                                <span>660242</span>
+                            </div>
+                            <div class="mv_cd_page_marquee_action_padd">
+                                <label for="">Updated</label>
+                                <span>5/26/2020</span>
+                            </div>
+                            <div class="mv_cd_page_marquee_action_padd">
+                                <label for="">Version</label>
+                                <span>Latest</span>
+                            </div>
+                            <div class="mv_cd_page_marquee_action_padd">
+                                <label for=""></label>
+                                <span>Public</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="container py-5">
+        <div class="row">
+            <div class="d-flex justify-content-end col-xl-10 py-3 d-md-none">
+                <i class="fa-solid fa-print fs-4 px-2 " style="color:#0068B5"></i>
+                <i class="fa-regular fa-envelope fs-4 px-2" style="color:#0068B5"></i>
+            </div>
+            <div class="col-lg-3 col-md-4">
+                <!-- nav -->
+                <div class="VK_sticky_side_bar VK_side_bar_postion_stickey">
+                    <div>
+                        <div class="VK_sidebar_dropdown">
+                            <p class="m-0">
+                                <a href="#dk_document_scope" class="text-decoration-none VK_a">
+                                    Document Scope and Intended Audience
+                                </a>
+                            </p>
+                            <details>
+                                <summary>
+                                    <a href="#dk_transient_exe" class="text-decoration-none VK_a">
+                                        Transient Execution Side Channels
+                                    </a>
+                                </summary>
+                                <ul class="list-unstyled ps-3 mb-0">
+                                    <li>
+                                        <details>
+                                            <summary>
+                                                <a href="#dk_issues_doc" class="text-decoration-none VK_a">
+                                                    Issues Covered in this Document
+                                                </a>
+                                            </summary>
+                                            <ul class="list-unstyled ps-3 mb-0">
+                                                <li>
+                                                    <a href="#dk_spectre_meltdown" class="text-decoration-none VK_a my-1">
+                                                        Spectre and Meltdown
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#dk_l1tf" class="text-decoration-none VK_a my-1">
+                                                        L1TF
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#dk_mds" class="text-decoration-none VK_a my-1">
+                                                        MDS
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#dk_taa" class="text-decoration-none VK_a my-1">
+                                                        TAA
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#dk_srbds" class="text-decoration-none VK_a my-1">
+                                                        SRBDS
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </details>
+                                    </li>
+                                </ul>
+                            </details>
+                            <p class="m-0">
+                                <a href="#dk_affected_platforms" class="text-decoration-none VK_a">
+                                    Affected Platforms
+                                </a>
+                            </p>
+                            <p class="m-0">
+                                <a href="#dk_risk_assessment" class="text-decoration-none VK_a">
+                                    Risk Assessment
+                                </a>
+                            </p>
+                            <p class="m-0">
+                                <a href="#dk_general_structure" class="text-decoration-none VK_a">
+                                    General Structure of a Data Leakage Implementation
+                                </a>
+                            </p>
+                            <p class="m-0">
+                                <a href="#dk_malicious_actor" class="text-decoration-none VK_a">
+                                    Malicious Actor Detection
+                                </a>
+                            </p>
+                            <p class="m-0">
+                                <a href="#dk_impact_mitigations" class="text-decoration-none VK_a">
+                                    Impact of Mitigations on Application Performance
+                                </a>
+                            </p>
+                            <p class="m-0">
+                                <a href="#dk_execution_scenarios" class="text-decoration-none VK_a">
+                                    Execution Scenarios & Mitigations
+                                </a>
+                            </p>
+                            <p class="m-0">
+                                <a href="#dk_critical_systems" class="text-decoration-none VK_a">
+                                    Critical Systems
+                                </a>
+                            </p>
+                            <p class="m-0">
+                                <a href="#dk_trusted_codes" class="text-decoration-none VK_a">
+                                    Trusted Codes and Guests
+                                </a>
+                            </p>
+                            <details>
+                                <summary>
+                                    <a href="#dk_untrusted_codes" class="text-decoration-none VK_a">
+                                        Untrusted Codes and Guests
+                                    </a>
+                                </summary>
+                                <ul class="list-unstyled ps-3 mb-0">
+                                    <li>
+                                        <p class="m-0">
+                                            <a href="#dk_spectre_meltdown2" class="text-decoration-none VK_a">
+                                                Spectre and Meltdown
+                                            </a>
+                                        </p>
+                                    </li>
+                                    <li>
+                                        <details>
+                                            <summary>
+                                                <a href="#dk_l1tf2" class="text-decoration-none VK_a">
+                                                    L1TF
+                                                </a>
+                                            </summary>
+                                            <ul class="list-unstyled ps-3 mb-0">
+                                                <li>
+                                                    <a href="#dk_bare_metal1" class="text-decoration-none VK_a my-1">
+                                                        Bare metal Systems
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#dk_shared_environments1" class="text-decoration-none VK_a my-1">
+                                                        Shared Environments
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </details>
+                                    </li>
+                                    <li>
+                                        <details>
+                                            <summary>
+                                                <a href="#dk_mds2" class="text-decoration-none VK_a">
+                                                    MDS
+                                                </a>
+                                            </summary>
+                                            <ul class="list-unstyled ps-3 mb-0">
+                                                <li>
+                                                    <a href="#dk_bare_metal2" class="text-decoration-none VK_a my-1">
+                                                        Bare Metal Systems
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#dk_shared_environments2" class="text-decoration-none VK_a my-1">
+                                                        Shared Environments
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </details>
+                                    </li>
+                                    <li>
+                                        <details>
+                                            <summary>
+                                                <a href="#dk_taa2" class="text-decoration-none VK_a">
+                                                    TAA
+                                                </a>
+                                            </summary>
+                                            <ul class="list-unstyled ps-3 mb-0">
+                                                <li>
+                                                    <a href="#dk_shared_environments3" class="text-decoration-none VK_a my-1">
+                                                        Shared Environments
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </details>
+                                    </li>
+                                    <li>
+                                        <p class="m-0">
+                                            <a href="#dk_srbds2" class="text-decoration-none VK_a">
+                                                SRBDS
+                                            </a>
+                                        </p>
+                                    </li>
+                                </ul>
+                            </details>
+                            <p class="m-0">
+                                <a href="#dk_improving_scheduling" class="text-decoration-none VK_a">
+                                    Improving Hardware Isolation Through Process Scheduling
+                                </a>
+                            </p>
+                            <p class="m-0">
+                                <a href="#dk_scheduling_interrupts" class="text-decoration-none VK_a">
+                                    Scheduling Interrupts
+                                </a>
+                            </p>
+                            <p class="m-0">
+                                <a href="#dk_guidelines_summary" class="text-decoration-none VK_a">
+                                    Guidelines Summary
+                                </a>
+                            </p>
+                            <p class="m-0">
+                                <a href="#dk_appendix_a" class="text-decoration-none VK_a">
+                                    Appendix A: Hardware Overview
+                                </a>
+                            </p>
+                            <p class="m-0">
+                                <a href="#dk_appendix_b" class="text-decoration-none VK_a">
+                                    Appendix B: Trusted and Untrusted Guests
+                                </a>
+                            </p>
+                            <details>
+                                <summary>
+                                    <a href="#dk_appendix_c" class="text-decoration-none VK_a">
+                                        Appendix C: Mitigation Status Report on sysfs
+                                    </a>
+                                </summary>
+                                <ul class="list-unstyled ps-3 mb-0">
+                                    <li>
+                                        <a href="#dk_mds3" class="text-decoration-none VK_a my-1">
+                                            MDS
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#dk_srbds3" class="text-decoration-none VK_a my-1">
+                                            SRBDS
+                                        </a>
+                                    </li>
+                                </ul>
+                            </details>
+                            <details>
+                                <summary>
+                                    <a href="#dk_references" class="text-decoration-none VK_a">
+                                        References
+                                    </a>
+                                </summary>
+                                <ul class="list-unstyled ps-3 mb-0">
+                                    <li>
+                                        <a href="#dk_intel" class="text-decoration-none VK_a my-1">
+                                            Intel
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#dk_os_and_software" class="text-decoration-none VK_a my-1">
+                                            OS and Software Vendors
+                                        </a>
+                                    </li>
+                                </ul>
+                            </details>
+                            <p class="m-0">
+                                <a href="#dk_footnotes" class="text-decoration-none VK_a">
+                                    Footnotes
+                                </a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <!-- thinkcode -->
+                <!-- <div class="dk_things_code_main">
+                    <div class="dk_things_code">
+                        <h2 class="text-left headline-font-one-bold">Loss Prevention Retail Reference Implementation provides:</h2>
+                        <div class="dk_high_quality">
+                            <ul>
+                                <li>High-quality testable ingredients needed to create a solution to prevent thefts at stores.</li>
+                                <li>Building blocks needed to enable the use case with solid performance numbers.</li>
+                                <li>Hardware requirements to support the workloads and scale the solution.</li>
+                            </ul>
+                        </div>
+                    <div class="dk_get_code">
+                        <button class="dk_button">Get Started on GitHub<sup>*</sup></button>
+                    </div>
+                    </div> 
+                </div> -->
+            </div>
+            <div class="col-lg-9 col-md-8">
+                <div class="d-md-flex justify-content-end col-xl-10 py-3 d-none">
+                    <i class="fa-solid fa-print fs-4 px-2 " style="color:#0068B5"></i>
+                    <i class="fa-regular fa-envelope fs-4 px-2" style="color:#0068B5"></i>
+                </div>
+                <div class="col-xl-10 VK_all_sections">
+
+                    <section id="dk_document_scope">
+                        <p>&nbsp;</p>
+                        <p>&nbsp;</p>
+                        <h3 style="font-weight: 350; padding-bottom: 0.8rem;">Document Scope and Intended Audience</h3>
+                        <p>The intended audience of this document is system administrators who need to identify if their systems are affected by transient execution attacks, and if so, what actions are required to mitigate their systems. Table 1 enumerates the issues covered in this document as well as their severity assessment.</p>
+                        <p>Table 1.&nbsp;List of vulnerabilities covered in this document</p>  
+                        <table class="mv_product_table w-100 mb-4">
+                            <thead>
+                                <tr>
+                                    <th style="text-align:center">Common Name - Method</th>
+                                    <th style="text-align:center">CVE Number</th>
+                                    <th style="text-align:center">CVSS Severity</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><a class="b_special_a1" href="">Variant 1 - Bounds Check Bypass</a></td>
+                                    <td>CVE-2017-5753</td>
+                                    <td>Medium</td>
+                                </tr>
+                                <tr>
+                                    <td>Variant 1.1 - Bounds Check Bypass Store</td>
+                                    <td>CVE-2018-3693</td>
+                                    <td>Medium</td>
+                                </tr>
+                                <tr>
+                                    <td><a class="b_special_a1" href="">Variant 2 - Branch Target Injection</a></td>
+                                    <td>CVE-2017-5715</td>
+                                    <td>Medium</td>
+                                </tr>
+                                <tr>
+                                    <td><a class="b_special_a1" href="">Variant 3 - Rogue Data Cache Load</a></td>
+                                    <td>CVE-2017-5754</td>
+                                    <td>Medium</td>
+                                </tr>
+                                <tr>
+                                    <td><a class="b_special_a1" href="">Variant 3a - Rogue System Register Read</a></td>
+                                    <td>CVE-2018-3640</td>
+                                    <td>Medium</td>
+                                </tr>
+                                <tr>
+                                    <td><a class="b_special_a1" href="">Variant 4 - Speculative Store Bypass</a></td>
+                                    <td>CVE-2018-3639</td>
+                                    <td>Medium</td>
+                                </tr>
+                                <tr>
+                                    <td><a class="b_special_a1" href="">Foreshadow - L1 Terminal Fault</a></td>
+                                    <td>CVE-2018-3615<br>
+                                    CVE-2018-3620<br>
+                                    CVE-2018-3646</td>
+                                    <td>High</td>
+                                </tr>
+                                <tr>
+                                    <td><a class="b_special_a1" href="">Zombieload - Fallout - RIDL - Microarchitectural Data Sampling</a></td>
+                                    <td>CVE-2018-12126<br>
+                                    CVE-2018-12127<br>
+                                    CVE-2018-12130<br>
+                                    CVE-2019-11091</td>
+                                    <td>Medium</td>
+                                </tr>
+                                <tr>
+                                    <td><a class="b_special_a1" href="">TSX Asynchronous Abort</a></td>
+                                    <td>CVE-2019-11135</td>
+                                    <td>Medium</td>
+                                </tr>
+                                <tr>
+                                    <td><a class="b_special_a1" href="">Special Register Buffer Data Sampling</a></td>
+                                    <td>CVE-2020-0543</td>
+                                    <td>Medium</td>
+                                </tr>
+                            </tbody>
+                        </table> 
+                        <p>This document describes some good practices that you can enable in production systems but does not prescribe exactly how to implement them. It focuses on the Linux* operating system (OS), but other OSes might provide similar approaches. Refer to the&nbsp;<a class="b_special_a1" href="">Refined Speculative Execution Terminology guide</a>&nbsp;for detailed definitions of the terminology used in this document.</p>
+                    </section>
+
+                    <section id="dk_transient_exe">
+                        <p>&nbsp;</p>
+                        <h3 style="font-weight: 300; padding-bottom: 0.8rem;">Transient Execution Side Channels</h3>
+                        <p>Modern processors use diverse techniques to improve performance. One of these techniques is known as transient execution. Transient execution (also known as speculative execution) means that instructions are executed before it is known if they are actually required or that arguments for some instructions are guessed by the CPU before they are calculated. Without speculation, the processor would have to wait for prior instructions or addresses to be resolved. For example, the first instruction after a jump would only be executed once the address of the jump is resolved. With speculation, the processor tries to guess the address of the jump before it is resolved, and it starts executing transient instructions at the predicted address. If the assumption was incorrect, the results of these transient instructions are squashed without incurring a performance penalty. A correct guess increases processor performance by minimizing latency and extracting greater parallelism.</p>
+                        <p>Transient execution might affect the microarchitectural state of the processor even when the results of the transient instructions are not made visible architecturally. For example, the contents of caches and buffers might include the results of transient instructions that never retire. Normally these microarchitectural states are visible to the software, but incidental side channels may potentially allow malicious actors to infer data by observing these temporary states.</p>
+                        <p>Recent research has shown how some Intel® platforms might be targeted by different methods to try to leak privileged information. For transient execution attacks to be successful, the malicious actor and the victim must share some physical resources (for a quick introduction to some of the basics of multicore systems, refer to the&nbsp;<a class="b_special_a1" href="">Hardware Overview</a>). As the threat environment continues to evolve, Intel is continuously investigating architectural and/or microarchitectural changes to combat these types of methods. As a result, recently released platforms include hardware components that protect against these methods. Intel also works with ecosystem partners to develop software and firmware updates that can protect systems from these methods.</p>
+                    </section>
+
+                    <section id="dk_issues_doc">
+                        <h4>Issues Covered in this Document</h4>
+                        <p>We quickly introduce the different methods covered in this document. For information on the specifics of each particular technique, please refer to the&nbsp;<a class="b_special_a1" href="">Intel Software Guidance for Security Advisories</a>.</p>
+                    </section>
+
+                    <section id="dk_spectre_meltdown">
+                        <h4>Spectre and Meltdown</h4>
+                        <p>Spectre and Meltdown include several methods that exploit speculative execution to potentially gather sensitive information<sup>1</sup>,<sup>2</sup>. Spectre variant 1, variant 2, and variant 4 target the prediction algorithms that are key to speculative execution. Variant 3 (Meltdown)<sup>3</sup>&nbsp;attempts to leak data as the result of faulting load instructions forwarding data to subsequent speculative instruction</p>
+                    </section>
+
+                    <section id="dk_l1tf">
+                        <h4>L1TF</h4>
+                        <p>L1 Terminal Fault (L1TF) is a method that may enable an untrusted malicious actor to infer secret data from the level 1 data cache (L1D)4. Certain memory operations can trigger a fault as a result of page swapping. Before this fault resolves, the processor may speculatively access data in the L1D and the microarchitectural effects of these loads might be used to gather data.</p>
+                    </section>
+
+                    <section id="dk_mds">
+                        <h4>MDS</h4>
+                        <p>Microarchitectural Data Sampling (MDS) techniques attempt to leak data from small structures within each individual CPU<sup>5</sup>,<sup>6</sup>,<sup>7</sup>. These complex methods observe microarchitectural structures on the physical core where they run, which means that the victim needs to run on the same physical core. These structures are very small, restricting a successful implementation to only being able to extract a few bytes on a successful leakage.</p>
+                    </section>
+
+                    <section id="dk_taa">
+                        <h4>TAA</h4>
+                        <p>TSX Asynchronous Abort (TAA) is a subset of the MDS technique. An untrusted process might try to leak data from the victim as the result of an asynchronous abort within a transactional region using Intel® Transactional Synchronization Extensions (Intel® TSX). While this abort is pending, the processor might still perform some subsequent transient load operations. Malicious software running on the same physical core as the victim could use these transient instructions to try to leak stale data from the victim. The victim does not need to make use of Intel TSX to be the target of an attack. For more information about Intel TSX, visit&nbsp;<a class="b_special_a1" href="">Web Resources About Intel® Transactional Synchronization Extensions</a>.</p>
+                    </section>
+
+                    <section id="dk_srbds">
+                        <h4>SRBDS</h4>
+                        <p>The Special Register Buffer Data Sampling (SRBDS) technique that may allow data values from special registers to be inferred by malicious code executing on any core of the CPU. These special registers might be used when executing the following instructions that might deal with secrets:&nbsp;<span class="dk_code_simple">RDRAND</span>,&nbsp;<span class="dk_code_simple">RDSEED</span>&nbsp;and&nbsp;<span class="dk_code_simple">EGETKEY</span>.</p>
+                    </section>
+
+                    <section id="dk_affected_platforms">
+                        <p>&nbsp;</p>
+                        <h3 style="font-weight: 300;">Affected Platforms</h3>
+                        <p>The first step before applying any mitigation is to identify whether a system is affected by any issue. On updated Linux systems,&nbsp;sysfs&nbsp;will report the status of the vulnerability, including whether the platform is affected or not. There are also different tools and guidance for how to detect whether a system is vulnerable. For example, for Linux and BSD systems Intel published a document with step by step instructions, "System Check for Speculative Execution Side Channel”. For Microsoft* systems, Microsoft created a simple step by step guide and released a step-by-step guide to check for a variety of speculative execution side-channel issues, refer to&nbsp;<a class="b_special_a1" href="">Understanding Get-SpeculationControlSettings PowerShell script output</a>. It is expected that other OS vendors will have similar instructions.</p>
+                    </section>
+
+                    <section id="dk_risk_assessment">
+                        <p>&nbsp;</p>
+                        <h3 style="font-weight: 300;">Risk Assessment</h3>
+                        <ol>
+                            <li>Intel has not received any reports of real-world examples of these transient execution attacks being used to compromise system security. However, proofs of concepts that could gather data from unprivileged levels on unmitigated systems have been tested in controlled research environments. This includes data from the OS or from other applications that share certain hardware resources with the attacker.</li>
+                            <li>A successful malicious actor has read only access to the data.</li>
+                            <li>There is no privilege escalation by just using these techniques, meaning this actor cannot become a privileged user of the system.</li>
+                            <li>Remote attacks using the CVEs listed at the beginning of this document&nbsp;are not possible<sup>8</sup>.</li>
+                            <li>When a malicious actor successfully locates an address with secret data, it has a short time window to gather it, as these issues arise as a result of speculative execution. This limits the rate at which data can be extracted. In the cases of MDS and TAA, only a few bytes can be extracted within a successful leak. This actor might need an extended period of time running on the same resources than the victim to collect meaningful information.</li>
+                            <li>You need to carefully consider the type of data that it is processed in your systems and how this data is handled by the software. In systems where no secret data is present, it might still be theoretically possible to infer secret data from the OS.</li>
+                        </ol>
+                    </section>
+
+                    <section id="dk_general_structure">
+                        <p>&nbsp;</p>
+                        <h3 style="font-weight: 300;">General Structure of a Data Leakage Implementation</h3>
+                        <p>As mentioned, Intel does not have any knowledge about implementations of any of these methods being used in the real world. To illustrate the complexity of a successful data leakage, in this section we describe the steps that a malicious actor would need to follow to successfully implement MDS or TAA. Other methods slightly differ, but they all follow similarly complex steps.</p>
+                        <p class="mb-0">For a process to successfully gather data from a victim using MDS/TAA:</p>
+                        <ol>
+                            <li>The malicious actor needs to detect whether the target system can be used to leak data and run an implementation of MDS/TAA.</li>
+                            <li>Both victim and attacker need to run on the same physical core.
+                            <ol>
+                                <li>In cloud environments, it might be difficult for the malicious actor to land on the same core as a targeted victim. Unless this actor has some previous specific knowledge about the system, workloads, users, and scheduling model implemented in the system, the method will likely run next to an unknown victim.</li>
+                                <li>It might still be possible to leak data from the OS or from system interrupts that might happen on the core where the malicious software is running. Gathering useful stale data from the OS is difficult and reading seemingly random data from system interrupts might translate to collecting mostly noise.</li>
+                            </ol>
+                            </li>
+                            <li>Both victim and attacker need to run for an extended period of time on the same core. An MDS-based method leverages internal CPU structures that only store a handful of bytes. Only a few bits or bytes can be leaked in a successful iteration of the technique.</li>
+                            <li>The victim must bring the same data to the CPU repeatedly. The attacker has no control over what data the victim brings to memory unless it is able to force the victim to run a specific program or gadget. The data needs to be used multiple times to be fully inferred due to the low leakage rate of this method.</li>
+                            <li>Once the data is extracted, it has to be stored somewhere else quickly. There is a small time window where the stale data is available.</li>
+                            <li>It might be difficult to infer what the gathered data actually means. This implies that there is a post-processing component required for a successful leakage.</li>
+                            <li>Any post-processing might happen after the data sampling has finished. An attacker might not want this post process to interfere with the collection process. This process will need to account for the fact that the data collected might belong to different processes or workloads, which increases the complexity of this task.</li>
+                        </ol>
+                    </section>
+
+                    <section id="dk_malicious_actor">
+                        <p>&nbsp;</p>
+                        <h3 style="font-weight: 300;">Malicious Actor Detection</h3>
+                        <p>As mentioned,&nbsp;Intel has not received any reports of real-world examples of these methods. An implementation of any of these methods might not want to leave any trace in the OS logs so that it remains undetected. For the same reason, it is also expected that they would not show any unforeseen behavior in the system. Some researchers have tried to detect a potential speculative execution side channel method by evaluating different performance events and creating different metrics<sup>9</sup>. This approach, however, might lead to many false positives. For TAA methods, the performance events that count the number of transactional sections entered and aborted might be an indicator of a potential malicious actor. It is however difficult to set a ratio of sections aborted relative to those started that would unequivocally identify an implementation of this method.</p>
+                    </section>
+
+                    <section id="dk_impact_mitigations">
+                        <p>&nbsp;</p>
+                        <h3 style="font-weight: 300;">Impact of Mitigations on Application Performance</h3>
+                        <p class="mb-0">Overall, the impact on application performance when running on mitigated platforms affected by these issues will vary based on workload and will often not be significant. There are, however, some cases that might require careful considerations when using affected platforms:</p>
+                        <ul>
+                            <li>Programs with frequent system calls or switches between user and kernel space might be impacted in their performance. Typical examples include those with I/O operations. Reducing the number of system calls in the software would limit the impact of mitigations on system performance.</li>
+                            <li>Applications with high numbers of indirect jumps and calls are affected by Spectre. Newly released platforms might already have hardware mitigations that reduce or remove any performance penalty.</li>
+                            <li>Those applications that benefit from Intel TSX might see a performance drop after enabling the microcode and OS updates for TAA on affected platforms. You should carefully consider when to apply these mitigations.</li>
+                            <li>Applications and workloads that use&nbsp;<span class="code-simple">RDRAND</span>&nbsp;and/or&nbsp;<span class="code-simple">RDSEED</span>&nbsp;heavily might see a performance impact after installing the SRBDS mitigations. You should consider whether those mitigations might be disabled on your system or if a different pseudorandom number generator could be used.</li>
+                            <li>Disabling Intel HT might highly impact the performance of the system. Intel does not recommend this approach. You should perform a careful risk assessment of your systems and mitigation opportunities when considering this approach.</li>
+                            <li>Improving hardware isolation using scheduling techniques might reduce the overall throughput of your system depending on the workload.</li>
+                        </ul>
+                        <p>You should consider using a typical or representative workload of your system and benchmark it to make an informed decision about how mitigations affect your system.</p>
+                    </section>
+
+                    <section id="dk_execution_scenarios">
+                        <p>&nbsp;</p>
+                        <h3 style="font-weight: 300;">Execution Scenarios & Mitigations</h3>
+                        <p>Intel has released new microcode updates (MCU) for the platforms affected by these issues as well as implemented updates in the Linux kernel to protect your systems against any implementation of these attacks, even though there are no known implementations of these methods beyond simple proofs of concept. System manufacturers and OS vendors distribute these MCU changes. MCU will require a system reboot. Check the&nbsp;<a class="b_special_a1" href="">References</a>&nbsp;section for links to different OS vendors.</p>
+                        <p>While these updates provide important mitigations, they might not be sufficient to protect against some potential attacks in all possible scenarios. You should evaluate the risk profile of your systems and apply the appropriate mitigations in your host machines and, if applicable, your Virtual Machine Managers (VMMs) and Virtual Machines (VMs). As mentioned,&nbsp;the malicious software needs to share hardware resources with the victim, which oftentimes means running on the same physical core. Refer to the&nbsp;<a class="b_special_a1" href="">Appendix: Hardware Overview</a>&nbsp;section for a quick general overview of computer architecture. Table 2 below shows a list of mitigations on affected platforms for these methods. OS updates might also require a system reboot (different OS vendors will provide different instructions).&nbsp;All mitigations can be disabled at boot time by passing the<em>&nbsp;</em><span class="dk_code_simple">mitigations=off</span><em>&nbsp;</em>parameter to the kernel.</p>
+                        <p>Table 2.&nbsp;Software mitigations on affected platforms</p>
+
+                        <table class="mv_product_table w-100 mb-4">
+                            <thead>
+                                <tr>
+                                    <th style="text-align:center">Common Name - Method</th>
+                                    <th style="text-align:center">Mitigation on affected platforms</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Variant 1 - Bounds Check Bypass</td>
+                                    <td>OS update&nbsp;to limit some speculative execution scenarios</td>
+                                </tr>
+                                <tr>
+                                    <td>Variant 1.1 - Bounds Check Bypass Store</td>
+                                    <td>OS update&nbsp;to limit some speculative execution scenarios</td>
+                                </tr>
+                                <tr>
+                                    <td>Variant 2 - Branch Target Injection</td>
+                                    <td>MCU and OS update&nbsp;to enable techniques that limit speculation on indirect branches</td>
+                                </tr>
+                                <tr>
+                                    <td>Variant 3 - Rogue Data Cache Load</td>
+                                    <td>OS update&nbsp;to implement KPTI (Kernel Page Table Isolation) on Linux or KVA (Kernel Virtual Address) Shadow on Microsoft Windows</td>
+                                </tr>
+                                <tr>
+                                    <td>Variant 3a - Rogue System Register Read</td>
+                                    <td>MCU&nbsp;to verify that certain instruction does not speculatively return data under some conditions</td>
+                                </tr>
+                                <tr>
+                                    <td>Variant 4 - Speculative Store Bypass</td>
+                                    <td>MCU&nbsp;to disable the technique that allows this method</td>
+                                </tr>
+                                <tr>
+                                    <td>Foreshadow - L1 Terminal Fault</td>
+                                    <td>MCU and OS update&nbsp;to flush L1D cache. Host, VMMs and VMs should be updated. Follow scheduling technique suggested in this guide.</td>
+                                </tr>
+                                <tr>
+                                    <td>Zombieload - Microarchitectural Data Sampling</td>
+                                    <td>MCU and OS update&nbsp;to enable buffer clearing. Follow scheduling technique suggested in this guide.</td>
+                                </tr>
+                                <tr>
+                                    <td>TSX Asynchronous Abort</td>
+                                    <td>MCU and OS update&nbsp;to disable TSX or to implement buffer clearing. Follow scheduling technique suggested in this guide.</td>
+                                </tr>
+                                <tr>
+                                    <td>Special Register Buffer Data Sampling</td>
+                                    <td>MCU&nbsp;and&nbsp;OS&nbsp;updates to control the mitigation</td>
+                                </tr>
+                            </tbody>
+                        </table> 
+                    </section>
+
+                    <section id="dk_critical_systems">
+                        <p>&nbsp;</p>
+                        <h3 style="font-weight: 300;">Critical Systems</h3>
+                        <p>Systems that are critical in your organization using any of the affected platforms should implement all of the proposed mitigations, including MCU and OS updates, for that particular CPU.</p>
+                    </section>
+
+                    <section id="dk_trusted_codes">
+                        <p>&nbsp;</p>
+                        <h3 style="font-weight: 300;">Trusted Codes and Guests</h3>
+                        <p>Certain computing environments are characterized by only permitting trusted code, libraries and users. System administrators have control over what runs on the system, and strict rules are followed. In these cases, it might be possible to disable all mitigations.</p>
+                    </section>
+
+                    <section id="dk_untrusted_codes">
+                        <p>&nbsp;</p>
+                        <h3 style="font-weight: 300;">Untrusted Codes and Guests</h3>
+                        <p>This is a common scenario in particular cloud instances known as Infrastructure as a Service (IaaS), although other configurations might also support untrusted guests in a system. In this case, untrusted guests can run VMs that might be initially prepared by the particular cloud provider. Users can run a large variety of workloads and untrusted code on those VMs with limited oversight by the administrators. In this case, an unknown malicious actor might be scheduled to execute on the same physical core as the victim (this is known as&nbsp;co-residency).</p>
+                        <p>Typically, the attacker and victim need to run concurrently for an extended period of time for these methods to extract valuable data. Overcommitted systems where multiple processes run on the same CPU or where processes are continuously migrated between cores pose additional challenges for these methods.</p>
+                    </section>
+
+                    <section id="dk_spectre_meltdown2">
+                        <h4>Spectre and Meltdown</h4>
+                        <p>The mitigation for the different types of techniques under the Spectre and Meltdown umbrella is to try to effectively limit the extent to which side effects of transient execution can be exploited by malicious software. These mitigations limit the ability of the processor to transiently execute certain sequences of instructions. The proposed mitigations remove the risks associated with these methods on affected platforms. New systems also include new hardware designs that remove these issues. On affected platforms, the mitigations can be configured at boot time as shown in Table 3. Default is&nbsp;<span class="dk_code_simple">spectre_v2=auto spectre_v2_user=auto spec_store_bypass_disable=auto</span>.</p>
+                        <p>Table 3.&nbsp;Controlling Spectre and Meltdown mitigation from the Linux kernel command line. Not all possible values are covered</p>
+
+                        <table class="mv_product_table w-100 mb-4">
+                            <thead>
+                                <tr>
+                                    <th><strong>Parameter</strong></th>
+                                    <th>Effect</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><span class="dk_code_simple">spectre_v2=</span></td>
+                                    <td>This parameter protects the kernel from attacks from user space.</td>
+                                </tr>
+                                <tr>
+                                    <td><span class="dk_code_simple">spectre_v2=on</span></td>
+                                    <td>Enable Spectre V2 mitigations (also&nbsp;<span class="dk_code_simple">spectre_v2_user=on</span>).</td>
+                                </tr>
+                                <tr>
+                                    <td><span class="dk_code_simple">spectre_v2=off</span></td>
+                                    <td>Disables mitigations for Spectre V2 (also&nbsp;<span class="dk_code_simple">spectre_v2_user=off</span>).</td>
+                                </tr>
+                                <tr>
+                                    <td><span class="dk_code_simple">spectre_v2=auto</span></td>
+                                    <td>Detects whether the platform is affected and enables/disables mitigation accordingly (default).</td>
+                                </tr>
+                                <tr>
+                                    <td><span class="dk_code_simple">spectre_v2=retpoline</span></td>
+                                    <td>Replace indirect branches.</td>
+                                </tr>
+                                <tr>
+                                    <td><span class="dk_code_simple">spectre_v2_user=</span></td>
+                                    <td>This parameter protects between user space tasks.</td>
+                                </tr>
+                                <tr>
+                                    <td><span class="dk_code_simple">spectre_v2_user=on</span></td>
+                                    <td>Enable mitigations.</td>
+                                </tr>
+                                <tr>
+                                    <td><span class="dk_code_simple">spectre_v2_user=off</span></td>
+                                    <td>Disables mitigations.</td>
+                                </tr>
+                                <tr>
+                                    <td><span class="dk_code_simple">spectre_v2_user=prctl</span></td>
+                                    <td>Mitigation is enabled but can be controlled via&nbsp;<span class="dk_code_simple">prctl</span>.</td>
+                                </tr>
+                                <tr>
+                                    <td><span class="dk_code_simple">spectre_v2_user=auto</span></td>
+                                    <td>Detects whether the platform is vulnerable and selects the best option (default). On affected systems it normally means&nbsp;<span class="dk_code_simple">prctl</span>.</td>
+                                </tr>
+                                <tr>
+                                    <td><span class="dk_code_simple">nospectre_v1</span></td>
+                                    <td>Disable mitigations for Spectre variant 1.</td>
+                                </tr>
+                                <tr>
+                                    <td><span class="dk_code_simple">nospectre_v2</span></td>
+                                    <td>Disable mitigations for Spectre variant 2.</td>
+                                </tr>
+                                <tr>
+                                    <td><span class="dk_code_simple">nopti</span></td>
+                                    <td>Disables Meltdown (Kernel Page Table Isolation) mitigation.</td>
+                                </tr>
+                                <tr>
+                                    <td><span class="dk_code_simple">spec_store_bypass_disable=</span></td>
+                                    <td>This parameter controls the behavior of Spectre variant 4 mitigations.</td>
+                                </tr>
+                                <tr>
+                                    <td><span class="dk_code_simple">spec_store_bypass_disable=on</span></td>
+                                    <td>Enable mitigations for Spectre variant 4.</td>
+                                </tr>
+                                <tr>
+                                    <td><span class="dk_code_simple">spec_store_bypass_disable=off</span></td>
+                                    <td>Disable mitigations for Spectre variant 4.</td>
+                                </tr>
+                                <tr>
+                                    <td><span class="dk_code_simple">spec_store_bypass_disable=prctl</span></td>
+                                    <td>Mitigation is enabled but can be controlled via&nbsp;<span class="dk_code_simple">prctl</span>.</td>
+                                </tr>
+                                <tr>
+                                    <td><span class="dk_code_simple">spec_store_bypass_disable=auto</span></td>
+                                    <td>Kernel detects whether the platform is vulnerable and selects the best option (default).</td>
+                                </tr>
+                            </tbody>
+                        </table> 
+                    </section>
+
+                    <section id="dk_l1tf2">
+                        <h4>L1TF</h4>
+                        <p>In unmitigated environments that include any affected platform, a process running on a VM might be able to read host or other guest data that resides on the L1D cache by using complex techniques.</p>
+                        <p>Intel released MCU and implemented software mitigations in the Linux kernel. Other OS vendors have also introduced modifications in their software to mitigate against a potential implementation of this technique. Check the recommendations from your OS provider to identify their recommended steps.</p>
+                        <p>The Linux kernel allows you to control the L1TF mitigation at boot time with the&nbsp;<span class="dk_code_simple">l1tf=</span>&nbsp;option. The possible values for this parameter are listed in Table 4. Not specifying any value is equivalent to&nbsp;<span class="dk_code_simple">l1tf=flush</span>.</p>
+                        <p>Table 4.&nbsp;Controlling L1TF mitigations from the Linux kernel command line</p>
+
+                        <table class="mv_product_table w-100 mb-4">
+                            <thead>
+                                <tr>
+                                    <th style="text-align:center"><strong><span class="dk_code_simple">l1tf</span></strong>&nbsp;value</th>
+                                    <th style="text-align:center">Effect</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><span class="dk_code_simple">full</span></td>
+                                    <td>Enables all mitigations for the L1TF vulnerability. Disables SMT and enables all mitigations in the hypervisors. The sysfs interface permits to control SMT and L1D flush after boot.</td>
+                                </tr>
+                                <tr>
+                                    <td><span class="dk_code_simple">full</span>,&nbsp;<span class="dk_code_simple">force</span></td>
+                                    <td>Same as&nbsp;<span class="dk_code_simple">full</span>&nbsp;but disables SMT and L1D flush sysfs control.</td>
+                                </tr>
+                                <tr>
+                                    <td><span class="dk_code_simple">flush</span></td>
+                                    <td>Enables SMT and the default hypervisor mitigation. Control through sysfs is permitted.</td>
+                                </tr>
+                                <tr>
+                                    <td><span class="dk_code_simple">flush</span>,&nbsp;<span class="dk_code_simple">nosmt</span></td>
+                                    <td>Disables SMT and enables the default hypervisor mitigation. Sysfs control after boot allowed.</td>
+                                </tr>
+                                <tr>
+                                    <td><span class="dk_code_simple">flush</span>,&nbsp;<span class="dk_code_simple">nowarn</span></td>
+                                    <td>Same as flush but hypervisors will not warn when a VM is started in a potentially insecure configuration.</td>
+                                </tr>
+                                <tr>
+                                    <td><span class="dk_code_simple">off</span></td>
+                                    <td>Disables mitigations.</td>
+                                </tr>
+                            </tbody>
+                        </table> 
+                    </section>
+
+                    <section id="dk_bare_metal1">
+                        <h4>Bare metal Systems</h4>
+                        <p>A mitigated platform affected by the L1TF issue is protected against this type of technique in user space. Since the OS has control over the page table, no other process can transiently access addresses that they should not have access to.</p>
+                    </section>
+
+                    <section id="dk_shared_environments1">
+                        <h4>Shared Environments</h4>
+                        <p>Enabling the proposed mitigations reduces the risks associated with this method. There is still a small possibility that a process may potentially leak information that it should not have access to when it shares the physical core with another process.</p>
+                    </section>
+
+                    <section id="dk_mds2">
+                        <h4>MDS</h4>
+                        <p>Intel released microcode and software updates that mitigate some of the techniques associated with this issue on the affected platforms. Intel recommends performing a risk assessment and installing the MCU and the OS updates if your system is at risk. It is not possible to mitigate all different variations of this method on affected platforms while enabling processes to share the same physical core.</p>
+                        <p>The Linux kernel allows a parameter (<span class="dk_code_simple">mds=</span>) to control the behavior of the mitigation on systems that are up to date. See Table 5 for more details. Not specifying any option is equivalent to&nbsp;<span class="dk_code_simple">mds=full</span>.</p>
+                        <p>Table 5.&nbsp;Controlling MDS mitigations on the Linux kernel command line</p>
+
+                        <table class="mv_product_table w-100 mb-4">
+                            <thead>
+                                <tr>
+                                    <th style="text-align:center"><span class="dk_code_simple">mds&nbsp;</span>parameter</th>
+                                    <th style="text-align:center">Effect</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><span class="dk_code_simple">full</span></td>
+                                    <td>If an affected platform, it enables all available MDS mitigations.</td>
+                                </tr>
+                                <tr>
+                                    <td><span class="dk_code_simple">full</span>,&nbsp;<span class="dk_code_simple">nosmt</span></td>
+                                    <td>The same as&nbsp;<span class="dk_code_simple">mds=full</span>&nbsp;and disables simultaneous multithreading (SMT) on affected CPUs.</td>
+                                </tr>
+                                <tr>
+                                    <td><span class="dk_code_simple">off</span></td>
+                                    <td>Disables MDS mitigations.</td>
+                                </tr>
+                            </tbody>
+                        </table> 
+                    </section>
+
+                    <section id="dk_bare_metal2">
+                        <h4>Bare Metal Systems</h4>
+                        <p>Even after installing the mitigations on bare metal environments, it is still theoretically possible for an untrusted process to leak data from the host when the untrusted process process is able to run on more than one logical processor on the same physical core. See Figure 1 for this case.</p>
+                        <p style="text-align:center"><img class="w-100" alt="" src="/img/darshit_image/tea-sysadminguide-fig1.png"><br>
+                            Figure 1.&nbsp;Scenario where a malicious actor using MDS could try to leak data from the OS</p>
+                        <p>In this&nbsp;figure, both threads or processes of the malicious actor (green) are scheduled on the same physical core (Core 1). In this case, one of the processes or threads could try to force the OS to bring some data to the core. This could then be used by the other process or thread to leak stale data and infer some information by exploiting the MDS issue. This is still a highly sophisticated procedure and there is no evidence of any implementation.</p>
+                    </section>
+
+                    <section id="dk_shared_environments2">
+                        <h4>Shared Environments</h4>
+                        <p>Since not all internal structures can be safely cleared even after installing the proposed software mitigation, there is still the risk of an untrusted process gathering data via using side channel methods when multiple processes can run on the same physical core. The software mitigation reduces the risks, but to fully protect your system you should not allow untrusted guests to share resources with other actors.</p>
+                    </section>
+
+                    <section id="dk_taa2">
+                        <h4>TAA</h4>
+                        <p>In the case of TAA, the proposed MCU and OS mitigations both disable Intel TSX on platforms that support this feature and clear the internal structures that can be used to leak stale data on affected processors. Any of these two actions remove the ability for an untrusted process to leak data. To disable Intel TSX at boot time, pass the&nbsp;<span class="dk_code_simple">tsx=off</span>&nbsp;parameter to the kernel. Similarly,&nbsp;<span class="dk_code_simple">tsx=on</span>&nbsp;enables Intel TSX. To enable TAA mitigation when Intel TSX is enabled, the pass the&nbsp;<span class="dk_code_simple">taa=full</span>&nbsp;parameter to the kernel at boot time. Using <span class="dk_code_simple">taa=off</span> disables the mitigation. On affected platforms with Intel TSX enabled and the TAA mitigation disabled, systems that enable users to share physical cores might be vulnerable to malicious actors. See Table 6 for different combinations of both parameters on affected platforms. CPUs that are not vulnerable to TAA do not need to have the TAA mitigation enabled. If nothing is specified,&nbsp;the default configuration is<em>&nbsp;</em><span class="dk_code_simple">tsx=off taa=full</span>.</p>
+                        <p>Table 6.&nbsp;Combination of kernel parameters and effect in the system on affected platforms</p>
+
+                        <table class="mv_product_table w-100 mb-4">
+                            <thead>
+                                <tr>
+                                    <th style="text-align:center"><span class="dk_code_simple">tsx</span>&nbsp;parameter</th>
+                                    <th style="text-align:center"><span class="dk_code_simple">taa</span>&nbsp;parameter</th>
+                                    <th style="text-align:center">Effect</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><span class="dk_code_simple">on</span></td>
+                                    <td><span class="dk_code_simple">off</span></td>
+                                    <td>Enables Intel TSX and disables the TAA mitigation. The system is vulnerable.</td>
+                                </tr>
+                                <tr>
+                                    <td><span class="dk_code_simple">on</span></td>
+                                    <td><span class="dk_code_simple">full</span></td>
+                                    <td>Enables Intel TSX and enables the mitigation. The system is protected.</td>
+                                </tr>
+                                <tr>
+                                    <td><span class="dk_code_simple">off</span></td>
+                                    <td><span class="dk_code_simple">off</span></td>
+                                    <td>Disables Intel TSX and disables the mitigation. The system is protected.</td>
+                                </tr>
+                                <tr>
+                                    <td><span class="dk_code_simple">off</span></td>
+                                    <td><span class="dk_code_simple">full</span></td>
+                                    <td>Disables Intel TSX and disables the mitigation. The system is protected.</td>
+                                </tr>
+                            </tbody>
+                        </table> 
+
+                        <p>As with MDS, the malicious actor using TAA has no control over what data is brought by the victim to the core. Malicious actors can only gain read access to the data, and no privilege escalation is possible by using this method. On systems where processes are migrated among the available cores with high frequency, or multiple processes are scheduled to run on the same physical core, the risks associated with this technique are low since malicious actors might not have enough time to extract valuable information from the victim.</p>
+                        <p>Enabling the TAA mitigation or disabling Intel TSX protects against this type of method.</p>
+                    </section>
+
+                    <section id="dk_shared_environments3">
+                        <h4>Shared Environments</h4>
+                        <p>In cloud environments, both the host and guest VMs should have the microcode and kernel mitigation installed. If the host has Intel TSX disabled or the TAA mitigation enabled, the system is protected regardless of how the VMs are configured or whether the guest VMs are migrated from hosts where mitigations are not implemented.</p>
+                    </section>
+
+                    <section id="dk_srbds2">
+                        <h4>SRBDS</h4>
+                        <p>For SRBDS, the MCU enables the mitigation by default on affected platforms. It is possible to configure this at the OS level by using the&nbsp;<span class="dk_code_simple">srbds</span>&nbsp;boot parameter. This parameter only accepts a possible value&nbsp;<span class="dk_code_simple">srbds=off</span>, which disables the mitigation. When the parameter is not specified, the mitigation is enabled (default).</p>
+                        <p>Table 7.&nbsp;Kernel parameter and effect in the system on affected platforms</p>
+
+                        <table class="mv_product_table w-100 mb-4">
+                            <thead>
+                                <tr>
+                                    <th style="text-align:center"><span class="dk_code_simple">srbds</span>&nbsp;parameter</th>
+                                    <th style="text-align:center">Effect</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><span class="dk_code_simple">off</span></td>
+                                    <td>Disables the SRBDS mitigation. The system is vulnerable.</td>
+                                </tr>
+                            </tbody>
+                        </table> 
+                    </section>
+
+                    <section id="dk_improving_scheduling">
+                        <p>&nbsp;</p>
+                        <h3 style="font-weight: 350;">Improving Hardware Isolation Through Process Scheduling</h3>
+                        <p>As described in this document, these speculative execution side channel techniques require any implementations of these techniques to share certain computational resources with the victim process. Over the years, several published research papers address the how side channel methods, not only those related to transient execution, can be used on systems that permit multiple untrusted users to share resources due to general side channel techniques<sup>11</sup>,<sup>12</sup>,<sup>13</sup>,<sup>14</sup>. This is a common scenario in cloud environments. Other infrastructure that only accepts trusted code would not be affected by this type of vulnerability. Some systems might enable a single, sometimes untrusted, user running on a particular compute node for a certain time. In this case, a malicious actor might try to gather information from the OS. The proposed mitigations for these issues already significantly reduce the risks associated with this type of situation on affected platforms.</p>
+                        <p>This section presents a scheduling technique that enables systems in which untrusted guests share resources with other processes to enhance their protection against malicious actors. For simplicity, let’s use a single socket system with four cores used in a cloud setup<sup>15</sup>&nbsp;and two different guests<sup>16</sup>&nbsp;as an example. In this initial configuration, the scheduler chooses any of the available logical cores to schedule the different VMs that are instantiated. As a result, VMs from different guests can end up on the same physical core, as shown in Figure 2.</p>
+                        <p style="text-align:center"><img class="w-100" alt="" src="/img/darshit_image/tea-sysadminguide-fig2.png"><br>
+                            Figure 2.&nbsp;No special scheduling used</p>
+                        <p>In Figure 2, Core 1 is running a VM from Guest 1 (green) on logical processor 1 (LP1) and another VM for Guest 2 (blue) on logical processor 2. Core 2 runs another VM from Guest 1 on one of its logical processors. Finally, Core 3 is devoted to VMs of Guest 2.</p>
+                        <p>In this scenario, imagine that the VMs of Guest 2 contain software that implements any of these methods and that tries to gather data from the shared L1 cache. In that case, this software might be able to extract information from the VM of Guest 1 running on LP1. A possible solution is shown in Figure 3, where VMs of different guests are scheduled to different physical cores.</p>
+                        <p style="text-align:center"><img class="w-100" alt="" src="/img/darshit_image/tea-sysadminguide-fig3.png"><br>
+                                Figure 3.&nbsp;Improved scheduling policy</p>
+                        <p>In this figure, the two VMs of Guest 1 are scheduled on Core 1. This ensures that no other guest can read the L1 cache of Core 1. The VMs for Guest 2 are scheduled on two other available physical cores.</p>
+                        <p>The previous scenario does not include the case where a supposedly trusted VM contains a malicious piece of code. It is the responsibility of the affected guest to avoid that type of situation. In the scheduling scenario shown in Figure 3, it would still be possible for the VM running on LP 2 to leak data from the VM on LP 1 if LP 2 hosts a malicious actor. In that case, either a new definition of what untrusted guest means in the system is required, or users need to understand the risks of running untrusted software in their deployments.</p>
+                        <p>Enabling this type of scheduling in a system that only runs trusted software removes the possibility of a successful data leakage from internal buffers or the L1 cache.</p>
+                        <p>You should check with your OS/software vendors whether it is possible to enable this type of scheduling on your systems. You should also carefully consider the potential impact of this approach in terms of overall throughput of the platform, performance, load balancing, and scheduling flexibility.</p>
+                    </section>
+
+                    <section id="dk_scheduling_interrupts">
+                        <p>&nbsp;</p>
+                        <h4 style="font-weight: 350;">Scheduling Interrupts</h4>
+                        <p>Another scheduling approach that reduces the severity or feasibility of transient execution attacks is for VMMs to schedule their interrupts on a particular physical core and to ensure that no VM runs on that particular core. This approach is known as&nbsp;interrupt affinity, and an example is shown in Figure 4.</p>
+                        <p style="text-align:center"><img class="w-100" alt="" src="/img/darshit_image/tea-sysadminguide-fig4.png"><br>
+                            Figure 4.&nbsp;Interrupt affinity: all VMs schedule their interrupts (orange) to run on a dedicated core (logical processors 7 and 8)</p>
+                        <p>In this case, Core 1 and Core 2 are used by VMMs. When they have to process an interrupt, this interrupt is serviced by Core 4. Notice how there are no VMs running on Core 4. This scheduling model reduces the chances for a malicious actor to infer data from system interrupts that belong to different users and that could end up running on the same physical core than this actor. Different OSes might provide their own mechanisms for enabling this process. This type of configuration does not fully remove the risk of data being leaked.</p>
+                    </section>
+
+                    <section id="dk_guidelines_summary">
+                        <p>&nbsp;</p>
+                        <h4 style="font-weight: 350;">Guidelines Summary</h4>
+                        <p>Intel has released MCUs and has worked with the software ecosystem to enable software updates that mitigate most of the risks of these transient execution attacks on affected platforms. You should take special care when deciding which strategy to follow. System administrators should carefully study the security and performance implications of each possible solution in the context of the characteristics of the more relevant or typical workloads in their systems. Mission critical systems should enable all the mitigations released by different software vendors, including firmware, OS, drivers, and other installed software.</p>
+                        <p>Systems where all software and users can be trusted might not need to be mitigated against these techniques. Systems used as software as a service (SaaS) infrastructure typically fall into this category. In systems that expect to run untrusted guests, you should apply the MCUs and OS updates and carefully consider the following:</p>
+                        <ol>
+                            <li>The described methods act locally, mainly affecting processes running on the same physical core.</li>
+                            <li>They do not get write privileges to the data.</li>
+                            <li>Privilege escalation is not possible by just following these methods.</li>
+                            <li>Not all possible transient execution attacks can be mitigated on the affected platforms just by installing MCUs and OS. You should evaluate the possible risks associated with those cases, the feasibility of a malicious actor exploiting those issues, and the requirements of the target system.</li>
+                            <li>When enabled, hardware isolation process scheduling restricts the ability of malicious software to collect data from other guests using transient execution attacks. While it is still theoretically possible for a process to leak data from the core where it is running, this scheduling technique effectively limits its impact.</li>
+                            <li>Mitigations might require system (host and VMs) reboots.</li>
+                            <li>Systems where the following conditions are true might not be as exposed to implementations of these methods due to the relatively low extraction rate that these methods present:
+                            <ol>
+                                <li>Cores are overcommitted</li>
+                                <li>Processes/guests are frequently migrated between different cores</li>
+                                <li>Short-running processes are common</li>
+                            </ol>
+                            </li>
+                        </ol>
+                        <p>If the MCUs and/or OS updates cannot be applied to a particular system, you should consider scheduling alternatives to safeguard your users from potential implementations of these methods. However, even if you only follow these recommended mitigations, you can successfully limit the impact of these techniques.</p>
+                        <p>On systems where MCUs and OS updates have been applied, you can still disable the mitigations. For example, Linux systems with kernel version 5.2+ can be booted with kernel parameter&nbsp;<span class="dk_code_simple">mitigations=off</span>. For other operating systems, consult with your OS vendor. Figure 5 shows a diagram of the steps that you should take before applying the mitigations in your system.</p>
+                        <p style="text-align:center"><img class="w-100" alt="" src="/img/darshit_image/tea-sysadminguide-fig5.png" ><br>
+                            Figure 5.&nbsp;Decision tree for applying the mitigations</p>
+                    </section>
+
+                    <section id="dk_appendix_a">
+                        <p>&nbsp;</p>
+                        <h4 style="font-weight: 350;">Appendix A: Hardware Overview</h4>
+                        <p>In modern multicore processors, different physical cores share a certain number of common resources. For example, Figure 6 shows a single-socket processor with four physical cores. Each core has its own L1. The L2 on each core is shared among all cores in the processor. Also, all cores share the same L3 cache.</p>
+                        <p style="text-align:center"><img class="w-100" alt="" src="/img/darshit_image/tea-sysadminguide-fig6.png"><br>
+                            Figure 6.&nbsp;Generic multicore architecture composed of four individual cores</p>
+                        <p>Simultaneous Multithreading (SMT) enables multiple independent threads to improve the utilization of the computational resources provided by modern processors. SMT enables hardware multithreading capability within a single core by using shared execution resources in the core. In Intel® Hyper-Threading Technology (Intel® HT Technology), Intel’s implementation of SMT, each physical core is able to run a number of hyperthreads independently. This number of hyperthreads per physical core is also known as logical processor. For example, Figure 7 shows a generic multi-processor design with four physical cores. In that design, each core can execute two threads concurrently. This means that each physical core provides two logical processors.</p>
+                        <p style="text-align:center"><img class="w-100" alt="" src="/img/darshit_image/tea-sysadminguide-fig7.png"><br>
+                            Figure 7.&nbsp;SMT design</p>
+                        <p>Enabling SMT shows that L1 and L2 are shared by different logical cores on the same physical core. Speculative side-channel methods normally attempt to exploit the shared resources between two logical cores on the same physical core. This typically means L1 and internal structures to the core.</p>
+                    </section>
+
+                    <section id="dk_appendix_b">
+                        <p>&nbsp;</p>
+                        <h3 style="font-weight: 350;">Appendix B: Trusted and Untrusted Guests</h3>
+                        <p>In general, systems that enable untrusted users and codes to execute are susceptible to possible malicious actors trying to get access to protected information.</p>
+                        <p>Those systems where every single user or piece of code is trusted, or where administrators have confidence that no secret information is stored, might not be affected by these methods, and you might not need to implement any additional measures to protect your systems.</p>
+                        <p class="mb-0">Some scenarios where different security related actions are required include:</p>
+                        <ol>
+                            <li>A VM or container that executes arbitrary code. This is code that users or customers develop themselves or download from untrusted sources.</li>
+                            <li>Trusted and untrusted users and code might coexist on the same physical core.</li>
+                            <li>The system, either bare-metal, VMs, or nested VMs, grants access to untrusted users. It’s important to differentiate between untrusted users and users that should not access the system under any circumstances.</li>
+                        </ol>
+                    </section>
+
+                    <section id="dk_appendix_c">
+                        <p>&nbsp;</p>
+                        <h3 style="font-weight: 350;">Appendix C: Mitigation Status Report on sysfs</h3>
+                        <p>On an up to date OS, the status of the different mitigations is reported on sysfs. For simplicity, this document lists the files and possible values for MDS and SRBDS. For the full list, please refer to the&nbsp;<a class="b_special_a1" href="">Linux kernel documentation</a>. When the files indicated cannot be found on a system, that might indicate that the OS is not up to date.</p>
+                    </section>
+
+                    <section id="dk_mds3">
+                        <h4>MDS</h4>
+                        <p>The relevant file for MDS can be found in<strong>&nbsp;/sys/devices/system/cpu/vulnerabilities/mds</strong>. The possible values for this file are shown in Table 8.</p>
+                        <p>Table 8. Possible values reported in sysfs for MDS and their meaning</p>
+
+                        <table class="mv_product_table w-100 mb-4">
+                            <thead>
+                                <tr>
+                                    <th style="text-align:center">Value</th>
+                                    <th style="text-align:center">Meaning</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Not affected</td>
+                                    <td>The platform is not vulnerable to MDS.</td>
+                                </tr>
+                                <tr>
+                                    <td>Vulnerable</td>
+                                    <td>The platform is vulnerable, there is an updated microcode that could mitigate against MDS, but the mitigation has been disabled by using the <span class="dk_code_simple">mds</span>&nbsp;kernel parameter.</td>
+                                </tr>
+                                <tr>
+                                    <td>Vulnerable: Clear CPU buffers attempted, no microcode</td>
+                                    <td>The platform is vulnerable but the microcode has not been updated to support clearing the affected buffers.</td>
+                                </tr>
+                                <tr>
+                                    <td>Mitigation: Clear CPU buffers</td>
+                                    <td>The platform is vulnerable, but the microcode is up to date and the mitigation is enabled.</td>
+                                </tr>
+                            </tbody>
+                        </table> 
+
+                    </section>
+
+                    <section id="dk_srbds3">
+                        <h4>SRBDS</h4>
+                        <p>For the case of SRBDS, the relevant file is<strong>&nbsp;/sys/devices/system/cpu/vulnerabilities/srbds</strong>. The possible values in this file are as shown in Table 9.</p>
+                        <p>Table 9: Possible values reported in sysfs for SRBDS and their meaning</p>
+
+                        <table class="mv_product_table w-100 mb-4">
+                            <thead>
+                                <tr>
+                                    <th style="text-align:center">Value</th>
+                                    <th style="text-align:center">Meaning</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Not affected</td>
+                                    <td>The system is not vulnerable to SRBDS.</td>
+                                </tr>
+                                <tr>
+                                    <td>Vulnerable</td>
+                                    <td>The system has updated microcode and the mitigation is disabled with the kernel parameter&nbsp;<span class="dk_code_simple">srbds=off.</span></td>
+                                </tr>
+                                <tr>
+                                    <td>Vulnerable: No microcode</td>
+                                    <td>The system is vulnerable to SRBDS and is running an older microcode without the SRBDS mitigation.</td>
+                                </tr>
+                                <tr>
+                                    <td>Mitigation: Microcode</td>
+                                    <td>The system has the updated microcode and the mitigation is enabled.</td>
+                                </tr>
+                                <tr>
+                                    <td>Mitigation: TSX disabled</td>
+                                    <td>The system has updated microcode and is one of the CPU’s that is only vulnerable when Intel TSX is enabled. Intel TSX has been disabled on this system at boot time.</td>
+                                </tr>
+                                <tr>
+                                    <td>Unknown: Dependent on hypervisor status</td>
+                                    <td>For virtualized environments, shown for all guest VMs.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </section>
+
+                    <section id="dk_references">
+                        <p>&nbsp;</p>
+                        <h3 style="font-weight: 350;">References</h3>
+                    </section>
+
+                    <section id="dk_intel">
+                        <h4>Intel</h4>
+                        <ul>
+                            <li><a class="b_special_a1" href="">Intel® Analysis of L1 Terminal Fault</a></li>
+                            <li><a class="b_special_a1" href="">Intel Analysis of Microarchitectural Data Sampling</a></li>
+                            <li><a class="b_special_a1" href="">Security Best Practices for Side Channel Resistance</a></li>
+                            <li><a class="b_special_a1" href="">Intel® 64 and IA-32 Architectures Software Developer Manuals</a></li>
+                            <li><a class="b_special_a1" href="">Intel® Software Guidance for Security Advisories</a></li>
+                            <li><a class="b_special_a1" href="">How to Assess the Risk of Your Application</a></li>
+                        </ul>
+                    </section>
+
+                    <section id="dk_os_and_software">
+                        <h4>OS and Software Vendors</h4>
+                        <ul>
+                            <li><a class="b_special_a1" href="">Linux Kernel documentation for Spectre</a></li>
+                            <li><a class="b_special_a1" href="">Linux Kernel documentation for L1TF</a></li>
+                            <li><a class="b_special_a1" href="">Linux Kernel documentation for MDS</a></li>
+                            <li><a class="b_special_a1" href="">Red Hat* Side-Channel Attacks</a></li>
+                            <li><a class="b_special_a1" href="">Red Hat L1TF</a></li>
+                            <li><a class="b_special_a1" href="">Red Hat MDS</a></li>
+                            <li><a class="b_special_a1" href="">Ubuntu* Spectre and Meltdown</a></li>
+                            <li><a class="b_special_a1" href="">Ubuntu L1TF</a></li>
+                            <li><a class="b_special_a1" href="">Ubuntu MDS</a></li>
+                            <li><a class="b_special_a1" href="">VMware* Spectre</a></li>
+                            <li><a class="b_special_a1" href="">VMware L1TF</a></li>
+                            <li><a class="b_special_a1" href="">VMware MDS</a></li>
+                            <li><a class="b_special_a1" href="">Docker*:&nbsp;Using seccomp security profiles for Docker</a></li>
+                            <li><a class="b_special_a1" href="">OpenStack* mitigation for MDS</a></li>
+                            <li><a class="b_special_a1" href="">QEMU 2.11.1 and making use of Spectre/Meltdown mitigation for KVM guests</a></li>
+                            <li><a class="b_special_a1" href="">Microsoft* “Understanding Get-SpeculationControlSettings PowerShell script output”</a></li>
+                            <li><a class="b_special_a1" href="">Microsoft Guidance to Mitigate L1TF</a></li>
+                            <li><a class="b_special_a1" href="">Microsoft Guidance to Mitigate MDS</a></li>
+                            <li><a class="b_special_a1" href="">Microsoft Hyper-V* core scheduling</a></li>
+                        </ul>
+                    </section>
+
+                    <section id="dk_footnotes">
+                        <p>&nbsp;</p>
+                        <h3 style="font-weight: 350;">Footnotes</h3>
+                        <ol>
+                            <li><a class="b_special_a1" href="">Reading Privileged Memory with a Side-Channel</a>. Google Project Zero. 2018.</li>
+                            <li>“Spectre Attacks: Exploiting Speculative Execution”. P. Kocher, J. Horn, A. Fogh, D. Genkin, D. Gruss, W. Haas, M. Hamburg, M. Lipp, S. Mangard, T. Prescher, M. Schwarz, Y. Yarom. 40th IEEE Symposium on Security and Privacy. 2019.</li>
+                            <li>“Meltdown: Reading Kernel Memory from User Space”. M. Lipp, M. Schwarz, D. Gruss, T. Prescher, W. Haas, A. Fogh, J. Horn, S. Mangard, P. Kocher, D. Genkin, Y. Yarom, M. Hamburg. 27th USENIX Security Symposium. 2018.</li>
+                            <li>“Foreshadow: Extracting the Keys to the Intel SGX Kingdom with Transient Out-of-Order Execution”. J. Van Bulck, M. Minkin, O. Weisse, D. Genkin, B. Kasikci, F. Piessens, M. Silberstein, T. F. Wenisch, Y. Yarom, Yuval, R. Strackx. Proceedings of the 27th USENIX Security Symposium. 2018.</li>
+                            <li>”ZombieLoad: Cross-Privilege-Boundary Data Sampling”. M. Schwarz, M. Lipp, D. Moghimi, J. Van Bulck, J. Stecklina, T. Prescher, D. Gruss, Daniel. arXiv:1905.05726. 2019.</li>
+                            <li>"RIDL Rogue In-flight Data Load", S. van Schaik, A. Milburn, S. Österlund, P. Frigo, G. Maisuradze, K. Razavi, H. Bos, C. Giuffrida, Cristiano. 2019.</li>
+                            <li>"Fallout: Reading Kernel Writes From User Space", M. Minkin, D. Moghimi, M. Lipp, M. Schwarz, J. Van Bulck, D. Genkin, D. Gruss, B. Sunar, F. Piessens, Y. Yarom. 2019.</li>
+                            <li>There is a variation called NetSpectre, not covered in this document, that might leak data from a local network at a rate of up to 60 bits an hour, even less over the Internet. Refer to “NetSpectre: Read Arbitrary Memory over Network”. M Schwarz, M Schwarzl, M Lipp, D Gruss. CoRR abs/1807.10535 (2018).</li>
+                            <li><a class="b_special_a1" href="">Detecting Spectre And Meltdown Using Hardware Performance Counters</a>.</li>
+                            <li>“FLUSH+RELOAD: A High Resolution, Low Noise, L3 Cache Side-Channel Attack”. Y. Yarom, K. Falkne. USENIX Security Symposium 2014: 719-732.</li>
+                            <li>“Cross-Tenant Side-Channel Attacks in PaaS Cloud”s. Y. Zhang, A. Juels, M. K. Reiter, and T. Ristenpart. In Proceedings of the 2014 ACM SIGSAC Conference on Computer and Communications Security (CCS '14). ACM, New York, NY, USA, 990-1003</li>
+                            <li>“Cross-VM side channels and their use to extract private keys”. Y. Zhang, A.</li>
+                            <li>Juels, M. K. Reiter, and T. Ristenpart. In Proceedings of the 2012 ACM conference on Computer and communications security (CCS '12). ACM, New York, NY, USA, 305-316.</li>
+                            <li>“Last-Level Cache Side-Channel Attacks are Practical”. F. Liu, Y. Yarom, Q. Ge, G. Heiser, R. B. Lee. IEEE Symposium on Security and Privacy 2015: 605-622</li>
+                        </ol>
+                        <p>&nbsp;</p>
+                        <h5 style="text-align:center; font-weight: 500;"><a class="b_special_a1" href="">Software Security Guidance Home</a>&nbsp;|&nbsp;<a class="b_special_a1" href="">Advisory Guidance</a>&nbsp;|&nbsp;<a class="b_special_a1" href="">Technical Documentation</a>&nbsp;|&nbsp;<a class="b_special_a1" href="">Best Practices</a>&nbsp;|&nbsp;<a href="">Resources</a></h5>
+                        <p>&nbsp;</p>
+                    </section>
+
+                </div>
+            </section>
+        </div>
+    </div>
+    </div>
+    </section>
+
+    <section style="border-top: 1px solid #d7d7d7;" class="container py-5">
+        <h4 class="h6">Product and Performance Information</h4>
+        <div class="disclaimer" style="font-size: 12px;"><sup>1</sup> Performance varies by use, configuration and other
+            factors. Learn more at <a class="b_special_a1" href="">www.Intel.com/PerformanceIndex.</a></div>
+        </div>
+    </section>
+
+    <!-- footer -->
+    <div id="footer"></div>
+
+    <!-- nav script -->
+    <script>
+        // navbar include  
+        fetch('/y_index/y_navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar').innerHTML = data;
+            });
+        // footer include 
+        fetch('/y_index/y_footer.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('footer').innerHTML = data;
+            });
+    </script>
+    <!-- nav script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            if (document.getElementsByClassName('VK_all_sections section') && document.getElementsByClassName('VK_sidebar_dropdown')) {
+                const sections = document.querySelectorAll('.VK_all_sections section');
+                const navLinks = document.querySelectorAll('.VK_sidebar_dropdown a');
+                const detailsElements = document.querySelectorAll('.VK_sidebar_dropdown details');
+
+                function removeActiveClass() {
+                    navLinks.forEach(link => link.classList.remove('VK_sidebar_active_link'));
+                    detailsElements.forEach(details => {
+                        details.removeAttribute('open');
+                        details.setAttribute('close', ''); // Optional: to visually indicate it's closed
+                    });
+                }
+
+                function activateLinkAndDetails(targetId) {
+                    navLinks.forEach(link => {
+                        if (link.getAttribute('href') === `#${targetId}`) {
+                            link.classList.add('VK_sidebar_active_link');
+                            let parentDetails = link.closest('details');
+
+                            // Open all ancestor details elements
+                            while (parentDetails) {
+                                parentDetails.setAttribute('open', '');
+                                parentDetails.removeAttribute('close'); // Optional: remove the closed indicator
+                                parentDetails = parentDetails.parentElement.closest('details');
+                            }
+                        }
+                    });
+                }
+
+                function onScroll() {
+                    let currentSection = '';
+                    sections.forEach(section => {
+                        const sectionTop = section.getBoundingClientRect().top;
+                        const sectionBottom = section.getBoundingClientRect().bottom;
+
+                        // Check if the section is in view
+                        if (sectionTop <= 100 && sectionBottom >= 0) {
+                            currentSection = section.getAttribute('id');
+                        }
+                    });
+
+                    if (currentSection) {
+                        removeActiveClass();
+                        activateLinkAndDetails(currentSection);
+                    } else {
+                        removeActiveClass();
+                    }
+                }
+
+                window.addEventListener('scroll', onScroll);
+            } else {
+                return
+            }
+        });
+    </script>
+
+    <!-- copy script -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            document.querySelectorAll(".mv_copy_icon").forEach((icon) => {
+                icon.addEventListener("click", async function () {
+                    try {
+                        const toolbar = this.closest(".mv_code_toolbar");
+                        const codeBlock = toolbar.querySelector(".code-content");
+                        const codeContent = codeBlock.innerText;
+
+                        // Use Clipboard API to copy text
+                        await navigator.clipboard.writeText(codeContent);
+
+                        // Hide the copy icon and show the "Copied!" message
+                        const message = toolbar.querySelector(".mv_copy_message");
+                        this.classList.add("hidden"); // Hide the copy icon
+                        message.classList.remove("hidden"); // Show the "Copied!" message
+
+                        // Hide the message and show the icon again after 2 seconds
+                        setTimeout(() => {
+                            message.classList.add("hidden");
+                            this.classList.remove("hidden");
+                        }, 2000); // Adjust delay as needed
+
+                    } catch (err) {
+                        console.error('Failed to copy text: ', err);
+                    }
+                });
+            });
+        });
+    </script>
+
+</body>
+
+</html>
+
