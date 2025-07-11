@@ -666,6 +666,66 @@
                             </details>
                             <details>
                                 <summary>
+                                    <a href="#dk_branch_mitigation" class="text-decoration-none VK_a">
+                                        Branch Target Injection Retpoline Mitigation
+                                    </a>
+                                </summary>
+                                <ul class="list-unstyled ps-3 mb-0">
+                                    <li>
+                                        <details>
+                                            <summary>
+                                                <a href="#dk_branch_rsb" class="text-decoration-none VK_a">
+                                                    Branch Target Injection Mitigation for Processors With Alternate Empty RSB Behavior
+                                                </a>
+                                            </summary>
+                                            <ul class="list-unstyled ps-3 mb-0">
+                                                <li>
+                                                    <a href="#dk_example_retpoline" class="text-decoration-none VK_a my-1">
+                                                        Example retpoline sequences
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </details>
+                                    </li>
+                                </ul>
+                                <ul class="list-unstyled ps-3 mb-0">
+                                    <li>
+                                        <details>
+                                            <summary>
+                                                <a href="#dk_runtime_host" class="text-decoration-none VK_a">
+                                                    Runtime/Host Retpoline Mitigation
+                                                </a>
+                                            </summary>
+                                            <ul class="list-unstyled ps-3 mb-0">
+                                                <li>
+                                                    <a href="#dk_linux_gcc" class="text-decoration-none VK_a my-1">
+                                                        Linux* and GCC
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#dk_icc" class="text-decoration-none VK_a my-1">
+                                                        Intel® C Compiler (ICC)
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#dk_llvm_clang" class="text-decoration-none VK_a my-1">
+                                                        LLVM Clang
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </details>
+                                    </li>
+                                </ul>
+                                <ul class="list-unstyled ps-3 mb-0">
+                                    <li>
+                                        <a href="#dk_speculation_buffers" class="text-decoration-none VK_a my-1">
+                                            Speculation Execution using Return Stack Buffers
+                                        </a>
+                                    </li>
+                                </ul>
+                            </details>
+                            <details>
+                                <summary>
                                     <a href="#dk_speculative" class="text-decoration-none VK_a">
                                         Speculative Store Bypass Runtime Mitigation
                                     </a>
@@ -686,7 +746,7 @@
                                 </summary>
                                 <ul class="list-unstyled ps-3 mb-0">
                                     <li>
-                                        <a href="#dk_linux" class="text-decoration-none VK_a my-1">
+                                        <a href="#dk_linuxs" class="text-decoration-none VK_a my-1">
                                             Linux
                                         </a>
                                     </li>
@@ -1423,14 +1483,196 @@
                         <p>A <a class="b_special_a1" href="">comprehensive mitigation approach to bounds check bypass</a> is proposed on the LLVM lists describing compiler assisted mitigation technique for LLVM using <span class="dk_code_simple">CMOVcc</span>.</p>
                     </section>
 
-                    <section id="">
+                    <section id="dk_branch_mitigation">
                         <p>&nbsp;</p>
                         <h3 style="font-weight: 350; padding-bottom: 0.5rem;">Branch Target Injection Retpoline Mitigation</h3>
-                        <p>Processors may require different settings to implement the following mitigations. Be sure to check the CPUID and related MSRs. You can find guidance on these settings in the&nbsp;<a class="b_special_a1"  href="">CPUID Enumeration and Architectural MSRs</a>.</p>
-                        <p>Speculative store bypass can be mitigated through software-based approaches including process isolation and selective use of&nbsp;<code>LFENCE</code>. If software-based mitigations are not feasible, then use Speculative Store Bypass Disable (SSBD), which prevents a load from executing speculatively until the addresses of all older stores are known, although this may impact performance<br>
-                            &nbsp;</p>
-                        <p>Example scenario:</p>
+                        <p><a class="b_special_a1" href="">Retpoline </a>is a mitigation for branch target injection on Intel processors belonging to family 6 (as enumerated by the CPUID instruction) that do not have support for enhanced IBRS. Combined with updated microcode support, retpoline can help ensure that a given indirect branch is resistant to branch target injection exploits. Retpoline sequences deliberately steer the processor’s branch prediction logic to a trusted location, thereby helping to mitigate a potential exploit from steering the branch prediction logic elsewhere.</p>
+                        <p>The managed runtime JIT and AOT compilers may also generate indirect branches. Therefore when the managed runtime is used in sandbox environments or where isolation is required, for microprocessors listed in the <a class="b_special_a1" href="">security advisory</a>, the managed runtime JIT and AOT compilers can automatically generate retpoline sequences for “near call indirect” and “near jump indirect” instead of vulnerable indirect branches.</p>
+                        <p>The community is using several retpoline sequences. Generally, these sequences are functionally equivalent to each other, but differ with respect to their power impact on different microarchitectures.&nbsp;Inserting <span class="dk_code_simple">PAUSE</span><strong> </strong>and/or <span class="dk_code_simple">LFENCE</span> instructions may reduce the power cost of the speculative spin construct in retpoline on <a class="b_special_a1" href="">some architectures</a>.</p>
+                    </section>
 
+                    <section id="dk_branch_rsb">
+                        <h4>Branch Target Injection Mitigation for Processors With Alternate Empty RSB Behavior</h4>
+                        <p>The processors listed in the Empty RSB Mitigation on Skylake-generation section of <a class="b_special_a1" href="">Retpoline: a Branch Target Injection Mitigation</a> have different Return Stack Buffer (RSB) behavior, although the near call indirect and near jump indirect retpolines significantly raise the bar for successful attacks, developers need to additionally use return retpolines to further mitigate the <span class="dk_code_simple">RET</span> instruction.</p>
+                        <p>Managed runtimes could be used in a virtualized environment. A valuable tool in modern data centers is live migration of virtual machines (VMs) among a cluster of bare-metal hosts. However, those bare-metal hosts often differ in hardware capabilities. These differences could prevent a VM that started on one host from being migrated to another host that has different capabilities. For instance, a VM using Intel® Advanced Vector Extensions 512 (Intel® AVX-512) instructions could not be live-migrated to an older system without Intel® AVX-512.</p>
+                        <p>A common approach to solving this issue is exposing the oldest processor model with the smallest subset of hardware features to the VM. This addresses the live-migration issue, but results in a new issue: Software using model/family numbers from CPUID can no longer detect when it is running on a newer processor that is vulnerable to exploits of Empty RSB conditions.</p>
+                        <p>To remedy this situation, a managed runtime running in a virtualized environment needs to query bit 2 of the <span class="dk_code_simple">IA32_ARCH_CAPABILITIES</span> MSR, known as “RSB Alternate” (RSBA). Since applications can’t read MSRs directly, OS vendors may expose this information through an API to help applications take corrective measures. When RSBA is set, it indicates that the underlying VM may run on a processor vulnerable to exploits of Empty RSB conditions regardless of the processor’s Family/Model signature, and that the managed runtime should deploy appropriate mitigations.</p>
+                    </section>
+
+                    <section id="dk_example_retpoline">
+                        <h4>Example retpoline sequences</h4>
+                        <p>The assembly snippets below show retpoline mitigations in GNU Assembler syntax. Refer to <a class="b_special_a1" href="">Retpoline: A Branch Target Injection Mitigation</a> for more details.</p>
+                        <p>Example 1.&nbsp;Near Call/Jump Indirect Retpoline Sequence For Address In Register</p>
+                        <table class="mv_product_table w-100 mb-4">
+                            <tbody>
+                                <tr>
+                                    <td>Before</td>
+                                    <td><span class="dk_code_simple">jmp *rax</span></td>
+                                </tr>
+                                <tr>
+                                    <td>After</td>
+                                    <td><span class="dk_code_simple">call load_label<br>
+                                    capture_ret_spec:&nbsp;<br>
+                                    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; pause ; lfence&nbsp;<br>
+                                    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; jmp capture_ret_spec<br>
+                                    load_label:&nbsp;<br>
+                                    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; mov %rax, (%rsp)<br>
+                                    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ret</span></td>
+                                </tr>
+                                <tr>
+                                    <td>Before</td>
+                                    <td><span class="dk_code_simple">call *rax</span></td>
+                                </tr>
+                                <tr>
+                                    <td>After</td>
+                                    <td><span class="dk_code_simple">&nbsp;&nbsp; &nbsp;jmp label2 &nbsp;&nbsp;<br>
+                                    label0:&nbsp;<br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;call label1<br>
+                                    capture_ret_spec:<br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pause ; lfence<br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;jmp capture_ret_spec<br>
+                                    label1:<br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mov %rax, (%rsp)<br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ret<br>
+                                    label2:<br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;call label0</span></td>
+                                </tr>
+                            </tbody>
+                        </table> 
+                        <p>Example 2.&nbsp;Near Call/Jump Indirect Retpoline Sequence For Address In Memory</p>
+                        <table class="mv_product_table w-100 mb-4">
+                            <tbody>
+                                <tr>
+                                    <td>Before</td>
+                                    <td><span class="dk_code_simple">jmp *mem</span></td>
+                                </tr>
+                                <tr>
+                                    <td>After</td>
+                                    <td><span class="dk_code_simple">push mem<br>
+                                    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;call load_label<br>
+                                    capture_ret_spec:&nbsp;<br>
+                                    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; pause ; lfence&nbsp;<br>
+                                    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; jmp capture_ret_spec<br>
+                                    load_label:&nbsp;<br>
+                                    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; lea 8(%rsp), %rsp<br>
+                                    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ret</span></td>
+                                </tr>
+                                <tr>
+                                    <td>Before</td>
+                                    <td><span class="dk_code_simple">call *mem</span></td>
+                                </tr>
+                                <tr>
+                                    <td>After</td>
+                                    <td><span class="dk_code_simple">jmp label2 &nbsp;&nbsp;<br>
+                                    label0:&nbsp;<br>
+                                    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;push mem<br>
+                                    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; call label1<br>
+                                    capture_ret_spec:<br>
+                                    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; pause ; lfence<br>
+                                    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; jmp capture_ret_spec<br>
+                                    label1:<br>
+                                    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; lea 8(%rsp), %rsp<br>
+                                    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ret<br>
+                                    label2:<br>
+                                    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; call label0</span></td>
+                                </tr>
+                            </tbody>
+                        </table> 
+                        <p>Example 3.&nbsp;Near Return Retpoline Sequence For Processors With Alternate Empty RSB Behavior</p>
+                        <table class="mv_product_table w-100 mb-4">
+                            <tbody>
+                                <tr>
+                                    <td>Before</td>
+                                    <td><span class="dk_code_simple">ret</span></td>
+                                </tr>
+                                <tr>
+                                    <td>After</td>
+                                    <td><span class="dk_code_simple">call load_label<br>
+                                    capture_ret_spec:&nbsp;<br>
+                                    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; pause ; lfence&nbsp;<br>
+                                    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; jmp capture_ret_spec<br>
+                                    load_label:&nbsp;<br>
+                                    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; lea 8(%rsp), %rsp<br>
+                                    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ret</span></td>
+                                </tr>
+                            </tbody>
+                        </table> 
+                    </section>
+
+                    <section id="dk_runtime_host">
+                        <h4>Runtime/Host Retpoline Mitigation</h4>
+                        <p>Managed runtimes and host application are usually implemented in C/C++. To mitigate branch target injection when the managed runtime is used in sandbox environment, you should also consider applying mitigations to the runtime itself, the hosting process, and the libraries used by the runtime.</p>
+                        <p>Managed runtimes can also have inline assembly. Some low-level critical elements of the managed runtimes are implemented in assembly for performance reasons (for example, interpreter, portions of object allocation or garbage collection, etc.). The mitigations for branch target injection need to be carefully applied to the inline assembly as well.</p>
+                        <p>In the following sections, we outline the compiler flags that you can use to mitigate branch target injection when you compile managed runtime C/C++ elements to create a sandbox environment.</p>
+                    </section>
+
+                    <section id="dk_linux_gcc">
+                        <h4>Linux* and GCC</h4>
+                        <p>You can implement <a class="b_special_a1" href="">branch target injection mitigation on Linux* with GCC</a> by compiling the runtime with the following compiler switches:</p>
+                        <div class="mv_code_toolbar">
+                            <div class="mv_toolbar_item mv_copy_icon">
+                                <i class="fa-regular fa-copy"></i>
+                            </div>
+                            <div class="mv_copy_message text-end hidden">Copied</div>
+                            <div class="code-content">
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp;</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 1rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">-mindirect-branch=thunk/thunk-inline/thunk-extern</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> 
+                        <p>When compiling for the processors with alternate RSB behavior as described in the Empty RSB Mitigation on Skylake-generation section of <a class="b_special_a1" href="">Retpoline: A Branch Target Injection Mitigation</a>, you also need to <a class="b_special_a1" href="">generate the ret retpolines</a> with the following compiler switches:</p>
+                        <div class="mv_code_toolbar">
+                            <div class="mv_toolbar_item mv_copy_icon">
+                                <i class="fa-regular fa-copy"></i>
+                            </div>
+                            <div class="mv_copy_message text-end hidden">Copied</div>
+                            <div class="code-content">
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp;</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 1rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">-mfunction-return=thunk/thunk-inline/thunk-extern</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> 
+                    </section>
+
+                    <section id="dk_icc">
+                        <h4 class="mt-4">Intel® C Compiler (ICC)</h4>
+                        <p><a class="b_special_a1" href="">Intel® C Compiler v18.0.3</a> also supports the switches described above. Work is ongoing to backport these switches version 16 and version 17.</p>
+                    </section>
+
+                    <section id="dk_llvm_clang">
+                        <h4 class="mt-4">LLVM Clang</h4>
+                        <p>The LLVM Clang C/C++ Compiler supports -mretpoline and -mretpoline-external-thunk &nbsp;switches for retpoline generation. These switches are backported to <a class="b_special_a1" href="">version 6.0.0</a>, and work is ongoing to backport to <a class="b_special_a1" href="">version 5.0.2</a>.</p>
+                    </section>
+
+                    <section id="dk_speculation_buffers">
+                        <h4 class="mt-4">Speculation Execution using Return Stack Buffers</h4>
+                        <p>The Return Stack Buffer (RSB) is a last-in-first-out (LIFO), fixed-size stack that is implemented in hardware. &nbsp;In the RSB, <span class="dk_code_simple">CALL</span> instructions “push” entries, and <span class="dk_code_simple">RET</span> instructions “pop” entries. Prediction of <span class="dk_code_simple">RET</span> instructions relies on the RSB first and differs from prediction of <span class="dk_code_simple">JMP</span> and <span class="dk_code_simple">CALL</span> instructions. On many Intel processors, enough return instructions in a row can cause the RSB to wrap and to incorrectly speculate to a previous <span class="dk_code_simple">RET</span> instruction’s target.&nbsp;</p>
+                        <p>For example, if the RSB pointer is pointing to the bottom entry of the RSB and two return instructions are executed, the RSB pointer will wrap to the top entry. Therefore, the first return address prediction will be taken from the bottom entry, and the second return address prediction will be taken from the top entry.</p>
+                        <p>Intel® processors based on CPUID family 6, excluding the processors listed in Table 5: processors with different RSB behavior in <a class="b_special_a1" href="">Retpoline: A Branch Target Injection Mitigation</a>, exhibit the RSB wrap behavior. For these processors, the following techniques may be applied for mitigation.</p>
+                        <p>One mitigation for speculative execution exploits targeting the RSB is tracking the call depth and using RSB stuffing whenever the call depth exceeds 16 entries, which could cause the RSB pointer to wrap. &nbsp;An example RSB stuffing sequence is shown below in Example 4.</p>
+                        <p>Example 4.&nbsp;RSB Stuffing</p>
                         <div class="mv_code_toolbar">
                             <div class="mv_toolbar_item mv_copy_icon">
                                 <i class="fa-regular fa-copy"></i>
@@ -1447,226 +1689,209 @@
                                 <div style="padding-bottom: 0rem !important" class="d-flex">
                                     <div class="">
                                         <div class="mv_code text-break">
-                                            <p class="mb-0">//Store N at address ‘ptrA’</p>
+                                            <p class="mb-0">void rsb_stuff(void) {  </p>
                                         </div>
                                     </div>
                                 </div>
-                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;"
-                                    class="d-flex pb-0">
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
                                     <div class="">
                                         <div class="mv_code text-break">
-                                            <p class="mb-0">&nbsp;</p>
+                                            <p class="mb-0">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  asm(".rept 16\n"</p>
                                         </div>
                                     </div>
                                 </div>
-                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;"
-                                    class="d-flex pb-0">
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
                                     <div class="">
                                         <div class="mv_code text-break">
-                                            <p class="mb-0">*ptrA = N;</p>
+                                            <p class="mb-0">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;"call 1f\n"</p>
                                         </div>
                                     </div>
                                 </div>
-                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;"
-                                    class="d-flex pb-0">
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
                                     <div class="">
                                         <div class="mv_code text-break">
-                                            <p class="mb-0">&nbsp;</p>
+                                            <p class="mb-0">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;"pause ; lfence\n"</p>
                                         </div>
                                     </div>
                                 </div>
-                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;"
-                                    class="d-flex pb-0">
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
                                     <div class="">
                                         <div class="mv_code text-break">
-                                            <p class="mb-0">. . .</p>
+                                            <p class="mb-0">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;"1: \n"</p>
                                         </div>
                                     </div>
                                 </div>
-                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;"
-                                    class="d-flex pb-0">
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
                                     <div class="">
                                         <div class="mv_code text-break">
-                                            <p class="mb-0">&nbsp;</p>
+                                            <p class="mb-0">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;".endr\n"</p>
                                         </div>
                                     </div>
                                 </div>
-                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;"
-                                    class="d-flex pb-0">
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
                                     <div class="">
                                         <div class="mv_code text-break">
-                                            <p class="mb-0">// expr is a high-latency expression evaluating to address ‘prtA’</p>
+                                            <p class="mb-0">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;"addq $(8 * 16), %rsp\n"); </p>
                                         </div>
                                     </div>
                                 </div>
-                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;"
-                                    class="d-flex pb-0">
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
                                     <div class="">
                                         <div class="mv_code text-break">
-                                            <p class="mb-0">&nbsp;</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;"
-                                    class="d-flex pb-0">
-                                    <div class="">
-                                        <div class="mv_code text-break">
-                                            <p class="mb-0">* ( <span><</span>expr<span>></span> ) = P;</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;"
-                                    class="d-flex pb-0">
-                                    <div class="">
-                                        <div class="mv_code text-break">
-                                            <p class="mb-0">&nbsp;</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;"
-                                    class="d-flex pb-0">
-                                    <div class="">
-                                        <div class="mv_code text-break">
-                                            <p class="mb-0">// Read value from ‘ptrA’</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;"
-                                    class="d-flex pb-0">
-                                    <div class="">
-                                        <div class="mv_code text-break">
-                                            <p class="mb-0">&nbsp;</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;"
-                                    class="d-flex pb-0">
-                                    <div class="">
-                                        <div class="mv_code text-break">
-                                            <p class="mb-0">X = *ptrA; // X can read the stale value N</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;"
-                                    class="d-flex pb-0">
-                                    <div class="">
-                                        <div class="mv_code text-break">
-                                            <p class="mb-0">&nbsp;</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div style="padding-top: 0rem !important; padding-bottom: 1rem !important;"
-                                    class="d-flex pb-0">
-                                    <div class="">
-                                        <div class="mv_code text-break">
-                                            <p class="mb-0">// Leak the value X into the cache using a gadget.</p>
+                                            <p class="mb-0">}</p>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-
+                        </div> 
+                        <p>For more details on RSB stuffing, refer to the Empty RSB Mitigation on Skylake-generation section in <a class="b_special_a1" href="">Retpoline: A Branch Target Injection Mitigation</a>.</p>
+                        <p>On Intel processors belonging to family 6 (as enumerated by the CPUID instruction) that do not have support for enhanced IBRS, you can use near return retpoline to mitigate speculative execution exploits that target the RSB. Combined with updated microcode support, near return retpoline can help ensure that a given return instruction is resistant to speculative execution exploits using the RSB. Near return retpoline sequences deliberately steer the processor’s prediction logic to a known location, thereby helping to mitigate potential exploits from steering the prediction logic elsewhere. For more details, refer to Example 3 of the example retpoline sequences above.</p>
                     </section>
 
-                    <section id="dk_applications">
+                    <section id="dk_speculative">
                         <p>&nbsp;</p>
-                        <h3 style="font-weight: 350; padding-bottom: 0.5rem;">Applications</h3>
+                        <h3 style="font-weight: 350; padding-bottom: 0.5rem;">Speculative Store Bypass Runtime Mitigation</h3>
+                        <p>Managed runtimes used in sandbox environments using language-based security are vulnerable to malicious actors who can use confused deputy code to influence JIT/AOT code generation to break the sandbox isolation. If software is not relying on language-based security mechanisms, for example because it is using process isolation, then speculative store bypass mitigation may not be needed. The speculative store bypass method can be mitigated with software modifications or using the processor supported mitigation mechanism.</p>
                     </section>
 
-                    <section id="dk_process_isolation">
+                    <section id="dk_software_mitigation">
+                        <h4 class="mt-4">Software-based Mitigation</h4>
+                        <p>Isolating secrets to a separate address space from untrusted code will mitigate speculative store bypass. For example, creating a separate process for different websites to ensure that secrets are mapped to different address spaces from a malicious website executing code. Similar techniques can be used for other runtime environments that rely on language based security to run trusted and untrusted code within the same process.</p>
+                        <p>Inserting <span class="dk_code_simple">LFENCE</span><strong> </strong>between store and subsequent load or between the load and any subsequent usage of the data returned which might create a side channel will mitigate speculative store bypass. &nbsp;Software should apply this mitigation when there is a realistic risk of an exploit to minimize performance degradation.</p>
+                    </section>
+
+                    <section id="dk_ssbd">
                         <p>&nbsp;</p>
-                        <h4>Process Isolation</h4>
-                        <p>This approach moves all secrets into a separate address space from untrusted code. For example, creating separate processes for different websites, so that secrets of one website are not mapped into the same address space as code from a different, possibly malicious, website. Similar techniques can be used for other runtime environments that rely on language based security to run trusted and untrusted code within the same process. This may also be useful as a defense to prevent trusted code from being manipulated to create a side channel.&nbsp;</p>
-                        <p>Other mitigations,&nbsp;such as inserting register dependencies between a vulnerable load address and the corresponding store address,&nbsp;may reduce the likelihood of such an attack being successful.</p>
+                        <h3 style="font-weight: 350;">Speculative Store Bypass Disable (SSBD)</h3>
+                        <p>When the software based mitigations are not feasible, employing processor supported Speculate Store Bypass Disable mechanism can be used to mitigate speculative store bypass. When SSBD is set, loads will not execute speculatively until the address of the older stores are known. Use SSBD judiciously to minimize the impact on performance. Managed runtimes can use Operating System provided API’s to enable and disable SSBD.<br>
+                            For additional information on SSBD, refer to the <a class="b_special_a1" href="">Speculative Execution Side Channel Mitigations</a> document.</p>
                     </section>
 
-                    <section id="dk_usind_lfence">
-                        <p>&nbsp;</p>
-                        <h4>Using LFENCE to Control Speculative Load Execution</h4>
-                        <p>As speculative store bypass can only occur when a load is able to execute before an older store with an overlapping address computes the loaded address, an&nbsp;LFENCE&nbsp;between that store and the subsequent load is sufficient to prevent this case. Software should be careful to apply this mitigation judiciously to avoid unnecessary performance loss.</p>
-                        <p>Software can insert an&nbsp;LFENCE&nbsp;between a store and the subsequent load (for example, the load that dereferences X in step 3) to prevent the load from executing before the previous store’s address is known. The&nbsp;LFENCE&nbsp;can also be inserted between the load and any subsequent usage of the returned data which might create a side channel (for example, the access to Array in step 3). Software should only apply this mitigation where there is a realistic risk of an exploit. Risk factors include whether the attacker can control the old value in the memory location, if there is a realistic chance of the load executing before the store address is known, and if there is a disclosure gadget that reveals the contents of sensitive memory.</p>
-                    </section>
-
-                    <section id="dk_speculative_store">
-                        <p>&nbsp;</p>
-                        <h4>Speculative Store Bypass Disable (SSBD)</h4>
-                        <p>If the earlier software-based mitigations are not feasible, then employing Speculative Store Bypass Disable (SSBD) will mitigate speculative store bypass. When SSBD is set, loads will not execute speculatively until the addresses of all older stores are known, ensuring that a load does not speculatively consume stale data values.&nbsp;</p>
-                        <p>Updates to microcode are required for SSBD. Software can disable speculative store bypass on a logical processor by setting&nbsp;IA32_SPEC_CTRL.SSBD&nbsp;to 1. On Linux*, you can enable this mitigation in applications at the thread level by via a new&nbsp;prctl()&nbsp;call:&nbsp;PR_SET_SPECULATION_CTRL. &nbsp;This mitigation is inherited by child processes, which makes it possible to deploy from a wrapper program.</p>
-                    </section>
-
-                    <section id="dk_processor">
-                        <p>&nbsp;</p>
-                        <h4>Processor Considerations</h4>
-                        <p>On Intel® Core™ and Intel® Xeon® processors that enable Intel® Hyper-Threading Technology and do not support&nbsp;<a class="b_special_a1" href="">enhanced IBRS</a>, setting SSBD on a hyperthread might impact the performance of a sibling hyperthread on the same core. On these processors, we recommend clearing the SSBD MSR bit when in an idle state.<br>
-                            &nbsp;</p>
-                    </section>
-
-                    <section id="dk_front_end">
-                        <p>&nbsp;</p>
-                        <h3 style="font-weight: 350; padding-bottom: 0.5rem;">Front-end Web Developers</h3>
-                        <p>Front-end web developers should apply the same strategies described in the Applications section above to mitigate.</p>
-                    </section>
-
-                    <section id="dk_runtime">
-                        <p>&nbsp;</p>
-                        <h3 style="font-weight: 350; padding-bottom: 0.5rem;">Runtime Developers</h3>
-                        <p>Managed runtimes in sandbox environments using language-based security are vulnerable to malicious actors who can use confused deputy code to influence JIT/AOT code generation to break the sandbox isolation.&nbsp;</p>
-                        <p>Follow the above guidance on process isolation, judiciously implementing&nbsp;<code>LFENCE</code>, or using SSBD. Managed runtimes can use OS-provided API’s to enable and disable SSBD.</p>
-                    </section>
-
-                    <section id="dk_developers_enclave">
-                        <p>&nbsp;</p>
-                        <h3 style="font-weight: 350; padding-bottom: 0.5rem;">Developers of Software Running in an Enclave</h3>
-                        <p>Both enclave and SMM code will behave as if SSBD is set regardless of the actual value of the&nbsp;IA32_SPEC_CTRL.SSBD&nbsp;MSR bit. The processor will ensure that a load within an enclave or SMM code does not speculatively consume stale data values due to bypassing an older store on the same logical processor.</p>
-                    </section>
-
-                    <section id="dk_software_guidelines">
-                        <h4>Software Usage Guidelines</h4>
-                        <p>Enabling SSBD can prevent exploits based on speculative store bypass. However, this may reduce performance. Intel provides the following recommendations for use of such a mitigation.&nbsp;</p>
+                    <section id="dk_linuxs">
+                        <h4>Linux</h4>
+                        <p>In Linux, the <span class="dk_code_simple">spec_store_bypass_disable</span> boot option controls whether the system uses the speculative store bypass optimization. The parameter takes the following values</p>
+                        <p>spec_store_bypass_disable&nbsp;Boot Options</p>
+                        <table class="mv_product_table w-100 mb-4">
+                            <tbody>
+                                <tr>
+                                    <td><span class="dk_code_simple">on</span></td>
+                                    <td>Unconditionally disable speculative store bypass</td>
+                                </tr>
+                                <tr>
+                                    <td><span class="dk_code_simple">off</span></td>
+                                    <td>Unconditionally enable speculative store bypass</td>
+                                </tr>
+                                <tr>
+                                    <td><span class="dk_code_simple">auto</span></td>
+                                    <td>The kernel detects whether the CPU model contains an implementation of speculative store bypass and picks the most appropriate mitigation. If the CPU is not vulnerable, this option selects off. If the CPU is vulnerable, the default mitigation is architecture and Kconfig dependent. See below.</td>
+                                </tr>
+                                <tr>
+                                    <td><span class="dk_code_simple">prctrl</span></td>
+                                    <td>Controls speculative store bypass per thread via&nbsp;<strong><code>prctl</code></strong>. Speculative store bypass is enabled for processes by default. The state of the control is inherited on fork.</td>
+                                </tr>
+                                <tr>
+                                    <td><span class="dk_code_simple">seccomp</span></td>
+                                    <td>Same as&nbsp;<strong><code>prctl</code></strong>, except all&nbsp;<strong><code>seccomp</code>&nbsp;</strong>threads will disable speculative store bypass unless they explicitly opt out.</td>
+                                </tr>
+                            </tbody>
+                        </table> 
+                        <p>Not specifying this boot option is equivalent to setting <span class="dk_code_simple">spec_store_bypass_disable=auto</span><br>
+                            Setting the <span class="dk_code_simple">spec_store_bypass_disable</span> parameter value to <span class="dk_code_simple">prctl</span> or <span class="dk_code_simple">seccomp</span> enables controlling speculative store bypass per thread. The <span class="dk_code_simple">prctl</span><strong> </strong>interface is documented in the Linux kernel documentation.<br>
+                            <span class="dk_code_simple">prctl</span><strong> </strong>has two options that are related to speculative store bypass disable:</p>
+                            <ul>
+                                <li><span class="dk_code_simple">PR_GET_SPECULATION_CTRL</span></li>
+                                <li><span class="dk_code_simple">PR_SET_SPECULATION_CTRL</span></li>
+                            </ul>
+                        <p><span class="dk_code_simple">PR_GET_SPECULATION_CTRL</span> returns the state of the speculation feature which is selected with arg2 of <span class="dk_code_simple">prctl(2)</span>. The return value uses bits 0-3, corresponding to the following:</p>
+                        <p><span class="dk_code_simple">PR_GET_SPECULATION_CTRL</span> Values</p>
+                        <table class="mv_product_table w-100 mb-4">
+                            <thead>
+                                <tr>
+                                    <th scope="col" style="text-align:center">Bit</th>
+                                    <th scope="col" style="text-align:center">Define</th>
+                                    <th scope="col" style="text-align:center">Description</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>0</td>
+                                    <td><span class="dk_code_simple">PR_SPEC_PRCTL</span></td>
+                                    <td>Mitigation can be controlled per task using&nbsp;PR_SET_SPECULATION_CTRL.</td>
+                                </tr>
+                                <tr>
+                                    <td>1</td>
+                                    <td><span class="dk_code_simple">PR_SPEC_ENABLE</span></td>
+                                    <td>The speculation feature is enabled, mitigation is disabled.</td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td><span class="dk_code_simple">PR_SPEC_DISABLE</span></td>
+                                    <td>The speculation feature is disabled, mitigation is enabled.</td>
+                                </tr>
+                                <tr>
+                                    <td>3</td>
+                                    <td><span class="dk_code_simple">PR_SPEC_FORCE_DISABLE</span></td>
+                                    <td>Same as&nbsp;PR_SPEC_DISABLE, but cannot be undone. A subsequent&nbsp;prctl(..., PR_SPEC_ENABLE)&nbsp;will fail.</td>
+                                </tr>
+                            </tbody>
+                        </table> 
+                        <p><span class="dk_code_simple">PR_SET_SPECULATION_CTRL</span> allows controlling the speculation feature.</p>
+                        <p>Sample Invocations:</p>
                         <ul>
-                            <li>Intel recommends software set SSBD for applications and/or execution runtimes relying on language-based security mechanisms such as managed runtimes and just-in-time translators. If software is not relying on language-based security mechanisms, for example because it is using process isolation, SSBD may not be needed.&nbsp;</li>
-                            <li>Intel is currently not aware of any practical exploit for Operating Systems, Virtual Machine Monitors, or other applications that do not rely on language-based security. &nbsp;Intel encourages its users to consider their particular security needs in determining whether to set SSBD outside context of language-based security mechanisms.<br>
-                            &nbsp;</li>
+                            <li><span class="dk_code_simple">prctl(PR_GET_SPECULATION_CTRL, PR_SPEC_STORE_BYPASS, 0, 0, 0);</span></li>
+                            <li><span class="dk_code_simple">prctl(PR_SET_SPECULATION_CTRL, PR_SPEC_STORE_BYPASS, PR_SPEC_ENABLE, 0, 0);</span></li>
+                            <li><span class="dk_code_simple">prctl(PR_SET_SPECULATION_CTRL, PR_SPEC_STORE_BYPASS, PR_SPEC_DISABLE, 0, 0);</span></li>
+                            <li><span class="dk_code_simple">prctl(PR_SET_SPECULATION_CTRL, PR_SPEC_STORE_BYPASS, PR_SPEC_FORCE_DISABLE, 0, 0);</span></li>
                         </ul>
-                    </section>
-
-                    <section id="dk_os_and_dev">
-                        <p>&nbsp;</p>
-                        <h3 style="font-weight: 300; padding-bottom: 0.8rem;">OS and Driver Developers</h3>
-                        <p>We are currently not aware of any practical exploit for Operating Systems (OS), Virtual Machine Monitors (VMMs), or other applications that do not rely on language-based security. To minimize performance impact, we do not currently recommend setting SSBD for OSes, VMMs, or applications that do not rely on language-based security.</p>
-                        <p>VMMs should allow guests to determine whether to enable SSBD mitigation by providing direct guest access to&nbsp;IA32_SPEC_CTRL.</p>
-                        <p>OSes should provide an API through which a process can request to be protected by SSBD mitigation.</p>
-                    </section>
-
-                    <section id="dk_linux">
-                        <h4>Linux*</h4>
-                        <p>Kernel Guidance for Linux systems can be found in&nbsp;<a class="b_special_a1" href="">Mitigation Overview for Potential Side-Channel Cache Exploits in Linux*</a>.</p>
                     </section>
 
                     <section id="dk_windows">
-                        <h4>Windows*</h4>
-                        <p>Microsoft plans to provide a mitigation that leverages the new hardware features in a future Windows* update. Please refer to Microsoft’s public blog.</p>
+                        <h4 class="mt-4">​Windows*</h4>
+                        <p>Microsoft plans to provide a mitigation that leverages the new hardware features in a future Windows* update. Refer to <a class="b_special_a1" href="">Microsoft’s public blog</a> for more information.</p>
                     </section>
 
-                    <section id="dk_uefi_firmware">
-                        <h4>UEFI Firmware</h4>
-                        <p>No changes to UEFI or coreboot are currently planned.</p>
-                        <p>SMM code will behave as if speculative store bypass disable (SSBD) is set regardless of the actual value of the MSR bit. The processor will ensure that a load within SMM code does not speculatively consume stale data values due to bypassing an older store on the same logical processor.</p>
-                    </section>
-
-                    <section id="dk_virtual_machine">
+                    <section id="dk_related_techno">
                         <p>&nbsp;</p>
-                        <h3 style="font-weight: 350;">Virtual Machine Monitor (VMM) Developers</h3>
-                        <p>Virtual machine monitor developers should implement the same strategies described in the OS and driver developers section to mitigate.</p>
+                        <h3 style="font-weight: 350; padding-bottom: 0.5rem;">Related Intel Security Features and Technologies</h3>
+                        <p>Several related security features and technologies, which are either present in existing Intel processors or are planned for future processors, can reduce the effectiveness of the side channel methods mentioned in the previous sections.</p>
                     </section>
 
-                    <section id="dk_references">
+                    <section id="dk_execute_disable">
+                        <h4 class="mt-4">Execute Disable Bit</h4>
+                        <p>The Execute Disable Bit is a hardware-based security feature present in existing Intel processors that can help reduce system exposure to viruses and malicious code. Execute Disable Bit allows the processor to classify areas in memory where application code can or cannot execute, even speculatively. This helps reduce the gadget space, which increases the difficulty of branch target injection attacks. All major operating systems enable Execute Disable Bit support by default.</p>
+                        <p>While generating code, managed runtime JIT/AOT compilers can mark the code buffers as not executable until the compilation of the method is complete. This is good code hygiene in general, but is especially helpful in mitigating gadget sources in managed runtimes.</p>
+                    </section>
+
+                    <section id="dk_cet">
+                        <h4 class="mt-4">Control Flow Enforcement Technology (CET)</h4>
+                        <p>On future Intel processors, Control flow Enforcement Technology (CET) will allow developers to limit near indirect jump and call instructions to only target <span class="dk_code_simple">ENDBRANCH</span> instructions. This feature can help reduce the speculation allowed to instructions that are not <span class="dk_code_simple">ENDBRANCH</span> instructions. This greatly reduces the gadget space, which increases the difficulty of branch target injection attacks.</p>
+                        <p>CET also provides capabilities to defend against Return-Oriented-Programming (ROP) control-flow subversion attacks. However, the retpoline technique closely resembles the approaches used in ROP attacks. Be aware that if used in conjunction with CET, retpoline might trigger false positives in the CET defenses.</p>
+                        <p>For additional information on CET,&nbsp;see Chapter 18 of <a class="b_special_a1" href="">Intel® 64 and IA-32 Architectures Software Developer's Manual Volume 1: Basic Architecture</a>.</p>
+                    </section>
+
+                    <section id="dk_protection">
+                        <h4 class="mt-4">Protection Keys</h4>
+                        <p>On future Intel processors that have both hardware support for mitigating rogue data cache load and protection keys support, protection keys can limit the data that is accessible to a piece of software. This can be used to limit the memory addresses that could be revealed by a bound check bypass or branch target injection attack.</p>
+                        <p>A managed runtime could deploy protection keys by changing the protection key used to map secrets and then limiting what is executed while those secrets are marked accessible in the Protection Keys Rights register (PKRU). The secrets being protected could be of any class: runtime host, runtime environment or payload.</p>
+                        <p>Protection keys can also be used to produce execute-only memory areas. An execute-only memory area cannot be accessed with loads and stores, which potentially limits gadget discovery which might then be used to carry out an exploit.</p>
+                        <p>As is the case any time protection keys are in use, gadgets containing the <span class="dk_code_simple">WRPKRU</span> instruction are valuable in defeating mitigations provided by protection keys. Managed runtimes should limit available occurrences of <span class="dk_code_simple">WRPKRU</span> in both their own executables and the generated instructions.</p>
+                    </section>
+
+                    <section id="dk_trusted_tee">
+                        <h4 class="mt-4">Trusted execution environments (TEE)</h4>
+                        <p>The goal of all side channel method attacks is to steal secrets in the OS and application memory or register states. Removing secret data from the normal OS/application security domains would remove the motivation for those attacks. Intel provides Intel® Software Guard Extensions (Intel® SGX) and Intel® Trusted Execution Engine (Intel® TXE) on some Intel processors to provide a trusted execution environment for parts of applications that need to protect their data or algorithms. We encourage application developers to partition their applications into normal and secure portions, and then move the portions of their application that contain secrets and must be secure into a trusted execution environment.</p>
+                    </section>
+
+                    <section id="dk_footnotes">
                         <p>&nbsp;</p>
-                        <h3 style="font-weight: 350;">References</h3>
-                        <ul>
-                            <li><a class="b_special_a1" href="">Introduction to Speculative Execution Side Channel Methods</a></li>
-                            <li><a class="b_special_a1" href="">Indirect Branch Restricted Speculation</a></li>
-                        </ul>
+                        <h3 style="font-weight: 350;">Footnotes</h3>
+                        <ol>
+                            <li>Refer to Microsoft’s public documentation for other options:<br>
+                            <a class="b_special_a1" href="">Spectre mitigations in MSVC</a><br>
+                            <a class="b_special_a1" href="">/Qspectre</a><br>
+                            <a class="b_special_a1" href="">spectre</a></li>
+                            <li><a class="b_special_a1" href="">Spectre Mitigations in Microsoft's C/C++ Compiler</a></li>
+                        </ol>
                         <p>&nbsp;</p>
                         <h5 style="text-align:center; font-weight: 500;"><a class="b_special_a1" href="">Software Security Guidance Home</a> | <a class="b_special_a1" href="">Advisory Guidance</a> | <a class="b_special_a1" href="">Technical Documentation</a> | <a class="b_special_a1" href="">Best Practices</a> | <a class="b_special_a1" href="">Resources</a></h5>
                     </section>

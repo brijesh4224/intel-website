@@ -1,0 +1,999 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Operand Independent Timing ISA Guidance</title>
+
+    <!-- font family -->
+    <link href="https://fonts.cdnfonts.com/css/intel-clear" rel="stylesheet">
+
+    <link rel="stylesheet" href="/css/dk_developer_edge_iot_5G_industrial_automation_see_all_wireless_network_ready_printed_circuit_board_(PCB)_defect_detection.css">
+    <link rel="stylesheet" href="/css/mv_product/ECC.css">
+    <link rel="stylesheet" href="/css/rushita_automotive.css">
+
+    <!-- header footer -->
+    <link rel="stylesheet" href='/css/yatri.css'>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" rel="stylesheet">
+
+</head>
+
+<style>
+    .dk_color1 {
+        color: #069 !important;
+    }
+
+    .dk_color2 {
+        color: #008200 !important;
+    }
+
+    .dk_color3 {
+        color: #b24501;
+    }
+
+    .dk_note{
+        font-size: 1rem;
+        line-height: 1.25;
+        word-wrap: break-word;
+        background-color: #e6e6e6;
+        padding: 20px;
+        border-left: 3px solid #fdb813;
+    }
+    .dk_code_simple{
+        background-color: #e6e6e6;
+        color: #53565a;
+        border-radius: 0;
+    }
+
+    @media(max-width:1200px) {
+        .dk_risk_app_img {
+            width: 100% !important;
+        }
+        .mv_product_table{
+            width: 100% !important;
+        }
+    }
+</style>
+
+<body>
+    <!-- header -->
+    <div id="navbar"></div>
+
+    <!------------------------------------------------------------------------------->
+    <section class="m_ai_tdrop">
+        <div>
+            <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Developers
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item m_dropActive" href="#">Overview</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Topics & Technologies</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Artificial Intelligence</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Overview</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Frameworks & Tools</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Download</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Documentation</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">AI PC</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Overview</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Get Started</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Documentation</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Get Started</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Technical Library</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Support</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Client Applications</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Business</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Cloud</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Overview</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Tools</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Library</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Performance Benchmarks</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Community</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">GPU Research</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Researchers</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Publications</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Samples</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Edge Computing</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Overview</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Tools</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">FlexRAN™ Reference Architecture</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Documentation</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Kiosk Peripheral Management Utility</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Device Management Toolkit</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Learn</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Go to Market with the OpenVINO™ Toolkit</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Optimized Inference at the Edge</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Self-Paced Training for the OpenVINO™ Toolkit</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Hardware</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">All Hardware</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">AIxboard Developer Kit</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Developer Kits with Intel® Core™ Ultra Processors</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Developer Kits with Intel Atom® x7000E Processors</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Developer Kits with 14th Generation Intel® Core™ Processors</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Developer Kits with 13th Generation Intel® Core™ Processors</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Developer Kits Based on 12th Generation Intel® Core™ Processors</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Developer Kits Based on 11th Generation Intel® Core™ Processors</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Developer Kits Based on 10th Generation Intel® Core™ Processors</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Hinj* IoT Sensor Hub Development Kit</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Cyclone® 10 LP FPGA0</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® IoT RFP Ready Kits</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Movidius™ VPU</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel vPro® Platform for Retail</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Kits with Intel® Xeon® D-2100 Processors</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Developer Kits with 4th Gen Intel® Xeon® Processors</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">NetSec SD-WAN Developer Kit</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Nezha Developer Kit</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Snō + SnōMākr Development Kit</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Terasic DE10-Nano Kit</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">XLR8* Development Board</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Edge AI Reference Kits</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Smart Meter Scanning</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intelligent Queue Management</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Technical Library</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">GameDev</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Tools</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Technical Library</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Partners</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">XᵉSS2</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">HPC</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Overview</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Technical Library</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Data Center</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Tools & Libraries</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Firmware</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">coreboot*</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Intelligent Test System</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Unified Extensible Firmware Interface (UEFI)</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">SMI Transfer Monitor</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Networking</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Data Plane Development Kit</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Learn</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Open Ecosystem</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Projects</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">ACPI Component Architecture (ACPICA)</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Assistive Context-Aware Toolkit (ACAT)</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Celadon</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">C for Metal SDK</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">pm-graph</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Features</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Resources</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Kernel Guard Technology</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Linux* Kernel Performance</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Key Management Reference Application</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Multi-Rail Power Sequencer and Monitor</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Open Data Center Diagnostic Project 🡭</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">OP-TEE* for Intel® Architecture</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Linux* Stacks for Intel® Software Guard Extensions</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® x86 Architecture Distribution of Trusty* OS</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Open Source Media Framework</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Resources</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">NumaTOP</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® QuickAssist Technology</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Resources</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Graphics Numerical Hardware</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Guides & Tutorials</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Blog</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">About</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Podcast</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Persistent Memory</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Library</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Platform Analysis Technology</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Runtime Languages</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Software Security Guidance</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Advisory Guidance</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Best Practices</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Resources</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Disclosure Documentation</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Feature Documentation</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">More Information</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Storage</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Tools</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Software Catalog</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">About</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">oneAPI</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Overview</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Data Parallel C++/SYCL*</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Toolkits</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® oneAPI Base Toolkit</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Overview</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Download</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Documentation</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® oneAPI HPC Toolkit</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Overview</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Download</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Documentation</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® System Bring-up Toolkit</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Documentation</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Tech Articles & How-Tos</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Library</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">News Updates</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Webinars</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Components</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">All Components</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Cryptography Primitives Library</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Download</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Documentation</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® oneAPI Collective Communications Library</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Download</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Documentation</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® oneAPI Data Analytics Library</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Download</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Documentation</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® oneAPI Deep Neural Network Library</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Overview</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Download</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Documentation</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® oneAPI DPC++/C++ Compiler</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Download</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Documentation</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Legacy Intel® C++ Compiler Documentation</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® oneAPI DPC++ Library</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Download</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Documentation</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® oneAPI Math Kernel Library</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Download</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Documentation</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Link Line Advisor</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® oneAPI Threading Building Blocks</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Download</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Documentation</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">FPGA Support Package for Intel® oneAPI DPC++/C++ Compiler</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Download</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Documentation</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Code Samples</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Training</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Overview</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Catalog</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Developer Summit</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Essentials of SYCL*</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">FPGA Development Flow Using Intel® oneAPI Base Toolkit</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Heterogeneous Programming Using Numba-Data Parallel Python*</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">AI Tools Samples Workflow</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® oneAPI Math Kernel Library (oneMKL) Essentials</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Machine Learning using oneAPI</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Migrate from CUDA* to C++ with SYCL*</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">OpenMP* Offload Basics</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Optimize GPU Apps with the Intel® oneAPI Base Toolkit</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® OSPRay Essentials</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Performance, Portability & Productivity</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Workflow for a CUDA* to SYCL* Migration</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Documentation</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">oneAPI Programming Guide</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Installation Guides</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Supported Hardware</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Support</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Priority Support for Intel® oneAPI Base Toolkit</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Priority Support for Intel® oneAPI Base & HPC Toolkit</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Priority Support for Intel® oneAPI Base & IoT Toolkit</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Open Edge Platform</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Platform Overview</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Geti™</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Model Builder Overview</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Resources</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Scenescape</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">FPGA</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Active Management Technology SDK</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Features</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Advisor</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Download</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Documentation</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® AI Reference Models</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Collaboration Suite for WebRTC SDK</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Download</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Tiber™ AI Cloud</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Overview</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Training Portal (Beta)</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Distribution for Python*</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Download</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Documentation</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Distribution for GDB*</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Download</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Documentation</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® DPC++ Compatibility Tool</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Download</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Documentation</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Dynamic Application Loader</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Technology Details</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">SDK</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Get Started</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Frameworks</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Embree</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Extension for Scikit-learn*</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Fortran Compiler</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Download</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Documentation</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Graphics Performance Analyzers</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Graphics Frame Analyzer</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Graphics Trace Analyzer</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">System Analyzer</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Download</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Get Started</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Training</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Forum</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Homomorphic Encryption Toolkit</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® In-Band Manageability</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Use Cases</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Documentation</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Integrated Performance Primitives</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Download</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Documentation</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Integrated Simulation Infrastructure with Modeling</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Instruction Set Architecture (ISA) Extensions</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Intelligent Storage Acceleration Library (Intel® ISA-L)</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® ISA-L on GitHub*</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® ISA-L for Cryptography on GitHub*</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Modin*</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Documentation</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® MPI Library</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Download</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Documentation</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Pinning Simulator</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Neural Compressor</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">OpenCL™ Runtime</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Open Image Denoise</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Open Path Guiding Library (Intel® Open PGL)</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Pin</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Platform Analysis Library</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel Tools for OpenCL™ Software</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Features</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Build</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Run</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Documentation</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel Tools for OpenCL™ Applications</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Runtimes (GPU, CPU)</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® OpenSWR</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">OpenVINO™ Toolkit</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">What's New</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Get Started</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">AI PC</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Download</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Documentation</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Knowledge Base</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Certification</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Open Volume Kernel Library</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Optimization for XGBoost*</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Documentation</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Tutorials</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Code Samples</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® OSPRay</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® OSPRay for Hydra*</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® OSPRay Studio</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">PyTorch* Optimizations from Intel</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Overview</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Documentation for Intel® Extension for PyTorch*</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">All Documentation</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Developer Guide</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Installation Guide</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Get Started Cheat Sheet</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Release Notes</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">System Requirements</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">TensorFlow* Optimizations from Intel</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Download from TensorFlow*</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Download the Intel® Extension for TensorFlow*</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Rendering Toolkit</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Overview</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Download</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Documentation</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Smart Edge Open</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Documentation</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Software Guard Extensions</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Download</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Attestation & Provisioning Services</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Get Started</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Training</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Documentation</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® SGX SDK for Linux OS*</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Commercial License Request</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Forum</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Secure Device Onboard</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Software Development Emulator</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Trust Domain Extensions (Intel® TDX)</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Overview</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Documentation</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Quantum SDK</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Query Processing Library (Intel® QPL)</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Video Processing Library</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Documentation</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® VTune™ Profiler</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Overview</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Download</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Documentation</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">All Documentation</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">User Guide</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Get Started Guide</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Installation Guide</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Cookbook</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Release Notes</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">System Requirements</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Resellers</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Hardware Platforms</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Overview</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Gaudi® Software</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Overview</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Setup</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Develop</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Overview</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Inference</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Fine-Tune</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Pretrain</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Learn</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Overview</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Blog</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Models</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Overview</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Catalog</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Performance</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Inference Data for Intel® Gaudi® 3 AI Accelerators</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Training Data for Intel® Gaudi® 3 AI Accelerators</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Inference Data for Intel® Gaudi® 2 AI Accelerators</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Training Data for Intel® Gaudi® 2 AI Accelerators</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Hugging Face*</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Optimization & Debugging</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Model Reference</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Documentation</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Forum</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Core™ Ultra Processors</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Xeon Processors</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Data Center GPU Flex Series</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Resources & Documentation</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Tuning Guides</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Installation Guides</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Programming Guides</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Learn</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Community & Events</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Events</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">DevCon On Demand</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Kubecon</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Open Source Summit Europe</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Parallel Universe Magazine</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Student Ambassadors</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Software Innovators</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Developer Programs</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Altera® University Program</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Membership</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Boards</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Materials</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">SD Card Images</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Tutorials</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Workshops</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Research</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Support</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Get Help</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Product Support</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Software Product Forums</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Hardware Product Forums</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Priority Support</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">FPGA Support</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Frequently Asked Questions</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Licensing</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Priority Support</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Purchasing, Renewing, and Upgrading</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Downloading</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Installation</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Registration</a></li>                                                                
+            </ul>
+        </div>
+        <div class="m_ai_shlash">/</div>
+        <div>
+            <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Topics & Technologies
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item m_dropActive" href="#">Artificial Intelligence</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Client Applications</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Cloud</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">GPU Research</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Edge Computing</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">GameDev</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">HPC</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Data Center</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Firmware</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Networking</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Open Ecosystem</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Persistent Memory</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Platform Analysis Technology</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Runtime Languages</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Software Security Guidance</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Storage</a></li>
+            </ul>
+        </div>
+        <div class="m_ai_shlash">/</div>
+        <div>
+            <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Software Security Guidance
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item m_dropActive" href="#">Advisory Guidance</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Best Practices</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Resources</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Disclosure Documentation</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Feature Documentation</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">More Information</a></li>
+            </ul>
+        </div>
+        <div class="m_ai_shlash">/</div>
+        <div>
+            <button class="btn dropdown-toggle" aria-expanded="false">
+                Best Practices
+            </button>
+        </div>
+        <div class="m_ai_shlash">/</div>
+        <div class="m_ai_httl">Data Operand Independent Timing ISA Guidance</div>
+
+    </section>
+    <!------------------------------------------------------------------------------->
+
+    <!-- VMware Horizon -->
+    <section>
+        <div class="mv_vmware_bg_color">
+            <div class="container">
+                <div class="mv_vmware_padd">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="mv_vmware_heading">
+                                <h3>Data Operand Independent Timing Instruction Set Architecture (ISA) Guidance</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mv_cd_page_marquee_info">
+                        <div class="mv_cd_page_marquee_action">
+                            <div class="mv_cd_page_marquee_action_padd">
+                                <label for="">ID</label>
+                                <span>768873</span>
+                            </div>
+                            <div class="mv_cd_page_marquee_action_padd">
+                                <label for="">Updated</label>
+                                <span>2/13/2023</span>
+                            </div>
+                            <div class="mv_cd_page_marquee_action_padd">
+                                <label for="">Version</label>
+                                <span>Latest</span>
+                            </div>
+                            <div class="mv_cd_page_marquee_action_padd">
+                                <label for=""></label>
+                                <span>Public</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="container py-5">
+        <div class="row">
+            <div class="d-flex justify-content-end col-xl-10 py-3 d-md-none">
+                <i class="fa-solid fa-print fs-4 px-2 " style="color:#0068B5"></i>
+                <i class="fa-regular fa-envelope fs-4 px-2" style="color:#0068B5"></i>
+            </div>
+            <div class="col-lg-3 col-md-4">
+                <!-- nav -->
+                <div class="VK_sticky_side_bar VK_side_bar_postion_stickey">
+                    <div>
+                        <div class="VK_sidebar_dropdown">
+                            <details>
+                                <summary>
+                                    <a href="#dk_instructions_doit" class="text-decoration-none VK_a">
+                                        Instructions with Data Operand Independent Timing (DOIT)
+                                    </a>
+                                </summary>
+                                <ul class="list-unstyled ps-3 mb-0">
+                                    <li>
+                                        <a href="#dk_address_values" class="text-decoration-none VK_a my-1">
+                                            Data Values vs. Address Values
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#dk_data_values" class="text-decoration-none VK_a my-1">
+                                            Data Values vs. Address Values
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#dk_masked_operations" class="text-decoration-none VK_a my-1">
+                                            Masked Operations
+                                        </a>
+                                    </li>
+                                </ul>
+                            </details>
+                            <details>
+                                <summary>
+                                    <a href="#dk_data_operand" class="text-decoration-none VK_a">
+                                        Data Operand Independent Timing Mode (DOITM)
+                                    </a>
+                                </summary>
+                                <ul class="list-unstyled ps-3 mb-0">
+                                    <li>
+                                        <a href="#dk_data_mode_controls" class="text-decoration-none VK_a my-1">
+                                            Data Operand Independent Timing Mode Controls
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#dk_software_enabling" class="text-decoration-none VK_a my-1">
+                                            Software Enabling
+                                        </a>
+                                    </li>
+                                </ul>
+                            </details>
+                            <details>
+                                <summary>
+                                    <a href="#dk_interactions_operation" class="text-decoration-none VK_a">
+                                        Interactions with Other Modes of Operation
+                                    </a>
+                                </summary>
+                                <ul class="list-unstyled ps-3 mb-0">
+                                    <li>
+                                        <a href="#dk_interactions_sgx" class="text-decoration-none VK_a my-1">
+                                            Interactions with Intel® Software Guard Extensions (Intel® SGX)
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#dk_interactions_tdx" class="text-decoration-none VK_a my-1">
+                                            Interactions with Intel® Trust Domain Extension (Intel® TDX)
+                                        </a>
+                                    </li>
+                                </ul>
+                            </details>
+                            <details>
+                                <summary>
+                                    <a href="#dk_enumeration_msrs" class="text-decoration-none VK_a">
+                                        Enumeration and Architectural MSRs
+                                    </a>
+                                </summary>
+                                <ul class="list-unstyled ps-3 mb-0">
+                                    <li>
+                                        <a href="#dk_soit_enumeration" class="text-decoration-none VK_a my-1">
+                                            DOIT Enumeration
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#dk_ia32_uarch" class="text-decoration-none VK_a my-1">
+                                            IA32_UARCH_MISC_CTL MSR Definition
+                                        </a>
+                                    </li>
+                                </ul>
+                            </details>
+                            <p class="m-0">
+                                <a href="#dk_documented_data" class="text-decoration-none VK_a">
+                                    Documented Data Operand Independent Timing Instructions
+                                </a>
+                            </p>
+                            <p class="m-0">
+                                <a href="#dk_footnotes" class="text-decoration-none VK_a">
+                                    Footnotes
+                                </a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <!-- thinkcode -->
+                <!-- <div class="dk_things_code_main">
+                    <div class="dk_things_code">
+                        <h2 class="text-left headline-font-one-bold">Loss Prevention Retail Reference Implementation provides:</h2>
+                        <div class="dk_high_quality">
+                            <ul>
+                                <li>High-quality testable ingredients needed to create a solution to prevent thefts at stores.</li>
+                                <li>Building blocks needed to enable the use case with solid performance numbers.</li>
+                                <li>Hardware requirements to support the workloads and scale the solution.</li>
+                            </ul>
+                        </div>
+                    <div class="dk_get_code">
+                        <button class="dk_button">Get Started on GitHub<sup>*</sup></button>
+                    </div>
+                    </div> 
+                </div> -->
+            </div>
+            <div class="col-lg-9 col-md-8">
+                <div class="d-md-flex justify-content-end col-xl-10 py-3 d-none">
+                    <i class="fa-solid fa-print fs-4 px-2 " style="color:#0068B5"></i>
+                    <i class="fa-regular fa-envelope fs-4 px-2" style="color:#0068B5"></i>
+                </div>
+                <div class="col-xl-10 VK_all_sections">
+                    <p>&nbsp;</p>
+                    <p>This document describes a new feature supported by some recent Intel processors, adding a data operand independent timing mode which can be used to ensure “constant time” execution for a specific subset of instructions. Although not relevant for the majority of code, data operand independent timing (DOIT) is a useful property for code which has specifically been written to execute in constant time such as cryptographic algorithms. This mode allows constant time code to inform the processor that data operand independent timing is needed.</p>
+                    <p>DOIT requires disabling hardware optimizations and/or performance features on some processors; for example, enabling data operand independent timing might disable data-dependent prefetching. This means that the DOIT mode may have a performance impact, and Intel expects the performance impact of this mode may be significantly higher on future processors.&nbsp;</p>
+                    <p>This functionality is intended for use by software which has already applied other techniques to mitigate software timing side channels, such as those documented in <a class="b_special_a1" href="">Intel's Guidelines for Mitigating Timing Side Channels Against Cryptographic Implementations</a>. Such software is typically limited to cryptographic implementations. This mode is not intended to provide any additional security benefit for software that is not already applying these software techniques. Due to its potential performance impact, Intel does not recommend enabling this mode globally. Instead, the mode should be enabled only for software that is specifically designed to benefit from the additional properties provided by the DOIT mode. In order to allow this mode to be enabled for the subset of an application that is constant time, Intel plans to add new capabilities in future processors to allow applications to dynamically enabled/disabled when system software permits.</p>
+                    <p>The&nbsp;<a class="b_special_a1" href="">data operand independent timing instructions</a>&nbsp;section provides a list of the instructions that have data-independent timing that can be used in conjunction with the previous guidelines. Software using these instructions for “constant time” code can enable the DOIT mode for data operand independent timing on a per-thread or per-process basis. Future enhancements may allow more fine-grain user mode control inside an application or library.&nbsp;</p>
+
+                    <section id="dk_instructions_doit">
+                        <p class="mb-0">&nbsp;</p>
+                        <h3 style="font-weight: 350; padding-bottom: 0.5rem;">Instructions with Data Operand Independent Timing (DOIT)</h3>
+                        <p>Refer to the <a class="b_special_a1" href="">list of documented data operand independent timing instructions</a>&nbsp;for a list of instructions with data operand independent timing.&nbsp;Note that these data operand independent timing instructions may have variable latency for reasons unrelated to the data values (for example, loading data from memory or the encoding of the instruction). Furthermore, an instruction being included on this list does not mean that its usage is resistant to power, thermal, or frequency-based side channels. Refer to the <a class="b_special_a1" href="">frequency-throttling side channel guidance</a> for more information.&nbsp;</p>
+                    </section>
+
+                    <section id="dk_address_values">
+                        <h4 class="mt-4">Data Values vs. Address Values</h4>
+                        <p>The latency of a data operand independent timing instruction does not depend on the data values on which it operates. However, the latency of these instructions that fetch data from memory may vary based on the memory address that the load accesses to get that data, as discussed in <a class="b_special_a1" href="">Intel's Guidelines for Mitigating Timing Side Channels Against Cryptographic Implementations</a>.&nbsp;</p>
+                    </section>
+
+                    <section id="dk_data_values">
+                        <h4 class="mt-4">Instruction Encodings and Immediate Values</h4>
+                        <p class="mb-0">Anything that changes the code bytes of an instruction may impact the latency of that instruction. For example, an instruction may have different latency if:&nbsp;</p>
+                        <ul>
+                            <li>It has a different immediate value.</li>
+                            <li>It uses a different memory addressing mode (for example, just a base register instead of having both a base and index register) even when the address being accessed is the same.&nbsp;</li>
+                            <li>It uses different registers (for example, <span class="dk_code_simple">RAX</span> vs. <span class="dk_code_simple">AX</span> vs. <span class="dk_code_simple">RBX</span>) or different condition code (such as <span class="dk_code_simple">CF</span> vs. <span class="code-simple">ZF</span>).&nbsp;</li>
+                        </ul>
+                    </section>
+
+                    <section id="dk_masked_operations">
+                        <h4 class="mt-4">Masked Operations</h4>
+                        <p>Masked operations have mask registers as inputs to the instruction. For example, certain Intel® Advanced Vector Extensions 512 (Intel® AVX-512) operations take a <span class="dk_code_simple">K</span> mask register input. Some non-Intel AVX-512 operations (such as <span class="dk_code_simple">VMASKMOV</span>, <span class="dk_code_simple">MASKMOVDQU</span>, <span class="dk_code_simple">Gather</span>, among others) have a mask register that is not a <span class="dk_code_simple">K</span> mask register. For masked operations that do not access memory, the instruction latency will be invariant with respect to the mask register value.</p>
+                        <p>For masked operations that access memory, the mask register (whether a <span class="dk_code_simple">K</span> mask register or a separate register) may affect which memory addresses are accessed. Therefore, data operand independent timing instructions that read or write to memory may have different timing depending on mask register values.&nbsp;&nbsp;</p>
+                    </section>
+
+                    <section id="dk_data_operand">
+                        <p class="mb-0">&nbsp;</p>
+                        <h3 style="font-weight: 350; padding-bottom: 0.5rem;">Data Operand Independent Timing Mode (DOITM)</h3>
+                        <p>To support use cases such as constant time code, a new model specific register (MSR) control enables data operand independent timing for the listed data operand independent timing instructions.&nbsp;</p>
+                        <p>Specifically, when data operand independent timing mode is enabled, instructions within the data operand independent timing subset execute with timing (in terms of processor cycles) that is independent of the data values in the sources of the instruction, except for potential timing differences due to power or thermal variations. Moreover, while in data operand independent timing mode, the data values operated on by these data independent instructions will not impact the timing of other instructions. This property is true regardless of the status of data operand independent timing mode when the other instructions are executed.&nbsp;</p>
+                        <p>When an instruction outside of the data operand independent timing subset or outside of the data operand independent timing mode is executed (either speculatively or non-speculatively), the data values operated on could potentially affect the timing both of the instruction operating on the data and of other instructions. Additionally, power consumed, CPU frequency, and telemetry recorded (such as performance monitoring events or running average power limit (RAPL) power measurements<a class="b_special_a1" href=""><sup>1</sup></a>) may differ based on the data values operated on within data operand independent timing mode. It is also possible that subsystems outside the core may implement data operand dependent features that may impact the timing in a data-dependent manner for data independent instructions.&nbsp;</p>
+                        <p>Developers handling secret data that should only ever be processed in a data operand independent timing manner may need to consider speculative execution vulnerabilities. These vulnerabilities may cause the secret data to be handled in a data operand dependent manner and developers may need to apply additional mitigations. Refer to <a class="b_special_a1" href="">Mitigating Timing Side Channels Against Cryptographic Implementations</a>.&nbsp;</p>
+                    </section>
+
+                    <section id="dk_data_mode_controls">
+                        <h4 class="mt-4">Data Operand Independent Timing Mode Controls</h4>
+                        <p><span class="dk_code_simple">IA32_UARCH_MISC_CTL[DOITM]</span> is a data operand independent timing mode control mechanism that restricts non-data operand independent timing behavior for the <a class="b_special_a1" href="">listed instructions</a>. A processor supports <span class="dk_code_simple">IA32_UARCH_MISC_CTL[DOITM]&nbsp;</span>if <span class="dk_code_simple">IA32_ARCH_CAPABILITIES[12]&nbsp;</span>is 1.&nbsp;<span class="dk_code_simple">WRMSR</span> to IA32_UARCH_MISC_CTL (MSR index 1B01H) is not defined as a serializing instruction. &nbsp;</p>
+                        <table class="mv_product_table w-100 mb-4">
+                            <caption>Table 1: Enumeration of Data Operand Independent Timing Mode on IA32_ARCH_CAPABILITIES</caption>
+                            <thead>
+                                <tr>
+                                    <th scope="col">Register Address Hex</th>
+                                    <th scope="col">Register Address Dec</th>
+                                    <th scope="col">Register Name /<br>
+                                    Bit Fields</th>
+                                    <th scope="col">Bit Description</th>
+                                    <th scope="col">Comment</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>10AH</td>
+                                    <td>266</td>
+                                    <td>IA32_ARCH_CAPABILITIES</td>
+                                    <td>Enumeration of Architectural Features (RO)</td>
+                                    <td>If CPUID.(EAX-07H, ECX=0):EDX[29]=1</td>
+                                </tr>
+                                <tr>
+                                    <td>10AH</td>
+                                    <td>266</td>
+                                    <td>12</td>
+                                    <td><span class="dk_code_simple">DOITM</span>: The processor supports data operand independent timing mode.</td>
+                                    <td>&nbsp;</td>
+                                </tr>
+                            </tbody>
+                        </table> 
+                        <p>For Intel® Core™ family processors based on microarchitectures before Ice Lake and Intel Atom® family processors based on microarchitectures before Gracemont that do not enumerate <span class="dk_code_simple">IA32_UARCH_MISC_CTL</span>, developers may assume that the instructions listed here operate as if <span class="dk_code_simple">DOITM</span> is enabled.</p>
+                        <p>Intel Core family processors based on Ice Lake and later, such as Tiger Lake, Lakefield, and Rocket Lake will enumerate <span class="dk_code_simple">DOITM</span>. Intel Atom family processors based on Gracemont and later will also enumerate DOITM. Refer to the <a class="b_special_a1" href="">Enumeration and Architectural MSRs</a> section for more information.</p>
+                    </section>
+
+                    <section id="dk_software_enabling">
+                        <h4 class="mt-4">Software Enabling</h4>
+                        <p>On certain processors, microcode updates may need to be loaded for <span class="dk_code_simple">IA32_UARCH_MISC_CTL</span> to be enumerated.</p>
+                        <p>Software can enable data operand independent timing operation on a logical processor by setting <span class="dk_code_simple">IA32_UARCH_MISC_CTL[DOITM]</span> to 1. Setting <span class="dk_code_simple">DOITM</span> to 1 may impact performance, and that impact may increase in future processor generations.</p>
+                        <p>Users should evaluate their threat model to decide whether this is a significant threat to their applications and then ask the operating system to only deploy DOIT mode to applications that they deem necessary. Note that DOIT mode is not expected to significantly improve resistance to side channel attacks unless the software was carefully written to avoid such attacks (specifically, following the guidance in <a class="b_special_a1" href="">Intel’s Guidelines for Mitigating Timing Side Channels Against Cryptographic Implementations</a>).&nbsp;</p>
+                        <p>Operating systems may wish to support <span class="dk_code_simple">IA32_UARCH_MISC_CTL</span> in a manner similar to <a class="b_special_a1" href="">speculative store bypass disable</a>.</p>
+                    </section>
+
+
+                    <section id="dk_interactions_operation">
+                        <p>&nbsp;</p>
+                        <h3 style="font-weight: 350; padding-bottom: 0.5rem;">Interactions with Other Modes of Operation</h3>
+                    </section>
+
+                    <section id="dk_interactions_sgx">
+                        <h4 class="mt-4">Interactions with Intel® Software Guard Extensions (Intel® SGX)</h4>
+                        <p>While executing inside enclave mode, processors that enumerate support for <span class="dk_code_simple">DOITM</span> will enable data operand independent timing mode irrespective of the settings that control the mode.</p>
+                        <p>The existing Intel SGX architecture cannot manipulate DOITM and cannot trust the OS to manipulate DOITM.</p>
+                        <p>To mitigate attacks on constant time code running in enclave mode, processors that enumerate support for DOITM will always enable data operand independent timing mode. This behavior is independent from the setting of DOITM itself.</p>
+                        <p>This design choice considers both the complexity of extending the Intel SGX architecture to allow more dynamic control of mitigations and the existing reduced performance within enclave mode.</p>
+                        <p><strong>Note</strong>: Software with similar complexity concerns and which can tolerate reduced performance may also converge on a design that opts to leave DOITM always enabled.&nbsp;</p>
+                    </section>
+
+                    <section id="dk_interactions_tdx">
+                        <h4 class="mt-4">Interactions with Intel® Trust Domain Extension (Intel® TDX)</h4>
+                        <p>There are no special interactions or interactions between data operand independent timing mode and Secure Arbitration Mode-Virtual Machines Extensions (SEAM VMX) operation. In particular, the enabling of data operand independent timing mode is not impacted while operating in SEAM VMX mode.</p>
+                        <p>The DOIT mode control will be made visible to trust domains (TDs) and the Intel TDX module will context switch the control between TDs. Unlike Intel SGX enclaves, TDs can decide to set this based on their threat model.&nbsp;</p>
+                    </section>
+
+                    <section id="dk_enumeration_msrs">
+                        <p>&nbsp;</p>
+                        <h3 style="font-weight: 350; padding-bottom: 0.5rem;"><a class="b_special_a1" href="">Enumeration and Architectural MSRs</a></h3>
+                    </section>
+
+                    <section id="dk_soit_enumeration">
+                        <h4 class="mt-4">DOIT Enumeration</h4>
+                        <p>IA32_ARCH_CAPABILITIES[12] enumerates support for the IA32_UARCH_MISC_CTL MSR (addr <span class="dk_code_simple">0x1B01</span>) and bit 0 of that MSR (<span class="dk_code_simple">DOITM</span>). This bit implements a data operand independent timing mode. This enumeration bit is called Data Operand Independent Timing Mode (DOITM).&nbsp;</p>
+                        <p>Processors that do not enumerate <span class="dk_code_simple">IA32_ARCH_CAPABILITIES[DOITM]</span> when the latest microcode is applied do not need to set <span class="dk_code_simple">IA32_UARCH_MISC_CTL [DOITM]</span> in order to have the behavior described in this document.&nbsp;On certain processors, MXCSR may also need to be configured to avoid data-dependent behavior for the instructions listed in&nbsp;<a class="b_special_a1" href="">Data Operand Independent Timing Instructions with MXCSR Configuration Dependent Timing</a>. For additional information on MXCSR configuration, refer to&nbsp;<a class="b_special_a1" href="">MXCSR Configuration Dependent Timing</a>.</p>
+                    </section>
+
+                    <section id="dk_ia32_uarch">
+                        <h4 class="mt-4">IA32_UARCH_MISC_CTL MSR Definition </h4>
+                        <table class="mv_product_table w-100 mb-4">
+                            <caption>Table 2: IA32_UARCH_MISC_CTL</caption>
+                            <thead>
+                                <tr>
+                                    <th scope="col">Register Address Hex</th>
+                                    <th scope="col">Register Name / Bit Fields</th>
+                                    <th scope="col">Permission</th>
+                                    <th scope="col">Bit Description</th>
+                                    <th scope="col">Comment</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1B01H</td>
+                                    <td>IA32_UARCH_MISC_CTL</td>
+                                    <td>&nbsp;</td>
+                                    <td>&nbsp;</td>
+                                    <td>If IA32_ARCH_CAPABILITIES[DOITM]=1</td>
+                                </tr>
+                                <tr>
+                                    <td>1B01H</td>
+                                    <td>0</td>
+                                    <td>R/W</td>
+                                    <td>Data Operand Independent Timing Mode (DOITM)&nbsp;</td>
+                                    <td>If IA32_ARCH_CAPABILITIES[DOITM]=1</td>
+                                </tr>
+                                <tr>
+                                    <td>1B01H</td>
+                                    <td>63:1</td>
+                                    <td>RO</td>
+                                    <td>Reserved</td>
+                                    <td>&nbsp;</td>
+                                </tr>
+                            </tbody>
+                        </table> 
+                        <p>This MSR is logical processor scoped and has a reset value of 0.</p>
+                    </section>
+
+                    <section id="dk_documented_data">
+                        <p>&nbsp;</p>
+                        <h3 style="font-weight: 350; padding-bottom: 0.5rem;">Documented Data Operand Independent Timing Instructions</h3>
+                        <p>Refer to the list of&nbsp;<a class="b_special_a1" href="">documented Data Operand Independent Timing instructions</a>.</p>
+                        <p class="mb-0">&nbsp;</p>
+                    </section>
+
+                    <section id="dk_footnotes">
+                        <p>&nbsp;</p>
+                        <h3 style="font-weight: 350; padding-bottom: 0.5rem;"><a class="b_special_a1" href="">Footnotes</a></h3>
+                        <ol>
+                            <li>Refer to <a class="b_special_a1" href="">Running Average Power Limit Energy Reporting</a>.</li>
+                            <li><span class="dk_code_simple">MCDT_NO</span> is CPUID.(EAX=7H,ECX=2):EDX[5].</li>
+                        </ol>
+                    </section>
+
+                </div>
+            </section>
+        </div>
+    </div>
+    </div>
+    </section>
+
+    <section style="border-top: 1px solid #d7d7d7;" class="container py-5">
+        <h4 class="h6">Product and Performance Information</h4>
+        <div class="disclaimer" style="font-size: 12px;"><sup>1</sup> Performance varies by use, configuration and other
+            factors. Learn more at <a class="b_special_a1" href="">www.Intel.com/PerformanceIndex.</a></div>
+        </div>
+    </section>
+
+    <!-- footer -->
+    <div id="footer"></div>
+
+    <!-- nav script -->
+    <script>
+        // navbar include  
+        fetch('/y_index/y_navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar').innerHTML = data;
+            });
+        // footer include 
+        fetch('/y_index/y_footer.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('footer').innerHTML = data;
+            });
+    </script>
+    <!-- nav script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            if (document.getElementsByClassName('VK_all_sections section') && document.getElementsByClassName('VK_sidebar_dropdown')) {
+                const sections = document.querySelectorAll('.VK_all_sections section');
+                const navLinks = document.querySelectorAll('.VK_sidebar_dropdown a');
+                const detailsElements = document.querySelectorAll('.VK_sidebar_dropdown details');
+
+                function removeActiveClass() {
+                    navLinks.forEach(link => link.classList.remove('VK_sidebar_active_link'));
+                    detailsElements.forEach(details => {
+                        details.removeAttribute('open');
+                        details.setAttribute('close', ''); // Optional: to visually indicate it's closed
+                    });
+                }
+
+                function activateLinkAndDetails(targetId) {
+                    navLinks.forEach(link => {
+                        if (link.getAttribute('href') === `#${targetId}`) {
+                            link.classList.add('VK_sidebar_active_link');
+                            let parentDetails = link.closest('details');
+
+                            // Open all ancestor details elements
+                            while (parentDetails) {
+                                parentDetails.setAttribute('open', '');
+                                parentDetails.removeAttribute('close'); // Optional: remove the closed indicator
+                                parentDetails = parentDetails.parentElement.closest('details');
+                            }
+                        }
+                    });
+                }
+
+                function onScroll() {
+                    let currentSection = '';
+                    sections.forEach(section => {
+                        const sectionTop = section.getBoundingClientRect().top;
+                        const sectionBottom = section.getBoundingClientRect().bottom;
+
+                        // Check if the section is in view
+                        if (sectionTop <= 100 && sectionBottom >= 0) {
+                            currentSection = section.getAttribute('id');
+                        }
+                    });
+
+                    if (currentSection) {
+                        removeActiveClass();
+                        activateLinkAndDetails(currentSection);
+                    } else {
+                        removeActiveClass();
+                    }
+                }
+
+                window.addEventListener('scroll', onScroll);
+            } else {
+                return
+            }
+        });
+    </script>
+
+    <!-- copy script -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            document.querySelectorAll(".mv_copy_icon").forEach((icon) => {
+                icon.addEventListener("click", async function () {
+                    try {
+                        const toolbar = this.closest(".mv_code_toolbar");
+                        const codeBlock = toolbar.querySelector(".code-content");
+                        const codeContent = codeBlock.innerText;
+
+                        // Use Clipboard API to copy text
+                        await navigator.clipboard.writeText(codeContent);
+
+                        // Hide the copy icon and show the "Copied!" message
+                        const message = toolbar.querySelector(".mv_copy_message");
+                        this.classList.add("hidden"); // Hide the copy icon
+                        message.classList.remove("hidden"); // Show the "Copied!" message
+
+                        // Hide the message and show the icon again after 2 seconds
+                        setTimeout(() => {
+                            message.classList.add("hidden");
+                            this.classList.remove("hidden");
+                        }, 2000); // Adjust delay as needed
+
+                    } catch (err) {
+                        console.error('Failed to copy text: ', err);
+                    }
+                });
+            });
+        });
+    </script>
+
+</body>
+
+</html>
+
+
+
+
