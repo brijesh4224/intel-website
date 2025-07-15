@@ -734,9 +734,9 @@
                         <h3 style="font-weight: 350; padding-bottom: 0.8rem;">Related Content</h3>
                         <p>
                             <a class="b_special_a1" href="/darshit/dk_Solutions_Industries/The_latest_security_information_on_Intel_products.html">INTEL-SA-00233</a><br>
-                            <a class="b_special_a1" href="">Intel Analysis of Microarchitectural Data Sampling</a><br>
-                            <a class="b_special_a1" href="">List of processors potentially affected by Microarchitectural Data Sampling</a><br>
-                            <a class="b_special_a1" href="">Microcode revision guidance</a>
+                            <a class="b_special_a1" href="/darshit/dk_Solutions_Industries/Microarchitectural_Data_Sampling.html">Intel Analysis of Microarchitectural Data Sampling</a><br>
+                            <a class="b_special_a1" href="/darshit/dk_Solutions_Industries/Processors_Affected_Microarchitectural_Data_Sampling.html">List of processors potentially affected by Microarchitectural Data Sampling</a><br>
+                            <a class="b_special_a1" href="/img/darshit_image/SA00233-microcode-update-guidance.pdf">Microcode revision guidance</a>
                         </p>
                     </section>
 
@@ -751,7 +751,7 @@
                             <li>Microarchitectural Load Port Data Sampling (MLPDS) CVE-2018-12127</li>
                             <li>Microarchitectural Data Sampling Uncacheable Memory (MDSUM) CVE-2019-11091</li>
                         </ul>
-                        <p>MDS only refers to methods that involve microarchitectural structures other than the level 1 data cache&nbsp;(L1D) and thus does not include&nbsp;<a class="b_special_a1" href="">Rogue Data Cache Load (RDCL)</a>&nbsp;or&nbsp;<a class="b_special_a1" href="">L1 Terminal Fault (L1TF)</a>. Store buffers, fill buffers, and load ports are much smaller than the L1D, and therefore hold less data and are overwritten more frequently. It is also more difficult to use MDS methods to infer data that is associated with a specific memory address, so malicious actors may need to collect significant amounts of data and analyze it to locate any protected data.</p>
+                        <p>MDS only refers to methods that involve microarchitectural structures other than the level 1 data cache&nbsp;(L1D) and thus does not include&nbsp;<a class="b_special_a1" href="/darshit/dk_Solutions_Industries/Rogue_Data_Cache_Load_Guidance.html">Rogue Data Cache Load (RDCL)</a>&nbsp;or&nbsp;<a class="b_special_a1" href="/darshit/dk_Solutions_Industries/L1D_Eviction_Sampling_Guidance.html">L1 Terminal Fault (L1TF)</a>. Store buffers, fill buffers, and load ports are much smaller than the L1D, and therefore hold less data and are overwritten more frequently. It is also more difficult to use MDS methods to infer data that is associated with a specific memory address, so malicious actors may need to collect significant amounts of data and analyze it to locate any protected data.</p>
                     </section>
 
                     <section id="dk_mitigation">
@@ -759,25 +759,25 @@
                         <h3 style="font-weight: 300; padding-bottom: 0.8rem;">Mitigation</h3>
                         <p>Some current processors and future processors will have microarchitectural data sampling methods mitigated in the hardware. For processors that are affected, the mitigation for microarchitectural data sampling issues includes overwriting store buffers, fill buffers, and load ports before transitioning to possibly less-privileged code.</p>
                         <p>There are two methods to clear&nbsp;microarchitectural structures affected by MDS:&nbsp;<span class="dk_code_simple">MD_CLEAR</span>&nbsp;functionality<sup>1</sup> and software sequences. On processors that enumerate&nbsp;<span class="dk_code_simple">MD_CLEAR</span>&nbsp;<sup>2</sup>, developers can use the&nbsp;<span class="dk_code_simple">VERW</span>&nbsp;instruction or&nbsp;<span class="dk_code_simple">L1D_FLUSH</span>&nbsp;command<sup>3</sup>&nbsp;to cause the processor to overwrite buffer values that are affected by MDS, as these instructions are preferred to the software sequences.</p>
-                        <p>Details of how to implement these mitigation methods, as well as mitigation information for hyperthreaded environments, can be found in&nbsp;<a class="b_special_a1" href="">Intel Analysis of Microarchitectural Data Sampling</a>.</p>
+                        <p>Details of how to implement these mitigation methods, as well as mitigation information for hyperthreaded environments, can be found in&nbsp;<a class="b_special_a1" href="/darshit/dk_Solutions_Industries/Microarchitectural_Data_Sampling.html">Intel Analysis of Microarchitectural Data Sampling</a>.</p>
                     </section>
 
                     <section id="dk_os_and_driver">
                         <h4>OS and driver developers*</h4>
                         <p>The OS can execute the&nbsp;<span class="dk_code_simple">VERW</span>&nbsp;instruction to overwrite any protected data in affected buffers when transitioning from ring 0 to ring 3. This will overwrite protected data in the buffers that could belong to the kernel or other applications.</p>
-                        <p>OS developers can find more information on implementing the&nbsp;<span class="dk_code_simple">VERW</span>&nbsp;instruction and more on&nbsp;System Management Mode (SMM), refer to&nbsp;<a class="b_special_a1" href="">Intel Analysis of Microarchitectural Data Sampling</a>.</p>
+                        <p>OS developers can find more information on implementing the&nbsp;<span class="dk_code_simple">VERW</span>&nbsp;instruction and more on&nbsp;System Management Mode (SMM), refer to&nbsp;<a class="b_special_a1" href="/darshit/dk_Solutions_Industries/Microarchitectural_Data_Sampling.html">Intel Analysis of Microarchitectural Data Sampling</a>.</p>
                     </section>
 
                     <section id="dk_virtual_dev">
                         <h4>Virtual machine monitor developers</h4>
                         <p>When entering or exiting Intel® Software Guard Extensions (Intel® SGX) enclaves, processors that enumerate support for&nbsp;<code>MD_CLEAR</code> <sup>1</sup> will automatically overwrite affected data buffers.</p>
-                        <p>For further details, refer to&nbsp;<a class="b_special_a1" href="">Intel Analysis of Microarchitectural Data Sampling</a>.</p>
+                        <p>For further details, refer to&nbsp;<a class="b_special_a1" href="/darshit/dk_Solutions_Industries/Microarchitectural_Data_Sampling.html">Intel Analysis of Microarchitectural Data Sampling</a>.</p>
                     </section>
 
                     <section id="dk_developers_enclave">
                         <h4>Developers of software running in an enclave</h4>
                         <p>When entering or exiting Intel® Software Guard Extensions (Intel® SGX) enclaves, processors that enumerate support for&nbsp;<code>MD_CLEAR</code> <sup>1</sup> will automatically overwrite affected data buffers.</p>
-                        <p>For further details, refer to&nbsp;<a class="b_special_a1" href="">Intel Analysis of Microarchitectural Data Sampling</a>.</p>
+                        <p>For further details, refer to&nbsp;<a class="b_special_a1" href="/darshit/dk_Solutions_Industries/Microarchitectural_Data_Sampling.html">Intel Analysis of Microarchitectural Data Sampling</a>.</p>
                     </section>
 
                     <section id="dk_system_admini">
