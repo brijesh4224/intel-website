@@ -532,7 +532,7 @@
             <div class="container">
                 <div class="mv_vmware_padd">
                     <div class="row">
-                        <div class="col-md-8 col-sm-12">
+                        <div class="col-12">
                             <div class="mv_vmware_heading">
                                 <h3>Guidance for System Administrators to Mitigate Transient Execution Side Channel Issues</h3>
                             </div>
@@ -855,7 +855,7 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td><a class="b_special_a1" href="">Variant 1 - Bounds Check Bypass</a></td>
+                                    <td><a class="b_special_a1" href="/darshit/dk_Solutions_Industries/Bounds_Check_Bypass.html">Variant 1 - Bounds Check Bypass</a></td>
                                     <td>CVE-2017-5753</td>
                                     <td>Medium</td>
                                 </tr>
@@ -865,34 +865,34 @@
                                     <td>Medium</td>
                                 </tr>
                                 <tr>
-                                    <td><a class="b_special_a1" href="">Variant 2 - Branch Target Injection</a></td>
+                                    <td><a class="b_special_a1" href="/darshit/dk_Solutions_Industries/Branch_Target_Injection_Guidance.html">Variant 2 - Branch Target Injection</a></td>
                                     <td>CVE-2017-5715</td>
                                     <td>Medium</td>
                                 </tr>
                                 <tr>
-                                    <td><a class="b_special_a1" href="">Variant 3 - Rogue Data Cache Load</a></td>
+                                    <td><a class="b_special_a1" href="/darshit/dk_Solutions_Industries/Rogue_Data_Cache_Load_Guidance.html">Variant 3 - Rogue Data Cache Load</a></td>
                                     <td>CVE-2017-5754</td>
                                     <td>Medium</td>
                                 </tr>
                                 <tr>
-                                    <td><a class="b_special_a1" href="">Variant 3a - Rogue System Register Read</a></td>
+                                    <td><a class="b_special_a1" href="/darshit/dk_Solutions_Industries/Rogue_System_Register_Read.html">Variant 3a - Rogue System Register Read</a></td>
                                     <td>CVE-2018-3640</td>
                                     <td>Medium</td>
                                 </tr>
                                 <tr>
-                                    <td><a class="b_special_a1" href="">Variant 4 - Speculative Store Bypass</a></td>
+                                    <td><a class="b_special_a1" href="/darshit/dk_Solutions_Industries/Speculative_Store_Bypass.html">Variant 4 - Speculative Store Bypass</a></td>
                                     <td>CVE-2018-3639</td>
                                     <td>Medium</td>
                                 </tr>
                                 <tr>
-                                    <td><a class="b_special_a1" href="">Foreshadow - L1 Terminal Fault</a></td>
+                                    <td><a class="b_special_a1" href="/darshit/dk_Solutions_Industries/L1_Terminal_Fault.html">Foreshadow - L1 Terminal Fault</a></td>
                                     <td>CVE-2018-3615<br>
                                     CVE-2018-3620<br>
                                     CVE-2018-3646</td>
                                     <td>High</td>
                                 </tr>
                                 <tr>
-                                    <td><a class="b_special_a1" href="">Zombieload - Fallout - RIDL - Microarchitectural Data Sampling</a></td>
+                                    <td><a class="b_special_a1" href="/darshit/dk_Solutions_Industries/Microarchitectural_Data_Sampling_Guidance.html">Zombieload - Fallout - RIDL - Microarchitectural Data Sampling</a></td>
                                     <td>CVE-2018-12126<br>
                                     CVE-2018-12127<br>
                                     CVE-2018-12130<br>
@@ -900,18 +900,18 @@
                                     <td>Medium</td>
                                 </tr>
                                 <tr>
-                                    <td><a class="b_special_a1" href="">TSX Asynchronous Abort</a></td>
+                                    <td><a class="b_special_a1" href="/darshit/dk_Solutions_Industries/Intel_Transactional_Synchronization_Extensions_Intel_TSX.html">TSX Asynchronous Abort</a></td>
                                     <td>CVE-2019-11135</td>
                                     <td>Medium</td>
                                 </tr>
                                 <tr>
-                                    <td><a class="b_special_a1" href="">Special Register Buffer Data Sampling</a></td>
+                                    <td><a class="b_special_a1" href="/darshit/dk_Solutions_Industries/Special_Register_Buffer_Data_Sampling_Guidance.html">Special Register Buffer Data Sampling</a></td>
                                     <td>CVE-2020-0543</td>
                                     <td>Medium</td>
                                 </tr>
                             </tbody>
                         </table> 
-                        <p>This document describes some good practices that you can enable in production systems but does not prescribe exactly how to implement them. It focuses on the Linux* operating system (OS), but other OSes might provide similar approaches. Refer to the&nbsp;<a class="b_special_a1" href="">Refined Speculative Execution Terminology guide</a>&nbsp;for detailed definitions of the terminology used in this document.</p>
+                        <p>This document describes some good practices that you can enable in production systems but does not prescribe exactly how to implement them. It focuses on the Linux* operating system (OS), but other OSes might provide similar approaches. Refer to the&nbsp;<a class="b_special_a1" href="/darshit/dk_Solutions_Industries/Refined_Speculative_Execution_Terminology.html">Refined Speculative Execution Terminology guide</a>&nbsp;for detailed definitions of the terminology used in this document.</p>
                     </section>
 
                     <section id="dk_transient_exe">
@@ -919,12 +919,12 @@
                         <h3 style="font-weight: 300; padding-bottom: 0.8rem;">Transient Execution Side Channels</h3>
                         <p>Modern processors use diverse techniques to improve performance. One of these techniques is known as transient execution. Transient execution (also known as speculative execution) means that instructions are executed before it is known if they are actually required or that arguments for some instructions are guessed by the CPU before they are calculated. Without speculation, the processor would have to wait for prior instructions or addresses to be resolved. For example, the first instruction after a jump would only be executed once the address of the jump is resolved. With speculation, the processor tries to guess the address of the jump before it is resolved, and it starts executing transient instructions at the predicted address. If the assumption was incorrect, the results of these transient instructions are squashed without incurring a performance penalty. A correct guess increases processor performance by minimizing latency and extracting greater parallelism.</p>
                         <p>Transient execution might affect the microarchitectural state of the processor even when the results of the transient instructions are not made visible architecturally. For example, the contents of caches and buffers might include the results of transient instructions that never retire. Normally these microarchitectural states are visible to the software, but incidental side channels may potentially allow malicious actors to infer data by observing these temporary states.</p>
-                        <p>Recent research has shown how some Intel® platforms might be targeted by different methods to try to leak privileged information. For transient execution attacks to be successful, the malicious actor and the victim must share some physical resources (for a quick introduction to some of the basics of multicore systems, refer to the&nbsp;<a class="b_special_a1" href="">Hardware Overview</a>). As the threat environment continues to evolve, Intel is continuously investigating architectural and/or microarchitectural changes to combat these types of methods. As a result, recently released platforms include hardware components that protect against these methods. Intel also works with ecosystem partners to develop software and firmware updates that can protect systems from these methods.</p>
+                        <p>Recent research has shown how some Intel® platforms might be targeted by different methods to try to leak privileged information. For transient execution attacks to be successful, the malicious actor and the victim must share some physical resources (for a quick introduction to some of the basics of multicore systems, refer to the&nbsp;<a class="b_special_a1" href="/darshit/dk_Solutions_Industries/Guidance_for_System_Administrators_to_Mitigate_Transient_Execution.html#dk_appendix_a">Hardware Overview</a>). As the threat environment continues to evolve, Intel is continuously investigating architectural and/or microarchitectural changes to combat these types of methods. As a result, recently released platforms include hardware components that protect against these methods. Intel also works with ecosystem partners to develop software and firmware updates that can protect systems from these methods.</p>
                     </section>
 
                     <section id="dk_issues_doc">
                         <h4>Issues Covered in this Document</h4>
-                        <p>We quickly introduce the different methods covered in this document. For information on the specifics of each particular technique, please refer to the&nbsp;<a class="b_special_a1" href="">Intel Software Guidance for Security Advisories</a>.</p>
+                        <p>We quickly introduce the different methods covered in this document. For information on the specifics of each particular technique, please refer to the&nbsp;<a class="b_special_a1" href="#">Intel Software Guidance for Security Advisories</a>.</p>
                     </section>
 
                     <section id="dk_spectre_meltdown">
@@ -944,7 +944,7 @@
 
                     <section id="dk_taa">
                         <h4>TAA</h4>
-                        <p>TSX Asynchronous Abort (TAA) is a subset of the MDS technique. An untrusted process might try to leak data from the victim as the result of an asynchronous abort within a transactional region using Intel® Transactional Synchronization Extensions (Intel® TSX). While this abort is pending, the processor might still perform some subsequent transient load operations. Malicious software running on the same physical core as the victim could use these transient instructions to try to leak stale data from the victim. The victim does not need to make use of Intel TSX to be the target of an attack. For more information about Intel TSX, visit&nbsp;<a class="b_special_a1" href="">Web Resources About Intel® Transactional Synchronization Extensions</a>.</p>
+                        <p>TSX Asynchronous Abort (TAA) is a subset of the MDS technique. An untrusted process might try to leak data from the victim as the result of an asynchronous abort within a transactional region using Intel® Transactional Synchronization Extensions (Intel® TSX). While this abort is pending, the processor might still perform some subsequent transient load operations. Malicious software running on the same physical core as the victim could use these transient instructions to try to leak stale data from the victim. The victim does not need to make use of Intel TSX to be the target of an attack. For more information about Intel TSX, visit&nbsp;<a class="b_special_a1" href="/vaidikhtml/ai_accelerator_intel_advanced_vector_extensions_512_intel_AVX_512_visit_the_developer_zone.html">Web Resources About Intel® Transactional Synchronization Extensions</a>.</p>
                     </section>
 
                     <section id="dk_srbds">
@@ -955,7 +955,7 @@
                     <section id="dk_affected_platforms">
                         <p>&nbsp;</p>
                         <h3 style="font-weight: 300;">Affected Platforms</h3>
-                        <p>The first step before applying any mitigation is to identify whether a system is affected by any issue. On updated Linux systems,&nbsp;sysfs&nbsp;will report the status of the vulnerability, including whether the platform is affected or not. There are also different tools and guidance for how to detect whether a system is vulnerable. For example, for Linux and BSD systems Intel published a document with step by step instructions, "System Check for Speculative Execution Side Channel”. For Microsoft* systems, Microsoft created a simple step by step guide and released a step-by-step guide to check for a variety of speculative execution side-channel issues, refer to&nbsp;<a class="b_special_a1" href="">Understanding Get-SpeculationControlSettings PowerShell script output</a>. It is expected that other OS vendors will have similar instructions.</p>
+                        <p>The first step before applying any mitigation is to identify whether a system is affected by any issue. On updated Linux systems,&nbsp;sysfs&nbsp;will report the status of the vulnerability, including whether the platform is affected or not. There are also different tools and guidance for how to detect whether a system is vulnerable. For example, for Linux and BSD systems Intel published a document with step by step instructions, "System Check for Speculative Execution Side Channel”. For Microsoft* systems, Microsoft created a simple step by step guide and released a step-by-step guide to check for a variety of speculative execution side-channel issues, refer to&nbsp;<a class="b_special_a1" href="https://support.microsoft.com/en-us/topic/kb4074629-understanding-speculationcontrol-powershell-script-output-fd70a80a-a63f-e539-cda5-5be4c9e67c04">Understanding Get-SpeculationControlSettings PowerShell script output</a>. It is expected that other OS vendors will have similar instructions.</p>
                     </section>
 
                     <section id="dk_risk_assessment">
@@ -1016,8 +1016,8 @@
                     <section id="dk_execution_scenarios">
                         <p>&nbsp;</p>
                         <h3 style="font-weight: 300;">Execution Scenarios & Mitigations</h3>
-                        <p>Intel has released new microcode updates (MCU) for the platforms affected by these issues as well as implemented updates in the Linux kernel to protect your systems against any implementation of these attacks, even though there are no known implementations of these methods beyond simple proofs of concept. System manufacturers and OS vendors distribute these MCU changes. MCU will require a system reboot. Check the&nbsp;<a class="b_special_a1" href="">References</a>&nbsp;section for links to different OS vendors.</p>
-                        <p>While these updates provide important mitigations, they might not be sufficient to protect against some potential attacks in all possible scenarios. You should evaluate the risk profile of your systems and apply the appropriate mitigations in your host machines and, if applicable, your Virtual Machine Managers (VMMs) and Virtual Machines (VMs). As mentioned,&nbsp;the malicious software needs to share hardware resources with the victim, which oftentimes means running on the same physical core. Refer to the&nbsp;<a class="b_special_a1" href="">Appendix: Hardware Overview</a>&nbsp;section for a quick general overview of computer architecture. Table 2 below shows a list of mitigations on affected platforms for these methods. OS updates might also require a system reboot (different OS vendors will provide different instructions).&nbsp;All mitigations can be disabled at boot time by passing the<em>&nbsp;</em><span class="dk_code_simple">mitigations=off</span><em>&nbsp;</em>parameter to the kernel.</p>
+                        <p>Intel has released new microcode updates (MCU) for the platforms affected by these issues as well as implemented updates in the Linux kernel to protect your systems against any implementation of these attacks, even though there are no known implementations of these methods beyond simple proofs of concept. System manufacturers and OS vendors distribute these MCU changes. MCU will require a system reboot. Check the&nbsp;<a class="b_special_a1" href="/darshit/dk_Solutions_Industries/Guidance_for_System_Administrators_to_Mitigate_Transient_Execution.html#dk_references">References</a>&nbsp;section for links to different OS vendors.</p>
+                        <p>While these updates provide important mitigations, they might not be sufficient to protect against some potential attacks in all possible scenarios. You should evaluate the risk profile of your systems and apply the appropriate mitigations in your host machines and, if applicable, your Virtual Machine Managers (VMMs) and Virtual Machines (VMs). As mentioned,&nbsp;the malicious software needs to share hardware resources with the victim, which oftentimes means running on the same physical core. Refer to the&nbsp;<a class="b_special_a1" href="/darshit/dk_Solutions_Industries/Guidance_for_System_Administrators_to_Mitigate_Transient_Execution.html#dk_appendix_a">Appendix: Hardware Overview</a>&nbsp;section for a quick general overview of computer architecture. Table 2 below shows a list of mitigations on affected platforms for these methods. OS updates might also require a system reboot (different OS vendors will provide different instructions).&nbsp;All mitigations can be disabled at boot time by passing the<em>&nbsp;</em><span class="dk_code_simple">mitigations=off</span><em>&nbsp;</em>parameter to the kernel.</p>
                         <p>Table 2.&nbsp;Software mitigations on affected platforms</p>
 
                         <table class="mv_product_table w-100 mb-4">
@@ -1423,7 +1423,7 @@
                     <section id="dk_appendix_c">
                         <p>&nbsp;</p>
                         <h3 style="font-weight: 350;">Appendix C: Mitigation Status Report on sysfs</h3>
-                        <p>On an up to date OS, the status of the different mitigations is reported on sysfs. For simplicity, this document lists the files and possible values for MDS and SRBDS. For the full list, please refer to the&nbsp;<a class="b_special_a1" href="">Linux kernel documentation</a>. When the files indicated cannot be found on a system, that might indicate that the OS is not up to date.</p>
+                        <p>On an up to date OS, the status of the different mitigations is reported on sysfs. For simplicity, this document lists the files and possible values for MDS and SRBDS. For the full list, please refer to the&nbsp;<a class="b_special_a1" href="https://www.kernel.org/doc/html/latest/admin-guide/hw-vuln/index.html">Linux kernel documentation</a>. When the files indicated cannot be found on a system, that might indicate that the OS is not up to date.</p>
                     </section>
 
                     <section id="dk_mds3">
@@ -1509,37 +1509,37 @@
                     <section id="dk_intel">
                         <h4>Intel</h4>
                         <ul>
-                            <li><a class="b_special_a1" href="">Intel® Analysis of L1 Terminal Fault</a></li>
-                            <li><a class="b_special_a1" href="">Intel Analysis of Microarchitectural Data Sampling</a></li>
-                            <li><a class="b_special_a1" href="">Security Best Practices for Side Channel Resistance</a></li>
-                            <li><a class="b_special_a1" href="">Intel® 64 and IA-32 Architectures Software Developer Manuals</a></li>
-                            <li><a class="b_special_a1" href="">Intel® Software Guidance for Security Advisories</a></li>
-                            <li><a class="b_special_a1" href="">How to Assess the Risk of Your Application</a></li>
+                            <li><a class="b_special_a1" href="/darshit/dk_Solutions_Industries/L1_Terminal_Fault.html">Intel® Analysis of L1 Terminal Fault</a></li>
+                            <li><a class="b_special_a1" href="/darshit/dk_Solutions_Industries/Microarchitectural_Data_Sampling.html">Intel Analysis of Microarchitectural Data Sampling</a></li>
+                            <li><a class="b_special_a1" href="/darshit/dk_Solutions_Industries/Security_Best_Practices_for_Side_Channel_Resistance.html">Security Best Practices for Side Channel Resistance</a></li>
+                            <li><a class="b_special_a1" href="/VK_developers/VK_Intel_64_IA32_Architectures_Software_Developer_Manuals.html">Intel® 64 and IA-32 Architectures Software Developer Manuals</a></li>
+                            <li><a class="b_special_a1" href="#">Intel® Software Guidance for Security Advisories</a></li>
+                            <li><a class="b_special_a1" href="/darshit/dk_Solutions_Industries/How_to_Assess_the_Risk_of_Your_Application.html">How to Assess the Risk of Your Application</a></li>
                         </ul>
                     </section>
 
                     <section id="dk_os_and_software">
                         <h4>OS and Software Vendors</h4>
                         <ul>
-                            <li><a class="b_special_a1" href="">Linux Kernel documentation for Spectre</a></li>
-                            <li><a class="b_special_a1" href="">Linux Kernel documentation for L1TF</a></li>
-                            <li><a class="b_special_a1" href="">Linux Kernel documentation for MDS</a></li>
-                            <li><a class="b_special_a1" href="">Red Hat* Side-Channel Attacks</a></li>
-                            <li><a class="b_special_a1" href="">Red Hat L1TF</a></li>
-                            <li><a class="b_special_a1" href="">Red Hat MDS</a></li>
-                            <li><a class="b_special_a1" href="">Ubuntu* Spectre and Meltdown</a></li>
-                            <li><a class="b_special_a1" href="">Ubuntu L1TF</a></li>
-                            <li><a class="b_special_a1" href="">Ubuntu MDS</a></li>
-                            <li><a class="b_special_a1" href="">VMware* Spectre</a></li>
-                            <li><a class="b_special_a1" href="">VMware L1TF</a></li>
-                            <li><a class="b_special_a1" href="">VMware MDS</a></li>
-                            <li><a class="b_special_a1" href="">Docker*:&nbsp;Using seccomp security profiles for Docker</a></li>
-                            <li><a class="b_special_a1" href="">OpenStack* mitigation for MDS</a></li>
-                            <li><a class="b_special_a1" href="">QEMU 2.11.1 and making use of Spectre/Meltdown mitigation for KVM guests</a></li>
-                            <li><a class="b_special_a1" href="">Microsoft* “Understanding Get-SpeculationControlSettings PowerShell script output”</a></li>
-                            <li><a class="b_special_a1" href="">Microsoft Guidance to Mitigate L1TF</a></li>
-                            <li><a class="b_special_a1" href="">Microsoft Guidance to Mitigate MDS</a></li>
-                            <li><a class="b_special_a1" href="">Microsoft Hyper-V* core scheduling</a></li>
+                            <li><a class="b_special_a1" href="https://www.kernel.org/doc/html/latest/admin-guide/hw-vuln/spectre.html">Linux Kernel documentation for Spectre</a></li>
+                            <li><a class="b_special_a1" href="https://www.kernel.org/doc/html/latest/admin-guide/hw-vuln/l1tf.html">Linux Kernel documentation for L1TF</a></li>
+                            <li><a class="b_special_a1" href="https://www.kernel.org/doc/html/latest/admin-guide/hw-vuln/mds.html">Linux Kernel documentation for MDS</a></li>
+                            <li><a class="b_special_a1" href="https://access.redhat.com/security/vulnerabilities/speculativeexecution">Red Hat* Side-Channel Attacks</a></li>
+                            <li><a class="b_special_a1" href="https://access.redhat.com/security/vulnerabilities/L1TF">Red Hat L1TF</a></li>
+                            <li><a class="b_special_a1" href="https://access.redhat.com/security/vulnerabilities/mds">Red Hat MDS</a></li>
+                            <li><a class="b_special_a1" href="https://wiki.ubuntu.com/SecurityTeam/KnowledgeBase/SpectreAndMeltdown">Ubuntu* Spectre and Meltdown</a></li>
+                            <li><a class="b_special_a1" href="https://wiki.ubuntu.com/SecurityTeam/KnowledgeBase/L1TF">Ubuntu L1TF</a></li>
+                            <li><a class="b_special_a1" href="https://access.redhat.com/security/vulnerabilities/mds">Ubuntu MDS</a></li>
+                            <li><a class="b_special_a1" href="https://knowledge.broadcom.com/external/article?legacyId=54951">VMware* Spectre</a></li>
+                            <li><a class="b_special_a1" href="https://knowledge.broadcom.com/external/article?legacyId=55636">VMware L1TF</a></li>
+                            <li><a class="b_special_a1" href="https://support.broadcom.com/web/ecx/support-content-notification/-/external/content/SecurityAdvisories/0/23553">VMware MDS</a></li>
+                            <li><a class="b_special_a1" href="https://docs.docker.com/engine/security/seccomp/">Docker*:&nbsp;Using seccomp security profiles for Docker</a></li>
+                            <li><a class="b_special_a1" href="https://docs.openstack.org/nova/latest/admin/cpu-models.html">OpenStack* mitigation for MDS</a></li>
+                            <li><a class="b_special_a1" href="https://www.qemu.org/2018/02/14/qemu-2-11-1-and-spectre-update/">QEMU 2.11.1 and making use of Spectre/Meltdown mitigation for KVM guests</a></li>
+                            <li><a class="b_special_a1" href="https://support.microsoft.com/en-us/topic/kb4074629-understanding-speculationcontrol-powershell-script-output-fd70a80a-a63f-e539-cda5-5be4c9e67c04">Microsoft* “Understanding Get-SpeculationControlSettings PowerShell script output”</a></li>
+                            <li><a class="b_special_a1" href="https://msrc.microsoft.com/update-guide/vulnerability/ADV180018">Microsoft Guidance to Mitigate L1TF</a></li>
+                            <li><a class="b_special_a1" href="https://msrc.microsoft.com/update-guide/vulnerability/ADV190013">Microsoft Guidance to Mitigate MDS</a></li>
+                            <li><a class="b_special_a1" href="https://learn.microsoft.com/en-us/windows-server/virtualization/hyper-v/manage/manage-hyper-v-scheduler-types">Microsoft Hyper-V* core scheduling</a></li>
                         </ul>
                     </section>
 
@@ -1547,7 +1547,7 @@
                         <p>&nbsp;</p>
                         <h3 style="font-weight: 350;">Footnotes</h3>
                         <ol>
-                            <li><a class="b_special_a1" href="">Reading Privileged Memory with a Side-Channel</a>. Google Project Zero. 2018.</li>
+                            <li><a class="b_special_a1" href="https://googleprojectzero.blogspot.com/2018/01/reading-privileged-memory-with-side.html">Reading Privileged Memory with a Side-Channel</a>. Google Project Zero. 2018.</li>
                             <li>“Spectre Attacks: Exploiting Speculative Execution”. P. Kocher, J. Horn, A. Fogh, D. Genkin, D. Gruss, W. Haas, M. Hamburg, M. Lipp, S. Mangard, T. Prescher, M. Schwarz, Y. Yarom. 40th IEEE Symposium on Security and Privacy. 2019.</li>
                             <li>“Meltdown: Reading Kernel Memory from User Space”. M. Lipp, M. Schwarz, D. Gruss, T. Prescher, W. Haas, A. Fogh, J. Horn, S. Mangard, P. Kocher, D. Genkin, Y. Yarom, M. Hamburg. 27th USENIX Security Symposium. 2018.</li>
                             <li>“Foreshadow: Extracting the Keys to the Intel SGX Kingdom with Transient Out-of-Order Execution”. J. Van Bulck, M. Minkin, O. Weisse, D. Genkin, B. Kasikci, F. Piessens, M. Silberstein, T. F. Wenisch, Y. Yarom, Yuval, R. Strackx. Proceedings of the 27th USENIX Security Symposium. 2018.</li>
@@ -1555,7 +1555,7 @@
                             <li>"RIDL Rogue In-flight Data Load", S. van Schaik, A. Milburn, S. Österlund, P. Frigo, G. Maisuradze, K. Razavi, H. Bos, C. Giuffrida, Cristiano. 2019.</li>
                             <li>"Fallout: Reading Kernel Writes From User Space", M. Minkin, D. Moghimi, M. Lipp, M. Schwarz, J. Van Bulck, D. Genkin, D. Gruss, B. Sunar, F. Piessens, Y. Yarom. 2019.</li>
                             <li>There is a variation called NetSpectre, not covered in this document, that might leak data from a local network at a rate of up to 60 bits an hour, even less over the Internet. Refer to “NetSpectre: Read Arbitrary Memory over Network”. M Schwarz, M Schwarzl, M Lipp, D Gruss. CoRR abs/1807.10535 (2018).</li>
-                            <li><a class="b_special_a1" href="">Detecting Spectre And Meltdown Using Hardware Performance Counters</a>.</li>
+                            <li><a class="b_special_a1" href="https://www.elastic.co/blog/detecting-spectre-and-meltdown-using-hardware-performance-counters">Detecting Spectre And Meltdown Using Hardware Performance Counters</a>.</li>
                             <li>“FLUSH+RELOAD: A High Resolution, Low Noise, L3 Cache Side-Channel Attack”. Y. Yarom, K. Falkne. USENIX Security Symposium 2014: 719-732.</li>
                             <li>“Cross-Tenant Side-Channel Attacks in PaaS Cloud”s. Y. Zhang, A. Juels, M. K. Reiter, and T. Ristenpart. In Proceedings of the 2014 ACM SIGSAC Conference on Computer and Communications Security (CCS '14). ACM, New York, NY, USA, 990-1003</li>
                             <li>“Cross-VM side channels and their use to extract private keys”. Y. Zhang, A.</li>

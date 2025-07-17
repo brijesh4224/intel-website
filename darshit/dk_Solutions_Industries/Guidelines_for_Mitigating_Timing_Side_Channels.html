@@ -557,7 +557,7 @@
             <div class="container">
                 <div class="mv_vmware_padd">
                     <div class="row">
-                        <div class="col-md-8 col-sm-12">
+                        <div class="col-12">
                             <div class="mv_vmware_heading">
                                 <h3>Guidelines for Mitigating Timing Side Channels Against Cryptographic Implementations
                                 </h3>
@@ -681,7 +681,7 @@
                 <div class="col-xl-10 VK_all_sections">
                     <div style="padding-bottom: 16px;">
                         <p>&nbsp;</p>
-                        <p>The primary concern with <a class="b_special_a1" href="">side channels</a> is the protection
+                        <p>The primary concern with <a class="b_special_a1" href="/darshit/dk_Solutions_Industries/Refined_Speculative_Execution_Terminology.html">side channels</a> is the protection
                             of secrets. Secrets are broadly defined as any data that should not be seen or known by
                             other users, applications, or even other code modules. When using side channel methods,
                             malicious actors most commonly seek API keys, user passwords, or cryptographic keys because
@@ -727,13 +727,13 @@
                             execution attacks to disclose secret values, such as data stored in registers or memory in
                             either the cryptographic software or other software in the same address space as secret
                             data. You can find additional resources and techniques for mitigating speculative execution
-                            side channels on the&nbsp;<a class="b_special_a1" href="">Security Findings and
+                            side channels on the&nbsp;<a class="b_special_a1" href="#">Security Findings and
                                 Mitigations</a>&nbsp;site. The mitigations and guidance presented here are based on
                             Intel’s current information and understanding, and may be revised as new information emerges
                             and as the threat landscape evolves.&nbsp;</p>
                         <p>In addition to the traditional and speculative side channel mentioned above, software-visible
                             physical timing side channels are an emerging research topic that may result in
-                            data-dependent timing. Refer to the <a class="b_special_a1" href="">Frequency Throttling
+                            data-dependent timing. Refer to the <a class="b_special_a1" href="/darshit/dk_Solutions_Industries/Frequency_Throttling_Side_Channel_Guidance.html">Frequency Throttling
                                 Side Channel Guidance for Cryptography Implementations</a> for more information. &nbsp;
                         </p>
                         <p>The mitigations and guidance presented are based on Intel’s current information and
@@ -784,7 +784,7 @@
                                 <p>Ensure the runtime is independent of secret values.</p>
                                 <p>Timing side channels take advantage of the smallest differences in execution time,
                                     sometimes at the resolution of a single clock cycle. Ensure algorithms consistently
-                                    process secret data, and only use <a class="b_special_a1" href="">instructions whose
+                                    process secret data, and only use <a class="b_special_a1" href="/darshit/dk_Solutions_Industries/Data_Operand_Independent_Timing_Mode_Controls.html">instructions whose
                                         latency is invariant to the data values</a>. This requirement applies to the
                                     primary operation as well as any subfunctions.</p>
                             </li>
@@ -1266,7 +1266,7 @@
                             </div>
                         </div>
 
-                        <p>In the above code, the two possible final values of&nbsp;state&nbsp;are placed into registers.&nbsp;%eax&nbsp;initially contains&nbsp;state+1. Then&nbsp;CMOVGE&nbsp;instruction in line 5 copies the value of&nbsp;maxState&nbsp;in&nbsp;%ecx&nbsp;into&nbsp;%eax,&nbsp;only if the greater than or equals condition holds&nbsp;based on the comparison instruction in line 4. The&nbsp;CMOVcc&nbsp;instruction runs in time independent of its arguments in all current x86 architecture processors. This includes variants that load from memory. The load is performed before the condition is tested. Future versions of the architecture may introduce new addressing modes that do not exhibit this property. Refer to the <a class="b_special_a1" href="">Intel® 64 and IA-32 Architectures Optimization Reference Manual</a>, section 3.5 Optimizing the Execution Core as the architecture evolves.</p>
+                        <p>In the above code, the two possible final values of&nbsp;state&nbsp;are placed into registers.&nbsp;%eax&nbsp;initially contains&nbsp;state+1. Then&nbsp;CMOVGE&nbsp;instruction in line 5 copies the value of&nbsp;maxState&nbsp;in&nbsp;%ecx&nbsp;into&nbsp;%eax,&nbsp;only if the greater than or equals condition holds&nbsp;based on the comparison instruction in line 4. The&nbsp;CMOVcc&nbsp;instruction runs in time independent of its arguments in all current x86 architecture processors. This includes variants that load from memory. The load is performed before the condition is tested. Future versions of the architecture may introduce new addressing modes that do not exhibit this property. Refer to the <a class="b_special_a1" href="/VK_developers/VK_Intel_64_IA32_Architectures_Software_Developer_Manuals.html">Intel® 64 and IA-32 Architectures Optimization Reference Manual</a>, section 3.5 Optimizing the Execution Core as the architecture evolves.</p>
 
                         <p>Another important observation is that a change to compiler flags might undo all our efforts to create data independent execution! Until compiled languages create primitives for data-independent execution, this will always be a problem. Although it is inconvenient, the safest solution to this is to write the secret-dependent code in assembly language. Another option is to validate the compiled code as part of the build process and create an automated trigger if the compiler decides to change to the output code.</p>
 
@@ -1658,7 +1658,7 @@
                             </li>
                         </ol>
 
-                        <p class="dk_note"><strong>Note</strong> that this implementation is still vulnerable to side channels based on the pattern of data access, so it should not be used alone. To satisfy the principle of ensuring data access patterns are secret independent, the code that selects the precomputed&nbsp;<strong>apre</strong>&nbsp;value must access all values of&nbsp;<strong>apre</strong>&nbsp;consistently. Each access must have identical size—for example, 4 bytes—the addresses accessed must be 4 byte aligned, and accessed in exactly the same order. This can be accomplished with a scan loop through <strong>apre</strong> using instructions such as the&nbsp;<span class="code-simple">CMOV</span>&nbsp;family discussed earlier using a test on the&nbsp;<strong>k</strong>&nbsp;bits of&nbsp;<strong>b</strong>&nbsp;and the index into&nbsp;<strong>apre</strong>.</p>
+                        <p class="dk_note"><strong>Note</strong> that this implementation is still vulnerable to side channels based on the pattern of data access, so it should not be used alone. To satisfy the principle of ensuring data access patterns are secret independent, the code that selects the precomputed&nbsp;<strong>apre</strong>&nbsp;value must access all values of&nbsp;<strong>apre</strong>&nbsp;consistently. Each access must have identical size—for example, 4 bytes—the addresses accessed must be 4 byte aligned, and accessed in exactly the same order. This can be accomplished with a scan loop through <strong>apre</strong> using instructions such as the&nbsp;<span class="dk_code_simple">CMOV</span>&nbsp;family discussed earlier using a test on the&nbsp;<strong>k</strong>&nbsp;bits of&nbsp;<strong>b</strong>&nbsp;and the index into&nbsp;<strong>apre</strong>.</p>
                     </section>
 
                     <section id="dk_table_access"> 
@@ -1676,7 +1676,7 @@
                         <p>&nbsp;</p>
                         <h3 style="font-weight: 300;">Conclusion</h3>
 
-                        <p>Developers who wish to protect secret data against timing side channel methods should ensure that their code runtime, data access patterns, and code access patterns are identical independent of secret values. Even developing simple cryptographic libraries that are resistant to timing side channel methods requires adhering to these guidelines as well as having a thorough background in cryptographic principles, algorithms, and implementations. Most developers should use existing tools and libraries that already follow the best practices described here, instead of trying to develop their own routines. Developers can refer to&nbsp;<a class="b_special_a1" href="">Security Best Practices for Side Channel Resistance</a>&nbsp;for more generic techniques. Additional precautions should be implemented to protect secret data from the risk of speculative execution side channel methods. Refer to the&nbsp;<a class="b_special_a1" href="">Software Security Findings and Mitigations</a>&nbsp;site for specific mitigations for speculative execution side channel methods.</p>
+                        <p>Developers who wish to protect secret data against timing side channel methods should ensure that their code runtime, data access patterns, and code access patterns are identical independent of secret values. Even developing simple cryptographic libraries that are resistant to timing side channel methods requires adhering to these guidelines as well as having a thorough background in cryptographic principles, algorithms, and implementations. Most developers should use existing tools and libraries that already follow the best practices described here, instead of trying to develop their own routines. Developers can refer to&nbsp;<a class="b_special_a1" href="/darshit/dk_Solutions_Industries/Security_Best_Practices_for_Side_Channel_Resistance.html">Security Best Practices for Side Channel Resistance</a>&nbsp;for more generic techniques. Additional precautions should be implemented to protect secret data from the risk of speculative execution side channel methods. Refer to the&nbsp;<a class="b_special_a1" href="#">Software Security Findings and Mitigations</a>&nbsp;site for specific mitigations for speculative execution side channel methods.</p>
                     </section>
 
                     <section id="dk_references">
@@ -1684,11 +1684,11 @@
                         <h3 style="font-weight: 300;">References</h3>
 
                         <ul>
-                            <li>Alfred J. Menezes, Paul C. van Oorschot, and Scott A. Vanstone. <a class="b_special_a1" href="">The Handbook of Applied Cryptography, CRC Press, 1996</a></li>
-                            <li>Jean-Philippe Aumasson, <a class="b_special_a1" href="">Cryptocoding</a></li>
-                            <li><a class="b_special_a1" href="">Intel® 64 and IA-32 Architectures Software Developer Manuals</a></li>
-                            <li>Yuval Yarom, Daniel Genkin, and Nadia Heninger, CacheBleed: <a class="b_special_a1" href="">A Timing Attack on OpenSSL Constant Time RSA</a></li>
-                            <li>Qian Ge, Yuval Yarom, David Cock, and Gernot Heiser, <a class="b_special_a1" href="">A Survey of Microarchitectural Timing Attacks and Countermeasures on Contemporary Hardware</a></li>
+                            <li>Alfred J. Menezes, Paul C. van Oorschot, and Scott A. Vanstone. <a class="b_special_a1" href="https://cacr.uwaterloo.ca/hac/">The Handbook of Applied Cryptography, CRC Press, 1996</a></li>
+                            <li>Jean-Philippe Aumasson, <a class="b_special_a1" href="https://github.com/veorq/cryptocoding">Cryptocoding</a></li>
+                            <li><a class="b_special_a1" href="/VK_developers/VK_Intel_64_IA32_Architectures_Software_Developer_Manuals.html">Intel® 64 and IA-32 Architectures Software Developer Manuals</a></li>
+                            <li>Yuval Yarom, Daniel Genkin, and Nadia Heninger, CacheBleed: <a class="b_special_a1" href="/img/darshit_image/cachebleed.pdf">A Timing Attack on OpenSSL Constant Time RSA</a></li>
+                            <li>Qian Ge, Yuval Yarom, David Cock, and Gernot Heiser, <a class="b_special_a1" href="/img/darshit_image/2016-613.pdf">A Survey of Microarchitectural Timing Attacks and Countermeasures on Contemporary Hardware</a></li>
                         </ul>
                     </section>
 
@@ -1696,13 +1696,13 @@
                         <p>&nbsp;</p>
                         <h3 style="font-weight: 300;">Footnotes</h3>
                         <ol>
-                            <li>For example, “<a class="b_special_a1" href="">Prime+Abort: A Timer-Free High-Precision L3 Cache Attack using Intel TSX</a>”, Craig Disselkoen, et al</li>
-                            <li>Use of the term “constant time” is a legacy term that is ingrained in literature and used here for consistency. In modern processors, the time to execute a given set of instructions may vary depending on many factors. The key is to ensure that none of these factors are related to the manipulation of secret data values. Modern algorithm research uses the more inclusive term <em>data oblivious algorithm</em>, which Intel refers to as <a class="b_special_a1" href="">Data Operand Independent Timing</a>.&nbsp;</li>
+                            <li>For example, “<a class="b_special_a1" href="https://www.usenix.org/conference/usenixsecurity17/technical-sessions/presentation/disselkoen">Prime+Abort: A Timer-Free High-Precision L3 Cache Attack using Intel TSX</a>”, Craig Disselkoen, et al</li>
+                            <li>Use of the term “constant time” is a legacy term that is ingrained in literature and used here for consistency. In modern processors, the time to execute a given set of instructions may vary depending on many factors. The key is to ensure that none of these factors are related to the manipulation of secret data values. Modern algorithm research uses the more inclusive term <em>data oblivious algorithm</em>, which Intel refers to as <a class="b_special_a1" href="/darshit/dk_Solutions_Industries/Data_Operand_Independent_Timing_Mode_Controls.html">Data Operand Independent Timing</a>.&nbsp;</li>
                             <li>A program's code access pattern is the order and address of instructions that it executes.</li>
                             <li>A program's data access pattern is the order and address of memory operands that it loads and stores.</li>
-                            <li><a class="b_special_a1" href="">Util::Lookup: Exploiting key decoding in cryptographic libraries Florian Sieck et al.</a></li>
-                            <li><a class="b_special_a1" href="">Oracle attack</a></li>
-                            <li><a class="b_special_a1" href="">What is a cryptographic oracle?</a></li>
+                            <li><a class="b_special_a1" href="/img/darshit_image/2108.04600v1.pdf">Util::Lookup: Exploiting key decoding in cryptographic libraries Florian Sieck et al.</a></li>
+                            <li><a class="b_special_a1" href="https://en.wikipedia.org/wiki/Oracle_attack">Oracle attack</a></li>
+                            <li><a class="b_special_a1" href="https://security.stackexchange.com/questions/10617/what-is-a-cryptographic-oracle">What is a cryptographic oracle?</a></li>
                             <li>Alfred J. Menezes, Paul C. van Oorschot, and Scott A. Vanstone. The Handbook of Applied Cryptography, CRC Press, 1996. Algorithm 14.79, pg 615.</li>
                             <li>Alfred J. Menezes, Paul C. van Oorschot, and Scott A. Vanstone. The Handbook of Applied Cryptography, CRC Press, 1996. Algorithm 14.82, pg 615.</li>
                         </ol>
