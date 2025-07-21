@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bounds Check Bypass / CVE-2017-5753 / INTEL-SA-00088</title>
+    <title>L1 Terminal Fault</title>
 
     <!-- font family -->
     <link href="https://fonts.cdnfonts.com/css/intel-clear" rel="stylesheet">
@@ -50,6 +50,17 @@
         background-color: #e6e6e6;
         color: #53565a;
         border-radius: 0;
+    }
+
+    .dk_greyHighlight{
+        font-size: 1rem;
+        line-height: 1.25;
+        background-color: #e6e6e6;
+        padding: 20px;
+    }
+
+    .dk_things_code{
+        padding: 1rem 1rem 0rem 0.5rem;
     }
 
     @media(max-width:1200px) {
@@ -519,12 +530,12 @@
         </div>
         <div class="m_ai_shlash">/</div>
         <div>
-            <button class="btn dropdown-toggle" aria-expanded="false">
-                Advisory Guidance
+            <button class="btn" style="color: #0068B5;">
+                Disclosure Documentation
             </button>
         </div>
         <div class="m_ai_shlash">/</div>
-        <div class="m_ai_httl">Bounds Check Bypass</div>
+        <div class="m_ai_httl">Fix Vulnerability</div>
 
     </section>
     <!------------------------------------------------------------------------------->
@@ -537,7 +548,7 @@
                     <div class="row">
                         <div class="col-12">
                             <div class="mv_vmware_heading">
-                                <h3>Bounds Check Bypass / CVE-2017-5753 / INTEL-SA-00088</h3>
+                                <h3>L1 Terminal Fault</h3>
                             </div>
                         </div>
                     </div>
@@ -545,11 +556,11 @@
                         <div class="mv_cd_page_marquee_action">
                             <div class="mv_cd_page_marquee_action_padd">
                                 <label for="">ID</label>
-                                <span>660214</span>
+                                <span>758376</span>
                             </div>
                             <div class="mv_cd_page_marquee_action_padd">
                                 <label for="">Updated</label>
-                                <span>1/3/2018</span>
+                                <span>8/14/2018</span>
                             </div>
                             <div class="mv_cd_page_marquee_action_padd">
                                 <label for="">Version</label>
@@ -576,124 +587,157 @@
                 <div class="VK_sticky_side_bar VK_side_bar_postion_stickey">
                     <div>
                         <div class="VK_sidebar_dropdown">
-                            <p class="m-0">
-                                <a href="#dk_aliases" class="text-decoration-none VK_a">
-                                    Aliases
-                                </a>
-                            </p>
-                            <p class="m-0">
-                                <a href="#dk_related_content" class="text-decoration-none VK_a">
-                                    Related Content
-                                </a>
-                            </p>
                             <details>
                                 <summary>
-                                    <a href="#dk_overview" class="text-decoration-none VK_a">
-                                        Overview
+                                    <a href="#dk_how_l1tf" class="text-decoration-none VK_a">
+                                        How L1TF Works
                                     </a>
                                 </summary>
                                 <ul class="list-unstyled ps-3 mb-0">
                                     <li>
-                                        <a href="#dk_bound_chek" class="text-decoration-none VK_a my-1">
-                                            Bounds Check Bypass Store
+                                        <a href="#dk_details_calculation" class="text-decoration-none VK_a my-1">
+                                            Details and Example of L1TF Address Calculation
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#dk_e2e" class="text-decoration-none VK_a my-1">
+                                            How Enclave to Enclave (E2E) Works
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#dk_l1tf_factors" class="text-decoration-none VK_a my-1">
+                                            L1TF Limiting Factors
                                         </a>
                                     </li>
                                 </ul>
                             </details>
                             <p class="m-0">
-                                <a href="#dk_mitigation" class="text-decoration-none VK_a">
-                                    Mitigation
-                                </a>
-                            </p>
-                            <p class="m-0">
-                                <a href="#dk_lfence" class="text-decoration-none VK_a">
-                                    LFENCE
+                                <a href="#dk_affected_hardware" class="text-decoration-none VK_a">
+                                    Affected Hardware
                                 </a>
                             </p>
                             <details>
                                 <summary>
-                                    <a href="#dk_bounds_clipping" class="text-decoration-none VK_a">
-                                        Bounds Clipping
+                                    <a href="#dk_from_l1d" class="text-decoration-none VK_a">
+                                        Mitigation by Removing Secrets from L1D
                                     </a>
                                 </summary>
                                 <ul class="list-unstyled ps-3 mb-0">
                                     <li>
-                                        <a href="#dk_application_dev" class="text-decoration-none VK_a my-1">
-                                            Application Developers
+                                        <a href="#dk_into_l1d" class="text-decoration-none VK_a my-1">
+                                            Mitigations Preventing Data from Being Loaded Into L1D
+                                        </a>
+                                    </li>
+                                </ul>
+                            </details>
+                            <details>
+                                <summary>
+                                    <a href="#dk_os" class="text-decoration-none VK_a">
+                                        Mitigating Operating Systems (OS)
+                                    </a>
+                                </summary>
+                                <ul class="list-unstyled ps-3 mb-0">
+                                    <li>
+                                        <a href="#dk_addresses_secrets" class="text-decoration-none VK_a my-1">
+                                            Mitigation by Referring to Addresses Free of Secrets
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="#dk_front_end" class="text-decoration-none VK_a my-1">
-                                            Front-end Web Developers
+                                        <a href="#dk_invalid_memory" class="text-decoration-none VK_a my-1">
+                                            Mitigation by Referring to Invalid Memory
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="#dk_runtime_dev" class="text-decoration-none VK_a my-1">
-                                            Runtime Developers
+                                        <a href="#dk_uncacheable_memory" class="text-decoration-none VK_a my-1">
+                                            Mitigation by Referring to Uncacheable Memory
                                         </a>
                                     </li>
+                                </ul>
+                            </details>
+                            <p class="m-0">
+                                <a href="#dk_smm" class="text-decoration-none VK_a">
+                                    System Management Mode (SMM)
+                                </a>
+                            </p>
+                            <details>
+                                <summary>
+                                    <a href="#dk_vmms" class="text-decoration-none VK_a">
+                                        Virtual Machine Monitors (VMMs)
+                                    </a>
+                                </summary>
+                                <ul class="list-unstyled ps-3 mb-0">
                                     <li>
                                         <details>
                                             <summary>
-                                                <a href="#dk_os_and_driver" class="text-decoration-none VK_a">
-                                                    OS and Driver Developers
+                                                <a href="#dk_mitigation_attacks" class="text-decoration-none VK_a">
+                                                    VMM Mitigation for Guest-Based Attacks
                                                 </a>
                                             </summary>
                                             <ul class="list-unstyled ps-3 mb-0">
                                                 <li>
-                                                    <a href="#dk_linux" class="text-decoration-none VK_a my-1">
-                                                        Linux*
+                                                    <a href="#dk_vmm_mitigations" class="text-decoration-none VK_a my-1">
+                                                        VMM Assistance for Guest OS Mitigations
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a href="#dk_micro" class="text-decoration-none VK_a my-1">
-                                                        Microsoft* Windows*
+                                                    <a href="#dk_nested_vmm" class="text-decoration-none VK_a my-1">
+                                                        Nested VMM Environments
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </details>
+                                    </li>
+                                </ul>
+                            </details>
+                            <p class="m-0">
+                                <a href="#dk_summary" class="text-decoration-none VK_a">
+                                    Summary
+                                </a>
+                            </p>
+                            <p class="m-0">
+                                <a href="#dk_affected_processors" class="text-decoration-none VK_a">
+                                    Affected Processors
+                                </a>
+                            </p>
+                            <details>
+                                <summary>
+                                    <a href="#dk_appendix_intel" class="text-decoration-none VK_a">
+                                        Appendix Intel® Hyper-Threading Technology
+                                    </a>
+                                </summary>
+                                <ul class="list-unstyled ps-3 mb-0">
+                                    <li>
+                                        <details>
+                                            <summary>
+                                                <a href="#dk_determining_hardware" class="text-decoration-none VK_a">
+                                                    Determining Hardware Support for Intel HT Technology
+                                                </a>
+                                            </summary>
+                                            <ul class="list-unstyled ps-3 mb-0">
+                                                <li>
+                                                    <a href="#dk_hyperthreading" class="text-decoration-none VK_a my-1">
+                                                        Hyperthreading Enumeration from a Bare-metal OS/VMM
                                                     </a>
                                                 </li>
                                             </ul>
                                         </details>
                                     </li>
                                     <li>
-                                        <a href="#dk_virtual_machine" class="text-decoration-none VK_a my-1">
-                                            Virtual Machine Monitor Developers
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#dk_developers_enclave" class="text-decoration-none VK_a my-1">
-                                            Developers of Software Running in an Enclave
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#dk_system_administrators" class="text-decoration-none VK_a my-1">
-                                            System Administrators
+                                        <a href="#dk_determining_status" class="text-decoration-none VK_a my-1">
+                                            Determining Hardware Support Status
                                         </a>
                                     </li>
                                 </ul>
                             </details>
                             <p class="m-0">
-                                <a href="#dk_references" class="text-decoration-none VK_a">
-                                    References
+                                <a href="#dk_footnotes" class="text-decoration-none VK_a">
+                                    Footnotes
                                 </a>
                             </p>
                         </div>
                     </div>
                 </div>
-                <!-- thinkcode -->
-                <!-- <div class="dk_things_code_main">
-                    <div class="dk_things_code">
-                        <h2 class="text-left headline-font-one-bold">Loss Prevention Retail Reference Implementation provides:</h2>
-                        <div class="dk_high_quality">
-                            <ul>
-                                <li>High-quality testable ingredients needed to create a solution to prevent thefts at stores.</li>
-                                <li>Building blocks needed to enable the use case with solid performance numbers.</li>
-                                <li>Hardware requirements to support the workloads and scale the solution.</li>
-                            </ul>
-                        </div>
-                    <div class="dk_get_code">
-                        <button class="dk_button">Get Started on GitHub<sup>*</sup></button>
-                    </div>
-                    </div> 
-                </div> -->
+                
             </div>
             <div class="col-lg-9 col-md-8">
                 <div class="d-md-flex justify-content-end col-xl-10 py-3 d-none">
@@ -702,218 +746,326 @@
                 </div>
                 <div class="col-xl-10 VK_all_sections">
                     <p>&nbsp;</p>
-                    <table class="mv_product_table w-100 mb-4">
-                        <tbody>
-                            <tr>
-                                <td>
-                                <p><strong>Disclosure date:</strong><br>
-                                2018-01-03</p>
+                    <p>This technical documentation expands on the information in&nbsp;<a class="b_special_a1" href="">L1 Terminal Fault Software Guidance</a>. Be sure to review the overview and mitigation for software developers, and be sure to apply any microcode updates from your OS vendor. For more information, refer to the&nbsp;<a class="b_special_a1" href="">list of affected processors</a>.&nbsp;</p>
                     
-                                <p><strong>Published date:</strong><br>
-                                2018-01-03</p>
-                                </td>
-                                <td>
-                                <p><img alt="" class="one-quarter-float-left" src="/img/darshit_image/shield-icon-8.png" width="100"><strong>Severity rating:</strong><br>
-                                5.6 Medium</p>
-                                </td>
-                                <td>
-                                <p>Industry-wide severity ratings can be found in the&nbsp;<a class="b_special_a1" href="https://nvd.nist.gov/">National Vulnerability Database</a></p>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table> 
-
-                    <section id="dk_aliases">
+                    <section id="dk_how_l1tf">
                         <p class="mb-0">&nbsp;</p>
-                        <h3 style="font-weight: 350; padding-bottom: 0.8rem;">Aliases</h3>
+                        <h3 style="font-weight: 350; padding-bottom: 0.5rem;">How L1TF Works</h3>
+                        <p>When the processor accesses a linear address, it first looks for a translation to a physical address in the&nbsp;translation lookaside buffer&nbsp;(TLB). For an unmapped address this will not provide a physical address, so the processor performs a “table walk”<sup>1</sup>&nbsp;of a hierarchical paging structure in memory that provides translations from linear to physical addresses. A page fault is signaled if this table walk fails.</p>
+                        <p>A paging structure entry is vulnerable to an L1TF exploit when it is not Present<span class="dk_code_simple">(P=0)</span> or when it has a reserved bit set<sup>2</sup>. A fault delivered for either of these entries is a terminal fault because the condition causes the address translation process to be terminated immediately, without completing the translation. Although access is denied, speculative execution may still occur.</p>
+                        <p>During the process of a terminal fault, the processor speculatively computes a physical address from the paging structure entry and the address of the fault. This physical address is composed of the address of the page frame and low order bits from the linear address. If data with this physical address is present in the L1D, that data may be loaded and forwarded to dependent instructions. These dependent instructions may create a side channel.</p>
+                        <p class="mb-0">Because the resulting probed physical address is not a true translation of the virtual address, the resulting address is not constrained by various memory range checks or nested translations. Specifically:</p>
                         <ul>
-                            <li>Spectre Variant 1</li>
-                            <li>Bounds Check Bypass Store</li>
+                            <li>Intel® Software Guard Extensions (Intel® SGX) protected memory checks are not applied.</li>
+                            <li>Extended Page Table&nbsp;(EPT) guest physical to host physical address translation is not applied.</li>
+                            <li>SMM protected memory checks are not applied.</li>
                         </ul>
                     </section>
 
-                    <section id="dk_related_content">
+                    <section id="dk_details_calculation">
                         <p class="mb-0">&nbsp;</p>
-                        <h3 style="font-weight: 350; padding-bottom: 0.8rem;">Related Content</h3>
-                        <p><a class="b_special_a1" href="">Analyzing Potential Bounds Check Bypass Vulnerabilities</a><br>
-                            <a class="b_special_a1" href="">Managed Runtime Speculative Execution Side Channel Mitigations</a></p>
+                        <h4 style="padding-bottom: 0.5rem;">Details and Example of L1TF Address Calculation</h4>
+                        <p>The physical address used to search the L1D is dependent on the level of the paging structures where the fault occurred and the contents of the paging structures. If the table walk completes at a level of the paging structure hierarchy with the&nbsp;page size<span class="dk_code_simple">(PS)</span>bit set, the addresses used to read the L1D consumes different bits from the linear address and page frame depending on the level.</p>
+                        <p>Table 1.&nbsp;Address Calculation</p>
+                        <table class="mv_product_table w-100 mb-4">
+                            <thead>
+                                <tr>
+                                    <th style="text-align:center">Vulnerable paging structure entries</th>
+                                    <th style="text-align:center">Bits from paging structure entry</th>
+                                    <th style="text-align:center">Bits from faulting address</th>
+                                    <th style="text-align:center">Amount of physical memory</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>PTE, or any paging structure entry with PS=0</td>
+                                    <td>M-1:12</td>
+                                    <td>11:0</td>
+                                    <td>4 KB</td>
+                                </tr>
+                                <tr>
+                                    <td>PDE with PS=1</td>
+                                    <td>M-1:21</td>
+                                    <td>20:0</td>
+                                    <td>2 MB</td>
+                                </tr>
+                                <tr>
+                                    <td>PDPTE with PS=1</td>
+                                    <td>M-1:30</td>
+                                    <td>29:0</td>
+                                    <td>1 GB</td>
+                                </tr>
+                                <tr>
+                                    <td>PML4<sup>3</sup></td>
+                                    <td>M-1:12</td>
+                                    <td>11:0</td>
+                                    <td>4 KB</td>
+                                </tr>
+                            </tbody>
+                        </table> 
+                        <p>An example that could lead to L1TF is when a read-only paging structure entry referring to physical page&nbsp;<span class="dk_code_simple">0x1000</span>&nbsp;is changed to be inaccessible because the page is being swapped out.</p>
+                        <p>Original entry:&nbsp;<span class="dk_code_simple">0x1001 &nbsp;&nbsp;&nbsp; (P=1)</span></p>
+                        <p>The operating system (OS) makes the page not accessible by clearing the Present (P) bit:</p>
+                        <p>New entry (vulnerable):&nbsp;<span class="dk_code_simple">0x1000 &nbsp;&nbsp;&nbsp; (P=0)</span></p>
+                        <p>This vulnerable entry might be used by an L1TF exploit to infer the contents of physical page&nbsp;<span class="dk_code_simple">0x1000</span>&nbsp;if the contents of the page were present in the L1D. Refer to the&nbsp;<a class="b_special_a1" href="">Mitigating Unmapped Paging Structure Entries</a>&nbsp;section below for mitigation options in this scenario.</p>
                     </section>
 
-                    <section id="dk_overview">
-                        <p>&nbsp;</p>
-                        <h3 style="font-weight: 350; padding-bottom: 0.8rem;">Overview</h3>
-                        <p>This method takes advantage of&nbsp;speculative execution&nbsp;after conditional branch instructions. A malicious actor discovers or causes the creation of “confused deputy” code, which allows the attacker to use speculative operations to infer information not normally accessible to them.</p>
-                        <p>Bounds check bypass uses speculative operations that occur while the processor is checking whether an input is in bounds, such as checking if the index of an array being read is within acceptable values. It takes advantage of memory accesses to out of bound memory that are performed speculatively before the bounds check resolves. These memory accesses can be used in certain circumstances to leak information to the attacker.</p>
-                        <p>If the attacker can identify an appropriate “confused deputy” in a more privileged level, the malicious actor may be able to exploit that deputy to deduce the contents of memory accessible to that deputy but not to the malicious actor.</p>
+                    <section id="dk_e2e">
+                        <p class="mb-0">&nbsp;</p>
+                        <h4 style="padding-bottom: 0.5rem;">How Enclave to Enclave (E2E) Works</h4>
+                        <p>The&nbsp;enclave-to-enclave&nbsp;(E2E) method is a subvariant of the L1TF method. E2E may expose memory in one Intel SGX enclave to software that is running in a different Intel SGX enclave on the same core.</p>
+                        <p>When code running inside an Intel SGX enclave accesses a linear address in&nbsp;<span class="dk_code_simple">ELRANGE</span><sup>4</sup>, the processor translates the address using normal translation mechanisms. The processor verifies that the physical address refers to a page within the protected&nbsp;Enclave Page Cache&nbsp;(EPC). The processor then checks the&nbsp;Enclave Page Cache Map&nbsp;(EPCM) to ensure that this enclave is allowed to access this physical address. Among other checks, this determines whether the page is valid and accessible by this particular enclave.</p>
+                        <p>If the EPCM check indicates an access violation, the operation will not be allowed to architecturally complete and&nbsp;typically results in a page fault. However, if the forbidden access is a load and the physical address is present in the L1D, the actual data may be observed by speculative dependent operations.</p>
+                        <p>If a physical page belonging to an Intel SGX enclave is mapped into the&nbsp;<span class="dk_code_simple">ELRANGE</span>&nbsp;of another enclave, the second enclave could infer data in that page using E2E. As E2E is a subset of L1TF, only lines present in the L1D may be exposed by E2E. Unlike L1TF, the E2E probe can happen speculatively before previous instructions have&nbsp;been resolved.</p>
                     </section>
 
-                    <section id="dk_bound_chek">
-                        <h4>Bounds Check Bypass Store</h4>
-                        <p>One subvariant of this technique, known as bounds check bypass store, uses speculative stores to overwrite younger speculative loads in a way that creates a side channel controlled by a malicious actor. Refer to&nbsp;<a class="b_special_a1" href="">Analyzing Potential Bounds Check Bypass Vulnerabilities</a>&nbsp;for further details on bounds check bypass store.</p>
+                    <section id="dk_l1tf_factors">
+                        <p class="mb-0">&nbsp;</p>
+                        <h4 style="padding-bottom: 0.5rem;">L1TF Limiting Factors</h4>
+                        <p>L1TF can only be exploited by code running on a physical core that has secrets in its L1D. Secrets can be anything that should not be known by other code modules, processes, users, etc. Systems that do not run untrusted code are not affected.</p>
+                        <p class="mb-0">An L1TF exploit is composed of three elements. All three elements are required for an exploit to be successful.</p>
+                        <ol>
+                            <li>Secret data must be present in the L1D of a processor’s physical core. Data in the L1D is frequently replaced, so the window of opportunity for the attacker might be small.</li>
+                            <li>Malicious code is executed on the same physical core as the victim’s data. The malicious code must directly create (in a virtual machine) or indirectly create (via manipulating the bare-metal host OS) a paging structure entry that, if valid, would point to the physical address of a page containing a secret.</li>
+                            <li>Malicious code exploits the paging structure entry to speculatively access data in the L1D and infer its contents using a speculative execution side-channel method.</li>
+                        </ol>
+                        <p>In element 1, secret data is loaded into the L1D of a processor's physical core as the victim accesses the data (either directly or speculatively). In elements 2 and 3, the attacker must locally run malicious code on the same physical core as the victim's data.</p>
                     </section>
 
-                    <section id="dk_mitigation">
-                        <p>&nbsp;</p>
-                        <h3 style="font-weight: 300; padding-bottom: 0.8rem;">Mitigation</h3>
-                        <p>Software can insert a speculation stopping barrier between a bounds check and a later operation that could cause a speculative side channel. The&nbsp;<span class="dk_code_simple">LFENCE</span>&nbsp;instruction, or any serializing instruction, can serve as such a barrier.&nbsp;These instructions suffice regardless of whether the bounds checking is implemented using conditional branches or through the use of bound-checking instructions (<span class="dk_code_simple">BNDCL</span>&nbsp;and&nbsp;<span class="dk_code_simple">BNDCU</span>) that are part of the Intel® Memory Protection Extensions (Intel® MPX).</p>
+                    <section id="dk_affected_hardware">
+                        <p class="mb-0">&nbsp;</p>
+                        <h3 style="padding-bottom: 0.5rem; font-weight: 300;">Affected Hardware</h3>
+                        <p>See the&nbsp;<a class="b_special_a1" href="">Appendix: List of Affected Processors</a>&nbsp;section.</p>
+                        <p>Processors that have the&nbsp;<span class="dk_code_simple">RDCL_NO</span>&nbsp;bit set to one (1) in the&nbsp;<span class="dk_code_simple">IA32_ARCH_CAPABILITIES</span>&nbsp;MSR are not susceptible to the L1TF speculative execution side channel. On such processors, none of the following mitigations are required.</p>
+                        <p>Processors that implement Intel® HT Technology<sup>5</sup>&nbsp;share the L1D between all logical processors (hyperthreads) on the same physical core. This means that data loaded into the L1D by one logical processor may be speculatively accessed by code running on another logical processor. Processors that implement Intel HT Technology require additional mitigations described in the&nbsp;<a class="b_special_a1" href="">Appendix: Intel® Hyper-Threading Technology</a>&nbsp;section as well as the mitigations described in the&nbsp;<a class="b_special_a1" href="">Virtual Machine Monitors (VMMs)</a>&nbsp;section. Disabling hyperthreading does not in itself provide mitigation for L1TF.</p>
                     </section>
 
-                    <section id="dk_lfence">
-                        <p>&nbsp;</p>
-                        <h3 style="font-weight: 300; padding-bottom: 0.8rem;">LFENCE</h3>
-                        <p>We recommend inserting barriers, like&nbsp;<span class="dk_code_simple">LFENCE</span>&nbsp;and other&nbsp;serializing instructions, to constrain speculation in appropriate locations in your code (refer to Chapter 8.3, Volume 3a of the&nbsp;<a class="b_special_a1" href="">Intel® 64 and IA-32 Architectures Software Developer Manuals</a>). The&nbsp;<span class="dk_code_simple">LFENCE</span>&nbsp;instruction and other serializing instructions ensure that no later instruction will execute, even speculatively, until all prior instructions have completed locally.&nbsp;<span class="dk_code_simple">LFENCE</span>&nbsp;generally provides better performance and lower latency than other serializing instructions, but still must be used judiciously. Overapplication of&nbsp;<span class="dk_code_simple">LFENCE</span>&nbsp;can compromise performance.</p>
-                        <p>It is possible to create a set of static analysis rules to help find locations in software where speculation barriers might be needed. Our analysis of the Linux* kernel, for example, has only found a handful of places where inserting&nbsp;<span class="dk_code_simple">LFENCE</span>&nbsp;is required, resulting in minimal performance impact. As with all static analysis tools, there are likely to be false positives in the initial results, so we recommend manually inspecting the code as well.</p>
+                    <section id="dk_from_l1d">
+                        <p class="mb-0">&nbsp;</p>
+                        <h3 style="padding-bottom: 0.5rem; font-weight: 300;">Mitigation by Removing Secrets from L1D</h3>
+                        <p>Data that might be leaked by an L1TF exploit must be present in the L1D while malicious code executes. When transitioning to less-privileged code, removing data from the L1D mitigates exploits that might be launched in the less-privileged code.</p>
+                        <p>Traditional architectural cache-flushing operations, such as&nbsp;<span class="dk_code_simple">WBINVD</span>&nbsp;and the&nbsp;<span class="dk_code_simple">CLFLUSH</span>&nbsp;family, can be used to remove secrets from the L1D, but these solutions flush data from all cache levels of the local processor. The&nbsp;<span class="dk_code_simple">IA32_FLUSH_CMD</span>&nbsp;MSR is more precise and does not flush higher cache levels, thereby limiting its impact only to the L1 cache&nbsp;on the physical core executing the flush itself.</p>
+                        <p>While these mechanisms provide mitigation to keep data out of the L1D, data prefetchers and speculative execution may reload data that has been removed. To mitigate against data being reloaded, minimize or eliminate periods after a L1D cache flush where secret data is both mapped in and is marked as cacheable. For example, a VMM could use the MSR load list to trigger&nbsp;<span class="dk_code_simple">IA32_FLUSH_CMD</span>&nbsp;as part of VM entry.</p>
+                        <p>Specific mitigations for various operating environments are described below.</p>
                     </section>
 
-                    <section id="dk_bounds_clipping">
-                        <p>&nbsp;</p>
-                        <h3 style="font-weight: 350;">Bounds Clipping</h3>
-                        <p>Other instructions such as&nbsp;<span class="dk_code_simple">CMOVcc</span>,&nbsp;<span class="dk_code_simple">AND</span>,&nbsp;<span class="dk_code_simple">ADC</span>,&nbsp;<span class="dk_code_simple">SBB</span>&nbsp;and&nbsp;<span class="dk_code_simple">SETcc</span>&nbsp;can also be used to prevent bounds check bypass by constraining&nbsp;speculative execution&nbsp;on current family 6 processors (Intel® Core™, Intel® Atom™, Intel® Xeon® and Intel® Xeon Phi™ processors). However, these instructions may not be guaranteed to do so on future Intel processors. Check back for guidance on the usage of instructions to constrain speculation in the future before processors with different behavior are implemented.</p>
-                        <p>Memory disambiguation can theoretically impact such speculation constraining sequences when they involve a load from memory.</p>
-                        <p>In the following example, we insert a&nbsp;<span class="dk_code_simple">CMOVG</span>&nbsp;instruction to prevent a side channel from being created with data from any locations beyond the array bounds.</p>
-                        <!-- code toolbar 3 -->
-                        <div class="mv_code_toolbar">
-                            <div class="mv_toolbar_item mv_copy_icon">
-                                <i class="fa-regular fa-copy"></i>
-                            </div>
-                            <div class="mv_copy_message text-end hidden">Copied</div>
-                            <div class="code-content">
-                                <div style="padding-bottom: 0rem !important" class="d-flex">
-                                    <div class="">
-                                        <div class="mv_code text-break">
-                                            <p class="mb-0">&nbsp;</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div style="padding-bottom: 0rem !important" class="d-flex">
-                                    <div class="">
-                                        <div class="mv_code text-break">
-                                            <p class="mb-0">CMP RDX, [array_bounds]</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;"
-                                    class="d-flex pb-0">
-                                    <div class="">
-                                        <div class="mv_code text-break">
-                                            <p class="mb-0">JG out_of_bounds_input</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;"
-                                    class="d-flex pb-0">
-                                    <div class="">
-                                        <div class="mv_code text-break">
-                                            <p class="mb-0">MOV RCX, 0</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;"
-                                    class="d-flex pb-0">
-                                    <div class="">
-                                        <div class="mv_code text-break">
-                                            <p class="mb-0">MOV RAX, [RDX + 0x400000]</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;"
-                                    class="d-flex pb-0">
-                                    <div class="">
-                                        <div class="mv_code text-break">
-                                            <p class="mb-0">CMOVG RAX, RCX</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div style="padding-top: 0rem !important; padding-bottom: 1rem !important;"
-                                    class="d-flex pb-0">
-                                    <div class="">
-                                        <div class="mv_code text-break">
-                                            <p class="mb-0">< . . . Further code that causes cache movement based on RAX value . . . ></p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            </div>
-                            <p>For this example, assume the value at <span class="dk_code_simple">array_bounds</span> is&nbsp;<span class="dk_code_simple">0x20</span>, but that value was only recently stored to <span class="dk_code_simple">array_bounds</span>. Assume that the prior value at <span class="dk_code_simple">array_bounds</span> was significantly higher, such as&nbsp;<span class="dk_code_simple">0xFFFF</span>.</p>
-                            <p>The processor can execute the&nbsp;<span class="dk_code_simple">CMP</span>&nbsp;instruction speculatively using a value of&nbsp;<span class="dk_code_simple">0xFFFF</span>&nbsp;for the loaded value due to the memory disambiguation mechanism. The instruction will eventually be re-executed with the intended array bounds of&nbsp;<span class="dk_code_simple">0x20</span>. This can theoretically cause the above sequence to support the creation of a side channel that reveals information about the memory at addresses up to&nbsp;<span class="dk_code_simple">0xFFFF</span>&nbsp;instead of constraining it to addresses below&nbsp;<span class="dk_code_simple">0x20</span>.</p>
+                    <section id="dk_into_l1d">
+                        <p class="mb-0">&nbsp;</p>
+                        <h4 style="padding-bottom: 0.5rem;">Mitigations Preventing Data from Being Loaded Into L1D</h4>
+                        <p>Software can prevent data from being reloaded into the L1D after a flush by removing cacheable mappings of that data.</p>
+                        <p>For instance, to prevent secret data from being loaded into the L1D via a paging structure entry, software could clear the Present bit of the entry and flush the paging structure caches followed by flushing the L1D. An alternative to clearing the Present bit would be using uncacheable&nbsp;memory types specified via the&nbsp;Page Attribute Table&nbsp;(PAT) or&nbsp;Memory Type Range Registers&nbsp;(MTRRs), both of which also prevent data from being loaded in the L1D.</p>
+                        <p>Further cache flushing operations are not required for mitigation after these entries have been put in place.</p>
                     </section>
 
-                    <section id="dk_application_dev">
-                        <h4>Application Developers</h4>
-                        <p>Application developers should use the&nbsp;<span class="dk_code_simple">LFENCE</span>&nbsp;and serializing instructions mitigations described above. Refer to the&nbsp;<a class="b_special_a1" href="">Analyzing Potential Bounds Check Bypass Vulnerabilities</a>&nbsp;white paper for full analysis and mitigation of bounds check bypass.</p>
+                    <section id="dk_os">
+                        <p class="mb-0">&nbsp;</p>
+                        <h3 style="padding-bottom: 0.5rem; font-weight: 350;">Mitigating Operating Systems (OS)</h3>
+                        <p>Whether the OS is running on bare-metal or as a virtual machine, the OS is responsible for mitigating against exploitation of&nbsp;paging structure entries&nbsp;(PTEs) by malicious applications. To do this, the OS can ensure that vulnerable PTEs refer only to specifically-selected physical addresses, such as those addresses outside of available cached memory or addresses that do not contain secrets.</p>
+                        <p class="mb-0">There are four typical cases that need mitigation in an OS:</p>
+                        <ol>
+                            <li>Pages with no valid mappings.</li>
+                            <li>Pages that have been written to other storage (swapped out), such as when the OS is short of memory.</li>
+                            <li>Pages where the application has requested that the OS disable access.</li>
+                            <li>Pages in transitional states where the OS needs to temporarily block access.</li>
+                        </ol>
+                        <p>In the first case, OSes may use an all-zero paging structure entry to represent linear addresses with no physical mapping (including the&nbsp;Page Size Extension&nbsp;(PSE) bit<sup>7</sup>&nbsp;where supported) while ensuring that the 4 KB page frame starting at physical address 0 contains no secrets.</p>
+                        <p>For the other three cases, the OS should make the PTEs refer to invalid memory addresses, as described in the following sections.</p>
                     </section>
 
-                    <section id="dk_front_end">
-                        <h4>Front-end Web Developers</h4>
-                        <p>Front-end web developers should use the&nbsp;<span class="dk_code_simple">LFENCE</span>&nbsp;and serializing instructions mitigations described above. Refer to the&nbsp;<a class="b_special_a1" href="">Analyzing Potential Bounds Check Bypass Vulnerabilities</a>&nbsp;white paper for full analysis and mitigation of bounds check bypass.</p>
+                    <section id="dk_addresses_secrets">
+                        <p class="mb-0">&nbsp;</p>
+                        <h4 style="padding-bottom: 0.5rem;">Mitigation by Referring to Addresses Free of Secrets</h4>
+                        <p>If a vulnerable paging structure entry (for example, an entry that is not present or has a reserved bit set) sets its page frame to refer to a region with no secret data, then an attack on that entry will not reveal secret data.</p>
+                        <p>An example of this is to have the vulnerable paging structure entry point to physical address 0 (with PS cleared) and to have 4 KB of zero data at physical address 0. The bare-metal OS and VMM need to maintain the effectiveness of this strategy by never keeping secret data at that physical address. Due to this, we suggest using 4 KB of zero data at physical address 0 as a convention.</p>
+                        <p>At the&nbsp;page directory entry&nbsp;(PDE) and&nbsp;page directory pointer table entry&nbsp;(PDPTE) levels, paging structures marked as not present should ensure the PS bit is zero (PS=0) to avoid making 2 MB or 1 GB of physical memory vulnerable.</p>
                     </section>
 
-                    <section id="dk_runtime_dev">
-                        <h4>Runtime Developers</h4>
-                        <p>Mitigations include&nbsp;<span class="dk_code_simple">LFENCE</span>&nbsp;for ordering instructions as well as indexing and data clipping. For detailed guidance with code examples, see:&nbsp;<a class="b_special_a1" href="">Managed Runtime Speculative Execution Side Channel Mitigations</a>.</p>
+                    <section id="dk_invalid_memory">
+                        <p class="mb-0">&nbsp;</p>
+                        <h4 style="padding-bottom: 0.5rem;">Mitigation by Referring to Invalid Memory</h4>
+                        <p>Many OSes store metadata in non-present paging structure entries to assist in operations such as paging. These entries may be meant to direct the OS to the location that data has moved to on disc. Using the L1TF side channel method this metadata may instead be used to point to a memory location in L1D, which would expose whatever data is at that location. An OS can mitigate L1TF exploits against these entries by ensuring that this metadata only refers to invalid addresses, meaning addresses that would not point towards data in the L1D. While there are many possible methods to construct invalid addresses, the approach described here constructs invalid addresses while preserving space for metadata.</p>
+                        <p>An OS can construct a mitigated paging structure entry by having the entry refer to a physical memory address that is below the address represented by&nbsp;<span class="dk_code_simple">MAXPHYADDR</span><sup>8</sup>, but above the highest cacheable memory on the system that might contain secrets. For instance, an OS can set the&nbsp;<span class="dk_code_simple">MAXPHYADDR-1</span>&nbsp;bit in the PTE and ensure that no cacheable memory containing secrets is present in that top half of the physical address space.</p>
+                        <p>This approach effectively repurposes part of the physical address space, which may impact the maximum usable memory on the system. An OS may dedicate more than one bit for this functionality expanding the usable physical address space. For example, the OS may set the top two bits so that only the top quarter of the physical address space cannot be used for cacheable accesses. Note that, as it dedicates more bits, the OS may lose capacity to store metadata in the paging structure entry.</p>
+                        <p>The OS may also set the bits from&nbsp;<span class="dk_code_simple">MAXPHYADDR</span>&nbsp;through 51&nbsp;in the PTE. This adds mitigation in the case where&nbsp;a virtualized&nbsp;<span class="dk_code_simple">MAXPHYADDR</span>&nbsp;differs from the platform, bare-metal value.</p>
+                        <p>For the example of PTE pointing to page&nbsp;<span class="dk_code_simple">0x1000</span>&nbsp;in the&nbsp;<a class="b_special_a1" href="">How L1TF Works</a>&nbsp;section, this would be:</p>
+                        <p>Original entry:&nbsp;<span class="dk_code_simple">0x1001 &nbsp;&nbsp;&nbsp; (P=1)</span></p>
+                        <p>The OS wants to make the page not accessible and clears the P bit</p>
+                        <p>New entry (vulnerable):&nbsp;<span class="dk_code_simple">0x1000 &nbsp;&nbsp;&nbsp; (P=0)</span></p>
+                        <p>The CPU reports&nbsp;<span class="dk_code_simple">MAXPHYADDR</span>&nbsp;as 36. To mitigate an L1TF exploit on this vulnerable entry, an OS can set bits 35 to 51&nbsp;inclusive in the entry to ensure that it does not refer to any lines in the L1D. This assumes that the system does not use any memory at an address with bit 35 set.</p>
+                        <p>New entry (mitigated):&nbsp;<span class="dk_code_simple">0x000ffff800001000 &nbsp;&nbsp;&nbsp; (P=0)</span></p>
+                        <p>When the OS wants to make the page accessible again, it can set the P bit again and clear the extra set bits:</p>
+                        <p>Entry present again:&nbsp;<span class="dk_code_simple">0x1001 &nbsp;&nbsp;&nbsp; (P=1)</span></p>
+                        <p>Some processors may internally implement more address bits in the L1D cache than are reported in&nbsp;<span class="dk_code_simple">MAXPHYADDR</span>. This is not reported by CPUID, so the following table can&nbsp;be used:</p>
+                        <p>Table 2: Processors Implementing More L1D Address Bits than Reported</p>
+                        <table class="mv_product_table w-50 mb-4">
+                            <thead>
+                                <tr>
+                                    <th>Processor code name</th>
+                                    <th>Implemented L1D bits</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Nehalem, Westmere</td>
+                                    <td>44</td>
+                                </tr>
+                                <tr>
+                                    <td>Sandy Bridge and newer</td>
+                                    <td>46</td>
+                                </tr>
+                            </tbody>
+                        </table> 
+                        <p>On these systems the OS can set one or more bits above&nbsp;<span class="dk_code_simple">MAXPHYADDR</span>&nbsp;but below the L1D limit to ensure that the PTE does not reference any physical memory address. This can often be used to avoid limiting the amount of usable physical memory.</p>
                     </section>
 
-                    <section id="dk_os_and_driver">
-                        <h4>OS and Driver Developers</h4>
-                        <p>Where possible, dedicated operating system programming APIs should be used to mitigate bounds check bypass instead of using open-coded mitigations. Using the OS-provided APIs will help ensure that code can take advantage of new mitigation techniques or optimizations as they become available.</p>
+                    <section id="dk_uncacheable_memory">
+                        <p class="mb-0">&nbsp;</p>
+                        <h4 style="padding-bottom: 0.5rem;">Mitigation by Referring to Uncacheable Memory</h4>
+                        <p>Since data is only vulnerable to an L1TF exploit when the data is present in the L1D, data that cannot be brought into the L1D is not vulnerable to an L1TF exploit. For instance, memory regions that are always marked uncacheable are mitigated against L1TF.</p>
                     </section>
 
-                    <section id="dk_linux">
-                        <h4>Linux*</h4>
-                        <p>The current Linux* kernel mitigation approach to bounds check bypass is described in the&nbsp;<a class="b_special_a1" href="">speculation.rst</a>&nbsp;file in the Linux kernel documentation. This file is subject to change as developers and multiple processor vendors determine their preferred approaches.</p>
-                        <p><span class="dk_code_simple">ifence()</span>&nbsp;: on x86 architecture, this issues an&nbsp;<span class="dk_code_simple">LFENCE</span>&nbsp;and provides the compiler with the needed memory barriers to perform the mitigation. It can be used as&nbsp;<span class="dk_code_simple">lfence()</span>, as in the examples above. On non-Intel processors,&nbsp;<span class="dk_code_simple">ifence()</span>&nbsp;either generates the correct barrier code for that processor, or does nothing if the processor does not speculate.</p>
-                        <p><span class="dk_code_simple">array_ptr(array, index, max)</span>: this is an inline that, irrespective of the processor, provides a method to safely dereference an array element. Additionally, it returns <span class="dk_code_simple">NULL</span> if the lookup is invalid. This allows you to take the many cases where you range check and then check that an entry is present, and fold those cases into a single conditional test.</p>
-                        <p>Thus we can turn:</p>
-                        <p><span class="dk_code_simple">if (handle &lt; 32) { x = handle_table[handle]; if (x) { function(x); return 0; } } return –EINVAL; </span></p>
-                        <p>Into:</p>
-                        <p><span class="dk_code_simple">x = array_ptr(handle_table, handle, 32); if (x == NULL) return –EINVAL; function(*x); return 0; </span></p>
+                    <section id="dk_smm">
+                        <p class="mb-0">&nbsp;</p>
+                        <h3 style="padding-bottom: 0.5rem; font-weight: 350;">System Management Mode (SMM)</h3>
+                        <p>SMM is a special processor mode used by BIOS. The SMRR MSRs are used to protect SMM and will prevent non-SMM code from bringing SMM lines into the L1D. Processors that enumerate&nbsp;<span class="dk_code_simple">L1D_FLUSH</span>&nbsp;and are affected by L1TF will automatically flush the L1D during the&nbsp;<span class="dk_code_simple">RSM</span>&nbsp;instruction that exits SMM.</p>
+                        <p>SMM software must rendezvous all logical processors both on entry to, and exit from, SMM to ensure that a sibling logical processor does not reload data into the L1D after the automatic flush. We believe&nbsp;most SMM software already does this. This will ensure that non-SMM software does not run while lines that belong to SMM are in the L1D. Such SMM implementations do not require any software changes to be fully mitigated for L1TF. An implementation that allows a logical processor to execute in SMM while another logical processor from the same physical core is not in SMM would need to be reviewed to see if any secret&nbsp;data from SMM could be loaded into the L1D, and thus would be vulnerable to L1TF from another logical processor.</p>
                     </section>
 
-                    <section id="dk_micro">
-                        <h4>Microsoft* Windows*</h4>
-                        <p>Windows C/C++ developers have a variety of options to assist in mitigating bounds check bypass. The best option will depend on the compiler/code generation toolchains you are using. Mitigation options include manual and compiler assisted.</p>
-                        <p>In mixed-mode compiler environments, where object files for the same project are built with different toolchains, there are varying degrees of mitigation options available. Developers need to be aware of and apply the appropriate mitigations depending on their code composition and appropriate toolchain support dependencies.</p>
-                        <p class="mb-0">We recommend inserting&nbsp;<span class="dk_code_simple">LFENCE</span>&nbsp;instructions (either manually or with compiler assistance) for mitigating bounds check bypass on Windows. Refer to&nbsp;<a class="b_special_a1" href="">Analyzing Potential Bounds Check Bypass Vulnerabilities</a>&nbsp;for details on how to insert the&nbsp;<span class="dk_code_simple">LFENCE</span>&nbsp;instruction using currently available compiler tool chain mechanisms. These mechanisms are (from lowest level to highest level):</p>
+                    <section id="dk_vmms">
+                        <p class="mb-0">&nbsp;</p>
+                        <h3 style="padding-bottom: 0.5rem; font-weight: 350;">Virtual Machine Monitors (VMMs)</h3>
+                        <p>VMMs require some similar mitigations as OSes, but there are additional challenges relating to the guest view of&nbsp;<span class="dk_code_simple">MAXPHYADDR</span>&nbsp;and interactions between logical processors on hyperthreading-enabled systems.</p>
+                        <p>When guests are trusted or belong to the same security domain, no mitigation is needed. Untrusted guests require mitigations described in the <a class="b_special_a1" href="">VMM Mitigation for Guest-Based Attacks</a>.</p>
+                        <p>​Similar to bare-metal paging structure entries, terminal faults can occur while reading Extended Page Table (EPT) entries, leaving them vulnerable to L1TF exploits. The mitigations deployed by a bare-metal OS can also be deployed by VMMs to mitigate EPT entries. The VMM should not trust the guest is performing any particular mitigation and should follow the conventions described in the <a class="b_special_a1" href="">VMM Assistance for Guest OSes section</a>.</p>
+                        <p>Mitigations in nested VMM environments require the first level VMM to check the MSRs of the nested VMMs and vice versa. Refer to the <a class="b_special_a1" href="">Nested VMM Environments</a> section for further details.</p>
+                    </section>
+
+                    <section id="dk_mitigation_attacks">
+                        <p class="mb-0">&nbsp;</p>
+                        <h4 style="padding-bottom: 0.5rem;">VMM Mitigation for Guest-Based Attacks</h4>
+                        <p>VMMs generally allow untrusted guests to place arbitrary translations in the guest paging structure entries because VMMs assume any entries will be translated with VMM-controlled EPT. But, as noted in the&nbsp;<a class="b_special_a1" href="">How L1TF works</a>&nbsp;section, EPT translation is not performed in the case of an L1 terminal fault.</p>
+                        <p>This means that a malicious guest OS may be able to set up values in its paging structure entries that attack arbitrary host addresses, theoretically enabling an exploit to access any data that is present in the L1D on the same physical core as the malicious guest. For this reason, VMM mitigations are focused on ensuring that secret data is not present in the L1D when executing guests.</p>
+                        <p>Setting bit 0 of&nbsp;<span class="dk_code_simple">IA32_FLUSH_CMD</span>&nbsp;MSR to 1 removes all content, including secrets, from the L1D. This flush must be repeated on every guest entry when the VMM or other guests on the core may have populated secrets into the L1D. A VMM can ensure it does not populate secrets into the L1D by ensuring that secrets are not mapped as cacheable during VMM execution.</p>
+                        <p class="mb-0">When Intel HT Technology is enabled, the VMM may be required to deploy additional mitigations before executing untrusted guests on hyperthreaded physical cores. This is because data in the L1D populated by a victim may potentially be exploited by a malicious guest that executes on another logical processor in the same physical core. This raises two concerns:</p>
                         <ul>
-                            <li>Inline/external assembly</li>
-                            <li><span class="dk_code_simple">_mm_lfence()</span>&nbsp;compiler intrinsic</li>
-                            <li>Compiler automatic&nbsp;<span class="dk_code_simple">LFENCE</span>&nbsp;insertion</li>
+                            <li>The malicious guest may infer the values of data belonging to another guest.</li>
+                            <li>The malicious guest may infer the values of data belonging to the VMM itself.</li>
+                        </ul>
+                        <p>Mitigations for these are listed below.</p>
+                        <p>The VMM is only responsible for protecting the host and other guests’ secrets. Protection between different processes inside a guest is the responsibility of the guest using the OS mitigations described in the&nbsp;<a class="b_special_a1" href="">Mitigating OS</a><strong> </strong>and<strong> </strong><a class="b_special_a1" href="">SMM</a>&nbsp;section.</p>
+                        <p>VMMs can help mitigate L1TF if they avoid sharing logical processors on a core with different guests or host threads that contain secrets. If the VMM cannot do this, it may have to leave one logical processor idle on a physical core.</p>
+                        <p style="text-align:center"><img class="w-100" src="/img/darshit_image/vm-core-scheduling-l1tf-1.png"><br>
+                            Figure 1.&nbsp;Without Core Scheduling</p>
+                        <p style="text-align:center"><img class="w-100" src="/img/darshit_image/vm-core-scheduling-l1tf-2.png" width="4469"><br>
+                                Figure 2.&nbsp;With Core Scheduling</p>
+                    
+                        <p class="mb-0">When a VMM hosts untrusted guests it is also possible to enforce these constraints dynamically:</p>
+                        <ul>
+                            <li>When the VMM is running on one logical processor and needs to access some secret data (for example, encryption keys), it must deschedule any guest running on the other logical processor of the same physical core, or make sure this never happens with static core assignment.</li>
+                            <li>There are several options to mitigate when the VMM services an interrupt from a device where the service routine or software interrupt code triggered by the interrupt may load secret data into the L1D:
+                            <ul>
+                                <li>Audit each device driver interrupt routine and “white list” those that do not load secret data into the L1D</li>
+                                <li>Use interrupt affinity to direct the interrupt to be serviced on a logical processor that does not share a core with an untrusted guest.</li>
+                                <li>The VMM can deschedule the other thread from running guest code until the interrupt completes and flushes the L1D.</li>
+                            </ul>
+                            </li>
+                            <li>The VMM may schedule threads to run guests at the same time if both logical processors are part of the same guest (or from mutually trusting guests)</li>
+                        </ul>
+                        <p>Mitigation for hyperthreading is not required when hyperthreading is not supported or not enabled. However, flushing the L1D on each guest entry is still required. Refer to the&nbsp;<a class="b_special_a1" href="">Appendix: Intel Hyper-Threading Technology</a>&nbsp;section.</p>
+                    </section>
+
+                    <section id="dk_vmm_mitigations">
+                        <p class="mb-0">&nbsp;</p>
+                        <h4 style="padding-bottom: 0.5rem;">VMM Assistance for Guest OS Mitigations</h4>
+                        <p>Both the VMM and the guest OS may have mitigations for L1TF, so they should avoid actions that interfere with each others’ mitigations. The VMM should not trust that the guest is performing any particular mitigation, but should follow the conventions below to avoid interfering with any guest mitigations:</p>
+                        <ul>
+                            <li>Don't put secret data in the first 4 KB at physical address 0.
+                            <ul>
+                                <li>Guests running under a VMM may use the OS mitigations described in the&nbsp;<a class="b_special_a1" href="">Mitigating OS</a><strong> </strong>and<strong> </strong><a class="b_special_a1" href="">SMM</a>&nbsp;section, including the use of all-zero paging structure entries, to protect themselves from malicious applications. These paging structure entries might allow malicious guest applications exploiting L1TF to infer the contents of the 4 KB page at physical address zero.</li>
+                                <li>As a convention, a VMM can ensure that the page at physical address zero does not contain any secrets. This convention allows guests to use the all-zero value to mitigate vulnerable paging structure entries.</li>
+                            </ul>
+                            </li>
+                            <li>Deploy EPT mitigations to support guest paging structure mitigations.
+                            <ul>
+                                <li>Guests may deploy L1TF mitigations in their paging structure entries, such as those discussed in the&nbsp;<a class="b_special_a1" href="">Mitigation by Referring to Invalid Memory</a>&nbsp;section. These mitigations may cause guest paging structure entries to refer to invalid guest physical addresses.</li>
+                                <li>Terminal faults on the EPT tables that provide translation for these addresses need mitigation against L1TF. These EPT entries may be mitigated with the same techniques used for bare-metal OS paging structure entries, such as those described in the&nbsp;<a class="b_special_a1" href="">Mitigating OS</a><strong> </strong>and<strong> </strong><a class="b_special_a1" href="">SMM</a>&nbsp;section.</li>
+                            </ul>
+                            </li>
+                            <li>Prevent EPT tables from causing L1TF.
+                            <ul>
+                                <li>In environments where a guest may be migrated to a different machine, the VMM should provide a consistent value of&nbsp;<span class="dk_code_simple">MAXPHYADDR</span>&nbsp;on all machines in the pool because guests may rely on this value to construct mitigated paging structure entries.</li>
+                            </ul>
+                            </li>
                         </ul>
                     </section>
 
-                    <section id="dk_virtual_machine">
-                        <h4>Virtual Machine Monitor Developers</h4>
-                        <p>VMM developers should apply the OS mitigations described above for their guest OSes. Refer to the&nbsp;<a class="b_special_a1" href="">Analyzing Potential Bounds Check Bypass Vulnerabilities</a>&nbsp;white paper for full analysis and mitigation of bounds check bypass.</p>
+                    <section id="dk_nested_vmm">
+                        <p class="mb-0">&nbsp;</p>
+                        <h4 style="padding-bottom: 0.5rem;">Nested VMM Environments</h4>
+                        <p>A guest running in a VMM may itself be another VMM that runs its own guests. Each VMM can choose which CPU capabilities to make available to the guests under its control. The nested VMM should provide an accurate representation of which virtual CPUs are logical processors sharing a physical core on the physical machine so the guest can make efficient and effective mitigation choices.</p>
+                        <p>A nested VMM that finds&nbsp;<span class="dk_code_simple">IA32_FLUSH_CMD</span>&nbsp;is enumerated should check whether&nbsp;<span class="dk_code_simple">IA32_ARCH_CAPABILITIES</span>&nbsp;bit 3 (<span class="dk_code_simple">SKIP_L1DFL_VMENTRY</span>) is set, which indicates that the nested VMM is not required to flush L1D on&nbsp;<span class="dk_code_simple">VMENTER</span>.</p>
+                        <p>First-level VMMs that perform an L1D flush before&nbsp;<span class="dk_code_simple">VMENTER</span>&nbsp;may set&nbsp;<span class="dk_code_simple">SKIP_L1DFL_VMENTRY</span>&nbsp;in the&nbsp;<span class="dk_code_simple">IA32_ARCH_CAPABILITIES</span>&nbsp;value exposed to guests. These VMMs should set <span class="dk_code_simple">SKIP_L1DFL_VMENTRY</span> in any case where a nested VMM may be present.</p>
                     </section>
 
-                    <section id="dk_developers_enclave">
-                        <h4>Developers of Software Running in an Enclave</h4>
-                        <p>Developers of software designed to run in Intel® Software Guard Extensions (Intel® SGX) should apply the OS mitigations described above for their guest OSes. Refer to the&nbsp;<a class="b_special_a1">Analyzing Potential Bounds Check Bypass Vulnerabilities</a>&nbsp;white paper for full analysis and mitigation of bounds check bypass.</p>
+                    <section id="dk_summary">
+                        <p class="mb-0">&nbsp;</p>
+                        <h3 style="padding-bottom: 0.5rem; font-weight: 300;">Summary</h3>
+                        <p>Contact your system vendors for firmware updates, and apply all security updates from your software suppliers to protect your systems from L1TF side channel issues.</p>
                     </section>
 
-                    <section id="dk_system_administrators">
-                        <h4>System Administrators</h4>
-                        <p>Bounds check bypass mitigations are not generally relevant if your code doesn’t have secrets that the user shouldn’t be able to access. For example, a simple image viewer probably contains no meaningful secrets that should be inaccessible to software it interacts with. The user of the software could potentially use bounds check bypass attacks to access the image, but they could also just hit the save button.</p>
-                        <p>On the other hand, an image viewer with support for secure, encrypted content with access authorized from a central system might need to care about bounds check bypass because a user may not be allowed to save the document in normal ways. While the user can’t save such an image they can trivially photograph the image and send the photo to someone, so protecting the image may be less important. However, any keys are likely to be far more sensitive.</p>
-                        <p>There are also clear cases like operating system kernels, firmware (refer to the <a class="b_special_a1" href="">Host Firmware Speculative Execution Side Channel Mitigation</a> technical documentation) and managed runtimes (for example, Javascript* in web browsers) where there is both a significant interaction surface between differently trusted code, and there are secrets to protect.</p>
-                        <p>Whether to apply mitigations, and what areas to target has to be part of your general security analysis and risk modelling, along with conventional security techniques, and resistance if appropriate to timing and other non-speculative side channel attacks. Bounds check bypass mitigations have performance impacts, so they should only be used where appropriate.</p>
+                    <section id="dk_affected_processors">
+                        <p class="mb-0">&nbsp;</p>
+                        <h3 style="padding-bottom: 0.5rem; font-weight: 300;"><a class="b_special_a1" href="">Affected Processors</a></h3>
+                        <p>Refer to the <a class="b_special_a1" href="">consolidated list of Affected Processors</a> (<em>2018-2021 tab, L1 Terminal Fault column</em>) for a list of currently supported processors affected by L1TF.</p>
                     </section>
 
-                    <section id="dk_references">
+                    <section id="dk_appendix_intel">
+                        <p class="mb-0">&nbsp;</p>
+                        <h4 style="padding-bottom: 0.5rem; font-weight: 300;">Appendix Intel® Hyper-Threading Technology</h4>
+                        <p>The first step in composing an L1TF-based exploit is loading a secret into the L1D. As discussed earlier, secrets can be flushed from the L1D when transitioning between different security contexts. However, processors supporting Intel HT Technology share the L1D and support simultaneously executing code from different security contexts. This means that an L1TF exploit could run on one logical processor on a core while the other (trusted) logical processor on the same physical core simultaneously loads secrets into the L1D, potentially exposing those secrets to the exploit.</p>
+                        <p>Not all Intel HT Technology implementations require mitigation against L1TF exploits. Refer to the <a class="b_special_a1" href="">List of Processors Affected: L1 Terminal Fault</a> for a complete list of affected processors.</p>
+                        <p>No hyperthreading mitigation is required on affected systems where hyperthreading is unsupported or disabled. However, the general mitigations described in this paper should still be applied as disabling hyperthreading does not in itself provide mitigation for L1TF. Mitigation is also not required in situations where step 2 in the&nbsp;<a class="b_special_a1" href="">L1TF Limiting Factors</a>&nbsp;section has been entirely mitigated, such as on systems with mitigations in the bare-metal OS that do not run virtual machines.</p>
+                    </section>
+
+                    <section id="dk_determining_hardware">
+                        <p class="mb-0">&nbsp;</p>
+                        <h4 style="padding-bottom: 0.5rem;">Determining Hardware Support for Intel HT Technology</h4>
+                        <p>It is not universally architecturally possible to reliably determine the underlying hardware support for hyperthreading from an application or a guest OS. Bare-metal VMMs and bare-metal OSes have the ability to modify the behavior of the CPUID instruction, causing its behavior to differ from its bare-metal behavior.</p>
+                        
+                    </section>
+
+                    <section id="dk_hyperthreading">
+                        <p class="mb-0">&nbsp;</p>
+                        <h4>Hyperthreading Enumeration from a Bare-metal OS/VMM</h4>
+                        <p class="dk_note"><strong>Note&nbsp;</strong>The<a class="b_special_a1" href=""> Intel® 64 and IA-32 Architectures Software Developer Manuals </a>Volume 3a, section&nbsp;8.6 Detecting Hardware Multi-threading Support and Topology, contains the full architectural enumeration of hyperthreading support.</p>
+                        <p>8.9.4 Algorithm for Three-Level Mappings of APIC_ID&nbsp;contains a suggested algorithm that includes detection of hyperthreading. When following that algorithm, if two or more logical processors have the same value for&nbsp;<span class="dk_code_simple">PACKAGE_ID</span>&nbsp;and&nbsp;<code>C</code><span class="dk_code_simple">ORE_ID</span>, mitigations such as those described in the VMM Mitigation for Guest-Based Attacks section may be necessary.</p>
+                    </section>
+
+                    <section id="dk_determining_status">
+                        <p class="mb-0">&nbsp;</p>
+                        <h4 style="padding-bottom: 0.5rem;">Determining Hardware Support Status</h4>
+                        <p>Despite support for hyperthreading in the hardware, software or firmware may choose to not enable the Intel HT Technology feature. Some firmware and OSes provide an option to enable or disable support. As a general rule, systems that report more “logical processors” than “cores” have hyperthreading enabled. However, this might change based on factors such as OS nomenclature or VMMs that do not precisely expose the underlying hardware to the guest OS.</p>
+                    </section>
+
+                    <section id="dk_footnotes">
+                        <p class="mb-0">&nbsp;</p>
+                        <h3 style="padding-bottom: 0.5rem; font-weight: 300;">Footnotes</h3>
+                        <ol>
+                            <li>See <a class="b_special_a1" href="">Intel® 64 and IA-32 Architectures Software Developer Manuals (Intel SDM)</a>, volume 3, chapter 4</li>
+                            <li>See&nbsp;<a class="b_special_a1" href="">Intel SDM</a>, volume 3, chapter 4 for the location of reserved bits in the paging structure entries of each paging mode.</li>
+                            <li>The PML4 does not have a PS bit defined.</li>
+                            <li>See&nbsp;<a class="b_special_a1" href="">Intel SDM</a>, Volume 3, Section 36.3</li>
+                            <li>See&nbsp;<a class="b_special_a1" href="">Intel SDM</a>, section 8.5</li>
+                            <li>MSR present if CPUID.(EAX=07H,ECX=0):EDX[28] = 1. Refer to&nbsp;<a class="b_special_a1" href="">CPUID Enumeration and Architectural MSRs</a>.</li>
+                            <li>The PS bit is important. Without that detail, zeroed 2 MB / 1 GB entries could be used.</li>
+                            <li>CPUID.80000008H:EAX[7:0] reports the physical-address width supported by the processor. (for details see&nbsp;<a class="b_special_a1" href="">Intel SDM</a>&nbsp;volume 3a, chapter 4.1.4 “Enumeration of Paging Features by CPUID”). This width is referred to as&nbsp;<span class="dk_code_simple">MAXPHYADDR</span></li>
+                            <li>You can cross-check for affected steppings against the&nbsp;<a class="b_special_a1" href="">list of updated microcode versions</a>.</li>
+                        </ol>
                         <p>&nbsp;</p>
-                        <h3 style="font-weight: 350;">References</h3>
-                        <ul>
-                            <li><a class="b_special_a1" href="">Introduction to Speculative Execution Side Channel Methods</a></li>
-                            <li><a class="b_special_a1" href="">Analyzing Potential Bounds Check Bypass Vulnerabilities</a></li>
-                            <li><a class="b_special_a1" href="">Intel Analysis of Speculative Execution Side Channels</a></li>
-                            <li><a class="b_special_a1" href="">Speculative Execution Side-Channel Mitigations</a></li>
-                            <li><a class="b_special_a1" href="">Mitigation Overview for Potential Side-Channel Cache Exploits in Linux*</a></li>
-                            <li><a class="b_special_a1" href="">Managed Runtime Speculative Execution Side Channel Mitigations</a></li>
-                        </ul>
+                        <h5 style="text-align:center"><a class="b_special_a1" href="">Software Security Guidance Home</a>&nbsp;|&nbsp;<a class="b_special_a1" href="">Advisory Guidance</a>&nbsp;|&nbsp;<a class="b_special_a1" href="">Technical Documentation</a>&nbsp;|&nbsp;<a class="b_special_a1" href="">Best Practices</a>&nbsp;|&nbsp;<a class="b_special_a1" href="">Resources</a></h5>
                         <p>&nbsp;</p>
-                        <h5 style="text-align:center; font-weight: 500;"><a class="b_special_a1" href="">Software Security Guidance Home</a> | <a class="b_special_a1" href="">Advisory Guidance</a> | <a class="b_special_a1" href="">Technical Documentation</a> | <a class="b_special_a1" href="">Best Practices</a> | <a class="b_special_a1" href="">Resources</a></h5>
                     </section>
-
+                    
                 </div>
             </section>
         </div>
@@ -1040,5 +1192,7 @@
 </body>
 
 </html>
+
+
 
 

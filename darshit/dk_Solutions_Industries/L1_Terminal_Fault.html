@@ -37,7 +37,7 @@
     .dk_color3 {
         color: #b24501;
     }
-
+    
     .dk_note{
         font-size: 1rem;
         line-height: 1.25;
@@ -730,15 +730,15 @@
                         <p class="mb-0">&nbsp;</p>
                         <h3 style="font-weight: 350; padding-bottom: 0.8rem;">Related Content</h3>
                         <p><a class="b_special_a1" href="/darshit/dk_Solutions_Industries/INTEL_SA_00161.html">INTEL-SA-00161</a></p>
-                        <p><a class="b_special_a1" href="">Additional&nbsp;resources and response to L1 Terminal Fault</a></p>
-                        <p><a class="b_special_a1" href="">Microcode revision guidance</a></p>
-                        <p><a class="b_special_a1" href="">List of processors potentially affected by L1 Terminal Fault</a></p>
-                        <p><a class="b_special_a1" href="">Details on Intel's microcode update process</a></p>
+                        <p><a class="b_special_a1" href="#">Additional&nbsp;resources and response to L1 Terminal Fault</a></p>
+                        <p><a class="b_special_a1" href="/img/darshit_image/sa00115-microcode-update-guidance.pdf">Microcode revision guidance</a></p>
+                        <p><a class="b_special_a1" href="/darshit/dk_Solutions_Industries/Processors_Affected_L1_Terminal_Fault.html">List of processors potentially affected by L1 Terminal Fault</a></p>
+                        <p><a class="b_special_a1" href="/darshit/dk_Solutions_Industries/Microcode_Update_Guidance.html">Details on Intel's microcode update process</a></p>
                     </section>
 
                     <section id="dk_overview">
                         <p>&nbsp;</p>
-                        <p>When a program attempts to access data in memory, the logical memory address is translated to a physical address by the hardware. Accessing a logical or linear address that is not mapped to a physical location on the hardware will result in a terminal fault. Once the fault is triggered, there is a gap before resolution where the processor will use&nbsp;<a class="b_special_a1" href="">speculative execution</a>&nbsp;to try to load data. During this time, the processor could speculatively access the&nbsp;level 1 data cache&nbsp;(L1D), potentially allowing side-channel methods to infer&nbsp;information that would otherwise be protected. &nbsp;</p>
+                        <p>When a program attempts to access data in memory, the logical memory address is translated to a physical address by the hardware. Accessing a logical or linear address that is not mapped to a physical location on the hardware will result in a terminal fault. Once the fault is triggered, there is a gap before resolution where the processor will use&nbsp;<a class="b_special_a1" href="/darshit/dk_Solutions_Industries/Introduction_to_Speculative_Execution_Side_Channel_Methods.html">speculative execution</a>&nbsp;to try to load data. During this time, the processor could speculatively access the&nbsp;level 1 data cache&nbsp;(L1D), potentially allowing side-channel methods to infer&nbsp;information that would otherwise be protected. &nbsp;</p>
                         <p class="mb-0">This side-channel method can be exploited in three different environments:&nbsp;</p>
                         <ul>
                             <li><strong>L1 Terminal Fault-SGX (CVE-2018-3615)</strong>—Systems with microprocessors utilizing&nbsp;speculative execution&nbsp;and Intel® Software Guard Extensions (Intel® SGX) may allow unauthorized disclosure of information residing in the L1 data cache from an enclave to an attacker with local user access via side-channel analysis.</li>
@@ -762,7 +762,7 @@
                     <section id="dk_mitigation">
                         <p>&nbsp;</p>
                         <h3 style="font-weight: 300; padding-bottom: 0.8rem;">Mitigation</h3>
-                        <p>Check which capabilities your processor supports&nbsp;prior to applying mitigations. Details can be found in<a class="b_special_a1" href=""> CPUID Enumeration and Architectural MSRs</a>.</p>
+                        <p>Check which capabilities your processor supports&nbsp;prior to applying mitigations. Details can be found in<a class="b_special_a1" href="/darshit/dk_Solutions_Industries/CPUID_Enumeration_and_Architectural_MSRs.html"> CPUID Enumeration and Architectural MSRs</a>.</p>
                         <p>Intel has released new microcode for many processors affected by L1TF. This modifies some operations to implicitly remove data from the L1D during certain privilege transitions. It also provides a method by which software can explicitly flush the L1D by writing 1 to bit 0 of a new model specific register,&nbsp;<span class="dk_code_simple">IA32_FLUSH_CMD</span>&nbsp;(MSR 0x10B). System manufacturers and system software vendors provide these microcode changes via BIOS updates.</p>
                         <p>While these microcode updates provide important mitigation during enclave entry and exit, updated microcode by itself is not sufficient to protect against L1TF. Deploying OS and VMM updates is also required to mitigate L1TF.</p>
                     </section>
@@ -785,8 +785,8 @@
                             <p>Pages in transitional states where the operating system needs to temporarily block access.</p>
                             </li>
                         </ol>
-                        <p>For full details on these, go to&nbsp;<a class="b_special_a1" href="">Intel Analysis of L1 Terminal Fault</a>.&nbsp;</p>
-                        <p>If you are an OS developer working with System Management Mode (SMM), review the SMM section in <a class="b_special_a1" href="">Intel Analysis of L1 Terminal Fault</a>&nbsp;for guidance on whether further assessment of your SMM is suggested. <a class="b_special_a1" href="">CPUID Enumeration and Architectural MSRs&nbsp;</a>provides further insight.<br>
+                        <p>For full details on these, go to&nbsp;<a class="b_special_a1" href="/darshit/dk_Solutions_Industries/L1_Terminal_Fault_main.html">Intel Analysis of L1 Terminal Fault</a>.&nbsp;</p>
+                        <p>If you are an OS developer working with System Management Mode (SMM), review the SMM section in <a class="b_special_a1" href="/darshit/dk_Solutions_Industries/L1_Terminal_Fault_main.html">Intel Analysis of L1 Terminal Fault</a>&nbsp;for guidance on whether further assessment of your SMM is suggested. <a class="b_special_a1" href="/darshit/dk_Solutions_Industries/CPUID_Enumeration_and_Architectural_MSRs.html">CPUID Enumeration and Architectural MSRs&nbsp;</a>provides further insight.<br>
                             &nbsp;</p>
                     </section>
 
@@ -794,14 +794,14 @@
                         <h4>Virtual machine monitor developers</h4>
                         <p>VMMs require some similar mitigations as OSes, but there are additional challenges relating to the guest view of&nbsp;<span class="dk_code_simple">MAXPHYADDR</span>&nbsp;and interactions between logical processors on hyperthreading-enabled systems.</p>
                         <p>When guests are trusted or belong to the same security domain, no mitigation is needed. However, VMMs generally allow untrusted guests to place arbitrary translations in the guest paging structure entries because VMMs assume any entries will be translated with VMM-controlled EPT. But EPT translation is not performed in the case of an L1 terminal fault.</p>
-                        <p>This means a malicious guest OS may be able to set up values in its paging structure entries that attack arbitrary host addresses, theoretically enabling an exploit to access any data present in the L1D on the same physical core as the malicious guest. For this reason, VMM mitigations are focused on ensuring secret data is not present in the L1D when executing guests. For full details on these, go to&nbsp;<a class="b_special_a1" href="">Intel Analysis of L1 Terminal Fault</a>.</p>
-                        <p>​Both the VMM and the guest OS may have mitigations for L1TF, so they should avoid actions that interfere with each others’ mitigations. The VMM should not trust the guest is performing any particular mitigation, but should follow the conventions described in the VMM Assistance for Guest OS Mitigations section of&nbsp;<a class="b_special_a1" href="">Intel Analysis of L1 Terminal Fault</a>&nbsp;to avoid interfering with any guest mitigations.</p>
-                        <p>Mitigations in nested VMM environments require the first level VMM to check the MSRs of the nested VMMs and vice versa. Refer to the Nested VMM Environments section in&nbsp;<a class="b_special_a1" href="">Intel Analysis of L1 Terminal Fault</a>&nbsp;for further details.</p>
+                        <p>This means a malicious guest OS may be able to set up values in its paging structure entries that attack arbitrary host addresses, theoretically enabling an exploit to access any data present in the L1D on the same physical core as the malicious guest. For this reason, VMM mitigations are focused on ensuring secret data is not present in the L1D when executing guests. For full details on these, go to&nbsp;<a class="b_special_a1" href="/darshit/dk_Solutions_Industries/L1_Terminal_Fault_main.html">Intel Analysis of L1 Terminal Fault</a>.</p>
+                        <p>​Both the VMM and the guest OS may have mitigations for L1TF, so they should avoid actions that interfere with each others’ mitigations. The VMM should not trust the guest is performing any particular mitigation, but should follow the conventions described in the VMM Assistance for Guest OS Mitigations section of&nbsp;<a class="b_special_a1" href="/darshit/dk_Solutions_Industries/L1_Terminal_Fault_main.html">Intel Analysis of L1 Terminal Fault</a>&nbsp;to avoid interfering with any guest mitigations.</p>
+                        <p>Mitigations in nested VMM environments require the first level VMM to check the MSRs of the nested VMMs and vice versa. Refer to the Nested VMM Environments section in&nbsp;<a class="b_special_a1" href="/darshit/dk_Solutions_Industries/L1_Terminal_Fault_main.html">Intel Analysis of L1 Terminal Fault</a>&nbsp;for further details.</p>
                     </section>
 
                     <section id="dk_developers_enclave">
                         <h4>Developers of software running in an enclave</h4>
-                        <p>For background on how L1TF can affect software running in an enclave, go to&nbsp;<a class="b_special_a1" href="">Intel Analysis of L1 Terminal Fault</a>.&nbsp;</p>
+                        <p>For background on how L1TF can affect software running in an enclave, go to&nbsp;<a class="b_special_a1" href="/darshit/dk_Solutions_Industries/L1_Terminal_Fault_main.html">Intel Analysis of L1 Terminal Fault</a>.&nbsp;</p>
                         <p>For Intel SGX mitigation, users should apply the latest microcode update through BIOS updates and confirm&nbsp;they have the latest version of Intel SGX software installed.</p>
                         <p>The L1TF and its subvariant enclave-to-enclave (E2E) attacks may be able to reveal code or data within an enclave. Processors that load the latest microcode update from a platform manufacturer BIOS update can prevent malicious users from applying L1TF or E2E to infer values of an enclave on the same logical processor.&nbsp;Intel will be invoking the Intel SGX Trusted Computing Base recovery process to assist with the mitigation of L1TF and E2E for Intel SGX. The microcode update changes the Security Version Number (SVN) associated with the Intel SGX implementation and provides enclaves on the platform with new sealing and attestation keys.&nbsp;</p>
                         <p>With the microcode update, the Intel SGX attestation will indicate whether hyperthreading has been enabled by the BIOS. When hyperthreading is disabled or not supported, the microcode update fully mitigates L1TF and E2E for Intel SGX. Intel SGX does not require changes to OS paging structures or VMM behavior to achieve this protection.</p>
@@ -818,13 +818,13 @@
                         <p>&nbsp;</p>
                         <h3 style="font-weight: 350;">References</h3>
                         <ul>
-                            <li><a class="b_special_a1" href="">Introduction to Speculative Execution Side Channel Methods</a></li>
-                            <li><a class="b_special_a1" href="">Intel Analysis of Speculative Side Channels</a></li>
-                            <li><a class="b_special_a1" href="">Speculative Execution Side Channel Mitigations</a></li>
-                            <li><a class="b_special_a1" href="">Intel Analysis of L1 Terminal Fault</a></li>
-                            <li><a class="b_special_a1" href="">List of processors affected by L1 Terminal Fault</a></li>
-                            <li><a class="b_special_a1" href="">Microsoft* response</a></li>
-                            <li><a class="b_special_a1" href="">Linux* kernel documentation</a></li>
+                            <li><a class="b_special_a1" href="/darshit/dk_Solutions_Industries/Introduction_to_Speculative_Execution_Side_Channel_Methods.html">Introduction to Speculative Execution Side Channel Methods</a></li>
+                            <li><a class="b_special_a1" href="/darshit/dk_Solutions_Industries/Introduction_to_Speculative_Execution_Side_Channel_Methods.html">Intel Analysis of Speculative Side Channels</a></li>
+                            <li><a class="b_special_a1" href="/img/darshit_image/336996-speculative-execution-side-channel-mitigations (1).pdf">Speculative Execution Side Channel Mitigations</a></li>
+                            <li><a class="b_special_a1" href="/darshit/dk_Solutions_Industries/L1_Terminal_Fault_main.html">Intel Analysis of L1 Terminal Fault</a></li>
+                            <li><a class="b_special_a1" href="/darshit/dk_Solutions_Industries/Processors_Affected_L1_Terminal_Fault.html">List of processors affected by L1 Terminal Fault</a></li>
+                            <li><a class="b_special_a1" href="https://msrc.microsoft.com/update-guide/en-US/vulnerability/ADV180018">Microsoft* response</a></li>
+                            <li><a class="b_special_a1" href="https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/diff/Documentation/admin-guide/l1tf.rst?id=958f338e96f874a0d29442396d6adf9c1e17aa2d">Linux* kernel documentation</a></li>
                         </ul>
                         <p>&nbsp;</p>
                         <h5 style="text-align:center; font-weight: 500;"><a class="b_special_a1" href="">Software Security Guidance Home</a> | <a class="b_special_a1" href="">Advisory Guidance</a> | <a class="b_special_a1" href="">Technical Documentation</a> | <a class="b_special_a1" href="">Best Practices</a> | <a class="b_special_a1" href="">Resources</a></h5>
@@ -956,3 +956,5 @@
 </body>
 
 </html>
+
+
