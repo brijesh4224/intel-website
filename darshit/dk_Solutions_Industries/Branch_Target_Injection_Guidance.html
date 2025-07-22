@@ -519,7 +519,7 @@
         </div>
         <div class="m_ai_shlash">/</div>
         <div>
-            <button class="btn dropdown-toggle" aria-expanded="false">
+            <button class="btn" style="color: #0068B5;">
                 Advisory Guidance
             </button>
         </div>
@@ -686,7 +686,7 @@
                                 <td><img alt="" class="one-quarter-float-left" src="/img/darshit_image/shield-icon-8.png" width="100"><strong>Severity rating:&nbsp;</strong><br>
                                 5.6 Medium</td>
                                 <td>Industry-wide severity ratings can be<br>
-                                found in the&nbsp;<a class="b_special_a1" href="" rel="noopener noreferrer">National Vulnerability Database</a></td>
+                                found in the&nbsp;<a class="b_special_a1" href="https://nvd.nist.gov/" rel="noopener noreferrer">National Vulnerability Database</a></td>
                             </tr>
                         </tbody>
                     </table> 
@@ -739,18 +739,18 @@
                     <section id="dk_mitigation">
                         <p>&nbsp;</p>
                         <h3 style="font-weight: 350; padding-bottom: 0.5rem;">Mitigation</h3>
-                        <p>Two mitigation techniques have been developed for branch target injection:&nbsp;<em>indirect branch control mechanisms</em>&nbsp;and a software approach called “return trampoline,” also known as&nbsp;<a class="b_special_a1" href="">retpoline</a>. This allows a software ecosystem to select the approach that works for particular security, performance and compatibility goals.</p>
-                        <p><em>Indirect branch control mechanisms</em>&nbsp;introduce an interface between the processor and system software that allows system software to prevent an attacker from controlling indirect branch predictions, such as by invalidating indirect branch predictors at appropriate times. Details of this interface will be provided in a future revision of the&nbsp;<a class="b_special_a1" href="">Intel® 64 and IA-32 Architectures Software Developer’s Manuals</a>. For many existing processors, this mitigation requires updated system software and a microcode update to support the new interface. This interface will have built-in support on future Intel® processors.&nbsp;</p>
+                        <p>Two mitigation techniques have been developed for branch target injection:&nbsp;<em>indirect branch control mechanisms</em>&nbsp;and a software approach called “return trampoline,” also known as&nbsp;<a class="b_special_a1" href="https://support.google.com/faqs/answer/7625886">retpoline</a>. This allows a software ecosystem to select the approach that works for particular security, performance and compatibility goals.</p>
+                        <p><em>Indirect branch control mechanisms</em>&nbsp;introduce an interface between the processor and system software that allows system software to prevent an attacker from controlling indirect branch predictions, such as by invalidating indirect branch predictors at appropriate times. Details of this interface will be provided in a future revision of the&nbsp;<a class="b_special_a1" href="/darshit/dk_Solutions_Industries/Intel_64_and_IA_32_Architectures_Software_Developer_Manuals.html">Intel® 64 and IA-32 Architectures Software Developer’s Manuals</a>. For many existing processors, this mitigation requires updated system software and a microcode update to support the new interface. This interface will have built-in support on future Intel® processors.&nbsp;</p>
                         <p>This new interface supports three new indirect branch control mechanisms:</p>
                         <ul>
-                            <li><a class="b_special_a1" href=""><em>Indirect Branch Restricted Speculation</em></a><em><a class="b_special_a1" href="">&nbsp;</a></em><a class="b_special_a1" href="">(IBRS)</a>: Restricts speculation of indirect branches.&nbsp;</li>
-                            <li><a class="b_special_a1" href=""><em>Single Thread Indirect Branch Predictors</em>&nbsp;(STIBP)</a>: Prevents indirect branch predictions from being controlled by the sibling Hyperthread.&nbsp;</li>
-                            <li><a class="b_special_a1" href=""><em>Indirect Branch Predictor Barrier</em>&nbsp;(IBPB)</a>: Prevents indirect branch predictions after the barrier from being controlled by software executed before the barrier.&nbsp;</li>
+                            <li><a class="b_special_a1" href="/darshit/dk_Solutions_Industries/Speculative_Execution_Side_Channel_Mitigations.html#dk_2_4_1"><em>Indirect Branch Restricted Speculation</em></a><em></em><a class="b_special_a1" href="">(IBRS)</a>: Restricts speculation of indirect branches.&nbsp;</li>
+                            <li><a class="b_special_a1" href="/darshit/dk_Solutions_Industries/Speculative_Execution_Side_Channel_Mitigations.html#dk_2_4_2"><em>Single Thread Indirect Branch Predictors</em>&nbsp;(STIBP)</a>: Prevents indirect branch predictions from being controlled by the sibling Hyperthread.&nbsp;</li>
+                            <li><a class="b_special_a1" href="/darshit/dk_Solutions_Industries/Speculative_Execution_Side_Channel_Mitigations.html#dk_2_4_3"><em>Indirect Branch Predictor Barrier</em>&nbsp;(IBPB)</a>: Prevents indirect branch predictions after the barrier from being controlled by software executed before the barrier.&nbsp;</li>
                         </ul>
                         <p>Appropriately written software can use these mechanisms to defend against branch target injection attacks.These mechanisms are available on existing processors with updated microcode. Future processors will include this interface built-in, and may improve the performance of these mechanisms.&nbsp;</p>
-                        <p>The second technique introduces the concept of a “return trampoline”, also known as&nbsp;<a class="b_special_a1" href="">retpoline</a>. Essentially, software replaces indirect near&nbsp;<span class="dk_code_simple">jump</span>&nbsp;and&nbsp;<span class="dk_code_simple">call</span>&nbsp;instructions with a code sequence that includes&nbsp; a direct call to seed the return predictor with a safe target, a store of the target of the branch in question onto the stack and then&nbsp;a&nbsp;<span class="dk_code_simple">return</span>&nbsp;(<span class="dk_code_simple">RET</span>) instruction to jump to that location. The prediction of this replacement return is effectively constrained using this method.&nbsp;This technique may perform better than the first technique for certain workloads on many current Intel processors.</p>
+                        <p>The second technique introduces the concept of a “return trampoline”, also known as&nbsp;<a class="b_special_a1" href="https://support.google.com/faqs/answer/7625886">retpoline</a>. Essentially, software replaces indirect near&nbsp;<span class="dk_code_simple">jump</span>&nbsp;and&nbsp;<span class="dk_code_simple">call</span>&nbsp;instructions with a code sequence that includes&nbsp; a direct call to seed the return predictor with a safe target, a store of the target of the branch in question onto the stack and then&nbsp;a&nbsp;<span class="dk_code_simple">return</span>&nbsp;(<span class="dk_code_simple">RET</span>) instruction to jump to that location. The prediction of this replacement return is effectively constrained using this method.&nbsp;This technique may perform better than the first technique for certain workloads on many current Intel processors.</p>
                         <p>Intel has worked with various open source compilers to add support for retpoline, and with the OS vendors to use these techniques where appropriate. For Intel® Core™ processors of the Broadwell generation and later, this retpoline mitigation strategy also requires a microcode update to be applied for the mitigation to be most&nbsp;effective.</p>
-                        <p>Full details of retpoline are described in&nbsp;<a class="b_special_a1" href="">Retpoline: A Branch Target Injection Mitigation</a>.</p>
+                        <p>Full details of retpoline are described in&nbsp;<a class="b_special_a1" href="/darshit/dk_Solutions_Industries/Retpoline_A_Branch_Target_Injection_Mitigation.html">Retpoline: A Branch Target Injection Mitigation</a>.</p>
                     </section>
 
                     <section id="dk_applications">
@@ -902,18 +902,18 @@
                     <section id="dk_empty_return">
                         <h4>Empty Return Stack Buffer Mitigation on Skylake-generation</h4>
                         <p>The Return Stack Buffer (RSB) is a fixed-size stack implemented in hardware. &nbsp;As with any stack, it can underflow in certain conditions causing undesirable behavior. “RSB stuffing” is a technique to reduce the likelihood of an underflow from occurring.</p>
-                        <p>The predictable speculative behavior of the <span class="code-simple">RET</span> instruction is the key to retpoline being a robust mitigation. <span class="code-simple">RET</span> has this behavior on all processors which are based on the Intel® microarchitecture codename Broadwell and earlier when updated with the latest microcode. Processors based on the Intel® microarchitecture codename Skylake and its close derivatives have different behavior than other processors when the RSB is empty. Processors with this RSB behavior can be identified using the DisplayFamily/DisplayModel signatures provided by the CPUID instruction. For further details, refer to&nbsp;<a class="b_special_a1" href="">Retpoline: A Branch Target Injection Mitigation</a>.</p>
+                        <p>The predictable speculative behavior of the <span class="code-simple">RET</span> instruction is the key to retpoline being a robust mitigation. <span class="code-simple">RET</span> has this behavior on all processors which are based on the Intel® microarchitecture codename Broadwell and earlier when updated with the latest microcode. Processors based on the Intel® microarchitecture codename Skylake and its close derivatives have different behavior than other processors when the RSB is empty. Processors with this RSB behavior can be identified using the DisplayFamily/DisplayModel signatures provided by the CPUID instruction. For further details, refer to&nbsp;<a class="b_special_a1" href="/darshit/dk_Solutions_Industries/Retpoline_A_Branch_Target_Injection_Mitigation.html">Retpoline: A Branch Target Injection Mitigation</a>.</p>
                     </section>
 
                     <section id="dk_references">
                         <p>&nbsp;</p>
                         <h3 style="font-weight: 350;">References</h3>
                         <ul>
-                            <li><a class="b_special_a1" href="">Introduction to Speculative Execution Side Channel Methods</a></li>
-                            <li><a class="b_special_a1" href="">Retpoline: A Branch Target Injection Mitigation</a></li>
-                            <li><a class="b_special_a1" href="">Google* description of&nbsp;retpoline</a>&nbsp;</li>
-                            <li><a class="b_special_a1" href="">Intel® 64 and IA-32 Architectures Software Developer’s Manuals</a></li>
-                            <li><a class="b_special_a1" href="">Related Intel Security Features and Technologies</a></li>
+                            <li><a class="b_special_a1" href="/darshit/dk_Solutions_Industries/Introduction_to_Speculative_Execution_Side_Channel_Methods.html">Introduction to Speculative Execution Side Channel Methods</a></li>
+                            <li><a class="b_special_a1" href="/darshit/dk_Solutions_Industries/Retpoline_A_Branch_Target_Injection_Mitigation.html">Retpoline: A Branch Target Injection Mitigation</a></li>
+                            <li><a class="b_special_a1" href="https://support.google.com/faqs/answer/7625886">Google* description of&nbsp;retpoline</a>&nbsp;</li>
+                            <li><a class="b_special_a1" href="/darshit/dk_Solutions_Industries/Intel_64_and_IA_32_Architectures_Software_Developer_Manuals.html">Intel® 64 and IA-32 Architectures Software Developer’s Manuals</a></li>
+                            <li><a class="b_special_a1" href="/darshit/dk_Solutions_Industries/Intel%20Security%20Features%20and_Technologies_Related_to_Transient.html">Related Intel Security Features and Technologies</a></li>
                         </ul>
                         <p>&nbsp;</p>
                         <h5 style="text-align:center; font-weight: 500;"><a class="b_special_a1" href="">Software Security Guidance Home</a> | <a class="b_special_a1" href="">Advisory Guidance</a> | <a class="b_special_a1" href="">Technical Documentation</a> | <a class="b_special_a1" href="">Best Practices</a> | <a class="b_special_a1" href="">Resources</a></h5>
