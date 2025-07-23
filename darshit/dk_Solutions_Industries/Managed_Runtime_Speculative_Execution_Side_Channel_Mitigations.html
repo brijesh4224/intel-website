@@ -828,15 +828,15 @@
 
                     <section id="dk_process_isolation">
                         <h4>Process Isolation</h4>
-                        <p>Sandboxed threads in managed runtimes that execute in the same process and rely on language-based security are more susceptible to speculative execution side channel attacks. Process isolation is the preferred mitigation for managed runtimes that can practicably implement it. To implement process isolation, managed runtimes should convert sandboxed threads to sandboxed processes, move secrets into separate processes, and rely on separate address spaces for protection. For example, on a web browser, code from different sites is assumed to belong to different security domains and therefore needs to be in <a class="b_special_a1" href="">different address spaces</a>.</p>
-                        <p>However, this strategy could be impractical to implement in some cases. For example, <a class="b_special_a1" href="">Java Platform*, Enterprise Edition</a> (Java* EE) has a decades-long history of running multiple threads sharing the same address space. For managed runtimes where implementing process isolation is not feasible, you can apply the specific mitigations described in the following sections.</p>
+                        <p>Sandboxed threads in managed runtimes that execute in the same process and rely on language-based security are more susceptible to speculative execution side channel attacks. Process isolation is the preferred mitigation for managed runtimes that can practicably implement it. To implement process isolation, managed runtimes should convert sandboxed threads to sandboxed processes, move secrets into separate processes, and rely on separate address spaces for protection. For example, on a web browser, code from different sites is assumed to belong to different security domains and therefore needs to be in <a class="b_special_a1" href="https://www.chromium.org/Home/chromium-security/site-isolation/">different address spaces</a>.</p>
+                        <p>However, this strategy could be impractical to implement in some cases. For example, <a class="b_special_a1" href="https://www.oracle.com/java/technologies/java-ee-glance.html">Java Platform*, Enterprise Edition</a> (Java* EE) has a decades-long history of running multiple threads sharing the same address space. For managed runtimes where implementing process isolation is not feasible, you can apply the specific mitigations described in the following sections.</p>
                     </section>
 
                     <section id="dk_managed_runtime">
                         <p class="mb-0">&nbsp;</p>
                         <h3 style="font-weight: 350; padding-bottom: 0.5rem;">Managed Runtime Sandboxes and Specific Mitigations</h3>
                         <p>A managed runtime is a software environment that simultaneously hosts one or more distinct code payloads (for example, applets, programs, and applications). These applications are sandboxed (logically isolated from each other) via some combination of language constructs and runtime services. The strength of the sandbox isolation varies depending on the particular managed runtime and how that particular managed runtime is used.</p>
-                        <p>For example, assume a Java* runtime supports <a class="b_special_a1" href="">Java Native Interface*</a> (JNI), which allows arbitrary C code to execute within the managed runtime process. This arbitrary C code can access arbitrary addresses within the managed runtime process, which breaks the sandbox isolation. A Java runtime might prohibit JNI, or might only allow selected, signed code payloads that are trusted to maintain sandbox isolation to execute the C code.</p>
+                        <p>For example, assume a Java* runtime supports <a class="b_special_a1" href="https://docs.oracle.com/javase/7/docs/technotes/guides/jni/">Java Native Interface*</a> (JNI), which allows arbitrary C code to execute within the managed runtime process. This arbitrary C code can access arbitrary addresses within the managed runtime process, which breaks the sandbox isolation. A Java runtime might prohibit JNI, or might only allow selected, signed code payloads that are trusted to maintain sandbox isolation to execute the C code.</p>
                         <p>As another example, JavaScript engines should ensure that JavaScript programs from different origins, or security domains, are isolated from one another through strong sandbox isolation.</p>
                         <p style="text-align:center"><img class="w-100" alt="" src="/img/darshit_image/stereotypical-sandbox-runtime-environment.png"></p>
                         <p style="text-align:center">Figure 1. Stereotypical Sandbox Runtime Environment</p>
@@ -859,7 +859,7 @@
                             <li>Code payloads do not mutually trust each other.</li>
                         </ul>
                         <p>If a managed runtime provides sandbox isolation, it should implement side-channel mitigation techniques. Because mitigation involves some overhead, if a given managed runtime only occasionally runs in sandbox isolation mode, managed runtime vendors might consider developing both sandbox-capable and non-sandbox-capable release versions of their runtime, and/or adding options that allow users to choose whether to enable sandboxing or not. On startup, managed runtimes might automatically determine whether sandbox isolation is needed and run the appropriate version of the runtime.</p>
-                        <p>A single application environment, like <a class="b_special_a1" href="">Node.js*</a>, that only runs trusted sources is an example of a runtime environment that you might wish to run without side-channel mitigations. In this case, a sandbox might not be required within the single-process address space.</p>
+                        <p>A single application environment, like <a class="b_special_a1" href="https://nodejs.org/en/">Node.js*</a>, that only runs trusted sources is an example of a runtime environment that you might wish to run without side-channel mitigations. In this case, a sandbox might not be required within the single-process address space.</p>
                         <p>Mitigations need to be applied to code executing in the same address space as the secret data: the runtime execution engine (for example, a fast/optimizing JIT or AOT compiler, etc.), the runtime environment itself, and the process hosting the runtime. Note that you may also need to apply the mitigation steps outlined in this document to any libraries used by the runtime and hosting process.</p>
                         <p>The runtime execution engine mitigations help protect code payloads from side channel attacks by other code payloads. Refer to the <a class="b_special_a1" href="">Software Guidance for Security Advisories</a> for bounds check bypass, branch target injection, and speculative store bypass &nbsp;to learn &nbsp;how to insert these mitigations into the runtime execution engine.</p>
                         <p>The runtime environment itself should include mitigations whenever sandbox isolation is required to help protect the internal runtime state from side channel attacks by code payloads. In general, runtime environments themselves are native applications. Therefore, you should apply the mitigations for runtime environments described in the bounds check bypass, branch target injection, and speculative store bypass one-pagers.</p>
@@ -870,13 +870,13 @@
                     <section id="dk_short_term">
                         <p class="mb-0">&nbsp;</p>
                         <h4>Short Term Mitigations</h4>
-                        <p>Developers can <a class="b_special_a1" href="">reduce the precision of timers available to users of the runtime</a> as a short term mitigation while long term mitigations are being developed. Another short term mitigation that is worth noting is disabling JITs in cases where doing so is acceptable. Disabling JITs reduces the freedom that attackers have to generate vulnerable code sequences, but it is obviously not practical for some environments.</p>
+                        <p>Developers can <a class="b_special_a1" href="https://www.mozilla.org/en-US/security/advisories/mfsa2018-01/">reduce the precision of timers available to users of the runtime</a> as a short term mitigation while long term mitigations are being developed. Another short term mitigation that is worth noting is disabling JITs in cases where doing so is acceptable. Disabling JITs reduces the freedom that attackers have to generate vulnerable code sequences, but it is obviously not practical for some environments.</p>
                     </section>
 
                     <section id="dk_bounds_mitigations">
                         <p>&nbsp;</p>
                         <h3 style="font-weight: 350; padding-bottom: 0.5rem;">Bounds Check Bypass Managed Runtime Mitigations</h3>
-                        <p><a class="b_special_a1" href="">Refer to the Bounds Check Bypass software guidance</a> for further details and examples.</p>
+                        <p><a class="b_special_a1" href="/darshit/dk_Solutions_Industries/Analyzing_Potential_Bounds_Check_Bypass_Vulnerabilities.html">Refer to the Bounds Check Bypass software guidance</a> for further details and examples.</p>
                         <p>In managed runtime languages (for example, Java, JavaScript, and C#), the runtime automatically performs data validation, such as array bounds checks, null checks or type checks. While Spectre variant 1 is known as the bounds check bypass vulnerability, code sequences can potentially become data exfiltration gadgets even if there is not an explicit array access or array bounds check. All data validation, including pointer null checks and dynamic object type checks, using conditional branches may need mitigation for bounds check bypass. We expect further research about recognizing and disrupting gadgets based on this variant.</p>
                         <p>When the managed runtime is used in sandbox mode, the bounds check bypass mitigations need to be handled in the interpreter, JIT compiler, and AOT compilers in the language runtime. Developers should do any optimizations in the runtime compilers carefully to avoid inadvertently removing the associated mitigations.</p>
                     </section>
@@ -1050,8 +1050,8 @@
                             </div>
                         </div>  
                         <p><br>
-                            In this example, the <span class="dk_code_simple">LFENCE</span> helps ensure that the loads do not occur until the bounds check condition has actually been completed. The memory barrier prevents the compiler from reordering references around the <span class="dk_code_simple">LFENCE</span>, which would break the protection. <a class="b_special_a1" href="">GCC</a>, <a class="b_special_a1" href="">Intel® C/C++ Compiler</a>, <a class="b_special_a1" href="">LLVM</a>, and the <a class="b_special_a1" href="">Microsoft* Visual* C++</a> (MSVC) compiler all support generating <span class="dk_code_simple">LFENCE</span>, instructions for 32- and 64-bit targets when you manually use the <span class="dk_code_simple">_mm_lfence()</span> intrinsic in the required places.</p>
-                        <p>A <a href="">comprehensive mitigation approach to bounds check bypass</a> is proposed on the LLVM lists describing compiler assisted mitigation technique for LLVM.</p>
+                            In this example, the <span class="dk_code_simple">LFENCE</span> helps ensure that the loads do not occur until the bounds check condition has actually been completed. The memory barrier prevents the compiler from reordering references around the <span class="dk_code_simple">LFENCE</span>, which would break the protection. <a class="b_special_a1" href="https://gcc.gnu.org/">GCC</a>, <a class="b_special_a1" href="/rushita_Solutions/k_solutions_Intel-oneAPI-DPC++C++Compiler.html">Intel® C/C++ Compiler</a>, <a class="b_special_a1" href="https://llvm.org/">LLVM</a>, and the <a class="b_special_a1" href="https://devblogs.microsoft.com/cppblog/msvc-the-best-choice-for-windows/">Microsoft* Visual* C++</a> (MSVC) compiler all support generating <span class="dk_code_simple">LFENCE</span>, instructions for 32- and 64-bit targets when you manually use the <span class="dk_code_simple">_mm_lfence()</span> intrinsic in the required places.</p>
+                        <p>A <a class="b_special_a1" href="https://lists.llvm.org/pipermail/llvm-dev/2018-March/122085.html">comprehensive mitigation approach to bounds check bypass</a> is proposed on the LLVM lists describing compiler assisted mitigation technique for LLVM.</p>
                         <p>Runtimes/host compiled using MSVC compiler could also use compiler assisted mitigation for bounds check bypass. We provide a few observations below:</p>
                         <ul>
                             <li>All versions of MSVC v15.5 and all previews of MSVC v15.61 provide the <span class="dk_code_simple">/Qspectre</span> switch, which automatically inserts <span class="dk_code_simple">LFENCE</span> barriers when the compiler detects code that is vulnerable to bounds check bypass. This switch is effective only on optimized code (for example, <span class="dk_code_simple">/O1</span> or <span class="dk_code_simple">/O2</span>, but not <span class="dk_code_simple">/Od</span>). MSVC v15.7 compiler from preview 3 onwards support the <span class="dk_code_simple">/Qspectre</span> switch in <span class="dk_code_simple">/Od</span> mode as well.</li>
@@ -1480,20 +1480,20 @@
                             </div>
                         </div>  
                         <p>This works for powers of two array lengths or bounds only. In the example above the table array length is 256 (2^8), and the valid index should be &lt;= 255. Take care so that the compiler used doesn’t optimize away the <span class="dk_a_new_class">&amp; 255</span> operation.</p>
-                        <p>A <a class="b_special_a1" href="">comprehensive mitigation approach to bounds check bypass</a> is proposed on the LLVM lists describing compiler assisted mitigation technique for LLVM using <span class="dk_code_simple">CMOVcc</span>.</p>
+                        <p>A <a class="b_special_a1" href="https://lists.llvm.org/pipermail/llvm-dev/2018-March/122085.html">comprehensive mitigation approach to bounds check bypass</a> is proposed on the LLVM lists describing compiler assisted mitigation technique for LLVM using <span class="dk_code_simple">CMOVcc</span>.</p>
                     </section>
 
                     <section id="dk_branch_mitigation">
                         <p>&nbsp;</p>
                         <h3 style="font-weight: 350; padding-bottom: 0.5rem;">Branch Target Injection Retpoline Mitigation</h3>
-                        <p><a class="b_special_a1" href="">Retpoline </a>is a mitigation for branch target injection on Intel processors belonging to family 6 (as enumerated by the CPUID instruction) that do not have support for enhanced IBRS. Combined with updated microcode support, retpoline can help ensure that a given indirect branch is resistant to branch target injection exploits. Retpoline sequences deliberately steer the processor’s branch prediction logic to a trusted location, thereby helping to mitigate a potential exploit from steering the branch prediction logic elsewhere.</p>
+                        <p><a class="b_special_a1" href="https://support.google.com/faqs/answer/7625886">Retpoline </a>is a mitigation for branch target injection on Intel processors belonging to family 6 (as enumerated by the CPUID instruction) that do not have support for enhanced IBRS. Combined with updated microcode support, retpoline can help ensure that a given indirect branch is resistant to branch target injection exploits. Retpoline sequences deliberately steer the processor’s branch prediction logic to a trusted location, thereby helping to mitigate a potential exploit from steering the branch prediction logic elsewhere.</p>
                         <p>The managed runtime JIT and AOT compilers may also generate indirect branches. Therefore when the managed runtime is used in sandbox environments or where isolation is required, for microprocessors listed in the <a class="b_special_a1" href="">security advisory</a>, the managed runtime JIT and AOT compilers can automatically generate retpoline sequences for “near call indirect” and “near jump indirect” instead of vulnerable indirect branches.</p>
-                        <p>The community is using several retpoline sequences. Generally, these sequences are functionally equivalent to each other, but differ with respect to their power impact on different microarchitectures.&nbsp;Inserting <span class="dk_code_simple">PAUSE</span><strong> </strong>and/or <span class="dk_code_simple">LFENCE</span> instructions may reduce the power cost of the speculative spin construct in retpoline on <a class="b_special_a1" href="">some architectures</a>.</p>
+                        <p>The community is using several retpoline sequences. Generally, these sequences are functionally equivalent to each other, but differ with respect to their power impact on different microarchitectures.&nbsp;Inserting <span class="dk_code_simple">PAUSE</span><strong> </strong>and/or <span class="dk_code_simple">LFENCE</span> instructions may reduce the power cost of the speculative spin construct in retpoline on <a class="b_special_a1" href="https://gcc.gnu.org/legacy-ml/gcc-patches/2018-01/msg01209.html">some architectures</a>.</p>
                     </section>
 
                     <section id="dk_branch_rsb">
                         <h4>Branch Target Injection Mitigation for Processors With Alternate Empty RSB Behavior</h4>
-                        <p>The processors listed in the Empty RSB Mitigation on Skylake-generation section of <a class="b_special_a1" href="">Retpoline: a Branch Target Injection Mitigation</a> have different Return Stack Buffer (RSB) behavior, although the near call indirect and near jump indirect retpolines significantly raise the bar for successful attacks, developers need to additionally use return retpolines to further mitigate the <span class="dk_code_simple">RET</span> instruction.</p>
+                        <p>The processors listed in the Empty RSB Mitigation on Skylake-generation section of <a class="b_special_a1" href="/darshit/dk_Solutions_Industries/Retpoline_A_Branch_Target_Injection_Mitigation.html">Retpoline: a Branch Target Injection Mitigation</a> have different Return Stack Buffer (RSB) behavior, although the near call indirect and near jump indirect retpolines significantly raise the bar for successful attacks, developers need to additionally use return retpolines to further mitigate the <span class="dk_code_simple">RET</span> instruction.</p>
                         <p>Managed runtimes could be used in a virtualized environment. A valuable tool in modern data centers is live migration of virtual machines (VMs) among a cluster of bare-metal hosts. However, those bare-metal hosts often differ in hardware capabilities. These differences could prevent a VM that started on one host from being migrated to another host that has different capabilities. For instance, a VM using Intel® Advanced Vector Extensions 512 (Intel® AVX-512) instructions could not be live-migrated to an older system without Intel® AVX-512.</p>
                         <p>A common approach to solving this issue is exposing the oldest processor model with the smallest subset of hardware features to the VM. This addresses the live-migration issue, but results in a new issue: Software using model/family numbers from CPUID can no longer detect when it is running on a newer processor that is vulnerable to exploits of Empty RSB conditions.</p>
                         <p>To remedy this situation, a managed runtime running in a virtualized environment needs to query bit 2 of the <span class="dk_code_simple">IA32_ARCH_CAPABILITIES</span> MSR, known as “RSB Alternate” (RSBA). Since applications can’t read MSRs directly, OS vendors may expose this information through an API to help applications take corrective measures. When RSBA is set, it indicates that the underlying VM may run on a processor vulnerable to exploits of Empty RSB conditions regardless of the processor’s Family/Model signature, and that the managed runtime should deploy appropriate mitigations.</p>
@@ -1501,7 +1501,7 @@
 
                     <section id="dk_example_retpoline">
                         <h4>Example retpoline sequences</h4>
-                        <p>The assembly snippets below show retpoline mitigations in GNU Assembler syntax. Refer to <a class="b_special_a1" href="">Retpoline: A Branch Target Injection Mitigation</a> for more details.</p>
+                        <p>The assembly snippets below show retpoline mitigations in GNU Assembler syntax. Refer to <a class="b_special_a1" href="/darshit/dk_Solutions_Industries/Retpoline_A_Branch_Target_Injection_Mitigation.html">Retpoline: A Branch Target Injection Mitigation</a> for more details.</p>
                         <p>Example 1.&nbsp;Near Call/Jump Indirect Retpoline Sequence For Address In Register</p>
                         <table class="mv_product_table w-100 mb-4">
                             <tbody>
@@ -1608,7 +1608,7 @@
 
                     <section id="dk_linux_gcc">
                         <h4>Linux* and GCC</h4>
-                        <p>You can implement <a class="b_special_a1" href="">branch target injection mitigation on Linux* with GCC</a> by compiling the runtime with the following compiler switches:</p>
+                        <p>You can implement <a class="b_special_a1" href="https://gcc.gnu.org/git/?p=gcc.git;a=commit;h=c6b72be421ded17e0c156070ba6e90aa6c335ed6">branch target injection mitigation on Linux* with GCC</a> by compiling the runtime with the following compiler switches:</p>
                         <div class="mv_code_toolbar">
                             <div class="mv_toolbar_item mv_copy_icon">
                                 <i class="fa-regular fa-copy"></i>
@@ -1631,7 +1631,7 @@
                                 </div>
                             </div>
                         </div> 
-                        <p>When compiling for the processors with alternate RSB behavior as described in the Empty RSB Mitigation on Skylake-generation section of <a class="b_special_a1" href="">Retpoline: A Branch Target Injection Mitigation</a>, you also need to <a class="b_special_a1" href="">generate the ret retpolines</a> with the following compiler switches:</p>
+                        <p>When compiling for the processors with alternate RSB behavior as described in the Empty RSB Mitigation on Skylake-generation section of <a class="b_special_a1" href="/darshit/dk_Solutions_Industries/Retpoline_A_Branch_Target_Injection_Mitigation.html">Retpoline: A Branch Target Injection Mitigation</a>, you also need to <a class="b_special_a1" href="https://gcc.gnu.org/git/?p=gcc.git;a=commit;h=357311dd400f7f72d2132f2f94161ece39bf08c6">generate the ret retpolines</a> with the following compiler switches:</p>
                         <div class="mv_code_toolbar">
                             <div class="mv_toolbar_item mv_copy_icon">
                                 <i class="fa-regular fa-copy"></i>
@@ -1658,19 +1658,19 @@
 
                     <section id="dk_icc">
                         <h4 class="mt-4">Intel® C Compiler (ICC)</h4>
-                        <p><a class="b_special_a1" href="">Intel® C Compiler v18.0.3</a> also supports the switches described above. Work is ongoing to backport these switches version 16 and version 17.</p>
+                        <p><a class="b_special_a1" href="/darshit/dk_Solutions_Industries/Using_Intel_Compilers_to_Mitigate_Speculative_Execution.html">Intel® C Compiler v18.0.3</a> also supports the switches described above. Work is ongoing to backport these switches version 16 and version 17.</p>
                     </section>
 
                     <section id="dk_llvm_clang">
                         <h4 class="mt-4">LLVM Clang</h4>
-                        <p>The LLVM Clang C/C++ Compiler supports -mretpoline and -mretpoline-external-thunk &nbsp;switches for retpoline generation. These switches are backported to <a class="b_special_a1" href="">version 6.0.0</a>, and work is ongoing to backport to <a class="b_special_a1" href="">version 5.0.2</a>.</p>
+                        <p>The LLVM Clang C/C++ Compiler supports -mretpoline and -mretpoline-external-thunk &nbsp;switches for retpoline generation. These switches are backported to <a class="b_special_a1" href="https://releases.llvm.org/6.0.0/docs/ReleaseNotes.html">version 6.0.0</a>, and work is ongoing to backport to <a class="b_special_a1" href="https://lists.llvm.org/pipermail/llvm-dev/2018-March/121771.html">version 5.0.2</a>.</p>
                     </section>
 
                     <section id="dk_speculation_buffers">
                         <h4 class="mt-4">Speculation Execution using Return Stack Buffers</h4>
                         <p>The Return Stack Buffer (RSB) is a last-in-first-out (LIFO), fixed-size stack that is implemented in hardware. &nbsp;In the RSB, <span class="dk_code_simple">CALL</span> instructions “push” entries, and <span class="dk_code_simple">RET</span> instructions “pop” entries. Prediction of <span class="dk_code_simple">RET</span> instructions relies on the RSB first and differs from prediction of <span class="dk_code_simple">JMP</span> and <span class="dk_code_simple">CALL</span> instructions. On many Intel processors, enough return instructions in a row can cause the RSB to wrap and to incorrectly speculate to a previous <span class="dk_code_simple">RET</span> instruction’s target.&nbsp;</p>
                         <p>For example, if the RSB pointer is pointing to the bottom entry of the RSB and two return instructions are executed, the RSB pointer will wrap to the top entry. Therefore, the first return address prediction will be taken from the bottom entry, and the second return address prediction will be taken from the top entry.</p>
-                        <p>Intel® processors based on CPUID family 6, excluding the processors listed in Table 5: processors with different RSB behavior in <a class="b_special_a1" href="">Retpoline: A Branch Target Injection Mitigation</a>, exhibit the RSB wrap behavior. For these processors, the following techniques may be applied for mitigation.</p>
+                        <p>Intel® processors based on CPUID family 6, excluding the processors listed in Table 5: processors with different RSB behavior in <a class="b_special_a1" href="/darshit/dk_Solutions_Industries/Retpoline_A_Branch_Target_Injection_Mitigation.html">Retpoline: A Branch Target Injection Mitigation</a>, exhibit the RSB wrap behavior. For these processors, the following techniques may be applied for mitigation.</p>
                         <p>One mitigation for speculative execution exploits targeting the RSB is tracking the call depth and using RSB stuffing whenever the call depth exceeds 16 entries, which could cause the RSB pointer to wrap. &nbsp;An example RSB stuffing sequence is shown below in Example 4.</p>
                         <p>Example 4.&nbsp;RSB Stuffing</p>
                         <div class="mv_code_toolbar">
@@ -1744,7 +1744,7 @@
                                 </div>
                             </div>
                         </div> 
-                        <p>For more details on RSB stuffing, refer to the Empty RSB Mitigation on Skylake-generation section in <a class="b_special_a1" href="">Retpoline: A Branch Target Injection Mitigation</a>.</p>
+                        <p>For more details on RSB stuffing, refer to the Empty RSB Mitigation on Skylake-generation section in <a class="b_special_a1" href="/darshit/dk_Solutions_Industries/Retpoline_A_Branch_Target_Injection_Mitigation.html">Retpoline: A Branch Target Injection Mitigation</a>.</p>
                         <p>On Intel processors belonging to family 6 (as enumerated by the CPUID instruction) that do not have support for enhanced IBRS, you can use near return retpoline to mitigate speculative execution exploits that target the RSB. Combined with updated microcode support, near return retpoline can help ensure that a given return instruction is resistant to speculative execution exploits using the RSB. Near return retpoline sequences deliberately steer the processor’s prediction logic to a known location, thereby helping to mitigate potential exploits from steering the prediction logic elsewhere. For more details, refer to Example 3 of the example retpoline sequences above.</p>
                     </section>
 
@@ -1764,7 +1764,7 @@
                         <p>&nbsp;</p>
                         <h3 style="font-weight: 350;">Speculative Store Bypass Disable (SSBD)</h3>
                         <p>When the software based mitigations are not feasible, employing processor supported Speculate Store Bypass Disable mechanism can be used to mitigate speculative store bypass. When SSBD is set, loads will not execute speculatively until the address of the older stores are known. Use SSBD judiciously to minimize the impact on performance. Managed runtimes can use Operating System provided API’s to enable and disable SSBD.<br>
-                            For additional information on SSBD, refer to the <a class="b_special_a1" href="">Speculative Execution Side Channel Mitigations</a> document.</p>
+                            For additional information on SSBD, refer to the <a class="b_special_a1" href="/img/darshit_image/336996-speculative-execution-side-channel-mitigations (1).pdf">Speculative Execution Side Channel Mitigations</a> document.</p>
                     </section>
 
                     <section id="dk_linuxs">
@@ -1847,7 +1847,7 @@
 
                     <section id="dk_windows">
                         <h4 class="mt-4">​Windows*</h4>
-                        <p>Microsoft plans to provide a mitigation that leverages the new hardware features in a future Windows* update. Refer to <a class="b_special_a1" href="">Microsoft’s public blog</a> for more information.</p>
+                        <p>Microsoft plans to provide a mitigation that leverages the new hardware features in a future Windows* update. Refer to <a class="b_special_a1" href="https://msrc.microsoft.com/blog/2018/05/analysis-and-mitigation-of-speculative-store-bypass-cve-2018-3639/">Microsoft’s public blog</a> for more information.</p>
                     </section>
 
                     <section id="dk_related_techno">
@@ -1866,7 +1866,7 @@
                         <h4 class="mt-4">Control Flow Enforcement Technology (CET)</h4>
                         <p>On future Intel processors, Control flow Enforcement Technology (CET) will allow developers to limit near indirect jump and call instructions to only target <span class="dk_code_simple">ENDBRANCH</span> instructions. This feature can help reduce the speculation allowed to instructions that are not <span class="dk_code_simple">ENDBRANCH</span> instructions. This greatly reduces the gadget space, which increases the difficulty of branch target injection attacks.</p>
                         <p>CET also provides capabilities to defend against Return-Oriented-Programming (ROP) control-flow subversion attacks. However, the retpoline technique closely resembles the approaches used in ROP attacks. Be aware that if used in conjunction with CET, retpoline might trigger false positives in the CET defenses.</p>
-                        <p>For additional information on CET,&nbsp;see Chapter 18 of <a class="b_special_a1" href="">Intel® 64 and IA-32 Architectures Software Developer's Manual Volume 1: Basic Architecture</a>.</p>
+                        <p>For additional information on CET,&nbsp;see Chapter 18 of <a class="b_special_a1" href="/img/darshit_image/253665-088-sdm-vol-1.pdf">Intel® 64 and IA-32 Architectures Software Developer's Manual Volume 1: Basic Architecture</a>.</p>
                     </section>
 
                     <section id="dk_protection">
@@ -1887,10 +1887,10 @@
                         <h3 style="font-weight: 350;">Footnotes</h3>
                         <ol>
                             <li>Refer to Microsoft’s public documentation for other options:<br>
-                            <a class="b_special_a1" href="">Spectre mitigations in MSVC</a><br>
-                            <a class="b_special_a1" href="">/Qspectre</a><br>
-                            <a class="b_special_a1" href="">spectre</a></li>
-                            <li><a class="b_special_a1" href="">Spectre Mitigations in Microsoft's C/C++ Compiler</a></li>
+                            <a class="b_special_a1" href="https://devblogs.microsoft.com/cppblog/spectre-mitigations-in-msvc/">Spectre mitigations in MSVC</a><br>
+                            <a class="b_special_a1" href="https://learn.microsoft.com/en-us/cpp/build/reference/qspectre?view=msvc-160">/Qspectre</a><br>
+                            <a class="b_special_a1" href="https://learn.microsoft.com/en-us/cpp/cpp/spectre?view=msvc-160">spectre</a></li>
+                            <li><a class="b_special_a1" href="https://www.paulkocher.com/doc/MicrosoftCompilerSpectreMitigation.html">Spectre Mitigations in Microsoft's C/C++ Compiler</a></li>
                         </ol>
                         <p>&nbsp;</p>
                         <h5 style="text-align:center; font-weight: 500;"><a class="b_special_a1" href="">Software Security Guidance Home</a> | <a class="b_special_a1" href="">Advisory Guidance</a> | <a class="b_special_a1" href="">Technical Documentation</a> | <a class="b_special_a1" href="">Best Practices</a> | <a class="b_special_a1" href="">Resources</a></h5>
