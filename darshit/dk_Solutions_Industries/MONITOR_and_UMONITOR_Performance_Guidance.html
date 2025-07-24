@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MONITOR and UMONITOR Performance Guidance</title>
+
+    <!-- font family -->
+    <link href="https://fonts.cdnfonts.com/css/intel-clear" rel="stylesheet">
+
+    <link rel="stylesheet" href="/css/dk_developer_edge_iot_5G_industrial_automation_see_all_wireless_network_ready_printed_circuit_board_(PCB)_defect_detection.css">
+    <link rel="stylesheet" href="/css/mv_product/ECC.css">
+    <link rel="stylesheet" href="/css/rushita_automotive.css">
+
+    <!-- header footer -->
+    <link rel="stylesheet" href='/css/yatri.css'>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" rel="stylesheet">
+
+</head>
+
+<style>
+    .dk_color1 {
+        color: #069 !important;
+    }
+
+    .dk_color2 {
+        color: #008200 !important;
+    }
+
+    .dk_color3 {
+        color: #b24501;
+    }
+
+    .dk_note{
+        font-size: 1rem;
+        line-height: 1.25;
+        word-wrap: break-word;
+        background-color: #e6e6e6;
+        padding: 20px;
+        border-left: 3px solid #fdb813;
+    }
+    .dk_code_simple{
+        background-color: #e6e6e6;
+        color: #53565a;
+        border-radius: 0;
+    }
+
+    .dk_greyHighlight{
+        font-size: 1rem;
+        line-height: 1.25;
+        background-color: #e6e6e6;
+        padding: 20px;
+    }
+
+    .dk_things_code{
+        padding: 1rem 1rem 0rem 0.5rem;
+    }
+    /* table */
+    table {
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    th, td {
+      border: 1px solid #ccc;
+      padding: 12px 15px;
+      vertical-align: top;
+      text-align: left;
+    }
+
+    th {
+      background-color: #f0f0f0;
+      white-space: nowrap;
+      width: 150px;
+    }
+
+    td {
+      background-color: #fafafa;
+      font-family: monospace;
+      font-size: 14px;
+    }
+
+    ol {
+      padding-left: 20px;
+      margin: 0;
+    }
+
+    ol li {
+      margin-bottom: 6px;
+    }
+
+    @media(max-width:1200px) {
+        .dk_risk_app_img {
+            width: 100% !important;
+        }
+        .mv_product_table{
+            width: 100% !important;
+        }
+    }
+</style>
+
+<body>
+    <!-- header -->
+    <div id="navbar"></div>
+
+    <!------------------------------------------------------------------------------->
+    <section class="m_ai_tdrop">
+        <div>
+            <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Developers
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item m_dropActive" href="#">Overview</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Topics & Technologies</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Tools</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Hardware Platforms</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Resources & Documentation</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Learn</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Community & Events</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Developer Programs</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Get Help</a></li>                                                              
+            </ul>
+        </div>
+        <div class="m_ai_shlash">/</div>
+        <div>
+            <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Topics & Technologies
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item m_dropActive" href="#">Artificial Intelligence</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Client Applications</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Cloud</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">GPU Research</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Edge Computing</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">GameDev</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">HPC</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Data Center</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Firmware</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Networking</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Open Ecosystem</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Persistent Memory</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Platform Analysis Technology</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Runtime Languages</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Software Security Guidance</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Storage</a></li>
+            </ul>
+        </div>
+        <div class="m_ai_shlash">/</div>
+        <div>
+            <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Software Security Guidance
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item m_dropActive" href="#">Advisory Guidance</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Best Practices</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Resources</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Disclosure Documentation</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Feature Documentation</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">More Information</a></li>
+            </ul>
+        </div>
+        <div class="m_ai_shlash">/</div>
+        <div>
+            <button class="btn" style="color: #0068B5;">
+                Feature Documentation
+            </button>
+        </div>
+        <div class="m_ai_shlash">/</div>
+        <div class="m_ai_httl">MONITOR and UMONITOR Performance Guidance</div>
+
+    </section>
+    <!------------------------------------------------------------------------------->
+
+    <!-- VMware Horizon -->
+    <section>
+        <div class="mv_vmware_bg_color">
+            <div class="container">
+                <div class="mv_vmware_padd">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="mv_vmware_heading">
+                                <h3>MONITOR and UMONITOR Performance Guidance</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mv_cd_page_marquee_info">
+                        <div class="mv_cd_page_marquee_action">
+                            <div class="mv_cd_page_marquee_action_padd">
+                                <label for="">ID</label>
+                                <span>826393</span>
+                            </div>
+                            <div class="mv_cd_page_marquee_action_padd">
+                                <label for="">Updated</label>
+                                <span>3/5/2025</span>
+                            </div>
+                            <div class="mv_cd_page_marquee_action_padd">
+                                <label for="">Version</label>
+                                <span>1.0</span>
+                            </div>
+                            <div class="mv_cd_page_marquee_action_padd">
+                                <label for=""></label>
+                                <span>Public</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="container py-5">
+        <div class="row">
+            <div class="d-flex justify-content-end col-xl-10 py-3 d-md-none">
+                <i class="fa-solid fa-print fs-4 px-2 " style="color:#0068B5"></i>
+                <i class="fa-regular fa-envelope fs-4 px-2" style="color:#0068B5"></i>
+            </div>
+            <div class="col-lg-3 col-md-4">
+                <!-- nav -->
+                <div class="VK_sticky_side_bar VK_side_bar_postion_stickey">
+                    <div>
+                        <div class="VK_sidebar_dropdown">
+                            <p class="m-0">
+                                <a href="#dk_description" class="text-decoration-none VK_a">
+                                    Description
+                                </a>
+                            </p>
+                            <p class="m-0">
+                                <a href="#dk_pontentail_issues" class="text-decoration-none VK_a">
+                                    Potential Issues
+                                </a>
+                            </p>
+                            <p class="m-0">
+                                <a href="#dk_mitigation_guidance" class="text-decoration-none VK_a">
+                                    Mitigation and Software Guidance
+                                </a>
+                            </p>
+                            <p class="m-0">
+                                <a href="#dk_enumeration" class="text-decoration-none VK_a">
+                                    Enumeration
+                                </a>
+                            </p>
+                            <p class="m-0">
+                                <a href="#dk_affected_processors" class="text-decoration-none VK_a">
+                                    Affected Processors
+                                </a>
+                            </p>
+                            <p class="m-0">
+                                <a href="#dk_references" class="text-decoration-none VK_a">
+                                    References
+                                </a>
+                            </p>
+                            <p class="m-0">
+                                <a href="#dk_footnotes" class="text-decoration-none VK_a">
+                                    Footnotes
+                                </a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <p>&nbsp;</p>
+                <p><b>Key Takeaways</b></p>
+                <ul style="padding-left: 1rem;">
+                   <li><p>On some affected Intel processors, a high rate of MONITOR or UMONITOR instructions may exceed the capacity of an internal monitor tracking table within the processor, putting the processor into a monitor hardware overflow mode which may impact performance. Processors that do not have this behavior may indicate this to software by enumerating CPUID.7.2.EDX[bit7] MONITOR_MITG_NO as 1.</p></li>
+                    <li><p>Affected processors may disable UMONITOR address monitoring by default. On some processors, this disabling occurs only when a microcode update is loaded. Disabling UMONITOR address monitoring prevents application software from putting the processor into address monitoring hardware overflow mode. On these processors, system software can clear IA32_ARCH_CAPABILITIES[29] (IGN_UMONITOR) to re-enable UMONITOR address monitoring. </p></li>
+                </ul>
+            </div>
+            <div class="col-lg-9 col-md-8">
+                <div class="d-md-flex justify-content-end col-xl-10 py-3 d-none">
+                    <i class="fa-solid fa-print fs-4 px-2 " style="color:#0068B5"></i>
+                    <i class="fa-regular fa-envelope fs-4 px-2" style="color:#0068B5"></i>
+                </div>
+                <div class="col-xl-10 VK_all_sections">
+                    <p>&nbsp;</p>
+                    <p>On some Intel processors, the <span class="dk_code_simple">UMONITOR</span> instruction can either cause performance loss or an inability to enter sleep states due to the monitoring hardware not reclaiming old addresses. Due to not reclaiming old addresses, the processor may enter a monitoring hardware overflow mode. This monitoring hardware overflow mode may lower performance for all threads. Alternatively, affected processors may reject new address monitoring requests, which can prevent the <span class="dk_code_simple">MWAIT</span> instruction from entering sleep states.</p>
+                    <p>The <span class="dk_code_simple">UMONITOR</span> instruction is available at all privilege levels and thus this behavior may be caused by application software. The <span class="dk_code_simple">MONITOR</span> instruction, which is only usable by privilege level 0, may also not reclaim old addresses.&nbsp;</p>
+                    <p>In response to this issue, affected processors may disable the <span class="dk_code_simple">UMONITOR</span> address monitoring. For some processors, this behavior occurs after a microcode update is loaded while for others it is the behavior at product launch. If disabled by default, a Model Specific Register (MSR) bit may be available for software to re-enable <span class="dk_code_simple">UMONITOR</span> address monitoring. Refer to&nbsp;<a class="b_special_a1" href="">CPUID Enumeration and Architectural MSRs</a>&nbsp;for more information.</p>
+
+                    <section id="dk_description">
+                        <p class="mb-0">&nbsp;</p>
+                        <h3 style="font-weight: 350; padding-bottom: 0.5rem;">Description</h3>
+                        <p>On some affected Intel processors, a high rate of <span class="dk_code_simple">MONITOR</span> or <span class="dk_code_simple">UMONITOR</span> instructions may exceed the capacity of an internal monitor tracking table within the processor, putting the processor into a monitor hardware overflow mode. Extra snoop traffic goes to the cores when in this monitor hardware overflow mode, which can lower their performance.</p>
+                        <p>Alternatively, affected processors may have <span class="dk_code_simple">MONITOR</span> or <span class="dk_code_simple">UMONITOR</span> address monitoring requests not succeeding, which can impact <span class="dk_code_simple">UMWAIT</span> or <span class="dk_code_simple">MWAIT</span> entering sleep states.&nbsp;</p>
+                        <p>Processors that do not have either behavior may indicate this to software by enumerating CPUID.7.2.EDX[bit7] MONITOR_MITG_NO as 1.</p>
+                    </section>
+
+                    <section id="dk_pontentail_issues">
+                        <p class="mb-0">&nbsp;</p>
+                        <h3 style="padding-bottom: 0.5rem; font-weight: 350;">Potential Issues</h3>
+                        <p>Applications using <span class="dk_code_simple">UMONITOR</span> may impact the overall system performance or power savings. Intel has not observed <span class="dk_code_simple">MONITOR</span> impacting the system performance or power savings in production software.</p>
+                    </section>
+
+                    <section id="dk_mitigation_guidance">
+                        <p class="mb-0">&nbsp;</p>
+                        <h3 style="padding-bottom: 0.5rem; font-weight: 350;">Mitigation and Software Guidance</h3>
+                        <p>To address this, affected processors may disable <span class="dk_code_simple">UMONITOR</span> address monitoring by default. Disabling <span class="dk_code_simple">UMONITOR</span> address monitoring means that a <span class="dk_code_simple">UMONITOR</span> does not set up an address monitor, which may prevent a subsequent <span class="dk_code_simple">UMWAIT</span> from entering a sleep state. It does not mean that the <span class="dk_code_simple">UMONITOR</span> instruction is disallowed or that the <span class="dk_code_simple">UMONITOR</span>/<span class="dk_code_simple">UMWAIT</span> CPUID enumeration, CPUID.7.0.ECX[5] (WAITPKG) is not set. On some processors, this disabling occurs only when a microcode update is loaded.&nbsp;Refer to&nbsp;<a class="b_special_a1" href="">CPUID Enumeration and Architectural MSRs</a>&nbsp;for more information.</p>
+                        <p>Disabling <span class="dk_code_simple">UMONITOR</span> address monitoring prevents application software from putting the processor into address monitoring hardware overflow mode.</p>
+                        <p>Applications that wish to avoid using the mitigation may wish to check that CPUID.7.2.EDX[7] MONITOR_MITG_NO is 1 in order to determine that the processor is unaffected by the issues described here. Note that some processors may only enumerate MONITOR_MITG_NO when a microcode update is loaded. Hypervisors should pass MONITOR_MITG_NO enumeration through to guests so that guests will know that <span class="dk_code_simple">UMONITOR</span> and <span class="dk_code_simple">UMWAIT</span> are effective.</p>
+                        <p>Processors that disable <span class="dk_code_simple">UMONITOR</span> address monitoring by default may support MSR bits or a BIOS option to change the mitigation.</p>
+                        <p>Processors that enumerate IA32_ARCH_CAPABILITIES[29] (IGN_UMONITOR_SUPPORT) will support IA32_MCU_OPT_CTL_MSR[6] (IGN_UMONITOR). System software can clear IGN_UMONITOR in order to enable <span class="dk_code_simple">UMONITOR</span> address monitoring. Note that enabling UMONITOR address monitoring may allow <span class="dk_code_simple">UMONITOR</span> to cause the issues described earlier.&nbsp;</p>
+                        <p>Processors that enumerate IA32_ARCH_CAPABILITIES[30] (MON_UMON_MITG_SUPPORT) will support IA32_MCU_OPT_CTL_MSR[7] (MON_UMON_MITG). System software can set MON_UMON_MITG in order to enable an alternative mitigation. This alternative mitigation will try to avoid monitoring hardware overflow mode by trying to clear entries from the internal monitor tracking table more frequently. This should reduce the rate of entering monitor overflow mode and may enable leaving monitor overflow mode sooner. It may also cause wakeups from the monitor state on other threads/cores.&nbsp;</p>
+                        <p>Application software cannot directly query the value of these MSR bits. For an application to know that <span class="dk_code_simple">UMONITOR</span> is effective on a processor that does not enumerate MONITOR_MITG_NO, the operating system might need to create an API to inform the application software that UMONITOR has been re-enabled (by clearing IGN_UMONITOR_SUPPORT).&nbsp;</p>
+                        <p>Future processors may not have these MSR bits, and Intel recommends that these MSR bits are not exposed to virtual machines by the hypervisor.</p>
+                        <p>A BIOS option may be available to enable UMONITOR. If available, it is located at: <em>EDKII Menu -&gt; Socket Configuration -&gt; Processor Configuration -&gt; UMONITOR</em>.&nbsp; To enable UMONITOR full functionality, set this option to: <em>UMONITOR &lt;Enable&gt;</em>. This clears IGN_UMONITOR bit 6 of IA32_MCU_OPT_CTRL MSR 0x123h and will enable the full functionality of UMONITOR.&nbsp;</p>
+                        <p>Note that the <span class="dk_code_simple">TPAUSE</span> instruction is unaffected by this issue or its mitigation.</p>
+                    </section>
+
+                    <section id="dk_enumeration">
+                        <p class="mb-0">&nbsp;</p>
+                        <h3 style="padding-bottom: 0.5rem; font-weight: 350;">Enumeration</h3>
+                        <table class="mv_product_table w-100 mb-4">
+                            <caption>Table 1: Structured Extended Feature Flags Enumeration Leaf (Output depends on ECX input value)</caption>
+                            <thead>
+                                <tr>
+                                    <th>Initial EAX Value</th>
+                                    <th>Information Provided About the Processor</th>
+                                    <th>Notes</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>07H</td>
+                                    <td>EDX</td>
+                                    <td>Leaf 07H main leaf (ECX = 2).<br>
+                                    If ECX contains an invalid subleaf index, EAX/EBX/ECX/EDX return 0.</td>
+                                </tr>
+                                <tr>
+                                    <td>&nbsp;</td>
+                                    <td>&nbsp;</td>
+                                    <td>Bit 7: MONITOR_MITG_NO<br>
+                                    If 1, indicates that the <span class="dk_code_simple">MONITOR</span>/<span class="dk_code_simple">UMONITOR</span> instructions are not affected by performance or power issues due to <span class="dk_code_simple">MONITOR</span>/<span class="dk_code_simple">UMONITOR</span> instructions exceeding the capacity of an internal monitor tracking table. If 0, then the product may be affected by this issue.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <p>&nbsp;</p>
+                        <table class="mv_product_table w-100 mb-4">
+                            <caption>Table 2: IA32_ARCH_CAPABILITIES Details</caption>
+                            <thead>
+                                <tr>
+                                    <th scope="col">Register Address Hex</th>
+                                    <th scope="col">Register Address DEC</th>
+                                    <th scope="col">Architectural MSR Name / Bit Fields</th>
+                                    <th scope="col">MSR / Bit Description</th>
+                                    <th scope="col">Comment</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>10AH</td>
+                                    <td>266</td>
+                                    <td>IA32_ARCH_CAPABILITIES</td>
+                                    <td>Enumeration of Architectural Features (RO)</td>
+                                    <td>If CPUID.(EAX-07H, ECX=0):EDX[29]=1</td>
+                                </tr>
+                                <tr>
+                                    <td>10AH</td>
+                                    <td>266</td>
+                                    <td>29</td>
+                                    <td>IGN_UMONITOR_SUPPORT&nbsp;<br>
+                                    If 0, IA32_MCU_OPT_CTRL bit 6 (IGN_UMONITOR) is not supported.&nbsp;<br>
+                                    If 1, it indicates support of IA32_MCU_OPT_CTRL bit 6 (IGN_UMONITOR).&nbsp;</td>
+                                    <td>If UMONITOR is disabled by default, and the product is affected by this issue, an option through either MSR 0x123h bit 6 or BIOS may be available to enable UMONITOR’s full functionality as described in their instruction definition.</td>
+                                </tr>
+                                <tr>
+                                    <td>10AH</td>
+                                    <td>266</td>
+                                    <td>30</td>
+                                    <td>MON_UMON_MITG_SUPPORT&nbsp;<br>
+                                    If 0, IA32_MCU_OPT_CTRL bit 7 (MON_UMON_MITG) is not supported.&nbsp;<br>
+                                    If 1, it indicates support of IA32_MCU_OPT_CTRL bit 7 (MON_UMON_MITG).&nbsp;</td>
+                                    <td>&nbsp;</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <p>&nbsp;</p>
+                        <table class="mv_product_table w-100 mb-4">
+                            <caption>Table 3: IA32_MCU_OPT_CTRL MSR</caption>
+                            <thead>
+                                <tr>
+                                    <th>Register Address Hex</th>
+                                    <th>Register Address DEC</th>
+                                    <th>Architectural MSR <br> Name / Bit Fields</th>
+                                    <th style="width: 40% !important;">MSR / Bit Description</th>
+                                    <th>Comment</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>123H</td>
+                                    <td>291</td>
+                                    <td>IA32_MCU_OPT_CTRL</td>
+                                    <td>Microcode Update Option Control (R/W)</td>
+                                    <td>&nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td>123H</td>
+                                    <td>291</td>
+                                    <td>6</td>
+                                    <td>IGN_UMONITOR &nbsp;<br>
+                                    If 0, <span class="dk_code_simple">UMONITOR</span> instructions may set up an address monitor as described in their instruction definition.&nbsp;<br>
+                                    If 1 (default), <span class="dk_code_simple">UMONITOR</span>s will not set up address monitors<a class="b_special_a1" href=""><sup>1</sup></a>. This may cause later <span class="dk_code_simple">UMWAIT</span> to not enter an implementation-dependent optimized state. </td>
+                                    <td>If IA32_ARCH_CAPABILITIES[29]=1</td>
+                                </tr>
+                                <tr>
+                                    <td>&nbsp;</td>
+                                    <td>&nbsp;</td>
+                                    <td>7</td>
+                                    <td>MON_UMON_MITG &nbsp;<br>
+                                    If 0 (default), Disabled. &nbsp;<br>
+                                    If 1, Enable: <span class="dk_code_simple">MONITOR</span> and <span class="dk_code_simple">UMONITOR</span> instructions will flush previously monitored addresses of the logical processor and, sometimes, nearby logical processors (on a sibling hyperthread or in the same module). This may reduce the rate of entering monitoring hardware overflow mode or may allow leaving that mode more quickly. Note that it may impact the latency of the <span class="dk_code_simple">MONITOR</span> and <span class="dk_code_simple">UMONITOR</span> instructions and may cause nearby logical processors to wake from sleep states.&nbsp;</td>
+                                    <td>If IA32_ARCH_CAPABILITIES[30]=1<br>
+                                    NOTE: The intent of this option is to try to keep the address monitoring hardware out of monitoring hardware overflow mode or recover faster if it is in that mode.<br>
+                                    &nbsp;</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </section>
+
+                    <section id="dk_related_con">
+                        <p class="mb-0">&nbsp;</p>
+                        <table class="mv_product_table w-100 mb-4">
+                            <caption>Table 4: Processors Affected by MONITOR/UMONITOR Hardware Overflow</caption>
+                            <thead>
+                                <tr>
+                                    <th>CPUID Family_Model</th>
+                                    <th>Stepping</th>
+                                    <th>Code Names / <br> Microarchitectures</th>
+                                    <th>Segment</th>
+                                    <th style="width: 35%;">Product Family</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                    <p>06_8FH</p>
+                                    </td>
+                                    <td>
+                                    <p>5,6,7,8</p>
+                                    </td>
+                                    <td>
+                                    <p>Sapphire Rapids</p>
+                                    </td>
+                                    <td>
+                                    <p>Server<br>
+                                    Workstation</p>
+                                    </td>
+                                    <td>
+                                    <p>4th Generation Intel® Xeon® Scalable Processors (formerly codenamed Sapphire Rapids)<br>
+                                    4th Generation Intel® Xeon® Scalable Processor with Intel® vRAN Boost (formerly codenamed Sapphire Rapids Edge Enhanced)<br>
+                                    Intel® Xeon® W-2400 and W-3400 processors (formerly codenamed Sapphire Rapids-64L and Sapphire Rapids-112L)</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                    <p>06_CFH</p>
+                                    </td>
+                                    <td>
+                                    <p>1,2</p>
+                                    </td>
+                                    <td>
+                                    <p>Emerald Rapids</p>
+                                    </td>
+                                    <td>
+                                    <p>Server</p>
+                                    </td>
+                                    <td>
+                                    <p>5th Generation Intel® Xeon® Scalable Processors (formerly codenamed Emerald Rapids)</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                    <p>06_AFH</p>
+                                    </td>
+                                    <td>
+                                    <p>1,2</p>
+                                    </td>
+                                    <td>
+                                    <p>Sierra Forest</p>
+                                    </td>
+                                    <td>
+                                    <p>Server</p>
+                                    </td>
+                                    <td>
+                                    <p>Intel® Xeon® 6 processor family</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>06_ADH</td>
+                                    <td>0,1</td>
+                                    <td>Granite Rapids</td>
+                                    <td>Server</td>
+                                    <td>Intel® Xeon® 6 processor family</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </section>
+
+                    <section id="dk_references">
+                        <p class="mb-0">&nbsp;</p>
+                        <h3 style="padding-bottom: 0.5rem; font-weight: 350;">References</h3>
+                        <p><a class="b_special_a1" href="">Intel® 64 and IA-32 Architectures Software Developer Manuals&nbsp;</a></p>
+                        <p class="mb-0">&nbsp;</p>
+                    </section>
+
+                    <section id="dk_footnotes">
+                        <h3 style="padding-bottom: 0.5rem; font-weight: 350;">Footnotes</h3>
+                        <ol>
+                            <li>Note that when a <span class="dk_code_simple">UMONITOR</span> does not set up an address monitor, it will not cause faults that would only occur on a memory access to that address monitor (for example, a page fault for the address monitor address).</li>
+                        </ol>
+                        <p>&nbsp;</p>
+                        <p>&nbsp;</p>
+                    </section>
+
+                </div>
+            </section>
+        </div>
+    </div>
+    </div>
+    </section>
+
+    <section style="border-top: 1px solid #d7d7d7;" class="container py-5">
+        <h4 class="h6">Product and Performance Information</h4>
+        <div class="disclaimer" style="font-size: 12px;"><sup>1</sup> Performance varies by use, configuration and other
+            factors. Learn more at <a class="b_special_a1" href="">www.Intel.com/PerformanceIndex.</a></div>
+        </div>
+    </section>
+
+    <!-- footer -->
+    <div id="footer"></div>
+
+    <!-- nav script -->
+    <script>
+        // navbar include  
+        fetch('/y_index/y_navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar').innerHTML = data;
+            });
+        // footer include 
+        fetch('/y_index/y_footer.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('footer').innerHTML = data;
+            });
+    </script>
+    <!-- nav script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            if (document.getElementsByClassName('VK_all_sections section') && document.getElementsByClassName('VK_sidebar_dropdown')) {
+                const sections = document.querySelectorAll('.VK_all_sections section');
+                const navLinks = document.querySelectorAll('.VK_sidebar_dropdown a');
+                const detailsElements = document.querySelectorAll('.VK_sidebar_dropdown details');
+
+                function removeActiveClass() {
+                    navLinks.forEach(link => link.classList.remove('VK_sidebar_active_link'));
+                    detailsElements.forEach(details => {
+                        details.removeAttribute('open');
+                        details.setAttribute('close', ''); // Optional: to visually indicate it's closed
+                    });
+                }
+
+                function activateLinkAndDetails(targetId) {
+                    navLinks.forEach(link => {
+                        if (link.getAttribute('href') === `#${targetId}`) {
+                            link.classList.add('VK_sidebar_active_link');
+                            let parentDetails = link.closest('details');
+
+                            // Open all ancestor details elements
+                            while (parentDetails) {
+                                parentDetails.setAttribute('open', '');
+                                parentDetails.removeAttribute('close'); // Optional: remove the closed indicator
+                                parentDetails = parentDetails.parentElement.closest('details');
+                            }
+                        }
+                    });
+                }
+
+                function onScroll() {
+                    let currentSection = '';
+                    sections.forEach(section => {
+                        const sectionTop = section.getBoundingClientRect().top;
+                        const sectionBottom = section.getBoundingClientRect().bottom;
+
+                        // Check if the section is in view
+                        if (sectionTop <= 100 && sectionBottom >= 0) {
+                            currentSection = section.getAttribute('id');
+                        }
+                    });
+
+                    if (currentSection) {
+                        removeActiveClass();
+                        activateLinkAndDetails(currentSection);
+                    } else {
+                        removeActiveClass();
+                    }
+                }
+
+                window.addEventListener('scroll', onScroll);
+            } else {
+                return
+            }
+        });
+    </script>
+
+    <!-- copy script -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            document.querySelectorAll(".mv_copy_icon").forEach((icon) => {
+                icon.addEventListener("click", async function () {
+                    try {
+                        const toolbar = this.closest(".mv_code_toolbar");
+                        const codeBlock = toolbar.querySelector(".code-content");
+                        const codeContent = codeBlock.innerText;
+
+                        // Use Clipboard API to copy text
+                        await navigator.clipboard.writeText(codeContent);
+
+                        // Hide the copy icon and show the "Copied!" message
+                        const message = toolbar.querySelector(".mv_copy_message");
+                        this.classList.add("hidden"); // Hide the copy icon
+                        message.classList.remove("hidden"); // Show the "Copied!" message
+
+                        // Hide the message and show the icon again after 2 seconds
+                        setTimeout(() => {
+                            message.classList.add("hidden");
+                            this.classList.remove("hidden");
+                        }, 2000); // Adjust delay as needed
+
+                    } catch (err) {
+                        console.error('Failed to copy text: ', err);
+                    }
+                });
+            });
+        });
+    </script>
+
+</body>
+
+</html>
+
+
+
+
