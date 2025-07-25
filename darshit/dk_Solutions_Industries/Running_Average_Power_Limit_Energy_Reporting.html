@@ -1,0 +1,951 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Running Average Power Limit Energy Reporting / CVE-2020-8694 , CVE-2020-8695 / INTEL-SA-00389</title>
+
+    <!-- font family -->
+    <link href="https://fonts.cdnfonts.com/css/intel-clear" rel="stylesheet">
+
+    <link rel="stylesheet" href="/css/dk_developer_edge_iot_5G_industrial_automation_see_all_wireless_network_ready_printed_circuit_board_(PCB)_defect_detection.css">
+    <link rel="stylesheet" href="/css/mv_product/ECC.css">
+    <link rel="stylesheet" href="/css/rushita_automotive.css">
+
+    <!-- header footer -->
+    <link rel="stylesheet" href='/css/yatri.css'>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" rel="stylesheet">
+
+</head>
+
+<style>
+    .dk_color1 {
+        color: #069 !important;
+    }
+
+    .dk_color2 {
+        color: #008200 !important;
+    }
+
+    .dk_color3 {
+        color: #b24501;
+    }
+
+    .dk_note{
+        font-size: 1rem;
+        line-height: 1.25;
+        word-wrap: break-word;
+        background-color: #e6e6e6;
+        padding: 20px;
+        border-left: 3px solid #fdb813;
+    }
+    .dk_code_simple{
+        background-color: #e6e6e6;
+        color: #53565a;
+        border-radius: 0;
+    }
+
+    .dk_greyHighlight{
+        font-size: 1rem;
+        line-height: 1.25;
+        background-color: #e6e6e6;
+        padding: 20px;
+    }
+
+    @media(max-width:1200px) {
+        .dk_risk_app_img {
+            width: 100% !important;
+        }
+        .mv_product_table{
+            width: 100% !important;
+        }
+    }
+</style>
+
+<body>
+    <!-- header -->
+    <div id="navbar"></div>
+
+    <!------------------------------------------------------------------------------->
+    <section class="m_ai_tdrop">
+        <div>
+            <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Developers
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item m_dropActive" href="#">Overview</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Topics & Technologies</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Tools</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Hardware Platforms</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Resources & Documentation</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Learn</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Community & Events</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Developer Programs</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Get Help</a></li>                                                              
+            </ul>
+        </div>
+        <div class="m_ai_shlash">/</div>
+        <div>
+            <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Topics & Technologies
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item m_dropActive" href="#">Artificial Intelligence</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Client Applications</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Cloud</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">GPU Research</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Edge Computing</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">GameDev</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">HPC</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Data Center</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Firmware</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Networking</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Open Ecosystem</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Persistent Memory</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Platform Analysis Technology</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Runtime Languages</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Software Security Guidance</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Storage</a></li>
+            </ul>
+        </div>
+        <div class="m_ai_shlash">/</div>
+        <div>
+            <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Software Security Guidance
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item m_dropActive" href="#">Advisory Guidance</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Best Practices</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Resources</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Disclosure Documentation</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Feature Documentation</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">More Information</a></li>
+            </ul>
+        </div>
+        <div class="m_ai_shlash">/</div>
+        <div>
+            <button class="btn" style="color: #0068B5;">
+                Advisory Guidance
+            </button>
+        </div>
+        <div class="m_ai_shlash">/</div>
+        <div class="m_ai_httl">Guidance: Running Average Power Limit</div>
+
+    </section>
+    <!------------------------------------------------------------------------------->
+
+    <!-- VMware Horizon -->
+    <section>
+        <div class="mv_vmware_bg_color">
+            <div class="container">
+                <div class="mv_vmware_padd">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="mv_vmware_heading">
+                                <h3>Running Average Power Limit Energy Reporting / CVE-2020-8694 , CVE-2020-8695 / INTEL-SA-00389</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mv_cd_page_marquee_info">
+                        <div class="mv_cd_page_marquee_action">
+                            <div class="mv_cd_page_marquee_action_padd">
+                                <label for="">ID</label>
+                                <span>660225</span>
+                            </div>
+                            <div class="mv_cd_page_marquee_action_padd">
+                                <label for="">Updated</label>
+                                <span>2/8/2022</span>
+                            </div>
+                            <div class="mv_cd_page_marquee_action_padd">
+                                <label for="">Version</label>
+                                <span>Latest</span>
+                            </div>
+                            <div class="mv_cd_page_marquee_action_padd">
+                                <label for=""></label>
+                                <span>Public</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="container py-5">
+        <div class="row">
+            <div class="d-flex justify-content-end col-xl-10 py-3 d-md-none">
+                <i class="fa-solid fa-print fs-4 px-2 " style="color:#0068B5"></i>
+                <i class="fa-regular fa-envelope fs-4 px-2" style="color:#0068B5"></i>
+            </div>
+            <div class="col-lg-3 col-md-4">
+                <!-- nav -->
+                <div class="VK_sticky_side_bar VK_side_bar_postion_stickey">
+                    <div>
+                        <div class="VK_sidebar_dropdown">
+                            <p class="m-0">
+                                <a href="#dk_aliases" class="text-decoration-none VK_a">
+                                    Aliases
+                                </a>
+                            </p>
+                            <p class="m-0">
+                                <a href="#dk_related_content" class="text-decoration-none VK_a">
+                                    Related Content
+                                </a>
+                            </p>
+                            <p class="m-0">
+                                <a href="#dk_overview" class="text-decoration-none VK_a">
+                                    Overview
+                                </a>
+                            </p>
+                            <details>
+                                <summary>
+                                    <a href="#dk_rapl_cases" class="text-decoration-none VK_a">
+                                        RAPL Energy Reporting Use Cases
+                                    </a>
+                                </summary>
+                                <ul class="list-unstyled ps-3 mb-0">
+                                    <li>
+                                        <a href="#dk_scenarios" class="text-decoration-none VK_a my-1">
+                                            Scenarios
+                                        </a>
+                                    </li>
+                                </ul>
+                            </details>
+                            <details>
+                                <summary>
+                                    <a href="#dk_mitigation_effect" class="text-decoration-none VK_a">
+                                        Mitigation and its Effect
+                                    </a>
+                                </summary>
+                                <ul class="list-unstyled ps-3 mb-0">
+                                    <li>
+                                        <a href="#dk_security_impro" class="text-decoration-none VK_a my-1">
+                                            Security Improvement from the Mitigation
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <details>
+                                            <summary>
+                                                <a href="#dk_mitigation" class="text-decoration-none VK_a">
+                                                    Energy Reporting Impact of the Mitigation
+                                                </a>
+                                            </summary>
+                                            <ul class="list-unstyled ps-3 mb-0">
+                                                <li>
+                                                    <a href="#dk_reporting_2021" class="text-decoration-none VK_a my-1">
+                                                        Revised Energy Reporting in IPU 2021.2
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </details>
+                                    </li>
+                                    <li>
+                                        <a href="#dk_revised_energy" class="text-decoration-none VK_a my-1">
+                                            Revised Energy Reporting in IPU 2024.3
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <details>
+                                            <summary>
+                                                <a href="#dk_optional_switch" class="text-decoration-none VK_a">
+                                                    Optional Software Switch
+                                                </a>
+                                            </summary>
+                                            <ul class="list-unstyled ps-3 mb-0">
+                                                <li>
+                                                    <a href="#dk_enumeration" class="text-decoration-none VK_a my-1">
+                                                        Enumeration and Architectural MSRs
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#dk_ia32_misc" class="text-decoration-none VK_a my-1">
+                                                        IA32_MISC_PACKAGE_CTLS MSR
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </details>
+                                    </li>
+                                </ul>
+                            </details>
+                            <p class="m-0">
+                                <a href="#dk_affected_proc" class="text-decoration-none VK_a">
+                                    Affected Processors
+                                </a>
+                            </p>
+                            <p class="m-0">
+                                <a href="#dk_appendix_cve" class="text-decoration-none VK_a">
+                                    Appendix: CVE-2020-8694
+                                </a>
+                            </p>
+                            <p class="m-0">
+                                <a href="#dk_appendix_ipu" class="text-decoration-none VK_a">
+                                    Appendix: IPU 2020.2 Energy Reporting Solution
+                                </a>
+                            </p>
+                            <p class="m-0">
+                                <a href="#dk_appendix_related" class="text-decoration-none VK_a">
+                                    Appendix: Related Technology
+                                </a>
+                            </p>
+                            <p class="m-0">
+                                <a href="#dk_footnotes" class="text-decoration-none VK_a">
+                                    Footnotes
+                                </a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <!-- thinkcode -->
+                <!-- <div class="dk_things_code_main">
+                    <div class="dk_things_code">
+                        <h2 class="text-left headline-font-one-bold">Loss Prevention Retail Reference Implementation provides:</h2>
+                        <div class="dk_high_quality">
+                            <ul>
+                                <li>High-quality testable ingredients needed to create a solution to prevent thefts at stores.</li>
+                                <li>Building blocks needed to enable the use case with solid performance numbers.</li>
+                                <li>Hardware requirements to support the workloads and scale the solution.</li>
+                            </ul>
+                        </div>
+                    <div class="dk_get_code">
+                        <button class="dk_button">Get Started on GitHub<sup>*</sup></button>
+                    </div>
+                    </div> 
+                </div> -->
+            </div>
+            <div class="col-lg-9 col-md-8">
+                <div class="d-md-flex justify-content-end col-xl-10 py-3 d-none">
+                    <i class="fa-solid fa-print fs-4 px-2 " style="color:#0068B5"></i>
+                    <i class="fa-regular fa-envelope fs-4 px-2" style="color:#0068B5"></i>
+                </div>
+                <div class="col-xl-10 VK_all_sections">
+                    <p>&nbsp;</p>
+                    <table class="mv_product_table w-100 mb-4">
+                        <tbody>
+                            <tr>
+                                <td>
+                                <p><strong>Disclosure date:&nbsp;</strong><br>
+                                    2020-11-10</p>
+                    
+                                <p><strong>Published date:&nbsp;</strong><br>
+                                    2024-11-12</p>
+                                </td>
+                                <td>
+                                <p><img src="/img/darshit_image/shield-icon-8.png" width="100"><strong>Severity rating:&nbsp;</strong><br>
+                                6.8 Medium</p>
+                                </td>
+                                <td>Industry-wide severity ratings can be found in the&nbsp;<a class="b_special_a1" href="">National Vulnerability Database</a></td>
+                            </tr>
+                        </tbody>
+                    </table> 
+
+                    <section id="dk_aliases">
+                        <p class="mb-0">&nbsp;</p>
+                        <h3 style="font-weight: 350;">Aliases</h3>
+                        <ul>
+                            <li>Platypus</li>
+                        </ul>
+                    </section>
+
+                    <section id="dk_related_content">
+                        <p class="mb-0">&nbsp;</p>
+                        <h3 style="font-weight: 350; padding-bottom: 0.5rem;">Related Content</h3>
+                        <p><a class="b_special_a1" href="">INTEL-SA-00389</a></p>
+                        <p><a class="b_special_a1" href="">INTEL-SA-01103</a></p>
+                        <p><a class="b_special_a1" href="">CVE-2020-8694</a></p>
+                        <p><a class="b_special_a1" href="">CVE-2020-8695</a></p>
+                        <p><a class="b_special_a1" href="">Guidelines for Mitigating Timing Side Channels Against Cryptographic Implementations</a></p>
+                        <p><a class="b_special_a1" href="">Security Best Practices for Side Channel Resistance</a></p>
+                    </section>
+
+                    <section id="dk_overview">
+                        <p class="mb-0">&nbsp;</p>
+                        <h3 style="font-weight: 350; padding-bottom: 0.5rem;">Overview</h3>
+                        <p>Most modern processors, including Intel processors, provide Running Average Power Limit (RAPL) interfaces for reporting the accumulated energy consumption of various power domains (for example,&nbsp;<em>PP0</em><a class="b_special_a1" href=""><sup>1</sup></a>&nbsp;or&nbsp;<em>Package</em>). Under certain conditions, observable RAPL energy<a class="b_special_a1" href=""><sup>2</sup></a>&nbsp;reporting may unintentionally allow information about the system to be inferred. This issue has been assigned&nbsp;<a class="b_special_a1" href="">CVE-2020-8695</a>&nbsp;CVSS Score: 5.3 Medium and CVSS Vector: CVSS:3.1/AV:L/AC:H/PR:H/UI:N/S:C/C:H/I:N/A:N. A corresponding issue of allowing an authenticated unprivileged user to access to these interfaces has been assigned&nbsp;<a class="b_special_a1" href="">CVE-2020-8694</a>&nbsp;with CVSS 5.6 Medium and CVSS Vector: CVSS:3.1/AV:L/AC:H/PR:L/UI:N/S:C/C:H/I:N/A:N. Additionally, <a class="b_special_a1" href="">CVE-2024-23984</a>, with a CVSS score of 6.8 Medium and CVSS Vector: CVSS:4.0/AV:L/AC:H/AT:P/PR:H/UI:N/VC:H/VI:N/VA:N/SC:H/SI:N/SA:N, has been assigned to address observable RAPL interface discrepancies.&nbsp;</p>
+                        <p>When a CPU processes data, transistors are switched on and off depending on the data being processed. Since switching transistors uses a tiny bit of energy, there is some correlation between energy consumption and the data being processed. This physical property may lead to malicious actors correlating the system’s reported energy consumption with possible secret data being processed on the system. By performing power analysis, an adversary might be able to retrieve secret data, such as cryptographic keys across trust boundaries.&nbsp;</p>
+                        <p>Different attack scenarios are possible depending on what access privileges the adversary has and what the trust boundary of the victim is. Cases include an unprivileged adversary attacking a privileged or unprivileged application, or an adversary attacking a secure enclave (for example, Intel® Software Guard Extensions (Intel® SGX)).&nbsp;</p>
+                        <p>There are currently no explicit use cases for unprivileged software to access RAPL interfaces, thus the mitigation for this issue is to <em>not</em> expose RAPL interfaces to unprivileged applications, as in CVE-2020-8694. For the scenario that a privileged adversary attacks an Intel® SGX enclave, the mitigation is to change the method in which energy consumption is reported when Intel SGX is enabled, as in CVE-2020-8695. This reduces the correlation between the energy consumption reporting and the victim program/data.</p>
+                        <p>We note that RAPL interfaces have a limited sampling rate, low sampling frequency, and low resolution, which make most attacks using these methods difficult and time consuming. &nbsp;Nevertheless, Intel recommends system administrators apply both patches to their systems:</p>
+                        <ol>
+                            <li>The Linux* patch to their Linux systems, and</li>
+                            <li>The microcode patch to all systems with Intel SGX enabled.</li>
+                        </ol>
+                        <p>The mitigation outlined in this paper will be delivered as part of IPU 2021.2 and will supplant the mitigation delivered in IPU 2020.2. &nbsp;Intel recommends system administrators update their systems with the latest microcode. For a comparison of the two mitigations, refer to the&nbsp;<a class="b_special_a1" href="">Revised Energy Reporting in IPU 2021.2</a> and <a class="b_special_a1" href="">IPU 2020.2 Energy Reporting Solution</a> sections.&nbsp;In IPU 2024.3, Intel expanded the mitigation to MSR_PKG_ENERGY_TIME_STATUS to address CVE-2024-23984. Additionally, improvements are made to the energy filtering mechanism as well as to the security mitigation for the updated CVE. Refer to the <a class="b_special_a1" href="">Mitigation and its Effect</a> section for more information and the<a class="b_special_a1" href=""> Affected Processors</a> section for a list of processors affected by these issues.</p>
+                    </section>
+
+                    <section id="dk_rapl_cases">
+                        <p class="mb-0">&nbsp;</p>
+                        <h4 style="font-weight: 350; padding-bottom: 0.5rem;">RAPL Energy Reporting Use Cases</h4>
+                        <p>RAPL is an interface for reporting accumulated energy consumption of various system-on-chip (SoC) power domains. The RAPL energy reporting feature has been available for many generations on Intel SoC products, and energy reporting is standard practice for the industry. Intel processors utilize this energy information for internal SoC management purposes, such as control of SoC power limits in association with Intel® Turbo Boost Technology power limit settings within the SoC. This RAPL energy data is exposed to the platform via the host-software-accessible model specific registers (MSRs) <span class="dk_code_simple">MSR_PKG_Energy_Status</span><a class="b_special_a1" href=""><sup>3</sup></a>&nbsp;and <span class="dk_code_simple">MSR_PP0_Energy_Status</span><a class="b_special_a1" href=""><sup>4</sup></a>. Additionally, <span class="dk_code_simple">MSR_PKG_Energy_Time_Status</span><a class="b_special_a1" href=""><sup>5</sup></a>, which is an MSR available on server products since Cooper Lake, also exposes package domain accumulated energy at its bits [31:0].&nbsp;This allows software to use the RAPL energy data for observation, telemetry, and/or inputs to platform-level power or thermal control algorithms. Energy information from the RAPL interface gets updated every ~1 ms, which is several orders of magnitude slower than what physical side channel probing could achieve.</p>    
+                        <p>Certain privileged software utilities may perform platform power and thermal management at runtime. Such software may use energy information from RAPL to tune system performance or track power usage. In server systems, the energy data is sometimes used to perform rack-level power management and efficiency loading between systems. Some operating systems have thermal daemon software to manage SoC thermals that read energy information from the RAPL interface during thermal events. Other thermal management software, such as Intel® Dynamic Tuning Technology (Intel® DTT) software, also reads energy information from the RAPL interface. The microcode patches to mitigate this issue impact the behavior of RAPL energy reporting and thus the behavior of such management software.</p>
+                        <p>It is difficult to determine how many applications use SoC energy information from the RAPL interface. Intel is aware of several applications, including hardware observation tools such as <a class="b_special_a1" href="">Hwinfo64</a> or <a class="b_special_a1" href="">CPU-Z</a>, that may support reporting SoC energy information from the RAPL interface. Similar tools exist in closed- or open-source operating systems for observing the RAPL energy data. After applying the mitigations, users who track energy data using these tools could observe differences in energy reporting with Intel SGX on compared to if Intel SGX is off.</p>
+                    </section>
+
+                    <section id="dk_scenarios">
+                        <p class="mb-0">&nbsp;</p>
+                        <h3 style="padding-bottom: 0.5rem;">Scenarios</h3>
+                        <p class="mb-0">There are several different possible attack scenarios using this method. We can categorize these scenarios based on the different privileges of the adversary and the trust boundary of the victim:</p>
+                        <ol>
+                            <li><strong>Unprivileged adversary attacks unprivileged victim</strong>: A malicious user application may use RAPL to infer confidential information of another unprivileged application running on the same or a different CPU core by observing the power-related behavior of the victim application. &nbsp;</li>
+                            <li><strong>Unprivileged adversary attacks privileged victim</strong>: A malicious unprivileged application may use RAPL to infer information being processed by the kernel.</li>
+                            <li><strong>Adversary attacks Trusted Execution Environment</strong>: The RAPL side channel attack provides a means for an attack to occur on Intel SGX. An Intel SGX enclave is used as a means to provide a secure execution environment for applications that use encryption keys, passwords, digital rights management (DRM) technology, and secure remote computation. Intel SGX allows this secret data to be used in a fortified container known as an enclave. An attack using energy information from RAPL may extract secrets from the enclave.</li>
+                        </ol>
+                    </section>
+
+                    <section id="dk_mitigation_effect">
+                        <p class="mb-0">&nbsp;</p>
+                        <h3 style="padding-bottom: 0.5rem; font-weight: 350;">Mitigation and its Effect</h3>
+                        <p>As a general rule, the attack scenarios from malicious unprivileged applications to other trust domains can be blocked by removing user-level read access to the MSRs. Hypervisors may choose to remove access to these MSRs for untrusted guests. &nbsp;Removing this access eliminates the most common avenues of accessing energy information from RAPL on the system. Refer to <a class="b_special_a1" href="">Appendix:&nbsp;CVE-2020-8694</a>&nbsp;for more information.</p>
+                        <p>For processors affected by <a class="b_special_a1" href="">CVE-2020-8695</a>, <a class="b_special_a1" href="">Intel has released a microcode patch</a> that modifies the energy information reported by RAPL when Intel SGX is enabled or when system software enables this feature by using a new architectural MSR feature. Intel recommends using the FIT Microcode Update mechanism described in the <a class="b_special_a1" href="">Microcode Update Guidance</a> to apply the latest microcode update.&nbsp;</p>
+                        <p>This mitigation implementation alters the internal RAPL energy reporting calculation algorithm and filters the energy information as compared to the previous legacy power reporting method. This will impact the energy information from RAPL that any software reading the RAPL MSRs will observe. Refer to Figure 1 below. &nbsp;</p>
+                        <p>The IPU 2021.2 RAPL filtering method has been changed compared to the RAPL filtering method introduced in IPU 2020.2. The new IPU 2021.2 method uses a combination of random energy noise and a change to energy update frequency to mitigate the attack. &nbsp;This newer method should create a smaller delta in reported power between power readings taken with the filtering disabled compared to when the filtering is enabled.&nbsp;IPU 2024.3 expands the mitigation to <span class="dk_code_simple">MSR_PKG_Energy_Time_Status</span>.</p>
+                        <p>There is now a software switch to enable energy filtering independent of Intel SGX.</p>
+                        <div style="text-align:center">
+                            <figure class="image" style="display:inline-block"><img class="dk_risk_app_img" alt="" height="173" src="/img/darshit_image/RAPL-fig1-filtered-unfiltered-energy-reporting.png" width="500">
+                            <figcaption>Figure 1: Filtered and unfiltered energy reporting</figcaption>
+                            </figure>
+                        </div>
+                        <ul>
+                            <li>When Intel SGX is <em>disabled or system software has not enabled the filtering</em>: Legacy energy information is reported, which is called <em>unfiltered</em>.&nbsp;
+                        
+                            <ul>
+                                <li>Energy information is measured by the SoC voltage regulator along with some calculated energy of unmonitored power domains. Typical energy reporting variation at high power, such as the SoC’s Thermal Design Power (TDP), is ~ 5-10%, but this depends on the OEM design and the calibration of the power monitoring circuit, which is board-design specific. &nbsp;</li>
+                            </ul>
+                            </li>
+                            <li>When Intel SGX is <em>enabled or system software has enabled RAPL filtering</em><sup><a class="b_special_a1" href="">6</a></sup>: energy with mitigation applied is reported, which is called filtered.
+                            <ul>
+                                <li>The filtered RAPL energy value will be visible to privileged software that reads <span class="dk_code_simple">MSR_PKG_Energy_Status</span>,&nbsp;<span class="dk_code_simple">MSR_PP0_Energy_Status</span>, and <span class="dk_code_simple">MSR_PKG_Energy_Time_Status</span> using the <span class="dk_code_simple">RDMSR</span> instruction. <span class="dk_code_simple">RDMSR</span> is asynchronous to internal RAPL energy reporting updates. <span class="dk_code_simple">RDMSR</span> only captures snapshots from the latest energy information from RAPL and will not trigger new updates. The frequency that RAPL energy information is updated remains the same at ~1ms. The same energy counters can also be accessed via MMIO.&nbsp;&nbsp;</li>
+                                <li>Note that the internal SOC power control continues to use the unfiltered RAPL energy value. Thus, hardware power management features such as Intel® Turbo Boost Technology will be unchanged by this mitigation. &nbsp;</li>
+                            </ul>
+                            </li>
+                        </ul>
+                    </section>
+
+                    <section id="dk_security_impro">
+                        <p class="mb-0">&nbsp;</p>
+                        <h4 style="padding-bottom: 0.5rem;">Security Improvement from the Mitigation</h4>
+                        <p>When the filtered energy reporting is enabled, correlation between the data being used by a program<a href=""><sup>7</sup></a>&nbsp;and its energy reporting is largely reduced, if there is any. For example, assume unfiltered RAPL reports energy consumption of 169J and 171J when executing a program with data A and B, respectively. An adversary may deduce which data is used from the unfiltered energy reporting. Instead of that, the filtered energy reporting may randomly report energy consumption of the program ranging from 165J to 185J regardless of what data is being used. Therefore, it is much harder to infer secret data based on energy reporting.</p>
+                    </section>
+
+                    <section id="dk_mitigation">
+                        <p class="mb-0">&nbsp;</p>
+                        <h4>Energy Reporting Impact of the Mitigation</h4>
+                        <p>The RAPL filtering mechanism has been updated over time. Refer to the <a class="b_special_a1" href="">Energy Reporting Solution released in IPU 2020.2</a> for details on the original mitigation mechanism.&nbsp;In IPU 2024.3, there is an improvement to the RAPL filtering mechanism for server products from Cooper Lake and later that may increase the random energy noise seen by software through <span class="dk_code_simple">MSR_PKG_Energy_Status</span>, <span class="dk_code_simple">PKG_ENERGY_TIME_STATUS</span>, and <span class="dk_code_simple">MSR_PKG_Energy_Time_Status</span>.</p>
+                    </section>
+
+                    <section id="dk_reporting_2021">
+                        <h4 style="padding-bottom: 0.5rem;">Revised Energy Reporting in IPU 2021.2</h4>
+                        <p>IPU 2021.2 introduces a revised RAPL filtering mechanism which replaces the existing filtering mechanism introduced in IPU 2020.2. This new mechanism helps mitigate attacks by introducing random energy noise and changing the frequency of the energy reporting. These changes reduce the observed difference in power when comparing filtered power reporting with unfiltered power reporting, and also helps reduce power delta variations observed in the previous release.&nbsp;Software can sample energy status at arbitrary frequency through reading the MSRs. When comparing filtered vs. unfiltered RAPL power using this new mechanism, readings at 1 second intervals will show the delta as typically less than 2% standard deviation. At shorter time intervals of 100ms, the observed delta will grow to between 5-15%.&nbsp;For example, filtered IA power (derived from <span class="dk_code_simple">MSR_PP0_Energy_Status</span>) shows larger error when sampling interval is 100ms (Figure 2) and smaller error when sampling interval is 1000ms (Figure 3). Table 1 shows data from more benchmarks. We can observe the same trend that error is reduced with larger sampling interval.&nbsp;</p>
+                        <figure class="image"><img class="w-100" alt="" src="/img/darshit_image/rapl-fig2-filtered-unfiltered-energy-100ms.png">
+                            <figcaption>Figure 2: Filtered and Unfiltered Energy Reporting at 100ms</figcaption>
+                        </figure>
+                        <p>&nbsp;</p>
+                        <figure class="image"><img class="w-100" src="/img/darshit_image/rapl-fig3-filtered-unfiltered-energy-1000ms.png">
+                            <figcaption>Figure 3: Filtered and Unfiltered Energy Reporting at 1000ms</figcaption>
+                        </figure>
+                        <p>&nbsp;</p>
+                        <table class="mv_product_table w-100 mb-4">
+                            <caption>Table 1: Comparison of Filtered and Unfiltered Energy Reporting Example</caption>
+                            <thead>
+                                <tr>
+                                    <th scope="col">Test Name</th>
+                                    <th scope="col">PG 1s STD&nbsp;<br>
+                                    (Error / Unfiltered Package)<br>
+                                    &nbsp;</th>
+                                    <th scope="col">PG 1s Average&nbsp;<br>
+                                    (Error / Unfiltered Package)<br>
+                                    &nbsp;</th>
+                                    <th scope="col">PG 100ms STD&nbsp;<br>
+                                    (Error / Unfiltered Package)<br>
+                                    &nbsp;</th>
+                                    <th scope="col">PG 100ms Average (Error / Unfiltered Package)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                    <p style="text-align:center">Cinebench20_Cpu1</p>
+                                    </td>
+                                    <td>
+                                    <p style="text-align:center">2.41%</p>
+                                    </td>
+                                    <td>
+                                    <p style="text-align:center">0.17%</p>
+                                    </td>
+                                    <td>
+                                    <p style="text-align:center">7.80%</p>
+                                    </td>
+                                    <td>
+                                    <p style="text-align:center">-0.09%</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                    <p style="text-align:center">Cinebench20_CpuX</p>
+                                    </td>
+                                    <td>
+                                    <p style="text-align:center">2.79%</p>
+                                    </td>
+                                    <td>
+                                    <p style="text-align:center">0.28%</p>
+                                    </td>
+                                    <td>
+                                    <p style="text-align:center">8.15%</p>
+                                    </td>
+                                    <td>
+                                    <p style="text-align:center">-0.05%</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                    <p style="text-align:center">GeekBench4</p>
+                                    </td>
+                                    <td>
+                                    <p style="text-align:center">2.52%</p>
+                                    </td>
+                                    <td>
+                                    <p style="text-align:center">0.24%</p>
+                                    </td>
+                                    <td>
+                                    <p style="text-align:center">6.16%</p>
+                                    </td>
+                                    <td>
+                                    <p style="text-align:center">0.16%</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                    <p style="text-align:center">Idle_1min</p>
+                                    </td>
+                                    <td>
+                                    <p style="text-align:center">2.92%</p>
+                                    </td>
+                                    <td>
+                                    <p style="text-align:center">0.00%</p>
+                                    </td>
+                                    <td>
+                                    <p style="text-align:center">4.70%</p>
+                                    </td>
+                                    <td>
+                                    <p style="text-align:center">-0.26%</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                    <p style="text-align:center">VideoPlayBack_1080p60</p>
+                                    </td>
+                                    <td>
+                                    <p style="text-align:center">2.12%</p>
+                                    </td>
+                                    <td>
+                                    <p style="text-align:center">2.27%</p>
+                                    </td>
+                                    <td>
+                                    <p style="text-align:center">5.11%</p>
+                                    </td>
+                                    <td>
+                                    <p style="text-align:center">3.07%</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                    <p style="text-align:center">PCMark</p>
+                                    </td>
+                                    <td>
+                                    <p style="text-align:center">2.89%</p>
+                                    </td>
+                                    <td>
+                                    <p style="text-align:center">0.24%</p>
+                                    </td>
+                                    <td>
+                                    <p style="text-align:center">6.43%</p>
+                                    </td>
+                                    <td>
+                                    <p style="text-align:center">0.07%</p>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </section>
+
+                    <section id="dk_revised_energy">
+                        <p class="mb-0">&nbsp;</p>
+                        <h4 style="padding-bottom: 0.5rem;">Revised Energy Reporting in IPU 2024.3</h4>
+                        <p>IPU 2024.3 introduces a revised RAPL filtering mechanism which replaces the existing filtering mechanism introduced in IPU 2021.2 for server products from Cooper Lake and onward for energy reporting. This IPU 2024.3 mechanism introduces noise with the magnitude being scaled with the power consumption of the package. A fluctuation in standard deviation of power, such as a variation in noise magnitude, may be seen if the package power changes. Larger variance may be seen when the system is running at its Thermal Design Power (TDP).</p>
+                    </section>
+
+                    <section id="dk_optional_switch">
+                        <p class="mb-0">&nbsp;</p>
+                        <h4 style="padding-bottom: 0.5rem;">Optional Software Switch</h4>
+                        <p>Intel products provide an opt-in software switch that allows system software to enable RAPL power filtering to protect against issues similar CVE-2020-8965. This is a one-way switch and cannot be disabled without a reboot.&nbsp;<br>
+                            Support for this new feature is exposed via a software-enumerated MSR described in the Enumeration and Architectural MSRs section below.</p>
+                        <p>Once software identifies that hardware supports IA32_ARCH_CAPABILITIES, then software can opt-in to enabling the RAPL filtering via IA32_MISC_PACKAGE_CTLS.&nbsp;</p>
+                        <p>Details regarding these two registers are below and will be added to the <a class="b_special_a1" href="">Intel® 64 and IA-32 Architecture Software Developer’s Manual</a> Volume 4 at a later date.&nbsp;</p>
+                        <p>In most cases, any attempt to enable Intel SGX will auto-enable RAPL power filtering. Refer to the limitations described in the&nbsp;<a class="b_special_a1" href="">IA32_MISC_PACKAGE_CTLS MSR</a> section.</p>
+                    </section>
+
+                    <section id="dk_enumeration">
+                        <h4 style="padding-bottom: 0.5rem;">Enumeration and Architectural MSRs</h4>
+                        <p>The IA32_ARCH_CAPABILITIES MSR (index 10AH) enumerates support for the RAPL mitigation mechanism. This is a read-only MSR that is supported if CPUID.(EAX=7H,ECX=0):EDX[29] is enumerated as 1.&nbsp;</p>
+                        <p>The new IA32_ARCH_CAPABILITIES[10] bit enumerates support for IA32_MISC_PACKAGE_CTLS MSR.&nbsp;</p>
+                        <p>The new IA32_ARCH_CAPABILITIES[11] bit enumerates support for filtering RAPL MSRs-reported processor power consumption data. Processors that set this bit support the IA32_MISC_PACKAGE_CTLS MSR and allow software to set and read IA32_MISC_PACKAGE_CTLS[0] (ENERGY_FILTERING_ENABLE) bit.&nbsp;</p>
+                        <p>Processors that don’t enumerate IA32_ARCH_CAPABILITIES MSR support also don’t support IA32_MISC_PACKAGE_CTLS MSR and don’t support filtering RAPL MSRs-reported processor power consumption data.</p>
+                        <p class="dk_note"><strong>Note</strong>: The mitigation mechanisms (including IA32_ARCH_CAPABILITIES MSR support) may be introduced to a processor by loading a microcode update. In such cases, software should re-evaluate the enumeration after loading that microcode update.</p>
+                        <table class="mv_product_table w-100 mb-4">
+                            <caption>Table 1: IA32_ARCH_CAPABILITIES MSR Details</caption>
+                            <thead>
+                                <tr>
+                                    <th scope="col">Register Address Hex</th>
+                                    <th scope="col">Register Address Dec</th>
+                                    <th scope="col">Register Name / Bit Fields</th>
+                                    <th scope="col">Bit Description</th>
+                                    <th scope="col">Comment</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>10AH</td>
+                                    <td>266</td>
+                                    <td>IA32_ARCH_CAPABILITIES</td>
+                                    <td>Enumeration of Architectural Features (RO)</td>
+                                    <td>If CPUID.(EAX=07H, ECX=0):EDX[29]=1</td>
+                                </tr>
+                                <tr>
+                                    <td>10AH</td>
+                                    <td>266</td>
+                                    <td>10</td>
+                                    <td>MISC_PACKAGE_CTLS: The processor supports IA32_MISC_PACKAGE_CTLS MSR</td>
+                                    <td>&nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td>10AH</td>
+                                    <td>266</td>
+                                    <td>11</td>
+                                    <td>ENERGY_FILTERING_CTL: The processor supports setting and reading IA32_MISC_PACKAGE_CTLS[0] (ENERGY_FILTERING_ENABLE) bit</td>
+                                    <td>&nbsp;</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <p>&nbsp;</p>
+                        <p class="dk_note">The table above is not intended to provide full details of the IA32_ARCH_CAPABILITIES MSR; see the <a class="b_special_a1" href="">Intel® 64 and IA-32 Architecture Software Developer’s Manual</a>, Volume 4 (Model-Specific Registers) for full details.</p>
+                    </section>
+
+                    <section id="dk_ia32_misc">
+                        <h4 style="padding-bottom: 0.5rem;">IA32_MISC_PACKAGE_CTLS MSR</h4>
+                        <p>The IA32_MISC_PACKAGE_CTLS MSR bits are defined as processor package scope.&nbsp;</p>
+                        <p>This MSR has a value of 0 after reset and is unaffected by <span class="dk_code_simple">INIT#</span> or <span class="dk_code_simple">SIPI#</span>.</p>
+                        <table class="mv_product_table w-100 mb-4">
+                            <caption>Table 2: IA32_MISC_PACKAGE_CTLS MSR Details</caption>
+                            <thead>
+                                <tr>
+                                    <th scope="col">Register Address Hex</th>
+                                    <th scope="col">Register Address Dec</th>
+                                    <th scope="col">Register Name / Bit Fields</th>
+                                    <th scope="col">Bit Description</th>
+                                    <th scope="col">Comment</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>BCH</td>
+                                    <td>188</td>
+                                    <td>IA32_MISC_PACKAGE_CTLS</td>
+                                    <td>Power Filtering Control (R/W)</td>
+                                    <td>If any one of the enumeration conditions for defined bit field positions holds.</td>
+                                </tr>
+                                <tr>
+                                    <td>BCH</td>
+                                    <td>188</td>
+                                    <td>0</td>
+                                    <td>ENERGY_FILTERING_ENABLE (R/W)<br>
+                                    If set, RAPL MSRs report filtered processor power consumption data</td>
+                                    <td>If IA32_ARCH_CAPABILITIES[11] = 1</td>
+                                </tr>
+                                <tr>
+                                    <td>BCH</td>
+                                    <td>188</td>
+                                    <td>63:1</td>
+                                    <td>Reserved</td>
+                                    <td>&nbsp;</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <p><br>
+                            The ENERGY_FILTER_ENABLE bit can be changed from 0 to 1 but cannot be changed from 1 to 0. After setting, all attempts to clear it are ignored until the next processor reset.<br>
+                            Environments that are concerned about software-based power side channels may wish to set ENERGY_FILTERING_ENABLE in order to apply filtering to the processor power consumption data.&nbsp;</p>
+                        <p class="mb-0">Limitations:&nbsp;</p>
+                        <ul>
+                            <li>On some processor implementations, ENERGY_FILTERING_ENABLE bit may be internally set by the CPU during the processor’s boot flow to protect Intel SGX. This also applies to cases when the mitigation mechanisms are introduced to a processor by loading a microcode update.</li>
+                            <li>Some processors implementations may not signal <span class="dk_code_simple">#GP</span> fault on attempts to set reserved bits in the IA32_MISC_PACKAGE_CTLS MSR. It is recommended always set reserved bits to 0’s</li>
+                            <li>On some processor implementations, only when the mitigation mechanisms are introduced to a processor by loading a microcode update, setting ENERGY_FILTERING_ENABLE bit may be ignored even if it is enumerated as supported. In such cases, Intel recommends contacting the OEM for updated BIOS. Intel recommends software to always verify whether an attempt to set the ENERGY_FILTERING_ENABLE bit was successful using the <span class="dk_code_simple">RDMSR(IA32_MISC_PACKAGE_CTLS)</span> instruction and checking the ENERGY_FILTERING_ENABLE bit value.&nbsp;</li>
+                        </ul>
+                    </section>
+
+                    <section id="dk_affected_proc">
+                        <p class="mb-0">&nbsp;</p>
+                        <h3 style="font-weight: 350; padding-bottom: 0.5rem;"><a class="b_special_a1" href="">Affected Processors</a></h3>
+                        <p>Refer to the <a class="b_special_a1" href="">consolidated Affected Processors table</a>, <em>Running Average Power Limit</em> column (2018-2021&nbsp;tab) and <em>Running Average Power Limit Derivative</em> (2022-2024 column) for a complete list of currently supported processors potentially affected by these issues.&nbsp;</p>
+                        <p>All processors supporting RAPL are impacted by CVE-2020-8694 and should apply the migration in the <a class="b_special_a1" href="">Appendix: CVE-2020-8694</a> section.</p>
+                        <p>All processors supporting RAPL plus Intel SGX are impacted by CVE-2020-8695, and should apply the microcode patch. This patch needs to be <a class="b_special_a1" href="">loaded from FIT</a> to be effective.&nbsp;The <a class="b_special_a1" href="">consolidated Affected Processors table</a> provides a summary of recommended actions to be taken for each CVE.</p>
+                    </section>
+
+                    <section id="dk_appendix_cve">
+                        <p class="mb-0">&nbsp;</p>
+                        <h3 style="font-weight: 350; padding-bottom: 0.5rem;"><a class="b_special_a1" href="">Appendix: CVE-2020-8694</a></h3>
+                        <p>CVE-2020-8694 has resulted in a change in the Linux <em>powercap</em> driver. Since Linux v3.13, released in 2013, the Linux <em>intel_powercap</em> driver has the ability to expose the RAPL hardware energy counters to applications. If the kernel is built with <span class="code-simple">CONFIG_INTEL_RAPL</span> enabled, the RAPL interface is exposed to applications.</p>
+                        <p>&nbsp;The API is visible in<em> /sys/class/powercap/intel-rapl*/*/energy_uj</em>.</p>
+                        <p>These <em>sysfs</em> attributes, by default, are readable by any user logged into the machine.&nbsp;</p>
+                        <p>The Linux mitigation for this issue is to remove user access to these attributes.</p>
+                        <p>Patch 949dd0104c49 (“powercap: restrict energy meter to root access”), in Linux kernel 5.10.0-rc4, changes the default permissions on these attributes such that only the system administrator (root account) can access these attributes.</p>
+                        <p>This allows services, such as <em>thermald</em>, to continue functioning, as they run as root.</p>
+                        <p>Note that third-party applications that also access these attributes must also run as root to continue reading them.</p>
+                        <p>The patch simply changes the default permissions on the <em>sysfs</em> attributes. System administrators can do this manually on systems that do not yet have this patch by using the following command:</p>
+                        <div class="mv_code_toolbar">
+                            <div class="mv_toolbar_item mv_copy_icon">
+                                <i class="fa-regular fa-copy"></i>
+                            </div>
+                            <div class="mv_copy_message text-end hidden">Copied</div>
+                            <div class="code-content">
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp;</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 1rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">$ sudo chmod 400 /sys/class/powercap/intel-rapl*/*/energy_uj</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> 
+                    </section>
+
+                    <section id="dk_appendix_ipu">
+                        <p class="mb-0">&nbsp;</p>
+                        <h3 style="font-weight: 350; padding-bottom: 0.5rem;"><a class="b_special_a1" href="">Appendix: IPU 2020.2 Energy Reporting Solution</a></h3>
+                        <p class="mb-0">The differences between filtered energy reporting when Intel SGX is enabled compared to unfiltered energy reporting will vary depending on many factors. When comparing filtered energy reporting to unfiltered energy reporting with measurements taken at 1 second intervals, the power delta can be between 0-50%, but the exact delta cannot be guaranteed. Many factors can affect the power delta, including:</p>
+                        <ul>
+                            <li>SoC power</li>
+                            <li>Temperature</li>
+                            <li>Device transistor leakage (CDYN)</li>
+                            <li>Different applications or workloads</li>
+                            <li>The mix of instructions that are executed</li>
+                            <li>Number of active cores</li>
+                            <li>Overall SoC core count</li>
+                            <li>SKU (for example, Intel® Core™ i3, i5, or i7 processors)</li>
+                            <li>Hyperthreading support</li>
+                            <li>Various other SoC features</li>
+                        </ul>
+                        <p>The table below summarizes differences between the IPU 2020.2 and IPU 2021.2 mitigations.</p>
+                        <table class="mv_product_table w-100 mb-4">
+                            <caption>Table 4: Comparison of IPU 2020.2 and IPU 2021.2 Mitigations</caption>
+                            <thead>
+                                <tr>
+                                    <th scope="row">&nbsp;</th>
+                                    <th scope="col">IPU 2020.2</th>
+                                    <th scope="col">IPU 2021.2</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th scope="row">Enabling Conditions</th>
+                                    <td>
+                                    <ul>
+                                        <li>If enabled, the protection cannot be disabled until next reset.</li>
+                                        <li>CPU enforces “filtered” RAPL-reported energy data when Intel SGX is enabled. CPU enforces “filtered.” RAPL-reported energy data when Intel SGX is enabled.</li>
+                                        <li>Software cannot enable the protection when Intel SGX is not present/enabled.<br>
+                                        &nbsp;</li>
+                                    </ul>
+                                    </td>
+                                    <td>
+                                    <ul>
+                                        <li>If enabled, the protection cannot be disabled until next reset.</li>
+                                        <li>CPU enforces “filtering” RAPL-reported energy data when Intel SGX is enabled.</li>
+                                        <li>Software can use an opt-in switch (virtual MSR) to enable “filtering” as well.</li>
+                                    </ul>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Filtering Algorithm</th>
+                                    <td>
+                                    <ul>
+                                        <li>The filtered energy information is approximated using SoC activity and residency information (PMON), rather than using the legacy energy information from RAPL that directly reads from the SoC voltage regulator (IMON).</li>
+                                        <li>This calculation may include SoC voltage, frequency, C-state residency, and other factors that can be used to approximate the SoC power usage.</li>
+                                    </ul>
+                                    </td>
+                                    <td>
+                                    <ul>
+                                        <li>Adding artificial unpredictable noise to external energy reporting.</li>
+                                        <li>Offers better tradeoff between security and reporting accuracy.<br>
+                                        &nbsp;</li>
+                                    </ul>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </section>
+
+                    <section id="dk_appendix_related">
+                        <p class="mb-0">&nbsp;</p>
+                        <h3 style="font-weight: 350; padding-bottom: 0.5rem;">Appendix: Related Technology</h3>
+                        <p>Intel® Trust Domain Extensions (Intel® TDX) for virtual machine (VM) isolation is used in conjunction with Intel SGX and uses RAPL filtered energy information.</p>
+                        <p>Intel is continuously improving its filtered energy information from RAPL to further reduce correlation with operand values, and may introduce a mixture of random noises, quantization, rate changes, etc. in the future.<br>
+                    </section>
+
+                    <section id="dk_footnotes">
+                        <p class="mb-0">&nbsp;</p>
+                        <h3 style="font-weight: 350; padding-bottom: 0.5rem;"><a class="b_special_a1" href="">Footnotes</a></h3>
+                        <ol>
+                            <li><strong>PP0</strong>&nbsp;is a power plane for the Intel® architecture core, and&nbsp;<strong>Package</strong>&nbsp;includes all power planes.</li>
+                            <li>Power P = Energy E/ time t<br>
+                            RAPL power information and RAPL energy reporting are used interchangeably.</li>
+                            <li>Address 0x611, may vary by processor model.</li>
+                            <li>Address 0x639, may vary by processor model.</li>
+                            <li>Address 0x612, may vary by processor model.</li>
+                            <li>BIOS might allow for two modes for Intel SGX to be enabled:&nbsp;<br>
+                            1: Software enabled by the user and a reboot is required.&nbsp;<br>
+                            2: Intel SGX is enabled in BIOS and Intel SGX is always on.</li>
+                            <li>Assuming the data doesn’t affect timing. Refer to <a class="b_special_a1" href="">Guidelines for Mitigating Timing Side Channels Against Cryptographic Implementations</a>.</li>
+                        </ol>
+                        <p>&nbsp;</p>
+                        <h5 style="text-align:center"><a class="b_special_a1" href="">Software Security Guidance Home</a>&nbsp;|&nbsp;<a class="b_special_a1" href="">Advisory Guidance</a>&nbsp;|&nbsp;<a class="b_special_a1" href="">Technical Documentation</a>&nbsp;|&nbsp;<a class="b_special_a1" href="">Best Practices</a>&nbsp;|&nbsp;<a class="b_special_a1" href="">Resources</a></h5>
+                        <p>&nbsp;</p>
+                    </section>
+                    
+                </div>
+            </section>
+        </div>
+    </div>
+    </div>
+    </section>
+
+    <section style="border-top: 1px solid #d7d7d7;" class="container py-5">
+        <h4 class="h6">Product and Performance Information</h4>
+        <div class="disclaimer" style="font-size: 12px;"><sup>1</sup> Performance varies by use, configuration and other
+            factors. Learn more at <a class="b_special_a1" href="">www.Intel.com/PerformanceIndex.</a></div>
+        </div>
+    </section>
+
+    <!-- footer -->
+    <div id="footer"></div>
+
+    <!-- nav script -->
+    <script>
+        // navbar include  
+        fetch('/y_index/y_navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar').innerHTML = data;
+            });
+        // footer include 
+        fetch('/y_index/y_footer.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('footer').innerHTML = data;
+            });
+    </script>
+    <!-- nav script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            if (document.getElementsByClassName('VK_all_sections section') && document.getElementsByClassName('VK_sidebar_dropdown')) {
+                const sections = document.querySelectorAll('.VK_all_sections section');
+                const navLinks = document.querySelectorAll('.VK_sidebar_dropdown a');
+                const detailsElements = document.querySelectorAll('.VK_sidebar_dropdown details');
+
+                function removeActiveClass() {
+                    navLinks.forEach(link => link.classList.remove('VK_sidebar_active_link'));
+                    detailsElements.forEach(details => {
+                        details.removeAttribute('open');
+                        details.setAttribute('close', ''); // Optional: to visually indicate it's closed
+                    });
+                }
+
+                function activateLinkAndDetails(targetId) {
+                    navLinks.forEach(link => {
+                        if (link.getAttribute('href') === `#${targetId}`) {
+                            link.classList.add('VK_sidebar_active_link');
+                            let parentDetails = link.closest('details');
+
+                            // Open all ancestor details elements
+                            while (parentDetails) {
+                                parentDetails.setAttribute('open', '');
+                                parentDetails.removeAttribute('close'); // Optional: remove the closed indicator
+                                parentDetails = parentDetails.parentElement.closest('details');
+                            }
+                        }
+                    });
+                }
+
+                function onScroll() {
+                    let currentSection = '';
+                    sections.forEach(section => {
+                        const sectionTop = section.getBoundingClientRect().top;
+                        const sectionBottom = section.getBoundingClientRect().bottom;
+
+                        // Check if the section is in view
+                        if (sectionTop <= 100 && sectionBottom >= 0) {
+                            currentSection = section.getAttribute('id');
+                        }
+                    });
+
+                    if (currentSection) {
+                        removeActiveClass();
+                        activateLinkAndDetails(currentSection);
+                    } else {
+                        removeActiveClass();
+                    }
+                }
+
+                window.addEventListener('scroll', onScroll);
+            } else {
+                return
+            }
+        });
+    </script>
+
+    <!-- copy script -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            document.querySelectorAll(".mv_copy_icon").forEach((icon) => {
+                icon.addEventListener("click", async function () {
+                    try {
+                        const toolbar = this.closest(".mv_code_toolbar");
+                        const codeBlock = toolbar.querySelector(".code-content");
+                        const codeContent = codeBlock.innerText;
+
+                        // Use Clipboard API to copy text
+                        await navigator.clipboard.writeText(codeContent);
+
+                        // Hide the copy icon and show the "Copied!" message
+                        const message = toolbar.querySelector(".mv_copy_message");
+                        this.classList.add("hidden"); // Hide the copy icon
+                        message.classList.remove("hidden"); // Show the "Copied!" message
+
+                        // Hide the message and show the icon again after 2 seconds
+                        setTimeout(() => {
+                            message.classList.add("hidden");
+                            this.classList.remove("hidden");
+                        }, 2000); // Adjust delay as needed
+
+                    } catch (err) {
+                        console.error('Failed to copy text: ', err);
+                    }
+                });
+            });
+        });
+    </script>
+
+</body>
+
+</html>
+
+

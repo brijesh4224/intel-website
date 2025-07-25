@@ -1,0 +1,886 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MXCSR Configuration Dependent Timing</title>
+
+    <!-- font family -->
+    <link href="https://fonts.cdnfonts.com/css/intel-clear" rel="stylesheet">
+
+    <link rel="stylesheet" href="/css/dk_developer_edge_iot_5G_industrial_automation_see_all_wireless_network_ready_printed_circuit_board_(PCB)_defect_detection.css">
+    <link rel="stylesheet" href="/css/mv_product/ECC.css">
+    <link rel="stylesheet" href="/css/rushita_automotive.css">
+
+    <!-- header footer -->
+    <link rel="stylesheet" href='/css/yatri.css'>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" rel="stylesheet">
+
+</head>
+
+<style>
+    .dk_color1 {
+        color: #069 !important;
+    }
+
+    .dk_color2 {
+        color: #008200 !important;
+    }
+
+    .dk_color3 {
+        color: #b24501;
+    }
+
+    .dk_note{
+        font-size: 1rem;
+        line-height: 1.25;
+        word-wrap: break-word;
+        background-color: #e6e6e6;
+        padding: 20px;
+        border-left: 3px solid #fdb813;
+    }
+    .dk_code_simple{
+        background-color: #e6e6e6;
+        color: #53565a;
+        border-radius: 0;
+    }
+
+    .dk_greyHighlight{
+        font-size: 1rem;
+        line-height: 1.25;
+        background-color: #e6e6e6;
+        padding: 20px;
+    }
+
+    .dk_things_code{
+        padding: 1rem 1rem 0rem 0.5rem;
+    }
+    @media(max-width:1200px) {
+        .dk_risk_app_img {
+            width: 100% !important;
+        }
+        .mv_product_table{
+            width: 100% !important;
+        }
+    }
+</style>
+
+<body>
+    <!-- header -->
+    <div id="navbar"></div>
+
+    <!------------------------------------------------------------------------------->
+    <section class="m_ai_tdrop">
+        <div>
+            <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Developers
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item m_dropActive" href="#">Overview</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Topics & Technologies</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Tools</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Hardware Platforms</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Resources & Documentation</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Learn</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Community & Events</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Developer Programs</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Get Help</a></li>                                                              
+            </ul>
+        </div>
+        <div class="m_ai_shlash">/</div>
+        <div>
+            <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Topics & Technologies
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item m_dropActive" href="#">Artificial Intelligence</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Client Applications</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Cloud</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">GPU Research</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Edge Computing</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">GameDev</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">HPC</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Data Center</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Firmware</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Networking</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Open Ecosystem</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Persistent Memory</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Platform Analysis Technology</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Runtime Languages</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Software Security Guidance</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Storage</a></li>
+            </ul>
+        </div>
+        <div class="m_ai_shlash">/</div>
+        <div>
+            <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Software Security Guidance
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item m_dropActive" href="#">Advisory Guidance</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Best Practices</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Resources</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Disclosure Documentation</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Feature Documentation</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">More Information</a></li>
+            </ul>
+        </div>
+        <div class="m_ai_shlash">/</div>
+        <div>
+            <button class="btn" style="color: #0068B5;">
+                Best Practices
+            </button>
+        </div>
+        <div class="m_ai_shlash">/</div>
+        <div class="m_ai_httl">MXCSR Configuration Dependent Timing</div>
+
+    </section>
+    <!------------------------------------------------------------------------------->
+
+    <!-- VMware Horizon -->
+    <section>
+        <div class="mv_vmware_bg_color">
+            <div class="container">
+                <div class="mv_vmware_padd">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="mv_vmware_heading">
+                                <p>&nbsp;</p>
+                                <h3>MXCSR Configuration Dependent Timing</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="container py-5">
+        <div class="row">
+            <div class="d-flex justify-content-end col-xl-10 py-3 d-md-none">
+                <i class="fa-solid fa-print fs-4 px-2 " style="color:#0068B5"></i>
+                <i class="fa-regular fa-envelope fs-4 px-2" style="color:#0068B5"></i>
+            </div>
+            <div class="col-lg-3 col-md-4">
+                <!-- nav -->
+                <div class="VK_sticky_side_bar VK_side_bar_postion_stickey">
+                    <div>
+                        <div class="VK_sidebar_dropdown">
+                            <p class="m-0">
+                                <a href="#dk_introduction" class="text-decoration-none VK_a">
+                                    Introduction
+                                </a>
+                            </p>
+                            <p class="m-0">
+                                <a href="#dk_mcdt" class="text-decoration-none VK_a">
+                                    MXCSR Configuration Dependent Timing (MCDT)
+                                </a>
+                            </p>
+                            <p class="m-0">
+                                <a href="#dk_enumeration_msrs" class="text-decoration-none VK_a">
+                                    Enumeration and Architectural MSRs
+                                </a>
+                            </p>
+                            <p class="m-0">
+                                <a href="#dk_processors" class="text-decoration-none VK_a">
+                                    Processors That May Exhibit MCDT Behavior
+                                </a>
+                            </p>
+                            <p class="m-0">
+                                <a href="#dk_mcdt_behavior" class="text-decoration-none VK_a">
+                                    Processors That Do Not Exhibit MCDT Behavior
+                                </a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-lg-9 col-md-8">
+                <div class="d-md-flex justify-content-end col-xl-10 py-3 d-none">
+                    <i class="fa-solid fa-print fs-4 px-2 " style="color:#0068B5"></i>
+                    <i class="fa-regular fa-envelope fs-4 px-2" style="color:#0068B5"></i>
+                </div>
+                <div class="col-xl-10 VK_all_sections">
+                    <p>&nbsp;</p>
+                    <p>&nbsp;</p>
+
+                    <section id="dk_introduction">
+                        <p class="mb-0">&nbsp;</p>
+                        <h3 style="font-weight: 350; padding-bottom: 0.5rem;">Introduction</h3>
+                        <p>The <a class="b_special_a1" href="">Data Operand Independent Timing Instruction Set Architecture</a> (DOIT ISA) document describes a new feature &nbsp;which in conjunction with our guidance on <a class="b_special_a1" href="">Guidelines for Mitigating Timing Side Channels Against Cryptographic Implementations</a> can be used for “constant time” execution for code specifically written to the guidelines. This mode allows constant time code to inform the processor that data operand independent timing is needed.</p>
+                        <p>On certain processors, MXCSR may also need to be configured to avoid data-dependent behavior for the instructions listed in <a class="b_special_a1" href="">Data Operand Independent Timing Instructions That May Exhibit MXCSR Configuration Dependent Timing Behavior</a>. This article describes that behavior and configuration.</p>
+                        <p class="mb-0">&nbsp;</p>
+                    </section>
+
+                    <section id="dk_mcdt">
+                        <p class="mb-0">&nbsp;</p>
+                        <h3 style="padding-bottom: 0.5rem; font-weight: 350;">MXCSR Configuration Dependent Timing (MCDT)</h3>
+                        <p>On certain processors as listed in MCDT Enumeration, some data-independent timing vector instructions may have subtle data-dependent timing due to <span class="dk_code_simple">MXCSR</span> configuration. Specifically, specific data values may delay instruction retirement by, at most, one cycle. This is a small enough delay that it may not be observable in common practice, but this small delay is still data-dependent timing. This data operand-dependent timing may impact software following Intel’s <a class="b_special_a1" href="">Guidelines for Mitigating Timing Side Channels Against Cryptographic Implementations</a>.</p>
+
+                        <h4>Hardware</h4>
+                        <p>Future processors are not expected to exhibit data operand dependent timing due to MXCSR configuration. This will be enumerated by CPUID.(EAX=7H,ECX=2):EDX[5]=1. Many current processors which are also not affected are listed in the Processors That Do Not Exhibit MCDT Behavior section.</p>
+                        <h4>Software Mitigations</h4>
+                        <p>Some environments may conclude that this side channel is minor and does not need mitigation.&nbsp;</p>
+                        <p>For systems that do not enumerate CPUID.(EAX=7H,ECX=2):EDX[5]=1, software that does need mitigation can mitigate the data-dependent timing by loading MXCSR with the value of 0x1FBF before using data operand independent timing instructions impacted by the MXCSR configuration. Software must use pre- and post-serialized LDMXCSR instructions before using impacted data operand independent timing instructions.</p>
+                        <div class="mv_code_toolbar">
+                            <div class="mv_toolbar_item mv_copy_icon">
+                                <i class="fa-regular fa-copy"></i>
+                            </div>
+                            <div class="mv_copy_message text-end hidden">Copied</div>
+                            <div class="code-content">
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp;</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">Prolog:</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;"
+                                    class="d-flex pb-0">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">STMXCSR save_val</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;"
+                                    class="d-flex pb-0">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">LDMXCSR value_0x1fbf</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;"
+                                    class="d-flex pb-0">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">LFENCE</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;"
+                                    class="d-flex pb-0">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">// Constant-time code using affected instructions</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;"
+                                    class="d-flex pb-0">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">Epilog:</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex pb-0">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">LFENCE</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 1rem !important;" class="d-flex pb-0">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">LDMXCSR save_val</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> 
+                        <p>For applications that do not otherwise depend on a specific value of MXCSR, the value of 0x1FBF can be established during the initialization of the application and mitigate the data dependent timing with minimal overhead.</p>
+
+                        <h4>Instructions That May Exhibit MCDT Behavior</h4>
+                        <p><a class="b_special_a1" href="">This list</a> is based on Intel's investigation and is current as of the date of publication. Intel will update this list if additional instructions with these characteristics are discovered.</p>
+                        <ul>
+                            <li><span class="dk_code_simple">PMADDUBSW</span></li>
+                            <li><span class="dk_code_simple">PMULUDQ</span></li>
+                            <li><span class="dk_code_simple">VPMULHRSW</span></li>
+                            <li><span class="dk_code_simple">PMADDWD</span></li>
+                            <li><span class="dk_code_simple">VPLZCNTD&nbsp;&nbsp;&nbsp;&nbsp;</span></li>
+                            <li><span class="dk_code_simple">VPMULHUW</span></li>
+                            <li><span class="dk_code_simple">PMULDQ</span></li>
+                            <li><span class="dk_code_simple">VPLZCNTQ</span></li>
+                            <li><span class="dk_code_simple">VPMULHW</span></li>
+                            <li><span class="dk_code_simple">PMULHRSW</span></li>
+                            <li><span class="dk_code_simple">VPMADD52HUQ</span></li>
+                            <li><span class="dk_code_simple">VPMULLD</span></li>
+                            <li><span class="dk_code_simple">PMULHUW</span></li>
+                            <li><span class="dk_code_simple">VPMADD52LUQ</span></li>
+                            <li><span class="dk_code_simple">VPMULLQ</span></li>
+                            <li><span class="dk_code_simple">PMULHW</span></li>
+                            <li><span class="dk_code_simple">VPMADDUBSW</span></li>
+                            <li><span class="dk_code_simple">VPMULLW</span></li>
+                            <li><span class="dk_code_simple">PMULLD</span></li>
+                            <li><span class="dk_code_simple">VPMADDWD</span></li>
+                            <li><span class="dk_code_simple">VPMULUDQ</span></li>
+                            <li><span class="dk_code_simple">PMULLW</span></li>
+                            <li><span class="dk_code_simple">VPMULDQ</span></li>
+                        </ul>
+
+                        <h4>Intel<sup>®</sup> Software Guard Extensions (Intel<sup>®</sup> SGX)</h4>
+                        <p>Although instructions inside enclave mode will act as if data operand independent timing mode is set, they may still exhibit MCDT behavior.</p>
+                        <p>If the intended operation of an Intel SGX enclave, for the lifetime of the enclave, is achievable with <span class="dk_code_simple">MXCSR=0x1FBF</span>, then any loads of <span class="dk_code_simple">MXCSR</span> (via <span class="dk_code_simple">LDMXCSR</span>, <span class="dk_code_simple">XRSTOR</span>, etc.) should be of 0x1FBF. There should also be an <span class="dk_code_simple">LFENCE</span> between any load of <span class="dk_code_simple">MXCSR</span> (even of 0x1FBF) and subsequent use of any affected instruction.&nbsp;</p>
+                        <p>If the enclave is compatible with <span class="dk_code_simple">MXCSR=0x1FBF</span> and uses any of the affected instructions, then the beginning of each enclave <span class="dk_code_simple">ECALL</span> should change <span class="dk_code_simple">MXCSR</span> to 0x1FBF and then execute an <span class="dk_code_simple">LFENCE</span> instruction. The Intel SGX SDK will be changed to do this.</p>
+                        <p>The Intel-provided SGX architectural enclaves (AEs) fall into this compatible with <span class="dk_code_simple">MXCSR=0x1FBF</span> category.</p>
+                        <p>If the intended operation of an Intel SGX enclave is not achievable with <span class="dk_code_simple">MXCSR=0x1FBF</span>, then the general sequence in the Software Mitigations section should be used instead.</p>
+                    </section>
+
+                    <section id="dk_enumeration_msrs">
+                        <p class="mb-0">&nbsp;</p>
+                        <h3 style="padding-bottom: 0.5rem; font-weight: 350;">Enumeration and Architectural MSRs</h3>
+                        <h4>MCDT Enumeration</h4>
+                        <p>CPUID.(EAX=7H,ECX=2):EDX[5] enumerates MCDT_NO. Processors that enumerate this bit as 1 &nbsp;do not exhibit MCDT behavior and do not need to be mitigated. Note that Intel Atom and pre-Skylake Intel Core processors may not enumerate <span class="dk_code_simple">MCDT_NO</span> but nevertheless do not exhibit MCDT behavior. Refer to the Processors That May Exhibit MCDT Behavior section and the Processors That Do Not Exhibit MCDT Behavior section for more information about these processors.</p>
+                        <h4>MCDT Enumeration Guidance for Cryptographic Software</h4>
+                        <p>CPUID leaf 7 subleaf 2 EDX bit 5 enumerates <span class="dk_code_simple">MCDT_NO</span>. Processors that enumerate this bit as 1 do not exhibit MXCSR Configuration Dependent Timing behavior and do not need to mitigate it. Intel Atom and Intel Core processors based on microarchitectures prior to Skylake may not exhibit MCDT behavior despite not enumerating <span class="dk_code_simple">MCDT_NO</span>. Refer to the Processors That Do Not Exhibit MCDT Behavior section for more information.</p>
+                        <p>Cryptography developers who wish to apply MCDT mitigations should use the following steps to determine if MCDT mitigation should be applied:</p>
+                        <p>The cryptography software should determine if <span class="dk_code_simple">MCDT_NO</span> is enumerated as 1. If it is, then no mitigation needs to be applied.</p>
+                        <p>If MCDT_NO is enumerated as 0, the cryptography software should determine if it is running in a virtualized environment by checking the value of CPUID leaf 1 ECX bit 31.</p>
+                        <p>If CPUID leaf 1 ECX bit 31 is 0, then a hypervisor is not present, and the cryptography software should use CPUID family/model/stepping to determine if it is running on a processor documented as not exhibiting MCDT behavior.&nbsp;</p>
+                        <p>If CPUID leaf 1 ECX bit 31 is 1, then a hypervisor is present and the cryptography software may be running on a processor that does not exhibit MCDT behavior, regardless of the family/ model/stepping that is enumerated due to virtualization of CPUID.</p>
+                        <h3>VMM Guidance&nbsp;for Non-Migratable and Migratable VMs</h3>
+                        <p>For non-migratable VMs, VMM software should enumerate MCDT_NO &nbsp;as 1 to a guest only if the host physical machine either enumerates MCDT_NO as 1 or a CPUID family/model/stepping that matches a processor documented to not exhibit MCDT behavior in the section Processors That Do Not Exhibit MCDT Behavior section.</p>
+                        <p>For migratable VMs, VMM software should enumerate MCDT_NO as 1 only if every host physical machine that the VM may potentially migrate to either enumerates MCDT_NO as 1 or a CPUID family/model/stepping that matches a processor documented to not exhibit MCDT behavior in the Processors That Do Not Exhibit MCDT Behavior section.</p>
+                    </section>
+
+                    <section id="dk_processors">
+                        <p class="mb-0">&nbsp;</p>
+                        <h3 style="padding-bottom: 0.5rem; font-weight: 350;">Processors That May Exhibit MCDT Behavior</h3>
+                        <p>All Intel Core processors based on microarchitecture code named Skylake and later exhibit this behavior for at least one instruction from the list in the Example Instructions That May Exhibit MCDT Behavior section.</p>
+                        <table class="mv_product_table mb-4">
+                            <caption>Table 1: Processors That May Exhibit MCDT Behavior</caption>
+                            <thead>
+                                <tr>
+                                    <th scope="col">Processor</th>
+                                    <th scope="col">Stepping (All unless otherwise noted)</th>
+                                    <th scope="col">Code Name (s) / Microarchitecture (s)</th>
+                                    <th scope="col">Product Family</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>06_4EH</td>
+                                    <td>3</td>
+                                    <td>1. Skylake Y<br>
+                                    2. Skylake U<br>
+                                    3. Skylake U23e</td>
+                                    <td>6th Generation Intel® Core™ Processor Family</td>
+                                </tr>
+                                <tr>
+                                    <td>06_55H</td>
+                                    <td>3, 4</td>
+                                    <td>1. Skylake Server<br>
+                                    2. Skylake D, Bakerville<br>
+                                    3. Skylake W<br>
+                                    4. Skylake X<br>
+                                    &nbsp;</td>
+                                    <td>1. Intel® Xeon® Scalable processor family<br>
+                                    2. Intel® Xeon® D processor family<br>
+                                    3. Intel® Xeon® W processor family<br>
+                                    4. Intel® Core™ X-series Processors</td>
+                                </tr>
+                                <tr>
+                                    <td>06_55H</td>
+                                    <td>6.7</td>
+                                    <td>1.&nbsp;Cascade Lake Server<br>
+                                    2. Cascade Lake W<br>
+                                    3. Cascade Lake X</td>
+                                    <td>1. 2nd Generation Intel® Xeon® Scalable processor family<br>
+                                    2. Intel® Xeon® W processor family<br>
+                                    3. Intel® Core™ X-series Processor</td>
+                                </tr>
+                                <tr>
+                                    <td>06_55H</td>
+                                    <td>&lt;=B</td>
+                                    <td>Cooper Lake</td>
+                                    <td>3rd Generation Intel® Xeon® Scalable processor family</td>
+                                </tr>
+                                <tr>
+                                    <td>06_5EH</td>
+                                    <td>3</td>
+                                    <td>1. Skylake Xeon E3<br>
+                                    2. Skylake H<br>
+                                    3. Skylake S&nbsp;</td>
+                                    <td>
+                                    <p>1. Intel® Xeon® E processor family<br>
+                                    2, 3. 6th Generation Intel® Core™ Processor Family</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>06_6AH</td>
+                                    <td>4,5,6</td>
+                                    <td>Ice Lake Xeon-SP</td>
+                                    <td>3rd Gen Intel® Xeon® Scalable processor family</td>
+                                </tr>
+                                <tr>
+                                    <td>06_6CH</td>
+                                    <td>1</td>
+                                    <td>Ice Lake D</td>
+                                    <td>Intel® Xeon® D Processor</td>
+                                </tr>
+                                <tr>
+                                    <td>06_7EH</td>
+                                    <td>5</td>
+                                    <td>Ice Lake U,Y</td>
+                                    <td>10th Generation Intel® Core™ Processor Family</td>
+                                </tr>
+                                <tr>
+                                    <td>06_8AH</td>
+                                    <td>1</td>
+                                    <td>Lakefield B-step&nbsp;</td>
+                                    <td>Intel® Core™ Processors with Intel® Hybrid Technology</td>
+                                </tr>
+                                <tr>
+                                    <td>06_8CH</td>
+                                    <td>1,2</td>
+                                    <td>Tiger Lake U<br>
+                                    Tiger Lake U Refresh &nbsp;<br>
+                                    Tiger Lake H35</td>
+                                    <td>11th Generation Intel® Core™ Processor Family</td>
+                                </tr>
+                                <tr>
+                                    <td>06_8DH</td>
+                                    <td>1</td>
+                                    <td>Tiger Lake H &nbsp;</td>
+                                    <td>11th Generation Intel® Core™ Processor Family<br>
+                                    Intel® Xeon® Processor Family</td>
+                                </tr>
+                                <tr>
+                                    <td>06_8EH</td>
+                                    <td>9</td>
+                                    <td>1. Amber Lake-Y&nbsp;<br>
+                                    2. Kaby Lake U<br>
+                                    3. Kaby Lake U23e<br>
+                                    4. Kaby Lake Y</td>
+                                    <td>1. 8th Generation Intel® Core™ Processor Family<br>
+                                    2,3,4. 7th Generation Intel® Core™ Processor Family</td>
+                                </tr>
+                                <tr>
+                                    <td>06_8EH</td>
+                                    <td>A</td>
+                                    <td>Coffee Lake U43e<br>
+                                    Kaby Lake Refresh U</td>
+                                    <td>8th Generation Intel® Core™ Processor Family</td>
+                                </tr>
+                                <tr>
+                                    <td>06_8EH</td>
+                                    <td>B,C</td>
+                                    <td>1. Whiskey Lake U<br>
+                                    2,3,4. Comet Lake U42<br>
+                                    5. Amber Lake Y</td>
+                                    <td>1. 8th Generation Intel® Core™ Processors<br>
+                                    2. 10th Generation Intel® Core™ Processor Family<br>
+                                    3. Intel® Pentium® Gold Processor Series<br>
+                                    4. Intel® Celeron® Processor 5000 Series<br>
+                                    5. 10th Generation Intel® Core™ Processor Family</td>
+                                </tr>
+                                <tr>
+                                    <td>06_97H</td>
+                                    <td>2, 5</td>
+                                    <td>Alder Lake S</td>
+                                    <td>12th Generation Intel® Core™ Processor Family</td>
+                                </tr>
+                                <tr>
+                                    <td>06_9AH</td>
+                                    <td>3</td>
+                                    <td>1. Alder Lake H<br>
+                                    2. Alder Lake P</td>
+                                    <td>1. 12th Generation Intel® Core™ Processor Family<br>
+                                    2. 12th Generation Intel® Core™ Processor Family</td>
+                                </tr>
+                                <tr>
+                                    <td>06_9AH</td>
+                                    <td>4</td>
+                                    <td>Alder Lake U</td>
+                                    <td>12th Generation Intel® Core™ Processor Family<br>
+                                    Intel® Pentium® Gold Processor Family<br>
+                                    Intel® Celeron® Processor Family</td>
+                                </tr>
+                                <tr>
+                                    <td>06_9EH</td>
+                                    <td>9</td>
+                                    <td>1. Kaby Lake S<br>
+                                    2. Kaby Lake H<br>
+                                    3. Kaby Lake G<br>
+                                    4. Kaby Lake X<br>
+                                    5. Kaby Lake Xeon E3</td>
+                                    <td>1. 7th Generation Intel® Core™ Processor Family<br>
+                                    2. 7th Generation Intel® Core™ Processor Family<br>
+                                    3. 8th Generation Intel® Core™ Processor Family<br>
+                                    Intel® Pentium® Processor Family<br>
+                                    4. Intel® Core™ X-series Processors<br>
+                                    5. Intel® Xeon® E processor family</td>
+                                </tr>
+                                <tr>
+                                    <td>06_9EH</td>
+                                    <td>A, B, C, D&nbsp;&nbsp; &nbsp;</td>
+                                    <td>1.&nbsp;&nbsp; &nbsp;Coffee Lake H<br>
+                                    2.&nbsp;&nbsp; &nbsp;Coffee Lake Xeon E<br>
+                                    3. Coffee Lake S Xeon E<br>
+                                    4. Coffee Lake S x/KBP<br>
+                                    5. Coffee Lake S</td>
+                                    <td>1. 8th Generation Intel® Core™ Processor Family<br>
+                                    2. Intel® Xeon® E processor family<br>
+                                    3. Intel® Xeon® E processor family<br>
+                                    4. 8th Generation Intel® Core™ Processor Family<br>
+                                    5. 8th Generation Intel® Core™ Processor Family</td>
+                                </tr>
+                                <tr>
+                                    <td>06_A5H</td>
+                                    <td>2, 3, 5</td>
+                                    <td>1. Comet Lake H<br>
+                                    2. Comet Lake-S</td>
+                                    <td>1, 2. 10th Generation Intel® Core™ Processor Family<br>
+                                    1, 2. Intel® Xeon® W processor family</td>
+                                </tr>
+                                <tr>
+                                    <td>06_A6H</td>
+                                    <td>&lt;=1</td>
+                                    <td>Comet Lake U62</td>
+                                    <td>10th Generation Intel® Core™ Processor Family<br>
+                                    Intel® Xeon® W processor family</td>
+                                </tr>
+                                <tr>
+                                    <td>06_A7H</td>
+                                    <td>1</td>
+                                    <td>Rocket Lake</td>
+                                    <td>11th Generation Intel® Core™ Processor Family<br>
+                                    Intel® Xeon® E-2300 processor family</td>
+                                </tr>
+                                <tr>
+                                    <td>06_A8H</td>
+                                    <td>1</td>
+                                    <td>Rocket Lake</td>
+                                    <td>Intel® Xeon® W-1300 Processor Family</td>
+                                </tr>
+                            </tbody>
+                        </table>   
+                        <ul>
+                            <li>Note that&nbsp;a limited number of future processors which are not on the above list of affected processors, may also exhibit MCDT behavior. They will not enumerate MCDT_NO.&nbsp;</li>
+                            <li>Processors that may exhibit MCDT behavior include those based on microarchitectures code named Skylake server, Cascade Lake, Cooper Lake, Ice Lake server, Skylake, Kaby Lake, Coffee Lake, Whiskey Lake, Comet Lake, Ice Lake client, Lakefield, Tiger Lake, Rocket Lake, and Alder Lake.</li>
+                            <li>Processors that do not exhibit MCDT behavior include Intel Atom processors and Intel Core processors based on microarchitectures before Skylake.</li>
+                        </ul>
+                    </section>
+                    
+                    <section id="dk_mcdt_behavior">
+                        <p class="mb-0">&nbsp;</p>
+                        <h3 style="padding-bottom: 0.5rem; font-weight: 350;">Processors That Do Not Exhibit MCDT Behavior</h3>
+                        <p>Intel Core processors based on microarchitectures before Ice Lake and Intel Atom family processors based on microarchitectures before Gracemont do not exhibit MXCSR Dependent Timing behavior.</p>
+                        <table class="mv_product_table mb-4">
+                            <caption>Table 4: Processors That Do Not Exhibit MCDT Behavior</caption>
+                            <thead>
+                                <tr>
+                                    <th scope="col">Processor</th>
+                                    <th scope="col">Stepping (All unless otherwise noted)</th>
+                                    <th scope="col">Code Name (s) / Microarchitecture(s)</th>
+                                    <th scope="col">Product Family</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>06_3FH</td>
+                                    <td>2</td>
+                                    <td>Haswell Server EP, EP4S</td>
+                                    <td>Intel® Xeon® E processor family</td>
+                                </tr>
+                                <tr>
+                                    <td>06_3FH</td>
+                                    <td>4</td>
+                                    <td>Elkhart Lake (Tremont)</td>
+                                    <td>Intel® Xeon® E processor family</td>
+                                </tr>
+                                <tr>
+                                    <td>06_4CH</td>
+                                    <td>&nbsp;</td>
+                                    <td>Cherryview (Airmont)</td>
+                                    <td>Intel® Atom® Processor X Series</td>
+                                </tr>
+                                <tr>
+                                    <td>06_4FH</td>
+                                    <td>&nbsp;</td>
+                                    <td>Broadwell Server E, EP, EP4S, EX</td>
+                                    <td>Intel® Xeon® E processor family</td>
+                                </tr>
+                                <tr>
+                                    <td>06_56H</td>
+                                    <td>3</td>
+                                    <td>Broadwell DE V2,V3</td>
+                                    <td>Intel® Xeon® &nbsp;D processor family</td>
+                                </tr>
+                                <tr>
+                                    <td>06_56H</td>
+                                    <td>4</td>
+                                    <td>Broadwell DE Y0</td>
+                                    <td>Intel® Xeon® &nbsp;D processor family</td>
+                                </tr>
+                                <tr>
+                                    <td>06_56H</td>
+                                    <td>5</td>
+                                    <td>Broadwell DE A1, Hewitt Lake (Broadwell DE)</td>
+                                    <td>Intel® Xeon® &nbsp;D processor family</td>
+                                </tr>
+                                <tr>
+                                    <td>06_5AH</td>
+                                    <td>&nbsp;</td>
+                                    <td>Anniedale (Airmont)</td>
+                                    <td>Intel® Atom® Processors</td>
+                                </tr>
+                                <tr>
+                                    <td>06_5CH</td>
+                                    <td>9</td>
+                                    <td>1. Apollo Lake (Goldmont - no SGX)<br>
+                                    2. Apollo Lake<br>
+                                    3. Apollo Lake</td>
+                                    <td>1. Intel® Pentium® Processor J Series<br>
+                                    Intel® Pentium® Processor N Series<br>
+                                    2. Intel® Celeron® Processor J Series,<br>
+                                    Intel® Celeron® Processor N Series<br>
+                                    3. Intel® Atom® Processor A Series</td>
+                                </tr>
+                                <tr>
+                                    <td>06_5CH</td>
+                                    <td>A</td>
+                                    <td>Apollo Lake</td>
+                                    <td>Intel® Atom® Processor E3900 Series</td>
+                                </tr>
+                                <tr>
+                                    <td>06_5FH</td>
+                                    <td>1</td>
+                                    <td>Denverton (Goldmont)</td>
+                                    <td>Intel® Atom® C processor family</td>
+                                </tr>
+                                <tr>
+                                    <td>06_65H</td>
+                                    <td>&nbsp;</td>
+                                    <td>XMM7272&nbsp; (Airmont)</td>
+                                    <td>Intel® Atom® Processors</td>
+                                </tr>
+                                <tr>
+                                    <td>06_6EH</td>
+                                    <td>&nbsp;</td>
+                                    <td>Cougar Mountain (Airmont)</td>
+                                    <td>
+                                    <p>Intel® Puma™ 7 Family&nbsp;<br>
+                                    Intel® Atom® Processors</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>06_75H</td>
+                                    <td>&nbsp;</td>
+                                    <td>Butter (Airmont)&nbsp;</td>
+                                    <td>Intel® Atom® Processors</td>
+                                </tr>
+                                <tr>
+                                    <td>06_7AH</td>
+                                    <td>1</td>
+                                    <td>Gemini Lake</td>
+                                    <td>
+                                    <p>Intel® Pentium® Processor Silver Series<br>
+                                    Intel® Celeron® Processor J Series<br>
+                                    Intel® Celeron® Processor N Series</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>06_7AH</td>
+                                    <td>8</td>
+                                    <td>Gemini Lake</td>
+                                    <td>
+                                    <p>Intel® Celeron® Processor J Series<br>
+                                    Intel® Celeron® Processor N Series</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>06_86H</td>
+                                    <td>4</td>
+                                    <td>Snowridge (Tremont)</td>
+                                    <td>Intel® Atom® Processors</td>
+                                </tr>
+                                <tr>
+                                    <td>06_86H</td>
+                                    <td>5 (B step)</td>
+                                    <td>Snowridge (Tremont)</td>
+                                    <td>Intel® Xeon® D processor family</td>
+                                </tr>
+                                <tr>
+                                    <td>06_86H</td>
+                                    <td>7 (C step)</td>
+                                    <td>Snowridge (Tremont)</td>
+                                    <td>Intel® Xeon® D processor family</td>
+                                </tr>
+                                <tr>
+                                    <td>06_8AH</td>
+                                    <td>1</td>
+                                    <td>Lakefield B-step (Tremont)</td>
+                                    <td>Intel® Core™ Processors with Intel® Hybrid Technology</td>
+                                </tr>
+                                <tr>
+                                    <td>06_8AH</td>
+                                    <td>1</td>
+                                    <td>Lakefield B-step (Sunnycove)</td>
+                                    <td>Intel® Core™ Processors with Intel® Hybrid Technology</td>
+                                </tr>
+                                <tr>
+                                    <td>06_96H</td>
+                                    <td>1</td>
+                                    <td>Elkhart Lake (Tremont)</td>
+                                    <td>Intel® Atom® Processors</td>
+                                </tr>
+                                <tr>
+                                    <td>06_9CH</td>
+                                    <td>0</td>
+                                    <td>Jasper Lake (Tremont)</td>
+                                    <td>Intel® Atom® Processors</td>
+                                </tr>
+                            </tbody>
+                        </table>   
+                        <p>&nbsp;</p>
+                        <p>&nbsp;</p>
+                    </section>
+
+                </div>
+            </section>
+        </div>
+    </div>
+    </div>
+    </section>
+
+    <section style="border-top: 1px solid #d7d7d7;" class="container py-5">
+        <h4 class="h6">Product and Performance Information</h4>
+        <div class="disclaimer" style="font-size: 12px;"><sup>1</sup> Performance varies by use, configuration and other
+            factors. Learn more at <a class="b_special_a1" href="">www.Intel.com/PerformanceIndex.</a></div>
+        </div>
+    </section>
+
+    <!-- footer -->
+    <div id="footer"></div>
+
+    <!-- nav script -->
+    <script>
+        // navbar include  
+        fetch('/y_index/y_navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar').innerHTML = data;
+            });
+        // footer include 
+        fetch('/y_index/y_footer.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('footer').innerHTML = data;
+            });
+    </script>
+    <!-- nav script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            if (document.getElementsByClassName('VK_all_sections section') && document.getElementsByClassName('VK_sidebar_dropdown')) {
+                const sections = document.querySelectorAll('.VK_all_sections section');
+                const navLinks = document.querySelectorAll('.VK_sidebar_dropdown a');
+                const detailsElements = document.querySelectorAll('.VK_sidebar_dropdown details');
+
+                function removeActiveClass() {
+                    navLinks.forEach(link => link.classList.remove('VK_sidebar_active_link'));
+                    detailsElements.forEach(details => {
+                        details.removeAttribute('open');
+                        details.setAttribute('close', ''); // Optional: to visually indicate it's closed
+                    });
+                }
+
+                function activateLinkAndDetails(targetId) {
+                    navLinks.forEach(link => {
+                        if (link.getAttribute('href') === `#${targetId}`) {
+                            link.classList.add('VK_sidebar_active_link');
+                            let parentDetails = link.closest('details');
+
+                            // Open all ancestor details elements
+                            while (parentDetails) {
+                                parentDetails.setAttribute('open', '');
+                                parentDetails.removeAttribute('close'); // Optional: remove the closed indicator
+                                parentDetails = parentDetails.parentElement.closest('details');
+                            }
+                        }
+                    });
+                }
+
+                function onScroll() {
+                    let currentSection = '';
+                    sections.forEach(section => {
+                        const sectionTop = section.getBoundingClientRect().top;
+                        const sectionBottom = section.getBoundingClientRect().bottom;
+
+                        // Check if the section is in view
+                        if (sectionTop <= 100 && sectionBottom >= 0) {
+                            currentSection = section.getAttribute('id');
+                        }
+                    });
+
+                    if (currentSection) {
+                        removeActiveClass();
+                        activateLinkAndDetails(currentSection);
+                    } else {
+                        removeActiveClass();
+                    }
+                }
+
+                window.addEventListener('scroll', onScroll);
+            } else {
+                return
+            }
+        });
+    </script>
+
+    <!-- copy script -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            document.querySelectorAll(".mv_copy_icon").forEach((icon) => {
+                icon.addEventListener("click", async function () {
+                    try {
+                        const toolbar = this.closest(".mv_code_toolbar");
+                        const codeBlock = toolbar.querySelector(".code-content");
+                        const codeContent = codeBlock.innerText;
+
+                        // Use Clipboard API to copy text
+                        await navigator.clipboard.writeText(codeContent);
+
+                        // Hide the copy icon and show the "Copied!" message
+                        const message = toolbar.querySelector(".mv_copy_message");
+                        this.classList.add("hidden"); // Hide the copy icon
+                        message.classList.remove("hidden"); // Show the "Copied!" message
+
+                        // Hide the message and show the icon again after 2 seconds
+                        setTimeout(() => {
+                            message.classList.add("hidden");
+                            this.classList.remove("hidden");
+                        }, 2000); // Adjust delay as needed
+
+                    } catch (err) {
+                        console.error('Failed to copy text: ', err);
+                    }
+                });
+            });
+        });
+    </script>
+
+</body>
+
+</html>
+
+
+
+
