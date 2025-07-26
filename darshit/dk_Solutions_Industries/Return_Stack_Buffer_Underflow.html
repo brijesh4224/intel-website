@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Return Stack Buffer Underflow / CVE-2022-29901, CVE-2022-28693 / INTEL-SA-00702</title>
+
+    <!-- font family -->
+    <link href="https://fonts.cdnfonts.com/css/intel-clear" rel="stylesheet">
+
+    <link rel="stylesheet" href="/css/dk_developer_edge_iot_5G_industrial_automation_see_all_wireless_network_ready_printed_circuit_board_(PCB)_defect_detection.css">
+    <link rel="stylesheet" href="/css/mv_product/ECC.css">
+    <link rel="stylesheet" href="/css/rushita_automotive.css">
+
+    <!-- header footer -->
+    <link rel="stylesheet" href='/css/yatri.css'>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" rel="stylesheet">
+
+</head>
+
+<style>
+    .dk_color1 {
+        color: #069 !important;
+    }
+
+    .dk_color2 {
+        color: #008200 !important;
+    }
+
+    .dk_color3 {
+        color: #b24501;
+    }
+
+    .dk_note{
+        font-size: 1rem;
+        line-height: 1.25;
+        word-wrap: break-word;
+        background-color: #e6e6e6;
+        padding: 20px;
+        border-left: 3px solid #fdb813;
+    }
+    .dk_code_simple{
+        background-color: #e6e6e6;
+        color: #53565a;
+        border-radius: 0;
+    }
+
+    .dk_greyHighlight{
+        font-size: 1rem;
+        line-height: 1.25;
+        background-color: #e6e6e6;
+        padding: 20px;
+    }
+
+    @media(max-width:1200px) {
+        .dk_risk_app_img {
+            width: 100% !important;
+        }
+        .mv_product_table{
+            width: 100% !important;
+        }
+    }
+</style>
+
+<body>
+    <!-- header -->
+    <div id="navbar"></div>
+
+    <!------------------------------------------------------------------------------->
+    <section class="m_ai_tdrop">
+        <div>
+            <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Developers
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item m_dropActive" href="#">Overview</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Topics & Technologies</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Tools</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Hardware Platforms</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Resources & Documentation</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Learn</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Community & Events</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Developer Programs</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Get Help</a></li>                                                              
+            </ul>
+        </div>
+        <div class="m_ai_shlash">/</div>
+        <div>
+            <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Topics & Technologies
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item m_dropActive" href="#">Artificial Intelligence</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Client Applications</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Cloud</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">GPU Research</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Edge Computing</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">GameDev</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">HPC</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Data Center</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Firmware</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Networking</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Open Ecosystem</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Persistent Memory</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Platform Analysis Technology</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Runtime Languages</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Software Security Guidance</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Storage</a></li>
+            </ul>
+        </div>
+        <div class="m_ai_shlash">/</div>
+        <div>
+            <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Software Security Guidance
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item m_dropActive" href="#">Advisory Guidance</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Best Practices</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Resources</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Disclosure Documentation</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Feature Documentation</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">More Information</a></li>
+            </ul>
+        </div>
+        <div class="m_ai_shlash">/</div>
+        <div>
+            <button class="btn" style="color: #0068B5;">
+                Advisory Guidance
+            </button>
+        </div>
+        <div class="m_ai_shlash">/</div>
+        <div class="m_ai_httl">Return Stack Buffer Underflow</div>
+
+    </section>
+    <!------------------------------------------------------------------------------->
+
+    <!-- VMware Horizon -->
+    <section>
+        <div class="mv_vmware_bg_color">
+            <div class="container">
+                <div class="mv_vmware_padd">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="mv_vmware_heading">
+                                <h3>Return Stack Buffer Underflow / Return Stack Buffer Underflow / CVE-2022-29901, CVE-2022-28693 / INTEL-SA-00702</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mv_cd_page_marquee_info">
+                        <div class="mv_cd_page_marquee_action">
+                            <div class="mv_cd_page_marquee_action_padd">
+                                <label for="">ID</label>
+                                <span>737306</span>
+                            </div>
+                            <div class="mv_cd_page_marquee_action_padd">
+                                <label for="">Updated</label>
+                                <span>7/12/2022</span>
+                            </div>
+                            <div class="mv_cd_page_marquee_action_padd">
+                                <label for="">Version</label>
+                                <span>Latest</span>
+                            </div>
+                            <div class="mv_cd_page_marquee_action_padd">
+                                <label for=""></label>
+                                <span>Public</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="container py-5">
+        <div class="row">
+            <div class="d-flex justify-content-end col-xl-10 py-3 d-md-none">
+                <i class="fa-solid fa-print fs-4 px-2 " style="color:#0068B5"></i>
+                <i class="fa-regular fa-envelope fs-4 px-2" style="color:#0068B5"></i>
+            </div>
+            <div class="col-lg-3 col-md-4">
+                <!-- nav -->
+                <div class="VK_sticky_side_bar VK_side_bar_postion_stickey">
+                    <div>
+                        <div class="VK_sidebar_dropdown">
+                            <p class="m-0">
+                                <a href="#dk_aliases" class="text-decoration-none VK_a">
+                                    Aliases
+                                </a>
+                            </p>
+                            <p class="m-0">
+                                <a href="#dk_related_content" class="text-decoration-none VK_a">
+                                    Related Content
+                                </a>
+                            </p>
+                            <p class="m-0">
+                                <a href="#dk_overview" class="text-decoration-none VK_a">
+                                    Overview
+                                </a>
+                            </p>
+                            <details>
+                                <summary>
+                                    <a href="#dk_mitigation" class="text-decoration-none VK_a">
+                                        Mitigation
+                                    </a>
+                                </summary>
+                                <ul class="list-unstyled ps-3 mb-0">
+                                    <li>
+                                        <a href="#dk_guidance_rsbu" class="text-decoration-none VK_a my-1">
+                                            Guidance for RSBU
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <details>
+                                            <summary>
+                                                <a href="#dk_updated_injection" class="text-decoration-none VK_a">
+                                                    Updated Guidance for Branch History Injection and Intra-mode Branch Target Injection
+                                                </a>
+                                            </summary>
+                                            <ul class="list-unstyled ps-3 mb-0">
+                                                <li>
+                                                    <a href="#dk_speculative_ret" class="text-decoration-none VK_a my-1">
+                                                        Speculative Execution of Instructions after RET
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </details>
+                                    </li>
+                                </ul>
+                            </details>
+                            <p class="m-0">
+                                <a href="#dk_affected_proc" class="text-decoration-none VK_a">
+                                    Affected Processors
+                                </a>
+                            </p>
+                            <p class="m-0">
+                                <a href="#dk_footnotes" class="text-decoration-none VK_a">
+                                    Footnotes
+                                </a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <!-- thinkcode -->
+                <!-- <div class="dk_things_code_main">
+                    <div class="dk_things_code">
+                        <h2 class="text-left headline-font-one-bold">Loss Prevention Retail Reference Implementation provides:</h2>
+                        <div class="dk_high_quality">
+                            <ul>
+                                <li>High-quality testable ingredients needed to create a solution to prevent thefts at stores.</li>
+                                <li>Building blocks needed to enable the use case with solid performance numbers.</li>
+                                <li>Hardware requirements to support the workloads and scale the solution.</li>
+                            </ul>
+                        </div>
+                    <div class="dk_get_code">
+                        <button class="dk_button">Get Started on GitHub<sup>*</sup></button>
+                    </div>
+                    </div> 
+                </div> -->
+            </div>
+            <div class="col-lg-9 col-md-8">
+                <div class="d-md-flex justify-content-end col-xl-10 py-3 d-none">
+                    <i class="fa-solid fa-print fs-4 px-2 " style="color:#0068B5"></i>
+                    <i class="fa-regular fa-envelope fs-4 px-2" style="color:#0068B5"></i>
+                </div>
+                <div class="col-xl-10 VK_all_sections">
+                    <p>&nbsp;</p>
+                    <table class="mv_product_table w-100 mb-4">
+                        <tbody>
+                            <tr>
+                                <td>
+                                <p><strong>Disclosure date:&nbsp;</strong><br>
+                                    2022-07-12</p>
+                    
+                                <p><strong>Published date:&nbsp;</strong><br>
+                                    2022-07-12</p>
+                                </td>
+                                <td>
+                                <p><img src="/img/darshit_image/shield-icon-8.png" width="100"><strong>Severity rating:&nbsp;</strong><br>
+                                    4.7 Medium</p>
+                                </td>
+                                <td>Industry-wide severity ratings can be found in the&nbsp;<a class="b_special_a1" href="">National Vulnerability Database</a></td>
+                            </tr>
+                        </tbody>
+                    </table> 
+
+                    <section id="dk_aliases">
+                        <p class="mb-0">&nbsp;</p>
+                        <h3 style="font-weight: 350;">Aliases</h3>
+                        <ul>
+                            <li>Retbleed</li>
+                        </ul>
+                    </section>
+
+                    <section id="dk_related_content">
+                        <p class="mb-0">&nbsp;</p>
+                        <h3 style="font-weight: 350; padding-bottom: 0.5rem;">Related Content</h3>
+                        <ul>
+                            <li><a class="b_special_a1" href="">INTEL-SA-00702</a></li>
+                            <li><a class="b_special_a1" href="">Affected Processors</a>&nbsp;(<em>2022</em> tab, <em>RSBU</em> (<em>RSBA) CVE-2022-29901</em> and <em>RSBU</em> (<em>RRSBA) CVE-2022-28693</em> columns)</li>
+                            <li><a class="b_special_a1" href="">Retpoline: A Branch Target Injection Mitigation</a></li>
+                            <li><a class="b_special_a1" href="">Branch History Injection and Intra-mode Branch Target Injection</a></li>
+                        </ul>
+                    </section>
+
+                    <section id="dk_overview">
+                        <p class="mb-0">&nbsp;</p>
+                        <h3 style="font-weight: 350; padding-bottom: 0.5rem;">Overview</h3>
+                        <p>The Return Stack Buffer (RSB) is a fixed-size buffer that provides predictions for <span class="dk_code_simple">RET</span> instructions. It can underflow in certain conditions. For example, RSB underflow may occur when a program is returning from a deep call stack due to executing more <span class="dk_code_simple">RET</span>s than the number of entries in the RSB for that processor. As previously described in <a class="b_special_a1" href="">Retpoline: A Branch Target Injection Mitigation</a>, some Intel processors may use alternate predictors to predict the target of <span class="dk_code_simple">RET</span> instructions when the RSB has underflowed. This is also referred to as “Empty RSB” behavior.</p>
+                        <p>On some Skylake-generation processors without eIBRS, researchers from <a class="b_special_a1" href="">ETH Zurich</a> have demonstrated RSB underflow (RSBU) attacks against the Linux* kernel. This could cause a <span class="dk_code_simple">RET</span> instruction in the kernel to predict a target chosen by user-mode software. This article considers potential usage of this technique by a guest against a VMM to also be “RSBU.” Although unaware of any demonstrated attacks that exploit RSB underflow at the time, Intel previously documented the theoretical possibility of <a class="b_special_a1" href="">Branch Target Injection</a> (BTI) attacks based on exploiting RSB underflow due to deep call stacks on some Skylake-generation processors that do not support enhanced <a class="b_special_a1" href="">indirect branch restricted speculation</a>&nbsp;(eIBRS). These attacks are mitigated by IBRS, but not by the retpoline software mitigation.</p>
+                        <p>The same researchers also observed a previously undocumented RSB alternate prediction behavior on some Skylake-generation processors <em>with</em> eIBRS. &nbsp;On these processors, the alternative prediction target are constrained to branch predictor entries within the current predictor domain. The <a class="b_special_a1" href="">Branch History Injection and Intra-mode Branch Target Injection</a> technical article previously termed such behavior as Restricted RSB Alternate (RRSBA), and described techniques that could be used to influence the target of a <span class="dk_code_simple">RET</span> instruction within the current domain. &nbsp;</p>
+                        <p>This article summarizes an update to Intel’s guidance for both of these classes of potential attacks. More details and updated guidance can be found in <a class="b_special_a1" href="">Retpoline: A Branch Target Injection Mitigation</a>. Managed runtime developers should continue to follow the previous guidance <a class="b_special_a1" href="">Managed Runtime Speculative Execution Side Channel Mitigations</a>.</p>
+                        <p>Return Stack Buffer Underflow has been assigned CVE-2022-29901 with a CVSS base score of 4.7 (Medium) CVSS:3.1/AV:L/AC:H/PR:L/UI:N/S:U/C:H/I:N/A:N and CVE-2022-28693 with a CVSS base score of 4.7 (Medium) CVSS:3.1/AV:L/AC:H/PR:L/UI:N/S:U/C:H/I:N/A:N.</p>
+                    </section>
+
+                    <section id="dk_mitigation">
+                        <p class="mb-0">&nbsp;</p>
+                        <h3 style="font-weight: 350; padding-bottom: 0.5rem;">Mitigation</h3>
+                        <p>The situations where the RSB may become empty, and thus RSB underflow may be possible, are documented in the “Empty RSB Mitigation on Skylake-generation” section of Intel’s <a class="b_special_a1" href="">retpoline guidance</a>. The transient execution resulting from such situations could potentially be used to perform <a class="b_special_a1" href="">Branch Target Injection</a>, <a class="b_special_a1" href="">Branch History Injection</a> (BHI), and <a class="b_special_a1" href="">intra-mode Branch Target Injection</a> (IMBTI). This section provides updated guidance for mitigating such potential attacks on processors that use alternate predictors on underflowed <span class="dk_code_simple">RET</span>s. The existing articles <a class="b_special_a1" href="">Branch Target Injection</a> and <a class="b_special_a1" href="">BHI and IMBTI</a> have also been updated to include the guidance provided in this section.</p>
+                    </section>
+
+                    <section id="dk_guidance_rsbu">
+                        <h4><a class="b_special_a1" href="">Guidance for RSBU</a></h4>
+                        <p>The <a class="b_special_a1" href="">Indirect Branch Restricted Speculation</a> mechanism is a mitigation for Branch Target Injection which prevents software executed in a less privileged predictor mode from controlling the predicted targets of indirect branches (such as <span class="dk_code_simple">RET</span>s) executed by software executed in a more privileged predictor mode.&nbsp;</p>
+                        <p>Enabling IBRS (including enhanced IBRS) will mitigate the “RSBU” attack demonstrated by the researchers. As previously <a class="b_special_a1" href="">documented</a>, Intel recommends the use of enhanced IBRS, where supported. This includes any processor that enumerates RRSBA but not RRSBA_DIS_S.</p>
+                        <p>Processors that enumerate support for RRSBA_DIS_S are not affected by the “RSBU” attack demonstrated by the researchers regardless of the setting of IBRS or RRSBA_DIS_S.</p>
+                        <p>Some Skylake-generation processors exhibit RSBA behavior. On these processors, which do not support enhanced IBRS, operating system and hypervisor vendors should consider enabling IBRS after transition from less privileged domains.&nbsp;</p>
+                        <p>For processors with eIBRS, current guidance recommends ensuring IBRS is set after VM exit.</p>
+                        <p>The “RSB stuffing” software sequence documented in Intel’s <a class="b_special_a1" href="">retpoline guidance</a> can be used to reduce the likelihood of underflows on affected processors. An alternative mitigation for RSB underflow attacks relying on deep call stacks, such as “Retbleed,” is to apply “RSB stuffing” or set IBRS before RET instructions at risk of underflow due to deep call stacks. In the Linux kernel RSB stuffing can be enabled by adding cmdline parameter: "spectre_v2=retpoline retbleed=stuff" on Skylake-generation Intel processors that don't have eIBRS.</p>
+                    </section>
+
+                    <section id="dk_updated_injection">
+                        <h4><a class="b_special_a1" href="">Updated Guidance for Branch History Injection and Intra-mode Branch Target Injection</a></h4>
+                        <p>Branch History Injection and intra-mode BTI attacks have more complex requirements, including the need for suitable disclosure gadgets to be present in the predictor entries used by the relevant predictor mode. At the time of writing, Intel is not aware of any proposed BHI attacks using RSB underflow behavior. Where such attacks are a concern, hardening techniques that clear registers before <span class="dk_code_simple">RET</span> instructions (such as gcc’s <span class="dk_code_simple">-fzero-call-used-regs</span> option) may be useful to provide defense-in-depth by preventing the use of some potential gadgets, even if such gadgets are present.</p>
+                        <p>On Skylake-generation processors without support for enhanced IBRS, enabling IBRS is sufficient to mitigate BHI and intra-mode BTI attacks. On later processors, Intel recommends enabling eIBRS. As <a class="b_special_a1" href="">documented</a>, this requires the VMM to set the IBRS bit of IA32_SPEC_CTRL if a guest has unset it.</p>
+                        <p>On processors based on microarchitecture code name Alder Lake, Sapphire Rapids, and later processors that support the <span class="dk_code_simple">RRSBA_DIS_S</span> indirect branch predictor control, <span class="dk_code_simple">RRSBA_DIS_S</span> can be used to disable the use of alternate predictors on RSB underflow. As documented in the <a class="b_special_a1" href="">BHI guidance</a>, where software is using retpoline as a mitigation for BHI or intra-mode BTI, Intel recommends using the <span class="dk_code_simple">RRSBA_DIS_S</span> control.&nbsp;</p>
+                        <p>On processors where RRSBA_DIS controls are not available, Intel has updated the <a class="b_special_a1" href="">BHI guidance</a> to provide a BHB-clearing software sequence that can be used at appropriate points, such as transitions from less privileged domains, to prevent a potential attacker from being able to influence the BHB.</p>
+                    </section>
+
+                    <section id="dk_speculative_ret">
+                        <h4>Speculative Execution of Instructions after RET</h4>
+                        <p>On processors which demonstrate RSBA behavior<a class="b_special_a1" href=""><sup>1</sup></a>, which do not enumerate enhanced IBRS, <span class="dk_code_simple">RET</span> execution with a target displacement more than 4 GB away may create an indirect branch predictor entry with a target containing the address of the instruction following a near <span class="dk_code_simple">RET</span>. This means that alternate predictors may predict the address after the near <span class="dk_code_simple">RET</span> for subsequent <span class="dk_code_simple">RET</span> predictions with an empty RSB.</p>
+                        <p>This is only relevant for Skylake-generation processors without eIBRS which exhibit RSBA behavior; and such alternate predictors are only used when RSB predictions are not available, such as for underflowed <span class="dk_code_simple">RET</span>s. In such cases, following a <span class="dk_code_simple">RET</span> with a speculation barrier, such as an <span class="dk_code_simple">INT3</span> instruction, will prevent further speculative execution in case of such a prediction.</p>
+                    </section>
+
+                    <section id="dk_affected_proc">
+                        <p class="mb-0">&nbsp;</p>
+                        <h3 style="padding-bottom: 0.5rem; font-weight: 350;"><a class="b_special_a1" href="">Affected Processors</a></h3>
+                        <p>Refer to the <a class="b_special_a1" href="">consolidated Affected Processors table</a> (<em>2022</em> tab, <em>RSBU</em> (<em>RSBA) CVE-2022-29901</em> and <em>RSBU</em> (<em>RRSBA) CVE-2022-28693</em> columns) for a list of processors affected by these behaviors.</p>
+                        <p><strong>RSBA</strong>: RSB Alternate (RSBA) behavior allows alternate branch predictors to be used by near <span class="dk_code_simple">RET</span> instructions when the RSB is empty, and the predicted targets of these alternate predictors are not limited to those of the current prediction domain. The guidance in the <a class="b_special_a1" href="">Guidance for RSBU</a> section is relevant for processors with RSBA behavior.&nbsp;</p>
+                        <p><strong>RRSBA</strong>: Restricted RSB Alternate (RRSBA) behavior allows alternate branch predictors to be used by near <span class="dk_code_simple">RET</span> instructions when the RSB is empty. When eIBRS is enabled, the predicted targets of these alternate predictors are restricted to those belonging to the indirect branch predictor entries of the current prediction domain. Additionally, on parts that enumerate <span class="dk_code_simple">RRSBA_DIS_S</span>, the above property holds even when eIBRS is not enabled. The guidance in the <a class="b_special_a1" href="">Updated Guidance for Branch History Injection and Intra-mode BTI</a> section is relevant for processors with RRSBA behavior.&nbsp;</p>
+                        <p>Note: Intel plans to provide a microcode update for such processors which will have a new enumeration<a class="b_special_a1" href=""><sup>2</sup></a> for RRSBA.</p>
+                    </section>
+
+                    <section id="dk_footnotes">
+                        <p class="mb-0">&nbsp;</p>
+                        <h3 style="font-weight: 350; padding-bottom: 0.5rem;"><a class="b_special_a1" href="">Footnotes</a></h3>
+                        <ol>
+                            <li>RSBA behavior is enumerated through CPUID family/model information or IA32_ARCH_CAPABILITIES[RSBA]. See <a class="b_special_a1" href="">Retpoline: A Branch Target Injection Mitigation</a> for details.</li>
+                            <li>For processors based on microarchitecture code name Alder Lake, a microcode update may be needed to be loaded for the processor to enumerate RRSBA, as well as to avoid other potential retpoline effectiveness issues.&nbsp;</li>
+                        </ol>
+                        <p>&nbsp;</p>
+                    </section>
+                    
+                </div>
+            </section>
+        </div>
+    </div>
+    </div>
+    </section>
+
+    <section style="border-top: 1px solid #d7d7d7;" class="container py-5">
+        <h4 class="h6">Product and Performance Information</h4>
+        <div class="disclaimer" style="font-size: 12px;"><sup>1</sup> Performance varies by use, configuration and other
+            factors. Learn more at <a class="b_special_a1" href="">www.Intel.com/PerformanceIndex.</a></div>
+        </div>
+    </section>
+
+    <!-- footer -->
+    <div id="footer"></div>
+
+    <!-- nav script -->
+    <script>
+        // navbar include  
+        fetch('/y_index/y_navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar').innerHTML = data;
+            });
+        // footer include 
+        fetch('/y_index/y_footer.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('footer').innerHTML = data;
+            });
+    </script>
+    <!-- nav script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            if (document.getElementsByClassName('VK_all_sections section') && document.getElementsByClassName('VK_sidebar_dropdown')) {
+                const sections = document.querySelectorAll('.VK_all_sections section');
+                const navLinks = document.querySelectorAll('.VK_sidebar_dropdown a');
+                const detailsElements = document.querySelectorAll('.VK_sidebar_dropdown details');
+
+                function removeActiveClass() {
+                    navLinks.forEach(link => link.classList.remove('VK_sidebar_active_link'));
+                    detailsElements.forEach(details => {
+                        details.removeAttribute('open');
+                        details.setAttribute('close', ''); // Optional: to visually indicate it's closed
+                    });
+                }
+
+                function activateLinkAndDetails(targetId) {
+                    navLinks.forEach(link => {
+                        if (link.getAttribute('href') === `#${targetId}`) {
+                            link.classList.add('VK_sidebar_active_link');
+                            let parentDetails = link.closest('details');
+
+                            // Open all ancestor details elements
+                            while (parentDetails) {
+                                parentDetails.setAttribute('open', '');
+                                parentDetails.removeAttribute('close'); // Optional: remove the closed indicator
+                                parentDetails = parentDetails.parentElement.closest('details');
+                            }
+                        }
+                    });
+                }
+
+                function onScroll() {
+                    let currentSection = '';
+                    sections.forEach(section => {
+                        const sectionTop = section.getBoundingClientRect().top;
+                        const sectionBottom = section.getBoundingClientRect().bottom;
+
+                        // Check if the section is in view
+                        if (sectionTop <= 100 && sectionBottom >= 0) {
+                            currentSection = section.getAttribute('id');
+                        }
+                    });
+
+                    if (currentSection) {
+                        removeActiveClass();
+                        activateLinkAndDetails(currentSection);
+                    } else {
+                        removeActiveClass();
+                    }
+                }
+
+                window.addEventListener('scroll', onScroll);
+            } else {
+                return
+            }
+        });
+    </script>
+
+    <!-- copy script -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            document.querySelectorAll(".mv_copy_icon").forEach((icon) => {
+                icon.addEventListener("click", async function () {
+                    try {
+                        const toolbar = this.closest(".mv_code_toolbar");
+                        const codeBlock = toolbar.querySelector(".code-content");
+                        const codeContent = codeBlock.innerText;
+
+                        // Use Clipboard API to copy text
+                        await navigator.clipboard.writeText(codeContent);
+
+                        // Hide the copy icon and show the "Copied!" message
+                        const message = toolbar.querySelector(".mv_copy_message");
+                        this.classList.add("hidden"); // Hide the copy icon
+                        message.classList.remove("hidden"); // Show the "Copied!" message
+
+                        // Hide the message and show the icon again after 2 seconds
+                        setTimeout(() => {
+                            message.classList.add("hidden");
+                            this.classList.remove("hidden");
+                        }, 2000); // Adjust delay as needed
+
+                    } catch (err) {
+                        console.error('Failed to copy text: ', err);
+                    }
+                });
+            });
+        });
+    </script>
+
+</body>
+
+</html>
+
+

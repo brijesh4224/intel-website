@@ -802,12 +802,12 @@
                 </div>
                 <div class="col-xl-10 VK_all_sections">
                     <p>&nbsp;</p>
-                    <p>This technical documentation expands on the information in the Microarchitectural Data Sampling (MDS) guidance. Be sure to review the <a class="b_special_a1" href="">disclosure overview for software developers</a> first and apply any microcode updates from your OS vendor.</p>
+                    <p>This technical documentation expands on the information in the Microarchitectural Data Sampling (MDS) guidance. Be sure to review the <a class="b_special_a1" href="/darshit/dk_Solutions_Industries/Microarchitectural_Data_Sampling_Guidance.html">disclosure overview for software developers</a> first and apply any microcode updates from your OS vendor.</p>
 
                     <section id="dk_how_mds_works">
                         <p class="mb-0">&nbsp;</p>
                         <h3 style="font-weight: 350; padding-bottom: 0.5rem;">How Microarchitectural Data Sampling (MDS) Works</h3>
-                        <p>MDS may allow a malicious user who can locally execute code on a system to infer the values of secret data otherwise protected by architectural mechanisms. Although it may be difficult to target particular data on a system using these methods, malicious actors may be able to infer secrets by collecting and analyzing large amounts of data. Refer to the <a class="b_special_a1" href="">MDS table in&nbsp;CPUID Enumeration and Architectural MSRs</a> for a list of processors that may be affected by MDS. MDS only refers to methods that involve microarchitectural structures other than the level 1 data cache (L1D) and thus does not include <a class="b_special_a1" href="">Rogue Data Cache Load (RDCL)</a> or <a class="b_special_a1" href="">L1 Terminal Fault (L1TF)</a>.</p>
+                        <p>MDS may allow a malicious user who can locally execute code on a system to infer the values of secret data otherwise protected by architectural mechanisms. Although it may be difficult to target particular data on a system using these methods, malicious actors may be able to infer secrets by collecting and analyzing large amounts of data. Refer to the <a class="b_special_a1" href="/darshit/dk_Solutions_Industries/CPUID_Enumeration_and_Architectural_MSRs.html">MDS table in&nbsp;CPUID Enumeration and Architectural MSRs</a> for a list of processors that may be affected by MDS. MDS only refers to methods that involve microarchitectural structures other than the level 1 data cache (L1D) and thus does not include <a class="b_special_a1" href="/darshit/dk_Solutions_Industries/Rogue_Data_Cache_Load_Guidance.html">Rogue Data Cache Load (RDCL)</a> or <a class="b_special_a1" href="/darshit/dk_Solutions_Industries/L1_Terminal_Fault.html">L1 Terminal Fault (L1TF)</a>.</p>
                         <p class="mb-0">The MDS speculative execution side channel methods can be used to expose data in the following microarchitectural structures:</p>
                         <ul>
                             <li>Store buffers: Temporary buffers to hold store addresses and data.</li>
@@ -816,7 +816,7 @@
                         </ul>
                         <p>These structures are much smaller than the L1D, and therefore hold less data and are overwritten more frequently. It is also more difficult to use MDS methods to infer data that is associated with a specific memory address, which may require the malicious actor to collect significant amounts of data and analyze it to locate any secret data.</p>
                         <p>New microcode updates (MCUs) are being released to help software mitigate these issues. Intel recommends updating the microcode and clearing microarchitectural buffers when switching to software that is not trusted by the previous software. These mitigations will require changes and updates to operating systems, hypervisors, and Intel® Software Guard Extensions (Intel® SGX).</p>
-                        <p>The microarchitecture details in this document are applicable to the processors affected by MDS techniques and should not be considered universal for all Intel processors. Refer to <a class="b_special_a1" href="">CPUID Enumeration and Architectural MSRs</a> for a list of affected processors.</p>
+                        <p>The microarchitecture details in this document are applicable to the processors affected by MDS techniques and should not be considered universal for all Intel processors. Refer to <a class="b_special_a1" href="/darshit/dk_Solutions_Industries/CPUID_Enumeration_and_Architectural_MSRs.html">CPUID Enumeration and Architectural MSRs</a> for a list of affected processors.</p>
                     </section>
 
                     <section id="dk_microarchitectural">
@@ -833,7 +833,7 @@
 
                     <section id="dk_microarchitectural_12130">
                         <h4 class="mt-5" style="font-weight: 300;">Microarchitectural Fill Buffer Data Sampling (MFBDS) CVE-2018-12130</h4>
-                        <p>A fill buffer is an internal structure used to gather data on a first level data cache miss. When a memory request misses the L1 data cache, the processor allocates a fill buffer to manage the request for the data cache line. The fill buffer also temporarily manages data that is returned or sent in response to a memory, I/O, or special register operation. Special register operations are described in the <a class="b_special_a1" href="">Special Register Buffer Data Sampling</a>. Fill buffers may also be used when stores hit in the L1 data cache. Fill buffers can forward data to load operations and also write data to the data cache. Once the data from the fill buffer is written to the cache (or otherwise consumed when the data will not be cached), the processor deallocates the fill buffer, allowing that entry to be reused for future memory operations.</p>
+                        <p>A fill buffer is an internal structure used to gather data on a first level data cache miss. When a memory request misses the L1 data cache, the processor allocates a fill buffer to manage the request for the data cache line. The fill buffer also temporarily manages data that is returned or sent in response to a memory, I/O, or special register operation. Special register operations are described in the <a class="b_special_a1" href="/darshit/dk_Solutions_Industries/Special_Register_Buffer_Data_Sampling.html">Special Register Buffer Data Sampling</a>. Fill buffers may also be used when stores hit in the L1 data cache. Fill buffers can forward data to load operations and also write data to the data cache. Once the data from the fill buffer is written to the cache (or otherwise consumed when the data will not be cached), the processor deallocates the fill buffer, allowing that entry to be reused for future memory operations.</p>
                         <p>Fill buffers may retain stale data from prior memory requests until a new memory request overwrites the fill buffer. Under certain conditions, the fill buffer may speculatively forward data, including stale data, to a load operation that will cause a fault/assist. This does not result in incorrect program execution because faulting/assisting loads never retire and therefore do not modify the architectural state. However, a disclosure gadget may be able to infer the data in the forwarded fill buffer entry through a side channel timing analysis.</p>
                     </section>
 
@@ -870,7 +870,7 @@
 
                     <section id="dk_hardware_mitigations">
                         <h4 class="mt-3">Hardware Mitigations</h4>
-                        <p>Future and some current processors will have microarchitectural data sampling methods mitigated in the hardware. Most processor mitigations will forward a value of 0 to the speculative dependent operations of a load that encounters an assist during load execution or a fault. Other processors (Intel Atom and future Intel Core) will prevent execution of speculative dependent operations of a load that encounters an assist during load execution or a fault. For a complete list of affected processors, refer to the <a class="b_special_a1" href="">MDS table in&nbsp;CPUID Enumeration and Architectural MSRs</a>.</p>
+                        <p>Future and some current processors will have microarchitectural data sampling methods mitigated in the hardware. Most processor mitigations will forward a value of 0 to the speculative dependent operations of a load that encounters an assist during load execution or a fault. Other processors (Intel Atom and future Intel Core) will prevent execution of speculative dependent operations of a load that encounters an assist during load execution or a fault. For a complete list of affected processors, refer to the <a class="b_special_a1" href="/darshit/dk_Solutions_Industries/CPUID_Enumeration_and_Architectural_MSRs.html">MDS table in&nbsp;CPUID Enumeration and Architectural MSRs</a>.</p>
                         <p>The following MSR enumeration enables software to check if the processor is affected by MDS methods:</p>
                         <p class="mb-0">A value of 1 indicates that the processor is not affected by RDCL or L1TF. In addition, a value of 1 indicates that the processor is not affected by MFBDS.</p>
                         <ul>
@@ -989,7 +989,7 @@
 
                     <section id="dk_software_sequences">
                         <h4 class="mt-4">Software Sequences for Buffer Overwrite</h4>
-                        <p>On processors that do not enumerate the <span class="dk_code_simple">MD_CLEAR</span> functionality<a class="b_special_a1" href=""><sup>2</sup></a>, certain instruction sequences may be used to overwrite buffers affected by MDS. These sequences are described in detail in the <a class="b_special_a1" href="">Software Sequences to Overwrite Buffers Section</a>.</p>
+                        <p>On processors that do not enumerate the <span class="dk_code_simple">MD_CLEAR</span> functionality<a class="b_special_a1" href=""><sup>2</sup></a>, certain instruction sequences may be used to overwrite buffers affected by MDS. These sequences are described in detail in the <a class="b_special_a1" href="/darshit/dk_Solutions_Industries/Microarchitectural_Data_Sampling.html#dk_spftware_sequences_buffers">Software Sequences to Overwrite Buffers Section</a>.</p>
                         <p class="mb-0">Different processors may require different sequences to overwrite the buffers affected by MDS. Some requirements for the software sequences are listed below:</p>
                         <ul>
                             <li>On processors that support simultaneous multithreading<a class="b_special_a1" href=""><sup>6</sup></a> (SMT), other threads on the same physical core should be quiesced during the sequence so that they do not allocate fill buffers. This allows the current thread to overwrite all of the fill buffers. In particular, these quiesced threads should not perform any loads or stores that might miss the L1D cache. A quiesced thread should loop on the <span class="dk_code_simple">PAUSE</span> instruction to limit cross-thread interference during the sequence.</li>
@@ -1031,7 +1031,7 @@
                     <section id="dk_security_domains">
                         <h4 class="mt-4">Security Domains within a Process</h4>
                         <p>Software using language based security may transition between different trust domains. When transitioning between trust domains, a <span class="dk_code_simple">VERW </span>instruction can be used to clear buffers.</p>
-                        <p>Site isolation, as discussed in<a class="b_special_a1" href="">&nbsp;Managed Runtime Speculative Execution Side Channel Mitigations</a>, may be a more effective technique for dealing with speculative execution side channels in general.</p>
+                        <p>Site isolation, as discussed in<a class="b_special_a1" href="/darshit/dk_Solutions_Industries/Managed_Runtime_Speculative_Execution_Side_Channel_Mitigations.html">&nbsp;Managed Runtime Speculative Execution Side Channel Mitigations</a>, may be a more effective technique for dealing with speculative execution side channels in general.</p>
                     </section>
 
                     <section id="dk_mitigations_smt">
@@ -1094,7 +1094,7 @@
                     <section id="dk_spuid_enumeration">
                         <p>&nbsp;</p>
                         <h3 class="mt-4" style="font-weight: 350;">CPUID Enumeration</h3>
-                        <p>For a full list of affected processors, refer to <a class="b_special_a1" href="">the MDS table in&nbsp;CPUID Enumeration and Architectural MSRs</a>.</p>
+                        <p>For a full list of affected processors, refer to <a class="b_special_a1" href="/darshit/dk_Solutions_Industries/CPUID_Enumeration_and_Architectural_MSRs.html">the MDS table in&nbsp;CPUID Enumeration and Architectural MSRs</a>.</p>
                         <p class="mb-0"><strong>CPUID.(EAX=7H,ECX=0):EDX[MD_CLEAR=10]</strong> enumerates support for additional functionality that will flush microarchitectural structures as listed below.</p>
                         <ol>
                             <li>On execution of the (existing) <span class="dk_code_simple">VERW</span> instruction where its argument is a memory operand.</li>

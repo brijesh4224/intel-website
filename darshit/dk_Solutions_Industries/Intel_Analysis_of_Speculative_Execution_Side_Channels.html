@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Intel Analysis of Speculative Execution Side Channels</title>
+
+    <!-- font family -->
+    <link href="https://fonts.cdnfonts.com/css/intel-clear" rel="stylesheet">
+
+    <link rel="stylesheet" href="/css/dk_developer_edge_iot_5G_industrial_automation_see_all_wireless_network_ready_printed_circuit_board_(PCB)_defect_detection.css">
+    <link rel="stylesheet" href="/css/mv_product/ECC.css">
+    <link rel="stylesheet" href="/css/rushita_automotive.css">
+
+    <!-- header footer -->
+    <link rel="stylesheet" href='/css/yatri.css'>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" rel="stylesheet">
+
+</head>
+
+<style>
+    .dk_color1 {
+        color: #069 !important;
+    }
+
+    .dk_color2 {
+        color: #008200 !important;
+    }
+
+    .dk_color3 {
+        color: #b24501;
+    }
+
+    .dk_note{
+        font-size: 1rem;
+        line-height: 1.25;
+        word-wrap: break-word;
+        background-color: #e6e6e6;
+        padding: 20px;
+        border-left: 3px solid #fdb813;
+    }
+    .dk_code_simple{
+        background-color: #e6e6e6;
+        color: #53565a;
+        border-radius: 0;
+    }
+
+    .dk_greyHighlight{
+        font-size: 1rem;
+        line-height: 1.25;
+        background-color: #e6e6e6;
+        padding: 20px;
+    }
+
+    @media(max-width:1200px) {
+        .dk_risk_app_img {
+            width: 100% !important;
+        }
+        .mv_product_table{
+            width: 100% !important;
+        }
+    }
+</style>
+
+<body>
+    <!-- header -->
+    <div id="navbar"></div>
+
+    <!------------------------------------------------------------------------------->
+    <section class="m_ai_tdrop">
+        <div>
+            <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Developers
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item m_dropActive" href="#">Overview</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Topics & Technologies</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Tools</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Hardware Platforms</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Resources & Documentation</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Learn</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Community & Events</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Developer Programs</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Get Help</a></li>                                                              
+            </ul>
+        </div>
+        <div class="m_ai_shlash">/</div>
+        <div>
+            <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Topics & Technologies
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item m_dropActive" href="#">Artificial Intelligence</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Client Applications</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Cloud</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">GPU Research</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Edge Computing</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">GameDev</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">HPC</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Data Center</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Firmware</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Networking</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Open Ecosystem</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Persistent Memory</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Platform Analysis Technology</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Runtime Languages</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Software Security Guidance</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Storage</a></li>
+            </ul>
+        </div>
+        <div class="m_ai_shlash">/</div>
+        <div>
+            <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Software Security Guidance
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item m_dropActive" href="#">Advisory Guidance</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Best Practices</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Resources</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Disclosure Documentation</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Feature Documentation</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">More Information</a></li>
+            </ul>
+        </div>
+        <div class="m_ai_shlash">/</div>
+        <div>
+            <button class="btn" style="color: #0068B5;">
+                Disclosure Documentation
+            </button>
+        </div>
+        <div class="m_ai_shlash">/</div>
+        <div class="m_ai_httl">Analysis of Speculative Execution Side Channels</div>
+
+    </section>
+    <!------------------------------------------------------------------------------->
+
+    <!-- VMware Horizon -->
+    <section>
+        <div class="mv_vmware_bg_color">
+            <div class="container">
+                <div class="mv_vmware_padd">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="mv_vmware_heading">
+                                <h3>Intel Analysis of Speculative Execution Side Channels</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mv_cd_page_marquee_info">
+                        <div class="mv_cd_page_marquee_action">
+                            <div class="mv_cd_page_marquee_action_padd">
+                                <label for="">ID</label>
+                                <span>758365</span>
+                            </div>
+                            <div class="mv_cd_page_marquee_action_padd">
+                                <label for="">Updated</label>
+                                <span>5/25/2021</span>
+                            </div>
+                            <div class="mv_cd_page_marquee_action_padd">
+                                <label for="">Version</label>
+                                <span>3.0</span>
+                            </div>
+                            <div class="mv_cd_page_marquee_action_padd">
+                                <label for=""></label>
+                                <span>Public</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="container py-5">
+        <div class="row">
+            <div class="d-flex justify-content-end col-xl-10 py-3 d-md-none">
+                <i class="fa-solid fa-print fs-4 px-2 " style="color:#0068B5"></i>
+                <i class="fa-regular fa-envelope fs-4 px-2" style="color:#0068B5"></i>
+            </div>
+            <div class="col-lg-3 col-md-4">
+                <!-- nav -->
+                <div class="VK_sticky_side_bar VK_side_bar_postion_stickey">
+                    <div>
+                        <div class="VK_sidebar_dropdown">
+                            <details>
+                                <summary>
+                                    <a href="#dk_speculative_methods" class="text-decoration-none VK_a">
+                                        Speculative Execution Side Channel Methods
+                                    </a>
+                                </summary>
+                                <ul class="list-unstyled ps-3 mb-0">
+                                    <li>
+                                        <a href="#dk_speculative_execution" class="text-decoration-none VK_a my-1">
+                                            Speculative Execution
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <details>
+                                            <summary>
+                                                <a href="#dk_side_channel" class="text-decoration-none VK_a">
+                                                    Side Channel Cache Methods
+                                                </a>
+                                            </summary>
+                                            <ul class="list-unstyled ps-3 mb-0">
+                                                <li>
+                                                    <a href="#dk_variant_1" class="text-decoration-none VK_a my-1">
+                                                        Variant 1: Bounds Check Bypass
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#dk_variant_2" class="text-decoration-none VK_a my-1">
+                                                        Variant 2: Branch Target Injection
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#dk_variant_3" class="text-decoration-none VK_a my-1">
+                                                        Variant 3: Rogue Data Cache Load
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#dk_variant_3a" class="text-decoration-none VK_a my-1">
+                                                        Variant 3a: Rogue System Register Read
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#dk_variant_4" class="text-decoration-none VK_a my-1">
+                                                        Variant 4: Speculative Store Bypass
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </details>
+                                    </li>
+                                </ul>
+                            </details>
+                            <details>
+                                <summary>
+                                    <a href="#dk_mitigations" class="text-decoration-none VK_a">
+                                        Mitigations
+                                    </a>
+                                </summary>
+                                <ul class="list-unstyled ps-3 mb-0">
+                                    <li>
+                                        <a href="#dk_variant_11" class="text-decoration-none VK_a my-1">
+                                            Variant 1: Bounds Check Bypass Mitigation
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#dk_variant_22" class="text-decoration-none VK_a my-1">
+                                            Variant 2: Branch Target Injection Mitigation
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#dk_variant_33" class="text-decoration-none VK_a my-1">
+                                            Variant 3: Rogue Data Cache Load Mitigation
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#dk_variant_3aa" class="text-decoration-none VK_a my-1">
+                                            Variant 3a: Rogue System Register Read Mitigation
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#dk_variant_44" class="text-decoration-none VK_a my-1">
+                                            Variant 4: Speculative Store Bypass Mitigation
+                                        </a>
+                                    </li>
+                                </ul>
+                            </details>
+                            <details>
+                                <summary>
+                                    <a href="#dk_related_intel" class="text-decoration-none VK_a">
+                                        Related Intel Security Features and Technologies
+                                    </a>
+                                </summary>
+                                <ul class="list-unstyled ps-3 mb-0">
+                                    <li>
+                                        <a href="#dk_os_guard" class="text-decoration-none VK_a my-1">
+                                            Intel® OS Guard
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#dk_execute_disable" class="text-decoration-none VK_a my-1">
+                                            Execute Disable Bit
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#dk_control_flow" class="text-decoration-none VK_a my-1">
+                                            Control flow Enforcement Technology (CET)
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#dk_protection_keys" class="text-decoration-none VK_a my-1">
+                                            Protection Keys
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#dk_supervisor_mode" class="text-decoration-none VK_a my-1">
+                                            Supervisor-Mode Access Prevention (SMAP)
+                                        </a>
+                                    </li>
+                                </ul>
+                            </details>
+                            <p class="m-0">
+                                <a href="#dk_conclusions" class="text-decoration-none VK_a">
+                                    Conclusions
+                                </a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <!-- thinkcode -->
+                <!-- <div class="dk_things_code_main">
+                    <div class="dk_things_code">
+                        <h2 class="text-left headline-font-one-bold">Loss Prevention Retail Reference Implementation provides:</h2>
+                        <div class="dk_high_quality">
+                            <ul>
+                                <li>High-quality testable ingredients needed to create a solution to prevent thefts at stores.</li>
+                                <li>Building blocks needed to enable the use case with solid performance numbers.</li>
+                                <li>Hardware requirements to support the workloads and scale the solution.</li>
+                            </ul>
+                        </div>
+                    <div class="dk_get_code">
+                        <button class="dk_button">Get Started on GitHub<sup>*</sup></button>
+                    </div>
+                    </div> 
+                </div> -->
+            </div>
+            <div class="col-lg-9 col-md-8">
+                <div class="d-md-flex justify-content-end col-xl-10 py-3 d-none">
+                    <i class="fa-solid fa-print fs-4 px-2 " style="color:#0068B5"></i>
+                    <i class="fa-regular fa-envelope fs-4 px-2" style="color:#0068B5"></i>
+                </div>
+                <div class="col-xl-10 VK_all_sections">
+                    <p>&nbsp;</p> 
+                    <p>&nbsp;</p> 
+                    <p><em>Originally published January 2018.</em></p>
+                    <p>Intel is committed to improving the overall security of computer systems through hardware and software. As detailed by <a class="b_special_a1" href="">Google Project Zero</a>, a new series of side-channel analysis methods have been discovered that potentially facilitate access to unauthorized information. These methods rely on common properties of both high-performance microprocessors and modern operating systems. Susceptibility to these methods is not limited to Intel processors, nor does it imply the processor is working outside its intended functional specification. All of the methods take advantage of speculative execution, a common technique in processors used to achieve high performance.</p>
+                    <p>Intel is working closely with our ecosystem partners, as well as with other silicon vendors whose processors are affected, to design mitigations for these methods.&nbsp;</p>
+                    <p>This white paper provides information on various side channel methods, as well as the mitigations that Intel is pursuing for each.&nbsp;</p>
+                    <p>For information and links to useful resources, visit the <a class="b_special_a1" href="">security research findings page on intel.com</a>.</p>
+
+                    <section id="dk_speculative_methods">
+                        <p class="mb-0">&nbsp;</p>
+                        <h3 style="font-weight: 350;">Speculative Execution Side Channel Methods</h3>
+                    </section>
+
+                    <section id="dk_speculative_execution">
+                        <p class="mb-0">&nbsp;</p>
+                        <h4 style="padding-bottom: 0.5rem;">Speculative Execution</h4>
+                        <p>Speculative execution is one of the main techniques used by most modern high performance processors to improve performance. The concept behind speculative execution is that instructions are executed ahead of knowing that they are required. Without speculative execution, the processor would need to wait for prior instructions to be resolved before executing subsequent ones. By executing instructions speculatively, performance can be increased by minimizing latency and extracting greater parallelism. The results may be discarded if it is discovered that the instructions were not needed after all.&nbsp;</p>
+                        <p>The most common form of speculative execution involves the control flow of a program. Instead of waiting for all branch instructions to resolve to determine which operations are needed to execute, the processor predicts the control flow using a highly sophisticated set of mechanisms. Usually the predictions are correct, which allows high performance to be achieved by hiding the latency of the operations that determine the control flow and increasing the parallelism the processor can extract by having a larger pool of instructions to analyze. However, if a prediction is wrong, then the work that was executed speculatively is discarded and the processor will be redirected to execute down the correct instruction path.&nbsp;</p>
+                        <p>While speculative operations do not affect the architectural state of the processor, they can affect the microarchitectural state in order to create an incidental channel, such as modifying the content stored in caches, Translation Lookaside Buffers (TLBs), microarchitectural predictors and prefetchers. Other incidental channels like resource contention are also possible. The side channel methods described in this white paper take advantage of the fact that these incidental channels (like caches) can be affected by speculative execution.&nbsp;</p>
+                    </section>
+
+                    <section id="dk_side_channel">
+                        <p class="mb-0">&nbsp;</p>
+                        <h4 style="padding-bottom: 0.5rem;">Side Channel Cache Methods</h4>
+                        <p>A side channel method works by gaining information through observing the system, such as by measuring microarchitectural properties about the system. Unlike buffer overflows and other vulnerability classes, side channels do not directly influence the execution of the program, nor do they allow data to be modified or deleted. &nbsp;</p>
+                        <p>A cache timing side channel involves an agent detecting whether a piece of data is present in a specific level of the processor’s caches, where its presence may be used to infer some other piece of information. One method to detect whether the data in question is present is to use timers to measure the latency to access memory at the address. If the memory access takes a short time, then the data must be present in a nearby cache. If the access takes a longer time, then the data may not be in the nearby cache.&nbsp;</p>
+                        <p>Several security researchers and teams have identified several methods through which a cache timing side channel can potentially be used to leak secret information.</p>
+                    </section>
+
+                    <section id="dk_variant_1">
+                        <h4>Variant 1: Bounds Check Bypass</h4>
+                        <p>The <em>bounds check bypass</em> method takes advantage of speculative execution after conditional branch instructions. A malicious actor discovers or causes the creation of “confused deputy” code which allows the attacker to use speculative operations to infer information not normally accessible to the attacker.</p>
+                        <p>This method uses speculative operations that occur while the processor is checking whether an input is in bounds, such as checking if the index of an array being read is within acceptable values. It takes advantage of memory accesses to out of bound memory that are performed speculatively before the bounds check resolves. These memory accesses can be used in certain circumstances to leak information to the attacker.</p>
+                        <p>If the attacker can identify an appropriate “confused deputy” in a more privileged level, the malicious actor may be able to exploit that deputy to deduce the contents of memory accessible to that deputy but not to the malicious actor.</p>
+                        <p>One subvariant of this technique, known as bounds check bypass store, is to use speculative stores to overwrite younger speculative loads in a way that creates a side channel controlled by a malicious actor.&nbsp;</p>
+                        <p>Refer to the example <em>bounds check bypass store</em> sequence below:</p>
+
+                        <div class="mv_code_toolbar">
+                            <div class="mv_toolbar_item mv_copy_icon">
+                                <i class="fa-regular fa-copy"></i>
+                            </div>
+                            <div class="mv_copy_message text-end hidden">Copied</div>
+                            <div class="code-content">
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp;</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">int function(unsigned bound, unsigned long user_key) {</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;"
+                                    class="d-flex pb-0">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">unsigned long data [ 8 ] ;</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;"
+                                    class="d-flex pb-0">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp;</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;"
+                                    class="d-flex pb-0">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">/* bound is trusted and is never more than 8 */</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;"
+                                    class="d-flex pb-0">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">for ( int i = 0; i < bound ; i++ ) {</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;"
+                                    class="d-flex pb-0">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">data [ i ] = user_key ;</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex pb-0">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex pb-0">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp;</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex pb-0">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">return 0 ;</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 1rem !important;" class="d-flex pb-0">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <p>It is possible that the above sequence might speculatively overwrite the return address on the stack with <span class="dk_code_simple">user_key</span>. This may allow a malicious actor to specify a <span class="dk_code_simple">user_key</span> that is actually the instruction pointer of a disclosure gadget that they wish to be speculatively executed.</p>
+                        <p>The steps below describe how an example attack using this method might occur:</p>
+                        <ol>
+                            <li>The CPU conditional branch predictor predicts that the loop will iterate 10 iterations, when in reality the loop should have only executed 8 times. After the 10th iteration, the predictor will resolve, fall through, and execute the following instructions. However, the 9th iteration of the loop may speculatively overwrite the return address on the stack.</li>
+                            <li>The CPU decodes the <span class="dk_code_simple">RET</span> and speculatively fetches instructions based on the prediction in the return stack buffer (RSB). The CPU may speculatively execute those instructions.</li>
+                            <li><span class="dk_code_simple">RET</span> loads the value that it believes is at the top of the stack (but which came from the speculative store of <span class="dk_code_simple">user_key</span> in step 1) and redirects the instruction pointer to that value. The results of any operations speculatively executed in step 2 are discarded.</li>
+                            <li>The disclosure gadget at the instruction pointer of <span class="dk_code_simple">user_key</span> (which was specified by the malicious actor) speculatively executes and creates a side channel that can be used to reveal data specified by the malicious actor.</li>
+                            <li>The conditional jump that should have ended the loop then executes and redirects the instruction pointer to the next instruction after the loop. This discards the speculative store of <span class="dk_code_simple">user_key</span> that overwrote the return address on the stack, as well as all other operations between step 1 and step 4.</li>
+                            <li>The CPU executes the <span class="dk_code_simple">RET</span> again, and the program continues.</li>
+                        </ol>
+                        <p>SMEP will prevent this attack from causing a supervisor <span class="dk_code_simple">RET</span> to speculatively execute code in user mode page. Control flow Enforcement Technology (CET) can also help prevent speculative execution of instructions at incorrect indirect branch targets. For further information, refer to the <em>Bounds check bypass store attacks</em> section of the <a class="b_special_a1" href="">Analyzing Potential Bounds Check Bypass Vulnerabilities</a> white paper.</p>
+                        <p>This example can be mitigated either by applying <span class="dk_code_simple">LFENCE</span> before the <span class="dk_code_simple">RET</span> (after the loop ends), by using bounds clipping to ensure that store operations do not occur outside of the array’s bounds, even speculatively, or by ensuring that incorrect return pointer is detected and that the return does not speculatively use the incorrect value.&nbsp;</p>
+                    </section>
+
+                    <section id="dk_variant_2">
+                        <h4>Variant 2: Branch Target Injection</h4>
+                        <p>The <em>branch target injection</em> method takes advantage of the indirect branch predictors inside the processor that are used to direct what operations are speculatively executed. By influencing how the indirect branch predictors operate, an attacker can cause malicious code to be speculatively executed and then use the effects such code has on the caches to infer data values.</p>
+                        <p>For conditional direct branches, there are only two options as to what code speculatively executes—either the target of the branch or the fall-through path of instructions directly subsequent to the branch. The attacker cannot cause code to be speculatively executed outside of those locations. Indirect branches, however, can cause speculative execution of code at a wider set of targets. This method works by causing an indirect branch to speculatively execute a ‘gadget’ which creates a side channel based on sensitive data available to the victim.&nbsp;</p>
+                        <p>The ability to interfere with the processor’s predictors to cause such a side channel is highly dependent on the microarchitectural implementation, and the exact methods used may thus vary across different processor families and generations. For example, the indirect branch predictors in some processor implementations may only use a subset of the overall address to index into the predictor. If an attacker can discern what subset of bits are used, the attacker can use this information to create interference due to aliasing. Similarly, on processors that support Intel® Hyper-Threading Technology (Intel® HT Technology), whether one thread’s behavior can influence the prediction of the other thread is a consideration. The branch target injection method can only occur for a near indirect branch instruction.</p>
+                    </section>
+
+                    <section id="dk_variant_3">
+                        <h4>Variant 3: Rogue Data Cache Load</h4>
+                        <p>The <em>rogue data cache load</em> method involves an application (user) attacker directly probing kernel (supervisor) memory. Such an operation would typically result in a program error (page fault due to page table permissions). However, it is possible for such an operation to be speculatively executed under certain conditions for certain implementations. For instance, on some implementations such a speculative operation will only pass data on to subsequent operations if the data is resident in the lowest level data cache (L1). This can allow the data in question to be queried by the application, leading to a side channel that reveals supervisor data. This method only applies to regions of memory designated supervisor-only by the page tables; not memory designated as not present.&nbsp;</p>
+                        <p>Memory addresses with paging table entries marked "not present" or that have a reserved bit set may be vulnerable to the L1 Terminal Fault (L1TF) side channel method. Refer to the <a class="b_special_a1" href="">description and mitigation overview for L1 Terminal Fault</a>&nbsp;for more details.&nbsp;</p>
+                    </section>
+
+                    <section id="dk_variant_3a">
+                        <h4>Variant 3a: Rogue System Register Read</h4>
+                        <p>The <em>rogue system register read</em> method, as described as <a class="b_special_a1" href="">Variant 3a in the ARM* whitepaper</a>, uses both speculative execution and side channel cache methods to infer the value of some processor system register state which is not architecturally accessible by the attacker. This method uses speculative execution of instructions that read system register state while the processor is operating at a mode or privilege level that does not architecturally allow the reading of that state. The set of system registers that can have their value inferred by this method is implementation-specific. &nbsp;</p>
+                        <p>Although these operations will architecturally fault or VM exit, in certain cases, they may return data accessible to subsequent instructions in the speculative execution path. These subsequent instructions can then create a side channel to infer the system register state.</p>
+                        <p>Intel’s analysis is that the majority of state exposed by the Variant 3a method is not secret or sensitive, nor directly enables attack or exposure of user data. The use of the Variant 3a method by an attacker may result in the exposure of the physical addresses for some data structures and may also expose the linear addresses of some kernel software entry points. &nbsp;</p>
+                        <p>Knowledge of these physical and linear addresses may enable attackers to determine the addresses of other kernel data and code elements, which may impact the efficacy of the Kernel Address Space Layout Randomization (KASLR) technique.&nbsp;</p>
+                        <p>KASLR, as a security defense in-depth feature, has been subject to a number of attacks in recent years; in particular against local attackers who can control code execution. As the rogue system register read method involves attacker controlled code execution, a local attacker employing rogue system register read to break KASLR may be low impact for most end users.</p>
+                    </section>
+
+                    <section id="dk_variant_4">
+                        <h4>Variant 4: Speculative Store Bypass</h4>
+                        <p>The speculative store bypass method takes advantage of a performance feature present in many high-performance processors that allows loads to speculatively execute even if the address of preceding potentially overlapping store is unknown. In such a case, this may allow a load to speculatively read a stale data value. The processor will eventually correct such cases, but an attacker may be able to discover “confused deputy” code which may allow them to use speculative execution to reveal the value of memory that is not normally accessible to them. In a language based security environment (e.g., a managed runtime), where an attacker is able to influence the generation of code, an attacker may be able to create such a confused deputy. Intel has not currently observed this method in situations where the attacker has to discover such a confused deputy instead of being able to cause it to be generated.&nbsp;</p>
+                    </section>
+
+                    <section id="dk_mitigations">
+                        <p class="mb-0">&nbsp;</p>
+                        <h3 style="font-weight: 350; padding-bottom: 0.5rem;">Mitigations</h3>
+                        <p>Intel has been working closely with the ecosystem, including other processor vendors and software developers, to identify mitigations for the side channel methods previously described. The mitigation strategy is focused on identifying techniques that can be applicable both for products currently in the market as well as for future products in development. Mitigations pursued address the attack method in question, as well as balancing that with other considerations such as performance impact and complexity of implementation. Enabling existing processor security features like Supervisor-Mode Execution Protection and Execute Disable Bit can substantially increase the difficulty of attacking a system. See the Related Intel Security Features section for additional details on these security features. Intel strongly recommends following good security practices that protect against malware in general, including always staying updated with the latest software patches and microcode and not installing untrusted software.</p>
+                        <p>Intel has been working with OS vendors, Virtual Machine Monitor Vendors, and other software developers to mitigate these attacks.&nbsp;</p>
+                        <p>For additional details on mitigations, see <a class="b_special_a1" href="">Speculative Execution Side Channel Mitigations</a>.</p>
+                        <p>As part of our normal development process, Intel may enhance the efficacy of these mitigations in upcoming processors.</p>
+                    </section>
+
+                    <section id="dk_variant_11">
+                        <h4>Variant 1: Bounds Check Bypass Mitigation</h4>
+                        <p>For the bounds check bypass method, Intel’s mitigation strategy is focused on software modifications.&nbsp;</p>
+                        <p>The software mitigation that Intel recommends is to insert a barrier to stop speculation in appropriate places. In particular, the use of an <span class="dk_code_simple">LFENCE</span> instruction is recommended for this purpose. Serializing instructions, as well as the <span class="dk_code_simple">LFENCE</span> instruction, will stop younger instructions from executing, even speculatively, before older instructions have retired but <span class="dk_code_simple">LFENCE</span> is a better performance solution than other serializing instructions. An <span class="dk_code_simple">LFENCE</span> instruction inserted after a bounds check will prevent younger operations from executing before the bound check retires. Note that the insertion of <span class="dk_code_simple">LFENCE</span> must be done judiciously; if it is used too liberally, performance may be significantly compromised.&nbsp;</p>
+                        <p>It is possible to create a set of static analysis rules in order to help find locations in software where a speculation barrier might be needed. Intel’s analysis of the Linux kernel for example has only found a handful of places where <span class="dk_code_simple">LFENCE</span> insertion is required, resulting in minimal performance impact. As with all static analysis tools, there are likely to be false positives in the results and human inspection is recommended.</p>
+                    </section>
+
+                    <section id="dk_variant_22">
+                        <h4>Variant 2: Branch Target Injection Mitigation</h4>
+                        <p>For the branch target injection method, two mitigation techniques have been developed. This allows a software ecosystem to select the approach that works for particular security, performance and compatibility goals.&nbsp;</p>
+                        <p>The first technique introduces a new interface between the processor and system software. This interface provides mechanisms that allow system software to prevent an attacker from controlling the victim’s indirect branch predictions, such as flushing the indirect branch predictors at the appropriate time to mitigate such attacks. The details of this interface will be provided in a future revision of the Intel® 64 and IA-32 Architectures Software Developer’s Manuals. This mitigation strategy requires both updated system software as well as a microcode update to be loaded to support the new interface for many existing processors. This new interface will also be supported on future Intel processors. There are three new capabilities that will now be supported for this mitigation strategy. These capabilities will be available on modern existing products if the appropriate microcode update is applied, as well as on future products, where the performance cost of these mitigations will be improved. In particular, the capabilities are:</p>
+                        <ul>
+                            <li><a class="b_special_a1" href=""><em>Indirect Branch Restricted Speculation (IBRS)</em></a>: Restricts speculation of indirect branches.</li>
+                            <li><a class="b_special_a1" href=""><em>Single Thread Indirect Branch Predictors (STIBP)</em></a>: Prevents indirect branch predictions from being controlled by the sibling Hyperthread.</li>
+                            <li><a class="b_special_a1" href=""><em>Indirect Branch Predictor Barrier (IBPB)</em></a>: Ensures that earlier code’s behavior does not control later indirect branch predictions.</li>
+                        </ul>
+                        <p>The second technique, developed by Google, introduces the concept of a “return trampoline”, also known as <a class="b_special_a1" href="">retpoline</a>. Essentially, software replaces indirect near jump and call instructions with a code sequence that includes pushing the target of the branch in question onto the stack and then executing a return (<span class="dk_code_simple">RET</span>) instruction to jump to that location, as return instructions can generally be protected using this method. This technique may perform better than the first technique for certain workloads on many current Intel processors.&nbsp;</p>
+                        <p>Intel has worked with the various open source compilers to add support for the return trampoline, and with the OS vendors to use these techniques where appropriate. For Intel® Core™ processors of the Broadwell generation and later, this retpoline mitigation strategy also requires a microcode update to be applied for the mitigation to be fully effective.</p>
+                    </section>
+
+                    <section id="dk_variant_33">
+                        <h4>Variant 3: Rogue Data Cache Load Mitigation</h4>
+                        <p class="mb-0">For the rogue data cache load method, the operating system software may ensure that privileged pages are not mapped when executing user code in order to protect against user mode access to privileged pages. The OS can establish two paging structure roots (CR3 values) for each user process:</p>
+                        <ul>
+                            <li>The “User” paging structure should map all application pages, but only the minimal subset of supervisor pages required for normal processor operation and for transitioning to and from full supervisor mode.</li>
+                            <li>The “Supervisor” paging structure should map all kernel pages. It may wish to map application pages as well, for convenient access. &nbsp;</li>
+                        </ul>
+                        <p>This basic dual-page-table approach was previously proposed as a mitigation for side channel attacks on Kernel Address Space Layout Randomization (KASLR) in the “<a class="b_special_a1" href="">KASLR is Dead: Long Live KASLR</a>” paper and was called KAISER. This approach also mitigates Rogue Data Cache Load. Intel has worked with various OS vendors to enable a dual-page-table approach in their operating systems.</p>
+                        <p>An OS implementing this dual-page-table mitigation may wish to take advantage of the Process Context Identifier (PCID) feature on processors which support it. PCID can greatly reduce the performance cost of TLB flushes caused by frequent reloading of CR3 during user/supervisor mode transitions.&nbsp;</p>
+                        <p>Future Intel processors will also have hardware support for mitigating Rogue Data Cache Load.&nbsp;</p>
+                    </section>
+
+                    <section id="dk_variant_3aa">
+                        <h4>Variant 3a: Rogue System Register Read Mitigation</h4>
+                        <p>For malware to compromise security using the rogue system register read method, it must be running locally on a system.&nbsp;</p>
+                        <p>Where applicable, processors may receive microcode updates which ensure that the <span class="dk_code_simple">RDMSR</span> instruction will not speculatively return data when executed at <span class="dk_code_simple">CPL &gt; 0</span> or when executed by a VMX guest to an MSR for which <span class="dk_code_simple">RDMSR</span> is configured to cause a VM exit.&nbsp;</p>
+                        <p>Future processors may further restrict speculative values returned. Note that cases where the speculative value returned depends only on the instruction operands are not believed to constitute a security threat and may not be mitigated. An example of this would be a <span class="dk_code_simple">RDMSR</span> instruction that speculatively returns the <span class="dk_code_simple">ECX</span> value used as input. A non-system-register read example would be a divide instruction that, when it causes a divide error exception, returns data related to that divide’s inputs.</p>
+                    </section>
+
+                    <section id="dk_variant_44">
+                        <h4>Variant 4: Speculative Store Bypass Mitigation</h4>
+                        <p>Intel recommends using the below mitigations only for managed runtimes or other situations that use language based security to guard against attacks within an address space. The speculative store bypass method mitigation can be accomplished through software modification of affected code or, if that is insufficient, through software setting a new Speculative Store Bypass Disable (SSBD) MSR bit.&nbsp;</p>
+                        <p>As speculative store bypass can only occur when a load is able to execute before an older store with an overlapping address computes its address, an <span class="code-simple">LFENCE</span> between that store and the subsequent load is sufficient to prevent this case. Software should be careful to apply this mitigation judiciously to avoid unnecessary performance loss.</p>
+                        <p>Another mitigation is to isolate secrets into a separate address space from code that is relying on language based security (for example,&nbsp;a managed runtime) to prevent access to those secrets. This process isolation ensures that an attacker who uses the speculative store bypass method (or other speculative execution side channel method) is unable to access those secrets. <a class="b_special_a1" href="">Protection Keys</a>&nbsp;can also be useful in providing such isolation.</p>
+                        <p>Other mitigations like inserting register dependencies between a vulnerable load address and the corresponding store address may reduce the likelihood of such an attack being successful.&nbsp;<br>
+                            If the previous methods are not feasible, system software can set the Speculative Store Bypass Disable bit in order to prevent loads from executing before all older store addresses are known. This will also prevent the speculative store bypass method. To minimize performance impact, Intel currently recommends not setting Speculative Store Bypass Disable for OS, VMM or applications that do not rely on language based security.&nbsp;</p>
+                    </section>
+
+                    <section id="dk_related_intel">
+                        <p class="mb-0">&nbsp;</p>
+                        <h3 style="padding-bottom: 0.5rem; font-weight: 350;">Related Intel Security Features and Technologies</h3>
+                        <p>There are security features and technologies, either present in existing Intel products or planned for future products, which reduce the effectiveness of the attacks mentioned in the previous sections.</p>
+                    </section>
+
+                    <section id="dk_os_guard">
+                        <p class="mb-0">&nbsp;</p>
+                        <h4 style="padding-bottom: 0.5rem;">Intel® OS Guard</h4>
+                        <p>When Intel® OS Guard, also known as Supervisor-Mode Execution Prevention (SMEP), is enabled, the operating system will not be allowed to directly execute application code, even speculatively. This makes branch target injection attacks on the OS substantially more difficult by forcing the attacker to find gadgets within the OS code. It is also more difficult for an application to train OS code to jump to an OS gadget. All major operating systems enable SMEP support by default.</p>
+                    </section>
+
+                    <section id="dk_execute_disable">
+                        <p class="mb-0">&nbsp;</p>
+                        <h4 style="padding-bottom: 0.5rem;">Execute Disable Bit</h4>
+                        <p>The Execute Disable Bit is a hardware-based security feature that can help reduce system exposure to viruses and malicious code. Execute Disable Bit allows the processor to classify areas in memory where application code can or cannot execute, even speculatively. This reduces the gadget space, increasing the difficulty of branch target injection attacks. All major operating systems enable Execute Disable Bit support by default. Applications are encouraged to only mark code pages as executable.</p>
+                    </section>
+
+                    <section id="dk_control_flow">
+                        <p class="mb-0">&nbsp;</p>
+                        <h4>Control flow Enforcement Technology (CET)</h4>
+                        <p>On future Intel processors, Control flow Enforcement Technology will allow limiting near indirect jump and call instructions to only target <span class="dk_code_simple">ENDBRANCH</span> instructions. This feature can reduce the speculation allowed to non-<span class="dk_code_simple">ENDBRANCH</span> instructions. This greatly reduces the gadget space, increasing the difficulty of branch target injection attacks.&nbsp;</p>
+                        <p>Retpoline can interfere with proper usage of CET. Intel recommends that software use CET and enhanced IBRS instead of retpoline where CET is supported.</p>
+                        <p>For additional information on CET, see Chapter 18 of&nbsp;<a class="b_special_a1" href="">Intel® 64 and IA-32 Architectures Software Developer's Manuals</a>, Volume 1: Basic Architecture.</p>
+                    </section>
+
+                    <section id="dk_protection_keys">
+                        <p class="mb-0">&nbsp;</p>
+                        <h4><a class="b_special_a1" href="">Protection Keys</a></h4>
+                        <p>On future Intel processors that have both hardware support for mitigating Rogue Data Cache Load (<span class="dk_code_simple">IA32_ARCH_CAPABILITIES[RDCL_NO]</span>) and protection keys support (CPUID.7.0.ECX[3]), protection keys can limit the data accessible to a piece of software. This can be used to limit the memory addresses that could be revealed by a branch target injection or bound check bypass attack.&nbsp;</p>
+                    </section>
+
+                    <section id="dk_supervisor_mode">
+                        <p class="mb-0">&nbsp;</p>
+                        <h4>Supervisor-Mode Access Prevention (SMAP)</h4>
+                        <p>SMAP can be used to limit which memory addresses can be used for a cache-based side channel, by blocking allocation of an application line. This may make it more difficult for an application to perform the attack on the kernel, as it is more challenging for an application to determine whether a kernel line is cached than an application line. On Intel processors that have both hardware support for mitigating Rogue Data Cache Load (<span class="dk_code_simple">IA32_ARCH_CAPABILITIES[RDCL_NO]</span>) and SMAP support, loads that cause a page fault due to SMAP will not speculatively return the loaded data even on a L1D cache hit or fill/evict any caches for that address. On processors that have SMAP support but do not enumerate <span class="dk_code_simple">RDCL_NO</span>, loads that cause a page fault due to SMAP may speculatively return the loaded data on L1D cache hits but will not fill/evict any caches for that address.</p>
+                    </section>
+
+                    <section id="dk_affected_proc">
+                        <p class="mb-0">&nbsp;</p>
+                        <h3 style="font-weight: 350; padding-bottom: 0.5rem;"><a class="b_special_a1" href="">Affected Processors</a></h3>
+                        <p>Refer to the <a class="b_special_a1" href="">consolidated Affected Processors table</a>, <em>Running Average Power Limit</em> column (2018-2021&nbsp;tab) and <em>Running Average Power Limit Derivative</em> (2022-2024 column) for a complete list of currently supported processors potentially affected by these issues.&nbsp;</p>
+                        <p>All processors supporting RAPL are impacted by CVE-2020-8694 and should apply the migration in the <a class="b_special_a1" href="">Appendix: CVE-2020-8694</a> section.</p>
+                        <p>All processors supporting RAPL plus Intel SGX are impacted by CVE-2020-8695, and should apply the microcode patch. This patch needs to be <a class="b_special_a1" href="">loaded from FIT</a> to be effective.&nbsp;The <a class="b_special_a1" href="">consolidated Affected Processors table</a> provides a summary of recommended actions to be taken for each CVE.</p>
+                    </section>
+
+                    <section id="dk_conclusions">
+                        <p class="mb-0">&nbsp;</p>
+                        <h3 style="font-weight: 350; padding-bottom: 0.5rem;">Conclusions</h3>
+                        <p>Along with other companies whose platforms are potentially impacted by these new methods, Intel has worked with software vendors, equipment manufacturers, and other ecosystem partners to develop software and firmware updates that can protect systems from these methods. End users and systems administrators should check with their software vendors and system manufacturers and apply any available updates as soon as practical.</p>
+                        <p>For malware to compromise security using these methods, it must be running locally on a system. Intel strongly recommends following good security practices that protect against malware in general. Doing so will also help protect against possible exploitation of these analysis methods.</p>
+                        <p>The threat environment continues to evolve. Intel is committed to investing in the security and reliability of our products, and to working constructively with security researchers and others in the industry to help safeguard users’ sensitive information. Please see the Intel Security Center &nbsp;for more details. Intel is continuing to investigate architecture and/or microarchitecture changes to combat these types of attacks while maintaining high processor performance.</p>
+                        <p>&nbsp;</p>
+                    </section>
+                    
+                </div>
+            </section>
+        </div>
+    </div>
+    </div>
+    </section>
+
+    <section style="border-top: 1px solid #d7d7d7;" class="container py-5">
+        <h4 class="h6">Product and Performance Information</h4>
+        <div class="disclaimer" style="font-size: 12px;"><sup>1</sup> Performance varies by use, configuration and other
+            factors. Learn more at <a class="b_special_a1" href="">www.Intel.com/PerformanceIndex.</a></div>
+        </div>
+    </section>
+
+    <!-- footer -->
+    <div id="footer"></div>
+
+    <!-- nav script -->
+    <script>
+        // navbar include  
+        fetch('/y_index/y_navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar').innerHTML = data;
+            });
+        // footer include 
+        fetch('/y_index/y_footer.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('footer').innerHTML = data;
+            });
+    </script>
+    <!-- nav script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            if (document.getElementsByClassName('VK_all_sections section') && document.getElementsByClassName('VK_sidebar_dropdown')) {
+                const sections = document.querySelectorAll('.VK_all_sections section');
+                const navLinks = document.querySelectorAll('.VK_sidebar_dropdown a');
+                const detailsElements = document.querySelectorAll('.VK_sidebar_dropdown details');
+
+                function removeActiveClass() {
+                    navLinks.forEach(link => link.classList.remove('VK_sidebar_active_link'));
+                    detailsElements.forEach(details => {
+                        details.removeAttribute('open');
+                        details.setAttribute('close', ''); // Optional: to visually indicate it's closed
+                    });
+                }
+
+                function activateLinkAndDetails(targetId) {
+                    navLinks.forEach(link => {
+                        if (link.getAttribute('href') === `#${targetId}`) {
+                            link.classList.add('VK_sidebar_active_link');
+                            let parentDetails = link.closest('details');
+
+                            // Open all ancestor details elements
+                            while (parentDetails) {
+                                parentDetails.setAttribute('open', '');
+                                parentDetails.removeAttribute('close'); // Optional: remove the closed indicator
+                                parentDetails = parentDetails.parentElement.closest('details');
+                            }
+                        }
+                    });
+                }
+
+                function onScroll() {
+                    let currentSection = '';
+                    sections.forEach(section => {
+                        const sectionTop = section.getBoundingClientRect().top;
+                        const sectionBottom = section.getBoundingClientRect().bottom;
+
+                        // Check if the section is in view
+                        if (sectionTop <= 100 && sectionBottom >= 0) {
+                            currentSection = section.getAttribute('id');
+                        }
+                    });
+
+                    if (currentSection) {
+                        removeActiveClass();
+                        activateLinkAndDetails(currentSection);
+                    } else {
+                        removeActiveClass();
+                    }
+                }
+
+                window.addEventListener('scroll', onScroll);
+            } else {
+                return
+            }
+        });
+    </script>
+
+    <!-- copy script -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            document.querySelectorAll(".mv_copy_icon").forEach((icon) => {
+                icon.addEventListener("click", async function () {
+                    try {
+                        const toolbar = this.closest(".mv_code_toolbar");
+                        const codeBlock = toolbar.querySelector(".code-content");
+                        const codeContent = codeBlock.innerText;
+
+                        // Use Clipboard API to copy text
+                        await navigator.clipboard.writeText(codeContent);
+
+                        // Hide the copy icon and show the "Copied!" message
+                        const message = toolbar.querySelector(".mv_copy_message");
+                        this.classList.add("hidden"); // Hide the copy icon
+                        message.classList.remove("hidden"); // Show the "Copied!" message
+
+                        // Hide the message and show the icon again after 2 seconds
+                        setTimeout(() => {
+                            message.classList.add("hidden");
+                            this.classList.remove("hidden");
+                        }, 2000); // Adjust delay as needed
+
+                    } catch (err) {
+                        console.error('Failed to copy text: ', err);
+                    }
+                });
+            });
+        });
+    </script>
+
+</body>
+
+</html>
+
+

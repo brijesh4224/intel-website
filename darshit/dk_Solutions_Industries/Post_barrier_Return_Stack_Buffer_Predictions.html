@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Post-barrier Return Stack Buffer Predictions / CVE-2022-26373 / INTEL-SA-00706</title>
+
+    <!-- font family -->
+    <link href="https://fonts.cdnfonts.com/css/intel-clear" rel="stylesheet">
+
+    <link rel="stylesheet" href="/css/dk_developer_edge_iot_5G_industrial_automation_see_all_wireless_network_ready_printed_circuit_board_(PCB)_defect_detection.css">
+    <link rel="stylesheet" href="/css/mv_product/ECC.css">
+    <link rel="stylesheet" href="/css/rushita_automotive.css">
+
+    <!-- header footer -->
+    <link rel="stylesheet" href='/css/yatri.css'>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" rel="stylesheet">
+
+</head>
+
+<style>
+    .dk_color1 {
+        color: #069 !important;
+    }
+
+    .dk_color2 {
+        color: #008200 !important;
+    }
+
+    .dk_color3 {
+        color: #b24501;
+    }
+
+    .dk_note{
+        font-size: 1rem;
+        line-height: 1.25;
+        word-wrap: break-word;
+        background-color: #e6e6e6;
+        padding: 20px;
+        border-left: 3px solid #fdb813;
+    }
+    .dk_code_simple{
+        background-color: #e6e6e6;
+        color: #53565a;
+        border-radius: 0;
+    }
+
+    .dk_greyHighlight{
+        font-size: 1rem;
+        line-height: 1.25;
+        background-color: #e6e6e6;
+        padding: 20px;
+    }
+
+    @media(max-width:1200px) {
+        .dk_risk_app_img {
+            width: 100% !important;
+        }
+        .mv_product_table{
+            width: 100% !important;
+        }
+    }
+</style>
+
+<body>
+    <!-- header -->
+    <div id="navbar"></div>
+
+    <!------------------------------------------------------------------------------->
+    <section class="m_ai_tdrop">
+        <div>
+            <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Developers
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item m_dropActive" href="#">Overview</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Topics & Technologies</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Tools</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Hardware Platforms</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Resources & Documentation</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Learn</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Community & Events</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Developer Programs</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Get Help</a></li>                                                              
+            </ul>
+        </div>
+        <div class="m_ai_shlash">/</div>
+        <div>
+            <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Topics & Technologies
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item m_dropActive" href="#">Artificial Intelligence</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Client Applications</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Cloud</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">GPU Research</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Edge Computing</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">GameDev</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">HPC</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Data Center</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Firmware</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Networking</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Open Ecosystem</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Persistent Memory</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Platform Analysis Technology</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Runtime Languages</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Software Security Guidance</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Storage</a></li>
+            </ul>
+        </div>
+        <div class="m_ai_shlash">/</div>
+        <div>
+            <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Software Security Guidance
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item m_dropActive" href="#">Advisory Guidance</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Best Practices</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Resources</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Disclosure Documentation</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Feature Documentation</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">More Information</a></li>
+            </ul>
+        </div>
+        <div class="m_ai_shlash">/</div>
+        <div>
+            <button class="btn" style="color: #0068B5;">
+                Advisory Guidance
+            </button>
+        </div>
+        <div class="m_ai_shlash">/</div>
+        <div class="m_ai_httl">Post-barrier Return Stack Buffer Predictions</div>
+
+    </section>
+    <!------------------------------------------------------------------------------->
+
+    <!-- VMware Horizon -->
+    <section>
+        <div class="mv_vmware_bg_color">
+            <div class="container">
+                <div class="mv_vmware_padd">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="mv_vmware_heading">
+                                <h3>Post-barrier Return Stack Buffer Predictions / CVE-2022-26373 / INTEL-SA-00706</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mv_cd_page_marquee_info">
+                        <div class="mv_cd_page_marquee_action">
+                            <div class="mv_cd_page_marquee_action_padd">
+                                <label for="">ID</label>
+                                <span>739507</span>
+                            </div>
+                            <div class="mv_cd_page_marquee_action_padd">
+                                <label for="">Updated</label>
+                                <span>8/9/2022</span>
+                            </div>
+                            <div class="mv_cd_page_marquee_action_padd">
+                                <label for="">Version</label>
+                                <span>Latest</span>
+                            </div>
+                            <div class="mv_cd_page_marquee_action_padd">
+                                <label for=""></label>
+                                <span>Public</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="container py-5">
+        <div class="row">
+            <div class="d-flex justify-content-end col-xl-10 py-3 d-md-none">
+                <i class="fa-solid fa-print fs-4 px-2 " style="color:#0068B5"></i>
+                <i class="fa-regular fa-envelope fs-4 px-2" style="color:#0068B5"></i>
+            </div>
+            <div class="col-lg-3 col-md-4">
+                <!-- nav -->
+                <div class="VK_sticky_side_bar VK_side_bar_postion_stickey">
+                    <div>
+                        <div class="VK_sidebar_dropdown">
+                            <p class="m-0">
+                                <a href="#dk_related_content" class="text-decoration-none VK_a">
+                                    Related Content
+                                </a>
+                            </p>
+                            <p class="m-0">
+                                <a href="#dk_introduction" class="text-decoration-none VK_a">
+                                    Introduction
+                                </a>
+                            </p>
+                            <p class="m-0">
+                                <a href="#dk_overview" class="text-decoration-none VK_a">
+                                    Issue Overview
+                                </a>
+                            </p>
+                            <details>
+                                <summary>
+                                    <a href="#dk_mitigation" class="text-decoration-none VK_a">
+                                        Mitigation
+                                    </a>
+                                </summary>
+                                <ul class="list-unstyled ps-3 mb-0">
+                                    <li>
+                                        <a href="#dk_vm_exit" class="text-decoration-none VK_a my-1">
+                                            VM Exit
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#dk_indirect_ibpb" class="text-decoration-none VK_a my-1">
+                                            Indirect Branch Prediction Barrier (IBPB)
+                                        </a>
+                                    </li>
+                                </ul>
+                            </details>
+                            <details>
+                                <summary>
+                                    <a href="#dk_enumeration" class="text-decoration-none VK_a">
+                                        Enumeration
+                                    </a>
+                                </summary>
+                                <ul class="list-unstyled ps-3 mb-0">
+                                    <li>
+                                        <a href="#dk_ia32_msr" class="text-decoration-none VK_a my-1">
+                                            IA32_ARCH_CAPABILITIES MSR
+                                        </a>
+                                    </li>
+                                </ul>
+                            </details>
+                            <p class="m-0">
+                                <a href="#dk_affected_proc" class="text-decoration-none VK_a">
+                                    Affected Processors
+                                </a>
+                            </p>
+                            <p class="m-0">
+                                <a href="#dk_footnotes" class="text-decoration-none VK_a">
+                                    Footnotes
+                                </a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <!-- thinkcode -->
+                <!-- <div class="dk_things_code_main">
+                    <div class="dk_things_code">
+                        <h2 class="text-left headline-font-one-bold">Loss Prevention Retail Reference Implementation provides:</h2>
+                        <div class="dk_high_quality">
+                            <ul>
+                                <li>High-quality testable ingredients needed to create a solution to prevent thefts at stores.</li>
+                                <li>Building blocks needed to enable the use case with solid performance numbers.</li>
+                                <li>Hardware requirements to support the workloads and scale the solution.</li>
+                            </ul>
+                        </div>
+                    <div class="dk_get_code">
+                        <button class="dk_button">Get Started on GitHub<sup>*</sup></button>
+                    </div>
+                    </div> 
+                </div> -->
+            </div>
+            <div class="col-lg-9 col-md-8">
+                <div class="d-md-flex justify-content-end col-xl-10 py-3 d-none">
+                    <i class="fa-solid fa-print fs-4 px-2 " style="color:#0068B5"></i>
+                    <i class="fa-regular fa-envelope fs-4 px-2" style="color:#0068B5"></i>
+                </div>
+                <div class="col-xl-10 VK_all_sections">
+                    <p>&nbsp;</p>
+                    <table class="mv_product_table w-100 mb-4">
+                        <tbody>
+                            <tr>
+                                <td>
+                                <p><strong>Disclosure date:&nbsp;</strong><br>
+                                    2022-08-09</p>
+                    
+                                <p><strong>Published date:&nbsp;</strong><br>
+                                    2022-08-09</p>
+                                </td>
+                                <td>
+                                <p><img src="/img/darshit_image/shield-icon-8.png" width="100"><strong>Severity rating:&nbsp;</strong><br>
+                                    5.5 Medium</p>
+                                </td>
+                                <td>Industry-wide severity ratings can be found in the&nbsp;<a class="b_special_a1" href="">National Vulnerability Database</a></td>
+                            </tr>
+                        </tbody>
+                    </table> 
+
+
+                    <section id="dk_related_content">
+                        <p class="mb-0">&nbsp;</p>
+                        <h3 style="font-weight: 350; padding-bottom: 0.5rem;">Related Content</h3>
+                        <ul>
+                            <li><a class="b_special_a1" href="">INTEL-SA-00706</a></li>
+                        </ul>
+                    </section>
+
+                    <section id="dk_introduction">
+                        <p class="mb-0">&nbsp;</p>
+                        <h3 style="font-weight: 350; padding-bottom: 0.5rem;">Introduction</h3>
+                        <p>Intel has previously documented the properties of the <a class="b_special_a1" href="">Enhanced Indirect Branch Restricted Speculation</a> (eIBRS) and <a class="b_special_a1" href="">Indirect Branch Predictor Barrier</a> (IBPB) capabilities, both of which can be used to help mitigate <a class="b_special_a1" href="">Branch Target Injection</a>.&nbsp;</p>
+                        <p>The Return Stack Buffer (RSB) is a microarchitectural structure that holds predicted targets of near <span class="dk_code_simple">RET</span> instructions. Two documented properties involving the RSB are related to this issue:</p>
+                        <ul>
+                            <li>Processors that support eIBRS<a class="b_special_a1" href=""><sup>1</sup></a>&nbsp;prevent guest software from controlling the RSB after a VM exit, as long as IA32_SPEC_CTRL.IBRS is set either at or after a VM exit.</li>
+                            <li>Software that executed before the IBPB command cannot control the predicted targets of indirect branches executed after the command on the same logical processor. The term indirect branch in this context includes near return instructions, so these predicted targets may come from the RSB.</li>
+                        </ul>
+                        <p>This article uses the term RSB-barrier to refer to either an IBPB command event, or (on processors which support enhanced IBRS) either a VM exit with IBRS set to 1 or setting IBRS to 1 after a VM exit.</p>
+                    </section>
+
+                    <section id="dk_overview">
+                        <p class="mb-0">&nbsp;</p>
+                        <h3 style="font-weight: 350; ">Issue Overview</h3>
+                        <p>On certain processors with eIBRS, an exception to the two above properties has been identified in some situations, shortly after an RSB-barrier: the linear address following the most recent near <span class="dk_code_simple">CALL</span><a class="b_special_a1" href=""><sup>2</sup></a>&nbsp;instruction prior to a VM exit may be used as the RSB prediction for the first near <span class="dk_code_simple">RET</span> instruction executed after VM exit that does not have a prior corresponding <span class="dk_code_simple">CALL</span> instruction that was also executed after VM exit. This article refers to a <span class="dk_code_simple">RET</span> without a corresponding <span class="dk_code_simple">CALL</span> after an RSB-barrier as an <em>unbalanced RET</em>.</p>
+                        <p>Operating system (OS) and virtual machine manager (VMM) software that could potentially execute an unbalanced <span class="dk_code_simple">RET</span> can use a short software sequence to mitigate this issue. Note that software which does not execute potentially affected <span class="dk_code_simple">RET</span> instructions (such as when “RSB stuffing” is used) is not affected.</p>
+                        <p>The target that may be used across an RSB-barrier is limited to the most-recent <span class="dk_code_simple">CALL</span> prior to the barrier. A cross-barrier RSB target will not be used for <span class="dk_code_simple">RET</span> predictions that are made after the first post-barrier <span class="dk_code_simple">CALL</span> retires.&nbsp;</p>
+                        <p>This behavior is assigned CVE-2022-26373 with a base score of 5.5 (Medium) CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:N/A:N.</p>
+                        <p class="mb-0">&nbsp;</p>
+                    </section>
+
+                    <section id="dk_mitigation">
+                        <h3 style="font-weight: 350;">Mitigations</h3>
+                        <p>The software guidance below can help VMM developers mitigate potential transient execution attacks based on the VM exit case of post-barrier return stack buffer prediction.</p>
+                    </section>
+
+                    <section id="dk_vm_exit">
+                        <h4>VM Exit</h4>
+                        <p>For VMMs that may execute an unbalanced <span class="dk_code_simple">RET</span> soon after VM exit, this issue can be mitigated by specifying that a single <span class="dk_code_simple">CALL</span> instruction has retired at some point after VM exit but before the first unbalanced <span class="dk_code_simple">RET</span> prediction that may be used for speculative execution of a guest-controlled target. This issue does not affect balanced <span class="dk_code_simple">RET</span>s (for example, as used in retpoline).</p>
+                        <p>The following optimized instruction sequence can be employed upon VM exit prior to any unbalanced <span class="dk_code_simple">RET</span>s:</p>
+
+                        <div class="mv_code_toolbar">
+                            <div class="mv_toolbar_item mv_copy_icon">
+                                <i class="fa-regular fa-copy"></i>
+                            </div>
+                            <div class="mv_copy_message text-end hidden">Copied</div>
+                            <div class="code-content">
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp;</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">call 1f</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;"
+                                    class="d-flex pb-0">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">int3</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;"
+                                    class="d-flex pb-0">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">1 :</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;"
+                                    class="d-flex pb-0">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">lea 0x8(%rsp), %rsp</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 1rem !important;" class="d-flex pb-0">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">lfence</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <p>The <span class="dk_code_simple">CALL</span>;<span class="dk_code_simple">INT3</span> sequence steers a potential unbalanced <span class="dk_code_simple">RET</span> prediction to a speculative execution barrier (<span class="dk_code_simple">INT3</span>, in this case). The <span class="dk_code_simple">LFENCE</span> will prevent execution of the next <span class="dk_code_simple">RET</span> until after the prior <span class="dk_code_simple">CALL</span> has retired, delaying predictions for any later unbalanced <span class="dk_code_simple">RET</span>s. Where Intel® Control-Flow Enforcement Technology-Shadow Stack (CET-SS) is enabled, an <span class="dk_code_simple">INCSSP</span> instruction could be used after this sequence to pop the address of the <span class="dk_code_simple">INT3</span> return site from the shadow stack.</p>
+                        <p>Note that a <span class="dk_code_simple">WRMSR</span> instruction (used to set IBRS, for example), could also serve as a speculation barrier for such a sequence in place of <span class="dk_code_simple">LFENCE</span>.&nbsp;</p>
+                        <p>A 32-CALL <a class="b_special_a1" href="">RSB stuffing sequence</a><a class="b_special_a1" href=""><sup>3</sup></a> is sufficient to prevent post-RSB-barrier <span class="dk_code_simple">RET</span> prediction. Software already using a 32-CALL RSB stuffing sequence after VM exit does not need to apply additional mitigations for this issue.</p>
+                        <p class="mb-0">&nbsp;</p>
+                    </section>
+
+                    <section id="dk_indirect_ibpb">
+                        <h4>Indirect Branch Prediction Barrier (IBPB)</h4>
+                        <p>Intel does not believe that any typical usage of IBPB will require additional mitigation for this issue. In most circumstances, the <span class="dk_code_simple">CALL</span> preceding the IBPB will be in the privileged domain (and thus will not be attacker controlled). Where IBPB is invoked immediately after a VM exit, the above VM exit mitigation will also address any potential IBPB issue.</p>
+                        <p class="mb-0">If a usage case of IBPB is identified which could be of concern, the following software mitigation alternatives could be applied.</p>
+                        <ul>
+                            <li>Execute at least one non-attacker-specified <span class="dk_code_simple">CALL</span> prior to the IBPB command.</li>
+                            <li>Employ a mitigation sequence after the IBPB command, as described in the previous section for the VM exit case.</li>
+                        </ul>
+                    </section>
+
+                    <section id="dk_enumeration">
+                        <p class="mb-0">&nbsp;</p>
+                        <h3 style="padding-bottom: 0.5rem; font-weight: 350;">Enumeration</h3>
+                        <p>Processors which are not affected by post-barrier Return Stack Buffer predictions may indicate this by setting bit 24 of IA32_ARCH_CAPABILITIES.</p>
+                    </section>
+
+                    <section id="dk_ia32_msr">
+                        <h4 class="mt-4">IA32_ARCH_CAPABILITIES MSR</h4>
+                        <table class="mv_product_table w-100 mb-4">
+                            <caption>IA32_ARCH_CAPABILITIES MSR (bit 24)</caption>
+                            <tbody>
+                                <tr>
+                                    <td>Register Address Hex</td>
+                                    <td>Register Address Dec</td>
+                                    <td>Register Name / Bit Fields</td>
+                                    <td>Bit Description</td>
+                                    <td>Comment</td>
+                                </tr>
+                                <tr>
+                                    <td>10AH</td>
+                                    <td>266</td>
+                                    <td>IA32_ARCH_CAPABILITIES</td>
+                                    <td>Enumeration of Architectural Features (RO)</td>
+                                    <td>If CPUID.(EAX-07H, ECX=0):EDX[29]=1</td>
+                                </tr>
+                                <tr>
+                                    <td>10AH</td>
+                                    <td>266</td>
+                                    <td>24</td>
+                                    <td><span class="dk_code_simple">PBRSB_NO</span>: If 1, indicates that the processor is not affected by post-barrier Return Stack Buffer predictions.</td>
+                                    <td>&nbsp;</td>
+                                </tr>
+                            </tbody>
+                        </table> 
+                    </section>
+
+                    <section id="dk_affected_proc">
+                        <h3 style="font-weight: 350;"><a class="b_special_a1" href="">Affected Processors</a></h3>
+                        <p>Refer to the <a class="b_special_a1" href="">consolidated Affected Processors by CPU table</a>&nbsp;(<em>2022</em> tab, <em>Post-barrier Return Stack Buffer Predictions</em> column) for a list of processors affected by this issue. The VM exit behavior does not apply to non-eIBRS processors. Intel® Core™-based eIBRS processors are affected by both the VM exit and IBPB behavior. Intel® Atom processors are not affected. Refer to <a class="b_special_a1" href="">CPUID Enumeration and Architectural MSRs</a> for eIBRS enumeration. Software can assume that all steppings for any given family/model are affected. Future processors may also be affected.</p>
+                    </section>
+
+                    <section id="dk_footnotes">
+                        <p class="mb-0">&nbsp;</p>
+                        <h3 style="font-weight: 350; padding-bottom: 0.5rem;"><a class="b_special_a1" href="">Footnotes</a></h3>
+                        <ol>
+                            <li>Such processors enumerate IBRS_ALL (bit 1) in&nbsp;the IA32_ARCH_CAPABILITIES MSR (MSR index 10AH).</li>
+                            <li>With a non-zero displacement.</li>
+                            <li>This 32-CALL RSB stuffing sequence may not be effective for other purposes (for example, to completely overwrite all RSB entries) on all enhanced IBRS processors, as discussed in the <a class="b_special_a1" href="">IBRS guidance</a>.</li>
+                        </ol>
+                        <p>&nbsp;</p>
+                        <h5 style="text-align:center"><a class="b_special_a1" href="">Software Security Guidance Home</a> | <a class="b_special_a1" href="">Advisory Guidance</a> | <a class="b_special_a1" href="">Technical Documentation</a> | <a class="b_special_a1" href="">Best Practices</a> | <a class="b_special_a1" href="">Resources</a></h5>
+                        <p>&nbsp;</p>
+                    </section>
+                    
+                </div>
+            </section>
+        </div>
+    </div>
+    </div>
+    </section>
+
+    <section style="border-top: 1px solid #d7d7d7;" class="container py-5">
+        <h4 class="h6">Product and Performance Information</h4>
+        <div class="disclaimer" style="font-size: 12px;"><sup>1</sup> Performance varies by use, configuration and other
+            factors. Learn more at <a class="b_special_a1" href="">www.Intel.com/PerformanceIndex.</a></div>
+        </div>
+    </section>
+
+    <!-- footer -->
+    <div id="footer"></div>
+
+    <!-- nav script -->
+    <script>
+        // navbar include  
+        fetch('/y_index/y_navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar').innerHTML = data;
+            });
+        // footer include 
+        fetch('/y_index/y_footer.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('footer').innerHTML = data;
+            });
+    </script>
+    <!-- nav script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            if (document.getElementsByClassName('VK_all_sections section') && document.getElementsByClassName('VK_sidebar_dropdown')) {
+                const sections = document.querySelectorAll('.VK_all_sections section');
+                const navLinks = document.querySelectorAll('.VK_sidebar_dropdown a');
+                const detailsElements = document.querySelectorAll('.VK_sidebar_dropdown details');
+
+                function removeActiveClass() {
+                    navLinks.forEach(link => link.classList.remove('VK_sidebar_active_link'));
+                    detailsElements.forEach(details => {
+                        details.removeAttribute('open');
+                        details.setAttribute('close', ''); // Optional: to visually indicate it's closed
+                    });
+                }
+
+                function activateLinkAndDetails(targetId) {
+                    navLinks.forEach(link => {
+                        if (link.getAttribute('href') === `#${targetId}`) {
+                            link.classList.add('VK_sidebar_active_link');
+                            let parentDetails = link.closest('details');
+
+                            // Open all ancestor details elements
+                            while (parentDetails) {
+                                parentDetails.setAttribute('open', '');
+                                parentDetails.removeAttribute('close'); // Optional: remove the closed indicator
+                                parentDetails = parentDetails.parentElement.closest('details');
+                            }
+                        }
+                    });
+                }
+
+                function onScroll() {
+                    let currentSection = '';
+                    sections.forEach(section => {
+                        const sectionTop = section.getBoundingClientRect().top;
+                        const sectionBottom = section.getBoundingClientRect().bottom;
+
+                        // Check if the section is in view
+                        if (sectionTop <= 100 && sectionBottom >= 0) {
+                            currentSection = section.getAttribute('id');
+                        }
+                    });
+
+                    if (currentSection) {
+                        removeActiveClass();
+                        activateLinkAndDetails(currentSection);
+                    } else {
+                        removeActiveClass();
+                    }
+                }
+
+                window.addEventListener('scroll', onScroll);
+            } else {
+                return
+            }
+        });
+    </script>
+
+    <!-- copy script -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            document.querySelectorAll(".mv_copy_icon").forEach((icon) => {
+                icon.addEventListener("click", async function () {
+                    try {
+                        const toolbar = this.closest(".mv_code_toolbar");
+                        const codeBlock = toolbar.querySelector(".code-content");
+                        const codeContent = codeBlock.innerText;
+
+                        // Use Clipboard API to copy text
+                        await navigator.clipboard.writeText(codeContent);
+
+                        // Hide the copy icon and show the "Copied!" message
+                        const message = toolbar.querySelector(".mv_copy_message");
+                        this.classList.add("hidden"); // Hide the copy icon
+                        message.classList.remove("hidden"); // Show the "Copied!" message
+
+                        // Hide the message and show the icon again after 2 seconds
+                        setTimeout(() => {
+                            message.classList.add("hidden");
+                            this.classList.remove("hidden");
+                        }, 2000); // Adjust delay as needed
+
+                    } catch (err) {
+                        console.error('Failed to copy text: ', err);
+                    }
+                });
+            });
+        });
+    </script>
+
+</body>
+
+</html>
+
+
