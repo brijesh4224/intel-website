@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Speculative Behavior of SWAPGS and Segment Registers</title>
+
+    <!-- font family -->
+    <link href="https://fonts.cdnfonts.com/css/intel-clear" rel="stylesheet">
+
+    <link rel="stylesheet" href="/css/dk_developer_edge_iot_5G_industrial_automation_see_all_wireless_network_ready_printed_circuit_board_(PCB)_defect_detection.css">
+    <link rel="stylesheet" href="/css/mv_product/ECC.css">
+    <link rel="stylesheet" href="/css/rushita_automotive.css">
+
+    <!-- header footer -->
+    <link rel="stylesheet" href='/css/yatri.css'>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" rel="stylesheet">
+
+</head>
+
+<style>
+    .dk_color1 {
+        color: #069 !important;
+    }
+
+    .dk_color2 {
+        color: #008200 !important;
+    }
+
+    .dk_color3 {
+        color: #b24501;
+    }
+
+    .dk_note{
+        font-size: 1rem;
+        line-height: 1.25;
+        word-wrap: break-word;
+        background-color: #e6e6e6;
+        padding: 20px;
+        border-left: 3px solid #fdb813;
+    }
+    .dk_code_simple{
+        background-color: #e6e6e6;
+        color: #53565a;
+        border-radius: 0;
+    }
+
+    .dk_greyHighlight{
+        font-size: 1rem;
+        line-height: 1.25;
+        background-color: #e6e6e6;
+        padding: 20px;
+    }
+
+    @media(max-width:1200px) {
+        .dk_risk_app_img {
+            width: 100% !important;
+        }
+        .mv_product_table{
+            width: 100% !important;
+        }
+    }
+</style>
+
+<body>
+    <!-- header -->
+    <div id="navbar"></div>
+
+    <!------------------------------------------------------------------------------->
+    <section class="m_ai_tdrop">
+        <div>
+            <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Developers
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item m_dropActive" href="#">Overview</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Topics & Technologies</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Tools</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Hardware Platforms</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Resources & Documentation</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Learn</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Community & Events</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Developer Programs</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Get Help</a></li>                                                              
+            </ul>
+        </div>
+        <div class="m_ai_shlash">/</div>
+        <div>
+            <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Topics & Technologies
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item m_dropActive" href="#">Artificial Intelligence</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Client Applications</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Cloud</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">GPU Research</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Edge Computing</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">GameDev</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">HPC</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Data Center</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Firmware</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Networking</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Open Ecosystem</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Persistent Memory</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Platform Analysis Technology</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Runtime Languages</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Software Security Guidance</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Storage</a></li>
+            </ul>
+        </div>
+        <div class="m_ai_shlash">/</div>
+        <div>
+            <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Software Security Guidance
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item m_dropActive" href="#">Advisory Guidance</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Best Practices</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Resources</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Disclosure Documentation</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Feature Documentation</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">More Information</a></li>
+            </ul>
+        </div>
+        <div class="m_ai_shlash">/</div>
+        <div>
+            <button class="btn" style="color: #0068B5;">
+                Disclosure Documentation
+            </button>
+        </div>
+        <div class="m_ai_shlash">/</div>
+        <div class="m_ai_httl">Speculative Behavior of SWAPGS</div>
+
+    </section>
+    <!------------------------------------------------------------------------------->
+
+    <!-- VMware Horizon -->
+    <section>
+        <div class="mv_vmware_bg_color">
+            <div class="container">
+                <div class="mv_vmware_padd">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="mv_vmware_heading">
+                                <h3>Speculative Behavior of SWAPGS and Segment Registers</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mv_cd_page_marquee_info">
+                        <div class="mv_cd_page_marquee_action">
+                            <div class="mv_cd_page_marquee_action_padd">
+                                <label for="">ID</label>
+                                <span>758371</span>
+                            </div>
+                            <div class="mv_cd_page_marquee_action_padd">
+                                <label for="">Updated</label>
+                                <span>8/6/2019</span>
+                            </div>
+                            <div class="mv_cd_page_marquee_action_padd">
+                                <label for="">Version</label>
+                                <span>Latest</span>
+                            </div>
+                            <div class="mv_cd_page_marquee_action_padd">
+                                <label for=""></label>
+                                <span>Public</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="container py-5">
+        <div class="row">
+            <div class="d-flex justify-content-end col-xl-10 py-3 d-md-none">
+                <i class="fa-solid fa-print fs-4 px-2 " style="color:#0068B5"></i>
+                <i class="fa-regular fa-envelope fs-4 px-2" style="color:#0068B5"></i>
+            </div>
+            <div class="col-lg-3 col-md-4">
+                <!-- nav -->
+                <div class="VK_sticky_side_bar VK_side_bar_postion_stickey">
+                    <div>
+                        <div class="VK_sidebar_dropdown">
+                            <details>
+                                <summary>
+                                    <a href="#dk_overview" class="text-decoration-none VK_a">
+                                        Overview of SWAPGS
+                                    </a>
+                                </summary>
+                                <ul class="list-unstyled ps-3 mb-0">
+                                    <li>
+                                        <a href="#dk_speculatively_missed" class="text-decoration-none VK_a my-1">
+                                            Speculatively Missed SWAPGS
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#dk_speculatively_swapgs" class="text-decoration-none VK_a my-1">
+                                            Speculatively Executed Extra SWAPGS
+                                        </a>
+                                    </li>
+                                </ul>
+                            </details>
+                            <details>
+                                <summary>
+                                    <a href="#dk_behavior_writes" class="text-decoration-none VK_a">
+                                        Speculative Behavior of Segment Register Writes
+                                    </a>
+                                </summary>
+                                <ul class="list-unstyled ps-3 mb-0">
+                                    <li>
+                                        <a href="#dk_caching_desc" class="text-decoration-none VK_a my-1">
+                                            Caching of Segment Descriptors
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#dk_segment_execution" class="text-decoration-none VK_a my-1">
+                                            Segment Renaming and Speculative Execution
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#dk_fault_write" class="text-decoration-none VK_a my-1">
+                                            Fault on Segment Register Write
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <details>
+                                            <summary>
+                                                <a href="#dk_implications_writes" class="text-decoration-none VK_a">
+                                                    Implications of Speculative Segment Register Writes
+                                                </a>
+                                            </summary>
+                                            <ul class="list-unstyled ps-3 mb-0">
+                                                <li>
+                                                    <a href="#dk_old_segment" class="text-decoration-none VK_a my-1">
+                                                        Observation of Old Segment Bases
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#dk_segment_bases" class="text-decoration-none VK_a my-1">
+                                                        Segment Bases as a Covert Channel
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </details>
+                                    </li>
+                                </ul>
+                            </details>
+                            <details>
+                                <summary>
+                                    <a href="#dk_mitigation" class="text-decoration-none VK_a">
+                                        Mitigation
+                                    </a>
+                                </summary>
+                                <ul class="list-unstyled ps-3 mb-0">
+                                    <li>
+                                        <a href="#dk_swapgs" class="text-decoration-none VK_a my-1">
+                                            SWAPGS
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <details>
+                                            <summary>
+                                                <a href="#dk_speculative_writes" class="text-decoration-none VK_a">
+                                                    Speculative Behavior of Segment Writes
+                                                </a>
+                                            </summary>
+                                            <ul class="list-unstyled ps-3 mb-0">
+                                                <li>
+                                                    <a href="#dk_usage_channel" class="text-decoration-none VK_a my-1">
+                                                        Usage of Segment Registers as a Channel
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#dk_observation" class="text-decoration-none VK_a my-1">
+                                                        Observation of Old Segment Bases
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </details>
+                                    </li>
+                                    <li>
+                                        <a href="#dk_system_administrators" class="text-decoration-none VK_a my-1">
+                                            System Administrators
+                                        </a>
+                                    </li>
+                                </ul>
+                            </details>
+                            <p class="m-0">
+                                <a href="#dk_list_affected" class="text-decoration-none VK_a">
+                                    List of Affected Processors
+                                </a>
+                            </p>
+                            <p class="m-0">
+                                <a href="#dk_references" class="text-decoration-none VK_a">
+                                    References
+                                </a>
+                            </p>
+                            <p class="m-0">
+                                <a href="#dk_acknowledgements" class="text-decoration-none VK_a">
+                                    Acknowledgements
+                                </a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <!-- thinkcode -->
+                <!-- <div class="dk_things_code_main">
+                    <div class="dk_things_code">
+                        <h2 class="text-left headline-font-one-bold">Loss Prevention Retail Reference Implementation provides:</h2>
+                        <div class="dk_high_quality">
+                            <ul>
+                                <li>High-quality testable ingredients needed to create a solution to prevent thefts at stores.</li>
+                                <li>Building blocks needed to enable the use case with solid performance numbers.</li>
+                                <li>Hardware requirements to support the workloads and scale the solution.</li>
+                            </ul>
+                        </div>
+                    <div class="dk_get_code">
+                        <button class="dk_button">Get Started on GitHub<sup>*</sup></button>
+                    </div>
+                    </div> 
+                </div> -->
+            </div>
+            <div class="col-lg-9 col-md-8">
+                <div class="d-md-flex justify-content-end col-xl-10 py-3 d-none">
+                    <i class="fa-solid fa-print fs-4 px-2 " style="color:#0068B5"></i>
+                    <i class="fa-regular fa-envelope fs-4 px-2" style="color:#0068B5"></i>
+                </div>
+                <div class="col-xl-10 VK_all_sections">
+                    <p>&nbsp;</p>
+                    <p>This technical documentation expands on the information in the&nbsp;<a class="b_special_a1" href="">Speculative Behavior of SWAPGS and Segment Registers</a>&nbsp;disclosure. Refer to the&nbsp;<a class="b_special_a1" href="">list of affected processors</a>&nbsp;for more details.&nbsp;</p>
+
+                    <section id="dk_overview">
+                        <p class="mb-0">&nbsp;</p>
+                        <h3 style="font-weight: 350; padding-bottom: 0.5rem;">Overview of SWAPGS</h3>
+                        <p>In the IA-32 architecture, memory segmentation is used in the formation of physical memory addresses. Segment descriptors specify a base address (along with other attributes) for each segment, on which the rest of the physical address is built. The segment information is stored in a table in memory, and the individual segments are referenced by selectors that act as indices into this table. The architecture defines a set of segment registers (CS, SS, DS, ES, FS, and GS) that can each hold one selector value. One of these registers is either implicitly or explicitly used for every effective address memory access. More information on segmentation can be found in the&nbsp;<a class="b_special_a1" href="">Intel® 64 and IA-32 Architectures Software Developer Manual</a>, Volume 3a, Chapter 3, Protected Mode Memory Management.</p>
+                        <p>Many operating systems use the&nbsp;<strong>GS</strong>&nbsp;segment register to reference application and kernel data that is specific to a thread or processor. In such cases, the operating system maintains both user space and kernel values of&nbsp;<strong>GS</strong>. The&nbsp;SWAPGS&nbsp;instruction is a privileged CPU instruction used to exchange the application and kernel values of&nbsp;<strong>GS</strong>.</p>
+                        <p>If operating systems that use&nbsp;SWAPGS&nbsp;to switch the contents of the&nbsp;<strong>GS</strong>&nbsp;register on kernel entry have code paths that conditionally determine whether or not to execute the instruction and then also contain memory references offset from the register, those OSes may be vulnerable to malicious actors who can cause the&nbsp;SWAPGS&nbsp;instruction to be speculatively executed or bypassed. The CVE assigned to this vulnerability is CVE-2019-1125 (5.6 Medium CVSS:3.0/AV:L/AC:H/PR:L/UI:N/S:C/C:H/I:N/A:N/E:P/RL:O/RC:C).</p>
+                        <p>We can use the example code sequence below to illustrate both of these cases:</p>
+
+                        <div class="mv_code_toolbar">
+                            <div class="mv_toolbar_item mv_copy_icon">
+                                <i class="fa-regular fa-copy"></i>
+                            </div>
+                            <div class="mv_copy_message text-end hidden">Copied</div>
+                            <div class="code-content">
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp;</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">0 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;			test </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;"
+                                    class="d-flex pb-0">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">1 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;			je skip</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;"
+                                    class="d-flex pb-0">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">2 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;			swapgs</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;"
+                                    class="d-flex pb-0">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">3 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;			mov r10, qword ptr gs: [1000h]</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;"
+                                    class="d-flex pb-0">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">4 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;			mov rbx, [r10]</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;"
+                                    class="d-flex pb-0">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">5 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;			. . .</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;"
+                                    class="d-flex pb-0">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">6 &nbsp; &nbsp;	skip:</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;"
+                                    class="d-flex pb-0">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">7 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;			mov rcx, qword ptr gs: [2000h]</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;"
+                                    class="d-flex pb-0">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">8 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;			mov rbx, [rcx]</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 1rem !important;" class="d-flex pb-0">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">9 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;			…</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section id="dk_speculatively_missed">
+                        <p class="mb-0">&nbsp;</p>
+                        <h4 style="padding-bottom: 0.5rem;">Speculatively Missed SWAPGS</h4>
+                        <p>If&nbsp;<strong>GS</strong>&nbsp;holds the user space value on entry (for example, if this was part of a system call) and the branch is speculatively predicted to be taken, then the speculative execution path skips the&nbsp;<span class="dk_code_simple">SWAPGS</span>&nbsp;instruction. The memory reference on line 7 would speculatively execute with the user space value of&nbsp;<strong>GS</strong>, and thus may load kernel data from an address specified by a malicious actor. The memory reference on line 8 would be based on the value loaded by line 7, which may affect the cache in a way that might be detectable by a malicious actor in user space.</p>
+                    </section>
+
+                    <section id="dk_speculatively_swapgs">
+                        <p class="mb-0">&nbsp;</p>
+                        <h4>Speculatively Executed Extra SWAPGS</h4>
+                        <p>In the other case, if&nbsp;<strong>GS</strong>&nbsp;holds the kernel value on entry (for example, if this code was part of an interrupt handler where interrupts could be generated from either kernel or user space) and the branch is speculatively predicted to not be taken, then the speculative execution path executes the&nbsp;<span class="code-simple">SWAPGS</span>&nbsp;instruction, switching to the user space value of&nbsp;<strong>GS</strong>. The memory reference on line 3 would speculatively execute with the user space value and thus may load kernel data from an address specified by a malicious actor. The memory reference on line 4 would be based on the value loaded by line 3, which would affect the cache in a way that might be detectable by a malicious actor in user space.</p>
+                        <p class="dk_note"><strong>Note</strong>&nbsp;Real software may not have sequences that are as simple as the example above.</p>
+                        <p class="mb-0">&nbsp;</p>
+                    </section>
+
+                    <section id="dk_behavior_writes">
+                        <h3 style="font-weight: 350; margin-bottom: 1rem;">Speculative Behavior of Segment Register Writes</h3>
+                    </section>
+
+                    <section id="dk_caching_desc">
+                        <h4>Caching of Segment Descriptors</h4>
+                        <p>When converting an effective address into a linear address, the address generation hardware needs to know the base address and the limit of the applicable segment. When a segment register is written, these fields are cached within the processor in a microarchitectural structure called the segment register file.</p>
+                    </section>
+
+                    <section id="dk_segment_execution">
+                        <h4>Segment Renaming and Speculative Execution</h4>
+                        <p>Register renaming is a microarchitectural technique that can improve performance by allowing an operation to execute and update a register before the processor knows whether older operations will cause a jump mispredict, trap, interrupt, or exception. For at least some types of register renaming, a renamed register file will have more physical entries than the number of architectural registers that software can specify and a mapping from each architectural register to each physical entry. When software writes one of these registers, the hardware picks a new physical register file entry, writes the result into it, and causes the architectural register to point to the physical register instead of overwriting the contents of the physical register that was previously used. If that operation retires (no older operation takes a jump mispredict, trap, interrupt, or exception) then the old (unused) physical register file entry is no longer needed and can be reclaimed. However, if the operation does not retire, then the old contents of that register can be restored by mapping the architectural register back to the old physical register file entry.</p>
+                        <p>This technique can also be applied to segment registers. A processor can maintain a renamed segment register file and keep updating the architectural segment register to point to the correct entry (reflecting the current architectural state) in the segment register file. This may be applicable to instructions which directly operate on segment bases, like&nbsp;<span class="dk_code_simple">WRGSBASE</span>, as well.</p>
+                        <p>The processor may speculatively execute instructions that perform writes to segment registers, and thus segment bases, in the segment register file. Since these operations happen under a speculative window, the processor may allocate an entry in the segment register file and update it with a new base address. Later, the processor may determine that this speculative execution path was wrong and thus will not update the architectural state. The architectural segment register would still point to the old entry and the old base. The entry allocated in the segment register file during the speculative window may retain its speculatively written value. For lack of other terminology, we can call this entry a&nbsp;<strong>stale segment register entry</strong>&nbsp;as it is not currently being used for the architectural segment register. If the processor determines that the speculative execution path was correct, then it will update the architectural state to the newly written value. In this case, the previously used entry that held the old base would become a stale segment register entry.</p>
+                        <p class="mb-0">&nbsp;</p>
+                    </section>
+
+                    <section id="dk_fault_write">
+                        <h4>Fault on Segment Register Write</h4>
+                        <p class="mb-0">If the segment register is loaded with a new selector value, a processor may perform the following operations:</p>
+                        <ol>
+                            <li>Read out the segment descriptor that is pointed to by the new selector value.</li>
+                            <li>Validate the segment descriptor, and pend a fault (to be taken when the segment write retires) if it is invalid.</li>
+                            <li>Allocate an entry in the segment register file to hold base, limit, etc. from the segment descriptor.</li>
+                            <li>If the segment descriptor is valid, write new values as read from the segment descriptor to the allocated entry in the segment register file.</li>
+                            <li>Update the architectural segment register file to point to the newly allocated entry.</li>
+                        </ol>
+                        <p>On processors with segment renaming, step 5 may still occur when step 2 detects&nbsp;that the segment descriptor is not valid. If the descriptor is invalid, step 2 ensures the operation faults and the changes are never reflected in the architectural state. However, if dependent instructions consume the results of this segment write (for example, by reading it out through&nbsp;<span class="dk_code_simple">RDFSBASE</span>), the dependent instructions may speculatively get the value from the newly allocated segment entry in the segment register file (from step 3). Some implementations will not write the segment register file when the segment descriptor is invalid, which can result in the value in the allocated segment entry being a stale value that was written by some previous segment write operation. Malicious actors may be able to reveal this stale value using a speculative execution disclosure gadget.</p>
+                        <p>The affected CPUs have two dedicated segment register file entries for each architectural segment, one of which is currently used for the segment, while the other is currently unused at any particular time. These entries are not shared between logical processors (for example, no entry is sometimes used by hyperthread 0 and sometimes used by hyperthread 1 on the same physical core), nor are they shared between different architectural segment registers (for example, there is no segment register file entry that is sometimes allocated to&nbsp;<strong>GS</strong>&nbsp;and sometimes to&nbsp;<strong>FS</strong>).</p>
+                    </section>
+
+                    <section id="dk_implications_writes">
+                        <h4>Implications of Speculative Segment Register Writes</h4>
+                    </section>
+
+                    <section id="dk_old_segment">
+                        <h4>Observation of Old Segment Bases</h4>
+                        <p>The values contained in a stale segment register file entry may belong to previously run software. It may be possible for a malicious actor&nbsp;to infer the value in the unused segment register file entry, thus inferring the segment base of that previously run software. This may apply to previously run applications, guests, kernels, or virtual machine managers (VMMs). Most software only uses non-zero segment bases for those segments used for thread local storage (<strong>FS</strong>&nbsp;and&nbsp;<strong>GS</strong>&nbsp;segments).</p>
+                    </section>
+
+                    <section id="dk_segment_bases">
+                        <h4>Segment Bases as a Covert Channel</h4>
+                        <p>Malicious actors who are able to control victim execution (for example, through a lack of mitigations against branch target injection attacks (also known as Spectre variant 2)) may be able to induce the victim to speculatively execute a segment write with data desired by the malicious actor. This speculatively written data may go into the unused segment register file entry of the destination segment.</p>
+                        <p>When the malicious code later runs on the same logical processor, the malicious actor may be able to recover this data from the unused segment register file entry using the aforementioned technique.</p>
+                        <p>It is also possible for two pieces of software to intentionally pass data through the unused segment register file entry of a segment.</p>
+                    </section>
+
+                    <section id="dk_mitigation">
+                        <p class="mb-0">&nbsp;</p>
+                        <h3 style="padding-bottom: 0.5rem; font-weight: 350;">Mitigation</h3>
+                    </section>
+
+                    <section id="dk_swapgs">
+                        <h4 class="mt-4">SWAPGS</h4>
+                        <p>After assessing this issue, industry partners determined that mitigations for this issue would be implemented by the operating system. For more details about these mitigations, refer to the&nbsp;<a class="b_special_a1" href="">Microsoft* security advisory</a>&nbsp;for Windows* operating systems and the&nbsp;<a class="b_special_a1" href="">latest kernel.org documentation</a>&nbsp;for Linux* operating systems.</p>
+                        <p>Generically, the recommended mitigation for when&nbsp;<span class="dk_code_simple">SWAPGS</span>&nbsp;is speculatively missed (as in the first example case above) is to add an&nbsp;<span class="dk_code_simple">LFENCE</span>&nbsp;or serializing instruction before the first memory reference using&nbsp;<strong>GS</strong>&nbsp;(for example, between lines 6 and 7 in the example code) on all paths that can speculatively skip the&nbsp;<span class="dk_code_simple">SWAPGS</span>&nbsp;instruction. This will create a speculation barrier that forces the conditional to be evaluated before the memory reference executes.</p>
+                        <p>The mitigation for when an extra&nbsp;<span class="dk_code_simple">SWAPGS</span>&nbsp;instruction is speculatively executed when it should not be (as in the second case above) is to add an&nbsp;<span class="dk_code_simple">LFENCE</span>&nbsp;or serializing instruction after the&nbsp;<span class="dk_code_simple">SWAPGS</span>&nbsp;instruction (for example, after line 2 in the example code).</p>
+                        <p>However, for optimal performance, each instance of&nbsp;<span class="dk_code_simple">SWAPGS</span>&nbsp;should be evaluated to determine whether an&nbsp;<span class="dk_code_simple">LFENCE</span>&nbsp;is actually needed. For instance, a potentially problematic code sequence might only speculatively execute without mappings of secret data, in which case the malicious actor would not have access to that data. In other cases, there may be some other serializing instruction before the memory accesses that would serve the same purpose as&nbsp;<span class="dk_code_simple">LFENCE</span>. Writes to the CR3 register used to mitigate rogue data cache load (also known as Meltdown) are serializing instructions and can be utilized for serialization in lieu of&nbsp;<span class="dk_code_simple">LFENCE</span>.</p>
+                    </section>
+
+                    <section id="dk_speculative_writes">
+                        <h4>Speculative Behavior of Segment Writes</h4>
+                    </section>
+
+                    <section id="dk_usage_channel">
+                        <h4>Usage of Segment Registers as a Channel</h4>
+                        <p>Many channels already exist that can be used for side channels. In general, the&nbsp;mitigations outlined above do not prevent the side channels, but rather&nbsp;prevent malicious actors from controlling speculation in order to put victim data into the channel in the first place. For example, a branch target injection attack that uses segment registers as a side channel (instead of using the data caches as the original branch target injection attack did) should be mitigated by preventing branch target injection attacks in general (for example, through retpoline or indirect branch restricted speculation (IBRS)) instead of attempting to address the specific channel (in this case, segment registers).</p>
+                    </section>
+
+                    <section id="dk_observation">
+                        <h4>Observation of Old Segment Bases</h4>
+                        <p>The unused segment register file entry may contain information from previously run applications or guests. Most segment bases are zero except for segments used for thread local storage (<strong>FS</strong> and&nbsp;<strong>GS</strong>). Intel does not believe that these segment bases are application secrets and does not recommend mitigating this information leakage.</p>
+                        <p>The segment register file entries for a segment can be overwritten with the specified data by a pair of&nbsp;<span class="dk_code_simple">SWAPGS</span>,&nbsp;<span class="dk_code_simple">MOV xS</span>,&nbsp;<span class="dk_code_simple">selector</span>,&nbsp;<span class="dk_code_simple">POP xS</span>, or&nbsp;<span class="dk_code_simple">LFS</span>/<span class="dk_code_simple">LGS</span>&nbsp;instructions that write that segment on at least Intel® microarchitecture code name Sandy Bridge and later processors. Loading a null segment selector may be lower latency than loading a segment from a descriptor table.</p>
+                        <p>Due to&nbsp;<span class="dk_code_simple">SWAPGS</span>&nbsp;being executed after ring transitions, applications cannot observe the&nbsp;<strong>GS</strong>&nbsp;value from previous applications, but they may be able to infer the kernel&nbsp;<strong>GS</strong>&nbsp;base.</p>
+                    </section>
+
+                    <section id="dk_system_administrators">
+                        <h4>System Administrators</h4>
+                        <p>Intel recommends that you always keep your systems up to date with the latest security updates and guidance from your OS and VMM vendors.</p>
+                    </section>
+
+                    <section id="dk_list_affected">
+                        <p class="mb-0">&nbsp;</p>
+                        <h3 style="font-weight: 350; padding-bottom: 0.5rem;">List of Affected Processors</h3>
+                        <p><a class="b_special_a1" href="">Processors Affected: Speculative Behavior of SWAPGS and Segment Registers</a></p>
+                    </section>
+
+                    <section id="dk_references">
+                        <p class="mb-0">&nbsp;</p>
+                        <h3 style="font-weight: 350; padding-bottom: 0.5rem;">References</h3>
+                        <ul>
+                            <li><a class="b_special_a1" href="">Linux kernel documentation</a></li>
+                            <li><a class="b_special_a1" href="">Microsoft security advisory</a></li>
+                        </ul>
+                    </section>
+
+                    <section id="dk_acknowledgements">
+                        <p class="mb-0">&nbsp;</p>
+                        <h3 style="font-weight: 350; padding-bottom: 0.5rem;">Acknowledgements</h3>
+                        <p class="mb-0">Intel thanks the Linux kernel community and other industry partners who have contributed significantly to mitigations for speculative execution side channel methods, and recognizes the following people for their development efforts and dedication to software security:</p>
+                        <ul>
+                            <li>Andrew Cooper</li>
+                            <li>Thomas Gleixner</li>
+                            <li>Tyler Hicks</li>
+                            <li>Ben Hutchings</li>
+                            <li>Greg KH</li>
+                            <li>Jiri Kosina</li>
+                            <li>Josh Poimboeuf</li>
+                        </ul>
+                        <p>&nbsp;</p>
+                        <h5 style="text-align:center"><a class="b_special_a1" href="">Software Security Guidance Home</a> | <a class="b_special_a1" href="">Advisory Guidance</a> | <a class="b_special_a1" href="">Technical Documentation</a> | <a class="b_special_a1" href="">Best Practices</a> | <a class="b_special_a1" href="">Resources</a></h5>
+                        <p>&nbsp;</p>
+                    </section>
+                    
+                </div>
+            </section>
+        </div>
+    </div>
+    </div>
+    </section>
+
+    <section style="border-top: 1px solid #d7d7d7;" class="container py-5">
+        <h4 class="h6">Product and Performance Information</h4>
+        <div class="disclaimer" style="font-size: 12px;"><sup>1</sup> Performance varies by use, configuration and other
+            factors. Learn more at <a class="b_special_a1" href="">www.Intel.com/PerformanceIndex.</a></div>
+        </div>
+    </section>
+
+    <!-- footer -->
+    <div id="footer"></div>
+
+    <!-- nav script -->
+    <script>
+        // navbar include  
+        fetch('/y_index/y_navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar').innerHTML = data;
+            });
+        // footer include 
+        fetch('/y_index/y_footer.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('footer').innerHTML = data;
+            });
+    </script>
+    <!-- nav script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            if (document.getElementsByClassName('VK_all_sections section') && document.getElementsByClassName('VK_sidebar_dropdown')) {
+                const sections = document.querySelectorAll('.VK_all_sections section');
+                const navLinks = document.querySelectorAll('.VK_sidebar_dropdown a');
+                const detailsElements = document.querySelectorAll('.VK_sidebar_dropdown details');
+
+                function removeActiveClass() {
+                    navLinks.forEach(link => link.classList.remove('VK_sidebar_active_link'));
+                    detailsElements.forEach(details => {
+                        details.removeAttribute('open');
+                        details.setAttribute('close', ''); // Optional: to visually indicate it's closed
+                    });
+                }
+
+                function activateLinkAndDetails(targetId) {
+                    navLinks.forEach(link => {
+                        if (link.getAttribute('href') === `#${targetId}`) {
+                            link.classList.add('VK_sidebar_active_link');
+                            let parentDetails = link.closest('details');
+
+                            // Open all ancestor details elements
+                            while (parentDetails) {
+                                parentDetails.setAttribute('open', '');
+                                parentDetails.removeAttribute('close'); // Optional: remove the closed indicator
+                                parentDetails = parentDetails.parentElement.closest('details');
+                            }
+                        }
+                    });
+                }
+
+                function onScroll() {
+                    let currentSection = '';
+                    sections.forEach(section => {
+                        const sectionTop = section.getBoundingClientRect().top;
+                        const sectionBottom = section.getBoundingClientRect().bottom;
+
+                        // Check if the section is in view
+                        if (sectionTop <= 100 && sectionBottom >= 0) {
+                            currentSection = section.getAttribute('id');
+                        }
+                    });
+
+                    if (currentSection) {
+                        removeActiveClass();
+                        activateLinkAndDetails(currentSection);
+                    } else {
+                        removeActiveClass();
+                    }
+                }
+
+                window.addEventListener('scroll', onScroll);
+            } else {
+                return
+            }
+        });
+    </script>
+
+    <!-- copy script -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            document.querySelectorAll(".mv_copy_icon").forEach((icon) => {
+                icon.addEventListener("click", async function () {
+                    try {
+                        const toolbar = this.closest(".mv_code_toolbar");
+                        const codeBlock = toolbar.querySelector(".code-content");
+                        const codeContent = codeBlock.innerText;
+
+                        // Use Clipboard API to copy text
+                        await navigator.clipboard.writeText(codeContent);
+
+                        // Hide the copy icon and show the "Copied!" message
+                        const message = toolbar.querySelector(".mv_copy_message");
+                        this.classList.add("hidden"); // Hide the copy icon
+                        message.classList.remove("hidden"); // Show the "Copied!" message
+
+                        // Hide the message and show the icon again after 2 seconds
+                        setTimeout(() => {
+                            message.classList.add("hidden");
+                            this.classList.remove("hidden");
+                        }, 2000); // Adjust delay as needed
+
+                    } catch (err) {
+                        console.error('Failed to copy text: ', err);
+                    }
+                });
+            });
+        });
+    </script>
+
+</body>
+
+</html>
+
+

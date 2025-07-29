@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Intel® Transactional Synchronization Extensions (Intel® TSX) Asynchronous Abort</title>
+
+    <!-- font family -->
+    <link href="https://fonts.cdnfonts.com/css/intel-clear" rel="stylesheet">
+
+    <link rel="stylesheet" href="/css/dk_developer_edge_iot_5G_industrial_automation_see_all_wireless_network_ready_printed_circuit_board_(PCB)_defect_detection.css">
+    <link rel="stylesheet" href="/css/mv_product/ECC.css">
+    <link rel="stylesheet" href="/css/rushita_automotive.css">
+
+    <!-- header footer -->
+    <link rel="stylesheet" href='/css/yatri.css'>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" rel="stylesheet">
+
+</head>
+
+<style>
+    .dk_color1 {
+        color: #069 !important;
+    }
+
+    .dk_color2 {
+        color: #008200 !important;
+    }
+
+    .dk_color3 {
+        color: #b24501;
+    }
+
+    .dk_note{
+        font-size: 1rem;
+        line-height: 1.25;
+        word-wrap: break-word;
+        background-color: #e6e6e6;
+        padding: 20px;
+        border-left: 3px solid #fdb813;
+    }
+    .dk_code_simple{
+        background-color: #e6e6e6;
+        color: #53565a;
+        border-radius: 0;
+    }
+
+    .dk_greyHighlight{
+        font-size: 1rem;
+        line-height: 1.25;
+        background-color: #e6e6e6;
+        padding: 20px;
+    }
+
+    @media(max-width:1200px) {
+        .dk_risk_app_img {
+            width: 100% !important;
+        }
+        .mv_product_table{
+            width: 100% !important;
+        }
+    }
+</style>
+
+<body>
+    <!-- header -->
+    <div id="navbar"></div>
+
+    <!------------------------------------------------------------------------------->
+    <section class="m_ai_tdrop">
+        <div>
+            <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Developers
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item m_dropActive" href="#">Overview</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Topics & Technologies</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Tools</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Hardware Platforms</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Resources & Documentation</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Learn</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Community & Events</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Developer Programs</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Get Help</a></li>                                                              
+            </ul>
+        </div>
+        <div class="m_ai_shlash">/</div>
+        <div>
+            <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Topics & Technologies
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item m_dropActive" href="#">Artificial Intelligence</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Client Applications</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Cloud</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">GPU Research</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Edge Computing</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">GameDev</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">HPC</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Data Center</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Firmware</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Networking</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Open Ecosystem</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Persistent Memory</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Platform Analysis Technology</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Runtime Languages</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Software Security Guidance</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Storage</a></li>
+            </ul>
+        </div>
+        <div class="m_ai_shlash">/</div>
+        <div>
+            <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Software Security Guidance
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item m_dropActive" href="#">Advisory Guidance</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Best Practices</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Resources</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Disclosure Documentation</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Feature Documentation</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">More Information</a></li>
+            </ul>
+        </div>
+        <div class="m_ai_shlash">/</div>
+        <div>
+            <button class="btn" style="color: #0068B5;">
+                Disclosure Documentation
+            </button>
+        </div>
+        <div class="m_ai_shlash">/</div>
+        <div class="m_ai_httl">TSX Asynchronous Abort</div>
+
+    </section>
+    <!------------------------------------------------------------------------------->
+
+    <!-- VMware Horizon -->
+    <section>
+        <div class="mv_vmware_bg_color">
+            <div class="container">
+                <div class="mv_vmware_padd">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="mv_vmware_heading">
+                                <h3>Intel® Transactional Synchronization Extensions (Intel® TSX) Asynchronous Abort</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mv_cd_page_marquee_info">
+                        <div class="mv_cd_page_marquee_action">
+                            <div class="mv_cd_page_marquee_action_padd">
+                                <label for="">ID</label>
+                                <span>758370</span>
+                            </div>
+                            <div class="mv_cd_page_marquee_action_padd">
+                                <label for="">Updated</label>
+                                <span>11/12/2019</span>
+                            </div>
+                            <div class="mv_cd_page_marquee_action_padd">
+                                <label for="">Version</label>
+                                <span>Latest</span>
+                            </div>
+                            <div class="mv_cd_page_marquee_action_padd">
+                                <label for=""></label>
+                                <span>Public</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="container py-5">
+        <div class="row">
+            <div class="d-flex justify-content-end col-xl-10 py-3 d-md-none">
+                <i class="fa-solid fa-print fs-4 px-2 " style="color:#0068B5"></i>
+                <i class="fa-regular fa-envelope fs-4 px-2" style="color:#0068B5"></i>
+            </div>
+            <div class="col-lg-3 col-md-4">
+                <!-- nav -->
+                <div class="VK_sticky_side_bar VK_side_bar_postion_stickey">
+                    <div>
+                        <div class="VK_sidebar_dropdown">
+                            <p class="m-0">
+                                <a href="#dk_impact_summary" class="text-decoration-none VK_a">
+                                    Impact Summary
+                                </a>
+                            </p>
+                            <p class="m-0">
+                                <a href="#dk_cve_css" class="text-decoration-none VK_a">
+                                    ​CVE and CSS
+                                </a>
+                            </p>
+                            <p class="m-0">
+                                <a href="#dk_mitigation" class="text-decoration-none VK_a">
+                                    Mitigation
+                                </a>
+                            </p>
+                            <p class="m-0">
+                                <a href="#dk_implications_envi" class="text-decoration-none VK_a">
+                                    Implications for virtualized environments
+                                </a>
+                            </p>
+                            <p class="m-0">
+                                <a href="#dk_implications_tsx" class="text-decoration-none VK_a">
+                                    Implications on Intel® TSX software
+                                </a>
+                            </p>
+                            <p class="m-0">
+                                <a href="#dk_intel_sgx" class="text-decoration-none VK_a">
+                                    Intel® Software Guard Extensions (Intel® SGX)
+                                </a>
+                            </p>
+                            <p class="m-0">
+                                <a href="#dk_enumeration" class="text-decoration-none VK_a">
+                                    Enumeration and new MSRs
+                                </a>
+                            </p>
+                            <p class="m-0">
+                                <a href="#dk_cpus_require" class="text-decoration-none VK_a">
+                                    CPUs That Require Additional Mitigations
+                                </a>
+                            </p>
+                            <p class="m-0">
+                                <a href="#dk_cpus_mitigations" class="text-decoration-none VK_a">
+                                    CPUs That Do Not Require Additional Mitigations
+                                </a>
+                            </p>
+                            <p class="m-0">
+                                <a href="#dk_footnotes" class="text-decoration-none VK_a">
+                                    Footnotes
+                                </a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <!-- thinkcode -->
+                <!-- <div class="dk_things_code_main">
+                    <div class="dk_things_code">
+                        <h2 class="text-left headline-font-one-bold">Loss Prevention Retail Reference Implementation provides:</h2>
+                        <div class="dk_high_quality">
+                            <ul>
+                                <li>High-quality testable ingredients needed to create a solution to prevent thefts at stores.</li>
+                                <li>Building blocks needed to enable the use case with solid performance numbers.</li>
+                                <li>Hardware requirements to support the workloads and scale the solution.</li>
+                            </ul>
+                        </div>
+                    <div class="dk_get_code">
+                        <button class="dk_button">Get Started on GitHub<sup>*</sup></button>
+                    </div>
+                    </div> 
+                </div> -->
+            </div>
+            <div class="col-lg-9 col-md-8">
+                <div class="d-md-flex justify-content-end col-xl-10 py-3 d-none">
+                    <i class="fa-solid fa-print fs-4 px-2 " style="color:#0068B5"></i>
+                    <i class="fa-regular fa-envelope fs-4 px-2" style="color:#0068B5"></i>
+                </div>
+                <div class="col-xl-10 VK_all_sections">
+                    <p>&nbsp;</p>
+                    <p>The TSX Asynchronous Abort (TAA) vulnerability is similar to&nbsp;<a class="b_special_a1" href="">Microarchitectural Data Sampling (MDS)</a>&nbsp;and affects the same buffers (store buffer, fill buffer, load port writeback data bus). The TAA condition, on some microprocessors utilizing speculative execution, may allow an authenticated user to potentially enable information disclosure via a side channel with local access. TAA has a separate CVE than MDS: CVE-2019-11135 (6.5 Medium CVSS:3.0/AV:L/AC:L/PR:L/UI:N/S:C/C:H/I:N/A:N), because it uses a new mechanism for the exploit. As with MDS, TAA may expose data from either the current logical processor or from the sibling logical processor on processors with simultaneous multithreading (SMT).</p>
+                    <p>Intel® Transactional Synchronization Extensions (Intel® TSX) are an extension to the x86 instruction set architecture that adds hardware transactional memory support to improve performance of multi-threaded software. Intel® TSX has two subfunctionalities: Restricted Transactional Memory (RTM) and Hardware Lock Elision (HLE). For more details on Intel® Transactional Synchronization Extensions (Intel® TSX) please see&nbsp;<a class="b_special_a1" href="">Web Resources About Intel® Transactional Synchronization Extensions</a>.</p>
+                    <p>Intel TSX supports atomic memory transactions that are either committed or aborted. Upon an Intel TSX abort, all earlier memory writes inside the transaction are rolled back to the state before the transaction start. An Intel TSX transaction can be synchronously aborted, for example due to instruction not supported in transactions. Intel TSX transactions can also be asynchronously aborted, such as when a different logical processor writes to a cache line that is part of the transaction’s read set, or when the transaction exceeds its memory buffering space, or due to other microarchitectural reasons.</p>
+                    <p>While an Intel TSX asynchronous abort (TAA) is pending, certain loads inside the transaction that are not yet completed may read data from microarchitectural structures and speculatively pass that data to dependent operations. This may cause microarchitectural side effects, which can later be measured to infer the value of the data in the microarchitectural structures.</p>
+                    <p>This TAA issue affects all current processors that support Intel TSX unless&nbsp;<span class="dk_code_simple">IA32_ARCH_CAPABILITIES.TAA_NO (bit 8)=1</span>. On CPUs affected by MDS, where&nbsp;<span class="dk_code_simple">IA32_ARCH_CAPABILITIES.MDS_NO (bit 5)=0</span>, the existing MDS mitigations will also mitigate against TAA.</p>
+                    <p>On CPUs that are not affected by MDS (where&nbsp;<span class="dk_code_simple">IA32_ARCH_CAPABILITIES.MDS_NO (bit 5)=1)</span>, and when the software is not using MDS mitigations, additional mitigation for TAA may be needed.</p>
+                    <p>For more information on MDS, refer to&nbsp;<a class="b_special_a1" href="">Microarchitectural Data Sampling</a>.</p>
+
+
+                    <section id="dk_impact_summary">
+                        <p class="mb-0">&nbsp;</p>
+                        <h3 style="font-weight: 350; padding-bottom: 0.5rem;">Impact Summary</h3>
+                        <p class="mb-0">Malicious application software executed by an authenticated user may be able to infer the values of data accessed on the same physical core by:</p>
+                        <ul>
+                            <li>Other applications</li>
+                            <li>Operating System (OS)</li>
+                            <li>System Management Mode (SMM)</li>
+                            <li>Intel® Software Guard Extensions (Intel® SGX) enclaves</li>
+                            <li>Virtual Machine Manager (VMM) if present</li>
+                            <li>Other guests running under the same VMM</li>
+                        </ul>
+                    </section>
+
+                    <section id="dk_cve_css">
+                        <p class="mb-0">&nbsp;</p>
+                        <h3 style="font-weight: 350; padding-bottom: 0.5rem;">​CVE and CSS</h3>
+                        <p>The CVE assigned to TAA is CVE-2019-11135 (6.5 Medium CVSS:3.0/AV:L/AC:L/PR:L/UI:N/S:C/C:H/I:N/A:N).</p>
+                    </section>
+
+                    <section id="dk_mitigation">
+                        <p class="mb-0">&nbsp;</p>
+                        <h3 style="font-weight: 350; ">Mitigation</h3>
+                        <p class="mb-0">A processor is affected by TAA if and only if both of the following conditions are true:</p>
+                        <ul>
+                            <li>CPU supports TSX<sup>1</sup></li>
+                            <li>CPU does not enumerate&nbsp;<span class="dk_code_simple">TAA_NO</span><sup>2</sup></li>
+                        </ul>
+                        <p>Refer to the CPUs That Require Additional Mitigations section for a list of processors affected by TAA.</p>
+                        <p>On CPUs affected by MDS (<span class="dk_code_simple">IA32_ARCH_CAPABILITIES[MDS_NO]=0)</span>, the mitigations for MDS will also help prevent TAA. Refer to <a class="b_special_a1" href="">Microarchitectural Data Sampling</a>&nbsp;for more details.</p>
+                        <p>On CPUs that do not require software MDS mitigations (<span class="dk_code_simple">IA32_ARCH_CAPABILITIES [MDS_NO]=1</span>) there are two possible mitigation approaches for TAA:</p>
+                        <ol>
+                            <li>Software can apply the same mitigations that are needed to mitigate MDS. Specifically, software can execute&nbsp;<span class="dk_code_simple">VERW</span>&nbsp;before kernel exits and VM entries and mitigate cross hyperthread attacks. This will help ensure that no data from other contexts can be leaked. Refer to <a class="b_special_a1" href="">Microarchitectural Data Sampling</a>&nbsp;for more information on MDS mitigations. For&nbsp;<span class="dk_code_simple">VERW</span>&nbsp;to clear affected buffers, a microcode update that adds support for the&nbsp;<span class="dk_code_simple">IA32_TSX_CTRL</span>&nbsp;Model Specific Register (MSR) (<span class="dk_code_simple">IA32_ARCH_CAPABILITIES[TSX_CTRL] (bit 7)=1</span>) may need to be loaded. Because VMMs may not expose this MSR to a guest, software using this approach should execute&nbsp;<span class="dk_code_simple">VERW</span>&nbsp;even when&nbsp;<span class="dk_code_simple">IA32_TSX_CTRL</span>&nbsp;support is not enumerated.</li>
+                            <li>
+                            <p>Alternatively, it is possible to disable Intel TSX for the workload using the&nbsp;<span class="dk_code_simple">IA32_TSX_CTRL</span>&nbsp;MSR (refer to the Enumeration and new MSRs section). Some processors may need to load a microcode update to add support for&nbsp;<span class="dk_code_simple">IA32_TSX_CTRL</span>. The MSR supports disabling the RTM functionality of Intel TSX by setting TSX_CTRL_RTM_DISABLE (bit 0). When this bit is set, all RTM transactions will abort with abort code 0 before any instructions can execute within the transaction, even speculatively. On processors that enumerate&nbsp;<span class="dk_code_simple">IA32_ARCH_CAPABILITIES[TSX_CTRL] (bit 7)=1</span>, HLE prefix hints are always ignored.</p>
+                        
+                            <p>For most usages when RTM is disabled, the respective RTM CPUID (CPUID.07h.EBX.RTM [bit 11]) should also be disabled by setting the&nbsp;<span class="dk_code_simple">TSX_CTRL_CPUID_CLEAR (bit 1)</span>&nbsp;bit in&nbsp;<span class="dk_code_simple">IA32_TSX_CTRL</span>. This will indicate to software using Intel TSX to use a fallback path immediately without trying to attempt a transaction.</p>
+                        
+                            <p>If it’s not possible to change the CPUID, the&nbsp;<span class="dk_code_simple">IA32_TSX_CTRL[TSX_CPUID_CLEAR] (bit 1)</span>&nbsp;bit can be cleared to preserve the HLE and RTM CPUID bits. In this case, software using Intel TSX will attempt RTM transactions, but it will always abort until it takes a fall back path.</p>
+                        
+                            <p>Using&nbsp;<span class="dk_code_simple">IA32_TSX_CTRL</span>&nbsp;may require a new microcode update to be loaded. Support for&nbsp;<span class="dk_code_simple">IA32_TSX_CTRL</span>&nbsp;is enumerated by CPUID.ARCH_CAP(EAX=7h,ECX=0):EDX[29] = 1 and&nbsp;<span class="dk_code_simple">IA32_ARCH_CAPABILITIES[TSX_CTRL] (bit 7) = 1</span></p>
+                            </li>
+                        </ol>
+                        <p>On processors that do enumerate&nbsp;<span class="dk_code_simple">MD_CLEAR</span>&nbsp;but don’t enumerate&nbsp;<span class="dk_code_simple">MDS_NO</span>, both&nbsp;<span class="dk_code_simple">L1D_FLUSH</span>&nbsp;and&nbsp;<span class="dk_code_simple">VERW</span>&nbsp;overwrite the TAA-affected buffers.</p>
+                        <p>On processors that enumerate both&nbsp;<span class="dk_code_simple">MDS_NO</span>&nbsp;and&nbsp;<span class="dk_code_simple">TSX_CTRL</span>, both&nbsp;<span class="dk_code_simple">L1D_FLUSH</span>&nbsp;and&nbsp;<span class="dk_code_simple">VERW</span>&nbsp;overwrite the TAA-affected buffers.</p>
+                        <p class="mb-0">&nbsp;</p>
+                    </section>
+
+                    <section id="dk_implications_envi">
+                        <h3 style="font-weight: 350;">Implications for virtualized environments</h3>
+                        <p>To ensure that guests are properly mitigated, VMMs should load a microcode update that causes&nbsp;<span class="dk_code_simple">IA32_ARCH_CAPABILITIES[TSX_CTRL] (bit 7)</span>&nbsp;to be set on processors that need additional mitigations for TAA.</p>
+                        <p>To help prevent possibly malicious guest VMs from using Intel TSX when it is not enumerated to them, VMMs should set&nbsp;<span class="dk_code_simple">IA32_TSX_CTRL[RTM_DISABLE] (bit 0)</span>&nbsp;to disable Intel TSX on processors affected by TAA that are running untrusted guest VMs.</p>
+                        <p>VMMs should ensure they apply the mitigations described in the MDS disclosure to guest VMs for which Intel TSX is enabled (<span class="dk_code_simple">IA32_TSX_CTRL[RTM_DISABLE] (bit 0)=0</span>). Specifically, the VMM should ensure that sensitive data is not in the affected buffers before entering possibly malicious Intel TSX-enabled guests (for example, by executing&nbsp;<span class="dk_code_simple">VERW</span>). The VMM should also ensure that possible victim VMs are not running on the sibling logical processor as untrusted guests.</p>
+                        <p class="mb-0">&nbsp;</p>
+                    </section>
+
+                    <section id="dk_implications_tsx">
+                        <h3 style="font-weight: 350;">Implications on Intel® TSX software</h3>
+                        <p>When Intel TSX is disabled at runtime using&nbsp;<span class="dk_code_simple">TSX_CTRL</span>, but the CPUID enumeration of Intel TSX is not cleared, existing software using RTM may see aborts for every transaction. The abort will always return a 0 status code in&nbsp;<span class="dk_code_simple">EAX</span>&nbsp;after&nbsp;<span class="dk_code_simple">XBEGIN</span>. When the software does a number of transaction retries, it should never retry for a 0 status value, but go to the nontransactional fall back path immediately.</p>
+                        <p class="mb-0">&nbsp;</p>
+                    </section>
+
+                    <section id="dk_intel_sgx">
+                        <h3 style="font-weight: 350;">Intel® Software Guard Extensions (Intel® SGX)</h3>
+                        <p>Intel® Software Guard Extensions (Intel® SGX) enclaves are potentially impacted on CPUs that are not affected by MDS (<span class="dk_code_simple">IA32_ARCH_CAPABILITIES[MDS_NO]=1</span>) but that are affected by TAA (<span class="dk_code_simple">IA32_ARCH_CAPABILITIES[TAA_NO]=0</span>). As the Intel® SGX security model does not trust the system software, Intel SGX cannot rely&nbsp;on the system software to disable Intel TSX or to clear the microarchitectural data buffers. Mitigating TAA for Intel SGX is achieved through a microcode update.</p>
+                        <p class="mb-0">When the required microcode update is applied:</p>
+                        <ol>
+                            <li>The Intel SGX remote attestation will indicate whether the required microcode update has been applied.</li>
+                            <li>The mitigation for Intel SGX does not depend on the behavior of the OS or VMM.</li>
+                        </ol>
+                        <p class="mb-0">&nbsp;</p>
+                    </section>
+
+                    <section id="dk_enumeration">
+                        <h3 style="font-weight: 350;">Enumeration and new MSRs</h3>
+                        <p><span class="dk_code_simple">IA32_ARCH_CAPABILITIES[TSX_CTRL] (bit 7)</span>&nbsp;enumerates that the&nbsp;<span class="dk_code_simple">IA32_TSX_CTRL</span>&nbsp;MSR exists and that&nbsp;<span class="dk_code_simple">TSX_CTRL</span>&nbsp;supports bit 0 (<span class="dk_code_simple">RTM_DISABLE</span>) and bit 1 (<span class="dk_code_simple">TSX_CPUID_CLEAR</span>).</p>
+                        <ol>
+                            <li>The processor automatically overwrites the affected microarchitecture data buffers when entering or exiting Intel SGX enclaves.</li>
+                            <li>On a hyperthreading-enabled processor, the processor automatically aborts any Intel TSX transaction on one logical processor when the sibling logical processor on the same physical core enters an Intel SGX enclave. The processor also prevents an Intel TSX transaction from starting on one logical processor if the sibling logical processor is currently executing an Intel SGX enclave.</li>
+                        </ol>
+                        <p>Table 1.&nbsp;Description of IA32_TSX_CTRL MSR</p>
+                        <table class="mv_product_table w-100 mb-4">
+                            <thead>
+                                <tr>
+                                    <th style="text-align:center">Register Address</th>
+                                    <th style="text-align:center">Register Name / Bit Fields</th>
+                                    <th style="text-align:center">Bit Description</th>
+                                    <th style="text-align:center">Comment</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>122h</td>
+                                    <td>IA32_TSX_CTRL</td>
+                                    <td>&nbsp;</td>
+                                    <td>Thread scope. Not architecturally serializing.<br>
+                                    Available when CPUID.ARCH_CAP(EAX=7h,ECX=0):EDX[29] = 1 and IA32_ARCH_CAPABILITIES.bit 7 = 1<br>
+                                    &nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td>&nbsp;</td>
+                                    <td>0</td>
+                                    <td>RTM_DISABLE: When set to 1 XBEGIN will always abort with EAX code 0.</td>
+                                    <td>&nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td>&nbsp;</td>
+                                    <td>1</td>
+                                    <td>TSX_CPUID_CLEAR: When set to 1 CPUID.07h.EBX.RTM [bit 11] and CPUID.07h.EBX.HLE [bit 4] report 0.<br>
+                                    When set to 0 and the SKU supports TSX these bits will return 1.</td>
+                                    <td>&nbsp;</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <p class="mb-0">&nbsp;</p>
+                    </section>
+
+                    <section id="dk_cpus_require">
+                        <h3 style="font-weight: 350;">CPUs That Require Additional Mitigations</h3>
+                        <p>Table 2.&nbsp;Processors that require additional mitigations</p>
+                        <table class="mv_product_table w-100 mb-4">
+                            <thead>
+                                <tr>
+                                    <th style="text-align:center">Family/Model</th>
+                                    <th style="text-align:center">Stepping</th>
+                                    <th style="text-align:center">Processor Families /<br>
+                                    Processor Number Series<br>
+                                    &nbsp;</th>
+                                    <th style="text-align:center">Affected by TAA</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>06_8E</td>
+                                    <td>0xC</td>
+                                    <td>Whiskey Lake (ULT refresh)</td>
+                                    <td>If TSX supported</td>
+                                </tr>
+                                <tr>
+                                    <td>06_55</td>
+                                    <td>6, 7</td>
+                                    <td>2nd Generation Intel® Xeon® Scalable Processors based on Cascade Lake microarchitecture</td>
+                                    <td>If TSX supported</td>
+                                </tr>
+                                <tr>
+                                    <td>06_9E</td>
+                                    <td>0xD</td>
+                                    <td>Coffee Lake R</td>
+                                    <td>If TSX supported</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <p class="mb-0">&nbsp;</p>
+                    </section>
+
+                    <section id="dk_cpus_mitigations">
+                        <h3 style="font-weight: 350;">CPUs That Do Not Require Additional Mitigations</h3>
+                        <p class="mb-0">There are three types of processors that do not require additional mitigations.</p>
+                        <ol>
+                            <li>CPUs that do not support Intel TSX are not affected<sup>3</sup>.</li>
+                            <li>CPUs that enumerate&nbsp;<span class="dk_code_simple">IA32_ARCH_CAPABILITIES[TAA_NO] (bit 8)=1</span>&nbsp;are not affected.</li>
+                            <li>CPUs that support Intel TSX and do not enumerate&nbsp;<span class="dk_code_simple">IA32_ARCH_CAPABILITIES[MDS_NO] (bit 5)=1</span>&nbsp;do not need additional mitigations beyond what is already required to mitigate MDS.</li>
+                        </ol>
+                        <p class="mb-0">&nbsp;</p>
+                    </section>
+
+                    <section id="dk_footnotes">
+                        <p class="mb-0">&nbsp;</p>
+                        <h3 style="font-weight: 350; padding-bottom: 0.5rem;">Footnotes</h3>
+                        <ol>
+                            <li>Intel TSX support is indicated by CPUID.07h.EBX.RTM (bit 11) set to 1 and CPUID.07h.EBX.HLE (bit 4) set to 1.</li>
+                            <li>CPUID.7.EDX[IA32_ARCH_CAPABILITIES supported]=0 or&nbsp;<span class="dk_code_simple">IA32_ARCH_CAPABILITIES[TAA_NO]=0</span>.</li>
+                            <li>No Intel TSX support is indicated by CPUID.07h.EBX.RTM (bit 11) set to 0 and CPUID.07h.EBX.HLE (bit 4) set to 0.</li>
+                        </ol>
+                        <p>&nbsp;</p>
+                        <h5 style="text-align:center"><a class="b_special_a1" href="">Software Security Guidance Home</a> | <a class="b_special_a1" href="">Advisory Guidance</a> | <a class="b_special_a1" href="">Technical Documentation</a> | <a class="b_special_a1" href="">Best Practices</a> | <a class="b_special_a1" href="">Resources</a></h5>
+                        <p>&nbsp;</p>
+                    </section>
+                    
+                </div>
+            </section>
+        </div>
+    </div>
+    </div>
+    </section>
+
+    <section style="border-top: 1px solid #d7d7d7;" class="container py-5">
+        <h4 class="h6">Product and Performance Information</h4>
+        <div class="disclaimer" style="font-size: 12px;"><sup>1</sup> Performance varies by use, configuration and other
+            factors. Learn more at <a class="b_special_a1" href="">www.Intel.com/PerformanceIndex.</a></div>
+        </div>
+    </section>
+
+    <!-- footer -->
+    <div id="footer"></div>
+
+    <!-- nav script -->
+    <script>
+        // navbar include  
+        fetch('/y_index/y_navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar').innerHTML = data;
+            });
+        // footer include 
+        fetch('/y_index/y_footer.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('footer').innerHTML = data;
+            });
+    </script>
+    <!-- nav script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            if (document.getElementsByClassName('VK_all_sections section') && document.getElementsByClassName('VK_sidebar_dropdown')) {
+                const sections = document.querySelectorAll('.VK_all_sections section');
+                const navLinks = document.querySelectorAll('.VK_sidebar_dropdown a');
+                const detailsElements = document.querySelectorAll('.VK_sidebar_dropdown details');
+
+                function removeActiveClass() {
+                    navLinks.forEach(link => link.classList.remove('VK_sidebar_active_link'));
+                    detailsElements.forEach(details => {
+                        details.removeAttribute('open');
+                        details.setAttribute('close', ''); // Optional: to visually indicate it's closed
+                    });
+                }
+
+                function activateLinkAndDetails(targetId) {
+                    navLinks.forEach(link => {
+                        if (link.getAttribute('href') === `#${targetId}`) {
+                            link.classList.add('VK_sidebar_active_link');
+                            let parentDetails = link.closest('details');
+
+                            // Open all ancestor details elements
+                            while (parentDetails) {
+                                parentDetails.setAttribute('open', '');
+                                parentDetails.removeAttribute('close'); // Optional: remove the closed indicator
+                                parentDetails = parentDetails.parentElement.closest('details');
+                            }
+                        }
+                    });
+                }
+
+                function onScroll() {
+                    let currentSection = '';
+                    sections.forEach(section => {
+                        const sectionTop = section.getBoundingClientRect().top;
+                        const sectionBottom = section.getBoundingClientRect().bottom;
+
+                        // Check if the section is in view
+                        if (sectionTop <= 100 && sectionBottom >= 0) {
+                            currentSection = section.getAttribute('id');
+                        }
+                    });
+
+                    if (currentSection) {
+                        removeActiveClass();
+                        activateLinkAndDetails(currentSection);
+                    } else {
+                        removeActiveClass();
+                    }
+                }
+
+                window.addEventListener('scroll', onScroll);
+            } else {
+                return
+            }
+        });
+    </script>
+
+    <!-- copy script -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            document.querySelectorAll(".mv_copy_icon").forEach((icon) => {
+                icon.addEventListener("click", async function () {
+                    try {
+                        const toolbar = this.closest(".mv_code_toolbar");
+                        const codeBlock = toolbar.querySelector(".code-content");
+                        const codeContent = codeBlock.innerText;
+
+                        // Use Clipboard API to copy text
+                        await navigator.clipboard.writeText(codeContent);
+
+                        // Hide the copy icon and show the "Copied!" message
+                        const message = toolbar.querySelector(".mv_copy_message");
+                        this.classList.add("hidden"); // Hide the copy icon
+                        message.classList.remove("hidden"); // Show the "Copied!" message
+
+                        // Hide the message and show the icon again after 2 seconds
+                        setTimeout(() => {
+                            message.classList.add("hidden");
+                            this.classList.remove("hidden");
+                        }, 2000); // Adjust delay as needed
+
+                    } catch (err) {
+                        console.error('Failed to copy text: ', err);
+                    }
+                });
+            });
+        });
+    </script>
+
+</body>
+
+</html>
+
+
