@@ -650,7 +650,7 @@
                                 4.3 Medium</p>
                                 </td>
                                 <td>
-                                <p>Industry-wide severity ratings can be found in the&nbsp;<a class="b_special_a1" href="">National Vulnerability Database</a></p>
+                                <p>Industry-wide severity ratings can be found in the&nbsp;<a class="b_special_a1" href="https://nvd.nist.gov/">National Vulnerability Database</a></p>
                                 </td>
                             </tr>
                         </tbody>
@@ -668,26 +668,26 @@
                     <section id="dk_related_content">
                         <p class="mb-0">&nbsp;</p>
                         <h3 style="font-weight: 350; padding-bottom: 0.5rem;">Related Content</h3>
-                        <p><a class="b_special_a1" href="">Refined speculative execution terminology</a></p>
-                        <p><a class="b_special_a1" href="">List of Instructions Affected by Rogue System Register Read</a></p>
-                        <p><a class="b_special_a1" href="">Details on Intel's microcode update process</a></p>
+                        <p><a class="b_special_a1" href="/darshit/dk_Solutions_Industries/Refined_Speculative_Execution_Terminology.html">Refined speculative execution terminology</a></p>
+                        <p><a class="b_special_a1" href="/darshit/dk_Solutions_Industries/Instructions_Affected_by_Rogue_System_Register_Read.html">List of Instructions Affected by Rogue System Register Read</a></p>
+                        <p><a class="b_special_a1" href="/darshit/dk_Solutions_Industries/Microcode_Update_Guidance.html">Details on Intel's microcode update process</a></p>
                     </section>
 
                     <section id="dk_overview">
                         <p class="mb-0">&nbsp;</p>
                         <h3 style="font-weight: 350; padding-bottom: 0.5rem;">Overview</h3>
-                        <p>Rogue System Register Read (<a class="b_special_a1" href="">INTEL-SA-00115</a>) is a domain-bypass transient execution attack that uses transient execution of instructions to potentially allow malicious actors to infer the values of some system register states that should not be architecturally accessible. This method was first described as Variant 3a (V3a) in the&nbsp;<a class="b_special_a1" href="">Cache Speculation Side-channels ARM* whitepaper</a>. The set of system registers that can have their values inferred by this method is specific to each hardware implementation. Rogue System Register Read has been assigned CVE-2018-3640 with a base score of 4.3 Medium CVSS:3.0/AV:L/AC:L/PR:N/UI:N/S:C/C:L/I:N/A:N.</p>
+                        <p>Rogue System Register Read (<a class="b_special_a1" href="/darshit/dk_Solutions_Industries/INTEL_SA_00115.html">INTEL-SA-00115</a>) is a domain-bypass transient execution attack that uses transient execution of instructions to potentially allow malicious actors to infer the values of some system register states that should not be architecturally accessible. This method was first described as Variant 3a (V3a) in the&nbsp;<a class="b_special_a1" href="/img/darshit_image/Cache_Speculation_Side-channels_03May18.pdf">Cache Speculation Side-channels ARM* whitepaper</a>. The set of system registers that can have their values inferred by this method is specific to each hardware implementation. Rogue System Register Read has been assigned CVE-2018-3640 with a base score of 4.3 Medium CVSS:3.0/AV:L/AC:L/PR:N/UI:N/S:C/C:L/I:N/A:N.</p>
                         <p>Although these transient operations will architecturally fault or VM exit, in certain cases they may return data that is accessible to subsequent instructions in the&nbsp;speculative execution&nbsp;path. These subsequent instructions can then create a side channel to infer the system register state.</p>
                         <p>Intel’s analysis is that the majority of states exposed by the Rogue System Register Read method are not secret or sensitive, and that this method does not directly enable attacks or exposure of user data. However, the use of the rogue system register read method by an attacker may potentially result in the exposure of the physical addresses for some data structures and may also expose the linear addresses of some kernel software entry points.</p>
                         <p>Knowledge of these physical and linear addresses may enable malicious actors to determine the addresses of other kernel data and code elements, which may impact the efficacy of the Kernel Address Space Layout Randomization (KASLR) technique. KASLR, as a security defense in-depth feature, has been subject to a number of attacks in recent years; in particular by local malicious actors who can control code execution. As the rogue system register read method involves attacker-controlled code execution, a local attacker who employs rogue system register read to break KASLR may be low impact for most end users.</p>
-                        <p>The list of&nbsp;<a class="b_special_a1" href="">Instructions Affected by Rogue System Register Read</a>&nbsp;describes transient execution behavior that may occur on one or more existing Intel processors. Individual processors will only be affected by a subset of the issues listed in this link. These issues are addressed in future processors.</p>
+                        <p>The list of&nbsp;<a class="b_special_a1" href="/darshit/dk_Solutions_Industries/Instructions_Affected_by_Rogue_System_Register_Read.html">Instructions Affected by Rogue System Register Read</a>&nbsp;describes transient execution behavior that may occur on one or more existing Intel processors. Individual processors will only be affected by a subset of the issues listed in this link. These issues are addressed in future processors.</p>
                     </section>
 
                     <section id="dk_mitigation">
                         <p class="mb-0">&nbsp;</p>
                         <h3 style="font-weight: 350; padding-bottom: 0.5rem;">Mitigation</h3>
                         <p>Malware must be running locally on a system to compromise security using the rogue system register read method.</p>
-                        <p><a class="b_special_a1" href="">Microcode updates</a>&nbsp;help ensure that the&nbsp;<span class="dk_code_simple">RDMSR</span>&nbsp;instruction will not speculatively return data when executed at&nbsp;<span class="dk_code_simple">CPL &gt; 0</span>&nbsp;or when executed by a Virtual Machine eXtension (VMX) guest to a model-specific register (MSR) for which&nbsp;<span class="dk_code_simple">RDMSR</span>&nbsp;is configured to cause a Virtual Machine (VM) exit.</p>
+                        <p><a class="b_special_a1" href="/img/darshit_image/sa00115-microcode-update-guidance (1).pdf">Microcode updates</a>&nbsp;help ensure that the&nbsp;<span class="dk_code_simple">RDMSR</span>&nbsp;instruction will not speculatively return data when executed at&nbsp;<span class="dk_code_simple">CPL &gt; 0</span>&nbsp;or when executed by a Virtual Machine eXtension (VMX) guest to a model-specific register (MSR) for which&nbsp;<span class="dk_code_simple">RDMSR</span>&nbsp;is configured to cause a Virtual Machine (VM) exit.</p>
                         <p>Recent processors further restrict speculative values returned. Note that cases where the speculative value returned depends only on the instruction operands are not believed to constitute a security threat and may not be mitigated. An example of this would be a&nbsp;<span class="dk_code_simple">RDMSR</span>&nbsp;instruction that speculatively returns the&nbsp;<span class="dk_code_simple">ECX</span>&nbsp;value used as input. A non-system-register read example would be a divide instruction that, when it causes a divide error exception, returns data related to that divide’s inputs.<br>
                             &nbsp;</p>
                     </section>
@@ -696,8 +696,8 @@
                         <p class="mb-0">&nbsp;</p>
                         <h3 style="font-weight: 350; padding-bottom: 0.5rem;">References</h3>
                         <ul>
-                            <li><a class="b_special_a1" href="">Introduction to Speculative Execution Side Channel Methods</a></li>
-                            <li><a class="b_special_a1" href="">Instructions Affected by Rogue System Register Read</a></li>
+                            <li><a class="b_special_a1" href="/darshit/dk_Solutions_Industries/Introduction_to_Speculative_Execution_Side_Channel_Methods.html">Introduction to Speculative Execution Side Channel Methods</a></li>
+                            <li><a class="b_special_a1" href="/darshit/dk_Solutions_Industries/Instructions_Affected_by_Rogue_System_Register_Read.html">Instructions Affected by Rogue System Register Read</a></li>
                         </ul>
                         <p>&nbsp;</p>
                         <h5 style="text-align:center"><a class="b_special_a1" href="">Software Security Guidance Home</a>&nbsp;|&nbsp;<a class="b_special_a1" href="">Advisory Guidance</a>&nbsp;|&nbsp;<a class="b_special_a1" href="">Technical Documentation</a>&nbsp;|&nbsp;<a class="b_special_a1" href="">Best Practices</a>&nbsp;|&nbsp;<a class="b_special_a1" href="">Resources</a></h5>

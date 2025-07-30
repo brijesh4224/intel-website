@@ -643,7 +643,7 @@
                                 <td><img src="/img/darshit_image/shield-icon-black.png" width="100"><strong>Severity rating:</strong><br>
                                 2.8 Low</td>
                                 <td>Industry-wide severity ratings can be found<br>
-                                in the&nbsp;<a class="b_special_a1" href="">National Vulnerability Database</a></td>
+                                in the&nbsp;<a class="b_special_a1" href="https://nvd.nist.gov/">National Vulnerability Database</a></td>
                             </tr>
                         </tbody>
                     </table> 
@@ -651,20 +651,20 @@
                     <section id="dk_related_content">
                         <p class="mb-0">&nbsp;</p>
                         <h3 style="font-weight: 350; padding-bottom: 0.5rem;">Related Content</h3>
-                        <p><a class="b_special_a1" href="">Microcode Update Guidance for INTEL-SA-00329</a><br>
-                            <a class="b_special_a1" href="">INTEL-SA-00329</a><br>
+                        <p><a class="b_special_a1" href="/img/darshit_image/sa00329-microcode-update-guidance.pdf">Microcode Update Guidance for INTEL-SA-00329</a><br>
+                            <a class="b_special_a1" href="/darshit/dk_Solutions_Industries/INTEL_SA_00329.html">INTEL-SA-00329</a><br>
                             <a class="b_special_a1" href="">Blog: Data Leakage Advisory</a><br>
-                            <a class="b_special_a1" href="">List of processors potentially affected by Vector Register Sampling</a><br>
-                            <a class="b_special_a1" href="">Affected Processors: Transient Execution Attacks by Product CPU</a><br>
-                            <a class="b_special_a1" href="">Introduction to Speculative Execution Side Channel Methods</a><br>
-                            <a class="b_special_a1" href="">Details on Intel's microcode update process</a></p>
+                            <a class="b_special_a1" href="/darshit/dk_Solutions_Industries/Processors_Affected_Vector_Register_Sampling.html">List of processors potentially affected by Vector Register Sampling</a><br>
+                            <a class="b_special_a1" href="/dhruvin_developer-tools/ds_Developer-Zone.html">Affected Processors: Transient Execution Attacks by Product CPU</a><br>
+                            <a class="b_special_a1" href="/darshit/dk_Solutions_Industries/Introduction_to_Speculative_Execution_Side_Channel_Methods.html">Introduction to Speculative Execution Side Channel Methods</a><br>
+                            <a class="b_special_a1" href="/darshit/dk_Solutions_Industries/Microcode_Update_Guidance.html">Details on Intel's microcode update process</a></p>
                     </section>
 
                     <section id="dk_overview">
                         <p class="mb-0">&nbsp;</p>
                         <h3 style="font-weight: 350; padding-bottom: 0.5rem;">Overview</h3>
                         <p>A&nbsp;speculative execution&nbsp;side channel variant known as&nbsp;<em>Vector Register Sampling</em>&nbsp;may allow the partial data values of some vector operations to be inferred under a specific set of complex conditions that include vector operations executing after a period of vector inactivity. Vector register sampling has been assigned CVE-2020-0548 with CVSS 2.8 CVSS 3.1/AV:L/AC:H/PR:L/UI:N/S:C/C:L/I:N/A:N.&nbsp;A related variant with similar characteristics has been termed&nbsp;<em>Vector Register Sampling - Active</em>. This variant is based on a different underlying mechanism, which does not rely on vector instruction activity after a period of vector instruction inactivity, but the potential data exposure is similar. &nbsp;Vector Register Sampling - Active has been assigned CVE 2020-8696 with CVSS score 2.5 CVSS vector CVSS:3.1/AV:L/AC:H/PR:L/UI:N/S:C/C:L/I:N/A:N. &nbsp;&nbsp;</p>
-                        <p>On some processors, under certain microarchitectural conditions, partial data values previously read from a vector register on a physical core may be propagated into unused portions of the store buffer. On processors affected by&nbsp;<a class="b_special_a1" href="">Microarchitectural Data Sampling&nbsp;(MDS)</a> or&nbsp;<a class="b_special_a1" href="">Transactional Asynchronous Abort&nbsp;(TAA)</a>, data from a store buffer entry may be inferred using one of these data sampling side channel methods. Using the MDS or TAA methods, it may be possible for malicious actors to infer data values from previously read vector registers. The vector register sampling method is not believed to affect processors that are not affected by MDS or TAA<sup>1</sup>.</p>
+                        <p>On some processors, under certain microarchitectural conditions, partial data values previously read from a vector register on a physical core may be propagated into unused portions of the store buffer. On processors affected by&nbsp;<a class="b_special_a1" href="/darshit/dk_Solutions_Industries/Microarchitectural_Data_Sampling_Guidance.html">Microarchitectural Data Sampling&nbsp;(MDS)</a> or&nbsp;<a class="b_special_a1" href="/darshit/dk_Solutions_Industries/Intel_Transactional_Synchronization_Extensions_Intel_TSX.html">Transactional Asynchronous Abort&nbsp;(TAA)</a>, data from a store buffer entry may be inferred using one of these data sampling side channel methods. Using the MDS or TAA methods, it may be possible for malicious actors to infer data values from previously read vector registers. The vector register sampling method is not believed to affect processors that are not affected by MDS or TAA<sup>1</sup>.</p>
                         <p>Malicious software may be able to use vector register sampling to infer vector data used by previously run software, or to infer vector data used by software running on a sibling hyperthread on the same physical core, possibly even in the presence of&nbsp;<span class="dk_code_simple">MD_CLEAR</span>&nbsp;operations.</p>
                         <p class="mb-0">The vector register sampling method has a smaller scope than MDS for several reasons:</p>
                         <ul>
@@ -678,8 +678,8 @@
                     <section id="dk_mitigation">
                         <p class="mb-0">&nbsp;</p>
                         <h3 style="font-weight: 350; padding-bottom: 0.5rem;">Mitigation</h3>
-                        <p>Intel has released microcode updates for affected processors which will help ensure that&nbsp;<span class="dk_code_simple">MD_CLEAR</span>&nbsp;operations (for example, a&nbsp;<span class="dk_code_simple">VERW</span>&nbsp;instruction) will prevent older vector register data from being propagated into unused portions of the store buffer. When the microcode update is released, software can discover if the microcode update contains the mitigation by checking that the patch revision number matches or is greater than the corresponding revision number in the&nbsp;<a class="b_special_a1" href="">Affected Processors</a>&nbsp;table.</p>
-                        <p>On processors not yet updated to mitigate vector register sampling,&nbsp;<a class="b_special_a1" href="">SMT scheduling restrictions</a>&nbsp;may reduce the risk of cross-thread secret data exposure. The vector register sampling method cannot be performed on processors that are not affected by MDS or TAA<sup>1</sup>.</p>
+                        <p>Intel has released microcode updates for affected processors which will help ensure that&nbsp;<span class="dk_code_simple">MD_CLEAR</span>&nbsp;operations (for example, a&nbsp;<span class="dk_code_simple">VERW</span>&nbsp;instruction) will prevent older vector register data from being propagated into unused portions of the store buffer. When the microcode update is released, software can discover if the microcode update contains the mitigation by checking that the patch revision number matches or is greater than the corresponding revision number in the&nbsp;<a class="b_special_a1" href="/darshit/dk_Solutions_Industries/Processors_Affected_Vector_Register_Sampling.html">Affected Processors</a>&nbsp;table.</p>
+                        <p>On processors not yet updated to mitigate vector register sampling,&nbsp;<a class="b_special_a1" href="/darshit/dk_Solutions_Industries/Microarchitectural_Data_Sampling.html">SMT scheduling restrictions</a>&nbsp;may reduce the risk of cross-thread secret data exposure. The vector register sampling method cannot be performed on processors that are not affected by MDS or TAA<sup>1</sup>.</p>
                         <p>Processors that are affected by only TAA and not MDS<sup>2</sup>&nbsp;can mitigate this issue by disabling Intel® Transactional Synchronization Extensions (Intel® TSX) through the&nbsp;<span class="dk_code_simple">IA32_TSX_CTRL</span>&nbsp;MSR. Disabling Intel® TSX will help prevent malicious software from inferring store buffer contents and thus also help prevent vector register sampling.</p>
                     </section>
 

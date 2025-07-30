@@ -1,0 +1,1150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loading Microcode from the OS</title>
+
+    <!-- font family -->
+    <link href="https://fonts.cdnfonts.com/css/intel-clear" rel="stylesheet">
+
+    <link rel="stylesheet" href="/css/dk_developer_edge_iot_5G_industrial_automation_see_all_wireless_network_ready_printed_circuit_board_(PCB)_defect_detection.css">
+    <link rel="stylesheet" href="/css/mv_product/ECC.css">
+    <link rel="stylesheet" href="/css/rushita_automotive.css">
+
+    <!-- header footer -->
+    <link rel="stylesheet" href='/css/yatri.css'>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" rel="stylesheet">
+
+</head>
+
+<style>
+    .dk_color1 {
+        color: #069 !important;
+    }
+
+    .dk_color2 {
+        color: #008200 !important;
+    }
+
+    .dk_color3 {
+        color: #b24501;
+    }
+
+    .dk_note{
+        font-size: 1rem;
+        line-height: 1.25;
+        word-wrap: break-word;
+        background-color: #e6e6e6;
+        padding: 20px;
+        border-left: 3px solid #fdb813;
+    }
+    .dk_code_simple{
+        background-color: #e6e6e6;
+        color: #53565a;
+        border-radius: 0;
+    }
+
+    .dk_greyHighlight{
+        font-size: 1rem;
+        line-height: 1.25;
+        background-color: #e6e6e6;
+        padding: 20px;
+    }
+
+    .mv_code_toolbar{
+        margin-top: 15px !important;
+    }
+
+    @media(max-width:1200px) {
+        .dk_risk_app_img {
+            width: 100% !important;
+        }
+        .mv_product_table{
+            width: 100% !important;
+        }
+    }
+</style>
+
+<body>
+    <!-- header -->
+    <div id="navbar"></div>
+
+    <!------------------------------------------------------------------------------->
+    <section class="m_ai_tdrop">
+        <div>
+            <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Developers
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item m_dropActive" href="#">Overview</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Topics & Technologies</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Tools</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Hardware Platforms</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Resources & Documentation</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Learn</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Community & Events</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Developer Programs</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Get Help</a></li>                                                              
+            </ul>
+        </div>
+        <div class="m_ai_shlash">/</div>
+        <div>
+            <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Topics & Technologies
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item m_dropActive" href="#">Artificial Intelligence</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Client Applications</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Cloud</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">GPU Research</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Edge Computing</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">GameDev</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">HPC</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Data Center</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Firmware</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Networking</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Open Ecosystem</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Persistent Memory</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Platform Analysis Technology</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Runtime Languages</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Software Security Guidance</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Storage</a></li>
+            </ul>
+        </div>
+        <div class="m_ai_shlash">/</div>
+        <div>
+            <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Software Security Guidance
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item m_dropActive" href="#">Advisory Guidance</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Best Practices</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Resources</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Disclosure Documentation</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Feature Documentation</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">More Information</a></li>
+            </ul>
+        </div>
+        <div class="m_ai_shlash">/</div>
+        <div>
+            <button class="btn" style="color: #0068B5;">
+                Best Practices
+            </button>
+        </div>
+        <div class="m_ai_shlash">/</div>
+        <div class="m_ai_httl">Load Microcode from the Operating System</div>
+
+    </section>
+    <!------------------------------------------------------------------------------->
+
+    <!-- VMware Horizon -->
+    <section>
+        <div class="mv_vmware_bg_color">
+            <div class="container">
+                <div class="mv_vmware_padd">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="mv_vmware_heading">
+                                <h3>Loading Microcode from the OS</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mv_cd_page_marquee_info">
+                        <div class="mv_cd_page_marquee_action">
+                            <div class="mv_cd_page_marquee_action_padd">
+                                <label for="">ID</label>
+                                <span>758406</span>
+                            </div>
+                            <div class="mv_cd_page_marquee_action_padd">
+                                <label for="">Updated</label>
+                                <span>5/21/2020</span>
+                            </div>
+                            <div class="mv_cd_page_marquee_action_padd">
+                                <label for="">Version</label>
+                                <span>Latest</span>
+                            </div>
+                            <div class="mv_cd_page_marquee_action_padd">
+                                <label for=""></label>
+                                <span>Public</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="container py-5">
+        <div class="row">
+            <div class="d-flex justify-content-end col-xl-10 py-3 d-md-none">
+                <i class="fa-solid fa-print fs-4 px-2 " style="color:#0068B5"></i>
+                <i class="fa-regular fa-envelope fs-4 px-2" style="color:#0068B5"></i>
+            </div>
+            <div class="col-lg-3 col-md-4">
+                <!-- nav -->
+                <div class="VK_sticky_side_bar VK_side_bar_postion_stickey">
+                    <div>
+                        <div class="VK_sidebar_dropdown">
+                            <p class="m-0">
+                                <a href="#dk_the_microcode" class="text-decoration-none VK_a">
+                                    The Importance of Updating Microcode
+                                </a>
+                            </p>
+                            <p class="m-0">
+                                <a href="#dk_microcode_points" class="text-decoration-none VK_a">
+                                    Microcode Loading Points
+                                </a>
+                            </p>
+                            <p class="m-0">
+                                <a href="#dk_intel_microcode_repo" class="text-decoration-none VK_a">
+                                    Intel Microcode Repository
+                                </a>
+                            </p>
+                            <p class="m-0">
+                                <a href="#dk_decoding_cpu" class="text-decoration-none VK_a">
+                                    Decoding CPU Family-Model-Stepping
+                                </a>
+                            </p>
+                            <details>
+                                <summary>
+                                    <a href="#dk_installing_linux" class="text-decoration-none VK_a">
+                                        Installing Microcode on Linux
+                                    </a>
+                                </summary>
+                                <ul class="list-unstyled ps-3 mb-0">
+                                    <li>
+                                        <a href="#dk_early_os" class="text-decoration-none VK_a my-1">
+                                            Early OS Microcode Update
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#dk_ubuntu" class="text-decoration-none VK_a my-1">
+                                            Ubuntu*
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#dk_red_hat" class="text-decoration-none VK_a my-1">
+                                            Red Hat*, Fedora* and OpenSUSE*
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#dk_runtime_os" class="text-decoration-none VK_a my-1">
+                                            Runtime OS MCU (reboot not needed)
+                                        </a>
+                                    </li>
+                                </ul>
+                            </details>
+                            <p class="m-0">
+                                <a href="#dk_update_verification" class="text-decoration-none VK_a">
+                                    Microcode Update Verification
+                                </a>
+                            </p>
+                            <p class="m-0">
+                                <a href="#dk_more_info" class="text-decoration-none VK_a">
+                                    More Information
+                                </a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <!-- thinkcode -->
+                <!-- <div class="dk_things_code_main">
+                    <div class="dk_things_code">
+                        <h2 class="text-left headline-font-one-bold">Loss Prevention Retail Reference Implementation provides:</h2>
+                        <div class="dk_high_quality">
+                            <ul>
+                                <li>High-quality testable ingredients needed to create a solution to prevent thefts at stores.</li>
+                                <li>Building blocks needed to enable the use case with solid performance numbers.</li>
+                                <li>Hardware requirements to support the workloads and scale the solution.</li>
+                            </ul>
+                        </div>
+                    <div class="dk_get_code">
+                        <button class="dk_button">Get Started on GitHub<sup>*</sup></button>
+                    </div>
+                    </div> 
+                </div> -->
+            </div>
+            <div class="col-lg-9 col-md-8">
+                <div class="d-md-flex justify-content-end col-xl-10 py-3 d-none">
+                    <i class="fa-solid fa-print fs-4 px-2 " style="color:#0068B5"></i>
+                    <i class="fa-regular fa-envelope fs-4 px-2" style="color:#0068B5"></i>
+                </div>
+                <div class="col-xl-10 VK_all_sections">
+                    <p>&nbsp;</p>
+                    <p>Linux* administrators have several different options and methods to update their Intel systems’ microcode. We discuss details about these methods and provide multiple examples to help you choose the best option for your environment.</p>
+                    <p>The Linux command line examples in this article start with either the <span class="dk_code_simple">$</span> (dollar symbol) to indicate the command can be run as a normal, non-privileged user, or the <span class="dk_code_simple">#</span> (hash symbol) to indicate that the command must be run as a privileged user (root). Comments next to the example commands will start with a <span class="dk_code_simple">//</span> (double forward slash symbol).</p>
+
+                    <section id="dk_the_microcode">
+                        <p class="mb-0">&nbsp;</p>
+                        <h3 style="font-weight: 350; padding-bottom: 0.5rem;">The Importance of Updating Microcode</h3>
+                        <p>Some of the uses of microcode updates (MCUs) are to mitigate potential CPU security vulnerabilities and improve system security. Many operating system (OS) vendors provide automatic MCUs. OS vendors distribute microcode update in a form of packages. The packages are signed with OS vendor identity to help ensure integrity and authority of origin of the MCU.&nbsp;<strong>You should follow the instructions provided by your OS vendor to install MCUs.</strong>&nbsp;To learn more, refer to&nbsp;the&nbsp;<a class="b_special_a1" href="">Guidance for System Administrators to Mitigate Transient Execution Side Channel Issues</a>.</p>
+                        <p>Before installing critical files from the internet, such files should pass checksum match and identity verification. Instructions provided here should not be used in a production setup, as use in a production setup could result in a system being unmaintainable at scale and more vulnerable than before.</p>
+                    </section>
+
+                    <section id="dk_microcode_points">
+                        <p class="mb-0">&nbsp;</p>
+                        <h3 style="font-weight: 350; padding-bottom: 0.5rem;">Microcode Loading Points</h3>
+                        <p class="mb-0">The system can load MCUs from multiple points. Refer to the&nbsp;<a class="b_special_a1" href="">Microcode Update Guidance</a>&nbsp;for more details on the following loading points:</p>
+                        <ol>
+                            <li>FIT (Firmware Interface Table) Microcode Update. FIT is a data structure placed in the platform BIOS SPI flash that can hold pointers to MCUs. If a suitable update is found (an MCU that matches the CPU’s processor signature and platform ID), then the processor loads the MCU before the first instruction of the BIOS firmware is fetched. FIT MCU is the preferred method to load MCUs for Intel platforms, because it helps to ensure the update components are loaded at the earliest point in the boot process.</li>
+                            <li>Early BIOS Microcode Update. Early BIOS MCU occurs when a microcode update is loaded by the BIOS before memory initialization. If an update has already been loaded via the FIT, BIOS may skip this microcode update.</li>
+                            <li>Late BIOS Microcode Update. Sometimes, enabling certain architectural components require a late BIOS microcode update. To enable these architectural features, all logical processors must execute a late BIOS MCU, even if the same microcode has already been loaded from the FIT or during early BIOS. If that happens, late BIOS must reload the same update that was loaded previously. If the reload fails, the architectural features enabled by the late BIOS MCU might not be available on the system.</li>
+                            <li>Early OS Microcode Update. The OS will check the&nbsp;<strong>/lib/firmware/intel-ucode</strong>&nbsp;folder for a more recent microcode (higher update revision) than the microcode used by the BIOS. If a higher update revision exists in that folder, the OS should load that MCU right after BIOS hands off control to the operation system. This can be done by UEFI driver, a bootloader, the OS, or an early startup script.</li>
+                            <li><a class="b_special_a1" href="">Runtime Microcode Update</a>. Runtime microcode update refers to loading an update while the system is fully operational and running workloads, possibly including user-space applications and virtual machines. The same update should be loaded on all cores.</li>
+                        </ol>
+                        <p>By updating the BIOS to include a newer (or older) MCU, the system administrator can upgrade (or downgrade) the MCU that is loaded when the system boots. Loading the microcode package as early as possible during boot time (via FIT or Early BIOS) increases the potential to effectively apply the mitigations implemented in the microcode and helps prevent later BIOS issues (for example, BIOS Memory Reference Code). However, a BIOS update requires a reboot. Updating microcode through BIOS might be the only approach on certain systems. Check with your vendor for options available on your system.</p>
+                        <p class="mb-0">&nbsp;</p>
+                    </section>
+
+                    <section id="dk_intel_microcode_repo">
+                        <p class="mb-0">&nbsp;</p>
+                        <h3 style="font-weight: 350; padding-bottom: 0.5rem;">Intel Microcode Repository</h3>
+                        <p>Intel regularly publishes new microcode for its products to the Intel Microcode Repository in GitHub* so any user can download it. Usually these updates are located under&nbsp;<strong>/lib/firmware</strong>&nbsp;directory. This directory contains microcodes for all available Intel CPUs, listed by CPU signature (Family-Model-Stepping). During boot, the OS looks into&nbsp;<strong>/lib/firmware/intel-ucode</strong>&nbsp;for a microcode associated with a given system CPU. To find which CPU signature is associated with your processor, follow the steps in the next sections.</p>
+                    </section>
+
+                    <section id="dk_decoding_cpu">
+                        <p class="mb-0">&nbsp;</p>
+                        <h3 style="font-weight: 350; padding-bottom: 0.5rem;">Decoding CPU Family-Model-Stepping</h3>
+                        <p>Family-Model-Stepping is a processor signature that identifies the model and version of the processor, and is needed during the microcode installation process. The CPU signature has three fields (family, model, and stepping) separated by dashes (-) and is represented in a hexadecimal form. There are multiple ways you can determine a given processor’s Family-Model-Stepping in Linux:</p>
+                        <ul>
+                            <li>The&nbsp;<span class="dk_code_simple">cpuid</span>&nbsp;command</li>
+                            <li>The&nbsp;<span class="dk_code_simple">lscpu</span>&nbsp;command</li>
+                            <li>From&nbsp;<strong>/proc/cpuinfo</strong></li>
+                        </ul>
+                        <p>The following example demystifies Family-Model-Stepping by using the&nbsp;<span class="dk_code_simple">lscpu</span>&nbsp;instruction.</p>
+                        <ol>
+                            <li>
+                                <div class="mv_code_toolbar">
+                                    <div class="mv_toolbar_item mv_copy_icon">
+                                        <i class="fa-regular fa-copy"></i>
+                                    </div>
+                                    <div class="mv_copy_message text-end hidden">Copied</div>
+                                    <div class="code-content">
+                                        <div style="padding-bottom: 0rem !important" class="d-flex">
+                                            <div class="">
+                                                <div class="mv_code text-break">
+                                                    <p class="mb-0">&nbsp;</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div style="padding-bottom: 0rem !important" class="d-flex">
+                                            <div class="">
+                                                <div class="mv_code text-break">
+                                                    <p class="mb-0">$ lscpu &nbsp; // &nbsp;  look &nbsp;for&nbsp; Family / Model /Stepping</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;"
+                                            class="d-flex pb-0">
+                                            <div class="">
+                                                <div class="mv_code text-break">
+                                                    <p class="mb-0">CPU family :  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 6</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;"
+                                            class="d-flex pb-0">
+                                            <div class="">
+                                                <div class="mv_code text-break">
+                                                    <p class="mb-0">Model :  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 85</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div style="padding-top: 0rem !important; padding-bottom: 1rem !important;"
+                                            class="d-flex pb-0">
+                                            <div class="">
+                                                <div class="mv_code text-break">
+                                                    <p class="mb-0">Stepping : &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;4</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <p>Convert decimal to hex:</p>
+                                <div class="mv_code_toolbar">
+                                    <div class="mv_toolbar_item mv_copy_icon">
+                                        <i class="fa-regular fa-copy"></i>
+                                    </div>
+                                    <div class="mv_copy_message text-end hidden">Copied</div>
+                                    <div class="code-content">
+                                        <div style="padding-bottom: 0rem !important" class="d-flex">
+                                            <div class="">
+                                                <div class="mv_code text-break">
+                                                    <p class="mb-0">&nbsp;</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div style="padding-bottom: 0rem !important" class="d-flex">
+                                            <div class="">
+                                                <div class="mv_code text-break">
+                                                    <p class="mb-0">$ printf&nbsp; " %x\n " &nbsp;6  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;    // output: 6</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;"
+                                            class="d-flex pb-0">
+                                            <div class="">
+                                                <div class="mv_code text-break">
+                                                    <p class="mb-0">$ printf&nbsp; " %x\n " &nbsp;85 &nbsp; &nbsp; &nbsp; &nbsp;    // output: 55</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div style="padding-top: 0rem !important; padding-bottom: 1rem !important;"
+                                            class="d-flex pb-0">
+                                            <div class="">
+                                                <div class="mv_code text-break">
+                                                    <p class="mb-0">$ printf&nbsp; " %x\n " &nbsp;4  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;    // output:4</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                Concatenate those three values into a single signature.
+                            </li>
+                        </ol>
+                        <p>In the above example, the system has the&nbsp;<strong>06-55-04</strong>&nbsp;(Family-Model-Stepping) CPUID signature.</p>
+                        <p class="mb-0">&nbsp;</p>    
+                    </section>
+
+                    <section id="dk_installing_linux">
+                        <h3 style="padding-bottom: 0.5rem; font-weight: 350;">Installing Microcode on Linux</h3>
+                        <p>There are&nbsp;<a class="b_special_a1" href="">multiple methods to load microcode</a>. Some of them require system reboot, others don’t. Some of them can only be applied to upgrade the microcode, while others allow you to both downgrade and upgrade your current microcode. Some of them will work regardless of your Linux distribution, and some are distribution specific.</p>
+                        <p class="mb-0">&nbsp;</p>
+                    </section>
+
+                    <section id="dk_early_os">
+                        <h4>Early OS Microcode Update</h4>
+                        <p>Early OS MCU requires a reboot for all features to go into effect. Early OS MCU allows you to both upgrade and downgrade your microcode as needed. However, the CPU may prevent loading an MCU with a Revision ID lower than what was loaded by BIOS. This section describes the steps for Early OS MCU in some popular distributions. Different distributions will follow different methods, so you should check with your OS vendor before proceeding.</p>
+                        <p>Before going forward, we need to explain the role&nbsp;<span class="dk_code_simple">initramfs</span>&nbsp;plays during microcode installation. In a nutshell, initramfs is a files archive. The main job of the&nbsp;<span class="dk_code_simple">initramfs</span>&nbsp;is to mount the root filesystem during kernel boot. During boot time, the boot loader loads the&nbsp;<span class="dk_code_simple">initramfs</span>&nbsp;image and kernel into&nbsp;<span class="dk_code_simple">ramfs</span>&nbsp;memory. After that, the boot loader initiates the kernel, and the kernel looks for&nbsp;<span class="dk_code_simple">initramfs</span>. If found, the kernel will mount it as&nbsp;<em>/</em>&nbsp;and initiate the&nbsp;<strong>init</strong>&nbsp;program (first process of the computer system).</p>
+                        <p class="mb-0">&nbsp;</p>
+                    </section>
+
+                    <section id="dk_ubuntu">
+                        <h4>Ubuntu*</h4>
+                        <ol>
+                            <li>Check if the<strong>&nbsp;</strong><span class="dk_code_simple">/lib/firmware/intel-ucode&nbsp;</span>directory exists. Create it if it doesn’t:&nbsp;<br>
+                            <span class="dk_code_simple"># mkdir -p /lib/firmware/intel-ucode</span></li>
+                            <li>If exists, backup the old microcode:&nbsp;<br>
+                            <span class="dk_code_simple"># rsync -av /lib/firmware/intel-ucode /lib/firmware/intel-ucode.bak</span></li>
+                            <li>Download the microcode for your CPU from the Intel microcode repository in GitHub.<br>
+                            You can do this either by clicking on the&nbsp;<strong>Download</strong>&nbsp;button as shown in Figure 1 below, or right clicking on the&nbsp;<strong>Download</strong>&nbsp;button, selecting&nbsp;<strong>Copy</strong> link address, and then running:&nbsp;<br>
+                            <span class="dk_code_simple"># wget &lt;copied_link&gt;</span>:<br>
+                            <span class="dk_code_simple"># wget</span> https://github.com/intel/Intel-Linux-Processor-Microcode-Data-Files/raw/main/intel-ucode/06-03-02
+                            <p style="text-align:center"><img class="w-100" src="/img/darshit_image/loading-microcode-from-the-os-fig1.png"></p>
+                        
+                            <p style="text-align:center">Figure 1.&nbsp;Intel Microcode Repository</p>
+                            </li>
+                            <li>Move copied CPU microcode to&nbsp;<strong>/lib/firmware</strong>&nbsp;directory.
+                                <div class="mv_code_toolbar">
+                                    <div class="mv_toolbar_item mv_copy_icon">
+                                        <i class="fa-regular fa-copy"></i>
+                                    </div>
+                                    <div class="mv_copy_message text-end hidden">Copied</div>
+                                    <div class="code-content">
+                                        <div style="padding-bottom: 0rem !important" class="d-flex">
+                                            <div class="">
+                                                <div class="mv_code text-break">
+                                                    <p class="mb-0">&nbsp;</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div style="padding-bottom: 0rem !important" class="d-flex">
+                                            <div class="">
+                                                <div class="mv_code text-break">
+                                                    <p class="mb-0"># mv 06-03-02 /lib/firmware/intel-ucode</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div style="padding-top: 0rem !important; padding-bottom: 1rem !important;"
+                                            class="d-flex pb-0">
+                                            <div class="">
+                                                <div class="mv_code text-break">
+                                                    <p class="mb-0"># cd /lib/firmware/intel-ucode</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            <li>Put the new microcode in&nbsp;<strong>/lib/firmware/intel-ucode</strong>.
+                            <ol>
+                                <li>If a microcode with the same CPU Family-Model-Stepping already exists in&nbsp;<strong>/lib/firmware/intel-ucode</strong>, you must remove the old, existing microcode before adding the new microcode to the directory. In the example below we remove the&nbsp;<strong>06-55-04</strong>&nbsp;microcode signature.&nbsp;<br>
+                                <span class="dk_code_simple"># rm -fr /lib/firmware/intel-ucode/family-model-stepping // e.g. rm -fr 06-55-04</span></li>
+                                <li>Then copy the microcode you previously downloaded to the folder.
+                                    <div class="mv_code_toolbar">
+                                        <div class="mv_toolbar_item mv_copy_icon">
+                                            <i class="fa-regular fa-copy"></i>
+                                        </div>
+                                        <div class="mv_copy_message text-end hidden">Copied</div>
+                                        <div class="code-content">
+                                            <div style="padding-bottom: 0rem !important" class="d-flex">
+                                                <div class="">
+                                                    <div class="mv_code text-break">
+                                                        <p class="mb-0">&nbsp;</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div style="padding-bottom: 0rem !important" class="d-flex">
+                                                <div class="">
+                                                    <div class="mv_code text-break">
+                                                        <p class="mb-0"># cp family-model-stepping /lib/firmware/intel-ucode/</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div style="padding-top: 0rem !important; padding-bottom: 1rem !important;"
+                                                class="d-flex pb-0">
+                                                <div class="">
+                                                    <div class="mv_code text-break">
+                                                        <p class="mb-0">// e.g. cp 06-55-04 /lib/firmware/intel-ucode/</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>An alternative to step 5 is&nbsp;<span class="dk_code_simple">update-initramfs</span>&nbsp;(assuming the desired microcode is already under&nbsp;<strong>/lib/firmware/intel-ucode</strong>).
+                                    <div class="mv_code_toolbar">
+                                        <div class="mv_toolbar_item mv_copy_icon">
+                                            <i class="fa-regular fa-copy"></i>
+                                        </div>
+                                        <div class="mv_copy_message text-end hidden">Copied</div>
+                                        <div class="code-content">
+                                            <div style="padding-bottom: 0rem !important" class="d-flex">
+                                                <div class="">
+                                                    <div class="mv_code text-break">
+                                                        <p class="mb-0">&nbsp;</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div style="padding-bottom: 0rem !important" class="d-flex">
+                                                <div class="">
+                                                    <div class="mv_code text-break">
+                                                        <p class="mb-0"># update-initramfs -c -k $(uname -r) </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div style="padding-top: 0rem !important; padding-bottom: 1rem !important;"
+                                                class="d-flex pb-0">
+                                                <div class="">
+                                                    <div class="mv_code text-break">
+                                                        <p class="mb-0"># reboot</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ol>
+                            </li>
+                            <li>Remove the existing kernel, the one you want to update the microcode with. You cannot update the kernel you are currently using. If not needed, you can skip this step.
+                            <ol>
+                                <li>List all of the kernels that are currently installed on the system:&nbsp;<br>
+                                <span class="dk_code_simple"># dpkg --list | grep linux-image</span></li>
+                                <li>Uninstall the kernel that you want microcode to operate on. Substitute&nbsp;<span class="dk_code_simple">linux-image-&lt;kernel version&gt;</span>&nbsp;with one from the above list of currently installed kernels.&nbsp;<br>
+                                <span class="dk_code_simple"># sudo apt-get remove linux-image-</span></li>
+                            </ol>
+                            </li>
+                            <li>Reinstall the kernel package. That way during the next reboot the kernel will install the new microcode in the&nbsp;<span class="dk_code_simple">initramfs</span>. Refer to the&nbsp;<a class="b_special_a1" href="">upstream kernel files from the Ubuntu* archives</a>&nbsp;(sorted by the most recent build). Substitute&nbsp;<strong>linux-image-&lt;kernel version&gt;.deb</strong>&nbsp;with the one downloaded from this link.&nbsp;<br>
+                            <span class="dk_code_simple"># apt install ./linux-image-.deb</span></li>
+                            <li>Reboot the system to let changes take effect.&nbsp;<br>
+                            <span class="dk_code_simple"># reboot</span></li>
+                        </ol>
+                        <p>On Ubuntu you can also use the&nbsp;update-intel-microcode&nbsp;tool.&nbsp;<strong>Update-intel-microcode</strong>&nbsp;is a script that downloads the current microcode for Intel processors and installs it on the filesystem.</p>
+                        <p class="mb-0">&nbsp;</p>
+                    </section>
+
+                    <section id="dk_red_hat">
+                        <h4 style="margin-bottom: 1rem;">Red Hat*, Fedora* and OpenSUSE*</h4>
+                        <p>For Red Hat* or Fedora*, use the&nbsp;<span class="dk_code_simple">dracut</span>&nbsp;utility. If this tool is not available on your system, there are two ways to install it:</p>
+                        <ol>
+                            <li>Using yum:&nbsp;<br>
+                            <span class="dk_code_simple"># yum install dracut</span></li>
+                            <li>Installing it from source:
+                                <div class="mv_code_toolbar">
+                                    <div class="mv_toolbar_item mv_copy_icon">
+                                        <i class="fa-regular fa-copy"></i>
+                                    </div>
+                                    <div class="mv_copy_message text-end hidden">Copied</div>
+                                    <div class="code-content">
+                                        <div style="padding-bottom: 0rem !important" class="d-flex">
+                                            <div class="">
+                                                <div class="mv_code text-break">
+                                                    <p class="mb-0">&nbsp;</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div style="padding-bottom: 0rem !important" class="d-flex">
+                                            <div class="">
+                                                <div class="mv_code text-break">
+                                                    <p class="mb-0">$ wget https://mirrors.edge.kernel.org/pub/linux/utils/boot/dracut/dracut-(latest_version).tar.gz</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div style="padding-bottom: 0rem !important" class="d-flex">
+                                            <div class="">
+                                                <div class="mv_code text-break">
+                                                    <p class="mb-0">$ tar xf dracut-(latest_version).tar.gz // e.g. tar xf dracut-050.tar.gz</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div style="padding-bottom: 0rem !important" class="d-flex">
+                                            <div class="">
+                                                <div class="mv_code text-break">
+                                                    <p class="mb-0">$ cd dracut-(latest_version) // cd dracut-050</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div style="padding-bottom: 0rem !important" class="d-flex">
+                                            <div class="">
+                                                <div class="mv_code text-break">
+                                                    <p class="mb-0">$ make</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div style="padding-bottom: 0rem !important" class="d-flex">
+                                            <div class="">
+                                                <div class="mv_code text-break">
+                                                    <p class="mb-0">$ su</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div style="padding-top: 0rem !important; padding-bottom: 1rem !important;"
+                                            class="d-flex pb-0">
+                                            <div class="">
+                                                <div class="mv_code text-break">
+                                                    <p class="mb-0"># make install sbindir=/sbin sysconfdir=/etc</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>Using the RPM package:<br>
+                            Go to&nbsp;<a class="b_special_a1" href="">the Fedora dracut download directory</a>. Click on the suitable version. It will redirect you to another window where RPM packages for that specific version are located. To download and install RPM packages use&nbsp;<span class="dk_code_simple">wget</span>&nbsp;and&nbsp;<span class="dk_code_simple">yum</span>&nbsp;install commands, as shown in the example below:
+                                <div class="mv_code_toolbar">
+                                    <div class="mv_toolbar_item mv_copy_icon">
+                                        <i class="fa-regular fa-copy"></i>
+                                    </div>
+                                    <div class="mv_copy_message text-end hidden">Copied</div>
+                                    <div class="code-content">
+                                        <div style="padding-bottom: 0rem !important" class="d-flex">
+                                            <div class="">
+                                                <div class="mv_code text-break">
+                                                    <p class="mb-0">&nbsp;</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div style="padding-bottom: 0rem !important" class="d-flex">
+                                            <div class="">
+                                                <div class="mv_code text-break">
+                                                    <p class="mb-0"># wget https://harald.fedorapeople.org/downloads/dracut/dracut-029-15.git20130705.fc19/dracut-029-</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div style="padding-bottom: 0rem !important" class="d-flex">
+                                            <div class="">
+                                                <div class="mv_code text-break">
+                                                    <p class="mb-0">15.git20130705.fc19.x86_64.rpm</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div style="padding-bottom: 1rem !important" class="d-flex">
+                                            <div class="">
+                                                <div class="mv_code text-break">
+                                                    <p class="mb-0"># rpm -U dracut-029-15.git20130705.fc19.x86_64.rpm</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ol>
+                        <p class="dk_note"><strong>Note</strong>&nbsp;Depending on your system, you might need to install additional packages from the&nbsp;<a class="b_special_a1" href="">dracut homepage</a>.</p>
+                        <p class="mb-0">Once you have&nbsp;<span class="dk_code_simple">dracut</span>&nbsp;installed, use the steps below to install the microcode using dracut:</p>
+                        <ol>
+                            <li>Download the microcode for your CPU from the&nbsp;<a class="b_special_a1" href="">Intel microcode repository in GitHub</a>.</li>
+                            <li>Check if the&nbsp;<strong>/lib/firmware/intel-ucode</strong>&nbsp;directory exists. Create it if it doesn’t using the following commands:
+                                <div class="mv_code_toolbar">
+                                    <div class="mv_toolbar_item mv_copy_icon">
+                                        <i class="fa-regular fa-copy"></i>
+                                    </div>
+                                    <div class="mv_copy_message text-end hidden">Copied</div>
+                                    <div class="code-content">
+                                        <div style="padding-bottom: 0rem !important" class="d-flex">
+                                            <div class="">
+                                                <div class="mv_code text-break">
+                                                    <p class="mb-0">&nbsp;</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div style="padding-bottom: 0rem !important" class="d-flex">
+                                            <div class="">
+                                                <div class="mv_code text-break">
+                                                    <p class="mb-0"># mkdir /lib/firmware/intel-ucode</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div style="padding-bottom: 1rem !important" class="d-flex">
+                                            <div class="">
+                                                <div class="mv_code text-break">
+                                                    <p class="mb-0"># cd /lib/firmware/intel-ucode</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>Backup the old microcode:&nbsp;<br>
+                            <span class="dk_code_simple"># rsync -av /lib/firmware/intel-ucode /lib/firmware/intel-ucode.bak</span></li>
+                            <li>Put the new microcode in&nbsp;<strong>/lib/firmware/intel-ucode</strong>.
+                            <ol>
+                                <li>If a microcode with the same CPU Family-Model-Stepping already exists in&nbsp;<strong>/lib/firmware/intel-ucode</strong>, you must remove the old, existing microcode before adding the new microcode to the directory. In the example below we remove the&nbsp;<strong>06-55-04</strong>&nbsp;microcode signature:&nbsp;<br>
+                                <span class="dk_code_simple"># rm -fr /lib/firmware/intel-ucode/family-model-stepping // e.g. rm -fr 06-55-04</span></li>
+                                <li>Then we copy the microcode you previously downloaded to the folder:
+                                    <div class="mv_code_toolbar">
+                                        <div class="mv_toolbar_item mv_copy_icon">
+                                            <i class="fa-regular fa-copy"></i>
+                                        </div>
+                                        <div class="mv_copy_message text-end hidden">Copied</div>
+                                        <div class="code-content">
+                                            <div style="padding-bottom: 0rem !important" class="d-flex">
+                                                <div class="">
+                                                    <div class="mv_code text-break">
+                                                        <p class="mb-0">&nbsp;</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div style="padding-bottom: 0rem !important" class="d-flex">
+                                                <div class="">
+                                                    <div class="mv_code text-break">
+                                                        <p class="mb-0"># cp family-model-stepping /lib/firmware/intel-ucode/</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div style="padding-bottom: 1rem !important" class="d-flex">
+                                                <div class="">
+                                                    <div class="mv_code text-break">
+                                                        <p class="mb-0">// e.g. cp 06-55-04 /lib/firmware/intel-ucode/</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ol>
+                            </li>
+                            <li>Build new&nbsp;<span class="dk_code_simple">initramfs</span>&nbsp;for the currently running kernel:&nbsp;<br>
+                            <span class="dk_code_simple"># dracut -f "initramfs-$(uname -r).img" $(uname -r) // -f to overwrite an existing image</span></li>
+                            <li>Since microcode is loaded early by the&nbsp;<span class="dk_code_simple">initramfs</span>, rebuild it with the following command:&nbsp;<br>
+                            <span class="dk_code_simple"># dracut -f -vvv</span></li>
+                            <li>You need to reboot the system to let changes take effect:&nbsp;<br>
+                            <span class="dk_code_simple"># reboot</span></li>
+                        </ol>
+                        <p class="mb-0">&nbsp;</p>
+                    </section>
+
+                    <section id="dk_runtime_os">
+                        <h4>Runtime OS MCU (reboot not needed)</h4>
+                        <p>The method described here works for upgrading microcode only. It will not work for downgrading microcode. This method is agnostic to your Linux distribution. Loading an MCU during OS runtime must be done with care. Loading an update during runtime may change the CPU behavior in ways that is incompatible with running software. Furthermore, <a class="b_special_a1" href="">some updates may not be fully effective when loaded during runtime</a>. To make sure CPU features are working properly, the same update should be loaded on all cores.</p>
+                        <p>Therefore, Intel recommends that the system should be quiesced to the maximum extent possible when loading an MCU during runtime.</p>
+                        <ol>
+                            <li>Download the microcode for your CPU from the&nbsp;<a class="b_special_a1" href="">Intel microcode repository in GitHub</a>.</li>
+                            <li>Check if&nbsp;<strong>/lib/firmware/intel-ucode</strong>&nbsp;exists. Create it if it doesn’t:
+                                <div class="mv_code_toolbar">
+                                    <div class="mv_toolbar_item mv_copy_icon">
+                                        <i class="fa-regular fa-copy"></i>
+                                    </div>
+                                    <div class="mv_copy_message text-end hidden">Copied</div>
+                                    <div class="code-content">
+                                        <div style="padding-bottom: 0rem !important" class="d-flex">
+                                            <div class="">
+                                                <div class="mv_code text-break">
+                                                    <p class="mb-0">&nbsp;</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div style="padding-bottom: 0rem !important" class="d-flex">
+                                            <div class="">
+                                                <div class="mv_code text-break">
+                                                    <p class="mb-0"># mkdir /lib/firmware/intel-ucode</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div style="padding-bottom: 1rem !important" class="d-flex">
+                                            <div class="">
+                                                <div class="mv_code text-break">
+                                                    <p class="mb-0"># cd /lib/firmware/intel-ucode</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>Backup the old microcode:&nbsp;<br>
+                            <span class="dk_code_simple"># rsync -av /lib/firmware/intel-ucode /lib/firmware/intel-ucode.bak</span></li>
+                            <li>Put the new microcode in&nbsp;<strong>/lib/firmware/intel-ucode</strong>.
+                            <ol>
+                                <li>If prior to putting a new microcode, there is already a microcode with the same CPU Family-Model-Stepping, first you will need to remove that existing microcode before putting a new one. In below example we will be removing&nbsp;<strong>06-55-04</strong>&nbsp;microcode signature:&nbsp;<br>
+                                <span class="dk_code_simple"># rm -fr /lib/firmware/intel-ucode/family-model-stepping // e.g. rm -fr 06-55-04</span></li>
+                                <li>Copy the microcode you previously downloaded to the folder:
+                                    <div class="mv_code_toolbar">
+                                        <div class="mv_toolbar_item mv_copy_icon">
+                                            <i class="fa-regular fa-copy"></i>
+                                        </div>
+                                        <div class="mv_copy_message text-end hidden">Copied</div>
+                                        <div class="code-content">
+                                            <div style="padding-bottom: 0rem !important" class="d-flex">
+                                                <div class="">
+                                                    <div class="mv_code text-break">
+                                                        <p class="mb-0">&nbsp;</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div style="padding-bottom: 0rem !important" class="d-flex">
+                                                <div class="">
+                                                    <div class="mv_code text-break">
+                                                        <p class="mb-0"># cp family-model-stepping /lib/firmware/intel-ucode/ </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div style="padding-bottom: 1rem !important" class="d-flex">
+                                                <div class="">
+                                                    <div class="mv_code text-break">
+                                                        <p class="mb-0">// e.g. cp 06-55-04 /lib/firmware/intel-ucode/</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ol>
+                            </li>
+                            <li>Reload the microcode. Reloading applies the microcode update without needing to reboot the system. Reload will trigger a microcode refresh action.
+                            <ol>
+                                <li>Use this command for Linux v3.6 and later:&nbsp;<br>
+                                <span class="dk_code_simple">echo 1 &gt; /sys/devices/system/cpu/microcode/reload</span></li>
+                                <li>Use this command for Linux v3.5 and earlier. (Note: this script will work for bash; you might need to change depending on your shell).
+                                    <div class="mv_code_toolbar">
+                                        <div class="mv_toolbar_item mv_copy_icon">
+                                            <i class="fa-regular fa-copy"></i>
+                                        </div>
+                                        <div class="mv_copy_message text-end hidden">Copied</div>
+                                        <div class="code-content">
+                                            <div style="padding-bottom: 0rem !important" class="d-flex">
+                                                <div class="">
+                                                    <div class="mv_code text-break">
+                                                        <p class="mb-0">&nbsp;</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div style="padding-bottom: 0rem !important" class="d-flex">
+                                                <div class="">
+                                                    <div class="mv_code text-break">
+                                                        <p class="mb-0">#!/bin/bash</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div style="padding-bottom: 0rem !important" class="d-flex">
+                                                <div class="">
+                                                    <div class="mv_code text-break">
+                                                        <p class="mb-0">for i in /sys/devices/system/cpu/cpu[0-9]*/microcode/reload ; do </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div style="padding-bottom: 0rem !important" class="d-flex">
+                                                <div class="">
+                                                    <div class="mv_code text-break">
+                                                        <p class="mb-0">echo 1 2>/dev/null > "$i" || true</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div style="padding-bottom: 1rem !important" class="d-flex">
+                                                <div class="">
+                                                    <div class="mv_code text-break">
+                                                        <p class="mb-0">done</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ol>
+                            </li>
+                        </ol>
+                    </section>
+
+                    <section id="dk_update_verification">
+                        <h3 style="font-weight: 350;">Microcode Update Verification</h3>
+                        <p>To verify if a microcode update was loaded correctly, check the microcode version before and after updating your system. You can use any of the following ways to check the current version of your microcode:</p>
+                        <ul>
+                            <li>Check for microcode revision:
+                                <div class="mv_code_toolbar">
+                                    <div class="mv_toolbar_item mv_copy_icon">
+                                        <i class="fa-regular fa-copy"></i>
+                                    </div>
+                                    <div class="mv_copy_message text-end hidden">Copied</div>
+                                    <div class="code-content">
+                                        <div style="padding-bottom: 0rem !important" class="d-flex">
+                                            <div class="">
+                                                <div class="mv_code text-break">
+                                                    <p class="mb-0">&nbsp;</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div style="padding-bottom: 0rem !important" class="d-flex">
+                                            <div class="">
+                                                <div class="mv_code text-break">
+                                                    <p class="mb-0">$ &nbsp; dmesg | grep microcode</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div style="padding-bottom: 0rem !important" class="d-flex">
+                                            <div class="">
+                                                <div class="mv_code text-break">
+                                                    <p class="mb-0">[ &nbsp; &nbsp; &nbsp;    0.000000 ] &nbsp; microcode :&nbsp; microcode updated early to revision 0xd2, date = 2020-01-09</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div style="padding-bottom: 0rem !important" class="d-flex">
+                                            <div class="">
+                                                <div class="mv_code text-break">
+                                                    <p class="mb-0">[ &nbsp; &nbsp; &nbsp;    3.200591 ] &nbsp; microcode :&nbsp; sig=0x906ed, pf=0x2, revision=0xd2</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div style="padding-bottom: 1rem !important" class="d-flex">
+                                            <div class="">
+                                                <div class="mv_code text-break">
+                                                    <p class="mb-0">[ &nbsp; &nbsp; &nbsp;    3.207755 ] &nbsp; microcode :&nbsp; Microcode Update Driver: v2.2.</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>The&nbsp;<span class="dk_code_simple">iucode_tool</span>&nbsp;can be used by any Linux distro. Refer to&nbsp;<a class="b_special_a1" href="">the instructions</a>&nbsp;for how to download and install this tool.&nbsp;<span class="dk_code_simple">iucode_tool</span>&nbsp;scans your system and looks for information about your CPU signature. The value you are looking for is the output column that starts with <strong>rev</strong> (in bold below). In this example,&nbsp;<strong>06-9e-0d</strong>&nbsp;is the signature of the processor currently running on the system.
+                                <div class="mv_code_toolbar">
+                                    <div class="mv_toolbar_item mv_copy_icon">
+                                        <i class="fa-regular fa-copy"></i>
+                                    </div>
+                                    <div class="mv_copy_message text-end hidden">Copied</div>
+                                    <div class="code-content">
+                                        <div style="padding-bottom: 0rem !important" class="d-flex">
+                                            <div class="">
+                                                <div class="mv_code text-break">
+                                                    <p class="mb-0">&nbsp;</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div style="padding-bottom: 0rem !important" class="d-flex">
+                                            <div class="">
+                                                <div class="mv_code text-break">
+                                                    <p class="mb-0">$ &nbsp; iucode_tool -l /lib/firmware/intel-ucode/06-9e-0d</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div style="padding-bottom: 0rem !important" class="d-flex">
+                                            <div class="">
+                                                <div class="mv_code text-break">
+                                                    <p class="mb-0">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; selected microcodes:</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div style="padding-bottom: 1rem !important" class="d-flex">
+                                            <div class="">
+                                                <div class="mv_code text-break">
+                                                    <p class="mb-0">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 001: sig 0x000906ed, pf mask 0x22, 2020-01-09, rev 0x00d2, size 102400</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>You can check the version of a microcode file by using the <span class="dk_code_simple">od</span>&nbsp;command. This command will display a long output, with the value that contains the microcode version in the third column of the first line of that output (<span class="dk_code_simple">000000d2</span>&nbsp;in the example below). We query the file&nbsp;<strong>06-9e-0d</strong>, located in the folder in which we run the&nbsp;<span class="dk_code_simple">od</span>&nbsp;command.
+                                <div class="mv_code_toolbar">
+                                    <div class="mv_toolbar_item mv_copy_icon">
+                                        <i class="fa-regular fa-copy"></i>
+                                    </div>
+                                    <div class="mv_copy_message text-end hidden">Copied</div>
+                                    <div class="code-content">
+                                        <div style="padding-bottom: 0rem !important" class="d-flex">
+                                            <div class="">
+                                                <div class="mv_code text-break">
+                                                    <p class="mb-0">&nbsp;</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div style="padding-bottom: 0rem !important" class="d-flex">
+                                            <div class="">
+                                                <div class="mv_code text-break">
+                                                    <p class="mb-0">$ &nbsp; od -t x4 /lib/firmware/intel-ucode/06-9e-0d</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div style="padding-bottom: 1rem !important" class="d-flex">
+                                            <div class="">
+                                                <div class="mv_code text-break">
+                                                    <p class="mb-0">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 0000000 00000001 000000d2 01092020 000906ed</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>You might be able to find information about the current microcode version in your system BIOS. Depending on the motherboard, the microcode revision can be found under Platform Information, CPU Information, or Main Menu.</li>
+                        </ul>
+                        <p class="mb-0">&nbsp;</p>
+                    </section>
+
+                    <section id="dk_more_info">
+                        <h3 style="font-weight: 350;">More Information</h3>
+                        <ul>
+                            <li><a class="b_special_a1" href="">Microcode Update Guidelines</a></li>
+                            <li><a class="b_special_a1" href="">MCExtractor</a></li>
+                            <li><a class="b_special_a1" href="">Security Best Practices for Side Channel Resistance</a></li>
+                            <li>Notes on Intel Microcode Updates</li>
+                            <li><a class="b_special_a1" href="">Sandpile CPUID</a></li>
+                        </ul>
+                        <p>&nbsp;</p>
+                        <h5 style="text-align:center"><a class="b_special_a1" href="">Software Security Guidance Home</a>&nbsp;|&nbsp;<a class="b_special_a1" href="">Advisory Guidance</a>&nbsp;|&nbsp;<a class="b_special_a1" href="">Technical Documentation</a>&nbsp;|&nbsp;<a class="b_special_a1" href="">Best Practices</a>&nbsp;|&nbsp;<a class="b_special_a1" href="">Resources</a></h5>
+                        <p>&nbsp;</p>
+                    </section>
+                    
+                </div>
+            </section>
+        </div>
+    </div>
+    </div>
+    </section>
+
+    <section style="border-top: 1px solid #d7d7d7;" class="container py-5">
+        <h4 class="h6">Product and Performance Information</h4>
+        <div class="disclaimer" style="font-size: 12px;"><sup>1</sup> Performance varies by use, configuration and other
+            factors. Learn more at <a class="b_special_a1" href="">www.Intel.com/PerformanceIndex.</a></div>
+        </div>
+    </section>
+
+    <!-- footer -->
+    <div id="footer"></div>
+
+    <!-- nav script -->
+    <script>
+        // navbar include  
+        fetch('/y_index/y_navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar').innerHTML = data;
+            });
+        // footer include 
+        fetch('/y_index/y_footer.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('footer').innerHTML = data;
+            });
+    </script>
+    <!-- nav script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            if (document.getElementsByClassName('VK_all_sections section') && document.getElementsByClassName('VK_sidebar_dropdown')) {
+                const sections = document.querySelectorAll('.VK_all_sections section');
+                const navLinks = document.querySelectorAll('.VK_sidebar_dropdown a');
+                const detailsElements = document.querySelectorAll('.VK_sidebar_dropdown details');
+
+                function removeActiveClass() {
+                    navLinks.forEach(link => link.classList.remove('VK_sidebar_active_link'));
+                    detailsElements.forEach(details => {
+                        details.removeAttribute('open');
+                        details.setAttribute('close', ''); // Optional: to visually indicate it's closed
+                    });
+                }
+
+                function activateLinkAndDetails(targetId) {
+                    navLinks.forEach(link => {
+                        if (link.getAttribute('href') === `#${targetId}`) {
+                            link.classList.add('VK_sidebar_active_link');
+                            let parentDetails = link.closest('details');
+
+                            // Open all ancestor details elements
+                            while (parentDetails) {
+                                parentDetails.setAttribute('open', '');
+                                parentDetails.removeAttribute('close'); // Optional: remove the closed indicator
+                                parentDetails = parentDetails.parentElement.closest('details');
+                            }
+                        }
+                    });
+                }
+
+                function onScroll() {
+                    let currentSection = '';
+                    sections.forEach(section => {
+                        const sectionTop = section.getBoundingClientRect().top;
+                        const sectionBottom = section.getBoundingClientRect().bottom;
+
+                        // Check if the section is in view
+                        if (sectionTop <= 100 && sectionBottom >= 0) {
+                            currentSection = section.getAttribute('id');
+                        }
+                    });
+
+                    if (currentSection) {
+                        removeActiveClass();
+                        activateLinkAndDetails(currentSection);
+                    } else {
+                        removeActiveClass();
+                    }
+                }
+
+                window.addEventListener('scroll', onScroll);
+            } else {
+                return
+            }
+        });
+    </script>
+
+    <!-- copy script -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            document.querySelectorAll(".mv_copy_icon").forEach((icon) => {
+                icon.addEventListener("click", async function () {
+                    try {
+                        const toolbar = this.closest(".mv_code_toolbar");
+                        const codeBlock = toolbar.querySelector(".code-content");
+                        const codeContent = codeBlock.innerText;
+
+                        // Use Clipboard API to copy text
+                        await navigator.clipboard.writeText(codeContent);
+
+                        // Hide the copy icon and show the "Copied!" message
+                        const message = toolbar.querySelector(".mv_copy_message");
+                        this.classList.add("hidden"); // Hide the copy icon
+                        message.classList.remove("hidden"); // Show the "Copied!" message
+
+                        // Hide the message and show the icon again after 2 seconds
+                        setTimeout(() => {
+                            message.classList.add("hidden");
+                            this.classList.remove("hidden");
+                        }, 2000); // Adjust delay as needed
+
+                    } catch (err) {
+                        console.error('Failed to copy text: ', err);
+                    }
+                });
+            });
+        });
+    </script>
+
+</body>
+
+</html>
+
+
