@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SRBDS Mitigation Impact on Intel® Secure Key</title>
+
+    <!-- font family -->
+    <link href="https://fonts.cdnfonts.com/css/intel-clear" rel="stylesheet">
+
+    <link rel="stylesheet" href="/css/dk_developer_edge_iot_5G_industrial_automation_see_all_wireless_network_ready_printed_circuit_board_(PCB)_defect_detection.css">
+    <link rel="stylesheet" href="/css/mv_product/ECC.css">
+    <link rel="stylesheet" href="/css/rushita_automotive.css">
+
+    <!-- header footer -->
+    <link rel="stylesheet" href='/css/yatri.css'>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" rel="stylesheet">
+
+</head>
+
+<style>
+    .dk_color1 {
+        color: #069 !important;
+    }
+
+    .dk_color2 {
+        color: #008200 !important;
+    }
+
+    .dk_color3 {
+        color: #b24501;
+    }
+
+    .dk_note{
+        font-size: 1rem;
+        line-height: 1.25;
+        word-wrap: break-word;
+        background-color: #e6e6e6;
+        padding: 20px;
+        border-left: 3px solid #fdb813;
+    }
+    .dk_code_simple{
+        background-color: #e6e6e6;
+        color: #53565a;
+        border-radius: 0;
+    }
+
+    .dk_greyHighlight{
+        font-size: 1rem;
+        line-height: 1.25;
+        background-color: #e6e6e6;
+        padding: 20px;
+    }
+
+    @media(max-width:1200px) {
+        .dk_risk_app_img {
+            width: 100% !important;
+        }
+        .mv_product_table{
+            width: 100% !important;
+        }
+    }
+</style>
+
+<body>
+    <!-- header -->
+    <div id="navbar"></div>
+
+    <!------------------------------------------------------------------------------->
+    <section class="m_ai_tdrop">
+        <div>
+            <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Developers
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item m_dropActive" href="#">Overview</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Topics & Technologies</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Tools</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Hardware Platforms</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Resources & Documentation</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Learn</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Community & Events</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Developer Programs</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Get Help</a></li>                                                              
+            </ul>
+        </div>
+        <div class="m_ai_shlash">/</div>
+        <div>
+            <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Topics & Technologies
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item m_dropActive" href="#">Artificial Intelligence</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Client Applications</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Cloud</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">GPU Research</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Edge Computing</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">GameDev</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">HPC</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Data Center</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Firmware</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Networking</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Open Ecosystem</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Persistent Memory</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Platform Analysis Technology</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Runtime Languages</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Software Security Guidance</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Storage</a></li>
+            </ul>
+        </div>
+        <div class="m_ai_shlash">/</div>
+        <div>
+            <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Software Security Guidance
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item m_dropActive" href="#">Advisory Guidance</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Best Practices</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Resources</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Disclosure Documentation</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Feature Documentation</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">More Information</a></li>
+            </ul>
+        </div>
+        <div class="m_ai_shlash">/</div>
+        <div>
+            <button class="btn" style="color: #0068B5;">
+                Best Practices
+            </button>
+        </div>
+        <div class="m_ai_shlash">/</div>
+        <div class="m_ai_httl">Special Register Buffer Data Sampling Migration Impact</div>
+
+    </section>
+    <!------------------------------------------------------------------------------->
+
+    <!-- VMware Horizon -->
+    <section>
+        <div class="mv_vmware_bg_color">
+            <div class="container">
+                <div class="mv_vmware_padd">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="mv_vmware_heading">
+                                <h3>SRBDS Mitigation Impact on Intel® Secure Key</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mv_cd_page_marquee_info">
+                        <div class="mv_cd_page_marquee_action">
+                            <div class="mv_cd_page_marquee_action_padd">
+                                <label for="">ID</label>
+                                <span>672853</span>
+                            </div>
+                            <div class="mv_cd_page_marquee_action_padd">
+                                <label for="">Updated</label>
+                                <span>6/10/2020</span>
+                            </div>
+                            <div class="mv_cd_page_marquee_action_padd">
+                                <label for="">Version</label>
+                                <span>Latest</span>
+                            </div>
+                            <div class="mv_cd_page_marquee_action_padd">
+                                <label for=""></label>
+                                <span>Public</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="container py-5">
+        <div class="row">
+            <div class="d-flex justify-content-end col-xl-10 py-3 d-md-none">
+                <i class="fa-solid fa-print fs-4 px-2 " style="color:#0068B5"></i>
+                <i class="fa-regular fa-envelope fs-4 px-2" style="color:#0068B5"></i>
+            </div>
+            <div class="col-lg-3 col-md-4">
+                <!-- nav -->
+                <div class="VK_sticky_side_bar VK_side_bar_postion_stickey">
+                    <div>
+                        <div class="VK_sidebar_dropdown">
+                            <details>
+                                <summary>
+                                    <a href="#dk_description" class="text-decoration-none VK_a">
+                                        Description
+                                    </a>
+                                </summary>
+                                <ul class="list-unstyled ps-3 mb-0">
+                                    <li>
+                                        <a href="#dk_impact_of_srbds" class="text-decoration-none VK_a my-1">
+                                            Impact of SRBDS Mitigation on RDRAND and RDSEED
+                                        </a>
+                                    </li>
+                                </ul>
+                            </details>
+                            <p class="m-0">
+                                <a href="#dk_performance_monitoring" class="text-decoration-none VK_a">
+                                    Performance Monitoring
+                                </a>
+                            </p>
+                            <p class="m-0">
+                                <a href="#dk_methods_impact" class="text-decoration-none VK_a">
+                                    Methods to Reduce Mitigation Performance Impact
+                                </a>
+                            </p>
+                            <p class="m-0">
+                                <a href="#dk_references" class="text-decoration-none VK_a">
+                                    References
+                                </a>
+                            </p>
+                            <p class="m-0">
+                                <a href="#dk_footnotes" class="text-decoration-none VK_a">
+                                    Footnotes
+                                </a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <!-- thinkcode -->
+                <!-- <div class="dk_things_code_main">
+                    <div class="dk_things_code">
+                        <h2 class="text-left headline-font-one-bold">Loss Prevention Retail Reference Implementation provides:</h2>
+                        <div class="dk_high_quality">
+                            <ul>
+                                <li>High-quality testable ingredients needed to create a solution to prevent thefts at stores.</li>
+                                <li>Building blocks needed to enable the use case with solid performance numbers.</li>
+                                <li>Hardware requirements to support the workloads and scale the solution.</li>
+                            </ul>
+                        </div>
+                    <div class="dk_get_code">
+                        <button class="dk_button">Get Started on GitHub<sup>*</sup></button>
+                    </div>
+                    </div> 
+                </div> -->
+            </div>
+            <div class="col-lg-9 col-md-8">
+                <div class="d-md-flex justify-content-end col-xl-10 py-3 d-none">
+                    <i class="fa-solid fa-print fs-4 px-2 " style="color:#0068B5"></i>
+                    <i class="fa-regular fa-envelope fs-4 px-2" style="color:#0068B5"></i>
+                </div>
+                <div class="col-xl-10 VK_all_sections">
+                    <p>&nbsp;</p>
+                    <p>Intel® Secure Key is a digital random number generator located on the CPU that provides software applications with high quality pseudorandom numbers and random seeds. Software applications access this capability through the&nbsp;<span class="dk_code_simple">RDRAND</span>&nbsp;and&nbsp;<span class="dk_code_simple">RDSEED</span>&nbsp;instructions.</p>
+                    <p>The&nbsp;<span class="dk_code_simple">RDRAND</span>&nbsp;instruction retrieves a random value that is either 16-, 32-, or 64-bits, as determined by the size of the destination register.&nbsp;<span class="dk_code_simple">RDRAND</span>&nbsp;is intended for use by applications that require high-quality random numbers, but is not directly suitable for seeding other pseudorandom number generators (PRNGs).</p>
+                    <p>The&nbsp;<span class="dk_code_simple">RDSEED</span>&nbsp;instruction retrieves a hardware-generated random seed value from the on-CPU entropy source. Like&nbsp;<span class="dk_code_simple">RDRAND</span>, the&nbsp;<span class="dk_code_simple">RDSEED</span>&nbsp;instruction retrieves a 16-, 32-, or 64-bit value, and has no hardware ring requirements. Unlike&nbsp;<span class="dk_code_simple">RDRAND</span>, the values of&nbsp;<span class="dk_code_simple">RDSEED</span>&nbsp;can be concatenated together to form arbitrarily long random seed values that retain their full entropy. The primary use case for&nbsp;<span class="dk_code_simple">RDSEED</span>&nbsp;is to produce seeds of arbitrary size for software PRNGs.</p>
+
+                    <section id="dk_description">
+                        <p class="mb-0">&nbsp;</p>
+                        <h3 style="font-weight: 350; padding-bottom: 0.5rem;">Description</h3>
+                        <p>On some client and Intel® Xeon® E3 and E processors, a domain bypass transient execution attack known as&nbsp;<a class="b_special_a1" href="">special register buffer data sampling (SRBDS)</a>&nbsp;may potentially allow malicious code executing on any core of the CPU to infer the data values returned by&nbsp;<span class="dk_code_simple">RDRAND</span>&nbsp;and&nbsp;<span class="dk_code_simple">RDSEED</span>.&nbsp;Refer to <a class="b_special_a1" href="">Special Register Buffer Data Sampling</a> for more details.</p>
+                    </section>
+
+                    <section id="dk_impact_of_srbds">
+                        <p class="mb-0">&nbsp;</p>
+                        <h4 style="padding-bottom: 0.5rem;">Impact of SRBDS Mitigation on RDRAND and RDSEED</h4>
+                        <p>On affected processors, Intel will release microcode updates whose default behavior intends to prevent&nbsp;<span class="dk_code_simple">RDRAND</span>&nbsp;and&nbsp;<span class="dk_code_simple">RDSEED</span>&nbsp;results from being inferred through SRBDS. The updated microcode delays off-core accesses from other logical processors while the&nbsp;<span class="dk_code_simple">RDRAND</span>&nbsp;or&nbsp;<span class="dk_code_simple">RDSEED</span>&nbsp;instructions execute.</p>
+                        <p class="mb-0">This can have three effects on performance:</p>
+                        <ol>
+                            <li>The&nbsp;<span class="dk_code_simple">RDRAND</span>&nbsp;or&nbsp;<span class="dk_code_simple">RDSEED&nbsp;</span>instructions will have higher latency.</li>
+                            <li>Executions of&nbsp;<span class="dk_code_simple">RDRAND</span>&nbsp;at the same time on multiple logical processors will be serialized, resulting in an overall reduction in the maximum&nbsp;<span class="dk_code_simple">RDRAND</span>&nbsp;bandwidth<sup>1</sup>.</li>
+                            <li>Executing&nbsp;<span class="dk_code_simple">RDRAND</span>&nbsp;or&nbsp;<span class="dk_code_simple">RDSEED</span>&nbsp;will delay memory accesses from other logical processors that miss their core caches, with an impact similar to legacy locked cache-line-split accesses.</li>
+                        </ol>
+                        <p>This mitigation has a very minimal impact on client workloads, as it is not typical for clients to issue bulk requests for random numbers at high rates. Random number generation is generally a very small fraction of a larger operation, and the added latencies are not significant compared to the overall workload. The mitigation should also have a minimal impact on most single-socket server workloads for the same reasons. Only specialized applications which call&nbsp;<span class="dk_code_simple">RDRAND</span>&nbsp;for a high throughput of random numbers will see a noticeable performance impact.</p>
+                    </section>
+
+                    <section id="dk_performance_monitoring">
+                        <p class="mb-0">&nbsp;</p>
+                        <h3 style="font-weight: 350;">Performance Monitoring</h3>
+                        <p>System administrators can determine if workloads might be affected by the&nbsp;<span class="dk_code_simple">RDRAND</span>&nbsp;performance impact by monitoring CPU utilization of processes that do frequent TLS connections. Tools that can help with performance monitoring include Toplev<sup>2</sup>&nbsp;and Intel® VTune™ Profiler<sup>3</sup>, among others.&nbsp;System administrators can find more information in the&nbsp;<a class="b_special_a1" href="">system administrator's guide</a>.</p>
+                        <p>A workload that is potentially impacted by SRBDS can use performance monitoring events to determine if the impact is caused by the mitigation. Using the&nbsp;<a class="b_special_a1" href="">TopDown methodology</a>, workloads affected by the SRBDS mitigation may observe an increase in Frontend Bound. Specifically, SRBDS may show an impact in the&nbsp;<strong>Frontend Bound &gt; Frontend Latency &gt; Branch Resteers &gt; Clears Resteers</strong>&nbsp;component of Top Down, increasing the count of the&nbsp;<span class="dk_code_simple">INT_MISC.CLEAR_RESTEER_CYCLES</span>&nbsp;event. Other events that may show increased count if an application’s performance is impacted by the SRBDS mitigation include&nbsp;<span class="dk_code_simple">MACHINE_CLEARS.COUNT</span>&nbsp;and&nbsp;<span class="dk_code_simple">PARTIAL_RAT_STALLS.SCOREBOARD</span>.</p>
+                    </section>
+
+                    <section id="dk_methods_impact">
+                        <p class="mb-0">&nbsp;</p>
+                        <h3 style="font-weight: 350;">Methods to Reduce Mitigation Performance Impact</h3>
+                        <p>There are two methods to reduce the performance impact of the SRBDS mitigations.</p>
+                        <p>The first technique is to turn off the SRBDS mitigation. This can be done through setting the&nbsp;<span class="dk_code_simple">RNGDS_MITG_DIS</span><sup>4</sup>&nbsp;bit (bit&nbsp;<span class="dk_code_simple">0</span>) of<span class="dk_code_simple">&nbsp;IA32_MCU_OPT_CTRL MSR</span>&nbsp;(address&nbsp;<span class="dk_code_simple">123H</span>). Setting&nbsp;<span class="dk_code_simple">IA32_MCU_OPT_CTRL[0] (RNGDS_MITG_DIS)</span>&nbsp;to 1 for a logical processor disables the mitigation for&nbsp;<span class="dk_code_simple">RDRAND</span>&nbsp;and&nbsp;<span class="dk_code_simple">RDSEED</span>&nbsp;executed outside of an Intel® Software Guard Extensions (Intel® SGX) enclave on that logical processor.</p>
+                        <p class="mb-0">If usage of&nbsp;<span class="dk_code_simple">RDRAND</span>/<span class="dk_code-simple">RDSEED</span>&nbsp;is very frequent, system administrators may choose to opt out of the mitigation if any of the following are true:</p>
+                        <ul>
+                            <li>There is no untrusted software running on the system.<br>
+                            * OSes that disable the mitigation because they only run trusted applications may also wish to check if they are virtualized in order to ensure no untrusted guests can observe their&nbsp;<span class="dk_code_simple">RDRAND</span>&nbsp;or&nbsp;<span class="dk_code_simple">RDSEED</span>&nbsp;values.</li>
+                            <li><span class="dk_code_simple">RDRAND</span>&nbsp;or&nbsp;<span class="dk_code_simple">RDSEED</span>&nbsp;are only used for applications where the secrecy of the random value is not important for security (for example, for a nonce, or to seed pseudo-random number generators for Monte Carlo simulations).</li>
+                            <li><span class="dk_code_simple">RDRAND</span>&nbsp;or&nbsp;<span class="dk_code_simple">RDSEED</span>&nbsp;output is securely mixed with other sources of entropy before use (for example, in the Linux*&nbsp;<span class="dk_code_simple">getrandom(2)</span>&nbsp;system call).</li>
+                        </ul>
+                        <p>The second technique is to use software configurations that reduce the frequency of&nbsp;<span class="dk_code_simple">RDRAND</span>&nbsp;usage. For example, you can disable the&nbsp;<span class="dk_code_simple">RDRAND</span>&nbsp;engine in OpenSSL. More generally,&nbsp;<span class="dk_code_simple">RDSEED</span>&nbsp;can be used to seed a software-based pseudo-random number generator (PRNG) instead of directly using&nbsp;<span class="dk_code_simple">RDRAND</span>&nbsp;for those random numbers. If&nbsp;<span class="dk_code_simple">RDSEED</span>&nbsp;is not available on the target platform, then the application can use the “<a class="b_special_a1" href="">seed from&nbsp;<span class="dk_code_simple">RDRAND</span></a>” method for occasional reseeding.</p>
+                    </section>
+
+                    <section id="dk_references">
+                        <p class="mb-0">&nbsp;</p>
+                        <h3 style="font-weight: 300;">References</h3>
+                        <ol>
+                            <li><a class="b_special_a1" href="">Intel®&nbsp;Digital Random Number Generator (DRNG) Software Implementation Guide</a></li>
+                            <li><a class="b_special_a1" href="">The Difference Between RDRAND and RDSEED</a></li>
+                            <li><a class="b_special_a1" href="">A Top-Down method for performance analysis and counters architecture</a></li>
+                        </ol>
+                    </section>
+
+                    <section id="dk_related_contant">
+                        <p class="mb-0">&nbsp;</p>
+                        <h3 style="font-weight: 350;">Related Content</h3>
+                        <p><a class="b_special_a1" href="">Affected Processors</a></p>
+                    </section>
+
+                    <section id="dk_footnotes">
+                        <p class="mb-0">&nbsp;</p>
+                        <h3 style="font-weight: 350;">Footnotes</h3>
+                        <ol>
+                            <li>Although this is also true for&nbsp;<span class="dk_code_simple">RDSEED</span>, the parallelism of&nbsp;<span class="dk_code_simple">RDSEED</span>&nbsp;is already limited by the availability of entropy.</li>
+                            <li><a class="b_special_a1" href="">GitHub* andikleen/pmu-tools</a></li>
+                            <li><a class="b_special_a1" href="">Intel® VTune™ Profiler</a></li>
+                            <li>More details on <span class="dk_code_simple">RNGDS_MITG_DIS</span> and <span class="dk_code_simple">IA32_MCU_OPT_CTRL</span>&nbsp;are available in <a class="b_special_a1" href="">Special Register Buffer Data Sampling</a>.</li>
+                        </ol>
+                        <p>&nbsp;</p>
+                        <h5 style="text-align:center"><a class="b_special_a1" href="">Software Security Guidance Home</a> | <a class="b_special_a1" href="">Advisory Guidance</a> | <a class="b_special_a1" href="">Technical Documentation</a> | <a class="b_special_a1" href="">Best Practices</a> | <a class="b_special_a1" href="">Resources</a></h5>
+                        <p>&nbsp;</p>
+                    </section>
+
+                </div>
+            </section>
+        </div>
+    </div>
+    </div>
+    </section>
+
+    <section style="border-top: 1px solid #d7d7d7;" class="container py-5">
+        <h4 class="h6">Product and Performance Information</h4>
+        <div class="disclaimer" style="font-size: 12px;"><sup>1</sup> Performance varies by use, configuration and other
+            factors. Learn more at <a class="b_special_a1" href="">www.Intel.com/PerformanceIndex.</a></div>
+        </div>
+    </section>
+
+    <!-- footer -->
+    <div id="footer"></div>
+
+    <!-- nav script -->
+    <script>
+        // navbar include  
+        fetch('/y_index/y_navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar').innerHTML = data;
+            });
+        // footer include 
+        fetch('/y_index/y_footer.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('footer').innerHTML = data;
+            });
+    </script>
+    <!-- nav script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            if (document.getElementsByClassName('VK_all_sections section') && document.getElementsByClassName('VK_sidebar_dropdown')) {
+                const sections = document.querySelectorAll('.VK_all_sections section');
+                const navLinks = document.querySelectorAll('.VK_sidebar_dropdown a');
+                const detailsElements = document.querySelectorAll('.VK_sidebar_dropdown details');
+
+                function removeActiveClass() {
+                    navLinks.forEach(link => link.classList.remove('VK_sidebar_active_link'));
+                    detailsElements.forEach(details => {
+                        details.removeAttribute('open');
+                        details.setAttribute('close', ''); // Optional: to visually indicate it's closed
+                    });
+                }
+
+                function activateLinkAndDetails(targetId) {
+                    navLinks.forEach(link => {
+                        if (link.getAttribute('href') === `#${targetId}`) {
+                            link.classList.add('VK_sidebar_active_link');
+                            let parentDetails = link.closest('details');
+
+                            // Open all ancestor details elements
+                            while (parentDetails) {
+                                parentDetails.setAttribute('open', '');
+                                parentDetails.removeAttribute('close'); // Optional: remove the closed indicator
+                                parentDetails = parentDetails.parentElement.closest('details');
+                            }
+                        }
+                    });
+                }
+
+                function onScroll() {
+                    let currentSection = '';
+                    sections.forEach(section => {
+                        const sectionTop = section.getBoundingClientRect().top;
+                        const sectionBottom = section.getBoundingClientRect().bottom;
+
+                        // Check if the section is in view
+                        if (sectionTop <= 100 && sectionBottom >= 0) {
+                            currentSection = section.getAttribute('id');
+                        }
+                    });
+
+                    if (currentSection) {
+                        removeActiveClass();
+                        activateLinkAndDetails(currentSection);
+                    } else {
+                        removeActiveClass();
+                    }
+                }
+
+                window.addEventListener('scroll', onScroll);
+            } else {
+                return
+            }
+        });
+    </script>
+
+    <!-- copy script -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            document.querySelectorAll(".mv_copy_icon").forEach((icon) => {
+                icon.addEventListener("click", async function () {
+                    try {
+                        const toolbar = this.closest(".mv_code_toolbar");
+                        const codeBlock = toolbar.querySelector(".code-content");
+                        const codeContent = codeBlock.innerText;
+
+                        // Use Clipboard API to copy text
+                        await navigator.clipboard.writeText(codeContent);
+
+                        // Hide the copy icon and show the "Copied!" message
+                        const message = toolbar.querySelector(".mv_copy_message");
+                        this.classList.add("hidden"); // Hide the copy icon
+                        message.classList.remove("hidden"); // Show the "Copied!" message
+
+                        // Hide the message and show the icon again after 2 seconds
+                        setTimeout(() => {
+                            message.classList.add("hidden");
+                            this.classList.remove("hidden");
+                        }, 2000); // Adjust delay as needed
+
+                    } catch (err) {
+                        console.error('Failed to copy text: ', err);
+                    }
+                });
+            });
+        });
+    </script>
+
+</body>
+
+</html>
+
+

@@ -746,7 +746,7 @@
                 </div>
                 <div class="col-xl-10 VK_all_sections">
                     <p>&nbsp;</p>
-                    <p>This technical documentation expands on the information in&nbsp;<a class="b_special_a1" href="">L1 Terminal Fault Software Guidance</a>. Be sure to review the overview and mitigation for software developers, and be sure to apply any microcode updates from your OS vendor. For more information, refer to the&nbsp;<a class="b_special_a1" href="">list of affected processors</a>.&nbsp;</p>
+                    <p>This technical documentation expands on the information in&nbsp;<a class="b_special_a1" href="/darshit/dk_Solutions_Industries/L1_Terminal_Fault.html">L1 Terminal Fault Software Guidance</a>. Be sure to review the overview and mitigation for software developers, and be sure to apply any microcode updates from your OS vendor. For more information, refer to the&nbsp;<a class="b_special_a1" href="">list of affected processors</a>.&nbsp;</p>
                     
                     <section id="dk_how_l1tf">
                         <p class="mb-0">&nbsp;</p>
@@ -807,7 +807,7 @@
                         <p>Original entry:&nbsp;<span class="dk_code_simple">0x1001 &nbsp;&nbsp;&nbsp; (P=1)</span></p>
                         <p>The operating system (OS) makes the page not accessible by clearing the Present (P) bit:</p>
                         <p>New entry (vulnerable):&nbsp;<span class="dk_code_simple">0x1000 &nbsp;&nbsp;&nbsp; (P=0)</span></p>
-                        <p>This vulnerable entry might be used by an L1TF exploit to infer the contents of physical page&nbsp;<span class="dk_code_simple">0x1000</span>&nbsp;if the contents of the page were present in the L1D. Refer to the&nbsp;<a class="b_special_a1" href="">Mitigating Unmapped Paging Structure Entries</a>&nbsp;section below for mitigation options in this scenario.</p>
+                        <p>This vulnerable entry might be used by an L1TF exploit to infer the contents of physical page&nbsp;<span class="dk_code_simple">0x1000</span>&nbsp;if the contents of the page were present in the L1D. Refer to the&nbsp;<a class="b_special_a1" href="/darshit/dk_Solutions_Industries/L1_Terminal_Fault_main.html#dk_from_l1d">Mitigating Unmapped Paging Structure Entries</a>&nbsp;section below for mitigation options in this scenario.</p>
                     </section>
 
                     <section id="dk_e2e">
@@ -835,9 +835,9 @@
                     <section id="dk_affected_hardware">
                         <p class="mb-0">&nbsp;</p>
                         <h3 style="padding-bottom: 0.5rem; font-weight: 300;">Affected Hardware</h3>
-                        <p>See the&nbsp;<a class="b_special_a1" href="">Appendix: List of Affected Processors</a>&nbsp;section.</p>
+                        <p>See the&nbsp;<a class="b_special_a1" href="/darshit/dk_Solutions_Industries/L1_Terminal_Fault_main.html#dk_summary">Appendix: List of Affected Processors</a>&nbsp;section.</p>
                         <p>Processors that have the&nbsp;<span class="dk_code_simple">RDCL_NO</span>&nbsp;bit set to one (1) in the&nbsp;<span class="dk_code_simple">IA32_ARCH_CAPABILITIES</span>&nbsp;MSR are not susceptible to the L1TF speculative execution side channel. On such processors, none of the following mitigations are required.</p>
-                        <p>Processors that implement Intel® HT Technology<sup>5</sup>&nbsp;share the L1D between all logical processors (hyperthreads) on the same physical core. This means that data loaded into the L1D by one logical processor may be speculatively accessed by code running on another logical processor. Processors that implement Intel HT Technology require additional mitigations described in the&nbsp;<a class="b_special_a1" href="">Appendix: Intel® Hyper-Threading Technology</a>&nbsp;section as well as the mitigations described in the&nbsp;<a class="b_special_a1" href="">Virtual Machine Monitors (VMMs)</a>&nbsp;section. Disabling hyperthreading does not in itself provide mitigation for L1TF.</p>
+                        <p>Processors that implement Intel® HT Technology<sup>5</sup>&nbsp;share the L1D between all logical processors (hyperthreads) on the same physical core. This means that data loaded into the L1D by one logical processor may be speculatively accessed by code running on another logical processor. Processors that implement Intel HT Technology require additional mitigations described in the&nbsp;<a class="b_special_a1" href="/darshit/dk_Solutions_Industries/L1_Terminal_Fault_main.html#dk_affected_processors">Appendix: Intel® Hyper-Threading Technology</a>&nbsp;section as well as the mitigations described in the&nbsp;<a class="b_special_a1" href="/darshit/dk_Solutions_Industries/L1_Terminal_Fault_main.html#dk_vmms">Virtual Machine Monitors (VMMs)</a>&nbsp;section. Disabling hyperthreading does not in itself provide mitigation for L1TF.</p>
                     </section>
 
                     <section id="dk_from_l1d">
@@ -887,7 +887,7 @@
                         <p>An OS can construct a mitigated paging structure entry by having the entry refer to a physical memory address that is below the address represented by&nbsp;<span class="dk_code_simple">MAXPHYADDR</span><sup>8</sup>, but above the highest cacheable memory on the system that might contain secrets. For instance, an OS can set the&nbsp;<span class="dk_code_simple">MAXPHYADDR-1</span>&nbsp;bit in the PTE and ensure that no cacheable memory containing secrets is present in that top half of the physical address space.</p>
                         <p>This approach effectively repurposes part of the physical address space, which may impact the maximum usable memory on the system. An OS may dedicate more than one bit for this functionality expanding the usable physical address space. For example, the OS may set the top two bits so that only the top quarter of the physical address space cannot be used for cacheable accesses. Note that, as it dedicates more bits, the OS may lose capacity to store metadata in the paging structure entry.</p>
                         <p>The OS may also set the bits from&nbsp;<span class="dk_code_simple">MAXPHYADDR</span>&nbsp;through 51&nbsp;in the PTE. This adds mitigation in the case where&nbsp;a virtualized&nbsp;<span class="dk_code_simple">MAXPHYADDR</span>&nbsp;differs from the platform, bare-metal value.</p>
-                        <p>For the example of PTE pointing to page&nbsp;<span class="dk_code_simple">0x1000</span>&nbsp;in the&nbsp;<a class="b_special_a1" href="">How L1TF Works</a>&nbsp;section, this would be:</p>
+                        <p>For the example of PTE pointing to page&nbsp;<span class="dk_code_simple">0x1000</span>&nbsp;in the&nbsp;<a class="b_special_a1" href="/darshit/dk_Solutions_Industries/L1_Terminal_Fault_main.html#dk_how_l1tf">How L1TF Works</a>&nbsp;section, this would be:</p>
                         <p>Original entry:&nbsp;<span class="dk_code_simple">0x1001 &nbsp;&nbsp;&nbsp; (P=1)</span></p>
                         <p>The OS wants to make the page not accessible and clears the P bit</p>
                         <p>New entry (vulnerable):&nbsp;<span class="dk_code_simple">0x1000 &nbsp;&nbsp;&nbsp; (P=0)</span></p>
@@ -935,15 +935,15 @@
                         <p class="mb-0">&nbsp;</p>
                         <h3 style="padding-bottom: 0.5rem; font-weight: 350;">Virtual Machine Monitors (VMMs)</h3>
                         <p>VMMs require some similar mitigations as OSes, but there are additional challenges relating to the guest view of&nbsp;<span class="dk_code_simple">MAXPHYADDR</span>&nbsp;and interactions between logical processors on hyperthreading-enabled systems.</p>
-                        <p>When guests are trusted or belong to the same security domain, no mitigation is needed. Untrusted guests require mitigations described in the <a class="b_special_a1" href="">VMM Mitigation for Guest-Based Attacks</a>.</p>
-                        <p>​Similar to bare-metal paging structure entries, terminal faults can occur while reading Extended Page Table (EPT) entries, leaving them vulnerable to L1TF exploits. The mitigations deployed by a bare-metal OS can also be deployed by VMMs to mitigate EPT entries. The VMM should not trust the guest is performing any particular mitigation and should follow the conventions described in the <a class="b_special_a1" href="">VMM Assistance for Guest OSes section</a>.</p>
-                        <p>Mitigations in nested VMM environments require the first level VMM to check the MSRs of the nested VMMs and vice versa. Refer to the <a class="b_special_a1" href="">Nested VMM Environments</a> section for further details.</p>
+                        <p>When guests are trusted or belong to the same security domain, no mitigation is needed. Untrusted guests require mitigations described in the <a class="b_special_a1" href="/darshit/dk_Solutions_Industries/L1_Terminal_Fault_main.html#dk_mitigation_attacks">VMM Mitigation for Guest-Based Attacks</a>.</p>
+                        <p>​Similar to bare-metal paging structure entries, terminal faults can occur while reading Extended Page Table (EPT) entries, leaving them vulnerable to L1TF exploits. The mitigations deployed by a bare-metal OS can also be deployed by VMMs to mitigate EPT entries. The VMM should not trust the guest is performing any particular mitigation and should follow the conventions described in the <a class="b_special_a1" href="/darshit/dk_Solutions_Industries/L1_Terminal_Fault_main.html#dk_vmm_mitigations">VMM Assistance for Guest OSes section</a>.</p>
+                        <p>Mitigations in nested VMM environments require the first level VMM to check the MSRs of the nested VMMs and vice versa. Refer to the <a class="b_special_a1" href="/darshit/dk_Solutions_Industries/L1_Terminal_Fault_main.html#dk_nested_vmm">Nested VMM Environments</a> section for further details.</p>
                     </section>
 
                     <section id="dk_mitigation_attacks">
                         <p class="mb-0">&nbsp;</p>
                         <h4 style="padding-bottom: 0.5rem;">VMM Mitigation for Guest-Based Attacks</h4>
-                        <p>VMMs generally allow untrusted guests to place arbitrary translations in the guest paging structure entries because VMMs assume any entries will be translated with VMM-controlled EPT. But, as noted in the&nbsp;<a class="b_special_a1" href="">How L1TF works</a>&nbsp;section, EPT translation is not performed in the case of an L1 terminal fault.</p>
+                        <p>VMMs generally allow untrusted guests to place arbitrary translations in the guest paging structure entries because VMMs assume any entries will be translated with VMM-controlled EPT. But, as noted in the&nbsp;<a class="b_special_a1" href="/darshit/dk_Solutions_Industries/L1_Terminal_Fault_main.html#dk_how_l1tf">How L1TF works</a>&nbsp;section, EPT translation is not performed in the case of an L1 terminal fault.</p>
                         <p>This means that a malicious guest OS may be able to set up values in its paging structure entries that attack arbitrary host addresses, theoretically enabling an exploit to access any data that is present in the L1D on the same physical core as the malicious guest. For this reason, VMM mitigations are focused on ensuring that secret data is not present in the L1D when executing guests.</p>
                         <p>Setting bit 0 of&nbsp;<span class="dk_code_simple">IA32_FLUSH_CMD</span>&nbsp;MSR to 1 removes all content, including secrets, from the L1D. This flush must be repeated on every guest entry when the VMM or other guests on the core may have populated secrets into the L1D. A VMM can ensure it does not populate secrets into the L1D by ensuring that secrets are not mapped as cacheable during VMM execution.</p>
                         <p class="mb-0">When Intel HT Technology is enabled, the VMM may be required to deploy additional mitigations before executing untrusted guests on hyperthreaded physical cores. This is because data in the L1D populated by a victim may potentially be exploited by a malicious guest that executes on another logical processor in the same physical core. This raises two concerns:</p>
@@ -952,7 +952,7 @@
                             <li>The malicious guest may infer the values of data belonging to the VMM itself.</li>
                         </ul>
                         <p>Mitigations for these are listed below.</p>
-                        <p>The VMM is only responsible for protecting the host and other guests’ secrets. Protection between different processes inside a guest is the responsibility of the guest using the OS mitigations described in the&nbsp;<a class="b_special_a1" href="">Mitigating OS</a><strong> </strong>and<strong> </strong><a class="b_special_a1" href="">SMM</a>&nbsp;section.</p>
+                        <p>The VMM is only responsible for protecting the host and other guests’ secrets. Protection between different processes inside a guest is the responsibility of the guest using the OS mitigations described in the&nbsp;<a class="b_special_a1" href="/darshit/dk_Solutions_Industries/L1_Terminal_Fault_main.html#dk_os">Mitigating OS</a><strong> </strong>and<strong> </strong><a class="b_special_a1" href="/darshit/dk_Solutions_Industries/L1_Terminal_Fault_main.html#dk_smm">SMM</a>&nbsp;section.</p>
                         <p>VMMs can help mitigate L1TF if they avoid sharing logical processors on a core with different guests or host threads that contain secrets. If the VMM cannot do this, it may have to leave one logical processor idle on a physical core.</p>
                         <p style="text-align:center"><img class="w-100" src="/img/darshit_image/vm-core-scheduling-l1tf-1.png"><br>
                             Figure 1.&nbsp;Without Core Scheduling</p>
@@ -971,7 +971,7 @@
                             </li>
                             <li>The VMM may schedule threads to run guests at the same time if both logical processors are part of the same guest (or from mutually trusting guests)</li>
                         </ul>
-                        <p>Mitigation for hyperthreading is not required when hyperthreading is not supported or not enabled. However, flushing the L1D on each guest entry is still required. Refer to the&nbsp;<a class="b_special_a1" href="">Appendix: Intel Hyper-Threading Technology</a>&nbsp;section.</p>
+                        <p>Mitigation for hyperthreading is not required when hyperthreading is not supported or not enabled. However, flushing the L1D on each guest entry is still required. Refer to the&nbsp;<a class="b_special_a1" href="/darshit/dk_Solutions_Industries/L1_Terminal_Fault_main.html#dk_affected_processors">Appendix: Intel Hyper-Threading Technology</a>&nbsp;section.</p>
                     </section>
 
                     <section id="dk_vmm_mitigations">
@@ -981,14 +981,14 @@
                         <ul>
                             <li>Don't put secret data in the first 4 KB at physical address 0.
                             <ul>
-                                <li>Guests running under a VMM may use the OS mitigations described in the&nbsp;<a class="b_special_a1" href="">Mitigating OS</a><strong> </strong>and<strong> </strong><a class="b_special_a1" href="">SMM</a>&nbsp;section, including the use of all-zero paging structure entries, to protect themselves from malicious applications. These paging structure entries might allow malicious guest applications exploiting L1TF to infer the contents of the 4 KB page at physical address zero.</li>
+                                <li>Guests running under a VMM may use the OS mitigations described in the&nbsp;<a class="b_special_a1" href="/darshit/dk_Solutions_Industries/L1_Terminal_Fault_main.html#dk_os">Mitigating OS</a><strong> </strong>and<strong> </strong><a class="b_special_a1" href="/darshit/dk_Solutions_Industries/L1_Terminal_Fault_main.html#dk_smm">SMM</a>&nbsp;section, including the use of all-zero paging structure entries, to protect themselves from malicious applications. These paging structure entries might allow malicious guest applications exploiting L1TF to infer the contents of the 4 KB page at physical address zero.</li>
                                 <li>As a convention, a VMM can ensure that the page at physical address zero does not contain any secrets. This convention allows guests to use the all-zero value to mitigate vulnerable paging structure entries.</li>
                             </ul>
                             </li>
                             <li>Deploy EPT mitigations to support guest paging structure mitigations.
                             <ul>
-                                <li>Guests may deploy L1TF mitigations in their paging structure entries, such as those discussed in the&nbsp;<a class="b_special_a1" href="">Mitigation by Referring to Invalid Memory</a>&nbsp;section. These mitigations may cause guest paging structure entries to refer to invalid guest physical addresses.</li>
-                                <li>Terminal faults on the EPT tables that provide translation for these addresses need mitigation against L1TF. These EPT entries may be mitigated with the same techniques used for bare-metal OS paging structure entries, such as those described in the&nbsp;<a class="b_special_a1" href="">Mitigating OS</a><strong> </strong>and<strong> </strong><a class="b_special_a1" href="">SMM</a>&nbsp;section.</li>
+                                <li>Guests may deploy L1TF mitigations in their paging structure entries, such as those discussed in the&nbsp;<a class="b_special_a1" href="/darshit/dk_Solutions_Industries/L1_Terminal_Fault_main.html#dk_invalid_memory">Mitigation by Referring to Invalid Memory</a>&nbsp;section. These mitigations may cause guest paging structure entries to refer to invalid guest physical addresses.</li>
+                                <li>Terminal faults on the EPT tables that provide translation for these addresses need mitigation against L1TF. These EPT entries may be mitigated with the same techniques used for bare-metal OS paging structure entries, such as those described in the&nbsp;<a class="b_special_a1" href="/darshit/dk_Solutions_Industries/L1_Terminal_Fault_main.html#dk_os">Mitigating OS</a><strong> </strong>and<strong> </strong><a class="b_special_a1" href="/darshit/dk_Solutions_Industries/L1_Terminal_Fault_main.html#dk_smm">SMM</a>&nbsp;section.</li>
                             </ul>
                             </li>
                             <li>Prevent EPT tables from causing L1TF.
@@ -1023,8 +1023,8 @@
                         <p class="mb-0">&nbsp;</p>
                         <h4 style="padding-bottom: 0.5rem; font-weight: 300;">Appendix Intel® Hyper-Threading Technology</h4>
                         <p>The first step in composing an L1TF-based exploit is loading a secret into the L1D. As discussed earlier, secrets can be flushed from the L1D when transitioning between different security contexts. However, processors supporting Intel HT Technology share the L1D and support simultaneously executing code from different security contexts. This means that an L1TF exploit could run on one logical processor on a core while the other (trusted) logical processor on the same physical core simultaneously loads secrets into the L1D, potentially exposing those secrets to the exploit.</p>
-                        <p>Not all Intel HT Technology implementations require mitigation against L1TF exploits. Refer to the <a class="b_special_a1" href="">List of Processors Affected: L1 Terminal Fault</a> for a complete list of affected processors.</p>
-                        <p>No hyperthreading mitigation is required on affected systems where hyperthreading is unsupported or disabled. However, the general mitigations described in this paper should still be applied as disabling hyperthreading does not in itself provide mitigation for L1TF. Mitigation is also not required in situations where step 2 in the&nbsp;<a class="b_special_a1" href="">L1TF Limiting Factors</a>&nbsp;section has been entirely mitigated, such as on systems with mitigations in the bare-metal OS that do not run virtual machines.</p>
+                        <p>Not all Intel HT Technology implementations require mitigation against L1TF exploits. Refer to the <a class="b_special_a1" href="/darshit/dk_Solutions_Industries/Processors_Affected_L1_Terminal_Fault.html">List of Processors Affected: L1 Terminal Fault</a> for a complete list of affected processors.</p>
+                        <p>No hyperthreading mitigation is required on affected systems where hyperthreading is unsupported or disabled. However, the general mitigations described in this paper should still be applied as disabling hyperthreading does not in itself provide mitigation for L1TF. Mitigation is also not required in situations where step 2 in the&nbsp;<a class="b_special_a1" href="/darshit/dk_Solutions_Industries/L1_Terminal_Fault_main.html#dk_l1tf_factors">L1TF Limiting Factors</a>&nbsp;section has been entirely mitigated, such as on systems with mitigations in the bare-metal OS that do not run virtual machines.</p>
                     </section>
 
                     <section id="dk_determining_hardware">
@@ -1037,7 +1037,7 @@
                     <section id="dk_hyperthreading">
                         <p class="mb-0">&nbsp;</p>
                         <h4>Hyperthreading Enumeration from a Bare-metal OS/VMM</h4>
-                        <p class="dk_note"><strong>Note&nbsp;</strong>The<a class="b_special_a1" href=""> Intel® 64 and IA-32 Architectures Software Developer Manuals </a>Volume 3a, section&nbsp;8.6 Detecting Hardware Multi-threading Support and Topology, contains the full architectural enumeration of hyperthreading support.</p>
+                        <p class="dk_note"><strong>Note&nbsp;</strong>The<a class="b_special_a1" href="/VK_developers/VK_Intel_64_IA32_Architectures_Software_Developer_Manuals.html"> Intel® 64 and IA-32 Architectures Software Developer Manuals </a>Volume 3a, section&nbsp;8.6 Detecting Hardware Multi-threading Support and Topology, contains the full architectural enumeration of hyperthreading support.</p>
                         <p>8.9.4 Algorithm for Three-Level Mappings of APIC_ID&nbsp;contains a suggested algorithm that includes detection of hyperthreading. When following that algorithm, if two or more logical processors have the same value for&nbsp;<span class="dk_code_simple">PACKAGE_ID</span>&nbsp;and&nbsp;<code>C</code><span class="dk_code_simple">ORE_ID</span>, mitigations such as those described in the VMM Mitigation for Guest-Based Attacks section may be necessary.</p>
                     </section>
 
@@ -1051,15 +1051,15 @@
                         <p class="mb-0">&nbsp;</p>
                         <h3 style="padding-bottom: 0.5rem; font-weight: 300;">Footnotes</h3>
                         <ol>
-                            <li>See <a class="b_special_a1" href="">Intel® 64 and IA-32 Architectures Software Developer Manuals (Intel SDM)</a>, volume 3, chapter 4</li>
-                            <li>See&nbsp;<a class="b_special_a1" href="">Intel SDM</a>, volume 3, chapter 4 for the location of reserved bits in the paging structure entries of each paging mode.</li>
+                            <li>See <a class="b_special_a1" href="/VK_developers/VK_Intel_64_IA32_Architectures_Software_Developer_Manuals.html">Intel® 64 and IA-32 Architectures Software Developer Manuals (Intel SDM)</a>, volume 3, chapter 4</li>
+                            <li>See&nbsp;<a class="b_special_a1" href="/VK_developers/VK_Intel_64_IA32_Architectures_Software_Developer_Manuals.html">Intel SDM</a>, volume 3, chapter 4 for the location of reserved bits in the paging structure entries of each paging mode.</li>
                             <li>The PML4 does not have a PS bit defined.</li>
-                            <li>See&nbsp;<a class="b_special_a1" href="">Intel SDM</a>, Volume 3, Section 36.3</li>
-                            <li>See&nbsp;<a class="b_special_a1" href="">Intel SDM</a>, section 8.5</li>
-                            <li>MSR present if CPUID.(EAX=07H,ECX=0):EDX[28] = 1. Refer to&nbsp;<a class="b_special_a1" href="">CPUID Enumeration and Architectural MSRs</a>.</li>
+                            <li>See&nbsp;<a class="b_special_a1" href="/VK_developers/VK_Intel_64_IA32_Architectures_Software_Developer_Manuals.html">Intel SDM</a>, Volume 3, Section 36.3</li>
+                            <li>See&nbsp;<a class="b_special_a1" href="/VK_developers/VK_Intel_64_IA32_Architectures_Software_Developer_Manuals.html">Intel SDM</a>, section 8.5</li>
+                            <li>MSR present if CPUID.(EAX=07H,ECX=0):EDX[28] = 1. Refer to&nbsp;<a class="b_special_a1" href="/darshit/dk_Solutions_Industries/CPUID_Enumeration_and_Architectural_MSRs.html">CPUID Enumeration and Architectural MSRs</a>.</li>
                             <li>The PS bit is important. Without that detail, zeroed 2 MB / 1 GB entries could be used.</li>
-                            <li>CPUID.80000008H:EAX[7:0] reports the physical-address width supported by the processor. (for details see&nbsp;<a class="b_special_a1" href="">Intel SDM</a>&nbsp;volume 3a, chapter 4.1.4 “Enumeration of Paging Features by CPUID”). This width is referred to as&nbsp;<span class="dk_code_simple">MAXPHYADDR</span></li>
-                            <li>You can cross-check for affected steppings against the&nbsp;<a class="b_special_a1" href="">list of updated microcode versions</a>.</li>
+                            <li>CPUID.80000008H:EAX[7:0] reports the physical-address width supported by the processor. (for details see&nbsp;<a class="b_special_a1" href="/VK_developers/VK_Intel_64_IA32_Architectures_Software_Developer_Manuals.html">Intel SDM</a>&nbsp;volume 3a, chapter 4.1.4 “Enumeration of Paging Features by CPUID”). This width is referred to as&nbsp;<span class="dk_code_simple">MAXPHYADDR</span></li>
+                            <li>You can cross-check for affected steppings against the&nbsp;<a class="b_special_a1" href="/img/darshit_image/sa00115-microcode-update-guidance.pdf">list of updated microcode versions</a>.</li>
                         </ol>
                         <p>&nbsp;</p>
                         <h5 style="text-align:center"><a class="b_special_a1" href="">Software Security Guidance Home</a>&nbsp;|&nbsp;<a class="b_special_a1" href="">Advisory Guidance</a>&nbsp;|&nbsp;<a class="b_special_a1" href="">Technical Documentation</a>&nbsp;|&nbsp;<a class="b_special_a1" href="">Best Practices</a>&nbsp;|&nbsp;<a class="b_special_a1" href="">Resources</a></h5>
