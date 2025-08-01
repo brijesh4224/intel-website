@@ -59,6 +59,10 @@
         padding: 20px;
     }
 
+    .mv_code_toolbar{
+        margin-top: 25px !important;
+    }
+
     @media(max-width:1200px) {
         .dk_risk_app_img {
             width: 100% !important;
@@ -669,30 +673,605 @@
                         <p>The microcode additions to <span class="dk_code_simple">VERW</span> are designed to overwrite all relevant microarchitectural buffers for a logical processor regardless of what is executing on the other logical processor on the same physical core.</p>
                     </section>
 
-                    <section id="dk_references">
+                    <section id="dk_stale_data">
                         <p class="mb-0">&nbsp;</p>
-                        <h3 style="font-weight: 300;">References</h3>
-                        <ol>
-                            <li><a class="b_special_a1" href="">Intel®&nbsp;Digital Random Number Generator (DRNG) Software Implementation Guide</a></li>
-                            <li><a class="b_special_a1" href="">The Difference Between RDRAND and RDSEED</a></li>
-                            <li><a class="b_special_a1" href="">A Top-Down method for performance analysis and counters architecture</a></li>
-                        </ol>
+                        <h3 style="font-weight: 300;">Fill Buffer and Side Band Stale Data </h3>
+                        <p>In modern processors, stale data can be copied or moved from one microarchitectural buffer or register to another. The material in the next section (<a class="b_special_a1" href="">Data Vulnerabilities</a>) discusses <em>Processor MMIO Stale Data Vulnerabilities</em>. Processor MMIO Stale Data Vulnerabilities are operations that result in stale data being directly read into an architectural, software-visible state or sampled from a buffer or register.&nbsp;</p>
+                        <p>As mentioned in the <a class="b_special_a1" href="">Background</a> section, the microarchitecture for Intel® Xeon® server processors<a class="b_special_a1" href=""><sup>4</sup></a> is different than for client processors. &nbsp;As a result, servers are only subject to a subset of the vulnerabilities discussed in this paper. A reader only interested in server vulnerabilities should read the <a class="b_special_a1" href="">Device Register Partial Write (DRPW)</a> section, and then proceed to the <a class="b_special_a1" href="">Mitigation</a> section.</p>
                     </section>
 
-                    <section id="dk_related_contant">
+                    <section id="dk_fbsdp">
                         <p class="mb-0">&nbsp;</p>
-                        <h3 style="font-weight: 350;">Related Content</h3>
-                        <p><a class="b_special_a1" href="">Affected Processors</a></p>
+                        <h4><a class="b_special_a1" href="">Fill Buffer Stale Data Propagator (FBSDP)</a></h4>
+                        <p>Stale data may propagate from fill buffers (FB) into the non-coherent portion of the uncore on some non-coherent writes. Fill buffer propagation by itself does not make stale data architecturally visible. Stale data must be propagated to a location where it is subject to reading or sampling.</p>
+                    </section>
+
+                    <section id="dk_coherent_febrics">
+                        <p class="mb-0">&nbsp;</p>
+                        <h4><a class="b_special_a1" href="">Operations That May Cause Writes into Non-Coherent Fabrics</a></h4>
+                        <p>The main instructions that cause writes into non-coherent fabrics are uncacheable or write-combinable stores to MMIO addresses. However, there are other instructions and operations that may write to non-coherent fabrics, often through a microarchitectural operation known as a <em>special register write</em>. Some examples of these include <span class="dk_code_simple">WRMSR,RDMSR</span> for certain MSRs, writes to PCIe configuration space, legacy I/O instructions, power state transitions, and asynchronous events such as system management interrupts (SMI) and frequency changes.</p>
+                    </section>
+
+                    <section id="dk_sideband_ssdp">
+                        <p class="mb-0">&nbsp;</p>
+                        <h4><a class="b_special_a1" href="">Sideband Stale Data Propagator (SSDP)</a></h4>
+                        <p>The sideband stale data propagator (SSDP) issue is limited to the client uncore implementation.&nbsp;</p>
+                        <p>The sideband response buffer is shared by all cores. For non-coherent reads that go to sideband destinations, the uncore logic returns 64 bytes of data to the core, including both requested data and unrequested stale data, from a transaction buffer and the sideband response buffer.&nbsp;</p>
+                        <p>As a result, stale data from the sideband response and transaction buffers now resides in a core fill buffer. Such a propagator by itself does not cause a security issue, but it can be leveraged by vulnerabilities described in the <a class="b_special_a1" href="">Data Vulnerabilities</a> section as part of an attack.</p>
+                        <p>Note that the previously disclosed <a class="b_special_a1" href="">Special Register Buffer Data Sampling</a> (SRBDS) vulnerability is a subset of the possible issues associated with sideband stale data propagator. In SRBDS, the data is propagated from the sideband response buffer to a core fill buffer, where it is attacked with <a class="b_special_a1" href="">Microarchitectural Fill Buffer Data Sampling</a> (MFBDS).</p>
+                    </section>
+
+                    <section id="dk_primary_psdp">
+                        <p class="mb-0">&nbsp;</p>
+                        <h4><a class="b_special_a1" href="">Primary Stale Data Propagator (PSDP)</a></h4>
+                        <p>The primary stale data propagator (PSDP) is limited to the client uncore implementation.&nbsp;</p>
+                        <p>Similar to the sideband response buffer, the primary response buffer is shared by all cores. For some processors, MMIO primary reads will return 64 bytes of data to the core fill buffer including both requested data and unrequested stale data. This is similar to the sideband stale data propagator. However, unlike the sideband stale data propagator, the primary stale data propagator propagates stale data only from previous read transactions, not from previous write transactions.</p>
+                        <p>As with other propagators, primary response buffer propagation by itself does not make stale data architecturally visible.</p>
+                        <p class="mb-0">&nbsp;</p>
+                    </section>
+
+                    <section id="dk_data_vulnerabilies">
+                        <p class="mb-0">&nbsp;</p>
+                        <h3 style="font-weight: 350;"><a class="b_special_a1" href="">Data Vulnerabilities</a></h3>
+                        <p>The vulnerabilities described in this section are used to make stale data architecturally visible. Some are direct operations (reads and writes) and some are sampling operations (transient-execution attacks).</p>
+                        <p>Readers only interested in server<a class="b_special_a1" href=""><sup>5</sup></a> vulnerabilities should read the <a class="b_special_a1" href="">Device Register Partial Write (DRPW)</a> section, and then proceed to the <a class="b_special_a1" href="">Mitigation</a> section.</p>
+                    </section>
+
+                    <section id="dk_drpw">
+                        <p class="mb-0">&nbsp;</p>
+                        <h4><a class="b_special_a1" href="">Device Register Partial Write (DRPW)</a></h4>
+                        <p>Some endpoint MMIO registers incorrectly handle writes that are smaller than the register size. Instead of aborting the write or only copying the correct subset of bytes (for example, 2 bytes for a 2-byte write), more bytes than specified by the write transaction may be written to the register. On processors affected by <a class="b_special_a1" href="">FBSDP</a>, this may expose stale data from the fill buffers of the core that created the write transaction.</p>
+                        <p>If an endpoint device ignores byte enables, all bytes are copied to the device register. This means that both the write data and the stale data now reside in the device register. A subsequent read of the same register will return as valid the written data, along with what used to be stale data. &nbsp;Endpoints with this behavior have been found integrated on silicon and in discrete PCIe devices.</p>
+                        <p class="mb-0">&nbsp;</p>
+                    </section>
+
+                    <section id="dk_sbds">
+                        <p class="mb-0">&nbsp;</p>
+                        <h4><a class="b_special_a1" href="">Shared Buffers Data Sampling (SBDS)</a></h4>
+                        <p>After propagators have moved data around the uncore and copied stale data into core fill buffers, processors affected by <a class="b_special_a1" href="">MFBDS</a> can leak data from the fill buffer.</p>
+                        <p>When a fill buffer stale data propagator is followed by the sideband stale data propagator, and then by an MFBDS attack, it is considered an SBDS attack. In addition, any combination that uses the fill buffer stale data propagator or primary stale data propagator before an MFBDS attack is also considered SBDS.</p>
+                        <p class="mb-0">&nbsp;</p>
+                    </section>
+
+                    <section id="dk_srbds_update">
+                        <h4><a class="b_special_a1" href="">SRBDS Update</a></h4>
+                        <p>The original SRBDS mitigation is subject to possible race conditions that special sideband transactions may occur between buffer use and overwriting operation. When this happens, data from <span class="dk_code_simple">RDRAND</span>, <span class="dk_code_simple">RDSEED</span>, and <span class="dk_code_simple">EGETKEY</span> may remain even after buffer overwriting.</p>
+                        <p class="mb-0">&nbsp;</p>
+                    </section>
+
+                    <section id="dk_shared_sbdr">
+                        <h4><a class="b_special_a1" href="">Shared Buffers Data Read (SBDR)</a></h4>
+                        <p>Shared Buffers Data Read (SBDR) differs from Shared Buffers Data Sampling (SBDS) in that the data is directly read into the architectural, software-visible state. In processors affected by SBDR, any read that is wider than 4 bytes could potentially have stale data returned from a transaction buffer. </p>
+                        <p class="mb-0">&nbsp;</p>
+                    </section>
+
+                    <section id="dk_implications">
+                        <h4>Implications of Vulnerabilities</h4>
+                        <p>The DRPW and SBDR scenarios require software to access registers with a different size or alignment than is expected by the architectural definitions of these registers. These issues are not likely to occur accidentally during normal execution and are likely to only be triggered by malicious software. These MMIO-based attacks generally require MMIO access to make stale data software-visible. Note that any data copied to fill buffers may be vulnerable to <a class="b_special_a1" href="">MFBDS</a> attacks, which do not require MMIO access.&nbsp;</p>
+                        <p>The fill buffer, sideband, and primary stale data propagators can occur during normal execution. Data may be propagated into the uncore via the fill buffer stale data propagator, and into the core via the sideband stale data propagator. Confused deputies that may propagate information should be considered. Refer to the <a class="b_special_a1" href="">Preventing Software from Acting as a Confused Deputy by Propagating Secret Data into Vulnerable Buffers</a> section for more information.</p>
+                        <p class="mb-0">&nbsp;</p>
+                    </section>
+
+                    <section id="dk_mitigation">
+                        <p class="mb-0">&nbsp;</p>
+                        <h3 style="font-weight: 350;"><a class="b_special_a1" href="">Mitigation</a></h3>
+                        <p class="mb-0">For each vulnerability, there are two broad strategies that software can take:&nbsp;</p>
+                        <ul> 
+                            <li>Preventing secret data from getting into buffers from which it can be extracted (blocking propagators).&nbsp;</li> 
+                            <li>Preventing untrusted software from extracting data from vulnerable buffers (blocking vulnerabilities).</li> 
+                        </ul>
+                        <p>The first strategy generally involves using <span class="dk_code_simple">FB_CLEAR</span> operations to overwrite secret data before it could be transferred to the affected buffer.</p>
+                        <p>On products not affected by <a class="b_special_a1" href="">MFBDS</a> or <a class="b_special_a1" href="">TAA</a> vulnerabilities, there may be some software usage models or configurations where the second strategy can be employed for all untrusted software. In these cases, it is acceptable for secret data to reside in affected buffers without overwriting the buffers because potential attackers are prevented from extracting any data. In particular, in some environments it may be realistic to disallow direct MMIO access to untrusted software; thereby preventing any malicious actors from exploiting DRPW or SBDR<a class="b_special_a1" href=""><sup>6</sup></a>.</p>
+                        <p>To simplify mitigation, we assume in this article that system software has already mitigated the <a class="b_special_a1" href="">MDS family of issues</a>. As with the previous MDS vulnerabilities, in systems with simultaneous multithreading (SMT<a class="b_special_a1" href=""><sup>7</sup></a>) enabled, there may be race conditions where malicious software can extract data, or a confused deputy may leak data, on the sibling hyperthread between when data is put into the fill buffers and when it is overwritten. These race conditions might allow attackers to extract secret data. Software running on systems with SMT enabled that is concerned about these race conditions can use scheduling methods to avoid the confused deputy case or ensure that untrusted software does not run on the same core with software from other security domains. Refer to the <a class="b_special_a1" href="">MDS documentation</a>&nbsp;for more details on these mitigations.</p>
+                        <p>The sections below provide details on each scenario and the specific mitigation sequences that must be used for each. It is assumed that the latest microcode updates will be installed on any affected systems.</p>
+                    </section>
+
+                    <section id="dk_processor_supp">
+                        <h4><a class="b_special_a1" href="">Processor Support for Mitigations</a></h4>
+                    </section>
+                    
+                    <section id="dk_fill_buffer_op"> 
+                        <h4>Fill Buffer Clearing Operations</h4>
+                        <p>The mitigation for FBSDP can involve using <span class="dk_code_simple">MD_CLEAR</span> functionality to overwrite fill buffer values. Some processors may enumerate <span class="dk_code_simple">MD_CLEAR</span> because they overwrite all buffers affected by MDS/TAA, but they do not overwrite fill buffer values. This is because fill buffers are not susceptible to MDS or TAA on those processors.&nbsp;</p>
+                        <p>For processors affected by FBSDP where <span class="dk_code_simple">MD_CLEAR</span> may not overwrite fill buffer values, Intel has released microcode updates that enumerate <span class="dk_code_simple">FB_CLEAR</span> so that <span class="dk_code_simple">VERW</span> does overwrite fill buffer values.&nbsp;</p>
+                        <p>When running with this updated microcode, the <span class="dk_code_simple">VERW</span> instruction will overwrite the fill buffer values for all logical processors on the physical core. The fill buffers will also be overwritten on <span class="dk_code_simple">RSM</span> and when entering or exiting Intel SGX enclaves. For <span class="dk_code_simple">EENTER</span> and <span class="dk_code_simple">ERESUME</span>, the fill buffers will be overwritten after all state loading has completed.</p>
+                        <p>On some processors affected by FBSDP but not affected by MDS, an MSR has been added that allows disabling the fill buffer overwriting functionality in <span class="dk_code_simple">VERW</span>.&nbsp; Virtual Machine Managers (VMMs) can use this MSR to avoid the performance overhead of <span class="dk_code_simple">VERW</span> overwriting the fill buffers (for example, because the guest has no access to MMIO). This may be useful in cases where the VMM has to hide enumeration of <span class="dk_code_simple">MDS_NO</span> from the guest due to the existence in the migration pool of older systems without <span class="dk_code_simple">MDS_NO</span>. For more details, refer to the <a class="b_special_a1" href="">IA32_ARCH_CAPABILITIES.FB_CLEAR</a> section.</p>
+                        <p>For processors that are affected by MDS and support <span class="dk_code_simple">L1D_FLUSH</span> operations and <span class="dk_code_simple">MD_CLEAR</span> operations, the <span class="dk_code_simple">L1D_FLUSH</span> operation flushes fill buffers.</p>
+                        <p>For processors that are affected by MDS and support <span class="dk_code_simple">L1D_FLUSH</span> operations and <span class="dk_code_simple">MD_CLEAR</span> operations, the <span class="dk_code_simple">VERW</span> instruction flushes fill buffers. &nbsp;On processors that enumerate <span class="dk_code_simple">FB_CLEAR</span>, the <span class="dk_code_simple">VERW</span> instruction also flushes fill buffers.</p>
+                        <h5>System Management Mode (SMM)</h5>
+                        <p class="mb-4">The <span class="dk_code_simple">RSM</span> instruction will overwrite the fill buffer values for all logical processors on the physical core.</p>
+                    </section>
+
+                    <section id="dk_protection">
+                        <h4>RDRAND/RDSEED/EGETKEY Protection</h4>
+                        <p>As part of the existing mitigation for <a href="">SRBDS</a>, Intel released microcode updates for client processors in order to modify the <span class="dk_code_simple">RDRAND</span>, <span class="dk_code_simple">RDSEED</span>, and SGX <span class="dk_code_simple">EGETKEY </span>instructions to overwrite stale special register data in uncore response and transaction buffers. This type of mitigation is also relevant for processors affected by SBDR or SSDP, as it prevents secret data processed by these instructions from being extracted from those uncore buffers. Microcode updates have been released to add this mitigation to processors that were not affected by SRBDS but are affected by SBDR or SSDP. Additionally, microcode updates contain a workaround for the issue described in the <a href="">SRBDS Update</a> section. Note that <span class="dk_code_simple">RDRAND</span> and <span class="dk_code_simple">RDSEED</span> may put the random values into the fill buffers, and thus it is software’s responsibility to apply <span class="dk_code_simple">FB_CLEAR</span> before switching to an untrusted entity that could perform attacks that could leak stale data from fill buffers (such as DRPW, SBDR, and SBDS). &nbsp;For Intel SGX, it is not the responsibility of software running in an enclave; the fill buffers are cleared by microcode/hardware upon <span class="dk_code_simple">EEXIT</span> and upon exiting an enclave.</p>
+                        <p class="mb-0">&nbsp;</p>
+                    </section>
+
+                    <section id="dk_software_miti">
+                        <h4>Software Mitigations</h4>
+                        <p>For platforms with client uncore implementations, read this entire section. Server<a class="b_special_a1" href=""><sup>8</sup></a>&nbsp;implementations only need the <a class="b_special_a1" href="">Preventing Untrusted Software from Propagating Secret Data into Vulnerable Buffers</a> subsection.</p>
+                        <p class="mb-0">&nbsp;</p>
+                    </section>
+
+                    <section id="dk_preventing_buffers">
+                        <h5><a class="b_special_a1" href="">Preventing Untrusted Software from Propagating Secret Data into Vulnerable Buffers</a></h5>
+                        <p>For usage models where untrusted software needs fast access to MMIO, the OS and VMM may want to focus on preventing that software from being able to propagate secret data into vulnerable buffers (via FBSDP) rather than preventing the attacks from accessing the data from those vulnerable buffers.</p>
+                        <p>On processors vulnerable to <a class="b_special_a1" href="">MFBDS</a>, the OS and VMM software should already prevent secret data from being present in the fill buffers when running untrusted software. This is done by the OS/VMM using the <span class="dk_code_simple">MD_CLEAR</span> functionality (by executing either the <span class="dk_code_simple">VERW</span> instruction or the <span class="dk_code_simple">L1D_FLUSH</span> command) to overwrite the fill buffers before transitioning to untrusted software.&nbsp;</p>
+                        <p>Additionally, the OS/VMM software can use core scheduling and kernel rendezvous to ensure that the sibling thread is not in a different malicious security domain or might be acting as a confused deputy. For more details on the core scheduling policy, see the <a class="b_special_a1" href="">MDS guidance</a>.&nbsp;</p>
+                        <p>Similar basic techniques can be used by the OS/VMM to ensure that fill buffers do not contain secret data from other security domains when running untrusted software that could potentially employ Processor MMIO Stale Data vulnerabilities to read or infer the fill buffers.</p>
+                        <p>One difference compared to the MFBDS mitigations is that while most software environments can perform an MFBDS attack, many unprivileged software domains are unable to perform SBDR and DRPW attacks. It may not be necessary to overwrite fill buffers when transitioning to software that lacks the privileges needed to perform an attack using these vulnerabilities.</p>
+                        <p>Another difference is that privileged software may accidentally copy fill buffer data to a vulnerable sideband uncore transaction/response buffer, thus acting as a confused deputy. This is discussed in the <a class="b_special_a1" href="">Preventing Software from Acting as a Confused Deputy by Propagating Secret Data into Vulnerable Buffers</a> section. Due to this reason, software with strict security requirements may choose to perform a <span class="dk_code_simple">VERW</span> or <span class="dk_code_simple">L1D_FLUSH</span> command before transitioning to privileged software that has not been mitigated against this, even if that was not needed as part of an MFBDS mitigation.</p>
+                        <p>Although the mitigation for MDS required <span class="dk_code_simple">LFENCE</span> or a similar execution-serializing instruction (such as <span class="dk_code_simple">SYSRET</span>) to follow the <span class="dk_code_simple">VERW</span> on some processors, this is not needed when <span class="dk_code_simple">VERW</span> is used exclusively to mitigate vulnerabilities involving FBSDP (meaning the part is not affected by MDS or <a class="b_special_a1" href="">TAA</a>).</p>
+                        <h5>Mitigation Considerations</h5>
+                        <p>In bare metal OS environments, it is uncommon for untrusted software to have access to MMIO. In virtualized environments, guests may be given access to devices, and so mitigation may be needed.</p>
+                        <p>Intel Xeon server systems (excluding Intel Xeon E3 processors) are only affected by the DRPW issue. For these and any other processors that enumerate <span class="dk_code_simple">SBDR_SSDP_NO</span>, the fill buffer overwriting described in the <a class="b_special_a1" href="">Preventing Untrusted Software from Propagating Secret Data into Vulnerable Buffers</a> section is not needed before transitioning to untrusted software that does not have MMIO write access to a DRPW-affected endpoint.</p>
+                        <p>Similarly, on client and Intel Xeon E3 systems that are affected by SBDR, it may not be necessary to overwrite fill buffers before transitioning to untrusted software that does not have access to MMIO addresses.&nbsp;</p>
+                        <p class="mb-0">&nbsp;</p>
+                    </section>
+
+                    <section id="dk_vulnerable_buffers">
+                        <h4><a class="b_special_a1" href="">Preventing Software from Acting as a Confused Deputy by Propagating Secret Data into Vulnerable Buffers</a></h4>
+                        <p>On processors affected by FBSDP and either SBDR or SSDP, it is possible that victim software may unintentionally copy secret data from the core’s fill buffers to an uncore response or transaction buffer. Although it is not clear that an attacker will be able to control or cause this situation, customers should evaluate their risk profile to see if the mitigations described in this section are needed.</p>
+                        <p>Note that Intel Xeon server systems (excluding Intel Xeon E3 processors) are not affected by SBDR or SSDP, and thus this section does not apply to them.</p>
+                        <p>On affected processors where security requires mitigating this type of confused deputy attack, software can perform an <span class="dk_code_simple">FB_CLEAR</span> operation before performing writes that go through sideband uncore response and transaction buffers. An <span class="dk_code_simple">MFENCE;LFENCE</span> sequence or a serializing instruction after the write can ensure that younger operations that touch secret data do not put that data into a fill buffer entry before the older write uses that fill buffer entry. These writes include MMIO writes to endpoints on sideband, IO writes and certain operations that do special register writes to uncore buffer. Refer to the <a class="b_special_a1" href="">Operations That May Cause Writes into Non-Coherent Fabrics</a> section.</p>
+                        <p>Also note that there are several aspects that may still lead to secret data being written out to the non-coherent fabric in non-valid bytes. It is possible that the sibling hyperthread, code fetch, or a hardware prefetcher or asynchronous event can put secret data into the fill buffer between the <span class="dk_code_simple">FB_CLEAR</span> operation and the partial write to the non-coherent fabric. Finally, software handlers that run between the <span class="dk_code_simple">FB_CLEAR</span> operation and the partial write (such as interrupt or page fault handlers) may result in the kernel thread being preempted. When the kernel thread is rescheduled, the OS may perform an <span class="dk_code_simple">FB_CLEAR</span> to ensure that any fill buffers are overwritten.</p>
+                        <p class="mb-0">&nbsp;</p>
+                    </section>
+
+                    <section id="dk_psdp">
+                        <h4><a class="b_special_a1" href="">Mitigating PSDP Propagation</a></h4>
+                        <p>After reading secret data from MMIO (such as an encryption key from a TPM device), that data may remain in uncore buffers. On parts affected by PSDP, that stale data may propagate to the fill buffers where it could be attacked by other techniques.</p>
+                        <p>To mitigate this, the OS, VMM, or driver that reads the secret data can reduce the window in which that data remains vulnerable in the uncore buffers by performing an additional read of some non-secret data from a valid MMIO register on the primary bus with the same cache line offset (address mod 64) and at least the same size as the register from which the secret data was read. Note that TPM 2.0 supports encrypted MMIO transactions, and this mode may also be used to mitigate a stale data attack.</p>
+                        <p>Since aborted accesses will not overwrite the buffer, software should use real register reads that are mapped over the primary bus. Ring 0 software can either read the lower configuration space of the device containing secret data or be hardcoded to read the standard configuration addresses of a device that is never disabled (such as SPI). Guest software and Ring 3 software may not have access to these options, so the hypervisor or other Ring 0 software would need to provide appropriate addresses based on the devices exposed to the guest or Ring 3 software.</p>
+                        <p class="mb-0">&nbsp;</p>
+                    </section>
+
+                    <section id="dk_extract_data">
+                        <h4><a class="b_special_a1" href="">Preventing Untrusted Software from Using Processor MMIO Stale Data Vulnerabilities to Extract Data</a></h4>
+                        <p>For some systems and usage models, it may be more feasible to prevent malicious actors from observing secrets in the uncore response/transaction buffers than it is to prevent secret data from entering those buffers. Such systems may be able to avoid some of the situations described in the <a class="b_special_a1" href="">Preventing Software from Acting as a Confused Deputy by Propagating Secret Data into Vulnerable Buffers</a> section. Note that this may not be feasible on systems that are affected by both <a class="b_special_a1" href="">MFBDS</a> and SSDP.&nbsp;</p>
+                        <p>The easiest way to prevent malicious actors from observing these secrets is to prevent them from having access to MMIOs. In cases where untrusted software must have access to MMIO, a VMM may be able to cause VM exits on the transactions and scrub the data for cases that may be attacks, but the needed VM exits may cause increased performance overhead.</p>
+                        <p class="mb-0">&nbsp;</p>
+                    </section>
+
+                    <section id="dk_considerations">
+                        <h4>Considerations for Nested Hypervisors and Migration Pools</h4>
+                        <p>Some environments may have migration pools that include different platforms. In such cases, the VMM must expose the lowest common denominator features to VMs and nested hypervisors in order to ensure compatibility. The VMM is responsible for ensuring that the proper behaviors and security properties are maintained for each platform.</p>
+                        <h5>Nested Hypervisors</h5>
+                        <p>On platforms affected by FBSDP (platforms that enumerate <span class="dk_code_simple">FBSDP_NO == 0</span>) the VMM is expected to perform an <span class="dk_code_simple">FB_CLEAR</span> operation on certain VM transitions (refer to the <a class="b_special_a1" href="">Processor Support for Mitigations</a> section) in order to prevent fill buffer data from being exposed. As documented in the <a class="b_special_a1" href="">Definitions</a> section under the explanation of <span class="dk_code_simple">FB_CLEAR</span>, on some platforms both the <span class="dk_code_simple">L1D_FLUSH</span> command and the <span class="dk_code_simple">VERW</span> instruction will do this, but on other platforms only <span class="dk_code_simple">VERW</span> does.</p>
+                        <p>Supporting migration pools that include platforms affected by FBSDP, some of which perform an <span class="dk_code_simple">FB_CLEAR</span> operation as part of the <span class="dk_code_simple">L1D_FLUSH</span> command and some of which do not, requires the VMM to handle nested VMMs specially. &nbsp;If the primary (L0) VMM is running on a platform that requires <span class="dk_code_simple">VERW</span> in order to perform the <span class="dk_code_simple">FB_CLEAR</span> operation, the primary VMM should take a <span class="dk_code_simple">VMEXIT</span> on access to the IA32_FLUSH_CMD MSR (where the <span class="dk_code_simple">L1D_FLUSH</span> command bit is). It can then execute the VERW instruction and potentially also the <span class="dk_code_simple">L1D_FLUSH</span> command. &nbsp;This will ensure that, even if the nested (L1) VMM only executes the <span class="dk_code_simple">L1D_FLUSH</span> command and not <span class="dk_code_simple">VERW</span>, the fill buffers will be cleared.</p>
+                        <p>Consider the following example of a mixed migration pool:</p>
+                        <ol> 
+                            <li>System A enumerates the following: <span class="dk_code_simple">RDCL_NO=1</span>, <span class="dk_code_simple">MDS_NO=1</span>, <span class="dk_code_simple">FBSDP_NO=0</span>, <span class="dk_code_simple">L1D_FLUSH=1</span>, <span class="dk_code_simple">MD_CLEAR=1</span>, <span class="dk_code_simple">FB_CLEAR=1</span>. On this system, <span class="dk_code_simple">VERW</span> performs <span class="dk_code_simple">FB_CLEAR</span> but <span class="dk_code_simple">L1D_FLUSH</span> does not.</li> 
+                            <li>System B enumerates the following: <span class="dk_code_simple">RDCL_NO=0</span>, <span class="dk_code_simple">MDS_NO=0</span>, <span class="dk_code_simple">FBSDP_NO=0</span>, <span class="dk_code_simple">L1D_FLUSH=1</span>, <span class="dk_code_simple">MD_CLEAR=1</span>. On this system, both <span class="dk_code_simple">VERW</span> and <span class="dk_code_simple">L1D_FLUSH</span> perform <span class="dk_code_simple">FB_CLEAR</span>.</li> 
+                            <li>A nested (L1) VMM running in this pool may run on either system and so would see the following minimal feature set enumerated to it on all systems in the pool:&nbsp;<span class="dk_code_simple">RDCL_NO=0</span>, <span class="dk_code_simple">MDS_NO=0</span>, <span class="dk_code_simple">FBSDP_NO=0</span>, <span class="dk_code_simple">L1D_FLUSH=1</span>, <span class="dk_code_simple">MD_CLEAR=1</span>.&nbsp;<br> As a result, this nested VMM will expect that the <span class="dk_code_simple">L1D_FLUSH</span> command will perform an <span class="dk_code_simple">FB_CLEAR</span> operation, and so it will not additionally execute <span class="dk_code_simple">VERW</span>.</li> 
+                            <li>But when the L1 VMM runs on System A, its <span class="dk_code_simple">L1D_FLUSH</span> will not actually perform an <span class="dk_code_simple">FB_CLEAR</span>. Thus, the L0 VMM on System A must intercept the L0 VMM’s <span class="dk_code_simple">L1D_FLUSH</span> and additionally execute <span class="dk_code_simple">VERW</span>. The L0 VMM on System B does not need to do this, as the L1 VMM’s <span class="dk_code_simple">L1D_FLUSH</span> will perform an <span class="dk_code_simple">FB_CLEAR</span> when running on System B.</li> 
+                        </ol>  
+                        <h5>Performance Considerations</h5>
+                        <p>On platforms affected by FBSDP (platforms that enumerate <span class="dk_code_simple">FBSDP_NO == 0</span>), a guest OS may use the <span class="dk_code_simple">FB_CLEAR</span> operation to protect kernel and application data from a malicious application that has (or could have) MMIO access. This will incur the performance overhead of fill buffer clearing on these context switches.&nbsp;</p>
+                        <p>However, the guest OS does not know whether or not it has really been given direct hardware access to a device’s MMIO space, or whether it is using an emulated or paravirtualized device, and therefore the guest OS must assume it could have direct access and so protect the data.</p>
+                        <p>The VMM does know whether it has given direct MMIO access to a guest OS. In cases where it has not, the VMM could set the <span class="dk_code_simple">FB_CLEAR_DIS</span> bit to cause the <span class="dk_code_simple">VERW</span> instruction to not perform the <span class="dk_code_simple">FB_CLEAR</span> action. This will significantly reduce the performance overhead for those guests which are performing <span class="dk_code_simple">FB_CLEAR</span> operations on process context switches.</p>
+                        <p>Similarly, guests that are in migration pools with platforms that are affected by MDS or TAA will be told by the VMM that they are always running on a platform that is affected, even if in some cases they are not. For those cases where the guest is run on a platform that is not affected by either MDS or TAA, or is affected by the Processor MMIO Stale Data Vulnerabilities but does not have direct hardware access, the VMM can set <span class="dk_code_simple">FB_CLEAR_DIS</span> bit to reduce the performance impact.</p>
+                        <p class="mb-0">&nbsp;</p>
+                    </section>
+
+                    <section id="dk_intel_sgx">
+                        <h4><a class="b_special_a1" href="">Intel® Software Guard Extensions (Intel® SGX)</a></h4>
+                    </section>
+
+                    <section id="dk_attestation">
+                        <h4 class="mt-3">Attestation</h4>
+                        <p>When SMT is disabled at boot and the Intel SGX platform TCB is up-to-date, attestations originating from affected platforms will result in the SW_HARDENING_NEEDED attestation response from the attestation verifier. This means that the relying party should evaluate the attesting ISV enclave (by inspecting its <em>SGX Report</em> included in the attestation) to determine whether the enclave contains the necessary mitigations. For example, the <em>ISVPRODID</em> or <em>ISVSVN</em> field in the Report can be used to signal the presence of mitigations.</p>
+                        <p>It is important to note that Intel SGX attestations only reflect the microcode patch that is loaded upon platform reset. Intel SGX attestations do not reflect, for example, a microcode patch loaded by an operating system.</p>
+                    </section>
+
+                    <section id="dk_smt_sgx">
+                        <h4 class="mt-3">SMT Considerations for Intel® SGX</h4>
+                        <p>On processors with SMT enabled that are not affected by MDS or TAA, but are affected by these MMIO vulnerabilities, it is possible for malicious software running on a sibling thread to use these vulnerabilities to propagate an enclave’s fill buffer data into the uncore where it can then be extracted.</p>
+                        <p>The Intel SGX security model does not trust the OS scheduler to ensure that software workloads running on sibling threads mutually trust each other. Intel SGX remote attestation reflects whether Intel® Hyper-Threading Technology (Intel® HT Technology) is enabled or disabled by the BIOS<a class="b_special_a1" href=""><sup>10</sup></a>. For processors affected by these MMIO stale data vulnerabilities, the remote attestation response will indicate CONFIGURATION_AND_SW_HARDENING_NEEDED<a class="b_special_a1" href=""><sup>11</sup></a>&nbsp;if Intel HT Technology is enabled. If Intel HT technology is disabled, the attestation response will be SW_HARDENING_NEEDED, as stated above. An Intel SGX remote attestation relying party can evaluate the risk of potential cross-thread attacks when Intel HT Technology is enabled on the platform and decide whether to trust an enclave on the platform to protect specific secret information.</p>
+                    </section>
+
+                    <section id="dk_implications_mode">
+                        <h4 class="mt-3">Implications for Software Running in Intel SGX Enclave Mode</h4>
+                        <p>Because the Intel SGX security model does not trust the OS, a malicious OS could map MMIO memory into the untrusted memory space of an application that uses one or more Intel SGX enclaves. This could include the region of untrusted memory used for parameter passing to/from <span class="dk_code_simple">ECALL</span>s and <span class="dk_code_simple">OCALL</span>s, or any external buffers that an enclave might use to communicate with its application. If the malicious OS does such mapping, then when the enclave writes to this memory, it could propagate the stale data in its fill buffers into the uncore, where it could later be extracted by malicious software.</p>
+                        <p>The mitigations below assume that Intel HT Technology is disabled to ensure that once the fill buffers are overwritten, a sibling thread cannot repopulate them. The mitigation depends on how the enclave is accessing the non-enclave memory regions.</p>
+                        <ul> 
+                            <li>Enclaves that only write to memory outside the enclave in the context of <span class="dk_code_simple">ECALL</span>s and <span class="dk_code_simple">OCALL</span>s:<br> For enclaves using the Intel SGX SDK and Edger8r tool included with the SDK to create and manage the <span class="dk_code_simple">ECALL</span> and <span class="dk_code_simple">OCALL</span> interface, Intel has&nbsp;released an update to the SDK and Edger8r tool that will prevent fill buffer data exposure through the code generated by the Edger8r tool. Similarly, the Intel SGX SDK will include updates that will prevent fill buffer data exposure through the code used by enclaves that use the <em>switchless</em> mode supported by the Intel SDK.</li> 
+                            <li>Enclaves that write to memory outside the enclave using code that isn’t associated with <span class="dk_code_simple">ECALL</span>s or <span class="dk_code_simple">OCALL</span>s:<br> This includes enclaves that use the Intel SGX SDK but which specify the <span class="dk_code_simple">[user_check]</span> attribute in their enclave definition language (EDL)<a class="b_special_a1" href=""><sup>12</sup></a>. For these enclaves, all writes to untrusted memory must either be preceded by the <span class="dk_code_simple">VERW</span> instruction and followed by the <span class="dk_code_simple">MFENCE;</span> <span class="dk_code_simple">LFENCE</span> instruction sequence or must be in multiples of 8 bytes, aligned to an 8-byte boundary.&nbsp;</li> 
+                        </ul>
+                        <p>Intel will work with the developers of other SGX SDKs and runtimes to help ensure that they have similar mitigations.</p>
+                    </section>
+
+                    <section id="dk_32_enclaves">
+                        <h4 class="mt-3">32-bit Enclaves vs. 64-bit Enclaves</h4>
+                        <p>32-bit enclaves running on a 32-bit OS are vulnerable to additional OS manipulation of page table mappings. There is no mitigation for this issue, but remote attestation can determine if an enclave is 32-bit, and thus susceptible to such an attack. 64-bit enclaves are not susceptible to this issue. Attestation cannot be used to determine if the 32-bit enclave is running in a 32-bit OS or in a maliciously configured environment. &nbsp;</p>
+                    </section>
+
+                    <section id="dk_smm">
+                        <p class="mb-0">&nbsp;</p>
+                        <h4><a class="b_special_a1" href="">System Management Mode (SMM)</a></h4>
+                        <p class="mb-0">Systems enter System Management Mode (SMM) either:</p>
+                        <ul> 
+                            <li>Asynchronously in response to some external event that requires intervention by platform firmware, or:</li> 
+                            <li>Synchronously to process some request from the operating system or VMM (for example, for an EFI runtime services function call).</li> 
+                        </ul>
+                        <p>Code in SMM may execute MMIO operations that move data between microarchitectural buffers as documented in the preceding sections. This may result in OS/VMM data moving from fill buffers to uncore buffers where it may be vulnerable to some of the techniques described in this paper.</p>
+                        <p>OSes/VMMs concerned about this possibility may use an <span class="dk_code_simple">FB_CLEA</span>R operation to overwrite fill buffers before executing code that is known to synchronously enter SMM.</p>
+                        <p>SMM isolation solutions, such as an SMI Transfer Monitor (STM), that protect the OS and VMM from compromised SMI handlers, should follow the VM and OS guidance in this article to prevent isolated/deprivileged SMM code from performing attacks using these methods.</p>
+                        <p class="mb-0">&nbsp;</p>
+                    </section>
+
+                    <section id="dk_enumeration">
+                        <h4><a class="b_special_a1" href="">Enumeration</a></h4>
+                        <p>Intel recommends applying the latest Intel security mitigations and ensuring systems are running the latest firmware/MCU versions available. MCU may still be required for enumeration even when processors are not affected by a particular security issue. Contact your operating system (OS) and virtual machine manager (VMM) vendors to obtain their latest software updates.</p>
+                        <p>Note that on processors where IA32_ARCH_CAPABILITIES is not enumerated (CPUID.(EAX=7H,ECX=0):EDX[29] is 0), all IA32_ARCH_CAPABILITIES bits should be treated as 0.</p>
+                        <p>Note that microcode updates to mitigate these issues may also change enumeration for existing features not described here. For example, they may set SRBDS_CTRL (CPUID (EAX=07H,ECX=0).EDX[SRBDS_CTRL = 9]) on parts that did not previously enumerate it.&nbsp;</p>
+                        <table class="mv_product_table w-100 mb-4">
+                            <caption>Table 2: Updates to IA32_ARCH_CAPABILITIES MSR</caption>
+                            <thead> 
+                                <tr> 
+                                 <th scope="col">Register Address (Hex)</th> 
+                                 <th scope="col">Register Address (Dec)</th> 
+                                 <th scope="col">Register Name / Bit Fields</th> 
+                                 <th scope="col">Bit Description</th> 
+                                 <th scope="col">Comment</th> 
+                                </tr> 
+                            </thead>
+                            <tbody> 
+                                <tr> 
+                                 <td>10AH</td> 
+                                 <td>266</td> 
+                                 <td>IA32_ARCH_CAPABILITIES</td> 
+                                 <td>Enumeration of Architectural Features (RO)</td> 
+                                 <td>If CPUID.(EAX=07H, ECX=0):EDX[29]=1.</td> 
+                                </tr> 
+                                <tr> 
+                                 <td>10AH</td> 
+                                 <td>266</td> 
+                                 <td>13</td> 
+                                 <td><span class="dk_code_simple">SBDR_SSDP_NO</span>: The processor is not affected by either the SBDR vulnerability or the SSDP.&nbsp;</td> 
+                                 <td>&nbsp;</td> 
+                                </tr> 
+                                <tr> 
+                                 <td>10AH</td> 
+                                 <td>266</td> 
+                                 <td>14</td> 
+                                 <td><span class="dk_code_simple">FBSDP_NO</span>: The processor is not affected by FBSDP. &nbsp;</td> 
+                                 <td>&nbsp;</td> 
+                                </tr> 
+                                <tr> 
+                                 <td>10AH</td> 
+                                 <td>266</td> 
+                                 <td>15</td> 
+                                 <td><span class="dk_code_simple">PSDP_NO</span>: The processor is not affected by vulnerabilities involving PSDP.</td> 
+                                 <td>&nbsp;</td> 
+                                </tr> 
+                                <tr> 
+                                 <td>10AH</td> 
+                                 <td>266</td> 
+                                 <td>17</td> 
+                                 <td><span class="dk_code_simple">FB_CLEAR</span>: The processor will overwrite fill buffer values as part of <span class="dk_code_simple">MD_CLEAR</span> operations with the <span class="dk_code_simple">VERW</span> instruction. On these processors, <span class="dk_code_simple">L1D_FLUSH</span> does not overwrite fill buffer values.&nbsp;</td> 
+                                 <td>&nbsp;</td> 
+                                </tr> 
+                                <tr> 
+                                 <td>&nbsp;</td> 
+                                 <td>&nbsp;</td> 
+                                 <td>18</td> 
+                                 <td><span class="dk_code_simple">FB_CLEAR_CTRL</span>: The processor supports read and write to the IA32_MCU_OPT_CTRL MSR (MSR 123H) and to the <span class="dk_code_simple">FB_CLEAR_DIS</span> bit in that MSR (bit position 3).&nbsp;</td> 
+                                 <td>On such processors, the <span class="dk_code_simple">FB_CLEAR_DIS</span> bit can be set to cause the <span class="dk_code_simple">VERW</span> instruction to skip the <span class="dk_code_simple">FB_CLEAR</span> action (<span class="dk_code_simple">FB_CLEAR_DIS</span> does not disable the <span class="dk_code_simple">FB_CLEAR</span> action in the <span class="dk_code_simple">L1D_FLUSH</span> operation for processors in which <span class="dk_code_simple">L1D_FLUSH</span> overwrites the fill buffers)</td> 
+                                </tr> 
+                            </tbody>
+                        </table> 
+                        <p>&nbsp;</p>
+                    </section>
+
+                    <section id="dk_example_1">
+                        <h4>Example Enumeration of Processor MMIO Stale Data Vulnerabilities</h4>
+                        <p>Software can use a list of affected CPUs to enumerate these issues on systems that do not have updated microcode. Newer processors and microcode update on existing affected processors will add new bits to IA32_ARCH_CAPABILITIES MSR. These bits can be used to enumerate specific variants of Processor MMIO Stale Data vulnerabilities and mitigation capability. If a CPU is on the list of affected processors, you can use the algorithm below to enumerate the Processor MMIO Stale Data vulnerability:</p>
+                        <div class="mv_code_toolbar">
+                            <div class="mv_toolbar_item mv_copy_icon">
+                                <i class="fa-regular fa-copy"></i>
+                            </div>
+                            <div class="mv_copy_message text-end hidden">Copied</div>
+                            <div class="code-content">
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp;</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">If &nbsp; CPUID ( EAX=7H,ECX=0 ) : EDX [ ARCH_CAP=29 ] &nbsp; &nbsp; == 1</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp;</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp; &nbsp; &nbsp; &nbsp; If &nbsp; ( IA32_ARCH_CAPABILTIES . &nbsp; SBDR_SSDP_NO [ bit 13 ] == 0		OR</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; IA32_ARCH_CAPABILTIES . &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;     FBSDP_NO [bit 14] == 0		OR</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; IA32_ARCH_CAPABILTIES . &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;     PSDP_NO [bit 15] == 0)</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Processor MMIO Stale Data vulnerabilities present</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">Else</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 1rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp; &nbsp; &nbsp; &nbsp; Processor MMIO Stale Data vulnerabilities not present</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section id="dk_example_2">
+                        <h4>Example Mitigation Selection for Processor MMIO Stale Data Vulnerabilities</h4>
+                        <p>If Processor MMIO Stale Data vulnerabilities are present (as enumerated in the section above), use the following pseudocode algorithm to decide which mitigation is needed. This pseudocode checks whether a system has the microcode to overwrite fill buffers.</p>
+                        <div class="mv_code_toolbar">
+                            <div class="mv_toolbar_item mv_copy_icon">
+                                <i class="fa-regular fa-copy"></i>
+                            </div>
+                            <div class="mv_copy_message text-end hidden">Copied</div>
+                            <div class="code-content">
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp;</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">If &nbsp;	IA32_ARCH_CAPABILTIES. FB_CLEAR [ bit 17 ] == 1</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; OR</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp; &nbsp; &nbsp; ( CPUID ( EAX=7H,ECX=0 ) :EDX  [ MD_CLEAR = bit 10 ] == 1 &nbsp; &nbsp; AND</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp; &nbsp; &nbsp; CPUID ( EAX=7H,ECX=0 ) :EDX [FLUSH_L1D = bit 28] == 1 &nbsp; &nbsp; &nbsp; &nbsp;AND</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp; &nbsp; &nbsp; IA32_ARCH_CAPABILTIES. MDS_NO [ bit 5 ] == 0 )</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; VERW overwrites fill buffers</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">Else</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Microcode update needed</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp;</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">If &nbsp; (System is also affected by MDS or TAA)</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp; &nbsp; &nbsp;  Mitigate by executing VERW before transitioning to untrusted software (same as MDS)</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp; &nbsp; &nbsp; Else</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 1rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">Mitigate by executing VERW before VMENTER only for MMIO-capable attackers (guests)</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section id="dk_example_3">
+                        <h5 class="mt-4"><a class="b_special_a1" href="">IA32_ARCH_CAPABILITIES.SBDR_SSDP_NO</a></h5>
+                        <p>Processors that set bit 13 in IA32_ARCH_CAPABILITIES (MSR 10AH) are enumerating <span class="dk_code_simple">SBDR_SSDP_NO</span>. Such processors are not affected by either the Shared Buffers Data Read (SBDR) vulnerability or the sideband stale data propagator (SSDP). This means that the techniques described in this paper cannot directly attack or otherwise infer stale data from the sideband response buffers or sideband transaction buffers.</p>
+                        <p>Because of this, mitigations to prevent secret data from entering the sideband response buffers or sideband transaction buffers are not needed. Specifically, the mitigations described in the <a class="b_special_a1" href="">Preventing Software from Acting as a Confused Deputy by Propagating Secret Data into Vulnerable Buffers</a> section are not needed.</p>
+                    </section>
+
+                    <section id="dk_example_4">
+                        <h5 class="mt-4"><a class="b_special_a1" href="">IA32_ARCH_CAPABILITIES.FBSDP_NO</a></h5>
+                        <p>Processors that set bit 14 in IA32_ARCH_CAPABILITIES (MSR 10AH) are enumerating FBSDP_NO. Such processors are not affected by the fill buffer stale data propagator (FBSDP).&nbsp;</p>
+                        <p>On processors that enumerate this, mitigations to DRPW are not needed because DRPW attacks require FBSDP propagators. Additionally, processors that enumerate this, <span class="dk_code_simple">MDS_NO</span>, and <span class="dk_code_simple">TAA_NO</span> do not need the mitigations described in the <a class="b_special_a1" href="">Preventing Untrusted Software from Using Processor MMIO Stale Data Vulnerabilities to Extract Data</a> section because no technique is known that can infer or read the stale bytes in the fill buffer.&nbsp;</p>
+                    </section>
+
+                    <section id="dk_example_5">
+                        <h5 class="mt-4"><a class="b_special_a1" href="">IA32_ARCH_CAPABILITIES.PSDP_NO</a></h5>
+                        <p>Processors that set bit 14 in IA32_ARCH_CAPABILITIES (MSR 10AH) are enumerating FBSDP_NO. Such processors are not affected by the fill buffer stale data propagator (FBSDP).&nbsp;</p>
+                        <p>On processors that enumerate this, mitigations to DRPW are not needed because DRPW attacks require FBSDP propagators. Additionally, processors that enumerate this, <span class="dk_code_simple">MDS_NO</span>, and <span class="dk_code_simple">TAA_NO</span> do not need the mitigations described in the <a class="b_special_a1" href="">Preventing Untrusted Software from Using Processor MMIO Stale Data Vulnerabilities to Extract Data</a> section because no technique is known that can infer or read the stale bytes in the fill buffer.&nbsp;</p>
+                    </section>
+
+                    <section id="dk_example_6">
+                        <h5 class="mt-4"><a class="b_special_a1" href="">IA32_ARCH_CAPABILITIES.FB_CLEAR</a></h5>
+                        <p>Processors that set <span class="dk_code_simple">FB_CLEAR</span>, bit 17 in IA32_ARCH_CAPABILITIES (MSR 10AH), will overwrite fill buffer values as part of <span class="dk_code_simple">MD_CLEAR</span> operations, as described in the <a class="b_special_a1" href="">Fill Buffer Clearing Operations</a> section. On these processors, the <span class="dk_code_simple">VERW</span> instruction will overwrite fill buffer values while <span class="dk_code_simple">L1D_FLUSH</span> may or may not.</p>
+                        <p>Processors that do not enumerate <span class="dk_code_simple">MDS_NO</span><a class="b_special_a1" href=""><sup>13</sup></a>&nbsp; (meaning they are affected by <a class="b_special_a1" href="">MDS</a>) but that do enumerate support for both <span class="dk_code_simple">L1D_FLUSH</span><a class="b_special_a1" href=""><sup>14</sup></a> &nbsp;and <span class="dk_code_simple">MD_CLEAR</span><a class="b_special_a1" href=""><sup>15</sup></a>&nbsp;implicitly enumerate <span class="dk_code_simple">FB_CLEAR</span> as part of their <span class="dk_code_simple">MD_CLEAR</span> support. Note that processors not affected by these issues may not explicitly enumerate <span class="dk_code_simple">FB_CLEAR</span>, which may have impact on VMM emulation of this enumeration in migration pools.</p>
+                    </section>
+
+                    <section id="dk_example_7">
+                        <h5 class="mt-4"><a class="b_special_a1" href="">IA32_ARCH_CAPABILITIES.FB_CLEAR_CTRL</a></h5>
+                        <p>Processors that set bit 18 in IA32_ARCH_CAPABILITIES (MSR 10AH) support read and write to IA32_MCU_OPT_CTRL MSR (123H) and to the <span class="dk_code_simple">FB_CLEAR_DIS</span> bit in that MSR (bit position 3). On such processors, the <span class="dk_code_simple">FB_CLEAR_DIS</span> bit can be set to cause the <span class="dk_code_simple">VERW</span> instruction to not perform the <span class="dk_code_simple">FB_CLEAR</span> action (<span class="dk_code_simple">FB_CLEAR_DIS</span> does not disable the <span class="dk_code_simple">FB_CLEAR</span> action in the <span class="dk_code_simple">L1D_FLUSH</span> operation for processors in which <span class="dk_code_simple">L1D_FLUSH</span> overwrites the fill buffers). This may be useful to reduce the performance impact of <span class="dk_code_simple">FB_CLEAR</span> in cases where system software deems it warranted (for example, when performance is more critical, or the untrusted software has no MMIO access). This bit does not disable fill buffer overwriting on exit from Intel SGX enclaves or during enclave execution. Note that <span class="dk_code_simple">FB_CLEAR_DIS</span> has no impact on enumeration (for example, it does not change <span class="dk_code_simple">FB_CLEAR</span> or <span class="dk_code_simple">MD_CLEAR</span> enumeration) and it may not be supported on all processors that enumerate <span class="dk_code_simple">FB_CLEAR</span>. Not all processors that support <span class="dk_code_simple">FB_CLEAR</span> will support <span class="dk_code_simple">FB_CLEAR_CTL</span>.</p>
+
+                        <table class="mv_product_table w-100 mb-4">
+                            <caption>Table 3: IA32_MCU_OPT_CTRL MSR</caption>
+                            <thead> 
+                                <tr> 
+                                 <th scope="col">Register Address Hex</th> 
+                                 <th scope="col">Register Address Dec</th> 
+                                 <th scope="col">Register Name / Bit Fields</th> 
+                                 <th scope="col">Bit Description</th> 
+                                 <th scope="col">Comment</th> 
+                                </tr> 
+                            </thead>
+                            <tbody> 
+                                <tr> 
+                                 <td>123H</td> 
+                                 <td>291</td> 
+                                 <td>IA32_MCU_OPT_CTL</td> 
+                                 <td>Microcode Update Option Control (R/W)</td> 
+                                 <td>CPUID (EAX=07H,ECX=0).EDX[SRBDS_CTRL = 9]==1</td> 
+                                </tr> 
+                                <tr> 
+                                 <td>123H</td> 
+                                 <td>291</td> 
+                                 <td>0</td> 
+                                 <td>RNGDS_MITG_DIS (R/W)<br> When set to 0 (default), SRBDS mitigation is enabled for <span class="dk_code_simple">RDRAND</span> and <span class="dk_code_simple">RDSEED</span>.<br> When set to 1, SRBDS mitigation is disabled for <span class="dk_code_simple">RDRAND</span> and <span class="dk_code_simple">RDSEED</span> executed outside of Intel SGX enclaves.</td> 
+                                 <td>&nbsp;</td> 
+                                </tr> 
+                                <tr> 
+                                 <td>123H</td> 
+                                 <td>291</td> 
+                                 <td>1</td> 
+                                 <td>RTM_ALLOW: When set to 0, <span class="dk_code_simple">XBEGIN</span> will always abort with <span class="dk_code_simple">EAX</span> code 0. &nbsp;When set to 1, <span class="dk_code_simple">XBEGIN</span> behavior depends on the value of IA32_TSX_CTRL[RTM_DISABLE].</td> 
+                                 <td>Read/Write. &nbsp;See below criteria for when <span class="dk_code_simple">RTM_ALLOW</span> may be set.</td> 
+                                </tr> 
+                                <tr> 
+                                 <td>123H</td> 
+                                 <td>291</td> 
+                                 <td>2</td> 
+                                 <td>RTM_LOCKED: When 1, <span class="dk_code_simple">RTM_ALLOW</span> is locked at zero, writes to <span class="dk_code_simple">RTM_ALLOW</span> will be ignored.</td> 
+                                 <td>Read-Only status bit.</td> 
+                                </tr> 
+                                <tr> 
+                                 <td>123H</td> 
+                                 <td>291</td> 
+                                 <td>3</td> 
+                                 <td>FB_CLEAR_DIS: When set, causes the <span class="dk_code_simple">VERW</span> instruction to not perform the <span class="dk_code_simple">FB_CLEAR</span> action.</td> 
+                                 <td>&nbsp;</td> 
+                                </tr> 
+                                <tr> 
+                                 <td>123H</td> 
+                                 <td>291</td> 
+                                 <td>63:4</td> 
+                                 <td>Reserved</td> 
+                                 <td>&nbsp;</td> 
+                                </tr> 
+                            </tbody>
+                        </table> 
+                        <p class="mb-0">&nbsp;</p>
+                    </section>
+
+                    <section id="dk_performance_consideration">
+                        <p class="mb-0">&nbsp;</p>
+                        <h3 style="font-weight: 350;">Performance Consideration for Processor MMIO Stale Data Vulnerabilities</h3>
+                        <p>Although the underlying hardware issue for Processor MMIO Stale Data Vulnerabilities is different than MDS and SRBDS, they are mitigated using similar techniques. Thus, systems that have already applied mitigations for MDS and SRBDS should experience minimal performance impact. For processors that are not affected by MDS and SRBDS and are applying these mitigation techniques for the first time, the performance impact is expected to be similar to the performance impact experienced on processors with the MDS and SRBDS mitigations.</p>
+                        <p>Any potential performance impact associated with mitigation of the Processor MMIO Stale Data vulnerabilities will be workload-dependent and will vary depending on the processor and platform configuration (hardware, software, OS, and VMM), as well as mitigation technique. &nbsp;</p>
+                        <p>Mitigation requires a combination of microcode/BIOS and software/OS/VMM updates. Note that any potential performance impacts may not be observable until all updates with mitigations are installed.</p>
+                    </section>
+
+                    <section id="dk_affected_processors">
+                        <p class="mb-0">&nbsp;</p>
+                        <h3 style="font-weight: 350;"><a class="b_special_a1" href="">Affected Processors</a></h3>
+                        <p>Note the <a class="b_special_a1" href="">affects the same processors</a> that received the original SRBDS mitigation as well as some newer processors that were not affected by SRBDS but are affected by certain Processor Stale Data MMIO vulnerabilities.</p>
+                        <p>A list of processors affected by these Processor MMIO Stale Data vulnerabilities can be found in the <a class="b_special_a1" href="">consolidated Affected Processors table</a> under the&nbsp;<em>MMIO: Device Register Partial Write (DRPW) </em>and&nbsp;<em>MMIO: Shared Buffers Data Sampling (SBDS)&nbsp;and&nbsp;Shared Buffers Data Read (SBDR)&nbsp;</em>columns.&nbsp;<em> &nbsp;&nbsp;</em></p>
                     </section>
 
                     <section id="dk_footnotes">
                         <p class="mb-0">&nbsp;</p>
                         <h3 style="font-weight: 350;">Footnotes</h3>
-                        <ol>
-                            <li>Although this is also true for&nbsp;<span class="dk_code_simple">RDSEED</span>, the parallelism of&nbsp;<span class="dk_code_simple">RDSEED</span>&nbsp;is already limited by the availability of entropy.</li>
-                            <li><a class="b_special_a1" href="">GitHub* andikleen/pmu-tools</a></li>
-                            <li><a class="b_special_a1" href="">Intel® VTune™ Profiler</a></li>
-                            <li>More details on <span class="dk_code_simple">RNGDS_MITG_DIS</span> and <span class="dk_code_simple">IA32_MCU_OPT_CTRL</span>&nbsp;are available in <a class="b_special_a1" href="">Special Register Buffer Data Sampling</a>.</li>
+                        <ol> 
+                            <li>For more information on <span class="dk_code_simple">MD_CLEAR</span> functionality, refer to <a class="b_special_a1" href="">Intel Analysis of Microarchitectural Data Sampling</a> (MDS).</li> 
+                            <li>Only the memory operand variant of <span class="dk_code_simple">VERW</span> has been extended to also overwrite buffers affected by Processor MMIO Stale Data Vulnerabilities. This use of <span class="dk_code_simple">VERW</span> is the same as the use of <span class="dk_code_simple">VERW</span> to overwrite buffers affected by MDS.</li> 
+                            <li>This example assumes that the Data Segment selector indicates a writable segment.</li> 
+                            <li>Except Intel® Xeon® E3 processors. Refer to the <a class="b_special_a1" href="">Affected Processors table</a>.&nbsp;</li> 
+                            <li>Except Intel Xeon E3 processors.</li> 
+                            <li>Note that SBDS only applies to processors affected by MFBDS or TAA.</li> 
+                            <li>Intel® Hyper-Threading Technology (Intel® HT Technology) is Intel’s implementation of simultaneous multithreading (SMT).</li> 
+                            <li>Except Intel Xeon E3 processors.</li> 
+                            <li>&nbsp;The OS can disable SMT, but Intel SGX attestations do not reflect this.</li> 
+                            <li>&nbsp;Implies that the platform TCB is up-to-date.</li> 
+                            <li>&nbsp;For more information on the <span class="dk_code_simple">[user_check]</span> attribute, refer to the <a class="b_special_a1" href="">Intel SGX SDK for Linux* OS developer reference</a>.&nbsp;</li> 
+                            <li><span class="dk_code_simple">MDS_NO</span> support enumerated by IA32_ARCH_CAPABILITIES[5].</li> 
+                            <li><span class="dk_code_simple">L1D_FLUSH</span> support enumerated by CPUID.(EAX=7H,ECX=0):EDX[L1D_FLUSH=28].</li> 
+                            <li><span class="dk_code_simple">MD_CLEAR</span> support enumerated by CPUID.(EAX=7H,ECX=0):EDX[MD_CLEAR=10].</li> 
                         </ol>
                         <p>&nbsp;</p>
                         <h5 style="text-align:center"><a class="b_special_a1" href="">Software Security Guidance Home</a> | <a class="b_special_a1" href="">Advisory Guidance</a> | <a class="b_special_a1" href="">Technical Documentation</a> | <a class="b_special_a1" href="">Best Practices</a> | <a class="b_special_a1" href="">Resources</a></h5>

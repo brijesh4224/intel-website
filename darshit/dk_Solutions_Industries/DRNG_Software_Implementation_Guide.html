@@ -1,0 +1,1970 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Intel® Digital Random Number Generator (DRNG) Software Implementation Guide</title>
+
+    <!-- font family -->
+    <link href="https://fonts.cdnfonts.com/css/intel-clear" rel="stylesheet">
+
+    <link rel="stylesheet" href="/css/dk_developer_edge_iot_5G_industrial_automation_see_all_wireless_network_ready_printed_circuit_board_(PCB)_defect_detection.css">
+    <link rel="stylesheet" href="/css/mv_product/ECC.css">
+    <link rel="stylesheet" href="/css/rushita_automotive.css">
+
+    <!-- header footer -->
+    <link rel="stylesheet" href='/css/yatri.css'>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" rel="stylesheet">
+
+</head>
+
+<style>
+    .dk_color1 {
+        color: #069 !important;
+    }
+
+    .dk_color2 {
+        color: #008200 !important;
+    }
+
+    .dk_color3 {
+        color: #b24501;
+    }
+
+    .dk_note{
+        font-size: 1rem;
+        line-height: 1.25;
+        word-wrap: break-word;
+        background-color: #e6e6e6;
+        padding: 20px;
+        border-left: 3px solid #fdb813;
+    }
+    .dk_code_simple{
+        background-color: #e6e6e6;
+        color: #53565a;
+        border-radius: 0;
+    }
+
+    .dk_greyHighlight{
+        font-size: 1rem;
+        line-height: 1.25;
+        background-color: #e6e6e6;
+        padding: 20px;
+    }
+
+    .mv_code_toolbar{
+        margin-top: 25px !important;
+    }
+
+    @media(max-width:1200px) {
+        .dk_risk_app_img {
+            width: 100% !important;
+        }
+        .mv_product_table{
+            width: 100% !important;
+        }
+    }
+</style>
+
+<body>
+    <!-- header -->
+    <div id="navbar"></div>
+
+    <!------------------------------------------------------------------------------->
+    <section class="m_ai_tdrop">
+        <div>
+            <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Developers
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item m_dropActive" href="#">Overview</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Topics & Technologies</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Tools</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Hardware Platforms</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Resources & Documentation</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Learn</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Community & Events</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Developer Programs</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Get Help</a></li>                                                              
+            </ul>
+        </div>
+        <div class="m_ai_shlash">/</div>
+        <div>
+            <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Tools
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item m_dropActive" href="#">Software Catalog</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">oneAPI</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Open Edge Platform</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">FPGA</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Active Management Technology SDK</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Advisor</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® AI Reference Models</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Collaboration Suite for WebRTC SDK</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Tiber™ AI Cloud</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Distribution for Python*</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Distribution for GDB*</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® DPC++ Compatibility Tool</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Dynamic Application Loader</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Frameworks</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Embree</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Extension for Scikit-learn*</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Fortran Compiler</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Graphics Performance Analyzers</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Homomorphic Encryption Toolkit</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® In-Band Manageability</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Integrated Performance Primitives</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Integrated Simulation Infrastructure with Modeling</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Instruction Set Architecture (ISA) Extensions</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Intelligent Storage Acceleration Library (Intel® ISA-L)</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Modin*</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® MPI Library</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Neural Compressor</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">OpenCL™ Runtime</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Open Image Denoise</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Open Path Guiding Library (Intel® Open PGL)</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Pin</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Platform Analysis Library</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel Tools for OpenCL™ Software</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel Tools for OpenCL™ Applications</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® OpenSWR</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">OpenVINO™ Toolkit</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Open Volume Kernel Library</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Optimization for XGBoost*</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® OSPRay</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® OSPRay for Hydra*</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® OSPRay Studio</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">PyTorch* Optimizations from Intel</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">TensorFlow* Optimizations from Intel</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Rendering Toolkit</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Smart Edge Open</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Software Guard Extensions</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Secure Device Onboard</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Software Development Emulator</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Trust Domain Extensions (Intel® TDX)</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Quantum SDK</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Query Processing Library (Intel® QPL)</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Video Processing Library</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® VTune™ Profiler</a></li>
+<li><a class="dropdown-item m_dropActive" href="#">Resellers</a></li>
+            </ul>
+        </div>
+        <div class="m_ai_shlash">/</div>
+        <div class="m_ai_httl">Implementation Guide</div>
+
+    </section>
+    <!------------------------------------------------------------------------------->
+
+    <!-- VMware Horizon -->
+    <section>
+        <div class="mv_vmware_bg_color">
+            <div class="container">
+                <div class="mv_vmware_padd">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="mv_vmware_heading">
+                                <h3>Intel® Digital Random Number Generator (DRNG) Software Implementation Guide</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mv_cd_page_marquee_info">
+                        <div class="mv_cd_page_marquee_action">
+                            <div class="mv_cd_page_marquee_action_padd">
+                                <label for="">ID</label>
+                                <span>658356</span>
+                            </div>
+                            <div class="mv_cd_page_marquee_action_padd">
+                                <label for="">Updated</label>
+                                <span>10/17/2018</span>
+                            </div>
+                            <div class="mv_cd_page_marquee_action_padd">
+                                <label for="">Version</label>
+                                <span>Latest</span>
+                            </div>
+                            <div class="mv_cd_page_marquee_action_padd">
+                                <label for=""></label>
+                                <span>Public</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="container py-5">
+        <div class="row">
+            <div class="d-flex justify-content-end col-xl-10 py-3 d-md-none">
+                <i class="fa-solid fa-print fs-4 px-2 " style="color:#0068B5"></i>
+                <i class="fa-regular fa-envelope fs-4 px-2" style="color:#0068B5"></i>
+            </div>
+            <div class="col-lg-3 col-md-4">
+                <!-- nav -->
+                <div class="VK_sticky_side_bar VK_side_bar_postion_stickey">
+                    <div>
+                        <div class="VK_sidebar_dropdown">
+                            <details>
+                                <summary>
+                                    <a href="#dk_downloads" class="text-decoration-none VK_a">
+                                        Downloads
+                                    </a>
+                                </summary>
+                                <ul class="list-unstyled ps-3 mb-0">
+                                    <li>
+                                        <a href="#dk_related_soft" class="text-decoration-none VK_a my-1">
+                                            Related Software
+                                        </a>
+                                    </li>
+                                </ul>
+                            </details>
+                            <p class="m-0">
+                                <a href="#dk_1" class="text-decoration-none VK_a">
+                                    1. Introduction
+                                </a>
+                            </p>
+                            <details>
+                                <summary>
+                                    <a href="#dk_2" class="text-decoration-none VK_a">
+                                        2. RNG Basics and Introduction to the DRNG
+                                    </a>
+                                </summary>
+                                <ul class="list-unstyled ps-3 mb-0">
+                                    <li>
+                                        <a href="#dk_2_1" class="text-decoration-none VK_a my-1">
+                                            2.1 Random Number Generators (RNGs)
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#dk_2_2" class="text-decoration-none VK_a my-1">
+                                            2.2 Pseudo-Random Number Generators (PRNGs)
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#dk_2_3" class="text-decoration-none VK_a my-1">
+                                            2.3 True Random Number Generators (TRNGs)
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#dk_2_4" class="text-decoration-none VK_a my-1">
+                                            2.4 Cascade Construction RNGs
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#dk_2_5" class="text-decoration-none VK_a my-1">
+                                            2.5 Introducing the Digital Random Number Generator (DRNG)
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#dk_2_6" class="text-decoration-none VK_a my-1">
+                                            2.6 Applications for the Digital Random Number Generator
+                                        </a>
+                                    </li>
+                                </ul>
+                            </details>
+                            <details>
+                                <summary>
+                                    <a href="#dk_3" class="text-decoration-none VK_a">
+                                        3. DRNG Overview
+                                    </a>
+                                </summary>
+                                <ul class="list-unstyled ps-3 mb-0">
+                                    <li>
+                                        <a href="#dk_3_1" class="text-decoration-none VK_a my-1">
+                                            3.1 Processor View
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#dk_3_2" class="text-decoration-none VK_a my-1">
+                                            3.2 Component Architecture
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#dk_3_2_1" class="text-decoration-none VK_a my-1">
+                                            3.2.1 Entropy Source (ES)
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#dk_3_2_2" class="text-decoration-none VK_a my-1">
+                                            3.2.2 Conditioner
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#dk_3_2_3" class="text-decoration-none VK_a my-1">
+                                            3.2.3 Deterministic Random Bit Generator (DRBG)
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#dk_3_2_4" class="text-decoration-none VK_a my-1">
+                                            3.2.4 Enhanced Non-deterministic Random Number Generator
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#dk_3_2_5" class="text-decoration-none VK_a my-1">
+                                            3.2.5 Robustness and Self-Validation
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#dk_3_2_6" class="text-decoration-none VK_a my-1">
+                                            3.2.6 Online Health Tests (OHTs)
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#dk_3_2_7" class="text-decoration-none VK_a my-1">
+                                            3.2.7 Built-In Self Tests (BISTs)
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#dk_3_3" class="text-decoration-none VK_a my-1">
+                                            3.3 Instructions
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#dk_3_3_1" class="text-decoration-none VK_a my-1">
+                                            3.3.1 RDRAND
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#dk_3_3_2" class="text-decoration-none VK_a my-1">
+                                            3.3.2 RDSEED
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#dk_3_4" class="text-decoration-none VK_a my-1">
+                                            3.4 DRNG Performance
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#dk_3_4_1" class="text-decoration-none VK_a my-1">
+                                            3.4.1 RDRAND Performance†
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#dk_3_5" class="text-decoration-none VK_a my-1">
+                                            3.5 Power Requirements
+                                        </a>
+                                    </li>
+                                </ul>
+                            </details>
+                            <p class="m-0">
+                                <a href="#dk_4" class="text-decoration-none VK_a">
+                                    4. FIPS and CAVS Certification
+                                </a>
+                            </p>
+                            <details>
+                                <summary>
+                                    <a href="#dk_5" class="text-decoration-none VK_a">
+                                        5. Instruction Usage
+                                    </a>
+                                </summary>
+                                <ul class="list-unstyled ps-3 mb-0">
+                                    <li>
+                                        <a href="#dk_5_1" class="text-decoration-none VK_a my-1">
+                                            5.1 Determining Processor Support for RDRAND and RDSEED
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#dk_5_2" class="text-decoration-none VK_a my-1">
+                                            5.2 Using RDRAND to Obtain Random Values
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#dk_5_2_1" class="text-decoration-none VK_a my-1">
+                                            5.2.1 Retry Recommendations
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#dk_5_2_2" class="text-decoration-none VK_a my-1">
+                                            5.2.2 Simple RDRAND Invocation
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#dk_5_2_3" class="text-decoration-none VK_a my-1">
+                                            5.2.3 RDRAND Retry Loop
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#dk_5_2_4" class="text-decoration-none VK_a my-1">
+                                            5.2.4 Initializing Data Objects of Arbitrary Size
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#dk_5_2_5" class="text-decoration-none VK_a my-1">
+                                            5.2.5 Guaranteeing DBRG Reseeding
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#dk_5_2_6" class="text-decoration-none VK_a my-1">
+                                            5.2.6 Generating Seeds from RDRAND
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#dk_5_3" class="text-decoration-none VK_a my-1">
+                                            5.3 Using RDSEED to Obtain Random Seeds
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <details>
+                                            <summary>
+                                                <a href="#dk_5_3_1" class="text-decoration-none VK_a">
+                                                    5.3.1 Retry Recommendations
+                                                </a>
+                                            </summary>
+                                            <ul class="list-unstyled ps-3 mb-0">
+                                                <li>
+                                                    <a href="#dk_5_3_1_1" class="text-decoration-none VK_a my-1">
+                                                        5.3.1.1 Synchronous applications
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#dk_5_3_1_2" class="text-decoration-none VK_a my-1">
+                                                        5.3.1.2 Asynchronous applications
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </details>
+                                    </li>
+                                    <li>
+                                        <a href="#dk_5_3_2" class="text-decoration-none VK_a my-1">
+                                            5.3.2 Simple RDSEED Invocation
+                                        </a>
+                                    </li>
+                                </ul>
+                            </details>
+                            <p class="m-0">
+                                <a href="#dk_summary" class="text-decoration-none VK_a">
+                                    6. Summary
+                                </a>
+                            </p>
+                            <p class="m-0">
+                                <a href="#dk_references" class="text-decoration-none VK_a">
+                                    References
+                                </a>
+                            </p>
+                            <p class="m-0">
+                                <a href="#dk_additional_res" class="text-decoration-none VK_a">
+                                    Additional Resources
+                                </a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <!-- thinkcode -->
+                <!-- <div class="dk_things_code_main">
+                    <div class="dk_things_code">
+                        <h2 class="text-left headline-font-one-bold">Loss Prevention Retail Reference Implementation provides:</h2>
+                        <div class="dk_high_quality">
+                            <ul>
+                                <li>High-quality testable ingredients needed to create a solution to prevent thefts at stores.</li>
+                                <li>Building blocks needed to enable the use case with solid performance numbers.</li>
+                                <li>Hardware requirements to support the workloads and scale the solution.</li>
+                            </ul>
+                        </div>
+                    <div class="dk_get_code">
+                        <button class="dk_button">Get Started on GitHub<sup>*</sup></button>
+                    </div>
+                    </div> 
+                </div> -->
+            </div>
+            <div class="col-lg-9 col-md-8">
+                <div class="d-md-flex justify-content-end col-xl-10 py-3 d-none">
+                    <i class="fa-solid fa-print fs-4 px-2 " style="color:#0068B5"></i>
+                    <i class="fa-regular fa-envelope fs-4 px-2" style="color:#0068B5"></i>
+                </div>
+                <div class="col-xl-10 VK_all_sections">
+                    <p>&nbsp;</p>
+                    <p>Revision 2.1<br> October 17, 2018</p>
+
+
+                    <section id="dk_downloads">
+                        <p class="mb-0">&nbsp;</p>
+                        <h3 style="font-weight: 350; padding-bottom: 0.5rem;">Downloads</h3>
+                        <p>Download <a class="b_special_a1" href="">Intel® Digital Random Number Generator (DRNG) Software Implementation Guide</a>&nbsp;[PDF 650KB]<br> <span>Download&nbsp;</span><a class="b_special_a1" href="">Intel® Digital Random Number Generator&nbsp;software code examples</a></p>
+                    </section>
+
+                    <section id="dk_related_soft">
+                        <p class="mb-0">&nbsp;</p>
+                        <h3 style="padding-bottom: 0.5rem;">Related Software</h3>
+                        <p><span>See the <a class="b_special_a1" href="">DRNG library and manual</a> for Microsoft* Windows*, Linux*, and OS X*.</span></p>
+                    </section>
+
+                    <section id="dk_1">
+                        <p class="mb-0">&nbsp;</p>
+                        <h3 style="font-weight: 350;">1. Introduction</h3>
+                        <p>Intel® Secure Key, code-named Bull Mountain Technology, is the Intel name for the Intel® 64 and IA-32 Architectures instructions RDRAND and RDSEED and the underlying Digital Random Number Generator (DRNG) hardware implementation. Among other things, the DRNG using the RDRAND instruction is useful for generating high-quality keys for cryptographic protocols, and the RSEED instruction is provided for seeding software-based pseudorandom number generators (PRNGs)</p>
+                        <p>This Digital Random Number Generator Software Implementation Guide is intended to provide a complete source of technical information on RDRAND usage, including code examples. This document includes the following sections:</p>
+                        <p>Section 2: Random Number Generator (RNG) Basics and Introduction to the DRNG. This section describes the nature of an RNG and its pseudo- (PRNG) and true- (TRNG) implementation variants, including modern cascade construction RNGs. We then present the DRNG's position within this broader taxonomy.</p>
+                        <p>Section 3: DRNG Overview. In this section, we provide a technical overview of the DRNG, including its component architecture, robustness features, manner of access, performance, and power requirements.</p>
+                        <p>Section 4: RDRAND and RDSEED Instruction Usage. This section provides reference information on the RDRAND and RDSEED instructions and code examples showing its use. This includes platform support verification and suggestions on DRNG-based libraries.</p>
+                        <p>Programmers who already understand the nature of RNGs may refer directly to section 4 for instruction references and code examples. RNG newcomers who need some review of concepts to understand the nature and significance of the DRNG can refer to section 2. Nearly all developers will want to look at section 3, which provides a technical overview of the DRNG.</p>
+                    </section>
+
+                    <section id="dk_2">
+                        <p class="mb-0">&nbsp;</p>
+                        <h3 style="font-weight: 350;">2. RNG Basics and Introduction to the DRNG</h3>
+                        <p>The Digital Random Number Generator, using the RDRAND instruction, is an innovative hardware approach to high-quality, high-performance entropy and random number generation. To understand how it differs from existing RNG solutions, this section details some of the basic concepts underlying random number generation.</p>
+                    </section>
+
+                    <section id="dk_2_1">
+                        <h4>2.1 Random Number Generators (RNGs)</h4>
+                        <p class="mb-0">An RNG is a utility or device of some type that produces a sequence of numbers on an interval [min, max] such that values appear unpredictable. Stated a little more technically, we are looking for the following characteristics:</p>
+                        <ul> 
+                            <li>Each new value must be&nbsp;<em>statistically</em>&nbsp;<em>independent</em>&nbsp;of the previous value. That is, given a generated sequence of values, a particular value is not more likely to follow after it as the next value in the RNG's random sequence.</li> 
+                            <li>The overall distribution of numbers chosen from the interval is&nbsp;<em>uniformly</em>&nbsp;<em>distributed.&nbsp;</em>In other words, all numbers are equally likely and none are more "popular" or appear more frequently within the RNG’s output than others.</li> 
+                            <li>The sequence is&nbsp;<em>unpredictable</em>. An attacker cannot guess some or all of the values in a generated sequence. Predictability may take the form of&nbsp;<em>forward&nbsp;</em>prediction (future values) and backtracking (past values).</li> 
+                        </ul>
+                        <p>Since computing systems are by nature deterministic, producing quality random numbers that have these properties (statistical independence, uniform distribution, and unpredictability) is much more difficult than it might seem. Sampling the seconds value from the system clock, a common approach, may seem random enough, but process scheduling and other system effects may result in some values occurring far more frequently than others. External entropy sources like the time between a user's keystrokes or mouse movements may likewise, upon further analysis, show that values do not distribute evenly across the space of all possible values; some values are more likely to occur than others, and certain values almost never occur in practice.</p>
+                        <p class="mb-0">Beyond these requirements, some other desirable RNG properties include:</p>
+                        <ul> 
+                            <li>The RNG is fast in returning a value (i.e., low response time) and can service a large number of requests within a short time interval (i.e., highly scalable).</li> 
+                            <li>The RNG is secure against attackers who might observe or change its underlying state in order to predict or influence its output or otherwise interfere with its operation.</li> 
+                        </ul>
+                    </section>
+
+                    <section id="dk_2_2">
+                        <h4>2.2 Pseudo-Random Number Generators (PRNGs)</h4>
+                        <p>One widely used approach for achieving good RNG statistical behavior is to leverage mathematical modeling in the creation of a Pseudo-Random Number Generator. A PRNG is a deterministic algorithm, typically implemented in software that computes a sequence of numbers that "look" random. A PRNG requires a seed value that is used to initialize the state of the underlying model. Once seeded, it can then generate a sequence of numbers that exhibit good statistical behavior.</p>
+                        <p>PRNGs exhibit periodicity that depends on the size of its internal state model. That is, after generating a long sequence of numbers, all variations in internal state will be exhausted and the sequence of numbers to follow will repeat an earlier sequence. The best PRNG algorithms available today, however, have a period that is so large this weakness can practically be ignored. For example, the Mersenne Twister MT19937 PRNG with 32-bit word length has a periodicity of 2<sup>19937</sup>-1.&nbsp;(1)</p>
+                        <p>A key characteristic of all PRNGs is that they are&nbsp;<em>deterministic</em>. That is, given a particular seed value, the same PRNG will always produce the exact same sequence of "random" numbers. This is because a PRNG is computing the next value based upon a specific internal state and a specific, well-defined algorithm. Thus, while a generated sequence of values exhibit the statistical properties of randomness (independence, uniform distribution), overall behavior of the PRNG is entirely predictable.</p>
+                        <p>In some contexts, the deterministic nature of PRNGs is an advantage. For example, in some simulation and experimental contexts, researchers would like to compare the outcome of different approaches using the same sequence of input data. PRNGs provide a way to generate a long sequence of random data inputs that are repeatable by using the same PRNG, seeded with the same value.</p>
+                        <p>In other contexts, however, this determinism is highly undesirable. Consider a server application that generates random numbers to be used as cryptographic keys in data exchanges with client applications over secure communication channels. An attacker who knew the PRNG in use and also knew the seed value (or the algorithm used to obtain a seed value) would quickly be able to predict each and every key (random number) as it is generated. Even with a sophisticated and unknown seeding algorithm, an attacker who knows (or can guess) the PRNG in use can deduce the state of the PRNG by observing the sequence of output values. After a surprisingly small number of observations (e.g., 624 for Mersenne Twister MT19937), each and every subsequent value can be predicted. For this reason, PRNGs are considered to be cryptographically insecure.</p>
+                        <p>PRNG researchers have worked to solve this problem by creating what are known as Cryptographically Secure PRNGs (CSPRNGs). Various techniques have been invented in this domain, for example, applying a cryptographic hash to a sequence of consecutive integers, using a block cipher to encrypt a sequence of consecutive integers ("counter mode"), and XORing a stream of PRNG-generated numbers with plaintext ("stream cipher"). Such approaches improve the problem of inferring a PRNG and its state by greatly increasing its computational complexity, but the resulting values may or may not exhibit the correct statistical properties (i.e., independence, uniform distribution) needed for a robust random number generator. Furthermore, an attacker could discover any deterministic algorithm&nbsp; by various means (e.g., disassemblers, sophisticated memory attacks, a disgruntled employee). Even more common, attackers may discover or infer PRNG seeding by narrowing its range of possible values or snooping memory in some manner. Once the deterministic algorithm and its seed is known, the attacker may be able to predict each and every random number generated, both past and future.</p>
+                    </section>
+
+                    <section id="dk_2_3">
+                        <h4>2.3 True Random Number Generators (TRNGs)</h4>
+                        <p>For contexts where the deterministic nature of PRNGs is a problem to be avoided (e.g., gaming and computer security), a better approach is that of True Random Number Generators.</p>
+                        <p>Instead of using a mathematical model to deterministically generate numbers that look random and have the right statistical properties, a TRNG extracts randomness (entropy) from a physical source of some type and then uses it to generate random numbers. The physical source is also referred to as an&nbsp;<em>entropy source</em>&nbsp;and can be selected among a wide variety of physical phenomenon naturally available, or made available, to the computing system using the TRNG. For example, one can attempt to use the time between user key strokes or mouse movements as an entropy source. As pointed out earlier, this technique is crude in practice and resulting value sequences generally fail to meet desired statistical properties with rigor. What to use as an entropy source in a TRNG is a key challenge facing TRNG designers.</p>
+                        <p>Beyond statistical rigor, it is also desirable for TRNGs to be fast and scalable (i.e., capable of generating a large number of random numbers within a small time interval). This poses a serious problem for many TRNGs because sampling an entropy source external to the computing system typically requires device I/O and long delay times relative to the processing speeds of today's computer systems. In general, sampling an entropy source in TRNGs is slow compared to the computation required by a PRNG to simply calculate its next random value. For this reason, PRNGs characteristically provide far better performance than TRNGs and are more scalable.</p>
+                        <p>Unlike PRNGs, however, TRNGs are not deterministic. That is, a TRNG need not be seeded, and its selection of random values in any given sequence is highly unpredictable. As such, an attacker cannot use observations of a particular random number sequence to predict subsequent values in an effective way. This property also implies that TRNGs have no periodicity. While repeats in random sequence are possible (albeit unlikely), they cannot be predicted in a manner useful to an attacker.</p>
+                    </section>
+
+                    <section id="dk_2_4">
+                        <h4>2.4 Cascade Construction RNGs</h4>
+                        <p>A common approach used in modern operating systems (e.g., Linux* (2)) and cryptographic libraries is to take input from an entropy source in order to supply a buffer or pool of entropy (refer to Figure 1). This entropy pool is then used to provide nondeterministic random numbers that periodically seed a cryptographically secure PRNG (CSPRNG). This CSPRNG provides cryptographically secure random numbers that appear truly random and exhibit a well-defined level of computational attack resistance.</p>  
+                        <p style="text-align:center"><img class="dk_risk_app_img" src="/img/darshit_image/drng-img01-185467.jpg"></p>
+                        <p style="text-align:center"><strong>Figure 1. </strong><em>Cascade Construction Random Number Generator</em></p>
+                        <p>A key advantage of this scheme is performance. It was noted above that sampling an entropy source is typically slow since it often involves device I/O of some type and often additional waiting for a real-time sampling event to transpire. In contrast, CSPRNG computations are fast since they are processor-based and avoid I/O and entropy source delays.This approach offers improved performance: a slow entropy source periodically seeding a fast CSPRNG capable of generating a large number of random values from a single seed.</p>
+                        <p>While this approach would seem ideal, in practice it often falls far short. First, since the implementation is typically in software, it is vulnerable to a broad class of software attacks. For example, considerable state requirements create the potential for memory-based attacks or timing attacks. Second, the approach does not solve the problem of what entropy source to use. Without an external source of some type, entropy quality is likely to be poor. For example, sampling user events (e.g., mouse, keyboard) may be impossible if the system resides in a large data center. Even with an external entropy source, entropy sampling is likely to be slow, making seeding events less frequent than desired.</p>
+                    </section>
+
+                    <section id="dk_2_5">
+                        <h4>2.5 Introducing the Digital Random Number Generator (DRNG)</h4>
+                        <p>The Digital Random Number Generator (DRNG) is an innovative hardware approach to high-quality, high-performance entropy and random number generation. It is composed of the new Intel 64 Architecture instructions RDRAND and RDSEED and an underlying DRNG hardware implementation.</p>
+                        <p>With respect to the RNG taxonomy discussed above, the DRNG follows the cascade construction RNG model, using a processor resident entropy source to repeatedly seed a hardware-implemented CSPRNG. Unlike software approaches, it includes a high-quality entropy source implementation that can be sampled quickly to repeatedly seed the CSPRNG with high-quality entropy. Furthermore, it represents a self-contained hardware module that is isolated from software attacks on its internal state. The result is a solution that achieves RNG objectives with considerable robustness: statistical quality (independence, uniform distribution), highly unpredictable random number sequences, high performance, and protection against attack.</p>
+                        <p>This method of digital random number generation is unique in its approach to true random number generation in that it is implemented in the processor’s hardware and can be utilized through instructions added to the Intel 64 instruction set. As such, response times are comparable to those of competing PRNG approaches implemented in software. The approach is scalable enough for even demanding applications to use it as an exclusive source of random numbers and not merely a high quality seed for a software-based PRNG. Software running at all privilege levels can access random numbers through the instruction set, bypassing intermediate software stacks, libraries, or operating system handling.</p>
+                        <p>The use of RDRAND and RDSEED leverages a variety of cryptographic standards to ensure the robustness of its implementation and to provide transparency in its manner of operation. These include NIST SP800-90A, B, and C, FIPS-140-2, and ANSI X9.82. Compliance to these standards makes the Digital Random Number Generation a viable solution for highly regulated application domains in government and commerce.</p>
+                        <p>Section 3 describes digital random number generation in detail. Section 4 describes use of RDRAND and RDSEED, the Intel instruction set extensions for using the DRNG.</p>
+                    </section>
+
+                    <section id="dk_2_6">
+                        <h4>2.6 Applications for the Digital Random Number Generator</h4>
+                        <p>Information security is a key application that utilizes the DRNG. Cryptographic protocols rely on RNGs for generating keys and fresh session values (e.g., a nonce) to prevent replay attacks. In fact, a cryptographic protocol may have considerable robustness but suffer from widespread attack due to weak key generation methods underlying it (e.g., the Debian*/OpenSSL* fiasco&nbsp;(3)). The DRNG can be used to fix this weakness, thus significantly increasing cryptographic robustness.</p>
+                        <p>Closely related are government and industry applications. Due to information sensitivity, many such applications must demonstrate their compliance with security standards like FISMA, HIPPA, PCIAA, etc. RDRAND has been engineered to meet existing security standards like NIST SP800-90, FIPS 140-2, and ANSI X9.82, and thus provides an underlying RNG solution that can be leveraged in demonstrating compliance with information security standards.</p>
+                        <p class="mb-0">Other uses of the DRNG include:</p>
+                        <ul> 
+                            <li>Communication protocols</li> 
+                            <li>Monte Carlo simulations and scientific computing</li> 
+                            <li>Gaming applications</li> 
+                            <li>Bulk entropy applications like secure disk wiping or document shredding</li> 
+                            <li>Protecting online services against RNG attacks</li> 
+                            <li>Seeding software-based PRNGs of arbitrary width</li> 
+                        </ul>
+                        <p class="mb-0">&nbsp;</p>
+                    </section>
+
+                    <section id="dk_3">
+                        <h3 style="font-weight: 350;">3. DRNG Overview</h3>
+                        <p>In this section, we describe in some detail the components of the DRNG using the RDRAND and RDSEED instructions and their interaction.</p>
+                    </section>
+
+                    <section id="dk_3_1">
+                        <h4>3.1 Processor View</h4>
+                        <p>Figure 2 provides a high-level schematic of the RDRAND and RDSEED Random Number Generators. As shown, the DRNG appears as a hardware module on the processor. An interconnect bus connects it with each core.</p>
+                        <p style="text-align:center"><img class="dk_risk_app_img" src="/img/darshit_image/drng-img02-185467.jpg"></p>
+                        <p style="text-align:center"><strong>Figure 2. </strong><em>Digital Random Number Generator design</em></p>
+                        <p>The RDRAND and RDSEED instructions (detailed in section 4) are handled by microcode on each core. This includes an RNG microcode module that handles interactions with the DRNG hardware module on the processor.</p>
+                    </section>
+
+                    <section id="dk_3_2">
+                        <h4>3.2 Component Architecture</h4>
+                        <p class="mb-0">As shown in Figure 3, the DRNG can be thought of as three logical components forming an asynchronous production pipeline: an entropy source (ES) that produces random bits from a nondeterministic hardware process at around 3 Gbps, a conditioner that uses AES&nbsp;(4) in CBC-MAC&nbsp;(5) mode to distill the entropy into high-quality nondeterministic random numbers, and two parallel outputs:</p>
+                        <ol> 
+                            <li>A deterministic random bit generator (DRBG) seeded from the conditioner.</li> 
+                            <li>An enhanced, nondeterministic random number generator (ENRNG) that provides seeds from the entropy conditioner.</li> 
+                        </ol>
+                        <p>Note that the conditioner <em>does not</em> send the same seed values to both the DRBG and the ENRNG. This pathway can be thought of as an alternating switch, with one seed going to the DRGB and the next seed going to the ENRNG. This construction ensures that a software application can <em>never</em> obtain the value used to seed the DRBG, nor can it launch a Denial of Service (DoS) attack against the DRBG through repeated executions of the RDSEED instruction.</p>
+                        <p>The conditioner can be equated to the entropy pool in the cascade construction RNG described previously. However, since it is fed by a high-quality, high-speed, continuous stream of entropy that is fed faster than downstream processes can consume, it does not need to maintain an entropy pool. Instead, it is always conditioning fresh entropy independent of past and future entropy.</p>
+                        <p style="text-align:center"><img class="dk_risk_app_img" src="/img/darshit_image/drng-img03-185467.jpg"></p>
+                        <p style="text-align:center"><strong>Figure 3.</strong><em> DRNG Component Architecture</em></p>
+                        <p class="mb-0">The final two stages are:</p>
+                        <ol> 
+                            <li>A hardware CSPRNG that is based on AES in CTR mode and is compliant with SP800-90A. In SP800-90A terminology, this is referred to as a DRBG (Deterministic Random Bit Generator), a term used throughout the remainder of this document.</li> 
+                            <li>An ENRNG (Enhanced Non-deterministic Random Number Generator) that is compliant with SP800-90B and C.</li> 
+                        </ol>
+                        <h3>&nbsp;</h3>
+                    </section>
+
+                    <section id="dk_3_2_1">
+                        <p class="mb-0">&nbsp;</p>
+                        <h4>3.2.1 Entropy Source (ES)</h4>
+                        <p>The all-digital Entropy Source (ES), also known as a non-deterministic random bit generator (NRBG), provides a serial stream of entropic data in the form of zeroes and ones.</p>
+                        <p>The ES runs asynchronously on a self-timed circuit and uses thermal noise within the silicon to output a random stream of bits at the rate of 3 GHz. The ES needs no dedicated external power supply to run, instead using the same power supply as other core logic. The ES is designed to function properly over a wide range of operating conditions, exceeding the normal operating range of the processor.</p>
+                        <p>Bits from the ES are passed to the conditioner for further processing.</p>
+                    </section>
+
+                    <section id="dk_3_2_2">
+                        <p class="mb-0">&nbsp;</p>
+                        <h4>3.2.2 Conditioner</h4>
+                        <p>The conditioner takes pairs of 256-bit raw entropy samples generated by the ES and reduces them to a single 256-bit conditioned entropy sample using AES-CBC-MAC. This has the effect of distilling the entropy into more concentrated samples.</p>
+                        <p>AES, Advanced Encryption Standard, is defined in the FIPS-197 Advanced Encryption Standard (4). CBC-MAC, Cipher Block Chaining - Message Authentication Code, is defined in NIST SP 800-38A Recommendation for Block Cipher Modes of Operation&nbsp;(5).</p>
+                        <p>The conditioned entropy is output as a 256-bit value and passed to the next stage in the pipeline to be used as a DRBG seed value.</p>
+                    </section>
+
+                    <section id="dk_3_2_3">
+                        <p class="mb-0">&nbsp;</p>
+                        <h4>3.2.3 Deterministic Random Bit Generator (DRBG)</h4>
+                        <p>The role of the deterministic random bit generator (DRBG) is to "spread" a conditioned entropy sample into a large set of random values, thus increasing the amount of random numbers available by the hardware module. This is done by employing a standards-compliant DRBG and continuously reseeding it with the conditioned entropy samples.</p>
+                        <p>The DRBG chosen for this function is the CTR_DRBG defined in section 10.2.1 of NIST SP 800-90A&nbsp;(6), using the AES block cipher. Values that are produced fill a FIFO output buffer that is then used in responding to RDRAND requests for random numbers.</p>
+                        <p>The DRBG autonomously decides when it needs to be reseeded to refresh the random number pool in the buffer and is both unpredictable and transparent to the RDRAND caller. An upper bound of 511 128-bit samples will be generated per seed. That is, no more than 511*2=1022 sequential DRNG random numbers will be generated from the same seed value.</p>
+                    </section>
+
+                    <section id="dk_3_2_4">
+                        <p class="mb-0">&nbsp;</p>
+                        <h4>3.2.4 Enhanced Non-deterministic Random Number Generator</h4>
+                        <p>The role of the enhanced non-deterministic random number generator is to make conditioned entropy samples directly available to software for use as seeds to other software-based DRBGs. Values coming out of the ENRNG have multiplicative brute-force prediction resistance, which means that samples can be concatenated and the brute-force prediction resistance will scale with them. When two 64-bit samples are concatenated together, the resulting 128-bit value will have 128 bits of brute-force prediction resistance (2<sup>64</sup> * 2<sup>64</sup> = 2<sup>128</sup>). This operation can be repeated indefinitely and can be used to easily produce random seeds of arbitrary size. Because of this property, these values can be used to seed a DRBG of any size.</p>
+                    </section>
+
+                    <section id="dk_3_2_5">
+                        <p class="mb-0">&nbsp;</p>
+                        <h4>3.2.5 Robustness and Self-Validation</h4>
+                        <p>To ensure the DRNG functions with a high degree of reliability and robustness, validation features have been included that operate in an ongoing manner at system startup. These include the DRNG Online Health Tests (OHTs) and Built-In Self Tests (BISTs), respectively. Both are shown in Figure 4.</p>
+                        <p style="text-align:center"><img class="dk_risk_app_img" src="/img/darshit_image/drng-img04-185467.jpg"></p>
+                        <p style="text-align:center"><strong>Figure 4. </strong><em>DRNG Self-Validation Components</em></p>
+                    </section>
+
+                    <section id="dk_3_2_6">
+                        <p class="mb-0">&nbsp;</p>
+                        <h4>3.2.6 Online Health Tests (OHTs)</h4>
+                        <p>Online Health Tests (OHTs) are designed to measure the quality of entropy generated by the ES using both per sample and sliding window statistical tests in hardware.</p>
+                        <p>Per sample tests compare bit patterns against expected pattern arrival distributions as specified by a mathematical model of the ES. An ES sample that fails this test is marked "unhealthy." Using this distinction, the conditioner can ensure that at least two healthy samples are mixed into each seed. This defends against hardware attacks that might seek to reduce the entropic content of the ES output.</p>
+                        <p>Sliding window tests look at sample health across many samples to verify they remain above a required threshold. The sliding window size is large (65536 bits) and mechanisms ensure that the ES is operating correctly overall before it issues random numbers. In the rare event that the DRNG fails during runtime, it would cease to issue random numbers rather than issue poor quality random numbers.</p>
+                    </section>
+
+                    <section id="dk_3_2_7">
+                        <p class="mb-0">&nbsp;</p>
+                        <h4>3.2.7 Built-In Self Tests (BISTs)</h4>
+                        <p>Built-In Self Tests (BISTs) are designed to verify the health of the ES prior to making the DRNG available to software. These include Entropy Source Tests (ES-BIST) that are statistical in nature and comprehensive test coverage of all the DRNG’s deterministic downstream logic through BIST Known Answer Tests (KAT-BIST).</p>
+                        <p>ES-BIST involves running the DRNG for a probationary period in its normal mode before making the DRNG available to software. This allows the OHTs to examine ES sample health for a full sliding window (256 samples) before concluding that ES operation is healthy. It also fills the sliding window sample pipeline to ensure the health of subsequent ES samples, seeds the PRNG, and fills the output queue of the DRNG with random numbers.</p>
+                        <p>KAT-BIST tests both OHT and end-to-end correctness using deterministic input and output validation. First, various bit stream samples are input to the OHT, including a number with poor statistical quality. Samples cover a wide range of statistical properties and test whether the OHT logic correctly identifies those that are "unhealthy." During the KAT-BIST phase, deterministic random numbers are output continuously from the end of the pipeline. The BIST Output Test Logic verifies that the expected outputs are received.</p>
+                        <p>If there is a BIST failure during startup, the DRNG will not issue random numbers and will issue a BIST failure notification to the on-processor test circuitry. This BIST logic avoids the need for conventional on-processor test mechanisms (e.g., scan and JTAG) that could undermine the security of the DRNG.</p>
+                    </section>
+
+                    <section id="dk_3_3">
+                        <p class="mb-0">&nbsp;</p>
+                        <h4>3.3 Instructions</h4>
+                        <p>Software access to the DRNG is through the RDRAND and RDSEED instructions, documented in Chapter 3 of (7).</p>
+                    </section>
+
+                    <section id="dk_3_3_1">
+                        <p class="mb-0">&nbsp;</p>
+                        <h4>3.3.1 RDRAND</h4>
+                        <p>RDRAND retrieves a hardware-generated random value from the SP800-90A compliant DRGB and stores it in the destination register given as an argument to the instruction. The size of the random value (16-, 32-, or 64-bits) is determined by the size of the register given. The carry flag (CF) must be checked to determine whether a random value was available at the time of instruction execution.</p>
+                        <p>Note that RDRAND is available to any system or application software running on the platform. That is, there are no hardware ring requirements that restrict access based on process privilege level. As such, RDRAND may be invoked as part of an operating system or hypervisor system library, a shared software library, or directly by an application.</p>
+                        <p>To determine programmatically whether a given Intel platform supports RDRAND, developers can use the CPUID instruction to examine bit 30 of the ECX register. See Reference (7) for details.</p>
+                    </section>
+
+                    <section id="dk_3_3_2">
+                        <p class="mb-0">&nbsp;</p>
+                        <h4>3.3.2 RDSEED</h4>
+                        <p>RDSEED retrieves a hardware-generated random seed value from the SP800-90B and C compliant ENRNG and stores it in the destination register given as an argument to the instruction. Like the RDRAND instruction, the size of the random value is determined by the size of the given register, and the carry flag (CF) must be checked to determine whether or not a random seed was available at the time the instruction was executed.</p>
+                        <p>Also like RDRAND, there are no hardware ring requirements that restrict access to RDSEED based on process privilege level.</p>
+                        <p>To determine programmatically whether a given Intel platform supports the RDSEED instruction, developers can use the CPUID instruction to examine bit 18 of the EBX register. See Reference (8) for details.</p>
+                    </section>
+
+                    <section id="dk_3_4">
+                        <p class="mb-0">&nbsp;</p>
+                        <h4>3.4 DRNG Performance</h4>
+                        <p>Designed to be a high performance entropy resource shared between multiple cores/threads, the Digital Random Number Generator represents a new generation of RNG performance.</p>
+                        <p>The DRNG is implemented in hardware as part of the Intel processor. As such, both the entropy source and the DRBG execute at processor clock speeds. Unlike other hardware-based solutions, there is no system I/O required to obtain entropy samples and no off-processor bus latencies to slow entropy transfer or create bottlenecks when multiple requests have been issued.</p>
+                        <p>Random values are delivered directly through instruction level requests (RDRAND and RDSEED). This bypasses both operating system and software library handling of the request. The DRNG is scalable enough to support heavy server application workloads. Within the context of virtualization, the DRNG's stateless design and atomic instruction access mean that RDRAND and RDSEED can be used freely by multiple VMs without the need for hypervisor intervention or resource management.</p>
+                    </section>
+
+                    <section id="dk_3_4_1">
+                        <p class="mb-0">&nbsp;</p>
+                        <h4>3.4.1 RDRAND Performance†</h4>
+                        <p>In current-generation Intel processors the DRBG runs on a self-timed circuit clocked at 800 MHz and can service a RDRAND transaction (1 Tx) every 8 clocks for a maximum of 100 MTx per second. A transaction can be for a 16-, 32-, or 64-bit RDRAND, and the greatest throughput is achieved with 64-bit RDRANDs, capping the throughput ceiling at 800 MB/sec. These limits are an upper bound on all hardware threads across all cores on the CPU.</p>
+                        <p>Single thread performance is limited by the instruction latencies imposed by the bus infrastructure, which is also impacted in part by clock speed. On real-world systems, a single thread executing RDRAND continuously may see throughputs ranging from 70 to 200 MB/sec, depending on the SPU architecture.</p>
+                        <p>If multiple threads are invoking RDRAND simultaneously, total RDRAND throughput (across all threads) scales approximately linearly with the number of threads until no more hardware threads remain, the bus limits of the processor are reached, or the DRNG interface is fully saturated. Past this point, the maximum throughput is divided equally among the active threads. No threads get starved.</p>
+                        <p>Figure 5 shows the multithreaded RDRAND throughput plotted as a ratio to single thread throughput for six different CPU architectures. The dotted line represents linear scaling. This shows that total RDRAND throughput scales nearly linearly with the number of active threads on the CPU, prior to reaching saturation.</p>
+                        <p style="text-align:center"><img class="dk_risk_app_img" src="/img/darshit_image/drng-img05-185467.png"></p>
+                        <p style="text-align:center"><strong>Figure 5. </strong><em>Multithreaded RDRNAD throughput scaling</em></p>
+                        <p>Figure 6 shows the multithreaded performance of a single system, also as a ratio, up to saturation and beyond. As in Figure 5, total throughput scales nearly linearly until saturation, at which point it reaches a steady state.</p>
+                        <p style="text-align:center"><img class="dk_risk_app_img" src="/img/darshit_image/drng-img06-185467.png"></p>
+                        <p style="text-align:center"><strong>Figure 6.</strong><em> RDRAND throughput past saturation</em></p>
+                        <p><sup><strong>†</strong></sup><em>Results have been estimated based on internal Intel® analysis and are provided for informational purposes only. Any difference in system hardware or software design or configuration may affect actual performance.</em></p>
+                    </section>
+
+                    <section id="dk_3_5">
+                        <p class="mb-0">&nbsp;</p>
+                        <h4>3.5 Power Requirements</h4>
+                        <p>The DRNG hardware resides on the processor and, therefore, does not need a dedicated power supply to run. Instead, it simply uses the processor's local power supply. As described in section 3.2.1, the hardware is designed to function across a range of process voltage and temperature (PVT) levels, exceeding the normal operating range of the processor.</p>
+                        <p>The DRNG hardware does not impact power management mechanisms and algorithms associated with individual cores. For example, ACPI-based mechanisms for regulating processor performance states (P-states) and processor idle states (C-states) on a per core basis are unaffected.</p>
+                        <p>To save power, the DRNG clock gates itself off when queues are full. This idle-based mechanism results in negligible power requirements whenever entropy computation and post processing are not needed.</p>
+                    </section>
+
+                    <section id="dk_4">
+                        <p class="mb-0">&nbsp;</p>
+                        <h3 style="font-weight: 350;">4. FIPS and CAVS Certification</h3>
+                        <p>There are two certifications relevant to the Digital Random Number Generator (DRNG): the Cryptographic Algorithm Validation System (CAVS) and Federal Information Processing Standards (FIPS). &nbsp;FIPS provides specifications for cryptographic modules, and mandates that Random Number Generator (RNG) solutions in FIPS-certified crypto modules must have SP800-90 CAVS certification. The DRNG is not a FIPS cryptographic module: it is an SP800-90 compliant RNG solution which can be CAVS certified, and thus permitted as a component of a FIPS-certified cryptographic module. CAVS certifications for SP800-90 compliant solutions must be obtained per product, which means processor generations must be individually certified.</p>
+                        <p>An alternative approach to CAVS certification of the DRNG is to use the DRNG as an entropy source for a software-based RNG, either via the RDSEED instruction or the seed-from-RDRAND option.</p>
+                        <p>In either approach, the FIPS-140-2 certification process requires that an entropy justification document and data is provided. Intel will work with vendors to provide the necessary entropy documentation for the DRNG to support the FIPS140-2 applications of customer products. With the publication of SP800-90B as a standard in 2018, there is the possibility that certification of compliance to SP800-90B will become available for entropy sources. Intel’s entropy sources and extraction algorithms are designed to comply with SP800-90B and be certifiable when a certification program is available.</p>
+                        <p>The current National Institute of Standards and Technology (NIST) model for certifying a cryptographic solution which uses the DRNG necessitates a partnership between Intel and the cryptographic module provider to produce entropy justification documents on a per-product basis.</p>
+                    </section>
+
+                    <section id="dk_5">
+                        <p class="mb-0">&nbsp;</p>
+                        <h3 style="font-weight: 350;">5. Instruction Usage</h3>
+                        <p>Before using the RDRAND or RDSEED instructions, an application or library should first determine whether the underlying platform supports the instruction, and hence includes the underlying DRNG feature. This can be done using the CPUID instruction. In general, CPUID is used to return processor identification and feature information stored in the EAX, EBX, ECX, and EDX registers. For detailed information on CPUID, refer to References (7) and (8).</p>
+                        <p>To be specific, support for RDRAND can be determined by examining bit 30 of the ECX register returned by CPUID, and support for RDSEED can be determined by examining bit 18 of the EBX register. As shown in Table 1 (below) and 2-23 in Reference (7), a value of 1 indicates processor support for the instruction while a value of 0 indicates no processor support.</p>
+                    </section>
+
+                    <section id="dk_5_1">
+                        <p class="mb-0">&nbsp;</p>
+                        <h4>5.1 Determining Processor Support for RDRAND and RDSEED</h4>
+                        <p>The primary stale data propagator (PSDP) is limited to the client uncore implementation.&nbsp;</p>
+                        <p>Similar to the sideband response buffer, the primary response buffer is shared by all cores. For some processors, MMIO primary reads will return 64 bytes of data to the core fill buffer including both requested data and unrequested stale data. This is similar to the sideband stale data propagator. However, unlike the sideband stale data propagator, the primary stale data propagator propagates stale data only from previous read transactions, not from previous write transactions.</p>
+                        <p>As with other propagators, primary response buffer propagation by itself does not make stale data architecturally visible.</p>
+                        <p><strong>Table 1. </strong><em>Feature information returned in the ECX register</em></p>
+                        <table class="mv_product_table w-100 mb-4">
+                            <thead> 
+                                <tr> 
+                                 <th> <p><strong>Leaf</strong></p> </th> 
+                                 <th> <p><strong>Register</strong></p> </th> 
+                                 <th> <p><strong>Bit</strong></p> </th> 
+                                 <th> <p><strong>Mnemonic</strong></p> </th> 
+                                 <th> <p><strong>Description</strong></p> </th> 
+                                </tr> 
+                            </thead>
+                            <tbody> 
+                                <tr> 
+                                 <td> 1 </td> 
+                                 <td> ECX </td> 
+                                 <td> 30 </td> 
+                                 <td> RDRAND </td> 
+                                 <td> A value of 1 indicates that processor supports the RDRAND instruction </td> 
+                                </tr> 
+                                <tr> 
+                                 <td> 7 </td> 
+                                 <td> EBX </td> 
+                                 <td> 18 </td> 
+                                 <td> RDSEED </td> 
+                                 <td> A value of 1 indicates that processor supports the RDSEED instruction </td> 
+                                </tr> 
+                            </tbody>
+                        </table> 
+                        <p class="mb-0">The two options for invoking the CPUID instruction within the context of a high-level programming language like C or C++ are with:</p>
+                        <ul> 
+                            <li>An inline assembly routine</li> 
+                            <li>An assembly routine defined in an independent file.</li> 
+                        </ul>
+                        <p>The advantage of inline assembly is that it is straightforward and easily readable within its source code context. The disadvantage, however, is that conditional code is often needed to handle the possibility of different underlying platforms, which can quickly compromise readability. This guide describes a Linux implementation that should also work on OS X*. Please see the DRNG downloads for Windows* examples.</p>
+                        <p>Code Example 1 shows the definition of the function get_drng_support for gcc compilation on 64-bit Linux. This is included in the source code module drng.c that is included in the DRNG samples source code download that accompanies this guide.</p>
+                        <!-- code toolbar 3 -->
+                        <div class="mv_code_toolbar">
+                            <div class="mv_toolbar_item mv_copy_icon">
+                                <i class="fa-regular fa-copy"></i>
+                            </div>
+                            <div class="mv_copy_message text-end hidden">Copied</div>
+                            <div class="code-content">
+                                <div style="padding-bottom: 0rem !important" class="d-flex mv_pre">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        01
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp;</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important" class="d-flex mv_pre">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        02
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0"><span class="dk_color2">/* These are bits that are OR’d together */</span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important" class="d-flex mv_pre">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        03
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp;</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important" class="d-flex mv_pre">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        04
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0"><span class="dk_color1">#define &nbsp; DRNG_NO_SUPPORT &nbsp;	0x0</span>	<span class="dk_color2">/* For clarity */</span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important" class="d-flex mv_pre">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        05
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0"><span class="dk_color1">#define &nbsp; DRNG_HAS_RDRAND &nbsp;	0x1</span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important" class="d-flex mv_pre">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        06
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0"><span class="dk_color1">#define &nbsp; DRNG_HAS_RDSEED &nbsp;	0x2</span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important" class="d-flex mv_pre">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        07
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp;</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important" class="d-flex mv_pre">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        08
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0"><span class="dk_color1">int</span> get_drng_support ( )</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important" class="d-flex mv_pre">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        09
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">{</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important" class="d-flex mv_pre">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        10
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp; &nbsp; &nbsp; <span class="dk_color1">static &nbsp; int</span> drng_features <span class="dk_color3">= &nbsp; -</span> <span class="dk_color1">1</span>;</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important" class="d-flex mv_pre">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        11
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp;</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important" class="d-flex mv_pre">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        12
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp; &nbsp; &nbsp;  <span class="dk_color2">/* So we don't call cpuid multiple times for</span> </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important" class="d-flex mv_pre">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        13
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp; &nbsp; &nbsp; <span class="dk_color2">* the same information */</span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important" class="d-flex mv_pre">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        14
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0"><span
+                                                    class="token function">export</span>
+                                                http_proxy<span class="mv_sign_color">=</span><span
+                                                    class="mv_sign_color">&lt;</span>proxy-address<span
+                                                    class="mv_sign_color">&gt;</span> :<span
+                                                    class="mv_sign_color">&lt;</span>proxy-port<span
+                                                    class="mv_sign_color">&gt;</span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important" class="d-flex mv_pre">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        15
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0"><span
+                                                    class="token function">export</span>
+                                                http_proxy<span class="mv_sign_color">=</span><span
+                                                    class="mv_sign_color">&lt;</span>proxy-address<span
+                                                    class="mv_sign_color">&gt;</span> :<span
+                                                    class="mv_sign_color">&lt;</span>proxy-port<span
+                                                    class="mv_sign_color">&gt;</span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important" class="d-flex mv_pre">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        16
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0"><span
+                                                    class="token function">export</span>
+                                                http_proxy<span class="mv_sign_color">=</span><span
+                                                    class="mv_sign_color">&lt;</span>proxy-address<span
+                                                    class="mv_sign_color">&gt;</span> :<span
+                                                    class="mv_sign_color">&lt;</span>proxy-port<span
+                                                    class="mv_sign_color">&gt;</span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important" class="d-flex mv_pre">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        17
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0"><span
+                                                    class="token function">export</span>
+                                                http_proxy<span class="mv_sign_color">=</span><span
+                                                    class="mv_sign_color">&lt;</span>proxy-address<span
+                                                    class="mv_sign_color">&gt;</span> :<span
+                                                    class="mv_sign_color">&lt;</span>proxy-port<span
+                                                    class="mv_sign_color">&gt;</span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important" class="d-flex mv_pre">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        18
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0"><span
+                                                    class="token function">export</span>
+                                                http_proxy<span class="mv_sign_color">=</span><span
+                                                    class="mv_sign_color">&lt;</span>proxy-address<span
+                                                    class="mv_sign_color">&gt;</span> :<span
+                                                    class="mv_sign_color">&lt;</span>proxy-port<span
+                                                    class="mv_sign_color">&gt;</span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important" class="d-flex mv_pre">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        19
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0"><span
+                                                    class="token function">export</span>
+                                                http_proxy<span class="mv_sign_color">=</span><span
+                                                    class="mv_sign_color">&lt;</span>proxy-address<span
+                                                    class="mv_sign_color">&gt;</span> :<span
+                                                    class="mv_sign_color">&lt;</span>proxy-port<span
+                                                    class="mv_sign_color">&gt;</span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important" class="d-flex mv_pre">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        20
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0"><span
+                                                    class="token function">export</span>
+                                                http_proxy<span class="mv_sign_color">=</span><span
+                                                    class="mv_sign_color">&lt;</span>proxy-address<span
+                                                    class="mv_sign_color">&gt;</span> :<span
+                                                    class="mv_sign_color">&lt;</span>proxy-port<span
+                                                    class="mv_sign_color">&gt;</span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important" class="d-flex mv_pre">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        21
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0"><span
+                                                    class="token function">export</span>
+                                                http_proxy<span class="mv_sign_color">=</span><span
+                                                    class="mv_sign_color">&lt;</span>proxy-address<span
+                                                    class="mv_sign_color">&gt;</span> :<span
+                                                    class="mv_sign_color">&lt;</span>proxy-port<span
+                                                    class="mv_sign_color">&gt;</span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important" class="d-flex mv_pre">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        22
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0"><span
+                                                    class="token function">export</span>
+                                                http_proxy<span class="mv_sign_color">=</span><span
+                                                    class="mv_sign_color">&lt;</span>proxy-address<span
+                                                    class="mv_sign_color">&gt;</span> :<span
+                                                    class="mv_sign_color">&lt;</span>proxy-port<span
+                                                    class="mv_sign_color">&gt;</span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important" class="d-flex mv_pre">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        23
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0"><span
+                                                    class="token function">export</span>
+                                                http_proxy<span class="mv_sign_color">=</span><span
+                                                    class="mv_sign_color">&lt;</span>proxy-address<span
+                                                    class="mv_sign_color">&gt;</span> :<span
+                                                    class="mv_sign_color">&lt;</span>proxy-port<span
+                                                    class="mv_sign_color">&gt;</span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important" class="d-flex mv_pre">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        24
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0"><span
+                                                    class="token function">export</span>
+                                                http_proxy<span class="mv_sign_color">=</span><span
+                                                    class="mv_sign_color">&lt;</span>proxy-address<span
+                                                    class="mv_sign_color">&gt;</span> :<span
+                                                    class="mv_sign_color">&lt;</span>proxy-port<span
+                                                    class="mv_sign_color">&gt;</span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important" class="d-flex mv_pre">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        25
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0"><span
+                                                    class="token function">export</span>
+                                                http_proxy<span class="mv_sign_color">=</span><span
+                                                    class="mv_sign_color">&lt;</span>proxy-address<span
+                                                    class="mv_sign_color">&gt;</span> :<span
+                                                    class="mv_sign_color">&lt;</span>proxy-port<span
+                                                    class="mv_sign_color">&gt;</span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important" class="d-flex mv_pre">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        26
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0"><span
+                                                    class="token function">export</span>
+                                                http_proxy<span class="mv_sign_color">=</span><span
+                                                    class="mv_sign_color">&lt;</span>proxy-address<span
+                                                    class="mv_sign_color">&gt;</span> :<span
+                                                    class="mv_sign_color">&lt;</span>proxy-port<span
+                                                    class="mv_sign_color">&gt;</span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important" class="d-flex mv_pre">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        27
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0"><span
+                                                    class="token function">export</span>
+                                                http_proxy<span class="mv_sign_color">=</span><span
+                                                    class="mv_sign_color">&lt;</span>proxy-address<span
+                                                    class="mv_sign_color">&gt;</span> :<span
+                                                    class="mv_sign_color">&lt;</span>proxy-port<span
+                                                    class="mv_sign_color">&gt;</span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important" class="d-flex mv_pre">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        28
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0"><span
+                                                    class="token function">export</span>
+                                                http_proxy<span class="mv_sign_color">=</span><span
+                                                    class="mv_sign_color">&lt;</span>proxy-address<span
+                                                    class="mv_sign_color">&gt;</span> :<span
+                                                    class="mv_sign_color">&lt;</span>proxy-port<span
+                                                    class="mv_sign_color">&gt;</span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important" class="d-flex mv_pre">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        29
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0"><span
+                                                    class="token function">export</span>
+                                                http_proxy<span class="mv_sign_color">=</span><span
+                                                    class="mv_sign_color">&lt;</span>proxy-address<span
+                                                    class="mv_sign_color">&gt;</span> :<span
+                                                    class="mv_sign_color">&lt;</span>proxy-port<span
+                                                    class="mv_sign_color">&gt;</span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important" class="d-flex mv_pre">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        30
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0"><span
+                                                    class="token function">export</span>
+                                                http_proxy<span class="mv_sign_color">=</span><span
+                                                    class="mv_sign_color">&lt;</span>proxy-address<span
+                                                    class="mv_sign_color">&gt;</span> :<span
+                                                    class="mv_sign_color">&lt;</span>proxy-port<span
+                                                    class="mv_sign_color">&gt;</span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important" class="d-flex mv_pre">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        31
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0"><span
+                                                    class="token function">export</span>
+                                                http_proxy<span class="mv_sign_color">=</span><span
+                                                    class="mv_sign_color">&lt;</span>proxy-address<span
+                                                    class="mv_sign_color">&gt;</span> :<span
+                                                    class="mv_sign_color">&lt;</span>proxy-port<span
+                                                    class="mv_sign_color">&gt;</span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important" class="d-flex mv_pre">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        32
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0"><span
+                                                    class="token function">export</span>
+                                                http_proxy<span class="mv_sign_color">=</span><span
+                                                    class="mv_sign_color">&lt;</span>proxy-address<span
+                                                    class="mv_sign_color">&gt;</span> :<span
+                                                    class="mv_sign_color">&lt;</span>proxy-port<span
+                                                    class="mv_sign_color">&gt;</span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important" class="d-flex mv_pre">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        33
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0"><span
+                                                    class="token function">export</span>
+                                                http_proxy<span class="mv_sign_color">=</span><span
+                                                    class="mv_sign_color">&lt;</span>proxy-address<span
+                                                    class="mv_sign_color">&gt;</span> :<span
+                                                    class="mv_sign_color">&lt;</span>proxy-port<span
+                                                    class="mv_sign_color">&gt;</span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important" class="d-flex mv_pre">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        34
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0"><span
+                                                    class="token function">export</span>
+                                                http_proxy<span class="mv_sign_color">=</span><span
+                                                    class="mv_sign_color">&lt;</span>proxy-address<span
+                                                    class="mv_sign_color">&gt;</span> :<span
+                                                    class="mv_sign_color">&lt;</span>proxy-port<span
+                                                    class="mv_sign_color">&gt;</span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 1rem !important;"
+                                    class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        35
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">
+                                                <span class="token function">export</span>
+                                                https_proxy<span class="mv_sign_color">=</span><span
+                                                    class="mv_sign_color">&lt;</span>proxy-address<span
+                                                    class="mv_sign_color">&gt;</span> :<span
+                                                    class="mv_sign_color">&lt;</span>proxy-port<span
+                                                    class="mv_sign_color">&gt;</span>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="mb-0">&nbsp;</p>
+                    </section>
+
+                    <section id="dk_data_vulnerabilies">
+                        <p class="mb-0">&nbsp;</p>
+                        <h3 style="font-weight: 350;"><a class="b_special_a1" href="">Data Vulnerabilities</a></h3>
+                        <p>The vulnerabilities described in this section are used to make stale data architecturally visible. Some are direct operations (reads and writes) and some are sampling operations (transient-execution attacks).</p>
+                        <p>Readers only interested in server<a class="b_special_a1" href=""><sup>5</sup></a> vulnerabilities should read the <a class="b_special_a1" href="">Device Register Partial Write (DRPW)</a> section, and then proceed to the <a class="b_special_a1" href="">Mitigation</a> section.</p>
+                    </section>
+
+                    <section id="dk_drpw">
+                        <p class="mb-0">&nbsp;</p>
+                        <h4><a class="b_special_a1" href="">Device Register Partial Write (DRPW)</a></h4>
+                        <p>Some endpoint MMIO registers incorrectly handle writes that are smaller than the register size. Instead of aborting the write or only copying the correct subset of bytes (for example, 2 bytes for a 2-byte write), more bytes than specified by the write transaction may be written to the register. On processors affected by <a class="b_special_a1" href="">FBSDP</a>, this may expose stale data from the fill buffers of the core that created the write transaction.</p>
+                        <p>If an endpoint device ignores byte enables, all bytes are copied to the device register. This means that both the write data and the stale data now reside in the device register. A subsequent read of the same register will return as valid the written data, along with what used to be stale data. &nbsp;Endpoints with this behavior have been found integrated on silicon and in discrete PCIe devices.</p>
+                        <p class="mb-0">&nbsp;</p>
+                    </section>
+
+                    <section id="dk_sbds">
+                        <p class="mb-0">&nbsp;</p>
+                        <h4><a class="b_special_a1" href="">Shared Buffers Data Sampling (SBDS)</a></h4>
+                        <p>After propagators have moved data around the uncore and copied stale data into core fill buffers, processors affected by <a class="b_special_a1" href="">MFBDS</a> can leak data from the fill buffer.</p>
+                        <p>When a fill buffer stale data propagator is followed by the sideband stale data propagator, and then by an MFBDS attack, it is considered an SBDS attack. In addition, any combination that uses the fill buffer stale data propagator or primary stale data propagator before an MFBDS attack is also considered SBDS.</p>
+                        <p class="mb-0">&nbsp;</p>
+                    </section>
+
+                    <section id="dk_srbds_update">
+                        <h4><a class="b_special_a1" href="">SRBDS Update</a></h4>
+                        <p>The original SRBDS mitigation is subject to possible race conditions that special sideband transactions may occur between buffer use and overwriting operation. When this happens, data from <span class="dk_code_simple">RDRAND</span>, <span class="dk_code_simple">RDSEED</span>, and <span class="dk_code_simple">EGETKEY</span> may remain even after buffer overwriting.</p>
+                        <p class="mb-0">&nbsp;</p>
+                    </section>
+
+                    <section id="dk_shared_sbdr">
+                        <h4><a class="b_special_a1" href="">Shared Buffers Data Read (SBDR)</a></h4>
+                        <p>Shared Buffers Data Read (SBDR) differs from Shared Buffers Data Sampling (SBDS) in that the data is directly read into the architectural, software-visible state. In processors affected by SBDR, any read that is wider than 4 bytes could potentially have stale data returned from a transaction buffer. </p>
+                        <p class="mb-0">&nbsp;</p>
+                    </section>
+
+                    <section id="dk_implications">
+                        <h4>Implications of Vulnerabilities</h4>
+                        <p>The DRPW and SBDR scenarios require software to access registers with a different size or alignment than is expected by the architectural definitions of these registers. These issues are not likely to occur accidentally during normal execution and are likely to only be triggered by malicious software. These MMIO-based attacks generally require MMIO access to make stale data software-visible. Note that any data copied to fill buffers may be vulnerable to <a class="b_special_a1" href="">MFBDS</a> attacks, which do not require MMIO access.&nbsp;</p>
+                        <p>The fill buffer, sideband, and primary stale data propagators can occur during normal execution. Data may be propagated into the uncore via the fill buffer stale data propagator, and into the core via the sideband stale data propagator. Confused deputies that may propagate information should be considered. Refer to the <a class="b_special_a1" href="">Preventing Software from Acting as a Confused Deputy by Propagating Secret Data into Vulnerable Buffers</a> section for more information.</p>
+                        <p class="mb-0">&nbsp;</p>
+                    </section>
+
+                    <section id="dk_mitigation">
+                        <p class="mb-0">&nbsp;</p>
+                        <h3 style="font-weight: 350;"><a class="b_special_a1" href="">Mitigation</a></h3>
+                        <p class="mb-0">For each vulnerability, there are two broad strategies that software can take:&nbsp;</p>
+                        <ul> 
+                            <li>Preventing secret data from getting into buffers from which it can be extracted (blocking propagators).&nbsp;</li> 
+                            <li>Preventing untrusted software from extracting data from vulnerable buffers (blocking vulnerabilities).</li> 
+                        </ul>
+                        <p>The first strategy generally involves using <span class="dk_code_simple">FB_CLEAR</span> operations to overwrite secret data before it could be transferred to the affected buffer.</p>
+                        <p>On products not affected by <a class="b_special_a1" href="">MFBDS</a> or <a class="b_special_a1" href="">TAA</a> vulnerabilities, there may be some software usage models or configurations where the second strategy can be employed for all untrusted software. In these cases, it is acceptable for secret data to reside in affected buffers without overwriting the buffers because potential attackers are prevented from extracting any data. In particular, in some environments it may be realistic to disallow direct MMIO access to untrusted software; thereby preventing any malicious actors from exploiting DRPW or SBDR<a class="b_special_a1" href=""><sup>6</sup></a>.</p>
+                        <p>To simplify mitigation, we assume in this article that system software has already mitigated the <a class="b_special_a1" href="">MDS family of issues</a>. As with the previous MDS vulnerabilities, in systems with simultaneous multithreading (SMT<a class="b_special_a1" href=""><sup>7</sup></a>) enabled, there may be race conditions where malicious software can extract data, or a confused deputy may leak data, on the sibling hyperthread between when data is put into the fill buffers and when it is overwritten. These race conditions might allow attackers to extract secret data. Software running on systems with SMT enabled that is concerned about these race conditions can use scheduling methods to avoid the confused deputy case or ensure that untrusted software does not run on the same core with software from other security domains. Refer to the <a class="b_special_a1" href="">MDS documentation</a>&nbsp;for more details on these mitigations.</p>
+                        <p>The sections below provide details on each scenario and the specific mitigation sequences that must be used for each. It is assumed that the latest microcode updates will be installed on any affected systems.</p>
+                    </section>
+
+                    <section id="dk_processor_supp">
+                        <h4><a class="b_special_a1" href="">Processor Support for Mitigations</a></h4>
+                    </section>
+                    
+                    <section id="dk_fill_buffer_op"> 
+                        <h4>Fill Buffer Clearing Operations</h4>
+                        <p>The mitigation for FBSDP can involve using <span class="dk_code_simple">MD_CLEAR</span> functionality to overwrite fill buffer values. Some processors may enumerate <span class="dk_code_simple">MD_CLEAR</span> because they overwrite all buffers affected by MDS/TAA, but they do not overwrite fill buffer values. This is because fill buffers are not susceptible to MDS or TAA on those processors.&nbsp;</p>
+                        <p>For processors affected by FBSDP where <span class="dk_code_simple">MD_CLEAR</span> may not overwrite fill buffer values, Intel has released microcode updates that enumerate <span class="dk_code_simple">FB_CLEAR</span> so that <span class="dk_code_simple">VERW</span> does overwrite fill buffer values.&nbsp;</p>
+                        <p>When running with this updated microcode, the <span class="dk_code_simple">VERW</span> instruction will overwrite the fill buffer values for all logical processors on the physical core. The fill buffers will also be overwritten on <span class="dk_code_simple">RSM</span> and when entering or exiting Intel SGX enclaves. For <span class="dk_code_simple">EENTER</span> and <span class="dk_code_simple">ERESUME</span>, the fill buffers will be overwritten after all state loading has completed.</p>
+                        <p>On some processors affected by FBSDP but not affected by MDS, an MSR has been added that allows disabling the fill buffer overwriting functionality in <span class="dk_code_simple">VERW</span>.&nbsp; Virtual Machine Managers (VMMs) can use this MSR to avoid the performance overhead of <span class="dk_code_simple">VERW</span> overwriting the fill buffers (for example, because the guest has no access to MMIO). This may be useful in cases where the VMM has to hide enumeration of <span class="dk_code_simple">MDS_NO</span> from the guest due to the existence in the migration pool of older systems without <span class="dk_code_simple">MDS_NO</span>. For more details, refer to the <a class="b_special_a1" href="">IA32_ARCH_CAPABILITIES.FB_CLEAR</a> section.</p>
+                        <p>For processors that are affected by MDS and support <span class="dk_code_simple">L1D_FLUSH</span> operations and <span class="dk_code_simple">MD_CLEAR</span> operations, the <span class="dk_code_simple">L1D_FLUSH</span> operation flushes fill buffers.</p>
+                        <p>For processors that are affected by MDS and support <span class="dk_code_simple">L1D_FLUSH</span> operations and <span class="dk_code_simple">MD_CLEAR</span> operations, the <span class="dk_code_simple">VERW</span> instruction flushes fill buffers. &nbsp;On processors that enumerate <span class="dk_code_simple">FB_CLEAR</span>, the <span class="dk_code_simple">VERW</span> instruction also flushes fill buffers.</p>
+                        <h5>System Management Mode (SMM)</h5>
+                        <p class="mb-4">The <span class="dk_code_simple">RSM</span> instruction will overwrite the fill buffer values for all logical processors on the physical core.</p>
+                    </section>
+
+                    <section id="dk_protection">
+                        <h4>RDRAND/RDSEED/EGETKEY Protection</h4>
+                        <p>As part of the existing mitigation for <a href="">SRBDS</a>, Intel released microcode updates for client processors in order to modify the <span class="dk_code_simple">RDRAND</span>, <span class="dk_code_simple">RDSEED</span>, and SGX <span class="dk_code_simple">EGETKEY </span>instructions to overwrite stale special register data in uncore response and transaction buffers. This type of mitigation is also relevant for processors affected by SBDR or SSDP, as it prevents secret data processed by these instructions from being extracted from those uncore buffers. Microcode updates have been released to add this mitigation to processors that were not affected by SRBDS but are affected by SBDR or SSDP. Additionally, microcode updates contain a workaround for the issue described in the <a href="">SRBDS Update</a> section. Note that <span class="dk_code_simple">RDRAND</span> and <span class="dk_code_simple">RDSEED</span> may put the random values into the fill buffers, and thus it is software’s responsibility to apply <span class="dk_code_simple">FB_CLEAR</span> before switching to an untrusted entity that could perform attacks that could leak stale data from fill buffers (such as DRPW, SBDR, and SBDS). &nbsp;For Intel SGX, it is not the responsibility of software running in an enclave; the fill buffers are cleared by microcode/hardware upon <span class="dk_code_simple">EEXIT</span> and upon exiting an enclave.</p>
+                        <p class="mb-0">&nbsp;</p>
+                    </section>
+
+                    <section id="dk_software_miti">
+                        <h4>Software Mitigations</h4>
+                        <p>For platforms with client uncore implementations, read this entire section. Server<a class="b_special_a1" href=""><sup>8</sup></a>&nbsp;implementations only need the <a class="b_special_a1" href="">Preventing Untrusted Software from Propagating Secret Data into Vulnerable Buffers</a> subsection.</p>
+                        <p class="mb-0">&nbsp;</p>
+                    </section>
+
+                    <section id="dk_preventing_buffers">
+                        <h5><a class="b_special_a1" href="">Preventing Untrusted Software from Propagating Secret Data into Vulnerable Buffers</a></h5>
+                        <p>For usage models where untrusted software needs fast access to MMIO, the OS and VMM may want to focus on preventing that software from being able to propagate secret data into vulnerable buffers (via FBSDP) rather than preventing the attacks from accessing the data from those vulnerable buffers.</p>
+                        <p>On processors vulnerable to <a class="b_special_a1" href="">MFBDS</a>, the OS and VMM software should already prevent secret data from being present in the fill buffers when running untrusted software. This is done by the OS/VMM using the <span class="dk_code_simple">MD_CLEAR</span> functionality (by executing either the <span class="dk_code_simple">VERW</span> instruction or the <span class="dk_code_simple">L1D_FLUSH</span> command) to overwrite the fill buffers before transitioning to untrusted software.&nbsp;</p>
+                        <p>Additionally, the OS/VMM software can use core scheduling and kernel rendezvous to ensure that the sibling thread is not in a different malicious security domain or might be acting as a confused deputy. For more details on the core scheduling policy, see the <a class="b_special_a1" href="">MDS guidance</a>.&nbsp;</p>
+                        <p>Similar basic techniques can be used by the OS/VMM to ensure that fill buffers do not contain secret data from other security domains when running untrusted software that could potentially employ Processor MMIO Stale Data vulnerabilities to read or infer the fill buffers.</p>
+                        <p>One difference compared to the MFBDS mitigations is that while most software environments can perform an MFBDS attack, many unprivileged software domains are unable to perform SBDR and DRPW attacks. It may not be necessary to overwrite fill buffers when transitioning to software that lacks the privileges needed to perform an attack using these vulnerabilities.</p>
+                        <p>Another difference is that privileged software may accidentally copy fill buffer data to a vulnerable sideband uncore transaction/response buffer, thus acting as a confused deputy. This is discussed in the <a class="b_special_a1" href="">Preventing Software from Acting as a Confused Deputy by Propagating Secret Data into Vulnerable Buffers</a> section. Due to this reason, software with strict security requirements may choose to perform a <span class="dk_code_simple">VERW</span> or <span class="dk_code_simple">L1D_FLUSH</span> command before transitioning to privileged software that has not been mitigated against this, even if that was not needed as part of an MFBDS mitigation.</p>
+                        <p>Although the mitigation for MDS required <span class="dk_code_simple">LFENCE</span> or a similar execution-serializing instruction (such as <span class="dk_code_simple">SYSRET</span>) to follow the <span class="dk_code_simple">VERW</span> on some processors, this is not needed when <span class="dk_code_simple">VERW</span> is used exclusively to mitigate vulnerabilities involving FBSDP (meaning the part is not affected by MDS or <a class="b_special_a1" href="">TAA</a>).</p>
+                        <h5>Mitigation Considerations</h5>
+                        <p>In bare metal OS environments, it is uncommon for untrusted software to have access to MMIO. In virtualized environments, guests may be given access to devices, and so mitigation may be needed.</p>
+                        <p>Intel Xeon server systems (excluding Intel Xeon E3 processors) are only affected by the DRPW issue. For these and any other processors that enumerate <span class="dk_code_simple">SBDR_SSDP_NO</span>, the fill buffer overwriting described in the <a class="b_special_a1" href="">Preventing Untrusted Software from Propagating Secret Data into Vulnerable Buffers</a> section is not needed before transitioning to untrusted software that does not have MMIO write access to a DRPW-affected endpoint.</p>
+                        <p>Similarly, on client and Intel Xeon E3 systems that are affected by SBDR, it may not be necessary to overwrite fill buffers before transitioning to untrusted software that does not have access to MMIO addresses.&nbsp;</p>
+                        <p class="mb-0">&nbsp;</p>
+                    </section>
+
+                    <section id="dk_vulnerable_buffers">
+                        <h4><a class="b_special_a1" href="">Preventing Software from Acting as a Confused Deputy by Propagating Secret Data into Vulnerable Buffers</a></h4>
+                        <p>On processors affected by FBSDP and either SBDR or SSDP, it is possible that victim software may unintentionally copy secret data from the core’s fill buffers to an uncore response or transaction buffer. Although it is not clear that an attacker will be able to control or cause this situation, customers should evaluate their risk profile to see if the mitigations described in this section are needed.</p>
+                        <p>Note that Intel Xeon server systems (excluding Intel Xeon E3 processors) are not affected by SBDR or SSDP, and thus this section does not apply to them.</p>
+                        <p>On affected processors where security requires mitigating this type of confused deputy attack, software can perform an <span class="dk_code_simple">FB_CLEAR</span> operation before performing writes that go through sideband uncore response and transaction buffers. An <span class="dk_code_simple">MFENCE;LFENCE</span> sequence or a serializing instruction after the write can ensure that younger operations that touch secret data do not put that data into a fill buffer entry before the older write uses that fill buffer entry. These writes include MMIO writes to endpoints on sideband, IO writes and certain operations that do special register writes to uncore buffer. Refer to the <a class="b_special_a1" href="">Operations That May Cause Writes into Non-Coherent Fabrics</a> section.</p>
+                        <p>Also note that there are several aspects that may still lead to secret data being written out to the non-coherent fabric in non-valid bytes. It is possible that the sibling hyperthread, code fetch, or a hardware prefetcher or asynchronous event can put secret data into the fill buffer between the <span class="dk_code_simple">FB_CLEAR</span> operation and the partial write to the non-coherent fabric. Finally, software handlers that run between the <span class="dk_code_simple">FB_CLEAR</span> operation and the partial write (such as interrupt or page fault handlers) may result in the kernel thread being preempted. When the kernel thread is rescheduled, the OS may perform an <span class="dk_code_simple">FB_CLEAR</span> to ensure that any fill buffers are overwritten.</p>
+                        <p class="mb-0">&nbsp;</p>
+                    </section>
+
+                    <section id="dk_psdp">
+                        <h4><a class="b_special_a1" href="">Mitigating PSDP Propagation</a></h4>
+                        <p>After reading secret data from MMIO (such as an encryption key from a TPM device), that data may remain in uncore buffers. On parts affected by PSDP, that stale data may propagate to the fill buffers where it could be attacked by other techniques.</p>
+                        <p>To mitigate this, the OS, VMM, or driver that reads the secret data can reduce the window in which that data remains vulnerable in the uncore buffers by performing an additional read of some non-secret data from a valid MMIO register on the primary bus with the same cache line offset (address mod 64) and at least the same size as the register from which the secret data was read. Note that TPM 2.0 supports encrypted MMIO transactions, and this mode may also be used to mitigate a stale data attack.</p>
+                        <p>Since aborted accesses will not overwrite the buffer, software should use real register reads that are mapped over the primary bus. Ring 0 software can either read the lower configuration space of the device containing secret data or be hardcoded to read the standard configuration addresses of a device that is never disabled (such as SPI). Guest software and Ring 3 software may not have access to these options, so the hypervisor or other Ring 0 software would need to provide appropriate addresses based on the devices exposed to the guest or Ring 3 software.</p>
+                        <p class="mb-0">&nbsp;</p>
+                    </section>
+
+                    <section id="dk_extract_data">
+                        <h4><a class="b_special_a1" href="">Preventing Untrusted Software from Using Processor MMIO Stale Data Vulnerabilities to Extract Data</a></h4>
+                        <p>For some systems and usage models, it may be more feasible to prevent malicious actors from observing secrets in the uncore response/transaction buffers than it is to prevent secret data from entering those buffers. Such systems may be able to avoid some of the situations described in the <a class="b_special_a1" href="">Preventing Software from Acting as a Confused Deputy by Propagating Secret Data into Vulnerable Buffers</a> section. Note that this may not be feasible on systems that are affected by both <a class="b_special_a1" href="">MFBDS</a> and SSDP.&nbsp;</p>
+                        <p>The easiest way to prevent malicious actors from observing these secrets is to prevent them from having access to MMIOs. In cases where untrusted software must have access to MMIO, a VMM may be able to cause VM exits on the transactions and scrub the data for cases that may be attacks, but the needed VM exits may cause increased performance overhead.</p>
+                        <p class="mb-0">&nbsp;</p>
+                    </section>
+
+                    <section id="dk_considerations">
+                        <h4>Considerations for Nested Hypervisors and Migration Pools</h4>
+                        <p>Some environments may have migration pools that include different platforms. In such cases, the VMM must expose the lowest common denominator features to VMs and nested hypervisors in order to ensure compatibility. The VMM is responsible for ensuring that the proper behaviors and security properties are maintained for each platform.</p>
+                        <h5>Nested Hypervisors</h5>
+                        <p>On platforms affected by FBSDP (platforms that enumerate <span class="dk_code_simple">FBSDP_NO == 0</span>) the VMM is expected to perform an <span class="dk_code_simple">FB_CLEAR</span> operation on certain VM transitions (refer to the <a class="b_special_a1" href="">Processor Support for Mitigations</a> section) in order to prevent fill buffer data from being exposed. As documented in the <a class="b_special_a1" href="">Definitions</a> section under the explanation of <span class="dk_code_simple">FB_CLEAR</span>, on some platforms both the <span class="dk_code_simple">L1D_FLUSH</span> command and the <span class="dk_code_simple">VERW</span> instruction will do this, but on other platforms only <span class="dk_code_simple">VERW</span> does.</p>
+                        <p>Supporting migration pools that include platforms affected by FBSDP, some of which perform an <span class="dk_code_simple">FB_CLEAR</span> operation as part of the <span class="dk_code_simple">L1D_FLUSH</span> command and some of which do not, requires the VMM to handle nested VMMs specially. &nbsp;If the primary (L0) VMM is running on a platform that requires <span class="dk_code_simple">VERW</span> in order to perform the <span class="dk_code_simple">FB_CLEAR</span> operation, the primary VMM should take a <span class="dk_code_simple">VMEXIT</span> on access to the IA32_FLUSH_CMD MSR (where the <span class="dk_code_simple">L1D_FLUSH</span> command bit is). It can then execute the VERW instruction and potentially also the <span class="dk_code_simple">L1D_FLUSH</span> command. &nbsp;This will ensure that, even if the nested (L1) VMM only executes the <span class="dk_code_simple">L1D_FLUSH</span> command and not <span class="dk_code_simple">VERW</span>, the fill buffers will be cleared.</p>
+                        <p>Consider the following example of a mixed migration pool:</p>
+                        <ol> 
+                            <li>System A enumerates the following: <span class="dk_code_simple">RDCL_NO=1</span>, <span class="dk_code_simple">MDS_NO=1</span>, <span class="dk_code_simple">FBSDP_NO=0</span>, <span class="dk_code_simple">L1D_FLUSH=1</span>, <span class="dk_code_simple">MD_CLEAR=1</span>, <span class="dk_code_simple">FB_CLEAR=1</span>. On this system, <span class="dk_code_simple">VERW</span> performs <span class="dk_code_simple">FB_CLEAR</span> but <span class="dk_code_simple">L1D_FLUSH</span> does not.</li> 
+                            <li>System B enumerates the following: <span class="dk_code_simple">RDCL_NO=0</span>, <span class="dk_code_simple">MDS_NO=0</span>, <span class="dk_code_simple">FBSDP_NO=0</span>, <span class="dk_code_simple">L1D_FLUSH=1</span>, <span class="dk_code_simple">MD_CLEAR=1</span>. On this system, both <span class="dk_code_simple">VERW</span> and <span class="dk_code_simple">L1D_FLUSH</span> perform <span class="dk_code_simple">FB_CLEAR</span>.</li> 
+                            <li>A nested (L1) VMM running in this pool may run on either system and so would see the following minimal feature set enumerated to it on all systems in the pool:&nbsp;<span class="dk_code_simple">RDCL_NO=0</span>, <span class="dk_code_simple">MDS_NO=0</span>, <span class="dk_code_simple">FBSDP_NO=0</span>, <span class="dk_code_simple">L1D_FLUSH=1</span>, <span class="dk_code_simple">MD_CLEAR=1</span>.&nbsp;<br> As a result, this nested VMM will expect that the <span class="dk_code_simple">L1D_FLUSH</span> command will perform an <span class="dk_code_simple">FB_CLEAR</span> operation, and so it will not additionally execute <span class="dk_code_simple">VERW</span>.</li> 
+                            <li>But when the L1 VMM runs on System A, its <span class="dk_code_simple">L1D_FLUSH</span> will not actually perform an <span class="dk_code_simple">FB_CLEAR</span>. Thus, the L0 VMM on System A must intercept the L0 VMM’s <span class="dk_code_simple">L1D_FLUSH</span> and additionally execute <span class="dk_code_simple">VERW</span>. The L0 VMM on System B does not need to do this, as the L1 VMM’s <span class="dk_code_simple">L1D_FLUSH</span> will perform an <span class="dk_code_simple">FB_CLEAR</span> when running on System B.</li> 
+                        </ol>  
+                        <h5>Performance Considerations</h5>
+                        <p>On platforms affected by FBSDP (platforms that enumerate <span class="dk_code_simple">FBSDP_NO == 0</span>), a guest OS may use the <span class="dk_code_simple">FB_CLEAR</span> operation to protect kernel and application data from a malicious application that has (or could have) MMIO access. This will incur the performance overhead of fill buffer clearing on these context switches.&nbsp;</p>
+                        <p>However, the guest OS does not know whether or not it has really been given direct hardware access to a device’s MMIO space, or whether it is using an emulated or paravirtualized device, and therefore the guest OS must assume it could have direct access and so protect the data.</p>
+                        <p>The VMM does know whether it has given direct MMIO access to a guest OS. In cases where it has not, the VMM could set the <span class="dk_code_simple">FB_CLEAR_DIS</span> bit to cause the <span class="dk_code_simple">VERW</span> instruction to not perform the <span class="dk_code_simple">FB_CLEAR</span> action. This will significantly reduce the performance overhead for those guests which are performing <span class="dk_code_simple">FB_CLEAR</span> operations on process context switches.</p>
+                        <p>Similarly, guests that are in migration pools with platforms that are affected by MDS or TAA will be told by the VMM that they are always running on a platform that is affected, even if in some cases they are not. For those cases where the guest is run on a platform that is not affected by either MDS or TAA, or is affected by the Processor MMIO Stale Data Vulnerabilities but does not have direct hardware access, the VMM can set <span class="dk_code_simple">FB_CLEAR_DIS</span> bit to reduce the performance impact.</p>
+                        <p class="mb-0">&nbsp;</p>
+                    </section>
+
+                    <section id="dk_intel_sgx">
+                        <h4><a class="b_special_a1" href="">Intel® Software Guard Extensions (Intel® SGX)</a></h4>
+                    </section>
+
+                    <section id="dk_attestation">
+                        <h4 class="mt-3">Attestation</h4>
+                        <p>When SMT is disabled at boot and the Intel SGX platform TCB is up-to-date, attestations originating from affected platforms will result in the SW_HARDENING_NEEDED attestation response from the attestation verifier. This means that the relying party should evaluate the attesting ISV enclave (by inspecting its <em>SGX Report</em> included in the attestation) to determine whether the enclave contains the necessary mitigations. For example, the <em>ISVPRODID</em> or <em>ISVSVN</em> field in the Report can be used to signal the presence of mitigations.</p>
+                        <p>It is important to note that Intel SGX attestations only reflect the microcode patch that is loaded upon platform reset. Intel SGX attestations do not reflect, for example, a microcode patch loaded by an operating system.</p>
+                    </section>
+
+                    <section id="dk_smt_sgx">
+                        <h4 class="mt-3">SMT Considerations for Intel® SGX</h4>
+                        <p>On processors with SMT enabled that are not affected by MDS or TAA, but are affected by these MMIO vulnerabilities, it is possible for malicious software running on a sibling thread to use these vulnerabilities to propagate an enclave’s fill buffer data into the uncore where it can then be extracted.</p>
+                        <p>The Intel SGX security model does not trust the OS scheduler to ensure that software workloads running on sibling threads mutually trust each other. Intel SGX remote attestation reflects whether Intel® Hyper-Threading Technology (Intel® HT Technology) is enabled or disabled by the BIOS<a class="b_special_a1" href=""><sup>10</sup></a>. For processors affected by these MMIO stale data vulnerabilities, the remote attestation response will indicate CONFIGURATION_AND_SW_HARDENING_NEEDED<a class="b_special_a1" href=""><sup>11</sup></a>&nbsp;if Intel HT Technology is enabled. If Intel HT technology is disabled, the attestation response will be SW_HARDENING_NEEDED, as stated above. An Intel SGX remote attestation relying party can evaluate the risk of potential cross-thread attacks when Intel HT Technology is enabled on the platform and decide whether to trust an enclave on the platform to protect specific secret information.</p>
+                    </section>
+
+                    <section id="dk_implications_mode">
+                        <h4 class="mt-3">Implications for Software Running in Intel SGX Enclave Mode</h4>
+                        <p>Because the Intel SGX security model does not trust the OS, a malicious OS could map MMIO memory into the untrusted memory space of an application that uses one or more Intel SGX enclaves. This could include the region of untrusted memory used for parameter passing to/from <span class="dk_code_simple">ECALL</span>s and <span class="dk_code_simple">OCALL</span>s, or any external buffers that an enclave might use to communicate with its application. If the malicious OS does such mapping, then when the enclave writes to this memory, it could propagate the stale data in its fill buffers into the uncore, where it could later be extracted by malicious software.</p>
+                        <p>The mitigations below assume that Intel HT Technology is disabled to ensure that once the fill buffers are overwritten, a sibling thread cannot repopulate them. The mitigation depends on how the enclave is accessing the non-enclave memory regions.</p>
+                        <ul> 
+                            <li>Enclaves that only write to memory outside the enclave in the context of <span class="dk_code_simple">ECALL</span>s and <span class="dk_code_simple">OCALL</span>s:<br> For enclaves using the Intel SGX SDK and Edger8r tool included with the SDK to create and manage the <span class="dk_code_simple">ECALL</span> and <span class="dk_code_simple">OCALL</span> interface, Intel has&nbsp;released an update to the SDK and Edger8r tool that will prevent fill buffer data exposure through the code generated by the Edger8r tool. Similarly, the Intel SGX SDK will include updates that will prevent fill buffer data exposure through the code used by enclaves that use the <em>switchless</em> mode supported by the Intel SDK.</li> 
+                            <li>Enclaves that write to memory outside the enclave using code that isn’t associated with <span class="dk_code_simple">ECALL</span>s or <span class="dk_code_simple">OCALL</span>s:<br> This includes enclaves that use the Intel SGX SDK but which specify the <span class="dk_code_simple">[user_check]</span> attribute in their enclave definition language (EDL)<a class="b_special_a1" href=""><sup>12</sup></a>. For these enclaves, all writes to untrusted memory must either be preceded by the <span class="dk_code_simple">VERW</span> instruction and followed by the <span class="dk_code_simple">MFENCE;</span> <span class="dk_code_simple">LFENCE</span> instruction sequence or must be in multiples of 8 bytes, aligned to an 8-byte boundary.&nbsp;</li> 
+                        </ul>
+                        <p>Intel will work with the developers of other SGX SDKs and runtimes to help ensure that they have similar mitigations.</p>
+                    </section>
+
+                    <section id="dk_32_enclaves">
+                        <h4 class="mt-3">32-bit Enclaves vs. 64-bit Enclaves</h4>
+                        <p>32-bit enclaves running on a 32-bit OS are vulnerable to additional OS manipulation of page table mappings. There is no mitigation for this issue, but remote attestation can determine if an enclave is 32-bit, and thus susceptible to such an attack. 64-bit enclaves are not susceptible to this issue. Attestation cannot be used to determine if the 32-bit enclave is running in a 32-bit OS or in a maliciously configured environment. &nbsp;</p>
+                    </section>
+
+                    <section id="dk_smm">
+                        <p class="mb-0">&nbsp;</p>
+                        <h4><a class="b_special_a1" href="">System Management Mode (SMM)</a></h4>
+                        <p class="mb-0">Systems enter System Management Mode (SMM) either:</p>
+                        <ul> 
+                            <li>Asynchronously in response to some external event that requires intervention by platform firmware, or:</li> 
+                            <li>Synchronously to process some request from the operating system or VMM (for example, for an EFI runtime services function call).</li> 
+                        </ul>
+                        <p>Code in SMM may execute MMIO operations that move data between microarchitectural buffers as documented in the preceding sections. This may result in OS/VMM data moving from fill buffers to uncore buffers where it may be vulnerable to some of the techniques described in this paper.</p>
+                        <p>OSes/VMMs concerned about this possibility may use an <span class="dk_code_simple">FB_CLEA</span>R operation to overwrite fill buffers before executing code that is known to synchronously enter SMM.</p>
+                        <p>SMM isolation solutions, such as an SMI Transfer Monitor (STM), that protect the OS and VMM from compromised SMI handlers, should follow the VM and OS guidance in this article to prevent isolated/deprivileged SMM code from performing attacks using these methods.</p>
+                        <p class="mb-0">&nbsp;</p>
+                    </section>
+
+                    <section id="dk_enumeration">
+                        <h4><a class="b_special_a1" href="">Enumeration</a></h4>
+                        <p>Intel recommends applying the latest Intel security mitigations and ensuring systems are running the latest firmware/MCU versions available. MCU may still be required for enumeration even when processors are not affected by a particular security issue. Contact your operating system (OS) and virtual machine manager (VMM) vendors to obtain their latest software updates.</p>
+                        <p>Note that on processors where IA32_ARCH_CAPABILITIES is not enumerated (CPUID.(EAX=7H,ECX=0):EDX[29] is 0), all IA32_ARCH_CAPABILITIES bits should be treated as 0.</p>
+                        <p>Note that microcode updates to mitigate these issues may also change enumeration for existing features not described here. For example, they may set SRBDS_CTRL (CPUID (EAX=07H,ECX=0).EDX[SRBDS_CTRL = 9]) on parts that did not previously enumerate it.&nbsp;</p>
+                        <table class="mv_product_table w-100 mb-4">
+                            <caption>Table 2: Updates to IA32_ARCH_CAPABILITIES MSR</caption>
+                            <thead> 
+                                <tr> 
+                                 <th scope="col">Register Address (Hex)</th> 
+                                 <th scope="col">Register Address (Dec)</th> 
+                                 <th scope="col">Register Name / Bit Fields</th> 
+                                 <th scope="col">Bit Description</th> 
+                                 <th scope="col">Comment</th> 
+                                </tr> 
+                            </thead>
+                            <tbody> 
+                                <tr> 
+                                 <td>10AH</td> 
+                                 <td>266</td> 
+                                 <td>IA32_ARCH_CAPABILITIES</td> 
+                                 <td>Enumeration of Architectural Features (RO)</td> 
+                                 <td>If CPUID.(EAX=07H, ECX=0):EDX[29]=1.</td> 
+                                </tr> 
+                                <tr> 
+                                 <td>10AH</td> 
+                                 <td>266</td> 
+                                 <td>13</td> 
+                                 <td><span class="dk_code_simple">SBDR_SSDP_NO</span>: The processor is not affected by either the SBDR vulnerability or the SSDP.&nbsp;</td> 
+                                 <td>&nbsp;</td> 
+                                </tr> 
+                                <tr> 
+                                 <td>10AH</td> 
+                                 <td>266</td> 
+                                 <td>14</td> 
+                                 <td><span class="dk_code_simple">FBSDP_NO</span>: The processor is not affected by FBSDP. &nbsp;</td> 
+                                 <td>&nbsp;</td> 
+                                </tr> 
+                                <tr> 
+                                 <td>10AH</td> 
+                                 <td>266</td> 
+                                 <td>15</td> 
+                                 <td><span class="dk_code_simple">PSDP_NO</span>: The processor is not affected by vulnerabilities involving PSDP.</td> 
+                                 <td>&nbsp;</td> 
+                                </tr> 
+                                <tr> 
+                                 <td>10AH</td> 
+                                 <td>266</td> 
+                                 <td>17</td> 
+                                 <td><span class="dk_code_simple">FB_CLEAR</span>: The processor will overwrite fill buffer values as part of <span class="dk_code_simple">MD_CLEAR</span> operations with the <span class="dk_code_simple">VERW</span> instruction. On these processors, <span class="dk_code_simple">L1D_FLUSH</span> does not overwrite fill buffer values.&nbsp;</td> 
+                                 <td>&nbsp;</td> 
+                                </tr> 
+                                <tr> 
+                                 <td>&nbsp;</td> 
+                                 <td>&nbsp;</td> 
+                                 <td>18</td> 
+                                 <td><span class="dk_code_simple">FB_CLEAR_CTRL</span>: The processor supports read and write to the IA32_MCU_OPT_CTRL MSR (MSR 123H) and to the <span class="dk_code_simple">FB_CLEAR_DIS</span> bit in that MSR (bit position 3).&nbsp;</td> 
+                                 <td>On such processors, the <span class="dk_code_simple">FB_CLEAR_DIS</span> bit can be set to cause the <span class="dk_code_simple">VERW</span> instruction to skip the <span class="dk_code_simple">FB_CLEAR</span> action (<span class="dk_code_simple">FB_CLEAR_DIS</span> does not disable the <span class="dk_code_simple">FB_CLEAR</span> action in the <span class="dk_code_simple">L1D_FLUSH</span> operation for processors in which <span class="dk_code_simple">L1D_FLUSH</span> overwrites the fill buffers)</td> 
+                                </tr> 
+                            </tbody>
+                        </table> 
+                        <p>&nbsp;</p>
+                    </section>
+
+                    <section id="dk_example_1">
+                        <h4>Example Enumeration of Processor MMIO Stale Data Vulnerabilities</h4>
+                        <p>Software can use a list of affected CPUs to enumerate these issues on systems that do not have updated microcode. Newer processors and microcode update on existing affected processors will add new bits to IA32_ARCH_CAPABILITIES MSR. These bits can be used to enumerate specific variants of Processor MMIO Stale Data vulnerabilities and mitigation capability. If a CPU is on the list of affected processors, you can use the algorithm below to enumerate the Processor MMIO Stale Data vulnerability:</p>
+                        <div class="mv_code_toolbar">
+                            <div class="mv_toolbar_item mv_copy_icon">
+                                <i class="fa-regular fa-copy"></i>
+                            </div>
+                            <div class="mv_copy_message text-end hidden">Copied</div>
+                            <div class="code-content">
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp;</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">If &nbsp; CPUID ( EAX=7H,ECX=0 ) : EDX [ ARCH_CAP=29 ] &nbsp; &nbsp; == 1</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp;</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp; &nbsp; &nbsp; &nbsp; If &nbsp; ( IA32_ARCH_CAPABILTIES . &nbsp; SBDR_SSDP_NO [ bit 13 ] == 0		OR</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; IA32_ARCH_CAPABILTIES . &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;     FBSDP_NO [bit 14] == 0		OR</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; IA32_ARCH_CAPABILTIES . &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;     PSDP_NO [bit 15] == 0)</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Processor MMIO Stale Data vulnerabilities present</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">Else</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 1rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp; &nbsp; &nbsp; &nbsp; Processor MMIO Stale Data vulnerabilities not present</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section id="dk_example_2">
+                        <h4>Example Mitigation Selection for Processor MMIO Stale Data Vulnerabilities</h4>
+                        <p>If Processor MMIO Stale Data vulnerabilities are present (as enumerated in the section above), use the following pseudocode algorithm to decide which mitigation is needed. This pseudocode checks whether a system has the microcode to overwrite fill buffers.</p>
+                        <div class="mv_code_toolbar">
+                            <div class="mv_toolbar_item mv_copy_icon">
+                                <i class="fa-regular fa-copy"></i>
+                            </div>
+                            <div class="mv_copy_message text-end hidden">Copied</div>
+                            <div class="code-content">
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp;</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">If &nbsp;	IA32_ARCH_CAPABILTIES. FB_CLEAR [ bit 17 ] == 1</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; OR</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp; &nbsp; &nbsp; ( CPUID ( EAX=7H,ECX=0 ) :EDX  [ MD_CLEAR = bit 10 ] == 1 &nbsp; &nbsp; AND</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp; &nbsp; &nbsp; CPUID ( EAX=7H,ECX=0 ) :EDX [FLUSH_L1D = bit 28] == 1 &nbsp; &nbsp; &nbsp; &nbsp;AND</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp; &nbsp; &nbsp; IA32_ARCH_CAPABILTIES. MDS_NO [ bit 5 ] == 0 )</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; VERW overwrites fill buffers</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">Else</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Microcode update needed</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp;</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">If &nbsp; (System is also affected by MDS or TAA)</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp; &nbsp; &nbsp;  Mitigate by executing VERW before transitioning to untrusted software (same as MDS)</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp; &nbsp; &nbsp; Else</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 1rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">Mitigate by executing VERW before VMENTER only for MMIO-capable attackers (guests)</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section id="dk_example_3">
+                        <h5 class="mt-4"><a class="b_special_a1" href="">IA32_ARCH_CAPABILITIES.SBDR_SSDP_NO</a></h5>
+                        <p>Processors that set bit 13 in IA32_ARCH_CAPABILITIES (MSR 10AH) are enumerating <span class="dk_code_simple">SBDR_SSDP_NO</span>. Such processors are not affected by either the Shared Buffers Data Read (SBDR) vulnerability or the sideband stale data propagator (SSDP). This means that the techniques described in this paper cannot directly attack or otherwise infer stale data from the sideband response buffers or sideband transaction buffers.</p>
+                        <p>Because of this, mitigations to prevent secret data from entering the sideband response buffers or sideband transaction buffers are not needed. Specifically, the mitigations described in the <a class="b_special_a1" href="">Preventing Software from Acting as a Confused Deputy by Propagating Secret Data into Vulnerable Buffers</a> section are not needed.</p>
+                    </section>
+
+                    <section id="dk_example_4">
+                        <h5 class="mt-4"><a class="b_special_a1" href="">IA32_ARCH_CAPABILITIES.FBSDP_NO</a></h5>
+                        <p>Processors that set bit 14 in IA32_ARCH_CAPABILITIES (MSR 10AH) are enumerating FBSDP_NO. Such processors are not affected by the fill buffer stale data propagator (FBSDP).&nbsp;</p>
+                        <p>On processors that enumerate this, mitigations to DRPW are not needed because DRPW attacks require FBSDP propagators. Additionally, processors that enumerate this, <span class="dk_code_simple">MDS_NO</span>, and <span class="dk_code_simple">TAA_NO</span> do not need the mitigations described in the <a class="b_special_a1" href="">Preventing Untrusted Software from Using Processor MMIO Stale Data Vulnerabilities to Extract Data</a> section because no technique is known that can infer or read the stale bytes in the fill buffer.&nbsp;</p>
+                    </section>
+
+                    <section id="dk_example_5">
+                        <h5 class="mt-4"><a class="b_special_a1" href="">IA32_ARCH_CAPABILITIES.PSDP_NO</a></h5>
+                        <p>Processors that set bit 14 in IA32_ARCH_CAPABILITIES (MSR 10AH) are enumerating FBSDP_NO. Such processors are not affected by the fill buffer stale data propagator (FBSDP).&nbsp;</p>
+                        <p>On processors that enumerate this, mitigations to DRPW are not needed because DRPW attacks require FBSDP propagators. Additionally, processors that enumerate this, <span class="dk_code_simple">MDS_NO</span>, and <span class="dk_code_simple">TAA_NO</span> do not need the mitigations described in the <a class="b_special_a1" href="">Preventing Untrusted Software from Using Processor MMIO Stale Data Vulnerabilities to Extract Data</a> section because no technique is known that can infer or read the stale bytes in the fill buffer.&nbsp;</p>
+                    </section>
+
+                    <section id="dk_example_6">
+                        <h5 class="mt-4"><a class="b_special_a1" href="">IA32_ARCH_CAPABILITIES.FB_CLEAR</a></h5>
+                        <p>Processors that set <span class="dk_code_simple">FB_CLEAR</span>, bit 17 in IA32_ARCH_CAPABILITIES (MSR 10AH), will overwrite fill buffer values as part of <span class="dk_code_simple">MD_CLEAR</span> operations, as described in the <a class="b_special_a1" href="">Fill Buffer Clearing Operations</a> section. On these processors, the <span class="dk_code_simple">VERW</span> instruction will overwrite fill buffer values while <span class="dk_code_simple">L1D_FLUSH</span> may or may not.</p>
+                        <p>Processors that do not enumerate <span class="dk_code_simple">MDS_NO</span><a class="b_special_a1" href=""><sup>13</sup></a>&nbsp; (meaning they are affected by <a class="b_special_a1" href="">MDS</a>) but that do enumerate support for both <span class="dk_code_simple">L1D_FLUSH</span><a class="b_special_a1" href=""><sup>14</sup></a> &nbsp;and <span class="dk_code_simple">MD_CLEAR</span><a class="b_special_a1" href=""><sup>15</sup></a>&nbsp;implicitly enumerate <span class="dk_code_simple">FB_CLEAR</span> as part of their <span class="dk_code_simple">MD_CLEAR</span> support. Note that processors not affected by these issues may not explicitly enumerate <span class="dk_code_simple">FB_CLEAR</span>, which may have impact on VMM emulation of this enumeration in migration pools.</p>
+                    </section>
+
+                    <section id="dk_example_7">
+                        <h5 class="mt-4"><a class="b_special_a1" href="">IA32_ARCH_CAPABILITIES.FB_CLEAR_CTRL</a></h5>
+                        <p>Processors that set bit 18 in IA32_ARCH_CAPABILITIES (MSR 10AH) support read and write to IA32_MCU_OPT_CTRL MSR (123H) and to the <span class="dk_code_simple">FB_CLEAR_DIS</span> bit in that MSR (bit position 3). On such processors, the <span class="dk_code_simple">FB_CLEAR_DIS</span> bit can be set to cause the <span class="dk_code_simple">VERW</span> instruction to not perform the <span class="dk_code_simple">FB_CLEAR</span> action (<span class="dk_code_simple">FB_CLEAR_DIS</span> does not disable the <span class="dk_code_simple">FB_CLEAR</span> action in the <span class="dk_code_simple">L1D_FLUSH</span> operation for processors in which <span class="dk_code_simple">L1D_FLUSH</span> overwrites the fill buffers). This may be useful to reduce the performance impact of <span class="dk_code_simple">FB_CLEAR</span> in cases where system software deems it warranted (for example, when performance is more critical, or the untrusted software has no MMIO access). This bit does not disable fill buffer overwriting on exit from Intel SGX enclaves or during enclave execution. Note that <span class="dk_code_simple">FB_CLEAR_DIS</span> has no impact on enumeration (for example, it does not change <span class="dk_code_simple">FB_CLEAR</span> or <span class="dk_code_simple">MD_CLEAR</span> enumeration) and it may not be supported on all processors that enumerate <span class="dk_code_simple">FB_CLEAR</span>. Not all processors that support <span class="dk_code_simple">FB_CLEAR</span> will support <span class="dk_code_simple">FB_CLEAR_CTL</span>.</p>
+
+                        <table class="mv_product_table w-100 mb-4">
+                            <caption>Table 3: IA32_MCU_OPT_CTRL MSR</caption>
+                            <thead> 
+                                <tr> 
+                                 <th scope="col">Register Address Hex</th> 
+                                 <th scope="col">Register Address Dec</th> 
+                                 <th scope="col">Register Name / Bit Fields</th> 
+                                 <th scope="col">Bit Description</th> 
+                                 <th scope="col">Comment</th> 
+                                </tr> 
+                            </thead>
+                            <tbody> 
+                                <tr> 
+                                 <td>123H</td> 
+                                 <td>291</td> 
+                                 <td>IA32_MCU_OPT_CTL</td> 
+                                 <td>Microcode Update Option Control (R/W)</td> 
+                                 <td>CPUID (EAX=07H,ECX=0).EDX[SRBDS_CTRL = 9]==1</td> 
+                                </tr> 
+                                <tr> 
+                                 <td>123H</td> 
+                                 <td>291</td> 
+                                 <td>0</td> 
+                                 <td>RNGDS_MITG_DIS (R/W)<br> When set to 0 (default), SRBDS mitigation is enabled for <span class="dk_code_simple">RDRAND</span> and <span class="dk_code_simple">RDSEED</span>.<br> When set to 1, SRBDS mitigation is disabled for <span class="dk_code_simple">RDRAND</span> and <span class="dk_code_simple">RDSEED</span> executed outside of Intel SGX enclaves.</td> 
+                                 <td>&nbsp;</td> 
+                                </tr> 
+                                <tr> 
+                                 <td>123H</td> 
+                                 <td>291</td> 
+                                 <td>1</td> 
+                                 <td>RTM_ALLOW: When set to 0, <span class="dk_code_simple">XBEGIN</span> will always abort with <span class="dk_code_simple">EAX</span> code 0. &nbsp;When set to 1, <span class="dk_code_simple">XBEGIN</span> behavior depends on the value of IA32_TSX_CTRL[RTM_DISABLE].</td> 
+                                 <td>Read/Write. &nbsp;See below criteria for when <span class="dk_code_simple">RTM_ALLOW</span> may be set.</td> 
+                                </tr> 
+                                <tr> 
+                                 <td>123H</td> 
+                                 <td>291</td> 
+                                 <td>2</td> 
+                                 <td>RTM_LOCKED: When 1, <span class="dk_code_simple">RTM_ALLOW</span> is locked at zero, writes to <span class="dk_code_simple">RTM_ALLOW</span> will be ignored.</td> 
+                                 <td>Read-Only status bit.</td> 
+                                </tr> 
+                                <tr> 
+                                 <td>123H</td> 
+                                 <td>291</td> 
+                                 <td>3</td> 
+                                 <td>FB_CLEAR_DIS: When set, causes the <span class="dk_code_simple">VERW</span> instruction to not perform the <span class="dk_code_simple">FB_CLEAR</span> action.</td> 
+                                 <td>&nbsp;</td> 
+                                </tr> 
+                                <tr> 
+                                 <td>123H</td> 
+                                 <td>291</td> 
+                                 <td>63:4</td> 
+                                 <td>Reserved</td> 
+                                 <td>&nbsp;</td> 
+                                </tr> 
+                            </tbody>
+                        </table> 
+                        <p class="mb-0">&nbsp;</p>
+                    </section>
+
+                    <section id="dk_performance_consideration">
+                        <p class="mb-0">&nbsp;</p>
+                        <h3 style="font-weight: 350;">Performance Consideration for Processor MMIO Stale Data Vulnerabilities</h3>
+                        <p>Although the underlying hardware issue for Processor MMIO Stale Data Vulnerabilities is different than MDS and SRBDS, they are mitigated using similar techniques. Thus, systems that have already applied mitigations for MDS and SRBDS should experience minimal performance impact. For processors that are not affected by MDS and SRBDS and are applying these mitigation techniques for the first time, the performance impact is expected to be similar to the performance impact experienced on processors with the MDS and SRBDS mitigations.</p>
+                        <p>Any potential performance impact associated with mitigation of the Processor MMIO Stale Data vulnerabilities will be workload-dependent and will vary depending on the processor and platform configuration (hardware, software, OS, and VMM), as well as mitigation technique. &nbsp;</p>
+                        <p>Mitigation requires a combination of microcode/BIOS and software/OS/VMM updates. Note that any potential performance impacts may not be observable until all updates with mitigations are installed.</p>
+                    </section>
+
+                    <section id="dk_affected_processors">
+                        <p class="mb-0">&nbsp;</p>
+                        <h3 style="font-weight: 350;"><a class="b_special_a1" href="">Affected Processors</a></h3>
+                        <p>Note the <a class="b_special_a1" href="">affects the same processors</a> that received the original SRBDS mitigation as well as some newer processors that were not affected by SRBDS but are affected by certain Processor Stale Data MMIO vulnerabilities.</p>
+                        <p>A list of processors affected by these Processor MMIO Stale Data vulnerabilities can be found in the <a class="b_special_a1" href="">consolidated Affected Processors table</a> under the&nbsp;<em>MMIO: Device Register Partial Write (DRPW) </em>and&nbsp;<em>MMIO: Shared Buffers Data Sampling (SBDS)&nbsp;and&nbsp;Shared Buffers Data Read (SBDR)&nbsp;</em>columns.&nbsp;<em> &nbsp;&nbsp;</em></p>
+                    </section>
+
+                    <section id="dk_footnotes">
+                        <p class="mb-0">&nbsp;</p>
+                        <h3 style="font-weight: 350;">Footnotes</h3>
+                        <ol> 
+                            <li>For more information on <span class="dk_code_simple">MD_CLEAR</span> functionality, refer to <a class="b_special_a1" href="">Intel Analysis of Microarchitectural Data Sampling</a> (MDS).</li> 
+                            <li>Only the memory operand variant of <span class="dk_code_simple">VERW</span> has been extended to also overwrite buffers affected by Processor MMIO Stale Data Vulnerabilities. This use of <span class="dk_code_simple">VERW</span> is the same as the use of <span class="dk_code_simple">VERW</span> to overwrite buffers affected by MDS.</li> 
+                            <li>This example assumes that the Data Segment selector indicates a writable segment.</li> 
+                            <li>Except Intel® Xeon® E3 processors. Refer to the <a class="b_special_a1" href="">Affected Processors table</a>.&nbsp;</li> 
+                            <li>Except Intel Xeon E3 processors.</li> 
+                            <li>Note that SBDS only applies to processors affected by MFBDS or TAA.</li> 
+                            <li>Intel® Hyper-Threading Technology (Intel® HT Technology) is Intel’s implementation of simultaneous multithreading (SMT).</li> 
+                            <li>Except Intel Xeon E3 processors.</li> 
+                            <li>&nbsp;The OS can disable SMT, but Intel SGX attestations do not reflect this.</li> 
+                            <li>&nbsp;Implies that the platform TCB is up-to-date.</li> 
+                            <li>&nbsp;For more information on the <span class="dk_code_simple">[user_check]</span> attribute, refer to the <a class="b_special_a1" href="">Intel SGX SDK for Linux* OS developer reference</a>.&nbsp;</li> 
+                            <li><span class="dk_code_simple">MDS_NO</span> support enumerated by IA32_ARCH_CAPABILITIES[5].</li> 
+                            <li><span class="dk_code_simple">L1D_FLUSH</span> support enumerated by CPUID.(EAX=7H,ECX=0):EDX[L1D_FLUSH=28].</li> 
+                            <li><span class="dk_code_simple">MD_CLEAR</span> support enumerated by CPUID.(EAX=7H,ECX=0):EDX[MD_CLEAR=10].</li> 
+                        </ol>
+                        <p>&nbsp;</p>
+                        <h5 style="text-align:center"><a class="b_special_a1" href="">Software Security Guidance Home</a> | <a class="b_special_a1" href="">Advisory Guidance</a> | <a class="b_special_a1" href="">Technical Documentation</a> | <a class="b_special_a1" href="">Best Practices</a> | <a class="b_special_a1" href="">Resources</a></h5>
+                        <p>&nbsp;</p>
+                    </section>
+
+                </div>
+            </section>
+        </div>
+    </div>
+    </div>
+    </section>
+
+    <section style="border-top: 1px solid #d7d7d7;" class="container py-5">
+        <h4 class="h6">Product and Performance Information</h4>
+        <div class="disclaimer" style="font-size: 12px;"><sup>1</sup> Performance varies by use, configuration and other
+            factors. Learn more at <a class="b_special_a1" href="">www.Intel.com/PerformanceIndex.</a></div>
+        </div>
+    </section>
+
+    <!-- footer -->
+    <div id="footer"></div>
+
+    <!-- nav script -->
+    <script>
+        // navbar include  
+        fetch('/y_index/y_navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar').innerHTML = data;
+            });
+        // footer include 
+        fetch('/y_index/y_footer.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('footer').innerHTML = data;
+            });
+    </script>
+    <!-- nav script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            if (document.getElementsByClassName('VK_all_sections section') && document.getElementsByClassName('VK_sidebar_dropdown')) {
+                const sections = document.querySelectorAll('.VK_all_sections section');
+                const navLinks = document.querySelectorAll('.VK_sidebar_dropdown a');
+                const detailsElements = document.querySelectorAll('.VK_sidebar_dropdown details');
+
+                function removeActiveClass() {
+                    navLinks.forEach(link => link.classList.remove('VK_sidebar_active_link'));
+                    detailsElements.forEach(details => {
+                        details.removeAttribute('open');
+                        details.setAttribute('close', ''); // Optional: to visually indicate it's closed
+                    });
+                }
+
+                function activateLinkAndDetails(targetId) {
+                    navLinks.forEach(link => {
+                        if (link.getAttribute('href') === `#${targetId}`) {
+                            link.classList.add('VK_sidebar_active_link');
+                            let parentDetails = link.closest('details');
+
+                            // Open all ancestor details elements
+                            while (parentDetails) {
+                                parentDetails.setAttribute('open', '');
+                                parentDetails.removeAttribute('close'); // Optional: remove the closed indicator
+                                parentDetails = parentDetails.parentElement.closest('details');
+                            }
+                        }
+                    });
+                }
+
+                function onScroll() {
+                    let currentSection = '';
+                    sections.forEach(section => {
+                        const sectionTop = section.getBoundingClientRect().top;
+                        const sectionBottom = section.getBoundingClientRect().bottom;
+
+                        // Check if the section is in view
+                        if (sectionTop <= 100 && sectionBottom >= 0) {
+                            currentSection = section.getAttribute('id');
+                        }
+                    });
+
+                    if (currentSection) {
+                        removeActiveClass();
+                        activateLinkAndDetails(currentSection);
+                    } else {
+                        removeActiveClass();
+                    }
+                }
+
+                window.addEventListener('scroll', onScroll);
+            } else {
+                return
+            }
+        });
+    </script>
+
+    <!-- copy script -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            document.querySelectorAll(".mv_copy_icon").forEach((icon) => {
+                icon.addEventListener("click", async function () {
+                    try {
+                        const toolbar = this.closest(".mv_code_toolbar");
+                        const codeBlock = toolbar.querySelector(".code-content");
+                        const codeContent = codeBlock.innerText;
+
+                        // Use Clipboard API to copy text
+                        await navigator.clipboard.writeText(codeContent);
+
+                        // Hide the copy icon and show the "Copied!" message
+                        const message = toolbar.querySelector(".mv_copy_message");
+                        this.classList.add("hidden"); // Hide the copy icon
+                        message.classList.remove("hidden"); // Show the "Copied!" message
+
+                        // Hide the message and show the icon again after 2 seconds
+                        setTimeout(() => {
+                            message.classList.add("hidden");
+                            this.classList.remove("hidden");
+                        }, 2000); // Adjust delay as needed
+
+                    } catch (err) {
+                        console.error('Failed to copy text: ', err);
+                    }
+                });
+            });
+        });
+    </script>
+
+</body>
+
+</html>
+
+
