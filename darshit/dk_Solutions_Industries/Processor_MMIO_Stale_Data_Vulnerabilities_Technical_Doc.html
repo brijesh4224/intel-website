@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Processor MMIO Stale Data Vulnerabilities</title>
+
+    <!-- font family -->
+    <link href="https://fonts.cdnfonts.com/css/intel-clear" rel="stylesheet">
+
+    <link rel="stylesheet" href="/css/dk_developer_edge_iot_5G_industrial_automation_see_all_wireless_network_ready_printed_circuit_board_(PCB)_defect_detection.css">
+    <link rel="stylesheet" href="/css/mv_product/ECC.css">
+    <link rel="stylesheet" href="/css/rushita_automotive.css">
+
+    <!-- header footer -->
+    <link rel="stylesheet" href='/css/yatri.css'>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" rel="stylesheet">
+
+</head>
+
+<style>
+    .dk_color1 {
+        color: #069 !important;
+    }
+
+    .dk_color2 {
+        color: #008200 !important;
+    }
+
+    .dk_color3 {
+        color: #b24501;
+    }
+
+    .dk_note{
+        font-size: 1rem;
+        line-height: 1.25;
+        word-wrap: break-word;
+        background-color: #e6e6e6;
+        padding: 20px;
+        border-left: 3px solid #fdb813;
+    }
+    .dk_code_simple{
+        background-color: #e6e6e6;
+        color: #53565a;
+        border-radius: 0;
+    }
+
+    .dk_greyHighlight{
+        font-size: 1rem;
+        line-height: 1.25;
+        background-color: #e6e6e6;
+        padding: 20px;
+    }
+
+    @media(max-width:1200px) {
+        .dk_risk_app_img {
+            width: 100% !important;
+        }
+        .mv_product_table{
+            width: 100% !important;
+        }
+    }
+</style>
+
+<body>
+    <!-- header -->
+    <div id="navbar"></div>
+
+    <!------------------------------------------------------------------------------->
+    <section class="m_ai_tdrop">
+        <div>
+            <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Developers
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item m_dropActive" href="#">Overview</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Topics & Technologies</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Tools</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Hardware Platforms</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Resources & Documentation</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Learn</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Community & Events</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Developer Programs</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Get Help</a></li>                                                              
+            </ul>
+        </div>
+        <div class="m_ai_shlash">/</div>
+        <div>
+            <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Topics & Technologies
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item m_dropActive" href="#">Artificial Intelligence</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Client Applications</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Cloud</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">GPU Research</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Edge Computing</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">GameDev</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">HPC</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Data Center</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Firmware</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Networking</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Open Ecosystem</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Persistent Memory</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Platform Analysis Technology</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Runtime Languages</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Software Security Guidance</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Storage</a></li>
+            </ul>
+        </div>
+        <div class="m_ai_shlash">/</div>
+        <div>
+            <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Software Security Guidance
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item m_dropActive" href="#">Advisory Guidance</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Best Practices</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Resources</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Disclosure Documentation</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Feature Documentation</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">More Information</a></li>
+            </ul>
+        </div>
+        <div class="m_ai_shlash">/</div>
+        <div>
+            <button class="btn" style="color: #0068B5;">
+                Advisory Guidance
+            </button>
+        </div>
+        <div class="m_ai_shlash">/</div>
+        <div class="m_ai_httl">Technical Documentation</div>
+
+    </section>
+    <!------------------------------------------------------------------------------->
+
+    <!-- VMware Horizon -->
+    <section>
+        <div class="mv_vmware_bg_color">
+            <div class="container">
+                <div class="mv_vmware_padd">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="mv_vmware_heading">
+                                <h3>Processor MMIO Stale Data Vulnerabilities</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mv_cd_page_marquee_info">
+                        <div class="mv_cd_page_marquee_action">
+                            <div class="mv_cd_page_marquee_action_padd">
+                                <label for="">ID</label>
+                                <span>733965</span>
+                            </div>
+                            <div class="mv_cd_page_marquee_action_padd">
+                                <label for="">Updated</label>
+                                <span>6/14/2022</span>
+                            </div>
+                            <div class="mv_cd_page_marquee_action_padd">
+                                <label for="">Version</label>
+                                <span>Latest</span>
+                            </div>
+                            <div class="mv_cd_page_marquee_action_padd">
+                                <label for=""></label>
+                                <span>Public</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="container py-5">
+        <div class="row">
+            <div class="d-flex justify-content-end col-xl-10 py-3 d-md-none">
+                <i class="fa-solid fa-print fs-4 px-2 " style="color:#0068B5"></i>
+                <i class="fa-regular fa-envelope fs-4 px-2" style="color:#0068B5"></i>
+            </div>
+            <div class="col-lg-3 col-md-4">
+                <!-- nav -->
+                <div class="VK_sticky_side_bar VK_side_bar_postion_stickey">
+                    <div>
+                        <div class="VK_sidebar_dropdown">
+                            <p class="m-0">
+                                <a href="#dk_related_content" class="text-decoration-none VK_a">
+                                    Related Content
+                                </a>
+                            </p>
+                            <p class="m-0">
+                                <a href="#dk_overview" class="text-decoration-none VK_a">
+                                    Overview
+                                </a>
+                            </p>
+                            <p class="m-0">
+                                <a href="#dk_mitigation" class="text-decoration-none VK_a">
+                                    Mitigation
+                                </a>
+                            </p>
+                            <p class="m-0">
+                                <a href="#dk_affected_processors" class="text-decoration-none VK_a">
+                                    Affected Processors
+                                </a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <!-- thinkcode -->
+                <!-- <div class="dk_things_code_main">
+                    <div class="dk_things_code">
+                        <h2 class="text-left headline-font-one-bold">Loss Prevention Retail Reference Implementation provides:</h2>
+                        <div class="dk_high_quality">
+                            <ul>
+                                <li>High-quality testable ingredients needed to create a solution to prevent thefts at stores.</li>
+                                <li>Building blocks needed to enable the use case with solid performance numbers.</li>
+                                <li>Hardware requirements to support the workloads and scale the solution.</li>
+                            </ul>
+                        </div>
+                    <div class="dk_get_code">
+                        <button class="dk_button">Get Started on GitHub<sup>*</sup></button>
+                    </div>
+                    </div> 
+                </div> -->
+            </div>
+            <div class="col-lg-9 col-md-8">
+                <div class="d-md-flex justify-content-end col-xl-10 py-3 d-none">
+                    <i class="fa-solid fa-print fs-4 px-2 " style="color:#0068B5"></i>
+                    <i class="fa-regular fa-envelope fs-4 px-2" style="color:#0068B5"></i>
+                </div>
+                <div class="col-xl-10 VK_all_sections">
+                    <p>&nbsp;</p>
+                    <table class="mv_product_table w-100 mb-4">
+                        <tbody>
+                            <tr>
+                                <td>
+                                <p><strong>Disclosure date:&nbsp;</strong><br>
+                                    2022-06-14</p>
+                    
+                                <p><strong>Published date:&nbsp;</strong><br>
+                                    2022-06-14</p>
+                                </td>
+                                <td>
+                                <p><img src="/img/darshit_image/shield-icon-8.png" width="100"><strong>Severity rating:&nbsp;</strong><br>
+                                    6.1 Medium</p>
+                                </td>
+                                <td>Industry-wide severity ratings can be found in the&nbsp;<a class="b_special_a1" href="">National Vulnerability Database</a></td>
+                            </tr>
+                        </tbody>
+                    </table> 
+
+
+                    <section id="dk_related_content">
+                        <p class="mb-0">&nbsp;</p>
+                        <h3 style="font-weight: 350; padding-bottom: 0.5rem;">Related Content</h3>
+                        <ul>
+                            <li><a class="b_special_a1" href="">INTEL-SA-00615</a></li>
+                            <li><a class="b_special_a1" href="">Processor MMIO Stale Data Vulnerabilities technical documentation</a></li>
+                            <li><a class="b_special_a1" href="">Microarchitectural Data Sampling</a></li>
+                            <li><a class="b_special_a1" href="">Intel® Transactional Synchronization Extensions (Intel® TSX) Asynchronous Abort</a></li>
+                            <li><a class="b_special_a1" href="">Special Register Buffer Data Sampling</a></li>
+                        </ul>
+                    </section>
+
+                    <section id="dk_overview">
+                        <p class="mb-0">&nbsp;</p>
+                        <h3 style="font-weight: 350; padding-bottom: 0.5rem;">Overview</h3>
+                        <p>Processor MMIO Stale Data Vulnerabilities are a class of memory-mapped I/O (MMIO) vulnerabilities that can expose data. When a processor core reads or writes MMIO, the transaction is normally done with uncacheable or write-combining memory types and is routed through the uncore, which is a section of logic in the CPU that is shared by physical processor cores and provides several common services. Malicious actors may use uncore buffers and mapped registers to leak information from different hardware threads within the same physical core or across cores.</p>
+                        <p>Processor MMIO Stale Data Vulnerabilities are not transient execution attacks. However, these vulnerabilities may propagate stale data into core fill buffers where the data may subsequently be inferred by an unmitigated transient execution attack with transient execution attacks. These vulnerabilities involve operations that result in stale data being directly read into an architectural, software-visible state or sampled from a buffer or register. In some attack scenarios, stale data may already reside in a microarchitectural buffer. In other attack scenarios, malicious actors or confused deputy code may propagate data from microarchitecture locations such as fill buffers.</p>
+                        <p class="mb-0">Four Processor MMIO Stale Data Vulnerabilities have been assigned the CVEs shown below. These vulnerabilities may be combined with data propagators to potentially enable malicious actors to read stale data:</p>
+                        <ul>
+                            <li><a class="b_special_a1" href="">Device Register Partial Write (DRPW)</a> (CVE-2022-21166)</li>
+                            <li><a class="b_special_a1" href="">Update to Special Register Data Sampling (SRBDS update)</a> (CVE-2022-21127)</li>
+                            <li><a class="b_special_a1" href="">Shared Buffers Data Read (SBDR)</a> (CVE-2022-21123)</li>
+                            <li><a class="b_special_a1" href="">Shared Buffers Data Sampling (SBDS)</a> (CVE-2022-21125)</li>
+                        </ul>
+                        <p>Not all Intel processors are affected by each of these vulnerabilities. For instance, most processors for the server market are impacted only by DRPW.</p>
+                    </section>
+
+                    <section id="dk_mitigation">
+                        <p class="mb-0">&nbsp;</p>
+                        <h3 style="font-weight: 350;">Mitigation</h3>
+                        <p>The <a class="b_special_a1" href="">SRBDS Update</a> mitigation affects the same <a class="b_special_a1" href="">processors that received the original SRBDS mitigation</a>, as well as some newer processors that were not affected by SRBDS but are affected by certain Processor Stale Data MMIO vulnerabilities.&nbsp;</p>
+                        <p>For the remaining vulnerabilities, mitigations include a combination of microcode updates and software changes.</p>
+                        <p>In some cases, the mitigation approach used may depend on the security/trust model and configuration of the system software (OS, VMM).&nbsp;</p>
+                        <p class="mb-0">For each vulnerability, there are two broad strategies that software can take:&nbsp;</p>
+                        <ul>
+                            <li>Preventing secret data from getting into buffers from which it can be extracted (blocking propagators).&nbsp;</li>
+                            <li>Preventing untrusted software from extracting data from vulnerable buffers (blocking vulnerabilities).</li>
+                        </ul>
+                        <p>The first strategy generally involves using operations to overwrite secret data before it could be transferred to the affected buffer. On products not affected by the <a class="b_special_a1" href="">Microarchitectural Fill Buffer Data Sampling</a> or <a class="b_special_a1" href="">Intel® Transactional Synchronization Extensions (Intel® TSX) Asynchronous Abort</a> vulnerabilities, there may be some software usage models or configurations where the second strategy can be employed for all untrusted software. In these cases, it is acceptable for secret data to reside in affected buffers without overwriting the buffers because potential attackers are prevented from extracting any data.&nbsp;</p>
+                        <p>To simplify mitigation, we assume system software has already mitigated the <a class="b_special_a1" href="">MDS family of issues</a>. Refer to the <a class="b_special_a1" href="">MDS documentation</a> for more details on these mitigations. It is also assumed that the latest microcode updates will be installed on any affected systems.</p>
+                        <p class="mb-0">&nbsp;</p>
+                    </section>
+
+                    <section id="dk_affected_processors">
+                        <h3 style="font-weight: 350;"><a class="b_special_a1" href="">Affected Processors</a></h3>
+                        <p>Refer to the&nbsp;<em>2022</em>&nbsp;tab of the <a href="/content/www/us/en/developer/topic-technology/software-security-guidance/processors-affected-consolidated-product-cpu-model.html">consolidated Affected Processors table</a>:&nbsp;<em>Device Register Partial Write (DRPW)</em>,&nbsp;<em>Shared Buffers Data Read (SBDR)</em>, and <em>Shared Buffers Data Sampling (SBDS)</em> columns.</p>
+                        <p><strong>Note</strong>: The <a href="/content/www/us/en/develop/articles/software-security-guidance/technical-documentation/special-register-buffer-data-sampling.html">SRBDS Update</a> mitigation affects the same processors that received the original SRBDS mitigation, as well as some newer processors that were not affected by SRBDS but are affected by certain Processor Stale Data MMIO vulnerabilities.&nbsp;</p>
+                        <p>&nbsp;</p>
+                        <h5 style="text-align:center"><a class="b_special_a1" href="">Software Security Guidance Home</a> | <a class="b_special_a1" href="">Advisory Guidance</a> | <a class="b_special_a1" href="">Technical Documentation</a> | <a class="b_special_a1" href="">Best Practices</a> | <a class="b_special_a1" href="">Resources</a></h5>
+                        <p>&nbsp;</p>
+                    </section>
+
+                </div>
+            </section>
+        </div>
+    </div>
+    </div>
+    </section>
+
+    <section style="border-top: 1px solid #d7d7d7;" class="container py-5">
+        <h4 class="h6">Product and Performance Information</h4>
+        <div class="disclaimer" style="font-size: 12px;"><sup>1</sup> Performance varies by use, configuration and other
+            factors. Learn more at <a class="b_special_a1" href="">www.Intel.com/PerformanceIndex.</a></div>
+        </div>
+    </section>
+
+    <!-- footer -->
+    <div id="footer"></div>
+
+    <!-- nav script -->
+    <script>
+        // navbar include  
+        fetch('/y_index/y_navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar').innerHTML = data;
+            });
+        // footer include 
+        fetch('/y_index/y_footer.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('footer').innerHTML = data;
+            });
+    </script>
+    <!-- nav script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            if (document.getElementsByClassName('VK_all_sections section') && document.getElementsByClassName('VK_sidebar_dropdown')) {
+                const sections = document.querySelectorAll('.VK_all_sections section');
+                const navLinks = document.querySelectorAll('.VK_sidebar_dropdown a');
+                const detailsElements = document.querySelectorAll('.VK_sidebar_dropdown details');
+
+                function removeActiveClass() {
+                    navLinks.forEach(link => link.classList.remove('VK_sidebar_active_link'));
+                    detailsElements.forEach(details => {
+                        details.removeAttribute('open');
+                        details.setAttribute('close', ''); // Optional: to visually indicate it's closed
+                    });
+                }
+
+                function activateLinkAndDetails(targetId) {
+                    navLinks.forEach(link => {
+                        if (link.getAttribute('href') === `#${targetId}`) {
+                            link.classList.add('VK_sidebar_active_link');
+                            let parentDetails = link.closest('details');
+
+                            // Open all ancestor details elements
+                            while (parentDetails) {
+                                parentDetails.setAttribute('open', '');
+                                parentDetails.removeAttribute('close'); // Optional: remove the closed indicator
+                                parentDetails = parentDetails.parentElement.closest('details');
+                            }
+                        }
+                    });
+                }
+
+                function onScroll() {
+                    let currentSection = '';
+                    sections.forEach(section => {
+                        const sectionTop = section.getBoundingClientRect().top;
+                        const sectionBottom = section.getBoundingClientRect().bottom;
+
+                        // Check if the section is in view
+                        if (sectionTop <= 100 && sectionBottom >= 0) {
+                            currentSection = section.getAttribute('id');
+                        }
+                    });
+
+                    if (currentSection) {
+                        removeActiveClass();
+                        activateLinkAndDetails(currentSection);
+                    } else {
+                        removeActiveClass();
+                    }
+                }
+
+                window.addEventListener('scroll', onScroll);
+            } else {
+                return
+            }
+        });
+    </script>
+
+    <!-- copy script -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            document.querySelectorAll(".mv_copy_icon").forEach((icon) => {
+                icon.addEventListener("click", async function () {
+                    try {
+                        const toolbar = this.closest(".mv_code_toolbar");
+                        const codeBlock = toolbar.querySelector(".code-content");
+                        const codeContent = codeBlock.innerText;
+
+                        // Use Clipboard API to copy text
+                        await navigator.clipboard.writeText(codeContent);
+
+                        // Hide the copy icon and show the "Copied!" message
+                        const message = toolbar.querySelector(".mv_copy_message");
+                        this.classList.add("hidden"); // Hide the copy icon
+                        message.classList.remove("hidden"); // Show the "Copied!" message
+
+                        // Hide the message and show the icon again after 2 seconds
+                        setTimeout(() => {
+                            message.classList.add("hidden");
+                            this.classList.remove("hidden");
+                        }, 2000); // Adjust delay as needed
+
+                    } catch (err) {
+                        console.error('Failed to copy text: ', err);
+                    }
+                });
+            });
+        });
+    </script>
+
+</body>
+
+</html>
+
+
