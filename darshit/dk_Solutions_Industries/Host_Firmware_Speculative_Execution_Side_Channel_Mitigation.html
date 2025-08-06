@@ -232,31 +232,31 @@
                                 <th><strong>UEFI Mitigation</strong></th>
                             </tr>
                             <tr>
-                                <td><a class="b_special_a1" href="">Bounds Check Bypass</a></td>
+                                <td><a class="b_special_a1" href="/darshit/dk_Solutions_Industries/Bounds_Check_Bypass.html">Bounds Check Bypass</a></td>
                                 <td>2017-5753</td>
                                 <td>SMM</td>
                                 <td><span class="code-simple">LFENCE</span>&nbsp;after validation of untrusted data but before use</td>
                             </tr>
                             <tr>
-                                <td><a class="b_special_a1" href="">Branch Target Injection</a></td>
+                                <td><a class="b_special_a1" href="/darshit/dk_Solutions_Industries/Branch_Target_Injection_Guidance.html">Branch Target Injection</a></td>
                                 <td>2017-5715</td>
                                 <td>SMM</td>
                                 <td>RSB stuffing before RSM</td>
                             </tr>
                             <tr>
-                                <td><a class="b_special_a1" href="">Rogue Data Cache Load</a></td>
+                                <td><a class="b_special_a1" href="/darshit/dk_Solutions_Industries/Rogue_Data_Cache_Load_Guidance.html">Rogue Data Cache Load</a></td>
                                 <td>2017-5754</td>
                                 <td>None</td>
                                 <td>No impact</td>
                             </tr>
                             <tr>
-                                <td><a class="b_special_a1" href="">Rogue System Register Read</a></td>
+                                <td><a class="b_special_a1" href="/darshit/dk_Solutions_Industries/Rogue_System_Register_Read.html">Rogue System Register Read</a></td>
                                 <td>2018-3640</td>
                                 <td>None</td>
                                 <td>No impact</td>
                             </tr>
                             <tr>
-                                <td><a class="b_special_a1" href="">Speculative Store Bypass</a></td>
+                                <td><a class="b_special_a1" href="/darshit/dk_Solutions_Industries/Speculative_Store_Bypass.html">Speculative Store Bypass</a></td>
                                 <td>2018-3639</td>
                                 <td>None</td>
                                 <td>No impact</td>
@@ -274,7 +274,7 @@
                                 <li>Unified Extensible Firmware Interface (UEFI) firmware developers</li>
                                 <li>BIOS vendors</li>
                                 <li>Original Equipment Manufacturer (OEM) firmware developers</li>
-                                <li>Contributors to&nbsp;<a class="b_special_a1" href="">TianoCore*</a></li>
+                                <li>Contributors to&nbsp;<a class="b_special_a1" href="https://www.tianocore.org/">TianoCore*</a></li>
                             </ul>
                             </li>
                             <li>Consumers of UEFI firmware:
@@ -284,7 +284,7 @@
                             </ul>
                             </li>
                         </ul>
-                        <p>This provides specific guidance for firmware based upon the&nbsp;<a class="b_special_a1" href="">EFI Developer Kit II (EDKII)</a>&nbsp;and&nbsp;<a class="b_special_a1" href="">coreboot*</a>. Because this document deals with host firmware internal requirements, it is not intended to provide side channel mitigation guidance for general application developers. &nbsp;</p>
+                        <p>This provides specific guidance for firmware based upon the&nbsp;<a class="b_special_a1" href="https://github.com/tianocore/edk2">EFI Developer Kit II (EDKII)</a>&nbsp;and&nbsp;<a class="b_special_a1" href="https://www.coreboot.org/">coreboot*</a>. Because this document deals with host firmware internal requirements, it is not intended to provide side channel mitigation guidance for general application developers. &nbsp;</p>
                         <p>&nbsp;</p>
                     </section>
 
@@ -297,7 +297,7 @@
                     <section id="dk_background">
                         <h3 style="font-weight: 350; padding-bottom: 0.5rem;">Background</h3>
                         <p>Side channel methods are techniques that may allow a malicious actor to obtain secret or privileged information that they would not normally be able to access through observing the system, such as by measuring the system’s microarchitectural properties.</p>
-                        <p>Figure 1 below describes the various phases of UEFI style firmware. Refer to the&nbsp;<a class="b_special_a1" href="">UEFI specification</a>&nbsp;for complete details. &nbsp;Typically, host firmware hands off from an OEM-extensible boot service domain. This is the reset through the ROM stage / RAM stage on coreboot, and the PEI/DXE phase on UEFI. Only the system board vendor should run code in this OEM-extensible boot service domain. After the OEM-extensible domain ends (for example, the&nbsp;EndOfDxe<em>&nbsp;</em>event in UEFI), the firmware flow progresses to a third-party-extensible boot service domain, and then to the operating system (OS) runtime. The&nbsp;System Management Mode&nbsp;(SMM) is loaded during the OEM-extensible phase, and is hardware-isolated from the OS-hosted runtime domain later in the boot process.</p>
+                        <p>Figure 1 below describes the various phases of UEFI style firmware. Refer to the&nbsp;<a class="b_special_a1" href="/img/darshit_image/ACPI 6_2_A_Sept29.pdf">UEFI specification</a>&nbsp;for complete details. &nbsp;Typically, host firmware hands off from an OEM-extensible boot service domain. This is the reset through the ROM stage / RAM stage on coreboot, and the PEI/DXE phase on UEFI. Only the system board vendor should run code in this OEM-extensible boot service domain. After the OEM-extensible domain ends (for example, the&nbsp;EndOfDxe<em>&nbsp;</em>event in UEFI), the firmware flow progresses to a third-party-extensible boot service domain, and then to the operating system (OS) runtime. The&nbsp;System Management Mode&nbsp;(SMM) is loaded during the OEM-extensible phase, and is hardware-isolated from the OS-hosted runtime domain later in the boot process.</p>
                         <p>You can see these phases in both UEFI (Figure 1) and coreboot (Figure 2) below.</p>
                         <p style="text-align:center"><img alt="" height="62" src="/img/darshit_image/machine-check-error-avoidance-page-size-change-fig1.jpg" width="1009"></p>
                         <p style="text-align:center">Figure 1.&nbsp;Phases of UEFI execution</p>
@@ -305,9 +305,9 @@
                         <p style="text-align:center"><img alt="" height="62" src="/img/darshit_image/machine-check-error-avoidance-page-size-change-fig2.jpg" width="996"></p>
                         <p style="text-align:center">Figure 2.&nbsp;Phases of coreboot execution</p>
                         <p>Boot firmware has several phases. A boot-service stage runs to completion and does not persist into the OS runtime. In UEFI, the OEM-extensible boot service stage contains the&nbsp;Security&nbsp;(SEC) phase, the&nbsp;Pre-EFI Initialization&nbsp;(PEI) phase, and the&nbsp;Driver eXecution Environment&nbsp;(DXE) phase. The DXE phase terminates with the event EndOfDxe. In coreboot, the OEM-extensible boot service stage contains the&nbsp;coreboot Boot block, the&nbsp;coreboot ROM stage, and the&nbsp;coreboot RAM stage.</p>
-                        <p>Only the system board manufacturers should run code in the OEM-extensible boot service stage. Developers should consider any third-party code injections into the firmware boot service stage to be attacks, because all code in this stage executes in ring 0. You can find more details in the&nbsp;<a class="b_special_a1" href="">UEFI PI Spec</a>&nbsp;and the&nbsp;<a class="b_special_a1" href="">coreboot book</a>.</p>
+                        <p>Only the system board manufacturers should run code in the OEM-extensible boot service stage. Developers should consider any third-party code injections into the firmware boot service stage to be attacks, because all code in this stage executes in ring 0. You can find more details in the&nbsp;<a class="b_special_a1" href="/img/darshit_image/PI_Spec_1_6.pdf">UEFI PI Spec</a>&nbsp;and the&nbsp;<a class="b_special_a1" href="https://www.degruyterbrill.com/document/doi/10.1515/9781501505690/html">coreboot book</a>.</p>
                         <p>Traditionally, systems are configured to cause SMIs on all logical processors in a system; a rendezvous is done both before and after critical SMM code to ensure that almost all SMM runs while all other logical processors are quiesced. SMM is a separate CPU execution mode that is distinct from real mode, protected mode, and long-mode on Intel® architecture. SMM typically uses sequestered DRAM called&nbsp;System Management RAM&nbsp;(SMRAM) that is isolated from host DRAM and has cacheability attributes described by a model-specific register called the&nbsp;System Management Mode Range Register&nbsp;(SMRR).</p>
-                        <p>For background on SMM, see the&nbsp;<a class="b_special_a1" href="">Intel® 64 and IA-32 Architectures Software Developer Manuals</a>. SMM is covered in chapter 34 in volume 3. In particular, sections 34.3, 34.4, and 34.13 contain definitions and information that are likely to be useful to developers.</p>
+                        <p>For background on SMM, see the&nbsp;<a class="b_special_a1" href="/darshit/dk_Solutions_Industries/Intel_64_and_IA_32_Architectures_Software_Developer_Manuals.html">Intel® 64 and IA-32 Architectures Software Developer Manuals</a>. SMM is covered in chapter 34 in volume 3. In particular, sections 34.3, 34.4, and 34.13 contain definitions and information that are likely to be useful to developers.</p>
                         <p>&nbsp;</p>
                     </section>
 
@@ -318,7 +318,7 @@
                         <p>Because the UEFI SEC, PEI, and DXE phases, as well as the coreboot bootblock, ROM stage, and RAM stage all finish running before any untrusted code can run, we do not suggest any mitigations for these firmware elements.</p>
                         <p>The SMM infrastructure in EDKII and SMM executes on all cores, suspending the foreground OS execution, making cross-thread exploits more difficult. However, for SMM that processes untrusted data, developers should consider implementing bounds check bypass mitigations like&nbsp;<span class="dk_code_simple">LFENCE</span>.</p>
                         <p>UEFI firmware runtime code can also have assembly, as low-level critical elements of the implementation may be implemented in assembly for performance, and some of the mode switch code for SMM is written in assembly. Developers should investigate applying the mitigations for bounds check bypass to the assembly or surrounding C code.</p>
-                        <p>A variety of options are available to assist C/C++ Windows* developers in mitigating bounds check bypass. Whichever option is best depends on which compiler/code generation toolchains you are using. Mitigation options include manual mitigation and compiler assisted mitigation. Both the Intel C/C++ compiler and the Microsoft* Visual C++ (MSVC) compiler support generating&nbsp;<span class="dk_code_simple">LFENCE</span>&nbsp;instructions for 32- and 64-bit targets when you manually use the&nbsp;<span class="dk_code_simple">_mm_lfence()</span>&nbsp;intrinsic in the required places. Please refer to&nbsp;<a class="b_special_a1" href="">Microsoft's public blog</a>&nbsp;for other options.</p>
+                        <p>A variety of options are available to assist C/C++ Windows* developers in mitigating bounds check bypass. Whichever option is best depends on which compiler/code generation toolchains you are using. Mitigation options include manual mitigation and compiler assisted mitigation. Both the Intel C/C++ compiler and the Microsoft* Visual C++ (MSVC) compiler support generating&nbsp;<span class="dk_code_simple">LFENCE</span>&nbsp;instructions for 32- and 64-bit targets when you manually use the&nbsp;<span class="dk_code_simple">_mm_lfence()</span>&nbsp;intrinsic in the required places. Please refer to&nbsp;<a class="b_special_a1" href="https://devblogs.microsoft.com/cppblog/spectre-mitigations-in-msvc/">Microsoft's public blog</a>&nbsp;for other options.</p>
                         <p>GCC provides two methods of inserting compiler defenses. The built-in GCC intrinsic is<span class="dk_code_simple">&nbsp;__builtin_ia32_lfence()</span>. The Linux kernel uses&nbsp;<span class="dk_code_simple">asm volatile (“lfence”::: “memory”)</span>. &nbsp;</p>
                         <p>For the OS interface code into the UEFI runtime, the appropriate&nbsp;<span class="dk_code_simple">LFENCE</span>&nbsp;instructions should also be in place for&nbsp;<em>Hal.dll</em>&nbsp;on Windows and Linux.</p>
                         <p>&nbsp;</p>
@@ -328,12 +328,12 @@
                         <h3 style="padding-bottom: 0.5rem; font-weight: 350;">Branch Target Injection Mitigation</h3>
                         <p>The branch target injection method takes advantage of the indirect branch predictors inside the processor that are used to direct what operations are speculatively executed. By influencing how the indirect branch predictors operate, a malicious actor can cause malicious code to be speculatively executed and then measure the effects such code has on the processor cache/system memory to infer data values.</p>
                         <p>With an OS that is using retpoline, the UEFI runtime should either be recompiled with retpoline, or should have Indirect Branch Restricted Speculation (IBRS) set beforehand and restore old value afterwards to protect it from branch target injection attacks. An alternative is to use Single Thread Indirect Branch Predictors (STIPB) and Indirect Branch Predictor Barrier (IBPB) instead of IBRS. A microcode update may be required to enumerate IBRS as a hardware feature.</p>
-                        <p>When hardware has implemented IBRS/STIBP/IBPB mitigations, additional mitigations are not needed at the SMM entry point. Refer to the&nbsp;<a class="b_special_a1" href="">Intel Analysis of Speculative Execution Side Channels technical documentation</a>&nbsp;for further details.</p>
-                        <p>UEFI runtime code is co-located in the OS kernel runtime. The OS cannot tell if the UEFI runtime code has been patched to mitigate side-channel vulnerabilities, as noted on the&nbsp;<a class="b_special_a1" href="">Linux* kernel mailing list</a>. Therefore, the OS should apply the appropriate mitigations prior to invoking the UEFI runtime since the OS cannot depend upon the firmware to have any mitigations applied. The firmware might apply mitigations itself if the OS has not done so, but the firmware must never disable mitigations that the OS applies.</p>
-                        <p>Certain processors may use branch predictors other than the Return Stack Buffer (RSB) when the RSB underflows. This might impact software using the retpoline mitigation strategy on such processors. On processors with different empty RSB behavior, SMM code should stuff the RSB with&nbsp;<span class="dk_code_simple">CALL</span>&nbsp;instructions before returning from SMM to avoid interfering with non-SMM usage of the retpoline technique. Further details on the relevant processors and the requirements to stuff the RSB are available in the&nbsp;<a class="b_special_a1" href="">Retpoline: A Branch Target Injection Mitigation technical documentation</a>.</p>
-                        <p>As such, in<a class="b_special_a1" href="">&nbsp;EDKII SMM</a>&nbsp;and&nbsp;coreboot SMM&nbsp;the code&nbsp;<span class="dk_code_simple">FILL_RETURN_BUFFER</span>&nbsp;should be applied prior to the&nbsp;<span class="dk_code_simple">rsm</span>.</p>
+                        <p>When hardware has implemented IBRS/STIBP/IBPB mitigations, additional mitigations are not needed at the SMM entry point. Refer to the&nbsp;<a class="b_special_a1" href="/darshit/dk_Solutions_Industries/Intel_Analysis_of_Speculative_Execution_Side_Channels.html">Intel Analysis of Speculative Execution Side Channels technical documentation</a>&nbsp;for further details.</p>
+                        <p>UEFI runtime code is co-located in the OS kernel runtime. The OS cannot tell if the UEFI runtime code has been patched to mitigate side-channel vulnerabilities, as noted on the&nbsp;<a class="b_special_a1" href="https://lkml.org/lkml/2018/1/4/618">Linux* kernel mailing list</a>. Therefore, the OS should apply the appropriate mitigations prior to invoking the UEFI runtime since the OS cannot depend upon the firmware to have any mitigations applied. The firmware might apply mitigations itself if the OS has not done so, but the firmware must never disable mitigations that the OS applies.</p>
+                        <p>Certain processors may use branch predictors other than the Return Stack Buffer (RSB) when the RSB underflows. This might impact software using the retpoline mitigation strategy on such processors. On processors with different empty RSB behavior, SMM code should stuff the RSB with&nbsp;<span class="dk_code_simple">CALL</span>&nbsp;instructions before returning from SMM to avoid interfering with non-SMM usage of the retpoline technique. Further details on the relevant processors and the requirements to stuff the RSB are available in the&nbsp;<a class="b_special_a1" href="/darshit/dk_Solutions_Industries/Retpoline_A_Branch_Target_Injection_Mitigation.html">Retpoline: A Branch Target Injection Mitigation technical documentation</a>.</p>
+                        <p>As such, in<a class="b_special_a1" href="https://github.com/tianocore/edk2/blob/master/UefiCpuPkg/PiSmmCpuDxeSmm/X64/SmiEntry.nasm">&nbsp;EDKII SMM</a>&nbsp;and&nbsp;coreboot SMM&nbsp;the code&nbsp;<span class="dk_code_simple">FILL_RETURN_BUFFER</span>&nbsp;should be applied prior to the&nbsp;<span class="dk_code_simple">rsm</span>.</p>
                         <p>This RSB stuffing would force a&nbsp;<span class="dk_code_simple">jeclear</span>&nbsp;in retpoline following the&nbsp;<span class="dk_code_simple">rsm</span>&nbsp;instruction. SMM does RSB stuffing prior to&nbsp;<span class="dk_code_simple">RSM</span>&nbsp;to protect the OS.</p>
-                        <p>You can implement<a class="b_special_a1" href="">&nbsp;branch target injection mitigation on Linux* with GCC</a>&nbsp;&nbsp;by compiling with the following compiler switches:</p>
+                        <p>You can implement<a class="b_special_a1" href="https://gcc.gnu.org/git/?p=gcc.git;a=commit;h=c6b72be421ded17e0c156070ba6e90aa6c335ed6">&nbsp;branch target injection mitigation on Linux* with GCC</a>&nbsp;&nbsp;by compiling with the following compiler switches:</p>
                         
                         <div class="mv_code_toolbar">
                             <div class="mv_toolbar_item mv_copy_icon">
@@ -358,7 +358,7 @@
                             </div>
                         </div>
 
-                        <p>When compiling for processors with different empty RSB behavior, you also need to&nbsp;<a class="b_special_a1" href="">generate the ret retpolines</a>&nbsp;with the following compiler switches:</p>
+                        <p>When compiling for processors with different empty RSB behavior, you also need to&nbsp;<a class="b_special_a1" href="https://gcc.gnu.org/git/?p=gcc.git;a=commit;h=357311dd400f7f72d2132f2f94161ece39bf08c6">generate the ret retpolines</a>&nbsp;with the following compiler switches:</p>
 
                         <div class="mv_code_toolbar">
                             <div class="mv_toolbar_item mv_copy_icon">
@@ -429,7 +429,7 @@
                         <h3 style="padding-bottom: 0.5rem; font-weight: 350;">Speculative Store Bypass Mitigation</h3>
                         <p>The speculative store bypass method takes advantage of a performance feature present in many high-performance processors that allows loads to speculatively execute even if the address of a preceding, potentially overlapping store is unknown. Such a case may allow a load to speculatively read a stale data value.</p>
                         <p>SMM code will behave as if speculative store bypass disable (SSBD) is set regardless of the actual value of the MSR bit. The processor will ensure that a load within SMM code does not speculatively consume stale data values due to bypassing an older store on the same logical processor. A microcode update may be required for SSBD to be enumerated as a hardware feature.</p>
-                        <p>Intel recommends mitigations only for managed runtimes or other situations that use language-based security to guard against attacks within an address space. Refer to the&nbsp;<a class="b_special_a1" href="">Intel Analysis of Speculative Execution Side Channels technical documentation</a>&nbsp;for further details. No changes to UEFI or Coreboot are currently planned. &nbsp;</p>
+                        <p>Intel recommends mitigations only for managed runtimes or other situations that use language-based security to guard against attacks within an address space. Refer to the&nbsp;<a class="b_special_a1" href="/darshit/dk_Solutions_Industries/Intel_Analysis_of_Speculative_Execution_Side_Channels.html">Intel Analysis of Speculative Execution Side Channels technical documentation</a>&nbsp;for further details. No changes to UEFI or Coreboot are currently planned. &nbsp;</p>
                         <p>&nbsp;</p>
                     </section>
 
@@ -437,7 +437,7 @@
                         <h3 style="padding-bottom: 0.5rem; font-weight: 350;">General Best Practices</h3>
                         <p>As part of a holistic approach to protect systems, we also recommend following good security development practices (for example, SDL), employing general best practices such as attack surface reduction and defense in depth, and applying updates as soon as is practical. &nbsp;&nbsp;</p>
                         <p>The latest microcode update must also be included when you release&nbsp;new firmware to ensure that all available mitigations can be used by either the firmware or the OS.</p>
-                        <p>Firmware can also apply defenses that are already available, for example, the Data Execution Prevention (DEP) features in UEFI open source. These features are described in&nbsp;<a class="b_special_a1" href="">A Tour Beyond BIOS - Memory Protection in UEFI BIOS</a>. &nbsp;</p>
+                        <p>Firmware can also apply defenses that are already available, for example, the Data Execution Prevention (DEP) features in UEFI open source. These features are described in&nbsp;<a class="b_special_a1" href="https://app.gitbook.com/o/-M5spcURlKaXB8ydA2fr/s/-M5spcWGkwaDBoGaJvur-887967055/">A Tour Beyond BIOS - Memory Protection in UEFI BIOS</a>. &nbsp;</p>
                         <p>Patches are underway for EDKII and coreboot.</p>
                         <p>&nbsp;</p>
                         <h5 style="text-align:center"><a class="b_special_a1" href="">Software Security Guidance Home</a>&nbsp;|&nbsp;<a class="b_special_a1" href="">Advisory Guidance</a>&nbsp;|&nbsp;<a class="b_special_a1" href="">Technical Documentation</a>&nbsp;|&nbsp;<a class="b_special_a1" href="">Best Practices</a>&nbsp;|&nbsp;<a class="b_special_a1" href="">Resources</a></h5>

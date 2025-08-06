@@ -714,12 +714,12 @@
                                             </summary>
                                             <ul class="list-unstyled ps-3 mb-0">
                                                 <li>
-                                                    <a href="dk_req_os" class="text-decoration-none VK_a my-1">
+                                                    <a href="#dk_requirements_os" class="text-decoration-none VK_a my-1">
                                                         Requirements for Virtualized Operating Systems
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a href="dk_req_virtualize" class="text-decoration-none VK_a my-1">
+                                                    <a href="#dk_requrirements_cpuid" class="text-decoration-none VK_a my-1">
                                                         Requirements for VMMs that Virtualize CPUID Family/Model/Stepping
                                                     </a>
                                                 </li>
@@ -758,7 +758,7 @@
                                     <li>
                                         <details>
                                             <summary>
-                                                <a href="#dk_2addressing_cbpf" class="text-decoration-none VK_a">
+                                                <a href="#dk_addressing_cbpf" class="text-decoration-none VK_a">
                                                     Addressing Intra-Mode Branch Target Injection via cBPF
                                                 </a>
                                             </summary>
@@ -999,10 +999,985 @@
                         <p>Recent Intel CPUs support a feature known as CET-IBT (Indirect Branch Tracking) that requires indirect branch targets to start with an <span class="dk_code_simple">ENDBRANCH</span> instruction. When enabled, CET-IBT limits speculative execution at indirect branch targets that do not start with <span class="dk_code_simple">ENDBRANCH</span>, which provides defense-in-depth to prevent the use of unintended targets both architecturally and speculatively. On Alder Lake, Sapphire Rapids, and some future processors, the potential speculation window at a predicted target that does not start with <span class="dk_code_simple">ENDBRANCH</span> is limited to two instructions (and typically fewer), although this may not be the case for earlier implementations<a class="b_special_a1" href=""><sup>7</sup></a>. Other future processors may eliminate this speculation window entirely. CET-IBT also limits speculation of the next sequential instructions after an indirect <span class="dk_code_simple">JMP</span> or <span class="dk_code_simple">CALL</span>. CET-IBT can be combined with a callee-based Control Flow Integrity approach, such as FineIBT, that can restrict execution at architecturally incorrect targets that do start with <span class="dk_code_simple">ENDBRANCH</span>.&nbsp;</p>
                     </section>
 
-                    <section id="dk_software_pools">
+                    <section id="dk_software_sequence">
                         <h4>Software BHB-clearing Sequence</h4>
                         <p>Another mitigation option is to invoke a software sequence to overwrite the BHB after domain transitions. This mitigates BHI by removing a potential attacker’s control of the BHB. This mitigation is not needed on processors that enumerate <span class="dk_code_simple">BHI_NO</span> as described in the <a class="b_special_a1" href="">Enumeration of Related Processor Behaviors</a> section or where another BHI mitigation is in place.&nbsp;</p>
                         <p>The optimal software sequence to clear the BHB may differ between processors, due to microarchitectural differences such as the number of branches recorded in the BHB. Intel is providing a software sequence which is sufficient to clear the BHB on all processors prior to Alder Lake, which is shown in <em>Listing 1</em>. It is known as the short sequence. Intel is also providing a sequence which is sufficient to clear the BHB on Alder Lake and Sapphire Rapids and later processors with P-cores that do not enumerate <span class="dk_code_simple">BHI_NO</span>, which is shown in <em>Listing 2</em>. It is known as the long sequence. The long sequence will be effective on all processors that do not enumerate <span class="dk_code_simple">BHI_NO</span> and should not be needed on parts that do enumerate <span class="dk_code_simple">BHI_NO</span>.</p>
+
+                        <div class="mv_code_toolbar">
+                            <div class="mv_toolbar_item mv_copy_icon">
+                                <i class="fa-regular fa-copy"></i>
+                            </div>
+                            <div class="mv_copy_message text-end hidden">Copied</div>
+                            <div class="code-content">
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp;</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">mov $5, %%ecx</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; call 801f</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; jmp 805f</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; .align 64</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">801: &nbsp; call 802f</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ret</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; .align 64</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">802: &nbsp; movl $5, %%eax</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">803: &nbsp; jmp 804f</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; nop</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">804: &nbsp; sub $1, %%eax</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; jnz 803b</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; sub $1, %%ecx</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; jnz 801b</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ret</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 1rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">805: &nbsp; lfence</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <p><em>Listing 1 (short sequence). Proposed software BHB-clearing sequence for all processors prior to Alder Lake.</em></p>
+
+                        <div class="mv_code_toolbar">
+                            <div class="mv_toolbar_item mv_copy_icon">
+                                <i class="fa-regular fa-copy"></i>
+                            </div>
+                            <div class="mv_copy_message text-end hidden">Copied</div>
+                            <div class="code-content">
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp;</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">mov $12 %%ecx</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; call 801f</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  jmp 805f</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  .align 64</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">801: &nbsp; call 802f</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  ret</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  .align 64</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">802: &nbsp;  movl $7, %%eax</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">803: &nbsp;  jmp 804f</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  nop</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">804: &nbsp;  sub $1, %%eax</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  jnz 803b</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  sub $1, %%ecx</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  jnz 801b</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  ret</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 1rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">805: &nbsp;  lfence</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <p><em>Listing 2 (long sequence): Proposed software BHB-clearing sequence for Alder Lake and Sapphire Rapids.</em></p>
+
+                        <p>Aborting an Intel® Transactional Synchronization Extensions (Intel® TSX) transactional region by invoking TSX abort also clears the BHB. The sequence in Listing 3 shows how to enforce this abort; the push/pop are only needed if the <span class="dk_code_simple">RAX</span> register contents should be preserved. This software sequence is an alternative to the sequences above, but it only works on processors that support Intel TSX. The TSX sequence is effective on all current processors with Intel TSX support that do not enumerate <span class="dk_code_simple">BHI_NO</span> and should not be needed on parts that do enumerate <span class="dk_code_simple">BHI_NO</span>. This sequence would be effective on all current processors with Intel TSX support whether or not <span class="dk_code_simple">XBEGIN</span> is configured to always abort, such as when the <span class="dk_code_simple">IA32_TSX_CTRL (0x122) RTM_DISABLE</span> control is set. &nbsp;</p>
+
+                        <div class="mv_code_toolbar">
+                            <div class="mv_toolbar_item mv_copy_icon">
+                                <i class="fa-regular fa-copy"></i>
+                            </div>
+                            <div class="mv_copy_message text-end hidden">Copied</div>
+                            <div class="code-content">
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp;</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; push %%rax</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  xbegin label</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  xabort $0</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  lfence</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 1rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">label: &nbsp;  pop %%rax</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <p><em>Listing 3 (TSX sequence): Proposed software BHB-clearing sequence based on Intel TSX abort.</em></p>
+                        <p>These sequences are provided as reference. Software using the above software BHB-clearing sequences should be following the guidance in the <a class="b_special_a1" href="">Software Mitigations in Migration Pools</a> section so that they remain effective when virtualized (for example, when used in VM migration pools with future processors).</p>
+                        <p class="mb-0">&nbsp;</p>
+                    </section>
+
+                    <section id="dk_software_pools">
+                        <h4>Software Mitigations in Migration Pools</h4>
+                        <p>This section discusses situations where the CPUID family/model/stepping or other CPU enumeration exposed to a guest may not reflect the underlying hardware, such as in VM migration pools where guests may be migrated between processors of different microarchitectures. In such cases, software may use a software mitigation that is not effective. In particular, this applies to the short sequence described in the <a class="b_special_a1" href="">Software BHB-clearing Sequence</a> section, which may not be effective on newer or future processors, and mitigations described in the <a class="b_special_a1" href="">Retpoline</a> section, which may need the <span class="dk_code_simple">RRSBA_DIS</span> indirect predictor control to be set on processors which enumerate RRSBA.</p>
+                        <p>VMMs can address this by applying the needed controls whenever the guest is operating on a newer processor. For example, if a guest is using the BHB-clearing sequence on transitions into <span class="dk_code_simple">CPL0</span> to mitigate BHI, the VMM can use the “virtual IA32_SPEC_CTRL” VM-execution control to set <span class="dk_code_simple">BHI_DIS_S</span> (or <span class="dk_code_simple">IPRED_DIS_S</span>) on newer hardware which does not enumerate <span class="dk_code_simple">BHI_NO</span>. Similarly, if a guest is using retpoline to mitigate intra-mode BTI in <span class="dk_code_simple">CPL0</span>, the VMM can set <span class="dk_code_simple">RRSBA_DIS_S</span> when the guest runs on hardware which enumerates RRSBA.</p>
+                        <p>Enabling these hardware controls for guests which are not using these software mitigations is not necessary and may cause performance impact unnecessarily. To avoid that, Intel is documenting a set of virtual MSRs that can allow guests to notify VMMs whether or not they are using specific software mitigations, allowing a VMM to enable these hardware controls only where necessary.</p>
+                        <p>The Intel-defined virtual MSRs described in this section are only supported when IA32_ARCH_CAPABILITIES bit 63 is set. In the future, a separate whitepaper will document Intel-defined virtual MSRs, including these. Specific MSR addresses and the corresponding bits can be found in the <a class="b_special_a1" href="">Virtualization Execution Control</a> section.</p>
+                    </section>
+
+                    <section id="dk_requirements_os">
+                        <h4>Requirements for Virtualized Operating Systems</h4>
+                        <p>Guests can check whether they are running under a VMM which supports this virtual MSR interface for notifying VMMs about software mitigations by checking bit 63 of IA32_ARCH_CAPABILITIES, and if set, by checking whether <span class="dk_code_simple">MITIGATION_CTRL_SUPPORT</span> (bit 0) is set in <span class="dk_code_simple">MSR_VIRTUAL_ENUMERATION</span>. If either of these bits are not set, then the software mitigations interface is not supported.</p>
+                        <p>Where the interface is supported, Intel is initially defining two scenarios:</p>
+                        <p>Guest OSes that clear the BHB (as documented in the <a class="b_special_a1" href="">Software BHB-clearing Sequence</a> section) on transitions into CPL0 to mitigate BHI should check whether <span class="dk_code_simple">BHB_CLEAR_SEQ_S_SUPPORT</span> is set in MSR_VIRTUAL_MITIGATION_ENUM. If this bit is set, then guest OSes can request support for this scenario by setting the corresponding <span class="dk_code_simple">BHB_CLEAR_SEQ_S_USED</span> bit in <span class="dk_code_simple">MSR_VIRTUAL_MITIGATION_CTRL</span>. Guest OSes can then rely on the “short” BHB-clearing sequence to be effective.</p>
+                        <p>Guest OSes that are using long or TSX sequences can optionally clear BHB_CLEAR_SEQ_S_USED bit in order to communicate this to the VMM<a class="b_special_a1" href=""><sup>8</sup></a>.</p>
+                        <p>When a guest OS is using retpoline in <span class="dk_code_simple">CPL0</span> to mitigate intra-mode BTI or BHI, they OS should check whether <span class="dk_code_simple">RETPOLINE_S_SUPPORT</span> is set in <span class="dk_code_simple">MSR_VIRTUAL_MITIGATION_ENUM</span>. If it is set, then the OS it can request support for this scenario by setting the corresponding bit in <span class="dk_code_simple">MSR_VIRTUAL_MITIGATION_CTRL</span>.</p>
+                    </section>
+
+                    <section id="dk_requrirements_cpuid">
+                        <h4>Requirements for VMMs that Virtualize CPUID Family/Model/Stepping</h4>
+                        <p>This section is relevant to VMMs that enumerate a CPUID family/model to a guests for which a particular BHB-clearing sequence or retpoline is sufficient, but which may also run that guest on a processor for which that mitigation is not sufficient. Such VMMs should both virtualize MSR reads of IA32_ARCH_CAPABILITIES MSR such that bit 63 is set and reads of <span class="dk_code_simple">MSR_VIRTUAL_ENUMERATION</span> such that bit 0 is read as 1. These VMMs should also add the support indicated in both of the next two sections.&nbsp;</p>
+                        <h5>VMM Support for BHB-clearing Software Sequences</h5>
+                        <p>VMMs should virtualize MSR reads of <span class="dk_code_simple">MSR_VIRTUAL_MITIGATION_ENUM </span>such that bit 0 is read as 1. If the guest does an MSR write to <span class="dk_code_simple">MSR_VIRTUAL_MITIGATION_CTRL</span> that sets bit 0, <span class="dk_code_simple">BHB_CLEAR_SEQ_S_USED</span>, then the guest is using the short sequence<a  class="b_special_a1" href=""><sup>8</sup></a> to mitigate BHI.</p>
+                        <p>In order for the guest mitigation to be effective, the VMM should use the “virtualize IA32_SPEC_CTRL” VM-execution control to cause <span class="dk_code_simple">BHI_DIS_S</span> to be set whenever the guest is running on processors for which that short BHB-clearing sequence may not be effective (such as on Alder Lake/Sapphire Rapids and future processors). Specifically, the VMM can set the VM-execution control, set the bit corresponding to <span class="dk_code_simple">BHI_DIS_S</span> in the SPEC_CTRL_MASK VMCS field and set <span class="dk_code_simple">IA32_SPEC_CTRL[BHI_DIS_S]</span> when the guest runs on such processors. &nbsp;As a specific example, for a VM migration pool that runs Intel® Xeon® processors based on both Ice Lake and Sapphire Rapids microarchitectures, if the guest sets <span class="dk_code_simple">BHB_CLEAR_SEQ_S_USED</span> then the VMM should cause <span class="dk_code_simple">BHI_DIS_S</span> to be set whenever the guest runs on a Sapphire Rapids processor.&nbsp;</p>
+                        <p>A VMM may also choose to cause <span class="dk_code_simple">BHI_DIS_S</span> to be set in the applicable situations even when <span class="dk_code_simple">BHB_CLEAR_SEQ_S_SUPPORTED</span> is not enumerated, or when the virtual MSR interface is not supported at all by a VMM.</p>
+                        <h5>VMM Support for Retpoline</h5>
+                        <p>VMMs should virtualize MSR reads of <span class="dk_code_simple">MSR_VIRTUAL_MITIGATION_ENUM</span> such that bit 1,&nbsp;<span class="dk_code_simple">RETPOLINE_S_SUPPORT</span>, is read as 1. If the guest does an MSR write to <span class="dk_code_simple">MSR_VIRTUAL_MITIGATION_CTRL</span> that sets bit 1, <span class="dk_code_simple">RETPOLINE_S_USED</span>, then the guest may use retpoline to mitigate BHI and intra-mode BTI attacks in <span class="dk_code_simple">CPL0</span>.</p>
+                        <p>In order for the guest mitigation to be effective, the VMM should use “virtualize IA32_SPEC_CTRL” VM-execution control to cause <span class="dk_code_simple">RRSBA_DIS_S</span> to be set whenever the guest OS is using retpoline. Specifically, the VMM can set the VM-execution control, set the bit corresponding to <span class="dk_code_simple">RRSBA_DIS_S</span> in the SPEC_CTRL_MASK VMCS field and set <span class="dk_code_simple">IA32_SPEC_CTRL[RRSBA_DIS_S]</span> when the guest runs on such processors. As a specific example, for a VM migration pool that runs Intel Xeon processors based on both Ice Lake and Sapphire Rapids microarchitectures, if the guest sets <span class="dk_code_simple">RETPOLINE_S_USED</span> then the VMM should cause <span class="dk_code_simple">RRSBA_DIS_S</span> to be set whenever the guest runs on a Sapphire Rapids processor.</p>
+                        <p>&nbsp;</p>
+                    </section>
+
+                    <section id="dk_guidelines_op">
+                        <h4 style="font-weight: 350;">Guidelines for Applying Additional Hardening Options</h4>
+                        <p>VU Amsterdam researchers have reported new software techniques for BHI, such as using "dispatch gadgets", which contains one indirect branch with an attacker-controlled target address, to facilitate the injection of branch target in the history-based branch predictor, as well as chaining instructions on the speculative execution path to form disclosure gadgets. As such, more potentially exploitable gadgets have been identified in Linux kernel without the need of eBPF. Therefore, software vendors may wish to consider applying the broader mitigations documented in the <a class="b_special_a1" href="">Additional Hardening Options</a> section. This new technique does not change the scope of impact by BHI in terms of affected processors.</p>
+                        <p>Where operating system or VMM software wishes to deploy these broader BHI mitigations, Intel recommends the following approach:</p>
+                    </section>
+
+                    <section id="dk_os">
+                        <h4>Operating Systems</h4>
+                        <p>On processors which enumerate <span class="dk_code_simple">BHI_NO</span>, OS software does not need to take any additional action. Otherwise, on processors which support <span class="dk_code_simple">BHI_DIS_S</span>, software should set <span class="dk_code_simple">BHI_DIS_S</span> in IA32_SPEC_CTRL to broadly mitigate BHI.</p>
+                        <p>On processors which do not support <span class="dk_code_simple">BHI_DIS_S</span> but do enumerate <span class="dk_code_simple">IBRS_ALL</span>, OS software can mitigate BHI using the short software sequence on domain transitions.&nbsp;</p>
+                        <p class="mb-0">On processors which do not enumerate <span class="dk_code_simple">IBRS_ALL</span>, OS software does not need to take any additional action when not running in a virtualized environment. However, when running in virtualized environments<a class="b_special_a1" href=""><sup>9</sup></a>&nbsp;where IBRS is enumerated but <span class="dk_code_simple">IBRS_ALL</span> is not enumerated, guests may need to apply mitigations (since the VMM may run the guest on hardware with <span class="dk_code_simple">IBRS_ALL</span> support):</p>
+                        <ul>
+                            <li>If OS software is relying on IBRS: Use short software sequence on OS domain transitions.</li>
+                            <li>If OS software is relying on retpoline:
+                            <ul>
+                                <li>If neither RSBA nor RRSBA is enumerated<a class="b_special_a1" href=""><sup>10</sup></a>: No additional action needed.</li>
+                                <li>If RSB underflow is being mitigated using Call Depth Tracking: No additional action needed.</li>
+                                <li>Otherwise (meaning the guest is potentially exposed to RSB underflow): Use the short software sequence on OS domain transitions.</li>
+                            </ul>
+                            </li>
+                        </ul>
+                        <p>In cases where the OS is using the short software sequence to mitigate BHI, it should use the virtual MSR interface (where available) as documented in the <a class="b_special_a1" href="">Software Mitigations in Migration Pools</a> section to notify the VMM that it is using the short software sequence. Note that VMMs are expected to default to assuming that guests are using the short software sequence and ensure that it is effective regardless of the actual hardware in use.</p>
+                        <p>On processors (or in virtualized environments) where IBRS is not enumerated, OS software is not expected to take any additional action.</p>
+                        <p class="mb-0">&nbsp;</p>
+                    </section>
+
+                    <section id="dk_vmm">
+                        <h4>VMM</h4>
+                        <p>Where possible, VMMs should enumerate <span class="dk_code_simple">BHI_NO</span> and/or <span class="dk_code_simple">BHI_DIS_S</span> to guests where these are supported by hardware. VMMs may also wish to consider applying the guidance for operating systems to protect themselves, where relevant; and, if using <span class="dk_code_simple">BHI_DIS_S</span> for this purpose, can use IBPB (or a software sequence) to isolate ring 3 of the host from guest behavior.</p>
+                        <p class="mb-0">The VMM should use the “virtualize IA32_SPEC_CTRL” VM-execution control to cause <span class="dk_code_simple">BHI_DIS_S</span> to be set (see the <a class="b_special_a1" href="">VMM Support for BHB-clearing Software Sequences</a> section) whenever:</p>
+                        <ul>
+                            <li>The VMM is running on a processor for which the short software sequence may not be effective:
+                            <ul>
+                                <li>Specifically, it does not enumerate <span class="dk_code_simple">BHI_NO</span>, but does enumerate <span class="dk_code_simple">BHI_DIS_S</span>, and is not an Atom-only<a class="b_special_a1" href=""><sup>11</sup></a>&nbsp;processor.&nbsp;</li>
+                            </ul>
+                            </li>
+                            <li>Neither <span class="dk_code_simple">BHI_DIS_S</span> nor <span class="dk_code_simple">BHI_NO</span> is enumerated to the guest, and IBRS is enumerated to the guest (which implies to the guest that the short sequence will be effective); and
+                            <ul>
+                                <li>The guest has not used virtual MSRs (see the <a class="b_special_a1" href="">VMM Support for BHB-clearing Software Sequences</a>, and the guidance below) to indicate that it does not rely on the short software sequence to mitigate BHI.</li>
+                            </ul>
+                            </li>
+                        </ul>
+                        <p>Note that VMMs should enumerate RSBA to guests that may run on processors with RSB Alternate behavior (those which enumerate RSBA). If RSBA is not enumerated to a guest, VMMs should enumerate RRSBA to guests that may run on processors with Restricted RSB Alternate behavior (those which enumerate RRSBA) without <span class="dk_code_simple">RRSBA_DIS_S</span> being set.&nbsp;</p>
+                    </section>
+
+                    <section id="dk_alternate_oses">
+                        <h4>Alternate Approaches for OSes</h4>
+                        <p class="mb-0">Intel has also documented software sequences which can be used on OS domain transitions to mitigate BHI on processors where <span class="dk_code_simple">BHI_NO</span> is not enumerated, <span class="dk_code_simple">BHI_DIS_S</span> is enumerated, and <span class="dk_code_simple">BHI_DIS_S</span> is not enabled by OS software:</p>
+                        <ul>
+                            <li>The short sequence should be used on Atom-only<a class="b_special_a1" href=""><sup>11</sup></a>&nbsp;processors. (The short sequence is effective on all cores which report a core type of Atom and do not enumerate <span class="dk_code_simple">BHI_NO</span>, even if other cores are present.)</li>
+                            <li>Otherwise, the TSX sequence can be used where RTM is supported (and in some other cases<a class="b_special_a1" href=""><sup>12</sup></a>).</li>
+                            <li>Otherwise, the long sequence should be used.</li>
+                        </ul>
+                        <p>None of these sequences are relevant for processors if processors are not affected by BHI, (<span class="dk_code_simple">BHI_NO</span> is enumerated).</p>
+                        <p>When <span class="dk_code_simple">BHI_DIS_S</span> is not enumerated to a guest but IBRS is enumerated and enabled, guest OSes can assume that the VMM will cause <span class="dk_code_simple">BHI_DIS_S</span> to be set on the underlying hardware to support use of the short software sequence. As documented in <a class="b_special_a1" href="">VMM Support for BHB-clearing Software Sequences</a>, guest OSes which prefer the software sequences can request that the VMM not set <span class="dk_code_simple">BHI_DIS_S</span> in these cases by clearing the <span class="dk_code_simple">BHB_CLEAR_SEQ_S_USED</span> bit using the virtual MSR interface. In such cases, guests should not assume that the short software sequence will be sufficient to mitigate BHI and need to use the TSX sequence or the long sequence. If <span class="dk_code_simple">BHB_CLEAR_SEQ_S_SUPPORT</span> is not enumerated (meaning virtual MSRs are not supported), then the short software sequence should be sufficient with VMM support (as described in the <a class="b_special_a1" href="">Guidelines for Applying Additional Hardening Options</a>&nbsp;section).</p>
+                        <p class="mb-0">&nbsp;</p>
+                    </section>
+
+                    <section id="dk_virtual_msr">
+                        <h4>Virtual MSR Support in VMMs</h4>
+                        <p>As documented in <a class="b_special_a1" href="">VMM Support for BHB-clearing Software Sequences</a>, a VMM can (optionally) support guest OSes which are using alternate approaches to <span class="dk_code_simple">BHI_DIS_S</span> via the virtual MSR interface, by enumerating <span class="dk_code_simple">BHB_CLEAR_SEQ_S_SUPPORTED</span>. To support guest OSes which do not support the virtual MSR interface, VMMs are expected to set the <span class="dk_code_simple">BHB_CLEAR_SEQ_S_USED</span> bit by default. If a guest uses the virtual MSR interface to clear the <span class="dk_code_simple">BHB_CLEAR_SEQ_S_USED</span> bit, the VMM can assume that the guest will use the long or TSX sequence<a href=""><sup>13</sup></a> to mitigate BHI. In this situation, the VMM should not apply <span class="dk_code_simple">BHI_DIS_S</span> underneath such guests.&nbsp;</p>
+                        <p>VMMs do not need to enumerate <span class="dk_code_simple">BHB_CLEAR_SEQ_S_SUPPORTED</span> if they do not migrate to parts where the short sequence is ineffective, such as where <span class="dk_code_simple">BHI_DIS_S</span> is supported. This can avoid the guest OS using a long or TSX sequence when it is not needed.&nbsp;</p>
+                        <p class="mb-0">&nbsp;</p>
+                    </section>
+
+                    <section id="dk_addressing_cbpf">
+                        <h4>Addressing Intra-Mode Branch Target Injection via cBPF</h4>
+                        <p>Intel recommends disallowing execution of unprivileged/untrusted code in privileged runtimes, including disabling unprivileged BPF. For the Linux kernel, at the time of writing, unprivileged users can still execute classic BPF and <em>seccomp</em> filters, which are privileged runtimes. These filters can be used to mount an Intra-Mode BHI attack. Intra-mode BHI is the subset of Intra-mode BTI where the attack relies on branch history-based predictions.</p>
+                        <p>If disabling unprivileged classic BPF is not possible, these attacks can be mitigated by overwriting the branch history after classic BPF execution and before executing privileged indirect jumps.&nbsp;</p>
+                        <p>On processors that support BHI_DIS_S controls, this can be done via setting BHI_DIS_S and using the new Indirect Branch History Fence (IBHF) instruction<sup><a class="b_special_a1" href="">14</a></sup> which is described <a class="b_special_a1" href="">below</a>. On older processors which do not support BHI_DIS_S, the short software BHB-clearing sequence can be used. Operating systems running in virtualized environments where BHI_DIS_S is not enumerated can combine both options, by using a software BHB-clearing sequence with an IBHF instruction at the end.</p>
+                        <p>As discussed in the Software Mitigations in Migration Pools section, operating systems running in virtualized environments where the BHI_DIS_S control is not enumerated may want to consider the possibility they may be running on newer hardware where the software BHB-clearing sequence may not be effective. Operating system software can place the IBHF instruction at the end of the software BHB-clearing sequence to account for this case, assuming the virtual MSR interface is being used to indicate to the VMM that BHI_DIS_S should be enabled on processors without BHI_NO. As documented below, IBHF behaves as a <span class="dk_code_simple">NOP</span> instruction on older processors, so this instruction can be used on all processors regardless of any enumeration. Note that on processors which enumerate BHI_NO, the combination of the short software BHB-clearing sequence and IBHF is sufficient, even where BHI_DIS_S is not set.&nbsp;</p>
+                    </section>
+
+                    <section id="dk_indirect_fence">
+                        <h4>Indirect Branch History Fence</h4>
+                        <p>The IBHF instruction prevents the predicted targets of subsequent indirect branches from being influenced by branch history prior to the fence if BHI_DIS_S is set and remains set in that predictor mode. IBHF is only effective in ring 0.&nbsp;</p>
+                        <p>Executing IBHF prevents predicted targets of later indirect branches executed while BHI_DIS_S is enabled in CPL0, CPL1, or CPL2 from being selected based on branch history from branches executed prior to IBHF, other than RSB-based return predictions.&nbsp;</p>
+                        <p>The IBHF is encoded as F3 48 0F 1E F8 and is only encodable in 64-bit mode. It acts as a <span class="dk_code_simple">NOP</span> instruction in 64-bit mode on all processors which do not support BHI_DIS_S (which is enumerated by CPUID.7.2.EDX[BHI_CTRL]). &nbsp;</p>
+                    </section>
+
+                    <section id="dk_intra_mode">
+                        <h4>Intra-mode BTI via Indirect Target Selection</h4>
+                        <p>Intra-mode Branch Target Injection may also occur due to <a class="b_special_a1" href="">Indirect Target Selection</a>. It involves an indirect branch being predicted to the target of a direct branch entry in the same predictor mode. Indirect Target Selection w/ cBPF (IM BTI) is an example of this where direct branches in cBPF are used to supply the target used for ring 0 indirect branches that execute later. The Indirect Target Selection Linux mitigation is to re-align the vulnerable indirect branch so that they are not vulnerable. This also mitigates Indirect Target Selection via cBPF.</p>
+                        <p class="mb-0">&nbsp;</p>
+                    </section>
+
+                    <section id="dk_enumeration">
+                        <h3 style="font-weight: 350;">Enumeration</h3>
+                        <p class="mb-0">&nbsp;</p>
+                    </section>
+
+                    <section id="dk_enum_controls">
+                        <h4>Enumeration of New Indirect Branch Predictor Controls</h4>
+                        <p>The controls described in the <a class="b_special_a1" href="">Indirect Branch Predictor Controls</a>&nbsp;section are exposed as bits in the IA32_SPEC_CTRL MSR. Support for these controls is enumerated in CPUID leaf 7, subleaf 2; bit 1 of EDX indicates support for the indirect predictor disable, bit 2 of EDX indicates support for the bottomless RSB disable, and bit 4 of EDX indicates support for the BHB-focused indirect predictor disable.</p>
+                        <p>&nbsp;</p>
+                        <table class="mv_product_table w-100 mb-4">
+                            <thead>
+                                <tr>
+                                    <th colspan="5">Table 1: New IA32_SPEC_CTRL controls</th>
+                                </tr>   
+                            </thead>
+                            <tbody>
+                                <tr class="data" data-category-id="">
+                                    <th>Register Address Hex</th>
+                                    <th>Register Address Dec</th>
+                                    <th>Register Name / Bit Fields</th>
+                                    <th>Bit Description</th>
+                                    <th>Comment</th>
+                                </tr>
+                                <tr class="data" data-category-id="">
+                                    <td>48H</td>
+                                    <td>72</td>
+                                    <td>IA32_SPEC_CTRL</td>
+                                    <td>Speculation Control (R/W)</td>
+                                    <td>If any one of the enumeration conditions for the defined bit field positions holds.</td>
+                                </tr>
+                                <tr class="data" data-category-id="">
+                                    <td>48H</td>
+                                    <td>72</td>
+                                    <td>3</td>
+                                    <td>IPRED_DIS_U</td>
+                                    <td>When 1, enable IPRED_DIS control for CPL3. Refer to the&nbsp;<a class="b_special_a1" href="">Intra-mode BTI</a>&nbsp;section.<br>
+                                        Enumerated by CPUID.7.2.EDX[IPRED_CTRL] (bit 1).</td>
+                                </tr>
+                                <tr class="data" data-category-id="">
+                                    <td>48H</td>
+                                    <td>72</td>
+                                    <td>4</td>
+                                    <td>IPRED_DIS_S</td>
+                                    <td>When 1, enable IPRED_DIS control for CPL0/1/2. Refer to the&nbsp;<a class="b_special_a1" href="">Intra-mode BTI</a>&nbsp;section.<br>
+                                        Enumerated by CPUID.7.2.EDX[IPRED_CTRL] (bit 1).</td>
+                                </tr>
+                                <tr class="data" data-category-id="">
+                                    <td>48H</td>
+                                    <td>72</td>
+                                    <td>5</td>
+                                    <td>RRSBA_DIS_U</td>
+                                    <td>When 1, disable RRSBA behavior for CPL3. Refer to the&nbsp;<a class="b_special_a1" href="">Retpoline</a>&nbsp;section.<br>
+                                        Enumerated by CPUID.7.2.EDX[RRSBA_CTRL] (bit 2).&nbsp;</td>
+                                </tr>
+                                <tr class="data" data-category-id="">
+                                    <td>48H</td>
+                                    <td>72</td>
+                                    <td>6</td>
+                                    <td>RRSBA_DIS_S</td>
+                                    <td>When 1, disable RRSBA behavior for CPL0/1/2. Refer to the&nbsp;<a class="b_special_a1" href="">Retpoline</a>&nbsp;section.<br>
+                                        Enumerated by CPUID.7.2.EDX[RRSBA_CTRL] (bit 2).&nbsp;</td>
+                                </tr>
+                                <tr class="data" data-category-id="">
+                                    <td>48H</td>
+                                    <td>72</td>
+                                    <td>10</td>
+                                    <td>BHI_DIS_S</td>
+                                    <td>When 1, enable BHI_DIS_S behavior. Refer to the&nbsp;<a class="b_special_a1" href="">Indirect Branch Predictor Controls</a>&nbsp;section.<br>
+                                        Enumerated by CPUID.7.2.EDX[BHI_CTRL] (bit 4).&nbsp;</td>
+                                </tr>
+                            </tbody>
+                        </table> 
+                    </section>
+
+                    <section id="dk_enum_behaviors">
+                        <h4>Enumeration of Related Processor Behaviors</h4>
+                        <p>Note that support for indirect branch predictor controls does not imply that the control is required to be set on that processor to get the documented behavior.</p>
+                        <table class="mv_product_table w-100 mb-4">
+                            <thead>
+                                <tr>
+                                    <th colspan="5">Table 2: New IA32_ARCH_CAPABILITIES Controls</th>
+                                </tr>   
+                            </thead>
+                            <tbody>
+                                <tr class="data" data-category-id="">
+                                    <th>Register Address Hex</th>
+                                    <th>Register Address Dec</th>
+                                    <th>Register Name / Bit Fields</th>
+                                    <th>Bit Description</th>
+                                    <th>Comment</th>
+                                </tr>
+                                <tr class="data" data-category-id="">
+                                    <td>10AH</td>
+                                    <td>266</td>
+                                    <td>IA32_ARCH_CAPABILITIES</td>
+                                    <td>Enumeration of Architectural Features (RO)</td>
+                                    <td>If CPUID.(EAX-07H, ECX=0):EDX[29]=1</td>
+                                </tr>
+                                <tr class="data" data-category-id="">
+                                    <td>10AH</td>
+                                    <td>266</td>
+                                    <td>19</td>
+                                    <td>RRSBA</td>
+                                    <td>A value of 1 indicates processor may have the RRSBA alternate prediction behavior, if not disabled by&nbsp;RRSBA_DIS_U&nbsp;or&nbsp;RRSBA_DIS_S.</td>
+                                </tr>
+                                <tr class="data" data-category-id="">
+                                    <td>10AH</td>
+                                    <td>266</td>
+                                    <td>20</td>
+                                    <td>BHI_NO</td>
+                                    <td>A value of 1 indicates&nbsp;BHI_NO&nbsp;branch prediction behavior, regardless of the value of&nbsp;IA32_SPEC_CTRL[BHI_DIS_S]&nbsp;MSR bit.</td>
+                                </tr>
+                            </tbody>
+                        </table> 
+                        <p class="mb-0">Explicit enumeration is provided for processors with RRSBA behavior. RRSBA behavior allows alternate branch predictors to be used by near <span class="dk_code_simple">RET</span> instructions when the RSB is empty, but the predicted targets of these alternate predictors are restricted to those belonging to the indirect branch predictor entries of the current prediction domain. Such processors that may exhibit RRSBA behavior (when <span class="dk_code_simple">RRSBA_DIS_U</span> or <span class="dk_code_simple">RSBA_DIS_S</span> are not set) will set the RRSBA enumeration bit in the IA32_ARCH_CAPABILITIES MSR.</p>
+                        <ul>
+                            <li><span class="dk_code_simple">IA32_ARCH_CAPABILITIES[RRSBA]</span>, bit 19: A value of 1 indicates processor may have the RRSBA alternate prediction behavior, if not disabled by <span class="dk_code_simple">RRSBA_DIS_U</span> or <span class="dk_code_simple">RRSBA_DIS_S</span>.</li>
+                        </ul>
+                        <p class="mb-0">Future processors may restrict cross-domain branch history influence on indirect branch prediction target selection, regardless of the value of the <span class="dk_code_simple">IA32_SPEC_CTRL[BHI_DIS_S]</span>&nbsp;MSR bit. &nbsp;Enumeration of&nbsp;<span class="dk_code_simple">BHI_NO</span>&nbsp;indicates that the processor prevents predicted targets of indirect branches executed in&nbsp;<span class="dk_code_simple">CPL0</span>,&nbsp;<span class="dk_code_simple">CPL1</span>, or&nbsp;<span class="dk_code_simple">CPL2</span>&nbsp;from being selected based on branch history from branches executed in&nbsp;<span class="dk_code_simple">CPL3</span>, other than RSB-based return predictions. It also prevents predicted targets executed in&nbsp;<span class="dk_code_simple">CPL0/1/2</span>&nbsp;VMX root from being selected based on branch history from branches executed in a VMX non-root (guest).&nbsp;</p>
+                        <ul>
+                            <li><span class="dk_code_simple">IA32_ARCH_CAPABILITIES[BHI_NO]</span>, bit 20: A value of 1 indicates <span class="dk_code_simple">BHI_NO</span> branch prediction behavior, regardless of the value of <span class="dk_code_simple">IA32_SPEC_CTRL[BHI_DIS_S]</span> MSR bit.</li>
+                        </ul>
+                    </section>
+
+
+                    <section id="dk_viertualization_control">
+                        <h4>Virtualization Execution Control</h4>
+                        <p>When “virtualize IA32_SPEC_CTRL” VM-execution control is enabled, the processor supports virtualizing MSR writes and reads to IA32_SPEC_CTRL. This VM-execution control is enabled when the tertiary processor-based VM-execution control bit 7 is set and the tertiary controls are enabled. The support for this VM-execution control is enumerated by bit 7 of the <span class="code-simple">IA32_VMX_PROCBASED_CTLS3 MSR</span> (0x492).</p>
+                        <p>When enabled, two new VM-execution control fields are used:</p>
+                        <ul>
+                            <li>The IA32_SPEC_CTRL mask (encoding pair 204AH/204BH) specifies which IA32_SPEC_CTRL bits are exposed to the guest (VMX non-root). When a bit is set in the mask, the guest cannot change the corresponding bit of IA32_SPEC_CTRL.</li>
+                            <li>The IA32_SPEC_CTRL shadow (encoding pair 204CH/204DH) contains the value of IA32_SPEC_CTRL which is exposed to the guest.</li>
+                        </ul>
+                        <p>When the control is enabled, and the MSR bitmap is not set to cause a VM exit on an access to IA32_SPEC_CTRL:</p>
+                        <ul>
+                            <li><span class="code-simple">RDMSR</span> to IA32_SPEC_CTRL will return the value of the shadow.&nbsp;</li>
+                            <li><span class="code-simple">WRMSR</span> to <span class="code-simple">IA32_SPEC_CTRL</span> will attempt to write <span class="code-simple">(IA32_SPEC_CTRL &amp; mask) | (EDX:EAX &amp; NOT mask)</span> to IA32_SPEC_CTRL, and update the shadow with the value of <span class="code-simple">EDX:EAX</span> if the write succeeds (does not fault).</li>
+                        </ul>
+                        <p>Note that software should not include IA32_SPEC_CTRL in VMX MSR save/load lists when the “virtualize IA32_SPEC_CTRL” VM-execution control is set. It is implementation specific whether the “virtualize IA32_SPEC_CTRL” VM-execution control applies to such MSR reads and writes.</p>
+                        <p class="mb-0">&nbsp;</p>
+                    </section>
+
+                    <section id="dk_virtual_msrs">
+                        <h3 style="font-weight: 350;">Virtual MSRs for Software Mitigations</h3>
+                        <p>Table 3&nbsp;summarizes the Intel-defined virtual MSRs which were described in the <a class="b_special_a1" href="">Software Mitigations in Migration Pools</a> section. The remaining MSRs between 0x50000003-0x5fffffff are reserved for Intel-defined usages and should not be defined by others.</p>
+                        <p class="mb-0">&nbsp;</p>
+                        <table class="mv_product_table w-100 mb-4">
+                            <thead>
+                                <tr>
+                                    <th colspan="4">Table 3: New Intel-defined Virtual MSRs for Software Mitigations</th>
+                                </tr>   
+                            </thead>
+                            <tbody>
+                                <tr class="data" data-category-id="">
+                                    <th>MSR</th>
+                                    <th>Address / Bit Field</th>
+                                    <th>Field Name</th>
+                                    <th>Comments</th>
+                                </tr>
+                                <tr class="data" data-category-id="">
+                                    <td>MSR_VIRTUAL_<br>ENUMERATION</td>
+                                    <td>0x50000000</td>
+                                    <td>&nbsp;</td>
+                                    <td>Read-only. Only available when bit 63 is set in IA32_ARCH_CAPABILITIES.<br>Not usable in VMX MSR lists.</td>
+                                </tr>
+                                <tr class="data" data-category-id="">
+                                    <td>&nbsp;</td>
+                                    <td>Bit 0</td>
+                                    <td>MITIGATION_CTRL_SUPPORT</td>
+                                    <td>Enumerates VMM support for MSR_VIRTUAL_<br>MITIGATION_ENUM and MSR_VIRTUAL_<br>MITIGATION_CTRL.</td>
+                                </tr>
+                                <tr class="data" data-category-id="">
+                                    <td>&nbsp;</td>
+                                    <td>Bit 63:1</td>
+                                    <td>Reserved</td>
+                                    <td>Reserved for future use.</td>
+                                </tr>
+                                <tr class="data" data-category-id="">
+                                    <td>MSR_VIRTUAL_<br>MITIGATION_ENUM</td>
+                                    <td>0x50000001</td>
+                                    <td>&nbsp;</td>
+                                    <td>Read-only. Only available if MITIGATION_CTRL_<br>SUPPORT is enumerated.<br>Not usable in VMX MSR lists.</td>
+                                </tr>
+                                <tr class="data" data-category-id="">
+                                    <td>&nbsp;</td>
+                                    <td>Bit 0</td>
+                                    <td>BHB_CLEAR_SEQ_S_SUPPORT</td>
+                                    <td>Enumerates VMM support for BHB_CLEAR_SEQ_S_USED.&nbsp;Refer to&nbsp;<a class="b_special_a1" href="">Software Mitigations in Migration Pools.&nbsp;</a></td>
+                                </tr>
+                                <tr class="data" data-category-id="">
+                                    <td>&nbsp;</td>
+                                    <td>Bit 1</td>
+                                    <td>RETPOLINE_S_SUPPORT</td>
+                                    <td>Enumerates VMM support for RETPOLINE_S_USED.&nbsp;Refer to&nbsp;<a class="b_special_a1" href="">Software Mitigations in Migration Pools.&nbsp;</a></td>
+                                </tr>
+                                <tr class="data" data-category-id="">
+                                    <td>&nbsp;</td>
+                                    <td>Bit 63:2</td>
+                                    <td>Reserved</td>
+                                    <td>Reserved for future use.</td>
+                                </tr>
+                                <tr class="data" data-category-id="">
+                                    <td>MSR_VIRTUAL_<br>MITIGATION_CTRL</td>
+                                    <td>0x50000002</td>
+                                    <td>&nbsp;</td>
+                                    <td>Read/write. Only available if MITIGATION_CTRL_<br>SUPPORT is enumerated. Thread scope. Reset value of 0.<br>Not usable in VMX MSR lists.</td>
+                                </tr>
+                                <tr class="data" data-category-id="">
+                                    <td>&nbsp;</td>
+                                    <td>Bit 0</td>
+                                    <td>BHB_CLEAR_SEQ_S_USED</td>
+                                    <td>When set, indicates that guest may rely on the short sequence being effective.&nbsp;Refer to&nbsp;<a class="b_special_a1" href="">Software Mitigations in Migration Pools.&nbsp;</a></td>
+                                </tr>
+                                <tr class="data" data-category-id="">
+                                    <td>&nbsp;</td>
+                                    <td>Bit 1</td>
+                                    <td>RETPOLINE_S_USED</td>
+                                    <td>When set, indicates that guest may rely on retpoline being effective.&nbsp;Refer to&nbsp;<a class="b_special_a1" href="">Software Mitigations in Migration Pools.&nbsp;</a></td>
+                                </tr>
+                                <tr class="data" data-category-id="">
+                                    <td>&nbsp;</td>
+                                    <td>Bit 63:2</td>
+                                    <td>&nbsp;</td>
+                                    <td>Reserved for future use.</td>
+                                </tr>
+                            </tbody>
+                        </table> 
+                        <p class="mb-0">&nbsp;</p>
+                    </section>
+
+                    <section id="dk_affected_pro"> 
+                        <h3 style="font-weight: 350;"><a class="b_special_a1" href="">Affected Processors</a></h3>
+                        <p>The table&nbsp;of affected processors (<em>2022 tab</em>) linked above indicates the processors for which privileged code may be affected by BHI (CVE-2022-0001) and/or intra-mode BTI (CVE-2022-0002) when the IBRS/eIBRS mitigations against BTI are properly applied. For example, this table&nbsp;may indicate that a processor is not affected by intra-mode BTI if IBRS or retpoline applied to privileged (kernel or VMM) code stops all speculative execution at the targets of indirect jumps and calls; even though the behavior behind intra-mode BTI may occur when IBRS or retpoline is not applied (for example, to application code).&nbsp;</p>
+                        <p>In general, when no mitigations are applied, every processor affected by BTI (Spectre variant 2) would also be affected by intra-mode BTI. BHI and intra-mode BTI are more complex attacks than BTI, and systems for which BTI mitigations were not needed (for example, because all code executed on the system is trusted) are expected to find that BHI and intra-mode BTI will not need mitigating.&nbsp;</p>
+                        <p class="mb-0">&nbsp;</p>
+                    </section>
+
+                    <section id="dk_additional_information">
+                        <h4 style="font-weight: 350;">Additional Information</h4>
+                        <p>Intel researchers have identified two related behaviors which are described below. Intel continues to invest in internal and external research to attempt to identify any additional related scenarios which could be potentially exploitable. External researchers can report a security vulnerability through the <a class="b_special_a1" href="">Intel Bug Bounty Program</a> if an exploit is found.</p>
+                    </section>
+
+                    <section id="dk_prediction_barriers">
+                        <h4>Branch History and Indirect Branch Prediction Barriers</h4>
+                        <p>Some operations act as indirect branch prediction barriers by preventing software executed before the barrier from controlling the predicted targets of near indirect branches executed after the barrier. On processors that do not enumerate <span class="dk_code_simple">BHI_NO</span>, these barrier operations may allow near indirect branches encountered after the barrier to be predicted (to targets reached after the barrier) using branch history accumulated before the barrier. This may allow the BHB generated by code executed before the barrier to cause aliasing between two branches encountered after the barrier, so both branches use the same branch predictor target. Intel is not aware of any production code where this behavior could enable a transient execution attack. Parts that enumerate <span class="dk_code_simple">BHI_NO</span> are not affected by this behavior.</p>
+                        <p>Some examples of operations that can act as indirect branch prediction barriers include entering an Intel SGX enclave or system-management mode (SMM), and IBPB. Intel has released a processor microcode update (MCU) that prevents indirect branches encountered after entering an Intel SGX enclave from being predicted using branch history accumulated before entering the enclave. If deemed necessary to a particular threat model, the branch clearing sequence in the <a class="b_special_a1" href="">Software BHB-clearing Sequence</a> section can be applied by software after any other operation that act as an indirect branch prediction barrier, such as IBPB.</p>
+                    </section>  
+
+                    <section id="dk_atom_processors">
+                        <h4>Incomplete Upper Target Isolation on Intel Atom Processors</h4>
+                        <p>On many Intel Atom processors that enumerate enhanced IBRS (<span class="dk_code_simple">IBRS_ALL</span>) but not <span class="dk_code_simple">BHI_NO</span>, it may be possible for software in a less privileged domain to specify some upper bits of the branch predictor targets in a more privileged domain even when enhanced IBRS is used. Specifically, the less privileged software may be able to specify some or all of bits 47:29 of the branch prediction target used in the more privileged domain while the remaining target bits are based on a previous branch in that more privileged domain. The less privileged domain cannot directly specify the lower 29 bits of the target. Also, only privileged indirect branches which change bits 47:29 of the <span class="dk_code_simple">RIP</span> register are affected by this behavior.&nbsp;</p>
+                        <p>Intel is not aware of this behavior enabling a transient execution attack in any production environment using enhanced IBRS. If deemed necessary to a particular threat model, this behavior could be mitigated by replacing indirect branches with retpoline for Gracemont and later microarchitectures or with <span class="dk_code_simple">LFENCE</span>;<span class="dk_code_simple">JMP</span> for Goldmont Plus or Tremont based microarchitectures. This behavior does not affect processors that enumerate <span class="dk_code_simple">BHI_NO</span>.&nbsp;</p>
+                    </section>  
+
+                    <section id="dk_processors_target">
+                        <h4>Processors Affected by Incomplete Upper Target Isolation</h4>
+                        <p class="mb-0">&nbsp;</p>
+                        <table class="mv_product_table w-100 mb-4">
+                            <thead>
+                                <tr>
+                                    <th colspan="6">Table 4: Processors Affected by Incomplete&nbsp;Upper Target Isolation</th>
+                                </tr>   
+                            </thead>
+                            <tbody>
+                                <tr class="data" data-category-id="">
+                                    <th>Processor</th>
+                                    <th>Stepping (all unless otherwise noted)</th>
+                                    <th>Code Names / Microarchitectures</th>
+                                    <th>Product Family</th>
+                                    <th><p>Branch History Injection (BHI)</p>
+                                    <p>CVE-2022-0001&nbsp;<br>
+                                    INTEL-SA-00598</p>
+                                    </th>
+                                    <th><p>Intra-Mode BTI</p>
+                                    <p>CVE-2022-0002 INTEL-SA-00598</p>
+                                    </th>
+                                </tr>
+                                <tr class="data" data-category-id="">
+                                    <td>06_7AH</td>
+                                    <td>1</td>
+                                    <td>Gemini Lake</td>
+                                    <td>1. Intel® Pentium® Processor Silver Series<br>
+                                    2. Intel® Celeron® Processor J Series<br>
+                                    3. Intel® Celeron® Processor N Series</td>
+                                    <td>Software</td>
+                                    <td>Software</td>
+                                </tr>
+                                <tr class="data" data-category-id="">
+                                    <td>06_7AH</td>
+                                    <td>8</td>
+                                    <td>Gemini Lake</td>
+                                    <td>1. Intel® Celeron® Processor J Series<br>
+                                    2. Intel® Celeron® Processor N Series</td>
+                                    <td>Software</td>
+                                    <td>Software</td>
+                                </tr>
+                                <tr class="data" data-category-id="">
+                                    <td>06_86H</td>
+                                    <td>4</td>
+                                    <td>Snowridge (Tremont)</td>
+                                    <td>Intel® Atom® Processors</td>
+                                    <td>Software</td>
+                                    <td>Software</td>
+                                </tr>
+                                <tr class="data" data-category-id="">
+                                    <td>06_86H</td>
+                                    <td>5 (B step)</td>
+                                    <td>Snowridge &nbsp;(Tremont)</td>
+                                    <td>Intel® Xeon® D processor family</td>
+                                    <td>Software</td>
+                                    <td>Software</td>
+                                </tr>
+                                <tr class="data" data-category-id="">
+                                    <td>06_86H</td>
+                                    <td>7 (C step)</td>
+                                    <td>Snowridge &nbsp;(Tremont)</td>
+                                    <td>Intel® Xeon® D processor family</td>
+                                    <td>Software</td>
+                                    <td>Software</td>
+                                </tr>
+                                <tr class="data" data-category-id="">
+                                    <td>06_8AH</td>
+                                    <td>1</td>
+                                    <td>Lakefield B-step (Tremont)</td>
+                                    <td>Intel® Core™ Processors with Intel® Hybrid Technology</td>
+                                    <td>Software</td>
+                                    <td>Software</td>
+                                </tr>
+                                <tr class="data" data-category-id="">
+                                    <td>06_96H</td>
+                                    <td>1</td>
+                                    <td>Elkhart Lake (Tremont)</td>
+                                    <td>Intel® Atom® Processors</td>
+                                    <td>Software</td>
+                                    <td>Software</td>
+                                </tr>
+                                <tr class="data" data-category-id="">
+                                    <td>06_97H</td>
+                                    <td>2</td>
+                                    <td>Alder Lake S</td>
+                                    <td>12th Generation Intel® Core™ Processor Family</td>
+                                    <td>MCU+Software</td>
+                                    <td>MCU+Software</td>
+                                </tr>
+                                <tr class="data" data-category-id="">
+                                    <td>06_97H</td>
+                                    <td>5</td>
+                                    <td>Alder Lake S</td>
+                                    <td>12th Generation Intel® Core™ Processor Family<br>
+                                    Intel® Pentium® Gold Processor Family<br>
+                                    Intel® Celeron® Processor Family</td>
+                                    <td>MCU+Software</td>
+                                    <td>MCU+Software</td>
+                                </tr>
+                                <tr class="data" data-category-id="">
+                                    <td>06_9AH</td>
+                                    <td>3</td>
+                                    <td><p>1. Alder Lake H</p>
+                                    <p>2. Alder Lake P</p>
+                                    </td>
+                                    <td>1. 12th Generation Intel® Core™ Processor Family<br>
+                                    2. 12th Generation Intel® Core™ Processor Family</td>
+                                    <td>MCU+Software</td>
+                                    <td>MCU+Software</td>
+                                </tr>
+                                <tr class="data" data-category-id="">
+                                    <td>06_9CH</td>
+                                    <td>0</td>
+                                    <td>Jasper Lake (Tremont)</td>
+                                    <td>Intel® Atom® Processors</td>
+                                    <td>Software</td>
+                                    <td>Software</td>
+                                </tr>
+                            </tbody>
+                        </table> 
+                        <p class="mb-0">&nbsp;</p>
+                    </section>  
+
+                    <section id="dk_processors_mcu">
+                        <h4>Processors That Require MCU for Retpoline Performance Improvement</h4>
+                        <p>The processors listed in this table require microcode updates to improve&nbsp;the performance of the retpoline mitigation. Refer to the <a class="b_special_a1" href="">Retpoline</a> section for additional information.</p>
+                        <p class="mb-0">&nbsp;</p>
+                        <table class="mv_product_table w-100 mb-4">
+                            <thead>
+                                <tr>
+                                    <th colspan="4">Table 5: Processors That Require MCU for Retpoline Performance Improvement</th>
+                                </tr>   
+                            </thead>
+                            <tbody>
+                                <tr class="data" data-category-id="">
+                                    <th>Processor</th>
+                                    <th>Stepping (all unless otherwise noted)</th>
+                                    <th>Code Names / Microarchitectures</th>
+                                    <th>Product Family</th>
+                                </tr>
+                                <tr class="data" data-category-id="">
+                                    <td>06_6AH</td>
+                                    <td>4, 5, 6</td>
+                                    <td>Ice Lake Xeon-SP</td>
+                                    <td>3rd Gen Intel® Xeon® Scalable processor family</td>
+                                </tr>
+                                <tr class="data" data-category-id="">
+                                    <td>06_6CH</td>
+                                    <td>1</td>
+                                    <td>Ice Lake D</td>
+                                    <td>Intel® Xeon® D Processor</td>
+                                </tr>
+                                <tr class="data" data-category-id="">
+                                    <td>06_7EH</td>
+                                    <td>5</td>
+                                    <td><p>Ice Lake U<br>
+                                        Ice LakeY</p>
+                                        </td>
+                                    <td>10th Generation Intel® Core™ Processor Family</td>
+                                </tr>
+                                <tr class="data" data-category-id="">
+                                    <td>06_8AH</td>
+                                    <td>1</td>
+                                    <td>Lakefield B-step (Tremont)</td>
+                                    <td>Intel® Core™ Processors with Intel® Hybrid Technology</td>
+                                </tr>
+                                <tr class="data" data-category-id="">
+                                    <td>06_8AH</td>
+                                    <td>1</td>
+                                    <td>Lakefield B-step (Sunnycove)</td>
+                                    <td>Intel® Core™ Processors with Intel® Hybrid Technology</td>
+                                </tr>
+                                <tr class="data" data-category-id="">
+                                    <td>06_8CH</td>
+                                    <td>1</td>
+                                    <td>Tiger Lake U</td>
+                                    <td>11th Generation Intel® Core™ Processor Family</td>
+                                </tr>
+                                <tr class="data" data-category-id="">
+                                    <td>06_8CH</td>
+                                    <td>1</td>
+                                    <td>Tiger Lake U</td>
+                                    <td>11th Generation Intel® Core™ Processor Family</td>
+                                </tr>
+                                <tr class="data" data-category-id="">
+                                    <td>06_8CH</td>
+                                    <td>2</td>
+                                    <td>Tiger Lake U Refresh &nbsp;<br>
+                                        Tiger Lake H35</td>
+                                    <td>11th Generation Intel® Core™ Processor Family</td>
+                                </tr>
+                                <tr class="data" data-category-id="">
+                                    <td>06_8DH&nbsp;&nbsp; &nbsp;</td>
+                                    <td>1</td>
+                                    <td>Tiger Lake H &nbsp;</td>
+                                    <td>11th Generation Intel® Core™ Processor Family<br>
+                                        Intel® Xeon® Processor Family</td>
+                                </tr>
+                                <tr class="data" data-category-id="">
+                                    <td>06_8DH&nbsp;&nbsp; &nbsp;</td>
+                                    <td>1</td>
+                                    <td>Tiger Lake H &nbsp;</td>
+                                    <td>11th Generation Intel® Core™ Processor Family<br>
+                                        Intel® Xeon® Processor Family</td>
+                                </tr>
+                                <tr class="data" data-category-id="">
+                                    <td>06_A7H</td>
+                                    <td>1</td>
+                                    <td>Rocket Lake</td>
+                                    <td>11th Generation Intel® Core™ Processor Family<br>
+                                        Intel® Xeon® E-2300 processor family</td>
+                                </tr>
+                            </tbody>
+                        </table> 
+                        <p class="mb-0">&nbsp;</p>
+                    </section>
+
+                    <section id="dk_references">
+                        <h4 style="font-weight: 350;">References</h4>
+                        <ul>
+                            <li><a class="b_special_a1" href="">Software Security Guidance Home</a>&nbsp;</li>
+                            <li><a class="b_special_a1" href="">Branch Target Injection (Spectre v2) Advisory Guidance</a> &nbsp;</li>
+                            <li><a class="b_special_a1" href="">Speculative Execution Side Channel Mitigations</a> (IBRS/eIBRS, IPBP, STIBP, RSB are here )</li>
+                            <li><a class="b_special_a1" href="">Retpoline: A Branch Target Injection Mitigation</a> (Empty RSB mitigation on Skylake generation is in here)&nbsp;</li>
+                            <li><a class="b_special_a1" href="">Managed Runtime Speculative Execution Side Channel Mitigations</a>&nbsp;</li>
+                            <li><a class="b_special_a1" href="">Intel Analysis of Speculative Execution Side Channels</a>&nbsp;</li>
+                            <li><a class="b_special_a1" href="">Mitigation Overview for Side Channel Exploits in Linux*</a></li>
+                        </ul>
+                        <p class="mb-0">&nbsp;</p>
+                    </section>
+
+                    <section id="dk_example_flow">
+                        <h4 style="font-weight: 350;">Example of BHI Mitigation Selection Flow</h4>
+                        <p>This is an example of a BHI mitigation flow. This example flow may vary for different OS and VMM environments</p>
+                        <p><img class="dk_risk_app_img" height="644" src="/img/darshit_image/bhi-mitigation-selection-example-flowchart.png" width="624"></p>
+                        <p class="dk_greyHighlight">Figure 1: Branch History Injection Mitigation Flowchart</p>
+                        <p>&nbsp;</p>
+                    </section>
+
+                    <section id="dk_footnotes">
+                        <h3 style="font-weight: 350;">Footnotes</h3>
+                        <ol>
+                            <li>
+                            <p>Intra-mode BTI does not refer to indirect branch predictions using predictor entries which contain targets previously created for the same indirect branch.</p>
+                            </li>
+                            <li>
+                            <p>Note: Supervisor-mode execution prevention (SMEP) should be used to prevent predicted targets of OS near returns using user created return stack buffer (RSB) entries; refer to the <a class="b_special_a1" href="">IBRS documentation</a> for details.</p>
+                            </li>
+                            <li>
+                            <p>See section 2.4.1.3 in the <a class="b_special_a1" href="">Speculative Execution Side Channel Mitigations</a> technical paper for more information on IBRS/eIBRS.&nbsp;</p>
+                            </li>
+                            <li>
+                            <p>Note that this does not cover attacker-controlled jump redirection, which is described in section 18.1.3 “Speculative Behavior when CET is Enabled” of the <a class="b_special_a1" href="">Intel Software Developers Manual</a>.</p>
+                            </li>
+                            <li>
+                            <p>Refer to the Branch History Injection and Intra-mode Branch Target Injection columns of the <a class="b_special_a1" href="">consolidated Affected Processors table</a>.</p>
+                            </li>
+                            <li>
+                            <p>For Alder Lake processors, a microcode update may be needed to be loaded for the processor to enumerate RRSBA, as well as to avoid other potential retpoline effectiveness issues.&nbsp;</p>
+                            </li>
+                            <li>
+                            <p>&nbsp;The behavior for those earlier implementations is described in section 18.3.8, “Constraining Speculation after Missing ENDBRANCH” of the <a class="b_special_a1" href="">Intel Software Developers Manual</a>.</p>
+                            </li>
+                            <li>
+                            <p>Note that previous Intel guidance indicated that <span class="dk_code_simple">BHB_CLEAR_SEQ_S_USED</span> should be set whenever any SW sequence was used. The new guidance is to set this bit only when the short sequence is used.</p>
+                            </li>
+                            <li>
+                            <p>CPUID.1.ECX[31] indicates that the software is running in a virtualized environment.</p>
+                            </li>
+                            <li>
+                            <p>If neither RSBA nor RRSBA is enumerated then the guest should not run on a processor with RSB Alternate behavior.</p>
+                            </li>
+                            <li>
+                            <p>The short sequence should be effective on all processors where CPUID reports a core type (CPUID.1A.0.EAX[31:24]) of Atom and do not report being hybrid (CPUID.7.0.EDX[15]), and which do not enumerate BHI_NO (IA32_ARCH_CAPABILITIES[20]).</p>
+                            </li>
+                            <li>
+                            <p>The TSX sequence can be used where RTM (CPUID.7.0.EBX[11]) is enumerated, support for <span class="dk_code_simple">TSX_CTRL</span> is enumerated (IA32_ARCH_CAPABILITIES[7]), or where both (a) RTM_ALWAYS_ABORT (CPUID.7.0.EDX[11]) is enumerated and (b) CPUID.7.0.EDX[13] is not set.</p>
+                            </li>
+                            <li>
+                            <p>The long or TSX sequences will be sufficient to isolate branch history after domain transitions on parts where branch history is not isolated across domain transitions (<span class="dk_code_simple">BHI_NO</span> is not enumerated).</p>
+                            </li>
+                            <li>
+                            <p>For Arrow Lake and Lunar Lake processors, a microcode update may be needed for the IBHF instruction to be effective.</p>
+                            </li>
+                        </ol>
+                        <p class="mb-0">&nbsp;</p>
                     </section>
                     
                 </div>

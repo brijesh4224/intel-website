@@ -352,7 +352,7 @@
                     <section id="dk_related_content">
                         <p class="mb-0">&nbsp;</p>
                         <h3 style="font-weight: 350; padding-bottom: 0.5rem;">Related Content</h3>
-                        <p><a class="b_special_a1" href="">Return Stack Buffer Underflow (RSBU)</a></p>
+                        <p><a class="b_special_a1" href="/darshit/dk_Solutions_Industries/Return_Stack_Buffer_Underflow.html">Return Stack Buffer Underflow (RSBU)</a></p>
                     </section>
 
                     <section id="dk_introduction">
@@ -522,7 +522,7 @@
                     <ol>
                         <li><span class="dk_code_simple">"1:call load_label"</span>&nbsp;pushes the address of “2: pause ;&nbsp;<span class="dk_code_simple">LFENCE</span>” on the stack and the RSB, and then jumps to:</li>
                         <li><span class="dk_code_simple">"4: mov %rax, (%rsp)"</span>&nbsp;takes the target of the indirect jump (in&nbsp;<span class="dk_code_simple">%rax</span>) and writes it over the return address stored on the stack. At this point the in-memory stack and the RSB differ.</li>
-                        <li>If speculating, the CPU uses the RSB entry created in step 1 and jumps to "2:&nbsp;<span class="dk_code_simple">pause ; LFENCE</span>". It is “trapped” in an infinite loop. The&nbsp;<a class="b_special_a1" href="">Speculation Barriers section</a>&nbsp;has more details about the importance of this sequence.</li>
+                        <li>If speculating, the CPU uses the RSB entry created in step 1 and jumps to "2:&nbsp;<span class="dk_code_simple">pause ; LFENCE</span>". It is “trapped” in an infinite loop. The&nbsp;<a class="b_special_a1" href="/darshit/dk_Solutions_Industries/Retpoline_A_Branch_Target_Injection_Mitigation.html#dk_specukation">Speculation Barriers section</a>&nbsp;has more details about the importance of this sequence.</li>
                         <li>Eventually, the CPU realizes that the speculative&nbsp;<span class="dk_code_simple">RET&nbsp;</span>does not agree with the in-memory stack value, and the speculative execution is stopped. Execution jumps to&nbsp;<span class="dk_code_simple">*%rax</span>.</li>
                     </ol>
                     <p>An indirect <span class="dk_code_simple">CALL </span>is more complicated, but uses the same approach, as shown below:</p>
@@ -540,7 +540,7 @@
                     </div>
                     <ol start="4">
                         <li>“5.&nbsp;<span class="dk_code_simple">mov %rax, (%rsp)</span>" which takes the target of the indirect call (in&nbsp;<span class="dk_code_simple">%rax</span>) and writes it over the return address stored on the stack. At this point the in-memory stack and the RSB differ.</li>
-                        <li>“6.&nbsp;<span class="dk_code_simple">ret</span>". If speculating, the CPU consumes the RSB entry created in step 3 and jumps to 3:&nbsp;<span class="dk_code_simple">pause ; LFENCE</span>”. It is “trapped” in an infinite loop. The&nbsp;<a class="b_special_a1" href="">Speculation Barriers section</a>&nbsp;has more details about the importance of this sequence.</li>
+                        <li>“6.&nbsp;<span class="dk_code_simple">ret</span>". If speculating, the CPU consumes the RSB entry created in step 3 and jumps to 3:&nbsp;<span class="dk_code_simple">pause ; LFENCE</span>”. It is “trapped” in an infinite loop. The&nbsp;<a class="b_special_a1" href="/darshit/dk_Solutions_Industries/Retpoline_A_Branch_Target_Injection_Mitigation.html#dk_specukation">Speculation Barriers section</a>&nbsp;has more details about the importance of this sequence.</li>
                         <li>Eventually, the CPU realizes that the speculative&nbsp;<span class="dk_code_simple">RET&nbsp;</span>does not agree with the in-memory stack value, and that speculative execution is stopped. Execution jumps to the target of the indirect call:&nbsp;<span class="dk_code_simple">*%rax</span>, which was placed on the stack in step 4.</li>
                     </ol>
                     <div style="text-align:center">
@@ -644,14 +644,14 @@
                     <section id="dk_processor_models">
                         <h4>Processor Models</h4>
                         <p>Retpoline is known to be an effective branch target injection&nbsp; mitigation on Intel processors belonging to family 6 (enumerated by the CPUID instruction) that do not have support for enhanced IBRS. On processors that support enhanced IBRS, it should be used for mitigation instead of retpoline. Specifically, retpoline may not be a fully effective branch target injection mitigation on processors based on Intel Atom® microarchitectures code named Goldmont Plus and Tremont. Retpoline remains effective on other Intel processors with enhanced IBRS support.</p>
-                        <p>Some processors with enhanced IBRS have restricted RSBA (RRSBA) behavior. Updated guidance for this behavior is provided in the&nbsp;<a class="b_special_a1" href="">Return Stack Buffer Underflow</a> (RSBU) documentation.</p>
+                        <p>Some processors with enhanced IBRS have restricted RSBA (RRSBA) behavior. Updated guidance for this behavior is provided in the&nbsp;<a class="b_special_a1" href="/darshit/dk_Solutions_Industries/Return_Stack_Buffer_Underflow.html">Return Stack Buffer Underflow</a> (RSBU) documentation.</p>
                         <p class="mb-0">&nbsp;</p>
                     </section>
 
                     <section id="dk_empty_rsb">
                         <h4>Empty RSB Mitigation on Skylake-generation</h4>
-                        <p>As described in the&nbsp;<a class="b_special_a1" href="">Retpoline Concept section</a>, the RSB is a fixed-size stack implemented in hardware. As with any stack, it can underflow in certain conditions causing undesirable behavior. “RSB stuffing” is a technique to reduce the likelihood of an underflow from occurring.</p>
-                        <p>The predictable speculative behavior of the <span class="dk_code_simple">RET </span>instruction is the key to retpoline being a robust mitigation. <span class="dk_code_simple">RET </span>has this behavior on all processors which are based on the Intel® microarchitecture codename Broadwell and earlier when updated with the latest <a class="b_special_a1" href="">microcode</a>. Processors based on the Intel microarchitecture codename Skylake and its close derivatives have different RSB behavior than other processors when the RSB is empty. Processors with the latest microcode that have this RSB behavior will either enumerate <span class="dk_code_simple">IA32_ARCH_CAPABILITIES[RSBA]</span> or have a DisplayFamily/DisplayModel signature (provided by the CPUID instruction) listed in the following table.</p>
+                        <p>As described in the&nbsp;<a class="b_special_a1" href="/darshit/dk_Solutions_Industries/Retpoline_A_Branch_Target_Injection_Mitigation.html#dk_retpoline_concept">Retpoline Concept section</a>, the RSB is a fixed-size stack implemented in hardware. As with any stack, it can underflow in certain conditions causing undesirable behavior. “RSB stuffing” is a technique to reduce the likelihood of an underflow from occurring.</p>
+                        <p>The predictable speculative behavior of the <span class="dk_code_simple">RET </span>instruction is the key to retpoline being a robust mitigation. <span class="dk_code_simple">RET </span>has this behavior on all processors which are based on the Intel® microarchitecture codename Broadwell and earlier when updated with the latest <a class="b_special_a1" href="/dhruvin_developer-tools/ds_Download-Center.html">microcode</a>. Processors based on the Intel microarchitecture codename Skylake and its close derivatives have different RSB behavior than other processors when the RSB is empty. Processors with the latest microcode that have this RSB behavior will either enumerate <span class="dk_code_simple">IA32_ARCH_CAPABILITIES[RSBA]</span> or have a DisplayFamily/DisplayModel signature (provided by the CPUID instruction) listed in the following table.</p>
                         <p>Note that Table 5: Processors with Different Empty RSB Behavior below contains the same information as the <em>Return Stack Buffer Underflow (RSBU) RSB Alternate (RSBA)</em> column in the <em>2022</em> tab of the <a class="b_special_a1" href="">consolidated affected processors table</a>.&nbsp;</p>
                         <table class="mv_product_table w-70 mb-4">
                             <caption>Table 5: Processors with Different Empty RSB Behavior<sup>4</sup></caption>
