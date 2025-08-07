@@ -278,7 +278,7 @@
                     <p>&nbsp;</p>
                     <p>On some Intel processors, the <span class="dk_code_simple">UMONITOR</span> instruction can either cause performance loss or an inability to enter sleep states due to the monitoring hardware not reclaiming old addresses. Due to not reclaiming old addresses, the processor may enter a monitoring hardware overflow mode. This monitoring hardware overflow mode may lower performance for all threads. Alternatively, affected processors may reject new address monitoring requests, which can prevent the <span class="dk_code_simple">MWAIT</span> instruction from entering sleep states.</p>
                     <p>The <span class="dk_code_simple">UMONITOR</span> instruction is available at all privilege levels and thus this behavior may be caused by application software. The <span class="dk_code_simple">MONITOR</span> instruction, which is only usable by privilege level 0, may also not reclaim old addresses.&nbsp;</p>
-                    <p>In response to this issue, affected processors may disable the <span class="dk_code_simple">UMONITOR</span> address monitoring. For some processors, this behavior occurs after a microcode update is loaded while for others it is the behavior at product launch. If disabled by default, a Model Specific Register (MSR) bit may be available for software to re-enable <span class="dk_code_simple">UMONITOR</span> address monitoring. Refer to&nbsp;<a class="b_special_a1" href="">CPUID Enumeration and Architectural MSRs</a>&nbsp;for more information.</p>
+                    <p>In response to this issue, affected processors may disable the <span class="dk_code_simple">UMONITOR</span> address monitoring. For some processors, this behavior occurs after a microcode update is loaded while for others it is the behavior at product launch. If disabled by default, a Model Specific Register (MSR) bit may be available for software to re-enable <span class="dk_code_simple">UMONITOR</span> address monitoring. Refer to&nbsp;<a class="b_special_a1" href="/darshit/dk_Solutions_Industries/CPUID_Enumeration_and_Architectural_MSRs.html">CPUID Enumeration and Architectural MSRs</a>&nbsp;for more information.</p>
 
                     <section id="dk_description">
                         <p class="mb-0">&nbsp;</p>
@@ -297,7 +297,7 @@
                     <section id="dk_mitigation_guidance">
                         <p class="mb-0">&nbsp;</p>
                         <h3 style="padding-bottom: 0.5rem; font-weight: 350;">Mitigation and Software Guidance</h3>
-                        <p>To address this, affected processors may disable <span class="dk_code_simple">UMONITOR</span> address monitoring by default. Disabling <span class="dk_code_simple">UMONITOR</span> address monitoring means that a <span class="dk_code_simple">UMONITOR</span> does not set up an address monitor, which may prevent a subsequent <span class="dk_code_simple">UMWAIT</span> from entering a sleep state. It does not mean that the <span class="dk_code_simple">UMONITOR</span> instruction is disallowed or that the <span class="dk_code_simple">UMONITOR</span>/<span class="dk_code_simple">UMWAIT</span> CPUID enumeration, CPUID.7.0.ECX[5] (WAITPKG) is not set. On some processors, this disabling occurs only when a microcode update is loaded.&nbsp;Refer to&nbsp;<a class="b_special_a1" href="">CPUID Enumeration and Architectural MSRs</a>&nbsp;for more information.</p>
+                        <p>To address this, affected processors may disable <span class="dk_code_simple">UMONITOR</span> address monitoring by default. Disabling <span class="dk_code_simple">UMONITOR</span> address monitoring means that a <span class="dk_code_simple">UMONITOR</span> does not set up an address monitor, which may prevent a subsequent <span class="dk_code_simple">UMWAIT</span> from entering a sleep state. It does not mean that the <span class="dk_code_simple">UMONITOR</span> instruction is disallowed or that the <span class="dk_code_simple">UMONITOR</span>/<span class="dk_code_simple">UMWAIT</span> CPUID enumeration, CPUID.7.0.ECX[5] (WAITPKG) is not set. On some processors, this disabling occurs only when a microcode update is loaded.&nbsp;Refer to&nbsp;<a class="b_special_a1" href="/darshit/dk_Solutions_Industries/CPUID_Enumeration_and_Architectural_MSRs.html">CPUID Enumeration and Architectural MSRs</a>&nbsp;for more information.</p>
                         <p>Disabling <span class="dk_code_simple">UMONITOR</span> address monitoring prevents application software from putting the processor into address monitoring hardware overflow mode.</p>
                         <p>Applications that wish to avoid using the mitigation may wish to check that CPUID.7.2.EDX[7] MONITOR_MITG_NO is 1 in order to determine that the processor is unaffected by the issues described here. Note that some processors may only enumerate MONITOR_MITG_NO when a microcode update is loaded. Hypervisors should pass MONITOR_MITG_NO enumeration through to guests so that guests will know that <span class="dk_code_simple">UMONITOR</span> and <span class="dk_code_simple">UMWAIT</span> are effective.</p>
                         <p>Processors that disable <span class="dk_code_simple">UMONITOR</span> address monitoring by default may support MSR bits or a BIOS option to change the mitigation.</p>
@@ -502,7 +502,7 @@
                     <section id="dk_references">
                         <p class="mb-0">&nbsp;</p>
                         <h3 style="padding-bottom: 0.5rem; font-weight: 350;">References</h3>
-                        <p><a class="b_special_a1" href="">Intel® 64 and IA-32 Architectures Software Developer Manuals&nbsp;</a></p>
+                        <p><a class="b_special_a1" href="/darshit/dk_Solutions_Industries/Intel_64_and_IA_32_Architectures_Software_Developer_Manuals.html">Intel® 64 and IA-32 Architectures Software Developer Manuals&nbsp;</a></p>
                         <p class="mb-0">&nbsp;</p>
                     </section>
 
@@ -641,7 +641,3 @@
 </body>
 
 </html>
-
-
-
-
