@@ -284,20 +284,20 @@
                     <section id="dk_the_microcode">
                         <p class="mb-0">&nbsp;</p>
                         <h3 style="font-weight: 350; padding-bottom: 0.5rem;">The Importance of Updating Microcode</h3>
-                        <p>Some of the uses of microcode updates (MCUs) are to mitigate potential CPU security vulnerabilities and improve system security. Many operating system (OS) vendors provide automatic MCUs. OS vendors distribute microcode update in a form of packages. The packages are signed with OS vendor identity to help ensure integrity and authority of origin of the MCU.&nbsp;<strong>You should follow the instructions provided by your OS vendor to install MCUs.</strong>&nbsp;To learn more, refer to&nbsp;the&nbsp;<a class="b_special_a1" href="">Guidance for System Administrators to Mitigate Transient Execution Side Channel Issues</a>.</p>
+                        <p>Some of the uses of microcode updates (MCUs) are to mitigate potential CPU security vulnerabilities and improve system security. Many operating system (OS) vendors provide automatic MCUs. OS vendors distribute microcode update in a form of packages. The packages are signed with OS vendor identity to help ensure integrity and authority of origin of the MCU.&nbsp;<strong>You should follow the instructions provided by your OS vendor to install MCUs.</strong>&nbsp;To learn more, refer to&nbsp;the&nbsp;<a class="b_special_a1" href="/darshit/dk_Solutions_Industries/Guidance_for_System_Administrators_to_Mitigate_Transient_Execution.html">Guidance for System Administrators to Mitigate Transient Execution Side Channel Issues</a>.</p>
                         <p>Before installing critical files from the internet, such files should pass checksum match and identity verification. Instructions provided here should not be used in a production setup, as use in a production setup could result in a system being unmaintainable at scale and more vulnerable than before.</p>
                     </section>
 
                     <section id="dk_microcode_points">
                         <p class="mb-0">&nbsp;</p>
                         <h3 style="font-weight: 350; padding-bottom: 0.5rem;">Microcode Loading Points</h3>
-                        <p class="mb-0">The system can load MCUs from multiple points. Refer to the&nbsp;<a class="b_special_a1" href="">Microcode Update Guidance</a>&nbsp;for more details on the following loading points:</p>
+                        <p class="mb-0">The system can load MCUs from multiple points. Refer to the&nbsp;<a class="b_special_a1" href="/darshit/dk_Solutions_Industries/Microcode_Update_Guidance.html">Microcode Update Guidance</a>&nbsp;for more details on the following loading points:</p>
                         <ol>
                             <li>FIT (Firmware Interface Table) Microcode Update. FIT is a data structure placed in the platform BIOS SPI flash that can hold pointers to MCUs. If a suitable update is found (an MCU that matches the CPU’s processor signature and platform ID), then the processor loads the MCU before the first instruction of the BIOS firmware is fetched. FIT MCU is the preferred method to load MCUs for Intel platforms, because it helps to ensure the update components are loaded at the earliest point in the boot process.</li>
                             <li>Early BIOS Microcode Update. Early BIOS MCU occurs when a microcode update is loaded by the BIOS before memory initialization. If an update has already been loaded via the FIT, BIOS may skip this microcode update.</li>
                             <li>Late BIOS Microcode Update. Sometimes, enabling certain architectural components require a late BIOS microcode update. To enable these architectural features, all logical processors must execute a late BIOS MCU, even if the same microcode has already been loaded from the FIT or during early BIOS. If that happens, late BIOS must reload the same update that was loaded previously. If the reload fails, the architectural features enabled by the late BIOS MCU might not be available on the system.</li>
                             <li>Early OS Microcode Update. The OS will check the&nbsp;<strong>/lib/firmware/intel-ucode</strong>&nbsp;folder for a more recent microcode (higher update revision) than the microcode used by the BIOS. If a higher update revision exists in that folder, the OS should load that MCU right after BIOS hands off control to the operation system. This can be done by UEFI driver, a bootloader, the OS, or an early startup script.</li>
-                            <li><a class="b_special_a1" href="">Runtime Microcode Update</a>. Runtime microcode update refers to loading an update while the system is fully operational and running workloads, possibly including user-space applications and virtual machines. The same update should be loaded on all cores.</li>
+                            <li><a class="b_special_a1" href="/darshit/dk_Solutions_Industries/Minimum_Runtime_Microcode_Update_Revision.html">Runtime Microcode Update</a>. Runtime microcode update refers to loading an update while the system is fully operational and running workloads, possibly including user-space applications and virtual machines. The same update should be loaded on all cores.</li>
                         </ol>
                         <p>By updating the BIOS to include a newer (or older) MCU, the system administrator can upgrade (or downgrade) the MCU that is loaded when the system boots. Loading the microcode package as early as possible during boot time (via FIT or Early BIOS) increases the potential to effectively apply the mitigations implemented in the microcode and helps prevent later BIOS issues (for example, BIOS Memory Reference Code). However, a BIOS update requires a reboot. Updating microcode through BIOS might be the only approach on certain systems. Check with your vendor for options available on your system.</p>
                         <p class="mb-0">&nbsp;</p>
@@ -419,7 +419,7 @@
 
                     <section id="dk_installing_linux">
                         <h3 style="padding-bottom: 0.5rem; font-weight: 350;">Installing Microcode on Linux</h3>
-                        <p>There are&nbsp;<a class="b_special_a1" href="">multiple methods to load microcode</a>. Some of them require system reboot, others don’t. Some of them can only be applied to upgrade the microcode, while others allow you to both downgrade and upgrade your current microcode. Some of them will work regardless of your Linux distribution, and some are distribution specific.</p>
+                        <p>There are&nbsp;<a class="b_special_a1" href="/darshit/dk_Solutions_Industries/Microcode_Update_Guidance.html">multiple methods to load microcode</a>. Some of them require system reboot, others don’t. Some of them can only be applied to upgrade the microcode, while others allow you to both downgrade and upgrade your current microcode. Some of them will work regardless of your Linux distribution, and some are distribution specific.</p>
                         <p class="mb-0">&nbsp;</p>
                     </section>
 
@@ -554,7 +554,7 @@
                                 <span class="dk_code_simple"># sudo apt-get remove linux-image-</span></li>
                             </ol>
                             </li>
-                            <li>Reinstall the kernel package. That way during the next reboot the kernel will install the new microcode in the&nbsp;<span class="dk_code_simple">initramfs</span>. Refer to the&nbsp;<a class="b_special_a1" href="">upstream kernel files from the Ubuntu* archives</a>&nbsp;(sorted by the most recent build). Substitute&nbsp;<strong>linux-image-&lt;kernel version&gt;.deb</strong>&nbsp;with the one downloaded from this link.&nbsp;<br>
+                            <li>Reinstall the kernel package. That way during the next reboot the kernel will install the new microcode in the&nbsp;<span class="dk_code_simple">initramfs</span>. Refer to the&nbsp;<a class="b_special_a1" href="https://kernel.ubuntu.com/mainline/?C=N;O=D">upstream kernel files from the Ubuntu* archives</a>&nbsp;(sorted by the most recent build). Substitute&nbsp;<strong>linux-image-&lt;kernel version&gt;.deb</strong>&nbsp;with the one downloaded from this link.&nbsp;<br>
                             <span class="dk_code_simple"># apt install ./linux-image-.deb</span></li>
                             <li>Reboot the system to let changes take effect.&nbsp;<br>
                             <span class="dk_code_simple"># reboot</span></li>
@@ -630,7 +630,7 @@
                                 </div>
                             </li>
                             <li>Using the RPM package:<br>
-                            Go to&nbsp;<a class="b_special_a1" href="">the Fedora dracut download directory</a>. Click on the suitable version. It will redirect you to another window where RPM packages for that specific version are located. To download and install RPM packages use&nbsp;<span class="dk_code_simple">wget</span>&nbsp;and&nbsp;<span class="dk_code_simple">yum</span>&nbsp;install commands, as shown in the example below:
+                            Go to&nbsp;<a class="b_special_a1" href="https://harald.fedorapeople.org/downloads/dracut/">the Fedora dracut download directory</a>. Click on the suitable version. It will redirect you to another window where RPM packages for that specific version are located. To download and install RPM packages use&nbsp;<span class="dk_code_simple">wget</span>&nbsp;and&nbsp;<span class="dk_code_simple">yum</span>&nbsp;install commands, as shown in the example below:
                                 <div class="mv_code_toolbar">
                                     <div class="mv_toolbar_item mv_copy_icon">
                                         <i class="fa-regular fa-copy"></i>
@@ -669,10 +669,10 @@
                                 </div>
                             </li>
                         </ol>
-                        <p class="dk_note"><strong>Note</strong>&nbsp;Depending on your system, you might need to install additional packages from the&nbsp;<a class="b_special_a1" href="">dracut homepage</a>.</p>
+                        <p class="dk_note"><strong>Note</strong>&nbsp;Depending on your system, you might need to install additional packages from the&nbsp;<a class="b_special_a1" href="https://github.com/dracutdevs/dracut">dracut homepage</a>.</p>
                         <p class="mb-0">Once you have&nbsp;<span class="dk_code_simple">dracut</span>&nbsp;installed, use the steps below to install the microcode using dracut:</p>
                         <ol>
-                            <li>Download the microcode for your CPU from the&nbsp;<a class="b_special_a1" href="">Intel microcode repository in GitHub</a>.</li>
+                            <li>Download the microcode for your CPU from the&nbsp;<a class="b_special_a1" href="https://github.com/intel/Intel-Linux-Processor-Microcode-Data-Files/tree/main/intel-ucode">Intel microcode repository in GitHub</a>.</li>
                             <li>Check if the&nbsp;<strong>/lib/firmware/intel-ucode</strong>&nbsp;directory exists. Create it if it doesn’t using the following commands:
                                 <div class="mv_code_toolbar">
                                     <div class="mv_toolbar_item mv_copy_icon">
@@ -755,10 +755,10 @@
 
                     <section id="dk_runtime_os">
                         <h4>Runtime OS MCU (reboot not needed)</h4>
-                        <p>The method described here works for upgrading microcode only. It will not work for downgrading microcode. This method is agnostic to your Linux distribution. Loading an MCU during OS runtime must be done with care. Loading an update during runtime may change the CPU behavior in ways that is incompatible with running software. Furthermore, <a class="b_special_a1" href="">some updates may not be fully effective when loaded during runtime</a>. To make sure CPU features are working properly, the same update should be loaded on all cores.</p>
+                        <p>The method described here works for upgrading microcode only. It will not work for downgrading microcode. This method is agnostic to your Linux distribution. Loading an MCU during OS runtime must be done with care. Loading an update during runtime may change the CPU behavior in ways that is incompatible with running software. Furthermore, <a class="b_special_a1" href="/darshit/dk_Solutions_Industries/Minimum_Runtime_Microcode_Update_Revision.html">some updates may not be fully effective when loaded during runtime</a>. To make sure CPU features are working properly, the same update should be loaded on all cores.</p>
                         <p>Therefore, Intel recommends that the system should be quiesced to the maximum extent possible when loading an MCU during runtime.</p>
                         <ol>
-                            <li>Download the microcode for your CPU from the&nbsp;<a class="b_special_a1" href="">Intel microcode repository in GitHub</a>.</li>
+                            <li>Download the microcode for your CPU from the&nbsp;<a class="b_special_a1" href="https://github.com/intel/Intel-Linux-Processor-Microcode-Data-Files/tree/main/intel-ucode">Intel microcode repository in GitHub</a>.</li>
                             <li>Check if&nbsp;<strong>/lib/firmware/intel-ucode</strong>&nbsp;exists. Create it if it doesn’t:
                                 <div class="mv_code_toolbar">
                                     <div class="mv_toolbar_item mv_copy_icon">
@@ -932,7 +932,7 @@
                                     </div>
                                 </div>
                             </li>
-                            <li>The&nbsp;<span class="dk_code_simple">iucode_tool</span>&nbsp;can be used by any Linux distro. Refer to&nbsp;<a class="b_special_a1" href="">the instructions</a>&nbsp;for how to download and install this tool.&nbsp;<span class="dk_code_simple">iucode_tool</span>&nbsp;scans your system and looks for information about your CPU signature. The value you are looking for is the output column that starts with <strong>rev</strong> (in bold below). In this example,&nbsp;<strong>06-9e-0d</strong>&nbsp;is the signature of the processor currently running on the system.
+                            <li>The&nbsp;<span class="dk_code_simple">iucode_tool</span>&nbsp;can be used by any Linux distro. Refer to&nbsp;<a class="b_special_a1" href="https://gitlab.com/iucode-tool/iucode-tool">the instructions</a>&nbsp;for how to download and install this tool.&nbsp;<span class="dk_code_simple">iucode_tool</span>&nbsp;scans your system and looks for information about your CPU signature. The value you are looking for is the output column that starts with <strong>rev</strong> (in bold below). In this example,&nbsp;<strong>06-9e-0d</strong>&nbsp;is the signature of the processor currently running on the system.
                                 <div class="mv_code_toolbar">
                                     <div class="mv_toolbar_item mv_copy_icon">
                                         <i class="fa-regular fa-copy"></i>
@@ -1009,11 +1009,11 @@
                     <section id="dk_more_info">
                         <h3 style="font-weight: 350;">More Information</h3>
                         <ul>
-                            <li><a class="b_special_a1" href="">Microcode Update Guidelines</a></li>
-                            <li><a class="b_special_a1" href="">MCExtractor</a></li>
-                            <li><a class="b_special_a1" href="">Security Best Practices for Side Channel Resistance</a></li>
+                            <li><a class="b_special_a1" href="/darshit/dk_Solutions_Industries/Microcode_Update_Guidance.html">Microcode Update Guidelines</a></li>
+                            <li><a class="b_special_a1" href="https://github.com/platomav/MCExtractor">MCExtractor</a></li>
+                            <li><a class="b_special_a1" href="/darshit/dk_Solutions_Industries/Security_Best_Practices_for_Side_Channel_Resistance.html">Security Best Practices for Side Channel Resistance</a></li>
                             <li>Notes on Intel Microcode Updates</li>
-                            <li><a class="b_special_a1" href="">Sandpile CPUID</a></li>
+                            <li><a class="b_special_a1" href="https://sandpile.org/x86/cpuid.htm">Sandpile CPUID</a></li>
                         </ul>
                         <p>&nbsp;</p>
                         <h5 style="text-align:center"><a class="b_special_a1" href="">Software Security Guidance Home</a>&nbsp;|&nbsp;<a class="b_special_a1" href="">Advisory Guidance</a>&nbsp;|&nbsp;<a class="b_special_a1" href="">Technical Documentation</a>&nbsp;|&nbsp;<a class="b_special_a1" href="">Best Practices</a>&nbsp;|&nbsp;<a class="b_special_a1" href="">Resources</a></h5>

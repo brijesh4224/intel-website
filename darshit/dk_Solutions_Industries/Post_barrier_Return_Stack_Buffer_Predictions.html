@@ -287,7 +287,7 @@
                                 <p><img src="/img/darshit_image/shield-icon-8.png" width="100"><strong>Severity rating:&nbsp;</strong><br>
                                     5.5 Medium</p>
                                 </td>
-                                <td>Industry-wide severity ratings can be found in the&nbsp;<a class="b_special_a1" href="">National Vulnerability Database</a></td>
+                                <td>Industry-wide severity ratings can be found in the&nbsp;<a class="b_special_a1" href="https://nvd.nist.gov/">National Vulnerability Database</a></td>
                             </tr>
                         </tbody>
                     </table> 
@@ -297,14 +297,14 @@
                         <p class="mb-0">&nbsp;</p>
                         <h3 style="font-weight: 350; padding-bottom: 0.5rem;">Related Content</h3>
                         <ul>
-                            <li><a class="b_special_a1" href="">INTEL-SA-00706</a></li>
+                            <li><a class="b_special_a1" href="/darshit/dk_Solutions_Industries/INTEL_SA_00706.html">INTEL-SA-00706</a></li>
                         </ul>
                     </section>
 
                     <section id="dk_introduction">
                         <p class="mb-0">&nbsp;</p>
                         <h3 style="font-weight: 350; padding-bottom: 0.5rem;">Introduction</h3>
-                        <p>Intel has previously documented the properties of the <a class="b_special_a1" href="">Enhanced Indirect Branch Restricted Speculation</a> (eIBRS) and <a class="b_special_a1" href="">Indirect Branch Predictor Barrier</a> (IBPB) capabilities, both of which can be used to help mitigate <a class="b_special_a1" href="">Branch Target Injection</a>.&nbsp;</p>
+                        <p>Intel has previously documented the properties of the <a class="b_special_a1" href="/darshit/dk_Solutions_Industries/Speculative_Execution_Side_Channel_Mitigations.html#dk_2_4_1">Enhanced Indirect Branch Restricted Speculation</a> (eIBRS) and <a class="b_special_a1" href="/darshit/dk_Solutions_Industries/Speculative_Execution_Side_Channel_Mitigations.html#dk_2_4_3">Indirect Branch Predictor Barrier</a> (IBPB) capabilities, both of which can be used to help mitigate <a class="b_special_a1" href="/darshit/dk_Solutions_Industries/Branch_Target_Injection_Guidance.html">Branch Target Injection</a>.&nbsp;</p>
                         <p>The Return Stack Buffer (RSB) is a microarchitectural structure that holds predicted targets of near <span class="dk_code_simple">RET</span> instructions. Two documented properties involving the RSB are related to this issue:</p>
                         <ul>
                             <li>Processors that support eIBRS<a class="b_special_a1" href=""><sup>1</sup></a>&nbsp;prevent guest software from controlling the RSB after a VM exit, as long as IA32_SPEC_CTRL.IBRS is set either at or after a VM exit.</li>
@@ -389,7 +389,7 @@
 
                         <p>The <span class="dk_code_simple">CALL</span>;<span class="dk_code_simple">INT3</span> sequence steers a potential unbalanced <span class="dk_code_simple">RET</span> prediction to a speculative execution barrier (<span class="dk_code_simple">INT3</span>, in this case). The <span class="dk_code_simple">LFENCE</span> will prevent execution of the next <span class="dk_code_simple">RET</span> until after the prior <span class="dk_code_simple">CALL</span> has retired, delaying predictions for any later unbalanced <span class="dk_code_simple">RET</span>s. Where Intel® Control-Flow Enforcement Technology-Shadow Stack (CET-SS) is enabled, an <span class="dk_code_simple">INCSSP</span> instruction could be used after this sequence to pop the address of the <span class="dk_code_simple">INT3</span> return site from the shadow stack.</p>
                         <p>Note that a <span class="dk_code_simple">WRMSR</span> instruction (used to set IBRS, for example), could also serve as a speculation barrier for such a sequence in place of <span class="dk_code_simple">LFENCE</span>.&nbsp;</p>
-                        <p>A 32-CALL <a class="b_special_a1" href="">RSB stuffing sequence</a><a class="b_special_a1" href=""><sup>3</sup></a> is sufficient to prevent post-RSB-barrier <span class="dk_code_simple">RET</span> prediction. Software already using a 32-CALL RSB stuffing sequence after VM exit does not need to apply additional mitigations for this issue.</p>
+                        <p>A 32-CALL <a class="b_special_a1" href="/darshit/dk_Solutions_Industries/Retpoline_A_Branch_Target_Injection_Mitigation.html">RSB stuffing sequence</a><a class="b_special_a1" href=""><sup>3</sup></a> is sufficient to prevent post-RSB-barrier <span class="dk_code_simple">RET</span> prediction. Software already using a 32-CALL RSB stuffing sequence after VM exit does not need to apply additional mitigations for this issue.</p>
                         <p class="mb-0">&nbsp;</p>
                     </section>
 
@@ -441,7 +441,7 @@
 
                     <section id="dk_affected_proc">
                         <h3 style="font-weight: 350;"><a class="b_special_a1" href="">Affected Processors</a></h3>
-                        <p>Refer to the <a class="b_special_a1" href="">consolidated Affected Processors by CPU table</a>&nbsp;(<em>2022</em> tab, <em>Post-barrier Return Stack Buffer Predictions</em> column) for a list of processors affected by this issue. The VM exit behavior does not apply to non-eIBRS processors. Intel® Core™-based eIBRS processors are affected by both the VM exit and IBPB behavior. Intel® Atom processors are not affected. Refer to <a class="b_special_a1" href="">CPUID Enumeration and Architectural MSRs</a> for eIBRS enumeration. Software can assume that all steppings for any given family/model are affected. Future processors may also be affected.</p>
+                        <p>Refer to the <a class="b_special_a1" href="">consolidated Affected Processors by CPU table</a>&nbsp;(<em>2022</em> tab, <em>Post-barrier Return Stack Buffer Predictions</em> column) for a list of processors affected by this issue. The VM exit behavior does not apply to non-eIBRS processors. Intel® Core™-based eIBRS processors are affected by both the VM exit and IBPB behavior. Intel® Atom processors are not affected. Refer to <a class="b_special_a1" href="/darshit/dk_Solutions_Industries/CPUID_Enumeration_and_Architectural_MSRs.html">CPUID Enumeration and Architectural MSRs</a> for eIBRS enumeration. Software can assume that all steppings for any given family/model are affected. Future processors may also be affected.</p>
                     </section>
 
                     <section id="dk_footnotes">
@@ -450,7 +450,7 @@
                         <ol>
                             <li>Such processors enumerate IBRS_ALL (bit 1) in&nbsp;the IA32_ARCH_CAPABILITIES MSR (MSR index 10AH).</li>
                             <li>With a non-zero displacement.</li>
-                            <li>This 32-CALL RSB stuffing sequence may not be effective for other purposes (for example, to completely overwrite all RSB entries) on all enhanced IBRS processors, as discussed in the <a class="b_special_a1" href="">IBRS guidance</a>.</li>
+                            <li>This 32-CALL RSB stuffing sequence may not be effective for other purposes (for example, to completely overwrite all RSB entries) on all enhanced IBRS processors, as discussed in the <a class="b_special_a1" href="/darshit/dk_Solutions_Industries/Speculative_Execution_Side_Channel_Mitigations.html#dk_2_4_1">IBRS guidance</a>.</li>
                         </ol>
                         <p>&nbsp;</p>
                         <h5 style="text-align:center"><a class="b_special_a1" href="">Software Security Guidance Home</a> | <a class="b_special_a1" href="">Advisory Guidance</a> | <a class="b_special_a1" href="">Technical Documentation</a> | <a class="b_special_a1" href="">Best Practices</a> | <a class="b_special_a1" href="">Resources</a></h5>
