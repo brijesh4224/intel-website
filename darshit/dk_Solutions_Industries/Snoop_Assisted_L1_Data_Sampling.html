@@ -649,10 +649,10 @@
                 </div>
                 <div class="col-xl-10 VK_all_sections">
                     <p>&nbsp;</p>
-                    <p>This technical documentation expands on the information in the&nbsp;<a class="b_special_a1" href="">Snoop-assisted L1D Sampling disclosure overview for software developers</a>. Note that this documentation will use more precise (but different) terminology for transient execution side channel methods than we have used in past documents. Be sure to review the&nbsp;<a class="b_special_a1" href="">updated terminology guide</a>&nbsp;and the list of affected processors.&nbsp;</p>
+                    <p>This technical documentation expands on the information in the&nbsp;<a class="b_special_a1" href="/darshit/dk_Solutions_Industries/Snoop_Assisted_L1_Data_Sampling_Guidance.html">Snoop-assisted L1D Sampling disclosure overview for software developers</a>. Note that this documentation will use more precise (but different) terminology for transient execution side channel methods than we have used in past documents. Be sure to review the&nbsp;<a class="b_special_a1" href="/darshit/dk_Solutions_Industries/Refined_Speculative_Execution_Terminology.html">updated terminology guide</a>&nbsp;and the list of affected processors.&nbsp;</p>
                     <p>A domain-bypass transient execution attack<sup>1</sup>&nbsp;variant known as&nbsp;<em>snoop<sup>2</sup></em><em>-assisted L1 data sampling</em>&nbsp;has been assigned CVE-2020-0550 with a CVSS of 5.6 Medium (CVSS:3.1/AV:L/AC:H/PR:L/UI:N/S:C/C:H/I:N/A:N). Under a specific set of complex conditions involving a cache-coherence snoop to a modified cache line<sup>3</sup>, a malicious adversary may be able to infer the data values of some modified cache lines in the L1 data (L1D) cache using snoop-assisted L1 data sampling.</p>
                     <p>On certain processors and under certain conditions, data in a modified cache line that is being returned in response to a snoop may also be forwarded to a faulting, microarchitectural assist, or Intel® Transactional Synchronization Extensions (Intel® TSX) asynchronous aborting load operation to a different address that occurs simultaneously. This may potentially allow a malicious adversary to construct a covert channel to infer modified data in the L1D cache that the victim intends to protect from the malicious adversary. This domain-bypass transient execution attack is called snoop-assisted L1D sampling.</p>
-                    <p>Note that this is different from&nbsp;<a class="b_special_a1" href="">L1D Eviction Sampling</a>&nbsp;(CVE-2020-0449). In that issue, the eviction data may be inferrable even without a snoop. Snoop-assisted L1D sampling requires the snoop to hit a modified cache line in the exact same single core clock cycle window as the faulting/assisting/aborting load.</p>
+                    <p>Note that this is different from&nbsp;<a class="b_special_a1" href="/darshit/dk_Solutions_Industries/L1D_Eviction_Sampling_Guidance.html">L1D Eviction Sampling</a>&nbsp;(CVE-2020-0449). In that issue, the eviction data may be inferrable even without a snoop. Snoop-assisted L1D sampling requires the snoop to hit a modified cache line in the exact same single core clock cycle window as the faulting/assisting/aborting load.</p>
                     <p class="mb-0">Locally executed malicious software may be able to infer the values of data in a cache line that was modified on the same physical core by:</p>
                     <ul>
                         <li>Other applications</li>
@@ -686,15 +686,15 @@
                     <section id="dk_mitigation">
                         <p class="mb-0">&nbsp;</p>
                         <h3 style="font-weight: 350; padding-bottom: 0.5rem;">Mitigation</h3>
-                        <p>As the processors affected by snoop-assisted L1D sampling are a subset of those affected by&nbsp;<a class="b_special_a1" href="">L1 Terminal Fault</a>&nbsp;(L1TF), software may have already applied L1TF mitigations on systems affected by snoop-assisted L1D sampling.</p>
-                        <p>Similar to the L1TF VMM mitigations<sup>4</sup>, snoop-assisted L1D sampling can be mitigated by flushing the L1D cache between when secrets are accessed and when possibly malicious software runs on the same core. See <a class="b_special_a1" href="">L1 Terminal Fault</a> for more details on this technique.</p>
+                        <p>As the processors affected by snoop-assisted L1D sampling are a subset of those affected by&nbsp;<a class="b_special_a1" href="/darshit/dk_Solutions_Industries/Processors_Affected_L1_Terminal_Fault.html">L1 Terminal Fault</a>&nbsp;(L1TF), software may have already applied L1TF mitigations on systems affected by snoop-assisted L1D sampling.</p>
+                        <p>Similar to the L1TF VMM mitigations<sup>4</sup>, snoop-assisted L1D sampling can be mitigated by flushing the L1D cache between when secrets are accessed and when possibly malicious software runs on the same core. See <a class="b_special_a1" href="/darshit/dk_Solutions_Industries/Processors_Affected_L1_Terminal_Fault.html">L1 Terminal Fault</a> for more details on this technique.</p>
                     </section>
 
                     <section id="dk_os">
                         <p class="mb-0">&nbsp;</p>
                         <h4>OS</h4>
                         <p>For snoop-assisted L1D sampling, the only cache lines that are vulnerable are cache lines that are modified while in the L1D, not all cache lines that are accessed in the L1D. Additionally, snoop-assisted L1D sampling does not allow an adversary to directly specify which cache line to infer. Adversaries can only indirectly specify the cache line (for example, by influencing a victim to access the line). It also requires precise timing alignment between multiple operations in a more complex manner than L1TF.</p>
-                        <p>Snoop-assisted L1D sampling could be mitigated by flushing the L1D cache before executing potentially malicious applications, which would require changes to the OS scheduler when hyperthreading is enabled and could impact the performance of system transitions. Because of the difficulty of this method and the performance impact caused by this mitigation, Intel does not recommend applying such mitigations to the OS. More details on the hyperthreading interaction can be found in <a class="b_special_a1" href="">Microarchitectural Data Sampling</a>.</p>
+                        <p>Snoop-assisted L1D sampling could be mitigated by flushing the L1D cache before executing potentially malicious applications, which would require changes to the OS scheduler when hyperthreading is enabled and could impact the performance of system transitions. Because of the difficulty of this method and the performance impact caused by this mitigation, Intel does not recommend applying such mitigations to the OS. More details on the hyperthreading interaction can be found in <a class="b_special_a1" href="/darshit/dk_Solutions_Industries/Microarchitectural_Data_Sampling.html">Microarchitectural Data Sampling</a>.</p>
                     </section>
 
                     <section id="dk_vmms">
@@ -712,17 +712,17 @@
                     <section id="dk_related_contant">
                         <p class="mb-0">&nbsp;</p>
                         <h3 style="font-weight: 350;">Related Content</h3>
-                        <p><a class="b_special_a1" href="">Affected Processors</a></p>
+                        <p><a class="b_special_a1" href="/darshit/dk_Solutions_Industries/Processors_Affected_Snoop_assisted_L1_Data_Sampling.html">Affected Processors</a></p>
                     </section>
 
                     <section id="dk_footnotes">
                         <p class="mb-0">&nbsp;</p>
                         <h3 style="font-weight: 350;">Footnotes</h3>
                         <ol>
-                            <li>The terms “domain-bypass” and “transient execution attack” are described in&nbsp;<a class="b_special_a1" href="">here</a>.</li>
+                            <li>The terms “domain-bypass” and “transient execution attack” are described in&nbsp;<a class="b_special_a1" href="/darshit/dk_Solutions_Industries/Refined_Speculative_Execution_Terminology.html">here</a>.</li>
                             <li>See Intel Software Developer's Manual Version 071 Volume 3A Section 11.2 “Caching Terminology.”</li>
                             <li>This only affects modified cache lines, which means the cache line has been written since it was inserted into the L1 data cache. On affected processors, cache lines that are in other states in the L1 data cache, like Shared, Exclusive or Invalid, do not return data to a cache-coherence snoop and thus are not affected.</li>
-                            <li><a class="b_special_a1" href="">L1 Terminal Fault</a></li>
+                            <li><a class="b_special_a1" href="/darshit/dk_Solutions_Industries/L1_Terminal_Fault_main.html">L1 Terminal Fault</a></li>
                         </ol>
                         <p>&nbsp;</p>
                         <h5 style="text-align:center"><a class="b_special_a1" href="">Software Security Guidance Home</a> | <a class="b_special_a1" href="">Advisory Guidance</a> | <a class="b_special_a1" href="">Technical Documentation</a> | <a class="b_special_a1" href="">Best Practices</a> | <a class="b_special_a1" href="">Resources</a></h5>

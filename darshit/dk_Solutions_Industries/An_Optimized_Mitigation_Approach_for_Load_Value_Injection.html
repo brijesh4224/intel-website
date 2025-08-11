@@ -227,7 +227,7 @@
                 </div>
                 <div class="col-xl-10 VK_all_sections">
                     <p>&nbsp;</p>
-                    <p>The <a class="b_special_a1" href="">Load Value Injection (LVI)</a> technical documentation&nbsp;describes how LVI methods against Intel® Software Guard Extensions (Intel® SGX) enclaves can be mitigated by inserting an&nbsp;<span class="dk_code_simple">LFENCE&nbsp;</span>instruction after each load to serialize its execution. Rather than individually mitigating all load instructions, it is possible to instead consider all Load+Transmit gadgets, which are pairs of instructions that consist of a load and a subsequent instruction that may transmit the loaded value via a covert channel. All Load+Transmit gadgets are mitigated against LVI if the following property is satisfied:</p>
+                    <p>The <a class="b_special_a1" href="/darshit/dk_Solutions_Industries/Load_Value_Injection.html">Load Value Injection (LVI)</a> technical documentation&nbsp;describes how LVI methods against Intel® Software Guard Extensions (Intel® SGX) enclaves can be mitigated by inserting an&nbsp;<span class="dk_code_simple">LFENCE&nbsp;</span>instruction after each load to serialize its execution. Rather than individually mitigating all load instructions, it is possible to instead consider all Load+Transmit gadgets, which are pairs of instructions that consist of a load and a subsequent instruction that may transmit the loaded value via a covert channel. All Load+Transmit gadgets are mitigated against LVI if the following property is satisfied:</p>
                     <p class="dk_greyHighlight">For all Load+Transmit gadgets in each procedure/function, every path in the control flow graph (CFG) from Load to Transmit is “cut” by at least one&nbsp;<span class="dk_code_simple">LFENCE</span>&nbsp;instruction.</p>
                     <p>Intel has collaborated with industry partners to develop a patch to LLVM/clang that optimally satisfies this property. The patch analyzes the CFG to find all Load+Transmit gadgets, and then uses this information to build a condensed CFG that characterizes the control-flow relationships between the gadgets. An example of a condensed CFG is depicted in Figure 1.&nbsp;</p>
                     <p style="text-align:center"><img class="dk_risk_app_img" alt="" height="311" src="/img/darshit_image/an-optimized-mitigation-approach-for-load-value-injection-fig01.png" width="200"></p>
@@ -243,14 +243,14 @@
                     <section id="dk_obtaining_tools">
                         <p>&nbsp;</p>
                         <h3 style="font-weight: 350; padding-bottom: 0.5rem;">Obtaining the Mitigation Tools</h3>
-                        <p>The mitigations have been merged into the LLVM trunk, available on&nbsp;<a class="b_special_a1" href="">GitHub</a>*; the first LLVM release that will contain the mitigations is LLVM 11. By default, the load-hardening mitigation uses a greedy heuristic that approximates the optimal minimum multi-cut. The&nbsp;<span class="dk_code_simple">SYMPHONY</span>&nbsp;multi-cut optimization is performed by a&nbsp;<a class="b_special_a1" href="">separate plugin provided by Intel</a>.</p>
+                        <p>The mitigations have been merged into the LLVM trunk, available on&nbsp;<a class="b_special_a1" href="https://github.com/llvm/llvm-project">GitHub</a>*; the first LLVM release that will contain the mitigations is LLVM 11. By default, the load-hardening mitigation uses a greedy heuristic that approximates the optimal minimum multi-cut. The&nbsp;<span class="dk_code_simple">SYMPHONY</span>&nbsp;multi-cut optimization is performed by a&nbsp;<a class="b_special_a1" href="https://github.com/intel/lvi-llvm-optimization-plugin">separate plugin provided by Intel</a>.</p>
                     </section>
 
                     <section id="dk_footnotes">
                         <p class="mb-0">&nbsp;</p>
                         <h3 style="font-weight: 350;">Footnotes</h3>
                         <ol>
-                            <li>T. Ralphs, A. Mahajan, S. Vigerske, mgalati13, LouHafer, jpfasano, A. Bulut and anhhz, "<a class="b_special_a1" href="">coin-or/SYMPHONY: Version 5.6.17</a>," February 2019. [Online].&nbsp;</li>
+                            <li>T. Ralphs, A. Mahajan, S. Vigerske, mgalati13, LouHafer, jpfasano, A. Bulut and anhhz, "<a class="b_special_a1" href="https://zenodo.org/records/2576603#.YHBy6-hKhPY">coin-or/SYMPHONY: Version 5.6.17</a>," February 2019. [Online].&nbsp;</li>
                             <li>J. Bender, M. Lesani and J. Palsberg, "Declarative Fence Insertion," in&nbsp;<em>Proceedings of the 2015 ACM SIGPLAN International Conference on Object-Oriented Programming, Systems, Languages, and Applications (OOPSLA 2015)</em>, Pittsburgh, PA, USA, 2015.</li>
                         </ol>
                         <p>&nbsp;</p>
