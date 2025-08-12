@@ -1,0 +1,1364 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Media Processing Basics Tuning Guide</title>
+
+    <link rel="stylesheet"href="/css/dk_developer_edge_iot_&_5G_optimize_fine_tuning_and_deployment_of_LLMs_on_an_ai_pc.css">
+    <link rel="stylesheet" href="/css/rushita_automotive.css">
+    <!-- header footer -->
+    <link rel="stylesheet" href='/css/yatri.css'>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" rel="stylesheet">
+</head>
+
+<style>
+    .dk_main_heading{
+        padding: 1rem 0rem 0rem;
+        background-color: #0068B5;
+        color: #fff;
+    }
+    .dk_caption{
+        background: rgba(0, 0, 0, 0.7);
+        color: #fff;
+        text-align: left;
+        font-size: .875rem;
+        padding: 20px 15px;
+    }
+    @media(max-width:768px){
+        .dk_main_heading{
+            padding: 1rem 0rem !important;
+        } 
+        .mv_intel_amx_content {
+            padding-right: 0px !important; 
+        } 
+    }
+</style>
+
+<body>
+
+    <!-- header -->
+    <div id="navbar"></div>
+
+    <!------------------------------------------------------------------------------->
+    <section class="m_ai_tdrop">
+        <div>
+            <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Developers
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item m_dropActive" href="#">Overview</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Topics & Technologies</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Tools</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Hardware Platforms</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Resources & Documentation</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Learn</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Community & Events</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Developer Programs</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Get Help</a></li>                                      
+            </ul>
+        </div>
+        <div class="m_ai_shlash">/</div>
+        <div>
+            <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Resources & Documentation
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item m_dropActive" href="#">Tuning Guides</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Installation Guides</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Programming Guides</a></li>
+            </ul>
+        </div>
+            <a href="">
+                <button class="btn" style="color: #0068B5;">
+                    Tuning Guides
+                </button>
+            </a>
+        </div>
+        <div class="m_ai_shlash">/</div>
+        <div class="m_ai_httl">Media Processing Basics Tuning Guide</div>
+
+    </section>
+    <!------------------------------------------------------------------------------->
+
+    <!-- Optimize Fine-Tuning and Deployment of LLMs on an AI PC -->
+    <section>
+        <div class="dk_main_heading">
+            <div class="container">
+                <div class="row mv_intel_amx_content">
+                    <div class="col-md-12 col-sm-12 mv_intel_amx_item">
+                        <div class="mv_intel_amx">
+                            <h3>Media Processing Basics Tuning Guide on 4th Gen Intel® Xeon® Scalable Processors</h3>
+                            <p></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="container py-5">
+        <div class="row">
+            <div class="d-flex justify-content-end col-xl-10 py-3 d-md-none">
+                <i class="fa-solid fa-print fs-4 px-2 " style="color:#0068B5"></i>
+                <i class="fa-regular fa-envelope fs-4 px-2" style="color:#0068B5"></i>
+            </div>
+            <div class="col-lg-3 col-md-4">
+                <!-- nav -->
+                <div class="VK_client_app_navigation VK_ai_navigation">
+                    <div class="justify-content-center align-items-center overflow-hidden flex-nowrap mb-4">
+                        <ul class="VK_ai_nav_bar list-unstyled m-0">
+                            <li>
+                                <a href="#dk_introduction" class="text-dark text-decoration-none d-block">
+                                    Introduction
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#dk_reference_workload" class="text-dark text-decoration-none d-block VK_ai_nav_link">
+                                    Reference Workload
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#dk_tuning" class="text-dark text-decoration-none d-block VK_ai_nav_link">
+                                    Tuning
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#dk_related_tools" class="text-dark text-decoration-none d-block">
+                                    Related Tools and Information
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#dk_feedback" class="text-dark text-decoration-none d-block VK_ai_nav_link">
+                                    Feedback
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#dk_references" class="text-dark text-decoration-none d-block VK_ai_nav_link">
+                                    References
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-lg-9 col-md-8">
+                <div class="d-md-flex justify-content-end col-xl-10 py-3 d-none">
+                    <i class="fa-solid fa-print fs-4 px-2 " style="color:#0068B5"></i>
+                    <i class="fa-regular fa-envelope fs-4 px-2" style="color:#0068B5"></i>
+                </div>
+                <div class="col-xl-10">
+                    <section id="dk_introduction">
+                        <div style="padding-bottom: 16px;">
+                            <p>&nbsp;</p>
+                            <h3 style="font-weight: 350;">Introduction</h3>
+                            <p>This guide is for users who are already familiar with media processing. It provides recommendations for configuring hardware and software that will yield reasonable baseline performance for generic media processing use cases on 4th Gen Intel® Xeon® Scalable processors.&nbsp; However, media processing is a complex domain and optimal performance may require consideration beyond the scope of this tuning guide.</p>
+                            <p>4th Gen Intel Xeon Scalable processors deliver workload-optimized performance with improved architecture and built-in acceleration for AI, encryption, HPC, storage, database systems, and networking. They feature unique security technologies to help protect data on-premises or in the cloud.&nbsp;</p>
+                            <p>Improvements that directly benefit basic media processing include increased core counts, memory performance with DDR5, and larger caches.</p>
+                            <p>It’s not uncommon for applications to integrate basic media processing with artificial intelligence, content distribution, real-time streaming, or a variety of other functions.&nbsp; Noteworthy features include:<br></p>
+                            <ul>
+                                <li>New built-in accelerators for AI, HPC, networking, security, storage, and analytics</li>
+                                <li>Intel® Ultra Path Interconnect (Intel® UPI)</li>
+                                <li>Intel® Speed Select Technology</li>
+                                <li>Hardware-enhanced security&nbsp;</li>
+                                <li>New flex bus I/O interface (PCIe* 5.0 + CXL)&nbsp;</li>
+                                <li>New flexible I/O interface up to 20 HSIO lanes (PCI 3.0)</li>
+                                <li>Increased multisocket bandwidth with UPI 2.0 (up to 16 GT/s)&nbsp;</li>
+                                <li>Intel® Data Streaming Accelerator<br>
+                                &nbsp;</li>
+                            </ul>
+                            <p>Tuning guidance spans hardware, firmware, and software domains. Some parameters, like memory population, have only one mechanism of adjustment. Others, like scaling governors, can be adjusted through a variety of mechanisms, like via BOIS settings or operating system APIs. It’s not uncommon that a higher level of the solution stack will modify settings made lower in the stack. To ensure tuning settings intended are active during execution, we encourage instrumentation to read critical parameters at runtime. If runtime settings do not reflect specified tuning settings, it’s possible, even likely, that downstream firmware or software is changing tuning parameters.</p>
+                        </div>
+                    </section>
+                    <section id="dk_reference_workload">
+                        <p>&nbsp;</p>
+                        <h3 style="font-weight: 350; margin: 1rem 0 11px;">Reference Workload</h3>
+                        <p>Intel employs an FFmpeg-based media transcode benchmark as a reference for general media processing. Tuning recommendations in this guide seek to provide good performance across the aggregate benchmark results. Intel does not license the benchmark, but replication is possible using the guidance below.</p>
+                        <h3>Use Cases</h3>
+                        <p>The benchmark implements file-based, single stream in, single stream out for 24 use cases spanning four codecs as illustrated in the table below.</p>
+                        <table class="mv_product_table w-100 mb-4">
+                            <thead>
+                                <tr>
+                                    <th style="text-align:center">Codec</th>
+                                    <th style="text-align:center">Input Resolution</th>
+                                    <th style="text-align:center">Xcode Type</th>
+                                    <th style="text-align:center">Preset</th>
+                                    <th style="text-align:center">ISA</th>
+                                    <th style="text-align:center">GOP Length (seconds)</th>
+                                    <th style="text-align:center">Frames to Encode</th>
+                                    <th style="text-align:center">Output Res (matches input)</th>
+                                    <th style="text-align:center">Output FPS (matches input)</th>
+                                    <th style="text-align:center">Output Bitrate (Mb/s)</th>
+                                    <th style="text-align:center">Max Bitrate (Mb/s)</th>
+                                    <th style="text-align:center">Buffer Size (Mb)</th>
+                                    <th style="text-align:center">Profile</th>
+                                    <th style="text-align:center">Pre-video Switches</th>
+                                    <th style="text-align:center">Other Switches</th>
+                                    <th style="text-align:center">Encoder Params</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>svt av1</td>
+                                    <td>FHD</td>
+                                    <td>1:1</td>
+                                    <td>5</td>
+                                    <td>AVX2</td>
+                                    <td>2</td>
+                                    <td>all</td>
+                                    <td>FHD</td>
+                                    <td>60</td>
+                                    <td>4</td>
+                                    <td>12</td>
+                                    <td>16</td>
+                                    <td>n/a</td>
+                                    <td>&nbsp;</td>
+                                    <td>-rc 1 -g 119-sc_detection 0</td>
+                                    <td>&nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td>svt av1</td>
+                                    <td>FHD</td>
+                                    <td>1:1</td>
+                                    <td>5</td>
+                                    <td>AVX3</td>
+                                    <td>2</td>
+                                    <td>all</td>
+                                    <td>FHD</td>
+                                    <td>60</td>
+                                    <td>4</td>
+                                    <td>12</td>
+                                    <td>16</td>
+                                    <td>n/a</td>
+                                    <td>&nbsp;</td>
+                                    <td>-rc 1 -g 119-sc_detection 0</td>
+                                    <td>&nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td>svt av1</td>
+                                    <td>FHD</td>
+                                    <td>1:1</td>
+                                    <td>8</td>
+                                    <td>AVX2</td>
+                                    <td>2</td>
+                                    <td>all</td>
+                                    <td>UHD4Kc</td>
+                                    <td>60</td>
+                                    <td>4</td>
+                                    <td>24</td>
+                                    <td>48</td>
+                                    <td>n/a</td>
+                                    <td>&nbsp;</td>
+                                    <td>-rc 1 -g 119-sc_detection 0</td>
+                                    <td>&nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td>svt av1</td>
+                                    <td>FHD</td>
+                                    <td>1:1</td>
+                                    <td>8</td>
+                                    <td>AVX3</td>
+                                    <td>2</td>
+                                    <td>all</td>
+                                    <td>UHD4Kc</td>
+                                    <td>60</td>
+                                    <td>4</td>
+                                    <td>24</td>
+                                    <td>20</td>
+                                    <td>n/a</td>
+                                    <td>&nbsp;</td>
+                                    <td>-rc 1 -g 119-sc_detection 0</td>
+                                    <td>&nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td>svt av1</td>
+                                    <td>FHD</td>
+                                    <td>1:1</td>
+                                    <td>12</td>
+                                    <td>AVX2</td>
+                                    <td>2</td>
+                                    <td>all</td>
+                                    <td>UHD4Kc</td>
+                                    <td>60</td>
+                                    <td>4</td>
+                                    <td>24</td>
+                                    <td>20</td>
+                                    <td>n/a</td>
+                                    <td>&nbsp;</td>
+                                    <td>-rc 1 -g 119-sc_detection 0</td>
+                                    <td>&nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td>svt av1</td>
+                                    <td>FHD</td>
+                                    <td>1:1</td>
+                                    <td>12</td>
+                                    <td>AVX3</td>
+                                    <td>2</td>
+                                    <td>all</td>
+                                    <td>UHD4Kc</td>
+                                    <td>60</td>
+                                    <td>4</td>
+                                    <td>24</td>
+                                    <td>20</td>
+                                    <td>n/a</td>
+                                    <td>&nbsp;</td>
+                                    <td>-rc 1 -g 119-sc_detection 0</td>
+                                    <td>&nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td>svt av1</td>
+                                    <td>UHD4Kc</td>
+                                    <td>1:1</td>
+                                    <td>8</td>
+                                    <td>AVX2</td>
+                                    <td>2</td>
+                                    <td>all</td>
+                                    <td>UHD4Kc</td>
+                                    <td>60</td>
+                                    <td>9</td>
+                                    <td>18</td>
+                                    <td>36</td>
+                                    <td>n/a</td>
+                                    <td>&nbsp;</td>
+                                    <td>-rc 1 -g 119-sc_detection 0</td>
+                                    <td>&nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td>svt av1</td>
+                                    <td>UHD4Kc</td>
+                                    <td>1:1</td>
+                                    <td>8</td>
+                                    <td>AVX3</td>
+                                    <td>2</td>
+                                    <td>all</td>
+                                    <td>UHD4Kc</td>
+                                    <td>60</td>
+                                    <td>9</td>
+                                    <td>18</td>
+                                    <td>36</td>
+                                    <td>n/a</td>
+                                    <td>&nbsp;</td>
+                                    <td>-rc 1 -g 119-sc_detection 0</td>
+                                    <td>&nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td>svt av1</td>
+                                    <td>UHD4Kc</td>
+                                    <td>1:1</td>
+                                    <td>12</td>
+                                    <td>AVX2</td>
+                                    <td>2</td>
+                                    <td>all</td>
+                                    <td>FHD</td>
+                                    <td>60</td>
+                                    <td>9</td>
+                                    <td>18</td>
+                                    <td>16</td>
+                                    <td>n/a</td>
+                                    <td>&nbsp;</td>
+                                    <td>-rc 1 -g 119-sc_detection 0</td>
+                                    <td>&nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td>svt av1</td>
+                                    <td>UHD4Kc</td>
+                                    <td>1:1</td>
+                                    <td>12</td>
+                                    <td>AVX3</td>
+                                    <td>2</td>
+                                    <td>all</td>
+                                    <td>FHD</td>
+                                    <td>60</td>
+                                    <td>9</td>
+                                    <td>10</td>
+                                    <td>16</td>
+                                    <td>n/a</td>
+                                    <td>&nbsp;</td>
+                                    <td>-rc 1 -g 119-sc_detection 0</td>
+                                    <td>&nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td>svt hevc</td>
+                                    <td>FHD</td>
+                                    <td>1:1</td>
+                                    <td>1</td>
+                                    <td>AVX2</td>
+                                    <td>2</td>
+                                    <td>all</td>
+                                    <td>UHD4Kc</td>
+                                    <td>60</td>
+                                    <td>5</td>
+                                    <td>18</td>
+                                    <td>20</td>
+                                    <td>Main</td>
+                                    <td>&nbsp;</td>
+                                    <td>-rc 1 -g 119-sc_detection 0</td>
+                                    <td>&nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td>svt hevc</td>
+                                    <td>FHD</td>
+                                    <td>1:1</td>
+                                    <td>5</td>
+                                    <td>AVX2</td>
+                                    <td>2</td>
+                                    <td>all</td>
+                                    <td>UHD4Kc</td>
+                                    <td>60</td>
+                                    <td>5</td>
+                                    <td>18</td>
+                                    <td>36</td>
+                                    <td>Main</td>
+                                    <td>&nbsp;</td>
+                                    <td>-rc 1 -g 119-sc_detection 0</td>
+                                    <td>&nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td>svt hevc</td>
+                                    <td>FHD</td>
+                                    <td>1:1</td>
+                                    <td>5</td>
+                                    <td>AVX3</td>
+                                    <td>2</td>
+                                    <td>all</td>
+                                    <td>UHD4Kc</td>
+                                    <td>60</td>
+                                    <td>5</td>
+                                    <td>18</td>
+                                    <td>36</td>
+                                    <td>Main</td>
+                                    <td>&nbsp;</td>
+                                    <td>-rc 1 -g 119-sc_detection 0</td>
+                                    <td>&nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td>svt hevc</td>
+                                    <td>FHD</td>
+                                    <td>1:1</td>
+                                    <td>9</td>
+                                    <td>AVX2</td>
+                                    <td>2</td>
+                                    <td>all</td>
+                                    <td>UHD4Kc</td>
+                                    <td>60</td>
+                                    <td>5</td>
+                                    <td>18</td>
+                                    <td>36</td>
+                                    <td>Main</td>
+                                    <td>&nbsp;</td>
+                                    <td>-rc 1 -g 119-sc_detection 0</td>
+                                    <td>&nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td>svt hevc</td>
+                                    <td>UHD4Kc</td>
+                                    <td>1:1</td>
+                                    <td>1</td>
+                                    <td>AVX3</td>
+                                    <td>2</td>
+                                    <td>all</td>
+                                    <td>FHD</td>
+                                    <td>60</td>
+                                    <td>12</td>
+                                    <td>10</td>
+                                    <td>36</td>
+                                    <td>Main10</td>
+                                    <td>&nbsp;</td>
+                                    <td>-rc 1 -g 119-sc_detection 0</td>
+                                    <td>&nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td>svt hevc</td>
+                                    <td>UHD4Kc</td>
+                                    <td>1:1</td>
+                                    <td>5</td>
+                                    <td>AVX3</td>
+                                    <td>2</td>
+                                    <td>all</td>
+                                    <td>FHD</td>
+                                    <td>60</td>
+                                    <td>12</td>
+                                    <td>10</td>
+                                    <td>36</td>
+                                    <td>Main10</td>
+                                    <td>&nbsp;</td>
+                                    <td>-rc 1 -g 119-sc_detection 0</td>
+                                    <td>&nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td>svt hevc</td>
+                                    <td>UHD4Kc</td>
+                                    <td>1:1</td>
+                                    <td>9</td>
+                                    <td>AVX2</td>
+                                    <td>2</td>
+                                    <td>all</td>
+                                    <td>FHD</td>
+                                    <td>60</td>
+                                    <td>12</td>
+                                    <td>24</td>
+                                    <td>36</td>
+                                    <td>Main10</td>
+                                    <td>&nbsp;</td>
+                                    <td>-rc 1 -g 119-sc_detection 0</td>
+                                    <td>&nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td>svt hevc</td>
+                                    <td>UHD4Kc</td>
+                                    <td>1:1</td>
+                                    <td>9</td>
+                                    <td>AVX3</td>
+                                    <td>2</td>
+                                    <td>all</td>
+                                    <td>FHD</td>
+                                    <td>60</td>
+                                    <td>12</td>
+                                    <td>10</td>
+                                    <td>36</td>
+                                    <td>Main10</td>
+                                    <td>&nbsp;</td>
+                                    <td>-rc 1 -g 119-sc_detection 0</td>
+                                    <td>&nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td>x264</td>
+                                    <td>FHD</td>
+                                    <td>1:1</td>
+                                    <td>fast</td>
+                                    <td>AVX2</td>
+                                    <td>2</td>
+                                    <td>all</td>
+                                    <td>FHD</td>
+                                    <td>60</td>
+                                    <td>6</td>
+                                    <td>8</td>
+                                    <td>24</td>
+                                    <td>High</td>
+                                    <td>&nbsp;</td>
+                                    <td>-tune=psnr</td>
+                                    <td>
+                                    <p>keyint=120;min-keyint=120:sliced-threads=0;scene-cut=0;threads=4</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>x264</td>
+                                    <td>FHD</td>
+                                    <td>1:1</td>
+                                    <td>medium</td>
+                                    <td>AVX2</td>
+                                    <td>2</td>
+                                    <td>all</td>
+                                    <td>FHD</td>
+                                    <td>60</td>
+                                    <td>6</td>
+                                    <td>8</td>
+                                    <td>24</td>
+                                    <td>High</td>
+                                    <td>&nbsp;</td>
+                                    <td>-tune=psnr</td>
+                                    <td>keyint=120;min-keyint=120:sliced-threads=0;scene-cut=0;threads=4</td>
+                                </tr>
+                                <tr>
+                                    <td>x264</td>
+                                    <td>FHD</td>
+                                    <td>1:1</td>
+                                    <td>very slow</td>
+                                    <td>AVX2</td>
+                                    <td>2</td>
+                                    <td>all</td>
+                                    <td>FHD</td>
+                                    <td>60</td>
+                                    <td>5</td>
+                                    <td>8</td>
+                                    <td>48</td>
+                                    <td>High</td>
+                                    <td>&nbsp;</td>
+                                    <td>-tune=psnr</td>
+                                    <td>keyint=240;-min-keyint=240:sliced-threads=0;scene-cut=0;threads=8</td>
+                                </tr>
+                                <tr>
+                                    <td>x265</td>
+                                    <td>FHD</td>
+                                    <td>1:1</td>
+                                    <td>medium</td>
+                                    <td>AVX3</td>
+                                    <td>2</td>
+                                    <td>all</td>
+                                    <td>FHD</td>
+                                    <td>60</td>
+                                    <td>5</td>
+                                    <td>8</td>
+                                    <td>48</td>
+                                    <td>Main</td>
+                                    <td>&nbsp;</td>
+                                    <td>-tune=psnr</td>
+                                    <td>keyint=120,min-keyint=120:pools=4</td>
+                                </tr>
+                                <tr>
+                                    <td>x265</td>
+                                    <td>FHD</td>
+                                    <td>1:1</td>
+                                    <td>medium</td>
+                                    <td>AVX2</td>
+                                    <td>2</td>
+                                    <td>all</td>
+                                    <td>FHD</td>
+                                    <td>60</td>
+                                    <td>5</td>
+                                    <td>8</td>
+                                    <td>48</td>
+                                    <td>Main</td>
+                                    <td>&nbsp;</td>
+                                    <td>-tune=psnr</td>
+                                    <td>keyint=120,min-keyint=120:pools=4</td>
+                                </tr>
+                                <tr>
+                                    <td>x265</td>
+                                    <td>UHD4Kc</td>
+                                    <td>1:1</td>
+                                    <td>very slow</td>
+                                    <td>AVX2</td>
+                                    <td>2</td>
+                                    <td>all</td>
+                                    <td>FHD</td>
+                                    <td>60</td>
+                                    <td>12</td>
+                                    <td>8</td>
+                                    <td>48</td>
+                                    <td>Main10</td>
+                                    <td>&nbsp;</td>
+                                    <td>-tune=psnr</td>
+                                    <td>keyint=240;min-keyint=240;pools=8</td>
+                                </tr>
+                            </tbody>
+                        </table> 
+                        <h3><br>Input File</h3>
+                        <p>The input file aggregates 10 scenes from a variety of video content types including animated, live, and gaming. Each scene has a leading key frame and length of 240 frames, or 4 seconds at 60 fps. The entire input video is 2400 frames, or 40 seconds at 60 fps.&nbsp;</p>
+                        <p>The input file is rendered at both FHD and consumer 4K resolution and matched to the output resolution of the use case for performance measurement purposes.</p> 
+                        <h3>CPU Core Loading Methodology</h3>
+                        <p>Loading cores to ensure effective processor utilization (90%+) without thrashing the scheduler is important for accurate results. Intel dispatches FFmpeg instances based on the core counts. The formula is captured in the following table.</p>
+                        <table class="mv_product_table w-100 mb-4">
+                            <thead>
+                                <tr>
+                                    <th scope="col">
+                                    <p style="text-align:center"><strong>Codec</strong></p>
+                                    </th>
+                                    <th scope="col">
+                                    <p><strong>Resolution</strong></p>
+                                    </th>
+                                    <th scope="col">
+                                    <p style="text-align:center"><strong>MSO</strong></p>
+                                    </th>
+                                    <th scope="col">
+                                    <p style="text-align:center"><strong>Preset</strong></p>
+                                    </th>
+                                    <th scope="col">
+                                    <p style="text-align:center"><strong>FFMPEG Instances</strong></p>
+                                    </th>
+                                    <th scope="col">
+                                    <p style="text-align:center"><strong>Threads/Encode</strong></p>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                    <p style="text-align:center">x.264</p>
+                                    </td>
+                                    <td>
+                                    <p style="text-align:center">FHD</p>
+                                    </td>
+                                    <td>
+                                    <p style="text-align:center">1:1</p>
+                                    </td>
+                                    <td>
+                                    <p style="text-align:center">very slow</p>
+                                    </td>
+                                    <td>
+                                    <p style="text-align:center">Ceiling(Logical Cores/4)</p>
+                                    </td>
+                                    <td>
+                                    <p style="text-align:center">8<sup>†</sup></p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                    <p style="text-align:center">x.264</p>
+                                    </td>
+                                    <td>
+                                    <p style="text-align:center">FHD</p>
+                                    </td>
+                                    <td>
+                                    <p style="text-align:center">1:1</p>
+                                    </td>
+                                    <td>
+                                    <p style="text-align:center">medium</p>
+                                    </td>
+                                    <td>
+                                    <p style="text-align:center">Ceiling(Logical Cores Div/2)</p>
+                                    </td>
+                                    <td>
+                                    <p style="text-align:center">8<sup>†</sup></p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                    <p style="text-align:center">x.264</p>
+                                    </td>
+                                    <td>
+                                    <p style="text-align:center">FHD</p>
+                                    </td>
+                                    <td>
+                                    <p style="text-align:center">1:1</p>
+                                    </td>
+                                    <td>
+                                    <p style="text-align:center">fast</p>
+                                    </td>
+                                    <td>
+                                    <p style="text-align:center">Ceiling(Logical Cores Div/2)</p>
+                                    </td>
+                                    <td>
+                                    <p style="text-align:center">8<sup>†</sup></p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                    <p style="text-align:center">&nbsp;</p>
+                                    </td>
+                                    <td>
+                                    <p style="text-align:center">&nbsp;</p>
+                                    </td>
+                                    <td>
+                                    <p style="text-align:center">&nbsp;</p>
+                                    </td>
+                                    <td>
+                                    <p style="text-align:center">&nbsp;</p>
+                                    </td>
+                                    <td>
+                                    <p style="text-align:center">&nbsp;</p>
+                                    </td>
+                                    <td>
+                                    <p style="text-align:center">&nbsp;</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                    <p style="text-align:center">x.265</p>
+                                    </td>
+                                    <td>
+                                    <p style="text-align:center">UHD4Kc</p>
+                                    </td>
+                                    <td>
+                                    <p style="text-align:center">1:1</p>
+                                    </td>
+                                    <td>
+                                    <p style="text-align:center">very slow</p>
+                                    </td>
+                                    <td>
+                                    <p style="text-align:center">Ceiling(Logical Cores/16)</p>
+                                    </td>
+                                    <td>
+                                    <p style="text-align:center">32<sup>†</sup></p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                    <p style="text-align:center">x.265</p>
+                                    </td>
+                                    <td>
+                                    <p style="text-align:center">FHD</p>
+                                    </td>
+                                    <td>
+                                    <p style="text-align:center">1:1</p>
+                                    </td>
+                                    <td>
+                                    <p style="text-align:center">medium</p>
+                                    </td>
+                                    <td>
+                                    <p style="text-align:center">Ceiling(Logical Cores Div 4)</p>
+                                    </td>
+                                    <td>
+                                    <p style="text-align:center">16<sup>†</sup></p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                    <p style="text-align:center">&nbsp;</p>
+                                    </td>
+                                    <td>
+                                    <p style="text-align:center">&nbsp;</p>
+                                    </td>
+                                    <td>
+                                    <p style="text-align:center">&nbsp;</p>
+                                    </td>
+                                    <td>
+                                    <p style="text-align:center">&nbsp;</p>
+                                    </td>
+                                    <td>
+                                    <p style="text-align:center">&nbsp;</p>
+                                    </td>
+                                    <td>
+                                    <p style="text-align:center">&nbsp;</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                    <p style="text-align:center">svt hevc</p>
+                                    </td>
+                                    <td>
+                                    <p style="text-align:center">FHD</p>
+                                    </td>
+                                    <td>
+                                    <p style="text-align:center">1:1</p>
+                                    </td>
+                                    <td>
+                                    <p style="text-align:center">1</p>
+                                    </td>
+                                    <td>
+                                    <p style="text-align:center">Ceiling(Logical Cores/8)</p>
+                                    </td>
+                                    <td>
+                                    <p style="text-align:center">‡</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                    <p style="text-align:center">svt hevc</p>
+                                    </td>
+                                    <td>
+                                    <p style="text-align:center">FHD</p>
+                                    </td>
+                                    <td>
+                                    <p style="text-align:center">1:1</p>
+                                    </td>
+                                    <td>
+                                    <p style="text-align:center">5</p>
+                                    </td>
+                                    <td>
+                                    <p style="text-align:center">Ceiling(Logical Cores/8)</p>
+                                    </td>
+                                    <td>
+                                    <p style="text-align:center">‡</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                    <p style="text-align:center">svt hevc</p>
+                                    </td>
+                                    <td>
+                                    <p style="text-align:center">FHD</p>
+                                    </td>
+                                    <td>
+                                    <p style="text-align:center">1:1</p>
+                                    </td>
+                                    <td>
+                                    <p style="text-align:center">9</p>
+                                    </td>
+                                    <td>
+                                    <p style="text-align:center">Ceiling(Logical Cores/4)</p>
+                                    </td>
+                                    <td>
+                                    <p style="text-align:center">‡</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                    <p style="text-align:center">&nbsp;</p>
+                                    </td>
+                                    <td>
+                                    <p style="text-align:center">&nbsp;</p>
+                                    </td>
+                                    <td>
+                                    <p style="text-align:center">&nbsp;</p>
+                                    </td>
+                                    <td>
+                                    <p style="text-align:center">&nbsp;</p>
+                                    </td>
+                                    <td>
+                                    <p style="text-align:center">&nbsp;</p>
+                                    </td>
+                                    <td>
+                                    <p style="text-align:center">&nbsp;</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                    <p style="text-align:center">svt hevc</p>
+                                    </td>
+                                    <td>
+                                    <p style="text-align:center">UHD4Kc</p>
+                                    </td>
+                                    <td>
+                                    <p style="text-align:center">1:1</p>
+                                    </td>
+                                    <td>
+                                    <p style="text-align:center">1</p>
+                                    </td>
+                                    <td>
+                                    <p style="text-align:center">Ceiling(Logical Cores/12)</p>
+                                    </td>
+                                    <td>
+                                    <p style="text-align:center">‡</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                    <p style="text-align:center">svt hevc</p>
+                                    </td>
+                                    <td>
+                                    <p style="text-align:center">UHD4Kc</p>
+                                    </td>
+                                    <td>
+                                    <p style="text-align:center">1:1</p>
+                                    </td>
+                                    <td>
+                                    <p style="text-align:center">5</p>
+                                    </td>
+                                    <td>
+                                    <p style="text-align:center">Ceiling(Logical Cores/12)</p>
+                                    </td>
+                                    <td>
+                                    <p style="text-align:center">‡</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                    <p style="text-align:center">svt hevc</p>
+                                    </td>
+                                    <td>
+                                    <p style="text-align:center">UHD4Kc</p>
+                                    </td>
+                                    <td>
+                                    <p style="text-align:center">1:1</p>
+                                    </td>
+                                    <td>
+                                    <p style="text-align:center">9</p>
+                                    </td>
+                                    <td>
+                                    <p style="text-align:center">Ceiling(Logical Cores/12)</p>
+                                    </td>
+                                    <td>
+                                    <p style="text-align:center">‡</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                    <p style="text-align:center">&nbsp;</p>
+                                    </td>
+                                    <td>
+                                    <p style="text-align:center">&nbsp;</p>
+                                    </td>
+                                    <td>
+                                    <p style="text-align:center">&nbsp;</p>
+                                    </td>
+                                    <td>
+                                    <p style="text-align:center">&nbsp;</p>
+                                    </td>
+                                    <td>
+                                    <p style="text-align:center">&nbsp;</p>
+                                    </td>
+                                    <td>
+                                    <p style="text-align:center">&nbsp;</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                    <p style="text-align:center">svt av1</p>
+                                    </td>
+                                    <td>
+                                    <p style="text-align:center">FHD</p>
+                                    </td>
+                                    <td>
+                                    <p style="text-align:center">1:1</p>
+                                    </td>
+                                    <td>
+                                    <p style="text-align:center">12</p>
+                                    </td>
+                                    <td>
+                                    <p style="text-align:center">Ceiling(Logical Cores/8)</p>
+                                    </td>
+                                    <td>
+                                    <p style="text-align:center">‡</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                    <p style="text-align:center">svt av1</p>
+                                    </td>
+                                    <td>
+                                    <p style="text-align:center">FHD</p>
+                                    </td>
+                                    <td>
+                                    <p style="text-align:center">1:1</p>
+                                    </td>
+                                    <td>
+                                    <p style="text-align:center">8</p>
+                                    </td>
+                                    <td>
+                                    <p style="text-align:center">Ceiling(Logical Cores/8)</p>
+                                    </td>
+                                    <td>
+                                    <p style="text-align:center">‡</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                    <p style="text-align:center">svt av1</p>
+                                    </td>
+                                    <td>
+                                    <p style="text-align:center">FHD</p>
+                                    </td>
+                                    <td>
+                                    <p style="text-align:center">1:1</p>
+                                    </td>
+                                    <td>
+                                    <p style="text-align:center">5</p>
+                                    </td>
+                                    <td>
+                                    <p style="text-align:center">Ceiling(Logical Cores/8)</p>
+                                    </td>
+                                    <td>
+                                    <p style="text-align:center">‡</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                    <p style="text-align:center">svt av1</p>
+                                    </td>
+                                    <td>
+                                    <p style="text-align:center">UHD4K</p>
+                                    </td>
+                                    <td>
+                                    <p style="text-align:center">1:1</p>
+                                    </td>
+                                    <td>
+                                    <p style="text-align:center">12</p>
+                                    </td>
+                                    <td>
+                                    <p style="text-align:center">Ceiling(Logical Cores/12)</p>
+                                    </td>
+                                    <td>
+                                    <p style="text-align:center">‡</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                    <p style="text-align:center">svt av1</p>
+                                    </td>
+                                    <td>
+                                    <p style="text-align:center">UHD4K</p>
+                                    </td>
+                                    <td>
+                                    <p style="text-align:center">1:1</p>
+                                    </td>
+                                    <td>
+                                    <p style="text-align:center">8</p>
+                                    </td>
+                                    <td>
+                                    <p style="text-align:center">Ceiling(Logical Cores/12)</p>
+                                    </td>
+                                    <td>
+                                    <p style="text-align:center">‡</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="6">
+                                    <p>† Set via encoder params in FFmpeg command line<br>
+                                    ‡ set automatically by the codec</p>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table> 
+                    </section>
+                    <section id="dk_tuning">
+                        <p>&nbsp;</p>
+                        <h3 style="font-weight: 350; margin: 1rem 0 11px;">Tuning</h3>
+                        <h4>Platform Selection Considerations</h4>
+                        <h4>Maximum Memory Speed</h4>
+                        <p>All processors in the 4<sup>th</sup> Gen Intel Xeon processor family are enabled for DDR5 memory but maximum speed is a function of the specific processor SKU. SKUs are available that support maximum speeds of 4000 mt/s, 4400 mt/s, and 4800 mt/s. Because media transcode generally benefits from faster memory speeds, Intel recommends selecting SKUs that support 4800 mt/s for best performance.</p>
+                        <h4>System Settings</h4>
+                        <p>The sections below describe parameters that can be set via the BIOS and/or operating system. Recommended settings yield good performance for the general media processing use case. The appropriate configuration for your application may vary.</p>
+                        <p>IMPORTANT: Not all machines have the same mechanisms for setting performance. Techniques can vary widely by brand, model, architecture, and BIOS. When not familiar with a SUT, users are strongly encouraged to get guidance from an informed performance engineer.</p>
+                        <h4>Safe &amp; Known Default</h4>
+                        <p>To help ensure a safe and known starting point, reset default settings in the BIOS and host operating system. BIOS reset is typically available in the BIOS subsystem; consult OEM guidance. Operating system reset is typically documented as part of the operating system distribution; consult the developer.</p>
+                        <h4>General Parameters</h4>
+                        <p>The six (6) parameters listed here are generally well-recognized dating back several years.&nbsp; Recommended settings and a short description of each are provided.</p>
+                        <table class="mv_product_table w-100 mb-4">
+                            <tbody>
+                                <tr>
+                                    <td>
+                                    <p><strong>Tuning Parameter</strong></p>
+                                    </td>
+                                    <td>
+                                    <p><strong>Typical* Location</strong></p>
+                                    </td>
+                                    <td>
+                                    <p><strong>Recommended Setting</strong></p>
+                                    </td>
+                                    <td colspan="2">
+                                    <p><strong>Description</strong></p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                    <p><strong>Power &amp; Policy</strong></p>
+                                    </td>
+                                    <td>
+                                    <p>BIOS</p>
+                                    </td>
+                                    <td>
+                                    <p>Performance</p>
+                                    </td>
+                                    <td colspan="2">
+                                    <p>Optimizes system for performance.</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                    <p><strong>CPU Frequency Governors</strong></p>
+                                    </td>
+                                    <td>
+                                    <p>OS</p>
+                                    </td>
+                                    <td>
+                                    <p>Performance</p>
+                                    </td>
+                                    <td colspan="2">
+                                    <p>CPU set to highest available frequency</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                    <p><strong>Turbo Boost</strong></p>
+                                    </td>
+                                    <td>
+                                    <p>BIOS</p>
+                                    </td>
+                                    <td>
+                                    <p>Enabled</p>
+                                    </td>
+                                    <td colspan="2">
+                                    <p>Allows CPU to sustain max turbo frequency.</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                    <p><strong>C-States</strong></p>
+                                    </td>
+                                    <td>
+                                    <p>BIOS</p>
+                                    </td>
+                                    <td>
+                                    <p>Disabled</p>
+                                    </td>
+                                    <td colspan="2">
+                                    <p>Prevents CPU transition to low power states.</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                    <p><strong>Uncore Frequency</strong></p>
+                                    </td>
+                                    <td>
+                                    <p>BIOS</p>
+                                    </td>
+                                    <td>
+                                    <p>Minimum</p>
+                                    </td>
+                                    <td colspan="2">
+                                    <p>Ensure power to core is prioritized.</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                    <p><strong>Hyperthreading</strong></p>
+                                    </td>
+                                    <td>
+                                    <p>BIOS</p>
+                                    </td>
+                                    <td>
+                                    <p>Enabled</p>
+                                    </td>
+                                    <td colspan="2">
+                                    <p>Enables one physical microprocessor to behave like two logical microprocessors.</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="4">
+                                    <p><strong>* Not all machines have the same mechanism for setting tuning parameters. Locations are shown as general guidance but are neither prescriptive nor exclusive. Refer to hardware and software reference material for clarification. Instrumenting workloads to capture actual performance parameters at runtime is strongly encouraged.&nbsp; </strong></p>
+                                    </td>
+                                    <td>
+                                    <p>&nbsp;</p>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table> 
+                        <p>&nbsp;</p>
+                        <h4>Homeless Prefetcher</h4>
+                        <p>The homeless prefetcher manages demand miss into mid-level cache. It should be disabled for 4-tile dies commonly referred to as extreme core count (XCC). The homeless prefetcher should be enabled for monolithic medium core count (MCC) dies that are typically preferred for professional media processing.</p>
+                        <h4>Sub-NUMA Cluster (SNC)</h4>
+                        <p>(Not needed but is a good example)</p>
+                        <p>SNC is a feature that provides similar localization benefits as Cluster-On-Die (COD), a feature found in previous processor families, without some of COD’s downsides. SNC breaks up the last level cache (LLC) into disjoint clusters based on address range, with each cluster bound to a subset of the memory controllers in the system. SNC improves average latency to the LLC and is a replacement for the COD feature found in previous processor families.</p>
+                        <h4>Memory Configuration</h4>
+                        <p>Media transcoding workloads are sensitive to memory speed and configuration. Select the fastest memory supported on the architecture. Populate each memory channel to minimalize the distance data must travel to and from the CPU cores. The amount and size of the memory should be sized to accommodate the buffering requirements for the encoder, resolution, and desired quality. Details are discussed in the sections that follow.</p>
+                        <h4>Memory Speed</h4>
+                        <p>As mentioned previously, for best performance select 4<sup>th</sup> Gen Intel Xeon processor SKUs that support maximum speed of 4800 mt/s. Ensure your DDR5 DIMMs are 4800 mt/s or faster. Memory faster than 4800 mt/s will not improve performance since the CPU can’t go any faster. But memory speed slower than 4800 MT/s will slow the system down to match the speed of your memory.</p>
+                        <h4>DIMM Population</h4>
+                        <p>4<sup>th</sup> Gen Intel Xeon Scalable processor (formerly code named Sapphire Rapids) is an 8-channel memory architecture with DDR5 support up to 4800 MT/s. The memory controller supports up to 2 slots per channel. As a result, the typical mainboard will have 16 memory DIMM slots for each CPU (8 channels/CPU x 2 slots/channel=16 slots/CPU). For transcoding applications like the FFmpeg media benchmark, it is important to populate the computer with memory in each channel (NOT slot). Therefore, 4<sup>th</sup> Gen Intel Xeon Scalable processors should be populated with (a minimum of) 8 DIMMs per CPU meaning that every other slot can be empty. If you are working with a single CPU machine, you should have (at least) 8 DDR5 DIMMs. If you are working with a dual socket machine, you should have (at least) 16 DDR5 DIMMs.</p>
+                        <h4>Memory Sizing</h4>
+                        <p>Sizing the DIMMs can be more complicated. General guidance is to ensure at least 2 GB of free memory per logical core. With hyperthreading enabled, 4<sup>th</sup> Gen Intel Xeon Scalable processors will yield two logical cores for each physical core. For example, Intel Xeon 8468 processor is a 48C CPU intended for two-socket applications.&nbsp; The 2S server provides 192 logical cores (2 Sockets * 48 physical cores/socket * 2 logical cores/physical core).&nbsp; Allocating 2 GB of free memory per logical core will support most use cases up to 4K transcode. &nbsp;The free memory target in this case is 384 GB (2GB/logical core * 192 logical cores).&nbsp; &nbsp;</p>
+                        <p>A couple of additional notes on memory sizing:&nbsp; Many applications can get by with significantly less memory than 2 GB per logical core. Some applications may require more. &nbsp;&nbsp;Firmware and operating systems carry memory overhead. Memory is a significant cost driver. Profiling specific instances of end-to-end (E2E) platforms is required to minimize cost while ensuring maximum performance.</p>
+                        <h4>Storage, Disk Configuration, and Settings</h4>
+                        <p>For file-based transcode, server-class SSDs will deliver adequate I/O performance. Other applications may benefit from the implementation of RAM-disks.</p>
+                        <h4>Network Configuration and Setting</h4>
+                        <p>Generally, offline media processing application are not network bandwidth limited. Live applications and adjacent use cases, like video production, will have varying requirements.</p>
+                    </section> 
+                    <section id="dk_related_tools">
+                        <p>&nbsp;</p>
+                        <h3 style="font-weight: 350; margin: 1rem 0 11px;">Related Tools and Information</h3>
+                        <p>There are a variety of mechanisms for setting or modifying tuning parameters. &nbsp;Sometimes operating systems, tools, or applications may change parameters carefully set at system start-up. To ensure that settings at workload execution match intentions, it is recommended to query the system configuration using the Intel® System Health Inspector<sup>1</sup>, also known as svr-info, or the Intel® Power Thermal Utility<sup>2</sup></p>
+                        <div>&nbsp;</div>
+                    </section>
+                    <section id="dk_feedback">
+                        <p>&nbsp;</p>
+                        <h3 style="font-weight: 350; margin: 1rem 0 11px;">Feedback</h3>
+                        <p>We value your feedback. If you have comments (positive or negative) on this guide or are seeking something that is not part of this guide, <a class="b_special_a1" href="" style="color:#4f81bd">let us know</a>. </p>
+                    </section>
+                    <section id="dk_references">
+                        <p>&nbsp;</p>
+                        <h3 style="font-weight: 350; margin: 1rem 0 11px;">References</h3>
+                        <p>Viewable with a signed CNDA.</p>
+                        <p><sup>1</sup>&nbsp;<a class="b_special_a1" href="">https://www.intel.com/content/www/us/en/secure/design/confidential/products-and-solutions/software-and-services/cloud-performance-optimization-tools.html?s=Newest</a></p>
+                        <p><sup>2</sup>&nbsp;<a class="b_special_a1" href="">https://www.intel.com/content/www/us/en/secure/content-details/615177/intel-power-thermal-utility-intel-ptu-user-s-guide.html?wapkw=ptu&amp;DocID=615177</a></p>
+                    </section>
+                </div>
+            </div>
+            <p class="mb-0">&nbsp;</p>
+        </div>
+    </section>
+
+    <section style="border-top: 1px solid #d7d7d7;" class="container py-5">
+        <h4 class="h6">Product and Performance Information</h4>
+        <div class="disclaimer" style="font-size: 12px;"><sup>1</sup> Performance varies by use, configuration and other
+            factors. Learn more at <a class="b_special_a1" href="">www.Intel.com/PerformanceIndex.</a></div>
+        </div>
+    </section>
+
+    <!-- footer -->
+    <div id="footer"></div>
+
+    <!-- script header and footer -->
+    <script>
+        // navbar include  
+        fetch('/y_index/y_navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar').innerHTML = data;
+            });
+        // footer include 
+        fetch('/y_index/y_footer.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('footer').innerHTML = data;
+            });
+    </script>
+
+    <!-- nav script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const nav = document.querySelector('.VK_client_app_navigation');
+            const navLinks = document.querySelectorAll('.VK_ai_nav_bar a');
+            const sections = document.querySelectorAll('section[id]');
+            let navOffset = nav.offsetTop;
+
+            // Add smooth scrolling to all links
+            navLinks.forEach(link => {
+                link.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+
+            // Sticky Navigation
+            window.addEventListener('scroll', () => {
+                if (window.pageYOffset >= navOffset) {
+                    nav.classList.add('VK_sticky_nav_bar');
+                } else {
+                    nav.classList.remove('VK_sticky_nav_bar');
+                }
+                // Section highlighting
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop - nav.clientHeight;
+                    const sectionHeight = section.clientHeight;
+                    console.log(sectionTop);
+                    console.log(sectionHeight);
+                    if (window.pageYOffset >= sectionTop && window.pageYOffset <= sectionTop + sectionHeight) {
+                        navLinks.forEach(link => {
+                            link.classList.remove('active');
+                            if (link.getAttribute('href') === `#${section.id}`) {
+                                link.classList.add('active');
+
+                                // Ensure the active link is visible in the nav bar
+                                const navBar = document.querySelector('.VK_ai_nav_bar');
+                                const activeLink = document.querySelector('.VK_ai_nav_bar a.active');
+                                const linkRect = activeLink.getBoundingClientRect();
+                                const navBarRect = navBar.getBoundingClientRect();
+
+                                if (linkRect.left < navBarRect.left || linkRect.right > navBarRect.right) {
+                                    activeLink.scrollIntoView({ inline: 'center', behavior: 'smooth' });
+                                }
+                            }
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+
+    <!-- copy script -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            document.querySelectorAll(".mv_copy_icon").forEach((icon) => {
+                icon.addEventListener("click", async function () {
+                    try {
+                        const toolbar = this.closest(".mv_code_toolbar");
+                        const codeBlock = toolbar.querySelector(".code-content");
+                        const codeContent = codeBlock.innerText;
+
+                        // Use Clipboard API to copy text
+                        await navigator.clipboard.writeText(codeContent);
+
+                        // Hide the copy icon and show the "Copied!" message
+                        const message = toolbar.querySelector(".mv_copy_message");
+                        this.classList.add("hidden"); // Hide the copy icon
+                        message.classList.remove("hidden"); // Show the "Copied!" message
+
+                        // Hide the message and show the icon again after 2 seconds
+                        setTimeout(() => {
+                            message.classList.add("hidden");
+                            this.classList.remove("hidden");
+                        }, 2000); // Adjust delay as needed
+
+                    } catch (err) {
+                        console.error('Failed to copy text: ', err);
+                    }
+                });
+            });
+        });
+    </script>
+
+</body>
+
+</html>
