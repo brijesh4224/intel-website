@@ -1,0 +1,1544 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tuning SQL Server for OLTP</title>
+
+    <!-- font family -->
+    <link href="https://fonts.cdnfonts.com/css/intel-clear" rel="stylesheet">
+
+    <link rel="stylesheet" href="/css/dk_developer_edge_iot_5G_industrial_automation_see_all_wireless_network_ready_printed_circuit_board_(PCB)_defect_detection.css">
+    <link rel="stylesheet" href="/css/mv_product/ECC.css">
+    <link rel="stylesheet" href="/css/rushita_automotive.css">
+
+    <!-- header footer -->
+    <link rel="stylesheet" href='/css/yatri.css'>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" rel="stylesheet">
+
+</head>
+
+<style>
+    .dk_color1 {
+        color: #069 !important;
+    }
+
+    .dk_color2 {
+        color: #008200 !important;
+    }
+
+    .dk_color3 {
+        color: #b24501;
+    }
+
+    .dk_note{
+        font-size: 1rem;
+        line-height: 1.25;
+        word-wrap: break-word;
+        background-color: #e6e6e6;
+        padding: 20px;
+        border-left: 3px solid #fdb813;
+    }
+    .dk_code_simple{
+        background-color: #e6e6e6;
+        color: #53565a;
+        border-radius: 0;
+    }
+
+    .dk_greyHighlight{
+        font-size: 1rem;
+        line-height: 1.25;
+        background-color: #e6e6e6;
+        padding: 20px;
+    }
+
+    .dk_things_code{
+        padding: 1rem 1rem 0rem 0.5rem;
+    }
+
+    .mv_code_toolbar{
+        margin-top: 20px;
+    }
+
+    @media(max-width:1200px) {
+        .dk_risk_app_img {
+            width: 100% !important;
+        }
+        .mv_product_table{
+            width: 100% !important;
+        }
+    }
+</style>
+
+<body>
+    <!-- header -->
+    <div id="navbar"></div>
+
+    <!------------------------------------------------------------------------------->
+    <section class="m_ai_tdrop">
+        <div>
+            <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Developers
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item m_dropActive" href="#">Overview</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Topics & Technologies</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Tools</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Hardware Platforms</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Resources & Documentation</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Learn</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Community & Events</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Developer Programs</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Get Help</a></li>                                      
+            </ul>
+        </div>
+        <div class="m_ai_shlash">/</div>
+        <div>
+            <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Resources & Documentation
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item m_dropActive" href="#">Tuning Guides</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Installation Guides</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Programming Guides</a></li>
+            </ul>
+        </div>
+        <div class="m_ai_shlash">/</div>
+        <div>
+            <button class="btn" style="color: #0068B5;">
+                Tuning Guides
+            </button>
+        </div>
+        <div class="m_ai_shlash">/</div>
+        <div class="m_ai_httl">Tuning SQL Server for OLTP</div>
+
+    </section>
+    <!------------------------------------------------------------------------------->
+
+    <!-- VMware Horizon -->
+    <section>
+        <div class="mv_vmware_bg_color">
+            <div class="container">
+                <div class="mv_vmware_padd">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="mv_vmware_heading">
+                                <h3>Microsoft* SQL Server* Tuning Guide for Online Transaction Processing workload on 4th Generation Intel® Xeon® Scalable Processors Based Platform</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mv_cd_page_marquee_info">
+                        <div class="mv_cd_page_marquee_action">
+                            <div class="mv_cd_page_marquee_action_padd">
+                                <label for="">ID</label>
+                                <span>766472</span>
+                            </div>
+                            <div class="mv_cd_page_marquee_action_padd">
+                                <label for="">Updated</label>
+                                <span>11/7/2022</span>
+                            </div>
+                            <div class="mv_cd_page_marquee_action_padd">
+                                <label for="">Version</label>
+                                <span>Latest</span>
+                            </div>
+                            <div class="mv_cd_page_marquee_action_padd">
+                                <label for=""></label>
+                                <span>Public</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="container py-5">
+        <div class="row">
+            <div class="d-flex justify-content-end col-xl-10 py-3 d-md-none">
+                <i class="fa-solid fa-print fs-4 px-2 " style="color:#0068B5"></i>
+                <i class="fa-regular fa-envelope fs-4 px-2" style="color:#0068B5"></i>
+            </div>
+            <div class="col-lg-3 col-md-4">
+                <!-- nav -->
+                <div class="VK_sticky_side_bar VK_side_bar_postion_stickey">
+                    <div>
+                        <div class="VK_sidebar_dropdown">
+                            <p class="m-0">
+                                <a href="#dk_introduction" class="text-decoration-none VK_a">
+                                    Introduction
+                                </a>
+                            </p>
+                            <details>
+                                <summary>
+                                    <a href="#dk_hardware" class="text-decoration-none VK_a">
+                                        Hardware
+                                    </a>
+                                </summary>
+                                <ul class="list-unstyled ps-3 mb-0">
+                                    <li>
+                                        <a href="#dk_bios" class="text-decoration-none VK_a my-1">
+                                            BIOS
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#dk_memory_configuration" class="text-decoration-none VK_a my-1">
+                                            Memory Configuration
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#dk_storage" class="text-decoration-none VK_a my-1">
+                                            Storage
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <details>
+                                            <summary>
+                                                <a href="#dk_network" class="text-decoration-none VK_a">
+                                                    Network
+                                                </a>
+                                            </summary>
+                                            <ul class="list-unstyled ps-3 mb-0">
+                                                <li>
+                                                    <a href="#dk_software_tuning" class="text-decoration-none VK_a my-1">
+                                                        Software Tuning
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#dk_microsoft_2022" class="text-decoration-none VK_a my-1">
+                                                        Microsoft Windows Server* 2022 settings
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </details>
+                                    </li>
+                                </ul>
+                            </details>
+                            <details>
+                                <summary>
+                                    <a href="#dk_oltp_architecture" class="text-decoration-none VK_a">
+                                        OLTP Architecture
+                                    </a>
+                                </summary>
+                                <ul class="list-unstyled ps-3 mb-0">
+                                    <li>
+                                        <a href="#dk_tuning_oltp" class="text-decoration-none VK_a my-1">
+                                            Tuning SQL Server for OLTP Workload
+                                        </a>
+                                    </li>
+                                </ul>
+                            </details>
+                            <p class="m-0">
+                                <a href="#dk_related_tools" class="text-decoration-none VK_a">
+                                    Related Tools
+                                </a>
+                            </p>
+                            <p class="m-0">
+                                <a href="#dk_best_practices" class="text-decoration-none VK_a">
+                                    Best Practices for Testing and Verification
+                                </a>
+                            </p>
+                            <p class="m-0">
+                                <a href="#dk_conclusion" class="text-decoration-none VK_a">
+                                    Conclusion
+                                </a>
+                            </p>
+                            <p class="m-0">
+                                <a href="#dk_additional_res" class="text-decoration-none VK_a">
+                                    Additional Resources
+                                </a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+            <div class="col-lg-9 col-md-8">
+                <div class="d-md-flex justify-content-end col-xl-10 py-3 d-none">
+                    <i class="fa-solid fa-print fs-4 px-2 " style="color:#0068B5"></i>
+                    <i class="fa-regular fa-envelope fs-4 px-2" style="color:#0068B5"></i>
+                </div>
+                <div class="col-xl-10 VK_all_sections">
+                    <p>&nbsp;</p>
+
+                    <section id="dk_introduction">
+                        <p class="mb-0">&nbsp;</p>
+                        <h3 style="font-weight: 350; padding-bottom: 0.5rem;">Introduction</h3>
+                        <p>This guide is targeted towards users who are already familiar with Microsoft* SQL Server* and provides pointers and system settings for hardware and software that will provide the best performance for most situations. However, please note that we rely on the users to carefully consider these settings for their specific scenarios, since Microsoft SQL Server can be deployed in multiple ways, and this is a reference to one such use-case.&nbsp;&nbsp;</p>
+                        <p>Microsoft SQL Server is a relational database management system developed by Microsoft. SQL Server is offered in many different editions, but this guide will focus on the SQL Server Enterprise edition. SQL Server’s database architecture is based on a Client-Server architecture model. This tuning guide will focus on Online Transaction Processing (OLTP) workloads (TPCE like) while using SQL Server for Windows*.</p>
+                        <p class="mb-0">4th Gen Intel® Xeon® Scalable processors deliver industry-leading, workload-optimized platforms with built-in AI acceleration, providing a seamless performance foundation to help speed data’s transformative impact, from the multi-cloud to the intelligent edge and back. Improvements of particular interest to this workload applications are:</p>
+                        <ul> 
+                            <li style="text-align:justify">Enhanced Performance</li> 
+                            <li style="text-align:justify">More Intel® Ultra Path Interconnect (Intel® UPI)</li> 
+                            <li style="text-align:justify">Increased DDR5 Memory Speed &amp; Capacity</li> 
+                        </ul>
+                        <p>&nbsp;</p>
+                        <p>The hardware and software used in testing the server configuration for this tuning guide:</p>
+                        <table class="mv_product_table w-100 mb-4">
+                            <tbody> 
+                                <tr> 
+                                 <td colspan="1" rowspan="4">Hardware</td> 
+                                 <td>Memory</td> 
+                                 <td>32 * 64GB Hynix DDR5, 4400MT/s</td> 
+                                </tr> 
+                                <tr> 
+                                 <td>I/O Controllers</td> 
+                                 <td>4x RS3SC008 Intel Raid</td> 
+                                </tr> 
+                                <tr> 
+                                 <td>Disks</td> 
+                                 <td> <p>1 x Intel® 1.9TB SSD OS Drive</p> <p>10 x Intel® SC2KG019T7&nbsp;SSD (1.9TB) Backups</p> <p>8 x Intel®&nbsp;SC2KG960G8&nbsp;SSD (960GB) Log</p> <p>5 x Intel® SC2BA800G3&nbsp;SSD (800GB) Tempdb</p> <p>2 x Intel® SC2BB016T4&nbsp;SSD (1.6TB) mdf</p> <p>85 x Intel® SC2KG960G8&nbsp;SSD (960GB) DB</p> </td> 
+                                </tr> 
+                                <tr> 
+                                 <td>NIC</td> 
+                                 <td>2x Intel® Ethernet Network Adapter<strong>&nbsp;</strong>X520 Series<strong>&nbsp;</strong>210G BASE-T</td> 
+                                </tr> 
+                                <tr> 
+                                 <td colspan="1" rowspan="5">Software</td> 
+                                 <td>Operating System</td> 
+                                 <td>Microsoft Windows Server 2022 Datacenter</td> 
+                                </tr> 
+                                <tr> 
+                                 <td>Kernel</td> 
+                                 <td>10.0.20348 Build 20348</td> 
+                                </tr> 
+                                <tr> 
+                                 <td>SQL Version</td> 
+                                 <td>2022.160.1000.6</td> 
+                                </tr> 
+                                <tr> 
+                                 <td>Workload Kit</td> 
+                                 <td>TPCE Kit 1041</td> 
+                                </tr> 
+                                <tr> 
+                                 <td>Benchcraft</td> 
+                                 <td>2.5.6</td> 
+                                </tr> 
+                            </tbody>
+                        </table> 
+                        <p>&nbsp;</p>
+                        <p><strong>Note</strong> The configuration described in this article is based on 4th Generation Intel Xeon processor hardware. Server platform, memory, hard drives, network interface cards can be determined according to customer usage requirements.</p>
+                        <p class="mb-0">&nbsp;</p>
+                    </section>
+
+                    <section id="dk_hardware">
+                        <h3 style="font-weight: 350; padding-bottom: 0.5rem;">Hardware</h3>
+                    </section>
+
+                    <section id="dk_bios">
+                        <h4 style="padding-bottom: 0.5rem;">BIOS</h4>
+                        <p>Please note, that all BIOS settings outlined below are based on Intel’s Software Development Platforms designed for the 4th Gen Intel Xeon Scalable processors. Begin by resetting your BIOS to default setting, then follow the suggestion below for changes:</p>
+                        <table class="mv_product_table w-75 mb-4">
+                            <thead> 
+                                <tr> 
+                                 <th scope="col" style="width:521px">Configuration Item</th> 
+                                 <th scope="col" style="width:206px">Recommended Value</th> 
+                                </tr> 
+                            </thead>
+                            <tbody> 
+                                <tr> 
+                                 <td> EDKII Menu -&gt; Socket Configuration -&gt; Processor Configuration -&gt; Hardware Prefetcher </td> 
+                                 <td>Disabled</td> 
+                                </tr> 
+                                <tr> 
+                                 <td> EDKII Menu -&gt; Socket Configuration -&gt; Processor Configuration -&gt; Adjacent Cache Prefetch </td> 
+                                 <td>Disabled</td> 
+                                </tr> 
+                                <tr> 
+                                 <td> EDKII Menu -&gt; Socket Configuration -&gt; Processor Configuration -&gt; DCU Streamer Prefetcher </td> 
+                                 <td>Enabled</td> 
+                                </tr> 
+                                <tr> 
+                                 <td> EDKII Menu -&gt; Socket Configuration -&gt; Processor Configuration -&gt; DCU IP Prefetcher </td> 
+                                 <td>Enabled</td> 
+                                </tr> 
+                                <tr> 
+                                 <td>EDKII Menu -&gt; Socket Configuration -&gt; Processor Configuration -&gt; LLC Prefetch</td> 
+                                 <td>Disabled</td> 
+                                </tr> 
+                                <tr> 
+                                 <td> EDKII Menu -&gt; Socket Configuration -&gt; Advanced Power Management Configuration -&gt; CPU P State Control -&gt; Energy Efficient Turbo </td> 
+                                 <td>Disabled</td> 
+                                </tr> 
+                                <tr> 
+                                 <td> EDKII Menu -&gt; Socket Configuration -&gt; Advanced Power Management Configuration -&gt; CPU P State Control -&gt; Turbo Mode </td> 
+                                 <td>Enabled</td> 
+                                </tr> 
+                                <tr> 
+                                 <td> EDKII Menu -&gt; Socket Configuration -&gt; UP Configuration -&gt; UPI General Configuration -&gt; Boot Performance Mode </td> 
+                                 <td>Max perf</td> 
+                                </tr> 
+                                <tr> 
+                                 <td>EDKII Menu -&gt; Socket Configuration -&gt; Advanced Power Management Configuration -&gt; Hardware PM State Control -&gt; Hardware P State</td> 
+                                 <td>Disabled</td> 
+                                </tr> 
+                                <tr> 
+                                 <td>EDKII Menu -&gt; Socket Configuration -&gt; Advanced Power Management Configuration -&gt; CPU - Advanced PM Tuning -&gt; Energy Perf BIAS -&gt; ENERGY_PERF_BIAS_CFG_mode</td> 
+                                 <td>Performance</td> 
+                                </tr> 
+                                <tr> 
+                                 <td>EDKII Menu -&gt; Socket Configuration -&gt; Advanced Power Management Configuration -&gt; CPU - Advanced PM Tuning -&gt; Energy Perf BIAS -&gt; Workload Configuraiton</td> 
+                                 <td>I /O sensitive</td> 
+                                </tr> 
+                                <tr> 
+                                 <td>EDKII Menu -&gt; Socket Configuration -&gt; Memory&nbsp;Configuration -&gt; Memory RAS Configuration -&gt; Patrol Scrub</td> 
+                                 <td>Disabled</td> 
+                                </tr> 
+                                <tr> 
+                                 <td>EDKII Menu -&gt; Socket Configuration -&gt; Advanced Power Management Configuration -&gt; CPU C State Control -&gt; Package C State</td> 
+                                 <td>Co\C1 state</td> 
+                                </tr> 
+                                <tr> 
+                                 <td>EDKII Menu -&gt; Socket Configuration -&gt; Advanced Power Management Configuration -&gt; CPU C State Control -&gt; Enhanced Halt State (C1E)</td> 
+                                 <td>Disable</td> 
+                                </tr> 
+                                <tr> 
+                                 <td>EDKII Menu -&gt; Socket Configuration -&gt; Advanced Power Management Configuration -&gt;&nbsp;CPU C State Control -&gt; CPU C6 Report</td> 
+                                 <td>Disable</td> 
+                                </tr> 
+                                <tr> 
+                                 <td>EDKII Menu -&gt; Socket Configuration -&gt; Advanced Power Management Configuration -&gt;&nbsp;CPU C State Control -&gt;CPU C1 auto demotion</td> 
+                                 <td>Disable</td> 
+                                </tr> 
+                                <tr> 
+                                 <td>EDKII Menu -&gt; Socket Configuration -&gt; Advanced Power Management Configuration -&gt;&nbsp;CPU C State Control -&gt; CPU C1 auto undemotion</td> 
+                                 <td>Disable</td> 
+                                </tr> 
+                                <tr> 
+                                 <td>EDKII Menu -&gt; Socket Configuration -&gt; Common RefCode Configuration -&gt; UMA-Based Clustering</td> 
+                                 <td>Disable (All2All)</td> 
+                                </tr> 
+                                <tr> 
+                                 <td>EDKII Menu -&gt; Socket Configuration -&gt; Uncore Configuration -&gt; Uncore General Configuration -&gt; SNC (Sub NUMA)</td> 
+                                 <td>Enable SNC2 (2-clusters)</td> 
+                                </tr> 
+                            </tbody>
+                        </table> 
+                        <p>&nbsp;</p>
+                    </section>
+
+                    <section id="dk_memory_configuration">
+                        <h4 style="padding-bottom: 0.5rem;">Memory Configuration</h4>
+                        <p>This workload runs best with 2 DIMMS per channel populated with 4400 MTS DDR5 registered memory. For specifics consult your platform’s manual.</p>
+                        <p>&nbsp;</p>
+                    </section>
+
+                    <section id="dk_storage">
+                        <h4 style="padding-bottom: 0.5rem;">Storage</h4>
+                        <p>The table below details the type and number of drives used. Each type of drive sets (DB, Temp DB, etc.…) are organized into RAID volumes, with the DB drives being evenly split into RAID0 volumes per IO controller. The only exception to this is the LOG volume which is configured as RAID10. The following are the recommended settings for the RAID volumes and can be set via the Intel® RAID Web Console 3 for Windows.</p>
+                        <table class="mv_product_table w-100 mb-4">
+                            <thead> 
+                                <tr> 
+                                 <th scope="col">Drive Purpose</th> 
+                                 <th scope="col">RAID Level</th> 
+                                 <th scope="col">Stripe Size (KB)</th> 
+                                 <th scope="col">Read Ahead</th> 
+                                 <th scope="col">Write Back Cache Policy</th> 
+                                 <th scope="col">Disk Cache Policy</th> 
+                                </tr> 
+                            </thead>
+                            <tbody> 
+                                <tr> 
+                                 <td>DB</td> 
+                                 <td>0</td> 
+                                 <td>64</td> 
+                                 <td>No</td> 
+                                 <td>Write Through</td> 
+                                 <td>Enabled</td> 
+                                </tr> 
+                                <tr> 
+                                 <td>Temp DB</td> 
+                                 <td>0</td> 
+                                 <td>64</td> 
+                                 <td>No</td> 
+                                 <td>Write Through</td> 
+                                 <td>Enabled</td> 
+                                </tr> 
+                                <tr> 
+                                 <td>Backups</td> 
+                                 <td>0</td> 
+                                 <td>64</td> 
+                                 <td>Yes</td> 
+                                 <td>Write Through</td> 
+                                 <td>Enabled</td> 
+                                </tr> 
+                                <tr> 
+                                 <td>Log</td> 
+                                 <td>10</td> 
+                                 <td>64</td> 
+                                 <td>No</td> 
+                                 <td>Write Back</td> 
+                                 <td>Enabled</td> 
+                                </tr> 
+                            </tbody>
+                        </table>
+                    </section>
+
+                    <section id="dk_network">
+                        <h4 style="padding-bottom: 0.5rem;">Network</h4>
+                        <p>This workload runs best with the following settings for all adapters connecting the Server to the Client:</p>
+                        <p>The following PowerShell script is used as an example with ‘Ethernet 2’(say):</p>
+                        <div class="mv_code_toolbar">
+                            <div class="mv_toolbar_item mv_copy_icon">
+                                <i class="fa-regular fa-copy"></i>
+                            </div>
+                            <div class="mv_copy_message text-end hidden">Copied</div>
+                            <div class="code-content">
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp;</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">Set-NetAdapterAdvancedProperty -Name "Ethernet 2" -RegistryKeyword '*JumboPacket' –</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp;</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">RegistryValue &nbsp; ' 9014 '</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp;</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">Set-NetAdapterRss</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp;</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">-Name "Ethernet 2" -Enable 1 -BaseProcessorGroup 0 -BaseProcessorNumber 0 -MaxProcessors 16 -NumaNode 65535 -</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 1rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">MaxProcessorGroup 0 -MaxProcessorNumber 16 -NumberOfReceiveQueues 8  -Profile Closest</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <p>In addition, the following must be set in SQL Server using the SQL Server sp_configure command.</p>
+                        <div class="mv_code_toolbar">
+                            <div class="mv_toolbar_item mv_copy_icon">
+                                <i class="fa-regular fa-copy"></i>
+                            </div>
+                            <div class="mv_copy_message text-end hidden">Copied</div>
+                            <div class="code-content">
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp;</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">sp_configure network_packet_size,8192</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp;</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">go</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp;</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">RECONFIGURE WITH OVERRIDE</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp;</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 1rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">Go</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section id="dk_software_tuning">
+                        <h4 style="padding-bottom: 0.5rem;">Software Tuning</h4>
+                       <p>Software configuration tuning is essential. From the Operating System to SQL Server configuration settings, they are all designed for general purpose applications and default settings are almost never tuned for best performance.</p>
+                       <p class="mb-0">&nbsp;</p>
+                       <table class="mv_product_table w-70 mb-4">
+                        <thead> 
+                            <tr> 
+                             <th scope="col" style="width:169px">Configuration Item</th> 
+                             <th scope="col" style="width:629px">Recommended Value</th> 
+                            </tr> 
+                        </thead>
+                        <tbody> 
+                            <tr> 
+                             <td>Windows Firewall</td> 
+                             <td>Control Panel -&gt; Windows Firewall -&gt; Tunr Windows Firewall on or off (left side of panel) -&gt; select Turn Off Windows Firewall for both private and public networks</td> 
+                            </tr> 
+                            <tr> 
+                             <td>Visual Performance Setting</td> 
+                             <td>Computer -&gt; properties -&gt; advanced system settings -&gt; advanced -&gt; performance -&gt; settings -&gt; visual: adjust best performance</td> 
+                            </tr> 
+                            <tr> 
+                             <td>Virtual Memory Setting&nbsp;</td> 
+                             <td>Computer -&gt; properties -&gt; Advanced tab, virtual memory: change custom&nbsp;size: 4096 intial and maximum (not system managed)</td> 
+                            </tr> 
+                            <tr> 
+                             <td>Power Profile</td> 
+                             <td>Control Panel -&gt; Hardware and Sound -&gt; Power Options -&gt; High Performance Option</td> 
+                            </tr> 
+                            <tr> 
+                             <td>Large Page Enable</td> 
+                             <td>Large Page Enable (Reboot to take effect):&nbsp;&nbsp;Control Panel -&gt; Administrative tools -&gt; local security policy -&gt; local policy -&gt; user rights assignment -&gt; Lock pages in memory -&gt; properties -&gt; add user or group -&gt; Administrators (or the user to be used with SQL Server)</td> 
+                            </tr> 
+                            <tr> 
+                             <td>Remove Windows Defender</td> 
+                             <td>PowerShell command:&nbsp; Remove-WindowsFeature - Name Windows-Defender-Features</td> 
+                            </tr> 
+                           </tbody>
+                    </table>
+                    </section>
+
+                    <section id="dk_oltp_architecture">
+                        <p class="mb-0">&nbsp;</p>
+                        <h3 style="padding-bottom: 0.5rem; font-weight: 350;">OLTP Architecture</h3>
+                        <p>The TPC-E like workload consists of transactions that simulate the interchanges commonly associated with brokers, customers, and a real-time stock exchange. These transactions are intended to represent a balanced mixture of disk input/output and CPU usage. Performance is measured in transactions per second and reported as tpsE.</p>
+                        <p>Example of an OLTP benchmarking hardware configuration:</p>
+                        <p>&nbsp;</p>
+                        <img class="dk_risk_app_img" src="/img/darshit_image/z-sql-diagram_gen_4_xeon.png" alt="">
+                        <p>&nbsp;</p>
+                        <p>&nbsp;</p>
+                    </section>
+
+                    <section id="dk_tuning_oltp">
+                        <h4 style="padding-bottom: 0.5rem;">Tuning SQL Server for OLTP Workload</h4>
+                        <p>The following sp_configure commands should be used to configure SQL Server:</p>
+                        
+                        <div class="mv_code_toolbar">
+                            <div class="mv_toolbar_item mv_copy_icon">
+                                <i class="fa-regular fa-copy"></i>
+                            </div>
+                            <div class="mv_copy_message text-end hidden">Copied</div>
+                            <div class="code-content">
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp;</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">sp_configure show_advanced_options,1</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp;</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">go</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp;</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">RECONFIGURE WITH OVERRIDE</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp;</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">go</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp;</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">sp_configure backup_compression,1</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp;</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">go</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp;</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">RECONFIGURE WITH OVERRIDE</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp;</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">go</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp;</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">sp_configure "default trace enabled",0</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp;</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">go</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp;</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">RECONFIGURE WITH OVERRIDE</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp;</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">go</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp;</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">sp_configure lightweight_pooling,1</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp;</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">go</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp;</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">RECONFIGURE WITH OVERRIDE</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp;</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">go</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp;</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">sp_configure max_degree_of_parallelism,1</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp;</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">go</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp;</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">RECONFIGURE WITH OVERRIDE</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp;</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">go</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp;</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">sp_configure max_serv,<span><</span>This number should be equal to 90% of system memory <span>></span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp;</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">go</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp;</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">RECONFIGURE WITH OVERRIDE</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp;</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">go</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp;</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">sp_configure max_worker_threads,3000</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp;</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">go</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp;</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">RECONFIGURE WITH OVERRIDE</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp;</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">go</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp;</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">sp_configure priority_boost,1</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp;</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">go</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp;</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">RECONFIGURE WITH OVERRIDE</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp;</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">go</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp;</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">sp_configure recovery_interval,32767</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp;</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">go</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp;</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">RECONFIGURE WITH OVERRIDE</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp;</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">go</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp;</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">sp_configure remote_query_timeout,0</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp;</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">go</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp;</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">RECONFIGURE WITH OVERRIDE</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp;</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">go</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp;</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">sp_configure set_working_set_size,1</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp;</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">go</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp;</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">RECONFIGURE WITH OVERRIDE</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp;</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">go</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp;</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">sp_configure network_packet_size,8192</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp;</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">go</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp;</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">RECONFIGURE WITH OVERRIDE</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp;</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 1rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">go</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <p>The following flags should be used on the command line when starting up SQL Server prior to running the OLTP workload.</p>
+
+                        <div class="mv_code_toolbar">
+                            <div class="mv_toolbar_item mv_copy_icon">
+                                <i class="fa-regular fa-copy"></i>
+                            </div>
+                            <div class="mv_copy_message text-end hidden">Copied</div>
+                            <div class="code-content">
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp;</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 1rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">Sqlservr.exe -x -c -T827 -T652 -T661 -T834 -T3502 -T3979 -T8040 -T8095 -T8099 -T8088 -T8744 -T9038 -T8101</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <p>&nbsp;</p>
+                    </section>
+
+                    <section id="dk_related_tools">
+                        <h3 style="padding-bottom: 0.5rem; font-weight: 350;">Related Tools</h3>
+                        <p>Microsoft Windows Performance Monitor tool (Perfmon) can be used to monitor overall system and disk performance metrics.</p>
+                    </section>
+
+                    <section id="dk_best_practices">
+                        <p>&nbsp;</p>
+                        <h3 style="font-weight: 350; padding-bottom: 0.5rem;">Best Practices for Testing and Verification</h3>
+                        <p>This workload is best run just after a fresh restoration of the database from backup and restart of the system. This workload should drive CPU Utilization to 99% across all logical processors. CPU kernel utilization should be around 12%. This is an I/O intensive workload that is characterized by approximate 850K IOPs, Random Access, and a 90/10 Read/Write ratio. The clients for this workload initiate transactions with 500+ simultaneous connections to the system under test with 500+ transactions in flight. This workload is more sensitive to memory speed than capacity. Typically, this workload reaches peak performance with memory size equal to about 3% of the database size. For verification of the database integrity, refer to the TPCE kit mentioned in resources for details. The TPCE kit provides verification tools suitable for an audit per the TPCE benchmark spec.</p>
+                    </section>
+
+                    <section id="dk_conclusion">
+                        <p>&nbsp;</p>
+                        <h3 style="font-weight: 350;">Conclusion</h3>
+                        <p>We have shared our best-known methods to optimally benchmark our 4th Generation Intel Xeon Scalable Processors using an OLTP benchmark. We have covered both software and hardware configuration considerations to get the best performance.</p>
+                    </section>
+
+                    <section id="dk_additional_res">
+                        <p>&nbsp;</p>
+                        <h3 style="font-weight: 350;">Additional Resources</h3>
+                        <p><a class="b_special_a1" href="">Microsoft SQL Server</a></p>
+                        <p><a class="b_special_a1" href="">Transaction Processing Council</a></p>
+                        <p><a class="b_special_a1" href="">TPCE benchmark kit version 1.14.0</a></p>
+                        <p>&nbsp;</p>
+                        <p>&nbsp;</p>
+                        <p>&nbsp;</p>
+                    </section>
+
+                </div>
+            </section>
+        </div>
+    </div>
+    </div>
+    </section>
+
+    <section style="border-top: 1px solid #d7d7d7;" class="container py-5">
+        <h4 class="h6">Product and Performance Information</h4>
+        <div class="disclaimer" style="font-size: 12px;"><sup>1</sup> Performance varies by use, configuration and other
+            factors. Learn more at <a class="b_special_a1" href="">www.Intel.com/PerformanceIndex.</a></div>
+        </div>
+    </section>
+
+    <!-- footer -->
+    <div id="footer"></div>
+
+    <!-- nav script -->
+    <script>
+        // navbar include  
+        fetch('/y_index/y_navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar').innerHTML = data;
+            });
+        // footer include 
+        fetch('/y_index/y_footer.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('footer').innerHTML = data;
+            });
+    </script>
+    <!-- nav script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            if (document.getElementsByClassName('VK_all_sections section') && document.getElementsByClassName('VK_sidebar_dropdown')) {
+                const sections = document.querySelectorAll('.VK_all_sections section');
+                const navLinks = document.querySelectorAll('.VK_sidebar_dropdown a');
+                const detailsElements = document.querySelectorAll('.VK_sidebar_dropdown details');
+
+                function removeActiveClass() {
+                    navLinks.forEach(link => link.classList.remove('VK_sidebar_active_link'));
+                    detailsElements.forEach(details => {
+                        details.removeAttribute('open');
+                        details.setAttribute('close', ''); // Optional: to visually indicate it's closed
+                    });
+                }
+
+                function activateLinkAndDetails(targetId) {
+                    navLinks.forEach(link => {
+                        if (link.getAttribute('href') === `#${targetId}`) {
+                            link.classList.add('VK_sidebar_active_link');
+                            let parentDetails = link.closest('details');
+
+                            // Open all ancestor details elements
+                            while (parentDetails) {
+                                parentDetails.setAttribute('open', '');
+                                parentDetails.removeAttribute('close'); // Optional: remove the closed indicator
+                                parentDetails = parentDetails.parentElement.closest('details');
+                            }
+                        }
+                    });
+                }
+
+                function onScroll() {
+                    let currentSection = '';
+                    sections.forEach(section => {
+                        const sectionTop = section.getBoundingClientRect().top;
+                        const sectionBottom = section.getBoundingClientRect().bottom;
+
+                        // Check if the section is in view
+                        if (sectionTop <= 100 && sectionBottom >= 0) {
+                            currentSection = section.getAttribute('id');
+                        }
+                    });
+
+                    if (currentSection) {
+                        removeActiveClass();
+                        activateLinkAndDetails(currentSection);
+                    } else {
+                        removeActiveClass();
+                    }
+                }
+
+                window.addEventListener('scroll', onScroll);
+            } else {
+                return
+            }
+        });
+    </script>
+
+    <!-- copy script -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            document.querySelectorAll(".mv_copy_icon").forEach((icon) => {
+                icon.addEventListener("click", async function () {
+                    try {
+                        const toolbar = this.closest(".mv_code_toolbar");
+                        const codeBlock = toolbar.querySelector(".code-content");
+                        const codeContent = codeBlock.innerText;
+
+                        // Use Clipboard API to copy text
+                        await navigator.clipboard.writeText(codeContent);
+
+                        // Hide the copy icon and show the "Copied!" message
+                        const message = toolbar.querySelector(".mv_copy_message");
+                        this.classList.add("hidden"); // Hide the copy icon
+                        message.classList.remove("hidden"); // Show the "Copied!" message
+
+                        // Hide the message and show the icon again after 2 seconds
+                        setTimeout(() => {
+                            message.classList.add("hidden");
+                            this.classList.remove("hidden");
+                        }, 2000); // Adjust delay as needed
+
+                    } catch (err) {
+                        console.error('Failed to copy text: ', err);
+                    }
+                });
+            });
+        });
+    </script>
+
+</body>
+
+</html>
+
+
+
+
