@@ -1,0 +1,947 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HPC Cluster Tuning on 3rd Generation Intel® Xeon® Scalable Processors</title>
+
+    <!-- font family -->
+    <link href="https://fonts.cdnfonts.com/css/intel-clear" rel="stylesheet">
+
+    <link rel="stylesheet" href="/css/dk_developer_edge_iot_5G_industrial_automation_see_all_wireless_network_ready_printed_circuit_board_(PCB)_defect_detection.css">
+    <link rel="stylesheet" href="/css/mv_product/ECC.css">
+    <link rel="stylesheet" href="/css/rushita_automotive.css">
+
+    <!-- header footer -->
+    <link rel="stylesheet" href='/css/yatri.css'>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" rel="stylesheet">
+
+</head>
+
+<style>
+    .dk_color1 {
+        color: #069 !important;
+    }
+
+    .dk_color2 {
+        color: #008200 !important;
+    }
+
+    .dk_color3 {
+        color: #b24501;
+    }
+
+    .dk_note{
+        font-size: 1rem;
+        line-height: 1.25;
+        word-wrap: break-word;
+        background-color: #e6e6e6;
+        padding: 20px;
+        border-left: 3px solid #fdb813;
+    }
+    .dk_code_simple{
+        background-color: #e6e6e6;
+        color: #53565a;
+        border-radius: 0;
+    }
+
+    .dk_greyHighlight{
+        font-size: 1rem;
+        line-height: 1.25;
+        background-color: #e6e6e6;
+        padding: 20px;
+    }
+
+    .dk_things_code{
+        padding: 1rem 1rem 0rem 0.5rem;
+    }
+
+    .mv_code_toolbar{
+        margin-top: 20px;
+    }
+
+    @media(max-width:1200px) {
+        .dk_risk_app_img {
+            width: 100% !important;
+        }
+        .mv_product_table{
+            width: 100% !important;
+        }
+    }
+</style>
+
+<body>
+    <!-- header -->
+    <div id="navbar"></div>
+
+    <!------------------------------------------------------------------------------->
+    <section class="m_ai_tdrop">
+        <div>
+            <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Developers
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item m_dropActive" href="#">Overview</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Topics & Technologies</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Tools</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Hardware Platforms</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Resources & Documentation</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Learn</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Community & Events</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Developer Programs</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Get Help</a></li>                                      
+            </ul>
+        </div>
+        <div class="m_ai_shlash">/</div>
+        <div>
+            <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Resources & Documentation
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item m_dropActive" href="#">Tuning Guides</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Installation Guides</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Programming Guides</a></li>
+            </ul>
+        </div>
+        <div class="m_ai_shlash">/</div>
+        <div>
+            <a href="">
+                <button class="btn" style="color: #0068B5;">
+                    Tuning Guides
+                </button>
+            </a>
+        </div>
+        <div class="m_ai_shlash">/</div>
+        <div class="m_ai_httl">HPC Cluster Tuning</div>
+
+    </section>
+    <!------------------------------------------------------------------------------->
+
+    <!-- VMware Horizon -->
+    <section>
+        <div class="mv_vmware_bg_color">
+            <div class="container">
+                <div class="mv_vmware_padd">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="mv_vmware_heading">
+                                <h3>HPC Cluster Tuning on 3rd Generation Intel® Xeon® Scalable Processors</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mv_cd_page_marquee_info">
+                        <div class="mv_cd_page_marquee_action">
+                            <div class="mv_cd_page_marquee_action_padd">
+                                <label for="">ID</label>
+                                <span>658322</span>
+                            </div>
+                            <div class="mv_cd_page_marquee_action_padd">
+                                <label for="">Updated</label>
+                                <span>8/17/2021</span>
+                            </div>
+                            <div class="mv_cd_page_marquee_action_padd">
+                                <label for="">Version</label>
+                                <span>Latest</span>
+                            </div>
+                            <div class="mv_cd_page_marquee_action_padd">
+                                <label for=""></label>
+                                <span>Public</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="container py-5">
+        <div class="row">
+            <div class="d-flex justify-content-end col-xl-10 py-3 d-md-none">
+                <i class="fa-solid fa-print fs-4 px-2 " style="color:#0068B5"></i>
+                <i class="fa-regular fa-envelope fs-4 px-2" style="color:#0068B5"></i>
+            </div>
+            <div class="col-lg-3 col-md-4">
+                <!-- nav -->
+                <div class="VK_sticky_side_bar VK_side_bar_postion_stickey">
+                    <div>
+                        <div class="VK_sidebar_dropdown">
+                            <details>
+                                <summary>
+                                    <a href="#dk_introduction" class="text-decoration-none VK_a">
+                                        Introduction
+                                    </a>
+                                </summary>
+                                <ul class="list-unstyled ps-3 mb-0">
+                                    <li>
+                                        <a href="#dk_3rd_gen" class="text-decoration-none VK_a my-1">
+                                            3rd Generation Intel® Xeon Scalable Processors
+                                        </a>
+                                    </li>
+                                </ul>
+                            </details>
+                            <details>
+                                <summary>
+                                    <a href="#dk_hardware1" class="text-decoration-none VK_a">
+                                        Hardware Configuration
+                                    </a>
+                                </summary>
+                                <ul class="list-unstyled ps-3 mb-0">
+                                    <li>
+                                        <a href="#dk_hardware2" class="text-decoration-none VK_a my-1">
+                                            DIMM Slot Configuration
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#dk_hardware3" class="text-decoration-none VK_a my-1">
+                                            Memory Size
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#dk_hardware4" class="text-decoration-none VK_a my-1">
+                                            Memory Errors
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#dk_hardware5" class="text-decoration-none VK_a my-1">
+                                            BIOS Settings
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#dk_hardware6" class="text-decoration-none VK_a my-1">
+                                            Recommended settings.
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#dk_hardware7" class="text-decoration-none VK_a my-1">
+                                            Description of Settings
+                                        </a>
+                                    </li>
+                                </ul>
+                            </details>
+                            <details>
+                                <summary>
+                                    <a href="#dk_linux1" class="text-decoration-none VK_a">
+                                        Linux Optimizations
+                                    </a>
+                                </summary>
+                                <ul class="list-unstyled ps-3 mb-0">
+                                    <li>
+                                        <a href="#dk_linux2" class="text-decoration-none VK_a my-1">
+                                            Virtual Machines
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#dk_linux3" class="text-decoration-none VK_a my-1">
+                                            Network Configuration
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#dk_linux4" class="text-decoration-none VK_a my-1">
+                                            Disk Configuration
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#dk_linux5" class="text-decoration-none VK_a my-1">
+                                            CPU Configuration
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#dk_linux6" class="text-decoration-none VK_a my-1">
+                                            Services
+                                        </a>
+                                    </li>
+                                </ul>
+                            </details>
+                            <details>
+                                <summary>
+                                    <a href="#dk_application1" class="text-decoration-none VK_a">
+                                        Application Settings
+                                    </a>
+                                </summary>
+                                <ul class="list-unstyled ps-3 mb-0">
+                                    <li>
+                                        <a href="#dk_application2" class="text-decoration-none VK_a my-1">
+                                            Development Environment
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#dk_application3" class="text-decoration-none VK_a my-1">
+                                            Intel® oneAPI Math Kernel Library (oneMKL)
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#dk_application4" class="text-decoration-none VK_a my-1">
+                                            Intel MPI Library
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#dk_application5" class="text-decoration-none VK_a my-1">
+                                            User Environment
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#dk_application6" class="text-decoration-none VK_a my-1">
+                                            Intel® Hyper-Threading Technology
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#dk_application7" class="text-decoration-none VK_a my-1">
+                                            Multi-Rail Omni-Path Fabric
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#dk_application8" class="text-decoration-none VK_a my-1">
+                                            Benchmark Optimization
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#dk_application9" class="text-decoration-none VK_a my-1">
+                                            HP LINPACK
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#dk_application10" class="text-decoration-none VK_a my-1">
+                                            HPCG
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#dk_application11" class="text-decoration-none VK_a my-1">
+                                            STREAM
+                                        </a>
+                                    </li>
+                                </ul>
+                            </details>
+                            <details>
+                                <summary>
+                                    <a href="#dk_references1" class="text-decoration-none VK_a">
+                                        References
+                                    </a>
+                                </summary>
+                                <ul class="list-unstyled ps-3 mb-0">
+                                    <li>
+                                        <a href="#dk_references2" class="text-decoration-none VK_a my-1">
+                                            numactl
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#dk_references3" class="text-decoration-none VK_a my-1">
+                                            numastat
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#dk_references4" class="text-decoration-none VK_a my-1">
+                                            PCM
+                                        </a>
+                                    </li>
+                                </ul>
+                            </details>
+                            <p class="m-0">
+                                <a href="#dk_notices_dis" class="text-decoration-none VK_a">
+                                    Notices & Disclaimers
+                                </a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+            <div class="col-lg-9 col-md-8">
+                <div class="d-md-flex justify-content-end col-xl-10 py-3 d-none">
+                    <i class="fa-solid fa-print fs-4 px-2 " style="color:#0068B5"></i>
+                    <i class="fa-regular fa-envelope fs-4 px-2" style="color:#0068B5"></i>
+                </div>
+                <div class="col-xl-10 VK_all_sections">
+                    <p>&nbsp;</p>
+
+                    <section id="dk_introduction">
+                        <p class="mb-0">&nbsp;</p>
+                        <h3 style="font-weight: 350; padding-bottom: 0.5rem;">Introduction</h3>
+                        <p>Optimizing performance of servers used for the high-performance computing (HPC) applications may require different configuration options than for servers used with other enterprise applications. For HPC clusters, the goal is to reduce workload runtimes for applications using MPI libraries and high-performance fabrics This guide will cover many system and software configuration options that have been demonstrated to improve application performance in internal controlled tests.</p>
+                        <p>All configuration settings are intended for multi-node HPC clusters running 2-socket 3<sup>rd</sup>&nbsp;Generation Intel® Xeon processor-based servers. No other hardware has been evaluated for this guide.</p>
+                        <p>The objective of this guide is to provide an environment optimized for typical multi-user production clusters. Configuration settings should be beneficial to a broad list of multi-node applications using MPI libraries. However, HPC applications may be affected differently by settings using in this guide; therefor performance improvement for any single application cannot be guaranteed.</p>
+                        <p class="mb-0">&nbsp;</p>
+                    </section>
+
+                    <section id="dk_3rd_gen">
+                        <h4 style="padding-bottom: 0.5rem;">3rd Generation Intel® Xeon Scalable Processors</h3>
+                            <p class="mb-0">3rd Generation Intel® Xeon® Scalable processors (former codename “Ice Lake”) deliver industry-leading, workload-optimized platforms with built-in AI acceleration, providing a seamless performance foundation to help speed data’s transformative impact, from the multi-cloud to the intelligent edge and back. Here are some of the features in these new processors:</p>
+                            <ul>
+                                <li>Enhanced performance</li>
+                                <li>Enhanced Intel® Deep Learning Boost with VNNI</li>
+                                <li>More Intel® Ultra Path Interconnect (UPI) links</li>
+                                <li>Increased DDR4 memory speed and capacity (2 integrated memory controllers; 4 channels per controller)</li>
+                                <li>Intel® Advanced Vector Extensions (Intel® AVX)</li>
+                                <li>Intel® Security Essentials supporting Intel® Security Libraries for Data Center (Intel® SecL-DC)</li>
+                                <li>Intel® Speed Select Technology (Intel® SST)</li>
+                                <li>Support for Intel® Optane™ Persistent Memory 200 series</li>
+                            </ul>
+                            <p class="mb-0">&nbsp;</p>
+                    </section>
+
+                    <section id="dk_hardware1">
+                        <h3 style="padding-bottom: 0.5rem; font-weight: 350;">Hardware Configuration</h3>
+                    </section>
+
+                    <section id="dk_hardware2">
+                        <h4>DIMM Slot Configuration</h4>
+                        <p>Populate all memory channels with the fastest DIMM speed supported by the platform.</p>
+                        <p>Intel 3rd Generation Xeon Scalable processors supports 8 memory channels per processor. Every memory channel should be occupied by at least one DIMM. Use identical dual-rank, registered DIMMS for all memory slots. Dual-rank DIMMs will perform better than single rank DIMMs. DIMM speed should be the fasted speed supported by the platform.</p>
+                        <p>At the same memory speed, 2 DIMMs per channel may perform slightly better than 1 DIMM per channel, if memory speed is not reduced by using more than 1 DIMM.</p>
+                        <p>Do not use Intel® Optane™ memory for HPC benchmarks.</p>
+                    </section>
+
+                    <section id="dk_hardware3">
+                        <h4 class="mt-4">Memory Size</h4>
+                        <p>Most HPC applications and benchmarks will benefit from larger physical memory size. Specific requirements will be determined by the application. As an example, each cluster node running the GROMACS or LAMMPS molecular dynamics codes should have a minimum 96 GB of RAM installed. Following memory population guidelines and using one 16-GB DDR4 DIMM in each memory channel would provide a total 256GB of RAM for a 2-socket system.</p>
+                    </section>
+
+                    <section id="dk_hardware4">
+                        <h4 class="mt-4">Memory Errors</h4>
+                        <p>A repeating, corrected memory error will reduce performance. If memory correction is enabled, check&nbsp;<strong>dmsg</strong>&nbsp;or the system event log to confirm there are no corrected memory events and replace any DIMMs that show repeated memory errors.</p>
+                    </section>
+
+                    <section id="dk_hardware5">
+                        <h4 class="mt-4">BIOS Settings</h4>
+                        <p>Enable Sub-NUMA Clusters, enable One-way IMC Interleave, and set power profiles to “Performance”</p>
+                        <p>CPU Power and Performance Policies and Fan Profiles should always be set to “Performance”.</p>
+                        <p>Enable Turbo Mode. It is unlikely to improve HPC application results due to high CPU utilization, but it will not reduce performance. You may disable it if performance metrics for a benchmark run must be consistent with previous runs.</p>
+                        <p>The recommended setting for hyper-threading (SMT or Symmetric Multi-Threading) is enabled; however, performance benefits will vary for each application. For some applications, a small decrease in performance may be observed. It is recommended to evaluate hyper-threading performance for the applications that you will use. For the STREAM benchmark specifically, the recommended setting for hyper-threading is Disabled.</p>
+                    </section>
+
+                    <section id="dk_hardware6">
+                        <h4 class="mt-4">Recommended settings.</h4>
+                        <p>Use optimized configuration settings and recommended values. Default values are noted by an asterisk (*).</p>
+                        <table class="mv_product_table w-50 mb-4">
+                            <thead>
+                                <tr>
+                                    <th>
+                                    <p>Configuration Item</p>
+                                    </th>
+                                    <th>
+                                    <p>Recommended Value</p>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                    <p>Hyper-Threading (SMT)</p>
+                                    </td>
+                                    <td>
+                                    <p>Enabled* (see text)</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Core Prefetchers</td>
+                                    <td>
+                                    <p>Enabled*</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Turbo Boost Technology</td>
+                                    <td>
+                                    <p>Enabled*</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                    <p>Intel® SpeedStep® (P-States)</p>
+                                    </td>
+                                    <td>Disabled</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                    <p>SNC (Sub-NUMA Clusters)</p>
+                                    </td>
+                                    <td>Enabled*</td>
+                                </tr>
+                                <tr>
+                                    <td>IMC Interleave</td>
+                                    <td>One-way</td>
+                                </tr>
+                                <tr>
+                                    <td>UPI Prefetch</td>
+                                    <td>
+                                    <p>Enabled*</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>XPT Prefetch</td>
+                                    <td>
+                                    <p>Enabled*</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                    <p>Total Memory Encryption (TME)</p>
+                                    </td>
+                                    <td>Disabled</td>
+                                </tr>
+                                <tr>
+                                    <td>Memory controller page policy</td>
+                                    <td>Static closed</td>
+                                </tr>
+                                <tr>
+                                    <td>Autonomous Core C-State</td>
+                                    <td>
+                                    <p>Disabled*</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>CPU C6 Report</td>
+                                    <td>
+                                    <p>Disabled*</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                    <p>Enhanced Halt State (C1E)</p>
+                                    </td>
+                                    <td>
+                                    <p>Disabled*</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Package C State</td>
+                                    <td>
+                                    <p>C0/C1 State*</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Relax Ordering</td>
+                                    <td>
+                                    <p>Disabled*</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                    <p>Intel VT for Directed I/O (Intel VT-D)</p>
+                                    </td>
+                                    <td>
+                                    <p>Disabled*</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>CPU Power Policy</td>
+                                    <td>Performance</td>
+                                </tr>
+                                <tr>
+                                    <td>Local/Remote Threshold</td>
+                                    <td>
+                                    <p>Auto*</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>LLC Prefetch</td>
+                                    <td>
+                                    <p>Disabled*</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>LLC Dead Line Alloc.</td>
+                                    <td>
+                                    <p>Enabled*</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Directory AToS</td>
+                                    <td>
+                                    <p>Disabled*</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                    <p>Direct-to-UPI (D2U)</p>
+                                    </td>
+                                    <td>Enabled*</td>
+                                </tr>
+                                <tr>
+                                    <td>DBP-for-F</td>
+                                    <td>Enabled*</td>
+                                </tr>
+                            </tbody>
+                        </table> 
+                    </section>
+
+                    <section id="dk_hardware7">
+                        <h4 class="mt-4">Description of Settings</h4>
+                        <p><strong>Sub-NUMA Cluster (SNC)</strong></p>
+                        <p>SNC is a feature that provides similar localization benefits as Cluster-On-Die (COD), a feature found in previous processor families, without some of COD’s downsides. SNC breaks up the last level cache (LLC) into disjoint clusters based on address range, with each cluster bound to a subset of the memory controllers in the system. SNC improves average latency to the LLC and is a replacement for the COD feature found in previous processor families.</p>
+                        <p>For all HPC applications, both SNC and XPT/UPI prefetch should be enabled. This will set two clusters per socket and utilize LLC capacity more efficiently and reduces latency due to core/IMC proximity.</p>
+                        <p><strong>Integrated Memory Controller (IMC) Interleaving</strong></p>
+                        <p>This controls the interleaving between the Integrated Memory Controllers (IMCs). If SNC is enabled, IMC Interleaving is set to one-way, and there will be no interleaving.</p>
+                        <p><strong>XPT (eXtended Prediction Table) Prefetch</strong></p>
+                        <p>Extended prediction table (XPT) Prefetch is a new capability that is designed to reduce local memory access latency. XPT Prefetch is an “LLC miss predictor” in each core that will issue a speculative DRAM read request in parallel to an LLC lookup, but only when XPT predicts a “miss” from the LLC lookup.</p>
+                        <p><strong>Ultra-Path Interconnect (UPI) Prefetch</strong></p>
+                        <p>UPI Prefetch is another new capability that is designed to reduce remote memory access latency. The UPI controller issues a UPI Prefetch, also in parallel to an LLC lookup, to the memory controller when a remote read arrives to the home socket.</p>
+                        <p><strong>Direct-to-UPI (D2U or D2K)</strong></p>
+                        <p>D2U is a latency-saving feature for remote read transactions. With D2U enabled, the IMC will send the data directly to the UPI instead of going through the Caching and Home Agent (CHA), reducing latency. Keep enabled, although workloads that are highly NUMA-optimized or that use high levels of memory bandwidth are less likely to be affected by disabling D2U.</p>
+                        <p><strong>DBP-for-F</strong></p>
+                        <p>DBP-for-F is a new feature that can benefit multi-threaded workloads, but workloads that are single-threaded could experience lower performance.</p>
+                        <p class="mb-0">&nbsp;</p>
+                    </section>
+
+                    <section id="dk_linux1">
+                        <h3 style="padding-bottom: 0.5rem; font-weight: 350;">Linux Optimizations</h3>
+                    </section>
+
+                    <section id="dk_linux2">
+                        <h4 class="mt-4">Virtual Machines</h4>
+                        <p>Running applications inside of a virtual machine will reduce performance, although the reduction may be small. Performance impact is dependent on the hypervisor and the configuration used. Do not execute HPC benchmarks in a virtual machine.</p>
+                    </section>
+
+                    <section id="dk_linux3">
+                        <h4 class="mt-4">Network Configuration</h4>
+                        <p>Many HPC applications are fine-grained, requiring more frequent inter-process communication with smaller payloads. As a result, performance is dependent more on communication latency than on bandwidth. High-performance fabrics are used to minimize message latency.</p>
+                        <p>For maximum performance, use one fabric host controller per CPU. In a server, each PCIe expansion slot is associated with one of the CPUs. Install the fabric host controllers so that each CPU is associated with its own fabric host controller. You will need to consult the system board technical specification to determine PCIe lane assignment.</p>
+                        <p>Fabric performance may be further enhanced using multiple links (dual-rail or multi-rail). For many, bandwidth needs are limited and using multi-rail does not benefit performance.</p>
+                    </section>
+
+                    <section id="dk_linux4">
+                        <h4 class="mt-4">Disk Configuration</h4>
+                        <p>Disk configuration has little to no impact on benchmark performance, including HPL, HPCG, or STREAM.</p>
+                        <p>Storage requirements for other HPC applications</p>
+                    </section>
+
+                    <section id="dk_linux5">
+                        <h4 class="mt-4">CPU Configuration</h4>
+                        <p>Before running benchmarks, all CPUs should be set to performance mode. For example, to use the&nbsp;<strong>cpupower</strong>&nbsp;utility, run</p>
+                        <div class="mv_code_toolbar">
+                            <div class="mv_toolbar_item mv_copy_icon">
+                                <i class="fa-regular fa-copy"></i>
+                            </div>
+                            <div class="mv_copy_message text-end hidden">Copied</div>
+                            <div class="code-content">
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp;</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 1rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">cpupower -c all frequency-set --governor performance</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section id="dk_linux6">
+                        <h4>Services</h4>
+                        <p>Disable all unnecessary services and cron jobs.</p>
+                        <p>When running HPC benchmarks, do not run them as a job using a batch scheduler or resource manager, and those services should be disabled until the benchmark is complete. Make certain that no other users are logged into any systems that will be used during the benchmark.</p>
+                    </section>
+                    
+                    <section id="dk_application1">
+                        <p class="mb-0">&nbsp;</p>
+                        <h3 style="font-weight: 350; margin-bottom: 350;">Application Settings</h3>
+                    </section>
+
+                    <section id="dk_application2">
+                        <h4 class="mt-4">Development Environment</h4>
+                        <p>Build and execute applications using the latest Intel® oneAPI HPC Toolkit.</p>
+                        <p>Intel® oneAPI Toolkits enable the development with a unified toolset, allowing developers to deliver applications and solutions across CPU, GPU, and FPGA architectures. The Intel® oneAPI HPC Toolkit delivers what’s needed to build, analyze, optimize, and scale HPC applications with the latest techniques in vectorization, multithreading, multi-node parallelization, and memory optimization. The HPC toolkit is an add-on to the Intel® oneAPI Base Toolkit, which is required.</p>
+                        <p>The oneAPI Toolkits are available for installation using a local installer, or through online APT and YUM repositories. To install the latest toolkit, go to the <a class="b_special_a1" href="">Intel® oneAPI HPC Toolkit Download page</a>.</p>
+                    </section>
+
+                    <section id="dk_application3">
+                        <h4 class="mt-4">Intel® oneAPI Math Kernel Library (oneMKL)</h4>
+                        <p>The oneMKL provides enhanced math routines and libraries, such as BLAS, LAPACK, sparse solvers, fast Fourier transforms (FFT), random number generator functions (RNG), summary statistics, data fitting, and vector math. Use of oneMKL is recommended for optimal performance of HPC applications and benchmarks.</p>
+                        <p>The library is included in the Intel® oneAPI Base Toolkit, but oneMKL support for Intel® MPI library or Intel® Fortran Compilers requires the Intel® oneAPI HPC Toolkit.</p>
+                    </section>
+
+                    <section id="dk_application4">
+                        <h4 class="mt-4">Intel MPI Library</h4>
+                        <p>Use Intel MPI Library minimum version 2021.2.0. MPI applications should be compiled with this version using compilers and libraries from Intel oneAPI toolkit 2021.2.0 or later.</p>
+                    </section>
+
+                    <section id="dk_application5">
+                        <h4 class="mt-4">User Environment</h4>
+                    </section>
+
+                    <section id="dk_application6">
+                        <h4 class="mt-4">Intel® Hyper-Threading Technology</h4>
+                        <p>For OpenMP based applications that do not benefit from using simultaneous multi-threaded cores, make sure that the number of OpenMP threads do not exceed the available number of physical cores on the system. OpenMP threads are controlled by setting the OMP_NUM_THREADS environment variable.</p>
+                        <p>Also set the appropriate thread to core affinity, based on how Hyper-Threading is enabled on the server.</p>
+                        <p>If Hyper-Threading is enabled:</p>
+                        <div class="mv_code_toolbar">
+                            <div class="mv_toolbar_item mv_copy_icon">
+                                <i class="fa-regular fa-copy"></i>
+                            </div>
+                            <div class="mv_copy_message text-end hidden">Copied</div>
+                            <div class="code-content">
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp;</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 1rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">export KMP_AFFINITY=granularity=fine,compact,1,0</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <p>If Hyper-Threading is disabled:</p>
+                        <div class="mv_code_toolbar">
+                            <div class="mv_toolbar_item mv_copy_icon">
+                                <i class="fa-regular fa-copy"></i>
+                            </div>
+                            <div class="mv_copy_message text-end hidden">Copied</div>
+                            <div class="code-content">
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp;</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 1rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">export KMP_AFFINITY=compact</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section id="dk_application7">
+                        <h4 class="mt-4">Multi-Rail Omni-Path Fabric</h4>
+                        <p>If your system is configured with Omni-Path fabric and multiple links, enable multi-rail communication. Set the variable PSM2_MULTIRAIL equal to the number of cable links on each host controller. By default, it is set to 1.</p>
+                    </section>
+
+                    <section id="dk_application8">
+                        <h4 class="mt-4">Benchmark Optimization</h4>
+                        <p>Optimized settings for HPC benchmarks may differ from applications.</p>
+                    </section>
+
+                    <section id="dk_application9">
+                        <h4 class="mt-4">HP LINPACK</h4>
+                        <p>Optimum tuning of the HP LINPACK benchmark uses custom configuration that may impact performance of other benchmarks and applications. For that reason, it is not included here. For information on tuning the HP LINPACK benchmark, contact your Intel representative.</p>
+                    </section>
+
+                    <section id="dk_application10">
+                        <h4 class="mt-4">HPCG</h4>
+                        <p>Use the Intel® Optimized HPCG benchmark included with the oneAPI Math Kernel Library</p>
+                        <p class="mb-0">The High Performance Conjugate Gradients (HPCG) Benchmark project (http://hpcg-benchmark.org) is designed to complement the HP LINPACK (HPL) benchmark by providing metrics that more closely match a different and broad set of important applications. It is designed to measure the performance of</p>
+                        <ul>
+                            <li>Sparse matrix-vector multiplication.</li>
+                            <li>Vector updates.</li>
+                            <li>Global dot products.</li>
+                            <li>Local symmetric Gauss-Seidel smoother.</li>
+                            <li>Sparse triangular solver</li>
+                        </ul>
+                        <p>The Intel® Optimized HPCG benchmark provides an implementation of the HPCG benchmark optimized for Intel® Xeon® processors with support for the latest processor technologies, including Intel® Advanced Vector Extensions (Intel® AVX), Intel® Advanced Vector Extensions 2 (Intel® AVX2), Intel® Advanced Vector Extensions 512 (Intel® AVX-512).</p>
+                        <p>The benchmark can be found in the “/benchmarks/hpcg” subdirectory under the oneAPI MKL installation.</p>
+                        <p class="mb-0">Use the Scalable processor optimized binary&nbsp;<strong>xhpcg_skx</strong>. The Intel Optimized HPCG package also includes the source code necessary to build these versions of the benchmark for other MPI implementations. Also note that:</p>
+                        <ul>
+                            <li>Small problem sizes will produce very good results. However, the problem size must be large enough so that it will not fit into cache; otherwise it is considered an invalid run. It should occupy a minimum 25% of physical memory. Optimum local dimension grid size will need to determine through practical evaluation.</li>
+                            <li>Longer runtimes beyond the required 3600s runtime do not appear to impact performance.</li>
+                            <li>Best results are obtained when using from 1 to 1.25 MPI process per total core count and 12 to 16 OpenMP threads per MPI process. The optimal configuration will need to be determined through experimentation. Skip SMT cores when assigning threads.</li>
+                        </ul>
+                    </section>
+
+                    <section id="dk_application11">
+                        <h4 class="mt-4">STREAM</h4>
+                        <p class="mb-0">The STREAM benchmark is a simple, synthetic benchmark designed to measure sustainable memory bandwidth (in MB/s) and a corresponding computation rate for four simple vector kernels (Copy, Scale, Add and Triad). It is also part of the HPCC benchmark suite. It measures:</p>
+                        <ul>
+                            <li>Sustainable memory bandwidth</li>
+                            <li>Corresponding computation rate for a simple vector kernel</li>
+                        </ul>
+                        <p><a id="_Toc65839475"></a>The general rule for STREAM is that each array must be at least four times (4×) the sum of all last-level caches used in the run. STREAM may be run in its standard form, or it may be optimized. When optimized, results must be identified as such (see the STREAM FAQ at http://www.cs.virginia.edu/stream/ref.html).</p>
+                        <p>For instructions on how to obtain the best performance of the standard STREAM benchmark on Intel processors, see <a class="b_special_a1" href="">this page</a>.</p>
+                    </section>
+
+                    <section id="dk_references1">
+                        <p class="mb-0">&nbsp;</p>
+                        <h3 style="font-weight: 350; margin-bottom: 0.5rem;">References</h3>
+                        <p class="mb-0">&nbsp;</p>
+                    </section>
+
+                    <section id="dk_references2">
+                        <h4>numactl</h4>
+                        <p>The&nbsp;<strong>numactl</strong>&nbsp;tool can be used to view the configuration and status of the NUMA node of the current server. For example, CPU core count, memory size of each node, and the distance between different nodes. The process can be bound to the specified CPU core through this tool, and the specified CPU core will run the corresponding process.</p>
+                        <p>
+                            <img class="dk_risk_app_img" src="/img/darshit_image/cluster-numactl.jpg" alt="">
+                        </p>
+                        <p style="text-align:center"><em>Figure: numactl sample output</em></p>
+                        <p class="mb-0">&nbsp;</p>
+                    </section>
+
+                    <section id="dk_references3">
+                        <h4>numastat</h4>
+                        <p>You can view the of the status of current NUMA nodes using&nbsp;<strong>numastat</strong>. This includes local and remote memory access by CPU cores.</p>
+                        <p>
+                            <img class="dk_risk_app_img" src="/img/darshit_image/cluster-numastat.jpg" alt="">
+                        </p>
+                        <p style="text-align:center"><em>Figure: numastat sample output</em></p>
+                        <p class="mb-0">&nbsp;</p>
+                    </section>
+
+                    <section id="dk_references4">
+                        <h4>PCM</h4>
+                        <p>The Processor Count Monitor (PCM) can be used to monitor performance indicators of the Intel CPU core. PCM is often used to monitor the bandwidth of persistent memory. The tool can be downloaded from <a href="https://github.com/intel/pcm">Github*</a>.</p>
+                        <img class="dk_risk_app_img" src="/img/darshit_image/cluster-pcm.jpg" alt="">
+                        <p style="text-align:center"><em>Figure: PCM example of monitoring persistent memory bandwidth</em></p>
+                        <p class="mb-0">&nbsp;</p>
+                        <p>&nbsp;</p>
+                        <p>&nbsp;</p>
+                    </section>
+
+                    <section id="dk_notices_dis">
+                        <p class="mb-0">&nbsp;</p>
+                        <h3 style="padding-bottom: 0.5rem; font-weight: 350;">Notices & Disclaimers</h3>
+                        <p>Intel technologies may require enabled hardware, software or service activation.</p>
+                        <p>No product or component can be absolutely secure.</p>
+                        <p>Your costs and results may vary.</p>
+                        <p>Code names are used by Intel to identify products, technologies, or services that are in development and not publicly available. These are not "commercial" names and not intended to function as trademarks</p>
+                        <p>The products described may contain design defects or errors known as errata which may cause the product to deviate from published specifications. Current characterized errata are available on request.</p>
+                        <p><strong>© Intel Corporation. Intel, the Intel logo, and other Intel marks are trademarks of Intel Corporation or its subsidiaries. Other names and brands may be claimed as the property of others.</strong></p>
+                        <p class="mb-0">&nbsp;</p>
+                    </section>
+
+                </div>
+            </section>
+        </div>
+    </div>
+    </div>
+    </section>
+
+    <section style="border-top: 1px solid #d7d7d7;" class="container py-5">
+        <h4 class="h6">Product and Performance Information</h4>
+        <div class="disclaimer" style="font-size: 12px;"><sup>1</sup> Performance varies by use, configuration and other
+            factors. Learn more at <a class="b_special_a1" href="">www.Intel.com/PerformanceIndex.</a></div>
+        </div>
+    </section>
+
+    <!-- footer -->
+    <div id="footer"></div>
+
+    <!-- nav script -->
+    <script>
+        // navbar include  
+        fetch('/y_index/y_navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar').innerHTML = data;
+            });
+        // footer include 
+        fetch('/y_index/y_footer.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('footer').innerHTML = data;
+            });
+    </script>
+    <!-- nav script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            if (document.getElementsByClassName('VK_all_sections section') && document.getElementsByClassName('VK_sidebar_dropdown')) {
+                const sections = document.querySelectorAll('.VK_all_sections section');
+                const navLinks = document.querySelectorAll('.VK_sidebar_dropdown a');
+                const detailsElements = document.querySelectorAll('.VK_sidebar_dropdown details');
+
+                function removeActiveClass() {
+                    navLinks.forEach(link => link.classList.remove('VK_sidebar_active_link'));
+                    detailsElements.forEach(details => {
+                        details.removeAttribute('open');
+                        details.setAttribute('close', ''); // Optional: to visually indicate it's closed
+                    });
+                }
+
+                function activateLinkAndDetails(targetId) {
+                    navLinks.forEach(link => {
+                        if (link.getAttribute('href') === `#${targetId}`) {
+                            link.classList.add('VK_sidebar_active_link');
+                            let parentDetails = link.closest('details');
+
+                            // Open all ancestor details elements
+                            while (parentDetails) {
+                                parentDetails.setAttribute('open', '');
+                                parentDetails.removeAttribute('close'); // Optional: remove the closed indicator
+                                parentDetails = parentDetails.parentElement.closest('details');
+                            }
+                        }
+                    });
+                }
+
+                function onScroll() {
+                    let currentSection = '';
+                    sections.forEach(section => {
+                        const sectionTop = section.getBoundingClientRect().top;
+                        const sectionBottom = section.getBoundingClientRect().bottom;
+
+                        // Check if the section is in view
+                        if (sectionTop <= 100 && sectionBottom >= 0) {
+                            currentSection = section.getAttribute('id');
+                        }
+                    });
+
+                    if (currentSection) {
+                        removeActiveClass();
+                        activateLinkAndDetails(currentSection);
+                    } else {
+                        removeActiveClass();
+                    }
+                }
+
+                window.addEventListener('scroll', onScroll);
+            } else {
+                return
+            }
+        });
+    </script>
+
+    <!-- copy script -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            document.querySelectorAll(".mv_copy_icon").forEach((icon) => {
+                icon.addEventListener("click", async function () {
+                    try {
+                        const toolbar = this.closest(".mv_code_toolbar");
+                        const codeBlock = toolbar.querySelector(".code-content");
+                        const codeContent = codeBlock.innerText;
+
+                        // Use Clipboard API to copy text
+                        await navigator.clipboard.writeText(codeContent);
+
+                        // Hide the copy icon and show the "Copied!" message
+                        const message = toolbar.querySelector(".mv_copy_message");
+                        this.classList.add("hidden"); // Hide the copy icon
+                        message.classList.remove("hidden"); // Show the "Copied!" message
+
+                        // Hide the message and show the icon again after 2 seconds
+                        setTimeout(() => {
+                            message.classList.add("hidden");
+                            this.classList.remove("hidden");
+                        }, 2000); // Adjust delay as needed
+
+                    } catch (err) {
+                        console.error('Failed to copy text: ', err);
+                    }
+                });
+            });
+        });
+    </script>
+
+</body>
+
+</html>
+
+
+
