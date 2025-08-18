@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Intel Security Features and Technologies Related to Transient Execution Attacks</title>
+    <title>Indirect Target Selection</title>
 
     <!-- font family -->
     <link href="https://fonts.cdnfonts.com/css/intel-clear" rel="stylesheet">
@@ -52,22 +52,8 @@
         border-radius: 0;
     }
 
-    .dk_greyHighlight{
-        font-size: 1rem;
-        line-height: 1.25;
-        background-color: #e6e6e6;
-        padding: 20px;
-    }
-
-    .dk_things_code{
-        padding: 1rem 1rem 0rem 0.5rem;
-    }
-
     @media(max-width:1200px) {
         .dk_risk_app_img {
-            width: 100% !important;
-        }
-        .mv_product_table{
             width: 100% !important;
         }
     }
@@ -530,12 +516,12 @@
         </div>
         <div class="m_ai_shlash">/</div>
         <div>
-            <button class="btn" style="color: #0068B5;">
-                Feature Documentation
+            <button style="color: #0068B5;" class="btn" aria-expanded="false">
+                Advisory Guidance
             </button>
         </div>
         <div class="m_ai_shlash">/</div>
-        <div class="m_ai_httl">Security & Technology That Reduces Attacks</div>
+        <div class="m_ai_httl">Indirect Target Selection</div>
 
     </section>
     <!------------------------------------------------------------------------------->
@@ -546,9 +532,9 @@
             <div class="container">
                 <div class="mv_vmware_padd">
                     <div class="row">
-                        <div class="col-12">
+                        <div class="col-md-8 col-sm-12">
                             <div class="mv_vmware_heading">
-                                <h3>Intel Security Features and Technologies Related to Transient Execution Attacks</h3>
+                                <h3>Indirect Target Selection / INTEL-SA-01153 / CVE-2024-28956</h3>
                             </div>
                         </div>
                     </div>
@@ -556,15 +542,15 @@
                         <div class="mv_cd_page_marquee_action">
                             <div class="mv_cd_page_marquee_action_padd">
                                 <label for="">ID</label>
-                                <span>758385</span>
+                                <span>854667</span>
                             </div>
                             <div class="mv_cd_page_marquee_action_padd">
                                 <label for="">Updated</label>
-                                <span>7/26/2018</span>
+                                <span>5/13/2025</span>
                             </div>
                             <div class="mv_cd_page_marquee_action_padd">
                                 <label for="">Version</label>
-                                <span>Latest</span>
+                                <span>1.0</span>
                             </div>
                             <div class="mv_cd_page_marquee_action_padd">
                                 <label for=""></label>
@@ -584,51 +570,23 @@
             </div>
             <div class="col-lg-3 col-md-4">
                 <!-- nav -->
-                <div class="VK_sticky_side_bar VK_side_bar_postion_stickey">
-                    <div>
-                        <div class="VK_sidebar_dropdown">
-                            <p class="m-0">
-                                <a href="#dk_intel_os" class="text-decoration-none VK_a">
-                                    Intel® OS Guard
-                                </a>
-                            </p>
-                            <p class="m-0">
-                                <a href="#dk_execute_dis" class="text-decoration-none VK_a">
-                                    Execute Disable Bit
-                                </a>
-                            </p>
-                            <p class="m-0">
-                                <a href="#dk_cet" class="text-decoration-none VK_a">
-                                    Control Flow Enforcement Technology (CET)
-                                </a>
-                            </p>
-                            <p class="m-0">
-                                <a href="#dk_protection_keys" class="text-decoration-none VK_a">
-                                    Protection Keys
-                                </a>
-                            </p>
-                            <p class="m-0">
-                                <a href="#dk_smap" class="text-decoration-none VK_a">
-                                    Supervisor-Mode Access Prevention (SMAP)
-                                </a>
-                            </p>
-                            <p class="m-0">
-                                <a href="#dk_indirect_tec" class="text-decoration-none VK_a">
-                                    Indirect Branch Prediction and Intel® Hyper-Threading Technology
-                                </a>
-                            </p>
-                            <p class="m-0">
-                                <a href="#dk_rsb" class="text-decoration-none VK_a">
-                                    Return Stack Buffer (RSB)
-                                </a>
-                            </p>
-                            <p class="m-0">
-                                <a href="#dk_predictor_mode" class="text-decoration-none VK_a">
-                                    Predictor Mode
-                                </a>
-                            </p>
+                <!-- thinkcode -->
+                <div class="dk_things_code_main">
+                    <div class="dk_things_code">
+                        <p><b>Key Takeaways</b></p>
+                        <div class="dk_high_quality">
+                            <ul>
+                                <li><p>Processors affected by the Indirect Target Selection (ITS) issue may incompletely mitigate Branch Target Injection due to indirect branch predictions that are not fully constrained by the enhanced Indirect Branch Restricted Speculation (eIBRS) properties, nor by the IBPB (Indirect Branch Prediction Barrier) indirect barrier.</p>
+                                </li>
+                                <li><p>Intel is providing a microcode update for this issue, which ensures that these targets are cleared when OS/VMM software invokes an IBPB, and in other similar circumstances.</p>
+                                </li>
+                                <li><p>A subset of affected processors may need to apply additional software mitigations, details of which can be found at the Linux* kernel Github* link in the Related Content section. </p>
+                                </li>
+                                <li><p>Additional information on Indirect Branch History Fence (IBHF) can be found in the Branch History Injection and Intra-mode Branch Target Injection link in the Related Content section.</p>
+                                </li>
+                            </ul>
                         </div>
-                    </div>
+                    </div> 
                 </div>
             </div>
             <div class="col-lg-9 col-md-8">
@@ -638,67 +596,321 @@
                 </div>
                 <div class="col-xl-10 VK_all_sections">
                     <p>&nbsp;</p>
-                    <p>There are security features and technologies, either present in existing Intel products or planned for future products, which reduce the effectiveness of the side channel speculative execution attacks discussed on this site.</p>
+                    <table class="mv_product_table w-100 mb-4">
+                        <tbody>
+                            <tr>
+                                <td>
+                                <p><strong>Disclosure date:</strong><br>
+                                2025-05-12</p>
+                    
+                                <p><strong>Published date:</strong><br>
+                                2025-05-12</p>
+                                </td>
+                                <td><img alt="" class="one-quarter-float-left" src="/img/darshit_image/shield-icon-8.png" style="float:left" width="100"><strong>Severity rating:&nbsp;</strong><br>
+                                    4.7 Medium</td>
+                                <td>
+                                <p>Industry-wide severity ratings can be found in the<br>
+                                found in the&nbsp;<a class="b_special_a1" href="https://nvd.nist.gov/">National Vulnerability Database</a></p>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table> 
 
-                    <section id="dk_intel_os">
+                    <section>
                         <p class="mb-0">&nbsp;</p>
-                        <h3 style="font-weight: 350; padding-bottom: 0.5rem;">Intel® OS Guard</h3>
-                        <p>When Intel® OS Guard, also known as Supervisor-Mode Execution Prevention (SMEP), is enabled, the operating system will not be allowed to directly execute application code, even speculatively. This makes branch target injection attacks on the OS substantially more difficult by forcing the attacker to find gadgets within the OS code. It is also more difficult for an application to train OS code to jump to an OS gadget. All major operating systems enable SMEP support by default.</p>
+                        <h3 style="font-weight: 350; padding-bottom: 0.8rem;">Related Content</h3>
+                        <ul>
+                            <li><a class="b_special_a1" href="">INTEL-SA-01153</a></li>
+                            <li><a class="b_special_a1" href="">Linux* kernel commit for ITS</a></li>
+                            <li><a class="b_special_a1" href="">Linux kernel commit for IBTI History</a></li>
+                            <li><a class="b_special_a1" href="">Branch History Injection and Intra-mode Branch Target Injection</a></li>
+                        </ul>
                     </section>
 
-                    <section id="dk_execute_dis">
+                    <section>
                         <p class="mb-0">&nbsp;</p>
-                        <h3 style="font-weight: 350; padding-bottom: 0.5rem;">Execute Disable Bit</h3>
-                        <p>The Execute Disable Bit is a hardware-based security feature that can help reduce system exposure to viruses and malicious code. Execute Disable Bit allows the processor to classify areas in memory where application code can or cannot execute, even speculatively. This reduces the gadget space, increasing the difficulty of branch target injection attacks. All major operating systems enable Execute Disable Bit support by default. Applications are encouraged to only mark code pages as executable.</p>
+                        <h3 style="font-weight: 350; padding-bottom: 0.8rem;">Overview</h3>
+                        <p>Recent Intel processors support a technology called <a class="b_special_a1" href="">enhanced IBRS</a> (eIBRS) for mitigating Branch Target Injection transient execution attacks. Processors affected by the Indirect Target Selection (ITS) issue may incompletely mitigate Branch Target Injection, due to indirect branch predictions that are not fully constrained by the enhanced IBRS properties, nor by the IBPB (Indirect Branch Prediction Barrier) indirect barrier.</p>
+                        <p>There are several documented properties that may be violated by this Indirect Target Selection issue. Firstly, when IBRS is set on these processors, predicted targets of indirect branches of a virtual machine manager (VMM) (VMX root) should not be controlled by software that was executed in a virtual machine (VM) (VMX non-root). Secondly, branches in system management mode (SMM) and Intel® Software Guard Extensions (Intel® SGX) enclaves cannot be controlled by outside code. Finally, software that executed before an IBPB barrier should not be able to control the predicted targets of indirect branches executed after the barrier on the same logical processor.&nbsp;</p>
+                        <p>Intel is providing a microcode update for this issue, which ensures that these targets are cleared when OS/VMM software invokes an Indirect Branch Prediction Barrier (IBPB), and in other similar circumstances, such as when entering an Intel SGX enclave and/or SMM. This prevents potential transient execution attacks in situations where these unintended targets may otherwise correspond to branches prior to these barriers.</p>
+                        <p>Intel is also issuing VMM software guidance for some processors where indirect branches in a VMM (VMX host) may be predicted using unintended targets corresponding to branches in a guest. This guidance is only relevant where VMM software is relying on enhanced IBRS (eIBRS) to mitigate Branch Target Injection attacks.</p>
+                        <p>The recommendations in this article are applicable to situations where transient execution attacks are within the user's threat model. Generally, transient execution attacks require an attacker to be able to run code on the same machine (or the same virtual machine) as the data they are attempting to read, but do not have access to the data (such as where privilege-level isolation is in place).&nbsp;</p>
+                        <p>Some recent processors (from processors code named Alder Lake and Sapphire Rapids onward, as well as Intel® Atom processors) are not affected by this issue and do not require either the microcode update or any software changes; consult the <a class="b_special_a1" href="">list of affected processors</a> for more details. In particular, no processors which support Intel® Trust Domain Extensions (Intel® TDX) are affected by this issue.</p>
+                        <p>Indirect Target Selection is assigned CVE-2024-28956 with a CVSS score of 4.7 (Medium) <br> CVSS:3.1/AV:L/AC:H/PR:L/UI:N/S:U/C:H/I:N/A:N.</p>
                     </section>
 
-                    <section id="dk_cet">
-                        <p class="mb-0">&nbsp;</p>
-                        <h3 style="font-weight: 350; padding-bottom: 0.5rem;">Control Flow Enforcement Technology (CET)</h3>
-                        <p>On future Intel® processors, Control flow Enforcement Technology will allow limiting near indirect jump and call instructions to only target <span class="dk_code_simple">ENDBRANCH </span>instructions. This feature can reduce the speculation allowed to non-<span class="dk_code_simple">ENDBRANCH</span> instructions. This greatly reduces the gadget space, increasing the difficulty of branch target injection attacks.&nbsp;</p>
-                        <p><a class="b_special_a1" href="/darshit/dk_Solutions_Industries/Retpoline_A_Branch_Target_Injection_Mitigation.html">Retpoline</a>&nbsp;can interfere with proper usage of CET. Intel recommends that software use CET and enhanced IBRS instead of retpoline where CET is supported.</p>
-                        <p>For additional information on CET, see Chapter 18 of&nbsp;<a class="b_special_a1" href="/darshit/dk_Solutions_Industries/Intel_64_and_IA_32_Architectures_Software_Developer_Manuals.html">Intel® 64 and IA-32 Architectures Software Developer's Manuals</a>, Volume 1: Basic Architecture.</p>
-                    </section>
-
-                    <section id="dk_protection_keys">
-                        <p class="mb-0">&nbsp;</p>
-                        <h3 style="font-weight: 350; padding-bottom: 0.5rem;">Protection Keys</h3>
-                        <p>On Intel processors that have both hardware support for mitigating&nbsp;<a class="b_special_a1" href="/darshit/dk_Solutions_Industries/Rogue_Data_Cache_Load_Guidance.html">Rogue Data Cache Load</a>&nbsp;(<span class="dk_code_simple">IA32_ARCH_CAPABILITIES[RDCL_NO]</span>) and protection keys support (CPUID.7.0.ECX[3]), a load that causes a page fault due to protection keys will not speculatively return the loaded data even on a L1D cache hit, and will not fill or evict any caches for that address. This can be used to limit the memory addresses that could be revealed by a branch target injection or bound check bypass attack. On processors that have protection key support but do not enumerate&nbsp;<span class="dk_code_simple">RDCL_NO</span>, loads that cause a page fault due to protection keys may speculatively return the loaded data on L1D cache hits but will not fill orevict any caches for that address.</p>
-                    </section>
-
-                    <section id="dk_smap">
-                        <p class="mb-0">&nbsp;</p>
-                        <h3 style="font-weight: 350; padding-bottom: 0.5rem;">Supervisor-Mode Access Prevention (SMAP)</h3>
-                        <p>SMAP can be used to limit which memory addresses can be used for a cache-based side channel&nbsp;by blocking allocation of an application line. This may make it more difficult for an application to perform the attack on the kernel, as it is more challenging for an application to determine whether a kernel line is cached than an application line. On Intel processors that have both hardware support for mitigating&nbsp;<a class="b_special_a1" href="/darshit/dk_Solutions_Industries/Rogue_Data_Cache_Load_Guidance.html">Rogue Data Cache Load</a>&nbsp;(<span class="dk_code_simple">IA32_ARCH_CAPABILITIES[RDCL_NO]</span>) and SMAP support, loads that cause a page fault due to SMAP will not speculatively return the loaded data even on a L1D cache hit or fill/evict any caches for that address. On processors that have SMAP support but do not enumerate&nbsp;<span class="dk_code_simple">RDCL_NO</span>, loads that cause a page fault due to SMAP may speculatively return the loaded data on L1D cache hits but will not fill/evict any caches for that address.</p>
-                    </section>
-
-                    <section id="dk_indirect_tec">
-                        <p class="mb-0">&nbsp;</p>
-                        <h3 style="font-weight: 350; padding-bottom: 0.5rem;">Indirect Branch Prediction and Intel® Hyper-Threading Technology</h3>
-                        <p>In a processor supporting Intel® Hyper-Threading Technology (Intel® HT Technology), a core (or physical processor) may include multiple logical processors. In such a processor, the logical processors sharing a core may share indirect branch predictors. As a result of this sharing, software on one of a core’s logical processors may be able to control the predicted target of an indirect branch executed on another logical processor of the same core.&nbsp;</p>
-                        <p>This sharing occurs only within a core. Software executing on a logical processor of one core cannot control the predicted target of an indirect branch by a logical processor of a different core.&nbsp;</p>
-                    </section>
-
-                    <section id="dk_rsb">
-                        <p class="mb-0">&nbsp;</p>
-                        <h3 style="font-weight: 350; padding-bottom: 0.5rem;">Return Stack Buffer (RSB)</h3>
-                        <p>RSB is a microarchitectural structure that holds predictions for execution of near RET instructions.</p>
-                        <p>Each execution of a near&nbsp;<span class="dk_code_simple">CALL</span>&nbsp;instruction with a non-zero displacement adds an entry to the RSB that contains the address of the instruction sequentially following that&nbsp;<span class="dk_code_simple">CALL</span>&nbsp;instruction. The RSB is not used or updated by far&nbsp;<span class="dk_code_simple">CALL</span>, far&nbsp;<span class="dk_code_simple">RET</span>, or&nbsp;<span class="dk_code_simple">IRET</span>&nbsp;instructions.&nbsp;</p>
-                    </section>
-
-                    <section id="dk_predictor_mode">
-                        <p class="mb-0">&nbsp;</p>
-                        <h3 style="font-weight: 350; padding-bottom: 0.5rem;">Predictor Mode</h3>
-                        <p>Intel processors support different modes of operation corresponding to different degrees of privilege. VMX root operation (for a virtual-machine monitor, or host) is more privileged than VMX non-root operation (for a virtual machine, or guest). Within either VMX root operation or VMX non-root operation, supervisor mode (CPL &lt; 3) is more privileged than user mode (CPL= 3).</p>
-                        <p>To prevent attacks based on branch target injection, it can be important to ensure that less privileged software cannot control use of the branch predictors by more privileged software. For this reason, it is useful to introduce the concept of predictor mode. There are four predictor modes: host-supervisor, host-user, guest-supervisor, and guest-user.</p>
-                        <p>The guest predictor modes are considered less privileged than the host predictor modes. Similarly, the user predictor modes are considered less privileged than the supervisor predictor modes.</p>
-                        <p>There are operations that may be used to transition between unrelated software components but which do not change CPL or cause a VMX transition. These operations do not change predictor mode. &nbsp;Examples include&nbsp;<span class="dk_code_simple">MOV</span>&nbsp;to CR3,&nbsp;<span class="dk_code_simple">VMPTRLD</span>, EPTP switching (using VM function 0), and&nbsp;<span class="dk_code_simple">GETSEC[SENTER]</span>.</p>
+                    <section>
                         <p>&nbsp;</p>
-                        <h5 style="text-align: center;"><a class="b_special_a1" href="">Software Security Guidance Home</a> | <a class="b_special_a1" href="">Advisory Guidance</a> | <a class="b_special_a1" href="">Technical Documentation</a> | <a class="b_special_a1" href="">Best Practices</a> | <a class="b_special_a1" href="">Resources</a></h5>
-                        <p>&nbsp;</p>
+                        <h3 style="font-weight: 300; padding-bottom: 0.8rem;">Mitigation</h3>
+                        <h4>Indirect Branch Predictor Barrier (IBPB)</h4>
+                        <p>Intel is providing a microcode update to ensure that indirect branches predicted after an indirect branch prediction barrier (IBPB), are not predicted using a branch target which corresponds to a branch from software executed prior to the barrier.</p>
+                        <h4>Intel® Software Guard Extensions (Intel® SGX) and SMM</h4>
+                        <p>Intel is providing a microcode update to ensure that indirect branches predicted in an Intel SGX enclave or in SMM are not predicted using a branch target outside those SMM or Intel SGX modes.</p>
+                        <h4>Operating Systems</h4>
+                        <p>On affected processors, indirect branches in the OS kernel may be predicted using targets which correspond to aliased direct branches in the same predictor mode, making it possible to perform Intra-mode Branch Target Injection attacks with these additional targets. This may be a security concern in some situations, such as where attackers may be able to control direct branches in supervisor mode using managed runtimes such as cBPF, or where vulnerable pairs of aliasing branches have been identified which cannot be mitigated on an individual basis.</p>    
+                        <p>In such cases, operating system software can mitigate Indirect Target Selection by applying the techniques described in the VMM Software section when running on an affected processor. Operating system software running in a virtualized environment may also wish to apply such mitigations where IA32_ARCH_CAPABILITIES[62] (ITS_NO) is not enumerated even when the family/model/stepping enumerated by CPUID is not affected. Refer to the Migration Pools section for details.</p>
+                        <p>This issue does not affected the eIBRS property that indirect branches in supervisor code should not be predicted using targets corresponding to userspace branches.</p>
+                        <h4>Virtual Machine Manager (VMM) Software</h4>
+                        <p>On a subset of affected processors, indirect branches in a VMM (VMX host) may be predicted using targets which correspond to branches in a guest. VMM software may need to apply additional mitigations (described below) if all of the following are true:</p>
+                        <ul>
+                            <li>The VMM is relying on enhanced IBRS’s guest/host isolation for mitigating Branch Target Injection attacks by guests against the VMM itself. Note that, as implied in the OS section above, indirect branch target predictions of host supervisor code are still not predicted using targets corresponding to guest userspace addresses.&nbsp;</li>
+                        </ul>
+                        <ul>
+                            <li>The VMM is not itself virtualized (meaning the hypervisor present bit (CPUID.1.ECX[31]) is 0), since nested VMMs rely on their L0 hypervisor rather than enhanced IBRS to isolate the nested VMM from its guests.
+                            <ul>
+                                <li>The family/model/stepping enumerated by CPUID is in the list below:
+                                    <table class="mv_product_table w-100 mb-4">
+                                        <caption>Table 1: Processors which require additional VMM mitigations</caption>
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">CPUID Family_Model</th>
+                                                <th scope="col">Stepping</th>
+                                                <th scope="col">Code Name / Microarchitectures</th>
+                                                <th scope="col">Product Family</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>06_55H</td>
+                                                <td>6</td>
+                                                <td>Cascade Lake Server</td>
+                                                <td>2nd Generation Intel® Xeon® Scalable processor family</td>
+                                            </tr>
+                                            <tr>
+                                                <td>06_55H</td>
+                                                <td>7</td>
+                                                <td>1. Cascade Lake Server<br>
+                                                2. Cascade Lake W<br>
+                                                3. Cascade Lake X</td>
+                                                <td>1. 2nd Generation Intel® Xeon® Scalable processor family<br>
+                                                2. Intel® Xeon® W processor family<br>
+                                                3. Intel® Core™ X-series Processor</td>
+                                            </tr>
+                                            <tr>
+                                                <td>06_55H</td>
+                                                <td>B</td>
+                                                <td>Cooper Lake</td>
+                                                <td>3rd Generation Intel® Xeon® Scalable processor family</td>
+                                            </tr>
+                                            <tr>
+                                                <td>06_8EH</td>
+                                                <td>C</td>
+                                                <td>1. Whiskey Lake U<br>
+                                                2,3,4. Comet Lake U42<br>
+                                                5. Amber Lake Y</td>
+                                                <td>1. 8th Generation Intel® Core™ Processors<br>
+                                                2. 10th Generation Intel® Core™ Processor Family<br>
+                                                3. Intel® Pentium® Gold Processor Series<br>
+                                                4. Intel® Celeron® Processor 5000 Series<br>
+                                                5. 10th Generation Intel® Core™ Processor Family</td>
+                                            </tr>
+                                            <tr>
+                                                <td>06_9EH</td>
+                                                <td>D</td>
+                                                <td>1. Coffee Lake H<br>
+                                                2. Coffee Lake Xeon E<br>
+                                                3. Coffee Lake S</td>
+                                                <td>1. 9th Generation Intel® Core™ Processor Family<br>
+                                                2. Intel® Xeon® E processor family<br>
+                                                3. 9th Generation Intel® Core™ Processor Family</td>
+                                            </tr>
+                                            <tr>
+                                                <td>06_A5H</td>
+                                                <td>2, 3, 5</td>
+                                                <td>Comet Lake S<br>
+                                                Comet Lake H</td>
+                                                <td>10th Generation Intel® Core™ Processor Family<br>
+                                                Intel® Xeon® W processor family<br>
+                                                Intel® Pentium® Gold Processor Family<br>
+                                                Intel® Celeron® Processor Family&nbsp;<br>
+                                                Intel® Xeon® W processor family</td>
+                                            </tr>
+                                            <tr>
+                                                <td>06_A6H</td>
+                                                <td>0, 1</td>
+                                                <td>Comet Lake U62</td>
+                                                <td>10th Generation Intel® Core™ Processor Family<br>
+                                                Intel® Xeon® W processor family</td>
+                                            </tr>
+                                        </tbody>
+                                    </table> 
+                                </li>
+                            </ul>
+                            </li>
+                        </ul>
+                        <p>Where all of these conditions apply, VMM software can mitigate this issue by ensuring that the last byte of all indirect branch instructions in host VMM code are located in the last 32 bytes of a 64-byte cache line (referred to as the “second” half). Alternatively, host VMM code can use out-of-line <span class="dk_code_simple">thunk</span> functions to invoke indirect branches. In particular, indirect <span class="dk_code_simple">jmp</span>/<span class="dk_code_simple">call</span>/<span class="dk_code_simple">ret</span> instructions can be replaced with a direct branch to an indirect <span class="dk_code_simple">thunk</span> which has an indirect <span class="dk_code_simple">jmp</span>/<span class="dk_code_simple">call</span>/<span class="dk_code_simple">ret</span> branch with the last byte in the “second” half of the cache line. Multiple <span class="dk_code_simple">thunks</span>&nbsp;can be used to address any potential performance or security concerns due to the mitigation sharing a single branch in a <span class="dk_code_simple">thunk</span>&nbsp;between many different indirect branches.</p>
+                        <p>This mitigation may need to be applied to all code in ring 0 of the VMM host, including OS code where relevant.</p>
+                        <p>Note that this issue only applies to indirect branch instructions (including <span class="dk_code_simple">RET</span>s) which have their last byte in the first 32 bytes of a 64-byte cache line (the “first” half).<br>
+                            &nbsp;</p>
+                        <p class="text-center">
+                            <img class="dk_risk_app_img" src="/img/darshit_image/indirect-target-selection-cache-line-fig1.png" alt="">
+                        </p>
+                        <p class="text-center">Figure 1: Cache Line Location of Indirect Branches</p>
+                        <p>The processors where VMM host software may be affected by this issue also enumerate RRSBA, and so (as <a class="b_special_a1" href="">previously documented</a>) RET instructions may be predicted using alternate predictors and thus may be affected by this issue. Note that <a class="b_special_a1" href="">retpoline</a> is not typically applied to all RET instructions, and so VMM software may need to apply further mitigations.</p>
+                        <h4>Migration Pool</h4>
+                        <p>VM migration pools may contain both affected and unaffected processors. To help VMMs communicate to the guest whether they are affected by Indirect Target Selection, IA32_ARCH_CAPABILITIES[62] will be defined as &nbsp;ITS_NO. A VMM can enumerate this bit as 1 to guests in order to indicate that they are not affected by Indirect Target Selection.</p>
+                        <p>The VMM should synthesize ITS_NO for VMs unless the VM could run on an affected host.</p>
+                        <p>The algorithm for an OS to determine if it is affected can be found in the Enumeration section.</p>
+                    </section>
 
+                    <section>
+                        <p>&nbsp;</p>
+                        <h3 style="font-weight: 300; padding-bottom: 0.8rem;">Enumeration</h3>
+                        <table class="mv_product_table w-100 mb-4">
+                            <caption>Table 1: Indirect Target Selection Enumeration</caption>
+                            <thead>
+                                <tr>
+                                    <th scope="col">Register Address Hex</th>
+                                    <th scope="col">Register Address Dec</th>
+                                    <th scope="col">Architectural MSR Name / Bit Fields</th>
+                                    <th scope="col">MSR / Bit Description</th>
+                                    <th scope="col">Comment</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>10AH</td>
+                                    <td>266</td>
+                                    <td>IA32_ARCH_CAPABILITIES</td>
+                                    <td>Enumeration of Architectural Features (RO)</td>
+                                    <td>If CPUID.(EAX-07H, ECX=0):EDX[29]=1</td>
+                                </tr>
+                                <tr>
+                                    <td>10AH</td>
+                                    <td>266</td>
+                                    <td>62</td>
+                                    <td>ITS_NO<br>
+                                    If 0, the hypervisor indicates that the system may be affected by Indirect Target Selection<br>
+                                    If 1, the hypervisor indicates that the system is not affected by Indirect Target Selection</td>
+                                    <td>FMS inside a guest may be different from host (for example, if the&nbsp;host is a Cascade Lake server and guest has FMS of Skylake). This bit is provided for hypervisor to indicate to guest that it could be affected by ITS regardless of its FMS. Not expected to be set by hardware.</td>
+                                </tr>
+                                <tr>
+                                    <td>10AH</td>
+                                    <td>266</td>
+                                    <td>63</td>
+                                    <td>MSR_VIRTUAL_ENUMERATION_SUPPORTED<br>
+                                    If 0, MSR_VIRTUAL_ENUMERATION is not supported<br>
+                                    If 1, MSR_VIRTUAL_ENUMERATION is supported</td>
+                                    <td>VMM will set this bit for the guest as a communication channel. Currently, it is used for sharing mitigation status. Not expected to be set by hardware.</td>
+                                </tr>
+                            </tbody>
+                        </table> 
+                        <p><br>
+                            The algorithm for an operating system to determine if it is affected by Indirect Target Selection is:&nbsp;</p>
+                            <div class="mv_code_toolbar">
+                                <div class="mv_toolbar_item mv_copy_icon">
+                                    <i class="fa-regular fa-copy"></i>
+                                </div>
+                                <div class="mv_copy_message text-end hidden">Copied</div>
+                                <div class="code-content">
+                                    <div style="padding-bottom: 0rem !important" class="d-flex">
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0">&nbsp;</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-bottom: 0rem !important" class="d-flex">
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0">If (CPUID.(EAX=01H).ECX[HYPERVISOR(bit 31)]) // In a guest {</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-bottom: 0rem !important" class="d-flex">
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; If ((IA32_ARCH_CAPABILITIES [ITS_NO]==0) AND (CPUID.(EAX=07H, ECX=02H).EDX[BHI_CTRL] == 0))   </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-bottom: 0rem !important" class="d-flex">
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0">Then Affected by ITS</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-bottom: 0rem !important" class="d-flex">
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0">} else  // In a host {</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-bottom: 0rem !important" class="d-flex">
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0">&nbsp;</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-bottom: 0rem !important" class="d-flex">
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; If ((IA32_ARCH_CAPABILITIES[IBRS_ALL]==1) && CPUID Family/Model/stepping matches the affected processor table</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-bottom: 0rem !important" class="d-flex">
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0">list)</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-bottom: 0rem !important" class="d-flex">
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0">Then Affected by ITS</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-bottom: 1rem !important" class="d-flex">
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0">}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        <p>Note that no processor, including unaffected processors, is expected to enumerate ITS_NO. The above algorithms only requires that VMMs virtualize ITS_NO as 1 to guests, not that unaffected processors enumerate ITS_NO as 1.</p>
                     </section>
                     
+                    <section id="">
+                        <p>&nbsp;</p>
+                        <h3 style="font-weight: 300; padding-bottom: 0.8rem;"><a class="b_special_a1" href="">Affected Processors</a></h3>
+                        <p>Refer to the <a class="b_special_a1" href="">consolidated Affected Processors table</a> for a complete list of processors affected by Indirect Target Selection (ITS). A summary is described below:</p>
+                        <ol>
+                            <li><em>Indirect Target Selection with&nbsp;cBPF</em> involves an indirect branch being predicted with a branch predictor entry from a direct branch in the same security domain (from cBPF)
+                        
+                            <ol>
+                                <li>Affected processors list is the same list as ITS without cBPF.
+                                <ul>
+                                    <li>Cascade Lake, Cooper Lake, Ice Lake (client), Tiger Lake, Whiskey Lake, Comet Lake, Amber Lake, Rocket Lake</li>
+                                </ul>
+                                </li>
+                                <li>Software using the&nbsp;<span class="code-simple">thunk</span> mitigation mechanism described in the Operating System section above is applicable.</li>
+                            </ol>
+                            </li>
+                            <li><em>Indirect Target Selection without cBPF</em> involves an indirect branch being predicted with a branch predictor entry from a direct branch in a different security domain or across an indirect branch prediction barrier (IBPB).&nbsp;
+                            <ol>
+                                <li>Affected processor list for Guest/Host isolation is a subset of ITS without cBPF processors.&nbsp;
+                                <ul>
+                                    <li>Cascade Lake, Cooper Lake, Whiskey Lake, Comet Lake, Amber Lake</li>
+                                </ul>
+                                </li>
+                                <li>Mitigation for guest/host isolation using the <span class="code-simple">thunk</span> mitigation mechanism described in the Operating System section above is applicable&nbsp;for the VMM.&nbsp;&nbsp;</li>
+                                <li>IBPB MCU mitigation is available for all ITS without cBPF involved processors.</li>
+                            </ol>
+                            </li>
+                        </ol>
+                        <p>&nbsp;</p>
+                        <h5 style="text-align:center; font-weight: 500;"><a class="b_special_a1" href="">Software Security Guidance Home</a>&nbsp;|&nbsp;<a class="b_special_a1" href="">Advisory Guidance</a>&nbsp;|&nbsp;<a class="b_special_a1" href="">Technical Documentation</a>&nbsp;|&nbsp;<a class="b_special_a1" href="">Best Practices</a></h5>
+                        <p>&nbsp;</p>
+                    </section>
+
                 </div>
             </section>
         </div>
@@ -825,7 +1037,4 @@
 </body>
 
 </html>
-
-
-
 
