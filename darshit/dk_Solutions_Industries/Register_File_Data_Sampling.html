@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Threat Analysis Guidance for Gather Data Sampling</title>
+    <title>Register File Data Sampling</title>
 
     <!-- font family -->
     <link href="https://fonts.cdnfonts.com/css/intel-clear" rel="stylesheet">
@@ -52,22 +52,8 @@
         border-radius: 0;
     }
 
-    .dk_greyHighlight{
-        font-size: 1rem;
-        line-height: 1.25;
-        background-color: #e6e6e6;
-        padding: 20px;
-    }
-
-    .dk_things_code{
-        padding: 1rem 1rem 0rem 0.5rem;
-    }
-
     @media(max-width:1200px) {
         .dk_risk_app_img {
-            width: 100% !important;
-        }
-        .mv_product_table{
             width: 100% !important;
         }
     }
@@ -530,12 +516,12 @@
         </div>
         <div class="m_ai_shlash">/</div>
         <div>
-            <button class="btn" style="color: #0068B5;">
-                Best Practices
+            <button style="color: #0068B5;" class="btn" aria-expanded="false">
+                Advisory Guidance
             </button>
         </div>
         <div class="m_ai_shlash">/</div>
-        <div class="m_ai_httl">Threat Analysis Guidance for Gather Data Sampling</div>
+        <div class="m_ai_httl">Register File Data Sampling</div>
 
     </section>
     <!------------------------------------------------------------------------------->
@@ -546,9 +532,9 @@
             <div class="container">
                 <div class="mv_vmware_padd">
                     <div class="row">
-                        <div class="col-12">
+                        <div class="col-md-8 col-sm-12">
                             <div class="mv_vmware_heading">
-                                <h3>Threat Analysis Guidance for Gather Data Sampling</h3>
+                                <h3>Register File Data Sampling / CVE-2023-28746 / INTEL-SA-00898</h3>
                             </div>
                         </div>
                     </div>
@@ -556,11 +542,11 @@
                         <div class="mv_cd_page_marquee_action">
                             <div class="mv_cd_page_marquee_action_padd">
                                 <label for="">ID</label>
-                                <span>785678</span>
+                                <span>817587</span>
                             </div>
                             <div class="mv_cd_page_marquee_action_padd">
                                 <label for="">Updated</label>
-                                <span>1/29/2024</span>
+                                <span>7/22/2025</span>
                             </div>
                             <div class="mv_cd_page_marquee_action_padd">
                                 <label for="">Version</label>
@@ -583,53 +569,51 @@
                 <i class="fa-regular fa-envelope fs-4 px-2" style="color:#0068B5"></i>
             </div>
             <div class="col-lg-3 col-md-4">
-                <!-- nav -->
                 <div class="VK_sticky_side_bar VK_side_bar_postion_stickey">
                     <div>
                         <div class="VK_sidebar_dropdown">
+                            <p class="m-0">
+                                <a href="#dk_related_content" class="text-decoration-none VK_a">
+                                    Related Content
+                                </a>
+                            </p>
                             <details>
                                 <summary>
-                                    <a href="#dk_threat_analysis" class="text-decoration-none VK_a">
-                                        Threat Analysis
+                                    <a href="#dk_introduction" class="text-decoration-none VK_a">
+                                        Introduction
                                     </a>
                                 </summary>
                                 <ul class="list-unstyled ps-3 mb-0">
                                     <li>
-                                        <a href="#dk_attack_req" class="text-decoration-none VK_a my-1">
-                                            Attack Requirements
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <details>
-                                            <summary>
-                                                <a href="#dk_threat_model" class="text-decoration-none VK_a">
-                                                    Threat Model Considerations
-                                                </a>
-                                            </summary>
-                                            <ul class="list-unstyled ps-3 mb-0">
-                                                <li>
-                                                    <a href="#dk_deployment_scenarios" class="text-decoration-none VK_a my-1">
-                                                        Deployment Scenarios to Consider
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </details>
-                                    </li>
-                                    <li>
-                                        <a href="#dk_perfprmance" class="text-decoration-none VK_a my-1">
-                                            Performance Considerations
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#dk_system_administrator" class="text-decoration-none VK_a my-1">
-                                            System Administrator Considerations
+                                        <a href="#dk_impact_summary" class="text-decoration-none VK_a my-1">
+                                            Impact Summary
                                         </a>
                                     </li>
                                 </ul>
                             </details>
                             <p class="m-0">
-                                <a href="#dk_opt_out" class="text-decoration-none VK_a">
-                                    Opt-in and Opt-out
+                                <a href="#dk_background_des" class="text-decoration-none VK_a">
+                                    Background and Issue Description
+                                </a>
+                            </p>
+                            <p class="m-0">
+                                <a href="#dk_mitigation" class="text-decoration-none VK_a">
+                                    Mitigation
+                                </a>
+                            </p>
+                            <p class="m-0">
+                                <a href="#dk_enumeration" class="text-decoration-none VK_a">
+                                    Enumeration
+                                </a>
+                            </p>
+                            <p class="m-0">
+                                <a href="#dk_affected_processors" class="text-decoration-none VK_a">
+                                    Affected Processors
+                                </a>
+                            </p>
+                            <p class="m-0">
+                                <a href="#dk_footnotes" class="text-decoration-none VK_a">
+                                    Footnotes
                                 </a>
                             </p>
                         </div>
@@ -639,16 +623,14 @@
                 <div class="dk_things_code_main">
                     <div class="dk_things_code">
                         <p><b>Key Takeaways</b></p>
-                        <ul>  
-                            <li><p>The GDS mitigation might have some potential performance impact on certain high performance computing workloads. </p>
-                            </li>
-                            <li><p>The GDS mitigation is turned on by default in the microcode. </p>
-                            </li>
-                            <li><p>Operating system vendors (OSVs) provide options to opt out of the GDS mitigation. </p>
-                            </li>
-                            <li><p>Customers should use their threat analysis to make an informed decision about the impact of the GDS mitigation on their systems. </p>
-                            </li>
-                        </ul>
+                        <div class="dk_high_quality">
+                            <ul>
+                                <li><p>RFDS is a microarchitectural vulnerability which may allow malicious software that is able to locally execute code on a system to infer the values of secret data previously used in floating point registers, vector registers, or integer registers. RFDS only affects Intel Atom® processors</p></li>                            
+                                <li><p>Intel has released a microcode update that enables software to clear sensitive information using certain operations to overwrite affected stale register values. At this time, there is no known practical RFDS value injection transient execution attack.</p></li>                            
+                                <li><p>Processors will enumerate IA32_ARCH_CAPABILITIES[RFDS_CLEAR] (bit 28) if they are affected by RFDS, and the VERW instruction overwrites the stale register file entries affected by RFDS.</p></li>                            
+                                <li><p>Processors which are not affected by RFDS may enumerate this by setting IA32_ARCH_CAPABILITIES[RFDS_NO] (bit 27). Note that some unaffected processors may not have a microcode update that enumerates RFDS_NO.</p></li>                            
+                            </ul>
+                        </div>
                     </div> 
                 </div>
             </div>
@@ -659,139 +641,141 @@
                 </div>
                 <div class="col-xl-10 VK_all_sections">
                     <p>&nbsp;</p>
-                    <p>Gather Data Sampling (GDS) is a transient execution side channel vulnerability affecting certain Intel processors. Intel will provide a microcode update with a mitigation for GDS for those affected processors. This mitigation will be enabled by default. This microcode will also provide an opt-out mechanism to disable the mitigation, and operating systems are using these microcode controls to provide a mechanism for end users to enable and disable the mitigation.</p>
-                    <p>The GDS mitigation might have some potential performance impact on certain workloads depending on the instructions used by those workloads. This document provides guidance for system administrators and users to perform a threat analysis and to assess their potential exposure to the exploit and to decide whether to apply the mitigation to their specific environment. Users can combine their threat analysis with a characterization of the performance impact of this mitigation in their workloads to make an informed decision about whether to enable or disable the mitigation on their systems. For additional information, refer to the <a class="b_special_a1" href="/darshit/dk_Solutions_Industries/Gather_Data_Sampling_Mitigation_Performance_Analysis.html">Gather Data Sampling Mitigation Performance Analysis.&nbsp;</a></p>
-                    <p>Always keep your systems up-to-date with the latest security updates and follow the guidance from your software vendors.&nbsp;</p>
+                    <table class="mv_product_table w-100 mb-4">
+                        <tbody>
+                            <tr>
+                                <td>
+                                <p><strong>Disclosure date:</strong><br>
+                                    2024-03-12</p>
+                    
+                                <p><strong>Published date:</strong><br>
+                                    2024-03-12</p>
+                                </td>
+                                <td><img alt="" class="one-quarter-float-left" src="/img/darshit_image/shield-icon-8.png" style="float:left" width="100"><strong>Severity rating:&nbsp;</strong><br>
+                                    6.5 Medium</td>
+                                <td>Industry-wide severity ratings can be found in the&nbsp;<a class="b_special_a1" href="https://nvd.nist.gov/">National Vulnerability Database</a></td>
+                            </tr>
+                        </tbody>
+                    </table> 
 
-                    <section id="dk_threat_analysis">
+                    <section id="dk_related_content">
                         <p class="mb-0">&nbsp;</p>
-                        <h3 style="font-weight: 350; padding-bottom: 0.5rem;">Threat Analysis</h3>
-                        <p>A GDS transient execution attack has similar characteristics as Microarchitectural Data Sampling (MDS) in terms of exploitability. Since a GDS transient execution attack uses the data sampling method to extract information, the attacker is required to run on the same core as the victim to extract a certain amount of raw stale data and then perform analysis over this data to infer useful information. Intel is not aware of any instance of any of this vulnerability being exploited outside a controlled lab environment. Refer to the Attack Requirements section for further details about the requirements for a successful attack.&nbsp;</p>
-                        <p>GDS differs from the MDS vulnerabilities in both the method of exposure (which is limited to the set of gather instructions), and in the data exposed (stale vector register data only). Neither MDS nor GDS, by themselves, provide malicious actors the ability to choose which data is inferred using these methods. Systems which are exposed to malicious software capable of executing a GDS attack may be exposed to more practical attacks that are easier to implement than GDS.</p>
-                        <p>This section outlines details of certain attack preconditions that must exist for the possibility of successful exploitation of this vulnerability, discussion of performance considerations, and the available mitigations and options that exist for customers evaluating GDS as part of their threat analysis and management activities.&nbsp;</p>
-                        <p class="mb-0">&nbsp;</p>
-                    </section>
-
-                    <section id="dk_attack_req">
-                        <h4 style="padding-bottom: 0.5rem;">Attack Requirements</h4>
-                        <p class="mb-0">The key conditions required for a successful GDS attack on an unmitigated system are listed below:</p>
-                        <ol>
-                            <li>The attacker must be able to execute malicious code on the same physical core as the target. This requires that the attacker has access to the same system as the target software, and has sufficient control to both identify which physical core the target software is executing on, and also ensure that they can run their malicious code on that same core.</li>
-                            <li>The attacker needs to execute malicious code which uses gather instructions to transiently sample stale data from the vector register file and transmit that data using a disclosure gadget. The information that the attacker can infer is limited to data that was present in architectural or internal vector registers.</li>
-                            <li>Once data sampling is completed, the attacker needs to perform data analysis to determine whether the sampled data contains the targeted information, and then infer useful information from the raw sampled data.</li>
-                        </ol>
-                    </section>
-
-                    <section id="dk_threat_model">
-                        <h4 style="padding-bottom: 0.5rem;">Threat Model Considerations</h4>
-                        <p>Users without administrative access will likely not be able to disable the GDS mitigation. Privileged users need to take into consideration their threat model and understand both the requirements for a potential successful attack described above and how their systems are used when deciding whether to disable the GDS mitigation.</p>
-                        <p>Intel is not aware of any instance of any of this vulnerability being exploited outside a controlled lab environment.&nbsp;</p>
-                    </section>
-
-                    <section id="dk_deployment_scenarios">
-                        <h4 style="padding-bottom: 0.5rem;">Deployment Scenarios to Consider</h4>
+                        <h3 style="font-weight: 350; padding-bottom: 0.8rem;">Related Content</h3>
                         <ul>
-                            <li><strong>Systems running only trusted code</strong>: If all the code running on the system, including third-party libraries, is considered trusted, then the potential exposure for a GDS attack is low.&nbsp;
-                        
-                            <ul>
-                                <li>The exposure to potential GDS attacks is low for on-site enterprise systems or heavily access-controlled systems with limited user access and limited, trusted applications.</li>
-                                <li>Systems with different security policies for different trust groups, where only authorized trusted users can access the systems which handle a given type of sensitive or private data are also at low exposure to GDS attacks.</li>
-                            </ul>
-                            </li>
-                        </ul>
-                        <p class="mb-0">&nbsp;</p>
-                        <ul>
-                            <li><strong>Systems running untrusted code</strong>: Systems allowed to run untrusted code have higher exposure to potential GDS attacks.&nbsp;
-                        
-                            <ul>
-                                <li>Note that managed runtimes typically do not directly generate gather instructions; for example, V8* does not currently generate gather instructions for JavaScript* code. For just-in time compilation, the exposure is low.</li>
-                            </ul>
-                            </li>
-                        </ul>
-                        <p class="mb-0">&nbsp;</p>
-                        <ul>
-                            <li><strong>Single-user systems</strong>: If only one user has access to the system, and untrusted code is not allowed to run in the system, the potential for exposure to this threat is low. &nbsp;This is also the case for systems that are shared by multiple users but for which only one user is allowed to use the system at a time; for example, when a job scheduler is used in a cluster and the minimum allocatable resource is a full compute node. This is a typical setup found in many on-premises high-performance computing (HPC) systems.&nbsp;<br>
-                            In those HPC installations, compute nodes are not shared between two different users at any time. Only once a job finishes will a new job be allocated in the same node, with some epilog/prolog process in between jobs. In this scenario, a potential GDS attack is less likely to infer useful data.&nbsp;<br>
-                            However, it might be the case in these systems that there are shared nodes, like login or development nodes, where multiple users have concurrent access to the same system. Even though the potential exposure in this type of node may be relatively higher, there are additional security factors to consider for shared nodes that are more exposed to such risks.<br>
-                            The exception to these statements about single-user systems is when untrusted code is allowed to run in the system. See above for considerations that apply to systems where untrusted code is allowed to run.</li>
-                        </ul>
-                        <p class="mb-0">&nbsp;</p>
-                        <ul>
-                            <li><strong>Shared multi-tenant systems</strong>: When there are multiple users to share the same core in a cloud environment, especially when the core is oversubscribed, tenants are constantly changing and with that, data usage is consistently changing, therefore the window for an attacker to target particular data for GDS sampling is limited in a real-world deployment scenario. Data sampling attacks like GDS are just one of many possible attacks that may be difficult to carry out successfully outside of a controlled lab environment, given these conditions. Shared multi-tenant systems which exclusively handle low-value assets may be assumed to be less valuable targets for attacks like GDS than systems which handle secret data.</li>
+                            <li><a class="b_special_a1" href="">INTEL-SA-00898</a></li>
+                            <li><a class="b_special_a1" href="">CVE-2023-28746</a></li>
                         </ul>
                     </section>
 
-                    <section id="dk_perfprmance">
-                        <h4 style="padding-bottom: 0.5rem;">Performance Considerations</h4>
-                        <p>The GDS mitigation will impact the performance of the gather instructions provided by Intel Advanced Vector Extensions 2 (Intel® AVX2) and Intel Advanced Vector Extensions 512 (Intel® AVX-512) and, in the cases noted in the <a class="b_special_a1" href="/darshit/dk_Solutions_Industries/Gather_Data_Sampling.html">technical documentation</a>, the performance of the clwb instruction in some of the affected platforms. Thus, only applications that use those instructions may see a performance impact from this mitigation. Typically, applications that rely on gather instructions are typically heavily vectorized applications that can be normally found in scientific and visualization engineering fields. In these cases, unless the gather instructions are implemented through intrinsics, different compilers might generate different numbers of gather instructions. This might result in the mitigation having diverse performance impacts depending on how the compiler vectorizes the code.</p>
-                        <p>The clwb instruction is normally only found in applications using non-volatile memory. Those could be applications like databases, or other heavy I/O codes, when running on non-volatile memory. The performance impact on this specific clwb instruction is limited to a few Intel processors as described in the GDS&nbsp;<a class="b_special_a1" href="/darshit/dk_Solutions_Industries/Gather_Data_Sampling.html">technical documentation</a>.</p>
+                    <section id="dk_introduction">
+                        <p class="mb-0">&nbsp;</p>
+                        <h3 style="font-weight: 350; padding-bottom: 0.8rem;">Introduction</h3>
+                        <p>Register File Data Sampling (RFDS) is a microarchitectural vulnerability, which, in some situations, may allow an attacker to infer data values previously used in floating point registers, vector registers, or integer registers<a class="b_special_a1" href=""><sup>1</sup></a> . RFDS only affects Intel Atom® processors.</p>
+                        <p>RFDS was discovered as part of Intel’s extensive internal validation work on microarchitectural security. Similar to data sampling transient execution attacks, like <a class="b_special_a1" href="">Microarchitectural Data Sampling</a> (MDS), RFDS may allow a malicious actor who can locally execute code on a system to infer the values of secret data which is otherwise protected by architectural mechanisms. RFDS differs from the MDS vulnerabilities in both the method of exposure and in the data exposed (RFDS exposes stale register data only). Neither MDS nor RFDS, by themselves, provide malicious actors the ability to choose which data is inferred using these methods.</p>
+                        <p>Intel will release a microcode update that enables software to clear sensitive information using the <span class="dk_code_simple">VERW</span> instruction. This is similar to the mitigation mechanism previously used for <a class="b_special_a1" href="">Microarchitectural Data Sampling</a> (MDS) and <a class="b_special_a1" href="">Processor MMIO Stale Data Vulnerabilities</a>.&nbsp;</p>
+                        <p>RFDS is assigned <a class="b_special_a1" href="">CVE-2023-28746</a> with a CVSS base score of 6.5 (Medium) CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:C/C:H/I:N/A:N.</p>
                     </section>
 
-                    <section id="dk_system_administrator">
-                        <h4 style="padding-bottom: 0.5rem;">System Administrator Considerations</h4>
-                        <p class="mb-0">System administrators concerned about a potential GDS attack should ask themselves the following questions:</p>
-                        <ol>
-                            <li>Are my workloads seeing a performance impact from the GDS mitigation?</li>
-                            <li>What does it take to infer relevant data?</li>
-                            <li>Is there untrusted code? Are installed third-party libraries reviewed?
-                            <ul>
-                                <li>An attacker can typically only exploit GDS if they are already able to run arbitrary malicious code on a system.</li>
-                            </ul>
-                            </li>
-                            <li>Is software up to date?</li>
-                        </ol>
+                    <section id="dk_impact_summary">
+                        <h4 style="padding-bottom: 0.8rem;">Impact Summary</h4>
+                        <p>Malicious software that is able to execute code locally may be able to infer data values previously held in floating point registers, vector registers, and/or integer registers of the same logical processor. These previous register values may come from:</p>
+                        <ul>
+                            <li>Other applications</li>
+                            <li>Operating System (OS)</li>
+                            <li>System Management Mode (SMM)</li>
+                            <li>Intel® Software Guard Extensions (Intel® SGX) enclaves</li>
+                            <li>Virtual Machine Manager (VMM), if present</li>
+                            <li>Other guests running under the same VMM</li>
+                            <li>Boot firmware (for example, BIOS)</li>
+                        </ul>
+                        <p>Note that no processors which support Intel® Trust Domain Extensions (Intel® TDX) are affected by this vulnerability.&nbsp;</p>
                     </section>
 
-                    <section id="dk_opt_out">
+                    <section id="dk_background_des">
                         <p class="mb-0">&nbsp;</p>
-                        <h3 style="font-weight: 350; padding-bottom: 0.5rem;">Opt-in and Opt-out</h3>
-                        <p>The GDS mitigation is turned on by default in the microcode. Operating system vendors (OSVs) may implement options to opt out of the GDS mitigation. For users, it is best to use the OS option to turn off mitigation if this is the option chosen.</p>
-                        <p>For confident privileged users, there may be additional options to configure the mitigation, including using <a class="b_special_a1" href="/darshit/dk_Solutions_Industries/Reading_and_Writing_Model_Specific_Registers_MSRs_in_Linux.html">msr-tools</a>.&nbsp;</p>
-                        <p>Refer to the <a class="b_special_a1" href="/darshit/dk_Solutions_Industries/Gather_Data_Sampling.html">GDS technical documentation</a> for more details. Additional information will be added in future revisions of this document.</p>
-                        <p class="mb-0">&nbsp;</p>
-                        <p>The table below provides a summary of where different types of users may consider enabling or disabling the GDS mitigation. This table does not provide all-inclusive guidance and does not consider all attack vectors. Users should decide the mitigation control according to their threat model.&nbsp;</p>
+                        <h3 style="padding-bottom: 0.5rem; font-weight: 350;">Background and Issue Description</h3>
+                        <p>Register File Data Sampling is a domain-bypass transient execution attack which may allow an attacker to infer stale register values (data left in registers from previous operations).</p>
+                        <p>On affected Intel Atom processors, RFDS may allow an attacker to infer values that were previously in a floating point/vector register or, on the Gracemont core<a class="b_special_a1" href=""><sup>2</sup></a> , integer register. Similar to other data sampling attacks, RFDS does not directly allow an attacker to select specific data to attack; only the stale data that exists in register files is able to be inferred.&nbsp;</p>
+                        <p>This may be a concern when the stale value comes from a different security domain. For example, RFDS may allow a malicious application to infer register values previously used by the operating system.&nbsp;</p>
+                        <p>Note that none of the cores affected by RFDS support Intel® Hyper-Threading Technology (Intel® HT Technology), although hybrid processors may contain both affected cores and cores which support Intel® HT Technology. The RFDS method can only infer stale data values from software that ran on that affected logical processor. Refer to the 2022-2024 tab of the <a class="b_special_a1" href="">consolidated Affected Processors table</a> (<em>Register File Data Sampling&nbsp;</em>column) for further details.</p>
+                        <p>Also note that the processor structure which holds the registers, called a register file, may hold temporary values used within operations (for example, data moved by <span class="dk_code_simple">REP MOVS</span> or the keys used by Key Locker operations or AES-NI) and these values may also be inferred using RFDS.&nbsp;</p>
+                        <p>Although stale values in a specific register file (for example, integer register files or floating point/vector register files) will eventually be overwritten by new instructions, this can require hundreds of operations writing to that register file. Because many software routines use only integer operations and not floating point or vector operations, in practice, stale floating point/vector values may persist in the register file longer than stale integer values. Due to the implementation details of the <a class="b_special_a1" href="">Fast Store Forwarding Predictor</a> (FSFP), it may be possible to infer previous integer store values on parts which both support FSFP and allow integer registers to be inferred.</p>
+                        <p>At this time, there is no known practical RFDS value injection transient execution attack.</p>
+                    </section>
+
+                    <section id="dk_mitigation">
+                        <p>&nbsp;</p>
+                        <h3 style="font-weight: 300; padding-bottom: 0.8rem;">Mitigation</h3>
+                        <p>Intel will release a microcode update which will modify certain operations<a class="b_special_a1" href=""><sup>3</sup></a> (VERW, RSM, Key Locker operations<a class="b_special_a1" href=""><sup>4</sup></a>, and entering or exiting Intel® SGX enclaves) to overwrite affected stale register values.&nbsp;</p>
+                        <p>On affected processors, software can execute the <span class="dk_code_simple">VERW</span> instruction before changing security domains. For example, the OS could execute <span class="dk_code_simple">VERW</span> before returning to an untrusted application or the hypervisor could execute <span class="dk_code_simple">VERW</span> before returning to an untrusted guest. This approach is similar to the mitigations for previous issues like <a class="b_special_a1" href="">Microarchitectural Data Sampling</a> (MDS) and <a class="b_special_a1" href="">Processor MMIO Stale Data Vulnerabilities</a>, which may also use the <span class="dk_code_simple">VERW</span> instruction in such cases.</p>
+                        <p>When VERW is invoked, it overwrites only the stale register values, not the architectural (current) values. Since the architectural values of registers are not overwritten, they may later become stale. This means that values in x87, MMX, Streaming SIMD Extensions (SSE), or Intel® Advanced Vector Extensions (Intel® AVX) registers at the time of VERW may be inferred later. Similarly, for processors on which integer registers are also affected, the values of integer registers<a class="b_special_a1" href=""><sup>5</sup></a>&nbsp;(<span class="dk_code_simple">R{A/B/C/D}X</span>,<span class="dk_code_simple"> R8-R15</span>,<span class="dk_code_simple"> RSI</span>,<span class="dk_code_simple"> RDI</span>,<span class="dk_code_simple"> RSP</span>,<span class="dk_code_simple"> RBP}</span>), or arithmetic flags (<span class="dk_code_simple">OF</span>, <span class="dk_code_simple">SF</span>, <span class="dk_code_simple">PF</span>, <span class="dk_code_simple">ZF</span>, <span class="dk_code_simple">AF</span>, <span class="dk_code_simple">CF</span>) or SSP at the time of <span class="dk_code_simple">VERW</span> may be inferred later. Software can mitigate this by overwriting these registers before <span class="dk_code_simple">VERW</span> is invoked. &nbsp;Note that it may not be possible for some OSes to prevent the ring 0 values of <span class="dk_code_simple">RSP</span> and <span class="dk_code_simple">SSP</span> from being inferred by applications due to the need for the OS to maintain its own values in these registers during OS operation. Ring 0 values of <span class="dk_code_simple">RSP</span> and <span class="dk_code_simple">SSP</span> reveal only address layout; not data values of the OS or other applications.</p>
+                        <p>The <span class="dk_code_simple">VERW</span> instruction may not overwrite integer register file data which is in use by Fast Store Forwarding Predictors. On processors which are affected by RFDS and support such predictors, software may choose to set IA32_SPEC_CTRL.PSFD (bit 7) to disable the use of these predictors. Intel believes that this is unlikely to allow secrets to be inferred in real-world scenarios and thus does not recommend setting PSFD to disable the use of these predictors.&nbsp;</p>
+                        <p>On affected processors, loading the updated microcode will mitigate any potential direct attacks using RFDS against Intel SGX enclaves. There will be an Intel SGX TCB Recovery for those Intel SGX-capable affected processors, which are code named Gemini Lake and Gemini Lake Refresh. This TCB Recovery will only attest as up-to-date when the patch has been <a class="b_special_a1" href="">FIT-loaded</a> (for example, with an updated BIOS).</p>
+                        <p>Adding the <span class="dk_code_simple">VERW</span> instruction to a section of code may increase its latency. Thus, applying <span class="dk_code_simple">VERW</span> after domain transitions can lengthen those transitions. Even when operating systems are applying <span class="dk_code_simple">VERW</span> on domain transitions to mitigate this issue, minimal performance impact is expected for the majority of workloads. However, when Key Locker<a class="b_special_a1" href=""><sup>6</sup></a>&nbsp;is in use for disk encryption on systems which only have E-cores enabled, Intel has observed some performance impact due to the microcode update on some encrypted file I/O workloads.</p>
+                    </section>
+
+                    <section id="dk_enumeration">
+                        <p>&nbsp;</p>
+                        <h3 style="font-weight: 300; padding-bottom: 0.8rem;">Enumeration</h3>
+                        <p>Processors which are not affected by RFDS may enumerate this by setting IA32_ARCH_CAPABILITIES[RFDS_NO]. RFDS_NO is bit position 27 in the IA32_ARCH_CAPABILITIES MSR. Affected processors are listed in <a class="b_special_a1" href="">the affected processor table</a>; it is possible that some unaffected parts will not have a microcode update loaded that enumerates RFDS_NO.</p>
+                        <p>Processors will enumerate IA32_ARCH_CAPABILITIES[RFDS_CLEAR] if they are both affected by RFDS and VERW overwrites the stale register file entries affected by RFDS. RFDS_CLEAR is bit position 28 in the IA32_ARCH_CAPABILITIES MSR. To avoid unnecessary performance impact, software should only apply the VERW mitigations as an RFDS mitigation if RFDS_CLEAR is enumerated. VMMs should enumerate RFDS_CLEAR support to VMs that may run on both affected processors (which would enumerate RFDS_CLEAR) and unaffected processors.</p>
+                        <p class="mb-4">For processors with hybrid architectures (for example, processors code named Alder Lake) only the Intel Atom cores (E-cores; for example, Gracemont) are affected but all processors within the system will enumerate consistently (for example, affected processors will enumerate RFDS_CLEAR as 1 and RFDS_NO as 0 on all logical processors). This still applies even if all Intel Atom core are disabled by the OS or BIOS. Note that some processors (for example, some non-hybrid processors with the Raptor Lake code name) with only P-cores may enumerate as unaffected by RFDS even if similar hybrid products with the same CPUID family/model/stepping fold are affected.</p>
                         <table class="mv_product_table w-100 mb-4">
-                            <caption>Table 1: Threat Model Considerations</caption>
+                            <caption>Table 1: Update to IA32_ARCH_CAPABILITIES MSR</caption>
                             <thead>
                                 <tr>
-                                    <th scope="col">User</th>
-                                    <th scope="col">Trust Level</th>
-                                    <th scope="col">Potential GDS Exposure</th>
+                                    <th scope="col">Register Address Hex</th>
+                                    <th scope="col">Register Address Dec</th>
+                                    <th scope="col">Architectural MSR Name / Bit Fields</th>
+                                    <th scope="col">MSR / Bit Description</th>
+                                    <th scope="col">Comment</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>PC consumer</td>
-                                    <td>No untrusted workload</td>
-                                    <td>Low</td>
+                                    <td>10AH</td>
+                                    <td>266</td>
+                                    <td>IA32_ARCH_CAPABILITIES</td>
+                                    <td>Enumeration of Architectural Features (RO)</td>
+                                    <td>If CPUID.(EAX-07H, ECX=0):EDX[29]=1</td>
                                 </tr>
                                 <tr>
-                                    <td>PC consumer</td>
-                                    <td>Untrusted workload</td>
-                                    <td>High</td>
+                                    <td>10AH</td>
+                                    <td>266</td>
+                                    <td>27</td>
+                                    <td>RFDS_NO: The processor is not vulnerable to Register File Data Sampling.</td>
+                                    <td>&nbsp;</td>
                                 </tr>
                                 <tr>
-                                    <td>System Administrator</td>
-                                    <td>Controlled environment (for example, only trusted workloads)&nbsp;</td>
-                                    <td>Low</td>
-                                </tr>
-                                <tr>
-                                    <td>System Administrator</td>
-                                    <td>Long-term core-isolated workloads (for example, using core scheduling)</td>
-                                    <td>Low</td>
-                                </tr>
-                                <tr>
-                                    <td>System Administrator</td>
-                                    <td>Short-term core-isolated workloads with GDS software sequence flushing</td>
-                                    <td>Low</td>
+                                    <td>10AH</td>
+                                    <td>266</td>
+                                    <td>28</td>
+                                    <td>RFDS_CLEAR: The processor is vulnerable to Register File Data Sampling, and the VERW instruction will overwrite buffers affected by Register File Data Sampling.</td>
+                                    <td>&nbsp;</td>
                                 </tr>
                             </tbody>
-                        </table>
-                        <p>&nbsp;</p>
-                        <h5 style="text-align:center"><a class="b_special_a1">Software Security Guidance Home</a>&nbsp;|&nbsp;<a class="b_special_a1">Advisory Guidance</a>&nbsp;|&nbsp;<a class="b_special_a1">Technical Documentation</a>&nbsp;|&nbsp;<a class="b_special_a1">Best Practices</a>&nbsp;|&nbsp;<a class="b_special_a1">Resources</a></h5>
-                        <p>&nbsp;</p>
+                        </table> 
                     </section>
                     
+                    <section id="dk_affected_processors">
+                        <p>&nbsp;</p>
+                        <h3 style="font-weight: 300; padding-bottom: 0.8rem;"><a class="b_special_a1" href="">Affected Processors</a></h3>
+                        <p>Refer to the 2022-2024 tab of&nbsp;the <a class="b_special_a1" href="">consolidated Affected Processors table</a>:&nbsp;<em>Register File Data Sampling</em> column.&nbsp;Processors which have reached their End Of Servicing Lifetime are not listed in the consolidated table. Intel does not plan to evaluate whether any such processors are affected.&nbsp;Refer to the <a class="b_special_a1" href="">Support</a> page for more information.</p>
+                    </section>
+
+                    <section id="dk_footnotes">
+                        <p>&nbsp;</p>
+                        <h3 style="font-weight: 300; padding-bottom: 0.8rem;"><a class="b_special_a1" href="">Footnotes</a></h3>
+                        <ol>
+                            <li>Note that these registers may also hold temporary values used within operations and, in some situations, integer store values.</li>
+                            <li>Used in processors code named Alder Lake, Raptor Lake, and Arizona Beach.</li>
+                            <li>MSR writes to L1D_FLUSH MSR do not ensure affected stale register values are overwritten.</li>
+                            <li>Software loading Key Locker keys using <span class="dk_code_simple">LOADIWKEY</span> should execute a <span class="dk_code_simple">VERW</span> to clear registers before transitioning to untrusted code to prevent later software from inferring the loaded key.</li>
+                            <li>Note that <span class="dk_code_simple">RIP</span> and the system flags portion of <span class="dk_code_simple">RFLAGS</span> are not directly held in the integer register file.</li>
+                            <li>Note that the only affected processors with Key Locker are based on Alder Lake and Raptor Lake microarchitectures.</li>
+                        </ol>
+                    </section>
+
                 </div>
             </section>
         </div>
@@ -918,7 +902,4 @@
 </body>
 
 </html>
-
-
-
 
