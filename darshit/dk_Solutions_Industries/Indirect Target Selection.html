@@ -620,17 +620,17 @@
                         <p class="mb-0">&nbsp;</p>
                         <h3 style="font-weight: 350; padding-bottom: 0.8rem;">Related Content</h3>
                         <ul>
-                            <li><a class="b_special_a1" href="">INTEL-SA-01153</a></li>
-                            <li><a class="b_special_a1" href="">Linux* kernel commit for ITS</a></li>
-                            <li><a class="b_special_a1" href="">Linux kernel commit for IBTI History</a></li>
-                            <li><a class="b_special_a1" href="">Branch History Injection and Intra-mode Branch Target Injection</a></li>
+                            <li><a class="b_special_a1" href="/darshit/dk_Solutions_Industries/INTEL_SA_01153.html">INTEL-SA-01153</a></li>
+                            <li><a class="b_special_a1" href="https://github.com/torvalds/linux/commit/6f5bf947bab06f37ff931c359fd5770c4d9cbf87">Linux* kernel commit for ITS</a></li>
+                            <li><a class="b_special_a1" href="https://github.com/torvalds/linux/commit/caf12fa9c066bb81e6a2f05dc441a89a1160c0fe">Linux kernel commit for IBTI History</a></li>
+                            <li><a class="b_special_a1" href="/darshit/dk_Solutions_Industries/Branch_History_Injection_and_Intra_mode_Branch_Target_Injection2.html#dk_indirect_fence">Branch History Injection and Intra-mode Branch Target Injection</a></li>
                         </ul>
                     </section>
 
                     <section>
                         <p class="mb-0">&nbsp;</p>
                         <h3 style="font-weight: 350; padding-bottom: 0.8rem;">Overview</h3>
-                        <p>Recent Intel processors support a technology called <a class="b_special_a1" href="">enhanced IBRS</a> (eIBRS) for mitigating Branch Target Injection transient execution attacks. Processors affected by the Indirect Target Selection (ITS) issue may incompletely mitigate Branch Target Injection, due to indirect branch predictions that are not fully constrained by the enhanced IBRS properties, nor by the IBPB (Indirect Branch Prediction Barrier) indirect barrier.</p>
+                        <p>Recent Intel processors support a technology called <a class="b_special_a1" href="/darshit/dk_Solutions_Industries/Indirect_Branch_Restricted_Speculation.html#dk_enhanced_ibrs">enhanced IBRS</a> (eIBRS) for mitigating Branch Target Injection transient execution attacks. Processors affected by the Indirect Target Selection (ITS) issue may incompletely mitigate Branch Target Injection, due to indirect branch predictions that are not fully constrained by the enhanced IBRS properties, nor by the IBPB (Indirect Branch Prediction Barrier) indirect barrier.</p>
                         <p>There are several documented properties that may be violated by this Indirect Target Selection issue. Firstly, when IBRS is set on these processors, predicted targets of indirect branches of a virtual machine manager (VMM) (VMX root) should not be controlled by software that was executed in a virtual machine (VM) (VMX non-root). Secondly, branches in system management mode (SMM) and Intel® Software Guard Extensions (Intel® SGX) enclaves cannot be controlled by outside code. Finally, software that executed before an IBPB barrier should not be able to control the predicted targets of indirect branches executed after the barrier on the same logical processor.&nbsp;</p>
                         <p>Intel is providing a microcode update for this issue, which ensures that these targets are cleared when OS/VMM software invokes an Indirect Branch Prediction Barrier (IBPB), and in other similar circumstances, such as when entering an Intel SGX enclave and/or SMM. This prevents potential transient execution attacks in situations where these unintended targets may otherwise correspond to branches prior to these barriers.</p>
                         <p>Intel is also issuing VMM software guidance for some processors where indirect branches in a VMM (VMX host) may be predicted using unintended targets corresponding to branches in a guest. This guidance is only relevant where VMM software is relying on enhanced IBRS (eIBRS) to mitigate Branch Target Injection attacks.</p>
@@ -746,7 +746,7 @@
                             <img class="dk_risk_app_img" src="/img/darshit_image/indirect-target-selection-cache-line-fig1.png" alt="">
                         </p>
                         <p class="text-center">Figure 1: Cache Line Location of Indirect Branches</p>
-                        <p>The processors where VMM host software may be affected by this issue also enumerate RRSBA, and so (as <a class="b_special_a1" href="">previously documented</a>) RET instructions may be predicted using alternate predictors and thus may be affected by this issue. Note that <a class="b_special_a1" href="">retpoline</a> is not typically applied to all RET instructions, and so VMM software may need to apply further mitigations.</p>
+                        <p>The processors where VMM host software may be affected by this issue also enumerate RRSBA, and so (as <a class="b_special_a1" href="/darshit/dk_Solutions_Industries/Return_Stack_Buffer_Underflow.html">previously documented</a>) RET instructions may be predicted using alternate predictors and thus may be affected by this issue. Note that <a class="b_special_a1" href="/darshit/dk_Solutions_Industries/Retpoline_A_Branch_Target_Injection_Mitigation.html">retpoline</a> is not typically applied to all RET instructions, and so VMM software may need to apply further mitigations.</p>
                         <h4>Migration Pool</h4>
                         <p>VM migration pools may contain both affected and unaffected processors. To help VMMs communicate to the guest whether they are affected by Indirect Target Selection, IA32_ARCH_CAPABILITIES[62] will be defined as &nbsp;ITS_NO. A VMM can enumerate this bit as 1 to guests in order to indicate that they are not affected by Indirect Target Selection.</p>
                         <p>The VMM should synthesize ITS_NO for VMs unless the VM could run on an affected host.</p>

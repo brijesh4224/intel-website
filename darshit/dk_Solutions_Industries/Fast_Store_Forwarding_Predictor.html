@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fast Store Forwarding Predictor</title>
+
+    <!-- font family -->
+    <link href="https://fonts.cdnfonts.com/css/intel-clear" rel="stylesheet">
+
+    <link rel="stylesheet" href="/css/dk_developer_edge_iot_5G_industrial_automation_see_all_wireless_network_ready_printed_circuit_board_(PCB)_defect_detection.css">
+    <link rel="stylesheet" href="/css/mv_product/ECC.css">
+    <link rel="stylesheet" href="/css/rushita_automotive.css">
+
+    <!-- header footer -->
+    <link rel="stylesheet" href='/css/yatri.css'>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" rel="stylesheet">
+
+</head>
+
+<style>
+    .dk_color1 {
+        color: #069 !important;
+    }
+
+    .dk_color2 {
+        color: #008200 !important;
+    }
+
+    .dk_color3 {
+        color: #b24501;
+    }
+
+    .dk_note{
+        font-size: 1rem;
+        line-height: 1.25;
+        word-wrap: break-word;
+        background-color: #e6e6e6;
+        padding: 20px;
+        border-left: 3px solid #fdb813;
+    }
+    .dk_code_simple{
+        background-color: #e6e6e6;
+        color: #53565a;
+        border-radius: 0;
+    }
+    
+    .mv_code_toolbar{
+        margin: 10px 0px;
+    }
+
+    @media(max-width:1200px) {
+        .dk_risk_app_img {
+            width: 100% !important;
+        }
+    }
+</style>
+
+<body>
+    <!-- header -->
+    <div id="navbar"></div>
+
+    <!------------------------------------------------------------------------------->
+    <section class="m_ai_tdrop">
+        <div>
+            <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Developers
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item m_dropActive" href="/dhruvin_developer-tools/ds_Developer-Zone.html">Overview</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/rushita_Solutions/k_solutions_in_Viewall_SDF_Industrial-Automation_Control-flow-Enforcement_Technology.html">Topics & Technologies</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/dhruvin_developer-tools/ds_Development-Tools.html">Tools</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/rushita_Solutions/k_solutions_in_Viewall_SDF_Industrial-Automation_Hardware-Platforms.html">Hardware Platforms</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/dhruvin_developer-tools/ds_Resource-Documentation-Center.html">Resources & Documentation</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/dhruvin_developer-tools/ds_Learn.html">Learn</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/dhruvin_developer-tools/ds_Communities-and-Events.html">Community & Events</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/dhruvin_developer-tools/ds_Developer-Programs.html">Developer Programs</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/dhruvin_developer-tools/ds_Get-Help.html">Get Help</a></li>
+            </ul>
+        </div>
+        <div class="m_ai_shlash">/</div>
+        <div>
+            <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Topics & Technologies
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item m_dropActive" href="">Artificial Intelligence</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Client Applications</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Cloud</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">GPU Research</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Edge Computing</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">GameDev</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">HPC</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Data Center</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Firmware</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Networking</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Open Ecosystem</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Persistent Memory</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Intel® Platform Analysis Technology</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Runtime Languages</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Software Security Guidance</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Storage</a></li>
+            </ul>
+        </div>
+        <div class="m_ai_shlash">/</div>
+        <div>
+            <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Software Security Guidance
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item m_dropActive" href="">Advisory Guidance</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Best Practices</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Resources</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Disclosure Documentation</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Feature Documentation</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">More Information</a></li>
+            </ul>
+        </div>
+        <div class="m_ai_shlash">/</div>
+        <div>
+            <a href="">
+                <button class="btn" style="color: #0068B5;">
+                    Feature Documentation
+                </button>
+            </a>
+        </div>
+        <div class="m_ai_shlash">/</div>
+        <div class="m_ai_httl">FSFP Description</div>
+    </section>
+    <!------------------------------------------------------------------------------->
+
+    <!-- VMware Horizon -->
+    <section>
+        <div class="mv_vmware_bg_color">
+            <div class="container">
+                <div class="mv_vmware_padd">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="mv_vmware_heading">
+                                <h3>Fast Store Forwarding Predictor</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mv_cd_page_marquee_info">
+                        <div class="mv_cd_page_marquee_action">
+                            <div class="mv_cd_page_marquee_action_padd">
+                                <label for="">ID</label>
+                                <span>758384</span>
+                            </div>
+                            <div class="mv_cd_page_marquee_action_padd">
+                                <label for="">Updated</label>
+                                <span>2/8/2022</span>
+                            </div>
+                            <div class="mv_cd_page_marquee_action_padd">
+                                <label for="">Version</label>
+                                <span>Latest</span>
+                            </div>
+                            <div class="mv_cd_page_marquee_action_padd">
+                                <label for=""></label>
+                                <span>Public</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="container py-5">
+        <div class="row">
+            <div class="d-flex justify-content-end col-xl-10 py-3 d-md-none">
+                <i class="fa-solid fa-print fs-4 px-2 " style="color:#0068B5"></i>
+                <i class="fa-regular fa-envelope fs-4 px-2" style="color:#0068B5"></i>
+            </div>
+            <div class="col-lg-3 col-md-4">
+                <div class="VK_sticky_side_bar VK_side_bar_postion_stickey">
+                    <div>
+                        <div class="VK_sidebar_dropdown">
+                            <p class="m-0">
+                                <a href="#dk_description" class="text-decoration-none VK_a">
+                                    Description
+                                </a>
+                            </p>
+                            <p class="m-0">
+                                <a href="#dk_gadgets" class="text-decoration-none VK_a">
+                                    Potential for Transient Execution Disclosure Gadgets
+                                </a>
+                            </p>
+                            <details>
+                                <summary>
+                                    <a href="#dk_fsfp_properties" class="text-decoration-none VK_a">
+                                        FSFP Mitigation Properties
+                                    </a>
+                                </summary>
+                                <ul class="list-unstyled ps-3 mb-0">
+                                    <li>
+                                        <a href="#dk_isolation" class="text-decoration-none VK_a my-1">
+                                            Cross-Domain and Cross-Thread Training Isolation
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#dk_predictive" class="text-decoration-none VK_a my-1">
+                                            Predictive Forwarding Barriers
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#dk_disabled" class="text-decoration-none VK_a my-1">
+                                            FSFP Disabled Modes
+                                        </a>
+                                    </li>
+                                </ul>
+                            </details>
+                            <p class="m-0">
+                                <a href="#dk_software_guidance" class="text-decoration-none VK_a">
+                                    Software Guidance
+                                </a>
+                            </p>
+                            <p class="m-0">
+                                <a href="#dk_current_fsfp" class="text-decoration-none VK_a">
+                                    Current Processors Supporting FSFP
+                                </a>
+                            </p>
+                            <p class="m-0">
+                                <a href="#dk_fsfp_issue" class="text-decoration-none VK_a">
+                                    FSFP Cross-Domain Training Isolation Issue
+                                </a>
+                            </p>
+                            <details>
+                                <summary>
+                                    <a href="#dk_fsfp_cross" class="text-decoration-none VK_a">
+                                        FSFP Cross-Thread Training Isolation Issue
+                                    </a>
+                                </summary>
+                                <ul class="list-unstyled ps-3 mb-0">
+                                    <li>
+                                        <a href="#dk_processors_affec" class="text-decoration-none VK_a my-1">
+                                            Processors Affected by FSFP Cross-Thread Training Isolation Issue
+                                        </a>
+                                    </li>
+                                </ul>
+                            </details>
+                        </div>
+                    </div>
+                </div>
+                <!-- thinkcode -->
+                
+            </div>
+            <div class="col-lg-9 col-md-8">
+                <div class="d-md-flex justify-content-end col-xl-10 py-3 d-none">
+                    <i class="fa-solid fa-print fs-4 px-2 " style="color:#0068B5"></i>
+                    <i class="fa-regular fa-envelope fs-4 px-2" style="color:#0068B5"></i>
+                </div>
+                <div class="col-xl-10 VK_all_sections">
+                    <p>&nbsp;</p>
+                    <p>This article describes a Fast Store Forwarding Predictor (FSFP) performance feature that is supported on <a class="b_special_a1" href="">certain Intel processor</a>s, the implications of this feature on potential transient execution disclosure gadgets, and the properties maintained by those processors to help prevent potential exploitation of such disclosure gadgets. The guidance presented herein reflects Intel’s current information and understanding, and may be revised as new information emerges and as the threat landscape evolves.</p>
+                    <p>We also describe an issue affecting certain processors that requires a microcode update to fully support the Fast Store Forwarding Predictor training domain isolation properties described here.</p>
+
+                    <section id="dk_description">
+                        <p class="mb-0">&nbsp;</p>
+                        <h3 style="font-weight: 350; padding-bottom: 0.5rem;">Description</h3>
+                        <p>Certain Intel processors support a performance feature called Fast Store Forwarding Predictor (FSFP). Based on observing previous behavior, FSFP enables the processor to predict that a store will forward data to a younger load and optimize that case. This optimization may allow the load to speculatively execute with data from an older store before all forwarding conditions (like store-load address match) have been resolved. If data is incorrectly forwarded to the load, the processor will prevent the load from committing to the architectural state and will re-execute the load with the correct data.</p>
+                    </section>
+
+                    <section id="dk_gadgets">
+                        <p class="mb-0">&nbsp;</p>
+                        <h3 style="font-weight: 350; padding-bottom: 0.5rem;">Potential for Transient Execution Disclosure Gadgets</h3>
+                        <p>As an effective performance optimization, FSFP predicts store-to-load forwarding with high accuracy. These predictions are based on the observed behavior of previous stores and loads. However, misprediction of store-to-load forwarding can happen for specific reasons. For example, either dynamically varying behavior of specific store and load instruction instances, or predictor aliasing between different instruction instances could cause FSFP to mispredict the correct store-to-load forwarding.</p>
+                        <p>As with other forms of speculation, the transient execution of FSFP store-to-load forwarding has the potential to reveal data through a covert channel that would not otherwise be revealed. If a malicious actor is able to identify a disclosure gadget in vulnerable victim code and also induce FSFP store-forwarding speculation as required for the gadget, it may be possible to disclose targeted data accessible to the victim with a “confused-deputy” form of attack.</p>
+                    </section>
+
+                    <section id="dk_fsfp_properties">
+                        <p class="mb-0">&nbsp;</p>
+                        <h3 style="font-weight: 350; padding-bottom: 0.5rem;">FSFP Mitigation Properties</h3>
+                        <p>Processors that support FSFP maintain several properties to help mitigate the risk of potential transient execution attacks. These properties are intended to enable prediction domain isolation for FSFP, as well as provide mechanisms to disable FSFP where desired.</p>
+                    </section>
+
+                    <section id="dk_isolation">
+                        <h4>Cross-Domain and Cross-Thread Training Isolation</h4>
+                        <p>The FSFP domain isolation architecture is analogous to the indirect branch prediction domain isolation properties documented for the <a class="b_special_a1" href="">Indirect Branch Restricted Speculation</a> (IBRS) and <a class="b_special_a1" href="">Single Thread Indirect Branch Predictors</a> (STIBP) mechanisms.</p>
+                        <p class="mb-0">For processors supporting FSFP, the following domain isolation properties are maintained (regardless of IBRS or STIBP enabling):</p>
+                        <ul>
+                            <li>Activity in user mode does not control FSFP prediction in supervisor mode.</li>
+                            <li>Activity in Virtual Machine Extensions (VMX) guest (non-root) mode does not control FSFP prediction in host (root) mode.</li>
+                            <li>Activity on one logical processor does not control FSFP prediction on another logical processor.</li>
+                        </ul>
+                        <p>In addition, the <a class="b_special_a1" href="">Indirect Branch Predictor Barrier</a> (IBPB) additionally serves as an FSFP prediction barrier. Activity before the barrier on a logical processor does not control FSFP prediction after the barrier.</p>
+                        <p>Note that FSFP does not affect system management mode (SMM) and Intel® Software Guard Extensions (Intel® SGX) enclaves. This is described in more detail below.</p>
+                    </section>
+
+                    <section id="dk_predictive">
+                        <h4>Predictive Forwarding Barriers</h4>
+                        <p>Processors supporting FSFP prevent predictive forwarding of data values of older stores to younger loads across certain architectural boundaries. If any of the following occur between an older store and a younger load, FSFP will not predictively forward data from that store to that load:</p>
+                        <ul>
+                            <li><span class="dk_code_simple">LFENCE</span></li>
+                            <li>Change to memory protection key restriction registers <span class="dk_code_simple">PKRU</span> or <span class="dk_code_simple">PKRS</span></li>
+                            <li>Serializing instructions or events</li>
+                        </ul>
+                        <p>Also note that no store in one privileged predictor mode can be predictively forwarded to a load from another predictor mode. This includes not only mode transitions (such as <span class="dk_code_simple">SYSCALL</span>), but also implicit supervisor loads (for example, loads from the&nbsp;&nbsp;Global Descriptor Table&nbsp;(GDT) performed by a segment load instruction).</p>
+                    </section>
+
+                    <section id="dk_disabled">
+                        <h4>FSFP Disabled Modes</h4>
+                        <p>When FSFP is disabled, the processor does not speculatively execute loads with a value forwarded from a store when the store and load do not have matching addresses. This FSFP-disabled behavior does not intrinsically preclude speculative store bypass.</p>
+                        <p>Both <a class="b_special_a1" href="">Speculative Store Bypass</a>&nbsp;(SSB) and FSFP are disabled whenever IA32_SPEC_CTRL.SSBD (Speculative Store Bypass Disable) MSR bit is set to 1, or inside Intel® SGX enclaves or system management mode (SMM)). All processors that support FSFP also support SSBD.</p>
+                        <p>In addition to SSBD, a finer-grained control is provided for disabling FSFP without disabling SSB. If enumerated by CPUID.(EAX=7,ECX=2).EDX[0], the processor supports setting IA32_SPEC_CTRL.PSFD (bit 7). FSFP will be disabled if either SSBD or PSFD are enabled or if in SMM or Intel SGX mode.</p>
+                        <p>The PSFD bit offset is chosen to align with the <a class="b_special_a1" href="">Predictive Store Forwarding Disable</a> (PSFD) bit defined <a class="b_special_a1" href="">here</a> by AMD*. &nbsp;</p>
+                        <p>Going forward, PSFD is expected to be supported on all processors that support FSFP. Some processors may require a microcode update to enable PSFD support. Refer to the <a class="b_special_a1" href="">Processors Affected by FSFP Cross-Domain Training Isolation Issue</a> section for more details.&nbsp;</p>
+                    </section>
+
+                    <section id="dk_software_guidance">
+                        <p class="mb-0">&nbsp;</p>
+                        <h3 style="font-weight: 350;">Software Guidance</h3>
+                        <p>In many cases, software environments employing mitigations for <a class="b_special_a1" href="">Branch Target Injection</a> (Spectre variant 2) and <a class="b_special_a1" href="">Speculative Store Bypass</a> (Spectre variant 4) may require no further changes for FSFP.</p>
+                        <p>The combination of processor domain isolation, along with software invocation of IBPB on security context switches, can help mitigate the risk of cross-domain FSFP training attacks.</p>
+                        <p class="mb-0">Same-domain exposure for FSFP may be similar to that of Speculative Store Bypass. As with Speculative Store Bypass, language-based security environments (for example, a managed runtime) present the most likely environment where a potential malicious actor may seek to influence the generation of code. Mitigation for such environments are similar to those described for Speculative Store Bypass. &nbsp;Some options include:</p>
+                        <ul>
+                            <li>Process isolation</li>
+                            <li>SSBD</li>
+                            <li>Targeted mitigation of specific disclosure gadgets (for example, placing <span class="code-simple">LFENCE</span> between potential store/load pairs)</li>
+                        </ul>
+                        <p>Using PSFD to disable FSFP may be of interest in specific environments that are concerned with same-domain FSFP attacks, but which are not concerned about Speculative Store Bypass attacks and where the performance impact of SSBD is a concern.&nbsp;</p>
+                    </section>
+
+                    <section id="dk_current_fsfp">
+                        <p class="mb-0">&nbsp;</p>
+                        <h4 style="font-weight: 350;"><a class="b_special_a1" href="">Current Processors Supporting FSFP</a></h4>
+                        <p>Future Intel processors that support FSFP will enumerate support for PSFD control. The current processors supporting FSFP include:</p>
+                        <table class="mv_product_table w-100">
+                            <caption>Table 1: Current Processors Supporting FSFP</caption>
+                            <thead>
+                                <tr>
+                                    <th scope="col">Processor</th>
+                                    <th scope="col">Stepping (All unless otherwise noted)</th>
+                                    <th scope="col">Code Names/Microarchitectures</th>
+                                    <th scope="col">Product Family</th>
+                                    <th scope="col">Brand Names</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>06_7EH</td>
+                                    <td>5</td>
+                                    <td>Ice Lake U,Y</td>
+                                    <td>10th Generation Intel® Core™ Processor Family</td>
+                                    <td>Intel® Core™ Processor i7-1060G7, i7-1065G7<br>
+                                    Intel® Core™ Processor i5-1030G4, i5-1030G7, i5-1035G1, i5-1035G4, i5-1035G7&nbsp;<br>
+                                    Intel® Core™ Processor i3-1000G1, i3-1000G4, i3-1005G1</td>
+                                </tr>
+                                <tr>
+                                    <td>06_6AH</td>
+                                    <td>4,5,6</td>
+                                    <td>Ice Lake Xeon-SP</td>
+                                    <td>3rd Gen Intel® Xeon® Scalable processor family</td>
+                                    <td>Intel® Xeon® Gold 8300 processors, Intel® Xeon® Gold 6300 processors, &nbsp;Intel® Xeon® Gold 5300 processors, &nbsp;Intel® Xeon® Silver 4300 processors</td>
+                                </tr>
+                                <tr>
+                                    <td>06_8AH</td>
+                                    <td>1</td>
+                                    <td>Lakefield B-step (Sunny Cove and Tremont hybrid)&nbsp;</td>
+                                    <td>Intel® Core™ Processors with Intel® Hybrid Technology</td>
+                                    <td>Intel® Core™ Processor i3-L13G4, i5-L16G7</td>
+                                </tr>
+                                <tr>
+                                    <td>06_8CH</td>
+                                    <td>&lt;=2</td>
+                                    <td>Tiger Lake U-series</td>
+                                    <td>11th Generation Intel® Core™ Processor Family</td>
+                                    <td>Intel® Core™ &nbsp;i7-1185G7, i7-1165G7, i7-1185GRE, i7-1185G7E, i7-1180G7, i7-1160G7, &nbsp;i5-1145G7, &nbsp;i5-1145GRE, i5-1145G7E, i5-1140G7, i5-1130G7, i3-1125G4, &nbsp;i3-1115GRE, i3-1115G4E, i3-1120G4, i3-1110G4, &nbsp;Intel® Celeron® 6305, Intel® Celeron® 6305E &nbsp;Processor</td>
+                                </tr>
+                                <tr>
+                                    <td>06_8DH</td>
+                                    <td>1</td>
+                                    <td>Tiger Lake H-series &nbsp;</td>
+                                    <td>1. 11th Generation Intel® Core™ Processor Family<br>
+                                    2. Intel® Xeon® Processor Family</td>
+                                    <td>1. Intel® Core™ i9-11980HK, i9-11950H, i9-11900H, i7-11850H, i7-11800H, i5-11500H, i5-11400H, i5-11260H, i7-11390H, i7-11375H, i7-11370H, i5-11320H, i5-11300H,&nbsp;<br>
+                                    2. Intel® Xeon® W-11955M, Intel® Xeon® W-11855M,&nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td>06_8DH</td>
+                                    <td>1</td>
+                                    <td>Tiger Lake H-series&nbsp;</td>
+                                    <td>1. 11th Generation Intel® Core™ Processor Family<br>
+                                    2. Intel® Xeon® Processor Family</td>
+                                    <td>1. Intel® Core™ i7-11850HE, i3-11100HE<br>
+                                    2. Intel® Xeon® &nbsp;W-11865MRE, W-11555MRE, W-11155MRE, W-11555MLE, W-11865MLE, W-11155MLE, Intel® Celeron®6600HE</td>
+                                </tr>
+                                <tr>
+                                    <td>06_8CH</td>
+                                    <td>2</td>
+                                    <td>1. Tiger Lake U Refresh &nbsp;<br>
+                                    2. Tiger Lake H35</td>
+                                    <td>11th Generation Intel® Core™ Processor Family</td>
+                                    <td>1. Intel® Core™ i7-1195G7, i5-1155G7, i5-1135G7, i3-1115G4, Intel® Pentium® Gold 7505&nbsp;<br>
+                                    2. Intel® Core™ i7-11390H, i5-11320H</td>
+                                </tr>
+                                <tr>
+                                    <td>06_A7H</td>
+                                    <td>1</td>
+                                    <td>Rocket Lake</td>
+                                    <td>11th Generation Intel® Core™ Processor Family</td>
+                                    <td>Intel® Core™ Processor i9-11900K, i9-11900KF, i9-11900, i9-11900T, i9-11900F, &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; i7-11700K, i7-11700KF, i7-11700, i7-11700T, i7-11700F, i5-11600K, i5-11600KF, i5-11600, i5-11600T, i5-11500, i5-11500T, i5-11400, i5-11400F, i5-11400T</td>
+                                </tr>
+                                <tr>
+                                    <td>06_9AH</td>
+                                    <td>3</td>
+                                    <td>Alder Lake (Golden Cove and Gracemont hybrid) P/M series</td>
+                                    <td>12th Generation Intel® Core™ Processor Family<br>
+                                    Intel® Pentium® Gold Processor Family<br>
+                                    Intel® Celeron® Processor Family</td>
+                                    <td>Intel® Core™ Processor i7-12800P, i7-12700P, i7-12600P, i5-12500P, i5-12400P, i3-12200P i7-1260U, i7-1250U, i5-1240U, i5-1230U, i3-1210U, Intel® Pentium® Gold Processor &nbsp;8500, Intel® Celeron® Processor 7300</td>
+                                </tr>
+                                <tr>
+                                    <td>06_97H</td>
+                                    <td>2</td>
+                                    <td>Alder Lake (Golden Cove and Gracemont hybrid) S-series</td>
+                                    <td>12th Generation Intel® Core™ Processor Family</td>
+                                    <td>Intel® Core™ Processor i9-12900K, i9-12900KF, i7-12700K, i7-12700KF, i5-12600K, i5-12600KF</td>
+                                </tr>
+                                <tr>
+                                    <td>06_97H</td>
+                                    <td>5</td>
+                                    <td>Alder Lake S-series<br>
+                                    (Golden Cove)</td>
+                                    <td>12th Generation Intel® Core™ Processor Family<br>
+                                    Intel® Pentium® Gold Processor Family<br>
+                                    Intel® Celeron® Processor Family</td>
+                                    <td>Intel® Core™ Processor i5-12600, i5-12500, i5-12400, i5-12400F, i3-12300, i3-12100, i3-12100F, i5-12600T, i5-12500T, i5-12400T, i3-12300T, i3-12100T<br>
+                                    Intel® Pentium® Gold Processor G7400, G7400T<br>
+                                    Intel® Celeron® Processor G6900, G6900T<br>
+                                    &nbsp;</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <p>&nbsp;</p>
+                    </section>
+
+                    <section id="dk_fsfp_issue">
+                        <p class="mb-0">&nbsp;</p>
+                        <h4 style="font-weight: 350;"><a class="b_special_a1" href="">FSFP Cross-Domain Training Isolation Issue</a></h4>
+                        <p>Certain processors that support FSFP do not fully maintain cross-domain training isolation properties without recent microcode update. &nbsp;In some cases, user mode software may be able to control FSFP prediction in supervisor mode software, or VMX guest software may be able to control prediction in host (VMX root) software. Such control could be used by a malicious program running on the same logical processor to trigger transient execution gadgets in a higher-privileged mode, potentially leading to data disclosure.&nbsp;</p>
+                        <p>This issue can be addressed on affected processors by deploying the latest microcode update. Refer to the related CVE (<a class="b_special_a1" href="">CVE-2021-0145</a>, CVSS: 6.5 Medium) and Intel Technical Advisory (<a class="b_special_a1" href="">INTEL-SA-00561</a>).&nbsp;<br>
+                            &nbsp;</p>
+                            <table class="mv_product_table w-100">
+                                <caption>Table 2: Processors Affected by FSFP Cross-Domain Training Isolation Issue</caption>
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Processor</th>
+                                        <th scope="col">Stepping (All unless otherwise noted)</th>
+                                        <th scope="col">Code Names/Microarchitectures</th>
+                                        <th scope="col">Product Family</th>
+                                        <th scope="col">Brand Names</th>
+                                        <th scope="col">Affected</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>06_7EH</td>
+                                        <td>5</td>
+                                        <td>Ice Lake U,Y</td>
+                                        <td>10th Generation Intel® Core™ Processor Family</td>
+                                        <td>Intel® Core™ Processor i7-1060G7, i7-1065G7<br>
+                                        Intel® Core™ Processor i5-1030G4, i5-1030G7, i5-1035G1, i5-1035G4, i5-1035G7&nbsp;<br>
+                                        Intel® Core™ Processor i3-1000G1, i3-1000G4, i3-1005G1</td>
+                                        <td>Y</td>
+                                    </tr>
+                                    <tr>
+                                        <td>06_6AH</td>
+                                        <td>4,5,6</td>
+                                        <td>Ice Lake Xeon-SP</td>
+                                        <td>3rd Gen Intel® Xeon® Scalable processor family</td>
+                                        <td>Intel® Xeon® Gold 8300 processors, Intel® Xeon® Gold 6300 processors, &nbsp;Intel® Xeon® Gold 5300 processors, &nbsp;Intel® Xeon® Silver 4300 processors</td>
+                                        <td>Y</td>
+                                    </tr>
+                                    <tr>
+                                        <td>06_8AH</td>
+                                        <td>1</td>
+                                        <td>Lakefield B-step (Sunny Cove)</td>
+                                        <td>Intel® Core™ Processors with Intel® Hybrid Technology</td>
+                                        <td>Intel® Core™ Processor i3-L13G4, i5-L16G7</td>
+                                        <td>Y</td>
+                                    </tr>
+                                    <tr>
+                                        <td>06_8CH</td>
+                                        <td>&lt;=2</td>
+                                        <td>Tiger Lake U-series</td>
+                                        <td>11th Generation Intel® Core™ Processor Family</td>
+                                        <td>Intel® Core™ &nbsp;i7-1185G7, i7-1165G7, i7-1185GRE, i7-1185G7E, i7-1180G7, i7-1160G7, &nbsp;i5-1145G7, &nbsp;i5-1145GRE, i5-1145G7E, i5-1140G7, i5-1130G7, i3-1125G4, &nbsp;i3-1115GRE, i3-1115G4E, i3-1120G4, i3-1110G4, &nbsp;Intel® Celeron® 6305, Intel® Celeron® 6305E &nbsp;Processor</td>
+                                        <td>Y</td>
+                                    </tr>
+                                    <tr>
+                                        <td>06_8DH</td>
+                                        <td>1</td>
+                                        <td>Tiger Lake H-series &nbsp;</td>
+                                        <td>1. 11th Generation Intel® Core™ Processor Family<br>
+                                        2. Intel® Xeon® Processor Family</td>
+                                        <td>1. Intel® Core™ i9-11980HK, i9-11950H, i9-11900H, i7-11850H, i7-11800H, i5-11500H, i5-11400H, i5-11260H, i7-11390H, i7-11375H, i7-11370H, i5-11320H, i5-11300H,&nbsp;<br>
+                                        2. Intel® Xeon® W-11955M, Intel® Xeon® W-11855M</td>
+                                        <td>Y</td>
+                                    </tr>
+                                    <tr>
+                                        <td>06_8DH</td>
+                                        <td>1</td>
+                                        <td>Tiger Lake H-series &nbsp;</td>
+                                        <td>1. 11th Generation Intel® Core™ Processor Family<br>
+                                        2. Intel® Xeon® Processor Family</td>
+                                        <td>1. Intel® Core™ i7-11850HE, i3-11100HE<br>
+                                        2. Intel® Xeon® &nbsp;W-11865MRE, W-11555MRE, W-11155MRE, W-11555MLE, W-11865MLE, W-11155MLE, Intel® Celeron®6600HE</td>
+                                        <td>Y</td>
+                                    </tr>
+                                    <tr>
+                                        <td>06_8CH</td>
+                                        <td>2</td>
+                                        <td>1. Tiger Lake U Refresh &nbsp;<br>
+                                        2. Tiger Lake H35</td>
+                                        <td>11th Generation Intel® Core™ Processor Family</td>
+                                        <td>1. Intel® Core™ i7-1195G7, i5-1155G7, i5-1135G7, i3-1115G4, Intel® Pentium® Gold 7505&nbsp;<br>
+                                        2. Intel® Core™ i7-11390H, i5-11320H</td>
+                                        <td>Y</td>
+                                    </tr>
+                                    <tr>
+                                        <td>06_A7H</td>
+                                        <td>1</td>
+                                        <td>Rocket Lake</td>
+                                        <td>11th Generation Intel® Core™ Processor Family</td>
+                                        <td>Intel® Core™ Processor i9-11900K, i9-11900KF, i9-11900, i9-11900T, i9-11900F, &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; i7-11700K, i7-11700KF, i7-11700, i7-11700T, i7-11700F, i5-11600K, i5-11600KF, i5-11600, i5-11600T, i5-11500, i5-11500T, i5-11400, i5-11400F, i5-11400T</td>
+                                        <td>Y</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                    </section>
+
+                    <section id="dk_fsfp_cross">
+                        <p class="mb-0">&nbsp;</p>
+                        <p>&nbsp;</p>
+                        <h3 style="font-weight: 350;">FSFP Cross-Thread Training Isolation Issue</h3>
+                        <p>Certain processors that support FSFP do not fully maintain cross-thread training isolation properties without recent microcode update. In some cases, software executing on one hyperthread may be able to control FSFP prediction on a sibling hyperthread of the same core.&nbsp;</p>
+                        <p>Such control could help a malicious program running on the same core to trigger transient execution gadgets in a higher-privileged mode, potentially leading to data disclosure.&nbsp;</p>
+                        <p>This issue can be addressed on affected processors by deploying the latest microcode update. Refer to the previously disclosed CVE (<a class="b_special_a1" href="">CVE-2020-8698</a>, CVSS: 6.5 Medium) and Intel Technical Advisory (<a class="b_special_a1" href="">INTEL-SA-00381</a>).&nbsp;</p>
+                    </section>
+
+                    <section id="dk_processors_affec">
+                        <h4 class="mt-4" style="padding-bottom: 0.5rem;">Processors Affected by FSFP Cross-Thread Training Isolation Issue</h4>
+                        <p>Refer to the list of affected processors for the&nbsp;<em>Fast Store Forwarding Predictor: Cross Thread</em>&nbsp;issue in the <a href="">consolidated Affected Processors table</a>.&nbsp;&nbsp;</p>
+                        <h5 style="text-align:center"><a class="b_special_a1" href="">Software Security Guidance Home</a>&nbsp;|&nbsp;<a class="b_special_a1" href="">Advisory Guidance</a>&nbsp;|&nbsp;<a class="b_special_a1" href="">Technical Documentation</a>&nbsp;|&nbsp;<a class="b_special_a1" href="">Best Practices</a>&nbsp;|&nbsp;<a class="b_special_a1" href="">Resources</a></h5>
+                        <p>&nbsp;</p>
+                    </section>
+
+                </div>
+            </section>
+        </div>
+    </div>
+    </div>
+    </section>
+
+    <section style="border-top: 1px solid #d7d7d7;" class="container py-5">
+        <h4 class="h6">Product and Performance Information</h4>
+        <div class="disclaimer" style="font-size: 12px;"><sup>1</sup> Performance varies by use, configuration and other
+            factors. Learn more at <a class="b_special_a1" href="">www.Intel.com/PerformanceIndex.</a></div>
+        </div>
+    </section>
+
+    <!-- footer -->
+    <div id="footer"></div>
+
+    <!-- nav script -->
+    <script>
+        // navbar include  
+        fetch('/y_index/y_navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar').innerHTML = data;
+            });
+        // footer include 
+        fetch('/y_index/y_footer.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('footer').innerHTML = data;
+            });
+    </script>
+    <!-- nav script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            if (document.getElementsByClassName('VK_all_sections section') && document.getElementsByClassName('VK_sidebar_dropdown')) {
+                const sections = document.querySelectorAll('.VK_all_sections section');
+                const navLinks = document.querySelectorAll('.VK_sidebar_dropdown a');
+                const detailsElements = document.querySelectorAll('.VK_sidebar_dropdown details');
+
+                function removeActiveClass() {
+                    navLinks.forEach(link => link.classList.remove('VK_sidebar_active_link'));
+                    detailsElements.forEach(details => {
+                        details.removeAttribute('open');
+                        details.setAttribute('close', ''); // Optional: to visually indicate it's closed
+                    });
+                }
+
+                function activateLinkAndDetails(targetId) {
+                    navLinks.forEach(link => {
+                        if (link.getAttribute('href') === `#${targetId}`) {
+                            link.classList.add('VK_sidebar_active_link');
+                            let parentDetails = link.closest('details');
+
+                            // Open all ancestor details elements
+                            while (parentDetails) {
+                                parentDetails.setAttribute('open', '');
+                                parentDetails.removeAttribute('close'); // Optional: remove the closed indicator
+                                parentDetails = parentDetails.parentElement.closest('details');
+                            }
+                        }
+                    });
+                }
+
+                function onScroll() {
+                    let currentSection = '';
+                    sections.forEach(section => {
+                        const sectionTop = section.getBoundingClientRect().top;
+                        const sectionBottom = section.getBoundingClientRect().bottom;
+
+                        // Check if the section is in view
+                        if (sectionTop <= 100 && sectionBottom >= 0) {
+                            currentSection = section.getAttribute('id');
+                        }
+                    });
+
+                    if (currentSection) {
+                        removeActiveClass();
+                        activateLinkAndDetails(currentSection);
+                    } else {
+                        removeActiveClass();
+                    }
+                }
+
+                window.addEventListener('scroll', onScroll);
+            } else {
+                return
+            }
+        });
+    </script>
+
+    <!-- copy script -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            document.querySelectorAll(".mv_copy_icon").forEach((icon) => {
+                icon.addEventListener("click", async function () {
+                    try {
+                        const toolbar = this.closest(".mv_code_toolbar");
+                        const codeBlock = toolbar.querySelector(".code-content");
+                        const codeContent = codeBlock.innerText;
+
+                        // Use Clipboard API to copy text
+                        await navigator.clipboard.writeText(codeContent);
+
+                        // Hide the copy icon and show the "Copied!" message
+                        const message = toolbar.querySelector(".mv_copy_message");
+                        this.classList.add("hidden"); // Hide the copy icon
+                        message.classList.remove("hidden"); // Show the "Copied!" message
+
+                        // Hide the message and show the icon again after 2 seconds
+                        setTimeout(() => {
+                            message.classList.add("hidden");
+                            this.classList.remove("hidden");
+                        }, 2000); // Adjust delay as needed
+
+                    } catch (err) {
+                        console.error('Failed to copy text: ', err);
+                    }
+                });
+            });
+        });
+    </script>
+
+</body>
+
+</html>
+
