@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Getting the Most from OpenCL™ 1.2: How to Increase Performance by Minimizing Buffer Copies on Intel® Processor Graphics</title>
+
+    <!-- font family -->
+    <link href="https://fonts.cdnfonts.com/css/intel-clear" rel="stylesheet">
+
+    <link rel="stylesheet" href="/css/dk_developer_edge_iot_5G_industrial_automation_see_all_wireless_network_ready_printed_circuit_board_(PCB)_defect_detection.css">
+    <link rel="stylesheet" href="/css/mv_product/ECC.css">
+    <link rel="stylesheet" href="/css/rushita_automotive.css">
+
+    <!-- header footer -->
+    <link rel="stylesheet" href='/css/yatri.css'>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" rel="stylesheet">
+
+</head>
+
+<style>
+    .dk_color1 {
+        color: #069 !important;
+    }
+
+    .dk_color2 {
+        color: #008200 !important;
+    }
+
+    .dk_color3 {
+        color: #b24501;
+    }
+
+    .dk_note{
+        font-size: 1rem;
+        line-height: 1.25;
+        word-wrap: break-word;
+        background-color: #e6e6e6;
+        padding: 20px;
+        border-left: 3px solid #fdb813;
+    }
+    .dk_code_simple{
+        background-color: #e6e6e6;
+        color: #53565a;
+        border-radius: 0;
+    }
+    
+    .mv_code_toolbar{
+        margin: 10px 0px;
+    }
+
+    @media(max-width:1200px) {
+        .dk_risk_app_img {
+            width: 100% !important;
+        }
+    }
+</style>
+
+<body>
+    <!-- header -->
+    <div id="navbar"></div>
+
+    <!------------------------------------------------------------------------------->
+    <section class="m_ai_tdrop">
+        <div>
+            <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Developers
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item m_dropActive" href="/dhruvin_developer-tools/ds_Developer-Zone.html">Overview</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/rushita_Solutions/k_solutions_in_Viewall_SDF_Industrial-Automation_Control-flow-Enforcement_Technology.html">Topics & Technologies</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/dhruvin_developer-tools/ds_Development-Tools.html">Tools</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/rushita_Solutions/k_solutions_in_Viewall_SDF_Industrial-Automation_Hardware-Platforms.html">Hardware Platforms</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/dhruvin_developer-tools/ds_Resource-Documentation-Center.html">Resources & Documentation</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/dhruvin_developer-tools/ds_Learn.html">Learn</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/dhruvin_developer-tools/ds_Communities-and-Events.html">Community & Events</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/dhruvin_developer-tools/ds_Developer-Programs.html">Developer Programs</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/dhruvin_developer-tools/ds_Get-Help.html">Get Help</a></li>
+            </ul>
+        </div>
+        <div class="m_ai_shlash">/</div>
+        <div class="m_ai_httl">Increase Performance on Intel® Processor Graphics</div>
+    </section>
+    <!------------------------------------------------------------------------------->
+
+    <!-- VMware Horizon -->
+    <section>
+        <div class="mv_vmware_bg_color">
+            <div class="container">
+                <div class="mv_vmware_padd">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="mv_vmware_heading">
+                                <h3>Getting the Most from OpenCL™ 1.2: How to Increase Performance by Minimizing Buffer Copies on Intel® Processor Graphics</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mv_cd_page_marquee_info">
+                        <div class="mv_cd_page_marquee_action">
+                            <div class="mv_cd_page_marquee_action_padd">
+                                <label for="">ID</label>
+                                <span>759502</span>
+                            </div>
+                            <div class="mv_cd_page_marquee_action_padd">
+                                <label for="">Updated</label>
+                                <span>11/2/2022</span>
+                            </div>
+                            <div class="mv_cd_page_marquee_action_padd">
+                                <label for="">Version</label>
+                                <span>Latest</span>
+                            </div>
+                            <div class="mv_cd_page_marquee_action_padd">
+                                <label for=""></label>
+                                <span>Public</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="container py-5">
+        <div class="row">
+            <div class="d-flex justify-content-end col-xl-10 py-3 d-md-none">
+                <i class="fa-solid fa-print fs-4 px-2 " style="color:#0068B5"></i>
+                <i class="fa-regular fa-envelope fs-4 px-2" style="color:#0068B5"></i>
+            </div>
+            <div class="col-lg-3 col-md-4">
+                <div class="VK_sticky_side_bar VK_side_bar_postion_stickey">
+
+                </div>
+                <!-- thinkcode -->
+                <p><span>By</span>&nbsp;<a href="">Adam T Lake</a></p>
+            </div>
+            <div class="col-lg-9 col-md-8">
+                <div class="d-md-flex justify-content-end col-xl-10 py-3 d-none">
+                    <i class="fa-solid fa-print fs-4 px-2 " style="color:#0068B5"></i>
+                    <i class="fa-regular fa-envelope fs-4 px-2" style="color:#0068B5"></i>
+                </div>
+                <div class="col-xl-10 VK_all_sections">
+                    <p>&nbsp;</p>
+                    <p>&nbsp;</p>
+                    <h3 style="font-weight: 350; padding-bottom: 0.5rem;">Downloads</h3>
+                    <p>Download <a class="b_special_a1" href="">Getting the Most from OpenCL™ 1.2: How to Increase Performance by Minimizing Buffer Copies on Intel® Processor Graphics</a> [PDF 673KB]</p>
+                    <p>Download <a class="b_special_a1" href="">OpenCL Zero Copy code sample</a> [ZIP 22.4KB]</p>
+
+                    <section>
+                        <p class="mb-0">&nbsp;</p>
+                        <h3 style="font-weight: 350; padding-bottom: 0.5rem;">Introduction</h3>
+                        <p>This document provides guidance to OpenCL™ developers who want to optimize applications running on Intel® processor graphics. Specifically, this document shows you how to minimize the memory footprint of applications and reduce the amount of copying on buffers in the shared physical memory system of an Intel® System on Chip (SoC) solution. It also provides working source code to demonstrate these principles.</p>
+                        <p>The OpenCL 1.2 Specification includes memory allocation flags and API functions that developers can use to create applications with minimal memory footprint and maximum performance. This is accomplished by eliminating extra copies during execution, referred to as <em>zero copy </em>behavior. This document augments the OpenCL API specification by giving guidance specific to Intel processor graphics.</p>
+                    </section>
+
+                    <section>
+                        <p class="mb-0">&nbsp;</p>
+                        <h3 style="font-weight: 350; padding-bottom: 0.5rem;">Key Takeaway</h3>
+                        <p>To create zero copy buffers, do one of the following:</p>
+                        <ul> 
+                            <li>Use <strong>CL_MEM_ALLOC_HOST_PTR</strong> and let the runtime handle creating a zero copy allocation buffer for you</li> 
+                            <li>If you already have the data and want to load the data into an OpenCL buffer object, then use <strong>CL_MEM_USE_HOST_PTR</strong> with a buffer allocated at a 4096 byte boundary (aligned to a page and cache line boundary) and a total size that is a multiple of 64 bytes (cache line size).</li> 
+                        </ul>
+                        <p>When reading or writing data to these buffers from the host, use <strong>clEnqueueMapBuffer()</strong>, operate on the buffer, then call <strong>clEnqueueUnmapMemObject()</strong>. This paper contains code samples to demonstrate the best known practices on Intel® platforms.</p>
+                    </section>
+
+                    <section>
+                        <p class="mb-0">&nbsp;</p>
+                        <h3 style="font-weight: 350; padding-bottom: 0.5rem;">Motivation</h3>
+                        <p>Memory management within the GPU driver has a complicated set of memory usage scenarios that need to be considered. Applications can inform the driver of their usage by specifying flags during memory allocation as well as through specific memory access or transfer APIs called during runtime. Sometimes driver implementations need to create or manage internal copies of memory buffers to facilitate servicing these API calls. For example, internal memory buffer copies might be created to support the memory layout preferred by the CPU or GPU or to improve caching behavior. Such copies may be necessary in these scenarios, but they can detrimentally impact performance. Application developers need device-specific knowledge in order to know how to avoid these copies.</p>
+                    </section>
+
+                    <section>
+                        <p class="mb-0">&nbsp;</p>
+                        <h3 style="font-weight: 350; padding-bottom: 0.5rem;">Definitions</h3>
+                        <p class="mb-0">Before going into the technical details, here are some definitions of terms used in this article.</p>
+                        <ul> 
+                            <li><strong>Host memory:</strong> Memory accessible on the OpenCL host.</li> 
+                            <li><strong>Device memory:</strong> Memory accessible on the OpenCL device.</li> 
+                            <li><strong>Zero copy</strong>: Refers to the concept of using the same copy of memory between the host, in this case the CPU, and the device, in this case the integrated GPU, with the goal of increasing performance and reducing the overall memory footprint of the application by reducing the number of copies of data.</li> 
+                            <li><strong>Zero copy buffers</strong>: Buffers created via the <strong>clCreateBuffer() </strong>API that follow the rules for zero copy. This is implementation dependent so the rules on one device may be different than another.</li> 
+                            <li><strong>Shared Physical Memory</strong>: The host and the device share the same physical DRAM. This is different from shared <em>virtual</em> memory, when the host and device share the same virtual addresses, and is not the subject of this paper. The key hardware feature that enables zero copy is the fact that the CPU and GPU have shared <em>physical</em> memory. Shared physical and shared virtual memories are not mutually exclusive.</li> 
+                            <li><strong>Virtual Memory:</strong> The memory model used by the operating system to give the process perceived ownership of its own dedicated memory space. Pointers that programmers operate on are not physical memory addresses but instead virtual addresses that are part of a virtual address space. The platform handles conversions between these virtual addresses and the physical memory address.</li> 
+                            <li><strong>Intel processor graphics</strong>: The term used when referring to current Intel graphics solutions. Product names for Intel GPUs integrated in SoC include Intel® Iris™ graphics, Intel® Iris™ Pro graphics, or Intel® HD Graphics depending on the exact SoC. For additional hardware architecture details see the Intel® Gen 7.5 Compute Architecture document referenced at the end of this document or <a class="b_special_a1" href="">http://ark.intel.com/</a>.</li> 
+                        </ul>
+                    </section>
+
+                    <section>
+                        <p class="mb-0">&nbsp;</p>
+                        <h3 style="font-weight: 350; padding-bottom: 0.5rem;">Intel® Processor Graphics with Shared Physical Memory</h3>
+                        <p>Intel processor graphics shares memory with the CPU. Figure 1 shows their relationship. While not shown in this figure, several architectural features exist that enhance the memory subsystem. For example, cache hierarchies, samplers, support for atomics, and read and write queues are all utilized to get maximum performance from the memory subsystem.</p>
+                        <p style="text-align:center"><img class="dk_risk_app_img" alt="" height="202" src="/img/darshit_image/opencl-figure-1-531564.png" width="479"><br> <strong>Figure 1.</strong> <em>Relationship of the CPU, Intel® processor graphics, and main memory. Notice a single pool of memory is shared by the CPU and GPU, unlike discrete GPUs that have their own dedicated memory that must be managed by the driver.</em></p>
+                    </section>
+
+                    <section>
+                        <p class="mb-0">&nbsp;</p>
+                        <h3 style="font-weight: 350; padding-bottom: 0.5rem;">Benefits of Zero Copy</h3>
+                        <p>With Intel processor graphics, using zero copy always results in better performance relative to the alternative of creating a copy on the host or the device. Unlike other architectures with non-uniform memory architectures, memory shared between the CPU and GPU can be efficiently accessed by both devices.</p>
+                    </section>
+
+                    <section>
+                        <p class="mb-0">&nbsp;</p>
+                        <h3 style="font-weight: 350; padding-bottom: 0.5rem;">Memory Buffers in OpenCL</h3>
+                        <p>The performance of buffer operations in OpenCL can be different on different OpenCL implementations. Here, we clarify the behavior on Intel processor graphics.</p>
+                    </section>
+
+                    <section>
+                        <p class="mb-0">&nbsp;</p>
+                        <h3 style="font-weight: 350; padding-bottom: 0.5rem;">Creating Buffers with clCreateBuffer()</h3>
+                        <p>One use case for OpenCL is <em>when memory is already populated on the host</em> and you want the device to read this data. In this case use the flag <strong>CL_MEM_USE_HOST_PTR</strong> to create the buffer. This may be the case when we are using OpenCL with existing codebases. When using the <strong>CL_MEM_USE_HOST_PTR</strong> flag, if we want to guarantee a zero copy buffer on Intel processor graphics, we need to ensure that we adhere to two device-dependent alignment and size rules. We must create a buffer that is aligned to a 4096 byte boundary and have a size that is a multiple of 64 bytes. Also note that if we write into this buffer, we will overwrite the original contents of the buffer. For clarity we include a short code sequence at the end of this section to test a buffer to determine if it meets this criteria.</p>
+                        <p><strong>CL_MEM_USE_HOST_PTR</strong>: Use this when a buffer is already allocated as page-aligned with <strong>_aligned_malloc() </strong>instead of <strong>malloc() </strong>and a size that is a multiple of 64 bytes:</p>
+                        <p>&nbsp;</p>
+                        <div class="mv_code_toolbar">
+                            <div class="mv_toolbar_item mv_copy_icon">
+                                <i class="fa-regular fa-copy"></i>
+                            </div>
+                            <div class="mv_copy_message text-end hidden">Copied</div>
+                            <div class="code-content">
+                                <div style="padding-bottom: 1rem !important" class="d-flex mv_pre">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        1
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0"><span class="dk_color1">int</span> <span class="dk_color3">*</span> pbuf <span class="dk_color3">=</span> (<span class="dk_color1">int</span> <span class="dk_color3">*</span> )_aligned_malloc(<span class="dk_color1">sizeof</span>(<span class="dk_color1">int</span>) <span class="dk_color3">*</span>  <span class="dk_color1">1024</span>, <span class="dk_color1">4096</span>);</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="mb-0">&nbsp;</p>
+                        <p>Using <strong>_aligned_malloc() </strong>requires the use of <strong>_aligned_free() </strong>when deallocating. On Linux*, Android*, and Mac OS* see documentation for <strong>mem_align()</strong> or <strong>posix_memalign()</strong>. Do not use <strong>free()</strong> on memory allocated with <strong>_aligned_malloc(). </strong>Create the buffer and its associated <strong>cl_mem</strong> object using:</p>
+                        <p>&nbsp;</p>
+                        <div class="mv_code_toolbar">
+                            <div class="mv_toolbar_item mv_copy_icon">
+                                <i class="fa-regular fa-copy"></i>
+                            </div>
+                            <div class="mv_copy_message text-end hidden">Copied</div>
+                            <div class="code-content">
+                                <div style="padding-bottom: 1rem !important" class="d-flex mv_pre">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        1
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0"><span class="dk_color1">cl_mem</span> myZeroCopyCLMemObj <span class="dk_color3">=</span> clCreateBuffer(ctx,… <span class="dk_color1">CL_MEM_USE_HOST_PTR</span>…);</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="mb-0">&nbsp;</p>
+                        <p>A second case is <em>when the data will be generated on the device</em> but may be read back on the host. In this case leverage the <strong>CL_MEM_ALLOC_HOST_PTR</strong> flag to create the data. Do not worry about using the example code below to test that the memory is sized and allocated at a proper base address, the runtime will handle this for you.</p>
+                        <p>A third case is when data is generated on the host but your application is in control of the initialization of the buffer. In this case you create the buffer, then initialize it. For example, suppose you are reading in input from a file. The difference between this case and the use of <strong>CL_MEM_USE_HOST_PTR</strong> is if the buffer has already been populated. To initialize the contents of the buffer, use the OpenCL map and unmap API functions described later.</p>
+                        <p><strong>CL_MEM_ALLOC_HOST_PTR</strong>: Use this flag when you have not yet allocated the memory and want OpenCL to ensure that you have a zero copy buffer.</p>
+                        <p>&nbsp;</p>
+                        <div class="mv_code_toolbar">
+                            <div class="mv_toolbar_item mv_copy_icon">
+                                <i class="fa-regular fa-copy"></i>
+                            </div>
+                            <div class="mv_copy_message text-end hidden">Copied</div>
+                            <div class="code-content">
+                                <div style="padding-bottom: 1rem !important" class="d-flex mv_pre">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        1
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">buf <span class="dk_color3">=</span> clCreateBuffer(ctx, ….<span class="dk_color1">CL_MEM_ALLOC_HOST_PTR,</span> ….)</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="mb-0">&nbsp;</p>
+                        <p><strong>Table 1.</strong> <em>Different application scenarios showing which flags to pass to <strong>clCreateBuffer()</strong> to enable the use of zero copy buffers on Intel® processor graphics</em></p>
+                        <table class="mv_product_table w-100">
+                            <thead> 
+                                <tr> 
+                                 <th> <p>Flag(s)</p> </th> 
+                                 <th> <p>When to use the flag(s) to enable a zero copy scenario</p> </th> 
+                                </tr> 
+                            </thead>
+                            <tbody> 
+                                <tr> 
+                                 <td> <strong>CL_MEM_USE_HOST_PTR</strong> </td> 
+                                 <td> 
+                                  <ul> 
+                                   <li>Buffer was already created in existing application code and the alignment and size rules were followed when the buffer was allocated, or you want control over the buffer allocation and do not want to rely on OpenCL.</li> 
+                                   <li>In cases when you don't want to incur the cost of a copy that would take place with <strong>CL_MEM_ALLOC_HOST_PTR | CL_MEM_COPY_HOST_PTR</strong>.</li> 
+                                   <li>In cases when data can be safely overwritten by OpenCL or you know the data will not be overwritten because your application controls any writes to the buffer.</li> 
+                                  </ul> </td> 
+                                </tr> 
+                                <tr> 
+                                 <td> <strong>CL_MEM_ALLOC_HOST_PTR</strong> </td> 
+                                 <td> 
+                                  <ul> 
+                                   <li>You want the OpenCL runtime to handle the alignment and size requirements.</li> 
+                                   <li>In cases when you may be reading data from a file or another I/O stream.</li> 
+                                   <li>A brand new application being written to use OpenCL and not a port from existing code.</li> 
+                                   <li>Buffer will be initialized in host or device code and not by a library decoupled from your control.</li> 
+                                   <li><em>Don't forget to map and unmap the buffer during initialization.</em></li> 
+                                  </ul> </td> 
+                                </tr> 
+                                <tr> 
+                                 <td> <strong>CL_MEM_ALLOC_HOST_PTR | CL_MEM_COPY_HOST_PTR</strong> | <strong>CL_MEM_ALLOC_HOST_PTR | CL_MEM_COPY_HOST_PTR</strong> </td> 
+                                 <td> 
+                                  <ul> 
+                                   <li>You want the OpenCL runtime to handle the size and alignment requirements.</li> 
+                                   <li>In cases when you may be reading or writing data from a file or another I/O stream and aren't allowed to write to the buffer you are given.</li> 
+                                   <li>Buffer is not already in a properly aligned and sized allocation and you want it to be.</li> 
+                                   <li>You are okay with the performance cost of the copy relative to the length of time your application executes, for example at initialization.</li> 
+                                   <li>Porting existing application code where you don't know if it has been aligned and sized properly.</li> 
+                                   <li>The buffer used to create the OpenCL buffer needs the data to be unmodified and you want to write to the buffer</li> 
+                                  </ul> </td> 
+                                </tr> 
+                            </tbody>
+                        </table>
+                        <p>In summary, most cases can use <strong>CL_MEM_ALLOC_HOST_PTR</strong> on Intel processor graphics. Do not forget when initializing the buffer contents to first map the buffer, write to the buffer, and then unmap the buffer. In some cases the data may already be in an aligned and properly sized allocation, allowing you to use <strong>CL_MEM_USE_HOST_PTR</strong>.</p>
+                        <p>This short function in C verifies that the pointer and size of the allocation adheres to the alignment and size rules:</p>
+                        <p>&nbsp;</p>
+                        <div class="mv_code_toolbar">
+                            <div class="mv_toolbar_item mv_copy_icon">
+                                <i class="fa-regular fa-copy"></i>
+                            </div>
+                            <div class="mv_copy_message text-end hidden">Copied</div>
+                            <div class="code-content">
+                                <div style="padding-bottom: 0rem !important" class="d-flex mv_pre">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        01
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp;</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        02
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0"><span class="dk_color1">unsigned int</span> verifyZeroCopyPtr(<span class="dk_color1">void</span> <span class="dk_color3">*</span>ptr, <span class="dk_color1">unsigned int</span> sizeOfContentsOfPtr)</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important; " class="d-flex mv_pre">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        03
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">{</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important; " class="d-flex mv_pre">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        04
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp; &nbsp; &nbsp; <span class="dk_color1">int</span> status ; &nbsp; &nbsp; <span style="color: #008200;">//so we only have one exit point from function</span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important; " class="d-flex mv_pre">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        05
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp; &nbsp; &nbsp; <span class="dk_color1">if</span>( ( uintptr_t )ptr <span class="dk_color3">%</span> <span class="dk_color1">4096</span> <span class="dk_color3">==</span> <span class="dk_color1">0</span>) &nbsp; &nbsp; <span style="color: #008200;">//page alignment and cache alignment</span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important; " class="d-flex mv_pre">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        06
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp; &nbsp; &nbsp; {</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important; " class="d-flex mv_pre">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        07
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="dk_color1">if</span>(sizeOfContentsOfPtr <span class="dk_color3">%</span> <span class="dk_color1">64</span> <span class="dk_color3">==</span> <span class="dk_color1">0</span>) &nbsp; &nbsp; <span style="color: #008200;">//multiple of cache size</span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important; " class="d-flex mv_pre">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        08
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; {</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important; " class="d-flex mv_pre">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        09
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; status <span class="dk_color3">=</span> <span class="dk_color1">1</span>;</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important; " class="d-flex mv_pre">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        10
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important; " class="d-flex mv_pre">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        11
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="dk_color1">else</span> status <span class="dk_color3">=</span> <span class="dk_color1">0</span>;</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important; " class="d-flex mv_pre">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        12
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp; &nbsp; &nbsp; }</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important;" class="d-flex mv_pre">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        13
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp; &nbsp; &nbsp; <span class="dk_color1">else</span> status <span class="dk_color3">=</span> <span class="dk_color1">0</span>; <br>&nbsp; &nbsp; &nbsp; <span class="dk_color1">return</span> status;</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="mb-0">&nbsp;</p>
+                    </section>
+
+                    <section>
+                        <p class="mb-0">&nbsp;</p>
+                        <h3 style="font-weight: 350; padding-bottom: 0.5rem;">Accessing the Buffer on the Host</h3>
+                        <p>When directly accessing any buffer on the host, zero copy buffer or not, you are required to map and unmap the buffer in OpenCL 1.2. See below and the sample code for details.</p>
+                    </section>
+
+                    <section>
+                        <p class="mb-0">&nbsp;</p>
+                        <h3 style="font-weight: 350; padding-bottom: 0.5rem;">Accessing the Buffer on the Device</h3>
+                        <p>Accessing the buffer on the device is no different than any other buffer; no code change is required. You only need to worry about the host-side interaction and the map and unmap APIs.</p>
+                    </section>
+
+                    <section>
+                        <p class="mb-0">&nbsp;</p>
+                        <h3 style="font-weight: 350; padding-bottom: 0.5rem;">Use clEnqueueMapBuffer() and clEnqueueUnmapMemObject()</h3>
+                        <p>The APIs <strong>clEnqueueReadBuffer()</strong>, <strong>clEnqueueWriteBuffer()</strong>, and <strong>clEnqueueCopyBuffer()</strong> are not recommended, especially for large buffers since they require the contents of the buffer to be copied. Sometimes, however, these APIs might be beneficial, for example, if you are reading the contents out of the buffer because you want to reuse it immediately on the GPU in a double buffering scenario. In this case, it is useful to make a host-side copy and let the device continue to operate on the original buffer. To facilitate host read or write access to a memory buffer that has been shared with Intel processor graphics, use the APIs <strong>clEnqueueMapBuffer()</strong> and <strong>clEnqueueUnmapMemObject()</strong>.</p>
+                        <p>Example use of <strong>clEnqueueMapBuffer()</strong>:</p>
+                        <p>&nbsp;</p>
+                        <div class="mv_code_toolbar">
+                            <div class="mv_toolbar_item mv_copy_icon">
+                                <i class="fa-regular fa-copy"></i>
+                            </div>
+                            <div class="mv_copy_message text-end hidden">Copied</div>
+                            <div class="code-content">
+                                <div style="padding-bottom: 1rem !important" class="d-flex mv_pre">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        1
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">mappedBuffer <span class="dk_color3">=</span> (<span class="dk_color1">float</span> <span class="dk_color3">*</span>)clEnqueueMapBuffer(queue, cl_mem_image, <span class="dk_color1">CL_TRUE</span>, <span class="dk_color1">CL_MAP_READ</span>, <span class="dk_color1">0</span>, imageSize, <span class="dk_color1">0</span>, <span class="dk_color1">NULL</span>, <span class="dk_color1">NULL</span>, <span class="dk_color1">NULL</span>);</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="mb-0">&nbsp;</p>
+                        <p>Example use of <strong>clEnqueueUnmapMemObject()</strong>:</p>
+                        <div class="mv_code_toolbar">
+                            <div class="mv_toolbar_item mv_copy_icon">
+                                <i class="fa-regular fa-copy"></i>
+                            </div>
+                            <div class="mv_copy_message text-end hidden">Copied</div>
+                            <div class="code-content">
+                                <div style="padding-bottom: 1rem !important" class="d-flex mv_pre">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        1
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">clEnqueueUnmapMemObject(queue, cl_mem_image, mappedBuffer, <span class="dk_color1">0</span>, <span class="dk_color1">NULL</span>, <span class="dk_color1">NULL</span>) ;</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="mb-0">&nbsp;</p>
+                    </section>
+
+                    <section>
+                        <p class="mb-0">&nbsp;</p>
+                        <h3 style="font-weight: 350; padding-bottom: 0.5rem;">Caveats on Other Platforms</h3>
+                        <p>The behavior described above may not be the same on all platforms. It is best to check the vendor's documentation. The OpenCL API specification provides a vendor the <em>ability</em> to create zero copy buffers. It does not <em>guarantee</em> to always return a zero copy buffer. In fact, the specification actually states that a copy may be created. In the documentation for <strong>CL_MEM_USE_HOST_PTR</strong>:</p>
+                        <p><em>"</em><em>OpenCL implementations are allowed to cache the buffer contents pointed to by </em><em>host_ptr </em><em>in device memory. This cached copy can be used when kernels are executed on a device."</em></p>
+                    </section>
+
+                    <section>
+                        <p class="mb-0">&nbsp;</p>
+                        <h3 style="font-weight: 350; padding-bottom: 0.5rem;">An Observation about the Virtual Address Space</h3>
+                        <p>You may notice that the address you are validating to be on a 4096 byte page boundary is a virtual address boundary and not a physical address. Is this a problem? While in theory it could be an issue, after all the OS could have mapped a virtual address to any physical address, this does not happen in our implementation. You are assured that if the virtual address is page aligned, then the physical address is page aligned. More details on how and why this works is beyond the scope of this article.</p>
+                    </section>
+
+                    <section>
+                        <p class="mb-0">&nbsp;</p>
+                        <h3 style="font-weight: 350; padding-bottom: 0.5rem;">Validating Zero Copy Behavior</h3>
+                        <p>One downside of the OpenCL 1.2 API is there is no runtime mechanism to validate that a copy has or has not occurred. For example, when a <strong>clEnqueueMapBuffer() </strong>executes, was a copy created or not? The way we verified these samples was to time a short program that declared the output buffer with <strong>_aligned_malloc()</strong> and compare the result when using <strong>malloc()</strong> with an image of size 1024x1024 over several iterations to verify that the aligned allocation was <em>significantly</em> faster from just before the map to just after the unmap. These timings also include driver overhead. We have left the timing code in the sample if you want to verify this yourself.</p>
+                    </section>
+
+                    <section>
+                        <p class="mb-0">&nbsp;</p>
+                        <h3 style="font-weight: 350; padding-bottom: 0.5rem;">A Zero Copy Example</h3>
+                        <p>We ported to OpenCL a well-known BSD licensed codebase that simulates ambient occlusion called AOBench available at: <a class="b_special_a1" href="">https://code.google.com/p/aobench/</a>. We start with a straightforward mapping to OpenCL, the way any reasonable programmer would do as a first attempt. Next we show two different versions where we create the computed ambient occlusion resultant image as a zero copy buffer. The first shows the code when you want to allocate the buffer and pass this buffer to the OpenCL runtime. This might be common when you already have an existing application that makes use of<strong> CL_MEM_USE_HOST_PTR</strong>. The second is further simplified and is useful when you want the OpenCL runtime to handle the buffer allocation and uses <strong>CL_MEM_ALLOC_HOST_PTR</strong>. We have left it up to you to implement the third possibility: a short, but useful, exercise to create the buffer using <strong>CL_MEM_ALLOC_HOST_PTR</strong>, map the pointer, populate the buffer on the host, then unmap the pointer. We focus on the output image buffer for this example; other buffers could be treated similarly.</p>
+                    </section>
+
+                    <section>
+                        <p class="mb-0">&nbsp;</p>
+                        <h3 style="font-weight: 350; padding-bottom: 0.5rem;">Sample File and Directory Structure</h3>
+                        <p>This section contains details on how this code is partitioned. The emphasis was to create a simple C example and not a product quality implementation. Most of the code is common across all of the samples.</p>
+                    </section>
+
+                    <section>
+                        <h4>Source Files:</h4>
+                        <ul> 
+                            <li><strong>Common/host_common.cpp</strong>: Boilerplate to start up and manage an OpenCL context, compile the source, create queues, and handle general cleanup.</li> 
+                            <li><strong>Common/kernels.cl</strong>: OpenCL kernel code for this particular example. The contents of this file are of no significance other than demonstrating a complete application.</li> 
+                            <li><strong>Include/host_common.h: </strong>header file for <strong>host_common.cpp</strong>, various initialization values, and function and variable declarations.</li> 
+                            <li><strong>Include/scene.h</strong>: scene graph functions and variables used in this sample.</li>
+                            <li><strong>NotZeroCopy/main.c</strong>: source file that contains the functions for doing a straightforward port of the sample code. The functions we are interested in are <strong>initializeDeviceData() </strong>and <strong>runClKernels()</strong>. In <strong>initializeDeviceData()</strong> we used a standard <strong>malloc()</strong> without forcing an alignment, resulting in a surface that will not support zero copy. Also, in <strong>runCLKernels</strong>() we used the standard API call <strong>clEnqueueReadBuffer()</strong>. Functionally, this is 100% correct, however it is not optimal for performance.</li> 
+                            <li><strong>ZeroCopyUseHostPtr/main.c</strong>: source file that contains functions that demonstrate modifications to NotZeroCopy. Notice the use of <strong>_aligned_malloc()</strong> instead of <strong>malloc()</strong> from <strong>NotZeroCopy</strong> in <strong>initializeDeviceData()</strong>. Also, when we call <strong>clCreateBuffer()</strong> we use the flag <strong>CL_MEM_USE_HOST_PTR</strong>.</li> 
+                            <li><strong>ZeroCopyAllocHostPtr/main.c</strong>: source file that contains functions that demonstrate the modifications required when using the allocation mechanism of the runtime. Specifically, notice the fact that now we do not even need to call <strong>_aligned_malloc()</strong> as we did in the <strong>ZeroCopyUseHostPtr</strong> example. Instead, we simply pass the flag <strong>CL_MEM_ALLOC_HOST_PTR</strong> and pass the size of the buffer we want to allocate.</li>  
+                        </ul>
+                        <p>The other files and directories are generated automatically by the Microsoft Visual Studio* IDE.</p>
+                    </section>
+
+                    <section>
+                        <h4>Microsoft Visual Studio 2012 Configuration:</h4>
+                        <p>The Microsoft Visual Studio 2012 solution, <strong>OpenCLZeroCopy.sln</strong>, has three projects: <strong>NotZeroCopy.vcxproj</strong>, <strong>ZeroCopyAllocHostPtr.vcxproj</strong>, and <strong>ZeroCopyUsedHostPtr.vcxproj</strong>. The <strong>OpenCLZeroCopy.props</strong> property sheet holds the settings specific to this project. These settings include: the system path to the <strong>cl.h</strong> header file, the pointer to the <strong>OpenCL.lib</strong> library to link to, and the pointer to the local include directory for this example. You may need to change these settings for your build environment.</p>
+                    </section>
+
+                    <section>
+                        <p class="mb-0">&nbsp;</p>
+                        <h3 style="font-weight: 350; padding-bottom: 0.5rem;">Building and Running the Examples</h3>
+                    </section>
+
+                    <section>
+                        <h4>Build Requirements</h4>
+                        <p>First, make sure you have downloaded and installed the Intel® SDK for OpenCL™ Applications available here: <a class="b_special_a1" href="">https://software.intel.com/en-us/vcsource/tools/opencl-sdk</a>. Also, be sure to install Microsoft Visual Studio 2012 (MSVC 2012) IDE. Next, open the solution file<strong> OpenCLZeroCopy.sln </strong>in MSVC 2012.</p>
+                    </section>
+
+                    <section>
+                        <h4>Paths in the Property Sheet</h4>
+                        <p>Instead of making changes for each build of each executable, MSVC supports the use of property sheets. If you change a property sheet, the change propagates to all builds that include this property sheet in their build settings. We have included figures here that show the path names on our system if you decide you need to change them. Alternatively, you can use the environment variable: $(INTELOCLSDKROOT), which defaults to C:\Program Files (x86)\Intel\OpenCL SDK\3.0\. You may have a more recent version. We have a relative path for the include files used across each of the executables and use the default installation location for the Intel OpenCL SDK. For more information on property sheets consult the MSDN documentation: <a class="b_special_a1" href="">http://msdn.microsoft.com/en-us/library/z1f703z5(v=vs.90).aspx</a> .</p>
+                        <p style="text-align:center"><img class="dk_risk_app_img" height="324" src="/img/darshit_image/opencl-figure-2-531564.png" width="459"><br> <strong>Figure 2.</strong> <em>Additional include directories used in this code sample.</em></p>
+                        <p>You can access the property manager from the <em>View</em> menu and select the <em>Property Manager</em> Menu item.</p>
+                        <p style="text-align:center"><img class="dk_risk_app_img" height="331" src="/img/darshit_image/opencl-figure-3-531564.png" width="466"><br> <strong>Figure 3.</strong> <em>Additional library directories used in this code sample.</em></p>
+                        <p style="text-align:center"><img class="dk_risk_app_img" height="354" src="/img/darshit_image/opencl-figure-4-531564.png" width="500"><br> <strong>Figure 4.</strong> <em>Notice the opencl.lib file is added as an additional library.</em></p>
+                    </section>
+
+                    <section>
+                        <h4>Running the Example</h4>
+                        <p>Build this sample code by selecting <em>Build-&gt;Build Solution </em>from the main menu. All of the executables should be generated. You can run them within Visual Studio directly or go to the Debug and/or Release directories that are located in the same location as the <strong>OpenCLZeroCopy</strong> solution file.</p>
+                    </section>
+
+                    <section>
+                        <p class="mb-0">&nbsp;</p>
+                        <h3 style="font-weight: 350;">What's Coming in OpenCL 2.0: Shared Virtual Memory (SVM)</h3>
+                        <p>This paper has focused on understanding the use of buffers that can be shared on platforms that support shared physical memory (SPM) such as the Intel CPUs and Intel processor graphics. OpenCL 2.0 will have APIs to expose shared virtual memory on architectures that can support it. This will allow you to not just have a shared buffer for writing, but also to share virtual addresses on the CPU and GPU. For example, you could leverage SVM to update a scene graph on the CPU using a physics simulation then use the GPU to calculate the final image.</p>
+                    </section>
+
+                    <section>
+                        <p class="mb-0">&nbsp;</p>
+                        <h3 style="font-weight: 350;">Acknowledgements</h3>
+                        <p>Lots of folks have encouraged the development of this and other collateral. Some provided feedback and some helped create the space to get it done: Stephen Junkins, Murali Sundaresan, David Blythe, Aaron Kunze, Allen Hux, Mike Macpherson, Pavan Lanka, Girish Ravunnikutty, Ben Ashbaugh, Sergey Lyalin, Maxim Shevstov, Arnon Peleg, Vadim Kartoshkin, Deepti Joshi, Uri Levy, and Shiri Manor.</p>
+                    </section>
+
+                    <section>
+                        <p class="mb-0">&nbsp;</p>
+                        <h3 style="font-weight: 350;">References</h3>
+                        <ol> 
+                            <li><a class="b_special_a1" href="">OpenCL 1.2 specification</a>.</li> 
+                            <li>OpenCL 2.0 specification, composed of three books: <a class="b_special_a1" href="">the OpenCL C Language specification, the OpenCL Runtime API, and the OpenCL extensions</a>.</li> 
+                            <li><a class="b_special_a1" href="">AOBench</a>.</li> 
+                            <li>Stephen Junkins' whitepaper: Intel® Gen 7.5 Compute Architecture:&nbsp;<a class="b_special_a1" href="">A must-read for anybody using OpenCL on Intel Processor Graphics platforms</a>.</li> 
+                        </ol>
+                    </section>
+
+                    <section>
+                        <p class="mb-0">&nbsp;</p>
+                        <h3 style="font-weight: 350;">About the Author</h3>
+                        <p>Adam Lake – Adam works in the Visual Products Group as a Senior Graphics Architect and Voting Representative to the Khronos OpenCL Standards Body. He has worked on GPGPU programming for 12+ years. Previously he has worked in VR, 3D, graphics, and stream programming language compilers.</p>
+                        <p>&nbsp;</p>
+                        <p>* Other names and brands may be claimed as the property of others.<br> OpenCL and the OpenCL logo are trademarks of Apple Inc. used by permission from Khronos.<br> Copyright © 2014 Intel Corporation. All rights reserved.</p>
+                    </section>
+
+                </div>
+            </section>
+        </div>
+    </div>
+    </div>
+    </section>
+
+    <section style="border-top: 1px solid #d7d7d7;" class="container py-5">
+        <h4 class="h6">Product and Performance Information</h4>
+        <div class="disclaimer" style="font-size: 12px;"><sup>1</sup> Performance varies by use, configuration and other
+            factors. Learn more at <a class="b_special_a1" href="">www.Intel.com/PerformanceIndex.</a></div>
+        </div>
+    </section>
+
+    <!-- footer -->
+    <div id="footer"></div>
+
+    <!-- nav script -->
+    <script>
+        // navbar include  
+        fetch('/y_index/y_navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar').innerHTML = data;
+            });
+        // footer include 
+        fetch('/y_index/y_footer.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('footer').innerHTML = data;
+            });
+    </script>
+    <!-- nav script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            if (document.getElementsByClassName('VK_all_sections section') && document.getElementsByClassName('VK_sidebar_dropdown')) {
+                const sections = document.querySelectorAll('.VK_all_sections section');
+                const navLinks = document.querySelectorAll('.VK_sidebar_dropdown a');
+                const detailsElements = document.querySelectorAll('.VK_sidebar_dropdown details');
+
+                function removeActiveClass() {
+                    navLinks.forEach(link => link.classList.remove('VK_sidebar_active_link'));
+                    detailsElements.forEach(details => {
+                        details.removeAttribute('open');
+                        details.setAttribute('close', ''); // Optional: to visually indicate it's closed
+                    });
+                }
+
+                function activateLinkAndDetails(targetId) {
+                    navLinks.forEach(link => {
+                        if (link.getAttribute('href') === `#${targetId}`) {
+                            link.classList.add('VK_sidebar_active_link');
+                            let parentDetails = link.closest('details');
+
+                            // Open all ancestor details elements
+                            while (parentDetails) {
+                                parentDetails.setAttribute('open', '');
+                                parentDetails.removeAttribute('close'); // Optional: remove the closed indicator
+                                parentDetails = parentDetails.parentElement.closest('details');
+                            }
+                        }
+                    });
+                }
+
+                function onScroll() {
+                    let currentSection = '';
+                    sections.forEach(section => {
+                        const sectionTop = section.getBoundingClientRect().top;
+                        const sectionBottom = section.getBoundingClientRect().bottom;
+
+                        // Check if the section is in view
+                        if (sectionTop <= 100 && sectionBottom >= 0) {
+                            currentSection = section.getAttribute('id');
+                        }
+                    });
+
+                    if (currentSection) {
+                        removeActiveClass();
+                        activateLinkAndDetails(currentSection);
+                    } else {
+                        removeActiveClass();
+                    }
+                }
+
+                window.addEventListener('scroll', onScroll);
+            } else {
+                return
+            }
+        });
+    </script>
+
+    <!-- copy script -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            document.querySelectorAll(".mv_copy_icon").forEach((icon) => {
+                icon.addEventListener("click", async function () {
+                    try {
+                        const toolbar = this.closest(".mv_code_toolbar");
+                        const codeBlock = toolbar.querySelector(".code-content");
+                        const codeContent = codeBlock.innerText;
+
+                        // Use Clipboard API to copy text
+                        await navigator.clipboard.writeText(codeContent);
+
+                        // Hide the copy icon and show the "Copied!" message
+                        const message = toolbar.querySelector(".mv_copy_message");
+                        this.classList.add("hidden"); // Hide the copy icon
+                        message.classList.remove("hidden"); // Show the "Copied!" message
+
+                        // Hide the message and show the icon again after 2 seconds
+                        setTimeout(() => {
+                            message.classList.add("hidden");
+                            this.classList.remove("hidden");
+                        }, 2000); // Adjust delay as needed
+
+                    } catch (err) {
+                        console.error('Failed to copy text: ', err);
+                    }
+                });
+            });
+        });
+    </script>
+
+</body>
+
+</html>
+
