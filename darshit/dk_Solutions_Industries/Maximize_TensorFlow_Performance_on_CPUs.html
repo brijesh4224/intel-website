@@ -1,0 +1,1377 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maximize TensorFlow* Performance on CPU: Considerations and Recommendations for Inference Workloads</title>
+
+    <!-- font family -->
+    <link href="https://fonts.cdnfonts.com/css/intel-clear" rel="stylesheet">
+
+    <link rel="stylesheet" href="/css/dk_developer_edge_iot_5G_industrial_automation_see_all_wireless_network_ready_printed_circuit_board_(PCB)_defect_detection.css">
+    <link rel="stylesheet" href="/css/mv_product/ECC.css">
+    <link rel="stylesheet" href="/css/rushita_automotive.css">
+
+    <!-- header footer -->
+    <link rel="stylesheet" href='/css/yatri.css'>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" rel="stylesheet">
+
+</head>
+
+<style>
+    .dk_color1 {
+        color: #069 !important;
+    }
+
+    .dk_color2 {
+        color: #008200 !important;
+    }
+
+    .dk_color3 {
+        color: #b24501;
+    }
+
+    .dk_note{
+        font-size: 1rem;
+        line-height: 1.25;
+        word-wrap: break-word;
+        background-color: #e6e6e6;
+        padding: 20px;
+        border-left: 3px solid #fdb813;
+    }
+    .dk_code_simple{
+        background-color: #e6e6e6;
+        color: #53565a;
+        border-radius: 0;
+    }
+    
+    .mv_code_toolbar{
+        margin: 10px 0px;
+    }
+
+    @media(max-width:1200px) {
+        .dk_risk_app_img {
+            width: 100% !important;
+        }
+    }
+</style>
+
+<body>
+    <!-- header -->
+    <div id="navbar"></div>
+
+    <!------------------------------------------------------------------------------->
+    <section class="m_ai_tdrop">
+        <div>
+            <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Developers
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item m_dropActive" href="/dhruvin_developer-tools/ds_Developer-Zone.html">Overview</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/rushita_Solutions/k_solutions_in_Viewall_SDF_Industrial-Automation_Control-flow-Enforcement_Technology.html">Topics & Technologies</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/dhruvin_developer-tools/ds_Development-Tools.html">Tools</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/rushita_Solutions/k_solutions_in_Viewall_SDF_Industrial-Automation_Hardware-Platforms.html">Hardware Platforms</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/dhruvin_developer-tools/ds_Resource-Documentation-Center.html">Resources & Documentation</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/dhruvin_developer-tools/ds_Learn.html">Learn</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/dhruvin_developer-tools/ds_Communities-and-Events.html">Community & Events</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/dhruvin_developer-tools/ds_Developer-Programs.html">Developer Programs</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/dhruvin_developer-tools/ds_Get-Help.html">Get Help</a></li>
+            </ul>
+        </div>
+        <div>
+            <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Tools
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item m_dropActive" href="/Product/B20_developer_catelog.html">Software Catalog</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/Product/B17_oneapi.html">oneAPI</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/rushita_Solutions/k_solutions_Intel-Tiber™Edge-Platform.html">Intel® Tiber™ Edge Platform</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/Product/B10_intel_Quarts.html">FPGA</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/VK_developers/VK_technology_sdk.html">Intel® Active Management Technology SDK</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/VK_developers/VK_intel_adviser.html">Intel® Advisor</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® AI Reference Models</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/rushita_Solutions/k_solutions_Intel-Collaboration-Suite-for-WebRTC.html">Intel® Collaboration Suite for WebRTC SDK</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/Product/B1_19_Intel_AICloud.html">Intel® Tiber™ AI Cloud</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/rushita_Solutions/k_solutions_Intel-Distribution-for-Python.html">Intel® Distribution for Python*</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/rushita_Solutions/k_solutions_Intel-Distribution-for-GDB.html">Intel® Distribution for GDB*</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/rushita_Solutions/k_solutions_Intel-DPC++Compatibility-Tool.html">Intel® DPC++ Compatibility Tool</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/rushita_Solutions/k_solutions_Intel-Dynamic-Application-Loader.html">Intel® Dynamic Application Loader</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/rushita_Solutions/k_solutions_Topics_viewall_Cloud-Insider-Program_AI-Frameworks-and-Tools.html">Frameworks</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Embree</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/VK_developers/VK_ai_scikit.html">Intel® Extension for Scikit-learn*</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/rushita_Solutions/k_solutions_Intel-Fortran-Compiler.html">Intel® Fortran Compiler</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/rushita_Solutions/k_solutions_cs_creaters_intel_gpa.html">Intel® Graphics Performance Analyzers</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/rushita_Solutions/k_solutions_Intel-HE-Toolkit.html">Intel® Homomorphic Encryption Toolkit</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/rushita_Solutions/k_solutions_Intel-In-Band-Manageability.html">Intel® In-Band Manageability</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Integrated Performance Primitives</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/rushita_Solutions/k_solutions_Intel-ISIM.html">Intel® Integrated Simulation Infrastructure with Modeling</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/rushita_Solutions/k_solutions_Instruction-Set-Architecture(ISA)Extensions.html">Instruction Set Architecture (ISA) Extensions</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/rushita_Solutions/k_solutions_Intel-Intelligent-Storage-Acceleration-Library.html">Intel® Intelligent Storage Acceleration Library (Intel® ISA-L)</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/VK_developers/VK_ai_modin.html">Modin*</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/rushita_Solutions/k_solutions_Intel-MPI-Library.html">Intel® MPI Library</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Neural Compressor</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/rushita_Solutions/">OpenCL™ Runtime</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/rushita_Solutions/">Intel® Open Image Denoise</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Open Path Guiding Library (Intel® Open PGL)</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/rushita_Solutions/k_solutions_Pin.html">Pin</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/rushita_Solutions/k_solutions_Pin_Intel-Platform-Analysis-Library.html">Intel® Platform Analysis Library</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel Tools for OpenCL™ Software</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel Tools for OpenCL™ Applications</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® OpenSWR</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">OpenVINO™ Toolkit</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Open Volume Kernel Library</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Optimization for XGBoost*</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® OSPRay</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® OSPRay for Hydra*</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® OSPRay Studio</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">PyTorch* Optimizations from Intel</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">TensorFlow* Optimizations from Intel</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Rendering Toolkit</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Smart Edge Open</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/rushita_Solutions/">Intel® Software Guard Extensions</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Secure Device Onboard</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Software Development Emulator</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/rushita_Solutions/Trust-Domain">Intel® Trust Domain Extensions (Intel® TDX)</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Quantum SDK</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Query Processing Library (Intel® QPL)</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Video Processing Library</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/VK_developers/VK_vtune_profiler.html">Intel® VTune™ Profiler</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Resellers</a></li>
+            </ul>
+        </div>
+        <div class="m_ai_shlash">/</div>
+        <div>
+            <a href="">
+                <button class="btn" style="color: #0068B5;">
+                    Frameworks
+                </button>
+            </a>
+        </div>
+        <div class="m_ai_shlash">/</div>
+        <div class="m_ai_httl">Maximize TensorFlow* Performance on CPUs</div>
+    </section>
+    <!------------------------------------------------------------------------------->
+
+    <!-- VMware Horizon -->
+    <section>
+        <div class="mv_vmware_bg_color">
+            <div class="container">
+                <div class="mv_vmware_padd">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="mv_vmware_heading">
+                                <h3>Maximize TensorFlow* Performance on CPU: Considerations and Recommendations for Inference Workloads</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mv_cd_page_marquee_info">
+                        <div class="mv_cd_page_marquee_action">
+                            <div class="mv_cd_page_marquee_action_padd">
+                                <label for="">ID</label>
+                                <span>765211</span>
+                            </div>
+                            <div class="mv_cd_page_marquee_action_padd">
+                                <label for="">Updated</label>
+                                <span>12/22/2022</span>
+                            </div>
+                            <div class="mv_cd_page_marquee_action_padd">
+                                <label for="">Version</label>
+                                <span>Latest</span>
+                            </div>
+                            <div class="mv_cd_page_marquee_action_padd">
+                                <label for=""></label>
+                                <span>Public</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="container py-5">
+        <div class="row">
+            <div class="d-flex justify-content-end col-xl-10 py-3 d-md-none">
+                <i class="fa-solid fa-print fs-4 px-2 " style="color:#0068B5"></i>
+                <i class="fa-regular fa-envelope fs-4 px-2" style="color:#0068B5"></i>
+            </div>
+            <div class="col-lg-3 col-md-4">
+                <div class="VK_sticky_side_bar VK_side_bar_postion_stickey">
+                    <div>
+                        <div class="VK_sidebar_dropdown">
+                            <p class="m-0">
+                                <a href="#dk_maximum_throughput" class="text-decoration-none VK_a">
+                                    Maximum Throughput vs. Real-time Inference
+                                </a>
+                            </p>
+                            <p class="m-0">
+                                <a href="#dk_tensorflow_graph" class="text-decoration-none VK_a">
+                                    TensorFlow Graph Options Improving Performance
+                                </a>
+                            </p>
+                            <p class="m-0">
+                                <a href="#dk_runtime_options" class="text-decoration-none VK_a">
+                                    TensorFlow Runtime Options Improving Performance
+                                </a>
+                            </p>
+                            <p class="m-0">
+                                <a href="#dk_non_uniform" class="text-decoration-none VK_a">
+                                    Non-uniform memory access (NUMA) Controls Affecting Performance
+                                </a>
+                            </p>
+                            <p class="m-0">
+                                <a href="#dk_openmp_technical" class="text-decoration-none VK_a">
+                                    OpenMP Technical Performance Considerations for Intel® Optimization for TensorFlow
+                                </a>
+                            </p>
+                            <p class="m-0">
+                                <a href="#dk_mixed_precision" class="text-decoration-none VK_a">
+                                    Enable Mixed Precision
+                                </a>
+                            </p>
+                            <p class="m-0">
+                                <a href="#dk_additional_informaton" class="text-decoration-none VK_a">
+                                    Additional Information
+                                </a>
+                            </p>
+                            <p class="m-0">
+                                <a href="#dk_know_issues" class="text-decoration-none VK_a">
+                                    Known issues
+                                </a>
+                            </p>
+                            <p class="m-0">
+                                <a href="#dk_resources" class="text-decoration-none VK_a">
+                                    Resources
+                                </a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <!-- thinkcode -->
+                <p><span>By</span>&nbsp;<a href="">Jing Xu, PREETHI VENKATESH, Hung-Ju Tsai</a></p>
+            </div>
+            <div class="col-lg-9 col-md-8">
+                <div class="d-md-flex justify-content-end col-xl-10 py-3 d-none">
+                    <i class="fa-solid fa-print fs-4 px-2 " style="color:#0068B5"></i>
+                    <i class="fa-regular fa-envelope fs-4 px-2" style="color:#0068B5"></i>
+                </div>
+                <div class="col-xl-10 VK_all_sections">
+                    <p>&nbsp;</p>
+                    <p class="mb-0">&nbsp;</p>
+                    <p>To fully utilize the power of Intel® architecture (IA) for high performance, you can enable TensorFlow* to be powered by Intel’s highly optimized math routines in the Intel® oneAPI Deep Neural Network Library (oneDNN). oneDNN includes convolution, normalization, activation, inner product, and other primitives.</p>
+                    <p>The oneAPI Deep Neural Network Library (oneDNN) optimizations are now available both in the official x86-64 TensorFlow and Intel® Optimization for TensorFlow* after v2.5. Users can enable those CPU optimizations by setting the the environment variable <strong>TF_ENABLE_ONEDNN_OPTS=1</strong> for the official x86-64 TensorFlow after v2.5.</p>
+                    <p>Most of the recommendations work on both official x86-64 TensorFlow and Intel® Optimization for TensorFlow. Some recommendations such as OpenMP tuning only applies to Intel® Optimization for TensorFlow.</p>
+                    <p>For setting up Intel® Optimization for TensorFlow* framework, please refer to this <a class="b_special_a1" href="">installation guide</a>.</p>
+
+                    <section id="dk_maximum_throughput">
+                        <p class="mb-0">&nbsp;</p>
+                        <h3 style="font-weight: 350; padding-bottom: 0.5rem;">Maximum Throughput vs. Real-time Inference</h3>
+                        <p>You can perform deep learning inference using two different strategies, each with different performance measurements and recommendations. The first is Max Throughput (MxT), which aims to process as many images per second as possible, passing in batches of size &gt; 1. For Max Throughput, you achieve better performance by exercising all the physical cores on a socket. With this strategy, you simply load up the CPU with as much work as you can and process as many images as you can in a parallel and vectorized fashion.</p>
+                        <p>An altogether different strategy is Real-time Inference (RTI) where you typically process a single image as fast as possible. Here you aim to avoid penalties from excessive thread launching and orchestration among concurrent processes. The strategy is to confine and execute quickly. The best-known methods (BKMs) differ for these two strategies.</p>
+                    </section>
+
+                    <section id="dk_tensorflow_graph">
+                        <p class="mb-0">&nbsp;</p>
+                        <h3 style="font-weight: 350; padding-bottom: 0.5rem;">TensorFlow Graph Options Improving Performance</h3>
+                        <p>Optimizing graphs help improve latency and throughput time by transforming graph nodes to have only inference related nodes and by removing all training nodes.</p>
+                        <p>Users can use tools from TensorFlow github.</p>
+                        <p><strong>First, use freeze_graph</strong></p>
+                        <p>First, freezing the graph can provide additional performance benefits. The freeze_graph tool, available as part of TensorFlow on GitHub, converts all the variable ops to const ops on the inference graph and outputs a frozen graph. With all weights frozen in the resulting inference graph, you can expect improved inference time. Here is a <a class="b_special_a1" href="">LINK</a> to access the freeze_graph tool.</p>
+                        <p><strong>Second, Use optimize_for_inference</strong></p>
+                        <p>When the trained model is used only for inference, after the graph has been frozen, additional transformations can help optimize the graph for inference. TensorFlow project on GitHub offers an easy to use optimization tool to improve the inference time by applying these transformations to a trained model output. The output will be an inference-optimized graph to improve inference time. Here is a <a class="b_special_a1" href="">LINK</a> to access the optimize_for_inference tool.</p>
+                    </section>
+
+                    <section id="dk_runtime_options">
+                        <p class="mb-0">&nbsp;</p>
+                        <h3 style="font-weight: 350; padding-bottom: 0.5rem;">TensorFlow Runtime Options Improving Performance</h3>
+                        <p>Runtime options heavily affect TensorFlow performance. Understanding them will help get the best performance out of the Intel Optimization of TensorFlow.</p>
+                        <p>&nbsp;</p>
+                        <details>intra_/inter_op_parallelism_threads<br>
+                            <strong>Recommended settings (RTI):intra_op_parallelism = number of physical core per socket</strong><br>
+                            <br>
+                            <strong>Recommended settings: inter_op_parallelism = number of sockets</strong><br>
+                            <br>
+                            <strong>Users can put below bash commands into a bash script file, and then get the number of physical core per socket and number of sockets on your platform by executing the bash script file.</strong><br>
+                            &nbsp;
+                            <p>&nbsp;</p>
+                            
+                            <div class="mv_code_toolbar">
+                                <div class="mv_toolbar_item mv_copy_icon">
+                                    <i class="fa-regular fa-copy"></i>
+                                </div>
+                                <div class="mv_copy_message text-end hidden">Copied</div>
+                                <div class="code-content">
+                                    <div style="padding-bottom: 0rem !important" class="d-flex">
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0">&nbsp;</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-bottom: 0rem !important" class="d-flex">
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0">total_cpu_cores=$(nproc)</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;"
+                                        class="d-flex pb-0">
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0">&nbsp; &nbsp; &nbsp; &nbsp;  number_sockets=$(($(grep "^physical id" /proc/cpuinfo | awk '{print $4}' | sort -un | tail -1)+1))</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;"
+                                        class="d-flex pb-0">
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0">&nbsp; &nbsp; &nbsp; &nbsp;  number_cpu_cores=$(( (total_cpu_cores/2) / number_sockets))</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;"
+                                        class="d-flex pb-0">
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0">&nbsp;</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;"
+                                        class="d-flex pb-0">
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0">&nbsp;</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;"
+                                        class="d-flex pb-0">
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0">&nbsp; &nbsp; &nbsp; &nbsp; echo "number of CPU cores per socket: $number_cpu_cores";</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 1rem !important;"
+                                        class="d-flex pb-0">
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0">&nbsp; &nbsp; &nbsp; &nbsp; echo "number of socket: $number_sockets";</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div> 
+                            
+                            <p><br>
+                            For example, here is how you can set the inter and intra_op_num_threads by using <a href="https://github.com/tensorflow/benchmarks/tree/master/scripts/tf_cnn_benchmarks">TensorFlow Benchmark</a>.tf_cnn_benchmarks usage (shell)</p>
+                            
+                            <pre><div class="toolbar"><div class="toolbar-item"><i class="fa fa-docs"></i></div></div>python tf_cnn_benchmarks.py --num_intra_threads=&lt;number of physical cores per socket&gt; --num_inter_threads=&lt;number of sockets&gt;</pre>
+                            
+                            <p><strong>intra_op_parallelism_threads</strong> and <strong>inter_op_parallelism_threads</strong> are runtime variables defined in TensorFlow.<br>
+                            <br>
+                            <strong>ConfigProto</strong><br>
+                            <br>
+                            The ConfigProto is used for configuration when creating a session. These two variables control number of cores to use.<br>
+                            &nbsp;</p>
+                            
+                            <ul>
+                                <li>intra_op_parallelism_threads</li>
+                                <br>
+                                <li>This runtime setting controls parallelism inside an operation. For instance, if matrix multiplication or reduction is intended to be executed in several threads, this variable should be set. TensorFlow will schedule tasks in a thread pool that contains intra_op_parallelism_threads threads. As illustrated later in Figure 2, OpenMP* threads are bound to thread context as close as possible on different cores. Setting this environment variable to the number of available physical cores is recommended.</li>
+                                <br>
+                                <br>
+                                <br>
+                                <br>
+                                <br>
+                                &nbsp;
+                                <li>&nbsp;</li>
+                                <li>&nbsp;</li>
+                                <li>inter_op_parallelism_threads</li>
+                                <br>
+                                <li>NOTE: This setting is highly dependent on hardware and topologies, so it’s best to empirically confirm the best setting on your workload.<br>
+                                <br>
+                                This runtime setting controls parallelism among independent operations. Since these operations are not relevant to each other, TensorFlow will try to run them concurrently in the thread pool that contains inter_op_parallelism_threads threads. This variable should be set to the number of parallel paths where you want the code to run. For Intel® Optimization for TensorFlow, we recommend starting with the setting '2’, and adjusting after empirical testing.</li>
+                            </ul>
+                        </details>
+                        <P>&nbsp;</P>
+                        <P>&nbsp;</P>
+                        <details>Data layout<br>
+                            <strong>Recommended settings → data_format = NHWC</strong><br>
+                            tf_cnn_benchmarks usage (shell)
+                            <p>&nbsp;</p>
+                            
+                            <div class="mv_code_toolbar">
+                                <div class="mv_toolbar_item mv_copy_icon">
+                                    <i class="fa-regular fa-copy"></i>
+                                </div>
+                                <div class="mv_copy_message text-end hidden">Copied</div>
+                                <div class="code-content">
+                                    <div style="padding-bottom: 0rem !important" class="d-flex">
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0">&nbsp;</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-bottom: 0rem !important" class="d-flex">
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0">python tf_cnn_benchmarks.py --num_intra_threads=<span><</span>number of physical cores per socket> --num_inter_threads=<span><</span>number of</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 1rem !important;"
+                                        class="d-flex pb-0">
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0">sockets> --data_format=NHWC</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div> 
+                            
+                            <p><br>
+                            Efficiently using cache and memory yields remarkable improvements in overall performance. A good memory access pattern minimizes extra cost for accessing data in memory and improves overall processing. Data layout, how data is stored and accessed, plays an important role in achieving these good memory access patterns. Data layout describes how multidimensional arrays are stored linearly in memory address space.</p>
+                            
+                            <p>In most cases, data layout is represented by four letters for a two-dimensional image:</p>
+                            
+                            <ul>
+                                <li>
+                                <p>N: Batch size, indicates number of images in a batch.</p>
+                                </li>
+                                <li>
+                                <p>C: Channel, indicates number of channels in an image.</p>
+                                </li>
+                                <li>
+                                <p>W: Width, indicates number of horizontal pixels of an image.</p>
+                                </li>
+                                <li>
+                                <p>H: Height, indicates number of vertical pixels of an image.<br>
+                                The order of these four letters indicates how pixel data are stored in the one-dimensional memory space. For instance, NCHW indicates pixel data are stored as width first, then height, then channel, and finally batch (Illustrated in Figure 2). The data is then accessed from left-to-right with channel-first indexing. NCHW is the recommended data layout for using oneDNN, since this format is an efficient data layout for the CPU. TensorFlow uses NHWC as its default data layout, but it also supports NCHW.</p>
+                            
+                                <p><img class="w-100" alt="Data Formats for Deep Learning NHWC and NCHW" src="/img/darshit_image/data-layout-nchw-nhwc-804042 (1).png"></p>
+                            
+                                <p>Figure 1: Data Formats for Deep Learning NHWC and NCHW</p>
+                            
+                                <p><strong>NOTE :</strong> Intel Optimized TensorFlow supports both plain data formats like NCHW/NHWC and also oneDNN blocked data format since version 2.4. Using blocked format might help on vectorization but might introduce some data reordering operations in TensorFlow.</p>
+                            
+                                <p>Users could enable/disable usage of oneDNN blocked data format in Tensorflow by TF_ENABLE_MKL_NATIVE_FORMAT environment variable. By exporting TF_ENABLE_MKL_NATIVE_FORMAT=0, TensorFlow will use oneDNN blocked data format instead. Please check <a class="w-100" href="">oneDNN memory format</a> for more information about oneDNN blocked data format.</p>
+                            
+                                <p>We recommend users to enable NATIVE_FORMAT by below command to achieve good out-of-box performance. export TF_ENABLE_MKL_NATIVE_FORMAT=1 (or 0)</p>
+                                </li>
+                            </ul>
+                        </details>
+                        <P>&nbsp;</P>
+                        <P>&nbsp;</P>
+                        <details>oneDNN Related Runtime Environment Variables<br>
+                            There are some runtime arguments related to oneDNN optimizations in TensorFlow.<br>
+                            Users could tune those runtime arguments to achieve better performance.
+                            <p>&nbsp;</p>
+                            
+                            <table class="mv_product_table w-100">
+                                <thead>
+                                    <tr>
+                                        <th>Environment Variables</th>
+                                        <th>Default</th>
+                                        <th>Purpose</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>TF_ENABLE_ONEDNN_OPTS</td>
+                                        <td>True</td>
+                                        <td>Enable/Disable oneDNN optimization</td>
+                                    </tr>
+                                    <tr>
+                                        <td>TF_ONEDNN_ASSUME_FROZEN_WEIGHTS</td>
+                                        <td>False</td>
+                                        <td>Frozen weights for inference.<br>
+                                        Better inference performance is achieved with frozen graphs.<br>
+                                        Related ops: fwd conv, fused matmul&nbsp;</td>
+                                    </tr>
+                                    <tr>
+                                        <td>TF_ONEDNN_USE_SYSTEM_ALLOCATOR</td>
+                                        <td>False</td>
+                                        <td>Use&nbsp;system allocator or BFC allocator in&nbsp;MklCPUAllocator.<br>
+                                        Usage:
+                                        <ul>
+                                            <li>Set it to true for better performance if the workload meets one of following conditions:</li>
+                                        </ul>
+                            
+                                        <ul>
+                                            <li>small allocation.</li>
+                                            <li>inter_op_parallelism_threads is large.</li>
+                                            <li>has a weight sharing session</li>
+                                        </ul>
+                            
+                                        <ul>
+                                            <li>Set it to False to use large-size allocator (BFC).</li>
+                                            <li>In general, set this flag to True for inference, and set this flag to False for training.&nbsp;</li>
+                                        </ul>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>TF_MKL_ALLOC_MAX_BYTES</td>
+                                        <td>64</td>
+                                        <td>MklCPUAllocator:&nbsp;Set upper bound on memory allocation. Unit:GB</td>
+                                    </tr>
+                                    <tr>
+                                        <td>TF_MKL_OPTIMIZE_PRIMITIVE_MEMUSE</td>
+                                        <td>True</td>
+                                        <td>Use oneDNN primitive caching or not.
+                                        <ul>
+                                            <li>Set False to enable primitive caching in TensorFlow.</li>
+                                            <li>Set True to disable primitive caching in TensorFlow and oneDNN might cache those primitives for TensorFlow.</li>
+                                            <li>Disabling primitive caching will reduce memory usage in TensorFlow but impacts performance.</li>
+                                        </ul>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            
+                            <p>&nbsp;</p>
+                        </details>
+                        <P>&nbsp;</P>
+                        <P>&nbsp;</P>
+                        <details>Memory Allocator<br>
+                            For deep learning workloads, TCMalloc can get better performance by reusing memory as much as possible than default malloc function. <a class="b_special_a1" href="">TCMalloc</a> features a couple of optimizations to speed up program executions. TCMalloc is holding memory in caches to speed up access of commonly-used objects. Holding such caches even after deallocation also helps avoid costly system calls if such memory is later re-allocated. Use environment variable LD_PRELOAD to take advantage of one of them.
+                            
+                            <div class="mv_code_toolbar">
+                                <div class="mv_toolbar_item mv_copy_icon">
+                                    <i class="fa-regular fa-copy"></i>
+                                </div>
+                                <div class="mv_copy_message text-end hidden">Copied</div>
+                                <div class="code-content">
+                                    <div style="padding-bottom: 0rem !important" class="d-flex">
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0">&nbsp;</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-bottom: 0rem !important" class="d-flex">
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0">$ sudo apt-get install google-perftools</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 1rem !important;"
+                                        class="d-flex pb-0">
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; $ LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libtcmalloc.so.4 python script.py …</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div> 
+                        </details>
+                        <p>&nbsp;</p>
+                    </section>
+
+                    <section id="dk_non_uniform">
+                        <p class="mb-0">&nbsp;</p>
+                        <h3 style="font-weight: 350;">Non-uniform memory access (NUMA) Controls Affecting Performance</h3>
+                        <p class="mb-0">&nbsp;</p>
+                        <p><br>
+                            NUMA, or non-uniform memory access, is a memory layout design used in data center machines meant to take advantage of locality of memory in multi-socket machines with multiple memory controllers and blocks. Running on a NUMA-enabled machine brings with it, special considerations. Intel® Optimization for TensorFlow runs inference workload best when confining both the execution and memory usage to a single NUMA node. When running on a NUMA-enabled system, recommendation is to set intra_op_parallelism_threads to the numbers of local cores in each single NUMA-node.<br>
+                            <br>
+                            Recommended settings: --cpunodebind=0 --membind=0<br>
+                            <br>
+                            Usage (shell)</p>
+                            <div class="mv_code_toolbar">
+                                <div class="mv_toolbar_item mv_copy_icon">
+                                    <i class="fa-regular fa-copy"></i>
+                                </div>
+                                <div class="mv_copy_message text-end hidden">Copied</div>
+                                <div class="code-content">
+                                    <div style="padding-bottom: 0rem !important" class="d-flex">
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0">&nbsp;</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 1rem !important;"
+                                        class="d-flex pb-0">
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0">numactl --cpunodebind=0 --membind=0 python</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div> 
+                            <p>&nbsp;</p>
+                            <details>Concurrent Execution<br>
+                                You can optimize performance by breaking up your workload into multiple data shards and then running them concurrently on more than one NUMA node. On each node (N), run the following command:<br>
+                                <br>
+                                Usage (shell)
+                                <p>&nbsp;</p>
+                                
+                                <div class="mv_code_toolbar">
+                                    <div class="mv_toolbar_item mv_copy_icon">
+                                        <i class="fa-regular fa-copy"></i>
+                                    </div>
+                                    <div class="mv_copy_message text-end hidden">Copied</div>
+                                    <div class="code-content">
+                                        <div style="padding-bottom: 0rem !important" class="d-flex">
+                                            <div class="">
+                                                <div class="mv_code text-break">
+                                                    <p class="mb-0">&nbsp;</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div style="padding-top: 0rem !important; padding-bottom: 1rem !important;"
+                                            class="d-flex pb-0">
+                                            <div class="">
+                                                <div class="mv_code text-break">
+                                                    <p class="mb-0">numactl --cpunodebind=N --membind=N python</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div> 
+                                
+                                <p>For example, you can use the “&amp;” command to launch simultaneous processes on multiple NUMA nodes:</p>
+                                
+                                <div class="mv_code_toolbar">
+                                    <div class="mv_toolbar_item mv_copy_icon">
+                                        <i class="fa-regular fa-copy"></i>
+                                    </div>
+                                    <div class="mv_copy_message text-end hidden">Copied</div>
+                                    <div class="code-content">
+                                        <div style="padding-bottom: 0rem !important" class="d-flex">
+                                            <div class="">
+                                                <div class="mv_code text-break">
+                                                    <p class="mb-0">&nbsp;</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div style="padding-top: 0rem !important; padding-bottom: 1rem !important;"
+                                            class="d-flex pb-0">
+                                            <div class="">
+                                                <div class="mv_code text-break">
+                                                    <p class="mb-0">numactl --cpunodebind=0 --membind=0 python & numactl --cpunodebind=1 --membind=1 python</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div> 
+                                
+                                <p>&nbsp;</p>
+                            </details>
+                            <p>&nbsp;</p>
+                            <p>&nbsp;</p>
+                            <details>CPU Affinity<br>
+                                Users could bind threads to specific CPUs via "--physcpubind=cpus" or "-C cpus"<br>
+                                <br>
+                                Setting its value to <strong>"0-N"</strong> will bind threads to physical cores 0 to N only.<br>
+                                <br>
+                                Usage (shell)
+                                <p>&nbsp;</p>
+                                
+                                <div class="mv_code_toolbar">
+                                    <div class="mv_toolbar_item mv_copy_icon">
+                                        <i class="fa-regular fa-copy"></i>
+                                    </div>
+                                    <div class="mv_copy_message text-end hidden">Copied</div>
+                                    <div class="code-content">
+                                        <div style="padding-bottom: 0rem !important" class="d-flex">
+                                            <div class="">
+                                                <div class="mv_code text-break">
+                                                    <p class="mb-0">&nbsp;</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div style="padding-top: 0rem !important; padding-bottom: 1rem !important;"
+                                            class="d-flex pb-0">
+                                            <div class="">
+                                                <div class="mv_code text-break">
+                                                    <p class="mb-0">numactl --cpunodebind=N --membind=N -C 0-N python</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div> 
+                                
+                                <p>For example, you can use the “&amp;” command to launch simultaneous processes on multiple NUMA nodes on physical CPU 0 to 3 and 4 to 7:</p>
+                                
+                                <div class="mv_code_toolbar">
+                                    <div class="mv_toolbar_item mv_copy_icon">
+                                        <i class="fa-regular fa-copy"></i>
+                                    </div>
+                                    <div class="mv_copy_message text-end hidden">Copied</div>
+                                    <div class="code-content">
+                                        <div style="padding-bottom: 0rem !important" class="d-flex">
+                                            <div class="">
+                                                <div class="mv_code text-break">
+                                                    <p class="mb-0">&nbsp;</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div style="padding-top: 0rem !important; padding-bottom: 1rem !important;"
+                                            class="d-flex pb-0">
+                                            <div class="">
+                                                <div class="mv_code text-break">
+                                                    <p class="mb-0">numactl --cpunodebind=0 --membind=0 -C 0-3 python & numactl --cpunodebind=1 --membind=1 -C 4-7 python</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div> 
+                                
+                                <p>NOTE : oneDNN will <a class="b_special_a1" href="">get the CPU affinity mask</a> from users' numactl setting and set the maximum number of working threads in the threadpool accordingly after TensorFlow v2.5.0 RC1.</p>
+                            </details>
+                            <p>&nbsp;</p>
+                    </section>
+
+                    <section id="dk_openmp_technical">
+                        <p class="mb-0">&nbsp;</p>
+                        <h4 style="font-weight: 350;">OpenMP Technical Performance Considerations for Intel® Optimization for TensorFlow</h4>
+                        <blockquote>This section is only for Intel® Optimization for TensorFlow, and it does not apply to official TensorFlow release.</blockquote>
+                        <p><br>
+                            Intel® Optimization for TensorFlow utilizes OpenMP to parallelize deep learning model execution among CPU cores.<br>
+                            <br>
+                            Users can use the following environment variables to be able to tune Intel® optimized TensorFlow performance . Thus, changing values of these environment variables affects performance of the framework. These environment variables will be described in detail in the following sections. We highly recommend users tuning these values for their specific neural network model and platform.<br>
+                            &nbsp;</p>
+                        <details>OMP_NUM_THREADS<br>
+                                Recommended settings for CNN→ OMP_NUM_THREADS = num physical cores<br>
+                                <br>
+                                Usage (shell)<br>
+                                &nbsp;
+                                <p>&nbsp;</p>
+                                
+                                <div class="mv_code_toolbar">
+                                    <div class="mv_toolbar_item mv_copy_icon">
+                                        <i class="fa-regular fa-copy"></i>
+                                    </div>
+                                    <div class="mv_copy_message text-end hidden">Copied</div>
+                                    <div class="code-content">
+                                        <div style="padding-bottom: 0rem !important" class="d-flex">
+                                            <div class="">
+                                                <div class="mv_code text-break">
+                                                    <p class="mb-0">&nbsp;</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div style="padding-top: 0rem !important; padding-bottom: 1rem !important;"
+                                            class="d-flex pb-0">
+                                            <div class="">
+                                                <div class="mv_code text-break">
+                                                    <p class="mb-0">export KMP_AFFINITY=granularity=fine,compact,1,0</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div> 
+                                
+                                <p>This environment variable sets the maximum number of threads to use for OpenMP parallel regions if no other value is specified in the application.<br>
+                                <br>
+                                With Hyperthreading enabled, there are more than one hardware threads for a physical CPU core, but we recommend to use only one hardware thread for a physical CPU core to avoid cache miss problems.<br>
+                                <br>
+                                tf_cnn_benchmarks usage (shell)</p>
+                                
+                                <div class="mv_code_toolbar">
+                                    <div class="mv_toolbar_item mv_copy_icon">
+                                        <i class="fa-regular fa-copy"></i>
+                                    </div>
+                                    <div class="mv_copy_message text-end hidden">Copied</div>
+                                    <div class="code-content">
+                                        <div style="padding-bottom: 0rem !important" class="d-flex">
+                                            <div class="">
+                                                <div class="mv_code text-break">
+                                                    <p class="mb-0">&nbsp;</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div style="padding-bottom: 0rem !important" class="d-flex">
+                                            <div class="">
+                                                <div class="mv_code text-break">
+                                                    <p class="mb-0">OMP_NUM_THREADS=<span><</span>number of physical cores per socket> python tf_cnn_benchmarks.py --num_intra_threads=<span><</span>number of</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div style="padding-bottom: 0rem !important" class="d-flex">
+                                            <div class="">
+                                                <div class="mv_code text-break">
+                                                    <p class="mb-0">physical cores per socket> --num_inter_threads=<span><</span>number of sockets<span>></span> --data_format=NCHW --</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div style="padding-top: 0rem !important; padding-bottom: 1rem !important;"
+                                            class="d-flex pb-0">
+                                            <div class="">
+                                                <div class="mv_code text-break">
+                                                    <p class="mb-0">kmp_affinity=granularity=fine,compact,1,0</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div> 
+                                
+                                <p>Users can bind OpenMP threads to physical processing units. <strong>KMP_AFFINITY</strong> is used to take advantage of this functionality. It restricts execution of certain threads to a subset of the physical processing units in a multiprocessor computer.<br>
+                                <br>
+                                The value can be a single integer, in which case it specifies the number of threads for all parallel regions. The value can also be a comma-separated list of integers, in which case each integer specifies the number of threads for a parallel region at a nesting level.<br>
+                                <br>
+                                The first position in the list represents the outer-most parallel nesting level, the second position represents the next-inner parallel nesting level, and so on. At any level, the integer can be left out of the list. If the first integer in a list is left out, it implies the normal default value for threads is used at the outer-most level. If the integer is left out of any other level, the number of threads for that level is inherited from the previous level.<br>
+                                <br>
+                                The default value is the number of logical processors visible to the operating system on which the program is executed. This value is recommended to be set to the number of physical cores.</p>
+                        </details>
+                        <p>&nbsp;</p>
+                        <p>&nbsp;</p>
+                        <details>KMP_AFFINITY<br>
+                            <strong>Recommended settings → KMP_AFFINITY=granularity=fine,verbose,compact,1,0</strong>
+                            
+                            <p>&nbsp;</p>
+                            
+                            <div class="mv_code_toolbar">
+                                <div class="mv_toolbar_item mv_copy_icon">
+                                    <i class="fa-regular fa-copy"></i>
+                                </div>
+                                <div class="mv_copy_message text-end hidden">Copied</div>
+                                <div class="code-content">
+                                    <div style="padding-bottom: 0rem !important" class="d-flex">
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0">&nbsp;</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 1rem !important;"
+                                        class="d-flex pb-0">
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0">export KMP_AFFINITY=granularity=fine,compact,1,0</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div> 
+                            
+                            <p>tf<em>cnn</em>benchmarks usage (shell)</p>
+                            
+                            <div class="mv_code_toolbar">
+                                <div class="mv_toolbar_item mv_copy_icon">
+                                    <i class="fa-regular fa-copy"></i>
+                                </div>
+                                <div class="mv_copy_message text-end hidden">Copied</div>
+                                <div class="code-content">
+                                    <div style="padding-bottom: 0rem !important" class="d-flex">
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0">&nbsp;</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-bottom: 0rem !important" class="d-flex">
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0">OMP_NUM_THREADS=<span><</span>number of physical cores per socket> python tf_cnn_benchmarks.py --num_intra_threads=<span><</span>number of</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-bottom: 0rem !important" class="d-flex">
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0">physical cores per socket> --num_inter_threads=<span><</span>number of sockets<span>></span> --data_format=NCHW --</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 1rem !important;"
+                                        class="d-flex pb-0">
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0">kmp_affinity=granularity=fine,compact,1,0</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div> 
+                            
+                            <p>Users can bind OpenMP threads to physical processing units. <strong>KMP_AFFINITY</strong> is used to take advantage of this functionality. It restricts execution of certain threads to a subset of the physical processing units in a multiprocessor computer.<br>
+                            <br>
+                            Usage of this environment variable is as below.<br>
+                            <br>
+                            KMP_AFFINITY=[,…][,][,]<br>
+                            <br>
+                            Modifier is a string consisting of keyword and specifier. type is a string indicating the thread affinity to use. permute is a positive integer value, controls which levels are most significant when sorting the machine topology map. The value forces the mappings to make the specified number of most significant levels of the sort the least significant, and it inverts the order of significance. The root node of the tree is not considered a separate level for the sort operations. offset is a positive integer value, indicates the starting position for thread assignment. We will use the recommended setting of <strong>KMP_AFFINITY</strong> as an example to explain basic content of this environment variable.<br>
+                            <br>
+                            KMP_AFFINITY=granularity=fine,verbose,compact,1,0<br>
+                            <br>
+                            The modifier is granularity=fine,verbose. Fine causes each OpenMP thread to be bound to a single thread context. Verbose prints messages at runtime concerning the supported affinity, and this is optional. These messages include information about the number of packages, number of cores in each package, number of thread contexts for each core, and OpenMP thread bindings to physical thread contexts. Compact is value of type, assigning the OpenMP thread +1 to a free thread context as close as possible to the thread context where the OpenMP thread was placed.<br>
+                            <br>
+                            NOTE The recommendation changes if Hyperthreading is disabled on your machine. In that case, the recommendation is: KMP_AFFINITY=granularity=fine,verbose,compact if hyperthreading is disabled.<br>
+                            <br>
+                            Fig. 2 shows the machine topology map when <strong>KMP_AFFINITY</strong> is set to these values. The OpenMP thread +1 is bound to a thread context as close as possible to OpenMP thread , but on a different core. Once each core has been assigned one OpenMP thread, the subsequent OpenMP threads are assigned to the available cores in the same order, but they are assigned on different thread contexts.<br>
+                            <br>
+                            <img class="w-100" src="/img/darshit_image/openmp-global-thread-pool-ids-804042.jpg"><br>
+                            Figure 2. Machine topology map with setting KMP_AFFINITY=granularity=fine,compact,1,0<br>
+                            <br>
+                            The advantage of this setting is that consecutive threads are bound close together, so that communication overhead, cache line invalidation overhead, and page thrashing are minimized. If the application also had a number of parallel regions that did not use all of the available OpenMP threads, you should avoid binding multiple threads to the same core, leaving other cores not utilized.<br>
+                            <br>
+                            For a more detailed description of KMP_AFFINITY, please refer to <a class="b_special_a1" href="">Intel® C++ developer guide</a>.</p>
+                        </details>
+                        <p>&nbsp;</p>
+                        <p>&nbsp;</p>
+                        <details>KMP_BLOCKTIME<br>
+                            Recommended settings for CNN→ KMP_BLOCKTIME=0<br>
+                            <br>
+                            Recommended settings for non-CNN→ KMP_BLOCKTIME=1 (user should verify empirically)<br>
+                            <br>
+                            usage (shell)
+                            <p>&nbsp;</p>
+                            
+                            <div class="mv_code_toolbar">
+                                <div class="mv_toolbar_item mv_copy_icon">
+                                    <i class="fa-regular fa-copy"></i>
+                                </div>
+                                <div class="mv_copy_message text-end hidden">Copied</div>
+                                <div class="code-content">
+                                    <div style="padding-bottom: 0rem !important" class="d-flex">
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0">&nbsp;</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 1rem !important;"
+                                        class="d-flex pb-0">
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0">export KMP_BLOCKTIME=0 (or 1)</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div> 
+                            
+                            <p>tf<em>cnn</em>benchmarks usage (shell)</p>
+                            
+                            <div class="mv_code_toolbar">
+                                <div class="mv_toolbar_item mv_copy_icon">
+                                    <i class="fa-regular fa-copy"></i>
+                                </div>
+                                <div class="mv_copy_message text-end hidden">Copied</div>
+                                <div class="code-content">
+                                    <div style="padding-bottom: 0rem !important" class="d-flex">
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0">&nbsp;</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-bottom: 0rem !important" class="d-flex">
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0">OMP_NUM_THREADS=<span><</span>number of physical cores per socket> python tf_cnn_benchmarks.py --num_intra_threads=<span><</span>number of</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-bottom: 0rem !important" class="d-flex">
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0">physical cores per socket>  --num_inter_threads=<span><</span>number of sockets> --data_format=NCHW --</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 1rem !important;"
+                                        class="d-flex pb-0">
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0">kmp_affinity=granularity=fine,compact,1,0 --kmp_blocktime=0( or 1)</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div> 
+                            
+                            <p>This environment variable sets the time, in milliseconds, that a thread should wait, after completing the execution of a parallel region, before sleeping. The default value is 200ms.<br>
+                            <br>
+                            After completing the execution of a parallel region, threads wait for new parallel work to become available. After a certain time has elapsed, they stop waiting, and sleep. Sleeping allows the threads to be used, until more parallel work becomes available, by non-OpenMP threaded code that may execute between parallel regions, or by other applications. A small <strong>KMP_BLOCKTIME</strong> value may offer better overall performance if application contains non-OpenMP threaded code that executes between parallel regions. A larger <strong>KMP_BLOCKTIME</strong> value may be more appropriate if threads are to be reserved solely for use for OpenMP execution, but may penalize other concurrently-running OpenMP or threaded applications. It is suggested to be set to 0 for convolutional neural network (CNN) based models.</p>
+                        </details>
+                        <p>&nbsp;</p>
+                        <p>&nbsp;</p>
+                        <details>KMP_SETTINGS<br>
+                            Usage (shell)
+                            <p>&nbsp;</p>
+                            
+                            <div class="mv_code_toolbar">
+                                <div class="mv_toolbar_item mv_copy_icon">
+                                    <i class="fa-regular fa-copy"></i>
+                                </div>
+                                <div class="mv_copy_message text-end hidden">Copied</div>
+                                <div class="code-content">
+                                    <div style="padding-bottom: 0rem !important" class="d-flex">
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0">&nbsp;</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 1rem !important;"
+                                        class="d-flex pb-0">
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0">export KMP_SETTINGS=TRUE</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div> 
+                            
+                            <p>This environment variable enables (TRUE) or disables (FALSE) the printing of OpenMP run-time library environment variables during program execution.</p>
+                        </details>
+                        <p>&nbsp;</p>
+                    </section>
+
+                    <section id="dk_mixed_precision">
+                        <p class="mb-0">&nbsp;</p>
+                        <h3 style="font-weight: 350;">Enable Mixed Precision</h3>
+                        <p class="mb-0">Mixed precision is the use of both 16-bit and 32-bit floating-point types in a model during training and inference to make it run faster and use less memory.<br>
+                            <br>
+                            There are two options to enable BF16 mixed precision in TensorFlow.</p>
+                        <ol>
+                            <li>Keras mixed precision API</li>
+                            <li>AutoMixedPrecision oneDNN BFloat16 grappler pass through low level session configuration</li>
+                        </ol>
+                        <p>Refer to <a class="b_special_a1" href="">Getting Started with Mixed Precision Support in oneDNN Bfloat16</a> for more details.</p>
+                    </section>
+
+                    <section id="dk_additional_informaton">
+                        <p class="mb-0">&nbsp;</p>
+                        <h3 style="font-weight: 350;">Additional Information</h3>
+                        <p>&nbsp;</p>
+                        <details>TensorFlow Operations accelerated by oneDNN
+                            <p>&nbsp;</p>
+                            
+                            <table class="mv_product_table">
+                                <tbody>
+                                    <tr>
+                                        <td>AddN</td>
+                                    </tr>
+                                    <tr>
+                                        <td>AvgPool</td>
+                                    </tr>
+                                    <tr>
+                                        <td>AvgPool3D</td>
+                                    </tr>
+                                    <tr>
+                                        <td>AvgPool3DGrad</td>
+                                    </tr>
+                                    <tr>
+                                        <td>AvgPoolGrad</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Conv2D</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Conv2DBackpropFilter</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Conv2DBackpropFilterWithBias</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Conv2DBackpropInput</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Conv2DWithBias</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Conv2DWithBiasBackpropBias</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Conv3D</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Conv3DBackpropFilter</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Conv3DBackpropInput</td>
+                                    </tr>
+                                    <tr>
+                                        <td>DepthwiseConv2dNative</td>
+                                    </tr>
+                                    <tr>
+                                        <td>DepthwiseConv2dNativeBackpropFilter</td>
+                                    </tr>
+                                    <tr>
+                                        <td>DepthwiseConv2dNativeBackpropInput</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Dequantize</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Einsum</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Elu</td>
+                                    </tr>
+                                    <tr>
+                                        <td>EluGrad</td>
+                                    </tr>
+                                    <tr>
+                                        <td>FusedBatchNorm</td>
+                                    </tr>
+                                    <tr>
+                                        <td>FusedBatchNorm</td>
+                                    </tr>
+                                    <tr>
+                                        <td>FusedBatchNormFusion</td>
+                                    </tr>
+                                    <tr>
+                                        <td>FusedBatchNormGrad</td>
+                                    </tr>
+                                    <tr>
+                                        <td>FusedBatchNormGrad</td>
+                                    </tr>
+                                    <tr>
+                                        <td>FusedConv2D</td>
+                                    </tr>
+                                    <tr>
+                                        <td>FusedDepthwiseConv2dNative</td>
+                                    </tr>
+                                    <tr>
+                                        <td>FusedMatMul</td>
+                                    </tr>
+                                    <tr>
+                                        <td>LeakyRelu</td>
+                                    </tr>
+                                    <tr>
+                                        <td>LeakyReluGrad</td>
+                                    </tr>
+                                    <tr>
+                                        <td>LRN</td>
+                                    </tr>
+                                    <tr>
+                                        <td>LRNGrad</td>
+                                    </tr>
+                                    <tr>
+                                        <td>MatMul</td>
+                                    </tr>
+                                    <tr>
+                                        <td>MaxPool</td>
+                                    </tr>
+                                    <tr>
+                                        <td>MaxPool3D</td>
+                                    </tr>
+                                    <tr>
+                                        <td>MaxPool3DGrad</td>
+                                    </tr>
+                                    <tr>
+                                        <td>MaxPoolGrad</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Mul</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Quantize</td>
+                                    </tr>
+                                    <tr>
+                                        <td>QuantizedAvgPool</td>
+                                    </tr>
+                                    <tr>
+                                        <td>QuantizedConcat</td>
+                                    </tr>
+                                    <tr>
+                                        <td>QuantizedConv2D</td>
+                                    </tr>
+                                    <tr>
+                                        <td>QuantizedDepthwiseConv2D</td>
+                                    </tr>
+                                    <tr>
+                                        <td>QuantizedMatMul</td>
+                                    </tr>
+                                    <tr>
+                                        <td>QuantizedMaxPool</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Relu</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Relu6</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Relu6Grad</td>
+                                    </tr>
+                                    <tr>
+                                        <td>ReluGrad</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Softmax</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Tanh</td>
+                                    </tr>
+                                    <tr>
+                                        <td>TanhGrad</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                            <p>&nbsp;</p>
+                            </details>
+                        <p>&nbsp;</p>
+                    </section>
+
+                    <section id="dk_know_issues">
+                        <p class="mb-0">&nbsp;</p>
+                        <h3 style="font-weight: 350;">Known issues</h3>
+                        <ol>
+                            <li>Performance degradation may be observed running with BF16 on small batch size.</li>
+                        </ol>
+                        <p>&nbsp;</p>
+                    </section>
+
+                    <section id="dk_resources">
+                        <h3 style="font-weight: 350;">Resources</h3>
+                        <p>Check out these resource links for more information about Intel’s AI Kit and TensorFlow optimizations:</p>
+                        <ul>
+                            <li><a class="b_special_a1" href="">Intel® oneAPI AI Analytics ToolKit (AI Kit) overview</a></li>
+                            <li><a class="b_special_a1" href="">AI Kit Linux* Downloads</a> and Get Started Guide</li>
+                            <li><a class="b_special_a1" href="">Intel® Optimization for TensorFlow Framework</a> and <a class="b_special_a1" href="">Installation Guide</a>
+                            <p>&nbsp;</p>
+                            </li>
+                        </ul>
+                    </section>
+
+                </div>
+            </section>
+        </div>
+    </div>
+    </div>
+    </section>
+
+    <section style="border-top: 1px solid #d7d7d7;" class="container py-5">
+        <h4 class="h6">Product and Performance Information</h4>
+        <div class="disclaimer" style="font-size: 12px;"><sup>1</sup> Performance varies by use, configuration and other
+            factors. Learn more at <a class="b_special_a1" href="">www.Intel.com/PerformanceIndex.</a></div>
+        </div>
+    </section>
+
+    <!-- footer -->
+    <div id="footer"></div>
+
+    <!-- nav script -->
+    <script>
+        // navbar include  
+        fetch('/y_index/y_navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar').innerHTML = data;
+            });
+        // footer include 
+        fetch('/y_index/y_footer.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('footer').innerHTML = data;
+            });
+    </script>
+    <!-- nav script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            if (document.getElementsByClassName('VK_all_sections section') && document.getElementsByClassName('VK_sidebar_dropdown')) {
+                const sections = document.querySelectorAll('.VK_all_sections section');
+                const navLinks = document.querySelectorAll('.VK_sidebar_dropdown a');
+                const detailsElements = document.querySelectorAll('.VK_sidebar_dropdown details');
+
+                function removeActiveClass() {
+                    navLinks.forEach(link => link.classList.remove('VK_sidebar_active_link'));
+                    detailsElements.forEach(details => {
+                        details.removeAttribute('open');
+                        details.setAttribute('close', ''); // Optional: to visually indicate it's closed
+                    });
+                }
+
+                function activateLinkAndDetails(targetId) {
+                    navLinks.forEach(link => {
+                        if (link.getAttribute('href') === `#${targetId}`) {
+                            link.classList.add('VK_sidebar_active_link');
+                            let parentDetails = link.closest('details');
+
+                            // Open all ancestor details elements
+                            while (parentDetails) {
+                                parentDetails.setAttribute('open', '');
+                                parentDetails.removeAttribute('close'); // Optional: remove the closed indicator
+                                parentDetails = parentDetails.parentElement.closest('details');
+                            }
+                        }
+                    });
+                }
+
+                function onScroll() {
+                    let currentSection = '';
+                    sections.forEach(section => {
+                        const sectionTop = section.getBoundingClientRect().top;
+                        const sectionBottom = section.getBoundingClientRect().bottom;
+
+                        // Check if the section is in view
+                        if (sectionTop <= 100 && sectionBottom >= 0) {
+                            currentSection = section.getAttribute('id');
+                        }
+                    });
+
+                    if (currentSection) {
+                        removeActiveClass();
+                        activateLinkAndDetails(currentSection);
+                    } else {
+                        removeActiveClass();
+                    }
+                }
+
+                window.addEventListener('scroll', onScroll);
+            } else {
+                return
+            }
+        });
+    </script>
+
+    <!-- copy script -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            document.querySelectorAll(".mv_copy_icon").forEach((icon) => {
+                icon.addEventListener("click", async function () {
+                    try {
+                        const toolbar = this.closest(".mv_code_toolbar");
+                        const codeBlock = toolbar.querySelector(".code-content");
+                        const codeContent = codeBlock.innerText;
+
+                        // Use Clipboard API to copy text
+                        await navigator.clipboard.writeText(codeContent);
+
+                        // Hide the copy icon and show the "Copied!" message
+                        const message = toolbar.querySelector(".mv_copy_message");
+                        this.classList.add("hidden"); // Hide the copy icon
+                        message.classList.remove("hidden"); // Show the "Copied!" message
+
+                        // Hide the message and show the icon again after 2 seconds
+                        setTimeout(() => {
+                            message.classList.add("hidden");
+                            this.classList.remove("hidden");
+                        }, 2000); // Adjust delay as needed
+
+                    } catch (err) {
+                        console.error('Failed to copy text: ', err);
+                    }
+                });
+            });
+        });
+    </script>
+
+</body>
+
+</html>
+
+
