@@ -1,0 +1,1495 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Getting Started with Mixed Precision Support in oneDNN Bfloat16</title>
+
+    <!-- font family -->
+    <link href="https://fonts.cdnfonts.com/css/intel-clear" rel="stylesheet">
+
+    <link rel="stylesheet" href="/css/dk_developer_edge_iot_5G_industrial_automation_see_all_wireless_network_ready_printed_circuit_board_(PCB)_defect_detection.css">
+    <link rel="stylesheet" href="/css/mv_product/ECC.css">
+    <link rel="stylesheet" href="/css/rushita_automotive.css">
+
+    <!-- header footer -->
+    <link rel="stylesheet" href='/css/yatri.css'>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" rel="stylesheet">
+
+</head>
+
+<style>
+    .dk_color1 {
+        color: #069 !important;
+    }
+
+    .dk_color2 {
+        color: #008200 !important;
+    }
+
+    .dk_color3 {
+        color: #b24501;
+    }
+
+    .dk_note{
+        font-size: 1rem;
+        line-height: 1.25;
+        word-wrap: break-word;
+        background-color: #e6e6e6;
+        padding: 20px;
+        border-left: 3px solid #fdb813;
+    }
+    .dk_code_simple{
+        background-color: #e6e6e6;
+        color: #53565a;
+        border-radius: 0;
+    }
+    
+    .mv_code_toolbar{
+        margin: 10px 0px;
+    }
+
+    @media(max-width:1200px) {
+        .dk_risk_app_img {
+            width: 100% !important;
+        }
+    }
+</style>
+
+<body>
+    <!-- header -->
+    <div id="navbar"></div>
+
+    <!------------------------------------------------------------------------------->
+    <section class="m_ai_tdrop">
+        <div>
+            <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Developers
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item m_dropActive" href="/dhruvin_developer-tools/ds_Developer-Zone.html">Overview</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/rushita_Solutions/k_solutions_in_Viewall_SDF_Industrial-Automation_Control-flow-Enforcement_Technology.html">Topics & Technologies</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/dhruvin_developer-tools/ds_Development-Tools.html">Tools</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/rushita_Solutions/k_solutions_in_Viewall_SDF_Industrial-Automation_Hardware-Platforms.html">Hardware Platforms</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/dhruvin_developer-tools/ds_Resource-Documentation-Center.html">Resources & Documentation</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/dhruvin_developer-tools/ds_Learn.html">Learn</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/dhruvin_developer-tools/ds_Communities-and-Events.html">Community & Events</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/dhruvin_developer-tools/ds_Developer-Programs.html">Developer Programs</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/dhruvin_developer-tools/ds_Get-Help.html">Get Help</a></li>
+            </ul>
+        </div>
+        <div class="m_ai_shlash">/</div>
+        <div>
+            <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Tools
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item m_dropActive" href="/Product/B20_developer_catelog.html">Software Catalog</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/Product/B17_oneapi.html">oneAPI</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/rushita_Solutions/k_solutions_Intel-Tiber™Edge-Platform.html">Intel® Tiber™ Edge Platform</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/Product/B10_intel_Quarts.html">FPGA</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/VK_developers/VK_technology_sdk.html">Intel® Active Management Technology SDK</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/VK_developers/VK_intel_adviser.html">Intel® Advisor</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® AI Reference Models</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/rushita_Solutions/k_solutions_Intel-Collaboration-Suite-for-WebRTC.html">Intel® Collaboration Suite for WebRTC SDK</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/Product/B1_19_Intel_AICloud.html">Intel® Tiber™ AI Cloud</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/rushita_Solutions/k_solutions_Intel-Distribution-for-Python.html">Intel® Distribution for Python*</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/rushita_Solutions/k_solutions_Intel-Distribution-for-GDB.html">Intel® Distribution for GDB*</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/rushita_Solutions/k_solutions_Intel-DPC++Compatibility-Tool.html">Intel® DPC++ Compatibility Tool</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/rushita_Solutions/k_solutions_Intel-Dynamic-Application-Loader.html">Intel® Dynamic Application Loader</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/rushita_Solutions/k_solutions_Topics_viewall_Cloud-Insider-Program_AI-Frameworks-and-Tools.html">Frameworks</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Embree</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/VK_developers/VK_ai_scikit.html">Intel® Extension for Scikit-learn*</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/rushita_Solutions/k_solutions_Intel-Fortran-Compiler.html">Intel® Fortran Compiler</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/rushita_Solutions/k_solutions_cs_creaters_intel_gpa.html">Intel® Graphics Performance Analyzers</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/rushita_Solutions/k_solutions_Intel-HE-Toolkit.html">Intel® Homomorphic Encryption Toolkit</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/rushita_Solutions/k_solutions_Intel-In-Band-Manageability.html">Intel® In-Band Manageability</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Integrated Performance Primitives</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/rushita_Solutions/k_solutions_Intel-ISIM.html">Intel® Integrated Simulation Infrastructure with Modeling</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/rushita_Solutions/k_solutions_Instruction-Set-Architecture(ISA)Extensions.html">Instruction Set Architecture (ISA) Extensions</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/rushita_Solutions/k_solutions_Intel-Intelligent-Storage-Acceleration-Library.html">Intel® Intelligent Storage Acceleration Library (Intel® ISA-L)</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/VK_developers/VK_ai_modin.html">Modin*</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/rushita_Solutions/k_solutions_Intel-MPI-Library.html">Intel® MPI Library</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Neural Compressor</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/rushita_Solutions/">OpenCL™ Runtime</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/rushita_Solutions/">Intel® Open Image Denoise</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Open Path Guiding Library (Intel® Open PGL)</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/rushita_Solutions/k_solutions_Pin.html">Pin</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/rushita_Solutions/k_solutions_Pin_Intel-Platform-Analysis-Library.html">Intel® Platform Analysis Library</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel Tools for OpenCL™ Software</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel Tools for OpenCL™ Applications</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® OpenSWR</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">OpenVINO™ Toolkit</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Open Volume Kernel Library</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Optimization for XGBoost*</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® OSPRay</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® OSPRay for Hydra*</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® OSPRay Studio</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">PyTorch* Optimizations from Intel</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">TensorFlow* Optimizations from Intel</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Rendering Toolkit</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Smart Edge Open</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/rushita_Solutions/">Intel® Software Guard Extensions</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Secure Device Onboard</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Software Development Emulator</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/rushita_Solutions/Trust-Domain">Intel® Trust Domain Extensions (Intel® TDX)</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Quantum SDK</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Query Processing Library (Intel® QPL)</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Video Processing Library</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/VK_developers/VK_vtune_profiler.html">Intel® VTune™ Profiler</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Resellers</a></li>
+            </ul>
+        </div>
+        <div class="m_ai_shlash">/</div>
+        <div>
+            <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                oneAPI
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item m_dropActive" href="">Overview</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Data Parallel C++/SYCL*</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Toolkits</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Tech Articles & How-Tos</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Components</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Code Samples</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Training</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Documentation</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Support</a></li>
+            </ul>
+        </div>
+        <div class="m_ai_shlash">/</div>
+        <div>
+            <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Components
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item m_dropActive" href="">All Components</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Intel® Cryptography Primitives Library</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Intel® oneAPI Collective Communications Library</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Intel® oneAPI Data Analytics Library</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Intel® oneAPI Deep Neural Network Library</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Intel® oneAPI DPC++/C++ Compiler</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Intel® oneAPI DPC++ Library</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Intel® oneAPI Math Kernel Library</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Intel® oneAPI Threading Building Blocks</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">FPGA Support Package for Intel® oneAPI DPC++/C++ Compiler</a></li>
+            </ul>
+        </div>
+        <div class="m_ai_shlash">/</div>
+        <div>
+            <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Intel® oneAPI Math Kernel Library
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item m_dropActive" href="">Download</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Documentation</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Link Line Advisor</a></li>
+            </ul>
+        </div>
+        <div class="m_ai_shlash">/</div>
+        <div class="m_ai_httl">Get Started</div>
+    </section>
+    <!------------------------------------------------------------------------------->
+
+    <!-- VMware Horizon -->
+    <section>
+        <div class="mv_vmware_bg_color">
+            <div class="container">
+                <div class="mv_vmware_padd">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="mv_vmware_heading">
+                                <h3>Getting Started with Mixed Precision Support in oneDNN Bfloat16</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mv_cd_page_marquee_info">
+                        <div class="mv_cd_page_marquee_action">
+                            <div class="mv_cd_page_marquee_action_padd">
+                                <label for="">ID</label>
+                                <span>769136</span>
+                            </div>
+                            <div class="mv_cd_page_marquee_action_padd">
+                                <label for="">Updated</label>
+                                <span>1/4/2023</span>
+                            </div>
+                            <div class="mv_cd_page_marquee_action_padd">
+                                <label for="">Version</label>
+                                <span>Latest</span>
+                            </div>
+                            <div class="mv_cd_page_marquee_action_padd">
+                                <label for=""></label>
+                                <span>Public</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="container py-5">
+        <div class="row">
+            <div class="d-flex justify-content-end col-xl-10 py-3 d-md-none">
+                <i class="fa-solid fa-print fs-4 px-2 " style="color:#0068B5"></i>
+                <i class="fa-regular fa-envelope fs-4 px-2" style="color:#0068B5"></i>
+            </div>
+            <div class="col-lg-3 col-md-4">
+                <div class="VK_sticky_side_bar VK_side_bar_postion_stickey">
+                    <div>
+                        <div class="VK_sidebar_dropdown">
+                            <p class="m-0">
+                                <a href="#dk_overview" class="text-decoration-none VK_a">
+                                    Overview
+                                </a>
+                            </p>
+                            <details>
+                                <summary>
+                                    <a href="#dk_step1" class="text-decoration-none VK_a">
+                                        I. Keras mixed precision API
+                                    </a>
+                                </summary>
+                                <ul class="list-unstyled ps-3 mb-0">
+                                    <li>
+                                        <a href="#dk_step1_1" class="text-decoration-none VK_a my-1">
+                                            Introduction
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#dk_step1_2" class="text-decoration-none VK_a my-1">
+                                            Getting started with a FP32 Model
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#dk_step1_3" class="text-decoration-none VK_a my-1">
+                                            Steps to enable BFloat16 mixed precision
+                                        </a>
+                                    </li>
+                                </ul>
+                            </details>
+                            <details>
+                                <summary>
+                                    <a href="#dk_step2" class="text-decoration-none VK_a">
+                                        II. Mixed Precision for TensorFlow Hub models
+                                    </a>
+                                </summary>
+                                <ul class="list-unstyled ps-3 mb-0">
+                                    <li>
+                                        <a href="#dk_step2_1" class="text-decoration-none VK_a my-1">
+                                            Introduction
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#dk_step2_2" class="text-decoration-none VK_a my-1">
+                                            Steps to do Transfer Learning with Mixed Precision on a Saved Model
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#dk_step2_3" class="text-decoration-none VK_a my-1">
+                                            Steps to enable Bfloat16 Inference for a Saved Model
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#dk_step2_4" class="text-decoration-none VK_a my-1">
+                                            End-to-end example using Mixed Precision for Transfer Learning
+                                        </a>
+                                    </li>
+                                </ul>
+                            </details>
+                            <details>
+                                <summary>
+                                    <a href="#dk_step3" class="text-decoration-none VK_a">
+                                        III. Legacy Auto Mixed Precision (AMP) with Bfloat16
+                                    </a>
+                                </summary>
+                                <ul class="list-unstyled ps-3 mb-0">
+                                    <li>
+                                        <a href="#dk_step3_1" class="text-decoration-none VK_a my-1">
+                                            Steps to set up the runtime environment
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#dk_step3_2" class="text-decoration-none VK_a my-1">
+                                            Enabling BFloat16 using AMP in a Model
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#dk_step3_3" class="text-decoration-none VK_a my-1">
+                                            Controlling Ops to be converted to BFloat16 type Automatically
+                                        </a>
+                                    </li>
+                                </ul>
+                            </details>
+                            <details>
+                                <summary>
+                                    <a href="#dk_step4" class="text-decoration-none VK_a">
+                                        IV. Mixed Precision with other ways of executing model
+                                    </a>
+                                </summary>
+                                <ul class="list-unstyled ps-3 mb-0">
+                                    <li>
+                                        <a href="#dk_step4_1" class="text-decoration-none VK_a my-1">
+                                            HuggingFace BFloat16 Mixed Precsion Inference
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#dk_step4_2" class="text-decoration-none VK_a my-1">
+                                            For other models sources
+                                        </a>
+                                    </li>
+                                </ul>
+                            </details>
+                            <p class="m-0">
+                                <a href="#dk_step5" class="text-decoration-none VK_a">
+                                    V. Reduced precision math mode via environment variable
+                                </a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <!-- thinkcode -->
+                
+            </div>
+            <div class="col-lg-9 col-md-8">
+                <div class="d-md-flex justify-content-end col-xl-10 py-3 d-none">
+                    <i class="fa-solid fa-print fs-4 px-2 " style="color:#0068B5"></i>
+                    <i class="fa-regular fa-envelope fs-4 px-2" style="color:#0068B5"></i>
+                </div>
+                <div class="col-xl-10 VK_all_sections">
+                    <p>&nbsp;</p>
+                    <p>&nbsp;</p>
+
+                    <section id="dk_overview">
+                        <p class="mb-0">&nbsp;</p>
+                        <h3 style="font-weight: 350; padding-bottom: 0.5rem;">Overview</h3>
+                        <p><a class="b_special_a1" href="">Mixed precision</a> is the use of both 16-bit and 32-bit floating-point types in a model during training and inference to make it run faster and use less memory. Official TensorFlow supports this feature from TensorFlow 2.12 with all Intel® optimizations enabled by default. Intel® 4th Gen Xeon processor codenamed Sapphire Rapids is the first Intel® processor to support Advanced Matrix Extensions(AMX) instructions, which help to accelerate matrix heavy workflows such as machine learning alongside also having BFloat16 support. Previous generations can be used to test functionality, but Sapphire Rapids provides the best performance gains.</p>
+                        <p>Using one of the methods described here will enable a model written in FP32 data type to operate in mixed FP32 and BFloat16 data type. To be precise, it scans the data-flow graph corresponding to the model, and looks for nodes in the graph (also called as operators) that can operate in BFloat16 type, and inserts FP32ToBFloat16 and vice-versa Cast nodes in the graph appropriately.</p>
+                        <p>For example: Consider a simple neural network with a typical pattern of Conv2D -&gt; BiasAdd -&gt; Relu with the default TensorFlow datatype FP32. TensorFlow data-flow graph corresponding to this model looks like below.</p>
+                        <p><img class="dk_risk_app_img" src="/img/darshit_image/automixedprecisionmkl-1.png"></p>
+                        <p>The data-flow graph after porting the model to BFloat16 type looks like below.</p>
+                        <p><img class="dk_risk_app_img" src="/img/darshit_image/automixedprecisionmkl-2.png"></p>
+                        <p>Notice that 2 operators, Conv2D+BiasAdd and ReLU in the graph are automatically converted to operate in BFloat16 type. Also note that appropriate Cast nodes are inserted in the graph to convert TensorFlow tensors from FP32 type to BFloat16 type and vice-versa.</p>
+                        <p class="mb-0">Here are the different ways to enable BF16 mixed precision in TensorFlow.</p>
+                        <ol> 
+                            <li>Keras mixed precision API</li> 
+                            <li>Mixed Precision for TensorFlow Hub models</li> 
+                            <li>Legacy AutoMixedPrecision grappler pass</li> 
+                            <li>Mixed Precision with HuggingFace and other sources</li> 
+                            <li>Reduced precision math mode via environment variable (introduced in TensorFlow 2.13)</li> 
+                        </ol>
+                        <p>This guide describes&nbsp;the options in details.</p>
+                    </section>
+
+                    <section id="dk_step1">
+                        <p class="mb-0">&nbsp;</p>
+                        <h3 style="font-weight: 350; padding-bottom: 0.5rem;">I. Keras mixed precision API</h3>
+                    </section>
+
+                    <section id="dk_step1_1">
+                        <h4 style="padding-bottom: 0.2rem;">Introduction</h4>
+                        <p>This session describes how to use the Keras mixed precision API to speed up your models by using&nbsp;<a class="b_special_a1" href="">Simple MNIST convnet</a>&nbsp;as example.</p>
+                    </section>
+
+                    <section id="dk_step1_2">
+                        <h4 style="padding-bottom: 0.2rem;">Getting started with a FP32 Model</h4>
+                        <p>By using an existing sample, users can easily understand how to change their own Keras* model.</p>
+                        <p>First, create an environment and install&nbsp;TensorFlow</p>
+                        <p class="mb-0">&nbsp;</p>
+                        <div class="mv_code_toolbar">
+                            <div class="mv_toolbar_item mv_copy_icon">
+                                <i class="fa-regular fa-copy"></i>
+                            </div>
+                            <div class="mv_copy_message text-end hidden">Copied</div>
+                            <div class="code-content">
+                                <div style="padding-bottom: 0rem !important" class="d-flex mv_pre">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        1
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">conda create -n tf_latest python=3.8 -c intel </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        2
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">source activate tf_latest </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important;" class="d-flex mv_pre">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        3
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">(tf_latest) pip install tensorflow</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="mb-0">&nbsp;</p>
+                        <p>Next, get the sample model using the command below and then using python train the model.</p>
+                        <p class="mb-0">&nbsp;</p>
+                        <div class="mv_code_toolbar">
+                            <div class="mv_toolbar_item mv_copy_icon">
+                                <i class="fa-regular fa-copy"></i>
+                            </div>
+                            <div class="mv_copy_message text-end hidden">Copied</div>
+                            <div class="code-content">
+                                <div style="padding-bottom: 0rem !important" class="d-flex mv_pre">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        1
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">wget https://raw.githubusercontent.com/keras-team/keras-io/master/examples/vision/mnist_convnet.py</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important;" class="d-flex mv_pre">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        2
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">python mnist_convnet.py</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <p>&nbsp;</p>
+                    </section>
+
+                    <section id="dk_step1_3">
+                        <h4 style="padding-bottom: 0.2rem;">Steps to enable BFloat16 mixed precision</h4>
+                        <p>To use bfloat16 as compute data type in the above model, users only need to add the below two lines&nbsp;around&nbsp;line#16&nbsp;of&nbsp;mnist_convert.py i.e after importing keras and layers. These same steps apply for training and inference usecases.</p>
+                        <p class="mb-0">&nbsp;</p>
+                        <div class="mv_code_toolbar">
+                            <div class="mv_toolbar_item mv_copy_icon">
+                                <i class="fa-regular fa-copy"></i>
+                            </div>
+                            <div class="mv_copy_message text-end hidden">Copied</div>
+                            <div class="code-content">
+                                <div style="padding-bottom: 0rem !important" class="d-flex mv_pre">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        1
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0"><span class="dk_color1">import</span> numpy <span class="dk_color1">as</span> np</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        2
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0"><span class="dk_color1">from</span> tensorflow <span class="dk_color1">import</span> keras</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        3
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0"><span class="dk_color1">from</span> tensorflow.keras <span class="dk_color1">import</span> layers</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        4
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp;</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        5
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0"><span class="dk_color1">from</span> tensorflow.keras <span class="dk_color1">import</span> mixed_precision</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important;" class="d-flex mv_pre">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        6
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">mixed_precision.set_global_policy( <span style="color: blue;">'mixed_bfloat16'</span> ) &nbsp; &nbsp;  <span style="color: #008200;"># <--- note these 2 lines</span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="mb-0">&nbsp;</p>
+                        <p>Users can use oneDNN verbose logs to verify if this modified mnist<em>convnet indeed uses bfloat16 data type for computation. Using ONEDNN_VERBOSE=1 environment variable as shown below, users will get a oneDNN verbose log file "dnnl</em>log.csv".</p>
+                        <p class="mb-0">&nbsp;</p>
+                        <div class="mv_code_toolbar">
+                            <div class="mv_toolbar_item mv_copy_icon">
+                                <i class="fa-regular fa-copy"></i>
+                            </div>
+                            <div class="mv_copy_message text-end hidden">Copied</div>
+                            <div class="code-content">
+                                <div style="padding-bottom: 1rem !important" class="d-flex mv_pre">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        1
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">ONEDNN_VERBOSE=1 python mnist_convnet.py > dnnl_log.csv</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="mb-0">&nbsp;</p>
+                        <p>Look in the log for bf16 and then it is using BFloat16 for computation. Here's an example for matmul</p>
+                        <p class="mb-0">&nbsp;</p>
+                        <div class="mv_code_toolbar">
+                            <div class="mv_toolbar_item mv_copy_icon">
+                                <i class="fa-regular fa-copy"></i>
+                            </div>
+                            <div class="mv_copy_message text-end hidden">Copied</div>
+                            <div class="code-content">
+                                <div style="padding-bottom: 1rem !important" class="d-flex mv_pre">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        1
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">onednn_verbose,exec,cpu,matmul,brg:avx512_core_**amx_bf16**,undef,src_bf16::blocked:ba:f0 wei_bf16::blocked:ab:f0 dst_bf16::blocked:ab:f0,attr-scratchpad:user ,,1600x128:128x10:1600x10</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="mb-0">&nbsp;</p>
+                        <blockquote> 
+                            <p class="dk_note">Please use Python 3.8 or above for the best performance on Sapphire Rapids Xeon Scalable Processors.</p> 
+                           </blockquote>
+                    </section>
+
+                    <section id="dk_step2">
+                        <p class="mb-0">&nbsp;</p>
+                        <h3 style="font-weight: 350; margin-bottom: 1rem;">II. Mixed Precision for TensorFlow Hub models</h3>
+                    </section>
+
+                    <section id="dk_step2_1">
+                        <h4>Introduction</h4>
+                        <p>This session describes how to enable the auto-mixed precision for <a class="b_special_a1" href="">TensorFlow Hub</a> models using the&nbsp;tf.config&nbsp;API. Enabling this API will automatically convert the pre-trained model to use the bfloat16 datatype for computation resulting in an increased training throughput on the latest Intel® Xeon® scalable processor. These instructions works for inference or fine tuning usecase.</p>
+                    </section>
+
+                    <section id="dk_step2_2">
+                        <h4>Steps to do Transfer Learning with Mixed Precision on a Saved Model</h4>
+                        <p>We can use <a class="b_special_a1" href="">this example for Transfer Learning</a>. By applying below experimental option "auto_mixed_precision_onednn_bfloat16" via tf.config API, auto mixed precision with bfloat16 will be enabled on the saved model.</p>
+                        <p class="mb-0">&nbsp;</p>
+                        <div class="mv_code_toolbar">
+                            <div class="mv_toolbar_item mv_copy_icon">
+                                <i class="fa-regular fa-copy"></i>
+                            </div>
+                            <div class="mv_copy_message text-end hidden">Copied</div>
+                            <div class="code-content">
+                                <div style="padding-bottom: 0rem !important" class="d-flex mv_pre">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        1
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0"><span class="dk_color1">import</span> tensorflow <span class="dk_color1">as</span> tf</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important;" class="d-flex mv_pre">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        2
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">tf.config.optimizer.set_experimental_options({ <span style="color: blue;">'auto_mixed_precision_onednn_bfloat16'</span>: <span class="dk_color1">True</span> })</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="mb-0">&nbsp;</p>
+                    </section>
+
+                    <section id="dk_step2_3">
+                        <h4>Steps to enable Bfloat16 Inference for a Saved Model</h4>
+                        <p>Here's a <a class="b_special_a1" href="">TF HUB inference example</a>. Same config as earlier can be used. </p>
+                        <p class="mb-0">&nbsp;</p>
+                        <div class="mv_code_toolbar">
+                            <div class="mv_toolbar_item mv_copy_icon">
+                                <i class="fa-regular fa-copy"></i>
+                            </div>
+                            <div class="mv_copy_message text-end hidden">Copied</div>
+                            <div class="code-content">
+                                <div style="padding-bottom: 0rem !important" class="d-flex mv_pre">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        1
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0"><span class="dk_color1">import</span> tensorflow <span class="dk_color1">as</span> tf</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important;" class="d-flex mv_pre">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        2
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">tf.config.optimizer.set_experimental_options({ <span style="color: blue;">'auto_mixed_precision_onednn_bfloat16'</span>: <span class="dk_color1">True</span> })</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="mb-0">&nbsp;</p>
+                    </section>
+
+                    <section id="dk_step2_4">
+                        <h4>End-to-end example using Mixed Precision for Transfer Learning </h4>
+                        <p>For end-to-end example please refer to <a class="b_special_a1" href="">this Transfer Learning sample</a>&nbsp;which uses a headless ResNet50v1.5 pretrained model from <a class="b_special_a1" href="">TensorFlow Hub</a>&nbsp;with ImageNet dataset. It also provides examples for performance improvements.</p>
+                        <blockquote> 
+                            <p class="dk_note">Remember to use Sapphire Rapids server. say eg: C3 instance on GCP.</p> 
+                           </blockquote>
+                    </section>
+
+                    <section id="dk_step3">
+                        <p class="mb-0">&nbsp;</p>
+                        <h3 style="font-weight: 350;">III. Legacy Auto Mixed Precision (AMP) with Bfloat16</h3>
+                        <p class="mb-0">Auto Mixed Precision is a grappler pass that automatically converts a model written in FP32 data type to operate in BFloat16 data type. It mainly supports TF v1 style models that use a session to run the model. We will demonstrate this with examples illustrating:</p>
+                        <ul> 
+                            <li>How to convert the graph to BFloat16 on-the-fly as you train the model</li> 
+                            <li>How to convert a pre-trained fp32 model to BFloat16</li> 
+                        </ul>
+                        <p>Let’s use a simple neural network with a typical pattern of Conv2D -&gt; BiasAdd -&gt; ReLU. Inputs x and w of Conv2D and input b of bias_add are TensorFlow Variables with default FP32 data type, so this neural network model operates completely in FP32 data type. TensorFlow data-flow graph corresponding to this model looks like below.</p>
+                    </section>
+
+                    <section id="dk_step3_1">
+                        <h4>Steps to set up the runtime environment</h4>
+                        <p>Before running the examples, setup runtime environement with steps below to create an environment and install&nbsp;TensorFlow, as done earlier.</p>
+                        <p class="mb-0">&nbsp;</p>
+                        <div class="mv_code_toolbar">
+                            <div class="mv_toolbar_item mv_copy_icon">
+                                <i class="fa-regular fa-copy"></i>
+                            </div>
+                            <div class="mv_copy_message text-end hidden">Copied</div>
+                            <div class="code-content">
+                                <div style="padding-bottom: 0rem !important" class="d-flex mv_pre">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        1
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">conda create -n tf_latest python=3.8 -c intel </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important; padding-top: 0rem !important;" class="d-flex mv_pre">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        2
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">source activate tf_latest </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important;" class="d-flex mv_pre">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        3
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">(tf_latest) pip install tensorflow</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="mb-0">&nbsp;</p>
+                    </section>
+
+                    <section id="dk_step3_2">
+                        <h4>Enabling BFloat16 using AMP in a Model</h4>
+                        <p>Following lines of Python* code will enable BFloat16 data type using Auto Mixed Precision when using grappler via TensorFlow v1. This setting enables BF16 for training AND inference usecase.</p>
+                        <p class="mb-0">&nbsp;</p>
+                        <div class="mv_code_toolbar">
+                            <div class="mv_toolbar_item mv_copy_icon">
+                                <i class="fa-regular fa-copy"></i>
+                            </div>
+                            <div class="mv_copy_message text-end hidden">Copied</div>
+                            <div class="code-content">
+                                <div style="padding-bottom: 0rem !important" class="d-flex mv_pre">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        1
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">graph_options=tf.compat.v1.GraphOptions( </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important; padding-top: 0rem !important;" class="d-flex mv_pre">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        2
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; rewrite_options=rewriter_config_pb2.RewriterConfig( </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important;" class="d-flex mv_pre">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        3
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; auto_mixed_precision_onednn_bfloat16=rewriter_config_pb2.RewriterConfig.ON)) </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="mb-0">&nbsp;</p>
+                        <p>Auto Mixed Precision grappler pass is disabled by default and can be controlled using RewriterConfig proto of GraphOptions proto. To enable use rewriter_config_pb2.RewriterConfig.ON and to disable use rewriter_config_pb2.RewriterConfig.OFF (default).</p>
+                        <p>Below is the complete code for a neural network model ported to BFloat16 data type using Auto Mixed Precision.</p>
+                        <p class="mb-0">&nbsp;</p>
+                        <div class="mv_code_toolbar">
+                            <div class="mv_toolbar_item mv_copy_icon">
+                                <i class="fa-regular fa-copy"></i>
+                            </div>
+                            <div class="mv_copy_message text-end hidden">Copied</div>
+                            <div class="code-content">
+                                <div style="padding-bottom: 0rem !important" class="d-flex mv_pre">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        01
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0"><span class="dk_color1">import</span> tensorflow <span class="dk_color1">as</span> tf</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important; padding-top: 0rem !important;" class="d-flex mv_pre">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        02
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0"><span class="dk_color1">from</span> tensorflow.core.protobuf <span class="dk_color1">import</span> rewriter_config_pb2</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important; padding-top: 0rem !important;" class="d-flex mv_pre">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        03
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp;</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important; padding-top: 0rem !important;" class="d-flex mv_pre">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        04
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">tf.compat.v1.disable_eager_execution()</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important; padding-top: 0rem !important;" class="d-flex mv_pre">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        05
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp;</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important; padding-top: 0rem !important;" class="d-flex mv_pre">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        06
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0"><span class="dk_color1">def</span> conv2d(x, w, b, strides <span class="dk_color3">=</span> <span class="dk_color1">1</span>):</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important; padding-top: 0rem !important;" class="d-flex mv_pre">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        07
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #008200;"># Conv2D wrapper, with bias and relu activation</span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important; padding-top: 0rem !important;" class="d-flex mv_pre">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        08
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp; &nbsp; &nbsp; &nbsp; x <span class="dk_color3">=</span> tf.nn.conv2d(x, w, strides<span class="dk_color3">=</span>[<span class="dk_color1">1</span>, strides, strides, <span class="dk_color1">1</span>], padding<span class="dk_color3">=</span><span style="color: blue;">'SAME'</span> ) </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important; padding-top: 0rem !important;" class="d-flex mv_pre">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        09
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp; &nbsp; &nbsp; &nbsp; x <span class="dk_color3">=</span> tf.nn.bias_add(x, b)</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important; padding-top: 0rem !important;" class="d-flex mv_pre">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        10
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp; &nbsp; &nbsp; &nbsp; <span class="dk_color1">return</span> tf.nn.relu(x)</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important; padding-top: 0rem !important;" class="d-flex mv_pre">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        11
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp;</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important; padding-top: 0rem !important;" class="d-flex mv_pre">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        12
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">X <span class="dk_color3">=</span> tf.Variable(tf.compat.v1.random_normal([<span class="dk_color1">784</span>]))</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important; padding-top: 0rem !important;" class="d-flex mv_pre">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        13
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">W <span class="dk_color3">=</span> tf.Variable(tf.compat.v1.random_normal([<span class="dk_color1">5</span>, <span class="dk_color1">5</span>, <span class="dk_color1">1</span>, <span class="dk_color1">32</span>]))</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important; padding-top: 0rem !important;" class="d-flex mv_pre">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        14
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">B <span class="dk_color3">=</span> tf.Variable(tf.compat.v1.random_normal([<span class="dk_color1">32</span>])) </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important; padding-top: 0rem !important;" class="d-flex mv_pre">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        15
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">x <span class="dk_color3">=</span> tf.reshape(X, shape<span class="dk_color3">=</span>[<span class="dk_color3">-</span><span class="dk_color1">1</span>, <span class="dk_color1">28</span>, <span class="dk_color1">28</span>, <span class="dk_color1">1</span>])</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important; padding-top: 0rem !important;" class="d-flex mv_pre">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        16
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp;</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important; padding-top: 0rem !important;" class="d-flex mv_pre">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        17
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0"><span style="color: #008200;"># Note: Auto Mixed Precision pass is enabled here to run on Xeon CPUs with BFloat16</span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important; padding-top: 0rem !important;" class="d-flex mv_pre">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        18
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">graph_options<span class="dk_color3">=</span>tf.compat.v1.GraphOptions(</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important; padding-top: 0rem !important;" class="d-flex mv_pre">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        19
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  rewrite_options<span class="dk_color3">=</span>rewriter_config_pb2.RewriterConfig( </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important; padding-top: 0rem !important;" class="d-flex mv_pre">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        20
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; auto_mixed_precision_onednn_bfloat16<span class="dk_color3">=</span>rewriter_config_pb2.RewriterConfig.ON))</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important; padding-top: 0rem !important;" class="d-flex mv_pre">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        21
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp;</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important; padding-top: 0rem !important;" class="d-flex mv_pre">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        22
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0"><span class="dk_color1">with</span> tf.compat.v1.Session(config<span class="dk_color3">=</span>tf.compat.v1.ConfigProto(</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important; padding-top: 0rem !important;" class="d-flex mv_pre">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        23
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  graph_options<span class="dk_color3">=</span>graph_options)) <span class="dk_color1">as</span> sess:</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important; padding-top: 0rem !important;" class="d-flex mv_pre">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        24
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp; &nbsp; &nbsp; &nbsp; sess.run(tf.compat.v1.global_variables_initializer())</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important;" class="d-flex mv_pre">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        25
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp; &nbsp; &nbsp; &nbsp; sess.run([conv2d(x, W, B)]) </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="mb-0">&nbsp;</p>
+                        <p>Notice that graph_options variable created by turning Auto Mixed Precision ON is passed to ConfigProto that is eventually passed to tf.Session API.</p>
+                        <p>Create and run the Python* file with the above code <strong>conv2D_bf16.py</strong></p>
+                        <p class="mb-0">&nbsp;</p>
+                        <div class="mv_code_toolbar">
+                            <div class="mv_toolbar_item mv_copy_icon">
+                                <i class="fa-regular fa-copy"></i>
+                            </div>
+                            <div class="mv_copy_message text-end hidden">Copied</div>
+                            <div class="code-content">
+                                <div style="padding-bottom: 1rem !important" class="d-flex mv_pre">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        1
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">python conv2D_bf16.py</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="mb-0">&nbsp;</p>
+                        <p><strong>Console output</strong></p>
+                        <p class="mb-0">&nbsp;</p>
+                        <div class="mv_code_toolbar">
+                            <div class="mv_toolbar_item mv_copy_icon">
+                                <i class="fa-regular fa-copy"></i>
+                            </div>
+                            <div class="mv_copy_message text-end hidden">Copied</div>
+                            <div class="code-content">
+                                <div style="padding-bottom: 0rem !important" class="d-flex mv_pre">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        1
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">2022-08-19 00:06:08.735706: I tensorflow/core/grappler/optimizers/auto_mixed_precision.cc:2303] Running auto_mixed_precision_onednn_bfloat16 graph optimizer</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important; padding-top: 0rem !important;" class="d-flex mv_pre">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        2
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">2022-08-19 00:06:08.735941: I tensorflow/core/grappler/optimizers/auto_mixed_precision.cc:1488] No allowlist ops found, nothing to do</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important; padding-top: 0rem !important;" class="d-flex mv_pre">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        3
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">2022-08-19 00:06:08.750799: I tensorflow/core/grappler/optimizers/auto_mixed_precision.cc:2303] Running auto_mixed_precision_onednn_bfloat16 graph optimizer</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important;" class="d-flex mv_pre">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        4
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">2022-08-19 00:06:08.751058: I tensorflow/core/grappler/optimizers/auto_mixed_precision.cc:2240] Converted 3/11 nodes to bfloat16 precision using 0 cast(s) to bfloat16 (excluding Const and Variable casts) </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="mb-0">&nbsp;</p>
+                        <blockquote> 
+                            <p class="dk_note"><em>No allowlist ops found typically refers to the data session.</em> One can also use ONEDNN_VERBOSE logs as discussed earlier to verify AMX BF16 instructions.</p> 
+                        </blockquote>
+                    </section>
+
+                    <section id="dk_step3_3">
+                        <p class="mb-0">&nbsp;</p>
+                        <h4>Controlling Ops to be converted to BFloat16 type Automatically</h4>
+                        <p>An important point to note is that not all of TensorFlow’s operators for CPU backend support BFloat16 type - this could be because either the support is missing (and is a WIP) or that the BFloat16 version of an operator may not offer much performance improvement over the FP32 implementation. Or for certain operators, BFloat16 type could lead to numerical instability of the neural network model.</p>
+                        <p>So we categorize TensorFlow operators that are supported by MKL backend in BFloat16 type into 1) if they are always numerically stable, and 2) if they are always numerically unstable, and 3) if their stability could depend on the context. Auto Mixed Precision pass uses a specific Allow, Deny, Clear&nbsp;and Infer&nbsp;list of operators respectively to capture these operators. The exact lists could be found in auto_mixed_precision_lists.h file in TensorFlow github repository.</p>
+                        <p>The default values of these lists already capture the most common BFloat16 usage models and also ensure numerical stability of the model. There is, however, a way to add or remove operators from any of these lists by setting environment variables that control these lists. For instance, executing</p>
+                        <p class="mb-0">&nbsp;</p>
+                        <div class="mv_code_toolbar">
+                            <div class="mv_toolbar_item mv_copy_icon">
+                                <i class="fa-regular fa-copy"></i>
+                            </div>
+                            <div class="mv_copy_message text-end hidden">Copied</div>
+                            <div class="code-content">
+                                <div style="padding-bottom: 1rem !important" class="d-flex mv_pre">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        1
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">export TF_AUTO_MIXED_PRECISION_GRAPH_REWRITE_DENYLIST_ADD=Conv2D </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="mb-0">&nbsp;</p>
+                        <p>before running the model would add Conv2D operator to Deny&nbsp;list. While, executing</p>
+                        <p class="mb-0">&nbsp;</p>
+                        <div class="mv_code_toolbar">
+                            <div class="mv_toolbar_item mv_copy_icon">
+                                <i class="fa-regular fa-copy"></i>
+                            </div>
+                            <div class="mv_copy_message text-end hidden">Copied</div>
+                            <div class="code-content">
+                                <div style="padding-bottom: 1rem !important" class="d-flex mv_pre">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        1
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">export TF_AUTO_MIXED_PRECISION_GRAPH_REWRITE_ALLOWLIST_REMOVE=Conv2D </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="mb-0">&nbsp;</p>
+                        <p>before running the model would remove Conv2D from Allow&nbsp;list. And executing both of these commands before running a model would move Conv2D from Allow&nbsp;list to Deny&nbsp;list. It's important to note that it is not allowed for same operator to be in more than 1 list.</p>
+                        <p>In general, the template corresponding to the names of the environment variables controlling these lists is:</p>
+                        <p class="mb-0">&nbsp;</p>
+                        <div class="mv_code_toolbar">
+                            <div class="mv_toolbar_item mv_copy_icon">
+                                <i class="fa-regular fa-copy"></i>
+                            </div>
+                            <div class="mv_copy_message text-end hidden">Copied</div>
+                            <div class="code-content">
+                                <div style="padding-bottom: 1rem !important" class="d-flex mv_pre">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        1
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">TF_AUTO_MIXED_PRECISION_GRAPH_REWRITE_<span class="dk_color3">${LIST}_${OP}=</span>operator</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="mb-0">&nbsp;</p>
+                        <p>where ${LIST} would be any of {ALLOW, DENY, INFER, CLEAR}, and ${OP} would be any of {ADD, REMOVE}.</p>
+                    </section>
+
+                    <section id="dk_step4">
+                        <p class="mb-0">&nbsp;</p>
+                        <h3 style="font-weight: 350;">IV. Mixed Precision with other ways of executing model</h3>
+                        <p>Apart from the above usecases, there are many places that serve as Model Hub. For example, <a class="b_special_a1" href="">HuggingFace</a> is a popular place where one can pick easy to experiment scripts to try a model. To enable mixed precision with we can use the keras method described above if it is keras based model.</p>
+                    </section>
+
+                    <section id="dk_step4_1">
+                        <p class="mb-0">&nbsp;</p>
+                        <h4>HuggingFace BFloat16 Mixed Precsion Inference</h4>
+                        <p>We can use this <a class="b_special_a1" href="">TF Distilbert model</a> as example and used Keras Mixed Precision API to enable BFloat16 computation.</p>
+                        <p class="mb-0">&nbsp;</p>
+                        <div class="mv_code_toolbar">
+                            <div class="mv_toolbar_item mv_copy_icon">
+                                <i class="fa-regular fa-copy"></i>
+                            </div>
+                            <div class="mv_copy_message text-end hidden">Copied</div>
+                            <div class="code-content">
+                                <div style="padding-bottom: 0rem !important" class="d-flex mv_pre">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        1
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">from transformers import AutoTokenizer, TFDistilBertForSequenceClassification</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important; padding-top: 0rem !important;" class="d-flex mv_pre">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        2
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">import tensorflow as tf</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important; padding-top: 0rem !important;" class="d-flex mv_pre">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        3
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp;</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important;" class="d-flex mv_pre">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        4
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">tf.keras.mixed_precision.set_global_policy( <span style="color: blue;"></span>) &nbsp; &nbsp; <span style="color: #008200;"># <--- note this</span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="mb-0">&nbsp;</p>
+                        <p>&nbsp;</p>
+                    </section>
+
+                    <section id="dk_fsfp_issue">
+                        <p class="mb-0">&nbsp;</p>
+                        <h4 style="font-weight: 350;"><a class="b_special_a1" href="">FSFP Cross-Domain Training Isolation Issue</a></h4>
+                        <p>Certain processors that support FSFP do not fully maintain cross-domain training isolation properties without recent microcode update. &nbsp;In some cases, user mode software may be able to control FSFP prediction in supervisor mode software, or VMX guest software may be able to control prediction in host (VMX root) software. Such control could be used by a malicious program running on the same logical processor to trigger transient execution gadgets in a higher-privileged mode, potentially leading to data disclosure.&nbsp;</p>
+                        <p>This issue can be addressed on affected processors by deploying the latest microcode update. Refer to the related CVE (<a class="b_special_a1" href="">CVE-2021-0145</a>, CVSS: 6.5 Medium) and Intel Technical Advisory (<a class="b_special_a1" href="">INTEL-SA-00561</a>).&nbsp;<br>
+                            &nbsp;</p>
+                            <table class="mv_product_table w-100">
+                                <caption>Table 2: Processors Affected by FSFP Cross-Domain Training Isolation Issue</caption>
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Processor</th>
+                                        <th scope="col">Stepping (All unless otherwise noted)</th>
+                                        <th scope="col">Code Names/Microarchitectures</th>
+                                        <th scope="col">Product Family</th>
+                                        <th scope="col">Brand Names</th>
+                                        <th scope="col">Affected</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>06_7EH</td>
+                                        <td>5</td>
+                                        <td>Ice Lake U,Y</td>
+                                        <td>10th Generation Intel® Core™ Processor Family</td>
+                                        <td>Intel® Core™ Processor i7-1060G7, i7-1065G7<br>
+                                        Intel® Core™ Processor i5-1030G4, i5-1030G7, i5-1035G1, i5-1035G4, i5-1035G7&nbsp;<br>
+                                        Intel® Core™ Processor i3-1000G1, i3-1000G4, i3-1005G1</td>
+                                        <td>Y</td>
+                                    </tr>
+                                    <tr>
+                                        <td>06_6AH</td>
+                                        <td>4,5,6</td>
+                                        <td>Ice Lake Xeon-SP</td>
+                                        <td>3rd Gen Intel® Xeon® Scalable processor family</td>
+                                        <td>Intel® Xeon® Gold 8300 processors, Intel® Xeon® Gold 6300 processors, &nbsp;Intel® Xeon® Gold 5300 processors, &nbsp;Intel® Xeon® Silver 4300 processors</td>
+                                        <td>Y</td>
+                                    </tr>
+                                    <tr>
+                                        <td>06_8AH</td>
+                                        <td>1</td>
+                                        <td>Lakefield B-step (Sunny Cove)</td>
+                                        <td>Intel® Core™ Processors with Intel® Hybrid Technology</td>
+                                        <td>Intel® Core™ Processor i3-L13G4, i5-L16G7</td>
+                                        <td>Y</td>
+                                    </tr>
+                                    <tr>
+                                        <td>06_8CH</td>
+                                        <td>&lt;=2</td>
+                                        <td>Tiger Lake U-series</td>
+                                        <td>11th Generation Intel® Core™ Processor Family</td>
+                                        <td>Intel® Core™ &nbsp;i7-1185G7, i7-1165G7, i7-1185GRE, i7-1185G7E, i7-1180G7, i7-1160G7, &nbsp;i5-1145G7, &nbsp;i5-1145GRE, i5-1145G7E, i5-1140G7, i5-1130G7, i3-1125G4, &nbsp;i3-1115GRE, i3-1115G4E, i3-1120G4, i3-1110G4, &nbsp;Intel® Celeron® 6305, Intel® Celeron® 6305E &nbsp;Processor</td>
+                                        <td>Y</td>
+                                    </tr>
+                                    <tr>
+                                        <td>06_8DH</td>
+                                        <td>1</td>
+                                        <td>Tiger Lake H-series &nbsp;</td>
+                                        <td>1. 11th Generation Intel® Core™ Processor Family<br>
+                                        2. Intel® Xeon® Processor Family</td>
+                                        <td>1. Intel® Core™ i9-11980HK, i9-11950H, i9-11900H, i7-11850H, i7-11800H, i5-11500H, i5-11400H, i5-11260H, i7-11390H, i7-11375H, i7-11370H, i5-11320H, i5-11300H,&nbsp;<br>
+                                        2. Intel® Xeon® W-11955M, Intel® Xeon® W-11855M</td>
+                                        <td>Y</td>
+                                    </tr>
+                                    <tr>
+                                        <td>06_8DH</td>
+                                        <td>1</td>
+                                        <td>Tiger Lake H-series &nbsp;</td>
+                                        <td>1. 11th Generation Intel® Core™ Processor Family<br>
+                                        2. Intel® Xeon® Processor Family</td>
+                                        <td>1. Intel® Core™ i7-11850HE, i3-11100HE<br>
+                                        2. Intel® Xeon® &nbsp;W-11865MRE, W-11555MRE, W-11155MRE, W-11555MLE, W-11865MLE, W-11155MLE, Intel® Celeron®6600HE</td>
+                                        <td>Y</td>
+                                    </tr>
+                                    <tr>
+                                        <td>06_8CH</td>
+                                        <td>2</td>
+                                        <td>1. Tiger Lake U Refresh &nbsp;<br>
+                                        2. Tiger Lake H35</td>
+                                        <td>11th Generation Intel® Core™ Processor Family</td>
+                                        <td>1. Intel® Core™ i7-1195G7, i5-1155G7, i5-1135G7, i3-1115G4, Intel® Pentium® Gold 7505&nbsp;<br>
+                                        2. Intel® Core™ i7-11390H, i5-11320H</td>
+                                        <td>Y</td>
+                                    </tr>
+                                    <tr>
+                                        <td>06_A7H</td>
+                                        <td>1</td>
+                                        <td>Rocket Lake</td>
+                                        <td>11th Generation Intel® Core™ Processor Family</td>
+                                        <td>Intel® Core™ Processor i9-11900K, i9-11900KF, i9-11900, i9-11900T, i9-11900F, &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; i7-11700K, i7-11700KF, i7-11700, i7-11700T, i7-11700F, i5-11600K, i5-11600KF, i5-11600, i5-11600T, i5-11500, i5-11500T, i5-11400, i5-11400F, i5-11400T</td>
+                                        <td>Y</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                    </section>
+
+                    <section id="dk_fsfp_cross">
+                        <p class="mb-0">&nbsp;</p>
+                        <p>&nbsp;</p>
+                        <h3 style="font-weight: 350;">FSFP Cross-Thread Training Isolation Issue</h3>
+                        <p>Certain processors that support FSFP do not fully maintain cross-thread training isolation properties without recent microcode update. In some cases, software executing on one hyperthread may be able to control FSFP prediction on a sibling hyperthread of the same core.&nbsp;</p>
+                        <p>Such control could help a malicious program running on the same core to trigger transient execution gadgets in a higher-privileged mode, potentially leading to data disclosure.&nbsp;</p>
+                        <p>This issue can be addressed on affected processors by deploying the latest microcode update. Refer to the previously disclosed CVE (<a class="b_special_a1" href="">CVE-2020-8698</a>, CVSS: 6.5 Medium) and Intel Technical Advisory (<a class="b_special_a1" href="">INTEL-SA-00381</a>).&nbsp;</p>
+                    </section>
+
+                    <section id="dk_processors_affec">
+                        <h4 class="mt-4" style="padding-bottom: 0.5rem;">Processors Affected by FSFP Cross-Thread Training Isolation Issue</h4>
+                        <p>Refer to the list of affected processors for the&nbsp;<em>Fast Store Forwarding Predictor: Cross Thread</em>&nbsp;issue in the <a href="">consolidated Affected Processors table</a>.&nbsp;&nbsp;</p>
+                        <h5 style="text-align:center"><a class="b_special_a1" href="">Software Security Guidance Home</a>&nbsp;|&nbsp;<a class="b_special_a1" href="">Advisory Guidance</a>&nbsp;|&nbsp;<a class="b_special_a1" href="">Technical Documentation</a>&nbsp;|&nbsp;<a class="b_special_a1" href="">Best Practices</a>&nbsp;|&nbsp;<a class="b_special_a1" href="">Resources</a></h5>
+                        <p>&nbsp;</p>
+                    </section>
+
+                </div>
+            </section>
+        </div>
+    </div>
+    </div>
+    </section>
+
+    <section style="border-top: 1px solid #d7d7d7;" class="container py-5">
+        <h4 class="h6">Product and Performance Information</h4>
+        <div class="disclaimer" style="font-size: 12px;"><sup>1</sup> Performance varies by use, configuration and other
+            factors. Learn more at <a class="b_special_a1" href="">www.Intel.com/PerformanceIndex.</a></div>
+        </div>
+    </section>
+
+    <!-- footer -->
+    <div id="footer"></div>
+
+    <!-- nav script -->
+    <script>
+        // navbar include  
+        fetch('/y_index/y_navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar').innerHTML = data;
+            });
+        // footer include 
+        fetch('/y_index/y_footer.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('footer').innerHTML = data;
+            });
+    </script>
+    <!-- nav script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            if (document.getElementsByClassName('VK_all_sections section') && document.getElementsByClassName('VK_sidebar_dropdown')) {
+                const sections = document.querySelectorAll('.VK_all_sections section');
+                const navLinks = document.querySelectorAll('.VK_sidebar_dropdown a');
+                const detailsElements = document.querySelectorAll('.VK_sidebar_dropdown details');
+
+                function removeActiveClass() {
+                    navLinks.forEach(link => link.classList.remove('VK_sidebar_active_link'));
+                    detailsElements.forEach(details => {
+                        details.removeAttribute('open');
+                        details.setAttribute('close', ''); // Optional: to visually indicate it's closed
+                    });
+                }
+
+                function activateLinkAndDetails(targetId) {
+                    navLinks.forEach(link => {
+                        if (link.getAttribute('href') === `#${targetId}`) {
+                            link.classList.add('VK_sidebar_active_link');
+                            let parentDetails = link.closest('details');
+
+                            // Open all ancestor details elements
+                            while (parentDetails) {
+                                parentDetails.setAttribute('open', '');
+                                parentDetails.removeAttribute('close'); // Optional: remove the closed indicator
+                                parentDetails = parentDetails.parentElement.closest('details');
+                            }
+                        }
+                    });
+                }
+
+                function onScroll() {
+                    let currentSection = '';
+                    sections.forEach(section => {
+                        const sectionTop = section.getBoundingClientRect().top;
+                        const sectionBottom = section.getBoundingClientRect().bottom;
+
+                        // Check if the section is in view
+                        if (sectionTop <= 100 && sectionBottom >= 0) {
+                            currentSection = section.getAttribute('id');
+                        }
+                    });
+
+                    if (currentSection) {
+                        removeActiveClass();
+                        activateLinkAndDetails(currentSection);
+                    } else {
+                        removeActiveClass();
+                    }
+                }
+
+                window.addEventListener('scroll', onScroll);
+            } else {
+                return
+            }
+        });
+    </script>
+
+    <!-- copy script -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            document.querySelectorAll(".mv_copy_icon").forEach((icon) => {
+                icon.addEventListener("click", async function () {
+                    try {
+                        const toolbar = this.closest(".mv_code_toolbar");
+                        const codeBlock = toolbar.querySelector(".code-content");
+                        const codeContent = codeBlock.innerText;
+
+                        // Use Clipboard API to copy text
+                        await navigator.clipboard.writeText(codeContent);
+
+                        // Hide the copy icon and show the "Copied!" message
+                        const message = toolbar.querySelector(".mv_copy_message");
+                        this.classList.add("hidden"); // Hide the copy icon
+                        message.classList.remove("hidden"); // Show the "Copied!" message
+
+                        // Hide the message and show the icon again after 2 seconds
+                        setTimeout(() => {
+                            message.classList.add("hidden");
+                            this.classList.remove("hidden");
+                        }, 2000); // Adjust delay as needed
+
+                    } catch (err) {
+                        console.error('Failed to copy text: ', err);
+                    }
+                });
+            });
+        });
+    </script>
+
+</body>
+
+</html>
+
