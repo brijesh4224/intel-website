@@ -236,14 +236,14 @@
                         <p class="mb-0">&nbsp;</p>
                         <h3 style="font-weight: 350; padding-bottom: 0.5rem;">Prerequisites</h3>
                         <p>This article uses a published tutorial in the format of a Jupyter Notebook.&nbsp;Readers might need to get the samples listed below with the related oneAPI AI Analytics toolkit installation.</p>
-                        <p><a class="b_special_a1" href="">Inference Optimization Tutorial</a></p>
+                        <p><a class="b_special_a1" href="https://github.com/oneapi-src/oneAPI-samples/tree/master/AI-and-Analytics/Features-and-Functionality/IntelTensorFlow_InferenceOptimization">Inference Optimization Tutorial</a></p>
                         <p>For hands-on exercises, please follow the README for that published tutorial.&nbsp;This article also guides readers to go through the results from the previous run.</p>
                         <p class="mb-0">&nbsp;</p>
                     </section>
 
                     <section>
                         <h3 style="font-weight: 350; padding-bottom: 0.5rem;">Introduce the Benchmark</h3>
-                        <p>The <a class="b_special_a1" href="">ssd_inception_v2</a> pre-trained model from download.tensorflow.org is used in this article, and we leverage an <a class="b_special_a1" href="">inference benchmark script</a> from the LPOT project to measure the performance of the pre-trained model.</p>
+                        <p>The <a class="b_special_a1" href="">ssd_inception_v2</a> pre-trained model from download.tensorflow.org is used in this article, and we leverage an <a class="b_special_a1" href="https://raw.githubusercontent.com/intel/neural-compressor/master/examples/tensorflow/oob_models/quantization/ptq/tf_savemodel_benchmark.py">inference benchmark script</a> from the LPOT project to measure the performance of the pre-trained model.</p>
                         <p class="mb-0">&nbsp;</p>
                     </section>
 
@@ -340,8 +340,8 @@
 
                     <section>
                         <h4>Intel® Neural Compressor</h4>
-                        <p>The <a class="b_special_a1" href="">Intel® Neural Compressor</a> (INC) is an open-source Python library that delivers a unified low-precision inference interface across multiple Intel-optimized Deep Learning (DL) frameworks on both CPUs and GPUs.<br>
-                            INC also provides graph optimizations for fp32 pre-trained models with more optimizations (such as common subexpression elimination) than the TensorFlow optimization tool <a class="b_special_a1" href="">optimize_for_inference</a>.</p>
+                        <p>The <a class="b_special_a1" href="https://github.com/intel/neural-compressor">Intel® Neural Compressor</a> (INC) is an open-source Python library that delivers a unified low-precision inference interface across multiple Intel-optimized Deep Learning (DL) frameworks on both CPUs and GPUs.<br>
+                            INC also provides graph optimizations for fp32 pre-trained models with more optimizations (such as common subexpression elimination) than the TensorFlow optimization tool <a class="b_special_a1" href="https://github.com/tensorflow/tensorflow/blob/master/tensorflow/python/tools/optimize_for_inference.py">optimize_for_inference</a>.</p>
                         <p>Here are related to INC codes to convert a unfrozen saved model pb file&nbsp;into a optimized model pb file.</p>
                         <p class="mb-0">&nbsp;</p>
                         <div class="mv_code_toolbar">
@@ -401,9 +401,9 @@
                     <section>
                         <p class="mb-0">&nbsp;</p>
                         <h4>Tools from TensorFlow GitHub</h4>
-                        <p>TensorFlow GitHub provides tools for freezing and optimizing a pre-trained model.&nbsp;Freezing the graph can provide additional performance benefits. The <a class="b_special_a1" href="">freeze_graph tool</a>, available as part of TensorFlow on GitHub, converts all the variable ops to const ops on the inference graph and outputs a frozen graph. With all weights frozen in the resulting inference graph, you can expect improved inference time. After the graph has been frozen, additional transformations by using<a class="b_special_a1" href=""> optimize_for_inference tool</a>&nbsp;can help optimize the graph for inference.</p>
-                        <p>We also provide a&nbsp;wrapper python script for those&nbsp;tools from TensorFlow GitHub, and the wrapper python script "<a class="b_special_a1" href="">freeze_optimize_v2.py</a>" provides the same functionality as freeze_graph.py and&nbsp;optimize_for_inference.py from TensorFlow GitHub.</p>
-                        <p>A <a class="b_special_a1" href="">freeze_optimize_v2.py</a> wrapper python script for inference optimization is used in this article, and Intel is working on upstreaming this script to the TensorFlow GitHub. The input of this script is the directory of the original saved model, and the output of this script is the directory of the optimized model. By running the command below, users can get the optimized model pb file under the output_saved_model_dir.</p>
+                        <p>TensorFlow GitHub provides tools for freezing and optimizing a pre-trained model.&nbsp;Freezing the graph can provide additional performance benefits. The <a class="b_special_a1" href="https://github.com/tensorflow/tensorflow/blob/master/tensorflow/python/tools/freeze_graph.py">freeze_graph tool</a>, available as part of TensorFlow on GitHub, converts all the variable ops to const ops on the inference graph and outputs a frozen graph. With all weights frozen in the resulting inference graph, you can expect improved inference time. After the graph has been frozen, additional transformations by using<a class="b_special_a1" href="https://github.com/tensorflow/tensorflow/blob/master/tensorflow/python/tools/optimize_for_inference.py"> optimize_for_inference tool</a>&nbsp;can help optimize the graph for inference.</p>
+                        <p>We also provide a&nbsp;wrapper python script for those&nbsp;tools from TensorFlow GitHub, and the wrapper python script "<a class="b_special_a1" href="https://raw.githubusercontent.com/oneapi-src/oneAPI-samples/master/AI-and-Analytics/Features-and-Functionality/IntelTensorFlow_InferenceOptimization/scripts/freeze_optimize_v2.py">freeze_optimize_v2.py</a>" provides the same functionality as freeze_graph.py and&nbsp;optimize_for_inference.py from TensorFlow GitHub.</p>
+                        <p>A <a class="b_special_a1" href="https://raw.githubusercontent.com/oneapi-src/oneAPI-samples/master/AI-and-Analytics/Features-and-Functionality/IntelTensorFlow_InferenceOptimization/scripts/freeze_optimize_v2.py">freeze_optimize_v2.py</a> wrapper python script for inference optimization is used in this article, and Intel is working on upstreaming this script to the TensorFlow GitHub. The input of this script is the directory of the original saved model, and the output of this script is the directory of the optimized model. By running the command below, users can get the optimized model pb file under the output_saved_model_dir.</p>
                         <div class="mv_code_toolbar">
                             <div class="mv_toolbar_item mv_copy_icon">
                                 <i class="fa-regular fa-copy"></i>
@@ -426,7 +426,7 @@
                                 </div>
                             </div>
                         </div> 
-                        <p class="dk_note">Due to a <a class="b_special_a1" href="">limitation of convert_variables_to_constants_v2</a> function in TensorFlow,&nbsp;<a class="b_special_a1" href="">freeze_optimize_v2.py</a>&nbsp;doesn't support graphs with embedding or control flow related ops.</p>
+                        <p class="dk_note">Due to a <a class="b_special_a1" href="https://github.com/tensorflow/tensorflow/blob/master/tensorflow/python/framework/convert_to_constants.py#L1128">limitation of convert_variables_to_constants_v2</a> function in TensorFlow,&nbsp;<a class="b_special_a1" href="https://raw.githubusercontent.com/oneapi-src/oneAPI-samples/master/AI-and-Analytics/Features-and-Functionality/IntelTensorFlow_InferenceOptimization/scripts/freeze_optimize_v2.py">freeze_optimize_v2.py</a>&nbsp;doesn't support graphs with embedding or control flow related ops.</p>
                         <p class="mb-0">&nbsp;</p>
                     </section>
 
@@ -464,7 +464,7 @@
 
                     <section>
                         <h3 style="font-weight: 350;">Analyze the Original and Optimized Pre-trained Model PB Files</h3>
-                        <p>To further show readers the difference between the original and optimized model PB files, we use a <a class="b_special_a1" href="">PB file parser</a> to analyze those pb files.</p>
+                        <p>To further show readers the difference between the original and optimized model PB files, we use a <a class="b_special_a1" href="https://github.com/oneapi-src/oneAPI-samples/tree/master/AI-and-Analytics/Features-and-Functionality/IntelTensorFlow_InferenceOptimization/scripts">PB file parser</a> to analyze those pb files.</p>
                         <p class="mb-0">&nbsp;</p>
                         <h4>Original pre-trained PB file</h4>
                         <p>The PB file parser will get the call count number of different TensorFlow operations in the PB file.&nbsp;Here is the table of original pre-trained pb files. The top 5 call counts hotspots are Const, Identity, Relu6, FusedBatchNorm , and Conv2D.</p>

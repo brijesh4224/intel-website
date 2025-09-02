@@ -268,7 +268,7 @@
                     <p>To fully utilize the power of Intel® architecture (IA) for high performance, you can enable TensorFlow* to be powered by Intel’s highly optimized math routines in the Intel® oneAPI Deep Neural Network Library (oneDNN). oneDNN includes convolution, normalization, activation, inner product, and other primitives.</p>
                     <p>The oneAPI Deep Neural Network Library (oneDNN) optimizations are now available both in the official x86-64 TensorFlow and Intel® Optimization for TensorFlow* after v2.5. Users can enable those CPU optimizations by setting the the environment variable <strong>TF_ENABLE_ONEDNN_OPTS=1</strong> for the official x86-64 TensorFlow after v2.5.</p>
                     <p>Most of the recommendations work on both official x86-64 TensorFlow and Intel® Optimization for TensorFlow. Some recommendations such as OpenMP tuning only applies to Intel® Optimization for TensorFlow.</p>
-                    <p>For setting up Intel® Optimization for TensorFlow* framework, please refer to this <a class="b_special_a1" href="">installation guide</a>.</p>
+                    <p>For setting up Intel® Optimization for TensorFlow* framework, please refer to this <a class="b_special_a1" href="/darshit/dk_Solutions_Industries/Intel_Optimization_for_TensorFlow_Installation_Guide.html">installation guide</a>.</p>
 
                     <section id="dk_maximum_throughput">
                         <p class="mb-0">&nbsp;</p>
@@ -283,9 +283,9 @@
                         <p>Optimizing graphs help improve latency and throughput time by transforming graph nodes to have only inference related nodes and by removing all training nodes.</p>
                         <p>Users can use tools from TensorFlow github.</p>
                         <p><strong>First, use freeze_graph</strong></p>
-                        <p>First, freezing the graph can provide additional performance benefits. The freeze_graph tool, available as part of TensorFlow on GitHub, converts all the variable ops to const ops on the inference graph and outputs a frozen graph. With all weights frozen in the resulting inference graph, you can expect improved inference time. Here is a <a class="b_special_a1" href="">LINK</a> to access the freeze_graph tool.</p>
+                        <p>First, freezing the graph can provide additional performance benefits. The freeze_graph tool, available as part of TensorFlow on GitHub, converts all the variable ops to const ops on the inference graph and outputs a frozen graph. With all weights frozen in the resulting inference graph, you can expect improved inference time. Here is a <a class="b_special_a1" href="https://github.com/tensorflow/tensorflow/blob/master/tensorflow/python/tools/freeze_graph.py">LINK</a> to access the freeze_graph tool.</p>
                         <p><strong>Second, Use optimize_for_inference</strong></p>
-                        <p>When the trained model is used only for inference, after the graph has been frozen, additional transformations can help optimize the graph for inference. TensorFlow project on GitHub offers an easy to use optimization tool to improve the inference time by applying these transformations to a trained model output. The output will be an inference-optimized graph to improve inference time. Here is a <a class="b_special_a1" href="">LINK</a> to access the optimize_for_inference tool.</p>
+                        <p>When the trained model is used only for inference, after the graph has been frozen, additional transformations can help optimize the graph for inference. TensorFlow project on GitHub offers an easy to use optimization tool to improve the inference time by applying these transformations to a trained model output. The output will be an inference-optimized graph to improve inference time. Here is a <a class="b_special_a1" href="https://github.com/tensorflow/tensorflow/blob/master/tensorflow/python/tools/optimize_for_inference.py">LINK</a> to access the optimize_for_inference tool.</p>
                     </section>
 
                     <section id="dk_runtime_options">
@@ -374,7 +374,7 @@
                             </div> 
                             
                             <p><br>
-                            For example, here is how you can set the inter and intra_op_num_threads by using <a href="https://github.com/tensorflow/benchmarks/tree/master/scripts/tf_cnn_benchmarks">TensorFlow Benchmark</a>.tf_cnn_benchmarks usage (shell)</p>
+                            For example, here is how you can set the inter and intra_op_num_threads by using <a class="b_special_a1" href="https://github.com/tensorflow/benchmarks/tree/master/scripts/tf_cnn_benchmarks">TensorFlow Benchmark</a>.tf_cnn_benchmarks usage (shell)</p>
                             
                             <pre><div class="toolbar"><div class="toolbar-item"><i class="fa fa-docs"></i></div></div>python tf_cnn_benchmarks.py --num_intra_threads=&lt;number of physical cores per socket&gt; --num_inter_threads=&lt;number of sockets&gt;</pre>
                             
@@ -467,7 +467,7 @@
                             
                                 <p><strong>NOTE :</strong> Intel Optimized TensorFlow supports both plain data formats like NCHW/NHWC and also oneDNN blocked data format since version 2.4. Using blocked format might help on vectorization but might introduce some data reordering operations in TensorFlow.</p>
                             
-                                <p>Users could enable/disable usage of oneDNN blocked data format in Tensorflow by TF_ENABLE_MKL_NATIVE_FORMAT environment variable. By exporting TF_ENABLE_MKL_NATIVE_FORMAT=0, TensorFlow will use oneDNN blocked data format instead. Please check <a class="w-100" href="">oneDNN memory format</a> for more information about oneDNN blocked data format.</p>
+                                <p>Users could enable/disable usage of oneDNN blocked data format in Tensorflow by TF_ENABLE_MKL_NATIVE_FORMAT environment variable. By exporting TF_ENABLE_MKL_NATIVE_FORMAT=0, TensorFlow will use oneDNN blocked data format instead. Please check <a class="b_special_a1" href="https://uxlfoundation.github.io/oneDNN/dev_guide_understanding_memory_formats.html">oneDNN memory format</a> for more information about oneDNN blocked data format.</p>
                             
                                 <p>We recommend users to enable NATIVE_FORMAT by below command to achieve good out-of-box performance. export TF_ENABLE_MKL_NATIVE_FORMAT=1 (or 0)</p>
                                 </li>
@@ -546,7 +546,7 @@
                         <P>&nbsp;</P>
                         <P>&nbsp;</P>
                         <details>Memory Allocator<br>
-                            For deep learning workloads, TCMalloc can get better performance by reusing memory as much as possible than default malloc function. <a class="b_special_a1" href="">TCMalloc</a> features a couple of optimizations to speed up program executions. TCMalloc is holding memory in caches to speed up access of commonly-used objects. Holding such caches even after deallocation also helps avoid costly system calls if such memory is later re-allocated. Use environment variable LD_PRELOAD to take advantage of one of them.
+                            For deep learning workloads, TCMalloc can get better performance by reusing memory as much as possible than default malloc function. <a class="b_special_a1" href="https://google.github.io/tcmalloc/overview.html">TCMalloc</a> features a couple of optimizations to speed up program executions. TCMalloc is holding memory in caches to speed up access of commonly-used objects. Holding such caches even after deallocation also helps avoid costly system calls if such memory is later re-allocated. Use environment variable LD_PRELOAD to take advantage of one of them.
                             
                             <div class="mv_code_toolbar">
                                 <div class="mv_toolbar_item mv_copy_icon">
@@ -734,7 +734,7 @@
                                     </div>
                                 </div> 
                                 
-                                <p>NOTE : oneDNN will <a class="b_special_a1" href="">get the CPU affinity mask</a> from users' numactl setting and set the maximum number of working threads in the threadpool accordingly after TensorFlow v2.5.0 RC1.</p>
+                                <p>NOTE : oneDNN will <a class="b_special_a1" href="https://github.com/uxlfoundation/oneDNN/blob/e535ef2f8cbfbee4d385153befe508c6b054305e/src/cpu/platform.cpp#LL238">get the CPU affinity mask</a> from users' numactl setting and set the maximum number of working threads in the threadpool accordingly after TensorFlow v2.5.0 RC1.</p>
                             </details>
                             <p>&nbsp;</p>
                     </section>
@@ -1048,7 +1048,7 @@
                             <li>Keras mixed precision API</li>
                             <li>AutoMixedPrecision oneDNN BFloat16 grappler pass through low level session configuration</li>
                         </ol>
-                        <p>Refer to <a class="b_special_a1" href="">Getting Started with Mixed Precision Support in oneDNN Bfloat16</a> for more details.</p>
+                        <p>Refer to <a class="b_special_a1" href="/darshit/dk_Solutions_Industries/Getting_Started_with_Mixed_Precision_Support_in_oneDNN_Bfloat16.html">Getting Started with Mixed Precision Support in oneDNN Bfloat16</a> for more details.</p>
                     </section>
 
                     <section id="dk_additional_informaton">
@@ -1240,9 +1240,9 @@
                         <h3 style="font-weight: 350;">Resources</h3>
                         <p>Check out these resource links for more information about Intel’s AI Kit and TensorFlow optimizations:</p>
                         <ul>
-                            <li><a class="b_special_a1" href="">Intel® oneAPI AI Analytics ToolKit (AI Kit) overview</a></li>
-                            <li><a class="b_special_a1" href="">AI Kit Linux* Downloads</a> and Get Started Guide</li>
-                            <li><a class="b_special_a1" href="">Intel® Optimization for TensorFlow Framework</a> and <a class="b_special_a1" href="">Installation Guide</a>
+                            <li><a class="b_special_a1" href="/darshit/dk_product/AI_Frameworks_and_Tools_download.html">Intel® oneAPI AI Analytics ToolKit (AI Kit) overview</a></li>
+                            <li><a class="b_special_a1" href="/darshit/dk_product/AI_Frameworks_and_Tools_download.html">AI Kit Linux* Downloads</a> and Get Started Guide</li>
+                            <li><a class="b_special_a1" href="/darshit/dk_product/AI_Frameworks_and_Tools_download.html">Intel® Optimization for TensorFlow Framework</a> and <a class="b_special_a1" href="/darshit/dk_Solutions_Industries/Intel_Optimization_for_TensorFlow_Installation_Guide.html">Installation Guide</a>
                             <p>&nbsp;</p>
                             </li>
                         </ul>
