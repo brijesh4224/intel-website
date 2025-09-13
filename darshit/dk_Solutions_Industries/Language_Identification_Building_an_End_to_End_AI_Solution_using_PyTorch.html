@@ -65,6 +65,16 @@
             width: 100% !important;
         }
     }
+    @media(max-width:767px){
+    /* comun css */
+        .mv_coman_btn{
+            color: #fff;
+            background-color: #0068b5;
+            padding: .625rem 1.5rem;
+            display: inline-block !important;
+            width: auto !important;
+        }
+    }
 </style>
 
 <body>
@@ -337,7 +347,7 @@
                     <section id="dk_dataset_download">
                         <h4 style="padding-bottom: 0.2rem;">Dataset Download</h4> 
                         <p>The Common Voice dataset version 11 is available on Huggingface Datasets. The code sample contains a convienent script to download the dataset. The following are the options for the dataset download script scripts (<span class="code-simple">dataset.py</span>) can be run with:&nbsp;</p>
-                        <table class="">
+                        <table class="mv_product_table w-100 mb-4">
                             <tbody>
                                 <tr>
                                     <td>Input Option&nbsp;</td>
@@ -345,20 +355,309 @@
                                 </tr>
                                 <tr>
                                     <td>--output_dir&nbsp;</td>
-                                    <td>Specify the data path. Default is <span class="code-simple">/data/commonVoice</span></td>
+                                    <td>Specify the data path. Default is <span class="dk_code_simple">/data/commonVoice</span></td>
                                 </tr>
                             </tbody>
                         </table>
+                        <p>After downloading the Common Voice dataset, the data is preprocessed by converting the MP3 files into WAV format to avoid information loss and separated into training, validation, and testing sets.&nbsp;</p>
+                        <p>A <a class="b_special_a1" href="">pretrained VoxLingua107 </a>model is retrained with the Common Voice dataset using the Hugging Face SpeechBrain library to focus on the languages of interest. <a class="b_special_a1" href="">VoxLingua107</a> is a speech dataset used for training spoken language recognition models that work well with real-world and varying speech data. This dataset contains data for 107 languages. By default, the model will be finetuned with the Japanese and Swedish datasets, but more languages can be included. This finetuned model is then used for inference on the testing dataset or a user-specified dataset. Also, there is an option to utilize SpeechBrain's Voice Activity Detection (VAD) where only the speech segments from the audio files are extracted and combined before samples are randomly selected as input into the model. This <a class="b_special_a1" href="">link</a> provides all the necessary tools to perform VAD. To improve performance, the user may quantize the trained model to integer-8 (INT8) using Intel® Neural Compressor to decrease latency.&nbsp;</p>
                     </section>
 
-                    <section id="dk_find_more">
-                        <h3 style="font-weight: 350;">Find More</h3>
-                        <p>See the&nbsp;<a class="b_special_a1" href="">Intel® CPU Runtime for OpenCL™ Applications Guide</a> for additional information, including:</p>
+                    <section id="dk_training">
+                        <h4 style="padding-bottom: 0.2rem;">Training</h4> 
+                        <p>Copies of the training scripts are added to the current working directory, including <span class="dk_code_simple">create_wds_shards.py</span> - for creating the <a class="b_special_a1" href="">WebDataset</a> shards, <span class="dk_code_simple">train.py</span> - to perform the actual training procedure, and <span class="dk_code_simple">train_ecapa.yaml</span> - to configure the training options. The script to create WebDataset shards and YAML file are patched to work with the two languages chosen for this code sample.&nbsp;</p>
+                        <p>In the data preprocessing phase, <span class="dk_code_simple">prepareAllCommonVoice.py</span> script is executed to randomly select a specified number of samples to convert the input from MP3 to WAV format. Here, 80% of these samples will be used for training, 10% for validation, and 10% for testing. At least 2000 samples are recommended as the number of input samples and is the default value.&nbsp;</p>
+                        <p>In the next step, WebDataset shards are created from the training and validation datasets. This stores the audio files as tar files which allows writing purely sequential I/O pipelines for large-scale deep learning to achieve high I/O rates from local storage—about 3x-10x faster compared to random access.&nbsp;</p>
+                        <p>The YAML file will be modified by the user. This includes setting the value for the largest number for the WebDataset shards, output neurons to the number of languages of interest, number of epochs to train over the entire dataset, and the batch size. The batch size should be decreased if the CPU or GPU runs out of memory while running the training script.&nbsp;&nbsp;</p>
+                        <p>In this code sample, the training script will be executed with CPU. While running the script, “cpu” will be passed as an input parameter. The configurations defined in <span class="dk_code_simple">train_ecapa.yaml</span> are also passed as parameters.&nbsp;</p>
+                        <p>The command to run the script to train the model is:&nbsp;&nbsp;</p>
+
+                        <div class="mv_code_toolbar">
+                            <div class="mv_toolbar_item mv_copy_icon">
+                                <i class="fa-regular fa-copy"></i>
+                            </div>
+                            <div class="mv_copy_message text-end hidden">Copied</div>
+                            <div class="code-content">
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp;</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 1rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">python train.py train_ecapa.yaml --device "cpu"</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> 
+                        <p>In the future, the training script <span class="dk_code_simple">train.py</span> can be modified to work for Intel® GPUs such as the Intel® Data Center GPU Flex Series, Intel® Data Center GPU Max Series, and Intel® Arc™ A-Series with updates from Intel® Extension for PyTorch*.&nbsp;</p>
+                        <p><a class="b_special_a1" href="">Run the training script</a> to learn how to train the models and execute the training script. The 4th Generation Intel® Xeon® Scalable Processor or newer is recommended for this transfer learning application because of its performance improvements through its Intel® Advanced Matrix Extensions (Intel® AMX) instruction set.&nbsp;</p>
+                        <p>After training, checkpoint files are available. These files are used to load the model for inference.</p>
+                    </section>
+
+                    <section id="dk_inference">
+                        <h4 style="padding-bottom: 0.2rem;">Inference</h4> 
+                        <p style="text-align:center"><img class="w-100" src="/img/darshit_image/f1-inference-pipeline-language-identification.png"></p>
+                        <p>Users can choose to run inference using the testing set from Common Voice or their own custom data in WAV format. The following are the options the inference scripts (<span class="dk_code_simple">inference_custom.py</span> and <span class="dk_code_simple">inference_commonVoice.py</span>) can be run with:&nbsp;</p>
+
+                        <table class="mv_product_table w-100 mb-4">
+                            <thead>
+                                <tr>
+                                    <th>
+                                    <p>Input Option</p>
+                                    </th>
+                                    <th>
+                                    <p>Description</p>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                    <p>-p</p>
+                                    </td>
+                                    <td>
+                                    <p>Specify the data path.</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                    <p>-d</p>
+                                    </td>
+                                    <td>
+                                    <p>Specify the duration of wave sample. The default value is <strong>3</strong>.</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                    <p>-s</p>
+                                    </td>
+                                    <td>
+                                    <p>Specify size of sample waves, default is <strong>100</strong>.</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                    <p>--vad</p>
+                                    </td>
+                                    <td>
+                                    <p>(<span class="dk_code_simple">inference_custom.py</span> only) Enable VAD model to detect active speech. The VAD option will identify speech segments in the audio file and construct a new <strong>.wav</strong> file containing only the speech segments. This improves the quality of speech data used as input into the language identification model.</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                    <p>--ipex</p>
+                                    </td>
+                                    <td>
+                                    <p>Run inference with optimizations from Intel Extension for PyTorch. This option will apply optimizations to the pretrained model. Using this option should result in performance improvements related to latency.</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                    <p>--ground_truth_compare</p>
+                                    </td>
+                                    <td>
+                                    <p>(<span class="dk_code_simple">inference_custom.py</span> only) Enable comparison of prediction labels to ground truth values.</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                    <p>--verbose</p>
+                                    </td>
+                                    <td>
+                                    <p>Print additional debug information, like latency.</p>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <p>The path to the data must be specified. By default, 100 audio samples of 3-seconds will be randomly selected from the original audio file and used as input to the language identification model.&nbsp;&nbsp;</p>
+                        <p>A small Convolutional Recurrent Deep Neural Network (CRDNN) pretrained on the <a class="b_special_a1" href="">LibriParty</a> dataset is used to process audio samples and output the segments where speech activity is detected. This can be used in inference with the <span class="dk_code_simple">--vad</span> option.&nbsp;&nbsp;</p>
+                        <p>From the figure below, the timestamps where speech will be detected is delivered from the CRDNN model, and these are used to construct a new, shorter audio file with only speech. Sampling from this new audio file will give a better prediction of the primary language spoken.&nbsp;</p>
+                        <p style="text-align:center"><img class="w-100" src="/img/darshit_image/f2-timestamps-delivered-from-crdnn-model.png"></p>
+                        <p><a class="b_special_a1" href="">Run the inference script</a> yourself. An example command of running inference:&nbsp;</p>
+
+                        <div class="mv_code_toolbar">
+                            <div class="mv_toolbar_item mv_copy_icon">
+                                <i class="fa-regular fa-copy"></i>
+                            </div>
+                            <div class="mv_copy_message text-end hidden">Copied</div>
+                            <div class="code-content">
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp;</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 1rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">python inference_custom.py -p data_custom -d 3 -s 50 --vad</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> 
+
+                        <p>This will run inference on data you provide located inside the <span class="dk_code_simple">data_custom</span> folder. This command performs inference on 50 randomly selected 3-second audio samples with voice activity detection.</p>
+                        <p>If you want to run the code sample for other languages, download Common Voice Corpus 11.0 datasets for other languages.&nbsp;</p>
+                        <p>&nbsp;</p>
+                    </section>
+
+                    <section id="dk_optimizations_neural">
+                        <h3 style="font-weight: 350;">Optimizations with Intel® Extension for PyTorch* and Intel® Neural Compressor</h3>
+                        <p class="mb-0">&nbsp;</p>
+                    </section>
+
+                    <section id="dk_pytorch">
+                        <h4>PyTorch</h4>
+                        <p class="mb-0">The Intel extension expands PyTorch with up-to-date features and optimizations for an extra performance boost on Intel hardware. Check out <a class="b_special_a1" href="">how to install Intel Extension for PyTorch</a>. The extension can be loaded as a Python module or linked as a C++ library. Python users can enable it dynamically by importing <span class="dk_code_simple">intel_extension_for_pytorch</span>.</p>
                         <ul>
-                            <li>Hardware requirements</li>
-                            <li>Operating system requirements</li>
-                            <li>Configuration</li>
-                            <li>Supported extensions/options/environment variables&nbsp;</li>
+                            <li>The <a class="b_special_a1" href="">CPU tutorial</a> gives detailed information about Intel Extension for PyTorch for Intel CPUs. Source code is available at the <a class="b_special_a1" href="">master&nbsp;branch</a>.</li>
+                            <li>The <a class="b_special_a1" href="">GPU tutorial</a> gives detailed information about Intel Extension for PyTorch for Intel GPUs. Source code is available at the <a class="b_special_a1" href="">xpu-master branch</a>.</li>
+                        </ul>
+                        <p>To optimize the model for inference using Intel Extension for PyTorch, the <span class="dk_code_simple">--ipex</span><em> </em>option can be passed in. The model is optimized using the plug-in. TorchScript speeds up inference because PyTorch is run in graph mode. The command to run with this optimization is:</p>
+
+                        <div class="mv_code_toolbar">
+                            <div class="mv_toolbar_item mv_copy_icon">
+                                <i class="fa-regular fa-copy"></i>
+                            </div>
+                            <div class="mv_copy_message text-end hidden">Copied</div>
+                            <div class="code-content">
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp;</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 1rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">python inference_custom.py -p data_custom -d 3 -s 50 --vad --ipex -–verbose</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <p>Note: The --verbose option is required to view the latency measurements.</p>
+                        <p>Auto-mixed precision such as bfloat16 (BF16) support will be added in a future release of the code sample.</p>
+                    </section>
+
+                    <section id="dk_intel_compressor">
+                        <p class="mb-0">&nbsp;</p>
+                        <h4>Intel Neural Compressor</h4>
+                        <p class="mb-0">This is an open-source Python library that runs on CPUs or GPUs, which:</p>
+                        <ul>
+                            <li>Performs model quantization to reduce the model size and increase the speed of deep learning inference for deployment.</li>
+                            <li>Automates popular methods such as quantization, compression, pruning, and knowledge distillation across multiple deep-learning frameworks.</li>
+                            <li>Is part of the AI Kit</li>
+                        </ul>
+                        <p>The model can be quantized from float32 (FP32)&nbsp;precision to integer-8 (INT8) by running the <span class="dk_code_simple">quantize_model.py</span> script while passing in the path to the model and a validation dataset. The following code can be used to load this INT8 model for inference:</p>
+
+                        <div class="mv_code_toolbar">
+                            <div class="mv_toolbar_item mv_copy_icon">
+                                <i class="fa-regular fa-copy"></i>
+                            </div>
+                            <div class="mv_copy_message text-end hidden">Copied</div>
+                            <div class="code-content">
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp;</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">from neural_compressor.utils.pytorch import load</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">model_int8 = load("./lang_id_commonvoice_model_INT8", self.language_id)</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">signal = self.language_id.load_audio(data_path)</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 1rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">prediction = self.model_int8(signal)</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <p>Note that the original model is required when loading the quantized model. The command to quantize the trained model from FP32 to INT8 by using <span class="dk_code_simple">quantize_model.py</span> is:</p>
+
+                        <div class="mv_code_toolbar">
+                            <div class="mv_toolbar_item mv_copy_icon">
+                                <i class="fa-regular fa-copy"></i>
+                            </div>
+                            <div class="mv_copy_message text-end hidden">Copied</div>
+                            <div class="code-content">
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp;</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 1rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">python quantize_model.py -p ./lang_id_commonvoice_model -datapath $COMMON_VOICE_PATH/commonVoiceData/commonVoice/dev</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section id="dk_what_next">
+                        <p class="mb-0">&nbsp;</p>
+                        <h3 style="font-weight: 350;">What’s Next?</h3>
+                        <p>Try out the above code sample by upgrading the hardware to a 4th Generation Intel Xeon Scalable Processor with Intel AMX and identify up to 93 different languages from Common Voice datasets.</p>
+                        <p>We encourage you to learn more about and incorporate Intel’s other <a class="b_special_a1" href="">AI/ML Framework optimizations and tools</a> into your AI workflow. Also, visit <a class="b_special_a1" href="">AI &amp; ML page</a> covering Intel’s AI software development resources for preparing, building, deploying, and scaling your AI solutions.</p>
+                        <p>For more details about the new 4th Gen Intel Xeon Scalable processors, visit <a class="b_special_a1" href="">Intel's AI Solution Platform portal</a> where you can learn how Intel is empowering developers to run end-to-end AI pipelines on these powerful CPUs.</p>
+                    </section>
+
+                    <section id="dk_useful_resources">
+                        <h4>Useful resources</h4>
+                        <ul>
+                            <li><a class="b_special_a1" href="">Intel AI Developer Tools and resources</a></li>
+                            <li><a class="b_special_a1" href="">oneAPI unified programming model</a></li>
+                            <li><a class="b_special_a1" href="">Official documentation - Intel® Optimization for TensorFlow*</a></li>
+                            <li><a class="b_special_a1" href="">Official documentation - Intel® Neural Compressor</a></li>
+                            <li><a class="b_special_a1" href="">Accelerate AI Workloads with Intel® AMX</a></li>
+                        </ul>
+                    </section>
+
+                    <section id="dk_explore_more">
+                        <h4>Explore more AI code samples</h4>
+                        <ul>
+                            <li><a class="b_special_a1" href="">Optimize PyTorch Models using Intel® Extension for PyTorch (IPEX) Quantization</a></li>
+                            <li><a class="b_special_a1" href="">PyTorch Training Optimizations with Advanced Matrix Extensions Bfloat16</a></li>
+                            <li><a class="b_special_a1" href="">Intel® Neural Compressor TensorFlow* Getting Started</a><br>
+                            <br>
+                            <a class="mv_coman_btn" href="">See all code samples</a></li>
                         </ul>
                         <p>&nbsp;</p>
                     </section>
