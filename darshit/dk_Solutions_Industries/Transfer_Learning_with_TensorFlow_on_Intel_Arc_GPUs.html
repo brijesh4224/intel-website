@@ -1,0 +1,1322 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transfer Learning with TensorFlow on Intel Arc GPU</title>
+
+    <link rel="stylesheet" href="/css/mv_ai_software_solution_leveraging_open_source_ai_technologies.css">
+    <link rel="stylesheet" href="/css/rushita_automotive.css">
+
+    <!-- header footer -->
+    <link rel="stylesheet" href='/css/yatri.css'>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" rel="stylesheet">
+</head>
+
+<style>
+    .dk_code_simple{
+        color: #53565a;
+        border-radius: 0;
+        box-shadow: none;
+        text-shadow: none;
+        background-color: #e6e6e6;
+    }
+    @media(max-width:1200px){
+        .mv_intel_amx_content{
+            padding-right: 0px !important;
+        }
+    }
+</style>
+
+<body>
+
+    <!-- header -->
+    <div id="navbar"></div>
+
+    <!------------------------------------------------------------------------------->
+    <section class="m_ai_tdrop">
+        <div>
+            <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Developers
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item m_dropActive" href="/dhruvin_developer-tools/ds_Developer-Zone.html">Overview</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/rushita_Solutions/k_solutions_in_Viewall_SDF_Industrial-Automation_Control-flow-Enforcement_Technology.html">Topics & Technologies</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/dhruvin_developer-tools/ds_Development-Tools.html">Tools</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/rushita_Solutions/k_solutions_in_Viewall_SDF_Industrial-Automation_Hardware-Platforms.html">Hardware Platforms</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/dhruvin_developer-tools/ds_Resource-Documentation-Center.html">Resources & Documentation</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/dhruvin_developer-tools/ds_Learn.html">Learn</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/dhruvin_developer-tools/ds_Communities-and-Events.html">Community & Events</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/dhruvin_developer-tools/ds_Developer-Programs.html">Developer Programs</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/dhruvin_developer-tools/ds_Get-Help.html">Get Help</a></li>
+            </ul>
+        </div>
+        <div class="m_ai_shlash">/</div>
+        <div>
+            <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Tools
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item m_dropActive" href="/Product/B20_developer_catelog.html">Software Catalog</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/Product/B17_oneapi.html">oneAPI</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/rushita_Solutions/k_solutions_Intel-Tiber™Edge-Platform.html">Intel® Tiber™ Edge Platform</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/Product/B10_intel_Quarts.html">FPGA</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/VK_developers/VK_technology_sdk.html">Intel® Active Management Technology SDK</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/VK_developers/VK_intel_adviser.html">Intel® Advisor</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® AI Reference Models</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/rushita_Solutions/k_solutions_Intel-Collaboration-Suite-for-WebRTC.html">Intel® Collaboration Suite for WebRTC SDK</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/Product/B1_19_Intel_AICloud.html">Intel® Tiber™ AI Cloud</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/rushita_Solutions/k_solutions_Intel-Distribution-for-Python.html">Intel® Distribution for Python*</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/rushita_Solutions/k_solutions_Intel-Distribution-for-GDB.html">Intel® Distribution for GDB*</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/rushita_Solutions/k_solutions_Intel-DPC++Compatibility-Tool.html">Intel® DPC++ Compatibility Tool</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/rushita_Solutions/k_solutions_Intel-Dynamic-Application-Loader.html">Intel® Dynamic Application Loader</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/rushita_Solutions/k_solutions_Topics_viewall_Cloud-Insider-Program_AI-Frameworks-and-Tools.html">Frameworks</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Embree</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/VK_developers/VK_ai_scikit.html">Intel® Extension for Scikit-learn*</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/rushita_Solutions/k_solutions_Intel-Fortran-Compiler.html">Intel® Fortran Compiler</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/rushita_Solutions/k_solutions_cs_creaters_intel_gpa.html">Intel® Graphics Performance Analyzers</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/rushita_Solutions/k_solutions_Intel-HE-Toolkit.html">Intel® Homomorphic Encryption Toolkit</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/rushita_Solutions/k_solutions_Intel-In-Band-Manageability.html">Intel® In-Band Manageability</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Integrated Performance Primitives</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/rushita_Solutions/k_solutions_Intel-ISIM.html">Intel® Integrated Simulation Infrastructure with Modeling</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/rushita_Solutions/k_solutions_Instruction-Set-Architecture(ISA)Extensions.html">Instruction Set Architecture (ISA) Extensions</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/rushita_Solutions/k_solutions_Intel-Intelligent-Storage-Acceleration-Library.html">Intel® Intelligent Storage Acceleration Library (Intel® ISA-L)</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/VK_developers/VK_ai_modin.html">Modin*</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/rushita_Solutions/k_solutions_Intel-MPI-Library.html">Intel® MPI Library</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Neural Compressor</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/rushita_Solutions/">OpenCL™ Runtime</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/rushita_Solutions/">Intel® Open Image Denoise</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Open Path Guiding Library (Intel® Open PGL)</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/rushita_Solutions/k_solutions_Pin.html">Pin</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/rushita_Solutions/k_solutions_Pin_Intel-Platform-Analysis-Library.html">Intel® Platform Analysis Library</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel Tools for OpenCL™ Software</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel Tools for OpenCL™ Applications</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® OpenSWR</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">OpenVINO™ Toolkit</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Open Volume Kernel Library</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Optimization for XGBoost*</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® OSPRay</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® OSPRay for Hydra*</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® OSPRay Studio</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">PyTorch* Optimizations from Intel</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">TensorFlow* Optimizations from Intel</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Rendering Toolkit</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Smart Edge Open</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/rushita_Solutions/">Intel® Software Guard Extensions</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Secure Device Onboard</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Software Development Emulator</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/rushita_Solutions/Trust-Domain">Intel® Trust Domain Extensions (Intel® TDX)</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Quantum SDK</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Query Processing Library (Intel® QPL)</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Video Processing Library</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/VK_developers/VK_vtune_profiler.html">Intel® VTune™ Profiler</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Resellers</a></li>
+            </ul>
+        </div>
+        <div class="m_ai_shlash">/</div>
+        <div>
+            <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                oneAPI
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item m_dropActive" href="">Overview</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Data Parallel C++/SYCL*</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Toolkits</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Tech Articles & How-Tos</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Components</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Code Samples</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Training</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Documentation</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Support</a></li>
+            </ul>
+        </div>
+        <div class="m_ai_shlash">/</div>
+        <div>
+            <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Tech Articles & How-Tos
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item m_dropActive" href=""></a></li>
+                <li><a class="dropdown-item m_dropActive" href=""></a></li>
+                <li><a class="dropdown-item m_dropActive" href=""></a></li>
+            </ul>
+        </div>
+        <div class="m_ai_shlash">/</div>
+        <div class="m_ai_httl">Transfer Learning with TensorFlow on Intel Arc GPU</div>
+    </section>
+    <!------------------------------------------------------------------------------->
+
+    <!-- Intel AMX ? -->
+    <section>
+        <div class="mv_intel_amx_bg_color">
+            <div class="container">
+                <div class="row mv_intel_amx_content">
+                    <div class="col-md-8 col-sm-12 mv_intel_amx_item">
+                        <div class="mv_intel_amx">
+                            <h2 style="font-weight: 300;">Transfer Learning with TensorFlow* on Intel® Arc™ GPUs</h2>
+                            <p class="mv_intel_amx_heading_text">Fast and Easy Training and Inference Using Intel® Consumer GPUs and Windows* Subsystem for Linux2</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-6 col-8 mv_intel_amx_item">
+                        <div class="mv_intel_amx_image">
+                            <img src="/img/mv_image/parallel-universe-magazine-issue-54-rwd.png.rendition.intel.web.480.270.png"
+                                alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="container py-5">
+        <div class="row">
+            <div class="d-flex justify-content-end col-xl-10 py-3 d-md-none">
+                <i class="fa-solid fa-print fs-4 px-2 " style="color:#0068B5"></i>
+                <i class="fa-regular fa-envelope fs-4 px-2" style="color:#0068B5"></i>
+            </div>
+            <div class="col-lg-3 col-md-4">
+                <!-- nav -->
+                <div class="VK_sticky_side_bar VK_side_bar_postion_stickey">
+                    <div>
+                        <div class="VK_sidebar_dropdown">
+                            <p class="">
+                                <a href="#dk_setup" class="text-decoration-none VK_a">
+                                    Setup
+                                </a>
+                            </p>
+                            <p class="">
+                                <a href="#dk_prerequisites" class="text-decoration-none VK_a">
+                                    Prerequisites
+                                </a>
+                            </p>
+                            <p class="m-0">
+                                <a href="#dk_running_jupyter" class="text-decoration-none VK_a">
+                                    Running Jupyter Notebook* in a Docker Container
+                                </a>
+                            </p>
+                            <p class="m-0">
+                                <a href="#dk_transfer_learning" class="text-decoration-none VK_a">
+                                    Transfer Learning Using an Intel Arc Alchemist A770 GPU
+                                </a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <!-- thinkcode -->
+                <div class="dk_things_code_main">
+                    <div class="dk_things_code">
+                        <h6 style="font-weight: 700; margin-bottom: 11px;">Get the Latest on All Things CODE</h6>
+                    <div class="dk_get_code">
+                        <button class="dk_button">Sign Up</button>
+                    </div>
+                    </div>
+                    <p><b>Christopher Lishka</b>, <i>AI Frameworks Engineer</i>, <b>AG Ramesh</b>, <i>Principal Engineer</i>, and <b>Geetanjali Krishna</b>, <i>AI Software Engineering Manager</i></p>
+                    <p>Intel Corporation</p>
+                </div>
+            </div>
+            <div class="col-lg-9 col-md-8">
+                <div class="d-md-flex justify-content-end col-xl-10 py-3 d-none">
+                    <i class="fa-solid fa-print fs-4 px-2 " style="color:#0068B5"></i>
+                    <i class="fa-regular fa-envelope fs-4 px-2" style="color:#0068B5"></i>
+                </div>
+                <div class="col-xl-10 VK_all_sections">
+                    <div style="padding-bottom: 16px;">
+                        <p >&nbsp;</p>
+                        <p>Transfer learning is a deep learning (DL) method that allows the use of a pretrained model with a new dataset. The new data must be similar enough to the original data so the learned features in the model weights apply well. If this is the case, then transfer learning can greatly reduce the time to train with a new dataset when compared to fully training the model. This is because a “headless model” is used, where the bulk of the layers are left with pretrained static weights, while the final model layer is replaced with a fresh dense layer that is trained to the new dataset.&nbsp;</p>
+                        <p>Intel® Arc™ A-Series discrete GPUs provide an easy way to run DL workloads quickly on your PC, working with both TensorFlow* and PyTorch* models. In this article, we run <a class="b_special_a1" href="">Intel® Extension for TensorFlow</a> (ITEX) on an Intel Arc GPU and use preconstructed ITEX Docker images on Windows* to simplify setup. For this example, we will use an EfficientNetB0 model from TensorFlow Hub, which was pretrained on the ImageNet dataset. Our new dataset will be “Stanford Dogs” from TensorFlow Datasets, which has dog images labelled with more specific breeds than ImageNet provides. To tune the DL network for Stanford Dogs, we will add a new dense layer that will be rapidly trained using an Intel Arc A770 GPU. We can then compare this to fully training EfficientNetB0 to see how much faster transfer learning is.&nbsp;</p>
+                    </div>
+
+                    <section id="dk_setup">
+                        <h3 style="font-weight: 350; margin: 1rem 0 11px;">Setup</h3>
+                        <p>A previous blog, <a class="b_special_a1" href="">Running TensorFlow Stable Diffusion on Intel Arc GPUs</a>, showed how to set up an Ubuntu container running in Windows Subsystem for Linux 2 (WSL2) to access an Intel Arc GPU on the Windows host. For this example, we will look at how to simplify installation of the ITEX plugin by using Docker with WSL2 and a preconstructed ITEX Docker image. The hardware used for this article is a 13th Gen Intel® Core™ i9 PC with an Intel Arc A770 16 GB discrete GPU card installed. We will use ITEX running in a Docker container on Windows 11.&nbsp;</p>
+                    </section>
+
+                    <section id="dk_prerequisites">
+                        <h3 style="font-weight: 350; margin: 2.5rem 0 11px;">Prerequisites</h3>
+                        <p>To start off, WSL2 should be installed on Windows 11 with an Ubuntu-22.04 container. <a class="b_special_a1" href="">Instructions can be found here</a>. Docker Desktop on Windows provides an easy way to download Docker images and run Docker containers using the underlying WSL2 subsystem. We will use an image with ITEX already configured, but first Docker will need to be installed on Windows. You can either use Docker Desktop for Windows (<a class="b_special_a1" href="">installation instructions</a>) or install Docker within Linux inside WSL2 (<a class="b_special_a1" href="">installation example</a>).&nbsp;</p>
+                    </section>
+
+                    <section id="dk_running_jupyter">
+                        <h3 style="font-weight: 350; margin: 2.5rem 0 11px;">Running Jupyter Notebook* in a Docker Container</h3>
+                        <p>For this example, we will run Docker from Ubuntu (running within WSL2). First, start up your Ubuntu WLS2 container. This will present you with a Unix shell prompt, from which you can pull the prebuilt docker image for ITEX:&nbsp;</p>
+                        <!-- code toolbar -->
+                        <div class="mv_code_toolbar">
+                            <div class="mv_toolbar_item mv_copy_icon">
+                                <i class="fa-regular fa-copy"></i>
+                            </div>
+                            <div class="mv_copy_message text-end hidden">Copied</div>
+                            <div class="d-flex mv_pre">
+                                <div class="">
+                                    <div class="mv_code text-break code-content">
+                                        <p class="mb-0">$ docker pull intel/intel-extension-for-tensorflow:xpu</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <p>You can check that the ITEX Docker image has been downloaded with:&nbsp;</p>
+                        <!-- code toolbar -->
+                        <div class="mv_code_toolbar">
+                            <div class="mv_toolbar_item mv_copy_icon">
+                                <i class="fa-regular fa-copy"></i>
+                            </div>
+                            <div class="mv_copy_message text-end hidden">Copied</div>
+                            <div class="d-flex mv_pre">
+                                <div class="">
+                                    <div class="mv_code text-break code-content">
+                                        <p class="mb-0">$ docker images</p>
+                                        <p class="mb-0">REPOSITORY nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; TAG  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; IMAGE ID  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; CREATED &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;        SIZE</p>
+                                        <p class="mb-0">intel/intel-extension-for-tensorflow  &nbsp; &nbsp; &nbsp;  xpu &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 2fc4b6a6fad7 &nbsp; &nbsp; &nbsp;8 days ago &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;    7.42GB</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <p>Next, use the docker run command to start a container with the intel/intel-extension-for-tensorflow:xpu image:&nbsp;</p>
+                        <!-- code toolbar -->
+                        <div class="mv_code_toolbar">
+                            <div class="mv_toolbar_item mv_copy_icon">
+                                <i class="fa-regular fa-copy"></i>
+                            </div>
+                            <div class="mv_copy_message text-end hidden">Copied</div>
+                            <div class="d-flex mv_pre">
+                                <div class="">
+                                    <div class="mv_code text-break code-content">
+                                        <p class="mb-0">$ docker run  -ti   -p 9999:9999  --device /dev/dxg --mount type=bind,src=/usr/lib/wsl,dst=/usr/lib/wsl -e </p>
+                                        <p class="mb-0">LD_LIBRARY_PATH=/usr/lib/wsl/lib  intel/intel-extension-for-tensorflow:xpu</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="mb-0">The options for docker run are as follows:&nbsp;</p>
+                        <ul>
+                            <li><span class="dk_code_simple">-p 9999:9999</span> passes a standard port through the Docker container so that Jupyter Notebook can be used with a Windows browser.&nbsp;</li>
+                            <li><span class="dk_code_simple">--device /dev/dxg</span> passes the DirectX driver into the Docker container so that the Intel Arc A770 GPU can be accessed.&nbsp;</li>
+                            <li><span class="dk_code_simple">--mount type=bind,src=/usr/lib /wsl,dst=/usr/lib/wsl -e LD_LIBRARY_PATH=/usr/lib/wsl/lib</span> are options that pass the shared library directory for WSL2 into the Docker container.&nbsp;</li>
+                        </ul>
+                        <p>Alternatively, if you are using Docker Desktop for Windows, you can run the above Docker commands directly in a PowerShell or DOS Shell.&nbsp;</p>
+                        <p>Once the ITEX Docker container is running, a few packages will need to be pip-installed, including Jupyter Notebook:&nbsp;</p>
+                        <!-- code toolbar -->
+                        <div class="mv_code_toolbar">
+                            <div class="mv_toolbar_item mv_copy_icon">
+                                <i class="fa-regular fa-copy"></i>
+                            </div>
+                            <div class="mv_copy_message text-end hidden">Copied</div>
+                            <div class="d-flex mv_pre">
+                                <div class="">
+                                    <div class="mv_code text-break code-content">
+                                        <p class="mb-0">root:/# pip install jupyter 'ipywidgets>=7.6.5' 'matplotlib>=3.3.4' scipy 'tensorflow_hub>=0.12.0' 'tensorflow-</p>
+                                        <p class="mb-0">datasets>=4.4.0'</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <p>Then, start the Jupyter Notebook:&nbsp;</p>
+                        <!-- code toolbar -->
+                        <div class="mv_code_toolbar">
+                            <div class="mv_toolbar_item mv_copy_icon">
+                                <i class="fa-regular fa-copy"></i>
+                            </div>
+                            <div class="mv_copy_message text-end hidden">Copied</div>
+                            <div class="d-flex mv_pre">
+                                <div class="">
+                                    <div class="mv_code text-break code-content">
+                                        <p class="mb-0">root:/# jupyter notebook --allow-root --ip 0.0.0.0 --port 9999</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <p>The options for the Jupyter Notebook command allow it to run in a way that you can use the Microsoft Edge* browser to connect to the Jupyter Notebook server. In your Edge browser, open the URL listed in the Jupyter output, which should look like:&nbsp;&nbsp;</p> 
+                        <!-- code toolbar -->
+                        <div class="mv_code_toolbar">
+                            <div class="mv_toolbar_item mv_copy_icon">
+                                <i class="fa-regular fa-copy"></i>
+                            </div>
+                            <div class="mv_copy_message text-end hidden">Copied</div>
+                            <div class="d-flex mv_pre">
+                                <div class="">
+                                    <div class="mv_code text-break code-content">
+                                        <p class="mb-0">http://127.0.0.1:8888/?token = . . .</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="mb-0">&nbsp;</p>
+                    </section>
+
+                    <section id="dk_transfer_learning">
+                        <h2 style="font-weight: 350; font-size: 1.5rem; margin-top: 22px;">Transfer Learning Using an Intel Arc Alchemist A770 GPU
+                        </h2>
+                        <p>This example can be run in a Jupyter Notebook to easily visualize how the dog images are being classified before, during, and after training. We’ll run each code section as a cell to see the effects. Feel free to follow along in your own notebook.</p>
+                        <p>The primary packages to import are TensorFlow, TensorFlow Hub (provides access to standard pretrained models), and TensorFlow Datasets (provides standard training and test sets for a variety of uses). Matplotlib and NumPy are also imported but are only used in the helper function for visualizing images and their classifications.&nbsp;</p>
+                        <!-- code toolbar -->
+                        <div class="mv_code_toolbar">
+                            <div class="mv_toolbar_item mv_copy_icon">
+                                <i class="fa-regular fa-copy"></i>
+                            </div>
+                            <div class="mv_copy_message text-end hidden">Copied</div>
+                            <div class="d-flex mv_pre">
+                                <div class="">
+                                    <div class="mv_code text-break code-content">
+                                        <p class="mb-0">import tensorflow as tf</p>
+                                        <p class="mb-0">import tensorflow_hub as hub</p>
+                                        <p class="mb-0">import tensorflow_datasets as tfds</p>
+                                        <p class="mb-0">&nbsp;</p>
+                                        <p class="mb-0">import matplotlib.pyplot as plt</p>
+                                        <p class="mb-0">import numpy as np</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- code toolbar -->
+                        <div class="mv_code_toolbar">
+                            <div class="mv_toolbar_item mv_copy_icon">
+                                <i class="fa-regular fa-copy"></i>
+                            </div>
+                            <div class="mv_copy_message text-end hidden">Copied</div>
+                            <div class="d-flex mv_pre">
+                                <div class="">
+                                    <div class="mv_code text-break code-content">
+                                        <p class="mb-0">[...]</p>
+                                        <p class="mb-0">2023-08-03 16:44:35.519530: I itex/core/devices/gpu/itex_gpu_runtime.cc:129] Selected platform: Intel(R) Level-Zero </p>
+                                        <p class="mb-0">2023-08-03 16:44:35.519589: I itex/core/devices/gpu/itex_gpu_runtime.cc:154] number of sub-devices is zero, expose root device.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <p>The ITEX plugin is automatically discovered during the importing of the TensorFlow package. If an Intel GPU is present, it is automatically set to the default device (using the Intel® oneAPI Level Zero layer) as shown in the output messages above.&nbsp;</p>
+                        <p>Next are some user parameters that you can set for your environment:</p>
+                        <!-- code toolbar -->
+                        <div class="mv_code_toolbar">
+                            <div class="mv_toolbar_item mv_copy_icon">
+                                <i class="fa-regular fa-copy"></i>
+                            </div>
+                            <div class="mv_copy_message text-end hidden">Copied</div>
+                            <div class="d-flex mv_pre">
+                                <div class="">
+                                    <div class="mv_code text-break code-content">
+                                        <p class="mb-0">batch_size = 32</p>
+                                        <p class="mb-0">dataset_directory = &nbsp;'/tmp/efficienetB0_datasets'    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; # Location of downloaded dataset</p>
+                                        <p class="mb-0">output_directory = &nbsp;'/tmp/efficienetB0_saved_model'  &nbsp; &nbsp; # Location of saved model</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <p>For this run, we will be using EfficientNetB0 from TensorFlow Hub. We will only use the headless model (also called the “feature vector model”), which is the pretrained layers with weights, but with the final layer removed. We also need to specify the resolution of each image. In this case, EfficientNetB0 is trained on images that are 224 x 224 pixels. This will be used for resizing images in the dataset.&nbsp;</p>
+                        <p>TensorFlow Hub’s documentation for the EfficientNet series of models <a class="b_special_a1" href="">can be found here</a>, with sets of links to both the models and feature vector models (a.k.a. headless models).&nbsp;</p>
+                        <!-- code toolbar -->
+                        <div class="mv_code_toolbar">
+                            <div class="mv_toolbar_item mv_copy_icon">
+                                <i class="fa-regular fa-copy"></i>
+                            </div>
+                            <div class="mv_copy_message text-end hidden">Copied</div>
+                            <div class="d-flex mv_pre">
+                                <div class="">
+                                    <div class="mv_code text-break code-content">
+                                        <p class="mb-0"># "efficientnet_b0" model on TensorFlow Hub</p>
+                                        <p class="mb-0">model_handle = "https://tfhub.dev/google/efficientnet/b0/classification/1"</p>
+                                        <p class="mb-0">feature_vector_handle = "https://tfhub.dev/google/efficientnet/b0/feature-vector/1"</p>
+                                        <p class="mb-0">image_size = 224</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <p>The following helper function, <span class="dk_code_simple">show_predictions()</span>,visually displays the first ten images in a batch, along with the predicted label and the actual label. Correctly labeled images appear in green, while incorrectly labeled images are in red with the correct label in parentheses. We will use <span class="dk_code_simple">show_predictions()</span> at several points to see progress during the transfer learning training.&nbsp;</p>
+                         <!-- code toolbar -->
+                         <div class="mv_code_toolbar">
+                            <div class="mv_toolbar_item mv_copy_icon">
+                                <i class="fa-regular fa-copy"></i>
+                            </div>
+                            <div class="mv_copy_message text-end hidden">Copied</div>
+                            <div class="d-flex mv_pre">
+                                <div class="">
+                                    <div class="mv_code text-break code-content">
+                                        <p class="mb-0"># Helper routine to show 10 images from the batch with visual indicators for correct prediction</p>
+                                        <p class="mb-0">def show_predictions(image_batch, label_batch, class_names):</p>
+                                        <p class="mb-0">&nbsp;</p>
+                                        <p class="mb-0">&nbsp; &nbsp; &nbsp;  predicted_batch = model.predict(image_batch)  # Predict using the sample batch</p>
+                                        <p class="mb-0">&nbsp; &nbsp; &nbsp;  predicted_id = np.argmax(predicted_batch, axis=-1)</p>
+                                        <p class="mb-0">&nbsp; &nbsp; &nbsp;  predicteds = [class_names[id] for id in predicted_id]</p>
+                                        <p class="mb-0">&nbsp;</p>
+                                        <p class="mb-0">&nbsp; &nbsp; &nbsp;  actuals = [class_names[int(id)] for id in label_batch]</p>
+                                        <p class="mb-0">&nbsp;</p>
+                                        <p class="mb-0">&nbsp; &nbsp; &nbsp;  print("Correct predictions are shown in green")</p>
+                                        <p class="mb-0">&nbsp; &nbsp; &nbsp;  print("Incorrect predictions are shown in red with the actual label in parenthesis")</p>
+                                        <p class="mb-0">&nbsp;</p>
+                                        <p class="mb-0">&nbsp; &nbsp; &nbsp;  plt.figure(figsize=(10,9))  # Display the results </p>
+                                        <p class="mb-0">&nbsp; &nbsp; &nbsp;  plt.subplots_adjust(hspace=0.5)</p>
+                                        <p class="mb-0">&nbsp; &nbsp; &nbsp;  for n in range(0, 10):  # Could also print a whole batch using (batch_size - 2)</p>
+                                        <p class="mb-0">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; plt.subplot(6,5,n+1)</p>
+                                        <p class="mb-0">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; plt.imshow(image_batch[n])</p>
+                                        <p class="mb-0">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; correct_prediction = actuals[n] == predicteds[n]</p>
+                                        <p class="mb-0">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; color = "darkgreen" if correct_prediction else "crimson" </p>
+                                        <p class="mb-0">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; title = predicteds[n].title() I am running a few minutes late; my previous meeting is running over. </p>
+                                        <p class="mb-0">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  if correct_prediction I am running a few minutes late; my previous meeting is running over.</p>
+                                        <p class="mb-0">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  else "{}\\n({})".format(predicteds[n], actuals[n])</p>
+                                        <p class="mb-0">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; plt.title(title, fontsize=9, color=color) </p>
+                                        <p class="mb-0">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; plt.axis('off')</p>
+                                        <p class="mb-0">&nbsp; &nbsp; &nbsp;   _ = plt.suptitle("Model predictions") </p>
+                                        <p class="mb-0">&nbsp; &nbsp; &nbsp;  plt.show( )</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <p>Now let’s set up the dataset. Here we are using TensorFlow Datasets to load “Stanford Dogs,” which is a set of dog images with more precise dog breed labels than are found in ImageNet. The first time this code is run, it will download the dataset to the directory we specified above. This will take 5–10 minutes, and you should see some progress bars display as the dataset is downloaded and processed. Subsequent runs in the same Docker container will use the cached dataset and will run very quickly.&nbsp;</p>
+                        <p>Once the dataset is available, it is split into partitions for training (75%) and testing (25%). Then each is cached, divided into batches, and set to prefetch. The training dataset is also shuffled, which will cause some randomness in how fast the dense layer trains. Finally, the class names for the dataset are saved for later use.&nbsp;</p>
+                        <p>The Stanford Dogs dataset <a class="b_special_a1" href="">is found here</a>. This dataset was chosen because it is large enough that it takes a few epochs to train to 90% with transfer learning, but downloads in a reasonable amount of time. There are more datasets at TF-Datasets that could also be used, both smaller and larger.</p>
+                        <!-- code toolbar -->
+                        <div class="mv_code_toolbar">
+                            <div class="mv_toolbar_item mv_copy_icon">
+                                <i class="fa-regular fa-copy"></i>
+                            </div>
+                            <div class="mv_copy_message text-end hidden">Copied</div>
+                            <div class="d-flex mv_pre">
+                                <div class="">
+                                    <div class="mv_code text-break code-content">
+                                        <p class="mb-0">[train_ds, test_ds], info = tfds.load("stanford_dogs", &nbsp; &nbsp; # Load dataset from TensorFlow Datasets</p>
+                                        <p class="mb-0">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;data_dir=dataset_directory,</p>
+                                        <p class="mb-0">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;split=["train[:75%]", "train[:25%]"],</p>
+                                        <p class="mb-0">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;as_supervised=True,</p>
+                                        <p class="mb-0">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;shuffle_files=True,</p>
+                                        <p class="mb-0">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;with_info=True)</p>
+                                        <p class="mb-0">&nbsp;</p>
+                                        <p class="mb-0">def preprocess_image(image, label):  # Convert images to float32 and resize to match the model</p>
+                                        <p class="mb-0">&nbsp; &nbsp; &nbsp; &nbsp;  image = tf.image.convert_image_dtype(image, tf.float32)</p>
+                                        <p class="mb-0">&nbsp; &nbsp; &nbsp; &nbsp;  image = tf.image.resize_with_pad(image, image_size, image_size)</p>
+                                        <p class="mb-0">&nbsp; &nbsp; &nbsp; &nbsp;  return (image, label)</p>
+                                        <p class="mb-0">&nbsp;</p>
+                                        <p class="mb-0">train_ds = train_ds.map(preprocess_image)</p>
+                                        <p class="mb-0">test_ds = test_ds.map(preprocess_image)</p>
+                                        <p class="mb-0">&nbsp;</p>
+                                        <p class="mb-0"># Training data is shuffled for randomness</p>
+                                        <p class="mb-0">train_ds = train_ds.cache()</p>
+                                        <p class="mb-0">train_ds = train_ds.shuffle(info.splits['train'].num_examples)</p>
+                                        <p class="mb-0">train_ds = train_ds.batch(batch_size)</p>
+                                        <p class="mb-0">train_ds = train_ds.prefetch(tf.data.AUTOTUNE)</p>
+                                        <p class="mb-0">&nbsp;</p>
+                                        <p class="mb-0"># Test data does not need to be shuffled, and caching is done after batching </p>
+                                        <p class="mb-0">test_ds = test_ds.batch(batch_size) </p>
+                                        <p class="mb-0">test_ds = test_ds.cache()</p>
+                                        <p class="mb-0">test_ds = test_ds.prefetch(tf.data.AUTOTUNE) </p>
+                                        <p class="mb-0">&nbsp;</p>
+                                        <p class="mb-0">class_names = info.features["label"].names  # Get class names for the dataset</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <p>Next, we load the headless EfficientNetB0 model from TensorFlow Hub. This model contains the pretrained weights (based on training with the ImageNet dataset) that we will leave unmodified. We also attach a dense layer that will be fully trained. This layer is sized to the number of classes in the dataset. The model is then compiled and the shape is printed out. Note that the headless model shows up as a single KerasLayer, even though it is composed of many layers with pretrained weights. The final complete model has 4,203,284 parameters, of which only 153,720 will be trained, with the rest in the headless model layer being static.&nbsp;</p>
+                        <!-- code toolbar -->
+                        <div class="mv_code_toolbar">
+                            <div class="mv_toolbar_item mv_copy_icon">
+                                <i class="fa-regular fa-copy"></i>
+                            </div>
+                            <div class="mv_copy_message text-end hidden">Copied</div>
+                            <div class="d-flex mv_pre">
+                                <div class="">
+                                    <div class="mv_code text-break code-content">
+                                        <p class="mb-0"># Feature vector layers will *not* be trained (because they already are!)</p>
+                                        <p class="mb-0">feature_extractor_layer = hub.KerasLayer(feature_vector_handle,</p>
+                                        <p class="mb-0">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;input_shape=(image_size, image_size, 3),</p>
+                                        <p class="mb-0">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;trainable=False)</p>
+                                        <p class="mb-0">model = tf.keras.Sequential([</p>
+                                        <p class="mb-0">&nbsp; &nbsp; &nbsp; feature_extractor_layer,</p>
+                                        <p class="mb-0">&nbsp; &nbsp; &nbsp; tf.keras.layers.Dense(len(class_names))  # Add a dense layer, which is what will be trained</p>
+                                        <p class="mb-0">])</p>
+                                        <p class="mb-0">&nbsp;</p>
+                                        <p class="mb-0">model.compile(</p>
+                                        <p class="mb-0">&nbsp; &nbsp; &nbsp; optimizer=tf.keras.optimizers.Adam(),</p>
+                                        <p class="mb-0">&nbsp; &nbsp; &nbsp; loss=tf.keras.losses.SparseCategoricalCrossentropy(from_logits=True),</p>
+                                        <p class="mb-0">&nbsp; &nbsp; &nbsp; metrics=['acc'])</p>
+                                        <p class="mb-0">&nbsp;</p>
+                                        <p class="mb-0">model.summary()</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- code toolbar -->
+                        <div class="mv_code_toolbar">
+                            <div class="mv_toolbar_item mv_copy_icon">
+                                <i class="fa-regular fa-copy"></i>
+                            </div>
+                            <div class="mv_copy_message text-end hidden">Copied</div>
+                            <div class="d-flex mv_pre">
+                                <div class="">
+                                    <div class="mv_code text-break code-content">
+                                        <p class="mb-0">Model: "sequential" </p>
+                                        <p class="mb-0">__________________________________________________________________</p>
+                                        <p class="mb-0"> Layer &nbsp; (type)  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Output Shape  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Param #    </p>
+                                        <p class="mb-0">=======================================================</p>
+                                        <p class="mb-0"> keras_layer (KerasLayer) &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;(None, 1280) &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; 4049564 </p>
+                                        <p class="mb-0">&nbsp;</p>
+                                        <p class="mb-0"> dense (Dense) &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; (None, 120) &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;153720  </p>
+                                        <p class="mb-0">&nbsp;</p>
+                                        <p class="mb-0">=======================================================</p>
+                                        <p class="mb-0">Total params: 4,203,284 </p>
+                                        <p class="mb-0">Trainable params: 153,720 </p>
+                                        <p class="mb-0">Non-trainable params: 4,049,564 </p>
+                                        <p class="mb-0">__________________________________________________________________</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <p>Before we start training, let’s see how well our model predicts the proper dog breed labels with an untrained dense layer. First, we do an inference run on the test dataset:</p>
+                        <!-- code toolbar -->
+                        <div class="mv_code_toolbar">
+                            <div class="mv_toolbar_item mv_copy_icon">
+                                <i class="fa-regular fa-copy"></i>
+                            </div>
+                            <div class="mv_copy_message text-end hidden">Copied</div>
+                            <div class="d-flex mv_pre">
+                                <div class="">
+                                    <div class="mv_code text-break code-content">
+                                        <p class="mb-0">with tf.device('/xpu:0'):  model.evaluate(test_ds, batch_size=batch_size)</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- code toolbar -->
+                        <div class="mv_code_toolbar">
+                            <div class="mv_toolbar_item mv_copy_icon">
+                                <i class="fa-regular fa-copy"></i>
+                            </div>
+                            <div class="mv_copy_message text-end hidden">Copied</div>
+                            <div class="d-flex mv_pre">
+                                <div class="">
+                                    <div class="mv_code text-break code-content">
+                                        <p class="mb-0">94/94 [==============================] - 29s 158ms/step - loss: 2.4268 - acc: 0.0087</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <p>Then, we use the helper function to display the first ten images in the first batch:</p>
+                        <!-- code toolbar -->
+                        <div class="mv_code_toolbar">
+                            <div class="mv_toolbar_item mv_copy_icon">
+                                <i class="fa-regular fa-copy"></i>
+                            </div>
+                            <div class="mv_copy_message text-end hidden">Copied</div>
+                            <div class="d-flex mv_pre">
+                                <div class="">
+                                    <div class="mv_code text-break code-content">
+                                        <p class="mb-0">batch = next(iter(test_ds))  # Get a batch of the dataset to use for testing</p>
+                                        <p class="mb-0">image_batch, label_batch = batch</p>
+                                        <p class="mb-0">show_predictions(image_batch, label_batch, class_names)</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- code toolbar -->
+                        <div class="mv_code_toolbar">
+                            <div class="mv_toolbar_item mv_copy_icon">
+                                <i class="fa-regular fa-copy"></i>
+                            </div>
+                            <div class="mv_copy_message text-end hidden">Copied</div>
+                            <div class="d-flex mv_pre">
+                                <div class="">
+                                    <div class="mv_code text-break code-content">
+                                        <p class="mb-0">1/1 [==============================] - 1s 834ms/step</p>
+                                        <p class="mb-0">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Correct predictions are shown in green</p>
+                                        <p class="mb-0">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Incorrect predictions are shown in red with the actual label in parenthesis</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <p style="text-align:center"><img class="w-100" src="/img/darshit_image/f1-model-predictions.png"></p>
+                        <p>As you can see, with no training of the dense layer, all predictions are incorrect and in red, as expected. The top label is the incorrect classification, while the bottom label (in parentheses) is what a correct prediction would be.&nbsp;</p>
+                        <p>Now, let’s do some training. Only the weights in the dense layer will be adjusted. We are only running one epoch here so that we can later see the effects of partial training on label predictions. Note that the device being used is <span class="dk_code_simple">/xpu:0</span> which is the Intel Arc A770 GPU installed in the host PC.&nbsp;</p>
+                        <!-- code toolbar -->
+                        <div class="mv_code_toolbar">
+                            <div class="mv_toolbar_item mv_copy_icon">
+                                <i class="fa-regular fa-copy"></i>
+                            </div>
+                            <div class="mv_copy_message text-end hidden">Copied</div>
+                            <div class="d-flex mv_pre">
+                                <div class="">
+                                    <div class="mv_code text-break code-content">
+                                        <p class="mb-0">with tf.device('/xpu:0'):  model.fit(train_ds, epochs=1, shuffle=True, verbose=1)</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- code toolbar -->
+                        <div class="mv_code_toolbar">
+                            <div class="mv_toolbar_item mv_copy_icon">
+                                <i class="fa-regular fa-copy"></i>
+                            </div>
+                            <div class="mv_copy_message text-end hidden">Copied</div>
+                            <div class="d-flex mv_pre">
+                                <div class="">
+                                    <div class="mv_code text-break code-content">
+                                        <p class="mb-0">282/282 [==============================] - 28s 85ms/step - loss: 0.8545 - acc: 0.6581</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <p>After one epoch, training only the dense layer with transfer learning yields 65.81% accuracy! If you fully trained EfficientNetB0 with Stanford Dogs from scratch, the accuracy after the first epoch would only be around 1.99% accuracy. Note also that this first epoch takes about 28 seconds. This is slower than the following training epochs will be because the GPU must be warmed up (i.e., data is transferred to GPU memory and stored for subsequent runs).&nbsp;</p>
+                        <p>Now, let’s see the predictions for the first batch. First, we run an inference over the test dataset:</p>
+                        <!-- code toolbar -->
+                        <div class="mv_code_toolbar">
+                            <div class="mv_toolbar_item mv_copy_icon">
+                                <i class="fa-regular fa-copy"></i>
+                            </div>
+                            <div class="mv_copy_message text-end hidden">Copied</div>
+                            <div class="d-flex mv_pre">
+                                <div class="">
+                                    <div class="mv_code text-break code-content">
+                                        <p class="mb-0">with tf.device('/xpu:0'):  model.evaluate(test_ds, batch_size=batch_size)</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- code toolbar -->
+                        <div class="mv_code_toolbar">
+                            <div class="mv_toolbar_item mv_copy_icon">
+                                <i class="fa-regular fa-copy"></i>
+                            </div>
+                            <div class="mv_copy_message text-end hidden">Copied</div>
+                            <div class="d-flex mv_pre">
+                                <div class="">
+                                    <div class="mv_code text-break code-content">
+                                        <p class="mb-0">94/94 [==============================] - 4s 41ms/step - loss: 0.3159 - acc: 0.8697</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <p>Then, we use the helper function to display the predictions:&nbsp;</p>
+                        <!-- code toolbar -->
+                        <div class="mv_code_toolbar">
+                            <div class="mv_toolbar_item mv_copy_icon">
+                                <i class="fa-regular fa-copy"></i>
+                            </div>
+                            <div class="mv_copy_message text-end hidden">Copied</div>
+                            <div class="d-flex mv_pre">
+                                <div class="">
+                                    <div class="mv_code text-break code-content">
+                                        <p class="mb-0">show_predictions(image_batch, label_batch, class_names)</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- code toolbar -->
+                        <div class="mv_code_toolbar">
+                            <div class="mv_toolbar_item mv_copy_icon">
+                                <i class="fa-regular fa-copy"></i>
+                            </div>
+                            <div class="mv_copy_message text-end hidden">Copied</div>
+                            <div class="d-flex mv_pre">
+                                <div class="">
+                                    <div class="mv_code text-break code-content">
+                                        <p class="mb-0">1/1 [==============================] - 0s 65ms/step </p>
+                                        <p class="mb-0">Correct predictions are shown in green</p>
+                                        <p class="mb-0">Incorrect predictions are shown in red with the actual label in parentheses</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <p style="text-align:center"><img class="w-100" src="/img/darshit_image/f2-model-predictions.png"></p>
+                        <p>As we can see, nine of the first ten images in the batch are predicted correctly. This is due to the 86.97% accuracy that inference is currently achieving with the test dataset. As we improve the training accuracy, we should see more images predicted correctly. In your runs, you may see more or fewer mispredictions because the training dataset is shuffled, which leads to some randomness in training accuracy.&nbsp;</p>
+                        <p>Now, let’s run two more training epochs:</p>
+                        <!-- code toolbar -->
+                        <div class="mv_code_toolbar">
+                            <div class="mv_toolbar_item mv_copy_icon">
+                                <i class="fa-regular fa-copy"></i>
+                            </div>
+                            <div class="mv_copy_message text-end hidden">Copied</div>
+                            <div class="d-flex mv_pre">
+                                <div class="">
+                                    <div class="mv_code text-break code-content">
+                                        <p class="mb-0">with tf.device('/xpu:0'):  model.fit(train_ds, epochs=2, shuffle=True, verbose=1)</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- code toolbar -->
+                        <div class="mv_code_toolbar">
+                            <div class="mv_toolbar_item mv_copy_icon">
+                                <i class="fa-regular fa-copy"></i>
+                            </div>
+                            <div class="mv_copy_message text-end hidden">Copied</div>
+                            <div class="d-flex mv_pre">
+                                <div class="">
+                                    <div class="mv_code text-break code-content">
+                                        <p class="mb-0">Epoch 1/2 </p>
+                                        <p class="mb-0">282/282 [==============================] - 12s 41ms/step - loss: 0.2812 - acc: 0.8581 </p>
+                                        <p class="mb-0">Epoch 2/2 </p>
+                                        <p class="mb-0">282/282 [==============================] - 12s 40ms/step - loss: 0.1967 - acc: 0.9029</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <p>After training with just three epochs, we can see that the accuracy is now 90.29% with transfer learning. If we fully train EfficientNetB0 from scratch using Stanford Dogs on the Intel Arc A770 GPU, it would take around 30 epochs to achieve 90% accuracy. Thus, we have reached higher accuracy more quickly with transfer learning.&nbsp;</p>
+                        <p>Each of these next two epochs took only 12 seconds on the Intel Arc A770 GPU because data was already copied to the GPU memory in the first epoch. The fast epoch turnaround with transfer learning is also due to only needing to train the dense layer. With full training of all layers for EfficientNetB0 on the Intel Arc A770 GPU, it takes around 61 seconds per epoch (after the first). Thus, transfer learning provides both faster training time (fewer epochs to convergence) and faster epoch times (fewer parameters to train).&nbsp;</p>
+                        <p>The Intel Arc A770 GPU provides a sizable speedup over the Intel Core i9 CPU. Comparisons show that transfer learning training on the GPU is over 10x faster than on the CPU.&nbsp;</p>
+                        <p>Now, let’s see how the predictions look after just three epochs of training:&nbsp;</p>
+                        <!-- code toolbar -->
+                        <div class="mv_code_toolbar">
+                            <div class="mv_toolbar_item mv_copy_icon">
+                                <i class="fa-regular fa-copy"></i>
+                            </div>
+                            <div class="mv_copy_message text-end hidden">Copied</div>
+                            <div class="d-flex mv_pre">
+                                <div class="">
+                                    <div class="mv_code text-break code-content">
+                                        <p class="mb-0">with tf.device('/xpu:0'):  model.evaluate(test_ds, batch_size=batch_size)</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- code toolbar -->
+                        <div class="mv_code_toolbar">
+                            <div class="mv_toolbar_item mv_copy_icon">
+                                <i class="fa-regular fa-copy"></i>
+                            </div>
+                            <div class="mv_copy_message text-end hidden">Copied</div>
+                            <div class="d-flex mv_pre">
+                                <div class="">
+                                    <div class="mv_code text-break code-content">
+                                        <p class="mb-0">94/94 [==============================] - 4s 42ms/step - loss: 0.1411 - acc: 0.9410</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <p>Accuracy with the test dataset is at 94.10% already!&nbsp;</p>
+                        <!-- code toolbar -->
+                        <div class="mv_code_toolbar">
+                            <div class="mv_toolbar_item mv_copy_icon">
+                                <i class="fa-regular fa-copy"></i>
+                            </div>
+                            <div class="mv_copy_message text-end hidden">Copied</div>
+                            <div class="d-flex mv_pre">
+                                <div class="">
+                                    <div class="mv_code text-break code-content">
+                                        <p class="mb-0">show_predictions(image_batch, label_batch, class_names)</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- code toolbar -->
+                        <div class="mv_code_toolbar">
+                            <div class="mv_toolbar_item mv_copy_icon">
+                                <i class="fa-regular fa-copy"></i>
+                            </div>
+                            <div class="mv_copy_message text-end hidden">Copied</div>
+                            <div class="d-flex mv_pre">
+                                <div class="">
+                                    <div class="mv_code text-break code-content">
+                                        <p class="mb-0">1/1 [==============================] - 0s 56ms/step </p>
+                                        <p class="mb-0">Correct predictions are shown in green </p>
+                                        <p class="mb-0">Incorrect predictions are shown in red with the actual label in parentheses</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <p style="text-align:center"><img class="w-100" src="/img/darshit_image/f3-model-predictions.png"></p>
+                        <p>With 94.10% accuracy, the first ten images in the test dataset are predicted correctly. Fully training EfficientNetB0 with Stanford Dogs from scratch on the Intel Arc A770 GPU to 90% accuracy takes around 31 minutes for 30 epochs. Transfer learning achieves the same results in just a few minutes!&nbsp;</p>
+                    </section> 
+                </div>
+            </div>
+            <p class="mb-0">&nbsp;</p>
+        </div>
+    </section>
+
+    <!-- Discover More -->
+    <section>
+        <div class="mv_discover_more_padd">
+            <div class="container">
+                <div class="mv_explore_resources">
+                    <div class="mv_explore_resources_content">
+                        <h2 class="mb-2">The Parallel Universe Magazine - Issue #54</h2>
+                        <p>Intel’s quarterly magazine for software innovation helps you take your software development into the future with the latest tools, tips, and training to expand your expertise.</p>
+                    </div>
+                    <div class="mv_intel_tiber_content row">
+                        <div class="mv_intel_tiber col-xxl-4 col-md-6">
+                            <div class="mv_intel_card">
+                                <div class="mv_intel_tiber_img">
+                                    <i class="fa-regular fa-newspaper"></i>
+                                </div>
+                                <div style="align-content: center;">
+                                    <a href="" class="dk_issue">Accelerate Llama 2 with Intel AI Hardware and Software Optimizations</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mv_intel_tiber col-xxl-4 col-md-6">
+                            <div class="mv_intel_card">
+                                <div class="mv_intel_tiber_img">
+                                    <i class="fa-regular fa-newspaper"></i>
+                                </div>
+                                <div style="align-content: center;">
+                                    <a href="" class="dk_issue">Transfer Learning with TensorFlow on Intel Arc GPUs</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mv_intel_tiber col-xxl-4 col-md-6">
+                            <div class="mv_intel_card">
+                                <div class="mv_intel_tiber_img">
+                                    <i class="fa-regular fa-newspaper"></i>
+                                </div>
+                                <div style="align-content: center;">
+                                    <a href="" class="dk_issue">Predicting Forest Fires Using PyTorch</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mv_intel_tiber col-xxl-4 col-md-6">
+                            <div class="mv_intel_card">
+                                <div class="mv_intel_tiber_img">
+                                    <i class="fa-regular fa-newspaper"></i>
+                                </div>
+                                <div style="align-content: center;">
+                                    <a href="" class="dk_issue">
+                                        Faster XGBoost, LightGBM, and CatBoost Inference on the CPU</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mv_intel_tiber col-xxl-4 col-md-6">
+                            <div class="mv_intel_card">
+                                <div class="mv_intel_tiber_img">
+                                    <i class="fa-regular fa-newspaper"></i>
+                                </div>
+                                <div style="align-content: center;">
+                                    <a href="" class="dk_issue">
+                                        Boosting Business with AI</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mv_intel_tiber col-xxl-4 col-md-6">
+                            <div class="mv_intel_card">
+                                <div class="mv_intel_tiber_img">
+                                    <i class="fa-regular fa-newspaper"></i>
+                                </div>
+                                <div style="align-content: center;">
+                                    <a href="" class="dk_issue">
+                                        Build Secure Kubeflow Pipelines on Microsoft Azure</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mv_intel_tiber col-xxl-4 col-md-6">
+                            <div class="mv_intel_card">
+                                <div class="mv_intel_tiber_img">
+                                    <i class="fa-regular fa-newspaper"></i>
+                                </div>
+                                <div style="align-content: center;">
+                                    <a href="" class="dk_issue">The Case for OpenMP Target Offloading</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mv_intel_tiber col-xxl-4 col-md-6">
+                            <div class="mv_intel_card">
+                                <div class="mv_intel_tiber_img">
+                                    <i class="fa-solid fa-bell"></i>
+                                </div>
+                                <div style="align-content: center;">
+                                    <a href="" class="dk_issue">Check out the Latest Issue</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="dk_ai_workload">
+            <div class="row  dk_ai_worklod_sub">
+                <div class="col-lg-4">
+                    <img src="" alt="">
+                </div>
+                <div class="col-lg-4 dk_optimizations">
+                    <h2>Stay Up to Date on AI Workload Optimizations
+                    </h2>
+                    <p>Sign up to receive hand-curated technical articles, tutorials, developer tools, training opportunities, and more to help you accelerate and optimize your end-to-end AI and data science workflows.
+                        <br>
+                        <br>
+                        Take a chance and subscribe. You can change your mind at any time.
+                    </p>
+                </div>
+                <div class="col-lg-4">
+                    <div class="form-floating mv_form_floating">
+                        <input type="email" class="form-control mb-3" id="floatingInput" placeholder="Business Email Address">
+                        <label for="floatingInput">Business Email Address</label>
+                    </div>
+                    <div class="form-floating mv_form_floating">
+                        <select class="form-select" id="floatingSelect" aria-label="Floating label select example">
+                            <option selected>United States</option>
+                                <option value="Afghanistan">Afghanistan</option>
+                                <option value="Aland Islands">Aland Islands</option>
+                                <option value="Albania">Albania</option>
+                                <option value="Algeria">Algeria</option>
+                                <option value="American Samoa">American Samoa</option>
+                                <option value="Andorra">Andorra</option>
+                                <option value="Angola">Angola</option>
+                                <option value="Anguilla">Anguilla</option>
+                                <option value="Antarctica">Antarctica</option>
+                                <option value="Antigua/Barbuda">Antigua/Barbuda</option>
+                                <option value="Argentina">Argentina</option>
+                                <option value="Armenia">Armenia</option>
+                                <option value="Aruba">Aruba</option>
+                                <option value="Australia">Australia</option>
+                                <option value="Austria">Austria</option>
+                                <option value="Azerbaijan">Azerbaijan</option>
+                                <option value="Bahamas">Bahamas</option>
+                                <option value="Bahrain">Bahrain</option>
+                                <option value="Bangladesh">Bangladesh</option>
+                                <option value="Barbados">Barbados</option>
+                                <option value="Belgium">Belgium</option>
+                                <option value="Belize">Belize</option>
+                                <option value="Benin">Benin</option>
+                                <option value="Bermuda">Bermuda</option>
+                                <option value="Bhutan">Bhutan</option>
+                                <option value="Bolivia">Bolivia</option>
+                                <option value="Bosnia and Herzegovina">Bosnia and Herzegovina</option>
+                                <option value="Botswana">Botswana</option>
+                                <option value="Bouvet Island">Bouvet Island</option>
+                                <option value="Brazil">Brazil</option>
+                                <option value="British Indian Ocean Territory">British Indian Ocean Territory</option>
+                                <option value="Brunei Darussalam">Brunei Darussalam</option>
+                                <option value="Bulgaria">Bulgaria</option>
+                                <option value="Burkina Faso">Burkina Faso</option>
+                                <option value="Burundi">Burundi</option>
+                                <option value="Cambodia">Cambodia</option>
+                                <option value="Cameroon">Cameroon</option>
+                                <option value="Canada">Canada</option>
+                                <option value="Cape Verde">Cape Verde</option>
+                                <option value="Cayman Islands">Cayman Islands</option>
+                                <option value="Central African Republic">Central African Republic</option>
+                                <option value="Chad">Chad</option>
+                                <option value="Chile">Chile</option>
+                                <option value="Christmas Island">Christmas Island</option>
+                                <option value="Cocos (Keeling) Islands">Cocos (Keeling) Islands</option>
+                                <option value="Colombia">Colombia</option>
+                                <option value="Comoros">Comoros</option>
+                                <option value="Congo">Congo</option>
+                                <option value="Congo, The Democratic Republic of the">Congo, The Democratic Republic of the</option>
+                                <option value="Cook Islands">Cook Islands</option>
+                                <option value="Costa Rica">Costa Rica</option>
+                                <option value="Côte d'Ivoire">Côte d'Ivoire</option>
+                                <option value="Croatia">Croatia</option>
+                                <option value="Cyprus">Cyprus</option>
+                                <option value="Czech Republic">Czech Republic</option>
+                                <option value="Denmark">Denmark</option>
+                                <option value="Djibouti">Djibouti</option>
+                                <option value="Dominica">Dominica</option>
+                                <option value="Dominican Republic">Dominican Republic</option>
+                                <option value="Ecuador">Ecuador</option>
+                                <option value="Egypt">Egypt</option>
+                                <option value="El Salvador">El Salvador</option>
+                                <option value="Equatorial Guinea">Equatorial Guinea</option>
+                                <option value="Eritrea">Eritrea</option>
+                                <option value="Estonia">Estonia</option>
+                                <option value="Ethiopia">Ethiopia</option>
+                                <option value="Falkland Islands (Malvinas)">Falkland Islands (Malvinas)</option>
+                                <option value="Faroe Islands">Faroe Islands</option>
+                                <option value="Fiji">Fiji</option>
+                                <option value="Finland">Finland</option>
+                                <option value="France">France</option>
+                                <option value="French Guiana">French Guiana</option>
+                                <option value="French Polynesia">French Polynesia
+                                </option>
+                                <option value="Frenc Southern Territories">French
+                                Southern Territories</option>
+                                <option value="Gabon">Gabon</option>
+                                <option value="Gambia">Gambia</option>
+                                <option value="Georgia">Georgia</option>
+                                <option value="Germany">Germany</option>
+                                <option value="Ghana">Ghana</option>
+                                <option value="Gibraltar">Gibraltar</option>
+                                <option value="Greece">Greece</option>
+                                <option value="Greenland">Greenland</option>
+                                <option value="Grenada">Grenada</option>
+                                <option value="Guadeloupe">Guadeloupe</option>
+                                <option value="Guam">Guam</option>
+                                <option value="Guatemala">Guatemala</option>
+                                <option value="Guernsey">Guernsey</option>
+                                <option value="Guinea">Guinea</option>
+                                <option value="Guinea-Bissau">Guinea-Bissau</option>
+                                <option value="Guyana">Guyana</option>
+                                <option value="Haiti">Haiti</option>
+                                <option value="Heard Island and McDonald Islands">Heard Island and McDonald Islands</option>
+                                <option value="Holy See (Vatican City State)">Holy See (Vatican City State)</option>
+                                <option value="Honduras">Honduras</option>
+                                <option value="Hong Kong">Hong Kong</option>
+                                <option value="Hungary">Hungary</option>
+                                <option value="Iceland">Iceland</option>
+                                <option value="India">India</option>
+                                <option value="Indonesia">Indonesia</option>
+                                <option value="Iraq">Iraq</option>
+                                <option value="Ireland">Ireland</option>
+                                <option value="Isle of Man">Isle of Man</option>
+                                <option value="Israel">Israel</option>
+                                <option value="Italy">Italy</option>
+                                <option value="Jamaica">Jamaica</option>
+                                <option value="Japan">Japan</option>
+                                <option value="Jersey">Jersey</option>
+                                <option value="Jordan">Jordan</option>
+                                <option value="Kazakhstan">Kazakhstan</option>
+                                <option value="Kenya">Kenya</option>
+                                <option value="Kiribati">Kiribati</option>
+                                <option value="Kuwait">Kuwait</option>
+                                <option value="Kyrgyzstan">Kyrgyzstan</option>
+                                <option value="Lao People's Democratic Republic">Lao
+                                People's Democratic Republic</option>
+                                <option value="Latvia">Latvia</option>
+                                <option value="Lebanon">Lebanon</option>
+                                <option value="Lesotho">Lesotho</option>
+                                <option value="Liberia">Liberia</option>
+                                <option value="Libyan Arab Jamahiriya">Libyan Arab
+                                Jamahiriya</option>
+                                <option value="Liechtenstein">Liechtenstein</option>
+                                <option value="Lithuania">Lithuania</option>
+                                <option value="Luxembourg">Luxembourg</option>
+                                <option value="Macao">Macao</option>
+                                <option value="Macedonia, Republic of">Macedonia,Republic of</option>
+                                <option value="Madagascar">Madagascar</option>
+                                <option value="Mainland China">Mainland China</option>
+                                <option value="Malawi">Malawi</option>
+                                <option value="Malaysia">Malaysia</option>
+                                <option value="Maldives">Maldives</option>
+                                <option value="Mali">Mali</option>
+                                <option value="Malta">Malta</option>
+                                <option value="Marshall Islands">Marshall Islands
+                                </option>
+                                <option value="Martinique">Martinique</option>
+                                <option value="Mauritania">Mauritania</option>
+                                <option value="Mauritius">Mauritius</option>
+                                <option value="Mayotte">Mayotte</option>
+                                <option value="Mexico">Mexico</option>
+                                <option value="Micronesia, Federated States of">Micronesia, Federated States of</option>
+                                <option value="Moldova">Moldova</option>
+                                <option value="Monaco">Monaco</option>
+                                <option value="Mongolia">Mongolia</option>
+                                <option value="Montenegro">Montenegro</option>
+                                <option value="Montserrat">Montserrat</option>
+                                <option value="Morocco">Morocco</option>
+                                <option value="Mozambique">Mozambique</option>
+                                <option value="Myanmar">Myanmar</option>
+                                <option value="Namibia">Namibia</option>
+                                <option value="Nauru">Nauru</option>
+                                <option value="Nepal">Nepal</option>
+                                <option value="Netherlands">Netherlands</option>
+                                <option value="Netherlands Antilles">Netherlands Antilles</option>
+                                <option value="New Caledonia">New Caledonia</option>
+                                <option value="New Zealand">New Zealand</option>
+                                <option value="Nicaragua">Nicaragua</option>
+                                <option value="Niger">Niger</option>
+                                <option value="Nigeria">Nigeria</option>
+                                <option value="Niue">Niue</option>
+                                <option value="Norfolk Island">Norfolk Island</option>
+                                <option value="Northern Mariana Islands">Northern Mariana Islands</option>
+                                <option value="Norway">Norway</option>
+                                <option value="Oman">Oman</option>
+                                <option value="Pakistan">Pakistan</option>
+                                <option value="Palau">Palau</option>
+                                <option value="Palestinian Territory, Occupied">Palestinian Territory, Occupied</option>
+                                <option value="Panama">Panama</option>
+                                <option value="Papua New Guinea">Papua New Guinea
+                                </option>
+                                <option value="Paraguay">Paraguay</option>
+                                <option value="Peru">Peru</option>
+                                <option value="Philippines">Philippines</option>
+                                <option value="Pitcairn">Pitcairn</option>
+                                <option value="Poland">Poland</option>
+                                <option value="Portugal">Portugal</option>
+                                <option value="Puerto Rico">Puerto Rico</option>
+                                <option value="Qatar">Qatar</option>
+                                <option value="ThReunionree">ThReunionree</option>
+                                <option value="Romania">Romania</option>
+                                <option value="Rwanda">Rwanda</option>
+                                <option value="Saint Helena">Saint Helena</option>
+                                <option value="Saint Kitts and Nevis">Saint Kitts and Nevis</option>
+                                <option value="Saint Lucia">Saint Lucia</option>
+                                <option value="Saint Pierre and Miquelon">Saint Pierre and Miquelon</option>
+                                <option value="Saint Vincent and the Grenadines">Saint Vincent and the Grenadines</option>
+                                <option value="Samoa">Samoa</option>
+                                <option value="San Marino">San Marino</option>
+                                <option value="Sao Tome and Principe">Sao Tome and Principe</option>
+                                <option value="Saudi Arabia">Saudi Arabia</option>
+                                <option value="Senegal">Senegal</option>
+                                <option value="Serbia">Serbia</option>
+                                <option value="Serbia and Montenegro">Serbia and Montenegro</option>
+                                <option value="Seychelles">Seychelles</option>
+                                <option value="Sierra Leone">Sierra Leone</option>
+                                <option value="Singapore">Singapore</option>
+                                <option value="Slovakia">Slovakia</option>
+                                <option value="Slovenia">Slovenia</option>
+                                <option value="Solomon Islands">Solomon Islands</option>
+                                <option value="Somalia">Somalia</option>
+                                <option value="South Africa">South Africa</option>
+                                <option value="South Georgia and the South Sandwich Islands">South Georgia and the South Sandwich Islands
+                                </option>
+                                <option value="South Korea">South Korea</option>
+                                <option value="Spain">Spain</option>
+                                <option value="Sri Lanka">Sri Lanka</option>
+                                <option value="Suriname">Suriname</option>
+                                <option value="Svalbard and Jan Mayen">Svalbard and Jan Mayen</option>
+                                <option value="Swaziland">Swaziland</option>
+                                <option value="Sweden">Sweden</option>
+                                <option value="Switzerland">Switzerland</option>
+                                <option value="Taiwan">Taiwan</option>
+                                <option value="Tajikistan">Tajikistan</option>
+                                <option value="Tanzania, United Republic of">Tanzania, United Republic of</option>
+                                <option value="Thailand">Thailand</option>
+                                <option value="Timor-Leste">Timor-Leste</option>
+                                <option value="Togo">Togo</option>
+                                <option value="Tokelau">Tokelau</option>
+                                <option value="Tonga">Tonga</option>
+                                <option value="Trinidad and Tobago">Trinidad and Tobago</option>
+                                <option value="Tunisia">Tunisia</option>
+                                <option value="Turkey">Turkey</option>
+                                <option value="Turkmenistan">Turkmenistan</option>
+                                <option value="Turks and Caicos Islands">Turks and Caicos Islands</option>
+                                <option value="Tuvalu">Tuvalu</option>
+                                <option value="Uganda">Uganda</option>
+                                <option value="United Arab Emirates">United Arab Emirates</option>
+                                <option value="United Kingdom">United Kingdom</option>
+                                <option value="United States Minor Outlying Islands">United States Minor Outlying Islands</option>
+                                <option value="Uruguay">Uruguay</option>
+                                <option value="Uzbekistan">Uzbekistan</option>
+                                <option value="Vanuatu">Vanuatu</option>
+                                <option value="Vietnam">Vietnam</option>
+                                <option value="Virgin Islands,British">Virgin Islands, British</option>
+                                <option value="Virgin Islands, U.S.">Virgin Islands,U.S.</option>
+                                <option value="Wallis and Futuna">Wallis and Futuna</option>
+                                <option value="Western Sahara">Western Sahara</option>
+                                <option value="Yemen">Yemen</option>
+                                <option value="Zambia">Zambia</option>
+                                <option value="Zimbabwe">Zimbabwe</option>
+                        </select>
+                        <label for="floatingSelect">Please select a country/region</label>
+                    </div>
+                    <p style="color: #ffffff; font-size: 0.8rem;" class="mt-2">This site is protected by reCAPTCHA and the Google <a class="b_special_a" href="">Privacy Policy</a> and <a class="b_special_a" href="">Terms of Service</a> apply.</p>
+                    <button class="dk_sign_up">Sign Up</button>
+                    <p style="color: #ffffff; font-size: 0.8rem;" class="mt-3">By submitting this form, you are confirming you are an adult 18 years or older and you agree to share your personal information with Intel to use for this business request. You also agree to subscribe to stay connected to the latest Intel technologies and industry trends by email and telephone. You may unsubscribe at any time. Intel's web sites and communications are subject to our <b style="color: #9addf7; font-weight: normal;">Privacy Notice</b> and <b style="color: #9addf7; font-weight: normal;">Terms of Use.</b></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+     <section style="border-top: 1px solid #d7d7d7;" class="container py-5">
+        <h4 class="h6">Product and Performance Information</h4>
+        <div class="disclaimer" style="font-size: 12px;"><sup>1</sup> Performance varies by use, configuration and other factors. Learn more at <a class="b_special_a1" href="">www.Intel.com/PerformanceIndex</a>.</div>
+        </div>
+    </section>
+
+    <!-- footer -->
+    <div id="footer"></div>
+
+    <!-- script header and footer -->
+    <script>
+        // navbar include  
+        fetch('/y_index/y_navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar').innerHTML = data;
+            });
+        // footer include 
+        fetch('/y_index/y_footer.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('footer').innerHTML = data;
+            });
+    </script>
+
+    <!-- nav script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+        if (document.getElementsByClassName('VK_all_sections section') && document.getElementsByClassName('VK_sidebar_dropdown')) {
+            const sections = document.querySelectorAll('.VK_all_sections section');
+            const navLinks = document.querySelectorAll('.VK_sidebar_dropdown a');
+            const detailsElements = document.querySelectorAll('.VK_sidebar_dropdown details');
+
+            function removeActiveClass() {
+                navLinks.forEach(link => link.classList.remove('VK_sidebar_active_link'));
+                detailsElements.forEach(details => {
+                    details.removeAttribute('open');
+                    details.setAttribute('close', ''); // Optional: to visually indicate it's closed
+                });
+            }
+
+            function activateLinkAndDetails(targetId) {
+                navLinks.forEach(link => {
+                    if (link.getAttribute('href') === `#${targetId}`) {
+                        link.classList.add('VK_sidebar_active_link');
+                        let parentDetails = link.closest('details');
+
+                        // Open all ancestor details elements
+                        while (parentDetails) {
+                            parentDetails.setAttribute('open', '');
+                            parentDetails.removeAttribute('close'); // Optional: remove the closed indicator
+                            parentDetails = parentDetails.parentElement.closest('details');
+                        }
+                    }
+                });
+            }
+
+            function onScroll() {
+                let currentSection = '';
+                sections.forEach(section => {
+                    const sectionTop = section.getBoundingClientRect().top;
+                    const sectionBottom = section.getBoundingClientRect().bottom;
+
+                    // Check if the section is in view
+                    if (sectionTop <= 100 && sectionBottom >= 0) {
+                        currentSection = section.getAttribute('id');
+                    }
+                });
+
+                if (currentSection) {
+                    removeActiveClass();
+                    activateLinkAndDetails(currentSection);
+                } else {
+                    removeActiveClass();
+                }
+            }
+
+            window.addEventListener('scroll', onScroll);
+        } else {
+            return
+        }
+    });
+    </script>
+
+    <!-- copy script -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            document.querySelectorAll(".mv_copy_icon").forEach((icon) => {
+                icon.addEventListener("click", async function () {
+                    try {
+                        const toolbar = this.closest(".mv_code_toolbar");
+                        const codeBlock = toolbar.querySelector(".code-content");
+                        const codeContent = codeBlock.innerText;
+    
+                        // Use Clipboard API to copy text
+                        await navigator.clipboard.writeText(codeContent);
+    
+                        // Hide the copy icon and show the "Copied!" message
+                        const message = toolbar.querySelector(".mv_copy_message");
+                        this.classList.add("hidden"); // Hide the copy icon
+                        message.classList.remove("hidden"); // Show the "Copied!" message
+    
+                        // Hide the message and show the icon again after 2 seconds
+                        setTimeout(() => {
+                            message.classList.add("hidden");
+                            this.classList.remove("hidden");
+                        }, 2000); // Adjust delay as needed
+    
+                    } catch (err) {
+                        console.error('Failed to copy text: ', err);
+                    }
+                });
+            });
+        });
+    </script>
+
+</body>
+
+</html>
+
