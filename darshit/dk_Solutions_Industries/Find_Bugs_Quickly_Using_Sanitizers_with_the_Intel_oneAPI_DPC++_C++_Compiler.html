@@ -1,0 +1,2401 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Find Bugs Quickly Using Sanitizers with the Intel® oneAPI DPC++/C++ Compiler</title>
+
+    <link rel="stylesheet" href="/css/dk_ipus_improve_network_latency_in_microservices_based_applications.css">
+    <link rel="stylesheet" href="/css/mv_ai_software_solution_leveraging_open_source_ai_technologies.css">
+    <link rel="stylesheet" href="/css/dk_developer_edge_iot_5G_industrial_automation_see_all_wireless_network_ready_printed_circuit_board_(PCB)_defect_detection.css">
+    <link rel="stylesheet" href="/css/rushita_automotive.css">
+
+    <!-- header footer -->
+    <link rel="stylesheet" href='/css/yatri.css'>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" rel="stylesheet">
+</head>
+<style>
+    nav {
+        position: relative !important;
+    }
+
+    .dk_disclaimer {
+        font-size: .75rem;
+        font-weight: 400;
+        margin-top: .5rem;
+    }
+
+    .dk_things_code {
+        padding: 1rem 1rem 0rem 0.5rem !important;
+    }
+
+    .mv_discover_more_padd {
+        background-color: #ffff;
+    }
+    .mv_intel_amx_bg_color{
+        background-color: #00285a !important;
+    }
+    .dk_color1{
+        color: #069 !important;
+    }
+    .dk_color2{
+        color: #008200 !important;
+    }
+    .dk_color3{
+        color: #b24501 !important;
+    }
+    .mv_code_toolbar {
+        padding: 0rem;
+        margin-top: 15px;
+        margin-bottom: 10px;
+    }
+    .dk_greyHighlight{
+        word-wrap: break-word;
+        background-color: #e6e6e6;
+        padding: 20px;
+    }
+    @media (max-width:1200px){
+        .mv_product_table{
+            width: 100% !important;
+        }
+        .dk_intel_openap_img{
+            width: 100% !important;
+        }
+    }
+</style>
+
+<body>
+
+    <!-- header -->
+    <div id="navbar"></div>
+
+<!------------------------------------------------------------------------------->
+    <section class="m_ai_tdrop">
+        <div>
+            <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Developers
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item m_dropActive" href="/dhruvin_developer-tools/ds_Developer-Zone.html">Overview</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/rushita_Solutions/k_solutions_in_Viewall_SDF_Industrial-Automation_Control-flow-Enforcement_Technology.html">Topics & Technologies</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/dhruvin_developer-tools/ds_Development-Tools.html">Tools</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/rushita_Solutions/k_solutions_in_Viewall_SDF_Industrial-Automation_Hardware-Platforms.html">Hardware Platforms</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/dhruvin_developer-tools/ds_Resource-Documentation-Center.html">Resources & Documentation</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/dhruvin_developer-tools/ds_Learn.html">Learn</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/dhruvin_developer-tools/ds_Communities-and-Events.html">Community & Events</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/dhruvin_developer-tools/ds_Developer-Programs.html">Developer Programs</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/dhruvin_developer-tools/ds_Get-Help.html">Get Help</a></li>
+            </ul>
+        </div>
+        <div class="m_ai_shlash">/</div>
+        <div>
+            <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Tools
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item m_dropActive" href="/Product/B20_developer_catelog.html">Software Catalog</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/Product/B17_oneapi.html">oneAPI</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/rushita_Solutions/k_solutions_Intel-Tiber™Edge-Platform.html">Intel® Tiber™ Edge Platform</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/Product/B10_intel_Quarts.html">FPGA</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/VK_developers/VK_technology_sdk.html">Intel® Active Management Technology SDK</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/VK_developers/VK_intel_adviser.html">Intel® Advisor</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® AI Reference Models</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/rushita_Solutions/k_solutions_Intel-Collaboration-Suite-for-WebRTC.html">Intel® Collaboration Suite for WebRTC SDK</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/Product/B1_19_Intel_AICloud.html">Intel® Tiber™ AI Cloud</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/rushita_Solutions/k_solutions_Intel-Distribution-for-Python.html">Intel® Distribution for Python*</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/rushita_Solutions/k_solutions_Intel-Distribution-for-GDB.html">Intel® Distribution for GDB*</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/rushita_Solutions/k_solutions_Intel-DPC++Compatibility-Tool.html">Intel® DPC++ Compatibility Tool</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/rushita_Solutions/k_solutions_Intel-Dynamic-Application-Loader.html">Intel® Dynamic Application Loader</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/rushita_Solutions/k_solutions_Topics_viewall_Cloud-Insider-Program_AI-Frameworks-and-Tools.html">Frameworks</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Embree</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/VK_developers/VK_ai_scikit.html">Intel® Extension for Scikit-learn*</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/rushita_Solutions/k_solutions_Intel-Fortran-Compiler.html">Intel® Fortran Compiler</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/rushita_Solutions/k_solutions_cs_creaters_intel_gpa.html">Intel® Graphics Performance Analyzers</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/rushita_Solutions/k_solutions_Intel-HE-Toolkit.html">Intel® Homomorphic Encryption Toolkit</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/rushita_Solutions/k_solutions_Intel-In-Band-Manageability.html">Intel® In-Band Manageability</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Integrated Performance Primitives</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/rushita_Solutions/k_solutions_Intel-ISIM.html">Intel® Integrated Simulation Infrastructure with Modeling</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/rushita_Solutions/k_solutions_Instruction-Set-Architecture(ISA)Extensions.html">Instruction Set Architecture (ISA) Extensions</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/rushita_Solutions/k_solutions_Intel-Intelligent-Storage-Acceleration-Library.html">Intel® Intelligent Storage Acceleration Library (Intel® ISA-L)</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/VK_developers/VK_ai_modin.html">Modin*</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/rushita_Solutions/k_solutions_Intel-MPI-Library.html">Intel® MPI Library</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Neural Compressor</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/rushita_Solutions/">OpenCL™ Runtime</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/rushita_Solutions/">Intel® Open Image Denoise</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Open Path Guiding Library (Intel® Open PGL)</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/rushita_Solutions/k_solutions_Pin.html">Pin</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/rushita_Solutions/k_solutions_Pin_Intel-Platform-Analysis-Library.html">Intel® Platform Analysis Library</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel Tools for OpenCL™ Software</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel Tools for OpenCL™ Applications</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® OpenSWR</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">OpenVINO™ Toolkit</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Open Volume Kernel Library</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Optimization for XGBoost*</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® OSPRay</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® OSPRay for Hydra*</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® OSPRay Studio</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">PyTorch* Optimizations from Intel</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">TensorFlow* Optimizations from Intel</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Rendering Toolkit</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Smart Edge Open</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/rushita_Solutions/">Intel® Software Guard Extensions</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Secure Device Onboard</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Software Development Emulator</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/rushita_Solutions/Trust-Domain">Intel® Trust Domain Extensions (Intel® TDX)</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Quantum SDK</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Query Processing Library (Intel® QPL)</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Video Processing Library</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/VK_developers/VK_vtune_profiler.html">Intel® VTune™ Profiler</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Resellers</a></li>
+            </ul>
+        </div>
+        <div class="m_ai_shlash">/</div>
+        <div>
+            <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                oneAPI
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item m_dropActive" href="">Overview</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Data Parallel C++/SYCL*</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Toolkits</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Tech Articles & How-Tos</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Components</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Code Samples</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Training</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Documentation</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Support</a></li>
+            </ul>
+        </div>
+        <div class="m_ai_shlash">/</div>
+        <div>
+            <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Tech Articles & How-Tos
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item m_dropActive" href="">Library</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">News Updates</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Webinars</a></li>
+            </ul>
+        </div>
+        <div class="m_ai_shlash">/</div>
+        <div class="m_ai_httl">Sanitizers with Intel® oneAPI DPC++/C++ Compiler</div>
+    </section>
+<!------------------------------------------------------------------------------->
+
+    <!-- Optimize Fine-Tuning and Deployment of LLMs on an AI PC -->
+    <section>
+        <div style="background-color: #0068b5; color: #fff; padding: 1.5rem;">
+            <div class="container">
+                <h1 class="h2" style="font-weight: 300; padding-bottom: 1rem;">Find Bugs Quickly Using Sanitizers with the Intel® oneAPI DPC++/C++ Compiler</h1>
+            </div>
+        </div>
+    </section>
+
+    <section class="container py-5">
+        <div class="row">
+            <div class="d-flex justify-content-end col-xl-10 py-3 d-md-none">
+                <i class="fa-solid fa-print fs-4 px-2 " style="color:#0068B5"></i>
+                <i class="fa-regular fa-envelope fs-4 px-2" style="color:#0068B5"></i>
+            </div>
+            <div class="col-lg-3 col-md-4">
+                <div class="VK_sticky_side_bar VK_side_bar_postion_stickey">
+                    <div>
+                        <div class="VK_sidebar_dropdown">
+                            <p class="m-0">
+                                <a href="#dk_detecting_memory" class="text-decoration-none VK_a">
+                                    1. Detecting Memory Safety Bugs With the AddressSanitizer
+                                </a>
+                            </p>
+                            <p class="m-0">
+                                <a href="#dk_datecting_undefined" class="text-decoration-none VK_a">
+                                    2. Detecting Undefined Behavior With the UndefinedBehaviorSanitizer (UBSan)
+                                </a>
+                            </p>
+                            <p class="m-0">
+                                <a href="#dk_detecting_uninitialized" class="text-decoration-none VK_a">
+                                    3. Detecting Uninitialized Memory Usage with the MemorySanitizer
+                                </a>
+                            </p>
+                            <p class="m-0">
+                                <a href="#dk_detecting_data" class="text-decoration-none VK_a">
+                                    4. Detecting Data Races with the ThreadSanitizer
+                                </a>
+                            </p>
+                            <p class="m-0">
+                                <a href="#dk_detecting_floating" class="text-decoration-none VK_a">
+                                    5. Detecting Floating Point Issues with the NumericalStabilitySanitizer
+                                </a>
+                            </p>
+                            <details>
+                                <summary>
+                                    <a href="#dk_detecting_safety" class="text-decoration-none VK_a">
+                                        6. Detecting Memory Safety Bugs in SYCL* Code with the Device-Side AddressSanitizer
+                                    </a>
+                                </summary>
+                                <ul class="list-unstyled ps-3 mb-0">
+                                    <li>
+                                        <a href="#dk_exploring_example" class="text-decoration-none VK_a my-1">
+                                            Exploring the USM-Based Vector Addition Example
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#dk_exploring_buffer" class="text-decoration-none VK_a my-1">
+                                            Exploring the Buffer-Based Vector Addition Example
+                                        </a>
+                                    </li>
+                                </ul>
+                            </details>
+                            <p class="m-0">
+                                <a href="#dk_detecting_memory_leaks" class="text-decoration-none VK_a">
+                                    7. Detecting Uninitialized Memory and Memory Leaks in SYCL* and openMP* Code with the Device-Side MemorySanitizer
+                                </a>
+                            </p>
+                            <p class="m-0">
+                                <a href="#dk_summary_steps" class="text-decoration-none VK_a">
+                                    Summary and Next Steps
+                                </a>
+                            </p>
+                            <p class="m-0">
+                                <a href="#dk_useful_resources" class="text-decoration-none VK_a">
+                                    Useful Resources
+                                </a>
+                            </p>
+                            <p class="m-0">
+                                <a href="#dk_get_software" class="text-decoration-none VK_a">
+                                    Get The Software
+                                </a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <!-------------------------------------------- -->
+                <div class="dk_things_code_main">
+                    <div class="dk_things_code">
+                        <p><a class="b_special_a2" href="">Alina Shadrina</a>,&nbsp;Software Technical Consulting Engineer,&nbsp;Intel Corporation</p>
+                        <p><a class="b_special_a2" href="">Igor Vorobtsov</a>,<b>&nbsp;</b>Sr. Software Technical Consulting Engineer,&nbsp;Intel Corporation</p>
+                        <p><a class="b_special_a2" href="">Jan Fecht</a>,<b>&nbsp;</b>Technical Student Intern,&nbsp;Intel Corporation</p>
+                        <p><a class="b_special_a2" href="">Robert Mueller-Albrecht</a>, Product Marketing Manager,<i>&nbsp;</i>Intel Corporation</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-9 col-md-8">
+                <div class="d-md-flex justify-content-end col-xl-10 py-3 d-none">
+                    <i class="fa-solid fa-print fs-4 px-2 " style="color:#0068B5"></i>
+                    <i class="fa-regular fa-envelope fs-4 px-2" style="color:#0068B5"></i>
+                </div>
+                <div class="col-xl-10 VK_all_sections">
+                    <p>&nbsp;</p>
+                    <p class="mb-0">&nbsp;</p>
+                    <p>In this tutorial, you will learn how to use sanitizers with Intel oneAPI DPC++/C++ Compiler to efficiently and accurately detect common issues in your C/C++ code. Some of the features discusses here are also applicable to the Intel® Fortran Compiler, but the dicussion will focus primarily on the usage of sanitizers with C/C++.</p>
+                    <p>Sanitizers help identify and pinpoint undesirable or undefined behavior in your code. They are enabled with a compiler option switch that instruments your program, adding additional safety checks to the binary.</p>
+                    <p>As a side effect, there will be performance and file size overhead. The impact on performance and executable size depends on the specific sanitizer tool used and the program's characteristics being analyzed. Factors such as the program's size, the amount of memory allocated, and the number of threads used play a role. Thus, sanitizers should only be used for debugging and code verification, not in production code.</p>
+                    <p>However, the benefits of using these separate sanitizer-enabled build steps are tremendous. They help to detect and prevent bugs and security vulnerabilities. Their use can be vital for regular software testing in a CI/CD DevOps environment.</p>
+                    <p>They also provide a convenient way for software developers to verify code changes before submitting them to a repository branch. &nbsp;</p>
+                    <p>In fact, sanitizers, as used with LLVM-based compilers like Clang* or the Intel® oneAPI DPC++/C++ Compiler, are fairly lightweight. This is especially true if you compare them with other open-source software testing solutions like&nbsp;<a class="b_special_a1" href="">Valgrind</a>* or commercial code analyzer solutions for functional testing and coding standards compliance like Parasoft’s Insure++*, PVS Studio*, AbsInt Astrée*, or QA Systems Cantata*. Usually, sanitizers increase execution time by a factor of 2-3, while&nbsp;Valgrind&nbsp;can introduce overheads of up to 100x.</p>
+                    <p>This makes sanitizers quite useful for testing or debugging a program as part of your regular software development flow or for identifying runtime issues that occur late in the execution of a larger application.</p>
+                    <p>If, instead, you compare with more traditional interactive debug approaches like the use of GDB*, there does, of course, remain one drawback. The use of sanitizers requires recompilation of the program. Ideally, if your program depends on other shared libraries, these, too, should be recompiled with sanitizers enabled (except for the standard libc/libc++ or course). The benefit is that the code instrumentation will do the bug-hunting for you.</p>
+                    <p class="dk_note"><strong>New with the Intel® oneAPI DPC++/C++ Compiler 2025.0 and Intel® Fortran Compiler 2025.0:&nbsp;</strong><br>
+                        Find and resolve coding issues while you are writing your application. Now even more comprehensive feedback for&nbsp;&nbsp;&nbsp;<br>
+                        &nbsp; • Data Race Detection with ThreadSanitizer&nbsp;&nbsp;​​​​<br>
+                        &nbsp; • Memory Access Safety Issue Detection on SYCL accelerator offload code using DeviceSanitizer &nbsp;<br>
+                        <br>
+                        <strong>New with the Intel® oneAPI DPC++/C++ Compiler 2025.1:</strong><br>
+                        Find and resolve coding issues while you are writing your application. Now even more comprehensive feedback for &nbsp;<br>
+                        &nbsp; • Numerical Stability &nbsp;Sanitizer for C++ Code&nbsp;<br>
+                        &nbsp; • Memory and Address Sanitizers extended to support SYCL and OpenMP Offload Device Code&nbsp;<br>
+                        &nbsp; • Major improvements to Address Sanitizer for Device Code – invalid kernel argument detection, nullpointer detection, private memory support for openMP Offload<br>
+                        <br>
+                        <strong>New with the Intel® Fortran Compiler 2025.1:</strong>&nbsp;<br>
+                        &nbsp; • Address Sanitizer extended to support openMP offload code &nbsp;</p>
+                    <p class="mb-0">In this tutorial, we will take a closer look at the following sanitizers:</p>
+                    <ol>
+                        <li><strong>AddressSanitizer</strong>&nbsp;- detect memory safety bugs</li>
+                        <li><strong>UndefinedBehaviourSanitizer</strong>&nbsp;- detect undefined behavior bugs</li>
+                        <li><strong>MemorySanitizer</strong>&nbsp;- detect use of uninitialized memory bugs</li>
+                        <li style="text-align:justify"><strong>ThreadSanitizer </strong>– detect data races</li>
+                        <li style="text-align:justify"><strong>Numerical Stability Sanitizer</strong> – detect numerical (floating point) bugs</li>
+                        <li><strong>Device-Side AddressSanitizer&nbsp;</strong>– detect memory safety bugs in SYCL device code</li>
+                        <li><strong>Device-Side MemorySanitizer</strong> – detect use of uninitialized memory bugs and memory leaks in the device code&nbsp;</li>
+                    </ol>
+                    <p class="dk_note"><strong>The example source code used throughout this tutorial can be found in the archive file <a class="b_special_a1" href="">sanitizers-tutoria</a></strong><a class="b_special_a1" href="">l<strong>_2025.1.tar.gz</strong></a></p>
+                    <p>&nbsp;</p>
+
+                    <section id="dk_detecting_memory">
+                        <h3 style="font-weight: 300;">1. Detecting Memory Safety Bugs With the AddressSanitizer</h3>
+                        <p>To demonstrate the different capabilities of sanitizers, we will use a small program that prints the&nbsp;Fibonacci sequence, a&nbsp;sequence&nbsp;in which each number is the sum of the two preceding ones starting with 0, 1, 1, 2, 3, 5, 8, 13, 21, 34, …</p>
+                        <p><strong>Code Sample</strong></p>
+                        <p>Let us start with the following code example, which can be found as <span class="dk_code_simple">fibonacci_v1.c</span> inside the tutorial source archive.</p>
+                        <p class="mb-0">&nbsp;</p>
+                        <!-- code toolbar 3 -->
+                        <div class="mv_code_toolbar">
+                            <div class="mv_toolbar_item mv_copy_icon">
+                                <i class="fa-regular fa-copy"></i>
+                            </div>
+                            <div class="mv_copy_message text-end hidden">Copied</div>
+                            <div class="code-content">
+                                <div style="padding-bottom: 0rem !important" class="d-flex mv_pre">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        01
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0"><span class="dk_color1">#include</span> <span style="color: blue;"><span><</span> stdlib.h></span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        02
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0"><span class="dk_color1">#include</span> <span style="color: blue;"><span><</span> stdio.h></span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        03
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp;</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        04
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0"><span class="dk_color2">/**</span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        05
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0"><span class="dk_color2">&nbsp; &nbsp;* Fill array arr of length n</span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                       06
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0"><span class="dk_color2">&nbsp; &nbsp;* with the first n fibonacci numbers</span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        07
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0"><span class="dk_color2">&nbsp; &nbsp;*/</span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        08
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0"><span class="dk_color1">void</span> set_fibonacci_list( <span class="dk_color1">int</span> <span class="dk_color3">*</span>arr, <span class="dk_color1">int</span> n) {</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        09
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp; &nbsp; arr[<span class="dk_color1">0</span>] <span class="dk_color3">=</span> <span class="dk_color1">0</span>;</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        10
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp; &nbsp; arr[<span class="dk_color1">1</span>] <span class="dk_color3">=</span> <span class="dk_color1">1</span>;</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        11
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp;</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        12
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp; &nbsp; <span class="dk_color1">for</span> (<span class="dk_color1">int</span> i <span class="dk_color3">=</span> <span class="dk_color1">2</span>; i <span class="dk_color3"><</span> n; i<span class="dk_color3">++</span>) {</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        13
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp; &nbsp; &nbsp; &nbsp; arr[i] <span class="dk_color3">=</span> arr[i<span class="dk_color3">-</span><span class="dk_color1">1</span>] <span class="dk_color3">+</span> arr[i<span class="dk_color3">-</span><span class="dk_color1">2</span>];</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        14
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp; &nbsp; }</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        15
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        16
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp;</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        17
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0"><span class="dk_color2">/**</span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        18
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp; <span class="dk_color2">* Print the first n fibonacci numbers</span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        19
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp; <span class="dk_color1">* */</p>
+                                        </div>
+                                    </div>
+                                </div><div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        20
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0"><span class="dk_color1">void</span> print_fibonacci( <span class="dk_color1">int</span> n) {</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        21
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp; <span class="dk_color1">int</span> fibos[n];</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        22
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp;</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        23
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp; set_fibonacci_list(fibos, n);</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        24
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp;</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        25
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp; printf ( <span style="color: blue;">"Fibonacci Sequence\n"</span>) ;</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        26
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp; printf ( <span style="color: blue;">"==================\n"</span>) ;</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        27
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp; <span class="dk_color1">for</span> (<span class="dk_color1">int</span> i<span class="dk_color3">=</span> <span class="dk_color1">0</span> ; i<span class="dk_color3"><</span> n ; i<span class="dk_color3">++</span>) {</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        28
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp; &nbsp; &nbsp; printf( <span style="color: blue;">"%d\n",</span> fibos[i]);</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        29
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp; }</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        30
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp; printf <span style="color: blue;">("==================\n");</span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        31
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp; <span class="dk_color1">if</span> (n <span class="dk_color3">></span> <span class="dk_color1">1</span> <span class="dk_color3">&&</span> fibos[n <span class="dk_color3">-</span> <span class="dk_color1">2</span>] <span class="dk_color3">!=</span> <span class="dk_color1">0</span>) {</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        32
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp; &nbsp; printf( <span style="color: blue;">"Golden ratio approximation: %g\n"</span> , (( <span class="dk_color1">double</span> )fibos[n <span class="dk_color3">-</span> <span class="dk_color1">1</span>]) <span class="dk_color3">/</span>fibos[n<span class="dk_color3">-</span> <span class="dk_color1">2</span>]);</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        33
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp; }</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        34
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        35
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp;</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        36
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0"><span class="dk_color1">int</span> main(<span class="dk_color1">int</span> argc, <span class="dk_color1">char</span> *argv[]) {</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        37
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp; <span class="dk_color1">if</span> (argc <span class="dk_color3">!=</span> <span class="dk_color1">2</span>) {</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        38
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp; &nbsp; &nbsp; printf( <span style="color: blue;">"Usage: %s NUM\n"</span> , argv[<span class="dk_color1">0</span>]);</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        39
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp; &nbsp; &nbsp; <span class="dk_color1">return 1</span>;</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        40
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp; }</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        41
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp;</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        42
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">print_fibonacci(atoi(argv[<span class="dk_color1">1</span>] ) );</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        43
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp;</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        44
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp; <span class="dk_color1">return 0</span>;</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 1rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        45
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">}</p>
+                                        </div> 
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="mb-0">&nbsp;</p>
+                        <p style="text-align:center"><strong>Figure 1. Initial </strong><strong>Fibonacci sequence example source code</strong></p>
+                        <p>This program takes the amount of Fibonacci numbers to print as a command line parameter. It then computes the Fibonacci sequence in the function&nbsp;<span class="dk_code_simple">set_fibonacci_list</span> and prints it to the screen in the <span class="dk_code_simple">function&nbsp;print_fibonacci</span>.</p>
+                        <p><strong>Running the Sanitizer</strong></p>
+                        <p>We will now use the&nbsp;AddressSantizer&nbsp;to detect potential memory-related bugs in this program. The&nbsp;AddressSanitizer&nbsp;can detect multiple memory safety bugs, including out-of-bounds accesses on the stack and heap and use-after-free bugs.</p>
+                        <p>To compile the program using the&nbsp;AddressSantizer, use the following command:</p>
+                        <!-- code toolbar 3 -->
+                        <div class="mv_code_toolbar">
+                            <div class="mv_toolbar_item mv_copy_icon">
+                                <i class="fa-regular fa-copy"></i>
+                            </div>
+                            <div class="mv_copy_message text-end hidden">Copied</div>
+                            <div class="code-content">
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp;</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 1rem !important;"
+                                    class="d-flex pb-0">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">$ icx src/fibonacci_v1.c -O0 -g -fsanitize=address -fno-omit-frame-pointer -o fibonacci_v1_with_asan</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <p>The compiler option&nbsp;<span class="dk_code_simple">-fsanitize=address</span>&nbsp;activates the sanitizer.</p>
+                        <p>Flags&nbsp;<span class="code-simple">-O0</span> <span class="code-simple">-g</span> <span class="code-simple">-fno-omit-frame-pointer</span>&nbsp;are added to get the best diagnostic output in case we indeed find a coding issue, but these options are not mandatory.</p>
+                        <p>Note that <span class="code-simple">-g</span> implicitly set <span class="code-simple">-O0</span> and <span class="code-simple">-fno-omit-frame-pointer</span>. So, these options are only listed to provide you with the complete set of parameters.</p>
+                        <p>There are additional sanitizer-related flags that you can pass to the command line. Please refer to the&nbsp;<a class="b_special_a1" href="">Clang Compiler User’s Manual</a> for a complete list.</p>
+                        <p>For comparison, we can also compile a version without the sanitizer:</p>
+                        <!-- code toolbar 3 -->
+                        <div class="mv_code_toolbar">
+                            <div class="mv_toolbar_item mv_copy_icon">
+                                <i class="fa-regular fa-copy"></i>
+                            </div>
+                            <div class="mv_copy_message text-end hidden">Copied</div>
+                            <div class="code-content">
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp;</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 1rem !important;"
+                                    class="d-flex pb-0">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">$ icx src/fibonacci_v1.c -O0 -g -o fibonacci_v1</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <p>Now, you can run both executables with some value for N. They both should print the same output:</p>
+                        <!-- code toolbar 3 -->
+                        <div class="mv_code_toolbar">
+                            <div class="mv_toolbar_item mv_copy_icon">
+                                <i class="fa-regular fa-copy"></i>
+                            </div>
+                            <div class="mv_copy_message text-end hidden">Copied</div>
+                            <div class="code-content">
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp;</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">$ ./fibonacci_v1 10</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">Fibonacci Sequence</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">=====================================</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">0</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">1</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">1</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">2</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">3</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">5</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">8</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">13</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">21</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">34</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">=====================================</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">Golden ratio approximation: 1.61905</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">$ ./fibonacci_v1_with_asan 10</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">Fibonacci Sequence</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">=====================================</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">0</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">1</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">1</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">2</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">3</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">5</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">8</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">13</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">21</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">34</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">=====================================</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 1rem !important;"
+                                    class="d-flex pb-0">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">Golden ratio approximation: 1.61905</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <p>However, the program contains a bug:</p>
+                        <p>When&nbsp;<span class="code-simple">n &lt; 2</span>, in the&nbsp;<span class="code-simple">set_fibonacci_list</span>&nbsp;function, we assign the initial Fibonacci values to indices that are out of bounds!</p>
+                        <p>Let us try to run the programs with 0 as the argument and see what happens:</p>
+                        <!-- code toolbar 3 -->
+                        <div class="mv_code_toolbar">
+                            <div class="mv_toolbar_item mv_copy_icon">
+                                <i class="fa-regular fa-copy"></i>
+                            </div>
+                            <div class="mv_copy_message text-end hidden">Copied</div>
+                            <div class="code-content">
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp;</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">$ ./fibonacci_v1 0</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">Fibonacci Sequence</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">==================</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">$ ./fibonacci_v1_with_asan 0</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">====================================================</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">==9006==ERROR: AddressSanitizer: dynamic-stack-buffer-overflow on address 0x7ffd21da5a20 at pc 0x000000506601 bp </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">0x7ffd21da5990 sp 0x7ffd21da5988</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 1rem !important;"
+                                    class="d-flex pb-0">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">...</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <p>This illustrates the power of the&nbsp;AddressSanitizer. Normal program execution did not fail in this example. So, we might have easily missed the bug. In other configurations, the program might have crashed. But the crash could have also happened at a later point. In the worst case, a program does not crash but produces wrong results!</p>
+                        <p>AddressSantitizer, on the other hand, immediately detects the error and aborts the execution, showing a verbose diagnostic report. This report includes:</p>
+                        <ul>
+                            <li>The type, location and register values of the bug:
+                            <!-- code toolbar 3 -->
+                                <div class="mv_code_toolbar">
+                                    <div class="mv_toolbar_item mv_copy_icon">
+                                        <i class="fa-regular fa-copy"></i>
+                                    </div>
+                                    <div class="mv_copy_message text-end hidden">Copied</div>
+                                    <div class="code-content">
+                                        <div style="padding-bottom: 0rem !important" class="d-flex">
+                                            <div class="">
+                                                <div class="mv_code text-break">
+                                                    <p class="mb-0">&nbsp;</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div style="padding-top: 0rem !important; padding-bottom: 1rem !important;"
+                                            class="d-flex pb-0">
+                                            <div class="">
+                                                <div class="mv_code text-break">
+                                                    <p class="mb-0">dynamic-stack-buffer-overflow on address 0x7ffd21da5a20 at pc 0x000000506601 bp 0x7ffd21da5990 sp 0x7ffd21da5988</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>A traceback of where the bug occurred (here the debug compiler flags help):
+                            <!-- code toolbar 3 -->
+                            <div class="mv_code_toolbar">
+                                <div class="mv_toolbar_item mv_copy_icon">
+                                    <i class="fa-regular fa-copy"></i>
+                                </div>
+                                <div class="mv_copy_message text-end hidden">Copied</div>
+                                <div class="code-content">
+                                    <div style="padding-bottom: 0rem !important" class="d-flex">
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0">&nbsp;</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-bottom: 0rem !important" class="d-flex">
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0">WRITE of size 8 at 0x7ffd21da5a20 thread T0</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-bottom: 0rem !important" class="d-flex">
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0">&nbsp; &nbsp; &nbsp; #0 0x506600 in set_fibonacci_list /home/user/sanitizer_tutorial/src/Fibonacci_v1.c:10:10</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-bottom: 0rem !important" class="d-flex">
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0">&nbsp; &nbsp; &nbsp; #1 0x5067c1 in print_fibonacci /home/user/sanitizer_tutorial/src/fibonacci_v1.c:24:3</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-bottom: 0rem !important" class="d-flex">
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0">&nbsp; &nbsp; &nbsp; #2 0x50691e in main /home/user/sanitizer_tutorial/src/fibonacci_v1.c:42:3</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-bottom: 0rem !important" class="d-flex">
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0">&nbsp; &nbsp; &nbsp; #3 0x7feff05077b2 in __libc_start_main (/lib64/libc.so.6+0x237b2) (BuildId: ade58d86662aceee2210a9ef12018705e978965d)</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 0rem !important; padding-bottom: 1rem !important;"
+                                        class="d-flex pb-0">
+                                        <div class="">
+                                            <div class="mv_code text-break">
+                                                <p class="mb-0">&nbsp; &nbsp; &nbsp; #4 0x41eb2d in _start (/home/user/sanitizer_tutorial/fibonacci_v1_with_asan+0x41eb2d)</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <p>&nbsp;</p>
+                            </li>
+                        </ul>
+                        <p>Valgrind,&nbsp;on the other hand, did not detect the bug in this case. This is because&nbsp;<span class="code-simple">Valgrind</span>&nbsp;does not detect stack-based buffer overflows:</p>
+                        <!-- code toolbar 3 -->
+                        <div class="mv_code_toolbar">
+                            <div class="mv_toolbar_item mv_copy_icon">
+                                <i class="fa-regular fa-copy"></i>
+                            </div>
+                            <div class="mv_copy_message text-end hidden">Copied</div>
+                            <div class="code-content">
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp;</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">valgrind ./fibonacci_v1 0</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">==166581== Memcheck, a memory error detector</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">==166581== Copyright (C) 2002-2022, and GNU GPL'd, by Julian Seward et al.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">==166581== Using Valgrind-3.19.0 and LibVEX; rerun with -h for copyright info</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">==166581== Command: ./Fibonacci_v1 0</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">==166581==</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">Fibonacci Sequence</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">==================</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">==================</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">==166581==</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">==166581== HEAP SUMMARY:</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">==166581==  &nbsp; &nbsp; &nbsp; &nbsp;   in use at exit: 0 bytes in 0 blocks</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">==166581==  &nbsp; &nbsp;  total heap usage: 1 allocs, 1 frees, 1,024 bytes allocated</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">==166581==</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">==166581== All heap blocks were freed -- no leaks are possible</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">==166581==</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">==166581== For lists of detected and suppressed errors, rerun with: -s</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 1rem !important;"
+                                    class="d-flex pb-0">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">==166581== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <p><strong>Fixing the Issue</strong></p>
+                        <p>Let us fix the memory safety bug we detected by adjusting the&nbsp;<span class="code-simple">set_fibonacci_list</span>&nbsp;function:</p>
+                        <p>&nbsp;</p>
+                        <!-- code toolbar 3 -->
+                        <div class="mv_code_toolbar">
+                            <div class="mv_toolbar_item mv_copy_icon">
+                                <i class="fa-regular fa-copy"></i>
+                            </div>
+                            <div class="mv_copy_message text-end hidden">Copied</div>
+                            <div class="code-content">
+                                <div style="padding-bottom: 0rem !important" class="d-flex mv_pre">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        01
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0"><span class="dk_color1">void</span> set_fibonacci_list(<span class="dk_color1">int</span> <span class="dk_color3">*</span>arr, <span class="dk_color1">int</span> n) {</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        02
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp; &nbsp; <span class="dk_color1">if</span> (n <span class="dk_color3">></span> <span class="dk_color1">1</span>) {</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        03
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp; &nbsp; &nbsp; &nbsp; arr[<span class="dk_color1">0</span>] <span class="dk_color3">=</span> <span class="dk_color1">0</span>;</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        04
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp; &nbsp; }</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        05
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp; &nbsp; <span class="dk_color1">if</span> (n <span class="dk_color3">></span> <span class="dk_color1">2</span>) {</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                       06
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp; &nbsp; &nbsp; &nbsp; arr[<span class="dk_color1">1</span>] <span class="dk_color3">=</span> <span class="dk_color1">1</span>;</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        07
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp; &nbsp; }</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        08
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp; &nbsp; <span class="dk_color1">for</span> (<span class="dk_color1">int</span> i <span class="dk_color3">=</span> <span class="dk_color1">2</span>; i  <span class="dk_color3"><</span> n;  i<span class="dk_color3">++</span>) {</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        09
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp; &nbsp; &nbsp; &nbsp; arr[i] <span class="dk_color3">=</span> arr[i<span class="dk_color3">-</span><span class="dk_color1">1</span>] <span class="dk_color3">+</span> arr[i<span class="dk_color3">-</span><span class="dk_color1">2</span>];</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        10
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp; &nbsp; }</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 1rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        11
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">}</p>
+                                        </div> 
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <p style="text-align:center"><strong>Figure 2. Fix in set_fibonacci_list</strong>&nbsp;<strong>function for n&lt;2</strong></p>
+                        <p>You can find the new program in&nbsp;<span class="code-simple">src/fibonacci_v2.c</span> inside the tutorial source archive.</p>
+                        <p>After recompilation, we can now check that the bug is gone by rerunning the sanitized version:</p>
+                        <!-- code toolbar 3 -->
+                        <div class="mv_code_toolbar">
+                            <div class="mv_toolbar_item mv_copy_icon">
+                                <i class="fa-regular fa-copy"></i>
+                            </div>
+                            <div class="mv_copy_message text-end hidden">Copied</div>
+                            <div class="code-content">
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp;</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">$ ./fibonacci_v2_with_asan 0</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">Fibonacci Sequence</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 1rem !important;"
+                                    class="d-flex pb-0">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">=====================================</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <p><strong>Perfect! We fixed the program.</strong></p>
+                    </section>
+                    
+                    <section id="dk_datecting_undefined">
+                        <p class="mb-0">&nbsp;</p>
+                        <h3 style="font-weight: 300;">2. Detecting Undefined Behavior With the UndefinedBehaviorSanitizer (UBSan)</h3>
+                        <p>After fixing memory-related bugs in the Fibonacci program, we can now do some more basic manual functional testing with the program.</p>
+                        <p><strong>Observing an Issue</strong></p>
+                        <p>For example, we can try to use larger values for N:</p>
+                        <!-- code toolbar 3 -->
+                        <div class="mv_code_toolbar">
+                            <div class="mv_toolbar_item mv_copy_icon">
+                                <i class="fa-regular fa-copy"></i>
+                            </div>
+                            <div class="mv_copy_message text-end hidden">Copied</div>
+                            <div class="code-content">
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp;</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">$ ./fibonacci_v2_with_asan 100</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">==================</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">0</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">1</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">...</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">-889489150</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">==================</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 1rem !important;"
+                                    class="d-flex pb-0">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">Golden ratio approximation: 9.81579</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <p>We can see that the output is wrong: The golden ratio seems very off, and Fibonacci numbers should never be negative!</p>
+                        <p><strong>Running the Sanitizer</strong></p>
+                        <p>To find out what is going wrong, let us now use the&nbsp;<span class="code-simple">UndefinedBehaviorSanitizer (UBSan)</span>, a sanitizer that can detect types of undefined behavior in your program:</p>
+                        <!-- code toolbar 3 -->
+                        <div class="mv_code_toolbar">
+                            <div class="mv_toolbar_item mv_copy_icon">
+                                <i class="fa-regular fa-copy"></i>
+                            </div>
+                            <div class="mv_copy_message text-end hidden">Copied</div>
+                            <div class="code-content">
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp;</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 1rem !important;"
+                                    class="d-flex pb-0">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">$ icx src/fibonacci_v2.c -O0 -g -fsanitize=undefined -fno-omit-frame-pointer -o fibonacci_v2_with_ubsan</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <p>Use the <span class="code-simple">-fsanitize=undefined</span> to enable&nbsp;UBSan. UBSan will catch a set of common undefined behavior types. Please refer to the <a class="b_special_a1" href="">UndefinedBehaviorSanitizer documentation</a> to learn how to enable checks on different or additional undefined behavior types.</p>
+                        <p>Let us run our sanitizer-enabled binary:</p>
+                        <!-- code toolbar 3 -->
+                        <div class="mv_code_toolbar">
+                            <div class="mv_toolbar_item mv_copy_icon">
+                                <i class="fa-regular fa-copy"></i>
+                            </div>
+                            <div class="mv_copy_message text-end hidden">Copied</div>
+                            <div class="code-content">
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp;</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">$ ./fibonacci_v2_with_ubsan 100</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">src/Fibonacci_v2.c:17:23: runtime error: signed integer overflow: 1836311903 + 1134903170 cannot be represented in type</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">'int'</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">SUMMARY: UndefinedBehaviorSanitizer: undefined-behavior src/Fibonacci_v2.c:17:23 in</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">Fibonacci Sequence</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">==================</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">0</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 1rem !important;"
+                                    class="d-flex pb-0">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">...</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <p><strong>Identifying the Cause</strong></p>
+                        <p>UBSan&nbsp;has successfully identified the problem: The Fibonacci sequence is growing quickly and leads to a signed integer overflow, which is an undefined behavior according to the C standard.</p>
+                        <p class="mb-0">Similar to the&nbsp;AddressSanitizer, we are getting verbose diagnostic output:</p>
+                        <ul>
+                            <li>The type of undefined behavior (<span class="code-simple">signed integer overflow</span>)</li>
+                            <li>Additional information about the problem (<span class="code-simple">1836311903 + 1134903170 cannot be represented in type 'int'</span>)</li>
+                            <li>The location of the bug (<span class="code-simple">undefined-behavior src/Fibonacci_v2.c:17:23</span>)</li>
+                        </ul>
+                        <p>Note that in contrast to the&nbsp;<span class="code-simple">AddressSantizer</span>, the program is not aborted on detecting undefined behavior.</p>
+                        <p class="mb-0">&nbsp;</p>
+                    </section>
+
+                    <section id="dk_detecting_uninitialized">
+                        <h3 style="font-weight: 300;">3. Detecting Uninitialized Memory Usage with the MemorySanitizer</h3>
+                        <p>The&nbsp;MemorySanitizer&nbsp;allows you to catch bugs caused by uninitialized memory usage. You can enable the sanitizer via the&nbsp;<span class="code-simple">-fsanitize=memory</span>&nbsp;flag.</p>
+                        <p class="dk_greyHighlight"><strong>Important Notes on&nbsp;MemorySanitizer Usage:</strong><br>
+                            • The sanitizer does not fail immediately on uninitialized memory reads. It only fails once a branch, syscall, or dynamic call depends directly or indirectly on uninitialized memory.<br>
+                            • All project dependencies should be recompiled with&nbsp;<span class="code-simple">MemorySanitizer</span>. Otherwise, there might be high amounts of false positives</p>
+                        <p>Let us look closer at how the&nbsp;<span class="code-simple">MemorySanitizer</span>&nbsp;can detect coding issues in our program.</p>
+                        <p>One alternative way to fix the integer overflow bug from the previous section is to limit the amount of Fibonacci numbers computed (maximum of 47).</p>
+                        <p>Let's say that naively, we add the limitation to our&nbsp;<span class="code-simple">set_fibonacci_list</span>&nbsp;function:</p>
+                        <!-- code toolbar 3 -->
+                        <div class="mv_code_toolbar">
+                            <div class="mv_toolbar_item mv_copy_icon">
+                                <i class="fa-regular fa-copy"></i>
+                            </div>
+                            <div class="mv_copy_message text-end hidden">Copied</div>
+                            <div class="code-content">
+                                <div style="padding-bottom: 0rem !important" class="d-flex mv_pre">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        01
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0"><span class="dk_color1">void</span> set_fibonacci_list(<span class="dk_color1">int</span> <span class="dk_color3">*</span>arr, <span class="dk_color1">int</span> n) {</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        02
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp; &nbsp; <span class="dk_color1">if</span> (n <span class="dk_color3">></span> <span class="dk_color1">1</span>) {</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        03
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp; &nbsp; &nbsp; &nbsp; arr[<span class="dk_color1">0</span>] <span class="dk_color3">=</span> <span class="dk_color1">0</span>;</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        04
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp; &nbsp; }</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        05
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp; &nbsp; <span class="dk_color1">if</span> (n <span class="dk_color3">></span> <span class="dk_color1">2</span>) {</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                       06
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp; &nbsp; &nbsp; &nbsp; arr[<span class="dk_color1">1</span>] <span class="dk_color3">=</span> <span class="dk_color1">1</span>;</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        07
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp; &nbsp; }</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        08
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp; &nbsp; <span class="dk_color1">if</span> (n <span class="dk_color3">></span> <span class="dk_color1">47</span>) {</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                       09
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp; &nbsp; &nbsp; &nbsp; <span class="dk_color1">n</span> <span class="dk_color3">=</span> <span class="dk_color1">47</span>;</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        10
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp; &nbsp; }</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        11
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp; &nbsp; <span class="dk_color1">for</span> (<span class="dk_color1">int</span> i <span class="dk_color3">=</span> <span class="dk_color1">2</span>; i  <span class="dk_color3"><</span> n;  i<span class="dk_color3">++</span>) {</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        12
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp; &nbsp; &nbsp; &nbsp; arr[i] <span class="dk_color3">=</span> arr[i<span class="dk_color3">-</span><span class="dk_color1">1</span>] <span class="dk_color3">+</span> arr[i<span class="dk_color3">-</span><span class="dk_color1">2</span>];</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        13
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp; &nbsp; }</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 1rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        14
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">}</p>
+                                        </div> 
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <p style="text-align:center"><strong>Figure 3. Limit the number of items in set_fibonacci_list</strong>&nbsp;<strong>function to n=47</strong></p>
+                        <p>You can find the newly updated program in&nbsp;<span class="dk_code_simple">src/fibonacci_v3.c</span> inside the tutorial source archive.</p>
+                        <p><strong>Observing an Issue</strong></p>
+                        <p>Now we can re-compile and re-run the program:</p>
+                        <!-- code toolbar 3 -->
+                        <div class="mv_code_toolbar">
+                            <div class="mv_toolbar_item mv_copy_icon">
+                                <i class="fa-regular fa-copy"></i>
+                            </div>
+                            <div class="mv_copy_message text-end hidden">Copied</div>
+                            <div class="code-content">
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp;</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">$ icx src/fibonacci_v3.c -O0 -g -fsanitize=undefined -fno-omit-frame-pointer -o fibonacci_v3_with_ubsan</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp;</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">$ ./fibonacci_v3_with_ubsan 100</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">Fibonacci Sequence</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">==================</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">0</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">1</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">...</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">==================</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">Golden ratio approximation: -0.000100335</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 1rem !important;"
+                                    class="d-flex pb-0">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">...</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <p>The good news is that&nbsp;UBSan&nbsp;does not complain anymore, meaning the program no longer contains a signed integer overflow. The bad news is that we still have negative Fibonacci numbers in our list, and the golden ratio approximation is still off.</p>
+                        <p>Another observation is that the output of the tool changes non-deterministically.</p>
+                        <p>This is a hint that there might be some uninitialized memory usage.</p>
+                        <p><strong>Running the Sanitizer</strong></p>
+                        <p>We can use the&nbsp;MemorySanitizer&nbsp;to double-check that. Use the following command to compile the program with the&nbsp;MemorySanitizer:</p>
+                        <!-- code toolbar 3 -->
+                        <div class="mv_code_toolbar">
+                            <div class="mv_toolbar_item mv_copy_icon">
+                                <i class="fa-regular fa-copy"></i>
+                            </div>
+                            <div class="mv_copy_message text-end hidden">Copied</div>
+                            <div class="code-content">
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp;</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">$ icx src/fibonacci_v3.c -O0 -g -fsanitize=memory -fsanitize-memory-track-origins=2 -fno-omit-frame-pointer -o </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 1rem !important;"
+                                    class="d-flex pb-0">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">fibonacci_v3_with_msan</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <p>The&nbsp;<span class="code-simple">-fsanitize=memory</span>&nbsp;flag enables the&nbsp;MemorySanitizer. To additionally track from which variable the uninitialized memory was derived, you can optionally pass the&nbsp;<span class="code-simple">-fsanitize-memory-tracks-origins=2</span>&nbsp;flag.</p>
+                        <p>Running the memory-sanitizer enabled program yields:</p>
+                        <!-- code toolbar 3 -->
+                        <div class="mv_code_toolbar">
+                            <div class="mv_toolbar_item mv_copy_icon">
+                                <i class="fa-regular fa-copy"></i>
+                            </div>
+                            <div class="mv_copy_message text-end hidden">Copied</div>
+                            <div class="code-content">
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp;</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">$ ./fibonacci_v3_with_msan 100</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">Fibonacci Sequence</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">==================</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">0</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">1</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">1</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">...</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">==177412==WARNING: MemorySanitizer: use-of-uninitialized-value</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp; &nbsp; &nbsp; #0 0x4afd9e in print_fibonacci /home/user/sanitizer_tutorial/src/fibonacci_v3.c:36:5</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp; &nbsp; &nbsp; #1 0x4b03ec in main /home/user/sanitizer_tutorial/src/Fibonacci_v3.c:53:3</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp; &nbsp; &nbsp; #2 0x7f1eac55a7b2 in __libc_start_main (/lib64/libc.so.6+0x237b2) (BuildId: ade58d86662aceee2210a9ef12018705e978965d)</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp; &nbsp; &nbsp; #3 0x41f2dd in _start (/home/user/sanitizer_tutorial/fibonacci_v3_with_msan+0x41f2dd)</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp;</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp; An uninitialized value was created by an allocation of 'vla' in the stack frame of function 'print_fibonacci'</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp; &nbsp; &nbsp; #0 0x4af6c0 in print_fibonacci /home/user/sanitizer_tutorial/src/Fibonacci_v3.c:29:3</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp;</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">SUMMARY: MemorySanitizer: use-of-uninitialized-value /home/user/sanitizer_tutorial/src/Fibonacci_v3.c:36:5 in </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 0rem !important" class="d-flex">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">print_fibonacci</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 1rem !important;"
+                                    class="d-flex pb-0">
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">Exiting</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <p><strong>Identifying the Cause</strong></p>
+                        <p>We can see that&nbsp;MemorySanitizer&nbsp;reports a&nbsp;<span class="code-simple">use-of-uninitialized-value</span>&nbsp;bug. The reason is that while we only fill the first 47 entries of the Fibonacci array, we still print and use the unassigned (and, thus, uninitialized) array values.</p>
+                        <p>To fix the problem, we should add an extra check to the main&nbsp;function:</p>
+                        <p class="mb-0">&nbsp;</p>
+                    </section>
+
+                    <section id="dk_performance">
+                        <h4 style="font-weight: 300;">Performance through Library Parallelism</h4>
+                        <p>Scalable multi-architecture parallelism is not just about advanced parallel programming concept support in popular languages and language extensions. It is also about having a rich ecosystem of optimized performance libraries that can directly benefit from both language extensions and underlying hardware features.</p>
+                        <p>The <a href="https://www.intel.com/content/www/us/en/developer/tools/oneapi/ipp.html" style="color:#467886; text-decoration:underline">Intel® Integrated Performance Primitives</a> accelerate high-precision image processing on AVX-512 equipped Intel® CPUs by allowing faster manipulation and alignment of 32-bit floating point images when using Intel® Integrated Performance Primitives (IPP) Warp Perspective functions with Nearest Interpolation or OpenCV*.</p>
+                        <p>In addition to image processing, signal processing also benefits from a significant performance boost for 16-bit data on AVX2 and AVX512 capable CPUs.</p>
+                        <p>Taking cross-architecture parallel execution for Fast Fourier Transforms (FFTs) to the next level, the <a href="https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html" style="color:#467886; text-decoration:underline">Intel® oneAPI Math Kernel Library</a> (oneMKL), now enables you to conveniently access the combined power of multiple GPUs for 2D and 3D non-batch FFTs using the new SYCL DFT API.</p>
+                        <p>Multiple GPUs attached to a CPU in a distributed multi-node cluster is a common platform configuration in HPC, which brings us back to the OpenMP Composability with SYCL and MPI discussed earlier.</p>
+                        <p>You can now gain flexible control over offloading processes with OpenMP 6.0's new stripe loop-transformation construct and the nowait clause's optional Boolean argument to choose between asynchronous or synchronous offloading in the&nbsp;Intel®Compilers conditionally.</p>
+                        <p class="mb-0"><a class="b_special_a1" href="" style="color:#467886; text-decoration:underline">Intel® MPI Library</a> users have access to</p>
+                        <ul>
+                            <li>enhanced control over provider initialization with a new capability to set a list for I_MPI_OFI_PROVIDER.</li>
+                            <li>full MPI 4.1 functionality with ongoing updates to ensure future stability, portability, and compatibility with updates to MPI 4.1</li>
+                            <li>better resource utilization and performance with newly extended multi-threading capabilities for the full suite of collective operations, improvements to device-initiated RMA interoperability and performance.</li>
+                        </ul>
+                        <p>This results in scalable parallelism, from a laptop using only a CPU, all the way to exascale supercomputers for HPC and AI.</p>
+                        <p class="mb-0">&nbsp;</p>
+                    </section>
+
+                    <section id="dk_supercharge">
+                        <h3 style="font-weight: 300;">Supercharge AI on CPU and GPU</h3>
+                        <p>Talking about AI, we have also added more optimizations to Intel’s contributions to PyTorch, as well as the <a class="b_special_a1" href="" style="color:#467886; text-decoration:underline">Intel® oneAPI Deep Neural Network Library</a> (oneDNN).</p>
+                        <p>oneDNN’s latest optimizations for Intel® Core™ &nbsp;Ultra Series 2 processors, Intel® Xeon® 6 processors with P-cores, and Intel® Arc™ GPUs are upstreamed to the PyTorch 2.7 release, and supercharge popular AI inference workflows such as BERT, Llama, and GPT on Intel Xeon 6 processors as well.</p>
+                        <p>The VTune Profiler allows you to streamline and optimize AI performance on Intel client GPUs and NPUs with new analysis tool features and achieve faster performance of DirectML-based AI applications.</p>
+                        <p class="dk_note">Find out more about how Intel helps accelerate PyTorch-based AI applications with this blog:<br>
+                            ⇒&nbsp;<a class="b_special_a1" href="" style="color:#467886; text-decoration:underline">Accelerate PyTorch 2.7 on Intel® GPUs</a><br>
+                            and these videos:<br>
+                            ⇒&nbsp;<a class="b_special_a1" href="" style="color:#467886; text-decoration:underline">Deploy Compiled </a><a class="b_special_a1" href="" style="color:#467886; text-decoration:underline">PyTorch</a><a class="b_special_a1" href="" style="color:#467886; text-decoration:underline"> Models on Intel GPUs with </a><a class="b_special_a1" href="" style="color:#467886; text-decoration:underline">AOTInductor</a><br>
+                            ⇒&nbsp;<a class="b_special_a1" href="" style="color:#467886; text-decoration:underline">PyTorch</a><a class="b_special_a1" href="" style="color:#467886; text-decoration:underline"> Export Quantization with Intel GPUs</a></p>
+                        <p class="mb-0">&nbsp;</p>
+                    </section>
+
+                    <section id="dk_take_charge">
+                        <h3 style="font-weight: 300;">Take Charge of Your Parallel Code</h3>
+                        <p>Scale, optimize, and streamline the execution of any workload through comprehensive, highly integrated parallelism, regardless of whether you run on an AI PC or a supercomputer. One developer solution for AI, HPC, and imaging through seamless interoperability between MPI, OpenMP, SYCL, PyTorch, Vulkan, DirectX, and more.&nbsp;&nbsp;</p>
+                        <p class="mb-0">Download the latest developer tools in version 2025.2 today:</p>
+                        <ul>
+                            <li><a class="b_special_a1" href="" style="color:#467886; text-decoration:underline">AI Tools and Frameworks</a></li>
+                            <li><a class="b_special_a1" href="" style="color:#467886; text-decoration:underline">Intel® Distribution for Python*</a></li>
+                            <li><a class="b_special_a1" href="" style="color:#467886; text-decoration:underline">Intel® oneAPI Base Toolkit</a></li>
+                            <li><a class="b_special_a1" href="" style="color:#467886; text-decoration:underline">Intel® oneAPI HPC Toolkit</a></li>
+                        </ul>
+                        <p class="mb-0">&nbsp;</p>
+                    </section>
+
+                    <section id="dk_additional">
+                        <h3 style="font-weight: 300;">Additional Resources</h3>
+                        <p class="mb-0">News Update</p>
+                        <ul>
+                            <li><a class="b_special_a1" href="" style="color:#467886; text-decoration:underline">Intel® Software Developer Tools 2025.2: Driving Performance and Productivity for AI, Graphics, and Accelerated Compute</a></li>
+                        </ul>
+                        <p class="mb-0">Accelerated Computing</p>
+                        <ul>
+                            <li><a class="b_special_a1" href="" style="color:#467886; text-decoration:underline">OpenMP* and the Future of Scientific Computing </a>&nbsp;</li>
+                            <li><a class="b_special_a1" href="" style="color:#467886; text-decoration:underline">Deepen the Understanding of Light-Matter Interaction Dynamics </a>(oneMKL and mixed precision in HPC)</li>
+                            <li><a class="b_special_a1" href="" style="color:#467886; text-decoration:underline">Unified Joint Matrix SYCL* Extension</a></li>
+                            <li><a class="b_special_a1" href="" style="color:#467886; text-decoration:underline">Dimensions of SYCL* Expansion: C++ Virtual Functions and SPIR-V* Backend</a></li>
+                            <li><a class="b_special_a1" href="" style="color:#467886; text-decoration:underline">SYCL* Interoperability with DirectX* and Vulkan* for Bindless Image Memory</a></li>
+                        </ul>
+                        <p class="mb-0">Artificial Intelligence and Machine Learning</p>
+                        <ul>
+                            <li><a class="b_special_a1" href="" style="color:#467886; text-decoration:underline">Accelerate PyTorch 2.7 on Intel® GPUs</a></li>
+                            <li><a class="b_special_a1" href="" style="color:#467886; text-decoration:underline">Deploy Compiled </a><a class="b_special_a1" href="" style="color:#467886; text-decoration:underline">PyTorch</a><a class="b_special_a1" href="" style="color:#467886; text-decoration:underline"> Models on Intel GPUs with </a><a class="b_special_a1" href="" style="color:#467886; text-decoration:underline">AOTInductor</a></li>
+                            <li><a class="b_special_a1" href="" style="color:#467886; text-decoration:underline">PyTorch</a><a class="b_special_a1" href="" style="color:#467886; text-decoration:underline"> Export Quantization with Intel GPUs</a></li>
+                        </ul>
+                        <p class="mb-0">&nbsp;</p>
+                        <p>&nbsp;</p>
+                    </section>
+
+                </div>
+            </div>
+            <p class="mb-0">&nbsp;</p>
+        </div>
+    </section>
+
+    <section>
+        <div class="container">
+            <div style="padding: 3rem 0rem; border-top: 1px solid #d7d7d7; color: #525252;">
+                <h6>Product and Performance Information</h6>
+                <div class="dk_disclaimer">
+                    <p class="mb-0"><sup>1</sup>Performance varies by use, configuration and other factors. Learn more
+                        at <a class="b_special_a1" href="">www.Intel.com/PerformanceIndex.</a></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- footer -->
+    <div id="footer"></div>
+
+    <!-- script header and footer -->
+    <script>
+        // navbar include  
+        fetch('/y_index/y_navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar').innerHTML = data;
+            });
+        // footer include 
+        fetch('/y_index/y_footer.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('footer').innerHTML = data;
+            });
+    </script>
+
+    <!-- nav script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            if (document.getElementsByClassName('VK_all_sections section') && document.getElementsByClassName('VK_sidebar_dropdown')) {
+                const sections = document.querySelectorAll('.VK_all_sections section');
+                const navLinks = document.querySelectorAll('.VK_sidebar_dropdown a');
+                const detailsElements = document.querySelectorAll('.VK_sidebar_dropdown details');
+
+                function removeActiveClass() {
+                    navLinks.forEach(link => link.classList.remove('VK_sidebar_active_link'));
+                    detailsElements.forEach(details => {
+                        details.removeAttribute('open');
+                        details.setAttribute('close', ''); // Optional: to visually indicate it's closed
+                    });
+                }
+
+                function activateLinkAndDetails(targetId) {
+                    navLinks.forEach(link => {
+                        if (link.getAttribute('href') === `#${targetId}`) {
+                            link.classList.add('VK_sidebar_active_link');
+                            let parentDetails = link.closest('details');
+
+                            // Open all ancestor details elements
+                            while (parentDetails) {
+                                parentDetails.setAttribute('open', '');
+                                parentDetails.removeAttribute('close'); // Optional: remove the closed indicator
+                                parentDetails = parentDetails.parentElement.closest('details');
+                            }
+                        }
+                    });
+                }
+
+                function onScroll() {
+                    let currentSection = '';
+                    sections.forEach(section => {
+                        const sectionTop = section.getBoundingClientRect().top;
+                        const sectionBottom = section.getBoundingClientRect().bottom;
+
+                        // Check if the section is in view
+                        if (sectionTop <= 100 && sectionBottom >= 0) {
+                            currentSection = section.getAttribute('id');
+                        }
+                    });
+
+                    if (currentSection) {
+                        removeActiveClass();
+                        activateLinkAndDetails(currentSection);
+                    } else {
+                        removeActiveClass();
+                    }
+                }
+
+                window.addEventListener('scroll', onScroll);
+            } else {
+                return
+            }
+        });
+    </script>
+
+    <!-- copy script -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            document.querySelectorAll(".mv_copy_icon").forEach((icon) => {
+                icon.addEventListener("click", async function () {
+                    try {
+                        const toolbar = this.closest(".mv_code_toolbar");
+                        const codeBlock = toolbar.querySelector(".code-content");
+                        const codeContent = codeBlock.innerText;
+
+                        // Use Clipboard API to copy text
+                        await navigator.clipboard.writeText(codeContent);
+
+                        // Hide the copy icon and show the "Copied!" message
+                        const message = toolbar.querySelector(".mv_copy_message");
+                        this.classList.add("hidden"); // Hide the copy icon
+                        message.classList.remove("hidden"); // Show the "Copied!" message
+
+                        // Hide the message and show the icon again after 2 seconds
+                        setTimeout(() => {
+                            message.classList.add("hidden");
+                            this.classList.remove("hidden");
+                        }, 2000); // Adjust delay as needed
+
+                    } catch (err) {
+                        console.error('Failed to copy text: ', err);
+                    }
+                });
+            });
+        });
+    </script>
+
+</body>
+
+</html>
+
