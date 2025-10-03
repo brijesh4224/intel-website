@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ginkgo and oneAPI Accelerate Numerical Simulations on Intel® GPUs</title>
+
+    <link rel="stylesheet"
+        href="/css/dk_developer_edge_iot_&_5G_optimize_fine_tuning_and_deployment_of_LLMs_on_an_ai_pc.css">
+
+    <!-- header footer -->
+    <link rel="stylesheet" href='/css/yatri.css'>
+    <link rel="stylesheet" href="/css/rushita_automotive.css">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" rel="stylesheet">
+</head>
+
+<style>
+    @media (max-width:1200px){
+        .mv_product_table{
+            width: 100% !important;
+        }
+        .dk_intel_openap_img{
+            width: 100% !important;
+        }
+    }
+</style>
+
+<body>
+
+    <!-- header -->
+    <div id="navbar"></div>
+
+    <!------------------------------------------------------------------------------->
+    <section class="m_ai_tdrop">
+        <div>
+            <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Developers
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item m_dropActive" href="/dhruvin_developer-tools/ds_Developer-Zone.html">Overview</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/rushita_Solutions/k_solutions_in_Viewall_SDF_Industrial-Automation_Control-flow-Enforcement_Technology.html">Topics & Technologies</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/dhruvin_developer-tools/ds_Development-Tools.html">Tools</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/rushita_Solutions/k_solutions_in_Viewall_SDF_Industrial-Automation_Hardware-Platforms.html">Hardware Platforms</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/dhruvin_developer-tools/ds_Resource-Documentation-Center.html">Resources & Documentation</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/dhruvin_developer-tools/ds_Learn.html">Learn</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/dhruvin_developer-tools/ds_Communities-and-Events.html">Community & Events</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/dhruvin_developer-tools/ds_Developer-Programs.html">Developer Programs</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/dhruvin_developer-tools/ds_Get-Help.html">Get Help</a></li>
+            </ul>
+        </div>
+        <div class="m_ai_shlash">/</div>
+        <div>
+            <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Tools
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item m_dropActive" href="/Product/B20_developer_catelog.html">Software Catalog</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/Product/B17_oneapi.html">oneAPI</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/rushita_Solutions/k_solutions_Intel-Tiber™Edge-Platform.html">Intel® Tiber™ Edge Platform</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/Product/B10_intel_Quarts.html">FPGA</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/VK_developers/VK_technology_sdk.html">Intel® Active Management Technology SDK</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/VK_developers/VK_intel_adviser.html">Intel® Advisor</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® AI Reference Models</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/rushita_Solutions/k_solutions_Intel-Collaboration-Suite-for-WebRTC.html">Intel® Collaboration Suite for WebRTC SDK</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/Product/B1_19_Intel_AICloud.html">Intel® Tiber™ AI Cloud</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/rushita_Solutions/k_solutions_Intel-Distribution-for-Python.html">Intel® Distribution for Python*</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/rushita_Solutions/k_solutions_Intel-Distribution-for-GDB.html">Intel® Distribution for GDB*</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/rushita_Solutions/k_solutions_Intel-DPC++Compatibility-Tool.html">Intel® DPC++ Compatibility Tool</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/rushita_Solutions/k_solutions_Intel-Dynamic-Application-Loader.html">Intel® Dynamic Application Loader</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/rushita_Solutions/k_solutions_Topics_viewall_Cloud-Insider-Program_AI-Frameworks-and-Tools.html">Frameworks</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Embree</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/VK_developers/VK_ai_scikit.html">Intel® Extension for Scikit-learn*</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/rushita_Solutions/k_solutions_Intel-Fortran-Compiler.html">Intel® Fortran Compiler</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/rushita_Solutions/k_solutions_cs_creaters_intel_gpa.html">Intel® Graphics Performance Analyzers</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/rushita_Solutions/k_solutions_Intel-HE-Toolkit.html">Intel® Homomorphic Encryption Toolkit</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/rushita_Solutions/k_solutions_Intel-In-Band-Manageability.html">Intel® In-Band Manageability</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Integrated Performance Primitives</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/rushita_Solutions/k_solutions_Intel-ISIM.html">Intel® Integrated Simulation Infrastructure with Modeling</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/rushita_Solutions/k_solutions_Instruction-Set-Architecture(ISA)Extensions.html">Instruction Set Architecture (ISA) Extensions</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/rushita_Solutions/k_solutions_Intel-Intelligent-Storage-Acceleration-Library.html">Intel® Intelligent Storage Acceleration Library (Intel® ISA-L)</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/VK_developers/VK_ai_modin.html">Modin*</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/rushita_Solutions/k_solutions_Intel-MPI-Library.html">Intel® MPI Library</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Neural Compressor</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/rushita_Solutions/">OpenCL™ Runtime</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/rushita_Solutions/">Intel® Open Image Denoise</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Open Path Guiding Library (Intel® Open PGL)</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/rushita_Solutions/k_solutions_Pin.html">Pin</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/rushita_Solutions/k_solutions_Pin_Intel-Platform-Analysis-Library.html">Intel® Platform Analysis Library</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel Tools for OpenCL™ Software</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel Tools for OpenCL™ Applications</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® OpenSWR</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">OpenVINO™ Toolkit</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Open Volume Kernel Library</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Optimization for XGBoost*</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® OSPRay</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® OSPRay for Hydra*</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® OSPRay Studio</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">PyTorch* Optimizations from Intel</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">TensorFlow* Optimizations from Intel</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Rendering Toolkit</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Smart Edge Open</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/rushita_Solutions/">Intel® Software Guard Extensions</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Secure Device Onboard</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Software Development Emulator</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/rushita_Solutions/Trust-Domain">Intel® Trust Domain Extensions (Intel® TDX)</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Quantum SDK</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Query Processing Library (Intel® QPL)</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Video Processing Library</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/VK_developers/VK_vtune_profiler.html">Intel® VTune™ Profiler</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Resellers</a></li>
+            </ul>
+        </div>
+        <div class="m_ai_shlash">/</div>
+        <div>
+            <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                oneAPI
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item m_dropActive" href="">Overview</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Data Parallel C++/SYCL*</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Toolkits</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Tech Articles & How-Tos</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Components</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Code Samples</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Training</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Documentation</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Support</a></li>
+            </ul>
+        </div>
+        <div class="m_ai_shlash">/</div>
+        <div>
+            <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Tech Articles & How-Tos
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item m_dropActive" href="">Library</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">News Updates</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Webinars</a></li>
+            </ul>
+        </div>
+        <div class="m_ai_shlash">/</div>
+        <div class="m_ai_httl">Ginkgo and oneAPI Accelerate Numerical Simulations</div>
+    </section>
+    <!------------------------------------------------------------------------------->
+
+    <!-- Optimize Fine-Tuning and Deployment of LLMs on an AI PC -->
+    <section>
+        <div class="mv_intel_amx_bg_color">
+            <div class="container">
+                <div class="row mv_intel_amx_content">
+                    <div class="col-md-12 col-sm-12 mv_intel_amx_item">
+                        <div class="mv_intel_amx">
+                            <h2>Ginkgo and oneAPI Accelerate Numerical Simulations on Intel® GPUs</h2>
+                            <p></p>
+                            <h5>Using Intel® Software Development Tools, we brought Ginkgo's math functionality to Intel® GPUs.</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="container py-5">
+        <div class="row">
+            <div class="d-flex justify-content-end col-xl-10 py-3 d-md-none">
+                <i class="fa-solid fa-print fs-4 px-2 " style="color:#0068B5"></i>
+                <i class="fa-regular fa-envelope fs-4 px-2" style="color:#0068B5"></i>
+            </div>
+            <div class="col-lg-3 col-md-4">
+                <!-- nav -->
+                <div class="VK_client_app_navigation VK_ai_navigation">
+                    <div class="justify-content-center align-items-center overflow-hidden flex-nowrap mb-4">
+                        <ul class="VK_ai_nav_bar list-unstyled m-0">
+                            <li>
+                                <a href="#dk_about_ginkgo" class="text-dark text-decoration-none d-block">
+                                    About Ginkgo
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#dk_ginkgo_ecosystems" class="text-dark text-decoration-none d-block VK_ai_nav_link">
+                                    Port Ginkgo to the oneAPI and SYCL Ecosystems
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#dk_why_does_it" class="text-dark text-decoration-none d-block VK_ai_nav_link">
+                                    Why Does It Matter?
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#dk_increase_platform" class="text-dark text-decoration-none d-block VK_ai_nav_link">
+                                    Increase Platform Portability of Ginkgo
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#dk_a_closer" class="text-dark text-decoration-none d-block VK_ai_nav_link">
+                                    A Closer Look into Migration
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#dk_optimize_simulations" class="text-dark text-decoration-none d-block VK_ai_nav_link">
+                                    Optimize Ginkgo Functionality on Intel GPUs to Accelerate Numerical Simulations
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#dk_no_transistor" class="text-dark text-decoration-none d-block VK_ai_nav_link">
+                                    No Transistor Left Behind: Performance Boost Using Intel GPUs for Fast SpMV Products
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#dk_batched_iterative" class="text-dark text-decoration-none d-block VK_ai_nav_link">
+                                    Batched Iterative Solvers for Selected Applications
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#dk_use_mixed" class="text-dark text-decoration-none d-block VK_ai_nav_link">
+                                    Use Mixed-Precision Algorithms for Extra Performance Increases
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#dk_scalability" class="text-dark text-decoration-none d-block VK_ai_nav_link">
+                                    Scalability on HPC clusters
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#dk_use_case_gpus" class="text-dark text-decoration-none d-block VK_ai_nav_link">
+                                    Use Case Example: Accelerate OPENFOAM* Simulations on Intel GPUs
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#dk_conclusion" class="text-dark text-decoration-none d-block VK_ai_nav_link">
+                                    Conclusion
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#dk_performance_benckmarks" class="text-dark text-decoration-none d-block VK_ai_nav_link">
+                                    Performance Benchmarks
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="dk_things_code_main">
+
+                </div>
+            </div>
+            <div class="col-lg-9 col-md-8">
+                <div class="d-md-flex justify-content-end col-xl-10 py-3 d-none">
+                    <i class="fa-solid fa-print fs-4 px-2 " style="color:#0068B5"></i>
+                    <i class="fa-regular fa-envelope fs-4 px-2" style="color:#0068B5"></i>
+                </div>
+                <div class="col-xl-10">
+                    <p>&nbsp;</p>
+                    <p>&nbsp;</p>
+
+                    <section id="dk_about_ginkgo">
+                        <h3 style="font-weight: 350; margin: 1rem 0 11px;">About Ginkgo</h3>
+                        <p style="text-align:justify"><a class="b_special_a1" href="">Ginkgo</a> is a high-performance C++ framework for sparse linear algebra on manycore systems. It is implemented using modern C++ (the Intel® C++ Compiler used must be at least C++14 compliant), with GPU kernels implemented in CUDA*, heterogeneous interface for portability (HIP), and oneAPI-compliant Data Parallel C++ with SYCL*. Ginkgo was developed by the Karlsruhe Institute of Technology (KIT), the University of Tennessee, and Universitat Jaume I. It is an open source and community-driven project under the <a class="b_special_a1" href="">modified BSD (Berkeley Software Distribution) license</a>.</p>
+                        <p>&nbsp;</p>
+                        <p style="text-align:center"><img class="dk_intel_openap_img" src="/img/darshit_image/ginkgo-oneapi-accelerate-numerical-simulations-fig1.png" width="700"></p>
+                        <p style="text-align:center">Figure 1. Architecture-optimized kernels</p>
+                        <p>Using a universal linear operator abstraction, Ginkgo provides basic building blocks like the sparse matrix-vector product for various matrix formats, iterative solvers, preconditioners, and batched routines. Ginkgo targets multi- and many-core systems and currently features back ends for AMD* GPUs, Intel GPUs, NVIDIA* GPUs, and OpenMP* supporting architectures. The core functionality is separated from hardware-specific kernels for smooth extension to other architectures, with runtime polymorphism selecting the specific kernels. See figure 2 for details on what is available within the Ginkgo framework.</p>
+                        <p>Scientists in many different research domains are eager to run their workloads on the new Intel® architectures, particularly Intel® Iris® X<sup>e</sup> graphics and <a class="b_special_a1" href="">Intel® Data Center GPU Max Series</a>. However, they lack the math libraries they can rely on to run on these devices. Porting Ginkgo's linear algebra functionality to the SYCL ecosystem allows them to rely on Ginkgo when running their scientific simulations on Intel Iris X<sup>e</sup> graphics devices.</p>
+                        <p class="mb-0">In this article, we detail:</p>
+                        <ul>
+                            <li>How we ported Ginkgo to the Intel and SYCL ecosystems and why it is important</li>
+                            <li>How we bring the best performance possible to these scientific applications on Intel hardware</li>
+                            <li>How we can accelerate the OPENFOAM* simulation framework by relying on Ginkgo as a linear solver</li>
+                        </ul>
+                        <p>&nbsp;</p>
+                        <p style="text-align:center"><img class="dk_intel_openap_img" src="/img/darshit_image/ginkgo-oneapi-accelerate-numerical-simulations-fig2.png" width="420"></p>
+                        <p style="text-align:center">Figure 2. Ginkgo feature list</p>
+                        <p>&nbsp;</p>
+                    </section>
+
+                    <section id="dk_ginkgo_ecosystems">
+                        <h3 style="font-weight: 350; margin: 2.5rem 0 11px;">Port Ginkgo to the oneAPI and SYCL Ecosystems</h3>
+                        <p style="text-align:justify">Ginkgo is the first platform-portable open source math library supporting Intel GPUs via oneAPI's open SYCL back end. Domain scientists from different areas rely on Ginkgo and its sparse linear algebra functionality, which forms the base building blocks for many scientific simulations. Existing implementations supported CUDA, HIP, and openMP. Extending Ginkgo platform portability to Intel GPUs using oneAPI enables applications based on Ginkgo to be vendor agnostic, demonstrating cross-platform performance on various hardware and programming models. Watch the<a class="b_special_a1" href=""> video implementing a heat equation simulation in the Intel® Developer Cloud</a>.</p>
+                        <p class="quote-tiny">&nbsp;</p>
+                        <p class="quote-tiny">&nbsp;</p>
+                        <div class="d-flex">
+                            <div class="">
+                                <i style="font-size: 5rem; color: #E5E6E6; padding-right: 1rem;" class="fa-solid fa-quote-left"></i>
+                            </div>
+                            <div class="">
+                                <p>"Adding the Intel SYCL back end to the Ginkgo library gives domain scientists a high-performance math library for running workloads on the Intel GPUs."</p>
+                                <p>– Hartwig Anzt, University of Tennessee</p>
+                            </div>
+                        </div>
+                        <p class="quote-tiny">&nbsp;</p>
+                        <p class="mb-0">&nbsp;</p>
+                    </section>
+
+                    <section id="dk_why_does_it">
+                        <h3 style="font-weight: 350; margin: 2.5rem 0 11px;">Why Does It Matter?</h3>
+                        <p>Ginkgo is a high-performance linear algebra library for manycore systems, focusing on solving sparse linear systems. It uses modern C++ for a sustainable, flexible, composable, and portable software package. Ginkgo aims to provide domain scientists with high-performance math functionality to enable fast and better science. This is achieved by developing novel algorithms suitable for modern hardware technology and optimizing kernels for specific applications and architectures. With Intel® Max Series products entering the market, we must provide production-ready, high-performance math functionality in Ginkgo to enable domain scientists to run their workloads on architectures based on the Intel Max Series products.</p>
+                        <p>By porting Ginkgo to oneAPI and supporting the Intel Data Center GPU Max Series dedicated to high-performance computing (HPC), we can provide high-performance building blocks to simulation frameworks that support Ginkgo, such as deal.II, MFEM, OPENFOAM, HYTEG, SUNDIALS, Extended Code Guardrails (XCG), HiOp, and openCARP scientific applications, ranging from finite element libraries to computational fluid dynamics, power grid optimization, and heart simulations.</p>
+                        <p>&nbsp;</p>
+                    </section>
+
+                    <section id="dk_increase_platform">
+                        <h3 style="font-weight: 350; margin: 2.5rem 0 11px;">Increase Platform Portability of Ginkgo</h3>
+                        <p>Ginkgo supports running on CUDA, HIP, SYCL accelerators, and OpenMP-enabled CPU devices, so it is mostly GPU-centric. Platform and performance portability are Ginkgo's critical features. This means that Ginkgo is expected to provide optimal results on various architectures from different vendors.</p>
+                        <p>KIT collaborated with Intel to migrate core functionality from CUDA to SYCL and deliver optimized kernels using the <a class="b_special_a1" href="">Intel® DPC++ Compatibility Tool</a> and the <a class="b_special_a1" href="">Intel® oneAPI DPC++/C++ Compiler</a>.</p>
+                        <p><a class="b_special_a1" href="">Intel Developer Cloud</a> initially enabled the Ginkgo team with Intel hardware. It contains a unified preconfigured development environment that helps developers concentrate their efforts on the development tasks. With restricted access permissions, even early access to the latest hardware can be granted. Later, Ginkgo ran continuous integration tests on a laptop with Intel Iris X<sup>e</sup> graphics before upgrading to the Intel® Arc™ A770 graphics.</p>
+                        <p>&nbsp;</p>
+                    </section>
+
+                    <section id="dk_a_closer">
+                        <h3 style="font-weight: 300;">A Closer Look into Migration</h3>
+                        <p>We started porting Ginkgo to SYCL in 2020 during the emergence of the oneAPI specification and initiative. Beginning with these early stages and the use of early access to beta versions of oneAPI, we have seen many significant improvements using the <a class="b_special_a1" href="">Intel® DPC++ Compatibility Tool</a> and the <a class="b_special_a1" href="">Intel® oneAPI DPC++/C++ Compiler</a>.</p>
+                        <p>Ginkgo was originally designed as a GPU-centric sparse linear algebra library using the CUDA programming language and CUDA design patterns for implementing GPU kernels. The Ginkgo HIP back end for targeting AMD GPUs was introduced in early 2020. Migration from CUDA to SYCL started in 2020 as well. The 1.4.0 minor release (August 2021) brought most of the Ginkgo functionality to the oneAPI ecosystem, enabling Intel GPU and CPU running, excluding preconditioners. Full Data Parallel C++ and SYCL support is available starting with <a class="b_special_a1" href="">Release 1.5.0</a>.</p>
+                        <p>KIT developed a detailed migration pipeline to mitigate the complexity of migrating highly templated code, cooperative groups, and atomics. It was a semi-manual process, so kernels were automatically migrated, and after some improvements to unified shared memory (USM) data handling and kernel submissions, The bulk of work focused on performance tuning and adding advanced features.</p>
+                        <p>Learn more about the challenges KIT faced porting Ginkgo from CUDA to SYCL in the video from the oneAPI <a class="b_special_a1" href="">DevSummit at IWOCL 2022</a>.</p>
+                        <p>&nbsp;</p>
+                    </section>
+
+                    <section id="dk_optimize_simulations">
+                        <h3 style="font-weight: 300;">Optimize Ginkgo Functionality on Intel GPUs to Accelerate Numerical Simulations</h3>
+                        <p>Numerical simulations relying on sparse linear algebra are always constructed from the same building blocks, which are highly composable and configurable to adapt to a specific problem. This article highlights two essential building blocks of sparse iterative linear solvers. The first building block is the Sparse-Matrix Vector (SpMV) product, the most common and critical operation within sparse iterative solvers and several preconditioners. The second building block is problem-specific, advanced preconditioners, which accelerate the convergence rate of the sparse iterative solvers.</p>
+                        <p>&nbsp;</p>
+                    </section>
+
+                    <section id="dk_no_transistor">
+                        <h3 style="font-weight: 300;">No Transistor Left Behind: Performance Boost Using Intel GPUs for Fast SpMV Products</h3>
+                        <p>As the base building block of numerical linear algebra, having fast SpMV products is essential to accelerating a complete numerical simulation. One optimization is applied by combining multiple kernels, which are automatically selected depending on the properties of the sparse matrix at hand. A consideration for combining multiple kernels is, for instance, how imbalanced or balanced the matrices are.</p>
+                        <p>Ginkgo's design allows the implementation of different SpMV kernels depending on the back end. This allows for a highly flexible and adaptable approach to achieving each hardware's best possible performance. Ginkgo also carefully tunes the key thresholds at which the SpMV strategy should be changed on a per–back end and hardware basis. Thanks to these optimizations, Ginkgo's SpMV performance is consistently high on Intel Data Center GPU Max Series 1550 on one tile.</p>
+                        <p>On average, Ginkgo's SpMV outperforms the Intel® oneAPI Math Kernel Library (oneMKL) compressed sparse row format (CSR) matrix-vector implementation by a factor of 2.</p>
+                        <p>For problems from the <a class="b_special_a1" href="">SuiteSparse Matrix Collection</a>, this advantage can even reach 100x, as seen in the following graphics.</p>
+                        <p>&nbsp;</p>
+                        <p style="text-align:center"><img class="dk_intel_openap_img" src="/img/darshit_image/ginkgo-oneapi-accelerate-numerical-simulations-fig3.png" width="699"></p>
+                        <p style="text-align:center">Figure 3. Speedup of Ginkgo's CSR against oneMKL CSR SpMV for problems from the SuiteSparse matrix collection</p>
+                        <p style="text-align:center"><img class="dk_intel_openap_img" src="/img/darshit_image/ginkgo-oneapi-accelerate-numerical-simulations-fig4.png" width="700"></p>
+                        <p style="text-align:center">Figure 4. Ginkgo's COO and CSR against oneMKL CSR SpMV performance for problems from the SuiteSparse matrix collection</p>
+                        <p style="text-align:center"><img class="dk_intel_openap_img" src="/img/darshit_image/ginkgo-oneapi-accelerate-numerical-simulations-fig5.png" width="700"></p>
+                        <p style="text-align:center">Figure 5. Ginkgo's batched kernel performance on Intel Data Center GPU Max Series 1550 against NVIDIA A100 and H100 for PeleLM thermal combustion matrix cases</p>
+                        <p style="text-align:center">&nbsp;</p>
+                        <p>&nbsp;</p>
+                    </section>
+
+                    <section id="dk_batched_iterative">
+                        <h3 style="font-weight: 300;">Batched Iterative Solvers for Selected Applications</h3>
+                        <p>Ginkgo development and GPU porting did not stop at version 1.5.0. Batched iterative solvers have recently received a lot of attention because of their efficiency in solving batches of small and medium-sized sparse problems. In particular, it has been shown that batched iterative methods can outperform state-of-the-art batched direct counterparts for GPUs.</p>
+                        <p>Batched iterative methods' functionality is critical in applications such as combustion and fusion plasma simulations. These applications commonly need to solve hundreds of thousands of small to medium linear systems, each sharing a sparsity pattern. For the linear solution of these types of systems with nested nonlinear loops, it is advantageous to use an iterative solver, as that allows the incorporation of an initial guess, which can accelerate the linear system solution within the outer loop. Additionally, we may not need to solve the system to precision accuracy but can control the solution accuracy based on the parameters of the outer nonlinear loop.</p>
+                        <p>By porting Ginkgo's batched iterative solvers to SYCL and Intel GPUs, we enable these applications to take advantage of the high performance of the Intel Data Center GPU Max Series 1550. See the data in figures 6 and 7, which show speedups with Intel Data Center GPU Max Series 1550 1s on use cases from the PeleLM combustion simulation framework. Except for the gri12 case, all other input cases show a notable performance increase of the solvers on the latest Intel GPUs compared to NVIDIA GPUs. On average, the workload runs 1.7x and 1.3x faster on Intel Data Center GPU Max Series 1550 1s compared to NVIDIA A100 and H100, respectively, across all input cases. Similarly, the Intel Data Center GPU Max Series 2s outperforms the A100 and H100 by an average factor of 3.1 and 2.4, respectively.</p>
+                        <p>For more information, see the following paper on arXiv*: <a class="b_special_a1" href="">Porting Batched Iterative Solvers onto Intel GPUs with SYCL</a>.</p>
+                        <p>&nbsp;</p>
+                    </section>
+
+                    <section id="dk_use_mixed">
+                        <h3 style="font-weight: 300;">Use Mixed-Precision Algorithms for Extra Performance Increases</h3>
+                        <p>To further optimize the preconditioners available in Ginkgo, we use mixed-precision strategies when appropriate, which consist of doing parts of the computation in float or half precision while keeping critical computations in double precision to sustain a high accuracy. The Algebraic Multigrid (AMG) algorithm is a natural approach for such a use case by performing the coarser computations within the multigrid (MG method) cycle at a lower precision. Thanks to this strategy, an extra 12% performance can be obtained when using multigrid with the W-cycle at no cost in accuracy.</p>
+                        <p style="text-align:center"><img class="dk_intel_openap_img" src="/img/darshit_image/ginkgo-oneapi-accelerate-numerical-simulations-fig6.png" width="700"></p>
+                        <p style="text-align:center">Figure 6. Ginkgo speedup when solving selected problems from the SuiteSparse matrix collection using a mixed-precision algebraic multigrid against non-mixed-precision with a W-3 cycle</p>
+                        <p style="text-align:center"><img class="dk_intel_openap_img" src="/img/darshit_image/ginkgo-oneapi-accelerate-numerical-simulations-fig7.png" width="700"></p>
+                        <p style="text-align:center">Figure 7. Ginkgo speedup when solving selected problems from the SuiteSparse matrix collection using a mixed-precision algebraic multigrid against non-mixed-precision with a V-10 cycle</p>
+                        <p>&nbsp;</p>
+                    </section>
+
+                    <section id="dk_scalability">
+                        <h3 style="font-weight: 300;">Scalability on HPC clusters</h3>
+                        <p>The ability to use a full HPC cluster efficiently is critical for most scientific simulations. Ginkgo has developed a distributed back end by relying on MPI. The current MPI implementation is merely an extension of Ginkgo and requires very little change for users compared to running their workload on a single GPU. Using Ginkgo's distributed back end is done by wrapping the matrices and vectors into new distributed::Matrix and distributed::Vector types that allow the user to specify the data distribution onto the nodes. In figure 8, we show Ginkgo SpMV's weak scalability performance on the Sunspot early access platform on up to 1000 tiles (500 GPUs), where we can reach up to approximately 70 TFlop/s.</p>
+                        <p style="text-align:center"><img class="dk_intel_openap_img" src="/img/darshit_image/ginkgo-oneapi-accelerate-numerical-simulations-fig8.png" width="889"></p>
+                        <p style="text-align:center">Figure 8. Scalability of the Ginkgo distributed SpMV on up to 1000 tiles (500 Intel Data Center GPU Max Series 1550)</p>
+                        <p>&nbsp;</p>
+                    </section>
+
+                    <section id="dk_use_case_gpus">
+                        <h3 style="font-weight: 300;">Use Case Example: Accelerate OPENFOAM* Simulations on Intel GPUs</h3>
+                        <p>High-fidelity (scale-resolving) flow simulations have become an important part of academic research and an indispensable tool for development processes in the wind energy industry, the automotive sector, aerospace engineering, and political decision-makers in environmental and disaster protection. However, many state-of-the-art software libraries are insufficiently prepared for modern, more energy-efficient high-performance computers employing general-purpose GPU accelerators. In the EXASIM project, we close this technical gap by developing an interface between the popular simulation software OPENFOAM and the GPU-optimized linear algebra library Ginkgo.</p>
+                        <p style="text-align:center"><img class="w-100" src="/img/darshit_image/ginkgo-oneapi-accelerate-numerical-simulations-fig9.png"></p>
+                        <p style="text-align:center">Figure 9. Windsor body microbenchmark scaling test. Image: Upstream CFD GmbH, 2023</p>
+                        <p>While the project is still in its infancy and more performance gains can be expected in the future, by using several of the building blocks previously highlighted, the existing OPENFOAM-Ginkgo integration already allows OPENFOAM to run on Intel GPUs with performance speedup when comparing the Intel Data Center GPU Max Series 1550 with Intel CPUs.<br>
+                            <br>
+                            We report in the following figures the complete timing for an OPENFOAM simulation on the test case LidDrivenCavity3D of size 300^3. The code can run on Intel GPUs thanks to using Ginkgo's solvers, distributed back end, and benefiting from the optimizations previously highlighted.</p>
+                        <p>One Intel Data Center GPU Max Series on this test case performed roughly at the same level as a full CPU (4th generation Intel® Xeon® Scalable processor with 54 cores). The CPU's high bandwidth memory provides significant time savings on data transfers between the CPU and GPU. Thus, Ginkgo can efficiently use all six GPUs available on one node (12 tiles). This allows for a total performance speedup of 5x compared to using the 4th generation Intel Xeon Scalable processor by itself.</p>
+                        <p style="text-align:center"><img class="dk_intel_openap_img" src="/img/darshit_image/ginkgo-oneapi-accelerate-numerical-simulations-fig10.png" width="700"></p>
+                        <p style="text-align:center">Figure 10. OPENFOAM speedup on a formerly code named Sapphire Rapids CPU when increasing the core count, on the LidDrivenCavity test case</p>
+                        <p style="text-align:center"><img class="dk_intel_openap_img" src="/img/darshit_image/ginkgo-oneapi-accelerate-numerical-simulations-fig11.png" width="700"></p>
+                        <p style="text-align:center">Figure 11. OPENFOAM speedup with a Ginkgo back end on multiple Intel Max Series GPU 1550 (up to six) compared to one GPU</p>
+                        <p style="text-align:center"><img class="dk_intel_openap_img" src="/img/darshit_image/ginkgo-oneapi-accelerate-numerical-simulations-fig12.png" width="699"></p>
+                        <p style="text-align:center">Figure 12. OPENFOAM speedup when using multiple Intel Max Series GPU 1550 against Intel® Xeon® CPU Max Series (formerly code named Sapphire Rapids) on the LidDrivenCavity</p>
+                        <p>&nbsp;</p>
+                    </section>
+
+                    <section id="dk_conclusion">
+                        <h3 style="font-weight: 300;">Conclusion</h3>
+                        <p>The functional port of Ginkgo from CUDA to SYCL-enabled devices is a first step towards high-performance simulations on Intel Iris X<sup>e</sup> graphics and <a class="b_special_a1" href="">Intel Data Center GPU Max Series</a>. We have shown multiple performance improvements on key building blocks of scientific numerical simulations. In particular, we show how, by using the Intel Data Center GPU Max Series 1550 for batched sparse iterative solvers, we can outperform the NVIDIA A100 and H100 GPUs by an average factor of 3.1 and 2.4, respectively. We have also shown how using Ginkgo's optimizations by using Ginkgo as a back end to OPENFOAM runs with good performance and scalability on a node of six Intel Data Center GPU Max Series 1550 devices.</p>
+                        <p>We will continue the kernel optimization and continue supporting integrating Ginkgo's SYCL-enabled functionality into complex algorithms and application code. Ginkgo demonstrates that platform portability can be achieved without loss of performance, which opens opportunities for running scientific simulations at exascale on the latest supercomputer installations.</p>
+                        <p>&nbsp;</p>
+                    </section>
+
+                    <section id="dk_performance_benckmarks">
+                        <h3 style="font-weight: 300;">Performance Benchmarks</h3>
+                        <p>10% to up to 25% rendering efficiency and thousands of hours saved in rendering production time, and 15 hours per frame per shot to 12-13 hours.</p>
+                        <p>Cinesite Configuration: 18-core Intel Xeon Scalable processors (W-2295) used in a render farm, 2nd generation Intel® Xeon® processor-based workstations (W-2135 and -2195) used. Rendering tools: Gaffer, Autodesk* Arnold, along with optimizations by Intel® Open Image Denoise.</p>
+                    </section>
+
+                </div>
+            </div>
+            <p class="mb-0">&nbsp;</p>
+        </div>
+    </section>
+
+    <section style="border-top: 1px solid #d7d7d7;" class="container py-5">
+        <h4 class="h6">Product and Performance Information</h4>
+        <div class="disclaimer" style="font-size: 12px;"><sup>1</sup> Performance varies by use, configuration and other
+            factors. Learn more at <a class="b_special_a1" href="">www.Intel.com/PerformanceIndex</a>.</div>
+        </div>
+    </section>
+
+    <!-- footer -->
+    <div id="footer"></div>
+
+    <!-- script header and footer -->
+    <script>
+        // navbar include  
+        fetch('/y_index/y_navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar').innerHTML = data;
+            });
+        // footer include 
+        fetch('/y_index/y_footer.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('footer').innerHTML = data;
+            });
+    </script>
+
+    <!-- nav script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const nav = document.querySelector('.VK_client_app_navigation');
+            const navLinks = document.querySelectorAll('.VK_ai_nav_bar a');
+            const sections = document.querySelectorAll('section[id]');
+            let navOffset = nav.offsetTop;
+
+            // Add smooth scrolling to all links
+            navLinks.forEach(link => {
+                link.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+
+            // Sticky Navigation
+            window.addEventListener('scroll', () => {
+                if (window.pageYOffset >= navOffset) {
+                    nav.classList.add('VK_sticky_nav_bar');
+                } else {
+                    nav.classList.remove('VK_sticky_nav_bar');
+                }
+                // Section highlighting
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop - nav.clientHeight;
+                    const sectionHeight = section.clientHeight;
+                    console.log(sectionTop);
+                    console.log(sectionHeight);
+                    if (window.pageYOffset >= sectionTop && window.pageYOffset <= sectionTop + sectionHeight) {
+                        navLinks.forEach(link => {
+                            link.classList.remove('active');
+                            if (link.getAttribute('href') === `#${section.id}`) {
+                                link.classList.add('active');
+
+                                // Ensure the active link is visible in the nav bar
+                                const navBar = document.querySelector('.VK_ai_nav_bar');
+                                const activeLink = document.querySelector('.VK_ai_nav_bar a.active');
+                                const linkRect = activeLink.getBoundingClientRect();
+                                const navBarRect = navBar.getBoundingClientRect();
+
+                                if (linkRect.left < navBarRect.left || linkRect.right > navBarRect.right) {
+                                    activeLink.scrollIntoView({ inline: 'center', behavior: 'smooth' });
+                                }
+                            }
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+
+    <!-- copy script -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            document.querySelectorAll(".mv_copy_icon").forEach((icon) => {
+                icon.addEventListener("click", async function () {
+                    try {
+                        const toolbar = this.closest(".mv_code_toolbar");
+                        const codeBlock = toolbar.querySelector(".code-content");
+                        const codeContent = codeBlock.innerText;
+
+                        // Use Clipboard API to copy text
+                        await navigator.clipboard.writeText(codeContent);
+
+                        // Hide the copy icon and show the "Copied!" message
+                        const message = toolbar.querySelector(".mv_copy_message");
+                        this.classList.add("hidden"); // Hide the copy icon
+                        message.classList.remove("hidden"); // Show the "Copied!" message
+
+                        // Hide the message and show the icon again after 2 seconds
+                        setTimeout(() => {
+                            message.classList.add("hidden");
+                            this.classList.remove("hidden");
+                        }, 2000); // Adjust delay as needed
+
+                    } catch (err) {
+                        console.error('Failed to copy text: ', err);
+                    }
+                });
+            });
+        });
+    </script>
+
+</body>
+
+</html>
