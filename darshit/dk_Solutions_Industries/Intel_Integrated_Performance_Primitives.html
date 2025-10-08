@@ -1,0 +1,860 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Intel® Integrated Performance Primitives</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <link href=" https://fonts.cdnfonts.com/css/intel-clear " rel="stylesheet">
+    <link rel="stylesheet" href="/css/dk_ipus_improve_network_latency_in_microservices_based_applications.css">
+    <link rel="stylesheet" href="/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="/css/rushita.css">
+    <link rel="stylesheet" href="/css/yatri.css">
+
+    <link rel="stylesheet" href="/css/owl.theme.default.min.css">
+    <style>
+        * {
+            font-family: 'Intel Clear', sans-serif;
+        }
+
+        nav{
+            position:  relative !important;
+        }
+        .video-container {
+            position: relative;
+            width: 100%;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .thumbnail {
+            width: 100%;
+            height: auto;
+        }
+
+        .play-button {  
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 60px;
+            height: 60px;
+            cursor: pointer;
+        }
+
+        #myVideo {
+            width: 100%;
+            height: auto;
+            display: none;
+        }
+
+        .k_vlink2:hover {
+            text-decoration: underline;
+            color: white;
+        }
+
+        .k_framworkbg1 {
+            background-image: url(/img/rushita_img/dot.png);
+            background-position: center;
+            background-size: cover;
+        }
+
+        .k_demo {
+            position: relative;
+            width: 100%;
+            /* max-width: 700px; */
+            margin: 0 auto 20px;
+        }
+
+        .k_demo img {
+            width: 100%;
+            cursor: pointer;
+        }
+
+        .icon {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            font-size: 24px;
+            color: white;
+            cursor: pointer;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 5px;
+            border-radius: 5px;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            padding-top: 100px;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.9);
+        }
+
+        .modal-content {
+            margin: auto;
+            display: block;
+            width: 80%;
+            max-width: 1300px;
+        }
+
+        .caption {
+            margin: auto;
+            display: block;
+            width: 80%;
+            max-width: 700px;
+            text-align: center;
+            color: #ccc;
+            padding: 10px 0;
+        }
+
+        .close {
+            position: absolute;
+            top: 15px;
+            right: 35px;
+            color: #f1f1f1;
+            font-size: 40px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .b_special_a1 {
+            color:  #0068b5 ;
+            text-decoration: none !important;
+            border-bottom: 1px dashed #0068b5 ;
+        }
+        .b_special_a1:hover {
+            text-decoration: none !important;
+            border-bottom: 1px solid #0068b5 ;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: #bbb;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .k_scrollable-menu {
+            overflow-x: auto;
+            white-space: nowrap;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        @media only screen and (max-width: 700px) {
+            .modal-content {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div id="navbar"></div>
+
+        <!---------------------------------------------------------------------------->
+        <section class="m_ai_tdrop">
+            <div>
+                <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Developers
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item m_dropActive" href="/dhruvin_developer-tools/ds_Developer-Zone.html">Overview</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="/rushita_Solutions/k_solutions_in_Viewall_SDF_Industrial-Automation_Control-flow-Enforcement_Technology.html">Topics & Technologies</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="/dhruvin_developer-tools/ds_Development-Tools.html">Tools</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="/rushita_Solutions/k_solutions_in_Viewall_SDF_Industrial-Automation_Hardware-Platforms.html">Hardware Platforms</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="/dhruvin_developer-tools/ds_Resource-Documentation-Center.html">Resources & Documentation</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="/dhruvin_developer-tools/ds_Learn.html">Learn</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="/dhruvin_developer-tools/ds_Communities-and-Events.html">Community & Events</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="/dhruvin_developer-tools/ds_Developer-Programs.html">Developer Programs</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="/dhruvin_developer-tools/ds_Get-Help.html">Get Help</a></li>
+                </ul>
+            </div>
+            <div class="m_ai_shlash">/</div>
+            <div>
+                <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Tools
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item m_dropActive" href="/Product/B20_developer_catelog.html">Software Catalog</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="/Product/B17_oneapi.html">oneAPI</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="/rushita_Solutions/k_solutions_Intel-Tiber™Edge-Platform.html">Intel® Tiber™ Edge Platform</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="/Product/B10_intel_Quarts.html">FPGA</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="/VK_developers/VK_technology_sdk.html">Intel® Active Management Technology SDK</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="/VK_developers/VK_intel_adviser.html">Intel® Advisor</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Intel® AI Reference Models</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Intel® AI Reference Models</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Intel® Collaboration Suite for WebRTC SDK</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="/Product/B1_19_Intel_AICloud.html">Intel® Tiber™ AI Cloud</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Intel® Distribution for Python*</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Intel® Distribution for GDB*</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Intel® DPC++ Compatibility Tool</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Intel® Dynamic Application Loader</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="/rushita_Solutions/k_solutions_Topics_viewall_Cloud-Insider-Program_AI-Frameworks-and-Tools.html">Frameworks</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Intel® Embree</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="/VK_developers/VK_ai_scikit.html">Intel® Extension for Scikit-learn*</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Intel® Fortran Compiler</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Intel® Graphics Performance Analyzers</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Intel® Homomorphic Encryption Toolkit</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Intel® In-Band Manageability</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Intel® Integrated Performance Primitives</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Intel® Integrated Simulation Infrastructure with Modeling</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Instruction Set Architecture (ISA) Extensions</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Intel® Intelligent Storage Acceleration Library (Intel® ISA-L)</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Modin*</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Intel® MPI Library</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Intel® Neural Compressor</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">OpenCL™ Runtime</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Intel® Open Image Denoise</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Intel® Open Path Guiding Library (Intel® OpenPGL)</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Pin</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Intel® Platform Analysis Library</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Intel Tools for OpenCL™ Software</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Intel Tools for OpenCL™ Applications</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Intel® OpenSWR</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">OpenVINO™ Toolkit</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Intel® Open Volume Kernel Library</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Intel® Optimization for XGBoost*</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Intel® OSPRay</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Intel® OSPRay for Hydra*</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Intel® OSPRay Studio</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">PyTorch* Optimizations from Intel</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">TensorFlow* Optimizations from Intel</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Intel® Rendering Toolkit</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Intel® Smart Edge Open</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Intel® Software Guard Extensions</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Intel® Secure Device Onboard</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Intel® Software Development Emulator</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Intel® Trust Domain Extensions (Intel® TDX)</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Intel® Quantum SDK</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Intel® Query Processing Library (Intel® QPL)</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Intel® Video Processing Library</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Intel® VTune™ Profiler</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Resellers</a></li>
+                </ul>
+            </div>
+            <div class="m_ai_shlash">/</div>
+            <div>
+                <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Intel® Integrated Performance Primitives
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item m_dropActive" href="#">Download</a></li>
+                    <li><a class="dropdown-item m_dropActive" href="#">Documentation</a></li>
+                </ul>
+            </div>
+            <div class="m_ai_shlash">/</div>
+            <div class="m_ai_httl">Intel® Integrated Performance Primitives</div>
+        </section>
+        <!---------------------------------------------------------------------------->
+
+        <!---------------------------------------------------------------------------->
+        <section class="k_framworkbg1" style="background-color: #00285A;">
+            <div class="k_container11 ">
+                <div class="row text-white text-center">
+                    <div class="col-sm-12">
+                        <p>&nbsp;</p>
+                        <h1>Intel® Integrated Performance Primitives</h1>
+                        <p class="mb-4">Production-ready building blocks for cross-platform performance. Develop high-performance vision, signal, security, and storage applications with this multithreaded software library.</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="k_scrollable-menu">
+                        <ul class="d-flex  k_textwhite mb-0 px-0 k_listnone gap-4">
+                            <li class=" p-2 k_active "><a href="#">Overview</a></li>
+                            <li class="p-2  k_a_whiteunder"><a href="#">Download</a></li>
+                            <li class="p-2  k_a_whiteunder"><a href="#">Documentation & Resources</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!---------------------------------------------------------------------------->
+
+        <!---------------------------------------------------------------------------->
+        <section>
+            <div class="k_container11">
+                <div class="row py-5">
+                    <div class="col-md-6 col-sm-12">
+                        <div class="row">
+                            <h2 class="fw-light">Multimedia and Data Processing Performance</h2>
+                            <p>Intel® Integrated Performance Primitives (Intel® IPP) is an extensive library of ready-to-use, domain-specific functions that are highly optimized for diverse Intel architectures. Its royalty-free APIs help developers:</p>
+                            <ul style="padding-left: 2rem;">
+                                <li>Take advantage of Single Instruction, Multiple Data (SIMD) instructions</li>
+                                <li>Improve the performance of computation-intensive applications, including signal processing, data compression, image processing, video processing, and computer vision.</li>
+                                <li>Reduce cost and time to market for software development and maintenance</li>
+                            </ul>
+                            <p><a class="b_special_a1" href="">Release Notes</a></p>
+                            <p>&nbsp;</p>
+                        </div>
+                        <div class="row">
+                            <h3 style="font-weight: 300;">What's New</h3>
+                            <p><b>Image Processing, Signal Processing, and Data Compression</b></p>
+                            <ul style="padding-left: 2rem;">
+                                <li>Boost your image processing applications with the Intel IPP in-place MulC function, multiplying pixel values by a constant. It now supports image sizes up to 512 megapixels for high-performance, low-memory overhead image scaling.</li>
+                                <li>Manipulate and align 32-bit floating point images faster on Intel® CPUs with AVX-512, using Warp Perspective functions with Nearest Interpolation, or OpenCV.</li>
+                                <li>Phase function for 16-bit-integer image/signal data receive a considerable performance boost on AVX2 and AVX512 capable CPUs.</li>
+                                <li>Optimize your 5G signal processing with the Intel IPP–enhanced Discrete Fourier Transform (DFT), specifically tuned for the critical demands of cellular systems.</li>
+                                <li>Intel® Control-Flow Enforcement Technology (Intel® CET) protection safeguards your software against control-flow attacks and mitigates exploitation risks. Safeguard your software with cutting-edge hardware-enforced security measures.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-12">
+                        <div class="row" style="row-gap: 1.5rem;">
+                            <div class="col-md-6 col-sm-12">
+                                <h5><b>Download as Part of the Toolkit</b></h5>
+                                <p>Intel IPP is included as part of the Intel® oneAPI Base Toolkit (Base Kit), which is a core set of tools and libraries for developing high-performance, data-centric applications across diverse architectures.</p>
+                                <p class="text-center k_btnlearn py-2  k_text m-auto k_under k_btn100"
+                                    style="float: inline-start; width: 123px; background-color: #0068B5;">
+                                    <a href="#" class="text-white">Get It Now</a>
+                                </p>
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                                <h5><b>Download the Stand-Alone Version</b></h5>
+                                <p>A stand-alone download of oneMKL is available. You can download binaries from Intel
+                                    or choose your preferred repository.</p>
+                                <p class="text-center k_btnlearn py-2  k_text m-auto k_under k_btn100"
+                                    style="float: inline-start; width: 123px; background-color: #0068B5;">
+                                    <a href="/rushita_Solutions/k_solutions_Intel-oneAPI-Math-Kernel-Library_Download.html" class="text-white">Download</a>
+                                </p>    
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!---------------------------------------------------------------------------->
+
+        <!---------------------------------------------------------------------------->
+        <section>
+            <div class="k_container11">
+                <div class="row" style="row-gap: 1.5rem;">
+                    <h1 class="fw-light">Features</h1>
+                    <p class="mb-0">&nbsp;</p>
+                    <div class="col-sm-6">
+                        <p><b>Optimized for Performance</b></p>
+                        <p>These software building blocks are highly optimized using Intel® Streaming SIMD Extensions 2, Intel® Advanced Vector Extensions 2 (Intel® AVX2), and Intel® Advanced Vector Extensions 512 (Intel® AVX-512) instruction sets.</p>
+                        <p>&nbsp;</p>
+                        <p><b>Plug In and Go</b></p>
+                        <p>With these ready-to-use, royalty-free functions, you will:</p>
+                        <ul style="padding-left: 1rem;"> 
+                            <li>Gain more time to develop new application features</li> 
+                            <li>Reduce development, debug, and maintenance time</li> 
+                            <li>Ensure the code you write today will run optimally on future generations of Intel processors</li> 
+                        </ul>
+                    </div>
+                    <div class="col-sm-6">
+                        <p><b>A Comprehensive Set of Primitives</b></p>
+                        <p>Access thousands of optimized functions covering frequently used fundamental algorithms, including those for creating:</p>
+                        <ul> 
+                            <li>Digital media</li> 
+                            <li>Enterprise data</li> 
+                            <li>Embedded communications</li> 
+                            <li>Scientific, technical, and security applications</li> 
+                        </ul>
+                        <p><br> The library includes more than 2,500 primitives for image processing, 1,300 for signal processing, and 500 for computer vision.</p>
+                        <p>Optimize for great CPU performance in current and future Intel platforms. With each instruction set upgrade, a new implementation layer is added. Previous implementations work as before, but functions that can benefit from new hardware capabilities are updated and validated before new architecture is released.</p>
+                        <p>Unlock increased performance that's delivered with new hardware. Start using new CPU capabilities right away instead of interrupting development cycles for additional optimizations. In most cases, the performance boost is automatic. For other cases, you only need to recompile.</p>
+                        <p>For complete information, see the <a class="b_special_a1" href="">release notes</a>.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!---------------------------------------------------------------------------->
+
+        <!---------------------------------------------------------------------------->
+        <section>
+            <div class="k_container11">
+                <div class="row" style="row-gap: 1.5rem;">
+                    <h1 class="fw-light">Domains and Workloads</h1>
+                    <div class="col-sm-6">
+                        <p><b>Signal Processing</b></p>
+                        <p>Enable information generation, transformation, and interpretation. Pull meaning from broad sources of data, helping modern communications that include:</p>
+                        <ul style="padding-left: 1rem; margin-bottom: 0px;"> 
+                            <li>Voice recognition</li> 
+                            <li>Biotechnology</li> 
+                            <li>Wearable technology</li> 
+                            <li>Hearing aids</li> 
+                            <li>Speech synthesis</li> 
+                        </ul>
+                        <p>Optimize commonly used signal-processing functions for a wide variety of Intel architectures, including:&nbsp;</p>
+                        <ul style="padding-left: 1rem; margin-bottom: 0px;"> 
+                            <li>Discrete Fourier transform (DFT)</li> 
+                            <li>Fast Fourier transforms (FFT)</li> 
+                            <li>Convolution</li> 
+                            <li>Filtering</li> 
+                            <li>Statistics</li> 
+                        </ul>
+                        <p>These signal-processing applications use Intel IPP:</p>
+                        <ul style="padding-left: 1rem; margin-bottom: 0px;"> 
+                            <li>Telecommunications</li> 
+                            <li>Energy</li> 
+                            <li>Ultrasound machines</li> 
+                            <li>Medical scanning</li> 
+                            <li>Record, enhance, and playback audio and non-audio signals</li> 
+                            <li>Echo cancellation: filter, equalize, and emphasis</li> 
+                            <li>Simulation of environment or acoustics</li> 
+                            <li>Games with sophisticated audio content or effect</li> 
+                            <li>Interfaces for voice-controlled personal assistants</li> 
+                        </ul>
+                    </div>
+                    <div class="col-sm-6">
+                        <p><b>Image Processing</b></p>
+                        <p>Take visual information and convert it into manageable, usable data for further analysis and decision-making. These image-processing applications use Intel IPP:</p>
+                        <ul style="padding-left: 1rem;"> 
+                            <li>Healthcare (medical imaging)</li> 
+                            <li>Computer vision</li> 
+                            <li>E-commerce (visual search)</li> 
+                            <li>Digital surveillance</li> 
+                            <li>Biometric identification</li> 
+                            <li>Factory machine vision</li> 
+                            <li>Advanced driver assistance systems (ADAS) for autonomous driving</li> 
+                            <li>Printing and printers</li> 
+                            <li>Image recognition and enhancement</li> 
+                            <li>Remote equipment operation</li> 
+                            <li>Gesture recognition</li> 
+                            <li>Illegal image recognition</li> 
+                            <li>Optical correction</li> 
+                        </ul>
+                        <p>&nbsp;</p>
+                        <p><b>Data Compression</b></p>
+                        <p>Reduce the number of bits needed to store or transmit data. Intel IPP highly optimizes these common compression standards:</p>
+                        <ul style="padding-left: 1rem; margin-bottom: 0rem;"> 
+                            <li>Lempel-Ziv-Storer-Szymanski (LZSS)</li> 
+                            <li>LZ77 (zlib)</li> 
+                            <li>Lempel-Ziv-Oberhumer (LZO)</li> 
+                            <li>Bzip2</li> 
+                            <li>LZ4</li> 
+                            <li>ZFP</li> 
+                        </ul>
+                        <p>Achieve significant performance gains with plug and play functions on applications such as these:</p>
+                        <ul style="padding-left: 1rem;"> 
+                            <li>Internet portal data center</li> 
+                            <li>Data storage centers</li> 
+                            <li>Databases</li> 
+                            <li>Enterprise data management</li> 
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!---------------------------------------------------------------------------->
+
+        <!---------------------------------------------------------------------------->
+        <section style="padding: 3rem 0rem 3rem;">
+            <div class="k_container11">
+                <h1 style="font-weight: 300;">Benchmarks</h1>
+                <p>These benchmarks illustrate the performance capabilities of Intel IPP.</p>
+            </div>
+        </section>
+        <!---------------------------------------------------------------------------->
+
+        <!---------------------------------------------------------------------------->
+        <section>
+            <div class="k_container11">
+                <div class="row justify-content-center">
+                    <div class="col-8">
+                        <div class="owl-carousel owl-theme">
+                            <div class="item">
+                                <img class="w-100" src="/img/darshit_image/ipp-bench-fir-speed-xeon-16x9_1920-1080.webp" alt="">
+                            </div>
+                            <div class="item">
+                                <img class="w-100" src="/img/darshit_image/ipp-bench-linear-cubic-lanczos-xeon-16x9_1920-1080.webp" alt="">
+                            </div>
+                            <div class="item">
+                                <img class="w-100" src="/img/darshit_image/ipp-bench-linear-cubic-lanczos-atom-16x9_1920-1080.webp" alt="">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!---------------------------------------------------------------------------->
+
+        <!---------------------------------------------------------------------------->
+        <section>
+            <div class="k_container11 py-5">
+                <p>&nbsp;</p>
+                <div class="row justify-content-center">
+                    <div class="col-8">
+                        <div class="owl-carousel owl-theme">
+                            <div class="item">
+                                <img class="w-100" src="/img/darshit_image/diagram-oneapi-ipp-xeon-pcores-chart-1-rwd_1920-1080.webp" alt="">
+                            </div>
+                            <div class="item">
+                                <img class="w-100" src="/img/darshit_image/diagram-oneapi-ipp-core-ultra-chart-2-rwd_1920-1080.webp" alt="">
+                            </div>
+                            <div class="item">
+                                <img class="w-100" src="/img/darshit_image/diagram-ipp-bench-vs-original-libraries-xeon-rwd_1920-1080.webp" alt="">
+                            </div>
+                            <div class="item">
+                                <img class="w-100" src="/img/darshit_image/ipp-bench-vs-zfp-library-xeon-16x9_1920-1080.webp" alt="">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!---------------------------------------------------------------------------->
+
+        <!---------------------------------------------------------------------------->
+        <section class="my-5">
+            <div class="k_container11">
+                <h2 class="fw-light">Documentation</h2>
+                <p class="mb-0">&nbsp;</p>
+                <div class="row" style="row-gap: 1.5rem;">
+                    <div class="col-sm-6">
+                        <p><b>Documentation</b></p> 
+                        <ul> 
+                            <li style="margin-left: 40.0px;">Get Started Guides: <a class="b_special_a1" href="">Windows*</a> | <a class="b_special_a1" href="">Linux*</a></li> 
+                            <li style="margin-left: 40.0px;"><a class="b_special_a1" href="">Developer Reference</a></li> 
+                            <li style="margin-left: 40.0px;"><a class="b_special_a1" href="">Developer Guide</a><br> &nbsp;</li> 
+                        </ul>
+                        <p><a class="b_special_a1" href="">View All Documentation</a></p>
+                    </div>
+                    <div class="col-sm-6">
+                        <p><b>Other Development Environments</b></p>
+                        <ul> 
+                            <li><a class="b_special_a1" href="">Compile and Link Intel IPP with the Microsoft Visual C++* and Intel® C++ Compiler</a></li> 
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!---------------------------------------------------------------------------->
+        
+ 
+        <!---------------------------------------------------------------------------->
+        <section>
+            <div class="k_container11">
+                <h2 class="fw-light mb-4">Code Samples</h2>
+                <p>Demonstrations of important features in this release are located in <b>[install-dir]/ipp/latest/share/doc/ipp</b>.&nbsp;Refer to the Developer Guide topic <a class="b_special_a1" href="">Using Intel IPP Examples</a>.</p>
+                <p class="mb-0">&nbsp;</p>
+                <p class="mb-0">&nbsp;</p>
+                <table class="mv_product_table mb-4" style="width: 100% !important;">
+                    <thead>
+                        <tr>
+                            <th><b>Sample</b></th>
+                            <th><p><b>Description</b></p></th>
+                        </tr>   
+                    </thead>
+                    <tbody>
+                        <tr class="data" data-category-id="">
+                            <td>Multithread Image Resize</td>
+                            <td><p>Learn how to use the <b>ippiResize</b> functionality in single and multithread modes.</p>
+                                <p>Use the <b>parallel_for loop</b> functionality for external multithreading. The multithreading mode works if the project is built with Intel® oneAPI Threading Building Blocks (oneTBB) support.</p>
+                            </td>
+                        </tr>
+                        <tr class="data" data-category-id="">
+                            <td>Image Linear Transform (<span style="font-weight: 700;">ipp_fft</span>)<br></td>
+                            <td><p>This example shows how to use two image linear transforms:</p>
+                                <ul>
+                                    <li>Fourier transforms (fast and discrete)</li>
+                                    <li>Discrete cosine transform (DCT)</li>
+                                </ul>
+                            </td>
+                        </tr>
+                        <tr class="data" data-category-id="">
+                            <td>External Threading Example (<span style="font-weight: 700;">ipp_thread</span>)</td>
+                            <td>Learn about threading for an image harmonization filter. Since internal threading is deprecated, it is important to know how to externally thread a generic Intel IPP function.<br></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+        <!---------------------------------------------------------------------------->
+
+         <!---------------------------------------------------------------------------->
+         <section class="my-5">
+            <div class="k_container11">
+                <h2 class="fw-light">Training Resources</h2>
+                <p class="mb-0">&nbsp;</p>
+                <div class="row" style="row-gap: 1.5rem;">
+                    <div class="col-sm-6">
+                        <p><b>Understanding Intel IPP</b></p>
+                        <ul> 
+                            <li><a class="b_special_a1" href="">Drive Multimedia and Data-Processing Performance with Multidomain Primitives</a></li> 
+                            <li><a class="b_special_a1" href="">Linkage Models</a></li> 
+                            <li><a class="b_special_a1" href="">CPU Dispatching</a><br> &nbsp;</li> 
+                        </ul>
+                        <p><b>Data Compression</b></p>
+                        <ul> 
+                            <li><a class="b_special_a1" href="">Accelerated LZ4 with Intel IPP</a></li> 
+                            <li><a class="b_special_a1" href="">Parallel Compression and Decompression with ZFP</a><br> <br> </li> 
+                        </ul>
+                    </div>
+                    <div class="col-sm-6">
+                        <p><b>Image Processing</b></p>
+                        <ul> 
+                            <li><a class="b_special_a1" href="">Processing an Image from Edge to Edge</a></li> 
+                            <li><a class="b_special_a1" href="">Interpolation Based on Lanczos3</a><br> &nbsp;</li> 
+                        </ul>
+                        <p><b>Signal Processing</b></p>
+                        <ul> 
+                            <li><a class="b_special_a1" href="">How to Use 1D Fourier Transform Functions</a></li> 
+                            <li><a class="b_special_a1" href="">How to Boost 5G</a></li> 
+                        </ul>
+                    </div>
+                    <p style="text-align: center;"><a class="b_special_a1" href="">🗗 Training &amp; Events Calendar</a></p>
+                </div>
+            </div>
+        </section>
+        <!---------------------------------------------------------------------------->
+
+        <!---------------------------------------------------------------------------->
+         <section class="my-5">
+            <div class="k_container11">
+                <h2 class="fw-light">Case Studies</h2>
+                <p class="mb-0">&nbsp;</p>
+                <ul> 
+                    <li><a class="b_special_a1" href="">Accelerate the XtalPi Drug Discovery Application with Intel® Toolkits</a></li> 
+                    <li><a class="b_special_a1" href="">Meituan* Case Study: 4th Gen Intel® Xeon® Scalable Processors Help Meituan Accelerate Vision AI Inference Services and Optimize Costs</a></li> 
+                </ul>
+            </div>
+        </section>
+        <!---------------------------------------------------------------------------->
+
+        <!---------------------------------------------------------------------------->
+        <section class="my-5">
+            <div class="k_container11">
+                <h2 class="fw-light">Testimonials</h2>
+                <p class="mb-0">&nbsp;</p>
+                <div class="row" style="row-gap: 1.5rem;">
+                    <div class="col-lg-4 col-sm-6">
+                        <img class="w-100" src="/img/darshit_image/hisense-medical-logo-rwd_1920-1080.webp" alt="">
+                        <p><b>Hisense* Adopts the Base Kit to Develop Its New Ultrasound Imaging Application</b></p>
+                        <p>The Hisense* new ultrasound imaging platform consists of GPUs and CPUs in its computing architecture for ultrasound desktop and portable devices. They not only migrated key CUDA* kernel functions to SYCL* to run on current and future generations of Intel CPUs using the Intel® DPC++ Compatibility Tool, but also simplified programming for their cross-architecture systems. Using Intel® oneAPI Base Toolkit components including the Intel® oneAPI DPC++/C++ Compiler, Intel IPP, Intel® oneAPI Math Kernel Library (oneMKL), and oneTBB has helped in reducing the total post-processing time in the ultrasonic system for signals and images. Intel® toolkits help them simplify their development efforts and deliver better products to their end users.</p>
+                    </div>
+                    <div class="col-lg-4 col-sm-6">
+                        <img class="w-100" src="/img/darshit_image/logo-john-hopkins-medicine-rwd_1920-1080.webp" alt="">
+                        <p><b>Johns Hopkins University School of Medicine</b></p>
+                        <p>Optimization of processing and analysis of fMRI data as shown will help not only with operational efficiency for clinical fMRI but for large-scale research projects, which would benefit significantly from such speed increases while potentially reducing cloud deployment cost by approximately 25%. These optimizations were achieved by using Intel® C++ Compiler Classic, oneMKL, Intel® Performance Primitives library, and Intel® VTune™ Profiler.</p>
+                    </div>
+                    <div class="col-lg-4 col-sm-6">
+                        <img class="w-100" src="/img/darshit_image/logo-meituan-rwd_1920-1080.webp" alt="">
+                        <p><b>Meituan*</b></p>
+                        <p>"Intel toolkits helped increase our end-to-end application processing performance on Intel® Xeon® platforms. By using oneAPI technology including Intel IPP, which is a set of high-performance software library combined with hardware deep optimization providing a large number of signal processing, image processing and other functions, we were able to significantly improve our image-processing code performance by 2.7x in image rotation, and 4x in image resize. This allows us to analyze larger image datasets, and builds the cutting-edge visual AI Inference solution for our end customers."</p>
+                    </div>  
+                </div>
+            </div>
+        </section>
+        <!---------------------------------------------------------------------------->
+
+        <!---------------------------------------------------------------------------->
+        <section class="my-3">
+            <div class="k_container11">
+                <h1 class="fw-light">Specifications</h1>
+                <p class="mb-0">&nbsp;</p>
+                <div class="row" style="row-gap: 1.5rem;">
+                    <div class="col-sm-3">
+                        <p><b>Processors:</b></p>
+                        <ul>
+                            <li>Intel® Core™ processors </li>
+                            <li>Intel® Xeon® processors </li>
+                            <li>Intel Atom® processors </li>
+                        </ul>
+                        <p><b>Languages:</b></p>
+                        <ul>
+                            <li>Built-in support for C and C++ </li>
+                        </ul>
+                    </div>
+                    <div class="col-sm-3">
+                        <p><b>Operating systems:</b></p>
+                        <ul>
+                            <li>Windows </li>
+                            <li>Linux </li>
+                        </ul>
+                    </div>
+                    <div class="col-sm-3">
+                        <p><b>Development environments:</b></p>
+                        <ul>
+                            <li>Compatible with compilers from vendors that follow platform standards, such as Microsoft*, GNU Compiler Collection (GCC)*, and Intel</li>
+                            <li>Can be integrated with Microsoft Visual Studio*</li>
+                        </ul>
+                    </div>
+                    <div class="col-sm-3">
+                        <p><b>License:</b></p>
+                        <p><a class="b_special_a1" href="">End User License Agreement (EULA)</a><br>
+                            <b>Note </b>Your installed software development products may use a prior version of the EULA.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!---------------------------------------------------------------------------->
+
+        <!---------------------------------------------------------------------------->
+        <section class="my-5">
+            <div class="k_container11">
+                <h1 class="fw-light">Get Help</h1>
+                <p>Your success is our success. Access these support resources when you need assistance.</p>
+                <ul> 
+                    <li><a class="b_special_a1" href="">Intel IPP Support Forum</a></li> 
+                    <li><a class="b_special_a1" href="">Intel Priority Support</a></li> 
+                </ul>
+            </div>
+        </section>
+        <!---------------------------------------------------------------------------->
+
+
+    <div id="footer"></div>
+    <script>
+        const playButton = document.querySelector('.play-button');
+        const video = document.getElementById('myVideo');
+        const thumbnail = document.querySelector('.thumbnail');
+
+        playButton.addEventListener('click', function () {
+            thumbnail.style.display = 'none';
+            playButton.style.display = 'none';
+            video.style.display = 'block';
+            video.play();
+        });
+
+        video.addEventListener('pause', function () {
+            if (video.currentTime === 0 || video.ended) {
+                video.style.display = 'none';
+                thumbnail.style.display = 'block';
+                playButton.style.display = 'block';
+            }
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const tabs = document.querySelectorAll('.k_custom-tab');
+            const tabContents = document.querySelectorAll('.k_custom-tab-content');
+
+            tabs.forEach(tab => {
+                tab.addEventListener('click', function () {
+                    // Remove active class from all tabs and tab contents
+                    tabs.forEach(t => t.classList.remove('active'));
+                    tabContents.forEach(content => content.classList.remove('active'));
+
+                    // Add active class to clicked tab
+                    this.classList.add('active');
+
+                    // Show corresponding tab content
+                    const targetId = this.getAttribute('data-target');
+                    const targetContent = document.getElementById(targetId);
+                    if (targetContent) {
+                        targetContent.classList.add('active');
+                    }
+                });
+            });
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const tabLinks = document.querySelectorAll('.k_tab-container ul li a');
+            const tabContents = document.querySelectorAll('.k_custom-tab-content');
+
+            function setActiveTab(tabId) {
+                tabContents.forEach(content => {
+                    content.classList.remove('active');
+                });
+                tabLinks.forEach(link => {
+                    link.classList.remove('active');
+                });
+
+                document.getElementById(tabId).classList.add('active');
+                document.querySelector(`[data-tab="${tabId}"]`).classList.add('active');
+            }
+
+            tabLinks.forEach(link => {
+                link.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const tabId = this.getAttribute('data-tab');
+                    setActiveTab(tabId);
+                });
+            });
+
+            setActiveTab('gaming');
+        });
+    </script>
+    <script>
+        // navbar include  
+        fetch('/y_index/y_navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar').innerHTML = data;
+            });
+        // footer include 
+        fetch('/y_index/y_footer.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('footer').innerHTML = data;
+            });
+    </script>
+    <script>
+        var modal = document.getElementById("myModal");
+        var modalImg = document.getElementById("img01");
+        var captionText = document.getElementById("caption");
+        var images = document.getElementsByClassName("myImg");
+        var icons = document.getElementsByClassName("openModal");
+
+        function openModal() {
+            var img = this.previousElementSibling || this;
+            modal.style.display = "block";
+            modalImg.src = img.src;
+            captionText.innerHTML = img.alt;
+        }
+
+        for (var i = 0; i < images.length; i++) {
+            images[i].onclick = openModal;
+            icons[i].onclick = openModal;
+        }
+
+        var span = document.getElementsByClassName("close")[0];
+        span.onclick = function () {
+            modal.style.display = "none";
+        }
+
+        window.onclick = function (event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    </script>
+    <script src="/js/jquery-3.7.1.js"></script>
+    <script src="/js/owl.carousel.min.js"></script>
+    <script src="/js/rushita.js"></script>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+
+    <script>
+        $('.owl-carousel').owlCarousel({
+            loop:true,
+            margin:10,
+            dots:true,
+            responsiveClass:true,
+            responsive:{
+                0:{
+                    items:1,
+                    nav:true
+                },
+                600:{
+                    items:1,
+                    nav:false
+                },
+                1000:{
+                    items:1,
+                    nav:true,
+                    loop:false
+                }
+            }
+        })
+    </script>
+
+
+</body>
+
+</html>
