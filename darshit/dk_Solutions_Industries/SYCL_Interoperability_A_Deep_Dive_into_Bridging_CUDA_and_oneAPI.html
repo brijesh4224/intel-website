@@ -1,0 +1,2217 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SYCL Interoperability: A Deep Dive into Bridging CUDA and oneAPI</title>
+
+    <link rel="stylesheet" href="/css/dk_ipus_improve_network_latency_in_microservices_based_applications.css">
+    <link rel="stylesheet" href="/css/mv_ai_software_solution_leveraging_open_source_ai_technologies.css">
+    <link rel="stylesheet" href="/css/dk_developer_edge_iot_5G_industrial_automation_see_all_wireless_network_ready_printed_circuit_board_(PCB)_defect_detection.css">
+    <link rel="stylesheet" href="/css/rushita_automotive.css">
+
+    <!-- header footer -->
+    <link rel="stylesheet" href='/css/yatri.css'>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" rel="stylesheet">
+</head>
+<style>
+    nav {
+        position: relative !important;
+    }
+
+    .dk_disclaimer {
+        font-size: .75rem;
+        font-weight: 400;
+        margin-top: .5rem;
+    }
+
+    .dk_things_code {
+        padding: 1rem 1rem 0rem 0.5rem !important;
+    }
+
+    .mv_discover_more_padd {
+        background-color: #ffff;
+    }
+    .mv_intel_amx_bg_color{
+        background-color: #00285a !important;
+    }
+    .dk_color1{
+        color: #069 !important;
+    }
+    .dk_color2{
+        color: #008200 !important;
+    }
+    .dk_color3{
+        color: #b24501 !important;
+    }
+    .mv_code_toolbar {
+        padding: 0rem;
+        margin-top: 15px;
+        margin-bottom: 10px;
+    }
+    .dk_greyHighlight{
+        word-wrap: break-word;
+        background-color: #e6e6e6;
+        padding: 20px;
+    }
+    .dk_steve{
+        display: flex;
+    }
+    .dk_steve img{
+        max-width: fit-content;
+        border-radius: 50%;
+        height: 6rem;
+        width: 6rem;
+        object-fit: cover;
+    }
+    @media (max-width:1200px){
+        .mv_product_table{
+            width: 100% !important;
+        }
+        .dk_intel_openap_img{
+            width: 100% !important;
+        }
+    }
+</style>
+
+<body>
+
+    <!-- header -->
+    <div id="navbar"></div>
+
+<!------------------------------------------------------------------------------->
+    <section class="m_ai_tdrop">
+        <div>
+            <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Developers
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item m_dropActive" href="/dhruvin_developer-tools/ds_Developer-Zone.html">Overview</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/rushita_Solutions/k_solutions_in_Viewall_SDF_Industrial-Automation_Control-flow-Enforcement_Technology.html">Topics & Technologies</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/dhruvin_developer-tools/ds_Development-Tools.html">Tools</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/rushita_Solutions/k_solutions_in_Viewall_SDF_Industrial-Automation_Hardware-Platforms.html">Hardware Platforms</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/dhruvin_developer-tools/ds_Resource-Documentation-Center.html">Resources & Documentation</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/dhruvin_developer-tools/ds_Learn.html">Learn</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/dhruvin_developer-tools/ds_Communities-and-Events.html">Community & Events</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/dhruvin_developer-tools/ds_Developer-Programs.html">Developer Programs</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/dhruvin_developer-tools/ds_Get-Help.html">Get Help</a></li>
+            </ul>
+        </div>
+        <div class="m_ai_shlash">/</div>
+        <div>
+            <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Tools
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item m_dropActive" href="/Product/B20_developer_catelog.html">Software Catalog</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/Product/B17_oneapi.html">oneAPI</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/rushita_Solutions/k_solutions_Intel-Tiber™Edge-Platform.html">Intel® Tiber™ Edge Platform</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/Product/B10_intel_Quarts.html">FPGA</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/VK_developers/VK_technology_sdk.html">Intel® Active Management Technology SDK</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/VK_developers/VK_intel_adviser.html">Intel® Advisor</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® AI Reference Models</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/rushita_Solutions/k_solutions_Intel-Collaboration-Suite-for-WebRTC.html">Intel® Collaboration Suite for WebRTC SDK</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/Product/B1_19_Intel_AICloud.html">Intel® Tiber™ AI Cloud</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/rushita_Solutions/k_solutions_Intel-Distribution-for-Python.html">Intel® Distribution for Python*</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/rushita_Solutions/k_solutions_Intel-Distribution-for-GDB.html">Intel® Distribution for GDB*</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/rushita_Solutions/k_solutions_Intel-DPC++Compatibility-Tool.html">Intel® DPC++ Compatibility Tool</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/rushita_Solutions/k_solutions_Intel-Dynamic-Application-Loader.html">Intel® Dynamic Application Loader</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/rushita_Solutions/k_solutions_Topics_viewall_Cloud-Insider-Program_AI-Frameworks-and-Tools.html">Frameworks</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Embree</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/VK_developers/VK_ai_scikit.html">Intel® Extension for Scikit-learn*</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/rushita_Solutions/k_solutions_Intel-Fortran-Compiler.html">Intel® Fortran Compiler</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/rushita_Solutions/k_solutions_cs_creaters_intel_gpa.html">Intel® Graphics Performance Analyzers</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/rushita_Solutions/k_solutions_Intel-HE-Toolkit.html">Intel® Homomorphic Encryption Toolkit</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/rushita_Solutions/k_solutions_Intel-In-Band-Manageability.html">Intel® In-Band Manageability</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Integrated Performance Primitives</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/rushita_Solutions/k_solutions_Intel-ISIM.html">Intel® Integrated Simulation Infrastructure with Modeling</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/rushita_Solutions/k_solutions_Instruction-Set-Architecture(ISA)Extensions.html">Instruction Set Architecture (ISA) Extensions</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/rushita_Solutions/k_solutions_Intel-Intelligent-Storage-Acceleration-Library.html">Intel® Intelligent Storage Acceleration Library (Intel® ISA-L)</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/VK_developers/VK_ai_modin.html">Modin*</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/rushita_Solutions/k_solutions_Intel-MPI-Library.html">Intel® MPI Library</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Neural Compressor</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/rushita_Solutions/">OpenCL™ Runtime</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/rushita_Solutions/">Intel® Open Image Denoise</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Open Path Guiding Library (Intel® Open PGL)</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/rushita_Solutions/k_solutions_Pin.html">Pin</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/rushita_Solutions/k_solutions_Pin_Intel-Platform-Analysis-Library.html">Intel® Platform Analysis Library</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel Tools for OpenCL™ Software</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel Tools for OpenCL™ Applications</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® OpenSWR</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">OpenVINO™ Toolkit</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Open Volume Kernel Library</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Optimization for XGBoost*</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® OSPRay</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® OSPRay for Hydra*</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® OSPRay Studio</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">PyTorch* Optimizations from Intel</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">TensorFlow* Optimizations from Intel</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Rendering Toolkit</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Smart Edge Open</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/rushita_Solutions/">Intel® Software Guard Extensions</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Secure Device Onboard</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Software Development Emulator</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/rushita_Solutions/Trust-Domain">Intel® Trust Domain Extensions (Intel® TDX)</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Quantum SDK</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Query Processing Library (Intel® QPL)</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Intel® Video Processing Library</a></li>
+                <li><a class="dropdown-item m_dropActive" href="/VK_developers/VK_vtune_profiler.html">Intel® VTune™ Profiler</a></li>
+                <li><a class="dropdown-item m_dropActive" href="#">Resellers</a></li>
+            </ul>
+        </div>
+        <div class="m_ai_shlash">/</div>
+        <div>
+            <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                oneAPI
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item m_dropActive" href="">Overview</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Data Parallel C++/SYCL*</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Toolkits</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Tech Articles & How-Tos</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Components</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Code Samples</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Training</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Documentation</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Support</a></li>
+            </ul>
+        </div>
+        <div class="m_ai_shlash">/</div>
+        <div>
+            <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Tech Articles & How-Tos
+
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item m_dropActive" href="">Library</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">News Updates</a></li>
+                <li><a class="dropdown-item m_dropActive" href="">Webinars</a></li>
+            </ul>
+        </div>
+        <div class="m_ai_shlash">/</div>
+        <div class="m_ai_httl">SYCL Interoperability: Bridging CUDA oneAPI</div>
+    </section>
+<!------------------------------------------------------------------------------->
+
+    <!-- Optimize Fine-Tuning and Deployment of LLMs on an AI PC -->
+    <section>
+        <div style="background-color: #0068b5; color: #fff; padding: 1.5rem;">
+            <div class="container">
+                <h1 class="h2" style="font-weight: 300; padding-bottom: 1rem;">SYCL* Interoperability: A Deep Dive into Bridging CUDA* and oneAPI</h1>
+            </div>
+        </div>
+    </section>
+
+    <section class="container py-5">
+        <div class="row">
+            <div class="d-flex justify-content-end col-xl-10 py-3 d-md-none">
+                <i class="fa-solid fa-print fs-4 px-2 " style="color:#0068B5"></i>
+                <i class="fa-regular fa-envelope fs-4 px-2" style="color:#0068B5"></i>
+            </div>
+            <div class="col-lg-3 col-md-4">
+                <div class="VK_sticky_side_bar VK_side_bar_postion_stickey">
+                    <div>
+                        <div class="VK_sidebar_dropdown">
+                            <p class="m-0">
+                                <a href="#dk_challenge" class="text-decoration-none VK_a">
+                                    Challenge: Non-Migrated CUDA APIs
+                                </a>
+                            </p>
+                            <p class="m-0">
+                                <a href="#dk_interoperability" class="text-decoration-none VK_a">
+                                    Interoperability: Call CUDA APIs from within SYCL
+                                </a>
+                            </p>
+                            <p class="m-0">
+                                <a href="#dk_sycl_action" class="text-decoration-none VK_a">
+                                    SYCL Interoperability in Action
+                                </a>
+                            </p>
+                            <p class="m-0">
+                                <a href="#dk_full_cuda" class="text-decoration-none VK_a">
+                                    Full CUDA Functionality via SYCL
+                                </a>
+                            </p>
+                            <p class="m-0">
+                                <a href="#dk_additional_res" class="text-decoration-none VK_a">
+                                    Additional Resources
+                                </a>
+                            </p>
+                            <p class="m-0">
+                                <a href="#dk_get_software" class="text-decoration-none VK_a">
+                                    Get the Software
+                                </a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <!-------------------------------------------- -->
+                <div class="dk_things_code_main">
+                    <div class="dk_things_code">
+                        <p><a class="b_special_a2" href="">Srihari Karnam</a><b>,&nbsp;</b>Software Enabling and Optimization Architect,&nbsp;Intel Corporation</p>
+                        <p><a class="b_special_a2" href="">Robert Mueller-Albrecht</a>, Product Marketing Engineer,&nbsp;Intel Corporation</p>
+                        <p>&nbsp;</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-9 col-md-8">
+                <div class="d-md-flex justify-content-end col-xl-10 py-3 d-none">
+                    <i class="fa-solid fa-print fs-4 px-2 " style="color:#0068B5"></i>
+                    <i class="fa-regular fa-envelope fs-4 px-2" style="color:#0068B5"></i>      
+                </div>
+                <div class="col-xl-10 VK_all_sections">
+                    <p>&nbsp;</p>
+                    <p class="mb-0">&nbsp;</p>
+                    <p style="text-align:justify">Using the <a href="/content/www/us/en/developer/tools/oneapi/dpc-compatibility-tool.html">Intel® DPC++ Compatibility Tool</a> or<a href="https://github.com/oneapi-src/SYCLomatic"> SYCLomatic</a> to migrate CUDA* code to C++ with SYCL* frequently gets you pretty far in the journey towards freeing your existing CUDA-based accelerated compute workload from vendor-lock so it can be executed on a wide range of multiarchitecture platforms.</p>
+                    <p style="text-align:justify">Nevertheless, running the migration tool is only the first major step when porting your codebase. &nbsp;Usually, a few challenges remain to be resolved after the initial migration. &nbsp;The developer often needs to identify and apply workarounds after running the SYCLomatic to address warnings and errors encountered during and post-migration.</p>
+                    <p style="text-align:justify">The different API architecture between CUDA and SYCL could also cause performance impacts on parts of the workload that we will want to understand and resolve.</p>
+                    <p style="text-align:justify">The main objective of moving from CUDA to SYCL is software portability across different platform configurations. One of the goals also has to be performance portability. Ensuring performance portability thus becomes a key aspect of completing the migration. &nbsp;&nbsp;</p>
+                    <p style="text-align:justify">However, for some CUDA APIs, there may not be an immediately obvious direct match to the SYCL API and the associated oneAPI ecosystem library solutions.</p>
+                    <p style="text-align:justify"><strong>Imagine a mechanism that functions as a translator between SYCL and a vendor-specific backend. </strong></p>
+                    <p style="text-align:justify">In this blog, we will dive a bit deeper into how SYCL Interoperability enables such a translation layer and will discuss how the oneAPI ecosystem is ready to bridge the gaps between varying APIs, making software migration even more seamless.</p>
+                    <p style="text-align:center"><img class="w-100" src="/img/darshit_image/adobestock-305451243.jpeg"></p>
+                    <p>&nbsp;</p>
+
+                    <section id="dk_challenge">
+                        <h3 style="font-weight: 300;">Challenge: Non-Migrated CUDA APIs</h3>
+                        <p style="text-align:justify">One of the most common and complex challenges is identifying workarounds for unmigrated CUDA APIs, which often require redesigning/rewriting an alternate logic that respects the differences of features supported by SYCL vs. CUDA to proceed with compilation and validation.</p>
+                        <p style="text-align:justify">However, transitioning from an established CUDA environment to the new, rapidly evolving oneAPI ecosystem with workarounds often brings up daunting nuances in performance, coding semantics, and paradigms of the two ecosystems. Especially when overcoming the hard gaps between the functional offerings of CUDA and oneAPI ecosystems.</p>
+                        <p style="text-align:justify">One such scenario is migrating CUDA applications that use cuSparse APIs, for which there are no exact equivalent alternative SYCL APIs available to run on a Nvidia platform yet.</p>
+                        <p style="text-align:justify"><strong>This is no longer a barrier to migration because of the interoperability feature offered by SYCL.</strong></p>
+                        <p>&nbsp;</p>
+                    </section>
+
+                    <section id="dk_interoperability">
+                        <h3 style="font-weight: 300;">Interoperability: Call CUDA APIs from within SYCL</h3>
+                        <p style="text-align:justify">In collaboration with the SYCL working group and with contributions from companies like Codeplay, Intel has been instrumental in enhancing SYCL's specifications. One of the standout features is its emphasis on vendor-independence.</p>
+                        <p style="text-align:justify">This has paved the way for SYCL to introduce the interoperability feature that allows for direct invocation of CUDA APIs from within the SYCL code. This is not just a theoretical concept; it's a practical, mature solution used in oneAPI libraries like oneMKL and oneDNN to support Nvidia and AMD platforms.</p>
+                        <p style="text-align:justify">It is also revolutionary from the performance standpoint, as developers can now harness CUDA's established functionalities from within the oneAPI framework without degradation in performance. The heavy lifting, intricate translations, and adjustments are all adeptly managed by the LLVM-based <a class="b_special_a1" href="">Intel® oneAPI DPC++/C++ Compiler</a> in the background.</p>
+                        <p style="text-align:justify">SYCL runtime classes can encapsulate an object unique to a hardware vendor’s SYCL backend. &nbsp;The hardware-specific backend underpins the functionality of that class and provides an interface between the SYCL runtime object and the native backend object (CUDA/HIP). It enables interoperability between SYCL and the associated SYCL backend API from within an application.</p>
+                        <p style="text-align:justify">Thus, SYCL interoperability provides a mechanism that functions as a translator between SYCL and a backend (such as CUDA) by allowing the users to access and manipulate the underlying backends’ objects through SYCL objects (queue, device, context, memory, etc.) and to execute native backend APIs (runtime, driver, and library) on the associated platform (such as Nvidia, AMD, etc.).</p>
+                        <p>&nbsp;</p>
+                    </section>
+
+                    <section id="dk_sycl_action">
+                        <h3 style="font-weight: 300;">SYCL Interoperability in Action</h3>
+                        <p style="text-align:justify">SYCL interoperability provides a set of <strong>get_native</strong> free functions to derive native backend objects for all the SYCL objects (context, device, memory, queue, etc.).</p>
+                        <p style="text-align:justify">In addition, backend specific operations can also be performed from inside a SYCL task graph using SYCL <strong>host_task</strong> and <strong>interop_handle</strong> classes. These provide access to the underlying native objects for the platform/device. <strong>host_task</strong> execution will be scheduled by the SYCL runtime.</p>
+                        <p class="mb-0">Using SYCL interoperability in any existing partially migrated SYCL application is quite simple and straightforward.</p>
+                        <ol>
+                            <li style="text-align:justify">List all the parameters for the non-migrated CUDA APIs.</li>
+                            <li style="text-align:justify">Use CUDA equivalents directly instead of any partially migrated pass-by-value parameters (like enums) that SYCLomatic might have created.</li>
+                            <li style="text-align:justify">For the other parameters holding device memory, use <strong>get_native</strong> functions or <strong>interop_handle</strong> to get the native CUDA objects for memory space managed by SYCL.</li>
+                        </ol>
+                        <p>Below is a small code snippet illustrating the use of SYCL interoperability with the migration of a simple CUDA application (full source code <a class="b_special_a1" href="">available here</a>) that does matrix vector multiplication using cuSparse APIs, for which there are no equivalent oneAPI library APIs that support CUDA backend yet.</p>
+                        <p><strong>spMV.cu</strong></p>
+                        <p>&nbsp;</p>
+                         <!-- code toolbar 3 -->
+                         <div class="mv_code_toolbar">
+                            <div class="mv_toolbar_item mv_copy_icon">
+                                <i class="fa-regular fa-copy"></i>
+                            </div>
+                            <div class="mv_copy_message text-end hidden">Copied</div>
+                            <div class="code-content">
+                                <div style="padding-bottom: 0rem !important" class="d-flex mv_pre">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        01
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0"><span class="dk_color1">#include</span>  <span style="color: blue;"><span><</span>iostream></span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        02
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0"><span class="dk_color1">#include</span>  <span style="color: blue;"><span><</span>cuda_runtime.h></span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        03
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0"><span class="dk_color1">#include</span>  <span style="color: blue;"><span><</span>cusparse.h></span></p>
+                                        </div> 
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        04
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp;</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        05
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0"><span class="dk_color1">int</span> main() {</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        06
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp;</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        07 
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp; &nbsp; &nbsp;  <span class="dk_color2">// Initialize cuSPARSE library</span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        08
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp; &nbsp; &nbsp; . . .</span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        09
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp;</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        10
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp; &nbsp; &nbsp; <span class="dk_color2">// Memory management</span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        11
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp; &nbsp; &nbsp; . . .</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        12
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp; &nbsp; &nbsp; <span class="dk_color2">// Create matrix and vector descriptors</span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        13
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="dk_color1">DO</span> j <span class="dk_color3">=</span> <span class="dk_color1">1</span> , bi</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        14
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp; &nbsp; &nbsp; cusparseCreateCsr(<span class="dk_color3">&</span> matA, <span class="dk_color1">3</span> , <span class="dk_color1">3</span> , <span class="dk_color1">4</span>, d_csrRowPtr, d_csrColInd, d_csrVal, CUSPARSE_INDEX_32I, CUSPARSE_INDEX_32I, CUSPARSE_INDEX_BASE_ZERO, CUDA_R_32F);</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        15
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp; &nbsp; &nbsp; cusparseCreateDnVec(<span class="dk_color3">&</span> vecX, <span class="dk_color1">3</span> , d_x, CUDA_R_32F);</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        16
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp; &nbsp; &nbsp; cusparseCreateDnVec(<span class="dk_color3">&</span> vecY, <span class="dk_color1">3</span> , d_y, CUDA_R_32F);</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        17
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp;</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        18
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp; &nbsp; &nbsp; <span class="dk_color1">float</span> alpha <span class="dk_color3">=</span> <span class="dk_color1">1.0f;</span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        19
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp; &nbsp; &nbsp; <span class="dk_color1">float</span> beta <span class="dk_color3">=</span> <span class="dk_color1">0.0f;</span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        20
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp;</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        21
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp; &nbsp; &nbsp; <span class="dk_color2">// Buffer creation and allocation</span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        22
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp; &nbsp; &nbsp; . . .</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        23
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp;</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        24
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp; &nbsp; &nbsp; <span class="dk_color2">// Perform matrix-vector multiplication: y = A*x</span> </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        25
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp; &nbsp; &nbsp;  cusparseSpMV(handle, CUSPARSE_OPERATION_NON_TRANSPOSE, <span class="dk_color3">&</span>alpha, matA, vecX, <span class="dk_color3">&</span>beta, vecY, CUDA_R_32F, CUSPARSE_MV_ALG_DEFAULT, dBuffer);</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        26
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp;</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        27
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp; &nbsp; &nbsp;  <span class="dk_color2">// Copy result back to host</span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        28
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp; &nbsp; &nbsp; . . .</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        29
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp;</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        30
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp; &nbsp; &nbsp; <span class="dk_color2">// Cleanup</span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        31
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp; &nbsp; &nbsp; . . .</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        32
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp;</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        33
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp; &nbsp; &nbsp; <span class="dk_color1">return 0</span> ;</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 1rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        34
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">}</p>
+                                        </div> 
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="mb-0">&nbsp;</p>
+                        <p>Migrating this application with SYCLomatic results in the following code with <strong>DPCT1007</strong> warnings pointing to unsupported migration of the cuSparse CUDA APIs:</p>
+                        <p><strong>spMV.dp.cpp</strong></p>
+                        <p class="mb-0">&nbsp;</p>
+                         <!-- code toolbar 3 -->
+                         <div class="mv_code_toolbar">
+                            <div class="mv_toolbar_item mv_copy_icon">
+                                <i class="fa-regular fa-copy"></i>
+                            </div>
+                            <div class="mv_copy_message text-end hidden">Copied</div>
+                            <div class="code-content">
+                                <div style="padding-bottom: 0rem !important" class="d-flex mv_pre">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        01
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0"><span class="dk_color1">#include</span>  <span style="color: blue;"><span><</span>sycl/sycl.hpp></span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        02
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0"><span class="dk_color1">#include</span>  <span style="color: blue;"><span><</span>dpct/dpct.hpp></span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        03
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0"><span class="dk_color1">#include</span>  <span style="color: blue;"><span><</span>iostream></span></p>
+                                        </div> 
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        04
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0"><span class="dk_color1">#include</span>  <span style="color: blue;"><span><</span>dpct/sparse_utils.hpp></span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        05
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp;</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        06
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0"><span class="dk_color1">#include</span>  <span style="color: blue;"><span><</span>dpct/blas_utils.hpp></span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        07 
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp;</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        08
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0"><span class="dk_color1">#include</span>  <span style="color: blue;"><span><</span>dpct/lib_common_utils.hpp></span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        09
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp;</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        10
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0"><span class="dk_color1">int</span> main() {</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        11
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp;</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        12
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp; &nbsp; &nbsp; <span class="dk_color2">// Initialize cuSPARSE library</span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        13
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp; &nbsp; &nbsp; . . .</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        14
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp;</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        15
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp; &nbsp; &nbsp; <span class="dk_color2">// Memory Management</span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        16
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp; &nbsp; &nbsp; . . .</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        17
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp;</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        18
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp; &nbsp; &nbsp; <span class="dk_color2">// Create matrix and vector descriptors</span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        19
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp; &nbsp; &nbsp; <span class="dk_color2">/*</span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        20
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp; &nbsp; &nbsp; <span class="dk_color2">DPCT1007:0: Migration of cusparseCreateCsr is not supported.</span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        21
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp; &nbsp; &nbsp; <span class="dk_color2">*/</span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        22
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp; &nbsp; &nbsp; cusparseCreateCsr(<span class="dk_color3">&</span>matA, <span class="dk_color1">3</span>, <span class="dk_color1">3</span>, <span class="dk_color1">4</span>, d_csrRowPtr, d_csrColInd, d_csrVal,</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        23
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  CUSPARSE_INDEX_32I, CUSPARSE_INDEX_32I,</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        24
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  oneapi <span class="dk_color3">: : </span> mkl <span class="dk_color3">: : </span> index_base <span class="dk_color3">: : </span> zero,</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        25
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  dpct <span class="dk_color3">: : </span> library_data_t <span class="dk_color3">: : </span> real_float);</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        26
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp; &nbsp; &nbsp; <span class="dk_color2">/*</span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        27
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp; &nbsp; &nbsp;  <span class="dk_color2">DPCT1007:1: Migration of cusparseCreateDnVec is not supported.</span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        28
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp; &nbsp; &nbsp; <span class="dk_color2">*/</span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        29
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp; &nbsp; &nbsp; cusparseCreateDnVec(<span class="dk_color3">&</span> vecX, <span class="dk_color1">3</span>, d_x, dpct<span class="dk_color3"> : : </span> library_data_t<span class="dk_color3"> : : </span> real_float);</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        30
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp; &nbsp; &nbsp; <span class="dk_color2">/*</span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        31
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp; &nbsp; &nbsp; <span class="dk_color2">DPCT1007:2: Migration of cusparseCreateDnVec is not supported.</span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        32
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp; &nbsp; &nbsp; <span class="dk_color2">*/</span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        33
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp; &nbsp; &nbsp;  cusparseCreateDnVec(<span class="dk_color3">&</span>vecY, <span class="dk_color1">3</span>, d_y, dpct<span class="dk_color3"> : : </span>library_data_t<span class="dk_color3"> : : </span>real_float);</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        34
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp;</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        35
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp; &nbsp; &nbsp; <span class="dk_color1">float</span> alpha <span class="dk_color3">=</span> <span class="dk_color1">1.0f</span> ;</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        36
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp; &nbsp; &nbsp; <span class="dk_color1">float</span> beta =<span class="dk_color3">=</span> <span class="dk_color1">0.0f</span> ;</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        37
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp;</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        38
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp; &nbsp; &nbsp; <span class="dk_color2">// Buffer creation and allocation</span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        39
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp; &nbsp; &nbsp; . . .</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        40
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp;</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        41
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp; &nbsp; &nbsp;  <span class="dk_color2">// Perform matrix-vector multiplication: y = A*x</span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        42
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp; &nbsp; &nbsp;  <span class="dk_color2">/*</span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        43
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp; &nbsp; &nbsp;  <span class="dk_color2">DPCT1007:4: Migration of cusparseSpMV is not supported.</span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        44
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp; &nbsp; &nbsp;  <span class="dk_color2">*/</span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        45
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp; &nbsp; &nbsp; cusparseSpMV(handle, oneapi<span class="dk_color3"> : : </span>mkl<span class="dk_color3"> : : </span>transpose<span class="dk_color3"> : : </span>nontrans, <span class="dk_color3">&</span>alpha, matA, vecX,</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        46
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="dk_color3">&</span>beta, vecY, dpct<span class="dk_color3"> : : </span>library_data_t<span class="dk_color3"> : : </span>real_float,</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        47
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; CUSPARSE_MV_ALG_DEFAULT, dBuffer);</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        48
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp;</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        49
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp; &nbsp; &nbsp;  <span class="dk_color2">// Copy result back to host</span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        50
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp; &nbsp; &nbsp; . . .</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        51
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp;</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        52
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp; &nbsp; &nbsp;  <span class="dk_color2">// Cleanup</span></p> 
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        53
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp; &nbsp; &nbsp; . . .</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        54
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp;</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        55
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp; &nbsp; &nbsp; <span class="dk_color1">return 0</span> ;</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 1rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        56
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">}</p>
+                                        </div> 
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="mb-0">&nbsp;</p>
+                        <p>After the completion of migration, SYCLomatic reports <strong>DPCT1007</strong> warnings about the non-migrated cuSparse APIs. Compiling this code results in compilation errors and can’t be run on Nvidia GPUs. However, with SYCL interoperability, this semi-migrated application can be run completely on Nvidia with only a few changes, as shown (highlighted in bold) below:</p>
+                        <p><strong>spMV_with_SYCL_Interop.dp.cpp</strong></p>
+                        <p>&nbsp;</p>
+                         <!-- code toolbar 3 -->
+                         <div class="mv_code_toolbar">
+                            <div class="mv_toolbar_item mv_copy_icon">
+                                <i class="fa-regular fa-copy"></i>
+                            </div>
+                            <div class="mv_copy_message text-end hidden">Copied</div>
+                            <div class="code-content">
+                                <div style="padding-bottom: 0rem !important" class="d-flex mv_pre">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        01
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0"><span class="dk_color1">#include</span>  <span style="color: blue;"><span><</span>sycl/sycl.hpp></span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        02
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0"><span class="dk_color1">#include</span>  <span style="color: blue;"><span><</span>dpct/dpct.hpp></span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        03
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0"><span class="dk_color1">#include</span>  <span style="color: blue;"><span><</span>iostream></span></p>
+                                        </div> 
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        04
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0"><span class="dk_color1">#include</span>  <span style="color: blue;"><span><</span>dpct/sparse_utils.hpp></span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        05
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp;</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        06
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0"><span class="dk_color1">#include</span>  <span style="color: blue;"><span><</span>dpct/blas_utils.hpp></span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        07 
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp;</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        08
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0"><span class="dk_color1">#include</span>  <span style="color: blue;"><span><</span>dpct/lib_common_utils.hpp></span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        09
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp;</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        10
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0"><span class="dk_color1">#include</span>  <span style="color: blue;"><span><</span>cusparse.h></span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        11
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp;</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        12
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0"><span class="dk_color1">int</span> main() {</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        13
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp;</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        14
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp; &nbsp; &nbsp; <span class="dk_color2">// Initialize cuSPARSE library</span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        15
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp; &nbsp; &nbsp; <span class="dk_color2">. . .</span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        16
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp;</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        17
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp; &nbsp; &nbsp; <span class="dk_color2">// Memory Management</span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        18
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp; &nbsp; &nbsp; . . .</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        19
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp;</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        20
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp; &nbsp; &nbsp; <span class="dk_color2">// Create matrix and vector descriptors</span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        21
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp; &nbsp; &nbsp; <span class="dk_color2">/*</span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        22
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp; &nbsp; &nbsp; <span class="dk_color2">DPCT1007:0: Migration of cusparseCreateCsr is not supported.</span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        23
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp; &nbsp; &nbsp; <span class="dk_color2">*/</span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        24
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp; &nbsp; &nbsp; <span class="dk_color2">/*</span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        25
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp; &nbsp; &nbsp; <span class="dk_color2">// SYCL Interop</span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        26
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp; &nbsp; &nbsp; <span class="dk_color2">cusparseCreateCsr(&matA, 3, 3, 4, d_csrRowPtr, d_csrColInd, d_csrVal,</span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        27
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  <span class="dk_color2">CUSPARSE_INDEX_32I, CUSPARSE_INDEX_32I,</span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        28
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="dk_color2">CUSPARSE_INDEX_BASE_ZERO, </span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        29
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="dk_color2">CUDA_R_32F);</span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        30
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp; &nbsp; &nbsp; <span class="dk_color2">/*</span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        31
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp; &nbsp; &nbsp; <span class="dk_color2">DPCT1007:1: Migration of cusparseCreateDnVec is not supported.</span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        32
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp; &nbsp; &nbsp; <span class="dk_color2">*/</span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        33
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp; &nbsp; &nbsp;  <span class="dk_color2">// SYCL Interop</span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        34
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp; &nbsp; &nbsp;  cusparseCreateDnVec(<span class="dk_color3">&</span>vecX, <span class="dk_color1">3</span>, d_x, CUDA_R_32F);</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        35
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp;</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        36
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp; &nbsp; &nbsp; <span class="dk_color2">/*</span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        37
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp; &nbsp; &nbsp; <span class="dk_color2">DPCT1007:2: Migration of cusparseCreateDnVec is not supported.</span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        38
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp; &nbsp; &nbsp; <span class="dk_color2">*/</span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        39
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp; &nbsp; &nbsp; <span class="dk_color2">// SYCL Interop</span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        40
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp; &nbsp; &nbsp; cusparseCreateDnVec(<span class="dk_color3">&</span>vecY, 3, d_y, CUDA_R_32F);</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        41
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp;</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        42
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp; &nbsp; &nbsp;  <span class="dk_color1">float</span> alpha <span class="dk_color3">=</span> <span class="dk_color1">1.0f</span>;</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        43
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp; &nbsp; &nbsp;  <span class="dk_color1">float</span> beta <span class="dk_color3">=</span><span class="dk_color1">0.0f</span>;</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        44
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp;</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        45
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp; &nbsp; &nbsp; <span class="dk_color2">// Determine buffer size required for the cusparseSpMV operation</span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        46
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp; &nbsp; &nbsp; size_t bufferSize <span class="dk_color3">=</span> <span class="dk_color1">0</span>;</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        47
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp; &nbsp; &nbsp; <span class="dk_color2">/*</span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        48
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp; &nbsp; &nbsp; <span class="dk_color2">DPCT1007:3: Migration of cusparseSpMV_bufferSize is not supported.</span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        49
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp; &nbsp; &nbsp;  <span class="dk_color2">*/</span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        50
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp; &nbsp; &nbsp; <span class="dk_color2">// SYCL Interop</span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        51
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp;</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        52
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp; &nbsp; &nbsp;  <span class="dk_color2">// Cleanup</span></p> 
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        53
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp; &nbsp; &nbsp; . . .</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        54
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp;</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        55
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp; &nbsp; &nbsp; <span class="dk_color1">return 0</span> ;</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        56
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp;</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        57
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp;</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        58
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp;</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        59
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp;</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        60
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp;</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        61
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp;</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        62
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp;</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        63
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp;</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        64
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp;</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        65
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp;</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        66
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp;</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        67
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp;</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        68
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp;</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        69
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp;</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        70
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp;</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        71
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp;</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        72
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp;</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        73
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp;</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        74
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp;</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        75
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp;</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        76
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp;</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        77
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp;</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 0rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        78
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">&nbsp;</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-top: 0rem !important; padding-bottom: 1rem !important;" class="d-flex mv_pre pb-0">
+                                    <div style="border-right: 1px solid #ccc" class="pe-3">
+                                        79
+                                    </div>
+                                    <div class="">
+                                        <div class="mv_code text-break">
+                                            <p class="mb-0">}</p>
+                                        </div> 
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="mb-0">&nbsp;</p>
+                    </section>
+
+                    <section id="dk_download_now">
+                        <h3 style="font-weight: 300;">Download the Compiler Now </h3>
+                        <p>You can download the <a class="b_special_a1" href="/rushita_Solutions/k_solutions_Intel-oneAPI-DPC++C++Compiler.html" style="color:#0563c1; text-decoration:underline">Intel oneAPI DPC++/C++ Compiler</a> on Intel’s <a class="b_special_a1" href="/darshit/dk_Solutions_Industries/oneAPI_A_New_Era_of_Heterogeneous_Computing.html" style="color:#0563c1; text-decoration:underline">oneAPI Developer Tools product page</a>.&nbsp;</p>
+                        <p>This version is also in <a class="b_special_a1" href="/darshit/dk_Solutions_Industries/Intel_oneAPI_Base_Toolkit.html" style="color:#0563c1; text-decoration:underline">the Intel® oneAPI Base Toolkit</a>, which includes an advanced set of foundational tools, libraries, analysis, debug and code migration tools.</p>
+                        <p>You may also want to check out our contributions to the LLVM compiler project on <a class="b_special_a1" href="https://github.com/intel/llvm" style="color:#0563c1; text-decoration:underline">GitHub</a>.</p>
+                        <p>&nbsp;</p>
+                    </section>
+
+                    <section id="dk_additional_res">
+                        <h3 style="font-weight: 300;">Additional Resources</h3>
+                        <ul>
+                            <li><a class="b_special_a1" href="/dhruvin_developer-tools/ds_Developer-Zone.html" style="color:#0563c1; text-decoration:underline">Intel Develpment Tools 2024.1 Feature Update Overview</a>&nbsp;</li>
+                            <li><a class="b_special_a1" href="" style="color:#0563c1; text-decoration:underline">Learn C++ with SYCL* in an Hour</a>&nbsp; [1:01:37]</li>
+                            <li>Reinders, James et al.,&nbsp;<a class="b_special_a1" href="" style="color:#0563c1; text-decoration:underline">Data Parallel C++: Programming Accelerated Systems Using C++ and SYCL</a> ​​​, ​​2<sup>nd</sup> Edition. Springer Apress, 2023</li>
+                            <li><a class="b_special_a1" href="https://link.springer.com/book/10.1007/978-1-4842-9691-2" style="color:#0563c1; text-decoration:underline">Find Bugs Quickly Using Sanitizers with the Intel® oneAPI DPC++/C++ Compiler</a></li>
+                            <li><a class="b_special_a1" href="" style="color:#0563c1; text-decoration:underline">SYCL* Interoperability: A Deep Dive into Bridging CUDA* and oneAPI</a></li>
+                            <li><a class="b_special_a1" href="" style="color:#0563c1; text-decoration:underline">Migrate from CUDA* to C++ with SYCL*</a></li>
+                            <li><a class="b_special_a1" href="" style="color:#0563c1; text-decoration:underline">LLVM-based Projects from Intel</a></li>
+                        </ul>
+                        <p>&nbsp;</p>
+                    </section>
+
+                    <section id="dk_about_author">
+                        <h3 style="font-weight: 300;">About the Author</h3>
+                        <p><strong>Steve</strong> is an accomplished technology professional and corporate executive who treasures the insanely curious and is passionate about lifelong learning. He is vice president and general manager at Intel, leading a worldwide engineering organization responsible for CPU and GPU compilation technologies. Previously he was an executive responsible for strategy, product management, research and development, and software design at IBM leading Enterprise Products and Compilers.</p>
+                        <p>&nbsp;</p>
+                    </section>
+
+                    <section id="dk_notices_dis">
+                        <h3 style="font-weight: 300;">Notices and Disclaimers</h3>
+                        <p>Performance varies by use, configuration and other factors. Learn more at <a href="http://www.intel.com/PerformanceIndex" style="color:#0563c1; text-decoration:underline">www.Intel.com/PerformanceIndex</a>. Results may vary.</p>
+                        <p>Performance results are based on testing as of dates shown in configurations and may not reflect all publicly available updates.</p>
+                        <p>Intel optimizations, for Intel compilers or other products, may not optimize to the same degree for non-Intel products.</p>
+                        <p>No product or component can be absolutely secure. Your costs and results may vary.</p>
+                        <p>Intel technologies may require enabled hardware, software or service activation.</p>
+                        <p>Intel does not control or audit third-party data. You should consult other sources to evaluate accuracy.</p>
+                        <p>© Intel Corporation. Intel, the Intel logo, Xeon, Arc and other Intel marks are trademarks of Intel Corporation or its subsidiaries.&nbsp;<br>
+                            *Other names and brands may be claimed as the property of others. SYCL is a trademark of the Khronos Group Inc.&nbsp;Khronos and the Khronos Group logo are registered trademarks of the Khronos Group Inc.&nbsp;</p>
+                        <p>&nbsp;</p>
+                        <p>&nbsp;</p>
+                        <p>&nbsp;</p>
+                        <p>&nbsp;</p>
+                    </section>
+                
+                </div>
+            </div>
+            <p class="mb-0">&nbsp;</p>
+        </div>
+    </section>
+
+    <section>
+        <div class="container">
+            <div style="padding: 3rem 0rem; border-top: 1px solid #d7d7d7; color: #525252;">
+                <h6>Product and Performance Information</h6>
+                <div class="dk_disclaimer">
+                    <p class="mb-0"><sup>1</sup>Performance varies by use, configuration and other factors. Learn more
+                        at <a class="b_special_a1" href="">www.Intel.com/PerformanceIndex.</a></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- footer -->
+    <div id="footer"></div>
+
+    <!-- script header and footer -->
+    <script>
+        // navbar include  
+        fetch('/y_index/y_navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar').innerHTML = data;
+            });
+        // footer include 
+        fetch('/y_index/y_footer.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('footer').innerHTML = data;
+            });
+    </script>
+
+    <!-- nav script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            if (document.getElementsByClassName('VK_all_sections section') && document.getElementsByClassName('VK_sidebar_dropdown')) {
+                const sections = document.querySelectorAll('.VK_all_sections section');
+                const navLinks = document.querySelectorAll('.VK_sidebar_dropdown a');
+                const detailsElements = document.querySelectorAll('.VK_sidebar_dropdown details');
+
+                function removeActiveClass() {
+                    navLinks.forEach(link => link.classList.remove('VK_sidebar_active_link'));
+                    detailsElements.forEach(details => {
+                        details.removeAttribute('open');
+                        details.setAttribute('close', ''); // Optional: to visually indicate it's closed
+                    });
+                }
+
+                function activateLinkAndDetails(targetId) {
+                    navLinks.forEach(link => {
+                        if (link.getAttribute('href') === `#${targetId}`) {
+                            link.classList.add('VK_sidebar_active_link');
+                            let parentDetails = link.closest('details');
+
+                            // Open all ancestor details elements
+                            while (parentDetails) {
+                                parentDetails.setAttribute('open', '');
+                                parentDetails.removeAttribute('close'); // Optional: remove the closed indicator
+                                parentDetails = parentDetails.parentElement.closest('details');
+                            }
+                        }
+                    });
+                }
+
+                function onScroll() {
+                    let currentSection = '';
+                    sections.forEach(section => {
+                        const sectionTop = section.getBoundingClientRect().top;
+                        const sectionBottom = section.getBoundingClientRect().bottom;
+
+                        // Check if the section is in view
+                        if (sectionTop <= 100 && sectionBottom >= 0) {
+                            currentSection = section.getAttribute('id');
+                        }
+                    });
+
+                    if (currentSection) {
+                        removeActiveClass();
+                        activateLinkAndDetails(currentSection);
+                    } else {
+                        removeActiveClass();
+                    }
+                }
+
+                window.addEventListener('scroll', onScroll);
+            } else {
+                return
+            }
+        });
+    </script>
+
+    <!-- copy script -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            document.querySelectorAll(".mv_copy_icon").forEach((icon) => {
+                icon.addEventListener("click", async function () {
+                    try {
+                        const toolbar = this.closest(".mv_code_toolbar");
+                        const codeBlock = toolbar.querySelector(".code-content");
+                        const codeContent = codeBlock.innerText;
+
+                        // Use Clipboard API to copy text
+                        await navigator.clipboard.writeText(codeContent);
+
+                        // Hide the copy icon and show the "Copied!" message
+                        const message = toolbar.querySelector(".mv_copy_message");
+                        this.classList.add("hidden"); // Hide the copy icon
+                        message.classList.remove("hidden"); // Show the "Copied!" message
+
+                        // Hide the message and show the icon again after 2 seconds
+                        setTimeout(() => {
+                            message.classList.add("hidden");
+                            this.classList.remove("hidden");
+                        }, 2000); // Adjust delay as needed
+
+                    } catch (err) {
+                        console.error('Failed to copy text: ', err);
+                    }
+                });
+            });
+        });
+    </script>
+
+</body>
+
+</html>
+
