@@ -234,7 +234,7 @@
 
                     <section id="dk_introduction">
                         <h3 style="font-weight: 350; margin: 2.5rem 0 11px;">Introduction</h3>
-                        <p><a class="b_special_a1" href="">C-DAC</a> (Center for Development of Advanced Computing) is the premier R&amp;D organization of India’s Ministry of Electronics and Information Technology for R&amp;D in IT, electronics, and associated areas. Created in 1987, its research spans multiple industries and domains such as HPC, cloud computing, embedded systems, cybersecurity, bioinformatics, geomatics, and quantum computing. In the realm of geophysical exploration, C-DAC has developed an open source seismic modeling application:&nbsp;<a class="b_special_a1" href="">SeisAcoMod2D</a>. It performs acoustic wave propagation of multiple source locations for the 2D subsurface earth model using finite difference time-domain modeling.&nbsp;</p>
+                        <p><a class="b_special_a1" href="https://cdac.in/index.aspx">C-DAC</a> (Center for Development of Advanced Computing) is the premier R&amp;D organization of India’s Ministry of Electronics and Information Technology for R&amp;D in IT, electronics, and associated areas. Created in 1987, its research spans multiple industries and domains such as HPC, cloud computing, embedded systems, cybersecurity, bioinformatics, geomatics, and quantum computing. In the realm of geophysical exploration, C-DAC has developed an open source seismic modeling application:&nbsp;<a class="b_special_a1" href="https://github.com/richaras/SeisAcoMod2D">SeisAcoMod2D</a>. It performs acoustic wave propagation of multiple source locations for the 2D subsurface earth model using finite difference time-domain modeling.&nbsp;</p>
                         <p class="mb-0">&nbsp;</p>
                     </section>
 
@@ -247,12 +247,12 @@
 
                     <section id="dk_solution_build">
                         <h3 style="font-weight: 350; margin: 2.5rem 0 11px;">Solution: Build a Single Code Base Using Intel® Tools</h3>
-                        <p><a class="b_special_a1" href="">Intel® tools</a> enable single-language and cross-architecture platform applications to be ported to (and optimized for) multiple single and heterogeneous architecture-based platforms. Using a combination of optimized tools and libraries, the application’s native CUDA code was migrated to <a class="b_special_a1" href="">SYCL</a>, enabling it to run seamlessly on Intel CPUs and GPUs.</p>
+                        <p><a class="b_special_a1" href="/darshit/dk_product/products_oneaoi_unified_runtime_celebrate_the_5th_Anniversary_of_oneAPI_with_the_2025_release_of_intel.html">Intel® tools</a> enable single-language and cross-architecture platform applications to be ported to (and optimized for) multiple single and heterogeneous architecture-based platforms. Using a combination of optimized tools and libraries, the application’s native CUDA code was migrated to <a class="b_special_a1" href="https://www.khronos.org/sycl/">SYCL</a>, enabling it to run seamlessly on Intel CPUs and GPUs.</p>
                         <p>The result: SeisAcoMod2D is now comprised of a single code base that can be used to run it on multiple architectures without losing performance. This was a perfect package for C-DAC: a single language with a boost in performance without being vendor-locked.</p>
                         <p>Let’s walk-through the steps, tools, and results.</p>
 
                         <h4>Code Migration to CUDA</h4>
-                        <p><a class="b_special_a1" href="">SeisAcoMod2D</a> has both CPU (C++) source and GPU (CUDA) source. As a first step, the <a class="b_special_a1" href="">Intel® DPC++ Compatibility Tool</a> (available as part of the <a class="b_special_a1" href="">Intel oneAPI Base Toolkit</a>) was used to migrate CUDA source to SYCL source. In this case, the Intel DPC++ Compatibility Tool was able to achieve 100% migration in a very short time. This made functional porting of the seismic modeling complete. Figure 1 and Figure 2 provide the snippet of CUDA source code to migrated SYCL source code.</p>
+                        <p><a class="b_special_a1" href="https://github.com/richaras/SeisAcoMod2D">SeisAcoMod2D</a> has both CPU (C++) source and GPU (CUDA) source. As a first step, the <a class="b_special_a1" href="/rushita_Solutions/k_solutions_Intel-DPC++Compatibility-Tool.html">Intel® DPC++ Compatibility Tool</a> (available as part of the <a class="b_special_a1" href="/darshit/dk_Solutions_Industries/Intel_oneAPI_Base_Toolkit.html">Intel oneAPI Base Toolkit</a>) was used to migrate CUDA source to SYCL source. In this case, the Intel DPC++ Compatibility Tool was able to achieve 100% migration in a very short time. This made functional porting of the seismic modeling complete. Figure 1 and Figure 2 provide the snippet of CUDA source code to migrated SYCL source code.</p>
                         <div style="text-align:center">
                             <figure><img class="dk_intel_openap_img" src="/img/darshit_image/fig1.png" width="667">
                             <figcaption>Figure 1. Snippet of CUDA source before migration</figcaption>
@@ -292,7 +292,7 @@
                         </div>
                         <p>&nbsp;</p>
                         <h4>Code Optimization</h4>
-                        <p>As a next step, <a class="b_special_a1" href="">Intel® VTune™ Profiler</a> was used to profile the kernels running on a GPU to identify the bottlenecks and tuning opportunities. Intel VTune Profiler supports <a class="b_special_a1" href="">GPU offload</a> and <a class="b_special_a1" href="">GPU compute media hot spots</a> analysis, which help analyze the most time-consuming GPU kernels and identify if the application is CPU- or GPU-bound.</p>
+                        <p>As a next step, <a class="b_special_a1" href="/VK_developers/VK_vtune_profiler.html">Intel® VTune™ Profiler</a> was used to profile the kernels running on a GPU to identify the bottlenecks and tuning opportunities. Intel VTune Profiler supports <a class="b_special_a1" href="">GPU offload</a> and <a class="b_special_a1" href="">GPU compute media hot spots</a> analysis, which help analyze the most time-consuming GPU kernels and identify if the application is CPU- or GPU-bound.</p>
                         <p>Figure 5 shows the GPU offload analysis result from the SYCL binary of SeisAcoMod2D with kernels running on an Intel GPU. As highlighted, the memset call doing the memory transfer from host to device is taking more time; the memset uses the copy engine in a GPU. This was replaced with a fill-function call, which serves the same purpose but uses a compute engine to make it fast. The same can be seen in Figure 6 where the time taken for memory transfer was drastically reduced.</p>  
                         <div style="text-align:center">
                             <figure><img class="dk_intel_openap_img" src="/img/darshit_image/fig5.png">
@@ -365,15 +365,15 @@
                             <li>Get the full complement of Intel tools in the <a class="b_special_a1" href="">Intel oneAPI Base Toolkit</a>.&nbsp;</li>
                             <li>Or download stand-alone versions:
                             <ul>
-                                <li><a class="b_special_a1" href="">Intel DPC++ Compatibility Tool</a></li>
+                                <li><a class="b_special_a1" href="/darshit/dk_Solutions_Industries/Single_Component_Downloads_and_Runtime_Versions.html#dk_intel_dpc">Intel DPC++ Compatibility Tool</a></li>
                                 <li><a class="b_special_a1" href="">Intel VTune Profiler</a></li>
                             </ul>
                             </li>
                         </ul>
                         <p><strong>Get the Code Samples (GitHub*)</strong></p>
                         <ul>
-                            <li><a class="b_special_a1" href="">C-DAC's SeisAcoMod2D Application</a></li>
-                            <li><a class="b_special_a1" href="">oneAPI SYCL C++ Samples</a><br>
+                            <li><a class="b_special_a1" href="https://github.com/richaras/SeisAcoMod2D">C-DAC's SeisAcoMod2D Application</a></li>
+                            <li><a class="b_special_a1" href="https://github.com/oneapi-src/oneAPI-samples/tree/master/DirectProgramming/C++SYCL/">oneAPI SYCL C++ Samples</a><br>
                             &nbsp;</li>
                         </ul>
                         <p>&nbsp;</p>
