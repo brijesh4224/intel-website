@@ -266,7 +266,7 @@
                 <div class="col-xl-10 VK_all_sections">
                     <p>&nbsp;</p>
                     <p class="mb-0">&nbsp;</p>
-                    <p>At the <a class="b_special_a1" href="">13th IWOCL International Workshop on OpenCL* and SYCL</a>, Alexey Sachkov of Intel reported on several experimental proposals for increasing the reach and applicability of SYCL as a common cross-architecture framework for accelerated computing for different verticals and use cases, from AI PC to supercomputer and from edge to cloud.</p>
+                    <p>At the <a class="b_special_a1" href="https://www.iwocl.org/iwocl-2025/">13th IWOCL International Workshop on OpenCL* and SYCL</a>, Alexey Sachkov of Intel reported on several experimental proposals for increasing the reach and applicability of SYCL as a common cross-architecture framework for accelerated computing for different verticals and use cases, from AI PC to supercomputer and from edge to cloud.</p>
                     <p>In this article, we provide a glimpse into two of those ideas that expand SYCL in different directions.</p>
                     <p>First, we cover virtual functions. SYCL is designed to be a natural, comprehensive extension of C++ into the realm of multiarchitecture computing. As such, it is only consistent to expand the idea of virtual functions, which can be redefined in derived classes to offload kernels. Alexey discusses a proposed approach to achieving that.</p>
                     <p>The second idea is also about abstraction, not about the abstraction of functions within a base class, though. It is about expanding SPIR-V backend abstraction support to make it even easier for SYCL’s low-level implementation to interface with the rich ecosystem of available hardware architecture and specialized custom accelerators. It is about making LLVM* and SPIR-V work even better together in a SYCL context.</p>
@@ -275,12 +275,12 @@
 
                     <section id="dk_virtual_sycl">
                         <h3 style="font-weight: 300;">Virtual Functions in SYCL</h3>
-                        <p>Virtual functions are a standard staple of modern C++ software development since the language’s inception. Common backend abstractions like <a class="b_special_a1" href="">the Kokkos* C++ performance portability interface</a>, widely used in high-performance scientific computing, rely on it.</p>
+                        <p>Virtual functions are a standard staple of modern C++ software development since the language’s inception. Common backend abstractions like <a class="b_special_a1" href="https://github.com/kokkos/kokkos">the Kokkos* C++ performance portability interface</a>, widely used in high-performance scientific computing, rely on it.</p>
                         <p>Although the SYCL specification allows the one-definition rule (ODR) use of virtual inheritance, virtual member functions cannot be called within a device function, leading to complications when porting some code bases.</p>
                         <p>Beginning [1min &nbsp;50sec] into his presentation, Alexey sets up a basic reference example of a base class with a couple of virtual methods, and direct classes with overrides for those virtual classes and some offload kernels.</p>
                         <p style="text-align:center"><img class="w-100" src="/img/darshit_image/basic-reference-sample-setup.png"></p>
                         <p><strong>Figure 1</strong>: Basic virtual class inheritance setup with oneAPI kernel property extension.</p>
-                        <p>First, he adds the experimental indirectly callable function properties described in the <a class="b_special_a1" href="">sycl_ext_oneapi_kernel_properties</a> GitHub sandbox (highlighted in yellow in Figure 1). &nbsp;With this, a function or offload kernel can be tagged as an indirectly callable device function.</p>
+                        <p>First, he adds the experimental indirectly callable function properties described in the <a class="b_special_a1" href="https://github.com/intel/llvm/blob/sycl/sycl/doc/extensions/experimental/sycl_ext_oneapi_kernel_properties.asciidoc">sycl_ext_oneapi_kernel_properties</a> GitHub sandbox (highlighted in yellow in Figure 1). &nbsp;With this, a function or offload kernel can be tagged as an indirectly callable device function.</p>
                         <p>Why is this needed for virtual functions?</p>
                         <p>A program object contains a virtual table of pointers to class overrides. Every time a virtual function is called, a specific pointer from this table is loaded to call the correct derived function. The table references all virtual functions you have in your class.</p>
                         <p>However, in the <span class="code-simple">Base{}</span>function in Figure 1, for example, <span class="code-simple">foo{} </span>throws an exception and new memory is allocated, violating SYCL device code restrictions.</p>
@@ -290,7 +290,7 @@
                         <p>From there, Alexey discusses advanced topics and possible future work, such as <span class="code-simple">reqd_sub_group_size</span> support and optional kernel feature support.</p>
                         <p style="text-align:center"><a href="https://www.youtube.com/watch?v=VNG38cuRHTo"><img class="w-100" src="/img/darshit_image/screenshot1.png"></a></p>
                         <p><strong>Figure 2</strong>: Full Presentation Recording</p>
-                        <p class="dk_note">⇒ Dive into the details of virtual function support with SYCL. Check out the <a class="b_special_a1" href="">slides</a> and <a class="b_special_a1" href="">recording</a> of the<br>
+                        <p class="dk_note">⇒ Dive into the details of virtual function support with SYCL. Check out the <a class="b_special_a1" href="https://www.iwocl.org/wp-content/uploads/iwocl-2025-alexey-sachkov-virtual-functions-in-sycl.pdf">slides</a> and <a class="b_special_a1" href="https://www.youtube.com/watch?v=VNG38cuRHTo">recording</a> of the<br>
                             “Virtual Functions in SYCL” presentation at the 13<sup>th</sup> IWOCL International Workshop on OpenCL* and SYCL this past April.</p>
                         <p class="mb-0">&nbsp;</p>
                     </section>
@@ -305,8 +305,8 @@
                         </ol>
                         <p class="mb-0">If you are looking for more technical implementation details, check out the</p>
                         <ul>
-                            <li><a class="b_special_a1" href="">ext_intel_virtual_functions</a><a class="b_special_a1" href=""> specification</a> on Intel’s LLVM GitHub and</li>
-                            <li>the <a class="b_special_a1" href="">sycl_ext_oneapi_virtual_functions extension test cases</a></li>
+                            <li><a class="b_special_a1" href="https://github.com/intel/llvm/pull/10540">ext_intel_virtual_functions</a><a class="b_special_a1" href="https://github.com/intel/llvm/pull/10540"> specification</a> on Intel’s LLVM GitHub and</li>
+                            <li>the <a class="b_special_a1" href="https://github.com/intel/llvm/tree/sycl/sycl/test-e2e/VirtualFunctions">sycl_ext_oneapi_virtual_functions extension test cases</a></li>
                         </ul>
                         <p>in the same source code tree.</p>
                         <p class="mb-0">&nbsp;</p>
@@ -315,41 +315,41 @@
                     <section id="dk_take_your">
                         <p class="mb-0">&nbsp;</p>
                         <h3 style="font-weight: 300;">Take your SYCL Code to the Next Level with Virtual Functions</h3>
-                        <p>The proposed virtual function support is continually evolving and experimentally available with the &nbsp;<a class="b_special_a1" href="">Intel® oneAPI DPC++/C++ Compiler</a> and <a class="b_special_a1" href="">Intel® DPC++ Compatibility Tool</a> 2025.1 or newer releases.</p>
+                        <p>The proposed virtual function support is continually evolving and experimentally available with the &nbsp;<a class="b_special_a1" href="/rushita_Solutions/k_solutions_Intel-oneAPI-DPC++C++Compiler.html">Intel® oneAPI DPC++/C++ Compiler</a> and <a class="b_special_a1" href="/rushita_Solutions/k_solutions_Intel-DPC++Compatibility-Tool.html">Intel® DPC++ Compatibility Tool</a> 2025.1 or newer releases.</p>
                         <p>Give it a go with your codebase and <a class="b_special_a1" href="">let us know what you think</a>.</p>
                         <p>&nbsp;</p>
                     </section>
 
                     <section id="dk_spir_sycl">
                         <h3 style="font-weight: 300;">SPIR-V Backend Use with SYCL</h3>
-                        <p>SPIR-V is a binary intermediate language for representing graphical-shader stages and compute kernels, with a specification defined by the <a class="b_special_a1" href="">Khronos* Group</a>, the same governing body that manages SYCL. It provides a portable format serving as a programming interface and unifying intermediate representation for heterogeneous accelerators.</p>
+                        <p>SPIR-V is a binary intermediate language for representing graphical-shader stages and compute kernels, with a specification defined by the <a class="b_special_a1" href="https://www.khronos.org/">Khronos* Group</a>, the same governing body that manages SYCL. It provides a portable format serving as a programming interface and unifying intermediate representation for heterogeneous accelerators.</p>
                         <p>There is a rich ecosystem of languages and APIs that support it.</p>
                         <p>For LLVM and LLVM Intermediate Representation (LLVM IR) based C++ compilers, like all compilers in the CLANG* project family, this raises the issue of a duality of intermediate abstracted hardware backend representation.</p>
                         <p>There is a SPIR-V to LLVM Translator for bi-directional translation, but it is not maintained as part of the LLVM project tree itself, making it prone to disconnects and intermittent incompatibilities. &nbsp;</p>
                         <p>To address this, Intel’s compiler development team proposes SPIR-V as a regular LLVM code generation target akin to other hardware target runtimes. As such, a SPIR-V &nbsp;backend becomes part of the LLVM project, ensuring full comprehensive integration testing and opening it up for not just heterogeneous computing with OpenCL or SYCL, but also for use with OpenAI Triton backends or graphics-oriented programming models like high-level shader language (HLSL) or Vulkan.</p>
-                        <p class="mb-0">The SPIR-V Backend is now supported and maintained by an active and growing <a class="b_special_a1" href="">LLVM SPIR-V working group</a> with comprehensive documentation:</p>
+                        <p class="mb-0">The SPIR-V Backend is now supported and maintained by an active and growing <a class="b_special_a1" href="https://llvm.org/docs/GettingInvolved.html#online-sync-ups">LLVM SPIR-V working group</a> with comprehensive documentation:</p>
                         <ul>
-                            <li><a class="b_special_a1" href="">User Guide for SPIR-V Target</a></li>
-                            <li><a class="b_special_a1" href="">SPIR-V Support in Clang</a></li>
+                            <li><a class="b_special_a1" href="https://llvm.org/docs/SPIRVUsage.html">User Guide for SPIR-V Target</a></li>
+                            <li><a class="b_special_a1" href="https://clang.llvm.org/docs/UsersManual.html#spir-v-support">SPIR-V Support in Clang</a></li>
                         </ul>
                         <p>Following Intel’s committed support for the open source community, our compiler developers are active and engaged contributors, helping to address challenges related to mapping LLVM IR semantics and specifications to SPIR-V.</p>
                         <p>Alexey Sachkov, in his presentation, discusses them and Intel’s approach to resolving them in detail.</p>
                         <p style="text-align:center"><a href="https://www.youtube.com/watch?v=dThxsTteHJ0"><img class="w-100" src="/img/darshit_image/screenshot2.png"></a></p>
                         <p><strong>Figure 3</strong>: Full Presentation Recording</p>
-                        <p class="dk_note">⇒ Dive into the details of LLVM SPIR-V Backend support with SYCL. Check out the <a class="b_special_a1" href="">slides</a> and <a class="b_special_a1" href="">recording</a> of the<br>
+                        <p class="dk_note">⇒ Dive into the details of LLVM SPIR-V Backend support with SYCL. Check out the <a class="b_special_a1" href="https://www.iwocl.org/wp-content/uploads/iwocl-2025-alexey-sachkov-adapting-llvm-backend.pdf">slides</a> and <a class="b_special_a1" href="https://www.youtube.com/watch?v=dThxsTteHJ0">recording</a> of the<br>
                             “Virtual Functions in SYCL” presentation at the 13<sup>th</sup> IWOCL International Workshop on OpenCL* and SYCL this past April.</p>
                         <p>&nbsp;</p>
                     </section>
 
                     <section id="dk_use_sycl_code">
                         <h3 style="font-weight: 300;">Use SPIR-V as a Compilation Target with your SYCL Code</h3>
-                        <p>The development of the SPIR-V Backend for LLVM is ongoing, but it has been available as an official target with the LLVM project since January 2025. Give it a try and follow up by commenting on its LLVM project <a class="b_special_a1" href="">RFC page. </a>&nbsp;</p>
+                        <p>The development of the SPIR-V Backend for LLVM is ongoing, but it has been available as an official target with the LLVM project since January 2025. Give it a try and follow up by commenting on its LLVM project <a class="b_special_a1" href="https://discourse.llvm.org/t/rfc-promoting-spir-v-to-an-official-target/83614">RFC page. </a>&nbsp;</p>
                         <p>&nbsp;</p>
                     </section>
 
                     <section id="dk_get_started">
                         <h3 style="font-weight: 300;">Get Started with SYCL, oneAPI, and SPIR-V Today</h3>
-                        <p>Find out more about how to use these and other latest features in LLVM-based C++ compilers and toolchains with SYCL support at the <a class="b_special_a1" href="">Intel® oneAPI DPC++ C++ Compiler</a> and <a class="b_special_a1" href="">oneAPI Overview</a> landing page.</p>
+                        <p>Find out more about how to use these and other latest features in LLVM-based C++ compilers and toolchains with SYCL support at the <a class="b_special_a1" href="/rushita_Solutions/k_solutions_Intel-oneAPI-DPC++C++Compiler.html">Intel® oneAPI DPC++ C++ Compiler</a> and <a class="b_special_a1" href="/darshit/dk_Solutions_Industries/oneAPI_A_New_Era_of_Heterogeneous_Computing.html">oneAPI Overview</a> landing page.</p>
                         <p>&nbsp;</p>
                     </section>
 
@@ -357,21 +357,21 @@
                         <h3 style="font-weight: 300;">Additional Resources</h3>
                         <p class="mb-0">Virtual Functions</p>
                         <ul>
-                            <li><a class="b_special_a1" href="">sycl_ext_oneapi_kernel_properties</a> &nbsp;on GitHub</li>
-                            <li><a class="b_special_a1" href="">sycl_ext_oneapi_enqueue_functions</a> on GitHub</li>
-                            <li><a class="b_special_a1" href="">sycl_ext_oneapi_named_sub_group _sizes</a> on GitHub</li>
-                            <li><a class="b_special_a1" href="">SYCL 2020 Specification</a></li>
-                            <li><a class="b_special_a1" href="">SPIR-V Function Pointers</a></li>
-                            <li><a class="b_special_a1" href="">Intel Virtual Function Pointer Specification</a></li>
-                            <li><a class="b_special_a1" href="">Virtual Function Example Tests</a></li>
+                            <li><a class="b_special_a1" href="https://github.com/intel/llvm/blob/sycl/sycl/doc/extensions/experimental/sycl_ext_oneapi_kernel_properties.asciidoc">sycl_ext_oneapi_kernel_properties</a> &nbsp;on GitHub</li>
+                            <li><a class="b_special_a1" href="https://github.com/intel/llvm/blob/sycl/sycl/doc/extensions/experimental/sycl_ext_oneapi_enqueue_functions.asciidoc">sycl_ext_oneapi_enqueue_functions</a> on GitHub</li>
+                            <li><a class="b_special_a1" href="https://github.com/intel/llvm/blob/sycl/sycl/doc/extensions/proposed/sycl_ext_oneapi_named_sub_group_sizes.asciidoc">sycl_ext_oneapi_named_sub_group _sizes</a> on GitHub</li>
+                            <li><a class="b_special_a1" href="https://registry.khronos.org/SYCL/specs/sycl-2020/html/sycl-2020.html">SYCL 2020 Specification</a></li>
+                            <li><a class="b_special_a1" href="https://github.com/intel/llvm/blob/sycl/sycl/doc/design/spirv-extensions/SPV_INTEL_function_pointers.asciidoc">SPIR-V Function Pointers</a></li>
+                            <li><a class="b_special_a1" href="https://github.com/intel/llvm/pull/10540">Intel Virtual Function Pointer Specification</a></li>
+                            <li><a class="b_special_a1" href="https://github.com/intel/llvm/tree/sycl/sycl/test-e2e/VirtualFunctions">Virtual Function Example Tests</a></li>
                         </ul>
                         <p class="mb-0">SPIR-V with LLVM and SYCL</p>
                         <ul>
-                            <li><a class="b_special_a1" href="">Intel® oneAPI DPC++/C++ Compiler and Runtime Architecture</a></li>
-                            <li><a class="b_special_a1" href="">SPIR-V Support in LLVM and Clang Developer Meeting 2021</a></li>
-                            <li><a class="b_special_a1" href="">SPIR-V Function Pointers</a></li>
-                            <li><a class="b_special_a1" href="">User Guide for SPIR-V Target</a></li>
-                            <li><a class="b_special_a1" href="">SPIR-V Support in Clang</a></li>
+                            <li><a class="b_special_a1" href="https://github.com/intel/llvm/blob/sycl/sycl/doc/design/CompilerAndRuntimeDesign.md">Intel® oneAPI DPC++/C++ Compiler and Runtime Architecture</a></li>
+                            <li><a class="b_special_a1" href="https://llvm.org/devmtg/2021-11/slides/2021-SPIR-V-SupportinLLVMandClang.pdf">SPIR-V Support in LLVM and Clang Developer Meeting 2021</a></li>
+                            <li><a class="b_special_a1" href="https://github.com/intel/llvm/blob/sycl/sycl/doc/design/spirv-extensions/SPV_INTEL_function_pointers.asciidoc">SPIR-V Function Pointers</a></li>
+                            <li><a class="b_special_a1" href="https://llvm.org/docs/SPIRVUsage.html">User Guide for SPIR-V Target</a></li>
+                            <li><a class="b_special_a1" href="https://clang.llvm.org/docs/UsersManual.html#spir-v-support">SPIR-V Support in Clang</a></li>
                         </ul>
                         <p>&nbsp;</p>
                     </section>
