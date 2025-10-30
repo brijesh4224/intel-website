@@ -176,13 +176,13 @@
                         aria-controls="pills-home" aria-selected="true">Purchase, Renew, and Upgrade</button>
                     </li>
                     <li class="nav-item" role="presentation">
-                        <a href="#" class="nav-link mv_nav_link_key_features" id="pills-profile-tab" role="tab"><span class="b_special_a">Download Software</span></a>
+                        <a href="/darshit/Frequently_Asked_Questions_Download_Software.html" class="nav-link mv_nav_link_key_features" id="pills-profile-tab" role="tab"><span class="b_special_a">Download Software</span></a>
                     </li>
                     <li class="nav-item" role="presentation">
-                        <a href="#" class="nav-link mv_nav_link_key_features" id="pills-profile-tab" role="tab"><span class="b_special_a">Licensing</span></a>
+                        <a href="/darshit/Frequently_Asked_Questions_Product_Licensing.html" class="nav-link mv_nav_link_key_features" id="pills-profile-tab" role="tab"><span class="b_special_a">Licensing</span></a>
                     </li>
                     <li class="nav-item" role="presentation">
-                        <a href="#" class="nav-link mv_nav_link_key_features" id="pills-profile-tab" role="tab"><span class="b_special_a">Registration</span></a>
+                        <a href="/darshit/Frequently_Asked_Questions_Registration.html" class="nav-link mv_nav_link_key_features" id="pills-profile-tab" role="tab"><span class="b_special_a">Registration</span></a>
                     </li>
                     <li class="nav-item" role="presentation">
                         <a href="#" class="nav-link mv_nav_link_key_features" id="pills-profile-tab" role="tab"><span class="b_special_a">Installation</span></a>
@@ -566,8 +566,8 @@
         <div style="padding: 3rem 0rem 2rem">
             <div class="container">
                 <h5><b>More Questions</b></h5>
-                <p>For topics not found here, search our&nbsp;<a class="b_special_a1" href="">forums</a> and support channels.</p>
-                <p><a class="dk_button" href="">Get Support</a></p>
+                <p>For topics not found here, search our&nbsp;<a class="b_special_a1" href="/denisha_html/developer-software-forums.html">forums</a> and support channels.</p>
+                <p><a class="dk_button" href="/dhruvin_developer-tools/ds_Get-Help.html">Get Support</a></p>
             </div>  
         </div>
     </section>
@@ -714,26 +714,40 @@
     </script>
 
      <!-- Expand All and Collapse All  -->
-    <script>
+     <script>
         document.addEventListener("DOMContentLoaded", function () {
-        const expandAllLink = document.querySelector(".dk_power_frq_que a");
-        const accordionItems = document.querySelectorAll(".accordion-collapse");
-
-        expandAllLink.addEventListener("click", function (event) {
-            event.preventDefault();
-            const isExpanded = expandAllLink.textContent.trim() === "Expand All";
-
-            accordionItems.forEach(item => {
-                if (isExpanded) {
-                    item.classList.add("show"); // Open all
-                } else {
-                    item.classList.remove("show"); // Close all
-                }
+          // Select all "Expand All" links
+          const expandLinks = document.querySelectorAll(".dk_power_frq_que a");
+        
+          expandLinks.forEach(link => {
+            link.addEventListener("click", function (e) {
+              e.preventDefault();
+        
+              const section = link.closest("section"); // current section
+              const accordions = section.querySelectorAll(".accordion-collapse");
+        
+              const isExpanded = link.textContent.trim() === "Collapse All";
+        
+              if (isExpanded) {
+                // Collapse all
+                accordions.forEach(acc => {
+                  const bsCollapse = bootstrap.Collapse.getInstance(acc);
+                  if (bsCollapse) bsCollapse.hide();
+                  else new bootstrap.Collapse(acc, { toggle: false }).hide();
+                });
+                link.textContent = "Expand All";
+              } else {
+                // Expand all
+                accordions.forEach(acc => {
+                  const bsCollapse = bootstrap.Collapse.getInstance(acc);
+                  if (bsCollapse) bsCollapse.show();
+                  else new bootstrap.Collapse(acc, { toggle: false }).show();
+                });
+                link.textContent = "Collapse All";
+              }
             });
-
-            expandAllLink.textContent = isExpanded ? "Collapse All" : "Expand All";
+          });
         });
-    });
-    </script>
-
+        </script>
+        
 </html>  
